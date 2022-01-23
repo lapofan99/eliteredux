@@ -8701,7 +8701,7 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_TORKOAL] =
     {
         .baseHP        = 90,
-        .baseAttack    = 105
+        .baseAttack    = 105,
         .baseDefense   = 180,
         .baseSpeed     = 20,
         .baseSpAttack  = 105,
