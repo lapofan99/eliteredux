@@ -1746,12 +1746,19 @@ static s16 StorageSystemGetNextMonIndex(struct BoxPokemon *box, s8 startIdx, u8 
 void ResetPokemonStorageSystem(void)
 {
     u16 boxId, boxPosition;
-
+    
     SetCurrentBox(0);
     for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
     {
         for (boxPosition = 0; boxPosition < IN_BOX_COUNT; boxPosition++)
-            ZeroBoxMonAt(boxId, boxPosition);
+        {
+            if (boxId!=TOTAL_BOXES_COUNT-1 || boxPosition!=IN_BOX_COUNT-1)
+                ZeroBoxMonAt(boxId, boxPosition);
+            else
+                if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SPECIES) != SPECIES_RATTATA
+                        || GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_EXP) != 0)
+                    ZeroBoxMonAt(boxId, boxPosition);
+        }
     }
     for (boxId = 0; boxId < TOTAL_BOXES_COUNT; boxId++)
     {
@@ -3991,7 +3998,8 @@ static void LoadDisplayMonGfx(u16 species, u32 pid)
     {
         LoadSpecialPokePic(&gMonFrontPicTable[species], sStorage->tileBuffer, species, pid, TRUE);
         LZ77UnCompWram(sStorage->displayMonPalette, sStorage->displayMonPalBuffer);
-        HueShiftMonPalette((u16*) sStorage->displayMonPalBuffer, sStorage->displayMonPersonality);
+        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+            HueShiftMonPalette((u16*) sStorage->displayMonPalBuffer, sStorage->displayMonPersonality);
         CpuCopy32(sStorage->tileBuffer, sStorage->displayMonTilePtr, MON_PIC_SIZE);
         LoadPalette(sStorage->displayMonPalBuffer, sStorage->displayMonPalOffset, 0x20);
         sStorage->displayMonSprite->invisible = FALSE;

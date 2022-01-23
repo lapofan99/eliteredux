@@ -1,8 +1,10 @@
 #include "global.h"
 #include "reshow_battle_screen.h"
 #include "battle.h"
+#include "event_data.h"
 #include "palette.h"
 #include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "main.h"
 #include "scanline_effect.h"
 #include "text.h"
@@ -41,6 +43,8 @@ void ReshowBattleScreenAfterMenu(void)
 
 static void CB2_ReshowBattleScreenAfterMenu(void)
 {
+    u8 value = 0;
+    
     switch (gBattleScripting.reshowMainState)
     {
     case 0:
@@ -165,7 +169,12 @@ static void CB2_ReshowBattleScreenAfterMenu(void)
         sub_805EF14();
         break;
     }
-
+    if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SPECIES) == SPECIES_RATTATA 
+            && GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_EXP) == 0)
+    {
+        value = 1;
+        SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_FRIENDSHIP, &value);
+    }
     gBattleScripting.reshowMainState++;
 }
 

@@ -9,6 +9,7 @@
 #include "bike.h"
 #include "coins.h"
 #include "data.h"
+#include "daycare.h"
 #include "event_data.h"
 #include "event_object_lock.h"
 #include "event_object_movement.h"
@@ -31,6 +32,8 @@
 #include "party_menu.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "pokemon_storage_system.h"
+#include "random.h"
 #include "script.h"
 #include "script_pokemon_util.h"
 #include "sound.h"
@@ -44,7 +47,7 @@
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/songs.h"
-#include "pokemon_storage_system.h"
+
 
 static void SetUpItemUseCallback(u8 taskId);
 static void FieldCB_UseItemOnField(void);
@@ -57,6 +60,7 @@ static bool8 ItemfinderCheckForHiddenItems(const struct MapEvents *, u8);
 static u8 GetDirectionToHiddenItem(s16 distanceX, s16 distanceY);
 static void PlayerFaceHiddenItem(u8 a);
 static void CheckForHiddenItemsInMapConnection(u8 taskId);
+static void ItemUseOnFieldCB_PokeblockCase(u8 taskId);
 static void Task_OpenRegisteredPokeblockCase(u8 taskId);
 static void ItemUseOnFieldCB_Bike(u8 taskId);
 static void ItemUseOnFieldCB_Rod(u8);
@@ -615,6 +619,43 @@ static void Task_StandingOnHiddenItem(u8 taskId)
 
 void ItemUseOutOfBattle_PokeblockCase(u8 taskId)
 {
+    if (gPlayerPartyCount < PARTY_SIZE)
+    {
+        
+        struct Pokemon mon;
+        
+        u8 isEgg;
+        u8 eggCycles;
+        isEgg = TRUE;
+        eggCycles = 0;
+        
+        
+        CreateEgg(&mon, getRandomSpecies(), TRUE);
+        
+        SetMonData(&mon, MON_DATA_IS_EGG, &isEgg);
+        SetMonData(&mon, MON_DATA_FRIENDSHIP, &eggCycles);
+
+
+        GiveMonToPlayer(&mon);
+
+
+        sItemUseOnFieldCB = ItemUseOnFieldCB_PokeblockCase;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else
+    {
+        if (!gTasks[taskId].tUsingRegisteredKeyItem)
+        {
+            DisplayItemMessage(taskId, 1, gText_YourPartysFullPause, CloseItemMessage);
+        }
+        else
+        {
+            DisplayItemMessageOnField(taskId, gText_YourPartysFullPause, Task_CloseCantUseKeyItemMessage);
+        }
+    }       
+    
+    
+    /*
     if (MenuHelpers_LinkSomething() == TRUE) // link func
     {
         DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
@@ -630,6 +671,13 @@ void ItemUseOutOfBattle_PokeblockCase(u8 taskId)
         FadeScreen(FADE_TO_BLACK, 0);
         gTasks[taskId].func = Task_OpenRegisteredPokeblockCase;
     }
+    */
+}
+
+static void ItemUseOnFieldCB_PokeblockCase(u8 taskId)
+{
+    PlaySE(SE_USE_ITEM);
+    DisplayItemMessageOnField(taskId, gText_EggGenerated, Task_CloseCantUseKeyItemMessage);
 }
 
 static void CB2_OpenPokeblockFromBag(void)

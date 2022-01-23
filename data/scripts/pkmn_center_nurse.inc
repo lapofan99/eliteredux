@@ -16,14 +16,14 @@ Common_EventScript_PkmnCenterNurse::
     end
 
 EventScript_PkmnCenterNurseHasVial::
-    call Give_Nuzlocke_Items
-    call_if_set FLAG_BADGE01_GET, Give_Cut_Items_After_Roxanne
-    call_if_set FLAG_RECEIVED_TM46, Give_Thief_Items_After_Thief
-    call_if_set FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS, Give_Thief_Items_After_Museum
-    call_if_set FLAG_BADGE03_GET, Give_Thief_Items_After_Wattson
-    call_if_set FLAG_BADGE04_GET, Give_Thief_Items_After_Flannery
-    call_if_set FLAG_BADGE05_GET, Give_Thief_Items_After_Norman
-    call_if_set FLAG_BADGE06_GET, Give_Thief_Items_After_Winoma
+    call_if_set FLAG_RECEIVED_OLD_ROD, Give_Pokeblock_Case
+    checkitem ITEM_RARE_CANDY, 400
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_RARE_CANDY
+    setvar VAR_0x8006, 4
+    special GetSettingsMonStats
+    compare VAR_0x8005, 1
+    call_if_eq Give_Nuzlocke_Items
     call EventScript_PkmnCenterNurse_HealPkmn
     end
 
@@ -32,7 +32,7 @@ EventScript_PkmnCenterNurse_Goodbye::
     return
 
 @ VAR_0x8004 is 1 when player has Gold Card; jumps are identical
-EventScript_PkmnCenterNurse_HealPkmn::
+    EventScript_PkmnCenterNurse_HealPkmn::
     copyvar VAR_POKE_VIAL_CHARGES, VAR_POKE_VIAL_MAX_CHARGES @ refill Poke Vial
     incrementgamestat GAME_STAT_USED_POKECENTER
     call EventScript_PkmnCenterNurse_TakeAndHealPkmn
@@ -138,11 +138,23 @@ Movement_PkmnCenterNurse_Bow:
     nurse_joy_bow
     delay_4
     step_end
-
-Give_Nuzlocke_Items:
-	checkitem ITEM_RARE_CANDY, 400
+    
+    
+Give_Pokeblock_Case:
+	checkitem ITEM_POKEBLOCK_CASE, 1
 	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_RARE_CANDY
+	call_if_ne ADDITEM_POKEBLOCK_CASE
+	return
+	
+	
+Give_Nuzlocke_Items:
+	call_if_set FLAG_BADGE01_GET, Give_Cut_Items_After_Roxanne
+    	call_if_set FLAG_RECEIVED_TM46, Give_Thief_Items_After_Thief
+    	call_if_set FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS, Give_Thief_Items_After_Museum
+    	call_if_set FLAG_BADGE03_GET, Give_Thief_Items_After_Wattson
+    	call_if_set FLAG_BADGE04_GET, Give_Thief_Items_After_Flannery
+    	call_if_set FLAG_BADGE05_GET, Give_Thief_Items_After_Norman
+    	call_if_set FLAG_BADGE06_GET, Give_Thief_Items_After_Winoma
 	checkitem ITEM_BIG_PEARL, 400
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_BIG_PEARL
@@ -330,6 +342,10 @@ Give_Thief_Items_After_Winoma:
 	checkitem ITEM_PP_MAX, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_PP_MAX
+	return
+
+ADDITEM_POKEBLOCK_CASE:
+	additem ITEM_POKEBLOCK_CASE, 1
 	return
 
 ADDITEM_RARE_CANDY:

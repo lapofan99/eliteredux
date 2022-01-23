@@ -5210,23 +5210,23 @@ void IncreaseChosenMonEVs (void)
     gSpecialVar_0x8007 = newEV;
 }
 
-void SetSettingsnMonStats (void)
+void SetSettingsMonStats (void)
 {
 	/*
 	SetMonData(mon, MON_DATA_HP_IV, &i); // Perfect IVs settings
 	SetMonData(mon, MON_DATA_ATK_IV, &i); // EV settings
 	SetMonData(mon, MON_DATA_DEF_IV, &i); // Shiny Rate
 	SetMonData(mon, MON_DATA_SPEED_IV, &i); // Infinite Pokevial
-	SetMonData(mon, MON_DATA_SPATK_IV, &i);
-	SetMonData(mon, MON_DATA_SPDEF_IV, &i);
+	SetMonData(mon, MON_DATA_SPATK_IV, &i); // Items
+	SetMonData(mon, MON_DATA_SPDEF_IV, &i); // Berries
+	SetMonData(mon, MON_DATA_COOL, &i); // Individually-Unique Pokemon Colors
+	SetMonData(mon, MON_DATA_BEAUTY, &i); // AI controlled patch
+	SetMonData(mon, MON_DATA_CUTE, &i); // Legendary
+	SetMonData(mon, MON_DATA_SMART, &i); // Random starters
+	SetMonData(mon, MON_DATA_TOUGH, &i); // Unobtainable
+	SetMonData(mon, MON_DATA_SHEEN, &i); // Alt Forms
 	SetMonData(mon, MON_DATA_ABILITY_NUM, &i);
-	SetMonData(mon, MON_DATA_FRIENDSHIP, &i);
-	SetMonData(mon, MON_DATA_COOL, &i);
-	SetMonData(mon, MON_DATA_BEAUTY, &i);
-	SetMonData(mon, MON_DATA_CUTE, &i);
-	SetMonData(mon, MON_DATA_SMART, &i);
-	SetMonData(mon, MON_DATA_TOUGH, &i);
-	SetMonData(mon, MON_DATA_SHEEN, &i);
+	SetMonData(mon, MON_DATA_FRIENDSHIP, &i); // Summary screen
 	*/
 	
 	u8 statToChange = gSpecialVar_0x8006;
@@ -5312,12 +5312,28 @@ void SetSettingsnMonStats (void)
 			break;
 		case 3: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SPEED_IV, &value); // Infinite Pokevial
 			break;
+		case 4: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SPATK_IV, &value); // Items
+			break;
+		case 5: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SPDEF_IV, &value); // Berries
+			break;
+		case 6: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL, &value); // Individually-Unique Pokemon Colors
+			break;
+		case 7: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY, &value); // AI controlled patch
+			break;
+		case 8: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_CUTE, &value); // Legendary
+			break;
+		case 9: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SMART, &value); // Random starters
+			break;
+		case 10: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_TOUGH, &value); // Unobtainable
+			break;
+		case 11: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SHEEN, &value); // Alt Forms
+			break;
 	}
 	
 	
 }
 	
-void GetSettingsnMonStats (void)
+void GetSettingsMonStats (void)
 {
 	u8 statToChange = gSpecialVar_0x8006;
 	
@@ -5331,8 +5347,45 @@ void GetSettingsnMonStats (void)
 			break;
 		case 3: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SPEED_IV); // Infinite Pokevial
 			break;
+		case 4: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SPATK_IV); // Items
+			break;
+		case 5: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SPDEF_IV); // Berries
+			break;
+		case 6: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL); // Individually-Unique Pokemon Colors
+			break;
+		case 7: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY); // AI controlled patch
+			break;
+		case 8: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_CUTE); // Legendart
+			break;
+		case 9: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SMART); // Random starters
+			break;
+		case 10: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_TOUGH); // Unobtainable
+			break;
+		case 11: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SHEEN); // Alt Forms
+			break;
 	}
 }
+
+void DeleteRandomStarters (void)
+{
+    ResetPokemonStorageSystem(); // Delete the 3 random starters
+}
+
+void GenerateRandomStarters (void)
+{
+    struct Pokemon mon;
+	
+    u8 boxPosition = 0;
+    for (boxPosition = 0; boxPosition < 3; boxPosition++) // Generate 3 random Pokémon for the Random starters option
+    {
+        CreateMon(&mon, getRandomSpecies(), 0, USE_RANDOM_IVS, 0, 0, OT_ID_PLAYER_ID, 0);
+        SendMonToPC(&mon);
+    }	
+}
+
+
+
+
 
 // Buffers the IV of a Pokemon's stat chosen by the player.
 // gSpecialVar_0x8004 must be set to the party slot of the chosen Pokemon
@@ -5751,8 +5804,8 @@ void SetSpeciesAndEggMove (void)
         {SPECIES_DRATINI, MOVE_EXTREME_SPEED, MOVE_EXTREME_SPEED, MOVE_EXTREME_SPEED},
         {SPECIES_FEEBAS, MOVE_HAZE, MOVE_HYPNOSIS, MOVE_MIRROR_COAT}
     };
-    u8 numEggSpecies = ARRAY_COUNT(eggMoves);
-    u8 randSpecies, randEggMove;
+    u16 numEggSpecies = ARRAY_COUNT(eggMoves);
+    u16 randSpecies, randEggMove;
 
     randSpecies = Random() % numEggSpecies;
     randEggMove = (Random() % 3) + 1; // Random number between 1 and 3

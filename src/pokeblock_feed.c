@@ -16,6 +16,7 @@
 #include "party_menu.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "sprite.h"
 #include "string_util.h"
 #include "strings.h"
@@ -740,8 +741,11 @@ static bool8 LoadMonAndSceneGfx(struct Pokemon *mon)
         personality = GetMonData(mon, MON_DATA_PERSONALITY);
         trainerId = GetMonData(mon, MON_DATA_OT_ID);
         palette = GetMonSpritePalStructFromOtIdPersonality(species, trainerId, personality);
-
-        LoadHueShiftedMonSpritePalette(palette, personality);
+        
+        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+            LoadHueShiftedMonSpritePalette(palette, personality);
+        else
+            LoadCompressedSpritePalette(palette);
         SetMultiuseSpriteTemplateToPokemon(palette->tag, 1);
         sPokeblockFeed->loadGfxState++;
         break;
