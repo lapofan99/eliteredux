@@ -393,7 +393,7 @@ const struct BaseStats gBaseStats[] =
     {
         .baseHP        = 75,
         .baseDefense   = 50,
-        .baseSpAttack  = 45
+        .baseSpAttack  = 45,
         .baseSpDefense = 80,
         #ifdef REBALANCED_VERSION
             .baseAttack  = 125,
