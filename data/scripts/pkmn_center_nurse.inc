@@ -20,6 +20,9 @@ EventScript_PkmnCenterNurseHasVial::
     checkitem ITEM_RARE_CANDY, 400
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_RARE_CANDY
+    checkitem ITEM_MASTER_BALL, 400
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_MASTER_BALL
     setvar VAR_0x8006, 4
     special GetSettingsMonStats
     compare VAR_0x8005, 1
@@ -138,15 +141,15 @@ Movement_PkmnCenterNurse_Bow:
     nurse_joy_bow
     delay_4
     step_end
-    
-    
+
+
 Give_Pokeblock_Case:
 	checkitem ITEM_POKEBLOCK_CASE, 1
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_POKEBLOCK_CASE
 	return
-	
-	
+
+
 Give_Nuzlocke_Items:
 	call_if_set FLAG_BADGE01_GET, Give_Cut_Items_After_Roxanne
     	call_if_set FLAG_RECEIVED_TM46, Give_Thief_Items_After_Thief
@@ -194,7 +197,7 @@ Give_Cut_Items_After_Roxanne:
 	checkitem ITEM_GRASSY_SEED, 100
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_GRASSY_SEED
-	checkitem ITEM_MISTY_SEED, 100 
+	checkitem ITEM_MISTY_SEED, 100
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_MISTY_SEED
 	checkitem ITEM_CHERI_BERRY, 100
@@ -267,15 +270,42 @@ Give_Cut_Items_After_Roxanne:
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_ROSELI_BERRY
 	return
-	
-	
+
+
 Give_Thief_Items_After_Thief:
 	checkitem ITEM_SITRUS_BERRY, 400
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_SITRUS_BERRY
-	checkitem ITEM_LEFTOVERS, 10
+	checkitem ITEM_LEFTOVERS, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_LEFTOVERS
+  checkitem ITEM_BLACK_SLUDGE, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_BLACK_SLUDGE
+  checkitem ITEM_TOXIC_ORB, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_TOXIC_ORB
+  checkitem ITEM_FLAME_ORB, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_FLAME_ORB
+  checkitem ITEM_LIFE_ORB, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_LIFE_ORB
+  checkitem ITEM_CHOICE_BAND, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_CHOICE_BAND
+  checkitem ITEM_CHOICE_SPECS, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_CHOICE_SPECS
+  checkitem ITEM_CHOICE_SCARF, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_CHOICE_SCARF
+  checkitem ITEM_FOCUS_SASH, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_FOCUS_SASH
+  checkitem ITEM_LIGHT_CLAY, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_LIGHT_CLAY
 	checkitem ITEM_BRIGHT_POWDER, 10
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_BRIGHT_POWDER
@@ -315,7 +345,7 @@ Give_Thief_Items_After_Museum:
 	call_if_ne ADDITEM_TWISTED_SPOON
 	return
 
-	
+
 Give_Thief_Items_After_Wattson:
 	checkitem ITEM_MAGNET, 10
 	compare VAR_RESULT, TRUE
@@ -351,11 +381,15 @@ ADDITEM_POKEBLOCK_CASE:
 ADDITEM_RARE_CANDY:
 	additem ITEM_RARE_CANDY, 400
 	return
-	
+
+ADDITEM_MASTER_BALL
+  additem ITEM_MASTER_BALL, 400
+  return
+
 ADDITEM_BIG_PEARL:
 	additem ITEM_BIG_PEARL, 400
 	return
-	
+
 ADDITEM_MAX_REPEL:
 	additem ITEM_MAX_REPEL, 250
 	return
@@ -501,8 +535,44 @@ ADDITEM_SITRUS_BERRY:
 	return
 
 ADDITEM_LEFTOVERS:
-	additem ITEM_LEFTOVERS, 10
+	additem ITEM_LEFTOVERS, 50
 	return
+
+ADDITEM_BLACK_SLUDGE:
+  additem ITEM_BLACK_SLUDGE, 50
+  return
+
+ADDITEM_TOXIC_ORB:
+  additem ITEM_TOXIC_ORB, 50
+  return
+
+ADDITEM_FLAME_ORB:
+  additem ITEM_FLAME_ORB, 50
+  return
+
+ADDITEM_LIFE_ORB:
+  additem ITEM_LIFE_ORB, 50
+  return
+
+ADDITEM_CHOICE_BAND:
+  additem ITEM_CHOICE_BAND, 50
+  return
+
+ADDITEM_CHOICE_SPECS:
+  additem ITEM_CHOICE_SPECS, 50
+  return
+
+ADDITEM_CHOICE_SCARF:
+  additem ITEM_CHOICE_SCARF, 50
+  return
+
+ADDITEM_FOCUS_SASH:
+  additem ITEM_FOCUS_SASH, 50
+  return
+
+ADDITEM_LIGHT_CLAY:
+  additem ITEM_LIGHT_CLAY, 50
+  return
 
 ADDITEM_BRIGHT_POWDER:
 	additem ITEM_BRIGHT_POWDER, 10
