@@ -23,6 +23,12 @@ EventScript_PkmnCenterNurseHasVial::
     checkitem ITEM_MASTER_BALL, 400
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_MASTER_BALL
+    checkitem ITEM_ABILITY_PATCH, 400
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_ABILITY_PATCH
+    checkitem ITEM_ABILITY_CAPSULE, 400
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_ABILITY_CAPSULE
     setvar VAR_0x8006, 4
     special GetSettingsMonStats
     compare VAR_0x8005, 1
@@ -384,6 +390,14 @@ ADDITEM_RARE_CANDY:
 
 ADDITEM_MASTER_BALL:
   additem ITEM_MASTER_BALL, 400
+  return
+
+ADDITEM_ABILITY_CAPSULE:
+  additem ITEM_ABILITY_CAPSULE, 400
+  return
+
+ADDITEM_ABILITY_PATCH:
+  additem ITEM_ABILITY_PATCH, 400
   return
 
 ADDITEM_BIG_PEARL:
