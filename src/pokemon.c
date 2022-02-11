@@ -52,7 +52,7 @@
 #include "constants/battle_config.h"
 #include "data/trainer_spreads.h"
 
-	
+
 struct SpeciesItem
 {
     u16 species;
@@ -3298,7 +3298,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-        
+
         if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
         {
             u32 shinyValue;
@@ -3382,7 +3382,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 		    SetBoxMonData(boxMon, MON_DATA_HP_IV + statIDs[i], &maxIV);
 		}
 	}
-	
+
 
     }
     nature = personality % 25;
@@ -5129,8 +5129,8 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
     SetMonData(mon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
 
-	
-    if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_RATTATA 
+
+    if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_RATTATA
         && GetMonData(mon, MON_DATA_EXP, NULL) == 0)
     {
 	u8 nickname[POKEMON_NAME_LENGTH + 1] = _("DontMoveMe");
@@ -5150,9 +5150,9 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
 	SetMonData(mon, MON_DATA_SMART, &i);
 	SetMonData(mon, MON_DATA_TOUGH, &i);
 	SetMonData(mon, MON_DATA_SHEEN, &i);
-	return SendSettingsMonToPC(mon);    
+	return SendSettingsMonToPC(mon);
     }
-	
+
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -5223,7 +5223,7 @@ u8 SendSettingsMonToPC(struct Pokemon* mon)
 		VarSet(VAR_RESULT, MON_GIVEN_TO_PC);
                 return MON_GIVEN_TO_PC;
             }
-	    else if (GetBoxMonData(checkingMon, MON_DATA_SPECIES, NULL) == SPECIES_RATTATA 
+	    else if (GetBoxMonData(checkingMon, MON_DATA_SPECIES, NULL) == SPECIES_RATTATA
        			&& GetBoxMonData(checkingMon, MON_DATA_EXP, NULL) == 0)
 	    {
 		VarSet(VAR_RESULT, MON_GIVEN_TO_PC);
@@ -5869,7 +5869,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         temp2 = itemEffect[itemEffectParam];
                         dataSigned = GetMonData(mon, sGetMonDataIVConstants[temp1], NULL);
                         evChange = temp2;
-     
+
                         if (evChange > 0) // Increasing IV (HP or Atk)
                         {
                                 ivMax = MAX_IV_MASK;
@@ -5971,7 +5971,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         {
                             if (!usedByAI)
                             {
-                                // Restore HP 
+                                // Restore HP
                                 dataUnsigned = GetMonData(mon, MON_DATA_HP, NULL) + dataUnsigned;
                                 if (dataUnsigned > GetMonData(mon, MON_DATA_MAX_HP, NULL))
                                     dataUnsigned = GetMonData(mon, MON_DATA_MAX_HP, NULL);
@@ -6050,7 +6050,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                                     dataUnsigned = CalculatePPWithBonus(moveId, GetMonData(mon, MON_DATA_PP_BONUSES, NULL), moveIndex);
                                 }
                                 SetMonData(mon, MON_DATA_PP1 + moveIndex, &dataUnsigned);
-                                
+
                                 // Heal battler PP too (if applicable)
                                 if (gMain.inBattle
                                  && battlerId != MAX_BATTLERS_COUNT && !(gBattleMons[battlerId].status2 & STATUS2_TRANSFORMED)
@@ -6087,7 +6087,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
         case 5:
             effectFlags = itemEffect[i];
             temp1 = 0;
-            
+
             // Loop through and try each of the ITEM5 effects
             while (effectFlags != 0)
             {
@@ -6102,7 +6102,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         temp2 = itemEffect[itemEffectParam];
                         dataSigned = GetMonData(mon, sGetMonDataIVConstants[temp1 + 2], NULL);
                         evChange = temp2;
-     
+
                         if (evChange > 0) // Increasing IV
                         {
                             ivMax = MAX_IV_MASK;
@@ -7000,7 +7000,7 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
     }
 
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
-    
+
     if (heldItem == ITEM_ENIGMA_BERRY)
     {
         if (gMain.inBattle)
@@ -7025,7 +7025,7 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
             multiplier = 2;
         else
             multiplier = 1;
-        
+
         // Power items prevent EV gain from Pokemon
         if (holdEffect == HOLD_EFFECT_POWER_ITEM)
         {
@@ -8333,7 +8333,7 @@ static void ShuffleStatArray(u8* statArray)
 }
 
 // returns SPECIES_NONE if no form change is possible
-u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg) 
+u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg)
 {
     u32 i;
     u16 targetSpecies = SPECIES_NONE;
@@ -8407,354 +8407,82 @@ u16 getShinyOdds(void)
 u16 getRandomSpecies(void)
 {
 	static const u16 Obt[][1] = {
-            {SPECIES_BULBASAUR},
-            {SPECIES_CHARMANDER},
-            {SPECIES_SQUIRTLE},
-            {SPECIES_CATERPIE},
-            {SPECIES_WEEDLE},
-            {SPECIES_PIDGEY},
-            {SPECIES_RATTATA},
-            {SPECIES_SPEAROW},
-            {SPECIES_EKANS},
-            {SPECIES_SANDSHREW},
-            {SPECIES_NIDORAN_F},
-            {SPECIES_NIDORAN_M},
-            {SPECIES_VULPIX},
-            {SPECIES_ZUBAT},
-            {SPECIES_ODDISH},
-            {SPECIES_PARAS},
-            {SPECIES_VENONAT},
-            {SPECIES_DIGLETT},
-            {SPECIES_MEOWTH},
-            {SPECIES_PSYDUCK},
-            {SPECIES_MANKEY},
-            {SPECIES_GROWLITHE},
-            {SPECIES_POLIWAG},
-            {SPECIES_ABRA},
-            {SPECIES_MACHOP},
-            {SPECIES_BELLSPROUT},
-            {SPECIES_TENTACOOL},
-            {SPECIES_GEODUDE},
-            {SPECIES_PONYTA},
-            {SPECIES_SLOWPOKE},
-            {SPECIES_MAGNEMITE},
-            {SPECIES_FARFETCHD},
-            {SPECIES_DODUO},
-            {SPECIES_SEEL},
-            {SPECIES_GRIMER},
-            {SPECIES_SHELLDER},
-            {SPECIES_GASTLY},
-            {SPECIES_ONIX},
-            {SPECIES_DROWZEE},
-            {SPECIES_KRABBY},
-            {SPECIES_VOLTORB},
-            {SPECIES_EXEGGCUTE},
-            {SPECIES_CUBONE},
-            {SPECIES_LICKITUNG},
-            {SPECIES_KOFFING},
-            {SPECIES_RHYHORN},
-            {SPECIES_TANGELA},
-            {SPECIES_KANGASKHAN},
-            {SPECIES_HORSEA},
-            {SPECIES_GOLDEEN},
-            {SPECIES_STARYU},
-            {SPECIES_SCYTHER},
-            {SPECIES_PINSIR},
-            {SPECIES_TAUROS},
-            {SPECIES_MAGIKARP},
-            {SPECIES_LAPRAS},
-            {SPECIES_DITTO},
-            {SPECIES_EEVEE},
-            {SPECIES_PORYGON},
-            {SPECIES_OMANYTE},
-            {SPECIES_KABUTO},
-            {SPECIES_AERODACTYL},
-            {SPECIES_DRATINI},
-            {SPECIES_CHIKORITA},
-            {SPECIES_CYNDAQUIL},
-            {SPECIES_TOTODILE},
-            {SPECIES_SENTRET},
-            {SPECIES_HOOTHOOT},
-            {SPECIES_LEDYBA},
-            {SPECIES_SPINARAK},
-            {SPECIES_CHINCHOU},
-            {SPECIES_PICHU},
-            {SPECIES_CLEFFA},
-            {SPECIES_IGGLYBUFF},
-            {SPECIES_TOGEPI},
-            {SPECIES_NATU},
-            {SPECIES_MAREEP},
-            {SPECIES_HOPPIP},
-            {SPECIES_AIPOM},
-            {SPECIES_SUNKERN},
-            {SPECIES_YANMA},
-            {SPECIES_WOOPER},
-            {SPECIES_MURKROW},
-            {SPECIES_MISDREAVUS},
-            {SPECIES_GIRAFARIG},
-            {SPECIES_PINECO},
-            {SPECIES_DUNSPARCE},
-            {SPECIES_GLIGAR},
-            {SPECIES_SNUBBULL},
-            {SPECIES_QWILFISH},
-            {SPECIES_SHUCKLE},
-            {SPECIES_HERACROSS},
-            {SPECIES_SNEASEL},
-            {SPECIES_TEDDIURSA},
-            {SPECIES_SLUGMA},
-            {SPECIES_SWINUB},
-            {SPECIES_CORSOLA},
-            {SPECIES_REMORAID},
-            {SPECIES_DELIBIRD},
-            {SPECIES_SKARMORY},
-            {SPECIES_HOUNDOUR},
-            {SPECIES_PHANPY},
-            {SPECIES_STANTLER},
-            {SPECIES_SMEARGLE},
-            {SPECIES_TYROGUE},
-            {SPECIES_SMOOCHUM},
-            {SPECIES_ELEKID},
-            {SPECIES_MAGBY},
-            {SPECIES_MILTANK},
-            {SPECIES_LARVITAR},
-            {SPECIES_TREECKO},
-            {SPECIES_TORCHIC},
-            {SPECIES_MUDKIP},
-            {SPECIES_POOCHYENA},
-            {SPECIES_ZIGZAGOON},
-            {SPECIES_WURMPLE},
-            {SPECIES_LOTAD},
-            {SPECIES_SEEDOT},
-            {SPECIES_TAILLOW},
-            {SPECIES_WINGULL},
-            {SPECIES_RALTS},
-            {SPECIES_SURSKIT},
-            {SPECIES_SHROOMISH},
-            {SPECIES_SLAKOTH},
-            {SPECIES_NINCADA},
-            {SPECIES_WHISMUR},
-            {SPECIES_MAKUHITA},
-            {SPECIES_AZURILL},
-            {SPECIES_NOSEPASS},
-            {SPECIES_SKITTY},
-            {SPECIES_SABLEYE},
-            {SPECIES_MAWILE},
-            {SPECIES_ARON},
-            {SPECIES_MEDITITE},
-            {SPECIES_ELECTRIKE},
-            {SPECIES_PLUSLE},
-            {SPECIES_MINUN},
-            {SPECIES_VOLBEAT},
-            {SPECIES_ILLUMISE},
-            {SPECIES_GULPIN},
-            {SPECIES_CARVANHA},
-            {SPECIES_WAILMER},
-            {SPECIES_NUMEL},
-            {SPECIES_TORKOAL},
-            {SPECIES_SPOINK},
-            {SPECIES_SPINDA},
-            {SPECIES_TRAPINCH},
-            {SPECIES_CACNEA},
-            {SPECIES_SWABLU},
-            {SPECIES_ZANGOOSE},
-            {SPECIES_SEVIPER},
-            {SPECIES_LUNATONE},
-            {SPECIES_SOLROCK},
-            {SPECIES_BARBOACH},
-            {SPECIES_CORPHISH},
-            {SPECIES_BALTOY},
-            {SPECIES_LILEEP},
-            {SPECIES_ANORITH},
-            {SPECIES_FEEBAS},
-            {SPECIES_CASTFORM},
-            {SPECIES_KECLEON},
-            {SPECIES_SHUPPET},
-            {SPECIES_DUSKULL},
-            {SPECIES_TROPIUS},
-            {SPECIES_ABSOL},
-            {SPECIES_WYNAUT},
-            {SPECIES_SNORUNT},
-            {SPECIES_SPHEAL},
-            {SPECIES_CLAMPERL},
-            {SPECIES_RELICANTH},
-            {SPECIES_LUVDISC},
-            {SPECIES_BAGON},
-            {SPECIES_BELDUM},
-            {SPECIES_TURTWIG},
-            {SPECIES_CHIMCHAR},
-            {SPECIES_PIPLUP},
-            {SPECIES_STARLY},
-            {SPECIES_BIDOOF},
-            {SPECIES_KRICKETOT},
-            {SPECIES_SHINX},
-            {SPECIES_BUDEW},
-            {SPECIES_CRANIDOS},
-            {SPECIES_SHIELDON},
-            {SPECIES_BURMY},
-            {SPECIES_COMBEE},
-            {SPECIES_PACHIRISU},
-            {SPECIES_BUIZEL},
-            {SPECIES_CHERUBI},
-            {SPECIES_SHELLOS},
-            {SPECIES_DRIFLOON},
-            {SPECIES_BUNEARY},
-            {SPECIES_GLAMEOW},
-            {SPECIES_CHINGLING},
-            {SPECIES_STUNKY},
-            {SPECIES_BRONZOR},
-            {SPECIES_BONSLY},
-            {SPECIES_MIME_JR},
-            {SPECIES_HAPPINY},
-            {SPECIES_CHATOT},
-            {SPECIES_SPIRITOMB},
-            {SPECIES_GIBLE},
-            {SPECIES_MUNCHLAX},
-            {SPECIES_RIOLU},
-            {SPECIES_HIPPOPOTAS},
-            {SPECIES_SKORUPI},
-            {SPECIES_CROAGUNK},
-            {SPECIES_CARNIVINE},
-            {SPECIES_FINNEON},
-            {SPECIES_MANTYKE},
-            {SPECIES_SNOVER},
-            {SPECIES_FROSLASS},
-            {SPECIES_ROTOM},
-            {SPECIES_SNIVY},
-            {SPECIES_TEPIG},
-            {SPECIES_OSHAWOTT},
-            {SPECIES_PATRAT},
-            {SPECIES_LILLIPUP},
-            {SPECIES_PURRLOIN},
-            {SPECIES_PANSAGE},
-            {SPECIES_PANSEAR},
-            {SPECIES_PANPOUR},
-            {SPECIES_MUNNA},
-            {SPECIES_PIDOVE},
-            {SPECIES_BLITZLE},
-            {SPECIES_ROGGENROLA},
-            {SPECIES_WOOBAT},
-            {SPECIES_DRILBUR},
-            {SPECIES_AUDINO},
-            {SPECIES_TIMBURR},
-            {SPECIES_TYMPOLE},
-            {SPECIES_THROH},
-            {SPECIES_SAWK},
-            {SPECIES_SEWADDLE},
-            {SPECIES_VENIPEDE},
-            {SPECIES_COTTONEE},
-            {SPECIES_PETILIL},
-            {SPECIES_BASCULIN},
-            {SPECIES_SANDILE},
-            {SPECIES_DARUMAKA},
-            {SPECIES_MARACTUS},
-            {SPECIES_DWEBBLE},
-            {SPECIES_SCRAGGY},
-            {SPECIES_SIGILYPH},
-            {SPECIES_YAMASK},
-            {SPECIES_TIRTOUGA},
-            {SPECIES_ARCHEN},
-            {SPECIES_TRUBBISH},
-            {SPECIES_ZORUA},
-            {SPECIES_MINCCINO},
-            {SPECIES_GOTHITA},
-            {SPECIES_SOLOSIS},
-            {SPECIES_DUCKLETT},
-            {SPECIES_VANILLITE},
-            {SPECIES_DEERLING},
-            {SPECIES_EMOLGA},
-            {SPECIES_KARRABLAST},
-            {SPECIES_FOONGUS},
-            {SPECIES_FRILLISH},
-            {SPECIES_ALOMOMOLA},
-            {SPECIES_JOLTIK},
-            {SPECIES_FERROSEED},
-            {SPECIES_KLINK},
-            {SPECIES_TYNAMO},
-            {SPECIES_ELGYEM},
-            {SPECIES_LITWICK},
-            {SPECIES_AXEW},
-            {SPECIES_CUBCHOO},
-            {SPECIES_CRYOGONAL},
-            {SPECIES_SHELMET},
-            {SPECIES_STUNFISK},
-            {SPECIES_MIENFOO},
-            {SPECIES_DRUDDIGON},
-            {SPECIES_GOLETT},
-            {SPECIES_PAWNIARD},
-            {SPECIES_BOUFFALANT},
-            {SPECIES_RUFFLET},
-            {SPECIES_VULLABY},
-            {SPECIES_HEATMOR},
-            {SPECIES_DURANT},
-            {SPECIES_DEINO},
-            {SPECIES_LARVESTA},
-            {SPECIES_CHESPIN},
-            {SPECIES_FENNEKIN},
-            {SPECIES_FROAKIE},
-            {SPECIES_BUNNELBY},
-            {SPECIES_FLETCHLING},
-            {SPECIES_SCATTERBUG},
-            {SPECIES_LITLEO},
-            {SPECIES_FLABEBE},
-            {SPECIES_SKIDDO},
-            {SPECIES_PANCHAM},
-            {SPECIES_FURFROU},
-            {SPECIES_ESPURR},
-            {SPECIES_HONEDGE},
-            {SPECIES_SPRITZEE},
-            {SPECIES_SWIRLIX},
-            {SPECIES_INKAY},
-            {SPECIES_BINACLE},
-            {SPECIES_SKRELP},
-            {SPECIES_CLAUNCHER},
-            {SPECIES_HELIOPTILE},
-            {SPECIES_TYRUNT},
-            {SPECIES_AMAURA},
-            {SPECIES_HAWLUCHA},
-            {SPECIES_DEDENNE},
-            {SPECIES_CARBINK},
-            {SPECIES_GOOMY},
-            {SPECIES_KLEFKI},
-            {SPECIES_PHANTUMP},
-            {SPECIES_PUMPKABOO},
-            {SPECIES_BERGMITE},
-            {SPECIES_NOIBAT},
-            {SPECIES_ROWLET},
-            {SPECIES_LITTEN},
-            {SPECIES_POPPLIO},
-            {SPECIES_PIKIPEK},
-            {SPECIES_YUNGOOS},
-            {SPECIES_GRUBBIN},
-            {SPECIES_CRABRAWLER},
-            {SPECIES_ORICORIO},
-            {SPECIES_CUTIEFLY},
-            {SPECIES_ROCKRUFF},
-            {SPECIES_WISHIWASHI},
-            {SPECIES_MAREANIE},
-            {SPECIES_MUDBRAY},
-            {SPECIES_DEWPIDER},
-            {SPECIES_FOMANTIS},
-            {SPECIES_MORELULL},
-            {SPECIES_SALANDIT},
-            {SPECIES_STUFFUL},
-            {SPECIES_BOUNSWEET},
-            {SPECIES_COMFEY},
-            {SPECIES_ORANGURU},
-            {SPECIES_PASSIMIAN},
-            {SPECIES_WIMPOD},
-            {SPECIES_SANDYGAST},
-            {SPECIES_PYUKUMUKU},
-            {SPECIES_MINIOR},
-            {SPECIES_KOMALA},
-            {SPECIES_TURTONATOR},
-            {SPECIES_TOGEDEMARU},
-            {SPECIES_MIMIKYU},
-            {SPECIES_BRUXISH},
-            {SPECIES_DRAMPA},
-            {SPECIES_DHELMISE},
-            {SPECIES_JANGMO_O}
+						{SPECIES_ARTICUNO},
+            {SPECIES_ZAPDOS},
+            {SPECIES_MOLTRES},
+            {SPECIES_MEWTWO},
+            {SPECIES_MEW},
+            {SPECIES_LUGIA},
+            {SPECIES_HO_OH},
+            {SPECIES_REGIROCK},
+            {SPECIES_REGICE},
+            {SPECIES_REGISTEEL},
+            {SPECIES_LATIAS},
+            {SPECIES_LATIOS},
+            {SPECIES_KYOGRE},
+            {SPECIES_GROUDON},
+            {SPECIES_RAYQUAZA},
+            {SPECIES_JIRACHI},
+            {SPECIES_DEOXYS},
+            {SPECIES_HEATRAN},
+            {SPECIES_REGIGIGAS},
+            {SPECIES_DIANCIE},
+            {SPECIES_COSMOG},
+            {SPECIES_MAGEARNA},
+            {SPECIES_MELTAN},
+            {SPECIES_RAIKOU},
+            {SPECIES_ENTEI},
+            {SPECIES_SUICUNE},
+            {SPECIES_CELEBI},
+            {SPECIES_UXIE},
+            {SPECIES_MESPRIT},
+            {SPECIES_AZELF},
+            {SPECIES_DIALGA},
+            {SPECIES_PALKIA},
+            {SPECIES_GIRATINA},
+            {SPECIES_CRESSELIA},
+            {SPECIES_MANAPHY},
+            {SPECIES_DARKRAI},
+            {SPECIES_SHAYMIN},
+            {SPECIES_ARCEUS},
+            {SPECIES_VICTINI},
+            {SPECIES_COBALION},
+            {SPECIES_TERRAKION},
+            {SPECIES_VIRIZION},
+            {SPECIES_TORNADUS},
+            {SPECIES_THUNDURUS},
+            {SPECIES_RESHIRAM},
+            {SPECIES_ZEKROM},
+            {SPECIES_LANDORUS},
+            {SPECIES_KYUREM},
+            {SPECIES_KELDEO},
+            {SPECIES_GENESECT},
+            {SPECIES_XERNEAS},
+            {SPECIES_YVELTAL},
+            {SPECIES_ZYGARDE},
+            {SPECIES_HOOPA},
+            {SPECIES_VOLCANION},
+            {SPECIES_TYPE_NULL},
+            {SPECIES_SILVALLY},
+            {SPECIES_TAPU_KOKO},
+            {SPECIES_TAPU_LELE},
+            {SPECIES_TAPU_BULU},
+            {SPECIES_TAPU_FINI},
+            {SPECIES_NIHILEGO},
+            {SPECIES_BUZZWOLE},
+            {SPECIES_PHEROMOSA},
+            {SPECIES_XURKITREE},
+            {SPECIES_CELESTEELA},
+            {SPECIES_KARTANA},
+            {SPECIES_GUZZLORD},
+            {SPECIES_NECROZMA},
+            {SPECIES_MARSHADOW},
+            {SPECIES_NAGANADEL},
+            {SPECIES_STAKATAKA},
+            {SPECIES_BLACEPHALON},
+            {SPECIES_ZERAORA},
         };
-	      
+
         static const u16 ObtLegends[][1] = {
             {SPECIES_ARTICUNO},
             {SPECIES_ZAPDOS},
@@ -8781,7 +8509,7 @@ u16 getRandomSpecies(void)
             {SPECIES_MAGEARNA},
             {SPECIES_MELTAN}
         };
-        
+
         static const u16 NonObt[][1] = {
 		/*
             {SPECIES_UNOWN},
@@ -8824,7 +8552,7 @@ u16 getRandomSpecies(void)
             {SPECIES_DREEPY}
 	    */
         };
-        
+
         static const u16 NonObtLegends[][1] = {
 		/*
             {SPECIES_RAIKOU},
@@ -8892,8 +8620,8 @@ u16 getRandomSpecies(void)
             {SPECIES_CALYREX}
 	    */
         };
-        
-        
+
+
         u16 numObt = ARRAY_COUNT(Obt);
         u16 numObtLegends = ARRAY_COUNT(ObtLegends);
         u16 numNonObt = ARRAY_COUNT(NonObt);
@@ -8907,10 +8635,10 @@ u16 getRandomSpecies(void)
         u16 Rand = 0;
         u16 species = 0;
         u8 countAltForms = 0;
-        
-        
-        
-        
+
+
+
+
         if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_CUTE) == 1) // Legendary enabled
         {
             num += numObtLegends;
@@ -8928,9 +8656,9 @@ u16 getRandomSpecies(void)
         }
         if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SHEEN) == 1) // Alt Forms enbaled
             altForms = 1;
-            
-            
-        
+
+
+
         Rand = Random() % num;
         if (Rand < numObt)
         {
@@ -8957,8 +8685,8 @@ u16 getRandomSpecies(void)
             randSpecies = Random() % numObt;
             species = Obt[randSpecies][0];
         }
-        
-        
+
+
         if (altForms == 1)
         {
             if (species == SPECIES_MEOWTH && NonObtEnabled != 1) // SPECIES_MEOWTH_GALARIAN exception
@@ -8974,13 +8702,13 @@ u16 getRandomSpecies(void)
                 else if (Rand == 2)
                     species = SPECIES_NECROZMA_DAWN_WINGS;
             }
-            else if (species == SPECIES_RATTATA || species == SPECIES_SANDSHREW || species == SPECIES_VULPIX || species == SPECIES_DIGLETT || species == SPECIES_MEOWTH || 
-                    species == SPECIES_GEODUDE || species == SPECIES_GRIMER || species == SPECIES_PUMPKABOO || species == SPECIES_ORICORIO || 
-                     ((species == SPECIES_PONYTA || species == SPECIES_SLOWPOKE || species == SPECIES_FARFETCHD || species == SPECIES_CORSOLA || species == SPECIES_ZIGZAGOON || 
-                      species == SPECIES_SHELLOS || species == SPECIES_BASCULIN || species == SPECIES_DARUMAKA || species == SPECIES_YAMASK 
-                       || species == SPECIES_STUNFISK || species == SPECIES_SINISTEA || species == SPECIES_INDEEDEE) && NonObtEnabled == 1) || 
-                     ((species == SPECIES_ARTICUNO || species == SPECIES_ZAPDOS || species == SPECIES_MOLTRES || species == SPECIES_GIRATINA || species == SPECIES_SHAYMIN || 
-                      species == SPECIES_ARCEUS || species == SPECIES_TORNADUS || species == SPECIES_THUNDURUS || species == SPECIES_LANDORUS || species == SPECIES_KYUREM || 
+            else if (species == SPECIES_RATTATA || species == SPECIES_SANDSHREW || species == SPECIES_VULPIX || species == SPECIES_DIGLETT || species == SPECIES_MEOWTH ||
+                    species == SPECIES_GEODUDE || species == SPECIES_GRIMER || species == SPECIES_PUMPKABOO || species == SPECIES_ORICORIO ||
+                     ((species == SPECIES_PONYTA || species == SPECIES_SLOWPOKE || species == SPECIES_FARFETCHD || species == SPECIES_CORSOLA || species == SPECIES_ZIGZAGOON ||
+                      species == SPECIES_SHELLOS || species == SPECIES_BASCULIN || species == SPECIES_DARUMAKA || species == SPECIES_YAMASK
+                       || species == SPECIES_STUNFISK || species == SPECIES_SINISTEA || species == SPECIES_INDEEDEE) && NonObtEnabled == 1) ||
+                     ((species == SPECIES_ARTICUNO || species == SPECIES_ZAPDOS || species == SPECIES_MOLTRES || species == SPECIES_GIRATINA || species == SPECIES_SHAYMIN ||
+                      species == SPECIES_ARCEUS || species == SPECIES_TORNADUS || species == SPECIES_THUNDURUS || species == SPECIES_LANDORUS || species == SPECIES_KYUREM ||
                       species == SPECIES_KELDEO || species == SPECIES_HOOPA || species == SPECIES_SILVALLY || species == SPECIES_MAGEARNA || species == SPECIES_CALYREX)
                       && NonObtLegendsEnabled == 1))
             {

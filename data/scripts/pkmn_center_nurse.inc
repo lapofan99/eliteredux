@@ -312,6 +312,12 @@ Give_Thief_Items_After_Thief:
   checkitem ITEM_LIGHT_CLAY, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_LIGHT_CLAY
+  checkitem ITEM_RED_ORB, 3
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_RED_ORB
+  checkitem ITEM_BLUE_ORB, 3
+  compare VAR_RESULT, TRUE
+  call_if_ne ADDITEM_BLUE_ORB
 	checkitem ITEM_BRIGHT_POWDER, 10
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_BRIGHT_POWDER
@@ -586,6 +592,14 @@ ADDITEM_FOCUS_SASH:
 
 ADDITEM_LIGHT_CLAY:
   additem ITEM_LIGHT_CLAY, 50
+  return
+
+ADDITEM_RED_ORB:
+  additem ITEM_RED_ORB, 3
+  return
+
+ADDITEM_BLUE_ORB:
+  additem ITEM_BLUE_ORB, 3
   return
 
 ADDITEM_BRIGHT_POWDER:
