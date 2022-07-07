@@ -189,6 +189,8 @@ static EWRAM_DATA struct PokemonSummaryScreenData
     u8 splitIconSpriteId;
 } *sMonSummaryScreen = NULL;
 
+EWRAM_DATA bool8 ModifyStatMode = FALSE;
+EWRAM_DATA u8 gCurrentStattoModify = 0;
 EWRAM_DATA u8 gLastViewedMonIndex = 0;
 static EWRAM_DATA u8 sMoveSlotToReplace = 0;
 ALIGNED(4) static EWRAM_DATA u8 sAnimDelayTaskId = 0;
@@ -707,6 +709,7 @@ static const u8 sTextColors[][3] =
 
 static const u8 sSummaryAButtonBitmap[] = INCBIN_U8("graphics/interface/summary_a_button.4bpp");
 static const u8 sSummaryBButtonBitmap[] = INCBIN_U8("graphics/interface/summary_b_button.4bpp");
+static const u8 sSummaryEVIcon[]        = INCBIN_U8("graphics/interface/summary_EVs_icon.4bpp");
 
 static void (*const sTextPrinterFunctions[])(void) =
 {
@@ -1240,6 +1243,9 @@ static void CB2_InitSummaryScreen(void)
 
 static bool8 LoadGraphics(void)
 {
+	ModifyStatMode = FALSE;
+	gCurrentStattoModify = 0;
+	
     switch (gMain.state)
     {
     case 0:
@@ -1618,49 +1624,320 @@ static void ChangeSummaryState (s16 *taskData, u8 taskId)
 static void Task_HandleInput(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+	
+	u8 i;
+	u8  CurrentEv = 0;
+	u16 TotalEvs = 0;
+	u16 RemainingEvs = 0;
+	
+	switch(gCurrentStattoModify){
+		case 0:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV);
+		break;
+		case 1:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV);
+		break;
+		case 2:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV);
+		break;
+		case 3:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV);
+		break;
+		case 4:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV);
+		break;
+		case 5:
+			if (!sMonSummaryScreen->isBoxMon)
+				CurrentEv = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV);
+		break;
+	}
+	
+	for(i = 0; i < 6; i++)
+		TotalEvs = TotalEvs + GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV + i);
+	
+	RemainingEvs = 510 - TotalEvs;
 
     if (MenuHelpers_CallLinkSomething() != TRUE && !gPaletteFade.active)
     {
         if (JOY_NEW(DPAD_UP))
         {
-            data[3] = 0;
-            ChangeSummaryPokemon(taskId, -1);
+            if(!ModifyStatMode){
+				data[3] = 0;
+				ChangeSummaryPokemon(taskId, -1);
+			}
+			else{
+				if(gCurrentStattoModify != 0)
+					gCurrentStattoModify--;
+				else
+					gCurrentStattoModify = 5;
+				
+				BufferIvOrEvStats(data[3]);
+			}
         }
         else if (JOY_NEW(DPAD_DOWN))
         {
-            data[3] = 0;
-            ChangeSummaryPokemon(taskId, 1);
+            if(!ModifyStatMode){
+				data[3] = 0;
+				ChangeSummaryPokemon(taskId, 1);
+			}
+			else{
+				if(gCurrentStattoModify != 5)
+					gCurrentStattoModify++;
+				else
+					gCurrentStattoModify = 0;
+				
+				BufferIvOrEvStats(data[3]);
+			}
         }
         else if ((JOY_NEW(DPAD_LEFT)) || GetLRKeysPressed() == MENU_L_PRESSED)
         {
-            data[3] = 0;
-            ChangePage(taskId, -1);
+            if(!ModifyStatMode){
+				data[3] = 0;
+				ChangePage(taskId, -1);
+			}
+			else {
+				if(CurrentEv != 0){
+					CurrentEv--;
+					switch(gCurrentStattoModify){
+					case 0:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
+						}
+					break;
+					case 1:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+						}
+					break;
+					case 2:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+						}
+					break;
+					case 3:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+						}
+					break;
+					case 4:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+						}
+					break;
+					case 5:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+						}
+					break;
+					}
+				}
+				BufferIvOrEvStats(data[3]);
+			}
         }
         else if ((JOY_NEW(DPAD_RIGHT)) || GetLRKeysPressed() == MENU_R_PRESSED)
         {
-            data[3] = 0;
-            ChangePage(taskId, 1);
+            if(!ModifyStatMode){
+				data[3] = 0;
+				ChangePage(taskId, 1);
+			}
+			else {
+				if(CurrentEv != 252 && TotalEvs != 510){
+					CurrentEv++;
+					switch(gCurrentStattoModify){
+					case 0:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
+						}
+					break;
+					case 1:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+						}
+					break;
+					case 2:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+						}
+					break;
+					case 3:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+						}
+					break;
+					case 4:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+						}
+					break;
+					case 5:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+						}
+					break;
+					}
+				}
+				BufferIvOrEvStats(data[3]);
+			}
         }
         else if (JOY_NEW(A_BUTTON))
         {
-            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+            if(!ModifyStatMode){
+				if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)
+				{
+					// Cycle through IVs/EVs/stats on pressing A
+					ChangeSummaryState(data, taskId);
+					BufferIvOrEvStats(data[3]);
+				}
+				else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
+				{
+					StopPokemonAnimations();
+					PlaySE(SE_SELECT);
+					BeginCloseSummaryScreen(taskId);
+				}
+				else // Contest or Battle Moves
+				{
+					PlaySE(SE_SELECT);
+					SwitchToMoveSelection(taskId);
+				}
+			}
+        }
+		else if (JOY_NEW(START_BUTTON))
+        {
+            if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS &&
+			   !sMonSummaryScreen->isBoxMon                         &&
+			   !sMonSummaryScreen->lockMovesFlag                    &&
+				data[3] == 2)
             {
-                // Cycle through IVs/EVs/stats on pressing A
-                ChangeSummaryState(data, taskId);
-                BufferIvOrEvStats(data[3]);
-            }
-            else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
-            {
-                StopPokemonAnimations();
-                PlaySE(SE_SELECT);
-                BeginCloseSummaryScreen(taskId);
-            }
-            else // Contest or Battle Moves
-            {
-                PlaySE(SE_SELECT);
-                SwitchToMoveSelection(taskId);
+                // Start EVs Modifier
+                ModifyStatMode = !ModifyStatMode;
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
+				
+				BufferIvOrEvStats(data[3]);
+				PlaySE(SE_SELECT);
             }
         }
+		else if (gMain.newKeys & R_BUTTON)
+		{
+			if(!ModifyStatMode)
+				ChangePage(taskId, 1);
+			else {
+				if(CurrentEv != 252 && TotalEvs != 510){
+					if(RemainingEvs + CurrentEv <= 252)
+						CurrentEv = RemainingEvs + CurrentEv;
+					else
+						CurrentEv = 252;
+						
+					switch(gCurrentStattoModify){
+					case 0:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
+						}
+					break;
+					case 1:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+						}
+					break;
+					case 2:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+						}
+					break;
+					case 3:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+						}
+					break;
+					case 4:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+						}
+					break;
+					case 5:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+						}
+					break;
+					}
+				}
+				BufferIvOrEvStats(data[3]);
+			}
+		}
+		else if (gMain.newKeys & L_BUTTON)
+		{
+			if(!ModifyStatMode)
+				ChangePage(taskId, -1);
+			else {
+				if(CurrentEv != 0){
+					CurrentEv = 0;
+						
+					switch(gCurrentStattoModify){
+					case 0:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
+						}
+					break;
+					case 1:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+						}
+					break;
+					case 2:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+						}
+					break;
+					case 3:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+						}
+					break;
+					case 4:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+						}
+					break;
+					case 5:
+						if (!sMonSummaryScreen->isBoxMon){
+							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+						}
+					break;
+					}
+				}
+				BufferIvOrEvStats(data[3]);
+			}
+		}
+		
         else if (JOY_NEW(B_BUTTON))
         {
             StopPokemonAnimations();
@@ -3488,6 +3765,9 @@ static void BufferIvOrEvStats(u8 mode)
     u16 hp, hp2, atk, def, spA, spD, spe;
     u8 *currHPString = Alloc(20);
     const s8 *natureMod = gNatureStatTable[sMonSummaryScreen->summary.nature];
+	int statsXPos = 24;
+	int statsYPos = 0;
+	u8 i, j;
 
     switch (mode)
     {
@@ -3524,6 +3804,22 @@ static void BufferIvOrEvStats(u8 mode)
 
     FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_LEFT], 0);
     FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_RIGHT], 0);
+
+	//Ev Modifier
+	for(j = 0; j < 6; j++){
+		if (j == gCurrentStattoModify && ModifyStatMode && j < 3){
+			BlitBitmapToWindow(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_LEFT], sSummaryEVIcon, statsXPos, statsYPos, 24, 16);
+		}
+		else if (j == gCurrentStattoModify && ModifyStatMode && j >= 3){
+			BlitBitmapToWindow(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_SKILLS_STATS_RIGHT], sSummaryEVIcon, statsXPos, statsYPos, 24, 16);
+		}
+		
+		statsYPos = statsYPos + 16;
+		if(j == 2){
+			statsYPos = 0;
+			statsXPos = 0;
+		}
+	}
 
     switch (mode)
     {
