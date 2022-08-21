@@ -50,6 +50,9 @@ struct TrainerMonItemCustomMoves
     u8 ability;
     u8 spread;
     u16 moves[MAX_MON_MOVES];
+    u8 ivs[NUM_STATS];
+    u8 evs[NUM_STATS];
+    u8 nature;
 };
 
 union TrainerMonPtr

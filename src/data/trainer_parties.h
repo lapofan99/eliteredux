@@ -2478,7 +2478,10 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
     .species = SPECIES_ARON,
     .heldItem = ITEM_CHESTO_BERRY,
     .ability = 0, // Sturdy
-    .spread = SPREAD_ROXANNE_ONE_MON,
+    .ivs = {31, 31, 31, 31, 31, 31}, 
+    .evs = {0, 252, 252, 0, 6, 0},      //Hp, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,           
+    .spread = SPREAD_ROXANNE_ONE_MON,   //The spread was changed to not affect Evs, Ivs or Nature while in a boss battle (TrainerMonItemCustomMoves trainers)
     .moves = MOVE_ROCK_TOMB, MOVE_STEALTH_ROCK, MOVE_METAL_CLAW, MOVE_REST
     },
     {
