@@ -953,6 +953,7 @@ LittlerootTown_EventScript_GiveRunningShoes:: @ 81E8693
 	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
 	giveitem ITEM_OLD_ROD
 	giveitem ITEM_POKEBLOCK_CASE
+    giveitem ITEM_CANDY_BOX
 	setflag FLAG_RECEIVED_OLD_ROD
 	setflag FLAG_RECEIVED_POKEBLOCK_CASE
 	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
