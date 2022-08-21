@@ -27,6 +27,7 @@
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
+#include "pokemon_storage_system.h"
 #include "pokedex.h"
 #include "pokenav.h"
 #include "safari_zone.h"
@@ -61,7 +62,8 @@ enum
     MENU_ACTION_PLAYER_LINK,
     MENU_ACTION_REST_FRONTIER,
     MENU_ACTION_RETIRE_FRONTIER,
-    MENU_ACTION_PYRAMID_BAG
+    MENU_ACTION_PYRAMID_BAG,
+    MENU_ACTION_ACCESS_PC
 };
 
 // Save status
@@ -102,6 +104,7 @@ static bool8 StartMenuSafariZoneRetireCallback(void);
 static bool8 StartMenuLinkModePlayerNameCallback(void);
 static bool8 StartMenuBattlePyramidRetireCallback(void);
 static bool8 StartMenuBattlePyramidBagCallback(void);
+static bool8 StartMenuStorageCallback(void);
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -167,7 +170,8 @@ static const struct MenuAction sStartMenuItems[] =
     {gText_MenuPlayer, {.u8_void = StartMenuLinkModePlayerNameCallback}},
     {gText_MenuRest, {.u8_void = StartMenuSaveCallback}},
     {gText_MenuRetire, {.u8_void = StartMenuBattlePyramidRetireCallback}},
-    {gText_MenuBag, {.u8_void = StartMenuBattlePyramidBagCallback}}
+    {gText_MenuBag, {.u8_void = StartMenuBattlePyramidBagCallback}},
+	{gText_AccessPC, {.u8_void = StartMenuStorageCallback}}
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -307,6 +311,7 @@ static void BuildNormalStartMenu(void)
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
+	AddStartMenuAction(MENU_ACTION_ACCESS_PC);
     AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
@@ -592,6 +597,7 @@ static bool8 HandleStartMenuInput(void)
         if (gMenuCallback != StartMenuSaveCallback
             && gMenuCallback != StartMenuExitCallback
             && gMenuCallback != StartMenuSafariZoneRetireCallback
+			&& gMenuCallback != StartMenuStorageCallback
             && gMenuCallback != StartMenuBattlePyramidRetireCallback)
         {
            FadeScreen(FADE_TO_BLACK, 0);
@@ -778,6 +784,17 @@ static bool8 StartMenuBattlePyramidBagCallback(void)
     }
 
     return FALSE;
+}
+
+static bool8 StartMenuStorageCallback(void)
+{
+    RemoveExtraStartMenuWindows();
+    HideStartMenu();
+
+	PlaySE(SE_PC_ON);
+    ScriptContext1_SetupScript(EventScript_PC_FromStartMenu); // Display save menu
+
+    return TRUE;
 }
 
 static bool8 SaveStartCallback(void)

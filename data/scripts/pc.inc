@@ -64,3 +64,27 @@ EventScript_AccessHallOfFame::
 	waitstate
 	goto EventScript_AccessPC
 	end
+	
+EventScript_PC_FromStartMenu::
+	lockall
+	setvar VAR_0x8004, 0
+	playse SE_PC_ON
+	msgbox Text_BootUpPC, MSGBOX_DEFAULT
+	goto EventScript_AccessPokemonStorage_FromStartMenu
+	end
+	
+EventScript_AccessPokemonStorage_FromStartMenu::
+	playse SE_PC_LOGIN
+	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_AccessSomeonesPC
+	call_if_set FLAG_SYS_PC_LANETTE, EventScript_AccessLanettesPC
+	msgbox gText_StorageSystemOpened, MSGBOX_DEFAULT
+	special ShowPokemonStorageSystemPC
+	waitstate
+	goto EventScript_TurnOffPC_FromStartMenu
+	end
+	
+EventScript_TurnOffPC_FromStartMenu::
+	setvar VAR_0x8004, 0
+	playse SE_PC_OFF
+	releaseall
+	end

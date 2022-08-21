@@ -3589,4 +3589,6 @@ extern const u8 gText_Cancel3[];
 // Form Change
 extern const u8 gTextPokemonTransformed[];
 
+extern const u8 gText_AccessPC[];
+
 #endif // GUARD_STRINGS_H
