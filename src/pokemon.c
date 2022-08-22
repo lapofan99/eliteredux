@@ -3883,6 +3883,15 @@ void CalculateMonStats(struct Pokemon *mon)
     s32 newMaxHP;
 
     SetMonData(mon, MON_DATA_LEVEL, &level);
+	
+	if(B_PERFECT_IVS == TRUE){
+        hpIV 		= 31;
+		attackIV 	= 31;
+		defenseIV 	= 31;
+		spAttackIV 	= 31;
+		spDefenseIV = 31;
+		speedIV 	= 31;
+    }
 
     if (species == SPECIES_SHEDINJA)
     {

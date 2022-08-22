@@ -38,6 +38,7 @@ void ItemUseInBattle_Escape(u8);
 void ItemUseInBattle_EnigmaBerry(u8);
 void Task_UseDigEscapeRopeOnField(u8 taskId);
 void ItemUseOutOfBattle_CandyBox(u8 taskId);
+void ItemUseOutOfBattle_TypeGems(u8 taskId);
 u8 CanUseDigOrEscapeRopeOnCurMap(void);
 u8 CheckIfItemIsTMHMOrEvolutionStone(u16 itemId);
 u32 CanThrowBall(void);

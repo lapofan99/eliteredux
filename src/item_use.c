@@ -842,6 +842,12 @@ void ItemUseOutOfBattle_CandyBox(u8 taskId)
     SetUpItemUseCallback(taskId);
 }
 
+void ItemUseOutOfBattle_TypeGems(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_TypeGems;
+    SetUpItemUseCallback(taskId);
+}
+
 void ItemUseOutOfBattle_TMHM(u8 taskId)
 {
     if (gSpecialVar_ItemId >= ITEM_HM01_CUT)
