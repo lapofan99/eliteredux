@@ -40,6 +40,7 @@
 #include "text.h"
 #include "tv.h"
 #include "window.h"
+#include "constants/abilities.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
@@ -1629,6 +1630,7 @@ static void Task_HandleInput(u8 taskId)
 	u8  CurrentEv = 0;
 	u16 TotalEvs = 0;
 	u16 RemainingEvs = 0;
+	u8 abilityNum = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM);
 	
 	switch(gCurrentStattoModify){
 		case 0:
@@ -1833,6 +1835,40 @@ static void Task_HandleInput(u8 taskId)
 				BufferIvOrEvStats(data[3]);
 				PlaySE(SE_SELECT);
             }
+			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO &&
+			   !sMonSummaryScreen->isBoxMon                         &&
+			   !sMonSummaryScreen->lockMovesFlag)
+			{
+                // Start Ability Modifier
+                //ModifyStatMode = !ModifyStatMode;
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
+				
+				if(abilityNum != 2 && 
+				   GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) &&
+				   GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) != ABILITY_NONE)
+					abilityNum++;
+				else
+					abilityNum = 0;
+				
+				if(GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != ABILITY_NONE){
+					SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+					SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+				}
+				
+				PlaySE(SE_SELECT);
+				if (sMonSummaryScreen->summary.ailment != AILMENT_NONE)
+				{
+					SetSpriteInvisibility(SPRITE_ARR_ID_STATUS, TRUE);
+					ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS);
+					ScheduleBgCopyTilemapToVram(0);
+					HandleStatusTilemap(0, 2);
+				}
+				sMonSummaryScreen->curMonIndex = sMonSummaryScreen->curMonIndex;
+				gTasks[taskId].data[0] = 0;
+				gTasks[taskId].func = Task_ChangeSummaryMon;
+            }
+			
         }
 		else if (gMain.newKeys & R_BUTTON)
 		{
