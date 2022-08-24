@@ -2272,3 +2272,4 @@ const u8 gText_FORMS_Buttons_Decapped_PE[]          = _("{A_BUTTON}Evolutions");
 const u8 gText_FORMS_NONE[]                         = _("{STR_VAR_1} has no alternate forms.");
 
 const u8 gText_AccessPC[]                   = _("PC");
+const u8 gText_Modify_Pss[]                 = _("Modify");

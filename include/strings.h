@@ -3590,5 +3590,6 @@ extern const u8 gText_Cancel3[];
 extern const u8 gTextPokemonTransformed[];
 
 extern const u8 gText_AccessPC[];
+extern const u8 gText_Modify_Pss[];
 
 #endif // GUARD_STRINGS_H
