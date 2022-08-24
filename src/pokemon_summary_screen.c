@@ -1633,6 +1633,7 @@ static void Task_HandleInput(u8 taskId)
 	u16 TotalEvs = 0;
 	u16 RemainingEvs = 0;
 	u8 abilityNum = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM);
+	u8 nature = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_NATURE);
 	
 	switch(gCurrentStattoModify){
 		case 0:
@@ -1752,9 +1753,30 @@ static void Task_HandleInput(u8 taskId)
 						gTasks[taskId].data[0] = 0;
 						gTasks[taskId].func = Task_ChangeSummaryMon;
 					break;
-					/*/case 1://Nature
-						//Nothing yet
-					break;/*/
+					case 1://Nature
+						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+						CalculateMonStats(&sMonSummaryScreen->currentMon);
+						
+						if(nature == 0)
+							nature = NATURE_QUIRKY;
+						else
+							nature--;
+							
+						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE, &nature);
+						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_NATURE, &nature);
+							
+						PlaySE(SE_SELECT);
+						if (sMonSummaryScreen->summary.ailment != AILMENT_NONE)
+						{
+							SetSpriteInvisibility(SPRITE_ARR_ID_STATUS, TRUE);
+							ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS);
+							ScheduleBgCopyTilemapToVram(0);
+							HandleStatusTilemap(0, 2);
+						}
+						sMonSummaryScreen->curMonIndex = sMonSummaryScreen->curMonIndex;
+						gTasks[taskId].data[0] = 0;
+						gTasks[taskId].func = Task_ChangeSummaryMon;
+					break;
 				}
 				
 				DrawModifyIcon();
@@ -1840,9 +1862,30 @@ static void Task_HandleInput(u8 taskId)
 						gTasks[taskId].data[0] = 0;
 						gTasks[taskId].func = Task_ChangeSummaryMon;
 					break;
-					/*/case 1://Nature
-						//Nothing yet
-					break;/*/
+					case 1://Nature
+						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+						CalculateMonStats(&sMonSummaryScreen->currentMon);
+						
+						if(nature != NATURE_QUIRKY)
+							nature++;
+						else
+							nature = NATURE_HARDY;
+						
+						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE, &nature);
+						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_NATURE, &nature);
+							
+						PlaySE(SE_SELECT);
+						if (sMonSummaryScreen->summary.ailment != AILMENT_NONE)
+						{
+							SetSpriteInvisibility(SPRITE_ARR_ID_STATUS, TRUE);
+							ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS);
+							ScheduleBgCopyTilemapToVram(0);
+							HandleStatusTilemap(0, 2);
+						}
+						sMonSummaryScreen->curMonIndex = sMonSummaryScreen->curMonIndex;
+						gTasks[taskId].data[0] = 0;
+						gTasks[taskId].func = Task_ChangeSummaryMon;
+					break;
 				}
 				
 				DrawModifyIcon();
