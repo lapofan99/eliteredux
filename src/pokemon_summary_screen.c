@@ -3230,6 +3230,11 @@ static void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 line
     AddTextPrinterParameterized4(windowId, 1, x, y, 0, lineSpacing, sTextColors[colorId], 0, string);
 }
 
+static void PrintNarrowTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId)
+{
+    AddTextPrinterParameterized4(windowId, 8, x, y, 0, lineSpacing, sTextColors[colorId], 0, string);
+}
+
 static void PrintMonInfo(void)
 {
     FillWindowPixelBuffer(PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER, PIXEL_FILL(0));
@@ -3948,14 +3953,14 @@ static void BufferIvOrEvStats(u8 mode)
         spD = sMonSummaryScreen->summary.spdef;
         spe = sMonSummaryScreen->summary.speed;
         break;
-    case 1: // iv mode
-        hp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_IV);
-        atk = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_IV);
-        def = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_IV);
+    case 1: // base stats
+		hp = gBaseStats[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2)].baseHP;
+        atk = gBaseStats[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2)].baseAttack;
+        def = gBaseStats[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2)].baseDefense;
 
-        spA = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_IV);
-        spD = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_IV);
-        spe = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_IV);
+        spA = gBaseStats[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2)].baseSpAttack;
+        spD = gBaseStats[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2)].baseSpDefense;
+        spe = gBaseStats[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2)].baseSpeed;
         break;
     case 2: // ev mode
         hp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV);

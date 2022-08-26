@@ -396,4 +396,8 @@
 
 #define NUM_ABILITY_SLOTS 3
 
+//Move Relearner
+#define MOVE_TUTOR_LEVEL_UP_MOVES 0
+#define MOVE_TUTOR_EGG_MOVES 1
+
 #endif // GUARD_CONSTANTS_POKEMON_H

@@ -25,6 +25,8 @@ PKMN_Center_MoveReminder_EventScript::
 	end
 
 PKMN_Center_MoveReminder_EventScriptChooseMon::
+	clearflag FLAG_MOVE_RELEARNER
+	setvar VAR_PARTY_MENU_TUTOR_STATE, 0
 	msgbox PKMN_Center_MoveReminder_Text_TutorWhichMon, MSGBOX_DEFAULT
 	special ChooseMonForMoveRelearner
 	waitstate
@@ -39,6 +41,7 @@ PKMN_Center_MoveReminder_EventScriptChooseMon::
 	end
 
 PKMN_Center_MoveReminder_EventScriptChooseMove::
+	setflag FLAG_MOVE_RELEARNER
 	msgbox PKMN_Center_MoveReminder_Text_TeachWhichMove, MSGBOX_DEFAULT
 	special TeachMoveRelearnerMove
 	waitstate

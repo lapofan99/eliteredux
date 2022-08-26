@@ -105,7 +105,7 @@
 #define VAR_EVENT_RESET_STATE                0x4056 // Used for fixing save files from earlier versions
 #define VAR_PETALBURG_CITY_STATE             0x4057
 #define VAR_SLATEPORT_CITY_STATE             0x4058
-#define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
+#define VAR_PARTY_MENU_TUTOR_STATE           0x4059 // Used to distinguis between the normal move relearner and egg move tutor(More could be added in the future).
 #define VAR_RUSTBORO_CITY_STATE              0x405A
 #define VAR_FORTREE_CITY_STATE               0x405B // Unused Var
 #define VAR_LILYCOVE_CITY_STATE              0x405C // Unused Var

@@ -96,6 +96,7 @@ void BufferMoveDeleterNicknameAndMove(void);
 void GetNumMovesSelectedMonHas(void);
 void MoveDeleterChooseMoveToForget(void);
 void DoItemFormChange (u16 newSpecies);
+void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 
 bool32 CanLearnTutorMove(u16, u8);
 
