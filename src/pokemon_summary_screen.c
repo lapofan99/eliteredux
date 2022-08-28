@@ -52,6 +52,7 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "constants/abilities.h"
+#include "constants/battle_move_effects.h"
 
 // Config options - Note that some config options need external modifications to fully work, such as CONFIG_CAN_FORGET_HM_MOVES, CONFIG_PHYSICAL_SPECIAL_SPLIT, and CONFIG_DECAPITALIZE_MET_LOCATION_STRINGS
 #define CONFIG_CAN_FORGET_HM_MOVES                      TRUE
@@ -1700,7 +1701,7 @@ static void Task_HandleInput(u8 taskId)
         if (JOY_NEW(DPAD_UP))
         {
 			
-            if(!ModifyMode){
+            if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){
 				gCurrentModifyIndex = 0;
 				ChangeSummaryPokemon(taskId, -1);
 			}
@@ -1716,7 +1717,7 @@ static void Task_HandleInput(u8 taskId)
         }
         else if (JOY_NEW(DPAD_DOWN))
         {
-			if(!ModifyMode){
+			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){
 				gCurrentModifyIndex = 0;
 				ChangeSummaryPokemon(taskId, 1);
 			}
@@ -1732,7 +1733,7 @@ static void Task_HandleInput(u8 taskId)
         }
         else if ((JOY_NEW(DPAD_LEFT)) || GetLRKeysPressed() == MENU_L_PRESSED)
         {
-            if(!ModifyMode){
+            if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){
 				ChangePage(taskId, -1);
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_MEMO && ModifyMode){
@@ -1823,7 +1824,7 @@ static void Task_HandleInput(u8 taskId)
         }
         else if ((JOY_NEW(DPAD_RIGHT)) || GetLRKeysPressed() == MENU_R_PRESSED)
         {
-            if(!ModifyMode){ //Normal Page Change
+            if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){ //Normal Page Change
 				ChangePage(taskId, 1);
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_MEMO && ModifyMode){
@@ -1914,7 +1915,7 @@ static void Task_HandleInput(u8 taskId)
         }
 		else if (gMain.newKeys & R_BUTTON)
 		{
-			if(!ModifyMode)
+			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
 				ChangePage(taskId, 1);
 			else {
 				if((CurrentEv != 252 && TotalEvs != 510) || gCurrentModifyIndex == 6){
@@ -1985,7 +1986,7 @@ static void Task_HandleInput(u8 taskId)
 		}
 		else if (gMain.newKeys & L_BUTTON)
 		{
-			if(!ModifyMode)
+			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
 				ChangePage(taskId, -1);
 			else {
 				if(CurrentEv != 0 || gCurrentModifyIndex == 6){
@@ -2136,6 +2137,8 @@ static void ChangeStatTask(u8 taskId)
 static void ChangeSummaryPokemon(u8 taskId, s8 delta)
 {
     s8 monId;
+	
+	ModifyMode = FALSE;
 
     if (sMonSummaryScreen->maxMonIndex == 0)
         return;
@@ -2339,6 +2342,8 @@ static void ChangePage(u8 taskId, s8 delta)
 {
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     s16 *data = gTasks[taskId].data;
+	
+	ModifyMode = FALSE;
 
     if (sMonSummaryScreen->minPageIndex == sMonSummaryScreen->maxPageIndex)
         return;
@@ -4061,6 +4066,8 @@ static u8 GetBattleMoveCategory(u16 move)
     }
 }
 
+#define MOVE_EFFECT_Y 70
+
 static void PrintMoveDetails(u16 move)
 {
     u32 heartRow1, heartRow2;
@@ -4130,12 +4137,172 @@ static void PrintMoveDetails(u16 move)
 			if(!ModifyMode)
 				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gMoveFourLineDescriptionPointers[move - 1], 2, 64, 0, 0);
 			else{
-				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect,   8,  64, 0, 0);
-				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Chance,   8,  74, 0, 0);
-				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Contact,  8,  84, 0, 0);
-				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Target,   8,  94, 0, 0);
-				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Priority, 8, 104, 0, 0);
-				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Critical, 8, 114, 0, 0);
+				// Effect -------------------------------------------------------------------------------------------
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect,        8,   60, 0, 0);
+				
+				StringCopy(gStringVar1, gText_Effect_Hit);
+				
+				if(gBattleMoves[move].target == MOVE_TARGET_USER ||
+				   gBattleMoves[move].target == MOVE_TARGET_ALL_BATTLERS)
+					StringCopy(gStringVar1, gText_Effect_Misc);
+				
+				switch(gBattleMoves[move].effect){
+					//Status Effects
+					case EFFECT_BURN_HIT:
+					case EFFECT_SCALD:
+						StringCopy(gStringVar1, gText_Effect_Burn_Hit);
+					break;
+					case EFFECT_POISON_HIT:
+						StringCopy(gStringVar1, gText_Effect_Poison_Hit);
+					break;
+					case EFFECT_PARALYZE_HIT:
+						StringCopy(gStringVar1, gText_Effect_Paralyze_Hit);
+					break;
+					case EFFECT_FREEZE_HIT:
+						StringCopy(gStringVar1, gText_Effect_Freeze_Hit);
+					break;
+					case EFFECT_CONFUSE_HIT:
+						StringCopy(gStringVar1, gText_Effect_Confuse_Hit);
+					break;
+					case EFFECT_FLINCH_HIT:
+						StringCopy(gStringVar1, gText_Effect_Flinch);
+					break;
+					//All Stats Up
+					case EFFECT_ALL_STATS_UP_HIT:
+						StringCopy(gStringVar1, gText_Effect_All_Stats_Up);
+					break;
+					//Attack
+					case EFFECT_ATTACK_UP_HIT:
+					case EFFECT_ATTACK_UP:
+					case EFFECT_ATTACK_UP_2:
+						StringCopy(gStringVar1, gText_Effect_Attack_Up);
+					break;
+					case EFFECT_ATTACK_DOWN_HIT:
+					case EFFECT_ATTACK_DOWN:
+						StringCopy(gStringVar1, gText_Effect_Attack_Down);
+					break;
+					//Defense
+					case EFFECT_DEFENSE_UP_HIT:
+					case EFFECT_DEFENSE_UP:
+					case EFFECT_DEFENSE_UP_2:
+						StringCopy(gStringVar1, gText_Effect_Defense_Up);
+					break;
+					case EFFECT_DEFENSE_DOWN_HIT:
+					case EFFECT_DEFENSE_DOWN:
+						StringCopy(gStringVar1, gText_Effect_Defense_Down);
+					break;
+					//Special Attack
+					case EFFECT_SP_ATTACK_UP_HIT:
+					case EFFECT_SPECIAL_ATTACK_UP:
+					case EFFECT_SPECIAL_ATTACK_UP_2:
+					case EFFECT_SPECIAL_ATTACK_UP_3:
+						StringCopy(gStringVar1, gText_Effect_Sp_Attack_Up);
+					break;
+					case EFFECT_SPECIAL_ATTACK_DOWN_HIT:
+					case EFFECT_SPECIAL_ATTACK_DOWN:
+						StringCopy(gStringVar1, gText_Effect_Sp_Attack_Down);
+					break;
+					//Special Defense
+					//case EFFECT_SPECIAL_DEFENSE_UP:
+					case EFFECT_SPECIAL_DEFENSE_UP_2:
+						StringCopy(gStringVar1, gText_Effect_Sp_Defense_Up);
+					break;
+					case EFFECT_SPECIAL_DEFENSE_DOWN_HIT:
+					case EFFECT_SPECIAL_DEFENSE_DOWN:
+						StringCopy(gStringVar1, gText_Effect_Sp_Defense_Down);
+					break;
+					//Speed
+					case EFFECT_SPEED_UP_HIT:
+					case EFFECT_SPEED_UP_2:
+						StringCopy(gStringVar1, gText_Effect_Speed_Up);
+					break;
+					case EFFECT_SPEED_DOWN_HIT:
+					case EFFECT_SPEED_DOWN:
+						StringCopy(gStringVar1, gText_Effect_Speed_Down);
+					break;
+					//Accuracy
+					/*/case EFFECT_ACCURACY_U:
+						StringCopy(gStringVar1, gText_Effect_Accuracy_Up);
+					break;/*/
+					case EFFECT_ACCURACY_DOWN_HIT:
+					case EFFECT_ACCURACY_DOWN:
+						StringCopy(gStringVar1, gText_Effect_Accuracy_Down);
+					break;
+					//Other
+					case EFFECT_RECOIL_50:
+					case EFFECT_RECOIL_33:
+					case EFFECT_RECOIL_25:
+						StringCopy(gStringVar1, gText_Effect_Recoil);
+					break;
+					case EFFECT_ALWAYS_CRIT:
+						StringCopy(gStringVar1, gText_Effect_Always_Crit);
+					//Multi Hit Moves
+					case EFFECT_MULTI_HIT:
+						StringCopy(gStringVar1, gText_Effect_Multi_Hit);
+					break;
+					case EFFECT_TRIPLE_KICK:
+						StringCopy(gStringVar1, gText_Effect_Three_Hits);
+					break;
+					case EFFECT_ABSORB:
+					case EFFECT_LEECH_SEED:
+						StringCopy(gStringVar1, gText_Effect_HP_Drain);
+					break;
+					case EFFECT_RESTORE_HP:
+					case EFFECT_JUNGLE_HEALING:
+					case EFFECT_SHORE_UP:
+						StringCopy(gStringVar1, gText_Effect_Heal_HP);
+					break;
+					case EFFECT_HEAL_BELL:
+						StringCopy(gStringVar1, gText_Effect_Heal);
+					break;
+					case EFFECT_PROTECT:
+						StringCopy(gStringVar1, gText_Effect_Protect);
+					break;
+					case EFFECT_HIT:
+						StringCopy(gStringVar1, gText_Effect_Hit);
+					break;
+				}
+				
+				if(gBattleMoves[move].flags & FLAG_TWO_STRIKES) // For Twineedle
+					StringCopy(gStringVar1, gText_Effect_Two_Hits);
+				
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gStringVar1,   MOVE_EFFECT_Y,  60, 0, 0);
+				// Chance -------------------------------------------------------------------------------------------
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Chance,        8,   68, 0, 0);
+				ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].secondaryEffectChance, STR_CONV_MODE_LEFT_ALIGN, 3);
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gStringVar1,         MOVE_EFFECT_Y,  68, 0, 0);
+				
+				// Contact -------------------------------------------------------------------------------------------
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Contact,       8,   76, 0, 0);
+				if(gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
+					PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect_ContactYes,   MOVE_EFFECT_Y, 76, 0, 0);
+				else
+					PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect_ContactNo,   MOVE_EFFECT_Y, 76, 0, 0);
+				
+				// Target -------------------------------------------------------------------------------------------
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Target,        8,   84, 0, 0);
+				if(gBattleMoves[move].target == MOVE_TARGET_FOES_AND_ALLY)
+					PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect_FoeAndAlly,   MOVE_EFFECT_Y,  84, 0, 0);
+				else if(gBattleMoves[move].target == MOVE_TARGET_BOTH)
+					PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect_BothFoes,   MOVE_EFFECT_Y,  84, 0, 0);
+				else if(gBattleMoves[move].target == MOVE_TARGET_USER)
+					PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect_Self,   MOVE_EFFECT_Y,  84, 0, 0);
+				else if(gBattleMoves[move].target == MOVE_TARGET_ALL_BATTLERS)
+					PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect_Field,   MOVE_EFFECT_Y,  84, 0, 0);
+				else
+					PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect_OneFoe,   MOVE_EFFECT_Y,  84, 0, 0);
+				
+				// Priority -------------------------------------------------------------------------------------------
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Priority,      8,   92, 0, 0);
+				ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gStringVar1,   MOVE_EFFECT_Y,  92, 0, 0);
+				
+				// Critical -------------------------------------------------------------------------------------------
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Critical,      8,  100, 0, 0);
+				if(gBattleMoves[move].flags & FLAG_HIGH_CRIT)
+					PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect_ContactYes,   MOVE_EFFECT_Y, 100, 0, 0);
+				else
+					PrintSmallTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect_ContactNo,   MOVE_EFFECT_Y, 100, 0, 0);
 			}
 
             #if CONFIG_PHYSICAL_SPECIAL_SPLIT
