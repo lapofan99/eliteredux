@@ -3671,37 +3671,33 @@ static void PrintSkillsPage(void)
 	//Ev Modifier + Ability Modifier ---------------------------------------------------------------
 	
 	for(j = 0; j < 7; j++){
+		x = 15;
+		
 		if(j == gCurrentModifyIndex && ModifyMode){
 			switch(j){
 				case 0:
-					x = 15;
 					y = 0;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 6, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
 				break;
 				case 1:
-					x = 15;
 					y = 3;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 6, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
 				break;
 				case 2:
-					x = 15;
 					y = 5;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 6, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
 				break;
 				case 3:
-					x = 15;
 					y = 7;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 6, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
 				break;
 				case 4:
-					x = 15;
 					y = 9;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 6, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
 				break;
 				case 5:
-					x = 15;
 					y = 11;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 6, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
 				break;
 				case 6:
 					x = 8;
@@ -3735,7 +3731,7 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
 	}	
 
 	// HP Bar ----------------------------------------------------------------------------------------------------
@@ -3768,7 +3764,7 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
 	}	
 
 	// Defense ----------------------------------------------------------------------------------------------------
@@ -3795,7 +3791,7 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
 	}	
 	
 	// Sp.Atk ----------------------------------------------------------------------------------------------------
@@ -3822,7 +3818,7 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
 	}
 	
 	// Sp.Def ----------------------------------------------------------------------------------------------------
@@ -3849,7 +3845,7 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
 	}
 	
 	// Speed ----------------------------------------------------------------------------------------------------
@@ -3875,7 +3871,7 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
 	}
 	
 	//---------------------------------------------------------------------------------------------------------
@@ -3898,12 +3894,12 @@ static void PrintSkillsPage(void)
 	}
 	//---------------------------------------------------------------------------------------------------------
 	
-    PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 8, 112, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+    PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 8, 112, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
     StringCopy(gStringVar1, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
     x = GetStringCenterAlignXOffset(FONT_NORMAL, gStringVar1, 88) + 58;
-    PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+    PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
     StringCopy(gStringVar1, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
-    PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 8, 128, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+    PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, 8, 128, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
 	
     ScheduleBgCopyTilemapToVram(0);
     PutWindowTilemap(PSS_LABEL_PANE_RIGHT);
