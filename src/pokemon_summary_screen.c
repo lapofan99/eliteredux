@@ -1452,7 +1452,7 @@ static bool8 DecompressGraphics(void)
         break;
     case 4:
         LoadCompressedPalette(gSummaryScreenPalette, 0, 0x100);
-        LoadPalette(&gUnknown_08D85620, 0x81, 0x1E);//gPPTextPalette
+        LoadPalette(&gPPTextPalette, 0x81, 0x1E);//gPPTextPalette
         sMonSummaryScreen->switchCounter++;
         break;
     case 5:
@@ -2501,6 +2501,13 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
             PlaySE(SE_SELECT);
             CloseMoveSelectMode(taskId);
         }
+		else if (gMain.newKeys & R_BUTTON)
+		{
+			PlaySE(SE_SELECT);
+			ModifyMode = !ModifyMode;
+			data[0] = 4;
+            ChangeSelectedMove(data, 0, &sMonSummaryScreen->firstMoveIndex);
+		}
     }
 }
 void Task_SwitchPageInMoveSelect(u8 taskId)
@@ -4094,8 +4101,16 @@ static void PrintMoveDetails(u16 move)
 
             PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gStringVar1, 84, POWER_AND_ACCURACY_Y_2, 0, 0);
 
-            //PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gMoveFourLineDescriptionPointers[move - 1], 2, 64, 0, 0);
-			//ToDo
+			if(!ModifyMode)
+				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gMoveFourLineDescriptionPointers[move - 1], 2, 64, 0, 0);
+			else{
+				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Effect,   8,  64, 0, 0);
+				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Chance,   8,  74, 0, 0);
+				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Contact,  8,  84, 0, 0);
+				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Target,   8,  94, 0, 0);
+				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Priority, 8, 104, 0, 0);
+				PrintTextOnWindow(PSS_LABEL_PANE_LEFT_MOVE, gText_Critical, 8, 114, 0, 0);
+			}
 
             #if CONFIG_PHYSICAL_SPECIAL_SPLIT
             ShowSplitIcon(GetBattleMoveSplit(move));
@@ -4144,11 +4159,11 @@ static void PrintMoveDetails(u16 move)
     }
     else
     {
-        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_CONTEST_MOVES)
+        /*/if (sMonSummaryScreen->currPageIndex == PSS_PAGE_CONTEST_MOVES)
         {
             FillBgTilemapBufferRect(1, 109, 9, 8, 4, 4, 3);
             CopyBgTilemapBufferToVram(1);
-        }
+        }/*/
 
         ClearWindowTilemap(PSS_LABEL_PANE_LEFT_MOVE);
     }

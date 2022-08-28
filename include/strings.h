@@ -3594,4 +3594,11 @@ extern const u8 gText_Modify_Pss[];
 extern const u8 gText_Moves[];
 extern const u8 gText_Egg_Moves[];
 
+extern const u8 gText_Effect[];
+extern const u8 gText_Chance[];
+extern const u8 gText_Contact[];
+extern const u8 gText_Target[];
+extern const u8 gText_Priority[];
+extern const u8 gText_Critical[];
+
 #endif // GUARD_STRINGS_H

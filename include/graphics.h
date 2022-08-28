@@ -9986,5 +9986,6 @@ extern const u32 gSummaryScreenPageContestMovesTilemap[];
 extern const u32 gSummaryScreenPageContestMoveDetailsTilemap[];
 extern const u32 gSummaryScreenPageContestNewMoveTilemap[];
 extern const u32 gSummaryScreenPageConditionTilemap[];
+extern const u32 gPPTextPalette[];
 
 #endif //GUARD_GRAPHICS_H
