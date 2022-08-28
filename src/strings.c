@@ -2281,3 +2281,8 @@ const u8 gText_Contact[]                = _("Contact");
 const u8 gText_Target[]                 = _("Target");
 const u8 gText_Priority[]               = _("Priority");
 const u8 gText_Critical[]               = _("Critical");
+
+
+const u8 gText_Stats[]               = _("Stats");
+const u8 gText_BaseStats[]           = _("BS");
+const u8 gText_EVs[]                 = _("Evs");

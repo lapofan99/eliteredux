@@ -2994,6 +2994,16 @@ static void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 line
     AddTextPrinterParameterized4(windowId, 1, x, y, 0, lineSpacing, sTextColors[colorId], 0, string);
 }
 
+static void PrintNarrowTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId)
+{
+    AddTextPrinterParameterized4(windowId, 7, x, y, 0, lineSpacing, sTextColors[colorId], 0, string);
+}
+
+static void PrintSmallTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId)
+{
+    AddTextPrinterParameterized4(windowId, 8, x, y, 0, lineSpacing, sTextColors[colorId], 0, string);
+}
+
 static void PrintTextOnWindowSigned(u8 windowId, const u8 *string, u8 x, s8 y, u8 lineSpacing, u8 colorId)
 {
     AddTextPrinterParameterized4Signed(windowId, 1, x, y, 0, lineSpacing, sTextColors[colorId], 0, string);
@@ -3857,7 +3867,7 @@ static void PrintSkillsPage(void)
 				x = 10;
 			break;
 			case 1:
-				ConvertIntToDecimalStringN(gStringVar1, summary->speedBS, STR_CONV_MODE_RIGHT_ALIGN, 3);
+				ConvertIntToDecimalStringN(gStringVar1, summary->speedBS, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
 			break;
 			case 2:
@@ -3867,6 +3877,26 @@ static void PrintSkillsPage(void)
 		}	
 		PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
 	}
+	
+	//---------------------------------------------------------------------------------------------------------
+	y = 100;
+	for(i = 0; i < NUM_STAT_TYPES; i++){
+		switch(i){
+			case 0:
+				x = 8;
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_Stats, (x * 8), y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+			break;
+			case 1:
+				x = 13;
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_BaseStats, (x * 8), y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+			break;
+			case 2:
+				x = 16;
+				PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gText_EVs, (x * 8), y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+			break;
+		}	
+	}
+	//---------------------------------------------------------------------------------------------------------
 	
     PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 8, 112, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
     StringCopy(gStringVar1, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);

@@ -3600,5 +3600,8 @@ extern const u8 gText_Contact[];
 extern const u8 gText_Target[];
 extern const u8 gText_Priority[];
 extern const u8 gText_Critical[];
+extern const u8 gText_EVs[];
+extern const u8 gText_Stats[];
+extern const u8 gText_BaseStats[];
 
 #endif // GUARD_STRINGS_H
