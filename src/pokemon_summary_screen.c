@@ -4159,11 +4159,11 @@ static void PrintMoveDetails(u16 move)
     }
     else
     {
-        /*/if (sMonSummaryScreen->currPageIndex == PSS_PAGE_CONTEST_MOVES)
+        if (sMonSummaryScreen->currPageIndex == PSS_PAGE_CONTEST_MOVES)
         {
             FillBgTilemapBufferRect(1, 109, 9, 8, 4, 4, 3);
             CopyBgTilemapBufferToVram(1);
-        }/*/
+        }
 
         ClearWindowTilemap(PSS_LABEL_PANE_LEFT_MOVE);
     }
