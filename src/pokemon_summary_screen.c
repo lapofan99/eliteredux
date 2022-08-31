@@ -270,7 +270,6 @@ static void Task_SetHandleReplaceMoveInput(u8 taskId);
 static void Task_SwitchPageInReplaceMove(u8 taskId);
 static void Task_ConfirmHMCantForget(u8 taskId);
 static void Task_HandleReplaceMoveInput(u8 taskId);
-static void Task_SwitchPageInReplaceMove(u8 taskId);
 static void Task_ConfirmHMCantForget(u8 taskId);
 static bool8 CanReplaceMove(void);
 static void ShowCantForgetHMsWindow(u8 taskId);
@@ -495,7 +494,7 @@ static const u8 sTextColors[][3] =
     [PSS_COLOR_FEMALE_GENDER_SYMBOL]    = {0, 5, 6},
     [PSS_COLOR_SHINY_STARS]             = {0, 5, 5},
     [PSS_COLOR_POKERUS_CURED]           = {0, 9, 9},
-    [PSS_COLOR_FATEFUL_TRIANGLE]       = {0, 10, 10},
+    [PSS_COLOR_FATEFUL_TRIANGLE]        = {0, 10, 10},
     /* Probably left from Pokémon Polar,
     check if they are actually needed so
     we can remove them if unused */
@@ -1384,7 +1383,7 @@ static bool8 LoadGraphics(void)
             DoScheduledBgTilemapCopiesToVram();
             PrintInfoBar(sMonSummaryScreen->currPageIndex, TRUE);
             PrintNewMoveDetailsOrCancelText();
-            PutWindowTilemap(PSS_LABEL_PANE_RIGHT_BOTTOM);
+            //PutWindowTilemap(PSS_LABEL_PANE_RIGHT_BOTTOM);
             PrintMoveDetails(sMonSummaryScreen->summary.moves[sMonSummaryScreen->firstMoveIndex]);
             ChangeBgX(1, 0, 0);
             CreateTask(Task_SetHandleReplaceMoveInput, 0);
@@ -2348,7 +2347,7 @@ static void ChangePage(u8 taskId, s8 delta)
     else
         sMonSummaryScreen->currPageIndex += delta;
 	
-	 if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
+	if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         LZDecompressWram(gSummaryScreenPageMoveDetailsTilemap, sMonSummaryScreen->moveDetailTilemapBuffer);
     else
         LZDecompressWram(gSummaryScreenPageContestMoveDetailsTilemap, sMonSummaryScreen->moveDetailTilemapBuffer);
@@ -2429,7 +2428,7 @@ static void Task_SwitchToMoveDetails(u8 taskId)
             break;
         case 1:
             PrintNewMoveDetailsOrCancelText();
-            PutWindowTilemap(PSS_LABEL_PANE_RIGHT_BOTTOM);
+            //PutWindowTilemap(PSS_LABEL_PANE_RIGHT_BOTTOM);
             SetNewMoveTypeIcon();
             PrintInfoBar(sMonSummaryScreen->currPageIndex, TRUE);
             CreateMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR1);
@@ -2565,7 +2564,7 @@ void Task_SwitchPageInMoveSelect(u8 taskId)
             break;
         case 3:
             PrintNewMoveDetailsOrCancelText();
-            PutWindowTilemap(PSS_LABEL_PANE_RIGHT_BOTTOM);
+            //PutWindowTilemap(PSS_LABEL_PANE_RIGHT_BOTTOM);
             SetTypeIcons();
             PrintInfoBar(sMonSummaryScreen->currPageIndex, TRUE);
             data[0]++;
@@ -2959,7 +2958,7 @@ static void Task_SwitchPageInReplaceMove(u8 taskId)
             break;
         case 3:
             PrintNewMoveDetailsOrCancelText();
-            PutWindowTilemap(PSS_LABEL_PANE_RIGHT_BOTTOM);
+            //PutWindowTilemap(PSS_LABEL_PANE_RIGHT_BOTTOM);
             SetTypeIcons();
             PrintInfoBar(sMonSummaryScreen->currPageIndex, TRUE);
             data[0]++;
@@ -4397,6 +4396,7 @@ static void PrintNewMoveDetailsOrCancelText(void)
         x = GetStringCenterAlignXOffset(FONT_NORMAL, gStringVar1, 32) + 113;
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT_BOTTOM, sText_PP, 80, 25, 0, 0);
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT_BOTTOM, gStringVar1, x, 25, 0, 0);
+		PutWindowTilemap(PSS_LABEL_PANE_RIGHT_BOTTOM);
     }
     else
     {
