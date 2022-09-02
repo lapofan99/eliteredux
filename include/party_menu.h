@@ -100,4 +100,10 @@ void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 
 bool32 CanLearnTutorMove(u16, u8);
 
+extern const struct SpriteSheet sSpriteSheet_HeldItem;
+extern const struct SpritePalette sSpritePalette_HeldItem;
+
+extern const struct SpriteSheet gSpriteSheet_HeldItem;
+extern const u16 gHeldItemPalette[];
+
 #endif // GUARD_PARTY_MENU_H

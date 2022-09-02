@@ -1066,6 +1066,7 @@ struct SaveBlock1
     /*0x3???*/ struct BoxPokemon kyuremFusedMon;
     /*0x3???*/ struct BoxPokemon necrozmaFusedMon;
     /*0x3???*/ struct BoxPokemon calyrexFusedMon;
+               u8 dexNavChain;
     // sizeof: 0x3???
 };
 

@@ -1102,3 +1102,4 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/AlteringCave_1F/scripts.inc"
 
 	.include "data/maps/AlteringCave_B1F/scripts.inc"
+	.include "data/scripts/dexnav.inc"

@@ -46,6 +46,7 @@
 #include "mevent.h"
 #include "union_room_chat.h"
 #include "constants/items.h"
+#include "constants/map_groups.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -207,6 +208,7 @@ void NewGameInitData(void)
     ResetTrainerHillResults();
     ResetContestLinkResults();
     RandomizeBerryEncounters();
+	gSaveBlock1Ptr->dexNavChain = 0;
 }
 
 static void ResetMiniGamesRecords(void)
