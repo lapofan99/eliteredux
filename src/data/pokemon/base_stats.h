@@ -32,6 +32,7 @@ const struct BaseStats gBaseStats[] =
         #endif
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
+		.innates = {ABILITY_OVERGROW, ABILITY_LEAF_GUARD, ABILITY_CHLOROPHYLL},
     },
 
     [SPECIES_IVYSAUR] =
