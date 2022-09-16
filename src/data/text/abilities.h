@@ -267,6 +267,7 @@ static const u8 sBlitzBoxerDescription[] = _("Punching moves go first.");
 
 static const u8 sAntarticBirdDescription[] = _("Ice and Flying-type moves gain STAB.");
 static const u8 sBurnateDescription[] = _("Normal moves become Fire.");
+static const u8 sCristalizeDescription[] = _("Rock moves become Ice.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -550,6 +551,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_BLITZ_BOXER] = _("Blitz Boxer"),
 	[ABILITY_ANTARTIC_BIRD] = _("AntarticBird"),
 	[ABILITY_BURNATE] = _("Burnate"),
+	[ABILITY_CRISTALIZE] = _("Cristalize"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -834,4 +836,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_BLITZ_BOXER] = sBlitzBoxerDescription,
 	[ABILITY_ANTARTIC_BIRD] = sAntarticBirdDescription,
 	[ABILITY_BURNATE] = sBurnateDescription,
+	[ABILITY_CRISTALIZE] = sCristalizeDescription,
 };

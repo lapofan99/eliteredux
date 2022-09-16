@@ -5456,6 +5456,11 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         gBattleStruct->dynamicMoveType = 0x80 | ateType;
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
+	else if(gBattleMoves[move].type == TYPE_ROCK && attackerAbility == ABILITY_CRISTALIZE && (ateType = TYPE_ICE)){
+		ateType = TYPE_ICE;
+		gBattleStruct->dynamicMoveType = 0x80 | ateType;
+		gBattleStruct->ateBoost[battlerAtk] = 1;
+	}
     else if (gBattleMoves[move].type != TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
@@ -5483,6 +5488,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     }
 	
 	//Inates
+	//Burnate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
 		if(gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
@@ -5494,7 +5500,14 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
 				gBattleStruct->ateBoost[battlerAtk] = 1;
 			}
 	}
-		
+	//Cristalize
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRISTALIZE)){
+		if(gBattleMoves[move].type == TYPE_ROCK){
+			ateType = TYPE_ICE;
+			gBattleStruct->dynamicMoveType = 0x80 | ateType;
+			gBattleStruct->ateBoost[battlerAtk] = 1;
+		}
+	}
 
     // Check if a gem should activate.
     GET_MOVE_TYPE(move, moveType);
