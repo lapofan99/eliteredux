@@ -8813,3 +8813,14 @@ u16 getRandomSpecies(void)
         }
 	return species;
 }
+
+bool8 SpeciesHasInnate(u16 species, u16 ability){
+	u8 i;
+	
+	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
+		if(gBaseStats[species].innates[i] == ability)
+			return TRUE;
+	}
+	
+	return FALSE;
+}
