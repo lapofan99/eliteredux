@@ -309,8 +309,9 @@
 #define ABILITY_ANTARTIC_BIRD   (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain STAB.
 #define ABILITY_BURNATE         (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon to become Fire-type and receive a 20% power boost.
 #define ABILITY_CRISTALIZE      (ABILITIES_COUNT_LATEST_GEN + 12) // All Rock-type moves used by the Pokémon to become Ice-type and receive a 20% power boost.
+#define ABILITY_ELECTROCYTES    (ABILITIES_COUNT_LATEST_GEN + 13) // Increases the power of Electric-type moves by 25%.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_CRISTALIZE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_ELECTROCYTES + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
