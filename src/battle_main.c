@@ -5448,6 +5448,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && ((attackerAbility == ABILITY_PIXILATE && (ateType = TYPE_FAIRY))
                  || (attackerAbility == ABILITY_REFRIGERATE && (ateType = TYPE_ICE))
                  || (attackerAbility == ABILITY_AERILATE && (ateType = TYPE_FLYING))
+				 || (attackerAbility == ABILITY_BURNATE && (ateType = TYPE_FIRE))
                  || ((attackerAbility == ABILITY_GALVANIZE) && (ateType = TYPE_ELECTRIC))
                 )
              )
@@ -5480,6 +5481,20 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_DARK;
     }
+	
+	//Inates
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
+		if(gBattleMoves[move].type == TYPE_NORMAL
+             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT){
+				ateType = TYPE_FIRE;
+				gBattleStruct->dynamicMoveType = 0x80 | ateType;
+				gBattleStruct->ateBoost[battlerAtk] = 1;
+			}
+	}
+		
 
     // Check if a gem should activate.
     GET_MOVE_TYPE(move, moveType);

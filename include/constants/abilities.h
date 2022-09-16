@@ -307,8 +307,9 @@
 
 // Darky's Custom Abilities
 #define ABILITY_ANTARTIC_BIRD   (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain STAB.
+#define ABILITY_BURNATE         (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon to become Fire-type and receive a 20% power boost.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_ANTARTIC_BIRD + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_BURNATE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
