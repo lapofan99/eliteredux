@@ -612,8 +612,9 @@
 #define STRINGID_PLAYERLOSTAGAINSTENEMYTRAINER        609
 #define STRINGID_PLAYERPAIDPRIZEMONEY                 610
 #define STRINGID_PKMNRAISEDATTACK                     611
+#define STRINGID_INFLATABLEPKMNRAISEDDEFENSE          612
 
-#define BATTLESTRINGS_COUNT                           612
+#define BATTLESTRINGS_COUNT                           613
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

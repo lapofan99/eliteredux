@@ -4981,7 +4981,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_STAMINA:
+        case ABILITY_INFLATABLE:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && (CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN) || CompareStat(battler, STAT_SPDEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+			 && (moveType == TYPE_FIRE || moveType == TYPE_FLYING))
+            {
+				if(CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+					gBattleMons[battler].statStages[STAT_DEF]++;
+				
+				if(CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+					gBattleMons[battler].statStages[STAT_SPDEF]++;
+				
+                gBattleScripting.animArg1 = 14 + STAT_DEF;
+                gBattleScripting.animArg2 = 0;
+                BattleScriptPushCursorAndCallback(BattleScript_InflatableActivates);
+                gBattleScripting.battler = battler;
+                effect++;
+            }
+            break;
+		case ABILITY_STAMINA:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
@@ -5430,6 +5450,32 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         }
+			
+		//Innates
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INFLATABLE)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+			 && TARGET_TURN_DAMAGED
+			 && IsBattlerAlive(battler)
+			 && (CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN) || CompareStat(battler, STAT_SPDEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+			 && (moveType == TYPE_FIRE || moveType == TYPE_FLYING))
+			{
+				gBattleScripting.abilityPopupOverwrite = ABILITY_INFLATABLE;
+				gLastUsedAbility = ABILITY_INFLATABLE;
+				
+				if(CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+					gBattleMons[battler].statStages[STAT_DEF]++;
+				
+				if(CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+					gBattleMons[battler].statStages[STAT_SPDEF]++;
+				
+				gBattleScripting.animArg1 = 14 + STAT_DEF;
+				gBattleScripting.animArg2 = 0;
+				BattleScriptPushCursorAndCallback(BattleScript_InflatableActivates);
+				gBattleScripting.battler = battler;
+				effect++;
+			}
+		}
+		
         break;
     case ABILITYEFFECT_MOVE_END_ATTACKER: // Same as above, but for attacker
         switch (gLastUsedAbility)
