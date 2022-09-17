@@ -6075,6 +6075,7 @@ bool32 CanBeFrozen(u8 battlerId)
       || IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_MAGMA_ARMOR
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGMA_ARMOR)
       || ability == ABILITY_COMATOSE
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerId)
@@ -8810,11 +8811,29 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 RecordAbilityBattle(battlerDef, ABILITY_THICK_FAT);
         }
         break;
+	case ABILITY_MAGMA_ARMOR:
+        if (moveType == TYPE_WATER || moveType == TYPE_ICE)
+        {
+            MulModifier(&modifier, UQ_4_12(0.8));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
+        }
+        break;
     case ABILITY_ICE_SCALES:
         if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
     }
+	
+	//Innates
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MAGMA_ARMOR)){
+		if (moveType == TYPE_WATER || moveType == TYPE_ICE)
+        {
+            MulModifier(&modifier, UQ_4_12(0.8));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
+        }
+	}
 
     // ally's abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
