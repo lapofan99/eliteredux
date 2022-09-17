@@ -7717,6 +7717,8 @@ bool32 IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
         return FALSE;
+	else if (SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEVITATE))
+        return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
 
@@ -8677,6 +8679,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.25));
         }
         break;
+	case ABILITY_LEVITATE:
+        if (moveType == TYPE_FLYING)
+        {
+            MulModifier(&modifier, UQ_4_12(1.25));
+        }
+        break;
     case ABILITY_PLUS:
     case ABILITY_MINUS:
         if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
@@ -8774,9 +8782,17 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.5));
         }
 	}
-	//Antartic Bird
+	//Electrocytes
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ELECTROCYTES)){
 		if (moveType == TYPE_ELECTRIC)
+        {
+            MulModifier(&modifier, UQ_4_12(1.25));
+        }
+	}
+	
+	//Levitate
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LEVITATE)){
+		if (moveType == TYPE_FLYING)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
         }
