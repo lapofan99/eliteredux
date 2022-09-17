@@ -9215,6 +9215,13 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_GROUND_SHOCK);
     }
+	else if (moveType == TYPE_POISON && defType == TYPE_STEEL && (GetBattlerAbility(battlerAtk) == ABILITY_CORROSION || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CORROSION)) && mod == UQ_4_12(0.0))
+    {
+		//Has Innate Effect here too
+        mod = UQ_4_12(2.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_CORROSION);
+    }
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
