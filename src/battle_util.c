@@ -9178,6 +9178,12 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_SCRAPPY);
     }
+	else if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && (GetBattlerAbility(battlerAtk) == ABILITY_GROUND_SHOCK || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUND_SHOCK)) && mod == UQ_4_12(0.0))
+    {
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_GROUND_SHOCK);
+    }
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);

@@ -272,6 +272,7 @@ static const u8 sElectrocytesDescription[] = _("Increases the power of Electric-
 static const u8 sAerodynamicsDescription[] = _("Flying moves raises Speed.");
 static const u8 sChristmasSpiritDescription[] = _("Boost Defense in Hail.");
 static const u8 sExploitWeaknessDescription[] = _("Increases the power against foes with any status problem.");
+static const u8 sGroundShockDescription[] = _("Allow Electric-type moves to hit ground type Pokémon.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -560,6 +561,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_AERODYNAMICS] = _("Aerodynamics"),
 	[ABILITY_CHRISTMAS_SPIRIT] = _("Xmas Spirit"),
 	[ABILITY_EXPLOIT_WEAKNESS] = _("Ex.Weakness"),
+	[ABILITY_GROUND_SHOCK] = _("Ground Shock"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -849,4 +851,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_AERODYNAMICS] = sAerodynamicsDescription,
 	[ABILITY_CHRISTMAS_SPIRIT] = sChristmasSpiritDescription,
 	[ABILITY_EXPLOIT_WEAKNESS] = sExploitWeaknessDescription,
+	[ABILITY_GROUND_SHOCK] = sGroundShockDescription,
 };

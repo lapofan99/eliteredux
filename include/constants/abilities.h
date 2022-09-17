@@ -313,8 +313,9 @@
 #define ABILITY_AERODYNAMICS     (ABILITIES_COUNT_LATEST_GEN + 14) // Boosts its Speed stat if hit by an Flying-type move instead of taking damage.
 #define ABILITY_CHRISTMAS_SPIRIT (ABILITIES_COUNT_LATEST_GEN + 15) // The Pokémon is protected by a mysterious force that reduce all incoming damage by 50% during a hailstorm.
 #define ABILITY_EXPLOIT_WEAKNESS (ABILITIES_COUNT_LATEST_GEN + 16) // Increases the power of moves by 25% against targets with status condition.
+#define ABILITY_GROUND_SHOCK     (ABILITIES_COUNT_LATEST_GEN + 17) // Allow Electric-type moves can hit ground type Pokémon.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_EXPLOIT_WEAKNESS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_GROUND_SHOCK + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
