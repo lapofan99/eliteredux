@@ -1750,6 +1750,11 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
         buff = 0xC;
 
     moveAcc = gBattleMoves[move].accuracy;
+	
+	//Inner Focus + Focus Blast
+	if(move == MOVE_FOCUS_BLAST && (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_INNER_FOCUS) || atkAbility == ABILITY_INNER_FOCUS))
+		moveAcc = 90;
+	
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, WEATHER_SUN_ANY)
       && (gBattleMoves[move].effect == EFFECT_THUNDER || gBattleMoves[move].effect == EFFECT_HURRICANE))
@@ -3023,7 +3028,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_FLINCH:
-                if (GetBattlerAbility(gEffectBattler) == ABILITY_INNER_FOCUS)
+                if (GetBattlerAbility(gEffectBattler) == ABILITY_INNER_FOCUS || SpeciesHasInnate(gBattleMons[gEffectBattler].species, ABILITY_INNER_FOCUS))
                 {
                     gBattlescriptCurrInstr++;
                 }
