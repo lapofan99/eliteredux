@@ -10885,6 +10885,7 @@ static void Cmd_weatherdamage(void)
                 && ability != ABILITY_SAND_FORCE
                 && ability != ABILITY_SAND_RUSH
                 && ability != ABILITY_OVERCOAT
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
@@ -10909,6 +10910,7 @@ static void Cmd_weatherdamage(void)
             else if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)
                 && ability != ABILITY_SNOW_CLOAK
                 && ability != ABILITY_OVERCOAT
+				&& SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
                 && ability != ABILITY_ICE_BODY
                 && ability != ABILITY_SLUSH_RUSH
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))

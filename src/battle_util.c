@@ -3548,7 +3548,8 @@ u8 AtkCanceller_UnableToUseMove(void)
             if ((gBattleMoves[gCurrentMove].flags & FLAG_POWDER) && (gBattlerAttacker != gBattlerTarget)) // Rage Powder targets the user
             {
                 if ((B_POWDER_GRASS >= GEN_6 && IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS))
-                    || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT)
+                    || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT
+					|| SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_OVERCOAT))
                 {
                     gBattlerAbility = gBattlerTarget;
                     effect = 1;
@@ -5240,6 +5241,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_EFFECT_SPORE:
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OVERCOAT
+			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
                 i = Random() % 3;
@@ -8819,6 +8821,10 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
         }
         break;
+	case ABILITY_OVERCOAT:
+        if (IS_MOVE_SPECIAL(move))
+            MulModifier(&modifier, UQ_4_12(0.9));
+        break;
     case ABILITY_ICE_SCALES:
         if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -8833,6 +8839,11 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
         }
+	}
+	
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_OVERCOAT)){
+		if (IS_MOVE_SPECIAL(move))
+            MulModifier(&modifier, UQ_4_12(0.9));
 	}
 
     // ally's abilities
