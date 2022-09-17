@@ -270,6 +270,7 @@ static const u8 sBurnateDescription[] = _("Normal moves become Fire.");
 static const u8 sCrystallizeDescription[] = _("Rock moves become Ice.");
 static const u8 sElectrocytesDescription[] = _("Increases the power of Electric-type moves by 25%.");
 static const u8 sAerodynamicsDescription[] = _("Flying moves raises Speed.");
+static const u8 sChristmasSpiritDescription[] = _("Boost Defense in Hail.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -556,6 +557,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_CRYSTALLIZE] = _("Crystallize"),
 	[ABILITY_ELECTROCYTES] = _("Electrocytes"),
 	[ABILITY_AERODYNAMICS] = _("Aerodynamics"),
+	[ABILITY_CHRISTMAS_SPIRIT] = _("Xmas Spirit"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -843,4 +845,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_CRYSTALLIZE] = sCrystallizeDescription,
 	[ABILITY_ELECTROCYTES] = sElectrocytesDescription,
 	[ABILITY_AERODYNAMICS] = sAerodynamicsDescription,
+	[ABILITY_CHRISTMAS_SPIRIT] = sChristmasSpiritDescription,
 };

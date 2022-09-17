@@ -4886,6 +4886,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 			
 			//Innate
+			//Aerodynamics
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AERODYNAMICS)){
 				if (move != MOVE_NONE && moveType == TYPE_FLYING){
 					effect = 2;
@@ -8350,6 +8351,22 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_FIRE)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
+	case ABILITY_CHRISTMAS_SPIRIT:
+        if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+        break;
+    }
+	
+	//Innates
+	//Christmas Spirit
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_CHRISTMAS_SPIRIT)){
+		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY){
+			MulModifier(&modifier, UQ_4_12(0.5));
+		}
     }
 
     holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);

@@ -294,25 +294,26 @@
 
 // Custom Abilities
 
-#define ABILITY_CHLOROPLAST     (ABILITIES_COUNT_LATEST_GEN)      // Moves function as if it's sunny, regardless of weather
-#define ABILITY_WHITEOUT        (ABILITIES_COUNT_LATEST_GEN + 1)  // Boosts the power of Ice attacks in Hail by 50%
-#define ABILITY_PYROMANCY       (ABILITIES_COUNT_LATEST_GEN + 2)  // Fire attacks are 5x more likely to inflict a burn
-#define ABILITY_KEEN_EDGE       (ABILITIES_COUNT_LATEST_GEN + 3)  // Cutting moves do 30% more damage
-#define ABILITY_PRISM_SCALES    (ABILITIES_COUNT_LATEST_GEN + 4)  // Reduces special damage taken by 30%
-#define ABILITY_POWER_FISTS     (ABILITIES_COUNT_LATEST_GEN + 5)  // Punching moves do special damage
-#define ABILITY_SAND_SONG       (ABILITIES_COUNT_LATEST_GEN + 6)  // Sound moves become Ground type. No damage boost.
-#define ABILITY_RAMPAGE         (ABILITIES_COUNT_LATEST_GEN + 7)  // If a recharge move KOs the foe, it doesn't need to recharge.
-#define ABILITY_VENGEANCE       (ABILITIES_COUNT_LATEST_GEN + 8)  // Overgrow for Ghost moves.
-#define ABILITY_BLITZ_BOXER     (ABILITIES_COUNT_LATEST_GEN + 9)  // Punching moves go first
+#define ABILITY_CHLOROPLAST      (ABILITIES_COUNT_LATEST_GEN)      // Moves function as if it's sunny, regardless of weather
+#define ABILITY_WHITEOUT         (ABILITIES_COUNT_LATEST_GEN + 1)  // Boosts the power of Ice attacks in Hail by 50%
+#define ABILITY_PYROMANCY        (ABILITIES_COUNT_LATEST_GEN + 2)  // Fire attacks are 5x more likely to inflict a burn
+#define ABILITY_KEEN_EDGE        (ABILITIES_COUNT_LATEST_GEN + 3)  // Cutting moves do 30% more damage
+#define ABILITY_PRISM_SCALES     (ABILITIES_COUNT_LATEST_GEN + 4)  // Reduces special damage taken by 30%
+#define ABILITY_POWER_FISTS      (ABILITIES_COUNT_LATEST_GEN + 5)  // Punching moves do special damage
+#define ABILITY_SAND_SONG        (ABILITIES_COUNT_LATEST_GEN + 6)  // Sound moves become Ground type. No damage boost.
+#define ABILITY_RAMPAGE          (ABILITIES_COUNT_LATEST_GEN + 7)  // If a recharge move KOs the foe, it doesn't need to recharge.
+#define ABILITY_VENGEANCE        (ABILITIES_COUNT_LATEST_GEN + 8)  // Overgrow for Ghost moves.
+#define ABILITY_BLITZ_BOXER      (ABILITIES_COUNT_LATEST_GEN + 9)  // Punching moves go first
 
 // Darky's Custom Abilities
-#define ABILITY_ANTARTIC_BIRD   (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain STAB.
-#define ABILITY_BURNATE         (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon to become Fire-type and receive a 20% power boost.
+#define ABILITY_ANTARTIC_BIRD    (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain STAB.
+#define ABILITY_BURNATE          (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon to become Fire-type and receive a 20% power boost.
 #define ABILITY_CRYSTALLIZE      (ABILITIES_COUNT_LATEST_GEN + 12) // All Rock-type moves used by the Pokémon to become Ice-type and receive a 20% power boost.
-#define ABILITY_ELECTROCYTES    (ABILITIES_COUNT_LATEST_GEN + 13) // Increases the power of Electric-type moves by 25%.
-#define ABILITY_AERODYNAMICS    (ABILITIES_COUNT_LATEST_GEN + 14) // Boosts its Speed stat if hit by an Flying-type move instead of taking damage.
+#define ABILITY_ELECTROCYTES     (ABILITIES_COUNT_LATEST_GEN + 13) // Increases the power of Electric-type moves by 25%.
+#define ABILITY_AERODYNAMICS     (ABILITIES_COUNT_LATEST_GEN + 14) // Boosts its Speed stat if hit by an Flying-type move instead of taking damage.
+#define ABILITY_CHRISTMAS_SPIRIT (ABILITIES_COUNT_LATEST_GEN + 15) // The Pokémon is protected by a mysterious force that reduce all incoming damage by 50% during a hailstorm.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_AERODYNAMICS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_CHRISTMAS_SPIRIT + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
