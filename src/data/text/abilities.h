@@ -276,6 +276,7 @@ static const u8 sGroundShockDescription[] = _("Allow Electric-type moves to hit 
 static const u8 sAncientIdolDescription[] = _("Hits with its Defense Stats.");
 static const u8 sMysticPowerDescription[] = _("Gains STAB regardless of type.");
 static const u8 sPerfectionistDescription[] = _("Increases critical hit rate to weaker moves.");
+static const u8 sGrowingToothDescription[] =  _("Ups Attack when using biting moves.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -568,6 +569,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_ANCIENT_IDOL] = _("Ancient Idol"),
 	[ABILITY_MYSTIC_POWER] =  _("Mystic Power"),
 	[ABILITY_PERFECTIONIST] = _("Perfectionis"),
+	[ABILITY_GROWING_TOOTH] = _("GrowingTooth"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -861,4 +863,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_ANCIENT_IDOL] = sAncientIdolDescription,
 	[ABILITY_MYSTIC_POWER] = sMysticPowerDescription,
 	[ABILITY_PERFECTIONIST] = sPerfectionistDescription,
+	[ABILITY_GROWING_TOOTH] = sGrowingToothDescription,
 };

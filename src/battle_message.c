@@ -434,6 +434,7 @@ static const u8 sText_ExclamationMark4[] = _("!");
 static const u8 sText_ExclamationMark5[] = _("!");
 static const u8 sText_Accuracy[] = _("accuracy");
 static const u8 sText_Evasiveness[] = _("evasiveness");
+static const u8 sText_PkmnRaisedAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Growing Tooth\nraised its Attack!");
 
 const u8 * const gStatNamesTable[NUM_BATTLE_STATS] =
 {
@@ -1339,6 +1340,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_CANTESCAPEBECAUSEOFCURRENTMOVE - 12] = sText_CantEscapeBecauseOfCurrentMove,
     [STRINGID_PLAYERLOSTAGAINSTENEMYTRAINER - 12] = sText_PlayerLostAgainstEnemyTrainer,
     [STRINGID_PLAYERPAIDPRIZEMONEY - 12] = sText_PlayerPaidPrizeMoney,
+	[STRINGID_PKMNRAISEDATTACK - 12] = sText_PkmnRaisedAttack,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

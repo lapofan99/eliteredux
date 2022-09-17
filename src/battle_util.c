@@ -5434,6 +5434,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_MOVE_END_ATTACKER: // Same as above, but for attacker
         switch (gLastUsedAbility)
         {
+		case ABILITY_GROWING_TOOTH:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+			 && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
+             && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleMons[battler].statStages[STAT_ATK]++;
+                gBattleScripting.animArg1 = 14 + STAT_ATK;
+                gBattleScripting.animArg2 = 0;
+                BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
+                gBattleScripting.battler = battler;
+                effect++;
+            }
+            break;
         case ABILITY_POISON_TOUCH:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -5476,6 +5491,28 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         }
+		
+		//Innates
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GROWING_TOOTH)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+				 && TARGET_TURN_DAMAGED
+				 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+				 && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
+				 && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+				{
+					gBattleScripting.abilityPopupOverwrite = ABILITY_GROWING_TOOTH;
+					gLastUsedAbility = ABILITY_GROWING_TOOTH;
+					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+					BattleScriptPushCursor();
+					gBattleMons[battler].statStages[STAT_ATK]++;
+					gBattleScripting.animArg1 = 14 + STAT_ATK;
+					gBattleScripting.animArg2 = 0;
+					BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
+					gBattleScripting.battler = battler;
+					effect++;
+				}
+		}
+		
         break;
     case ABILITYEFFECT_MOVE_END_OTHER: // Abilities that activate on *another* battler's moveend: Dancer, Soul-Heart, Receiver, Symbiosis
         switch (GetBattlerAbility(battler))

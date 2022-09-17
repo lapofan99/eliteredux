@@ -317,8 +317,9 @@
 #define ABILITY_ANCIENT_IDOL     (ABILITIES_COUNT_LATEST_GEN + 18) // The Pokémon uses its Defense stat and stages during physical moves and its Special Defense stat during special moves instead of its Attack and Special Attack, respectively.
 #define ABILITY_MYSTIC_POWER     (ABILITIES_COUNT_LATEST_GEN + 19) // All Pokémon's moves gain the same-type attack bonus (STAB) regardless the Pokémon's typing.
 #define ABILITY_PERFECTIONIST    (ABILITIES_COUNT_LATEST_GEN + 20) // Increases critical hit rate by 1 of moves with BP 40 or less. Increases critical hit rate and priority by 1 of moves with BP 20 or less.
+#define ABILITY_GROWING_TOOTH    (ABILITIES_COUNT_LATEST_GEN + 21) // Increases the Attack stat by one stage after using a fang move (Moves: Hyper Fang, Super Fang, Fire Fang, Thunder Fang, Ice Fang, Psychic Fangs, Poison Fang).
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_PERFECTIONIST + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_GROWING_TOOTH + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
