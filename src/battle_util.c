@@ -8293,8 +8293,20 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
+	case ABILITY_EXPLOIT_WEAKNESS:
+        if (gBattleMons[battlerDef].status1 & STATUS1_ANY)
+            MulModifier(&modifier, UQ_4_12(1.25));
+        break;
     }
-
+	
+	//Innate
+	//Exploit Weakness
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_EXPLOIT_WEAKNESS)){
+		if (gBattleMons[battlerDef].status1 & STATUS1_ANY){
+            MulModifier(&modifier, UQ_4_12(1.25));
+		}
+    }
+	
     // field abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)
         || (IsAbilityOnField(ABILITY_FAIRY_AURA) && moveType == TYPE_FAIRY))
