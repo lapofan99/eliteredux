@@ -1,4 +1,4 @@
-# Inclement Emerald
+# Pokemon Fight Club
 
 This is a ROM hack of Pokémon Emerald built using the [**pokeemerald decompilation project**](https://github.com/pret/pokeemerald).
 
