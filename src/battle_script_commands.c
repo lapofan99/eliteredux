@@ -1960,7 +1960,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
              || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
              || ((abilityAtk == ABILITY_MERCILESS    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MERCILESS)) && ((gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY) || gBattleMons[battlerDef].statStages[STAT_ATK] < DEFAULT_STAT_STAGE))
 			 || ((abilityAtk == ABILITY_HYPER_CUTTER || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYPER_CUTTER)) && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
-             || move == MOVE_SURGING_STRIKES
+			 || move == MOVE_SURGING_STRIKES
             #if B_LEEK_ALWAYS_CRIT >= GEN_6
              || ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk))
             #endif
@@ -1975,6 +1975,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
                     + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
                     + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
+					+ ((abilityAtk == ABILITY_PERFECTIONIST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PERFECTIONIST)) && gBattleMoves[move].power <= 40)
                     + (abilityAtk == ABILITY_SUPER_LUCK);
 
         if (critChance >= ARRAY_COUNT(sCriticalHitChance))

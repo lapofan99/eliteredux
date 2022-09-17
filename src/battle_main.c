@@ -4592,6 +4592,9 @@ s8 GetMovePriority(u32 battlerId, u16 move)
         priority++;
     }
 
+	if((GetBattlerAbility(battlerId) == ABILITY_PERFECTIONIST || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_PERFECTIONIST)) && gBattleMoves[move].power <= 20)
+		priority++;
+
     return priority;
 }
 
