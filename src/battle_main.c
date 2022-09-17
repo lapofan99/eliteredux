@@ -5456,7 +5456,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         gBattleStruct->dynamicMoveType = 0x80 | ateType;
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
-	else if(gBattleMoves[move].type == TYPE_ROCK && attackerAbility == ABILITY_CRISTALIZE && (ateType = TYPE_ICE)){
+	else if(gBattleMoves[move].type == TYPE_ROCK && attackerAbility == ABILITY_CRYSTALLIZE && (ateType = TYPE_ICE)){
 		ateType = TYPE_ICE;
 		gBattleStruct->dynamicMoveType = 0x80 | ateType;
 		gBattleStruct->ateBoost[battlerAtk] = 1;
@@ -5501,7 +5501,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
 			}
 	}
 	//Cristalize
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRISTALIZE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
 		if(gBattleMoves[move].type == TYPE_ROCK){
 			ateType = TYPE_ICE;
 			gBattleStruct->dynamicMoveType = 0x80 | ateType;

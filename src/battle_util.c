@@ -4841,6 +4841,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (moveType == TYPE_ELECTRIC)
                     effect = 2, statId = STAT_SPEED;
                 break;
+			case ABILITY_AERODYNAMICS:
+                if (moveType == TYPE_FLYING)
+                    effect = 2, statId = STAT_SPEED;
+                break;
             case ABILITY_LIGHTNING_ROD:
                 if (moveType == TYPE_ELECTRIC)
                     effect = 2, statId = STAT_SPATK;
@@ -4880,6 +4884,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             }
+			
+			//Innate
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AERODYNAMICS)){
+				if (move != MOVE_NONE && moveType == TYPE_FLYING){
+					effect = 2;
+					statId = STAT_SPEED;
+				}
+			}
 
             if (effect == 1) // Drain Hp ability.
             {
@@ -8237,7 +8249,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
-	case ABILITY_CRISTALIZE:
+	case ABILITY_CRYSTALLIZE:
         if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
@@ -8482,7 +8494,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	//Cristalize
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRISTALIZE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
 		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
