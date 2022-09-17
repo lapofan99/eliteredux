@@ -315,8 +315,9 @@
 #define ABILITY_EXPLOIT_WEAKNESS (ABILITIES_COUNT_LATEST_GEN + 16) // Increases the power of moves by 25% against targets with status condition.
 #define ABILITY_GROUND_SHOCK     (ABILITIES_COUNT_LATEST_GEN + 17) // Allow Electric-type moves can hit ground type Pokémon.
 #define ABILITY_ANCIENT_IDOL     (ABILITIES_COUNT_LATEST_GEN + 18) // The Pokémon uses its Defense stat and stages during physical moves and its Special Defense stat during special moves instead of its Attack and Special Attack, respectively.
+#define ABILITY_MYSTIC_POWER     (ABILITIES_COUNT_LATEST_GEN + 19) // All Pokémon's moves gain the same-type attack bonus (STAB) regardless the Pokémon's typing.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_ANCIENT_IDOL + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_MYSTIC_POWER + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

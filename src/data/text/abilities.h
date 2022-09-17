@@ -274,6 +274,7 @@ static const u8 sChristmasSpiritDescription[] = _("Boost Defense in Hail.");
 static const u8 sExploitWeaknessDescription[] = _("Increases the power against foes with any status problem.");
 static const u8 sGroundShockDescription[] = _("Allow Electric-type moves to hit ground type Pokémon.");
 static const u8 sAncientIdolDescription[] = _("Hits with its Defense Stats.");
+static const u8 sMysticPowerDescription[] = _("Gains STAB regardless of type.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -564,6 +565,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_EXPLOIT_WEAKNESS] = _("Ex.Weakness"),
 	[ABILITY_GROUND_SHOCK] = _("Ground Shock"),
 	[ABILITY_ANCIENT_IDOL] = _("Ancient Idol"),
+	[ABILITY_MYSTIC_POWER] = _("Mystic Power"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -855,4 +857,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_EXPLOIT_WEAKNESS] = sExploitWeaknessDescription,
 	[ABILITY_GROUND_SHOCK] = sGroundShockDescription,
 	[ABILITY_ANCIENT_IDOL] = sAncientIdolDescription,
+	[ABILITY_MYSTIC_POWER] = sMysticPowerDescription,
 };
