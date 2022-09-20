@@ -278,6 +278,7 @@ static const u8 sMysticPowerDescription[] = _("Gains STAB regardless of type.");
 static const u8 sPerfectionistDescription[] = _("Increases critical hit rate to weaker moves.");
 static const u8 sGrowingToothDescription[] =  _("Ups Attack when using biting moves.");
 static const u8 sInflatableDescription[] =  _("Ups Defenses when hit by Flying or Fire Moves.");
+static const u8 sAuroraBorealisDescription[] =  _("Gains STAB for Ice Moves.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -572,6 +573,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_PERFECTIONIST] = _("Perfectionis"),
 	[ABILITY_GROWING_TOOTH] = _("GrowingTooth"),
 	[ABILITY_INFLATABLE] = _("Inflatable"),
+	[ABILITY_AURORA_BOREALIS] = _("A.Borealis"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -867,4 +869,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_PERFECTIONIST] = sPerfectionistDescription,
 	[ABILITY_GROWING_TOOTH] = sGrowingToothDescription,
 	[ABILITY_INFLATABLE] = sInflatableDescription,
+	[ABILITY_AURORA_BOREALIS] = sAuroraBorealisDescription,
 };

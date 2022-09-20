@@ -319,8 +319,9 @@
 #define ABILITY_PERFECTIONIST    (ABILITIES_COUNT_LATEST_GEN + 20) // Increases critical hit rate by 1 of moves with BP 40 or less. Increases critical hit rate and priority by 1 of moves with BP 20 or less.
 #define ABILITY_GROWING_TOOTH    (ABILITIES_COUNT_LATEST_GEN + 21) // Increases the Attack stat by one stage after using a fang move (Moves: Hyper Fang, Super Fang, Fire Fang, Thunder Fang, Ice Fang, Psychic Fangs, Poison Fang).
 #define ABILITY_INFLATABLE       (ABILITIES_COUNT_LATEST_GEN + 22) // When the Pokémon is hit by Fire-type or Flying-type moves, its Defense and Special Defense stats are increased by one stage.
+#define ABILITY_AURORA_BOREALIS  (ABILITIES_COUNT_LATEST_GEN + 23) // The Pokémon's Ice-type moves gain same-type attack bonus regardless the Pokémon's typing. The Pokémon will take no damage from the hailstorm if it otherwise would.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_INFLATABLE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_AURORA_BOREALIS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
