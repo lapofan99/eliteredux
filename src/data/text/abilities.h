@@ -282,6 +282,7 @@ static const u8 sAuroraBorealisDescription[] =  _("Gains STAB for Ice Moves.");
 static const u8 sAvengerDescription[] =  _("Hits harder if an ally fainted last turn.");
 static const u8 sLetsRollDescription[] =  _("Curls when sent out.");
 static const u8 sAquaticDescription[] =  _("Becomes Water-Type.");
+static const u8 sLoudBangDescription[] =  _("Sound moves may confuse the foe.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -580,6 +581,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_AVENGER] = _("Avenger"),
 	[ABILITY_LETS_ROLL] = _("Let's Roll"),
 	[ABILITY_AQUATIC] = _("Aquatic"),
+	[ABILITY_LOUD_BANG] = _("Loud Bang"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -879,4 +881,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_AVENGER] = sAvengerDescription,
 	[ABILITY_LETS_ROLL] = sLetsRollDescription,
 	[ABILITY_AQUATIC] = sAquaticDescription,
+	[ABILITY_LOUD_BANG] = sLoudBangDescription,
 };

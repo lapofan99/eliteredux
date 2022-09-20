@@ -323,8 +323,9 @@
 #define ABILITY_AVENGER  		 (ABILITIES_COUNT_LATEST_GEN + 24) // Boosts the power of the move by 30% if a Pokémon from the user's party has fainted in the previous turn.
 #define ABILITY_LETS_ROLL 		 (ABILITIES_COUNT_LATEST_GEN + 25) // Pokémon starts in Defense Curl, boosting the Defense stage by one. Defense Curl effect: Doubles the power of Rollout, Ice Ball, Steamroller and Steel Roller.
 #define ABILITY_AQUATIC 		 (ABILITIES_COUNT_LATEST_GEN + 26) // Adds the Water-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_LOUD_BANG 		 (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 10% chance that the opposing Pokémon will become confused when affected by the Pokémon's sound-based damaging moves.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_AQUATIC + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_LOUD_BANG + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
