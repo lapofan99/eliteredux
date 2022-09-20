@@ -321,8 +321,9 @@
 #define ABILITY_INFLATABLE       (ABILITIES_COUNT_LATEST_GEN + 22) // When the Pokémon is hit by Fire-type or Flying-type moves, its Defense and Special Defense stats are increased by one stage.
 #define ABILITY_AURORA_BOREALIS  (ABILITIES_COUNT_LATEST_GEN + 23) // The Pokémon's Ice-type moves gain same-type attack bonus regardless the Pokémon's typing. The Pokémon will take no damage from the hailstorm if it otherwise would.
 #define ABILITY_AVENGER  		 (ABILITIES_COUNT_LATEST_GEN + 24) // Boosts the power of the move by 30% if a Pokémon from the user's party has fainted in the previous turn.
+#define ABILITY_LETS_ROLL 		 (ABILITIES_COUNT_LATEST_GEN + 25) // Pokémon starts in Defense Curl, boosting the Defense stage by one. Defense Curl effect: Doubles the power of Rollout, Ice Ball, Steamroller and Steel Roller.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_AVENGER + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_LETS_ROLL + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

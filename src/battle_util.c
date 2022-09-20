@@ -4502,6 +4502,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+		case ABILITY_LETS_ROLL:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                SET_STATCHANGER(STAT_DEF, 1, FALSE);
+				gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
+                effect++;
+            }
+            break;
         case ABILITY_INTIMIDATE:
             if (!(gSpecialStatuses[battler].intimidatedMon))
             {
@@ -4591,6 +4601,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         }
+		
+		//Inates on Switch
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_LETS_ROLL;
+				gLastUsedAbility = ABILITY_LETS_ROLL;
+				SET_STATCHANGER(STAT_DEF, 1, FALSE);
+				gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerInnateStatRaiseOnSwitchIn);
+				effect++;
+			}
+		}
+		
         break;
     case ABILITYEFFECT_ENDTURN: // 1
         if (gBattleMons[battler].hp != 0)

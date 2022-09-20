@@ -280,6 +280,7 @@ static const u8 sGrowingToothDescription[] =  _("Ups Attack when using biting mo
 static const u8 sInflatableDescription[] =  _("Ups Defenses when hit by Flying or Fire Moves.");
 static const u8 sAuroraBorealisDescription[] =  _("Gains STAB for Ice Moves.");
 static const u8 sAvengerDescription[] =  _("Hits harder if an ally fainted last turn.");
+static const u8 sLetsRollDescription[] =  _("Curls when sent out.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -576,6 +577,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_INFLATABLE] = _("Inflatable"),
 	[ABILITY_AURORA_BOREALIS] = _("A.Borealis"),
 	[ABILITY_AVENGER] = _("Avenger"),
+	[ABILITY_LETS_ROLL] = _("Let's Roll"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -873,4 +875,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_INFLATABLE] = sInflatableDescription,
 	[ABILITY_AURORA_BOREALIS] = sAuroraBorealisDescription,
 	[ABILITY_AVENGER] = sAvengerDescription,
+	[ABILITY_LETS_ROLL] = sLetsRollDescription,
 };
