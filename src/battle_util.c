@@ -8385,15 +8385,34 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (gBattleMons[battlerDef].status1 & STATUS1_ANY)
             MulModifier(&modifier, UQ_4_12(1.25));
         break;
+	case ABILITY_AVENGER:
+		if (gSideTimers[atkSide].retaliateTimer == 1)
+            MulModifier(&modifier, UQ_4_12(1.3));
+		break;
     }
 	
-	//Innate
+	//Attacker Innate 
 	//Exploit Weakness
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_EXPLOIT_WEAKNESS)){
 		if (gBattleMons[battlerDef].status1 & STATUS1_ANY){
             MulModifier(&modifier, UQ_4_12(1.25));
 		}
     }
+	//Avenger
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AVENGER)){
+		if (gSideTimers[atkSide].retaliateTimer == 1)
+            MulModifier(&modifier, UQ_4_12(1.3));
+    }
+	//Burnate
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
+		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
+	//Cristalize
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
+		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
 	
     // field abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)
@@ -8461,7 +8480,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     }
 	
-	//Innates
+	//Target's Innates
 	//Christmas Spirit
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_CHRISTMAS_SPIRIT)){
 		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY){
@@ -8603,18 +8622,6 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         MulModifier(&modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8) ? UQ_4_12(1.3) : UQ_4_12(1.5));
     if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN && moveType == TYPE_PSYCHIC && IsBattlerGrounded(battlerAtk) && !(gStatuses3[battlerAtk] & STATUS3_SEMI_INVULNERABLE))
         MulModifier(&modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8) ? UQ_4_12(1.3) : UQ_4_12(1.5));
-	
-	//Inates
-	//Burnate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
-		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
-	}
-	//Cristalize
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
-		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
-	}
 	
     return ApplyModifier(modifier, basePower);
 }
