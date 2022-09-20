@@ -4600,9 +4600,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+		case ABILITY_AQUATIC:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_AQUATIC;
+				gLastUsedAbility = ABILITY_AQUATIC;
+				gBattleMons[battler].type3 = TYPE_WATER;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
+				effect++;
+            }
+            break;
         }
 		
 		//Inates on Switch
+		//Lets Roll
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL)){
 			if (!gSpecialStatuses[battler].switchInAbilityDone)
 			{
@@ -4612,6 +4625,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				SET_STATCHANGER(STAT_DEF, 1, FALSE);
 				gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerInnateStatRaiseOnSwitchIn);
+				effect++;
+			}
+		}
+		//Aquatic
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AQUATIC)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_AQUATIC;
+				gLastUsedAbility = ABILITY_AQUATIC;
+				gBattleMons[battler].type3 = TYPE_WATER;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
 				effect++;
 			}
 		}

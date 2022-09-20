@@ -615,8 +615,9 @@
 #define STRINGID_INFLATABLEPKMNRAISEDDEFENSE          612
 #define STRINGID_ANGERPOINTSPKMNRAISEDATTACK          613
 #define STRINGID_BATTLERINNATERAISEDSTAT		      614
+#define STRINGID_BATTLERGOTTHETYPE		      		  616
 
-#define BATTLESTRINGS_COUNT                           615
+#define BATTLESTRINGS_COUNT                           617
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

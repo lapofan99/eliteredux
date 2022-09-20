@@ -7648,6 +7648,13 @@ BattleScript_BattlerInnateStatRaiseOnSwitchIn::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
+BattleScript_BattlerGotTheType::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BATTLERGOTTHETYPE
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
 @ Can't compare directly to a value, have to compare to value at pointer
 sZero:
 .byte 0
