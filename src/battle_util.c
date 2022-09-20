@@ -6168,6 +6168,7 @@ bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
      || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
      || ability == ABILITY_IMMUNITY
+	 || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_IMMUNITY)
      || ability == ABILITY_COMATOSE
      || IsAbilityOnSide(battlerTarget, ABILITY_PASTEL_VEIL)
      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
@@ -8628,6 +8629,14 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (updateFlags)
             RecordAbilityBattle(battlerDef, ability);
         break;
+	case ABILITY_IMMUNITY:
+        if (moveType == TYPE_POISON)
+        {
+            MulModifier(&modifier, UQ_4_12(0.8));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+        break;
     }
 	
 	//Target's Innates
@@ -8644,6 +8653,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	//Battle Armor
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LEAD_COAT)){
 		MulModifier(&modifier, UQ_4_12(0.7));
+    }
+	//Immunity
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_IMMUNITY)){
+		if (moveType == TYPE_POISON)
+            MulModifier(&modifier, UQ_4_12(0.8));
     }
 
     holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
