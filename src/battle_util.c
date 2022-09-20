@@ -7860,7 +7860,7 @@ bool32 IsMoveMakingContact(u16 move, u8 battlerAtk)
         else
             return FALSE;
     }
-    else if (GetBattlerAbility(battlerAtk) == ABILITY_LONG_REACH)
+    else if (GetBattlerAbility(battlerAtk) == ABILITY_LONG_REACH || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH))
     {
         return FALSE;
     }
@@ -8530,6 +8530,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (gSideTimers[atkSide].retaliateTimer == 1)
             MulModifier(&modifier, UQ_4_12(1.3));
 		break;
+	case ABILITY_LONG_REACH:
+		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
+            MulModifier(&modifier, UQ_4_12(1.2));
+		break;
     }
 	
 	//Attacker Innate 
@@ -8553,6 +8557,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
 		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
+	}
+	
+	//Long Reach
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH)){
+		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
+            MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
     // field abilities
