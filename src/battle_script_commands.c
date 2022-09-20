@@ -1955,7 +1955,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     {
         critChance = -1;
     }
-    else if (abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR)
+    else if (abilityDef == ABILITY_BATTLE_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR) ||abilityDef == ABILITY_SHELL_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHELL_ARMOR))
     {
         if (recordAbility)
             RecordAbilityBattle(battlerDef, abilityDef);
