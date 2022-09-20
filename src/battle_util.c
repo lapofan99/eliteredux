@@ -7979,10 +7979,14 @@ u32 GetBattlerWeight(u8 battlerId)
     u32 ability = GetBattlerAbility(battlerId);
     u32 holdEffect = GetBattlerHoldEffect(battlerId, TRUE);
 
-    if (ability == ABILITY_HEAVY_METAL)
+    if (ability == ABILITY_HEAVY_METAL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_HEAVY_METAL))
         weight *= 2;
-    else if (ability == ABILITY_LIGHT_METAL)
+	
+    if (ability == ABILITY_LIGHT_METAL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LIGHT_METAL))
         weight /= 2;
+	
+	if (ability == ABILITY_LEAD_COAT || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEAD_COAT))
+        weight *= 3;
 
     if (holdEffect == HOLD_EFFECT_FLOAT_STONE)
         weight /= 2;
@@ -8619,6 +8623,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (updateFlags)
             RecordAbilityBattle(battlerDef, ability);
         break;
+	case ABILITY_LEAD_COAT:
+        MulModifier(&modifier, UQ_4_12(0.7));
+        if (updateFlags)
+            RecordAbilityBattle(battlerDef, ability);
+        break;
     }
 	
 	//Target's Innates
@@ -8631,6 +8640,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	//Battle Armor
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR)){
 		MulModifier(&modifier, UQ_4_12(0.9));
+    }
+	//Battle Armor
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LEAD_COAT)){
+		MulModifier(&modifier, UQ_4_12(0.7));
     }
 
     holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
