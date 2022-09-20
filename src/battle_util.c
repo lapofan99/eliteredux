@@ -5157,6 +5157,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
                 effect++;
             }
+			else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && IS_MOVE_PHYSICAL(gCurrentMove)
+             && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleMons[battler].statStages[STAT_ATK]++;
+                gBattleScripting.animArg1 = 14 + STAT_ATK;
+                gBattleScripting.animArg2 = 0;
+                BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
+                gBattleScripting.battler = battler;
+                effect++;
+            }
             break;
         case ABILITY_COLOR_CHANGE:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -5473,6 +5486,40 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.animArg1 = 14 + STAT_DEF;
 				gBattleScripting.animArg2 = 0;
 				BattleScriptPushCursorAndCallback(BattleScript_InflatableActivates);
+				gBattleScripting.battler = battler;
+				effect++;
+			}
+		}
+		
+		//Anger Point
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ANGER_POINT)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gIsCriticalHit
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_ANGER_POINT;
+				gLastUsedAbility = ABILITY_ANGER_POINT;
+                SET_STATCHANGER(STAT_ATK, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_ATK], FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
+                effect++;
+            }
+			else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && IS_MOVE_PHYSICAL(gCurrentMove)
+             && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+			{
+				gBattleScripting.abilityPopupOverwrite = ABILITY_ANGER_POINT;
+				gLastUsedAbility = ABILITY_ANGER_POINT;
+				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+				BattleScriptPushCursor();
+				gBattleMons[battler].statStages[STAT_ATK]++;
+				gBattleScripting.animArg1 = 14 + STAT_ATK;
+				gBattleScripting.animArg2 = 0;
+				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
 				gBattleScripting.battler = battler;
 				effect++;
 			}

@@ -7630,6 +7630,13 @@ BattleScript_InflatableActivates::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
+BattleScript_AngerPointsLightBoostActivates::
+	call BattleScript_AbilityPopUp
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_ANGERPOINTSPKMNRAISEDATTACK
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
 @ Can't compare directly to a value, have to compare to value at pointer
 sZero:
 .byte 0
