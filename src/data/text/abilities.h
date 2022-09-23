@@ -266,24 +266,25 @@ static const u8 sVengeanceDescription[] = _("Ups Ghost moves in a pinch.");
 static const u8 sBlitzBoxerDescription[] = _("Punching moves go first.");
 
 static const u8 sAntarticBirdDescription[] = _("Ice and Flying-type moves gain STAB.");
-static const u8 sBurnateDescription[] = _("Normal moves become Fire.");
-static const u8 sCrystallizeDescription[] = _("Rock moves become Ice.");
+static const u8 sBurnateDescription[] = _("Normal moves become Fire and 20% stronger.");
+static const u8 sCrystallizeDescription[] = _("Rock moves become Ice and 20% more stronger.");
 static const u8 sElectrocytesDescription[] = _("Increases the power of Electric-type moves by 25%.");
 static const u8 sAerodynamicsDescription[] = _("Flying moves raises Speed.");
-static const u8 sChristmasSpiritDescription[] = _("Boost Defense in Hail.");
-static const u8 sExploitWeaknessDescription[] = _("Increases the power against foes with any status problem.");
+static const u8 sChristmasSpiritDescription[] = _("Reduces damage in Hail by 50%.");
+static const u8 sExploitWeaknessDescription[] = _("25% more damage against foes with any status problem.");
 static const u8 sGroundShockDescription[] = _("Allow Electric-type moves to hit ground type Pokémon.");
-static const u8 sAncientIdolDescription[] = _("Hits with its Defense Stats.");
+static const u8 sAncientIdolDescription[] = _("Hits with its Defense Stats respectively.");
 static const u8 sMysticPowerDescription[] = _("Gains STAB regardless of type.");
-static const u8 sPerfectionistDescription[] = _("Increases critical hit rate to weaker moves.");
-static const u8 sGrowingToothDescription[] =  _("Ups Attack when using biting moves.");
-static const u8 sInflatableDescription[] =  _("Ups Defenses when hit by Flying or Fire Moves.");
+static const u8 sPerfectionistDescription[] = _("+1 crit to moves <40 BP. Also +1 prio for <20 BP");
+static const u8 sGrowingToothDescription[] =  _("Ups Attack +1 when using biting moves.");
+static const u8 sInflatableDescription[] =  _("Ups Defenses +1 when hit by Flying or Fire Moves.");
 static const u8 sAuroraBorealisDescription[] =  _("Gains STAB for Ice Moves.");
-static const u8 sAvengerDescription[] =  _("Hits harder if an ally fainted last turn.");
+static const u8 sAvengerDescription[] =  _("Hits 30% harder if an ally fainted last turn.");
 static const u8 sLetsRollDescription[] =  _("Curls when sent out.");
-static const u8 sAquaticDescription[] =  _("Becomes Water-Type.");
+static const u8 sAquaticDescription[] =  _("Adds Water-Type.");
 static const u8 sLoudBangDescription[] =  _("Sound moves may confuse the foe.");
-static const u8 sLeadCoatDescription[] =  _("Boost Defense but decreases Speed.");
+static const u8 sLeadCoatDescription[] =  _("Boost Defense 30% but decreases Speed 10%.");
+static const u8 sAmphibiousDescription[] = _("Water moves gain STAB.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -584,6 +585,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_AQUATIC] = _("Aquatic"),
 	[ABILITY_LOUD_BANG] = _("Loud Bang"),
 	[ABILITY_LEAD_COAT] = _("Lead Coat"),
+	[ABILITY_AMPHIBIOUS] = _("Amphibious"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -885,4 +887,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_AQUATIC] = sAquaticDescription,
 	[ABILITY_LOUD_BANG] = sLoudBangDescription,
 	[ABILITY_LEAD_COAT] = sLeadCoatDescription,
+	[ABILITY_AMPHIBIOUS] = sAmphibiousDescription,
 };

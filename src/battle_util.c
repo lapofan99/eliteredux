@@ -8948,6 +8948,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.5));
         }
         break;
+	case ABILITY_AMPHIBIOUS:
+        if (moveType == TYPE_WATER)
+        {
+            MulModifier(&modifier, UQ_4_12(1.5));
+        }
+        break;
 	case ABILITY_ELECTROCYTES:
         if (moveType == TYPE_ELECTRIC)
         {
@@ -9080,6 +9086,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	//Antartic Bird
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANTARTIC_BIRD)){
 		if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
+        {
+            MulModifier(&modifier, UQ_4_12(1.5));
+        }
+	}
+	//Amphibious
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AMPHIBIOUS)){
+		if (moveType == TYPE_WATER)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
         }
