@@ -285,6 +285,7 @@ static const u8 sAquaticDescription[] =  _("Adds Water-Type.");
 static const u8 sLoudBangDescription[] =  _("Sound moves may confuse the foe.");
 static const u8 sLeadCoatDescription[] =  _("Boost Defense 30% but decreases Speed 10%.");
 static const u8 sAmphibiousDescription[] = _("Water moves gain STAB.");
+static const u8 sGroundedDescription[] =  _("Adds Ground-Type.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -586,6 +587,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_LOUD_BANG] = _("Loud Bang"),
 	[ABILITY_LEAD_COAT] = _("Lead Coat"),
 	[ABILITY_AMPHIBIOUS] = _("Amphibious"),
+	[ABILITY_GROUNDED] = _("Grounded"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -888,4 +890,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_LOUD_BANG] = sLoudBangDescription,
 	[ABILITY_LEAD_COAT] = sLeadCoatDescription,
 	[ABILITY_AMPHIBIOUS] = sAmphibiousDescription,
+	[ABILITY_GROUNDED] = sGroundedDescription,
 };

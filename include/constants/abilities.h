@@ -326,8 +326,9 @@
 #define ABILITY_LOUD_BANG 		 (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 10% chance that the opposing Pokémon will become confused when affected by the Pokémon's sound-based damaging moves.
 #define ABILITY_LEAD_COAT 		 (ABILITIES_COUNT_LATEST_GEN + 28) // Triples the Pokémon's weight. Increases the Defense stat by 30%, but decreases Speed stat by 10%.
 #define ABILITY_AMPHIBIOUS 		 (ABILITIES_COUNT_LATEST_GEN + 29) // The Pokémon's Water-type moves gain same-type attack bonus regardless the Pokémon's typing.
+#define ABILITY_GROUNDED 		 (ABILITIES_COUNT_LATEST_GEN + 30) // Adds the Ground-type to the Pokémon, in addition to the Pokémon's original type(s).
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_AMPHIBIOUS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_GROUNDED + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

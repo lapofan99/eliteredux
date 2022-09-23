@@ -742,7 +742,7 @@ static const u8 sText_CantEscapeBecauseOfCurrentMove[] = _("{B_DEF_NAME_WITH_PRE
 static const u8 sText_NeutralizingGasEnters[] = _("Neutralizing Gas filled the area!");
 static const u8 sText_NeutralizingGasOver[] = _("The effects of Neutralizing\nGas wore off!");
 static const u8 sText_BattlerInnateRaisedStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Innate Ability\nraised its {B_BUFF1}!");
-static const u8 sText_BattlerGotTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} became a {B_BUFF1}-type!");
+static const u8 sText_BattlerGotTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} added the {B_BUFF1}-type!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
