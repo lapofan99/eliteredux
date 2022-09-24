@@ -284,6 +284,7 @@ static const u8 sLetsRollDescription[] =  _("Curls when sent out.");
 static const u8 sAquaticDescription[] =  _("Becomes Water-Type.");
 static const u8 sLoudBangDescription[] =  _("Sound moves may confuse the foe.");
 static const u8 sLeadCoatDescription[] =  _("Boost Defense but decreases Speed.");
+static const u8 sCoilUpDescription[] =  _("Coils when sent out.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -584,6 +585,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_AQUATIC] = _("Aquatic"),
 	[ABILITY_LOUD_BANG] = _("Loud Bang"),
 	[ABILITY_LEAD_COAT] = _("Lead Coat"),
+	[ABILITY_COIL_UP] = _("Coil Up"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -885,4 +887,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_AQUATIC] = sAquaticDescription,
 	[ABILITY_LOUD_BANG] = sLoudBangDescription,
 	[ABILITY_LEAD_COAT] = sLeadCoatDescription,
+	[ABILITY_COIL_UP] = sCoilUpDescription,
 };
