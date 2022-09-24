@@ -8622,7 +8622,6 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FELINE_PROWESS)){
 	if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(2.0));
-        break;
 	}
 	
     // field abilities
