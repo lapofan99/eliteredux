@@ -333,8 +333,10 @@
 #define ABILITY_COIL_UP 		 (ABILITIES_COUNT_LATEST_GEN + 34) // The Pokémon enters the battlefield coiled up. Coil: The next time the Pokémon uses a biting move, its priority is increased 1.
 #define ABILITY_FOSSILIZED 		 (ABILITIES_COUNT_LATEST_GEN + 35) // Reduces Rock type weakness by 50%. - TBD
 #define ABILITY_MAGICAL_DUST 	 (ABILITIES_COUNT_LATEST_GEN + 36) // When is hit by contact move, it leaves a Magic Powder that adds Psychic-type to the target.
+#define ABILITY_DREAMCATCHER 	 (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 20% for each Pokemon asleep on the field.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_MAGICAL_DUST + 1)
+
+#define ABILITIES_COUNT_CUSTOM (ABILITY_DREAMCATCHER + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

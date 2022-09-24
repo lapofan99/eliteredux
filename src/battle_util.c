@@ -8483,6 +8483,13 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     u16 holdEffectModifier;
     u16 modifier = UQ_4_12(1.0);
     u32 atkSide = GET_BATTLER_SIDE(battlerAtk);
+	u8 numsleepmons = 0;
+	
+	for (i = 0; i < gBattlersCount; i++)
+    {
+        if (gBattleMons[i].status1 & STATUS1_SLEEP)
+            numsleepmons++;
+    }
 
     // attacker's abilities
     switch (GetBattlerAbility(battlerAtk))
@@ -8621,6 +8628,16 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (gSideTimers[atkSide].retaliateTimer == 1)
             MulModifier(&modifier, UQ_4_12(1.3));
 		break;
+	case ABILITY_DREAMCATCHER:
+		if (numsleepmons == 1)
+            MulModifier(&modifier, UQ_4_12(1.2));
+		else if (numsleepmons == 2)
+            MulModifier(&modifier, UQ_4_12(1.4));
+		else if (numsleepmons == 3)
+            MulModifier(&modifier, UQ_4_12(1.6));
+		else if (numsleepmons == 4)
+            MulModifier(&modifier, UQ_4_12(1.8));
+		break;
 	case ABILITY_LONG_REACH:
 		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -8665,10 +8682,28 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
-	
+	// Big Pecks
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TOUGH_CLAWS) || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BIG_PECKS)){
         if (IsMoveMakingContact(move, battlerAtk))
            MulModifier(&modifier, UQ_4_12(1.3));
+	}
+	
+	//DreamCatcher
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DREAMCATCHER)){
+		switch(numsleepmons){
+			case 1:
+				MulModifier(&modifier, UQ_4_12(1.2));
+			break;
+			case 2:
+				MulModifier(&modifier, UQ_4_12(1.4));
+			break;
+			case 3:
+				MulModifier(&modifier, UQ_4_12(1.6));
+			break;
+			case 4:
+				MulModifier(&modifier, UQ_4_12(1.8));
+			break;
+		}
 	}
 	
 	// Rivalry
