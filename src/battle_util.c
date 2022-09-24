@@ -8538,6 +8538,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
            MulModifier(&modifier, UQ_4_12(1.3));
         break;
     case ABILITY_TOUGH_CLAWS:
+    case ABILITY_BIG_PECKS:
         if (IsMoveMakingContact(move, battlerAtk))
            MulModifier(&modifier, UQ_4_12(1.3));
         break;
@@ -8662,6 +8663,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH)){
 		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
             MulModifier(&modifier, UQ_4_12(1.2));
+	}
+	
+	
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TOUGH_CLAWS) || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BIG_PECKS)){
+        if (IsMoveMakingContact(move, battlerAtk))
+           MulModifier(&modifier, UQ_4_12(1.3));
 	}
 	
 	// Rivalry
