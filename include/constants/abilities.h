@@ -292,7 +292,7 @@
 
 #define ABILITIES_COUNT_LATEST_GEN 268
 
-// Custom Abilities
+// IE Custom Abilities
 
 #define ABILITY_CHLOROPLAST      (ABILITIES_COUNT_LATEST_GEN)      // Moves function as if it's sunny, regardless of weather
 #define ABILITY_WHITEOUT         (ABILITIES_COUNT_LATEST_GEN + 1)  // Boosts the power of Ice attacks in Hail by 50%
@@ -305,13 +305,13 @@
 #define ABILITY_VENGEANCE        (ABILITIES_COUNT_LATEST_GEN + 8)  // Overgrow for Ghost moves.
 #define ABILITY_BLITZ_BOXER      (ABILITIES_COUNT_LATEST_GEN + 9)  // Punching moves go first
 
-// Darky's Custom Abilities
-#define ABILITY_ANTARTIC_BIRD    (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain STAB.
-#define ABILITY_BURNATE          (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon to become Fire-type and receive a 20% power boost.
-#define ABILITY_CRYSTALLIZE      (ABILITIES_COUNT_LATEST_GEN + 12) // All Rock-type moves used by the Pokémon to become Ice-type and receive a 20% power boost.
+// Darky's Custom Abilities / Innates
+#define ABILITY_ANTARTIC_BIRD    (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain 1.5x power.
+#define ABILITY_BURNATE          (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon become Fire-type and receive a 20% power boost.
+#define ABILITY_CRYSTALLIZE      (ABILITIES_COUNT_LATEST_GEN + 12) // All Rock-type moves used by the Pokémon become Ice-type and receive a 20% power boost.
 #define ABILITY_ELECTROCYTES     (ABILITIES_COUNT_LATEST_GEN + 13) // Increases the power of Electric-type moves by 25%.
 #define ABILITY_AERODYNAMICS     (ABILITIES_COUNT_LATEST_GEN + 14) // Boosts its Speed stat if hit by an Flying-type move instead of taking damage.
-#define ABILITY_CHRISTMAS_SPIRIT (ABILITIES_COUNT_LATEST_GEN + 15) // The Pokémon is protected by a mysterious force that reduce all incoming damage by 50% during a hailstorm.
+#define ABILITY_CHRISTMAS_SPIRIT (ABILITIES_COUNT_LATEST_GEN + 15) // The Pokémon is protected by a mysterious force that reduces all incoming damage by 50% during a hailstorm.
 #define ABILITY_EXPLOIT_WEAKNESS (ABILITIES_COUNT_LATEST_GEN + 16) // Increases the power of moves by 25% against targets with status condition.
 #define ABILITY_GROUND_SHOCK     (ABILITIES_COUNT_LATEST_GEN + 17) // Allow Electric-type moves can hit ground type Pokémon.
 #define ABILITY_ANCIENT_IDOL     (ABILITIES_COUNT_LATEST_GEN + 18) // The Pokémon uses its Defense stat and stages during physical moves and its Special Defense stat during special moves instead of its Attack and Special Attack, respectively.
@@ -325,7 +325,12 @@
 #define ABILITY_AQUATIC 		 (ABILITIES_COUNT_LATEST_GEN + 26) // Adds the Water-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_LOUD_BANG 		 (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 10% chance that the opposing Pokémon will become confused when affected by the Pokémon's sound-based damaging moves.
 #define ABILITY_LEAD_COAT 		 (ABILITIES_COUNT_LATEST_GEN + 28) // Triples the Pokémon's weight. Increases the Defense stat by 30%, but decreases Speed stat by 10%.
-#define ABILITY_COIL_UP 		 (ABILITIES_COUNT_LATEST_GEN + 29) // The Pokémon enters the battlefield coiled up. Coil: The next time the Pokémon uses a biting move, its priority is increased 1.
+#define ABILITY_AMPHIBIOUS 		 (ABILITIES_COUNT_LATEST_GEN + 29) // Water-type moves gain 1.5x power.
+#define ABILITY_GROUNDED 		 (ABILITIES_COUNT_LATEST_GEN + 30) // Adds the Ground-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_EARTHBOUND 		 (ABILITIES_COUNT_LATEST_GEN + 31) // Increases own Ground-type attacks by 25%.
+#define ABILITY_FIGHT_SPIRIT     (ABILITIES_COUNT_LATEST_GEN + 32) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 20% power boost.
+#define ABILITY_FELINE_PROWESS   (ABILITIES_COUNT_LATEST_GEN + 33) // Doubles Special Attack (special Huge/Pure Power).
+#define ABILITY_COIL_UP 		 (ABILITIES_COUNT_LATEST_GEN + 34) // The Pokémon enters the battlefield coiled up. Coil: The next time the Pokémon uses a biting move, its priority is increased 1.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_COIL_UP + 1)
 

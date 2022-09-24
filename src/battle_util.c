@@ -4622,12 +4622,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type1);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
 				effect++;
+				break;
+		case ABILITY_GROUNDED:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_GROUNDED;
+				gLastUsedAbility = ABILITY_GROUNDED;
+				gBattleMons[battler].type3 = TYPE_GROUND;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
+				effect++;
             }
             break;
         }
 		
-		//Inates on Switch
-		//Lets Roll
+		// Inates on Switch
+		// Lets Roll
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL)){
 			if (!gSpecialStatuses[battler].switchInAbilityDone)
 			{
@@ -4640,7 +4651,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 		}
-		//Aquatic
+		// Aquatic
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AQUATIC)){
 			if (!gSpecialStatuses[battler].switchInAbilityDone)
 			{
@@ -4648,6 +4659,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_AQUATIC;
 				gLastUsedAbility = ABILITY_AQUATIC;
 				gBattleMons[battler].type3 = TYPE_WATER;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
+				effect++;
+			}
+		}
+		// Grounded
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GROUNDED)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_GROUNDED;
+				gLastUsedAbility = ABILITY_GROUNDED;
+				gBattleMons[battler].type3 = TYPE_GROUND;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
 				effect++;
@@ -5529,7 +5553,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         }
 			
-		//Innates
+		// Innates
+		// Inflatable
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INFLATABLE)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 			 && TARGET_TURN_DAMAGED
@@ -5554,7 +5579,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 		}
 		
-		//Anger Point
+		// Anger Point
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ANGER_POINT)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gIsCriticalHit
@@ -5592,6 +5617,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_MOVE_END_ATTACKER: // Same as above, but for attacker
         switch (gLastUsedAbility)
         {
+		// Growing Tooth
 		case ABILITY_GROWING_TOOTH:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
@@ -5667,8 +5693,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         }
 		
-		//Innates
-		//Growing Tooth
+		// Innates
+		// Growing Tooth
 		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GROWING_TOOTH)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 				 && TARGET_TURN_DAMAGED
@@ -5688,7 +5714,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					effect++;
 				}
 		}
-		//Loud Bang
+		// Loud Bang
 		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LOUD_BANG)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 				 && gBattleMons[gBattlerTarget].hp != 0
@@ -8456,7 +8482,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
              == GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality))
                MulModifier(&modifier, UQ_4_12(1.25));
             else
-               MulModifier(&modifier, UQ_4_12(0.75));
+               MulModifier(&modifier, UQ_4_12(1)); // was 0.75
         }
         break;
     case ABILITY_ANALYTIC:
@@ -8481,7 +8507,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_STEELWORKER:
         if (moveType == TYPE_STEEL)
-           MulModifier(&modifier, UQ_4_12(1.5));
+           MulModifier(&modifier, UQ_4_12(1.3)); // was 1.5
         break;
     case ABILITY_PIXILATE:
         if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
@@ -8493,6 +8519,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
 	case ABILITY_CRYSTALLIZE:
         if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
+	case ABILITY_FIGHT_SPIRIT:
+        if (moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
     case ABILITY_GALVANIZE:
@@ -8548,33 +8578,61 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		break;
     }
 	
-	//Attacker Innate 
-	//Exploit Weakness
+	// Attacker Innates
+	// Exploit Weakness
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_EXPLOIT_WEAKNESS)){
 		if (gBattleMons[battlerDef].status1 & STATUS1_ANY){
             MulModifier(&modifier, UQ_4_12(1.25));
 		}
     }
-	//Avenger
+
+	// Avenger
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AVENGER)){
 		if (gSideTimers[atkSide].retaliateTimer == 1)
             MulModifier(&modifier, UQ_4_12(1.3));
     }
-	//Burnate
+
+	// Burnate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
 		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
-	//Cristalize
+
+	// Crystallize
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
 		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
+
+	// Fight Spirit
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)){
+		if (moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
 	
-	//Long Reach
+	// Long Reach
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH)){
 		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
             MulModifier(&modifier, UQ_4_12(1.2));
+	}
+	
+	// Rivalry
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_RIVALRY)){
+	if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality) != MON_GENDERLESS
+            && GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality) != MON_GENDERLESS)
+        {
+            if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality)
+             == GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality))
+               MulModifier(&modifier, UQ_4_12(1.25));
+            else
+               MulModifier(&modifier, UQ_4_12(1)); // was 0.75
+        }
+	}
+	
+	// Feline Prowess
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FELINE_PROWESS)){
+	if (IS_MOVE_SPECIAL(move))
+            MulModifier(&modifier, UQ_4_12(2.0));
 	}
 	
     // field abilities
@@ -8661,22 +8719,22 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     }
 	
-	//Target's Innates
-	//Christmas Spirit
+	// Target's Innates
+	// Christmas Spirit
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_CHRISTMAS_SPIRIT)){
 		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY){
 			MulModifier(&modifier, UQ_4_12(0.5));
 		}
     }
-	//Battle Armor
+	// Battle Armor
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR)){
 		MulModifier(&modifier, UQ_4_12(0.9));
     }
-	//Battle Armor
+	// Lead Coat
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LEAD_COAT)){
 		MulModifier(&modifier, UQ_4_12(0.7));
     }
-	//Immunity
+	// Immunity
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_IMMUNITY)){
 		if (moveType == TYPE_POISON)
             MulModifier(&modifier, UQ_4_12(0.8));
@@ -8960,8 +9018,20 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.5));
         }
         break;
+	case ABILITY_AMPHIBIOUS:
+        if (moveType == TYPE_WATER)
+        {
+            MulModifier(&modifier, UQ_4_12(1.5));
+        }
+        break;
 	case ABILITY_ELECTROCYTES:
         if (moveType == TYPE_ELECTRIC)
+        {
+            MulModifier(&modifier, UQ_4_12(1.25));
+        }
+        break;
+	case ABILITY_EARTHBOUND:
+        if (moveType == TYPE_GROUND)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
         }
@@ -9001,6 +9071,10 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY && IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
+	case ABILITY_FELINE_PROWESS:
+        if (IS_MOVE_SPECIAL(move))
+            MulModifier(&modifier, UQ_4_12(2.0));
+        break;
     }
 
     // target's abilities
@@ -9032,7 +9106,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         break;
     }
 	
-	//Innates
+	// Innates
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MAGMA_ARMOR)){
 		if (moveType == TYPE_WATER || moveType == TYPE_ICE)
         {
@@ -9088,23 +9162,44 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         break;
     }
 	
-	//Innates
-	//Antartic Bird
+	// Innates
+	// Antartic Bird
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANTARTIC_BIRD)){
 		if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
         }
 	}
-	//Electrocytes
+	// Amphibious
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AMPHIBIOUS)){
+		if (moveType == TYPE_WATER)
+        {
+            MulModifier(&modifier, UQ_4_12(1.5));
+        }
+	}
+	// Steelworker
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STEELWORKER)){
+		if (moveType == TYPE_STEEL)
+        {
+            MulModifier(&modifier, UQ_4_12(1.3));
+        }
+	}
+	// Electrocytes
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ELECTROCYTES)){
 		if (moveType == TYPE_ELECTRIC)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
         }
 	}
+	// Earthbound
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_EARTHBOUND)){
+		if (moveType == TYPE_GROUND)
+        {
+            MulModifier(&modifier, UQ_4_12(1.25));
+        }
+	}
 	
-	//Levitate
+	// Levitate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LEVITATE)){
 		if (moveType == TYPE_FLYING)
         {
