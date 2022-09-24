@@ -290,6 +290,8 @@ static const u8 sGroundedDescription[] =  _("Adds Ground-Type.");
 static const u8 sEarthboundDescription[] = _("Increases Ground-type moves by 25%.");
 static const u8 sFightSpiritDescription[] = _("Normal moves become Fighting and 20% stronger.");
 static const u8 sFelineProwessDescription[] = _("Doubles Special Attack.");
+static const u8 sFossilizedDescription[] = _("Reduces Rock type Weakness");
+static const u8 sMagicalDustDescription[] = _("Adds Psychic-type to the foe if hit by a contact move");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -596,6 +598,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_EARTHBOUND] = _("Earthbound"),
 	[ABILITY_FIGHT_SPIRIT] = _("Fight Spirit"),
 	[ABILITY_FELINE_PROWESS] = _("Fel. Prowess"),
+	[ABILITY_FOSSILIZED] = _("Fossilized"),
+	[ABILITY_MAGICAL_DUST] = _("Magical Dust"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -903,4 +907,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_EARTHBOUND] = sEarthboundDescription,
 	[ABILITY_FIGHT_SPIRIT] = sFightSpiritDescription,
 	[ABILITY_FELINE_PROWESS] = sFelineProwessDescription,
+	[ABILITY_FOSSILIZED] = sFossilizedDescription,
+	[ABILITY_MAGICAL_DUST] = sMagicalDustDescription,
 };

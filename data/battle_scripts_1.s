@@ -7648,10 +7648,10 @@ BattleScript_BattlerInnateStatRaiseOnSwitchIn::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
-BattleScript_BattlerGotTheType::
+BattleScript_BattlerAddedTheType::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	printstring STRINGID_BATTLERGOTTHETYPE
+	printstring STRINGID_BATTLERADDEDTHETYPE
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
@@ -7659,6 +7659,13 @@ BattleScript_BattlerCoiledUp::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_BATTLERCOILEDUP
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
+BattleScript_AttackerBecameTheType::
+	copybyte gBattlerAbility, gBattlerTarget
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ATTACKERTYPECHANGEDTO
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	

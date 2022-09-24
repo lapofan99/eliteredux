@@ -742,8 +742,10 @@ static const u8 sText_CantEscapeBecauseOfCurrentMove[] = _("{B_DEF_NAME_WITH_PRE
 static const u8 sText_NeutralizingGasEnters[] = _("Neutralizing Gas filled the area!");
 static const u8 sText_NeutralizingGasOver[] = _("The effects of Neutralizing\nGas wore off!");
 static const u8 sText_BattlerInnateRaisedStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Innate Ability\nraised its {B_BUFF1}!");
-static const u8 sText_BattlerGotTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} added the {B_BUFF1}-type!");
+static const u8 sText_BattlerAddedTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} added the {B_BUFF1}-type!");
 static const u8 sText_BattlerCoiledUp[] = _("{B_ACTIVE_NAME_WITH_PREFIX} Coiled up \nand its ready to bite!");
+static const u8 sText_BattlerGotTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} added the {B_BUFF1}-type!");
+static const u8 sText_AttackerTypeChangedTo[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s type\nchanged to {B_BUFF1}!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -1349,8 +1351,9 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 	[STRINGID_INFLATABLEPKMNRAISEDDEFENSE - 12] = sText_InflatablePkmnRaisedDefenses,
 	[STRINGID_ANGERPOINTSPKMNRAISEDATTACK - 12] = sText_AngerPointsPkmnRaisedAttack,
 	[STRINGID_BATTLERINNATERAISEDSTAT - 12] = sText_BattlerInnateRaisedStat,
-	[STRINGID_BATTLERGOTTHETYPE - 12] = sText_BattlerGotTheType,
+	[STRINGID_BATTLERADDEDTHETYPE - 12] = sText_BattlerAddedTheType,
 	[STRINGID_BATTLERCOILEDUP - 12] = sText_BattlerCoiledUp,
+	[STRINGID_ATTACKERTYPECHANGEDTO - 12] = sText_AttackerTypeChangedTo,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

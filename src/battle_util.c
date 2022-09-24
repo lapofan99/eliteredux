@@ -4608,7 +4608,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gLastUsedAbility = ABILITY_AQUATIC;
 				gBattleMons[battler].type3 = TYPE_WATER;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
-				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
             break;
@@ -4620,7 +4620,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gLastUsedAbility = ABILITY_GROUNDED;
 				gBattleMons[battler].type3 = TYPE_GROUND;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
-				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
             break;
@@ -4661,7 +4661,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gLastUsedAbility = ABILITY_AQUATIC;
 				gBattleMons[battler].type3 = TYPE_WATER;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
-				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
 		}
@@ -4674,7 +4674,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gLastUsedAbility = ABILITY_GROUNDED;
 				gBattleMons[battler].type3 = TYPE_GROUND;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
-				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
 		}
@@ -5432,6 +5432,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+		case ABILITY_MAGICAL_DUST:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && TARGET_TURN_DAMAGED
+			 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_PSYCHIC))
+            {
+				gBattleMons[gBattlerAttacker].type3 = TYPE_PSYCHIC;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].type3);
+                gBattlescriptCurrInstr = BattleScript_AttackerBecameTheType;
+				//BattleScriptPushCursorAndCallback(BattleScript_AttackerBecameTheType);
+				effect++;
+            }
+            break;
         case ABILITY_CUTE_CHARM:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
@@ -5591,6 +5606,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.battler = battler;
 				effect++;
 			}
+		}
+		
+		
+		//Magical Dust
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAGICAL_DUST)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && TARGET_TURN_DAMAGED
+			 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_PSYCHIC))
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_MAGICAL_DUST;
+				gLastUsedAbility = ABILITY_MAGICAL_DUST;
+				gBattleMons[gBattlerAttacker].type3 = TYPE_PSYCHIC;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].type3);
+                gBattlescriptCurrInstr = BattleScript_AttackerBecameTheType;
+				effect++;
+            }
 		}
 		
 		// Anger Point
