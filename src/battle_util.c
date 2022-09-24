@@ -8494,7 +8494,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_STEELWORKER:
         if (moveType == TYPE_STEEL)
-           MulModifier(&modifier, UQ_4_12(1.5));
+           MulModifier(&modifier, UQ_4_12(1.3)); // was 1.5
         break;
     case ABILITY_PIXILATE:
         if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
@@ -8685,7 +8685,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR)){
 		MulModifier(&modifier, UQ_4_12(0.9));
     }
-	//Battle Armor
+	//Lead Coat
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LEAD_COAT)){
 		MulModifier(&modifier, UQ_4_12(0.7));
     }
@@ -9120,6 +9120,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		if (moveType == TYPE_WATER)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
+        }
+	}
+	//Steelworker
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STEELWORKER)){
+		if (moveType == TYPE_STEEL)
+        {
+            MulModifier(&modifier, UQ_4_12(1.3));
         }
 	}
 	//Electrocytes
