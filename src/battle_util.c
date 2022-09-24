@@ -8469,7 +8469,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
              == GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality))
                MulModifier(&modifier, UQ_4_12(1.25));
             else
-               MulModifier(&modifier, UQ_4_12(0.75));
+               MulModifier(&modifier, UQ_4_12(1)); // was 0.75
         }
         break;
     case ABILITY_ANALYTIC:
@@ -8565,38 +8565,55 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		break;
     }
 	
-	//Attacker Innate 
-	//Exploit Weakness
+	// Attacker Innate 
+	// Exploit Weakness
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_EXPLOIT_WEAKNESS)){
 		if (gBattleMons[battlerDef].status1 & STATUS1_ANY){
             MulModifier(&modifier, UQ_4_12(1.25));
 		}
     }
-	//Avenger
+
+	// Avenger
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AVENGER)){
 		if (gSideTimers[atkSide].retaliateTimer == 1)
             MulModifier(&modifier, UQ_4_12(1.3));
     }
-	//Burnate
+
+	// Burnate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
 		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
-	//Crystallize
+
+	// Crystallize
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
 		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
-	//Fight Spirit
+
+	// Fight Spirit
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)){
 		if (moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
-	//Long Reach
+	// Long Reach
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH)){
 		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
             MulModifier(&modifier, UQ_4_12(1.2));
+	}
+	
+	// Rivalry
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_RIVALRY)){
+	if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality) != MON_GENDERLESS
+            && GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality) != MON_GENDERLESS)
+        {
+            if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality)
+             == GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality))
+               MulModifier(&modifier, UQ_4_12(1.25));
+            else
+               MulModifier(&modifier, UQ_4_12(1)); // was 0.75
+        }
 	}
 	
     // field abilities
