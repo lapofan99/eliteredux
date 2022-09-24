@@ -423,5 +423,6 @@ extern const u8 BattleScript_InflatableActivates[];
 extern const u8 BattleScript_AngerPointsLightBoostActivates[];
 extern const u8 BattleScript_BattlerInnateStatRaiseOnSwitchIn[];
 extern const u8 BattleScript_BattlerGotTheType[];
+extern const u8 BattleScript_BattlerCoiledUp[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

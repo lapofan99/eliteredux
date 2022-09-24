@@ -7655,6 +7655,13 @@ BattleScript_BattlerGotTheType::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
+BattleScript_BattlerCoiledUp::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BATTLERCOILEDUP
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
 @ Can't compare directly to a value, have to compare to value at pointer
 sZero:
 .byte 0

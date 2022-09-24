@@ -4612,17 +4612,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
             }
             break;
-		case ABILITY_COIL_UP:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
-            {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_COIL_UP;
-				gLastUsedAbility = ABILITY_COIL_UP;
-				gStatuses4[battler] = STATUS4_COILED;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type1);
-				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
-				effect++;
-				break;
 		case ABILITY_GROUNDED:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -4635,6 +4624,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
             }
             break;
+		case ABILITY_COIL_UP:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_COIL_UP;
+				gLastUsedAbility = ABILITY_COIL_UP;
+				gStatuses4[battler] = STATUS4_COILED;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type1);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerCoiledUp);
+				effect++;
+			}
+			break;
         }
 		
 		// Inates on Switch
@@ -4674,6 +4675,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleMons[battler].type3 = TYPE_GROUND;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerGotTheType);
+				effect++;
+			}
+		}
+		// Coiled Up
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_COIL_UP)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_COIL_UP;
+				gLastUsedAbility = ABILITY_COIL_UP;
+				gStatuses4[battler] = STATUS4_COILED;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type1);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerCoiledUp);
 				effect++;
 			}
 		}

@@ -743,6 +743,7 @@ static const u8 sText_NeutralizingGasEnters[] = _("Neutralizing Gas filled the a
 static const u8 sText_NeutralizingGasOver[] = _("The effects of Neutralizing\nGas wore off!");
 static const u8 sText_BattlerInnateRaisedStat[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Innate Ability\nraised its {B_BUFF1}!");
 static const u8 sText_BattlerGotTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} added the {B_BUFF1}-type!");
+static const u8 sText_BattlerCoiledUp[] = _("{B_ACTIVE_NAME_WITH_PREFIX} Coiled up \nand its ready to bite!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -1349,6 +1350,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 	[STRINGID_ANGERPOINTSPKMNRAISEDATTACK - 12] = sText_AngerPointsPkmnRaisedAttack,
 	[STRINGID_BATTLERINNATERAISEDSTAT - 12] = sText_BattlerInnateRaisedStat,
 	[STRINGID_BATTLERGOTTHETYPE - 12] = sText_BattlerGotTheType,
+	[STRINGID_BATTLERCOILEDUP - 12] = sText_BattlerCoiledUp,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

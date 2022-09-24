@@ -616,8 +616,9 @@
 #define STRINGID_ANGERPOINTSPKMNRAISEDATTACK          613
 #define STRINGID_BATTLERINNATERAISEDSTAT		      614
 #define STRINGID_BATTLERGOTTHETYPE		      		  616
+#define STRINGID_BATTLERCOILEDUP		      		  617
 
-#define BATTLESTRINGS_COUNT                           617
+#define BATTLESTRINGS_COUNT                           618
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
