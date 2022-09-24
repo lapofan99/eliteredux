@@ -265,7 +265,7 @@ static const u8 sRampageDescription[] = _("No recharge after a KO.");
 static const u8 sVengeanceDescription[] = _("Ups Ghost moves in a pinch.");
 static const u8 sBlitzBoxerDescription[] = _("Punching moves go first.");
 
-static const u8 sAntarticBirdDescription[] = _("Ice and Flying-type moves gain STAB.");
+static const u8 sAntarticBirdDescription[] = _("Ice and Flying-type moves gain 1.5x power.");
 static const u8 sBurnateDescription[] = _("Normal moves become Fire and 20% stronger.");
 static const u8 sCrystallizeDescription[] = _("Rock moves become Ice and 20% stronger.");
 static const u8 sElectrocytesDescription[] = _("Increases Electric-type moves by 25%.");
@@ -284,10 +284,11 @@ static const u8 sLetsRollDescription[] =  _("Curls when sent out.");
 static const u8 sAquaticDescription[] =  _("Adds Water-Type.");
 static const u8 sLoudBangDescription[] =  _("Sound moves may confuse the foe.");
 static const u8 sLeadCoatDescription[] =  _("Boost Defense 30% but decreases Speed 10%.");
-static const u8 sAmphibiousDescription[] = _("Water moves gain STAB.");
+static const u8 sAmphibiousDescription[] = _("Water moves gain 1.5x power.");
 static const u8 sGroundedDescription[] =  _("Adds Ground-Type.");
 static const u8 sEarthboundDescription[] = _("Increases Ground-type moves by 25%.");
 static const u8 sFightSpiritDescription[] = _("Normal moves become Fighting and 20% stronger.");
+static const u8 sFelineProwessDescription[] = _("Doubles Special Attack.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -592,6 +593,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_GROUNDED] = _("Grounded"),
 	[ABILITY_EARTHBOUND] = _("Earthbound"),
 	[ABILITY_FIGHT_SPIRIT] = _("Fight Spirit"),
+	[ABILITY_FELINE_PROWESS] = _("Fel. Prowess"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -897,4 +899,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_GROUNDED] = sGroundedDescription,
 	[ABILITY_EARTHBOUND] = sEarthboundDescription,
 	[ABILITY_FIGHT_SPIRIT] = sFightSpiritDescription,
+	[ABILITY_FELINE_PROWESS] = sFelineProwessDescription,
 };
