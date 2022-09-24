@@ -307,8 +307,8 @@
 
 // Darky's Custom Abilities
 #define ABILITY_ANTARTIC_BIRD    (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain STAB.
-#define ABILITY_BURNATE          (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon to become Fire-type and receive a 20% power boost.
-#define ABILITY_CRYSTALLIZE      (ABILITIES_COUNT_LATEST_GEN + 12) // All Rock-type moves used by the Pokémon to become Ice-type and receive a 20% power boost.
+#define ABILITY_BURNATE          (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon become Fire-type and receive a 20% power boost.
+#define ABILITY_CRYSTALLIZE      (ABILITIES_COUNT_LATEST_GEN + 12) // All Rock-type moves used by the Pokémon become Ice-type and receive a 20% power boost.
 #define ABILITY_ELECTROCYTES     (ABILITIES_COUNT_LATEST_GEN + 13) // Increases the power of Electric-type moves by 25%.
 #define ABILITY_AERODYNAMICS     (ABILITIES_COUNT_LATEST_GEN + 14) // Boosts its Speed stat if hit by an Flying-type move instead of taking damage.
 #define ABILITY_CHRISTMAS_SPIRIT (ABILITIES_COUNT_LATEST_GEN + 15) // The Pokémon is protected by a mysterious force that reduce all incoming damage by 50% during a hailstorm.
@@ -328,8 +328,9 @@
 #define ABILITY_AMPHIBIOUS 		 (ABILITIES_COUNT_LATEST_GEN + 29) // The Pokémon's Water-type moves gain same-type attack bonus regardless the Pokémon's typing.
 #define ABILITY_GROUNDED 		 (ABILITIES_COUNT_LATEST_GEN + 30) // Adds the Ground-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_EARTHBOUND 		 (ABILITIES_COUNT_LATEST_GEN + 31) // Increases own Ground-type attacks by 25%.
+#define ABILITY_FIGHT_SPIRIT     (ABILITIES_COUNT_LATEST_GEN + 32) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 20% power boost.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_EARTHBOUND + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_FIGHT_SPIRIT + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

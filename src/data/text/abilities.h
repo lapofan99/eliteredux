@@ -267,15 +267,15 @@ static const u8 sBlitzBoxerDescription[] = _("Punching moves go first.");
 
 static const u8 sAntarticBirdDescription[] = _("Ice and Flying-type moves gain STAB.");
 static const u8 sBurnateDescription[] = _("Normal moves become Fire and 20% stronger.");
-static const u8 sCrystallizeDescription[] = _("Rock moves become Ice and 20% more stronger.");
+static const u8 sCrystallizeDescription[] = _("Rock moves become Ice and 20% stronger.");
 static const u8 sElectrocytesDescription[] = _("Increases Electric-type moves by 25%.");
 static const u8 sAerodynamicsDescription[] = _("Flying moves raises Speed.");
 static const u8 sChristmasSpiritDescription[] = _("Reduces damage in Hail by 50%.");
-static const u8 sExploitWeaknessDescription[] = _("25% more damage against foes with any status problem.");
+static const u8 sExploitWeaknessDescription[] = _("+25% damage against foes with any status problem.");
 static const u8 sGroundShockDescription[] = _("Allow Electric-type moves to hit ground type Pokémon.");
 static const u8 sAncientIdolDescription[] = _("Hits with its Defense Stats respectively.");
 static const u8 sMysticPowerDescription[] = _("Gains STAB regardless of type.");
-static const u8 sPerfectionistDescription[] = _("+1 crit to moves <40 BP. Also +1 prio for <20 BP");
+static const u8 sPerfectionistDescription[] = _("+1 crit to moves <40 BP. +1 crit & +1 prio for <20 BP");
 static const u8 sGrowingToothDescription[] =  _("Ups Attack +1 when using biting moves.");
 static const u8 sInflatableDescription[] =  _("Ups Defenses +1 when hit by Flying or Fire Moves.");
 static const u8 sAuroraBorealisDescription[] =  _("Gains STAB for Ice Moves.");
@@ -287,6 +287,7 @@ static const u8 sLeadCoatDescription[] =  _("Boost Defense 30% but decreases Spe
 static const u8 sAmphibiousDescription[] = _("Water moves gain STAB.");
 static const u8 sGroundedDescription[] =  _("Adds Ground-Type.");
 static const u8 sEarthboundDescription[] = _("Increases Ground-type moves by 25%.");
+static const u8 sFightSpiritDescription[] = _("Normal moves become Fighting and 20% stronger.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -590,6 +591,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_AMPHIBIOUS] = _("Amphibious"),
 	[ABILITY_GROUNDED] = _("Grounded"),
 	[ABILITY_EARTHBOUND] = _("Earthbound"),
+	[ABILITY_FIGHT_SPIRIT] = _("Fight Spirit"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -894,4 +896,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_AMPHIBIOUS] = sAmphibiousDescription,
 	[ABILITY_GROUNDED] = sGroundedDescription,
 	[ABILITY_EARTHBOUND] = sEarthboundDescription,
+	[ABILITY_FIGHT_SPIRIT] = sFightSpiritDescription,
 };
