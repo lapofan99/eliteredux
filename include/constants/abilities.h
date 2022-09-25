@@ -334,9 +334,9 @@
 #define ABILITY_FOSSILIZED 		 (ABILITIES_COUNT_LATEST_GEN + 35) // Reduces Rock type weakness by 50%. - TBD
 #define ABILITY_MAGICAL_DUST 	 (ABILITIES_COUNT_LATEST_GEN + 36) // When is hit by contact move, it leaves a Magic Powder that adds Psychic-type to the target.
 #define ABILITY_DREAMCATCHER 	 (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 20% for each Pokemon asleep on the field.
+#define ABILITY_NOCTURNAL 	     (ABILITIES_COUNT_LATEST_GEN + 38) // Adds the Dark-type to the Pokémon at night, in addition to the Pokémon's original type(s), also boosts Attack, Sp. Attack and Speed stats by 10%, and Accuracy stat by 20%.
 
-
-#define ABILITIES_COUNT_CUSTOM (ABILITY_DREAMCATCHER + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_NOCTURNAL + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

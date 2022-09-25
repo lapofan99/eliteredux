@@ -37,6 +37,7 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "random.h"
+#include "rtc.h"
 #include "recorded_battle.h"
 #include "roamer.h"
 #include "safari_zone.h"
@@ -4509,6 +4510,9 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
 	
 	if (ability == ABILITY_LEAD_COAT || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEAD_COAT))
         speed *= 0.9;
+	
+	if ((ability == ABILITY_NOCTURNAL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_NOCTURNAL)) && !IsCurrentlyDay())
+        speed *= 1.1;
 
     // stat stages
     speed *= gStatStageRatios[gBattleMons[battlerId].statStages[STAT_SPEED]][0];

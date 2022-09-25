@@ -293,6 +293,7 @@ static const u8 sFelineProwessDescription[] = _("Doubles Special Attack.");
 static const u8 sFossilizedDescription[] = _("Reduces Rock type Weakness");
 static const u8 sMagicalDustDescription[] = _("Adds Psychic-type to the foe if hit by a contact move");
 static const u8 sDreamcatcherDescription[] = _("Boosts power of moves by 20% for each Pokemon asleep on the field.");
+static const u8 sNocturnalDescription[] = _("Becomes Dark-type at Night.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -602,6 +603,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_FOSSILIZED] = _("Fossilized"),
 	[ABILITY_MAGICAL_DUST] = _("Magical Dust"),
 	[ABILITY_DREAMCATCHER] = _("Dreamcatcher"),
+	[ABILITY_NOCTURNAL] = _("Nocturnal"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -912,4 +914,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_FOSSILIZED] = sFossilizedDescription,
 	[ABILITY_MAGICAL_DUST] = sMagicalDustDescription,
 	[ABILITY_DREAMCATCHER] = sDreamcatcherDescription,
+	[ABILITY_NOCTURNAL] = sNocturnalDescription,
 };

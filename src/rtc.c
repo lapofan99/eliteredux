@@ -344,3 +344,11 @@ u32 RtcGetLocalDayCount(void)
 {
     return RtcGetDayCount(&sRtc);
 }
+
+bool8 IsCurrentlyDay(void)
+{
+	RtcCalcLocalTime();
+    if (gLocalTime.hours >= 6 && gLocalTime.hours < 18)
+		return TRUE;
+	return FALSE;
+}

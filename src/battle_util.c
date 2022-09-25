@@ -11,6 +11,7 @@
 #include "pokemon.h"
 #include "international_string_util.h"
 #include "item.h"
+#include "rtc.h"
 #include "util.h"
 #include "battle_scripts.h"
 #include "random.h"
@@ -4636,6 +4637,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+		case ABILITY_NOCTURNAL:
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+				!IsCurrentlyDay())
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_NOCTURNAL;
+				gLastUsedAbility = ABILITY_NOCTURNAL;
+				gBattleMons[battler].type3 = TYPE_DARK;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+            }
+            break;
         }
 		
 		// Inates on Switch
@@ -4673,6 +4686,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_GROUNDED;
 				gLastUsedAbility = ABILITY_GROUNDED;
 				gBattleMons[battler].type3 = TYPE_GROUND;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+			}
+		}
+		// Nocturnal
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NOCTURNAL)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone &&
+				!IsCurrentlyDay())
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_NOCTURNAL;
+				gLastUsedAbility = ABILITY_NOCTURNAL;
+				gBattleMons[battler].type3 = TYPE_DARK;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
@@ -8628,6 +8655,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (gSideTimers[atkSide].retaliateTimer == 1)
             MulModifier(&modifier, UQ_4_12(1.3));
 		break;
+	case ABILITY_NOCTURNAL:
+		if (!IsCurrentlyDay())
+            MulModifier(&modifier, UQ_4_12(1.1));
+		break;
 	case ABILITY_DREAMCATCHER:
 		if (numsleepmons == 1)
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -8657,6 +8688,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (gSideTimers[atkSide].retaliateTimer == 1)
             MulModifier(&modifier, UQ_4_12(1.3));
     }
+	
+	//Nocturnal
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NOCTURNAL)){
+		if (!IsCurrentlyDay())
+            MulModifier(&modifier, UQ_4_12(1.1));
+	}
 
 	// Burnate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
