@@ -2524,6 +2524,15 @@ if (ability == ABILITY_TOXIC_BOOST || SpeciesHasInnate(gBattleMons[gActiveBattle
             break;\
 }
 
+#define FLARE_BOOST_CHECK \
+if (ability == ABILITY_FLARE_BOOST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_FLARE_BOOST)) \
+{\
+    RecordAbilityBattle(gActiveBattler, ability);\
+    gBattleStruct->turnEffectsTracker++;\
+            break;\
+}
+
+
 
 u8 DoBattlerEndTurnEffects(void)
 {
@@ -2672,7 +2681,8 @@ u8 DoBattlerEndTurnEffects(void)
                 && gBattleMons[gActiveBattler].hp != 0)
             {
                 MAGIC_GUARD_CHECK;
-
+				FLARE_BOOST_CHECK;
+			
                 gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
                 if (ability == ABILITY_HEATPROOF)
                 {
@@ -8773,8 +8783,15 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(2.0));
 	}
 	
+	//Toxic Boost
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TOXIC_BOOST)){
 		if (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY && IS_MOVE_PHYSICAL(move))
+           MulModifier(&modifier, UQ_4_12(1.5));
+	}
+	
+	//Flare Boost
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FLARE_BOOST)){
+		if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_SPECIAL(move))
            MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
