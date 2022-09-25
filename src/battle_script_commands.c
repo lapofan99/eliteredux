@@ -1773,7 +1773,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)) && GetBattlerAbility(BATTLE_PARTNER(battlerAtk)) == ABILITY_VICTORY_STAR)
         calc = (calc * 110) / 100; // 1.1 ally's victory star boost
 	
-    if (atkAbility == ABILITY_ILLUMINATE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ILLUMINATE)
+    if (atkAbility == ABILITY_ILLUMINATE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ILLUMINATE))
         calc = (calc * 120) / 100; // 1.2 Illuminate boost
 
     if (defAbility == ABILITY_SAND_VEIL && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)

@@ -2517,7 +2517,7 @@ if (ability == ABILITY_MAGIC_GUARD) \
 
 
 #define TOXIC_BOOST_CHECK \
-if (ability == ABILITY_TOXIC_BOOST) \
+if (ability == ABILITY_TOXIC_BOOST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_TOXIC_BOOST)) \
 {\
     RecordAbilityBattle(gActiveBattler, ability);\
     gBattleStruct->turnEffectsTracker++;\
@@ -8769,8 +8769,13 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	
 	// Feline Prowess
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FELINE_PROWESS)){
-	if (IS_MOVE_SPECIAL(move))
+		if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(2.0));
+	}
+	
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TOXIC_BOOST)){
+		if (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY && IS_MOVE_PHYSICAL(move))
+           MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
     // field abilities
