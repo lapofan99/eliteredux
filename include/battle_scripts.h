@@ -425,5 +425,6 @@ extern const u8 BattleScript_BattlerInnateStatRaiseOnSwitchIn[];
 extern const u8 BattleScript_BattlerAddedTheType[];
 extern const u8 BattleScript_BattlerCoiledUp[];
 extern const u8 BattleScript_AttackerBecameTheType[];
+extern const u8 BattleScript_SelfSufficientActivates[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

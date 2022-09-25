@@ -148,7 +148,7 @@ const struct BaseStats gBaseStats[] =
         #endif
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
-		.innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
+		.innates = {ABILITY_SELF_SUFFICIENT, ABILITY_NONE, ABILITY_NONE},
     },
 
     [SPECIES_CHARIZARD] =

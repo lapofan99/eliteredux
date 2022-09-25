@@ -746,6 +746,7 @@ static const u8 sText_BattlerAddedTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} add
 static const u8 sText_BattlerCoiledUp[] = _("{B_ACTIVE_NAME_WITH_PREFIX} Coiled up \nand its ready to bite!");
 static const u8 sText_BattlerGotTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} added the {B_BUFF1}-type!");
 static const u8 sText_AttackerTypeChangedTo[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s type\nchanged to {B_BUFF1}!");
+static const u8 sText_AbilityRestoredHPALittle[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Self-Sufficient\nrestored its HP a little");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -1354,6 +1355,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 	[STRINGID_BATTLERADDEDTHETYPE - 12] = sText_BattlerAddedTheType,
 	[STRINGID_BATTLERCOILEDUP - 12] = sText_BattlerCoiledUp,
 	[STRINGID_ATTACKERTYPECHANGEDTO - 12] = sText_AttackerTypeChangedTo,
+	[STRINGID_PKMNSABILITYRESTOREDHPALITTLE - 12] = sText_AbilityRestoredHPALittle,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

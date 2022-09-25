@@ -4937,7 +4937,34 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
                 break;
+			case ABILITY_SELF_SUFFICIENT:
+				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
+				{
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    BattleScriptExecute(BattleScript_SelfSufficientActivates);
+                    effect++;
+                }
+                break;
             }
+			
+			//Innates
+			//Self Sufficient
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SELF_SUFFICIENT)){
+				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
+				{
+					gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_SUFFICIENT;
+					gLastUsedAbility = ABILITY_SELF_SUFFICIENT;
+				   gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
+					if (gBattleMoveDamage == 0)
+						gBattleMoveDamage = 1;
+					gBattleMoveDamage *= -1;
+					BattleScriptExecute(BattleScript_SelfSufficientActivates);
+					effect++;
+				}
+			}
         }
         break;
     case ABILITYEFFECT_MOVES_BLOCK: // 2

@@ -618,8 +618,9 @@
 #define STRINGID_BATTLERADDEDTHETYPE		      	  616
 #define STRINGID_BATTLERCOILEDUP		      		  617
 #define STRINGID_ATTACKERTYPECHANGEDTO		      	  618
+#define STRINGID_PKMNSABILITYRESTOREDHPALITTLE		  619
 
-#define BATTLESTRINGS_COUNT                           619
+#define BATTLESTRINGS_COUNT                           620
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
