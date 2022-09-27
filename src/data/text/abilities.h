@@ -208,7 +208,7 @@ static const u8 sQueenlyMajestyDescription[] = _("Protects from priority.");
 static const u8 sInnardsOutDescription[] = _("Hurts foe when defeated.");
 static const u8 sDancerDescription[] = _("Dances along with others.");
 static const u8 sBatteryDescription[] = _("Boosts ally's Sp. Atk.");
-static const u8 sFluffyDescription[] = _("Tougher but flammable.");
+static const u8 sFluffyDescription[] = _("2x tougher but flammable.");
 static const u8 sSoulHeartDescription[] = _("KOs raise Sp. Atk.");
 static const u8 sTanglingHairDescription[] = _("Contact lowers Speed.");
 static const u8 sReceiverDescription[] = _("Copies ally's ability.");
@@ -298,6 +298,7 @@ static const u8 sSelfSufficientDescription[] = _("Recovers 1/16 of its health ea
 static const u8 sGroundateDescription[] = _("Normal moves become Ground and 20% stronger.");
 static const u8 sIceAgeDescription[] =  _("Adds Ice-Type.");
 static const u8 sHalfDrakeDescription[] =  _("Adds Dragon-Type.");
+static const u8 sLiquifiedDescription[] =  _("2x tougher but 2x dmg from Water");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -612,6 +613,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_GROUNDATE] = _("Groundate"),
 	[ABILITY_ICE_AGE] = _("Ice Age"),
 	[ABILITY_HALF_DRAKE] = _("Half Drake"),
+	[ABILITY_LIQUIFIED] = _("Liquified"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -927,4 +929,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_GROUNDATE] = sGroundateDescription,
 	[ABILITY_ICE_AGE] = sIceAgeDescription,
 	[ABILITY_HALF_DRAKE] = sHalfDrakeDescription,
+	[ABILITY_LIQUIFIED] = sLiquifiedDescription,
 };

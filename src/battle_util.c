@@ -8938,6 +8938,16 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_FIRE)
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
+	case ABILITY_LIQUIFIED:
+        if (IsMoveMakingContact(move, battlerAtk))
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+        if (moveType == TYPE_WATER)
+            MulModifier(&modifier, UQ_4_12(2.0));
+        break;
 	case ABILITY_CHRISTMAS_SPIRIT:
         if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
         {
@@ -8967,6 +8977,18 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     }
 	
 	// Target's Innates
+	
+	// Liquified
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LIQUIFIED)){
+		if (IsMoveMakingContact(move, battlerAtk))
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+        if (moveType == TYPE_WATER)
+            MulModifier(&modifier, UQ_4_12(2.0));
+	}
 	// Christmas Spirit
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_CHRISTMAS_SPIRIT)){
 		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY){
