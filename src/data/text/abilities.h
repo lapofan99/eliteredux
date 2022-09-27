@@ -295,6 +295,7 @@ static const u8 sMagicalDustDescription[] = _("Adds Psychic-type to the foe if h
 static const u8 sDreamcatcherDescription[] = _("Boosts power of moves by 20% for each Pokemon asleep on the field.");
 static const u8 sNocturnalDescription[] = _("Becomes Dark-type at Night.");
 static const u8 sSelfSufficientDescription[] = _("Recovers 1/16 of its health each turn.");
+static const u8 sGroundateDescription[] = _("Normal moves become Ground and 20% stronger.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -606,6 +607,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_DREAMCATCHER] = _("Dreamcatcher"),
 	[ABILITY_NOCTURNAL] = _("Nocturnal"),
 	[ABILITY_SELF_SUFFICIENT] = _("Self-Suff"),
+	[ABILITY_GROUNDATE] = _("Groundate"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -918,4 +920,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_DREAMCATCHER] = sDreamcatcherDescription,
 	[ABILITY_NOCTURNAL] = sNocturnalDescription,
 	[ABILITY_SELF_SUFFICIENT] = sSelfSufficientDescription,
+	[ABILITY_GROUNDATE] = sGroundateDescription,
 };

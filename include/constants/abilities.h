@@ -336,8 +336,9 @@
 #define ABILITY_DREAMCATCHER 	 (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 20% for each Pokemon asleep on the field.
 #define ABILITY_NOCTURNAL 	     (ABILITIES_COUNT_LATEST_GEN + 38) // Adds the Dark-type to the Pokémon at night, in addition to the Pokémon's original type(s), also boosts Attack, Sp. Attack and Speed stats by 10%, and Accuracy stat by 20%.
 #define ABILITY_SELF_SUFFICIENT  (ABILITIES_COUNT_LATEST_GEN + 39) // Heals 1/16 at the end of every turn.
+#define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 20% power boost.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SELF_SUFFICIENT + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_GROUNDATE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
