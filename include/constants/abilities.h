@@ -338,8 +338,9 @@
 #define ABILITY_SELF_SUFFICIENT  (ABILITIES_COUNT_LATEST_GEN + 39) // Heals 1/16 at the end of every turn.
 #define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 20% power boost.
 #define ABILITY_ICE_AGE 		 (ABILITIES_COUNT_LATEST_GEN + 41) // Adds the Ice-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_HALF_DRAKE 		 (ABILITIES_COUNT_LATEST_GEN + 42) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s).
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_ICE_AGE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_HALF_DRAKE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

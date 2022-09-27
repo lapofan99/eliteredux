@@ -297,6 +297,7 @@ static const u8 sNocturnalDescription[] = _("Becomes Dark-type at Night.");
 static const u8 sSelfSufficientDescription[] = _("Recovers 1/16 of its health each turn.");
 static const u8 sGroundateDescription[] = _("Normal moves become Ground and 20% stronger.");
 static const u8 sIceAgeDescription[] =  _("Adds Ice-Type.");
+static const u8 sHalfDrakeDescription[] =  _("Adds Dragon-Type.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -610,6 +611,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_SELF_SUFFICIENT] = _("Self-Suff"),
 	[ABILITY_GROUNDATE] = _("Groundate"),
 	[ABILITY_ICE_AGE] = _("Ice Age"),
+	[ABILITY_HALF_DRAKE] = _("Half Drake"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -924,4 +926,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_SELF_SUFFICIENT] = sSelfSufficientDescription,
 	[ABILITY_GROUNDATE] = sGroundateDescription,
 	[ABILITY_ICE_AGE] = sIceAgeDescription,
+	[ABILITY_HALF_DRAKE] = sHalfDrakeDescription,
 };
