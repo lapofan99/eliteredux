@@ -4670,6 +4670,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
             }
             break;
+		case ABILITY_DRAGONFLY:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
+				gLastUsedAbility = ABILITY_DRAGONFLY;
+				gBattleMons[battler].type3 = TYPE_DRAGON;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+            }
+            break;
 		case ABILITY_COIL_UP:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -4697,6 +4709,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Inates on Switch
+		
 		// Lets Roll
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL)){
 			if (!gSpecialStatuses[battler].switchInAbilityDone)
@@ -4756,6 +4769,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_HALF_DRAKE;
 				gLastUsedAbility = ABILITY_HALF_DRAKE;
+				gBattleMons[battler].type3 = TYPE_DRAGON;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+			}
+		}
+		// Dragonfly
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRAGONFLY)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
+				gLastUsedAbility = ABILITY_DRAGONFLY;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
@@ -8151,7 +8177,11 @@ bool32 IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
         return FALSE;
-	else if (SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEVITATE))//Innate Effect
+	else if (SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEVITATE))//Levitate Innate Effect
+        return FALSE;
+	else if (GetBattlerAbility(battlerId) == ABILITY_DRAGONFLY)//Dragonfly
+        return FALSE;
+	else if (SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_DRAGONFLY))//Dragonfly Innate Effect
         return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
