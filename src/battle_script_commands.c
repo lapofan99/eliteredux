@@ -2748,7 +2748,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
      // Just in case this flag is still set
     gBattleScripting.moveEffect &= ~(MOVE_EFFECT_CERTAIN);
 
-    if (GetBattlerAbility(gEffectBattler) == ABILITY_SHIELD_DUST && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
+    if ((GetBattlerAbility(gEffectBattler) == ABILITY_SHIELD_DUST || SpeciesHasInnate(gBattleMons[gEffectBattler].species, ABILITY_SHIELD_DUST) && !(gHitMarker & HITMARKER_IGNORE_SAFEGUARD)
         && !primary && gBattleScripting.moveEffect <= 9)
         INCREMENT_RESET_RETURN
 
@@ -10235,7 +10235,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             }
             return STAT_CHANGE_DIDNT_WORK;
         }
-        else if (GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST && flags == 0)
+        else if ((GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELD_DUST)) && flags == 0)
         {
             return STAT_CHANGE_DIDNT_WORK;
         }
