@@ -109,11 +109,11 @@ static const u8 sAnticipationDescription[] = _("Senses dangerous moves.");
 static const u8 sForewarnDescription[] = _("Determines a foe's move.");
 static const u8 sUnawareDescription[] = _("Ignores stat changes.");
 static const u8 sTintedLensDescription[] = _("Ups “not very effective”.");
-static const u8 sFilterDescription[] = _("Weakens “supereffective”.");
+static const u8 sFilterDescription[] = _("Weakens “supereffective” 25%.");
 static const u8 sSlowStartDescription[] = _("Takes a while to get going.");
 static const u8 sScrappyDescription[] = _("Hits Ghost-type Pokémon.");
 static const u8 sStormDrainDescription[] = _("Draws in Water moves.");
-static const u8 sIceBodyDescription[] = _("Slight HP recovery in Hail.");
+static const u8 sIceBodyDescription[] = _("1/8 HP recovery in Hail.");
 static const u8 sSnowWarningDescription[] = _("Summons a hailstorm.");
 static const u8 sHoneyGatherDescription[] = _("May gather Honey.");
 static const u8 sFriskDescription[] = _("Checks a foe's item.");
@@ -302,6 +302,10 @@ static const u8 sLiquifiedDescription[] =  _("2x tougher but 2x dmg from Water")
 static const u8 sDragonFlyDescription[] =  _("Adds Dragon Type and levitates");
 static const u8 sDragonSlayerDescription[] =  _("1.2x damage to Dragon-types");
 static const u8 sMountaineerDescription[] =  _("Avoids Rock-Type Damage it also\navoids Stealth Rock Damage");
+static const u8 sHydrateDescription[] =  _("Normal moves become Water and 20% stronger.");
+static const u8 sMetallicDescription[] =  _("Adds Steel-Type.");
+static const u8 sPermafrostDescription[] =  _("Weakens “supereffective” 25%.");
+static const u8 sPrimalArmorDescription[] =  _("Weakens “supereffective” 50%.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -620,6 +624,10 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_DRAGONFLY] = _("Dragonfly"),
 	[ABILITY_DRAGONSLAYER] = _("Dragonslayer"),
 	[ABILITY_MOUNTAINEER] = _("Mountaineer"),
+	[ABILITY_HYDRATE] = _("Hydrate"),
+	[ABILITY_METALLIC] = _("Metallic"),
+	[ABILITY_PERMAFROST] = _("Permafrost"),
+	[ABILITY_PRIMAL_ARMOR] = _("Primal Armor"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -939,4 +947,8 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_DRAGONFLY] = sDragonFlyDescription,
 	[ABILITY_DRAGONSLAYER] = sDragonSlayerDescription,
 	[ABILITY_MOUNTAINEER] = sMountaineerDescription,
+	[ABILITY_HYDRATE] = sHydrateDescription,
+	[ABILITY_METALLIC] = sMetallicDescription,
+	[ABILITY_PERMAFROST] = sPermafrostDescription,
+	[ABILITY_PRIMAL_ARMOR] = sPrimalArmorDescription,
 };

@@ -4671,6 +4671,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
             }
             break;
+		case ABILITY_METALLIC:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_METALLIC;
+				gLastUsedAbility = ABILITY_METALLIC;
+				gBattleMons[battler].type3 = TYPE_STEEL;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+            }
+            break;
 		case ABILITY_DRAGONFLY:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -4805,6 +4817,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_HALF_DRAKE;
 				gLastUsedAbility = ABILITY_HALF_DRAKE;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+			}
+		}
+		// Metallic
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_METALLIC)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_METALLIC;
+				gLastUsedAbility = ABILITY_METALLIC;
+				gBattleMons[battler].type3 = TYPE_STEEL;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
@@ -5174,7 +5199,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
             }
 			
-			//Innate
+			//Innates
 			//Aerodynamics
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AERODYNAMICS)){
 				if (move != MOVE_NONE && moveType == TYPE_FLYING){
@@ -8784,6 +8809,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
+	case ABILITY_HYDRATE:
+        if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_GALVANIZE:
         if (moveType == TYPE_ELECTRIC && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -8892,6 +8921,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Groundate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUNDATE)){
 		if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
+	
+	// Hydrate
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYDRATE)){
+		if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
@@ -9095,6 +9130,39 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FOSSILIZED)){
 		if (moveType == TYPE_ROCK)
             MulModifier(&modifier, UQ_4_12(0.5));
+    }
+	// Permafrost
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PERMAFROST)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.75));
+    }
+	// Multiscale and Shadow Shield
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MULTISCALE) || 
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHADOW_SHIELD)){
+		if (BATTLER_MAX_HP(battlerDef))
+            MulModifier(&finalModifier, UQ_4_12(0.5));
+    }
+	// Filter, Solid Rock and Prism Armor
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FILTER) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SOLID_ROCK) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_ARMOR)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.75));
+    }
+	// Primal Armor
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRIMAL_ARMOR)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.5));
+    }
+	// Ice Scales
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_ICE_SCALES)){
+		if (IS_MOVE_SPECIAL(move))
+            MulModifier(&finalModifier, UQ_4_12(0.50));
+    }
+	// Prism Scales
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_SCALES)){
+		if (IS_MOVE_SPECIAL(move))
+            MulModifier(&finalModifier, UQ_4_12(0.70));
     }
 	// Immunity
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_IMMUNITY)){
@@ -9863,8 +9931,13 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     case ABILITY_FILTER:
     case ABILITY_SOLID_ROCK:
     case ABILITY_PRISM_ARMOR:
+	case ABILITY_PERMAFROST:
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(0.75));
+        break;
+	case ABILITY_PRIMAL_ARMOR:
+        if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.5));
         break;
     case ABILITY_ICE_SCALES:
         if (IS_MOVE_SPECIAL(move))
