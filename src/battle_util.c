@@ -9386,6 +9386,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.25));
         }
         break;
+	case ABILITY_ILLUSION:
+        if (gBattleStruct->illusion[battlerAtk].on && !gBattleStruct->illusion[battlerAtk].broken)
+        {
+            MulModifier(&modifier, UQ_4_12(1.3));
+        }
+        break;
 	case ABILITY_LEVITATE:
         if (moveType == TYPE_FLYING)
         {
@@ -9426,6 +9432,15 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
     }
+	
+	//Innates
+	//Illusion
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ILLUSION)){
+		if (gBattleStruct->illusion[battlerAtk].on && !gBattleStruct->illusion[battlerAtk].broken)
+        {
+            MulModifier(&modifier, UQ_4_12(1.3));
+        }
+	}
 
     // target's abilities
     switch (GetBattlerAbility(battlerDef))
@@ -9457,6 +9472,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
 	
 	// Innates
+	//Magma Armor
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MAGMA_ARMOR)){
 		if (moveType == TYPE_WATER || moveType == TYPE_ICE)
         {
