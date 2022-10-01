@@ -9137,14 +9137,22 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&finalModifier, UQ_4_12(0.75));
     }
 	// Multiscale and Shadow Shield
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MULTISCALE || ABILITY_SHADOW_SHIELD)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MULTISCALE) || 
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHADOW_SHIELD)){
 		if (BATTLER_MAX_HP(battlerDef))
             MulModifier(&finalModifier, UQ_4_12(0.5));
     }
 	// Filter, Solid Rock and Prism Armor
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FILTER || ABILITY_SOLID_ROCK || ABILITY_PRISM_ARMOR)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FILTER) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SOLID_ROCK) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_ARMOR)){
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(0.75));
+    }
+	// Primal Armor
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRIMAL_ARMOR)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.5));
     }
 	// Ice Scales
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_ICE_SCALES)){
@@ -9926,6 +9934,10 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	case ABILITY_PERMAFROST:
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(0.75));
+        break;
+	case ABILITY_PRIMAL_ARMOR:
+        if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.5));
         break;
     case ABILITY_ICE_SCALES:
         if (IS_MOVE_SPECIAL(move))
