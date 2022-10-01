@@ -271,7 +271,7 @@ static const u8 sCrystallizeDescription[] = _("Rock moves become Ice and 20% str
 static const u8 sElectrocytesDescription[] = _("Increases Electric-type moves by 25%.");
 static const u8 sAerodynamicsDescription[] = _("Flying moves raises Speed.");
 static const u8 sChristmasSpiritDescription[] = _("Reduces damage in Hail by 50%.");
-static const u8 sExploitWeaknessDescription[] = _("+25% damage against foes with any status problem.");
+static const u8 sExploitWeaknessDescription[] = _("+25% damage against foes with \nany status problem.");
 static const u8 sGroundShockDescription[] = _("Allow Electric-type moves to hit ground type Pokémon.");
 static const u8 sAncientIdolDescription[] = _("Hits with its Defense Stats respectively.");
 static const u8 sMysticPowerDescription[] = _("Gains STAB regardless of type.");
@@ -292,7 +292,7 @@ static const u8 sFightSpiritDescription[] = _("Normal moves become Fighting and 
 static const u8 sFelineProwessDescription[] = _("Doubles Special Attack.");
 static const u8 sFossilizedDescription[] = _("50% less Rock-type damage");
 static const u8 sMagicalDustDescription[] = _("Adds Psychic-type to the foe if hit by a contact move");
-static const u8 sDreamcatcherDescription[] = _("Boosts power of moves by 20% for each Pokemon asleep on the field.");
+static const u8 sDreamcatcherDescription[] = _("Boosts power of moves by 20% for\neach Pokemon asleep on the field.");
 static const u8 sNocturnalDescription[] = _("Becomes Dark-type at Night.");
 static const u8 sSelfSufficientDescription[] = _("Recovers 1/16 of its health each turn.");
 static const u8 sGroundateDescription[] = _("Normal moves become Ground and 20% stronger.");
@@ -301,7 +301,7 @@ static const u8 sHalfDrakeDescription[] =  _("Adds Dragon-Type.");
 static const u8 sLiquifiedDescription[] =  _("2x tougher but 2x dmg from Water");
 static const u8 sDragonFlyDescription[] =  _("Adds Dragon Type and levitates");
 static const u8 sDragonSlayerDescription[] =  _("1.2x damage to Dragon-types");
-static const u8 sMountaineerDescription[] =  _("Immune to Rock Damage");
+static const u8 sMountaineerDescription[] =  _("Avoids Rock-Type Damage it also\navoids Stealth Rock Damage");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {

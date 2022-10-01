@@ -3,6 +3,7 @@ OldaleTown_House1_MapScripts:: @ 81FBE85
 
 OldaleTown_House1_EventScript_Woman:: @ 81FBE86
 	msgbox OldaleTown_House1_Text_LeftPokemonGoesOutFirst, MSGBOX_NPC
+	givemon SPECIES_DARMANITAN, 10, ITEM_ABILITY_PATCH
 	end
 
 OldaleTown_House1_Text_LeftPokemonGoesOutFirst: @ 81FBE8F

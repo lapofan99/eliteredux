@@ -72,6 +72,7 @@
 
 enum {
     PSS_PAGE_INFO,
+    PSS_PAGE_ABILITY,
     PSS_PAGE_MEMO,
     PSS_PAGE_SKILLS,
     PSS_PAGE_BATTLE_MOVES,
@@ -301,6 +302,8 @@ static void PrintConditionPage(void);
 static void PrintBattleMoves(void);
 static void PrintMoveNameAndPP(u8 a);
 static void PrintContestMoves(void);
+static void PrintAbilityAndInnates(void);
+static void BufferMonPokemonAbilityAndInnates(void);
 static void PrintMoveDetails(u16 a);
 static void PrintNewMoveDetailsOrCancelText(void);
 static void SwapMovesNamesPP(u8 moveIndex1, u8 moveIndex2);
@@ -516,6 +519,7 @@ static void (*const sTextPrinterFunctions[])(void) =
 {
     [PSS_PAGE_INFO] = PrintInfoPage,
     [PSS_PAGE_MEMO] = PrintMemoPage,
+    [PSS_PAGE_ABILITY] = PrintAbilityAndInnates,
     [PSS_PAGE_SKILLS] = PrintSkillsPage,
     [PSS_PAGE_BATTLE_MOVES] = PrintBattleMoves,
     [PSS_PAGE_CONDITION] = PrintConditionPage,
@@ -980,6 +984,7 @@ static const u16 * const sHealthBarPals[] =
 static const u32 * const sPageTilemaps[] =
 {
     gSummaryScreenPageInfoTilemap,
+    gSummaryScreenPageAbilityTilemap,
     gSummaryScreenPageMemoTilemap,
     gSummaryScreenPageSkillsTilemap,
     gSummaryScreenPageMovesTilemap,
@@ -1000,6 +1005,7 @@ const u8 sText_PP[] = _("PP");
 #if CONFIG_DECAPITALIZE_TITLE_STRINGS
 const u8 sText_TitleInfo[] = _("Pokémon Info");
 const u8 sText_TitleMemo[] = _("Trainer Memo");
+const u8 sText_TitleAbilities[] = _("Abilities");
 const u8 sText_TitleSkills[] = _("Pokémon Stats");
 const u8 sText_TitleBattleMoves[] = _("Battle Moves");
 const u8 sText_TitleCondition[] = _("Condition");
@@ -1013,6 +1019,7 @@ const u8 sText_TitlePickSwitch[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}Switch");
 const u8 sText_TitlePageIVs[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Modify");
 const u8 sText_TitlePageEVs[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}EVs");
 const u8 sText_TitlePageStats[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Stats");
+const u8 sText_TitlePageModify[] = _("{A_BUTTON}Modify");
 #else
 const u8 sText_TitleInfo[] = _("POKéMON INFO");
 const u8 sText_TitleMemo[] = _("TRAINER MEMO");
@@ -1081,6 +1088,12 @@ const u8 sText_Smart[] = _("SMART");
 const u8 sText_Tough[] = _("TOUGH");
 const u8 sText_HeldItem[] = _("HELD ITEM");
 #endif
+
+
+const u8 sText_MainAbility[] = _("Ability");
+const u8 sText_Innate1[] = _("Innate");
+const u8 sText_Innate2[] = _("Innate 2");
+const u8 sText_Innate3[] = _("Innate 3");
 
 #if CONFIG_PHYSICAL_SPECIAL_SPLIT || CONFIG_SHOW_ICONS_FOR_OLD_SPLIT
 static const u16 sSplitIcons_Pal[] = INCBIN_U16("graphics/summary_screen/split_icons.gbapal");
@@ -4048,6 +4061,63 @@ static void PrintContestMoves(void)
     PutWindowTilemap(PSS_LABEL_PANE_RIGHT);
 }
 
+static void PrintAbilityAndInnates(void)
+{
+    FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT, PIXEL_FILL(0));
+
+    if (sMonSummaryScreen->summary.isEgg)
+        BufferEggMemo();
+    else
+        BufferMonPokemonAbilityAndInnates();
+
+    ScheduleBgCopyTilemapToVram(0);
+    PutWindowTilemap(PSS_LABEL_PANE_RIGHT);
+}
+
+static void BufferMonPokemonAbilityAndInnates(void)
+{
+    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+	u16 species = sum->species;
+    const u8 *text;
+	u8 x, y, i;
+
+    DynamicPlaceholderTextUtil_Reset();
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sMemoNatureTextColor);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sMemoMiscTextColor);
+    BufferNatureString();
+    BufferCharacteristicString();
+	
+	x = 80;
+	y = 4;
+
+	// Main Ability
+	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_MainAbility);
+	AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+	// Name ---------------------------------------------------------------------------------------------------
+    DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
+	AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, x, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+	// Description ---------------------------------------------------------------------------------------------------
+	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
+	AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, (y + 8), 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+	
+	// Innates
+	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
+		if(gBaseStats[species].innates[i] != ABILITY_NONE){
+			y += 32;
+			//Title
+			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
+			AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+			// Name ---------------------------------------------------------------------------------------------------
+			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[gBaseStats[species].innates[i]]);
+			AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, x, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+			// Description ---------------------------------------------------------------------------------------------------
+			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[gBaseStats[species].innates[i]]);
+			AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, (y + 8), 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+		}
+	}
+}
+
 static u8 GetBattleMoveCategory(u16 move)
 {
     if (gBattleMoves[move].power == 0)
@@ -5191,6 +5261,10 @@ static void PrintInfoBar(u8 pageIndex, bool8 detailsShown)
             StringCopy(gStringVar1, sText_TitleMemo);
             StringCopy(gStringVar2, sText_TitlePage);
             break;
+		case PSS_PAGE_ABILITY:
+            StringCopy(gStringVar1, sText_TitleAbilities);
+            StringCopy(gStringVar2, sText_TitlePageIVs);
+            break;
         case PSS_PAGE_SKILLS:
             /*
             if (!FlagGet(FLAG_SYS_GAME_CLEAR))
@@ -5236,7 +5310,8 @@ static void PrintInfoBar(u8 pageIndex, bool8 detailsShown)
             break;
     }
 
-    PrintTextOnWindow(PSS_LABEL_PANE_TITLE, gStringVar1, 3, 0, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+    //PrintTextOnWindow(PSS_LABEL_PANE_TITLE, gStringVar1, 3, 0, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+    AddTextPrinterParameterized4(PSS_LABEL_PANE_TITLE, 0, 3, 0, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar1);
     x = GetStringRightAlignXOffset(0, gStringVar2, 150);
     AddTextPrinterParameterized4(PSS_LABEL_PANE_TITLE, 0, x, 0, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar2);
     PutWindowTilemap(PSS_LABEL_PANE_TITLE);
