@@ -747,9 +747,11 @@ static const u8 sText_BattlerCoiledUp[] = _("{B_ACTIVE_NAME_WITH_PREFIX} Coiled 
 static const u8 sText_BattlerGotTheType[] = _("{B_ACTIVE_NAME_WITH_PREFIX} added the {B_BUFF1}-type!");
 static const u8 sText_AttackerTypeChangedTo[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s type\nchanged to {B_BUFF1}!");
 static const u8 sText_AbilityRestoredHPALittle[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Self-Sufficient\nrestored its HP a little");
+static const u8 sText_BattlerEnvelopedItselfInAVeil[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s enveloped itself in\na veil made of water");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+	[STRINGID_BATTLERENVELOPEDITSELFINAVEIL - 12] = sText_BattlerEnvelopedItselfInAVeil,
     [STRINGID_NEUTRALIZINGGASOVER - 12] = sText_NeutralizingGasOver,
     [STRINGID_NEUTRALIZINGGASENTERS - 12] = sText_NeutralizingGasEnters,
     [STRINGID_BATTLERTYPECHANGEDTO - 12] = sText_BattlerTypeChangedTo,

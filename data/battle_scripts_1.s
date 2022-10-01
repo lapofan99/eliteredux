@@ -7679,6 +7679,13 @@ BattleScript_SelfSufficientActivates::
 	datahpupdate BS_ATTACKER
 	end2
 	
+BattleScript_BattlerEnvelopedItselfInAVeil::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BATTLERENVELOPEDITSELFINAVEIL
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
 @ Can't compare directly to a value, have to compare to value at pointer
 sZero:
 .byte 0

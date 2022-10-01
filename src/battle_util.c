@@ -4706,10 +4706,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
             }
             break;
+		case ABILITY_WATER_VEIL:
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+				!(gStatuses3[battler] & STATUS3_AQUA_RING))
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_WATER_VEIL;
+				gLastUsedAbility = ABILITY_WATER_VEIL;
+				gStatuses3[battler] |= STATUS3_AQUA_RING;
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerEnvelopedItselfInAVeil);
+				effect++;
+            }
+            break;
         }
 		
 		// Inates on Switch
-		
 		// Lets Roll
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL)){
 			if (!gSpecialStatuses[battler].switchInAbilityDone)
@@ -4720,6 +4731,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				SET_STATCHANGER(STAT_DEF, 1, FALSE);
 				gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerInnateStatRaiseOnSwitchIn);
+				effect++;
+			}
+		}
+		// Water Veil
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone &&
+				!(gStatuses3[battler] & STATUS3_AQUA_RING))
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_WATER_VEIL;
+				gLastUsedAbility = ABILITY_WATER_VEIL;
+				gStatuses3[battler] |= STATUS3_AQUA_RING;
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerEnvelopedItselfInAVeil);
 				effect++;
 			}
 		}
@@ -6422,8 +6446,11 @@ bool32 CanBeBurned(u8 battlerId)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || ability == ABILITY_WATER_VEIL
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_VEIL)
       || ability == ABILITY_WATER_BUBBLE
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_BUBBLE)
       || ability == ABILITY_COMATOSE
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE)
       || IsAbilityStatusProtected(battlerId)
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -7771,6 +7798,7 @@ case ITEMEFFECT_KINGSROCK:
             if (!gBattleMons[battlerId].status1
                 && !IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
                 && GetBattlerAbility(battlerId) != ABILITY_WATER_VEIL
+				&& SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_VEIL)
                 && GetBattlerAbility(battlerId) != ABILITY_WATER_BUBBLE
                 && GetBattlerAbility(battlerId) != ABILITY_COMATOSE
                 && IsBattlerAlive(battlerId))
