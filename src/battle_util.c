@@ -8784,6 +8784,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
+	case ABILITY_HYDRATE:
+        if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_GALVANIZE:
         if (moveType == TYPE_ELECTRIC && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -8892,6 +8896,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Groundate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUNDATE)){
 		if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
+	
+	// Hydrate
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYDRATE)){
+		if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	

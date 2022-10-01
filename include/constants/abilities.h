@@ -343,8 +343,9 @@
 #define ABILITY_DRAGONFLY 		 (ABILITIES_COUNT_LATEST_GEN + 44) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s). Immune to Ground-type moves.
 #define ABILITY_DRAGONSLAYER	 (ABILITIES_COUNT_LATEST_GEN + 45) // Increases the damage dealt against Dragon-type Pokémon by 25%.
 #define ABILITY_MOUNTAINEER	 	 (ABILITIES_COUNT_LATEST_GEN + 46) // Immune to Rock attacks and Stealth Rocks.
+#define ABILITY_HYDRATE	 	 	 (ABILITIES_COUNT_LATEST_GEN + 47) // All Normal-type moves used by the Pokémon become Water-type and receive a 20% power boost.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_MOUNTAINEER + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_HYDRATE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
