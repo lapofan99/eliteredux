@@ -345,8 +345,9 @@
 #define ABILITY_MOUNTAINEER	 	 (ABILITIES_COUNT_LATEST_GEN + 46) // Immune to Rock attacks and Stealth Rocks.
 #define ABILITY_HYDRATE	 	 	 (ABILITIES_COUNT_LATEST_GEN + 47) // All Normal-type moves used by the Pokémon become Water-type and receive a 20% power boost.
 #define ABILITY_METALLIC 		 (ABILITIES_COUNT_LATEST_GEN + 48) // Adds the Steel-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_PERMAFROST 		 (ABILITIES_COUNT_LATEST_GEN + 49) // Reduces damage taken from super-effective attacks by 25%
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_METALLIC + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_PERMAFROST + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

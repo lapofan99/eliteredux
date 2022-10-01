@@ -5199,7 +5199,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
             }
 			
-			//Innate
+			//Innates
 			//Aerodynamics
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AERODYNAMICS)){
 				if (move != MOVE_NONE && moveType == TYPE_FLYING){
@@ -9131,6 +9131,31 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (moveType == TYPE_ROCK)
             MulModifier(&modifier, UQ_4_12(0.5));
     }
+	// Permafrost
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PERMAFROST)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.75));
+    }
+	// Multiscale and Shadow Shield
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MULTISCALE || ABILITY_SHADOW_SHIELD)){
+		if (BATTLER_MAX_HP(battlerDef))
+            MulModifier(&finalModifier, UQ_4_12(0.5));
+    }
+	// Filter, Solid Rock and Prism Armor
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FILTER || ABILITY_SOLID_ROCK || ABILITY_PRISM_ARMOR)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.75));
+    }
+	// Ice Scales
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_ICE_SCALES)){
+		if (IS_MOVE_SPECIAL(move))
+            MulModifier(&finalModifier, UQ_4_12(0.50));
+    }
+	// Prism Scales
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_SCALES)){
+		if (IS_MOVE_SPECIAL(move))
+            MulModifier(&finalModifier, UQ_4_12(0.70));
+    }
 	// Immunity
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_IMMUNITY)){
 		if (moveType == TYPE_POISON)
@@ -9898,6 +9923,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     case ABILITY_FILTER:
     case ABILITY_SOLID_ROCK:
     case ABILITY_PRISM_ARMOR:
+	case ABILITY_PERMAFROST:
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(0.75));
         break;
