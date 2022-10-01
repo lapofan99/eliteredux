@@ -10070,6 +10070,19 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     {
         modifier = UQ_4_12(1.0);
     }
+	
+	if ((GetBattlerAbility(battlerDef) == ABILITY_MOUNTAINEER || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MOUNTAINEER)) && moveType == TYPE_ROCK)
+    {
+        modifier = UQ_4_12(0.0);
+        if (recordAbilities)
+        {
+            gLastUsedAbility = gBattleMons[battlerDef].ability;
+            gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+            gLastLandedMoves[battlerDef] = 0;
+            gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
+            RecordAbilityBattle(battlerDef, gBattleMons[battlerDef].ability);
+        }
+    }
 
     if (((GetBattlerAbility(battlerDef) == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0))
         || (GetBattlerAbility(battlerDef) == ABILITY_TELEPATHY && battlerDef == BATTLE_PARTNER(battlerAtk)))
@@ -10117,6 +10130,8 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
             MulByTypeEffectiveness(&modifier, move, moveType, 0, gBaseStats[speciesDef].type2, 0, FALSE);
 
         if (moveType == TYPE_GROUND && (abilityDef == ABILITY_LEVITATE || SpeciesHasInnate(speciesDef, ABILITY_LEVITATE)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
+            modifier = UQ_4_12(0.0);
+		if (moveType == TYPE_ROCK && (abilityDef == ABILITY_MOUNTAINEER || SpeciesHasInnate(speciesDef, ABILITY_MOUNTAINEER))) 
             modifier = UQ_4_12(0.0);
         if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gBattleMoves[move].power)
             modifier = UQ_4_12(0.0);
@@ -10810,19 +10825,25 @@ bool32 IsBattlerAffectedByHazards(u8 battlerId, bool32 toxicSpikes)
     u32 holdEffect = GetBattlerHoldEffect(gActiveBattler, TRUE);
     if (toxicSpikes && 
 		holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS &&
-		GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST &&
-		SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELD_DUST) &&
 		!IS_BATTLER_OF_TYPE(battlerId, TYPE_POISON))
     {
         ret = FALSE;
         RecordItemEffectBattle(battlerId, holdEffect);
     }
-    else if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS &&
-		GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST &&
-		SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELD_DUST))
+    else if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
     {
         ret = FALSE;
         RecordItemEffectBattle(battlerId, holdEffect);
+    }
+	else if (GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST ||
+		SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELD_DUST))
+    {
+        ret = FALSE;
+    }
+	else if ((GetBattlerAbility(gActiveBattler) == ABILITY_MOUNTAINEER ||
+		SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MOUNTAINEER)) && !toxicSpikes)
+    {
+        ret = FALSE;
     }
     return ret;
 }

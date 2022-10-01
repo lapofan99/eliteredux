@@ -301,6 +301,7 @@ static const u8 sHalfDrakeDescription[] =  _("Adds Dragon-Type.");
 static const u8 sLiquifiedDescription[] =  _("2x tougher but 2x dmg from Water");
 static const u8 sDragonFlyDescription[] =  _("Adds Dragon Type and levitates");
 static const u8 sDragonSlayerDescription[] =  _("1.2x damage to Dragon-types");
+static const u8 sMountaineerDescription[] =  _("Immune to Rock Damage");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -618,6 +619,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_LIQUIFIED] = _("Liquified"),
 	[ABILITY_DRAGONFLY] = _("Dragonfly"),
 	[ABILITY_DRAGONSLAYER] = _("Dragonslayer"),
+	[ABILITY_MOUNTAINEER] = _("Mountaineer"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -936,4 +938,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_LIQUIFIED] = sLiquifiedDescription,
 	[ABILITY_DRAGONFLY] = sDragonFlyDescription,
 	[ABILITY_DRAGONSLAYER] = sDragonSlayerDescription,
+	[ABILITY_MOUNTAINEER] = sMountaineerDescription,
 };
