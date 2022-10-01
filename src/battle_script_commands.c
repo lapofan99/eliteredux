@@ -10911,9 +10911,9 @@ static void Cmd_weatherdamage(void)
             else if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)
                 && ability != ABILITY_SNOW_CLOAK
                 && ability != ABILITY_OVERCOAT
-				&& SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
 				&& ability != ABILITY_AURORA_BOREALIS
-				&& SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_AURORA_BOREALIS)
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_AURORA_BOREALIS)
                 && ability != ABILITY_ICE_BODY
                 && ability != ABILITY_SLUSH_RUSH
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
