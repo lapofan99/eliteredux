@@ -10801,7 +10801,7 @@ bool32 IsBattlerAffectedByHazards(u8 battlerId, bool32 toxicSpikes)
         ret = FALSE;
         RecordItemEffectBattle(battlerId, holdEffect);
     }
-    else if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS
+    else if (holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS &&
 		GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST &&
 		SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELD_DUST))
     {
