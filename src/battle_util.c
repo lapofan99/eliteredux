@@ -9014,6 +9014,14 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
                 RecordAbilityBattle(battlerDef, ability);
         }
         break;
+	case ABILITY_FOSSILIZED:
+        if (moveType == TYPE_ROCK)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+        break;
     }
 	
 	// Target's Innates
@@ -9042,6 +9050,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Lead Coat
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LEAD_COAT)){
 		MulModifier(&modifier, UQ_4_12(0.7));
+    }
+	// Fossilized
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FOSSILIZED)){
+		if (moveType == TYPE_ROCK)
+            MulModifier(&modifier, UQ_4_12(0.5));
     }
 	// Immunity
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_IMMUNITY)){
