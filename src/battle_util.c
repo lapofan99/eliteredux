@@ -9131,39 +9131,6 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (moveType == TYPE_ROCK)
             MulModifier(&modifier, UQ_4_12(0.5));
     }
-	// Permafrost
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PERMAFROST)){
-		if (typeEffectivenessModifier >= UQ_4_12(2.0))
-            MulModifier(&finalModifier, UQ_4_12(0.75));
-    }
-	// Multiscale and Shadow Shield
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MULTISCALE) || 
-	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHADOW_SHIELD)){
-		if (BATTLER_MAX_HP(battlerDef))
-            MulModifier(&finalModifier, UQ_4_12(0.5));
-    }
-	// Filter, Solid Rock and Prism Armor
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FILTER) ||
-	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SOLID_ROCK) ||
-	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_ARMOR)){
-		if (typeEffectivenessModifier >= UQ_4_12(2.0))
-            MulModifier(&finalModifier, UQ_4_12(0.75));
-    }
-	// Primal Armor
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRIMAL_ARMOR)){
-		if (typeEffectivenessModifier >= UQ_4_12(2.0))
-            MulModifier(&finalModifier, UQ_4_12(0.5));
-    }
-	// Ice Scales
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_ICE_SCALES)){
-		if (IS_MOVE_SPECIAL(move))
-            MulModifier(&finalModifier, UQ_4_12(0.50));
-    }
-	// Prism Scales
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_SCALES)){
-		if (IS_MOVE_SPECIAL(move))
-            MulModifier(&finalModifier, UQ_4_12(0.70));
-    }
 	// Immunity
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_IMMUNITY)){
 		if (moveType == TYPE_POISON)
@@ -9948,7 +9915,42 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
             MulModifier(&finalModifier, UQ_4_12(0.70));
         break;
     }
-
+	
+	//Innates
+	// Permafrost
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PERMAFROST)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.75));
+    }
+	// Prism Scales
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_SCALES)){
+		if (IS_MOVE_SPECIAL(move))
+            MulModifier(&finalModifier, UQ_4_12(0.70));
+    }
+	// Multiscale and Shadow Shield
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MULTISCALE) || 
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHADOW_SHIELD)){
+		if (BATTLER_MAX_HP(battlerDef))
+            MulModifier(&finalModifier, UQ_4_12(0.5));
+    }
+	// Filter, Solid Rock and Prism Armor
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FILTER) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SOLID_ROCK) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_ARMOR)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.75));
+    }
+	// Primal Armor
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRIMAL_ARMOR)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(0.5));
+    }
+	// Ice Scales
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_ICE_SCALES)){
+		if (IS_MOVE_SPECIAL(move))
+            MulModifier(&finalModifier, UQ_4_12(0.50));
+    }
+	
     // target's ally's abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerDef)))
     {
