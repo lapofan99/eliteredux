@@ -2557,7 +2557,7 @@ u8 DoBattlerEndTurnEffects(void)
              && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
              && gBattleMons[gActiveBattler].hp != 0)
             {
-                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 16);
+                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 8);
                 BattleScriptExecute(BattleScript_IngrainTurnHeal);
                 effect++;
             }
@@ -2569,7 +2569,7 @@ u8 DoBattlerEndTurnEffects(void)
              && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
              && gBattleMons[gActiveBattler].hp != 0)
             {
-                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 16);
+                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 8);
                 BattleScriptExecute(BattleScript_AquaRingHeal);
                 effect++;
             }
@@ -8695,6 +8695,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
                MulModifier(&modifier, UQ_4_12(1)); // was 0.75
         }
         break;
+	case ABILITY_DRAGONSLAYER: // Dragonslayer
+		if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
+            MulModifier(&modifier, UQ_4_12(1.2));
+		break;
     case ABILITY_ANALYTIC:
         if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
            MulModifier(&modifier, UQ_4_12(1.3));
@@ -8892,6 +8896,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             else
                MulModifier(&modifier, UQ_4_12(1)); // was 0.75
         }
+	}
+	
+	// Dragonslayer
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DRAGONSLAYER)){
+	if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
+            MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
 	// Feline Prowess
