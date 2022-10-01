@@ -4024,7 +4024,7 @@ static bool32 ShouldChangeFormHpBased(u32 battler)
 
     for (i = 0; i < ARRAY_COUNT(forms); i++)
     {
-        if (GetBattlerAbility(battler) == forms[i][0])
+        if (GetBattlerAbility(battler) == forms[i][0] || SpeciesHasInnate(gBattleMons[battler].species, forms[i][0]))
         {
             if (gBattleMons[battler].species == forms[i][2]
                 && gBattleMons[battler].hp > gBattleMons[battler].maxHP / forms[i][3])
@@ -4735,6 +4735,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 		}
+		//Zen Mode
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ZEN_MODE)){
+            if (ShouldChangeFormHpBased(battler))
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_ZEN_MODE;
+				gLastUsedAbility = ABILITY_ZEN_MODE;
+                BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
+                effect++;
+            }
+		}
 		// Water Veil
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL)){
 			if (!gSpecialStatuses[battler].switchInAbilityDone &&
@@ -5066,6 +5076,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					effect++;
 				}
 			}
+			
         }
         break;
     case ABILITYEFFECT_MOVES_BLOCK: // 2
