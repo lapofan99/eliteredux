@@ -308,6 +308,7 @@ static const u8 sPermafrostDescription[] =  _("Weakens “supereffective” 25%.
 static const u8 sPrimalArmorDescription[] =  _("Weakens “supereffective” 50%.");
 static const u8 sRagingBoxerDescription[] =  _("Punch moves hit twice.");
 static const u8 sAirBlowerDescription[] =  _("Sets up Tailwind for 5 turns\nwhen sent out.");
+static const u8 sJuggernautDescription[] =  _("Contact moves use 20% of its Defense\nstat in addition to the default stat.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -632,6 +633,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_PRIMAL_ARMOR] = _("Primal Armor"),
 	[ABILITY_RAGING_BOXER] = _("Raging Boxer"),
 	[ABILITY_AIR_BLOWER] = _("Air Blower"),
+	[ABILITY_JUGGERNAUT] = _("Juggernaut"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -957,4 +959,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_PRIMAL_ARMOR] = sPrimalArmorDescription,
 	[ABILITY_RAGING_BOXER] = sRagingBoxerDescription,
 	[ABILITY_AIR_BLOWER] = sAirBlowerDescription,
+	[ABILITY_JUGGERNAUT] = sJuggernautDescription,
 };

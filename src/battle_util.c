@@ -6571,7 +6571,11 @@ bool32 CanBeParalyzed(u8 battlerId)
     if ((B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerId, TYPE_ELECTRIC))
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_LIMBER
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LIMBER)
+      || ability == ABILITY_JUGGERNAUT
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_JUGGERNAUT)
       || ability == ABILITY_COMATOSE
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE)
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerId)
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
@@ -6588,6 +6592,7 @@ bool32 CanBeFrozen(u8 battlerId)
       || ability == ABILITY_MAGMA_ARMOR
 	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGMA_ARMOR)
       || ability == ABILITY_COMATOSE
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE)
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerId)
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
@@ -6598,6 +6603,7 @@ bool32 CanBeFrozen(u8 battlerId)
 bool32 CanBeConfused(u8 battlerId)
 {
     if (GetBattlerAbility(gEffectBattler) == ABILITY_OWN_TEMPO
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_OWN_TEMPO)
       || gBattleMons[gEffectBattler].status2 & STATUS2_CONFUSION
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -9383,6 +9389,11 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             atkStat = gBattleMons[battlerAtk].spDefense;
             atkStage = gBattleMons[battlerAtk].statStages[STAT_SPDEF];
         }
+    }
+	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_JUGGERNAUT)|| GetBattlerAbility(battlerAtk) == ABILITY_JUGGERNAUT) && 
+			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
+		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].defense * 0.2);
+        atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
     }
     else
     {
