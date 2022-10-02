@@ -1715,7 +1715,7 @@ static void Task_HandleInput(u8 taskId)
 				if(gCurrentModifyIndex != 0)
 					gCurrentModifyIndex--;
 				else
-					gCurrentModifyIndex = 6;
+					gCurrentModifyIndex = 5;
 				
 				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
 				RefreshPageAfterChange(0);
@@ -1728,7 +1728,7 @@ static void Task_HandleInput(u8 taskId)
 				ChangeSummaryPokemon(taskId, 1);
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS){
-				if(gCurrentModifyIndex != 6)
+				if(gCurrentModifyIndex != 5)
 					gCurrentModifyIndex++;
 				else
 					gCurrentModifyIndex = 0;
@@ -1804,28 +1804,29 @@ static void Task_HandleInput(u8 taskId)
 							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
 						}
 					break;
-					case 6: // Start Ability Modifier
-						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-						CalculateMonStats(&sMonSummaryScreen->currentMon);
-						
-						if(abilityNum != 0 && 
-						   GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) &&
-						   GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) != ABILITY_NONE)
-							abilityNum--;
-						else
-							abilityNum = 2;
-						
-						if(GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != ABILITY_NONE){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-						}
-							
-						PlaySE(SE_SELECT);
-					break;
 					}
 				}
 				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
 				RefreshPageAfterChange(0);
+			}
+			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY && ModifyMode){ //Ability Modifier
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
+				
+				if(abilityNum != 0 && 
+				   GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) &&
+				   GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) != ABILITY_NONE)
+					abilityNum--;
+				else
+					abilityNum = 2;
+				
+				if(GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != ABILITY_NONE){
+					SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+					SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+				}
+							
+				PlaySE(SE_SELECT);
+				RefreshPageAfterChange(1);
 			}
         }
         else if ((JOY_NEW(DPAD_RIGHT)) || GetLRKeysPressed() == MENU_R_PRESSED)
@@ -1895,28 +1896,29 @@ static void Task_HandleInput(u8 taskId)
 							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
 						}
 					break;
-					case 6: // Start Ability Modifier
-						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-						CalculateMonStats(&sMonSummaryScreen->currentMon);
-						
-						if(abilityNum != 2 && 
-						   GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) &&
-						   GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) != ABILITY_NONE)
-							abilityNum++;
-						else
-							abilityNum = 0;
-						
-						if(GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != ABILITY_NONE){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-						}
-							
-						PlaySE(SE_SELECT);
-					break;
 					}
 				}
 				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
 				RefreshPageAfterChange(0);
+			}
+			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY && ModifyMode){ //Ability Modifier
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
+						
+				if(abilityNum != 2 && 
+				    GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) &&
+				    GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) != ABILITY_NONE)
+						abilityNum++;
+				else
+					abilityNum = 0;
+						
+				if(GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != ABILITY_NONE){
+					SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+					SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+				}
+						
+				PlaySE(SE_SELECT);
+				RefreshPageAfterChange(1);
 			}
         }
 		else if (gMain.newKeys & R_BUTTON)
@@ -1967,7 +1969,7 @@ static void Task_HandleInput(u8 taskId)
 							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
 						}
 					break;
-					case 6: // Start Ability Modifier
+					/*/case 6: // Start Ability Modifier
 						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
 						CalculateMonStats(&sMonSummaryScreen->currentMon);
 						
@@ -1984,7 +1986,7 @@ static void Task_HandleInput(u8 taskId)
 						}
 							
 						PlaySE(SE_SELECT);
-					break;
+					break;/*/
 					}
 				}
 				RefreshPageAfterChange(0);
@@ -2035,7 +2037,7 @@ static void Task_HandleInput(u8 taskId)
 							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
 						}
 					break;
-					case 6: // Start Ability Modifier
+					/*/case 6: // Start Ability Modifier
 						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
 						CalculateMonStats(&sMonSummaryScreen->currentMon);
 						
@@ -2052,7 +2054,7 @@ static void Task_HandleInput(u8 taskId)
 						}
 							
 						PlaySE(SE_SELECT);
-					break;
+					break;/*/
 					}
 				}
 				RefreshPageAfterChange(0);
@@ -2066,7 +2068,7 @@ static void Task_HandleInput(u8 taskId)
                 SwitchToMoveSelection(taskId);
             }
 			else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS &&
-			   !sMonSummaryScreen->isBoxMon                         &&
+			   !sMonSummaryScreen->isBoxMon &&
 			   !sMonSummaryScreen->lockMovesFlag)
             {
                 // Start EVs Modifier
@@ -2079,11 +2081,20 @@ static void Task_HandleInput(u8 taskId)
 				PlaySE(SE_SELECT);
             }
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_MEMO &&
-				!sMonSummaryScreen->isBoxMon                         &&
+				!sMonSummaryScreen->isBoxMon &&
 				!sMonSummaryScreen->lockMovesFlag)
 			{
 				ModifyMode = !ModifyMode;
 				PrintMemoPage();
+				PlaySE(SE_SELECT);
+			}
+			
+			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY &&
+				!sMonSummaryScreen->isBoxMon &&
+				!sMonSummaryScreen->lockMovesFlag)
+			{
+				ModifyMode = !ModifyMode;
+				PrintAbilityAndInnates();
 				PlaySE(SE_SELECT);
 			}
         }
@@ -2112,6 +2123,12 @@ static void RefreshPageAfterChange(u8 mode){
             ScheduleBgCopyTilemapToVram(0);
 			PrintInfoBar(PSS_PAGE_SKILLS, FALSE);
             PrintSkillsPage();
+		break;
+		case 1:
+			ClearWindowTilemap(PSS_LABEL_PANE_RIGHT);
+            ScheduleBgCopyTilemapToVram(0);
+			PrintInfoBar(PSS_PAGE_ABILITY, FALSE);
+            PrintAbilityAndInnates();
 		break;
 	}	
 }	
@@ -3445,6 +3462,7 @@ static void BufferMonTrainerMemo(void)
 static const u8 sSummaryEVIcon[]        = INCBIN_U8("graphics/interface/summary_EVs_icon.4bpp");
 static const u8 sSummaryInfoPageIcon[]  = INCBIN_U8("graphics/interface/summary_info_page_icon.4bpp");
 static const u8 sSummaryNatureSlider[]  = INCBIN_U8("graphics/interface/summary_nature_slider.4bpp");
+static const u8 sSummaryAbilitySlider[]  = INCBIN_U8("graphics/summary_screen/summary_ability_cursor.4bpp");
 
 static void BufferNatureString(void)
 {
@@ -4085,11 +4103,13 @@ static void BufferMonPokemonAbilityAndInnates(void)
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sMemoNatureTextColor);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sMemoMiscTextColor);
-    BufferNatureString();
     BufferCharacteristicString();
 	
 	x = 80;
 	y = 4;
+	
+	if(ModifyMode)
+		BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryAbilitySlider, 72, 8, 80, 8);
 
 	// Main Ability
 	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_MainAbility);
@@ -5259,7 +5279,7 @@ static void PrintInfoBar(u8 pageIndex, bool8 detailsShown)
             break;
         case PSS_PAGE_MEMO:
             StringCopy(gStringVar1, sText_TitleMemo);
-            StringCopy(gStringVar2, sText_TitlePage);
+            StringCopy(gStringVar2, sText_TitlePageIVs);
             break;
 		case PSS_PAGE_ABILITY:
             StringCopy(gStringVar1, sText_TitleAbilities);
