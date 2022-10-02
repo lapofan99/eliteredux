@@ -5933,6 +5933,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
                 effect++;
             }
+		case ABILITY_ROUGH_SKIN:
+        case ABILITY_IRON_BARBS:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+                #if B_ROUGH_SKIN_DMG >= GEN_4
+                    gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 8;
+                #else
+                    gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 16;
+                #endif
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AttackerRoughSkinActivates;
+                effect++;
+            }
             break;
 		case ABILITY_LOUD_BANG:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -6017,6 +6037,33 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
 					effect++;
 				}
+		}
+		//Iron Barbs/ Rough Skin
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN) ||
+			SpeciesHasInnate(gBattleMons[battler].species, ABILITY_IRON_BARBS)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+				if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN)){
+					gBattleScripting.abilityPopupOverwrite = ABILITY_ROUGH_SKIN;
+					gLastUsedAbility = ABILITY_ROUGH_SKIN;
+				}
+				else{
+					gBattleScripting.abilityPopupOverwrite = ABILITY_IRON_BARBS;
+					gLastUsedAbility = ABILITY_IRON_BARBS;
+				}
+					
+                gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 8;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AttackerRoughSkinActivates;
+                effect++;
+            }
 		}
 		
         break;

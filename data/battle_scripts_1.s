@@ -7693,6 +7693,20 @@ BattleScript_AirBlowerActivated::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
+BattleScript_HurtTarget:
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	printstring STRINGID_TARGETPKMNHURTSWITH
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_TARGET, FALSE, NULL
+	return
+
+BattleScript_AttackerRoughSkinActivates::
+	call BattleScript_AbilityPopUp
+	call BattleScript_HurtTarget
+	return
+	
 @ Can't compare directly to a value, have to compare to value at pointer
 sZero:
 .byte 0
