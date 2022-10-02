@@ -5082,7 +5082,7 @@ static void Cmd_moveend(void)
                     break;
                 }
 				
-				if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LIMBER))
+				if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_LIMBER))
 					gBattleMoveDamage = gBattleMoveDamage * 0.7;
             }
             gBattleScripting.moveendState++;
@@ -9807,7 +9807,7 @@ static void Cmd_manipulatedamage(void)
         if ((B_RECOIL_IF_MISS_DMG <= GEN_4) && ((gBattleMons[gBattlerTarget].maxHP / 2) < gBattleMoveDamage))
             gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 2;
 		
-		if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LIMBER))
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_LIMBER))
 			gBattleMoveDamage = gBattleMoveDamage * 0.7;
         break;
     case DMG_DOUBLED:
@@ -9833,7 +9833,7 @@ static void Cmd_manipulatedamage(void)
     case DMG_RECOIL_FROM_IMMUNE:
         gBattleMoveDamage = gBattleMons[gBattlerTarget].maxHP / 2;
 		
-		if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LIMBER))
+		if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_LIMBER))
 			gBattleMoveDamage = gBattleMoveDamage * 0.7;
         break;
     }
