@@ -4707,6 +4707,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+		case ABILITY_AIR_BLOWER:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_AIR_BLOWER;
+				gLastUsedAbility = ABILITY_AIR_BLOWER;
+				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
+				gSideTimers[GetBattlerSide(battler)].tailwindTimer = 5;
+				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
+				effect++;
+			}
+			break;
 		case ABILITY_NOCTURNAL:
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!IsCurrentlyDay())
@@ -4872,6 +4884,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gStatuses4[battler] = STATUS4_COILED;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type1);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerCoiledUp);
+				effect++;
+			}
+		}
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_BLOWER)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_AIR_BLOWER;
+				gLastUsedAbility = ABILITY_AIR_BLOWER;
+				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
+				gSideTimers[GetBattlerSide(battler)].tailwindTimer = 5;
+				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
 				effect++;
 			}
 		}

@@ -348,8 +348,9 @@
 #define ABILITY_PERMAFROST 		 (ABILITIES_COUNT_LATEST_GEN + 49) // Reduces damage taken from super-effective attacks by 25%
 #define ABILITY_PRIMAL_ARMOR	 (ABILITIES_COUNT_LATEST_GEN + 50) // Reduces damage taken from super-effective attacks by 50%
 #define ABILITY_RAGING_BOXER	 (ABILITIES_COUNT_LATEST_GEN + 51) // Punch moves hit twice, with second hit deals 0.5x.
+#define ABILITY_AIR_BLOWER	 	 (ABILITIES_COUNT_LATEST_GEN + 52) // Sets Tailwind for 5 turns when entering battle.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_RAGING_BOXER + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_AIR_BLOWER + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
