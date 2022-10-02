@@ -9862,12 +9862,21 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     }
 
     // Parental Bond Second Strike
-	if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
-	{
-		if (B_PARENTAL_BOND_DAMAGE < GEN_7)
+	if(abilityAtk == ABILITY_PARENTAL_BOND || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PARENTAL_BOND)){
+		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
+		{
+			if (B_PARENTAL_BOND_DAMAGE < GEN_7)
+				MulModifier(&finalModifier, UQ_4_12(0.5));
+			else
+				MulModifier(&finalModifier, UQ_4_12(0.25));
+		}
+	}
+	
+	if(abilityAtk == ABILITY_RAGING_BOXER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_RAGING_BOXER)){
+		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
+		{
 			MulModifier(&finalModifier, UQ_4_12(0.5));
-		else
-			MulModifier(&finalModifier, UQ_4_12(0.25));
+		}
 	}
 
     // attacker's abilities

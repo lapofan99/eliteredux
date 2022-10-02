@@ -306,6 +306,7 @@ static const u8 sHydrateDescription[] =  _("Normal moves become Water and 20% st
 static const u8 sMetallicDescription[] =  _("Adds Steel-Type.");
 static const u8 sPermafrostDescription[] =  _("Weakens “supereffective” 25%.");
 static const u8 sPrimalArmorDescription[] =  _("Weakens “supereffective” 50%.");
+static const u8 sRagingBoxerDescription[] =  _("Punch moves hit twice.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -564,8 +565,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_STEELY_SPIRIT] = _("SteelySpirit"),
     [ABILITY_PERISH_BODY] = _("Perish Body"),
     [ABILITY_WANDERING_SPIRIT] = _("WandrngSprit"),
-    [ABILITY_GORILLA_TACTICS] = _("GorillaTactx"),
-    [ABILITY_NEUTRALIZING_GAS] = _("NeutrlzngGas"),
+    [ABILITY_GORILLA_TACTICS] = _("Gorilla Tactics"),
+    [ABILITY_NEUTRALIZING_GAS] = _("Neutralizing Gas"),
     [ABILITY_PASTEL_VEIL] = _("Pastel Veil"),
     [ABILITY_HUNGER_SWITCH] = _("HungerSwitch"),
     [ABILITY_QUICK_DRAW] = _("Quick Draw"),
@@ -600,7 +601,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_PERFECTIONIST] = _("Perfectionis"),
 	[ABILITY_GROWING_TOOTH] = _("GrowingTooth"),
 	[ABILITY_INFLATABLE] = _("Inflatable"),
-	[ABILITY_AURORA_BOREALIS] = _("A.Borealis"),
+	[ABILITY_AURORA_BOREALIS] = _("Aurora Borealis"),
 	[ABILITY_AVENGER] = _("Avenger"),
 	[ABILITY_LETS_ROLL] = _("Let's Roll"),
 	[ABILITY_AQUATIC] = _("Aquatic"),
@@ -628,6 +629,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_METALLIC] = _("Metallic"),
 	[ABILITY_PERMAFROST] = _("Permafrost"),
 	[ABILITY_PRIMAL_ARMOR] = _("Primal Armor"),
+	[ABILITY_RAGING_BOXER] = _("Raging Boxer"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -951,4 +953,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_METALLIC] = sMetallicDescription,
 	[ABILITY_PERMAFROST] = sPermafrostDescription,
 	[ABILITY_PRIMAL_ARMOR] = sPrimalArmorDescription,
+	[ABILITY_RAGING_BOXER] = sRagingBoxerDescription,
 };
