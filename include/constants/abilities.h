@@ -351,7 +351,11 @@
 #define ABILITY_AIR_BLOWER	 	 (ABILITIES_COUNT_LATEST_GEN + 52) // Sets Tailwind for 5 turns when entering battle.
 #define ABILITY_JUGGERNAUT	 	 (ABILITIES_COUNT_LATEST_GEN + 53) // Contact moves use 20% of Defense stat in addition to the default stat. (Defense stat stages still affects these percentage). Also, the Pokémon cannot be paralyzed.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_JUGGERNAUT + 1)
+// Karathan's Custom Abilities
+
+#define ABILITY_SOUL_EATER       (ABILITIES_COUNT_LATEST_GEN + 54) // Whenever another Pokémon faints, restores 25% of its maximum HP and boosts offensive and defensive stats by 10%
+
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SOUL_EATER + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

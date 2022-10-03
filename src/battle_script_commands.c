@@ -8197,6 +8197,8 @@ static void Cmd_various(void)
             return;
         }
         break;
+    case VARIOUS_TRY_ACTIVATE_SOUL_EATER:
+        break;
     case VARIOUS_TRY_ACTIVATE_GRIM_NEIGH:   // and as one shadow rider
         if ((GetBattlerAbility(gActiveBattler) == ABILITY_GRIM_NEIGH
          || GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_SHADOW_RIDER)
