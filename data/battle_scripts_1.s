@@ -8060,7 +8060,7 @@ BattleScript_BadDreamsActivates::
 	setbyte gBattlerTarget, 0
 	call BattleScript_AbilityPopUp
 BattleScript_BadDreamsLoop:
-	trygetbaddreamstarget BattleScript_BadDreamsEnd
+	trygetbaddreamstarget BattleScript_BadDreamsEnd, BattleScript_BadDreamsPrevented
 	dmg_1_8_targethp
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
 	printstring STRINGID_BADDREAMSDMG
@@ -8070,6 +8070,12 @@ BattleScript_BadDreamsLoop:
 	datahpupdate BS_TARGET
 	tryfaintmon BS_TARGET, FALSE, NULL
 	atk24 BattleScript_BadDreamsIncrement
+	goto BattleScript_BadDreamsIncrement
+BattleScript_BadDreamsPrevented:
+	pause 60
+	sethword sABILITY_OVERWRITE, ABILITY_SWEET_DREAMS
+	showabilitypopup BS_TARGET
+	recordability BS_TARGET
 BattleScript_BadDreamsIncrement:
 	addbyte gBattlerTarget, 1
 	goto BattleScript_BadDreamsLoop

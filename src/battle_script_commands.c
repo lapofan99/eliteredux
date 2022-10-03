@@ -14156,8 +14156,10 @@ static void Cmd_trygetbaddreamstarget(void)
 
     if (gBattlerTarget >= gBattlersCount)
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    else if ((GetBattlerAbility(gBattlerTarget) == ABILITY_SWEET_DREAMS))
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 5);
     else
-        gBattlescriptCurrInstr += 5;
+        gBattlescriptCurrInstr += 9;
 }
 
 static void Cmd_tryworryseed(void)
