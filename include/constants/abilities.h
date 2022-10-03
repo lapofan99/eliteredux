@@ -355,8 +355,9 @@
 
 #define ABILITY_SOUL_EATER       (ABILITIES_COUNT_LATEST_GEN + 54) // Whenever another Pokémon faints, restores 25% of its maximum HP and boosts offensive and defensive stats by 10%
 #define ABILITY_SOUL_LINKER      (ABILITIES_COUNT_LATEST_GEN + 55)
+#define ABILITY_SWEET_DREAMS     (ABILITIES_COUNT_LATEST_GEN + 56)
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SOUL_LINKER + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SWEET_DREAMS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
