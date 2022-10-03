@@ -5562,6 +5562,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_SOUL_LINKER:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+              && gBattleMons[gBattlerTarget].hp != 0
+              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+              && TARGET_TURN_DAMAGED)
+            {
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AttackerSoulLinker;
+                effect++;
+            }
+            break;
         case ABILITY_AFTERMATH:
             if (!IsAbilityOnField(ABILITY_DAMP)
              && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -5951,6 +5962,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AttackerRoughSkinActivates;
+                effect++;
+            }
+            break;
+        case ABILITY_SOUL_LINKER:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+              && gBattleMons[gBattlerTarget].hp != 0
+              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+              && TARGET_TURN_DAMAGED)
+            {
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AttackerSoulLinker;
                 effect++;
             }
             break;

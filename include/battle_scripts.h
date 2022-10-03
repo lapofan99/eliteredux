@@ -430,5 +430,6 @@ extern const u8 BattleScript_BattlerEnvelopedItselfInAVeil[];
 extern const u8 BattleScript_AirBlowerActivated[];
 extern const u8 BattleScript_AttackerRoughSkinActivates[];
 extern const u8 BattleScript_HandleSoulEaterEffect[];
+extern const u8 BattleScript_AttackerSoulLinker[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

@@ -310,6 +310,7 @@ static const u8 sRagingBoxerDescription[] =  _("Punch moves hit twice.");
 static const u8 sAirBlowerDescription[] =  _("Sets up Tailwind for 5 turns\nwhen sent out.");
 static const u8 sJuggernautDescription[] =  _("Contact moves use 20% of its Defense\nstat in addition to the default stat.");
 static const u8 sSoulEaterDescription[] =  _("Heals 25% and boosts power\nupon defeating an enemy.");
+static const u8 sSoulLinkerDescription[] =  _("Receives any damage inflicted,\nshares all damage taken.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -636,6 +637,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_AIR_BLOWER] = _("Air Blower"),
     [ABILITY_JUGGERNAUT] = _("Juggernaut"),
     [ABILITY_SOUL_EATER] = _("Soul Eater"),
+    [ABILITY_SOUL_LINKER] = _("Soul Linker"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -963,4 +965,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_AIR_BLOWER] = sAirBlowerDescription,
     [ABILITY_JUGGERNAUT] = sJuggernautDescription,
     [ABILITY_SOUL_EATER] = sSoulEaterDescription,
+    [ABILITY_SOUL_LINKER] = sSoulLinkerDescription,
 };

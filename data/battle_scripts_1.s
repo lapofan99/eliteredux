@@ -9324,3 +9324,11 @@ BattleScript_HandleSoulEaterEffect::
 BattleScript_HandleSoulEaterEffect_NothingToHeal:
 	@ FIXME: Stat boosts, are stat boosts really intended though?
     return
+
+BattleScript_AttackerSoulLinker::
+	call BattleScript_AbilityPopUp
+    orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	tryfaintmon BS_ATTACKER, FALSE, NULL
+	return
