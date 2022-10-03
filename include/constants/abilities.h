@@ -320,36 +320,36 @@
 #define ABILITY_GROWING_TOOTH    (ABILITIES_COUNT_LATEST_GEN + 21) // Increases the Attack stat by one stage after using a fang move (Moves: Hyper Fang, Super Fang, Fire Fang, Thunder Fang, Ice Fang, Psychic Fangs, Poison Fang).
 #define ABILITY_INFLATABLE       (ABILITIES_COUNT_LATEST_GEN + 22) // When the Pokémon is hit by Fire-type or Flying-type moves, its Defense and Special Defense stats are increased by one stage.
 #define ABILITY_AURORA_BOREALIS  (ABILITIES_COUNT_LATEST_GEN + 23) // The Pokémon's Ice-type moves gain same-type attack bonus regardless the Pokémon's typing. The Pokémon will take no damage from the hailstorm if it otherwise would.
-#define ABILITY_AVENGER  		 (ABILITIES_COUNT_LATEST_GEN + 24) // Boosts the power of the move by 30% if a Pokémon from the user's party has fainted in the previous turn.
-#define ABILITY_LETS_ROLL 		 (ABILITIES_COUNT_LATEST_GEN + 25) // Pokémon starts in Defense Curl, boosting the Defense stage by one. Defense Curl effect: Doubles the power of Rollout, Ice Ball, Steamroller and Steel Roller.
-#define ABILITY_AQUATIC 		 (ABILITIES_COUNT_LATEST_GEN + 26) // Adds the Water-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_LOUD_BANG 		 (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 10% chance that the opposing Pokémon will become confused when affected by the Pokémon's sound-based damaging moves.
-#define ABILITY_LEAD_COAT 		 (ABILITIES_COUNT_LATEST_GEN + 28) // Triples the Pokémon's weight. Increases the Defense stat by 30%, but decreases Speed stat by 10%.
-#define ABILITY_AMPHIBIOUS 		 (ABILITIES_COUNT_LATEST_GEN + 29) // Water-type moves gain 1.5x power.
-#define ABILITY_GROUNDED 		 (ABILITIES_COUNT_LATEST_GEN + 30) // Adds the Ground-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_EARTHBOUND 		 (ABILITIES_COUNT_LATEST_GEN + 31) // Increases own Ground-type attacks by 25%.
+#define ABILITY_AVENGER          (ABILITIES_COUNT_LATEST_GEN + 24) // Boosts the power of the move by 30% if a Pokémon from the user's party has fainted in the previous turn.
+#define ABILITY_LETS_ROLL        (ABILITIES_COUNT_LATEST_GEN + 25) // Pokémon starts in Defense Curl, boosting the Defense stage by one. Defense Curl effect: Doubles the power of Rollout, Ice Ball, Steamroller and Steel Roller.
+#define ABILITY_AQUATIC          (ABILITIES_COUNT_LATEST_GEN + 26) // Adds the Water-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_LOUD_BANG        (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 10% chance that the opposing Pokémon will become confused when affected by the Pokémon's sound-based damaging moves.
+#define ABILITY_LEAD_COAT        (ABILITIES_COUNT_LATEST_GEN + 28) // Triples the Pokémon's weight. Increases the Defense stat by 30%, but decreases Speed stat by 10%.
+#define ABILITY_AMPHIBIOUS       (ABILITIES_COUNT_LATEST_GEN + 29) // Water-type moves gain 1.5x power.
+#define ABILITY_GROUNDED         (ABILITIES_COUNT_LATEST_GEN + 30) // Adds the Ground-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_EARTHBOUND       (ABILITIES_COUNT_LATEST_GEN + 31) // Increases own Ground-type attacks by 25%.
 #define ABILITY_FIGHT_SPIRIT     (ABILITIES_COUNT_LATEST_GEN + 32) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 20% power boost.
 #define ABILITY_FELINE_PROWESS   (ABILITIES_COUNT_LATEST_GEN + 33) // Doubles Special Attack (special Huge/Pure Power).
-#define ABILITY_COIL_UP 		 (ABILITIES_COUNT_LATEST_GEN + 34) // The Pokémon enters the battlefield coiled up. Coil: The next time the Pokémon uses a biting move, its priority is increased 1.
-#define ABILITY_FOSSILIZED 		 (ABILITIES_COUNT_LATEST_GEN + 35) // Only takes half damage from Rock-type moves
-#define ABILITY_MAGICAL_DUST 	 (ABILITIES_COUNT_LATEST_GEN + 36) // When is hit by contact move, it leaves a Magic Powder that adds Psychic-type to the target.
-#define ABILITY_DREAMCATCHER 	 (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 20% for each Pokemon asleep on the field.
-#define ABILITY_NOCTURNAL 	     (ABILITIES_COUNT_LATEST_GEN + 38) // Adds the Dark-type to the Pokémon at night, in addition to the Pokémon's original type(s), also boosts Attack, Sp. Attack and Speed stats by 10%, and Accuracy stat by 20%.
+#define ABILITY_COIL_UP          (ABILITIES_COUNT_LATEST_GEN + 34) // The Pokémon enters the battlefield coiled up. Coil: The next time the Pokémon uses a biting move, its priority is increased 1.
+#define ABILITY_FOSSILIZED       (ABILITIES_COUNT_LATEST_GEN + 35) // Only takes half damage from Rock-type moves
+#define ABILITY_MAGICAL_DUST     (ABILITIES_COUNT_LATEST_GEN + 36) // When is hit by contact move, it leaves a Magic Powder that adds Psychic-type to the target.
+#define ABILITY_DREAMCATCHER     (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 20% for each Pokemon asleep on the field.
+#define ABILITY_NOCTURNAL        (ABILITIES_COUNT_LATEST_GEN + 38) // Adds the Dark-type to the Pokémon at night, in addition to the Pokémon's original type(s), also boosts Attack, Sp. Attack and Speed stats by 10%, and Accuracy stat by 20%.
 #define ABILITY_SELF_SUFFICIENT  (ABILITIES_COUNT_LATEST_GEN + 39) // Heals 1/16 at the end of every turn.
 #define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 20% power boost.
-#define ABILITY_ICE_AGE 		 (ABILITIES_COUNT_LATEST_GEN + 41) // Adds the Ice-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_HALF_DRAKE 		 (ABILITIES_COUNT_LATEST_GEN + 42) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_LIQUIFIED 		 (ABILITIES_COUNT_LATEST_GEN + 43) // Takes half damage from contact moves. Takes 2x damage from Water-type moves.
-#define ABILITY_DRAGONFLY 		 (ABILITIES_COUNT_LATEST_GEN + 44) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s). Immune to Ground-type moves.
-#define ABILITY_DRAGONSLAYER	 (ABILITIES_COUNT_LATEST_GEN + 45) // Increases the damage dealt against Dragon-type Pokémon by 25%.
-#define ABILITY_MOUNTAINEER	 	 (ABILITIES_COUNT_LATEST_GEN + 46) // Immune to Rock attacks and Stealth Rocks.
-#define ABILITY_HYDRATE	 	 	 (ABILITIES_COUNT_LATEST_GEN + 47) // All Normal-type moves used by the Pokémon become Water-type and receive a 20% power boost.
-#define ABILITY_METALLIC 		 (ABILITIES_COUNT_LATEST_GEN + 48) // Adds the Steel-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_PERMAFROST 		 (ABILITIES_COUNT_LATEST_GEN + 49) // Reduces damage taken from super-effective attacks by 25%
-#define ABILITY_PRIMAL_ARMOR	 (ABILITIES_COUNT_LATEST_GEN + 50) // Reduces damage taken from super-effective attacks by 50%
-#define ABILITY_RAGING_BOXER	 (ABILITIES_COUNT_LATEST_GEN + 51) // Punch moves hit twice, with second hit deals 0.5x.
-#define ABILITY_AIR_BLOWER	 	 (ABILITIES_COUNT_LATEST_GEN + 52) // Sets Tailwind for 5 turns when entering battle.
-#define ABILITY_JUGGERNAUT	 	 (ABILITIES_COUNT_LATEST_GEN + 53) // Contact moves use 20% of Defense stat in addition to the default stat. (Defense stat stages still affects these percentage). Also, the Pokémon cannot be paralyzed.
+#define ABILITY_ICE_AGE          (ABILITIES_COUNT_LATEST_GEN + 41) // Adds the Ice-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_HALF_DRAKE       (ABILITIES_COUNT_LATEST_GEN + 42) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_LIQUIFIED        (ABILITIES_COUNT_LATEST_GEN + 43) // Takes half damage from contact moves. Takes 2x damage from Water-type moves.
+#define ABILITY_DRAGONFLY        (ABILITIES_COUNT_LATEST_GEN + 44) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s). Immune to Ground-type moves.
+#define ABILITY_DRAGONSLAYER     (ABILITIES_COUNT_LATEST_GEN + 45) // Increases the damage dealt against Dragon-type Pokémon by 25%.
+#define ABILITY_MOUNTAINEER      (ABILITIES_COUNT_LATEST_GEN + 46) // Immune to Rock attacks and Stealth Rocks.
+#define ABILITY_HYDRATE          (ABILITIES_COUNT_LATEST_GEN + 47) // All Normal-type moves used by the Pokémon become Water-type and receive a 20% power boost.
+#define ABILITY_METALLIC         (ABILITIES_COUNT_LATEST_GEN + 48) // Adds the Steel-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_PERMAFROST       (ABILITIES_COUNT_LATEST_GEN + 49) // Reduces damage taken from super-effective attacks by 25%
+#define ABILITY_PRIMAL_ARMOR     (ABILITIES_COUNT_LATEST_GEN + 50) // Reduces damage taken from super-effective attacks by 50%
+#define ABILITY_RAGING_BOXER     (ABILITIES_COUNT_LATEST_GEN + 51) // Punch moves hit twice, with second hit deals 0.5x.
+#define ABILITY_AIR_BLOWER       (ABILITIES_COUNT_LATEST_GEN + 52) // Sets Tailwind for 5 turns when entering battle.
+#define ABILITY_JUGGERNAUT       (ABILITIES_COUNT_LATEST_GEN + 53) // Contact moves use 20% of Defense stat in addition to the default stat. (Defense stat stages still affects these percentage). Also, the Pokémon cannot be paralyzed.
 
 // Karathan's Custom Abilities
 
