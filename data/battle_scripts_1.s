@@ -5739,6 +5739,7 @@ BattleScript_FaintTarget::
 	tryactivatesoulheart
 	tryactivatereceiver BS_TARGET
 	tryactivatemoxie BS_ATTACKER		@ and chilling neigh, as one ice rider
+	tryactivatesouleater BS_ATTACKER
 	tryactivatebeastboost BS_ATTACKER
 	tryactivategrimneigh BS_ATTACKER	@ and as one shadow rider
 	tryactivatebattlebond BS_ATTACKER
@@ -9311,3 +9312,15 @@ BattleScript_NeutralizingGasExitsLoop:
 	jumpifbytenotequal gBattlerTarget, sByteFour, BattleScript_NeutralizingGasExitsLoop	@ SOMEHOW, comparing to gBattlersCount is problematic.
 	restoretarget
 	return
+
+BattleScript_HandleSoulEaterEffect::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	tryhealquarterhealth BS_ATTACKER, BattleScript_HandleSoulEaterEffect_NothingToHeal
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_PKMNREGAINEDHEALTH @ FIXME: Print the name of gBattlerAttacker instead of gBattlerTarget
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_HandleSoulEaterEffect_NothingToHeal:
+	@ FIXME: Stat boosts, are stat boosts really intended though?
+    return

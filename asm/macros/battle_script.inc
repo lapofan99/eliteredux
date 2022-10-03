@@ -1455,7 +1455,7 @@
 	various BS_ATTACKER, VARIOUS_TRY_ACTIVATE_SOULHEART
 	.endm
 
-	.macro tryactivatesouleater
+	.macro tryactivatesouleater battler:req
 	various BS_ATTACKER, VARIOUS_TRY_ACTIVATE_SOUL_EATER
 	.endm
 

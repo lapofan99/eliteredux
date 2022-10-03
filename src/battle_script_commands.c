@@ -8198,6 +8198,22 @@ static void Cmd_various(void)
         }
         break;
     case VARIOUS_TRY_ACTIVATE_SOUL_EATER:
+        if (GetBattlerAbility(gActiveBattler) == ABILITY_SOUL_EATER) {
+            if (!HasAttackerFaintedTarget() && NoAliveMonsForEitherParty())
+                break;
+            
+            // Only run script if there is something to do
+            if (CompareStat(gBattlerAttacker, STAT_SPATK, MAX_STAT_STAGE, CMP_EQUAL)
+             && CompareStat(gBattlerAttacker, STAT_ATK, MAX_STAT_STAGE, CMP_EQUAL)
+             && BATTLER_MAX_HP(gBattlerAttacker))
+                break;
+
+            // Let the battle script handler decide the stat changes
+            BattleScriptPush(gBattlescriptCurrInstr + 3);
+            gLastUsedAbility = GetBattlerAbility(gActiveBattler);
+            gBattlescriptCurrInstr = BattleScript_HandleSoulEaterEffect;
+            return;
+        }
         break;
     case VARIOUS_TRY_ACTIVATE_GRIM_NEIGH:   // and as one shadow rider
         if ((GetBattlerAbility(gActiveBattler) == ABILITY_GRIM_NEIGH
