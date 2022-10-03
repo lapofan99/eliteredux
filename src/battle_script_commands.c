@@ -8203,9 +8203,7 @@ static void Cmd_various(void)
                 break;
             
             // Only run script if there is something to do
-            if (CompareStat(gBattlerAttacker, STAT_SPATK, MAX_STAT_STAGE, CMP_EQUAL)
-             && CompareStat(gBattlerAttacker, STAT_ATK, MAX_STAT_STAGE, CMP_EQUAL)
-             && BATTLER_MAX_HP(gBattlerAttacker))
+            if (BATTLER_MAX_HP(gBattlerAttacker))
                 break;
 
             // Let the battle script handler decide the stat changes

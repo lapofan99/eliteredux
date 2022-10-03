@@ -437,6 +437,7 @@ static const u8 sText_Evasiveness[] = _("evasiveness");
 static const u8 sText_PkmnRaisedAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Growing Tooth\nraised its Attack!");
 static const u8 sText_InflatablePkmnRaisedDefenses[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Inflatable\nraised its Defenses!");
 static const u8 sText_AngerPointsPkmnRaisedAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Anger Point\nraised its Attack!");
+static const u8 sText_AttackerRegainedHealth[] = _("{B_ATK_NAME_WITH_PREFIX} regained\nhealth!");
 
 const u8 * const gStatNamesTable[NUM_BATTLE_STATS] =
 {
@@ -1362,6 +1363,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 	[STRINGID_BATTLERCOILEDUP - 12] = sText_BattlerCoiledUp,
 	[STRINGID_ATTACKERTYPECHANGEDTO - 12] = sText_AttackerTypeChangedTo,
 	[STRINGID_PKMNSABILITYRESTOREDHPALITTLE - 12] = sText_AbilityRestoredHPALittle,
+    [STRINGID_ATTACKERREGAINEDHEALTH - 12] = sText_AttackerRegainedHealth,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

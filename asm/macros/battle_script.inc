@@ -1456,7 +1456,7 @@
 	.endm
 
 	.macro tryactivatesouleater battler:req
-	various BS_ATTACKER, VARIOUS_TRY_ACTIVATE_SOUL_EATER
+	various \battler, VARIOUS_TRY_ACTIVATE_SOUL_EATER
 	.endm
 
 	.macro tryactivatefellstinger battler:req

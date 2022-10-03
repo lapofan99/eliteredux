@@ -9319,10 +9319,9 @@ BattleScript_HandleSoulEaterEffect::
 	tryhealquarterhealth BS_ATTACKER, BattleScript_HandleSoulEaterEffect_NothingToHeal
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
-	printstring STRINGID_PKMNREGAINEDHEALTH @ FIXME: Print the name of gBattlerAttacker instead of gBattlerTarget
+	printstring STRINGID_ATTACKERREGAINEDHEALTH
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_HandleSoulEaterEffect_NothingToHeal:
-	@ FIXME: Stat boosts, are stat boosts really intended though?
     return
 
 BattleScript_AttackerSoulLinker::
