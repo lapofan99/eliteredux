@@ -349,9 +349,10 @@
 #define ABILITY_PRIMAL_ARMOR	 (ABILITIES_COUNT_LATEST_GEN + 50) // Reduces damage taken from super-effective attacks by 50%
 #define ABILITY_RAGING_BOXER	 (ABILITIES_COUNT_LATEST_GEN + 51) // Punch moves hit twice, with second hit deals 0.5x.
 #define ABILITY_AIR_BLOWER	 	 (ABILITIES_COUNT_LATEST_GEN + 52) // Sets Tailwind for 5 turns when entering battle.
-#define ABILITY_JUGGERNAUT	 	 (ABILITIES_COUNT_LATEST_GEN + 53) // Contact moves use 20% of Defense stat in addition to the default stat. (Defense stat stages still affects these percentage). Also, the Pokémon cannot be paralyzed.
+#define ABILITY_JUGGERNAUT	 	 (ABILITIES_COUNT_LATEST_GEN + 53) // Contact moves use 20% of Defense stat in addition to the default stat. Also, the Pokémon cannot be paralyzed.
+#define ABILITY_SHORT_CIRCUIT	 (ABILITIES_COUNT_LATEST_GEN + 54) // Overgrow for Electric moves.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_JUGGERNAUT + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SHORT_CIRCUIT + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -313,6 +313,7 @@ static const u8 sAirBlowerDescription[] =  _("Sets up Tailwind for 5 turns\nwhen
 static const u8 sJuggernautDescription[] =  _("Contact moves use 20% of its Defense\nstat in addition to the default stat.");
 static const u8 sTeravoltDescription[] =  _("Moves hit through abilities.\nAdds Electric-Type.");
 static const u8 sTurboblazeDescription[] =  _("Moves hit through abilities.\nAdds Fire-Type.");
+static const u8 sShortCircuitDescription[] = _("Ups Electric moves in a pinch.");
 
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -639,6 +640,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_RAGING_BOXER] = _("Raging Boxer"),
 	[ABILITY_AIR_BLOWER] = _("Air Blower"),
 	[ABILITY_JUGGERNAUT] = _("Juggernaut"),
+	[ABILITY_SHORT_CIRCUIT] = _("Short Circuit"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -965,4 +967,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_RAGING_BOXER] = sRagingBoxerDescription,
 	[ABILITY_AIR_BLOWER] = sAirBlowerDescription,
 	[ABILITY_JUGGERNAUT] = sJuggernautDescription,
+	[ABILITY_SHORT_CIRCUIT] = sShortCircuitDescription,
 };

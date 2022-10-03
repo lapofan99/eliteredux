@@ -9543,6 +9543,15 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
         break;
+	case ABILITY_SHORT_CIRCUIT:
+        if (moveType == TYPE_ELECTRIC)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+        break;
 	case ABILITY_ANTARTIC_BIRD:
         if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
@@ -9710,7 +9719,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
 	
 	// Innates
-	// Antartic Bird
+	// Antarctic Bird
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANTARTIC_BIRD)){
 		if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
@@ -9745,12 +9754,71 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.25));
         }
 	}
-	
 	// Levitate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LEVITATE)){
 		if (moveType == TYPE_FLYING)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
+        }
+	}
+	// Swarm
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SWARM)){
+		if (moveType == TYPE_BUG)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+		}
+	}
+	// Torrent
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TORRENT)){
+		if (moveType == TYPE_WATER)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+	// Blaze
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BLAZE)){
+		if (moveType == TYPE_FIRE)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+	// Overgrow
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERGROW)){
+		if (moveType == TYPE_GRASS)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+	// Vengeance
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_VENGEANCE)){
+		if (moveType == TYPE_GHOST)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+	// Short Circuit
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SHORT_CIRCUIT)){
+		if (moveType == TYPE_ELECTRIC)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
         }
 	}
 	
