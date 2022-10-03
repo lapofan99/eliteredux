@@ -754,9 +754,9 @@ static const u8 sText_TargetPkmnHurtsWith[] = _("{B_DEF_NAME_WITH_PREFIX} was hu
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
-	[STRINGID_TARGETPKMNHURTSWITH - 12] = sText_TargetPkmnHurtsWith,
-	[STRINGID_AIRBLOWERACTIVATED - 12] = sText_BattlerAbilitySetUpTailwind,
-	[STRINGID_BATTLERENVELOPEDITSELFINAVEIL - 12] = sText_BattlerEnvelopedItselfInAVeil,
+    [STRINGID_TARGETPKMNHURTSWITH - 12] = sText_TargetPkmnHurtsWith,
+    [STRINGID_AIRBLOWERACTIVATED - 12] = sText_BattlerAbilitySetUpTailwind,
+    [STRINGID_BATTLERENVELOPEDITSELFINAVEIL - 12] = sText_BattlerEnvelopedItselfInAVeil,
     [STRINGID_NEUTRALIZINGGASOVER - 12] = sText_NeutralizingGasOver,
     [STRINGID_NEUTRALIZINGGASENTERS - 12] = sText_NeutralizingGasEnters,
     [STRINGID_BATTLERTYPECHANGEDTO - 12] = sText_BattlerTypeChangedTo,
@@ -1355,14 +1355,14 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_CANTESCAPEBECAUSEOFCURRENTMOVE - 12] = sText_CantEscapeBecauseOfCurrentMove,
     [STRINGID_PLAYERLOSTAGAINSTENEMYTRAINER - 12] = sText_PlayerLostAgainstEnemyTrainer,
     [STRINGID_PLAYERPAIDPRIZEMONEY - 12] = sText_PlayerPaidPrizeMoney,
-	[STRINGID_PKMNRAISEDATTACK - 12] = sText_PkmnRaisedAttack,
-	[STRINGID_INFLATABLEPKMNRAISEDDEFENSE - 12] = sText_InflatablePkmnRaisedDefenses,
-	[STRINGID_ANGERPOINTSPKMNRAISEDATTACK - 12] = sText_AngerPointsPkmnRaisedAttack,
-	[STRINGID_BATTLERINNATERAISEDSTAT - 12] = sText_BattlerInnateRaisedStat,
-	[STRINGID_BATTLERADDEDTHETYPE - 12] = sText_BattlerAddedTheType,
-	[STRINGID_BATTLERCOILEDUP - 12] = sText_BattlerCoiledUp,
-	[STRINGID_ATTACKERTYPECHANGEDTO - 12] = sText_AttackerTypeChangedTo,
-	[STRINGID_PKMNSABILITYRESTOREDHPALITTLE - 12] = sText_AbilityRestoredHPALittle,
+    [STRINGID_PKMNRAISEDATTACK - 12] = sText_PkmnRaisedAttack,
+    [STRINGID_INFLATABLEPKMNRAISEDDEFENSE - 12] = sText_InflatablePkmnRaisedDefenses,
+    [STRINGID_ANGERPOINTSPKMNRAISEDATTACK - 12] = sText_AngerPointsPkmnRaisedAttack,
+    [STRINGID_BATTLERINNATERAISEDSTAT - 12] = sText_BattlerInnateRaisedStat,
+    [STRINGID_BATTLERADDEDTHETYPE - 12] = sText_BattlerAddedTheType,
+    [STRINGID_BATTLERCOILEDUP - 12] = sText_BattlerCoiledUp,
+    [STRINGID_ATTACKERTYPECHANGEDTO - 12] = sText_AttackerTypeChangedTo,
+    [STRINGID_PKMNSABILITYRESTOREDHPALITTLE - 12] = sText_AbilityRestoredHPALittle,
     [STRINGID_ATTACKERREGAINEDHEALTH - 12] = sText_AttackerRegainedHealth,
 };
 
