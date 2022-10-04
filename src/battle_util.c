@@ -9200,6 +9200,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
                 RecordAbilityBattle(battlerDef, ability);
         }
         break;
+	case ABILITY_SHELL_ARMOR:
 	case ABILITY_BATTLE_ARMOR:
         MulModifier(&modifier, UQ_4_12(0.9));
         if (updateFlags)
@@ -9248,9 +9249,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		}
     }
 	// Battle Armor
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHELL_ARMOR)){
 		MulModifier(&modifier, UQ_4_12(0.9));
     }
+	
 	// Lead Coat
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LEAD_COAT)){
 		MulModifier(&modifier, UQ_4_12(0.7));
