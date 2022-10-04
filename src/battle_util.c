@@ -4697,6 +4697,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
             }
             break;
+		case ABILITY_PHANTOM:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_PHANTOM;
+				gLastUsedAbility = ABILITY_PHANTOM;
+				gBattleMons[battler].type3 = TYPE_GHOST;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+            }
+            break;
 		case ABILITY_TERAVOLT:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -4881,6 +4893,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
 				gLastUsedAbility = ABILITY_DRAGONFLY;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+			}
+		}
+		// Phantom
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PHANTOM)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_PHANTOM;
+				gLastUsedAbility = ABILITY_PHANTOM;
+				gBattleMons[battler].type3 = TYPE_GHOST;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;

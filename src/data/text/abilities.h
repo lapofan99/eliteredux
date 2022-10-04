@@ -315,6 +315,7 @@ static const u8 sTeravoltDescription[] =  _("Moves hit through abilities.\nAdds 
 static const u8 sTurboblazeDescription[] =  _("Moves hit through abilities.\nAdds Fire-Type.");
 static const u8 sShortCircuitDescription[] = _("Ups Electric moves in a pinch.");
 static const u8 sMajesticBirdDescription[] = _("Boosts Special Attack by 50%.");
+static const u8 sPhantomDescription[] =  _("Adds Ghost-Type.");
 
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -643,6 +644,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_JUGGERNAUT] = _("Juggernaut"),
 	[ABILITY_SHORT_CIRCUIT] = _("Short Circuit"),
 	[ABILITY_MAJESTIC_BIRD] = _("Majestic Bird"),
+	[ABILITY_PHANTOM] = _("Phantom"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -971,4 +973,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_JUGGERNAUT] = sJuggernautDescription,
 	[ABILITY_SHORT_CIRCUIT] = sShortCircuitDescription,
 	[ABILITY_MAJESTIC_BIRD] = sMajesticBirdDescription,
+	[ABILITY_PHANTOM] = sPhantomDescription,
 };

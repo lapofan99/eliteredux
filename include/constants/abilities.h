@@ -352,8 +352,9 @@
 #define ABILITY_JUGGERNAUT	 	 (ABILITIES_COUNT_LATEST_GEN + 53) // Contact moves use 20% of Defense stat in addition to the default stat. Also, the Pokémon cannot be paralyzed.
 #define ABILITY_SHORT_CIRCUIT	 (ABILITIES_COUNT_LATEST_GEN + 54) // Overgrow for Electric moves.
 #define ABILITY_MAJESTIC_BIRD	 (ABILITIES_COUNT_LATEST_GEN + 55) // Boosts Special Attack by 50%.
+#define ABILITY_PHANTOM	 		 (ABILITIES_COUNT_LATEST_GEN + 56) // Adds the Ghost-type to the Pokémon, in addition to the Pokémon's original type(s).
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_MAJESTIC_BIRD + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_PHANTOM + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
