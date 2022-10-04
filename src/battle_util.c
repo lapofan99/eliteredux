@@ -4235,7 +4235,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_TERAVOLT:
+        /* Disabled battle message, not needed
+		case ABILITY_TERAVOLT:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TERAVOLT;
@@ -4253,6 +4254,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+		*/
         case ABILITY_SLOW_START:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -4695,6 +4697,30 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
             }
             break;
+		case ABILITY_TERAVOLT:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_TERAVOLT;
+				gLastUsedAbility = ABILITY_TERAVOLT;
+				gBattleMons[battler].type3 = TYPE_ELECTRIC;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+            }
+            break;
+		case ABILITY_TURBOBLAZE:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_TURBOBLAZE;
+				gLastUsedAbility = ABILITY_TURBOBLAZE;
+				gBattleMons[battler].type3 = TYPE_FIRE;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+            }
+            break;
 		case ABILITY_COIL_UP:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -4855,6 +4881,32 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
 				gLastUsedAbility = ABILITY_DRAGONFLY;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+			}
+		}
+		// Teravolt
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TERAVOLT)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_TERAVOLT;
+				gLastUsedAbility = ABILITY_TERAVOLT;
+				gBattleMons[battler].type3 = TYPE_ELECTRIC;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+			}
+		}
+		// Turboblaze
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TURBOBLAZE)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_TURBOBLAZE;
+				gLastUsedAbility = ABILITY_TURBOBLAZE;
+				gBattleMons[battler].type3 = TYPE_FIRE;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
@@ -9524,6 +9576,15 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
         break;
+	case ABILITY_SHORT_CIRCUIT:
+        if (moveType == TYPE_ELECTRIC)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+        break;
 	case ABILITY_ANTARTIC_BIRD:
         if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
@@ -9691,7 +9752,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
 	
 	// Innates
-	// Antartic Bird
+	// Antarctic Bird
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANTARTIC_BIRD)){
 		if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
@@ -9726,12 +9787,71 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.25));
         }
 	}
-	
 	// Levitate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LEVITATE)){
 		if (moveType == TYPE_FLYING)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
+        }
+	}
+	// Swarm
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SWARM)){
+		if (moveType == TYPE_BUG)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+		}
+	}
+	// Torrent
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TORRENT)){
+		if (moveType == TYPE_WATER)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+	// Blaze
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BLAZE)){
+		if (moveType == TYPE_FIRE)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+	// Overgrow
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERGROW)){
+		if (moveType == TYPE_GRASS)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+	// Vengeance
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_VENGEANCE)){
+		if (moveType == TYPE_GHOST)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+	// Short Circuit
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SHORT_CIRCUIT)){
+		if (moveType == TYPE_ELECTRIC)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
         }
 	}
 	
