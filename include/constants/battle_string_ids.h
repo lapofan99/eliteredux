@@ -623,8 +623,9 @@
 #define STRINGID_AIRBLOWERACTIVATED		   			  621
 #define STRINGID_TARGETPKMNHURTSWITH		   		  622
 #define STRINGID_ATTACKERREGAINEDHEALTH               623
+#define STRINGID_SWEETDREAMSHPUP                      624
 
-#define BATTLESTRINGS_COUNT                           624
+#define BATTLESTRINGS_COUNT                           625
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

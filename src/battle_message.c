@@ -751,6 +751,7 @@ static const u8 sText_AbilityRestoredHPALittle[] = _("{B_ACTIVE_NAME_WITH_PREFIX
 static const u8 sText_BattlerEnvelopedItselfInAVeil[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s enveloped itself in\na veil made of water");
 static const u8 sText_BattlerAbilitySetUpTailwind[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Air Blower set up \nTailwind!");
 static const u8 sText_TargetPkmnHurtsWith[] = _("{B_DEF_NAME_WITH_PREFIX} was hurt by\n{B_ATK_NAME_WITH_PREFIX}'s {B_BUFF1}!");
+static const u8 sText_SweetDreamsHealHpUp[] = _("Sleeping healed {B_ATK_NAME_WITH_PREFIX}\na little bit!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
@@ -1364,6 +1365,7 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_ATTACKERTYPECHANGEDTO - 12] = sText_AttackerTypeChangedTo,
     [STRINGID_PKMNSABILITYRESTOREDHPALITTLE - 12] = sText_AbilityRestoredHPALittle,
     [STRINGID_ATTACKERREGAINEDHEALTH - 12] = sText_AttackerRegainedHealth,
+    [STRINGID_SWEETDREAMSHPUP - 12] = sText_SweetDreamsHealHpUp,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

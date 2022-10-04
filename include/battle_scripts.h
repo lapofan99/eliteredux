@@ -431,5 +431,6 @@ extern const u8 BattleScript_AirBlowerActivated[];
 extern const u8 BattleScript_AttackerRoughSkinActivates[];
 extern const u8 BattleScript_HandleSoulEaterEffect[];
 extern const u8 BattleScript_AttackerSoulLinker[];
+extern const u8 BattleScript_SweetDreamsActivates[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

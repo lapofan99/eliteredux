@@ -8076,6 +8076,8 @@ BattleScript_BadDreamsPrevented:
 	sethword sABILITY_OVERWRITE, ABILITY_SWEET_DREAMS
 	showabilitypopup BS_TARGET
 	recordability BS_TARGET
+	sethword sABILITY_OVERWRITE, 0
+	pause 60
 BattleScript_BadDreamsIncrement:
 	addbyte gBattlerTarget, 1
 	goto BattleScript_BadDreamsLoop
@@ -9337,3 +9339,13 @@ BattleScript_AttackerSoulLinker::
 	datahpupdate BS_ATTACKER
 	tryfaintmon BS_ATTACKER, FALSE, NULL
 	return
+
+BattleScript_SweetDreamsActivates::
+	printstring STRINGID_SWEETDREAMSHPUP
+	waitmessage B_WAIT_TIME_LONG
+	recordability BS_ATTACKER
+	statusanimation BS_ATTACKER
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	end2
