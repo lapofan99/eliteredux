@@ -314,6 +314,7 @@ static const u8 sJuggernautDescription[] =  _("Contact moves use 20% of its Defe
 static const u8 sTeravoltDescription[] =  _("Moves hit through abilities.\nAdds Electric-Type.");
 static const u8 sTurboblazeDescription[] =  _("Moves hit through abilities.\nAdds Fire-Type.");
 static const u8 sShortCircuitDescription[] = _("Ups Electric moves in a pinch.");
+static const u8 sMajesticBirdDescription[] = _("Boosts Special Attack by 50%.");
 
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -641,6 +642,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_AIR_BLOWER] = _("Air Blower"),
 	[ABILITY_JUGGERNAUT] = _("Juggernaut"),
 	[ABILITY_SHORT_CIRCUIT] = _("Short Circuit"),
+	[ABILITY_MAJESTIC_BIRD] = _("Majestic Bird"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -968,4 +970,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_AIR_BLOWER] = sAirBlowerDescription,
 	[ABILITY_JUGGERNAUT] = sJuggernautDescription,
 	[ABILITY_SHORT_CIRCUIT] = sShortCircuitDescription,
+	[ABILITY_MAJESTIC_BIRD] = sMajesticBirdDescription,
 };
