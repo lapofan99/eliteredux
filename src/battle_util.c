@@ -9138,6 +9138,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
            MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
+	// Hustle
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE)){
+		if (IS_MOVE_PHYSICAL(move))
+            MulModifier(&modifier, UQ_4_12(1.5));
+	}
+	
 	
     // field abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)

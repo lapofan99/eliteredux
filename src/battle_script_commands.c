@@ -1688,7 +1688,7 @@ static bool32 AccuracyCalcHelper(u16 move)
         JumpIfMoveFailed(7, move);
         return TRUE;
     }
-    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD)
+    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_NO_GUARD))
     {
         if (!JumpIfMoveFailed(7, move))
             RecordAbilityBattle(gBattlerAttacker, ABILITY_NO_GUARD);
@@ -1762,7 +1762,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 
     moveAcc = gBattleMoves[move].accuracy;
 	
-	//Inner Focus + Focus Blast
+	//Inner Focus + Focus Blast - Ability and Innate
 	if(move == MOVE_FOCUS_BLAST && (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_INNER_FOCUS) || atkAbility == ABILITY_INNER_FOCUS))
 		moveAcc = 90;
 	
@@ -1777,11 +1777,11 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
 
-    if (atkAbility == ABILITY_COMPOUND_EYES)
+    if (atkAbility == ABILITY_COMPOUND_EYES || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_COMPOUND_EYES))
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
-    else if (atkAbility == ABILITY_VICTORY_STAR)
+    else if (atkAbility == ABILITY_VICTORY_STAR || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_VICTORY_STAR))
         calc = (calc * 110) / 100; // 1.1 victory star boost
-    if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)) && GetBattlerAbility(BATTLE_PARTNER(battlerAtk)) == ABILITY_VICTORY_STAR)
+    if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)) && (GetBattlerAbility(BATTLE_PARTNER(battlerAtk)) == ABILITY_VICTORY_STAR || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_VICTORY_STAR)))
         calc = (calc * 110) / 100; // 1.1 ally's victory star boost
 	
     if (atkAbility == ABILITY_ILLUMINATE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ILLUMINATE))
@@ -1794,7 +1794,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     else if (defAbility == ABILITY_TANGLED_FEET && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
         calc = (calc * 50) / 100; // 1.5 tangled feet loss
 
-    if (atkAbility == ABILITY_HUSTLE && IS_MOVE_PHYSICAL(move))
+    if (atkAbility == ABILITY_HUSTLE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE && IS_MOVE_PHYSICAL(move)))
         calc = (calc * 80) / 100; // 1.2 hustle loss
 
     if (defHoldEffect == HOLD_EFFECT_EVASION_UP)
@@ -3535,7 +3535,7 @@ static void Cmd_seteffectwithchance(void)
 
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE)
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
-    else if (GetBattlerAbility(gBattlerAttacker) == ABILITY_PYROMANCY
+    else if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PYROMANCY || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PYROMANCY))
              && moveType == TYPE_FIRE
              && moveEffect == EFFECT_BURN_HIT)
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 5;
@@ -10822,8 +10822,8 @@ static void Cmd_tryKO(void)
     {
         if ((((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS)
                 && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
-            || GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD
-            || GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD)
+            || GetBattlerAbility(gBattlerAttacker) == (ABILITY_NO_GUARD || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_NO_GUARD))
+            || GetBattlerAbility(gBattlerTarget) == (ABILITY_NO_GUARD || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_NO_GUARD)))
             && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
         {
             lands = TRUE;
