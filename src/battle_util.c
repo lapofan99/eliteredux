@@ -2508,7 +2508,7 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
 }
 
 #define MAGIC_GUARD_CHECK \
-if (ability == ABILITY_MAGIC_GUARD) \
+if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_IMPENETRABLE || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MAGIC_GUARD) || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_IMPENETRABLE)) \
 {\
     RecordAbilityBattle(gActiveBattler, ability);\
     gBattleStruct->turnEffectsTracker++;\
@@ -5867,7 +5867,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
-                    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD  &&
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD) &&
+					     GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE && 
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                     {
                         gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
                         if (gBattleMoveDamage == 0)
@@ -5881,7 +5884,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
-                    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD  &&
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD) &&
+					     GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE && 
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                     {
                         gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
                         if (gBattleMoveDamage == 0)
@@ -7325,7 +7331,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 {
                     goto LEFTOVERS;
                 }
-                else if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD && !moveTurn)
+                else if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD  &&
+				         !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGIC_GUARD) &&
+					     GetBattlerAbility(battlerId) != ABILITY_IMPENETRABLE && 
+				         !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_IMPENETRABLE) &&
+						 !moveTurn)
                 {
                     gBattleMoveDamage = gBattleMons[battlerId].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -7790,6 +7800,9 @@ case ITEMEFFECT_KINGSROCK:
             if (gSpecialStatuses[gBattlerAttacker].damagedMons
                 && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
+                && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE)
                 && gBattlerAttacker != gBattlerTarget
                 && gBattleMons[gBattlerAttacker].hp != 0)
             {
@@ -7837,7 +7850,10 @@ case ITEMEFFECT_KINGSROCK:
                 if (TARGET_TURN_DAMAGED
                     && IsMoveMakingContact(gCurrentMove, gBattlerAttacker)
                     && IsBattlerAlive(gBattlerAttacker)
-                    && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+					&& GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
+                    && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
+					&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
+					&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                 {
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 6;
                     if (gBattleMoveDamage == 0)
@@ -7908,7 +7924,10 @@ case ITEMEFFECT_KINGSROCK:
                  && TARGET_TURN_DAMAGED
                  && !DoesSubstituteBlockMove(gBattlerAttacker, battlerId, gCurrentMove)
                  && IS_MOVE_PHYSICAL(gCurrentMove)
-                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
+			     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
+				 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                 {
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -7928,7 +7947,10 @@ case ITEMEFFECT_KINGSROCK:
                  && TARGET_TURN_DAMAGED
                  && !DoesSubstituteBlockMove(gBattlerAttacker, battlerId, gCurrentMove)
                  && IS_MOVE_SPECIAL(gCurrentMove)
-                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
+			     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
+				 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                 {
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -8001,7 +8023,10 @@ case ITEMEFFECT_KINGSROCK:
             }
             break;
         case HOLD_EFFECT_STICKY_BARB:   // Not an orb per se, but similar effect, and needs to NOT activate with pickpocket
-            if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD)
+            if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD
+                 && GetBattlerAbility(battlerId) != ABILITY_IMPENETRABLE
+			     && !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGIC_GUARD)
+				 && !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_IMPENETRABLE))
             {
                 gBattleMoveDamage = gBattleMons[battlerId].maxHP / 8;
                 if (gBattleMoveDamage == 0)

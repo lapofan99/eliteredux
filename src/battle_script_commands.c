@@ -1762,6 +1762,10 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 
     moveAcc = gBattleMoves[move].accuracy;
 	
+	//Hypnotist + Hypnosis - Ability and Innate
+	if(move == MOVE_HYPNOSIS && (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYPNOTIST) || atkAbility == ABILITY_HYPNOTIST))
+		moveAcc = moveAcc * 1.5;
+	
 	//Inner Focus + Focus Blast - Ability and Innate
 	if(move == MOVE_FOCUS_BLAST && (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_INNER_FOCUS) || atkAbility == ABILITY_INNER_FOCUS))
 		moveAcc = 90;
@@ -3365,7 +3369,11 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_FLAME_BURST:
-                if (IsBattlerAlive(BATTLE_PARTNER(gBattlerTarget)) && GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) != ABILITY_MAGIC_GUARD)
+                if (IsBattlerAlive(BATTLE_PARTNER(gBattlerTarget)) && 
+				    GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) != ABILITY_MAGIC_GUARD &&
+                    GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) != ABILITY_IMPENETRABLE &&
+		            !SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(gBattlerTarget)].species, ABILITY_MAGIC_GUARD) &&
+		            !SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(gBattlerTarget)].species, ABILITY_IMPENETRABLE))
                 {
                     gBattleScripting.savedBattler = BATTLE_PARTNER(gBattlerTarget);
                     gBattleMoveDamage = gBattleMons[BATTLE_PARTNER(gBattlerTarget)].hp / 16;
@@ -4972,7 +4980,11 @@ static void Cmd_moveend(void)
         case MOVEEND_PROTECT_LIKE_EFFECT:
             if (gProtectStructs[gBattlerAttacker].touchedProtectLike)
             {
-                if (gProtectStructs[gBattlerTarget].spikyShielded && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                if (gProtectStructs[gBattlerTarget].spikyShielded && 
+					GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD &&
+                    GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE &&
+		            !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD) &&
+		            !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                 {
                     gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
@@ -6369,6 +6381,9 @@ static void Cmd_switchineffects(void)
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES_DAMAGED)
         && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SPIKES)
         && GetBattlerAbility(gActiveBattler) != ABILITY_MAGIC_GUARD
+        && GetBattlerAbility(gActiveBattler) != ABILITY_IMPENETRABLE
+		&& !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MAGIC_GUARD)
+		&& !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_IMPENETRABLE)
         && IsBattlerAffectedByHazards(gActiveBattler, FALSE)
         && IsBattlerGrounded(gActiveBattler))
     {
@@ -6383,7 +6398,10 @@ static void Cmd_switchineffects(void)
     else if (!(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK_DAMAGED)
         && (gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)
         && IsBattlerAffectedByHazards(gActiveBattler, FALSE)
-        && GetBattlerAbility(gActiveBattler) != ABILITY_MAGIC_GUARD)
+        && GetBattlerAbility(gActiveBattler) != ABILITY_MAGIC_GUARD
+        && GetBattlerAbility(gActiveBattler) != ABILITY_IMPENETRABLE
+		&& !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MAGIC_GUARD)
+		&& !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_IMPENETRABLE))
     {
         gSideStatuses[GetBattlerSide(gActiveBattler)] |= SIDE_STATUS_STEALTH_ROCK_DAMAGED;
         gBattleMoveDamage = GetStealthHazardDamage(gBattleMoves[MOVE_STEALTH_ROCK].type, gActiveBattler);
@@ -10895,7 +10913,11 @@ static void Cmd_weatherdamage(void)
     u32 ability = GetBattlerAbility(gBattlerAttacker);
 
     gBattleMoveDamage = 0;
-    if (IsBattlerAlive(gBattlerAttacker) && WEATHER_HAS_EFFECT && ability != ABILITY_MAGIC_GUARD)
+    if (IsBattlerAlive(gBattlerAttacker) && WEATHER_HAS_EFFECT 
+	    && ability != ABILITY_MAGIC_GUARD
+        && ability != ABILITY_IMPENETRABLE
+		&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
+		&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
     {
         if (gBattleWeather & WEATHER_SANDSTORM_ANY)
         {

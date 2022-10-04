@@ -317,7 +317,8 @@ static const u8 sShortCircuitDescription[] = _("Ups Electric moves in a pinch.")
 static const u8 sMajesticBirdDescription[] = _("Boosts Special Attack by 50%.");
 static const u8 sPhantomDescription[] =  _("Adds Ghost-Type.");
 static const u8 sPoisonateDescription[] = _("Normal moves become Poison\nand get a 20% boost.");
-
+static const u8 sImpenetrableDescription[] = _("Takes no indirect damage.");
+static const u8 sHypnotistDescription[] = _("Increases Hypnosis accuracy by 50%.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -647,6 +648,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_MAJESTIC_BIRD] = _("Majestic Bird"),
 	[ABILITY_PHANTOM] = _("Phantom"),
 	[ABILITY_POISONATE] = _("Poisonate"),
+	[ABILITY_IMPENETRABLE] = _("Impenetrable"),
+	[ABILITY_HYPNOTIST] = _("Hypnotist"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -977,4 +980,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_MAJESTIC_BIRD] = sMajesticBirdDescription,
 	[ABILITY_PHANTOM] = sPhantomDescription,
 	[ABILITY_POISONATE] = sPoisonateDescription,
+	[ABILITY_IMPENETRABLE] = sImpenetrableDescription,
+	[ABILITY_HYPNOTIST] = sHypnotistDescription,
 };

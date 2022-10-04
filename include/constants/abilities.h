@@ -354,8 +354,10 @@
 #define ABILITY_MAJESTIC_BIRD	 (ABILITIES_COUNT_LATEST_GEN + 55) // Boosts Special Attack by 50%.
 #define ABILITY_PHANTOM	 		 (ABILITIES_COUNT_LATEST_GEN + 56) // Adds the Ghost-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_POISONATE        (ABILITIES_COUNT_LATEST_GEN + 57) // All Normal-type moves used by the Pokémon to become Poison-type and receive a 20% power boost.
+#define ABILITY_IMPENETRABLE     (ABILITIES_COUNT_LATEST_GEN + 58) // Takes no indirect damage.
+#define ABILITY_HYPNOTIST        (ABILITIES_COUNT_LATEST_GEN + 59) // Increases Hypnosis accuracy by 50%.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_POISONATE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_HYPNOTIST + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
