@@ -336,7 +336,7 @@
 #define ABILITY_DREAMCATCHER 	 (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 20% for each Pokemon asleep on the field.
 #define ABILITY_NOCTURNAL 	     (ABILITIES_COUNT_LATEST_GEN + 38) // Adds the Dark-type to the Pokémon at night, in addition to the Pokémon's original type(s), also boosts Attack, Sp. Attack and Speed stats by 10%, and Accuracy stat by 20%.
 #define ABILITY_SELF_SUFFICIENT  (ABILITIES_COUNT_LATEST_GEN + 39) // Heals 1/16 at the end of every turn.
-#define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 20% power boost.
+#define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Ground-type and receive a 20% power boost.
 #define ABILITY_ICE_AGE 		 (ABILITIES_COUNT_LATEST_GEN + 41) // Adds the Ice-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_HALF_DRAKE 		 (ABILITIES_COUNT_LATEST_GEN + 42) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_LIQUIFIED 		 (ABILITIES_COUNT_LATEST_GEN + 43) // Takes half damage from contact moves. Takes 2x damage from Water-type moves.
@@ -353,8 +353,9 @@
 #define ABILITY_SHORT_CIRCUIT	 (ABILITIES_COUNT_LATEST_GEN + 54) // Overgrow for Electric moves.
 #define ABILITY_MAJESTIC_BIRD	 (ABILITIES_COUNT_LATEST_GEN + 55) // Boosts Special Attack by 50%.
 #define ABILITY_PHANTOM	 		 (ABILITIES_COUNT_LATEST_GEN + 56) // Adds the Ghost-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_POISONATE        (ABILITIES_COUNT_LATEST_GEN + 57) // All Normal-type moves used by the Pokémon to become Poison-type and receive a 20% power boost.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_PHANTOM + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_POISONATE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
