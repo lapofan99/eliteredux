@@ -355,8 +355,8 @@
 // Karathan's Custom Abilities
 
 #define ABILITY_SOUL_EATER       (ABILITIES_COUNT_LATEST_GEN + 55) // Whenever another Pokémon faints, restores 25% of its maximum HP and boosts offensive and defensive stats by 10%
-#define ABILITY_SOUL_LINKER      (ABILITIES_COUNT_LATEST_GEN + 56)
-#define ABILITY_SWEET_DREAMS     (ABILITIES_COUNT_LATEST_GEN + 57)
+#define ABILITY_SOUL_LINKER      (ABILITIES_COUNT_LATEST_GEN + 56) // The attacker will receive any damage taken by the Pokémon and the Pokémon will receive any damage done to the target. The effect won't activate if the one of the affected Pokémon faints.
+#define ABILITY_SWEET_DREAMS     (ABILITIES_COUNT_LATEST_GEN + 57) // At the end of each turn, each sleeping allies restores HP equal to 1/8 of its maximum HP. The Pokémon on your side of field are immune to opposing Bad Dreams ability.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_SWEET_DREAMS + 1)
 
