@@ -1729,7 +1729,7 @@ static bool32 AccuracyCalcHelper(u16 move)
 
 u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 {
-    u32 calc, moveAcc, atkHoldEffect, atkParam, defHoldEffect, defParam, atkAbility, defAbility;
+    u32 calc, moveAcc, atkHoldEffect, atkParam, defHoldEffect, defParam, atkAbility, defAbility, abilityDefPartner;
     s8 buff, accStage, evasionStage;
 
     atkAbility = GetBattlerAbility(battlerAtk);
@@ -1737,6 +1737,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     atkParam = GetBattlerHoldEffectParam(battlerAtk);
 
     defAbility = GetBattlerAbility(battlerDef);
+    abilityDefPartner = IsBattlerAlive(BATTLE_PARTNER(gBattlerTarget)) ? GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) : ABILITY_NONE;
     defHoldEffect = GetBattlerHoldEffect(battlerDef, TRUE);
     defParam = GetBattlerHoldEffectParam(battlerDef);
     gPotentialItemEffectBattler = battlerDef;
@@ -1769,6 +1770,10 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 	//Inner Focus + Focus Blast - Ability and Innate
 	if(move == MOVE_FOCUS_BLAST && (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_INNER_FOCUS) || atkAbility == ABILITY_INNER_FOCUS))
 		moveAcc = 90;
+
+    // Bad Luck Ability lowers accuracy by 5%
+    if (defAbility == ABILITY_BAD_LUCK || abilityDefPartner == ABILITY_BAD_LUCK)
+        moveAcc = (moveAcc * 95) / 100;
 	
     // Check Thunder and Hurricane on sunny weather.
     if (IsBattlerWeatherAffected(battlerDef, WEATHER_SUN_ANY)
@@ -1966,6 +1971,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     s32 critChance = 0;
     u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
     u32 abilityDef = GetBattlerAbility(gBattlerTarget);
+    u32 abilityDefPartner = IsBattlerAlive(BATTLE_PARTNER(gBattlerTarget)) ? GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) : ABILITY_NONE;
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
 
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT
@@ -1973,7 +1979,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     {
         critChance = -1;
     }
-    else if (abilityDef == ABILITY_BATTLE_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR) ||abilityDef == ABILITY_SHELL_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHELL_ARMOR))
+    else if (abilityDef == ABILITY_BAD_LUCK || abilityDefPartner == ABILITY_BAD_LUCK || abilityDef == ABILITY_BATTLE_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR) ||abilityDef == ABILITY_SHELL_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHELL_ARMOR))
     {
         if (recordAbility)
             RecordAbilityBattle(battlerDef, abilityDef);

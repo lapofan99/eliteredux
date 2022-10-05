@@ -325,6 +325,7 @@ static const u8 sMajesticMothDescription[] = _("Ups highest stat by +1 on entry.
 static const u8 sSoulEaterDescription[] =  _("Heals 25% and boosts power\nupon defeating an enemy.");
 static const u8 sSoulLinkerDescription[] =  _("Receives any damage inflicted,\nshares all damage taken.");
 static const u8 sSweetDreamsDescription[] =  _("Heals when sleeping,\nimmune to bad dreams.");
+static const u8 sBadLuckDescription[] = _("Enemies can't critically strike\nand moves have -5% accuracy.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -662,6 +663,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SOUL_EATER] = _("Soul Eater"),
     [ABILITY_SOUL_LINKER] = _("Soul Linker"),
     [ABILITY_SWEET_DREAMS] = _("Sweet Dreams"),
+    [ABILITY_BAD_LUCK] = _("Bad Luck"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1000,4 +1002,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SOUL_EATER] = sSoulEaterDescription,
     [ABILITY_SOUL_LINKER] = sSoulLinkerDescription,
     [ABILITY_SWEET_DREAMS] = sSweetDreamsDescription,
+    [ABILITY_BAD_LUCK] = sBadLuckDescription,
 };
