@@ -321,6 +321,8 @@ static const u8 sImpenetrableDescription[] = _("Takes no indirect damage.");
 static const u8 sHypnotistDescription[] = _("Increases Hypnosis accuracy by 50%.");
 static const u8 sOverwhelmDescription[] = _("The Pokémon can hit Fairy-type Pokémon with Dragon-type moves.");
 static const u8 sScareDescription[] = _("Lowers the foe's Special Attack.");
+static const u8 sMajesticMothDescription[] = _("Ups highest stat by +1 on entry.");
+
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -654,6 +656,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_HYPNOTIST] = _("Hypnotist"),
 	[ABILITY_OVERWHELM] = _("Overwhelm"),
 	[ABILITY_SCARE] = _("Scare"),
+	[ABILITY_MAJESTIC_MOTH] = _("Majestic Moth"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -988,4 +991,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_HYPNOTIST] = sHypnotistDescription,
 	[ABILITY_OVERWHELM] = sOverwhelmDescription,
 	[ABILITY_SCARE] = sScareDescription,
+	[ABILITY_MAJESTIC_MOTH] = sMajesticMothDescription,
 };

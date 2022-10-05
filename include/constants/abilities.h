@@ -357,9 +357,10 @@
 #define ABILITY_IMPENETRABLE     (ABILITIES_COUNT_LATEST_GEN + 58) // Takes no indirect damage.
 #define ABILITY_HYPNOTIST        (ABILITIES_COUNT_LATEST_GEN + 59) // Increases Hypnosis accuracy by 50%.
 #define ABILITY_OVERWHELM        (ABILITIES_COUNT_LATEST_GEN + 60) // The Pokémon can hit Fairy-type Pokémon with Dragon-type moves. Also blocks Intimidate and Scare.
-#define ABILITY_SCARE            (ABILITIES_COUNT_LATEST_GEN + 61) // The Pokémon can hit Fairy-type Pokémon with Dragon-type moves. Also blocks Intimidate and Scare.
+#define ABILITY_SCARE            (ABILITIES_COUNT_LATEST_GEN + 61) // Special Intimidate.
+#define ABILITY_MAJESTIC_MOTH    (ABILITIES_COUNT_LATEST_GEN + 62) // Increases the highest stat by one stage upon entering the battlefield.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SCARE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_MAJESTIC_MOTH + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
