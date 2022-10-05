@@ -7915,6 +7915,7 @@ BattleScript_IntimidateActivatesLoop:
 	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_IntimidatePrevented
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_IntimidatePrevented
 	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_OVERWHELM, BattleScript_IntimidatePrevented
 .endif
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_IntimidateActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_IntimidateActivatesLoopIncrement
@@ -7937,6 +7938,51 @@ BattleScript_IntimidatePrevented:
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryAdrenalineOrb
 	goto BattleScript_IntimidateActivatesLoopIncrement
+	
+BattleScript_ScareActivatesEnd3::
+	call BattleScript_PauseScareActivates
+	end3
+
+BattleScript_PauseScareActivates:
+	pause B_WAIT_TIME_SHORT
+BattleScript_ScareActivates::
+	setbyte gBattlerTarget, 0
+	call BattleScript_AbilityPopUp
+BattleScript_ScareActivatesLoop:
+	setstatchanger STAT_SPATK, 1, TRUE
+	trygetintimidatetarget BattleScript_ScareActivatesReturn
+	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_ScareActivatesLoopIncrement
+	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_ScarePrevented
+.if B_UPDATED_INTIMIDATE >= GEN_8
+	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_ScarePrevented
+	jumpifability BS_TARGET, ABILITY_OVERWHELM, BattleScript_ScarePrevented
+.endif
+	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_ScareActivatesLoopIncrement
+	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_ScareActivatesLoopIncrement
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_PKMNCUTSSPATTACKWITH
+	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_TryAdrenalineOrb
+BattleScript_ScareActivatesLoopIncrement:
+	addbyte gBattlerTarget, 1
+	goto BattleScript_ScareActivatesLoop
+BattleScript_ScareActivatesReturn:
+	return
+BattleScript_ScarePrevented:
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	setbyte gBattleCommunication STAT_SPATK
+	stattextbuffer BS_ATTACKER
+	printstring STRINGID_STATWASNOTLOWERED
+	waitmessage B_WAIT_TIME_LONG
+	call BattleScript_TryAdrenalineOrb
+	goto BattleScript_ScareActivatesLoopIncrement
 
 BattleScript_DroughtActivates::
 	pause B_WAIT_TIME_SHORT

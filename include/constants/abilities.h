@@ -356,8 +356,10 @@
 #define ABILITY_POISONATE        (ABILITIES_COUNT_LATEST_GEN + 57) // All Normal-type moves used by the Pokémon to become Poison-type and receive a 20% power boost.
 #define ABILITY_IMPENETRABLE     (ABILITIES_COUNT_LATEST_GEN + 58) // Takes no indirect damage.
 #define ABILITY_HYPNOTIST        (ABILITIES_COUNT_LATEST_GEN + 59) // Increases Hypnosis accuracy by 50%.
+#define ABILITY_OVERWHELM        (ABILITIES_COUNT_LATEST_GEN + 60) // The Pokémon can hit Fairy-type Pokémon with Dragon-type moves. Also blocks Intimidate and Scare.
+#define ABILITY_SCARE            (ABILITIES_COUNT_LATEST_GEN + 61) // The Pokémon can hit Fairy-type Pokémon with Dragon-type moves. Also blocks Intimidate and Scare.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_HYPNOTIST + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SCARE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

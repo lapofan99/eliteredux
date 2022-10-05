@@ -319,6 +319,8 @@ static const u8 sPhantomDescription[] =  _("Adds Ghost-Type.");
 static const u8 sPoisonateDescription[] = _("Normal moves become Poison\nand get a 20% boost.");
 static const u8 sImpenetrableDescription[] = _("Takes no indirect damage.");
 static const u8 sHypnotistDescription[] = _("Increases Hypnosis accuracy by 50%.");
+static const u8 sOverwhelmDescription[] = _("The Pokémon can hit Fairy-type Pokémon with Dragon-type moves.");
+static const u8 sScareDescription[] = _("Lowers the foe's Special Attack.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -650,6 +652,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_POISONATE] = _("Poisonate"),
 	[ABILITY_IMPENETRABLE] = _("Impenetrable"),
 	[ABILITY_HYPNOTIST] = _("Hypnotist"),
+	[ABILITY_OVERWHELM] = _("Overwhelm"),
+	[ABILITY_SCARE] = _("Scare"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -982,4 +986,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_POISONATE] = sPoisonateDescription,
 	[ABILITY_IMPENETRABLE] = sImpenetrableDescription,
 	[ABILITY_HYPNOTIST] = sHypnotistDescription,
+	[ABILITY_OVERWHELM] = sOverwhelmDescription,
+	[ABILITY_SCARE] = sScareDescription,
 };

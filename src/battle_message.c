@@ -283,7 +283,7 @@ static const u8 sText_PkmnPreventsPoisoningWith[] = _("{B_EFF_NAME_WITH_PREFIX}'
 static const u8 sText_PkmnPreventsConfusionWith[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nprevents confusion!");
 static const u8 sText_PkmnRaisedFirePowerWith[] = _("{B_DEF_NAME_WITH_PREFIX}'s {B_DEF_ABILITY}\nraised its Fire power!");
 static const u8 sText_PkmnAnchorsItselfWith[] = _("{B_DEF_NAME_WITH_PREFIX} anchors\nitself with {B_DEF_ABILITY}!");
-static const u8 sText_PkmnCutsAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\ncuts {B_DEF_NAME_WITH_PREFIX}'s Attack!");
+static const u8 sText_PkmnCutsAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Intimidate\ncuts {B_DEF_NAME_WITH_PREFIX}'s Attack!");
 static const u8 sText_PkmnPreventsStatLossWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_SCR_ACTIVE_ABILITY}\nprevents stat loss!");
 static const u8 sText_PkmnHurtsWith[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt by\n{B_DEF_NAME_WITH_PREFIX}'s {B_BUFF1}!");
 static const u8 sText_PkmnTraced[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} Traced\n{B_BUFF1}'s {B_BUFF2}!");
@@ -750,9 +750,11 @@ static const u8 sText_AbilityRestoredHPALittle[] = _("{B_ACTIVE_NAME_WITH_PREFIX
 static const u8 sText_BattlerEnvelopedItselfInAVeil[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s enveloped itself in\na veil made of water");
 static const u8 sText_BattlerAbilitySetUpTailwind[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Air Blower set up \nTailwind!");
 static const u8 sText_TargetPkmnHurtsWith[] = _("{B_DEF_NAME_WITH_PREFIX} was hurt by\n{B_ATK_NAME_WITH_PREFIX}'s {B_BUFF1}!");
+static const u8 sText_PkmnCutsSpecialAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Scare\ncuts {B_DEF_NAME_WITH_PREFIX}'s Special Attack!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_PKMNCUTSSPATTACKWITH - 12] = sText_PkmnCutsSpecialAttackWith,
 	[STRINGID_TARGETPKMNHURTSWITH - 12] = sText_TargetPkmnHurtsWith,
 	[STRINGID_AIRBLOWERACTIVATED - 12] = sText_BattlerAbilitySetUpTailwind,
 	[STRINGID_BATTLERENVELOPEDITSELFINAVEIL - 12] = sText_BattlerEnvelopedItselfInAVeil,

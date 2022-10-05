@@ -4537,6 +4537,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_INTIMIDATE:
+        case ABILITY_SCARE:
             if (!(gSpecialStatuses[battler].intimidatedMon))
             {
                 gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
@@ -4795,6 +4796,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerInnateStatRaiseOnSwitchIn);
 				effect++;
+			}
+		}
+		// Intimidate + Scare
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE) ||
+		   SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCARE)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone &&!(gSpecialStatuses[battler].intimidatedMon) )
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE)){
+					gBattleScripting.abilityPopupOverwrite = ABILITY_INTIMIDATE;
+					gLastUsedAbility = ABILITY_INTIMIDATE;
+				}
+				else{
+					gBattleScripting.abilityPopupOverwrite = ABILITY_SCARE;
+					gLastUsedAbility = ABILITY_SCARE;
+				}
+				gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
+				gSpecialStatuses[battler].intimidatedMon = TRUE;
 			}
 		}
 		//Zen Mode
@@ -6333,7 +6352,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_INTIMIDATE2:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (GetBattlerAbility(i) == ABILITY_INTIMIDATE && gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
+            if ((GetBattlerAbility(i) == ABILITY_INTIMIDATE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_INTIMIDATE))
+				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
             {
                 gLastUsedAbility = ABILITY_INTIMIDATE;
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
@@ -6345,6 +6365,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_IntimidateActivates;
+                }
+                battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
+                effect++;
+                break;
+            }
+			else if ((GetBattlerAbility(i) == ABILITY_SCARE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_SCARE))
+				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
+            {
+                gLastUsedAbility = ABILITY_SCARE;
+                gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
+                if (caseID == ABILITYEFFECT_INTIMIDATE1)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_ScareActivatesEnd3);
+                }
+                else
+                {
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_ScareActivates;
                 }
                 battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
                 effect++;
@@ -10381,6 +10419,13 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         mod = UQ_4_12(2.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_CORROSION);
+    }
+	else if (moveType == TYPE_DRAGON && defType == TYPE_FAIRY && (GetBattlerAbility(battlerAtk) == ABILITY_OVERWHELM || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERWHELM)) && mod == UQ_4_12(0.0))
+    {
+		//Has Innate Effect here too
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_OVERWHELM);
     }
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))

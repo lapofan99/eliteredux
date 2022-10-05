@@ -429,5 +429,8 @@ extern const u8 BattleScript_SelfSufficientActivates[];
 extern const u8 BattleScript_BattlerEnvelopedItselfInAVeil[];
 extern const u8 BattleScript_AirBlowerActivated[];
 extern const u8 BattleScript_AttackerRoughSkinActivates[];
+extern const u8 BattleScript_ScareActivates[];
+extern const u8 BattleScript_ScareActivates[];
+extern const u8 BattleScript_ScareActivatesEnd3[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

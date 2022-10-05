@@ -113,7 +113,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_MONSTER,
         .eggGroup2 = EGG_GROUP_DRAGON,
         #ifdef REBALANCED_VERSION
-            .abilities = {ABILITY_COIL_UP, ABILITY_TOUGH_CLAWS, ABILITY_SOLAR_POWER},
+            .abilities = {ABILITY_PYROMANCY, ABILITY_TOUGH_CLAWS, ABILITY_SOLAR_POWER},
         #else
             .abilities = {ABILITY_BLAZE, ABILITY_BLAZE, ABILITY_SOLAR_POWER},
         #endif
@@ -142,7 +142,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_MONSTER,
         .eggGroup2 = EGG_GROUP_DRAGON,
         #ifdef REBALANCED_VERSION
-            .abilities = {ABILITY_JUGGERNAUT, ABILITY_TOUGH_CLAWS, ABILITY_SOLAR_POWER},
+            .abilities = {ABILITY_PYROMANCY, ABILITY_TOUGH_CLAWS, ABILITY_SOLAR_POWER},
         #else
             .abilities = {ABILITY_BLAZE, ABILITY_BLAZE, ABILITY_SOLAR_POWER},
         #endif
