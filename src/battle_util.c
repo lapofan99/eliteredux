@@ -2508,7 +2508,7 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
 }
 
 #define MAGIC_GUARD_CHECK \
-if (ability == ABILITY_MAGIC_GUARD) \
+if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_IMPENETRABLE || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MAGIC_GUARD) || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_IMPENETRABLE)) \
 {\
     RecordAbilityBattle(gActiveBattler, ability);\
     gBattleStruct->turnEffectsTracker++;\
@@ -4392,6 +4392,40 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
             break;
+		case ABILITY_MAJESTIC_MOTH:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                u32 statId = STAT_ATK;
+                u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
+				u32 userDef = gBattleMons[battler].defense * gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][1];
+				u32 userSpAtk = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1]; 
+				u32 userSpDef = gBattleMons[battler].spDefense * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][1]; 
+				u32 userSpd = gBattleMons[battler].speed * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
+
+                if (userAtk >= userDef && userAtk >= userSpAtk && userAtk >= userSpDef && userAtk >= userSpd) // Attack is higher
+                    statId = STAT_ATK;
+                else if (userDef >= userAtk && userDef >= userSpAtk && userDef >= userSpDef && userDef >= userSpd) // Defense is higher
+                    statId = STAT_DEF;
+                else if (userSpAtk >= userAtk && userSpAtk >= userDef && userSpAtk >= userSpDef && userSpAtk >= userSpd) // Sp.Atk is higher
+                    statId = STAT_SPATK;
+                else if (userSpDef >= userAtk && userSpDef >= userSpAtk && userSpDef >= userDef && userSpDef >= userSpd) // Sp.Def is higher
+                    statId = STAT_SPDEF;
+                else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
+                    statId = STAT_SPEED;
+
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+
+                if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
+                {
+                    gBattleMons[battler].statStages[statId]++;
+                    SET_STATCHANGER(statId, 1, FALSE);
+                    gBattlerAttacker = battler;
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                    effect++;
+                }
+            }
+            break;
         case ABILITY_PRESSURE:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -4537,6 +4571,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_INTIMIDATE:
+        case ABILITY_SCARE:
             if (!(gSpecialStatuses[battler].intimidatedMon))
             {
                 gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
@@ -4697,6 +4732,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
             }
             break;
+		case ABILITY_PHANTOM:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_PHANTOM;
+				gLastUsedAbility = ABILITY_PHANTOM;
+				gBattleMons[battler].type3 = TYPE_GHOST;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+            }
+            break;
 		case ABILITY_TERAVOLT:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -4783,6 +4830,60 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerInnateStatRaiseOnSwitchIn);
 				effect++;
+			}
+		}
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAJESTIC_MOTH)){
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                u32 statId = STAT_ATK;
+                u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
+				u32 userDef = gBattleMons[battler].defense * gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_DEF]][1];
+				u32 userSpAtk = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1]; 
+				u32 userSpDef = gBattleMons[battler].spDefense * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][1]; 
+				u32 userSpd = gBattleMons[battler].speed * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
+
+                if (userAtk >= userDef && userAtk >= userSpAtk && userAtk >= userSpDef && userAtk >= userSpd) // Attack is higher
+                    statId = STAT_ATK;
+                else if (userDef >= userAtk && userDef >= userSpAtk && userDef >= userSpDef && userDef >= userSpd) // Defense is higher
+                    statId = STAT_DEF;
+                else if (userSpAtk >= userAtk && userSpAtk >= userDef && userSpAtk >= userSpDef && userSpAtk >= userSpd) // Sp.Atk is higher
+                    statId = STAT_SPATK;
+                else if (userSpDef >= userAtk && userSpDef >= userSpAtk && userSpDef >= userDef && userSpDef >= userSpd) // Sp.Def is higher
+                    statId = STAT_SPDEF;
+                else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
+                    statId = STAT_SPEED;
+
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_MAJESTIC_MOTH;
+				gLastUsedAbility = ABILITY_MAJESTIC_MOTH;
+
+                if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
+                {
+                    gBattleMons[battler].statStages[statId]++;
+                    SET_STATCHANGER(statId, 1, FALSE);
+                    gBattlerAttacker = battler;
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerInnateStatRaiseOnSwitchIn);
+                    effect++;
+                }
+            }
+		}
+		// Intimidate + Scare
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE) ||
+		   SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCARE)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone &&!(gSpecialStatuses[battler].intimidatedMon) )
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE)){
+					gBattleScripting.abilityPopupOverwrite = ABILITY_INTIMIDATE;
+					gLastUsedAbility = ABILITY_INTIMIDATE;
+				}
+				else{
+					gBattleScripting.abilityPopupOverwrite = ABILITY_SCARE;
+					gLastUsedAbility = ABILITY_SCARE;
+				}
+				gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
+				gSpecialStatuses[battler].intimidatedMon = TRUE;
 			}
 		}
 		//Zen Mode
@@ -4881,6 +4982,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
 				gLastUsedAbility = ABILITY_DRAGONFLY;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+			}
+		}
+		// Phantom
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PHANTOM)){
+			if (!gSpecialStatuses[battler].switchInAbilityDone)
+			{
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_PHANTOM;
+				gLastUsedAbility = ABILITY_PHANTOM;
+				gBattleMons[battler].type3 = TYPE_GHOST;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
@@ -5864,7 +5978,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
-                    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD  &&
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD) &&
+					     GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE && 
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                     {
                         gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
                         if (gBattleMoveDamage == 0)
@@ -5878,7 +5995,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
-                    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD  &&
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD) &&
+					     GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE && 
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                     {
                         gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
                         if (gBattleMoveDamage == 0)
@@ -6335,7 +6455,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_INTIMIDATE2:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if (GetBattlerAbility(i) == ABILITY_INTIMIDATE && gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
+            if ((GetBattlerAbility(i) == ABILITY_INTIMIDATE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_INTIMIDATE))
+				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
             {
                 gLastUsedAbility = ABILITY_INTIMIDATE;
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
@@ -6347,6 +6468,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_IntimidateActivates;
+                }
+                battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
+                effect++;
+                break;
+            }
+			else if ((GetBattlerAbility(i) == ABILITY_SCARE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_SCARE))
+				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
+            {
+                gLastUsedAbility = ABILITY_SCARE;
+                gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
+                if (caseID == ABILITYEFFECT_INTIMIDATE1)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_ScareActivatesEnd3);
+                }
+                else
+                {
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_ScareActivates;
                 }
                 battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
                 effect++;
@@ -7333,7 +7472,11 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                 {
                     goto LEFTOVERS;
                 }
-                else if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD && !moveTurn)
+                else if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD  &&
+				         !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGIC_GUARD) &&
+					     GetBattlerAbility(battlerId) != ABILITY_IMPENETRABLE && 
+				         !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_IMPENETRABLE) &&
+						 !moveTurn)
                 {
                     gBattleMoveDamage = gBattleMons[battlerId].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -7798,6 +7941,9 @@ case ITEMEFFECT_KINGSROCK:
             if (gSpecialStatuses[gBattlerAttacker].damagedMons
                 && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
+                && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE)
                 && gBattlerAttacker != gBattlerTarget
                 && gBattleMons[gBattlerAttacker].hp != 0)
             {
@@ -7845,7 +7991,10 @@ case ITEMEFFECT_KINGSROCK:
                 if (TARGET_TURN_DAMAGED
                     && IsMoveMakingContact(gCurrentMove, gBattlerAttacker)
                     && IsBattlerAlive(gBattlerAttacker)
-                    && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+					&& GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
+                    && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
+					&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
+					&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                 {
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 6;
                     if (gBattleMoveDamage == 0)
@@ -7916,7 +8065,10 @@ case ITEMEFFECT_KINGSROCK:
                  && TARGET_TURN_DAMAGED
                  && !DoesSubstituteBlockMove(gBattlerAttacker, battlerId, gCurrentMove)
                  && IS_MOVE_PHYSICAL(gCurrentMove)
-                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
+			     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
+				 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                 {
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -7936,7 +8088,10 @@ case ITEMEFFECT_KINGSROCK:
                  && TARGET_TURN_DAMAGED
                  && !DoesSubstituteBlockMove(gBattlerAttacker, battlerId, gCurrentMove)
                  && IS_MOVE_SPECIAL(gCurrentMove)
-                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD)
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
+			     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
+				 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
                 {
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -8009,7 +8164,10 @@ case ITEMEFFECT_KINGSROCK:
             }
             break;
         case HOLD_EFFECT_STICKY_BARB:   // Not an orb per se, but similar effect, and needs to NOT activate with pickpocket
-            if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD)
+            if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD
+                 && GetBattlerAbility(battlerId) != ABILITY_IMPENETRABLE
+			     && !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGIC_GUARD)
+				 && !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_IMPENETRABLE))
             {
                 gBattleMoveDamage = gBattleMons[battlerId].maxHP / 8;
                 if (gBattleMoveDamage == 0)
@@ -8975,6 +9133,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
+	case ABILITY_POISONATE:
+        if (moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_GALVANIZE:
         if (moveType == TYPE_ELECTRIC && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -9092,6 +9254,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
+	// Poisonate
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POISONATE)){
+		if (moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
+	
 	// Long Reach
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH)){
 		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
@@ -9147,6 +9315,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(2.0));
 	}
 	
+	// Majestic Bird
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MAJESTIC_BIRD)){
+		if (IS_MOVE_SPECIAL(move))
+            MulModifier(&modifier, UQ_4_12(1.5));
+	}
+	
 	//Toxic Boost
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TOXIC_BOOST)){
 		if (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY && IS_MOVE_PHYSICAL(move))
@@ -9158,6 +9332,19 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_SPECIAL(move))
            MulModifier(&modifier, UQ_4_12(1.5));
 	}
+	
+	// Mega Launcher
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MEGA_LAUNCHER)){
+		if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.5));
+	}
+	
+	// Hustle
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE)){
+		if (IS_MOVE_PHYSICAL(move))
+            MulModifier(&modifier, UQ_4_12(1.5));
+	}
+	
 	
     // field abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)
@@ -9233,6 +9420,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
                 RecordAbilityBattle(battlerDef, ability);
         }
         break;
+	case ABILITY_SHELL_ARMOR:
 	case ABILITY_BATTLE_ARMOR:
         MulModifier(&modifier, UQ_4_12(0.9));
         if (updateFlags)
@@ -9281,7 +9469,8 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		}
     }
 	// Battle Armor
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHELL_ARMOR)){
 		MulModifier(&modifier, UQ_4_12(0.9));
     }
 	// Lead Coat
@@ -9653,6 +9842,10 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	case ABILITY_FELINE_PROWESS:
         if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(2.0));
+        break;
+	case ABILITY_MAJESTIC_BIRD:
+        if (IS_MOVE_SPECIAL(move))
+            MulModifier(&modifier, UQ_4_12(1.5));
         break;
     }
 	
@@ -10329,6 +10522,13 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         mod = UQ_4_12(2.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_CORROSION);
+    }
+	else if (moveType == TYPE_DRAGON && defType == TYPE_FAIRY && (GetBattlerAbility(battlerAtk) == ABILITY_OVERWHELM || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERWHELM)) && mod == UQ_4_12(0.0))
+    {
+		//Has Innate Effect here too
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_OVERWHELM);
     }
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))

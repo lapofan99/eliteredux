@@ -336,7 +336,7 @@
 #define ABILITY_DREAMCATCHER     (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 20% for each Pokemon asleep on the field.
 #define ABILITY_NOCTURNAL        (ABILITIES_COUNT_LATEST_GEN + 38) // Adds the Dark-type to the Pokémon at night, in addition to the Pokémon's original type(s), also boosts Attack, Sp. Attack and Speed stats by 10%, and Accuracy stat by 20%.
 #define ABILITY_SELF_SUFFICIENT  (ABILITIES_COUNT_LATEST_GEN + 39) // Heals 1/16 at the end of every turn.
-#define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 20% power boost.
+#define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Ground-type and receive a 20% power boost.
 #define ABILITY_ICE_AGE          (ABILITIES_COUNT_LATEST_GEN + 41) // Adds the Ice-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_HALF_DRAKE       (ABILITIES_COUNT_LATEST_GEN + 42) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_LIQUIFIED        (ABILITIES_COUNT_LATEST_GEN + 43) // Takes half damage from contact moves. Takes 2x damage from Water-type moves.
@@ -349,14 +349,19 @@
 #define ABILITY_PRIMAL_ARMOR     (ABILITIES_COUNT_LATEST_GEN + 50) // Reduces damage taken from super-effective attacks by 50%
 #define ABILITY_RAGING_BOXER     (ABILITIES_COUNT_LATEST_GEN + 51) // Punch moves hit twice, with second hit deals 0.5x.
 #define ABILITY_AIR_BLOWER       (ABILITIES_COUNT_LATEST_GEN + 52) // Sets Tailwind for 5 turns when entering battle.
-#define ABILITY_JUGGERNAUT       (ABILITIES_COUNT_LATEST_GEN + 53) // Contact moves use 20% of Defense stat in addition to the default stat. (Defense stat stages still affects these percentage). Also, the Pokémon cannot be paralyzed.
+#define ABILITY_JUGGERNAUT       (ABILITIES_COUNT_LATEST_GEN + 53) // Contact moves use 20% of Defense stat in addition to the default stat. Also, the Pokémon cannot be paralyzed.
 #define ABILITY_SHORT_CIRCUIT    (ABILITIES_COUNT_LATEST_GEN + 54) // Overgrow for Electric moves.
-
-// Karathan's Custom Abilities
-
-#define ABILITY_SOUL_EATER       (ABILITIES_COUNT_LATEST_GEN + 55) // Whenever another Pokémon faints, restores 25% of its maximum HP and boosts offensive and defensive stats by 10%
-#define ABILITY_SOUL_LINKER      (ABILITIES_COUNT_LATEST_GEN + 56) // The attacker will receive any damage taken by the Pokémon and the Pokémon will receive any damage done to the target. The effect won't activate if the one of the affected Pokémon faints.
-#define ABILITY_SWEET_DREAMS     (ABILITIES_COUNT_LATEST_GEN + 57) // At the end of each turn, each sleeping allies restores HP equal to 1/8 of its maximum HP. The Pokémon on your side of field are immune to opposing Bad Dreams ability.
+#define ABILITY_MAJESTIC_BIRD    (ABILITIES_COUNT_LATEST_GEN + 55) // Boosts Special Attack by 50%.
+#define ABILITY_PHANTOM          (ABILITIES_COUNT_LATEST_GEN + 56) // Adds the Ghost-type to the Pokémon, in addition to the Pokémon's original type(s).
+#define ABILITY_POISONATE        (ABILITIES_COUNT_LATEST_GEN + 57) // All Normal-type moves used by the Pokémon to become Poison-type and receive a 20% power boost.
+#define ABILITY_IMPENETRABLE     (ABILITIES_COUNT_LATEST_GEN + 58) // Takes no indirect damage.
+#define ABILITY_HYPNOTIST        (ABILITIES_COUNT_LATEST_GEN + 59) // Increases Hypnosis accuracy by 50%.
+#define ABILITY_OVERWHELM        (ABILITIES_COUNT_LATEST_GEN + 60) // The Pokémon can hit Fairy-type Pokémon with Dragon-type moves. Also blocks Intimidate and Scare.
+#define ABILITY_SCARE            (ABILITIES_COUNT_LATEST_GEN + 61) // Special Intimidate.
+#define ABILITY_MAJESTIC_MOTH    (ABILITIES_COUNT_LATEST_GEN + 62) // Increases the highest stat by one stage upon entering the battlefield.
+#define ABILITY_SOUL_EATER       (ABILITIES_COUNT_LATEST_GEN + 63) // Whenever another Pokémon faints, restores 25% of its maximum HP and boosts offensive and defensive stats by 10%
+#define ABILITY_SOUL_LINKER      (ABILITIES_COUNT_LATEST_GEN + 64) // The attacker will receive any damage taken by the Pokémon and the Pokémon will receive any damage done to the target. The effect won't activate if the one of the affected Pokémon faints.
+#define ABILITY_SWEET_DREAMS     (ABILITIES_COUNT_LATEST_GEN + 65) // At the end of each turn, each sleeping allies restores HP equal to 1/8 of its maximum HP. The Pokémon on your side of field are immune to opposing Bad Dreams ability.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_SWEET_DREAMS + 1)
 
