@@ -9395,3 +9395,9 @@ BattleScript_SweetDreamsActivates::
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
 	end2
+	
+BattleScript_HauntedSpiritActivated::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNBECAMECURSED
+	waitmessage B_WAIT_TIME_LONG
+	return

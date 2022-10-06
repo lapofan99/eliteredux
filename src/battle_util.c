@@ -5750,6 +5750,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+		case ABILITY_HAUNTED_SPIRIT:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp == 0
+		     && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST)
+             && IsBattlerAlive(gBattlerAttacker)
+			 && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_CURSED)
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+				gBattleMons[gBattlerAttacker].status2 |= STATUS2_CURSED;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_HauntedSpiritActivated;
+                effect++;
+            }
+            break;
         case ABILITY_INNARDS_OUT:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp == 0
@@ -6023,6 +6037,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 		}
 		
+		//Haunted Spirit
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_HAUNTED_SPIRIT)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp == 0
+		     && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST)
+             && IsBattlerAlive(gBattlerAttacker)
+			 && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_CURSED)
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_HAUNTED_SPIRIT;
+				gLastUsedAbility = ABILITY_HAUNTED_SPIRIT;
+				
+				gBattleMons[gBattlerAttacker].status2 |= STATUS2_CURSED;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_HauntedSpiritActivated;
+                effect++;
+            }
+		}
 		
 		//Magical Dust
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAGICAL_DUST)){

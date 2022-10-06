@@ -326,6 +326,7 @@ static const u8 sSoulEaterDescription[] =  _("Heals 25% and boosts power\nupon d
 static const u8 sSoulLinkerDescription[] =  _("Receives any damage inflicted,\nshares all damage taken.");
 static const u8 sSweetDreamsDescription[] =  _("Heals when sleeping,\nimmune to bad dreams.");
 static const u8 sBadLuckDescription[] = _("Enemies can't critically strike\nand moves have -5% accuracy.");
+static const u8 sHauntedSpiritDescription[] = _("When the pokemon faints\nthe attacker becomes cursed.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -664,6 +665,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SOUL_LINKER] = _("Soul Linker"),
     [ABILITY_SWEET_DREAMS] = _("Sweet Dreams"),
     [ABILITY_BAD_LUCK] = _("Bad Luck"),
+    [ABILITY_HAUNTED_SPIRIT] = _("Haunted Spirit"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1003,4 +1005,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SOUL_LINKER] = sSoulLinkerDescription,
     [ABILITY_SWEET_DREAMS] = sSweetDreamsDescription,
     [ABILITY_BAD_LUCK] = sBadLuckDescription,
+    [ABILITY_HAUNTED_SPIRIT] = sHauntedSpiritDescription,
 };
