@@ -3,6 +3,7 @@
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
 #include "bg.h"
+#include "debug.h"
 #include "dexnav.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -65,7 +66,8 @@ enum
     MENU_ACTION_RETIRE_FRONTIER,
     MENU_ACTION_PYRAMID_BAG,
 	MENU_ACTION_DEXNAV,
-    MENU_ACTION_ACCESS_PC
+    MENU_ACTION_ACCESS_PC,
+	MENU_ACTION_DEBUG,
 };
 
 // Save status
@@ -108,6 +110,7 @@ static bool8 StartMenuBattlePyramidRetireCallback(void);
 static bool8 StartMenuBattlePyramidBagCallback(void);
 static bool8 StartMenuStorageCallback(void);
 static bool8 StartMenuDexNavCallback(void);
+static bool8 StartMenuDebugCallback(void);
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -159,6 +162,9 @@ static const u8* const sPyramidFloorNames[] =
 static const struct WindowTemplate sPyramidFloorWindowTemplate_2 = {0, 1, 1, 0xA, 4, 0xF, 8};
 static const struct WindowTemplate sPyramidFloorWindowTemplate_1 = {0, 1, 1, 0xC, 4, 0xF, 8};
 
+
+static const u8 gText_MenuDebug[] = _("DEBUG");
+
 static const struct MenuAction sStartMenuItems[] =
 {
     {gText_MenuPokedex, {.u8_void = StartMenuPokedexCallback}},
@@ -175,7 +181,8 @@ static const struct MenuAction sStartMenuItems[] =
     {gText_MenuRetire, {.u8_void = StartMenuBattlePyramidRetireCallback}},
     {gText_MenuBag, {.u8_void = StartMenuBattlePyramidBagCallback}},
 	{gText_MenuDexNav, {.u8_void = StartMenuDexNavCallback}},
-	{gText_AccessPC, {.u8_void = StartMenuStorageCallback}}
+	{gText_AccessPC, {.u8_void = StartMenuStorageCallback}},
+	{gText_MenuDebug, {.u8_void = StartMenuDebugCallback}},
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -219,6 +226,7 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
 static void BuildStartMenuActions(void);
 static void AddStartMenuAction(u8 action);
 static void BuildNormalStartMenu(void);
+static void BuildDebugStartMenu(void);
 static void BuildSafariZoneStartMenu(void);
 static void BuildLinkModeStartMenu(void);
 static void BuildUnionRoomStartMenu(void);
@@ -247,6 +255,7 @@ static void CB2_SaveAfterLinkBattle(void);
 static void ShowSaveInfoWindow(void);
 static void RemoveSaveInfoWindow(void);
 static void HideStartMenuWindow(void);
+static void HideStartMenuDebug(void);
 
 void SetDexPokemonPokenavFlags(void) // unused
 {
@@ -285,7 +294,11 @@ static void BuildStartMenuActions(void)
     }
     else
     {
-        BuildNormalStartMenu();
+        #if defined(TX_DEBUG_SYSTEM_ENABLE) && TX_DEBUG_SYSTEM_IN_MENU
+			BuildDebugStartMenu();
+		#else
+			BuildNormalStartMenu();
+		#endif
     }
 }
 
@@ -320,6 +333,31 @@ static void BuildNormalStartMenu(void)
     AddStartMenuAction(MENU_ACTION_OPTION);
 	AddStartMenuAction(MENU_ACTION_ACCESS_PC);
     //AddStartMenuAction(MENU_ACTION_EXIT);
+}
+
+static void BuildDebugStartMenu(void)
+{    
+    if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
+    {
+        AddStartMenuAction(MENU_ACTION_POKEDEX);
+    }
+    if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
+    {
+        AddStartMenuAction(MENU_ACTION_POKEMON);
+    }
+
+    AddStartMenuAction(MENU_ACTION_BAG);
+
+    if (FlagGet(FLAG_SYS_POKENAV_GET) == TRUE)
+    {
+        AddStartMenuAction(MENU_ACTION_POKENAV);
+    }
+
+    AddStartMenuAction(MENU_ACTION_PLAYER);
+    AddStartMenuAction(MENU_ACTION_SAVE);
+    AddStartMenuAction(MENU_ACTION_OPTION);
+	AddStartMenuAction(MENU_ACTION_ACCESS_PC);
+    AddStartMenuAction(MENU_ACTION_DEBUG);
 }
 
 static void BuildSafariZoneStartMenu(void)
@@ -603,6 +641,7 @@ static bool8 HandleStartMenuInput(void)
 
         if (gMenuCallback != StartMenuSaveCallback
             && gMenuCallback != StartMenuExitCallback
+			&& gMenuCallback != StartMenuDebugCallback
             && gMenuCallback != StartMenuSafariZoneRetireCallback
 			&& gMenuCallback != StartMenuStorageCallback
             && gMenuCallback != StartMenuBattlePyramidRetireCallback)
@@ -739,6 +778,19 @@ static bool8 StartMenuExitCallback(void)
     return TRUE;
 }
 
+static bool8 StartMenuDebugCallback(void)
+{
+    RemoveExtraStartMenuWindows();
+    HideStartMenuDebug(); // Hide start menu without enabling movement
+
+	#if TX_DEBUG_SYSTEM_ENABLE == TRUE
+		FreezeObjectEvents();
+		Debug_ShowMainMenu();
+	#endif
+
+    return TRUE;
+}
+
 static bool8 StartMenuSafariZoneRetireCallback(void)
 {
     RemoveExtraStartMenuWindows();
@@ -746,6 +798,13 @@ static bool8 StartMenuSafariZoneRetireCallback(void)
     SafariZoneRetirePrompt();
 
     return TRUE;
+}
+
+static void HideStartMenuDebug(void)
+{
+    PlaySE(SE_SELECT);
+    ClearStdWindowAndFrame(GetStartMenuWindowId(), TRUE);
+    RemoveStartMenuWindow();
 }
 
 static bool8 StartMenuLinkModePlayerNameCallback(void)
