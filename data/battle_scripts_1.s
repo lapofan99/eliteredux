@@ -9401,3 +9401,17 @@ BattleScript_HauntedSpiritActivated::
 	printstring STRINGID_PKMNBECAMECURSED
 	waitmessage B_WAIT_TIME_LONG
 	return
+	
+BattleScript_UserGetsReckoilDamaged::
+	call BattleScript_AbilityPopUp
+	call BattleScript_HurtsUser
+	return
+	
+BattleScript_HurtsUser:
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_PKMNHITWITHRECOIL
+	waitmessage B_WAIT_TIME_LONG
+	tryfaintmon BS_ATTACKER, FALSE, NULL
+	return

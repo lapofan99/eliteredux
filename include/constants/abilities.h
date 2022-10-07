@@ -364,8 +364,9 @@
 #define ABILITY_SWEET_DREAMS     (ABILITIES_COUNT_LATEST_GEN + 65) // At the end of each turn, each sleeping allies restores HP equal to 1/8 of its maximum HP. The Pokémon on your side of field are immune to opposing Bad Dreams ability.
 #define ABILITY_BAD_LUCK         (ABILITIES_COUNT_LATEST_GEN + 66) // Enemies can't critically hit, enemies have a decreased hit chance of 5%.
 #define ABILITY_HAUNTED_SPIRIT   (ABILITIES_COUNT_LATEST_GEN + 67) // When the Pokémon faints by a damaging move from an opposing Pokémon, the attacker becomes cursed.
+#define ABILITY_ELECTRIC_BURST   (ABILITIES_COUNT_LATEST_GEN + 68) // The Pokémon's Electric-type moves are boosted by 35%, but the Pokémon takes 10% of damage dealt.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_HAUNTED_SPIRIT + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_ELECTRIC_BURST + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

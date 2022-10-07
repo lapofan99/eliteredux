@@ -436,5 +436,6 @@ extern const u8 BattleScript_HandleSoulEaterEffect[];
 extern const u8 BattleScript_AttackerSoulLinker[];
 extern const u8 BattleScript_SweetDreamsActivates[];
 extern const u8 BattleScript_HauntedSpiritActivated[];
+extern const u8 BattleScript_UserGetsReckoilDamaged[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H
