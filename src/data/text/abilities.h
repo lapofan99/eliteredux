@@ -328,6 +328,7 @@ static const u8 sSweetDreamsDescription[] =  _("Heals when sleeping,\nimmune to 
 static const u8 sBadLuckDescription[] = _("Enemies can't critically strike\nand moves have -5% accuracy.");
 static const u8 sHauntedSpiritDescription[] = _("When the pokemon faints\nthe attacker becomes cursed.");
 static const u8 sElectricBurstDescription[] = _("Ups Electric moves but\ngets recoil damage.");
+static const u8 sRawWoodDescription[] = _("Only takes half damage from\nGrass-type moves.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -668,6 +669,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_BAD_LUCK] = _("Bad Luck"),
     [ABILITY_HAUNTED_SPIRIT] = _("Haunted Spirit"),
 	[ABILITY_ELECTRIC_BURST] = _("Electric Burst"),
+	[ABILITY_RAW_WOOD] = _("Raw Wood"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1009,4 +1011,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_BAD_LUCK] = sBadLuckDescription,
     [ABILITY_HAUNTED_SPIRIT] = sHauntedSpiritDescription,
 	[ABILITY_ELECTRIC_BURST] = sElectricBurstDescription,
+	[ABILITY_RAW_WOOD] = sRawWoodDescription,
 };

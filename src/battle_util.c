@@ -9968,6 +9968,14 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
+	case ABILITY_RAW_WOOD:
+        if (moveType == TYPE_GRASS)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_RAW_WOOD);
+        }
+        break;
     }
 	
 	// Innates
@@ -9980,7 +9988,17 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
         }
 	}
+	//Raw Wood
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_RAW_WOOD)){
+        if (moveType == TYPE_GRASS)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_RAW_WOOD);
+        }
+    }
 	
+	//Overcoat
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_OVERCOAT)){
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(0.9));
