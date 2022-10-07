@@ -5361,8 +5361,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect = 2, statId = STAT_SPEED;
                 break;
             case ABILITY_LIGHTNING_ROD:
-                if (moveType == TYPE_ELECTRIC)
-                    effect = 2, statId = STAT_SPATK;
+                if (moveType == TYPE_ELECTRIC){
+					u16 userAttack;					
+					u16 userSpAttack;
+                    effect = 2;
+					
+                    userAttack   = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
+                    userSpAttack = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
+
+                    if (userSpAttack < userAttack)
+                        statId = STAT_ATK;
+                    else
+                        statId = STAT_SPATK;
+				}
                 break;
             case ABILITY_STORM_DRAIN:
                 if (moveType == TYPE_WATER)
@@ -5406,6 +5417,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				if (move != MOVE_NONE && moveType == TYPE_FLYING){
 					effect = 2;
 					statId = STAT_SPEED;
+				}
+			}
+			
+			//Lighting Road
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LIGHTNING_ROD)){
+				if (moveType == TYPE_ELECTRIC){
+					u16 userAttack = 0;					
+					u16 userSpAttack = 0;
+                    effect = 2;
+					
+                    userAttack   += gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
+                    userSpAttack += gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
+
+                    if (userSpAttack < userAttack)
+                        statId = STAT_ATK;
+                    else
+                        statId = STAT_SPATK;
 				}
 			}
 
