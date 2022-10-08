@@ -330,6 +330,7 @@ static const u8 sHauntedSpiritDescription[] = _("When the Pokemon faints,\nthe a
 static const u8 sElectricBurstDescription[] = _("Ups Electric moves by 35%\nbut gets 10% recoil damage.");
 static const u8 sRawWoodDescription[] = _("Only takes half damage from\nGrass-type moves.");
 static const u8 sSolenglyphsDescription[] = _("Biting moves have 50% chance\nto poison the target.");
+static const u8 sSpiderLairDescription[] = _("Sets Sticky Web on entry.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -672,6 +673,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_ELECTRIC_BURST] = _("Electric Burst"),
 	[ABILITY_RAW_WOOD] = _("Raw Wood"),
 	[ABILITY_SOLENOGLYPHS] = _("Solenoglyphs"),
+	[ABILITY_SPIDER_LAIR] = _("Spider Lair"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1015,4 +1017,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_ELECTRIC_BURST] = sElectricBurstDescription,
 	[ABILITY_RAW_WOOD] = sRawWoodDescription,
 	[ABILITY_SOLENOGLYPHS] = sSolenglyphsDescription,
+	[ABILITY_SPIDER_LAIR] = sSpiderLairDescription,
 };

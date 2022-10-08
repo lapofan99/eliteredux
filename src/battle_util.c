@@ -4792,6 +4792,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+		case ABILITY_SPIDER_LAIR:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_SPIDER_LAIR;
+				gLastUsedAbility = ABILITY_SPIDER_LAIR;
+				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_STICKY_WEB;
+				BattleScriptPushCursorAndCallback(BattleScript_SpiderLairActivated);
+				effect++;
+			}
+			break;
 		case ABILITY_NOCTURNAL:
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!IsCurrentlyDay())

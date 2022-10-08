@@ -367,8 +367,9 @@
 #define ABILITY_ELECTRIC_BURST   (ABILITIES_COUNT_LATEST_GEN + 68) // The Pokémon's Electric-type moves are boosted by 35%, but the Pokémon takes 10% of damage dealt.
 #define ABILITY_RAW_WOOD         (ABILITIES_COUNT_LATEST_GEN + 69) // Only takes half damage from Grass-type moves
 #define ABILITY_SOLENOGLYPHS     (ABILITIES_COUNT_LATEST_GEN + 70) // Biting moves have a 50% chance of badly poisoning the target.
+#define ABILITY_SPIDER_LAIR      (ABILITIES_COUNT_LATEST_GEN + 71) // Biting moves have a 50% chance of badly poisoning the target.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SOLENOGLYPHS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SPIDER_LAIR + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

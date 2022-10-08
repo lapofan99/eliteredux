@@ -753,7 +753,8 @@ static const u8 sText_BattlerAbilitySetUpTailwind[] = _("{B_ACTIVE_NAME_WITH_PRE
 static const u8 sText_TargetPkmnHurtsWith[] = _("{B_DEF_NAME_WITH_PREFIX} was hurt by\n{B_ATK_NAME_WITH_PREFIX}'s {B_BUFF1}!");
 static const u8 sText_PkmnCutsSpecialAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Scare\ncuts {B_DEF_NAME_WITH_PREFIX}'s Special Attack!");
 static const u8 sText_SweetDreamsHealHpUp[] = _("Sleeping healed {B_ATK_NAME_WITH_PREFIX}\na little bit!");
-static const u8 sText_PkmnBeameCursed[] = _("{B_ATK_NAME_WITH_PREFIX} became Cursed!");
+static const u8 sText_PkmnBecameCursed[] = _("{B_ATK_NAME_WITH_PREFIX} became Cursed!");
+static const u8 sText_BattlerAbilitySetUpStickyWeb[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Air Blower set up \nTailwind!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
