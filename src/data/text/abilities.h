@@ -319,17 +319,17 @@ static const u8 sPhantomDescription[] =  _("Adds Ghost-Type.");
 static const u8 sPoisonateDescription[] = _("Normal moves become Poison\nand get a 20% boost.");
 static const u8 sImpenetrableDescription[] = _("Takes no indirect damage.");
 static const u8 sHypnotistDescription[] = _("Increases Hypnosis accuracy by 50%.");
-static const u8 sOverwhelmDescription[] = _("The Pokémon can hit Fairy-type Pokémon with Dragon-type moves.");
+static const u8 sOverwhelmDescription[] = _("The Pokémon can hit Fairy-type\nPokémon with Dragon-type moves.");
 static const u8 sScareDescription[] = _("Lowers the foe's Special Attack.");
 static const u8 sMajesticMothDescription[] = _("Ups highest stat by +1 on entry.");
 static const u8 sSoulEaterDescription[] =  _("Heals 25% and boosts power\nupon defeating an enemy.");
 static const u8 sSoulLinkerDescription[] =  _("Receives any damage inflicted,\nshares all damage taken.");
-static const u8 sSweetDreamsDescription[] =  _("Heals when sleeping,\nimmune to bad dreams.");
-static const u8 sBadLuckDescription[] = _("Enemies can't critically strike\nand moves have -5% accuracy.");
-static const u8 sHauntedSpiritDescription[] = _("When the pokemon faints\nthe attacker becomes cursed.");
-static const u8 sElectricBurstDescription[] = _("Ups Electric moves but\ngets recoil damage.");
+static const u8 sSweetDreamsDescription[] =  _("Heals 1/8 HP when sleeping,\nimmune to Bad Dreams.");
+static const u8 sBadLuckDescription[] = _("Enemies can't critically strike\nand foe's moves have -5% accuracy.");
+static const u8 sHauntedSpiritDescription[] = _("When the Pokemon faints,\nthe attacker becomes cursed.");
+static const u8 sElectricBurstDescription[] = _("Ups Electric moves by 35%\nbut gets 10% recoil damage.");
 static const u8 sRawWoodDescription[] = _("Only takes half damage from\nGrass-type moves.");
-static const u8 sSolenglyphsDescription[] = _("Biting moves may badly\npoison the target.");
+static const u8 sSolenglyphsDescription[] = _("Biting moves have 50% chance\nto poison the target.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -671,7 +671,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_HAUNTED_SPIRIT] = _("Haunted Spirit"),
 	[ABILITY_ELECTRIC_BURST] = _("Electric Burst"),
 	[ABILITY_RAW_WOOD] = _("Raw Wood"),
-	[ABILITY_SOLENOGLYPHS] = _("Solenglyphs"),
+	[ABILITY_SOLENOGLYPHS] = _("Solenoglyphs"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
