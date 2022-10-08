@@ -365,8 +365,8 @@
 #define ABILITY_BAD_LUCK         (ABILITIES_COUNT_LATEST_GEN + 66) // Enemies can't critically hit, enemies have a decreased hit chance of 5%.
 #define ABILITY_HAUNTED_SPIRIT   (ABILITIES_COUNT_LATEST_GEN + 67) // When the Pokémon faints by a damaging move from an opposing Pokémon, the attacker becomes cursed.
 #define ABILITY_ELECTRIC_BURST   (ABILITIES_COUNT_LATEST_GEN + 68) // The Pokémon's Electric-type moves are boosted by 35%, but the Pokémon takes 10% of damage dealt.
-#define ABILITY_RAW_WOOD         (ABILITIES_COUNT_LATEST_GEN + 69) // If target's HP is 50% or below, your single-target damaging moves get priority +1.
-#define ABILITY_SOLENOGLYPHS     (ABILITIES_COUNT_LATEST_GEN + 70) // If target's HP is 50% or below, your single-target damaging moves get priority +1.
+#define ABILITY_RAW_WOOD         (ABILITIES_COUNT_LATEST_GEN + 69) // Only takes half damage from Grass-type moves
+#define ABILITY_SOLENOGLYPHS     (ABILITIES_COUNT_LATEST_GEN + 70) // Biting moves have a 50% chance of badly poisoning the target.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_SOLENOGLYPHS + 1)
 
