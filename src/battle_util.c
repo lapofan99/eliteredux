@@ -10491,6 +10491,16 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(1.25));
         break;
+	case ABILITY_FATAL_PRECISION:
+        if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(1.2));
+        break;
+    }
+	//Innates
+	// Fatal Precision
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FATAL_PRECISION)){
+		if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(1.2));
     }
 
     // target's abilities
