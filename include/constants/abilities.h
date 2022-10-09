@@ -370,8 +370,9 @@
 #define ABILITY_SPIDER_LAIR      (ABILITIES_COUNT_LATEST_GEN + 71) // Sets an Sticky web to the opposite side when entering battle.
 #define ABILITY_FATAL_PRECISION  (ABILITIES_COUNT_LATEST_GEN + 72) // Super Effective Moves from this Pokemon can’t miss and receive a 20% damage boost.
 #define ABILITY_FORT_KNOX        (ABILITIES_COUNT_LATEST_GEN + 73) // Boosts the Pokémon's Defense stat sharply when its stats are lowered.
+#define ABILITY_SEAWEED          (ABILITIES_COUNT_LATEST_GEN + 74) // The Grass-type Pokémon takes neutral damage from Fire-type moves. The Pokémon deals neutral damage against Fire-type Pokémon with Grass-type moves.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_FORT_KNOX + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SEAWEED + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -10084,6 +10084,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.35));
         }
         break;
+	case ABILITY_SEAWEED:
+		if (moveType == TYPE_GRASS && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE))
+        {
+            MulModifier(&modifier, UQ_4_12(2.0));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_SEAWEED);
+        }
     }
 	
 	//Innates
@@ -10092,6 +10099,16 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		if (gBattleStruct->illusion[battlerAtk].on && !gBattleStruct->illusion[battlerAtk].broken)
         {
             MulModifier(&modifier, UQ_4_12(1.3));
+        }
+	}
+	
+	//Seaweed
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SEAWEED)){
+		if (moveType == TYPE_GRASS && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE))
+        {
+            MulModifier(&modifier, UQ_4_12(2.0));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_SEAWEED);
         }
 	}
 
@@ -10130,6 +10147,14 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 RecordAbilityBattle(battlerDef, ABILITY_RAW_WOOD);
         }
         break;
+	case ABILITY_SEAWEED:
+        if (moveType == TYPE_FIRE && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS))
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_SEAWEED);
+        }
+        break;
     }
 	
 	// Innates
@@ -10149,6 +10174,16 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(0.5));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_RAW_WOOD);
+        }
+    }
+	
+	//Seaweed
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SEAWEED)){
+        if (moveType == TYPE_FIRE && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS))
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_SEAWEED);
         }
     }
 	
