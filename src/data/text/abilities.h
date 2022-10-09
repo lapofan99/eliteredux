@@ -332,6 +332,7 @@ static const u8 sRawWoodDescription[] = _("Only takes half damage from\nGrass-ty
 static const u8 sSolenglyphsDescription[] = _("Biting moves have 50% chance\nto poison the target.");
 static const u8 sSpiderLairDescription[] = _("Sets Sticky Web on entry.");
 static const u8 sFatalPrecisionDescription[] = _("Super Effective moves never\nmiss and become stronger by 20%.");
+static const u8 sFortKnoxDescription[] = _("Boosts Defense sharply\nwhen stats are lowered.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -676,6 +677,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_SOLENOGLYPHS] = _("Solenoglyphs"),
 	[ABILITY_SPIDER_LAIR] = _("Spider Lair"),
 	[ABILITY_FATAL_PRECISION] = _("Fatal Precision"),
+	[ABILITY_FORT_KNOX] = _("Fort Knox"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1021,4 +1023,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_SOLENOGLYPHS] = sSolenglyphsDescription,
 	[ABILITY_SPIDER_LAIR] = sSpiderLairDescription,
 	[ABILITY_FATAL_PRECISION] = sFatalPrecisionDescription,
+	[ABILITY_FORT_KNOX] = sFortKnoxDescription,
 };

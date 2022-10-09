@@ -1499,18 +1499,33 @@ void PrepareStringBattle(u16 stringId, u8 battler)
 
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
     else if ((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH)
-              && ((GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-                 || (GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE && CompareStat(gBattlerTarget, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN)))
+              && (((GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_DEFIANT))
+		           && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+                 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_COMPETITIVE))
+				    && CompareStat(gBattlerTarget, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+				 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_FORT_KNOX))
+				     && CompareStat(gBattlerTarget, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN)))
               && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget)
               && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget)
     {
         gBattlerAbility = gBattlerTarget;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_DefiantActivates;
-        if (GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT)
+        if (GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_DEFIANT)){
+			gBattleScripting.abilityPopupOverwrite = ABILITY_DEFIANT;
+			gLastUsedAbility = ABILITY_DEFIANT;
             SET_STATCHANGER(STAT_ATK, 2, FALSE);
-        else
-            SET_STATCHANGER(STAT_SPATK, 2, FALSE);
+		}
+		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_FORT_KNOX)){
+			gBattleScripting.abilityPopupOverwrite = ABILITY_FORT_KNOX;
+			gLastUsedAbility = ABILITY_FORT_KNOX;
+            SET_STATCHANGER(STAT_DEF, 2, FALSE);
+		}
+        else{ // if(GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_COMPETITIVE)) <- this is not necessary but just in case you want to see how it works
+            gBattleScripting.abilityPopupOverwrite = ABILITY_COMPETITIVE;
+			gLastUsedAbility = ABILITY_COMPETITIVE;
+			SET_STATCHANGER(STAT_SPATK, 2, FALSE);
+		}
     }
 
     gActiveBattler = battler;

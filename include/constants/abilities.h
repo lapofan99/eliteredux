@@ -369,8 +369,9 @@
 #define ABILITY_SOLENOGLYPHS     (ABILITIES_COUNT_LATEST_GEN + 70) // Biting moves have a 50% chance of badly poisoning the target.
 #define ABILITY_SPIDER_LAIR      (ABILITIES_COUNT_LATEST_GEN + 71) // Sets an Sticky web to the opposite side when entering battle.
 #define ABILITY_FATAL_PRECISION  (ABILITIES_COUNT_LATEST_GEN + 72) // Super Effective Moves from this Pokemon can’t miss and receive a 20% damage boost.
+#define ABILITY_FORT_KNOX        (ABILITIES_COUNT_LATEST_GEN + 73) // Boosts the Pokémon's Defense stat sharply when its stats are lowered.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_FATAL_PRECISION + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_FORT_KNOX + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
