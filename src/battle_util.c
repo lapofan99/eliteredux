@@ -6191,7 +6191,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED // Need to actually hit the target
              && (Random() % 3) == 0)
             {
-                gBattleScripting.moveEffect = MOVE_EFFECT_POISON;
+                gBattleScripting.moveEffect = MOVE_EFFECT_TOXIC;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
@@ -6382,6 +6382,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED // Need to actually hit the target
 			 && gBattleMoves[move].type == TYPE_ELECTRIC) //Electric Type Moves
             {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_ELECTRIC_BURST;
+				gLastUsedAbility = ABILITY_ELECTRIC_BURST;
                 gBattleMoveDamage = gSpecialStatuses[gBattlerTarget].dmg / 10;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
@@ -6391,6 +6393,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}
+		//Solenoglyphs
 		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOLENOGLYPHS)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -6400,6 +6403,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			 && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)//Biting Moves
              && (Random() % 2) == 0)
             {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_SOLENOGLYPHS;
+				gLastUsedAbility = ABILITY_SOLENOGLYPHS;
                 gBattleScripting.moveEffect = MOVE_EFFECT_TOXIC;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                 BattleScriptPushCursor();
@@ -6408,6 +6413,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_TOUCH)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && CanBePoisoned(gBattlerAttacker, gBattlerTarget)
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && (Random() % 3) == 0)
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_POISON_TOUCH;
+				gLastUsedAbility = ABILITY_POISON_TOUCH;
+                gBattleScripting.moveEffect = MOVE_EFFECT_TOXIC;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+		}
 		
         break;
     case ABILITYEFFECT_MOVE_END_OTHER: // Abilities that activate on *another* battler's moveend: Dancer, Soul-Heart, Receiver, Symbiosis
