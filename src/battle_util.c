@@ -4793,12 +4793,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			break;
 		case ABILITY_SPIDER_LAIR:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+				!(gSideStatuses[BATTLE_OPPOSITE(battler)] & SIDE_STATUS_STICKY_WEB))
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_SPIDER_LAIR;
 				gLastUsedAbility = ABILITY_SPIDER_LAIR;
-				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_STICKY_WEB;
+				gSideStatuses[BATTLE_OPPOSITE(battler)] |= SIDE_STATUS_STICKY_WEB;
 				BattleScriptPushCursorAndCallback(BattleScript_SpiderLairActivated);
 				effect++;
 			}
@@ -5064,6 +5065,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 		}
+		//Air Blower
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_BLOWER)){
 			if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5073,6 +5075,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
 				gSideTimers[GetBattlerSide(battler)].tailwindTimer = 5;
 				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
+				effect++;
+			}
+		}
+		//Spider Lair
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SPIDER_LAIR)){
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+				!(gSideStatuses[BATTLE_OPPOSITE(battler)] & SIDE_STATUS_STICKY_WEB))
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_SPIDER_LAIR;
+				gLastUsedAbility = ABILITY_SPIDER_LAIR;
+				gSideStatuses[BATTLE_OPPOSITE(battler)] |= SIDE_STATUS_STICKY_WEB;
+				BattleScriptPushCursorAndCallback(BattleScript_SpiderLairActivated);
 				effect++;
 			}
 		}

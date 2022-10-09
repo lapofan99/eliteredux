@@ -754,11 +754,12 @@ static const u8 sText_TargetPkmnHurtsWith[] = _("{B_DEF_NAME_WITH_PREFIX} was hu
 static const u8 sText_PkmnCutsSpecialAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Scare\ncuts {B_DEF_NAME_WITH_PREFIX}'s Special Attack!");
 static const u8 sText_SweetDreamsHealHpUp[] = _("Sleeping healed {B_ATK_NAME_WITH_PREFIX}\na little bit!");
 static const u8 sText_PkmnBecameCursed[] = _("{B_ATK_NAME_WITH_PREFIX} became Cursed!");
-static const u8 sText_BattlerAbilitySetUpStickyWeb[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Air Blower set up \nTailwind!");
+static const u8 sText_BattlerAbilitySetUpStickyWeb[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Spider Lair set up \na Sticky Web on the opposite side!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
-	[STRINGID_PKMNBECAMECURSED - 12] = sText_PkmnBeameCursed,
+	[STRINGID_SPIDERLAIRACTIVATED - 12] = sText_BattlerAbilitySetUpStickyWeb,
+	[STRINGID_PKMNBECAMECURSED - 12] = sText_PkmnBecameCursed,
     [STRINGID_PKMNCUTSSPATTACKWITH - 12] = sText_PkmnCutsSpecialAttackWith,
 	[STRINGID_TARGETPKMNHURTSWITH - 12] = sText_TargetPkmnHurtsWith,
 	[STRINGID_AIRBLOWERACTIVATED - 12] = sText_BattlerAbilitySetUpTailwind,

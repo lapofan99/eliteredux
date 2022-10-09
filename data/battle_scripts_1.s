@@ -9415,3 +9415,10 @@ BattleScript_HurtsUser:
 	waitmessage B_WAIT_TIME_LONG
 	tryfaintmon BS_ATTACKER, FALSE, NULL
 	return
+	
+BattleScript_SpiderLairActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_SPIDERLAIRACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
