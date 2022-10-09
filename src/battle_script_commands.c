@@ -10994,7 +10994,7 @@ static void Cmd_weatherdamage(void)
         }
         if (gBattleWeather & WEATHER_HAIL_ANY)
         {
-            if (ability == ABILITY_ICE_BODY
+            if ((ability == ABILITY_ICE_BODY || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_ICE_BODY))
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && !BATTLER_MAX_HP(gBattlerAttacker)
                 && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK))
@@ -11012,6 +11012,7 @@ static void Cmd_weatherdamage(void)
 				&& ability != ABILITY_AURORA_BOREALIS
 				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_AURORA_BOREALIS)
                 && ability != ABILITY_ICE_BODY
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_ICE_BODY)
                 && ability != ABILITY_SLUSH_RUSH
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
