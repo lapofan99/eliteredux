@@ -5328,8 +5328,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
             }
 			
-			//Innates
-			//Self Sufficient
+			
+			// End Turn Innates
+			
+			// Self Sufficient
 			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SELF_SUFFICIENT)){
 				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
 				{
@@ -5343,6 +5345,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					effect++;
 				}
 			}
+			
+			// Rain Dish
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_RAIN_DISH)){
+				if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
+                 && !BATTLER_MAX_HP(battler)
+                 && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
+                    gBattleMoveDamage = gBattleMons[battler].maxHP / (gLastUsedAbility == ABILITY_RAIN_DISH ? 8 : 8); // was 16 : 8
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    effect++;
+                }
+			}
+                
 			
         }
         break;
