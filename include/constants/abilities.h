@@ -372,8 +372,9 @@
 #define ABILITY_FORT_KNOX        (ABILITIES_COUNT_LATEST_GEN + 73) // Boosts the Pokémon's Defense stat sharply when its stats are lowered.
 #define ABILITY_SEAWEED          (ABILITIES_COUNT_LATEST_GEN + 74) // The Grass-type Pokémon takes neutral damage from Fire-type moves. The Pokémon deals neutral damage against Fire-type Pokémon with Grass-type moves.
 #define ABILITY_PSYCHIC_MIND     (ABILITIES_COUNT_LATEST_GEN + 75) // Boosts the power of Psychic-type moves by 25%.
+#define ABILITY_POISON_ABSORB    (ABILITIES_COUNT_LATEST_GEN + 76) // Restore 1/4 HP when hit by Poison-type moves.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_PSYCHIC_MIND + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_POISON_ABSORB + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -5406,6 +5406,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (moveType == TYPE_ELECTRIC)
                     effect = 1;
                 break;
+			case ABILITY_POISON_ABSORB:
+                if (moveType == TYPE_POISON)
+                    effect = 1;
+                break;
             case ABILITY_WATER_ABSORB:
             case ABILITY_DRY_SKIN:
                 if (moveType == TYPE_WATER)
@@ -5470,8 +5474,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
             }
 			
-			//Innates
-			//Aerodynamics
+			// Innates
+			// Aerodynamics
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AERODYNAMICS)){
 				if (move != MOVE_NONE && moveType == TYPE_FLYING){
 					effect = 2;
@@ -5479,7 +5483,35 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				}
 			}
 			
-			//Lighting Road
+			// Volt Absorb
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_VOLT_ABSORB)){
+				if (move != MOVE_NONE && moveType == TYPE_ELECTRIC){
+                    effect = 1;
+				}
+			}
+			
+			// Water Absorb
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_ABSORB)){
+				if (move != MOVE_NONE && moveType == TYPE_WATER){
+                    effect = 1;
+				}
+			}
+			
+			// Dry Skin
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRY_SKIN)){
+				if (move != MOVE_NONE && moveType == TYPE_WATER){
+                    effect = 1;
+				}
+			}
+			
+			// Poison Absorb
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_ABSORB)){
+				if (move != MOVE_NONE && moveType == TYPE_POISON){
+                    effect = 1;
+				}
+			}
+			
+			// Lighting Rod
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LIGHTNING_ROD)){
 				if (moveType == TYPE_ELECTRIC){
 					u16 userAttack = 0;					

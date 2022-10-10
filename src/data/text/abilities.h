@@ -335,6 +335,7 @@ static const u8 sFatalPrecisionDescription[] = _("Super Effective moves never\nm
 static const u8 sFortKnoxDescription[] = _("Boosts Defense sharply\nwhen stats are lowered.");
 static const u8 sSeaweedDescription[] = _("Grass becomes neutral against\nFire.");
 static const u8 sPsychicMindDescription[] = _("Increases Psychic-type moves by 25%.");
+static const u8 sPoisonAbsorbDescription[] = _("Turns poison into HP.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -682,6 +683,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_FORT_KNOX] = _("Fort Knox"),
 	[ABILITY_SEAWEED] = _("Seaweed"),
 	[ABILITY_PSYCHIC_MIND] = _("Psychic Mind"),
+	[ABILITY_POISON_ABSORB] = _("Poison Absorb"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1030,4 +1032,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_FORT_KNOX] = sFortKnoxDescription,
 	[ABILITY_SEAWEED] = sSeaweedDescription,
 	[ABILITY_PSYCHIC_MIND] = sPsychicMindDescription,
+	[ABILITY_POISON_ABSORB] = sPoisonAbsorbDescription,
 };
