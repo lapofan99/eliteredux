@@ -5527,6 +5527,34 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         statId = STAT_SPATK;
 				}
 			}
+			
+			// Flash Fire
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_FLASH_FIRE)){
+                if (moveType == TYPE_FIRE && !((gBattleMons[battler].status1 & STATUS1_FREEZE) && B_FLASH_FIRE_FROZEN <= GEN_4))
+                {
+                    if (!(gBattleResources->flags->flags[battler] & RESOURCE_FLAG_FLASH_FIRE))
+                    {
+                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FLASH_FIRE_BOOST;
+                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
+                        else
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
+
+                        gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_FLASH_FIRE;
+                        effect = 3;
+                    }
+                    else
+                    {
+                        gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FLASH_FIRE_NO_BOOST;
+                        if (gProtectStructs[gBattlerAttacker].notFirstStrike)
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost;
+                        else
+                            gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
+
+                        effect = 3;
+                    }
+                }}
+                break;
 
             if (effect == 1) // Drain Hp ability.
             {
@@ -10405,6 +10433,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
 		}
 	}
+	
+	// Flash Fire
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FLASH_FIRE)){
+		if (moveType == TYPE_FIRE && gBattleResources->flags->flags[battlerAtk] & RESOURCE_FLAG_FLASH_FIRE)
+            MulModifier(&modifier, UQ_4_12(1.5));
+	}
+	
 	// Torrent
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TORRENT)){
 		if (moveType == TYPE_WATER)
