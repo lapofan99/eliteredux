@@ -334,6 +334,7 @@ static const u8 sSpiderLairDescription[] = _("Sets Sticky Web on entry.");
 static const u8 sFatalPrecisionDescription[] = _("Super Effective moves never\nmiss and become stronger by 20%.");
 static const u8 sFortKnoxDescription[] = _("Boosts Defense sharply\nwhen stats are lowered.");
 static const u8 sSeaweedDescription[] = _("Grass becomes neutral against\nFire.");
+static const u8 sPsychicMindDescription[] = _("Increases Psychic-type moves by 25%.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -680,6 +681,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_FATAL_PRECISION] = _("Fatal Precision"),
 	[ABILITY_FORT_KNOX] = _("Fort Knox"),
 	[ABILITY_SEAWEED] = _("Seaweed"),
+	[ABILITY_PSYCHIC_MIND] = _("Psychic Mind"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1027,4 +1029,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_FATAL_PRECISION] = sFatalPrecisionDescription,
 	[ABILITY_FORT_KNOX] = sFortKnoxDescription,
 	[ABILITY_SEAWEED] = sSeaweedDescription,
+	[ABILITY_PSYCHIC_MIND] = sPsychicMindDescription,
 };

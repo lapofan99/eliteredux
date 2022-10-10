@@ -9696,6 +9696,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
                 RecordAbilityBattle(battlerDef, ability);
         }
         break;
+
     }
 	
 	// Target's Innates
@@ -10059,6 +10060,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.25));
         }
         break;
+		
+	case ABILITY_PSYCHIC_MIND:
+        if (moveType == TYPE_PSYCHIC)
+        {
+            MulModifier(&modifier, UQ_4_12(1.25));
+        }
+        break;
     case ABILITY_PLUS:
     case ABILITY_MINUS:
         if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
@@ -10291,6 +10299,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	// Levitate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LEVITATE)){
 		if (moveType == TYPE_FLYING)
+        {
+            MulModifier(&modifier, UQ_4_12(1.25));
+        }
+	}
+	// Psychic Mind
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PSYCHIC_MIND)){
+		if (moveType == TYPE_PSYCHIC)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
         }
