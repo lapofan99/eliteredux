@@ -9845,6 +9845,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (moveType == TYPE_ROCK)
             MulModifier(&modifier, UQ_4_12(0.5));
     }
+
 	// Immunity
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_IMMUNITY)){
 		if (moveType == TYPE_POISON)
@@ -10606,6 +10607,52 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
             MulModifier(&modifier, UQ_4_12(2.0));
         break;
     }
+	
+	
+	// Target's Innates (for function usesDefStat)
+	
+	// Fur Coat
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FUR_COAT)){
+		if (usesDefStat)
+        {
+            MulModifier(&modifier, UQ_4_12(2.0));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_FUR_COAT);
+        }
+	}
+	
+	// Marvel Scale
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MARVEL_SCALE)){
+		if (gBattleMons[battlerDef].status1 & STATUS1_ANY && usesDefStat)
+        {
+            MulModifier(&modifier, UQ_4_12(1.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_MARVEL_SCALE);
+        }
+	}
+	
+	// Grass Pelt
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_GRASS_PELT)){
+        if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
+        {
+            MulModifier(&modifier, UQ_4_12(1.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_GRASS_PELT);
+        }
+	}
+	
+	// FLower Gift
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FLOWER_GIFT)){
+        if (gBattleMons[battlerDef].species == SPECIES_CHERRIM && IsBattlerWeatherAffected(battlerDef, WEATHER_SUN_ANY) && !usesDefStat)
+            MulModifier(&modifier, UQ_4_12(1.5));
+	}
+	
+	// Punk Rock
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PUNK_ROCK)){
+        if (gBattleMoves[move].flags & FLAG_SOUND)
+            MulModifier(&modifier, UQ_4_12(2.0));
+    }
+
 
     // ally's abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerDef)))
