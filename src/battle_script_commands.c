@@ -8255,7 +8255,7 @@ static void Cmd_various(void)
         }
         break;
     case VARIOUS_TRY_ACTIVATE_SOUL_EATER:
-        if (GetBattlerAbility(gActiveBattler) == ABILITY_SOUL_EATER) {
+        if (GetBattlerAbility(gActiveBattler) == ABILITY_SOUL_EATER || GetBattlerAbility(gActiveBattler) == ABILITY_SCAVENGER) {
             if (!HasAttackerFaintedTarget() && NoAliveMonsForEitherParty())
                 break;
             

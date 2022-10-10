@@ -322,7 +322,7 @@ static const u8 sHypnotistDescription[] = _("Increases Hypnosis accuracy by 50%.
 static const u8 sOverwhelmDescription[] = _("The Pokémon can hit Fairy-type\nPokémon with Dragon-type moves.");
 static const u8 sScareDescription[] = _("Lowers the foe's Special Attack.");
 static const u8 sMajesticMothDescription[] = _("Ups highest stat by +1 on entry.");
-static const u8 sSoulEaterDescription[] =  _("Heals 25% and boosts power\nupon defeating an enemy.");
+static const u8 sSoulEaterDescription[] =  _("Heals 1/4 HP when\ndefeating an enemy.");
 static const u8 sSoulLinkerDescription[] =  _("Receives any damage inflicted,\nshares all damage taken.");
 static const u8 sSweetDreamsDescription[] =  _("Heals 1/8 HP when sleeping,\nimmune to Bad Dreams.");
 static const u8 sBadLuckDescription[] = _("Enemies can't critically strike\nand foe's moves have -5% accuracy.");
@@ -336,6 +336,7 @@ static const u8 sFortKnoxDescription[] = _("Boosts Defense sharply\nwhen stats a
 static const u8 sSeaweedDescription[] = _("Grass becomes neutral against\nFire.");
 static const u8 sPsychicMindDescription[] = _("Increases Psychic-type moves by 25%.");
 static const u8 sPoisonAbsorbDescription[] = _("Turns poison into HP.");
+static const u8 sScavengerDescription[] =  _("Heals 1/4 HP when\ndefeating an enemy.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -684,6 +685,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_SEAWEED] = _("Seaweed"),
 	[ABILITY_PSYCHIC_MIND] = _("Psychic Mind"),
 	[ABILITY_POISON_ABSORB] = _("Poison Absorb"),
+	[ABILITY_SCAVENGER] = _("Scavenger"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1033,4 +1035,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_SEAWEED] = sSeaweedDescription,
 	[ABILITY_PSYCHIC_MIND] = sPsychicMindDescription,
 	[ABILITY_POISON_ABSORB] = sPoisonAbsorbDescription,
+	[ABILITY_SCAVENGER] = sScavengerDescription,
 };
