@@ -314,16 +314,16 @@
 #define ABILITY_CHRISTMAS_SPIRIT (ABILITIES_COUNT_LATEST_GEN + 15) // The Pokémon is protected by a mysterious force that reduces all incoming damage by 50% during a hailstorm.
 #define ABILITY_EXPLOIT_WEAKNESS (ABILITIES_COUNT_LATEST_GEN + 16) // Increases the power of moves by 25% against targets with status condition.
 #define ABILITY_GROUND_SHOCK     (ABILITIES_COUNT_LATEST_GEN + 17) // Allow Electric-type moves can hit ground type Pokémon.
-#define ABILITY_ANCIENT_IDOL     (ABILITIES_COUNT_LATEST_GEN + 18) // The Pokémon uses its Defense stat and stages during physical moves and its Special Defense stat during special moves instead of its Attack and Special Attack, respectively.
+#define ABILITY_ANCIENT_IDOL     (ABILITIES_COUNT_LATEST_GEN + 18) // The Pokémon uses its Def/SpDef stat and stages during physical/special moves.
 #define ABILITY_MYSTIC_POWER     (ABILITIES_COUNT_LATEST_GEN + 19) // All Pokémon's moves gain the same-type attack bonus (STAB) regardless the Pokémon's typing.
-#define ABILITY_PERFECTIONIST    (ABILITIES_COUNT_LATEST_GEN + 20) // Increases critical hit rate by 1 of moves with BP 40 or less. Increases critical hit rate and priority by 1 of moves with BP 20 or less.
-#define ABILITY_GROWING_TOOTH    (ABILITIES_COUNT_LATEST_GEN + 21) // Increases the Attack stat by one stage after using a fang move (Moves: Hyper Fang, Super Fang, Fire Fang, Thunder Fang, Ice Fang, Psychic Fangs, Poison Fang).
+#define ABILITY_PERFECTIONIST    (ABILITIES_COUNT_LATEST_GEN + 20) // Ups crit by +1 for moves with BP 40 or less. Ups crit rate by +1 and priority by +1 for moves with BP 20 or less.
+#define ABILITY_GROWING_TOOTH    (ABILITIES_COUNT_LATEST_GEN + 21) // Increases the Attack stat by one stage after using a fang move.
 #define ABILITY_INFLATABLE       (ABILITIES_COUNT_LATEST_GEN + 22) // When the Pokémon is hit by Fire-type or Flying-type moves, its Defense and Special Defense stats are increased by one stage.
-#define ABILITY_AURORA_BOREALIS  (ABILITIES_COUNT_LATEST_GEN + 23) // The Pokémon's Ice-type moves gain same-type attack bonus regardless the Pokémon's typing. The Pokémon will take no damage from the hailstorm if it otherwise would.
+#define ABILITY_AURORA_BOREALIS  (ABILITIES_COUNT_LATEST_GEN + 23) // Ice-type moves gain STAB. No damage from Hailstorm.
 #define ABILITY_AVENGER          (ABILITIES_COUNT_LATEST_GEN + 24) // Boosts the power of the move by 30% if a Pokémon from the user's party has fainted in the previous turn.
-#define ABILITY_LETS_ROLL        (ABILITIES_COUNT_LATEST_GEN + 25) // Pokémon starts in Defense Curl, boosting the Defense stage by one. Defense Curl effect: Doubles the power of Rollout, Ice Ball, Steamroller and Steel Roller.
+#define ABILITY_LETS_ROLL        (ABILITIES_COUNT_LATEST_GEN + 25) // Pokémon starts in Defense Curl, boosting the Defense stage by +1.
 #define ABILITY_AQUATIC          (ABILITIES_COUNT_LATEST_GEN + 26) // Adds the Water-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_LOUD_BANG        (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 10% chance that the opposing Pokémon will become confused when affected by the Pokémon's sound-based damaging moves.
+#define ABILITY_LOUD_BANG        (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 10% chance that the enemy will become confused when affected by the Pokémon's sound-based damaging moves.
 #define ABILITY_LEAD_COAT        (ABILITIES_COUNT_LATEST_GEN + 28) // Triples the Pokémon's weight. Increases the Defense stat by 30%, but decreases Speed stat by 10%.
 #define ABILITY_AMPHIBIOUS       (ABILITIES_COUNT_LATEST_GEN + 29) // Water-type moves gain 1.5x power.
 #define ABILITY_GROUNDED         (ABILITIES_COUNT_LATEST_GEN + 30) // Adds the Ground-type to the Pokémon, in addition to the Pokémon's original type(s).
@@ -334,7 +334,7 @@
 #define ABILITY_FOSSILIZED       (ABILITIES_COUNT_LATEST_GEN + 35) // Only takes half damage from Rock-type moves
 #define ABILITY_MAGICAL_DUST     (ABILITIES_COUNT_LATEST_GEN + 36) // When is hit by contact move, it leaves a Magic Powder that adds Psychic-type to the target.
 #define ABILITY_DREAMCATCHER     (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 20% for each Pokemon asleep on the field.
-#define ABILITY_NOCTURNAL        (ABILITIES_COUNT_LATEST_GEN + 38) // Adds the Dark-type to the Pokémon at night, in addition to the Pokémon's original type(s), also boosts Attack, Sp. Attack and Speed stats by 10%, and Accuracy stat by 20%.
+#define ABILITY_NOCTURNAL        (ABILITIES_COUNT_LATEST_GEN + 38) // Adds Dark-type at night, also boosts Attack, Sp. Attack and Speed stats by 10%, and Accuracy stat by 20%.
 #define ABILITY_SELF_SUFFICIENT  (ABILITIES_COUNT_LATEST_GEN + 39) // Heals 1/16 at the end of every turn.
 #define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Ground-type and receive a 20% power boost.
 #define ABILITY_ICE_AGE          (ABILITIES_COUNT_LATEST_GEN + 41) // Adds the Ice-type to the Pokémon, in addition to the Pokémon's original type(s).
@@ -360,8 +360,8 @@
 #define ABILITY_SCARE            (ABILITIES_COUNT_LATEST_GEN + 61) // Special Intimidate.
 #define ABILITY_MAJESTIC_MOTH    (ABILITIES_COUNT_LATEST_GEN + 62) // Increases the highest stat by one stage upon entering the battlefield.
 #define ABILITY_SOUL_EATER       (ABILITIES_COUNT_LATEST_GEN + 63) // Whenever another Pokémon faints, restores 25% of its maximum HP and boosts offensive and defensive stats by 10%
-#define ABILITY_SOUL_LINKER      (ABILITIES_COUNT_LATEST_GEN + 64) // The attacker will receive any damage taken by the Pokémon and the Pokémon will receive any damage done to the target. The effect won't activate if the one of the affected Pokémon faints.
-#define ABILITY_SWEET_DREAMS     (ABILITIES_COUNT_LATEST_GEN + 65) // At the end of each turn, each sleeping allies restores HP equal to 1/8 of its maximum HP. The Pokémon on your side of field are immune to opposing Bad Dreams ability.
+#define ABILITY_SOUL_LINKER      (ABILITIES_COUNT_LATEST_GEN + 64) // Your own and the enemy Pokemon get each damage. The effect won't activate if the one of the affected Pokémon faints.
+#define ABILITY_SWEET_DREAMS     (ABILITIES_COUNT_LATEST_GEN + 65) // At the end of each turn, each sleeping allies restores 1/8 HP. Your side is immune to opposing Bad Dreams.
 #define ABILITY_BAD_LUCK         (ABILITIES_COUNT_LATEST_GEN + 66) // Enemies can't critically hit and have decreased accuracy of 5%.
 #define ABILITY_HAUNTED_SPIRIT   (ABILITIES_COUNT_LATEST_GEN + 67) // When the Pokémon faints by a damaging move from an opposing Pokémon, the attacker becomes cursed.
 #define ABILITY_ELECTRIC_BURST   (ABILITIES_COUNT_LATEST_GEN + 68) // The Pokémon's Electric-type moves are boosted by 35%, but the Pokémon takes 10% of damage dealt.
@@ -370,7 +370,7 @@
 #define ABILITY_SPIDER_LAIR      (ABILITIES_COUNT_LATEST_GEN + 71) // Sets an Sticky web to the opposite side when entering battle.
 #define ABILITY_FATAL_PRECISION  (ABILITIES_COUNT_LATEST_GEN + 72) // Super Effective Moves from this Pokemon can’t miss and receive a 20% damage boost.
 #define ABILITY_FORT_KNOX        (ABILITIES_COUNT_LATEST_GEN + 73) // Boosts the Pokémon's Defense stat sharply when its stats are lowered.
-#define ABILITY_SEAWEED          (ABILITIES_COUNT_LATEST_GEN + 74) // The Grass-type Pokémon takes neutral damage from Fire-type moves. The Pokémon deals neutral damage against Fire-type Pokémon with Grass-type moves.
+#define ABILITY_SEAWEED          (ABILITIES_COUNT_LATEST_GEN + 74) // Grass-type takes neutral damage from Fire-type moves. Deals neutral damage against Fire-type with Grass-type moves.
 #define ABILITY_PSYCHIC_MIND     (ABILITIES_COUNT_LATEST_GEN + 75) // Boosts the power of Psychic-type moves by 25%.
 #define ABILITY_POISON_ABSORB    (ABILITIES_COUNT_LATEST_GEN + 76) // Restore 1/4 HP when hit by Poison-type moves.
 #define ABILITY_SCAVENGER        (ABILITIES_COUNT_LATEST_GEN + 77) // Heals 1/4 HP when defeating an enemy.

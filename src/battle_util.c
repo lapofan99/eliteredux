@@ -5331,6 +5331,184 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			
 			// End Turn Innates
 			
+			/***********************************/
+			
+			// Harvest
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HARVEST)){
+                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
+                 && gBattleMons[battler].item == ITEM_NONE
+                 && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
+                 && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
+                    effect++;
+                }
+            }
+			
+			// Dry Skin
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_DRY_SKIN)){
+                if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
+                    goto SOLAR_POWER_HP_DROP;
+            }
+
+			// Hydration
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HYDRATION)){
+                if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
+                 && gBattleMons[battler].status1 & STATUS1_ANY)
+                {
+                    goto ABILITY_HEAL_MON_STATUS;
+                }
+            }
+			
+			// Shed Skin
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHED_SKIN)){
+                if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
+                {
+                ABILITY_HEAL_MON_STATUS:
+                    if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+                    if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                    if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+                    if (gBattleMons[battler].status1 & STATUS1_BURN)
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                    if (gBattleMons[battler].status1 & STATUS1_FREEZE)
+                        StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+
+                    gBattleMons[battler].status1 = 0;
+                    gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
+                    gBattleScripting.battler = gActiveBattler = battler;
+                    BattleScriptPushCursorAndCallback(BattleScript_ShedSkinActivates);
+                    BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, 0, 4, &gBattleMons[battler].status1);
+                    MarkBattlerForControllerExec(gActiveBattler);
+                    effect++;
+                }
+			}
+			
+			// Speed Boost
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SPEED_BOOST)){
+                if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gDisableStructs[battler].isFirstTurn != 2)
+                {
+                    gBattleMons[battler].statStages[STAT_SPEED]++;
+                    gBattleScripting.animArg1 = 14 + STAT_SPEED;
+                    gBattleScripting.animArg2 = 0;
+                    BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
+                    gBattleScripting.battler = battler;
+                    effect++;
+                }
+            }
+			
+			// Moody
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MOODY)){
+                if (gDisableStructs[battler].isFirstTurn != 2)
+                {
+                    u32 validToRaise = 0, validToLower = 0;
+                    u32 statsNum = (B_MOODY_ACC_EVASION != GEN_8) ? NUM_BATTLE_STATS : NUM_STATS;
+
+                    for (i = STAT_ATK; i < statsNum; i++)
+                    {
+                        if (CompareStat(battler, i, MIN_STAT_STAGE, CMP_GREATER_THAN))
+                            validToLower |= gBitTable[i];
+                        if (CompareStat(battler, i, MAX_STAT_STAGE, CMP_LESS_THAN))
+                            validToRaise |= gBitTable[i];
+                    }
+
+                    if (validToLower != 0 || validToRaise != 0) // Can lower one stat, or can raise one stat
+                    {
+                        gBattleScripting.statChanger = gBattleScripting.savedStatChanger = 0; // for raising and lowering stat respectively
+                        if (validToRaise != 0) // Find stat to raise
+                        {
+                            do
+                            {
+                                i = (Random() % statsNum) + STAT_ATK;
+                            } while (!(validToRaise & gBitTable[i]));
+                            SET_STATCHANGER(i, 2, FALSE);
+                            validToLower &= ~(gBitTable[i]); // Can't lower the same stat as raising.
+                        }
+                        if (validToLower != 0) // Find stat to lower
+                        {
+                            do
+                            {
+                                i = (Random() % statsNum) + STAT_ATK;
+                            } while (!(validToLower & gBitTable[i]));
+                            SET_STATCHANGER2(gBattleScripting.savedStatChanger, i, 1, TRUE);
+                        }
+                        BattleScriptPushCursorAndCallback(BattleScript_MoodyActivates);
+                        effect++;
+                    }
+                }
+            }
+			
+			// Truant
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_TRUANT)){
+                gDisableStructs[gBattlerAttacker].truantCounter ^= 1;
+            }
+			
+			// Bad Dreams
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_BAD_DREAMS)){
+                if (gBattleMons[battler].status1 & STATUS1_SLEEP
+                    || gBattleMons[BATTLE_OPPOSITE(battler)].status1 & STATUS1_SLEEP
+                    || GetBattlerAbility(battler) == ABILITY_COMATOSE
+                    || GetBattlerAbility(BATTLE_OPPOSITE(battler)) == ABILITY_COMATOSE)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_BadDreamsActivates);
+                    effect++;
+                }
+            }
+			
+			// Sweet Dreams
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SWEET_DREAMS)){
+                if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gBattleMons[battler].status1 & STATUS1_SLEEP)
+                {
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    BattleScriptExecute(BattleScript_SweetDreamsActivates);
+                    effect++;
+                }
+			}
+			
+			// Solar Power
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SOLAR_POWER)){
+            // SOLAR_POWER_HP_DROP: // is that needed in the Innate?
+                if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_SolarPowerActivates);
+                    gBattleMoveDamage = gBattleMons[battler].maxHP / 8;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    effect++;
+                }
+            }
+			
+			// Healer
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HEALER)){
+                gBattleScripting.battler = BATTLE_PARTNER(battler);
+                if (IsBattlerAlive(gBattleScripting.battler)
+                    && gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY
+                    && (Random() % 100) < 30)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_HealerActivates);
+                    effect++;
+                }
+			}
+			
+			// Schooling
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SCHOOLING)){
+                if (gBattleMons[battler].level < 20)
+            }
+		
+			// Zen Mode & Shields Down
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_ZEN_MODE) ||
+				SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELDS_DOWN)){
+                if ((effect = ShouldChangeFormHpBased(battler)))
+                    BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
+			}
+			
+			/***********************************/
+			
 			// Self Sufficient
 			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SELF_SUFFICIENT)){
 				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
@@ -6159,6 +6337,37 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 			
 		// Innates
+		
+		// Effect Spore
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_EFFECT_SPORE)){
+            if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
+             && GetBattlerAbility(gBattlerAttacker) != ABILITY_OVERCOAT
+			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
+             && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
+            {
+                i = Random() % 3;
+                if (i == 0)
+                    goto POISON_POINT;
+                if (i == 1)
+                    goto STATIC;
+                // Sleep
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                 && gBattleMons[gBattlerAttacker].hp != 0
+                 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                 && TARGET_TURN_DAMAGED
+                 && CanSleep(gBattlerAttacker)
+                 && IsMoveMakingContact(move, gBattlerAttacker)
+                 && (Random() % 3) == 0)
+                {
+                    gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_SLEEP;
+                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                    gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                    effect++;
+                }
+            }}
+		
 		// Inflatable
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INFLATABLE)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -10297,7 +10506,17 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         break;
     }
 	
-	// Innates
+	// Target's Innates
+	// Thick Fat
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_THICK_FAT)){
+        if (moveType == TYPE_FIRE || moveType == TYPE_ICE)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_THICK_FAT);
+        }
+    }
+	
 	//Magma Armor
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MAGMA_ARMOR)){
 		if (moveType == TYPE_WATER || moveType == TYPE_ICE)
@@ -10307,6 +10526,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
         }
 	}
+	
 	//Raw Wood
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_RAW_WOOD)){
         if (moveType == TYPE_GRASS)
