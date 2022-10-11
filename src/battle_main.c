@@ -4593,22 +4593,25 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     s8 priority;
 
     priority = gBattleMoves[move].priority;
-    if (GetBattlerAbility(battlerId) == ABILITY_GALE_WINGS
+    if ((GetBattlerAbility(battlerId) == ABILITY_GALE_WINGS  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GALE_WINGS))
         && gBattleMoves[move].type == TYPE_FLYING
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
     }
-    else if (GetBattlerAbility(battlerId) == ABILITY_PRANKSTER && IS_MOVE_STATUS(move))
+    
+	if ((GetBattlerAbility(battlerId) == ABILITY_PRANKSTER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_PRANKSTER)) && IS_MOVE_STATUS(move))
     {
         gProtectStructs[battlerId].pranksterElevated = 1;
         priority++;
     }
-    else if (gBattleMoves[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battlerId))
+    
+	if (gBattleMoves[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battlerId))
     {
         priority++;
     }
-    else if (GetBattlerAbility(battlerId) == ABILITY_TRIAGE)
+    
+	if ((GetBattlerAbility(battlerId) == ABILITY_TRIAGE || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_TRIAGE)))
     {
         switch (gBattleMoves[move].effect)
         {
@@ -4628,7 +4631,9 @@ s8 GetMovePriority(u32 battlerId, u16 move)
             break;
         }
     }
-    else if (GetBattlerAbility(battlerId) == ABILITY_BLITZ_BOXER && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
+    
+	if ((GetBattlerAbility(battlerId) == ABILITY_BLITZ_BOXER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_BLITZ_BOXER))
+		&& (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
     {
         priority++;
     }
