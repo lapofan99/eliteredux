@@ -5356,7 +5356,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
                  && gBattleMons[battler].status1 & STATUS1_ANY)
                 {
-                    goto ABILITY_HEAL_MON_STATUS;
+                    goto ABILITY_HEAL_MON_STATUS_INNATE;
                 }
             }
 			
@@ -5364,7 +5364,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHED_SKIN)){
                 if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
                 {
-                ABILITY_HEAL_MON_STATUS:
+                ABILITY_HEAL_MON_STATUS_INNATE:
                     if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON))
                         StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
                     if (gBattleMons[battler].status1 & STATUS1_SLEEP)
@@ -5497,7 +5497,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			
 			// Schooling
             if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SCHOOLING)){
-                if (gBattleMons[battler].level < 20)
+                if (gBattleMons[battler].level >= 20){
+					if ((effect = ShouldChangeFormHpBased(battler)))
+                    BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
+				}
             }
 		
 			// Zen Mode & Shields Down
