@@ -1504,7 +1504,7 @@ static void Cmd_attackcanceler(void)
         return;
     }
 
-    if ((GetBattlerAbility(gBattlerTarget) == ABILITY_COLOR_CHANGE) && (gBattlerAttacker != gBattlerTarget)) {
+    if (((GetBattlerAbility(gBattlerTarget) == ABILITY_COLOR_CHANGE) || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_COLOR_CHANGE)) && (gBattlerAttacker != gBattlerTarget)) {
         u32 currentType;
         u32 bestType = gBattleMons[gBattlerTarget].type1;
         u16 bestModifier = GetTypeModifier(moveType, bestType);
@@ -1805,7 +1805,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 		moveAcc = 90;
 
     // Bad Luck Ability lowers accuracy by 5%
-    if (defAbility == ABILITY_BAD_LUCK || abilityDefPartner == ABILITY_BAD_LUCK)
+    if (defAbility == ABILITY_BAD_LUCK || abilityDefPartner == ABILITY_BAD_LUCK || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BAD_LUCK))
         moveAcc = (moveAcc * 95) / 100;
 	
     // Check Thunder and Hurricane on sunny weather.
@@ -2016,7 +2016,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     {
         critChance = -1;
     }
-    else if (abilityDef == ABILITY_BAD_LUCK || abilityDefPartner == ABILITY_BAD_LUCK || abilityDef == ABILITY_BATTLE_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR) ||abilityDef == ABILITY_SHELL_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHELL_ARMOR))
+    else if (abilityDef == ABILITY_BAD_LUCK || abilityDefPartner == ABILITY_BAD_LUCK || abilityDef == ABILITY_BATTLE_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR) || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BAD_LUCK) ||abilityDef == ABILITY_SHELL_ARMOR || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHELL_ARMOR))
     {
         if (recordAbility)
             RecordAbilityBattle(battlerDef, abilityDef);
@@ -14229,7 +14229,7 @@ static void Cmd_trygetbaddreamstarget(void)
 
     if (gBattlerTarget >= gBattlersCount)
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
-    else if ((GetBattlerAbility(gBattlerTarget) == ABILITY_SWEET_DREAMS))
+    else if ((GetBattlerAbility(gBattlerTarget) == ABILITY_SWEET_DREAMS) || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_SWEET_DREAMS))
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 5);
     else
         gBattlescriptCurrInstr += 9;
