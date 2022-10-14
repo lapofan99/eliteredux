@@ -2699,7 +2699,7 @@ u8 DoBattlerEndTurnEffects(void)
 				FLARE_BOOST_CHECK;
 			
                 gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
-                if (ability == ABILITY_HEATPROOF)
+                if (ability == ABILITY_HEATPROOF || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HEATPROOF)) // ability + innate
                 {
                     if (gBattleMoveDamage > (gBattleMoveDamage / 2) + 1) // Record ability if the burn takes less damage than it normally would.
                         RecordAbilityBattle(gActiveBattler, ABILITY_HEATPROOF);
@@ -3044,7 +3044,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_SLOW_START:
             if (gDisableStructs[gActiveBattler].slowStartTimer
                 && --gDisableStructs[gActiveBattler].slowStartTimer == 0
-                && ability == ABILITY_SLOW_START)
+                && (ability == ABILITY_SLOW_START  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SLOW_START)))
             {
                 BattleScriptExecute(BattleScript_SlowStartEnds);
                 effect++;
@@ -3336,7 +3336,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                 else
                 {
                     u8 toSub;
-                    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_EARLY_BIRD)
+                    if (GetBattlerAbility(gBattlerAttacker) == (ABILITY_EARLY_BIRD || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EARLY_BIRD)))
                         toSub = 2;
                     else
                         toSub = 1;
@@ -3976,9 +3976,9 @@ static const u16 sWeatherFlagsInfo[][3] =
 bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
 {
     if (gBattleWeather & WEATHER_PRIMAL_ANY
-        && GetBattlerAbility(battler) != ABILITY_DESOLATE_LAND
-        && GetBattlerAbility(battler) != ABILITY_PRIMORDIAL_SEA
-        && GetBattlerAbility(battler) != ABILITY_DELTA_STREAM)
+        && GetBattlerAbility(battler) != (ABILITY_DESOLATE_LAND || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DESOLATE_LAND))
+        && GetBattlerAbility(battler) != (ABILITY_PRIMORDIAL_SEA || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRIMORDIAL_SEA))
+        && GetBattlerAbility(battler) != (ABILITY_DELTA_STREAM || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DELTA_STREAM)))
     {
         return FALSE;
     }
@@ -4851,6 +4851,170 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Inates on Switch
 		
+		// Drizzle
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRIZZLE)){
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
+                effect++;
+            }
+            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = 1;
+                BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                effect++;
+            }
+        }
+		
+		// Sand Stream
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAND_STREAM)){
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
+                effect++;
+            }
+            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = 1;
+                BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                effect++;
+            }
+        }
+
+		// Drought
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DROUGHT)){
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
+                effect++;
+            }
+            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = 1;
+                BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                effect++;
+            }
+        }
+
+		// Snow Warning
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SNOW_WARNING)){
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
+                effect++;
+            }
+            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = 1;
+                BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                effect++;
+            }
+        }
+
+		// Electric Surge
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ELECTRIC_SURGE)){
+            if (TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
+                effect++;
+            }
+        }
+
+		// Grassy Surge
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GRASSY_SURGE)){
+            if (TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
+                effect++;
+            }
+        }
+			
+		// Misty Surge
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MISTY_SURGE)){
+            if (TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
+                effect++;
+            }
+        }
+			
+		// Psychic Surge
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PSYCHIC_SURGE)){
+            if (TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
+                effect++;
+            }
+        }
+		
+		// Desolate Land
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DESOLATE_LAND)){
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_DesolateLandActivates);
+                effect++;
+            }
+        }
+		
+		// Primordial Sea
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRIMORDIAL_SEA)){
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_PrimordialSeaActivates);
+                effect++;
+            }
+        }
+		
+		// Delta Stream
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DELTA_STREAM)){
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_STRONG_WINDS, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_DeltaStreamActivates);
+                effect++;
+            }
+        }
+		
+		// Download
+		
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DOWNLOAD)){
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                u32 statId, opposingBattler;
+                u32 opposingDef = 0, opposingSpDef = 0;
+
+                opposingBattler = BATTLE_OPPOSITE(battler);
+                for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+                {
+                    if (IsBattlerAlive(opposingBattler))
+                    {
+                        opposingDef += gBattleMons[opposingBattler].defense
+                                    * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][0]
+                                    / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][1];
+                        opposingSpDef += gBattleMons[opposingBattler].spDefense
+                                      * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][0]
+                                      / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][1];
+                    }
+                }
+
+                if (opposingDef < opposingSpDef)
+                    statId = STAT_ATK;
+                else
+                    statId = STAT_SPATK;
+
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+
+                if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
+                {
+                    gBattleMons[battler].statStages[statId]++;
+                    SET_STATCHANGER(statId, 1, FALSE);
+                    gBattlerAttacker = battler;
+                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                    effect++;
+                }
+            }
+		}
+		
 		// Lets Roll
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL)){
 			if (!gSpecialStatuses[battler].switchInAbilityDone)
@@ -4864,6 +5028,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 		}
+		
+		// Slow Start
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SLOW_START)){
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gDisableStructs[battler].slowStartTimer = 5;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SLOWSTART;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                effect++;
+            }
+        }
 		
 		// Majestic Moth
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAJESTIC_MOTH)){
@@ -6396,7 +6572,116 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         }
 			
+		
 		// Innates
+		
+		// Cursed Body
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_CURSED_BODY)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && gDisableStructs[gBattlerAttacker].disabledMove == MOVE_NONE
+             && IsBattlerAlive(gBattlerAttacker)
+             && !IsAbilityOnSide(gBattlerAttacker, ABILITY_AROMA_VEIL)
+             && gBattleMons[gBattlerAttacker].pp[gChosenMovePos] != 0
+             && (Random() % 3) == 0)
+            {
+                gDisableStructs[gBattlerAttacker].disabledMove = gChosenMove;
+                gDisableStructs[gBattlerAttacker].disableTimer = 4;
+                PREPARE_MOVE_BUFFER(gBattleTextBuff1, gChosenMove);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_CursedBodyActivates;
+                effect++;
+            }
+        }
+		
+		// Soul Linker
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOUL_LINKER)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+              && gBattleMons[gBattlerTarget].hp != 0
+              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+              && TARGET_TURN_DAMAGED)
+            {
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AttackerSoulLinker;
+                effect++;
+            }
+        }
+		
+		// Cotton Down
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_COTTON_DOWN)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED)
+            {
+                gEffectBattler = gBattlerTarget;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_CottonDownActivates;
+                effect++;
+            }
+		}
+			
+		// Steam Engine
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STEAM_ENGINE)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)
+             && (moveType == TYPE_FIRE || moveType == TYPE_WATER))
+            {
+                SET_STATCHANGER(STAT_SPEED, 6, FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaiseOnMoveEnd;
+                effect++;
+            }
+		}
+		
+		// Sand Spit
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAND_SPIT)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && !(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY))
+            {
+                if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY)
+                {
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_BlockedByPrimalWeatherRet;
+                    effect++;
+                }
+                else if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
+                {
+                    gBattleScripting.battler = gActiveBattler = battler;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_SandSpitActivates;
+                    effect++;
+                }
+			}
+		}
+		
+		// Perish Body
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PERISH_BODY)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && !(gStatuses3[gBattlerAttacker] & STATUS3_PERISH_SONG))
+            {
+                if (!(gStatuses3[battler] & STATUS3_PERISH_SONG))
+                {
+                    gStatuses3[battler] |= STATUS3_PERISH_SONG;
+                    gDisableStructs[battler].perishSongTimer = 3;
+                    gDisableStructs[battler].perishSongTimerStartValue = 3;
+                }
+                gStatuses3[gBattlerAttacker] |= STATUS3_PERISH_SONG;
+                gDisableStructs[gBattlerAttacker].perishSongTimer = 3;
+                gDisableStructs[gBattlerAttacker].perishSongTimerStartValue = 3;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_PerishBodyActivates;
+                effect++;
+            }
+		}
 		
 		// Aftermath
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AFTERMATH)){
@@ -6846,7 +7131,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         }
 		
+		
 		// Innates
+		
+		// Soul Linker
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOUL_LINKER)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+              && gBattleMons[gBattlerTarget].hp != 0
+              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+              && TARGET_TURN_DAMAGED)
+            {
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AttackerSoulLinker;
+                effect++;
+            }
+		}
+		
 		// Growing Tooth
 		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GROWING_TOOTH)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -7167,6 +7467,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 else if (gDisableStructs[battler].tauntTimer != 0)
                     effect = 4;
 			}
+			
+			// Water Veil & Water Bubble
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL) || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_BUBBLE)){
+                if (gBattleMons[battler].status1 & STATUS1_BURN)
+                {
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                    effect = 1;
+                }
+			}
+			
         }
         break;
     case ABILITYEFFECT_FORECAST: // 6
@@ -10387,6 +10697,35 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	
 	// Target's Innates
 	
+	// Heatproof & Water Bubble
+	
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_HEATPROOF) || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WATER_BUBBLE)){
+        if (moveType == TYPE_FIRE)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+	}
+	
+    // Dry Skin
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_DRY_SKIN)){
+		if (moveType == TYPE_FIRE)
+            MulModifier(&modifier, UQ_4_12(1.25));
+	}
+	
+	// Fluffy
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FLUFFY)){
+		if (IsMoveMakingContact(move, battlerAtk))
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+		if (moveType == TYPE_FIRE)
+            MulModifier(&modifier, UQ_4_12(2.0));
+	}
+	
 	// Liquified
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LIQUIFIED)){
 		if (IsMoveMakingContact(move, battlerAtk))
@@ -10807,6 +11146,51 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
 	
 	//Innates
+	
+	// Slow Start
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SLOW_START)){
+        if (gDisableStructs[battlerAtk].slowStartTimer != 0)
+            MulModifier(&modifier, UQ_4_12(0.5));
+    }
+	
+	// Plus & Minus
+	if(SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_PLUS)
+	|| SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_MINUS)){
+        {
+            u32 partnerAbility = GetBattlerAbility(BATTLE_PARTNER(battlerAtk));
+            if (partnerAbility == ABILITY_PLUS 
+			|| partnerAbility == ABILITY_MINUS 
+			|| SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_PLUS)
+			|| SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_MINUS)
+			)
+                MulModifier(&modifier, UQ_4_12(1.5));
+        }
+	}
+
+	// Hustle
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE)){
+	if (IS_MOVE_PHYSICAL(move))
+            MulModifier(&modifier, UQ_4_12(1.5));
+	}
+	
+	// Stakeout
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STAKEOUT)){
+        if (gDisableStructs[battlerDef].isFirstTurn == 2) // just switched in
+            MulModifier(&modifier, UQ_4_12(2.0));
+    }
+	
+	// Whiteout
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_WHITEOUT)){
+        if (moveType == TYPE_ICE && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
+            MulModifier(&modifier, UQ_4_12(1.5));
+    }
+	
+	// Guts
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GUTS)){
+        if (gBattleMons[battlerAtk].status1 & STATUS1_ANY && IS_MOVE_PHYSICAL(move))
+            MulModifier(&modifier, UQ_4_12(1.5));
+    }
+	
 	//Illusion
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ILLUSION)){
 		if (gBattleStruct->illusion[battlerAtk].on && !gBattleStruct->illusion[battlerAtk].broken)
@@ -11318,7 +11702,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 
     // check burn
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_PHYSICAL(move)
-        && gBattleMoves[move].effect != EFFECT_FACADE && abilityAtk != ABILITY_GUTS)
+        && gBattleMoves[move].effect != EFFECT_FACADE && abilityAtk != (ABILITY_GUTS || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GUTS)))
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
 
     // check sunny/rain weather
@@ -11414,7 +11798,22 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
             MulModifier(&finalModifier, UQ_4_12(1.2));
         break;
     }
-	//Innates
+	
+	
+	// Innates
+	
+	// Sniper
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SNIPER)){
+        if (isCrit)
+            MulModifier(&finalModifier, UQ_4_12(1.5));
+    }
+    
+	// Neuroforce
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_NEUROFORCE)){
+        if (typeEffectivenessModifier >= UQ_4_12(2.0))
+            MulModifier(&finalModifier, UQ_4_12(1.25));
+	}
+	
 	// Fatal Precision
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FATAL_PRECISION)){
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))
@@ -11425,6 +11824,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 		if (typeEffectivenessModifier <= UQ_4_12(0.5))
             MulModifier(&finalModifier, UQ_4_12(2.0));
     }
+	
 
     // target's abilities
     switch (abilityDef)
@@ -11455,7 +11855,9 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         break;
     }
 	
-	//Innates
+	
+	// Innates
+	
 	// Permafrost
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PERMAFROST)){
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))

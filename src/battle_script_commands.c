@@ -2042,7 +2042,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
                     + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
                     + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
 					+ ((abilityAtk == ABILITY_PERFECTIONIST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PERFECTIONIST)) && gBattleMoves[move].power <= 40)
-                    + (abilityAtk == ABILITY_SUPER_LUCK);
+                    + ((abilityAtk == ABILITY_SUPER_LUCK  || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SUPER_LUCK)));
 
         if (critChance >= ARRAY_COUNT(sCriticalHitChance))
             critChance = ARRAY_COUNT(sCriticalHitChance) - 1;
@@ -3316,7 +3316,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                         gBattlescriptCurrInstr++;
                     }
                     else if (gBattleMons[gBattlerTarget].item
-                        && GetBattlerAbility(gBattlerTarget) == ABILITY_STICKY_HOLD)
+                        && GetBattlerAbility(gBattlerTarget) == (ABILITY_STICKY_HOLD  || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_STICKY_HOLD)))
                     {
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_NoItemSteal;
@@ -3521,7 +3521,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 break;
             case MOVE_EFFECT_BUG_BITE:
                 if (ItemId_GetPocket(gBattleMons[gEffectBattler].item) == POCKET_BERRIES
-                    && GetBattlerAbility(gEffectBattler) != ABILITY_STICKY_HOLD
+                    && GetBattlerAbility(gEffectBattler) != (ABILITY_STICKY_HOLD  || SpeciesHasInnate(gBattleMons[gEffectBattler].species, ABILITY_STICKY_HOLD))
                     && !(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2 && gBattleMons[gBattlerTarget].hp != 0)) // Steal berry on final hit
                 {
                     // target loses their berry
@@ -4968,7 +4968,7 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
         && CanBattlerGetOrLoseItem(battlerDef, gBattleMons[battlerDef].item)
         && !NoAliveMonsForEitherParty())
     {
-        if (GetBattlerAbility(battlerDef) == ABILITY_STICKY_HOLD && IsBattlerAlive(battlerDef))
+        if (GetBattlerAbility(battlerDef) == (ABILITY_STICKY_HOLD || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_STICKY_HOLD)) && IsBattlerAlive(battlerDef))
         {
             gBattlerAbility = battlerDef;
             BattleScriptPushCursor();
@@ -5572,7 +5572,7 @@ static void Cmd_moveend(void)
                     {
                         gBattlerTarget = gBattlerAbility = battler;
                         // Battle scripting is super brittle so we shall do the item exchange now (if possible)
-                        if (GetBattlerAbility(gBattlerAttacker) != ABILITY_STICKY_HOLD)
+                        if (GetBattlerAbility(gBattlerAttacker) != (ABILITY_STICKY_HOLD || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_STICKY_HOLD)))
                             StealTargetItem(gBattlerTarget, gBattlerAttacker);  // Target takes attacker's item
                         
                         gEffectBattler = gBattlerAttacker;
@@ -9291,9 +9291,9 @@ static void Cmd_various(void)
         for (i = 0; i < gBattlersCount; i++)
         {
             u32 ability = GetBattlerAbility(i);
-            if (((ability == ABILITY_DESOLATE_LAND && gBattleWeather & WEATHER_SUN_PRIMAL)
-             || (ability == ABILITY_PRIMORDIAL_SEA && gBattleWeather & WEATHER_RAIN_PRIMAL)
-             || (ability == ABILITY_DELTA_STREAM && gBattleWeather & WEATHER_STRONG_WINDS))
+            if ((((ability == ABILITY_DESOLATE_LAND || SpeciesHasInnate(gBattleMons[i].species, ABILITY_DESOLATE_LAND)) && gBattleWeather & WEATHER_SUN_PRIMAL)
+             || ((ability == ABILITY_PRIMORDIAL_SEA || SpeciesHasInnate(gBattleMons[i].species, ABILITY_PRIMORDIAL_SEA)) && gBattleWeather & WEATHER_RAIN_PRIMAL)
+             || ((ability == ABILITY_DELTA_STREAM || SpeciesHasInnate(gBattleMons[i].species, ABILITY_DELTA_STREAM)) && gBattleWeather & WEATHER_STRONG_WINDS))
              && IsBattlerAlive(i))
                 shouldNotClear = TRUE;
         }
@@ -12594,7 +12594,7 @@ static void Cmd_tryswapitems(void) // trick
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
         }
         // check if ability prevents swapping
-        else if (GetBattlerAbility(gBattlerTarget) == ABILITY_STICKY_HOLD)
+        else if (GetBattlerAbility(gBattlerTarget) == (ABILITY_STICKY_HOLD || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_STICKY_HOLD)))
         {
             gBattlescriptCurrInstr = BattleScript_StickyHoldActivates;
             gLastUsedAbility = gBattleMons[gBattlerTarget].ability;

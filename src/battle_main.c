@@ -4530,16 +4530,16 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
             speed *= 2;
         else if (ability == ABILITY_SAND_RUSH   && gBattleWeather & WEATHER_SANDSTORM_ANY)
             speed *= 2;
-        else if (ability == ABILITY_SLUSH_RUSH  && gBattleWeather & WEATHER_HAIL_ANY)
+        else if ((ability == ABILITY_SLUSH_RUSH || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLUSH_RUSH))  && gBattleWeather & WEATHER_HAIL_ANY)
             speed *= 2;
     }
 
     // other abilities
-    if (ability == ABILITY_QUICK_FEET && gBattleMons[battlerId].status1 & STATUS1_ANY)
+    if ((ability == ABILITY_QUICK_FEET  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_QUICK_FEET)) && gBattleMons[battlerId].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
-    else if (ability == ABILITY_SURGE_SURFER && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+    else if ((ability == ABILITY_SURGE_SURFER  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SURGE_SURFER)) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed *= 2;
-    else if (ability == ABILITY_SLOW_START && gDisableStructs[battlerId].slowStartTimer != 0)
+    else if ((ability == ABILITY_SLOW_START  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLOW_START)) && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
 	
 	if (ability == ABILITY_LEAD_COAT || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEAD_COAT))
