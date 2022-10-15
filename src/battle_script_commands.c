@@ -1860,16 +1860,16 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (atkAbility == ABILITY_ILLUMINATE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ILLUMINATE))
         calc = (calc * 120) / 100; // 1.2 Illuminate boost
 
-    if (defAbility == ABILITY_SAND_VEIL && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
+    if ((defAbility == ABILITY_SAND_VEIL || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_VEIL)) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
         calc = (calc * 80) / 100; // 1.2 sand veil loss
     
-	if (defAbility == ABILITY_SNOW_CLOAK && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
+	if ((defAbility == ABILITY_SNOW_CLOAK || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SNOW_CLOAK)) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
         calc = (calc * 80) / 100; // 1.2 snow cloak loss
     
 	if (defAbility == ABILITY_TANGLED_FEET && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
         calc = (calc * 50) / 100; // 1.5 tangled feet loss
 
-    if (atkAbility == ABILITY_HUSTLE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE && IS_MOVE_PHYSICAL(move)))
+    if ((atkAbility == ABILITY_HUSTLE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE)) && IS_MOVE_PHYSICAL(move))
         calc = (calc * 80) / 100; // 1.2 hustle loss
 
     if (defHoldEffect == HOLD_EFFECT_EVASION_UP)
@@ -11017,7 +11017,7 @@ static void Cmd_weatherdamage(void)
     u32 ability = GetBattlerAbility(gBattlerAttacker);
 
     gBattleMoveDamage = 0;
-    if (IsBattlerAlive(gBattlerAttacker) && WEATHER_HAS_EFFECT 
+    if (IsBattlerAlive(gBattlerAttacker) && WEATHER_HAS_EFFECT  // Sandstorm damage
 	    && ability != ABILITY_MAGIC_GUARD
         && ability != ABILITY_IMPENETRABLE
 		&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
@@ -11029,7 +11029,9 @@ static void Cmd_weatherdamage(void)
                 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GROUND)
                 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_STEEL)
                 && ability != ABILITY_SAND_VEIL
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SAND_VEIL)
                 && ability != ABILITY_SAND_FORCE
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SAND_FORCE)
                 && ability != ABILITY_SAND_RUSH
 				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SAND_RUSH)
                 && ability != ABILITY_OVERCOAT
@@ -11042,7 +11044,7 @@ static void Cmd_weatherdamage(void)
                     gBattleMoveDamage = 1;
             }
         }
-        if (gBattleWeather & WEATHER_HAIL_ANY)
+        if (gBattleWeather & WEATHER_HAIL_ANY) // Hail damage
         {
             if ((ability == ABILITY_ICE_BODY || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_ICE_BODY))
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
@@ -11057,6 +11059,7 @@ static void Cmd_weatherdamage(void)
             }
             else if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)
                 && ability != ABILITY_SNOW_CLOAK
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SNOW_CLOAK)
                 && ability != ABILITY_OVERCOAT
 				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
 				&& ability != ABILITY_AURORA_BOREALIS
@@ -11065,6 +11068,8 @@ static void Cmd_weatherdamage(void)
 				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_ICE_BODY)
                 && ability != ABILITY_SLUSH_RUSH
 				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SLUSH_RUSH)
+				&& ability != ABILITY_NORTH_WIND
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_NORTH_WIND)
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {

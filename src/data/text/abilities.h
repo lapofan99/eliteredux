@@ -329,16 +329,17 @@ static const u8 sBadLuckDescription[] = _("Enemies can't critically strike\nand 
 static const u8 sHauntedSpiritDescription[] = _("When the Pokemon faints,\nthe attacker becomes cursed.");
 static const u8 sElectricBurstDescription[] = _("Ups Electric moves by 35%\nbut gets 10% recoil damage.");
 static const u8 sRawWoodDescription[] = _("Only takes half damage from\nGrass-type moves.");
-static const u8 sSolenglyphsDescription[] = _("Biting moves have 50% chance\nto poison the target.");
-static const u8 sSpiderLairDescription[] = _("Sets Sticky Web on entry.");
+static const u8 sSolenoglyphsDescription[] = _("Biting moves have 50% chance\nto poison the target.");
+static const u8 sSpiderLairDescription[] = _("Sets up Sticky Web\non entry.");
 static const u8 sFatalPrecisionDescription[] = _("Super Effective moves never\nmiss and become stronger by 20%.");
 static const u8 sFortKnoxDescription[] = _("Boosts Defense sharply\nwhen stats are lowered.");
 static const u8 sSeaweedDescription[] = _("Grass becomes neutral against\nFire.");
 static const u8 sPsychicMindDescription[] = _("Increases Psychic-type moves by 25%.");
 static const u8 sPoisonAbsorbDescription[] = _("Turns poison into HP.");
 static const u8 sScavengerDescription[] =  _("Heals 1/4 HP when\ndefeating an enemy.");
-static const u8 sTwistedDimensionDescription[] =  _("Summons Trick Room on Entry.");
-static const u8 sMultiHeadedDescription[] =  _("Hits 2 times with 2 heads,\n3 times with 3 heads..");
+static const u8 sTwistedDimensionDescription[] =  _("Sets up Trick Room\non entry.");
+static const u8 sMultiHeadedDescription[] =  _("Hits 2x with 2 heads,\n3x with 3 heads.");
+static const u8 sNorthWindDescription[] =  _("Sets Aurora Veil on entry.\nImmune to Hail damage.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -690,6 +691,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_SCAVENGER] = _("Scavenger"),
 	[ABILITY_TWISTED_DIMENSION] = _("Twisted Dimension"),
 	[ABILITY_MULTI_HEADED] = _("Multi Headed"),
+	[ABILITY_NORTH_WIND] = _("North Wind"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1032,7 +1034,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_HAUNTED_SPIRIT] = sHauntedSpiritDescription,
 	[ABILITY_ELECTRIC_BURST] = sElectricBurstDescription,
 	[ABILITY_RAW_WOOD] = sRawWoodDescription,
-	[ABILITY_SOLENOGLYPHS] = sSolenglyphsDescription,
+	[ABILITY_SOLENOGLYPHS] = sSolenoglyphsDescription,
 	[ABILITY_SPIDER_LAIR] = sSpiderLairDescription,
 	[ABILITY_FATAL_PRECISION] = sFatalPrecisionDescription,
 	[ABILITY_FORT_KNOX] = sFortKnoxDescription,
@@ -1042,4 +1044,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_SCAVENGER] = sScavengerDescription,
 	[ABILITY_TWISTED_DIMENSION] = sTwistedDimensionDescription,
 	[ABILITY_MULTI_HEADED] = sMultiHeadedDescription,
+	[ABILITY_NORTH_WIND] = sNorthWindDescription,
 };

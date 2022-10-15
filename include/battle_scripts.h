@@ -439,5 +439,6 @@ extern const u8 BattleScript_HauntedSpiritActivated[];
 extern const u8 BattleScript_UserGetsReckoilDamaged[];
 extern const u8 BattleScript_SpiderLairActivated[];
 extern const u8 BattleScript_TwistedDimensionActivated[];
+extern const u8 BattleScript_NorthWindActivated[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

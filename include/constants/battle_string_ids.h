@@ -620,7 +620,7 @@
 #define STRINGID_ATTACKERTYPECHANGEDTO		      	  618
 #define STRINGID_PKMNSABILITYRESTOREDHPALITTLE		  619
 #define STRINGID_BATTLERENVELOPEDITSELFINAVEIL		  620
-#define STRINGID_AIRBLOWERACTIVATED		   			  621
+#define STRINGID_AIRBLOWERACTIVATED                   621
 #define STRINGID_TARGETPKMNHURTSWITH		   		  622
 #define STRINGID_PKMNCUTSSPATTACKWITH                 623
 #define STRINGID_ATTACKERREGAINEDHEALTH               624
@@ -628,8 +628,9 @@
 #define STRINGID_PKMNBECAMECURSED                     626
 #define STRINGID_SPIDERLAIRACTIVATED                  627
 #define STRINGID_TWISTEDDIMENSIONACTIVATED            628
+#define STRINGID_NORTHWINDACTIVATED                   629
 
-#define BATTLESTRINGS_COUNT                           629
+#define BATTLESTRINGS_COUNT                           630
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

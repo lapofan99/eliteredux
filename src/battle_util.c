@@ -4838,6 +4838,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+		case ABILITY_NORTH_WIND:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_NORTH_WIND;
+				gLastUsedAbility = ABILITY_NORTH_WIND;
+				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_AURORA_VEIL;
+				gSideTimers[GetBattlerSide(battler)].auroraVeilTimer = 5;
+				BattleScriptPushCursorAndCallback(BattleScript_NorthWindActivated);
+				effect++;
+			}
+			break;
 		case ABILITY_NOCTURNAL:
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!IsCurrentlyDay())
@@ -5304,6 +5316,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
 				gSideTimers[GetBattlerSide(battler)].tailwindTimer = 5;
 				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
+				effect++;
+			}
+		}
+		
+		// North Wind
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NORTH_WIND)){
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_NORTH_WIND;
+				gLastUsedAbility = ABILITY_NORTH_WIND;
+				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_AURORA_VEIL;
+				gSideTimers[GetBattlerSide(battler)].auroraVeilTimer = 5;
+				BattleScriptPushCursorAndCallback(BattleScript_NorthWindActivated);
 				effect++;
 			}
 		}
@@ -11855,6 +11881,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 		}
 	}
 	
+	// Raging Boxer
 	if(abilityAtk == ABILITY_RAGING_BOXER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_RAGING_BOXER)){
 		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
 		{
@@ -11862,6 +11889,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 		}
 	}
 	
+	// Multi Headed
 	if(abilityAtk == ABILITY_MULTI_HEADED || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MULTI_HEADED)){
 		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1 || gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2)
 		{

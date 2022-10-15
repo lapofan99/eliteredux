@@ -7694,6 +7694,13 @@ BattleScript_AirBlowerActivated::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 	
+BattleScript_NorthWindActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_NORTHWINDACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
 BattleScript_HurtTarget:
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
 	healthbarupdate BS_TARGET
