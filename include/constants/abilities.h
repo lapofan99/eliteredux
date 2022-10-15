@@ -313,7 +313,7 @@
 #define ABILITY_AERODYNAMICS     (ABILITIES_COUNT_LATEST_GEN + 14) // Boosts its Speed stat if hit by an Flying-type move instead of taking damage.
 #define ABILITY_CHRISTMAS_SPIRIT (ABILITIES_COUNT_LATEST_GEN + 15) // The Pokémon is protected by a mysterious force that reduces all incoming damage by 50% during a hailstorm.
 #define ABILITY_EXPLOIT_WEAKNESS (ABILITIES_COUNT_LATEST_GEN + 16) // Increases the power of moves by 25% against targets with status condition.
-#define ABILITY_GROUND_SHOCK     (ABILITIES_COUNT_LATEST_GEN + 17) // Allow Electric-type moves can hit ground type Pokémon.
+#define ABILITY_GROUND_SHOCK     (ABILITIES_COUNT_LATEST_GEN + 17) // Allow Electric-type moves to hit ground type Pokémon.
 #define ABILITY_ANCIENT_IDOL     (ABILITIES_COUNT_LATEST_GEN + 18) // The Pokémon uses its Def/SpDef stat and stages during physical/special moves.
 #define ABILITY_MYSTIC_POWER     (ABILITIES_COUNT_LATEST_GEN + 19) // All Pokémon's moves gain the same-type attack bonus (STAB) regardless the Pokémon's typing.
 #define ABILITY_PERFECTIONIST    (ABILITIES_COUNT_LATEST_GEN + 20) // Ups crit by +1 for moves with BP 40 or less. Ups crit rate by +1 and priority by +1 for moves with BP 20 or less.
@@ -377,8 +377,9 @@
 #define ABILITY_TWISTED_DIMENSION (ABILITIES_COUNT_LATEST_GEN + 78) // Summons Trick Room on entry.
 #define ABILITY_MULTI_HEADED     (ABILITIES_COUNT_LATEST_GEN + 79) // Hit two or three times depending on the number of heads with single target moves, dealing 25% or 33% more damage. (Doesn't work with multi-hit moves like Comet Punch, Flinch effect is not applied).
 #define ABILITY_NORTH_WIND       (ABILITIES_COUNT_LATEST_GEN + 80) // Sets Aurora Veil on entry. Immune to Hail damage.
+#define ABILITY_OVERCHARGE       (ABILITIES_COUNT_LATEST_GEN + 81) // Electric does 2x damage against Electric. Can paralyze Electric-types.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_NORTH_WIND + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_OVERCHARGE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

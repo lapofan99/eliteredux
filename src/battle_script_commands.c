@@ -7685,7 +7685,27 @@ bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget)
 {
-    return !(B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC));
+	// New Code for Ability Overcharge
+	
+	if (IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC))
+	{
+		if (((GetBattlerAbility(battlerAttacker) == ABILITY_OVERCHARGE) || SpeciesHasInnate(gBattleMons[battlerAttacker].species, ABILITY_OVERCHARGE)))
+			return TRUE;
+		if (B_PARALYZE_ELECTRIC >= GEN_6)
+			return FALSE;
+	}
+	return TRUE;
+	
+	/* Test by Darky
+	if (((GetBattlerAbility(battlerAttacker) == ABILITY_OVERCHARGE) || SpeciesHasInnate(gBattleMons[battlerAttacker].species, ABILITY_OVERCHARGE)
+		|| !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC))))
+		return TRUE;
+	if (IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC))
+		return (B_PARALYZE_ELECTRIC < GEN_6);
+	*/
+	
+	// Old Code
+    //return !(B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerTarget, TYPE_ELECTRIC));
 }
 
 bool32 CanUseLastResort(u8 battlerId)
