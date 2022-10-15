@@ -2484,5 +2484,7 @@
 #define F_ULTRA_BEAST   (1 << 0)
 #define F_ALOLAN_FORM   (1 << 1)
 #define F_GALARIAN_FORM (1 << 2)
+#define F_TWO_HEADED    (1 << 3)
+#define F_THREE_HEADED  (1 << 4)
 
 #endif  // GUARD_CONSTANTS_SPECIES_H

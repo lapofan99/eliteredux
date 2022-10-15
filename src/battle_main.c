@@ -4524,13 +4524,13 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     // weather abilities
     if (WEATHER_HAS_EFFECT)
     {
-        if (ability == ABILITY_SWIFT_SWIM       && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
+        if ((ability == ABILITY_SWIFT_SWIM || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SWIFT_SWIM)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
             speed *= 2;
-        else if (ability == ABILITY_CHLOROPHYLL && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+        else if ((ability == ABILITY_CHLOROPHYLL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_CHLOROPHYLL)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed *= 2;
-        else if (ability == ABILITY_SAND_RUSH   && gBattleWeather & WEATHER_SANDSTORM_ANY)
+        else if ((ability == ABILITY_SAND_RUSH   || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SAND_RUSH)) && gBattleWeather & WEATHER_SANDSTORM_ANY)
             speed *= 2;
-        else if ((ability == ABILITY_SLUSH_RUSH || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLUSH_RUSH))  && gBattleWeather & WEATHER_HAIL_ANY)
+        else if ((ability == ABILITY_SLUSH_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLUSH_RUSH)) && gBattleWeather & WEATHER_HAIL_ANY)
             speed *= 2;
     }
 
@@ -5529,7 +5529,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_WATER;
     }
-    else if (gBattleMoves[move].flags & FLAG_SOUND && attackerAbility == ABILITY_SAND_SONG)
+    else if (gBattleMoves[move].flags & FLAG_SOUND && (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_GROUND;
     }

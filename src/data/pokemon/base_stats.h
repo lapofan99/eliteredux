@@ -1404,6 +1404,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_FORCE, ABILITY_ARENA_TRAP, ABILITY_MOODY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .flags = F_THREE_HEADED,
     },
 
     [SPECIES_MEOWTH] =
@@ -2262,8 +2263,10 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FLYING,
         .eggGroup2 = EGG_GROUP_FLYING,
         .abilities = {ABILITY_COMPOUND_EYES, ABILITY_MOXIE, ABILITY_ADAPTABILITY},
+        .innates = {ABILITY_MULTI_HEADED, ABILITY_NONE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .flags = F_TWO_HEADED,
     },
 
     [SPECIES_DODRIO] =
@@ -2276,6 +2279,7 @@ const struct BaseStats gBaseStats[] =
         #ifdef REBALANCED_VERSION
             .baseHP        = 90,
             .abilities = {ABILITY_COMPOUND_EYES, ABILITY_MOXIE, ABILITY_ADAPTABILITY},
+            .innates = {ABILITY_MULTI_HEADED, ABILITY_NONE, ABILITY_NONE},
         #else
             .baseHP        = 60,
             .abilities = {ABILITY_RUN_AWAY, ABILITY_EARLY_BIRD, ABILITY_TANGLED_FEET},
@@ -2294,6 +2298,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_FLYING,
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
+        .flags = F_THREE_HEADED,
     },
 
     [SPECIES_SEEL] =
@@ -2774,6 +2779,7 @@ const struct BaseStats gBaseStats[] =
         #endif
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .flags = F_THREE_HEADED,
     },
 
     [SPECIES_CUBONE] =
@@ -5443,6 +5449,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_FIELD,
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
+        .flags = F_TWO_HEADED,
     },
 
     [SPECIES_PINECO] =
@@ -17058,6 +17065,7 @@ const struct BaseStats gBaseStats[] =
         #endif
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .flags = F_TWO_HEADED,
     },
 
     [SPECIES_HYDREIGON] =
@@ -17086,6 +17094,7 @@ const struct BaseStats gBaseStats[] =
         #endif
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
+        .flags = F_THREE_HEADED,
     },
 
     [SPECIES_LARVESTA] =
@@ -25711,7 +25720,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SAND_FORCE, ABILITY_ARENA_TRAP, ABILITY_MOODY},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
-        .flags = F_ALOLAN_FORM,
+        .flags = F_ALOLAN_FORM | F_THREE_HEADED,
     },
 
     [SPECIES_MEOWTH_ALOLAN] =
@@ -25933,7 +25942,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_CHLOROPLAST, ABILITY_TRIAGE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
-        .flags = F_ALOLAN_FORM,
+        .flags = F_ALOLAN_FORM | F_THREE_HEADED,
     },
 
     [SPECIES_MAROWAK_ALOLAN] =

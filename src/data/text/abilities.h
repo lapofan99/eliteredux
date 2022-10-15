@@ -337,6 +337,8 @@ static const u8 sSeaweedDescription[] = _("Grass becomes neutral against\nFire."
 static const u8 sPsychicMindDescription[] = _("Increases Psychic-type moves by 25%.");
 static const u8 sPoisonAbsorbDescription[] = _("Turns poison into HP.");
 static const u8 sScavengerDescription[] =  _("Heals 1/4 HP when\ndefeating an enemy.");
+static const u8 sTwistedDimensionDescription[] =  _("Summons Trick Room on Entry.");
+static const u8 sMultiHeadedDescription[] =  _("Hits 2 times with 2 heads,\n3 times with 3 heads..");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -686,6 +688,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_PSYCHIC_MIND] = _("Psychic Mind"),
 	[ABILITY_POISON_ABSORB] = _("Poison Absorb"),
 	[ABILITY_SCAVENGER] = _("Scavenger"),
+	[ABILITY_TWISTED_DIMENSION] = _("Twisted Dimension"),
+	[ABILITY_MULTI_HEADED] = _("Multi Headed"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1036,4 +1040,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_PSYCHIC_MIND] = sPsychicMindDescription,
 	[ABILITY_POISON_ABSORB] = sPoisonAbsorbDescription,
 	[ABILITY_SCAVENGER] = sScavengerDescription,
+	[ABILITY_TWISTED_DIMENSION] = sTwistedDimensionDescription,
+	[ABILITY_MULTI_HEADED] = sMultiHeadedDescription,
 };

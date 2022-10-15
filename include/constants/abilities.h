@@ -374,8 +374,10 @@
 #define ABILITY_PSYCHIC_MIND     (ABILITIES_COUNT_LATEST_GEN + 75) // Boosts the power of Psychic-type moves by 25%.
 #define ABILITY_POISON_ABSORB    (ABILITIES_COUNT_LATEST_GEN + 76) // Restore 1/4 HP when hit by Poison-type moves.
 #define ABILITY_SCAVENGER        (ABILITIES_COUNT_LATEST_GEN + 77) // Heals 1/4 HP when defeating an enemy.
+#define ABILITY_TWISTED_DIMENSION (ABILITIES_COUNT_LATEST_GEN + 78) // Summons Trick Room on Entry.
+#define ABILITY_MULTI_HEADED     (ABILITIES_COUNT_LATEST_GEN + 79) // Hit two or three times depending on the number of heads with single target moves, dealing 25% or 33% more damage. (Doesn't work with multi-hit moves like Comet Punch, Flinch effect is not applied).
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SCAVENGER + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_MULTI_HEADED + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -9422,3 +9422,10 @@ BattleScript_SpiderLairActivated::
 	printstring STRINGID_SPIDERLAIRACTIVATED
 	waitmessage B_WAIT_TIME_LONG
 	end3
+	
+BattleScript_TwistedDimensionActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_TWISTEDDIMENSIONACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
