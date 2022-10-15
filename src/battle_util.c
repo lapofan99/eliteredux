@@ -6476,7 +6476,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
-             && CanBeParalyzed(gBattlerAttacker)
+             && CanBeParalyzed(gBattlerAttacker, gBattlerTarget)
              && IsMoveMakingContact(move, gBattlerAttacker)
              && (Random() % 3) == 0)
             {
@@ -6932,7 +6932,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
-             && CanBeParalyzed(gBattlerAttacker)
+             && CanBeParalyzed(gBattlerAttacker, gBattlerTarget)
              && IsMoveMakingContact(move, gBattlerAttacker)
              && (Random() % 3) == 0)
             {
@@ -7102,7 +7102,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && CanBeParalyzed(gBattlerTarget)
+             && CanBeParalyzed(gBattlerTarget, gBattlerAttacker)
              && IsMoveMakingContact(move, gBattlerAttacker)
              && TARGET_TURN_DAMAGED // Need to actually hit the target
              && (Random() % 3) == 0)
@@ -7386,7 +7386,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && CanBeParalyzed(gBattlerTarget)
+             && CanBeParalyzed(gBattlerTarget, gBattlerAttacker)
              && IsMoveMakingContact(move, gBattlerAttacker)
              && TARGET_TURN_DAMAGED // Need to actually hit the target
              && (Random() % 3) == 0)
@@ -7988,20 +7988,20 @@ bool32 CanBeBurned(u8 battlerId)
     return TRUE;
 }
 
-bool32 CanBeParalyzed(u8 battlerId)
+bool32 CanBeParalyzed(u8 battlerTarget, u8 battlerAttacker)
 {
-    u16 ability = GetBattlerAbility(battlerId);
-    if ((B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battlerId, TYPE_ELECTRIC))
-      || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
+    u16 ability = GetBattlerAbility(battlerTarget);
+    if ((!CanParalyzeType(battlerAttacker, battlerTarget))
+      || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_LIMBER
-	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LIMBER)
+	  || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_LIMBER)
       || ability == ABILITY_JUGGERNAUT
-	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_JUGGERNAUT)
+	  || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_JUGGERNAUT)
       || ability == ABILITY_COMATOSE
-	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE)
-      || gBattleMons[battlerId].status1 & STATUS1_ANY
-      || IsAbilityStatusProtected(battlerId)
-      || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
+	  || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_COMATOSE)
+      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
+      || IsAbilityStatusProtected(battlerTarget)
+      || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
 }
