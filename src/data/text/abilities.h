@@ -345,6 +345,7 @@ static const u8 sViolentRushDescription[] =  _("Boosts Speed by 1.5x, Attack\nby
 static const u8 sFlamingSoulDescription[] =  _("Fire moves go first.");
 static const u8 sSagePowerDescription[] =  _("Ups Special Attack by 50%\nand locks move.");
 static const u8 sBoneZoneDescription[] =  _("Bone moves ignore immunities and\ndeal 2x on not very effective.");
+static const u8 sWeatherControlDescription[] =  _("Negates all weather based\nmoves from opposing enemies.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -702,6 +703,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_FLAMING_SOUL] = _("Flaming Soul"),
 	[ABILITY_SAGE_POWER] = _("Sage Power"),
 	[ABILITY_BONE_ZONE] = _("Bone Zone"),
+	[ABILITY_WEATHER_CONTROL] = _("Weather Control"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1060,4 +1062,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_FLAMING_SOUL] = sFlamingSoulDescription,
 	[ABILITY_SAGE_POWER] = sSagePowerDescription,
 	[ABILITY_BONE_ZONE] = sBoneZoneDescription,
+	[ABILITY_WEATHER_CONTROL] = sWeatherControlDescription,
 };

@@ -12344,6 +12344,19 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             RecordAbilityBattle(battlerDef, gBattleMons[battlerDef].ability);
         }
     }
+	
+	if ((GetBattlerAbility(battlerDef) == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WEATHER_CONTROL)) && (gBattleMoves[move].flags & FLAG_WEATHER_BASED))
+    {
+        modifier = UQ_4_12(0.0);
+        if (recordAbilities)
+        {
+            gLastUsedAbility = gBattleMons[battlerDef].ability;
+            gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+            gLastLandedMoves[battlerDef] = 0;
+            gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
+            RecordAbilityBattle(battlerDef, gBattleMons[battlerDef].ability);
+        }
+    }
 
     if (((GetBattlerAbility(battlerDef) == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0))
         || (GetBattlerAbility(battlerDef) == ABILITY_TELEPATHY && battlerDef == BATTLE_PARTNER(battlerAtk)))
@@ -12395,6 +12408,8 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
 		if (moveType == TYPE_ROCK && (abilityDef == ABILITY_MOUNTAINEER || SpeciesHasInnate(speciesDef, ABILITY_MOUNTAINEER))) 
             modifier = UQ_4_12(0.0);
         if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gBattleMoves[move].power)
+            modifier = UQ_4_12(0.0);
+		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (abilityDef == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(speciesDef, ABILITY_WEATHER_CONTROL))) 
             modifier = UQ_4_12(0.0);
     }
 
