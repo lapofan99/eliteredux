@@ -26,7 +26,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_MONSTER,
         .eggGroup2 = EGG_GROUP_GRASS,
         #ifdef REBALANCED_VERSION
-            .abilities = {ABILITY_OVERCHARGE, ABILITY_THICK_FAT, ABILITY_CHLOROPHYLL},
+            .abilities = {ABILITY_CHLOROPLAST, ABILITY_THICK_FAT, ABILITY_CHLOROPHYLL},
         #else
             .abilities = {ABILITY_OVERGROW, ABILITY_OVERGROW, ABILITY_CHLOROPHYLL},
         #endif
@@ -7005,7 +7005,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_DARK_AURA, ABILITY_STRONG_JAW, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
-		.innates = {ABILITY_ARENA_TRAP, ABILITY_NONE, ABILITY_NONE},
+		.innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
     },
 
     [SPECIES_MIGHTYENA] =
