@@ -1823,7 +1823,11 @@ u8 TrySetCantSelectMoveBattleScript(void)
             limitations++;
         }
     }
-    if (((GetBattlerAbility(gActiveBattler) == ABILITY_GORILLA_TACTICS) || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_GORILLA_TACTICS)) && *choicedMove != 0 
+    if ((GetBattlerAbility(gActiveBattler) == ABILITY_GORILLA_TACTICS ||
+	     GetBattlerAbility(gActiveBattler) == ABILITY_SAGE_POWER ||
+	     SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_GORILLA_TACTICS) ||
+	     SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SAGE_POWER))
+		  && *choicedMove != 0 
               && *choicedMove != 0xFFFF && *choicedMove != move)
     {
         gCurrentMove = *choicedMove;
@@ -1893,7 +1897,11 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u8 check)
             unusableMoves |= gBitTable[i];
         else if (gBattleMons[battlerId].moves[i] == MOVE_STUFF_CHEEKS && ItemId_GetPocket(gBattleMons[gActiveBattler].item) != POCKET_BERRIES)
             unusableMoves |= gBitTable[i];
-        else if (((GetBattlerAbility(battlerId) == ABILITY_GORILLA_TACTICS) || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GORILLA_TACTICS)) && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
+        else if ((GetBattlerAbility(battlerId) == ABILITY_GORILLA_TACTICS || 
+		          GetBattlerAbility(battlerId) == ABILITY_SAGE_POWER || 
+		          SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GORILLA_TACTICS) ||
+				  SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SAGE_POWER))
+			&& *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
             unusableMoves |= gBitTable[i];
     }
     return unusableMoves;
@@ -10412,6 +10420,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
+    case ABILITY_SAGE_POWER:
+        if (IS_MOVE_SPECIAL(move))
+            MulModifier(&modifier, UQ_4_12(1.5));
+        break;
 	case ABILITY_EXPLOIT_WEAKNESS:
         if (gBattleMons[battlerDef].status1 & STATUS1_ANY)
             MulModifier(&modifier, UQ_4_12(1.25));
@@ -10552,6 +10564,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Gorilla Tactics
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GORILLA_TACTICS)){
 		if (IS_MOVE_PHYSICAL(move))
+            MulModifier(&modifier, UQ_4_12(1.5));
+    }
+	
+	// Sage Power
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAGE_POWER)){
+		if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	

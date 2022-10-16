@@ -343,6 +343,7 @@ static const u8 sNorthWindDescription[] =  _("Sets Aurora Veil on entry.\nImmune
 static const u8 sOverchargeDescription[] =  _("Electric does 2x damage to Electric.\nCan paralyze Electric-types.");
 static const u8 sViolentRushDescription[] =  _("Boosts Speed by 1.5x, Attack\nby 1.2x on first turn.");
 static const u8 sFlamingSoulDescription[] =  _("Fire moves go first.");
+static const u8 sSagePowerDescription[] =  _("Ups Special Attack by 50%\nand locks move.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -698,6 +699,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_OVERCHARGE] = _("Overcharge"),
 	[ABILITY_VIOLENT_RUSH] = _("Violent Rush"),
 	[ABILITY_FLAMING_SOUL] = _("Flaming Soul"),
+	[ABILITY_SAGE_POWER] = _("Sage Power"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1054,4 +1056,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_OVERCHARGE] = sOverchargeDescription,
 	[ABILITY_VIOLENT_RUSH] = sViolentRushDescription,
 	[ABILITY_FLAMING_SOUL] = sFlamingSoulDescription,
+	[ABILITY_SAGE_POWER] = sSagePowerDescription,
 };
