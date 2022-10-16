@@ -6198,8 +6198,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-		case ABILITY_STAMINA:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+		case ABILITY_STAMINA: // changed ability
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // new effect
+             && gIsCriticalHit
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+                SET_STATCHANGER(STAT_DEF, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_DEF], FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
+                effect++;
+            }
+			else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // old effect
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
              && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
@@ -6925,6 +6936,35 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].type3);
                 gBattlescriptCurrInstr = BattleScript_AttackerBecameTheType;
 				effect++;
+            }
+		}
+		
+		// Stamina
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STAMINA)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // new effect
+             && gIsCriticalHit
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_STAMINA;
+				gLastUsedAbility = ABILITY_STAMINA;
+                SET_STATCHANGER(STAT_DEF, MAX_STAT_STAGE - gBattleMons[battler].statStages[STAT_DEF], FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetsStatWasMaxedOut;
+                effect++;
+            }
+			else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // old effect
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(battler)
+             && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_STAMINA;
+				gLastUsedAbility = ABILITY_STAMINA;
+                SET_STATCHANGER(STAT_DEF, 1, FALSE);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaiseOnMoveEnd;
+                effect++;
             }
 		}
 		
@@ -11097,6 +11137,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         atkStat = gBattleMons[battlerAtk].defense;
         atkStage = gBattleMons[battlerAtk].statStages[STAT_DEF];
     }
+	// Ancient Idol
 	else if (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANCIENT_IDOL)|| GetBattlerAbility(battlerAtk) == ABILITY_ANCIENT_IDOL)
     {
 		//Has Innate functionality
@@ -11111,6 +11152,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             atkStage = gBattleMons[battlerAtk].statStages[STAT_SPDEF];
         }
     }
+	// Speed Force
+	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SPEED_FORCE)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE) && 
+			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
+		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].speed * 0.2);
+        atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
+    }
+	// Juggernaut
 	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_JUGGERNAUT)|| GetBattlerAbility(battlerAtk) == ABILITY_JUGGERNAUT) && 
 			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
 		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].defense * 0.2);
@@ -11129,6 +11177,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
         }
     }
+	
 
     // critical hits ignore attack stat's stage drops
     if (isCrit && atkStage < DEFAULT_STAT_STAGE)
