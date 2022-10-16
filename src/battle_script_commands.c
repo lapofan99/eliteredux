@@ -1621,7 +1621,7 @@ static void Cmd_attackcanceler(void)
         }
         return;
     }
-    else if (GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE
+    else if ((GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_MAGIC_BOUNCE))
              && gBattleMoves[gCurrentMove].flags & FLAG_MAGIC_COAT_AFFECTED
              && !gProtectStructs[gBattlerAttacker].usesBouncedMove)
     {
@@ -1913,6 +1913,7 @@ static void Cmd_accuracycheck(void)
     }
     else if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1
 		|| (gSpecialStatuses[gBattlerAttacker].multiHitOn && (gBattleMoves[move].effect != EFFECT_TRIPLE_KICK
+		|| SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SKILL_LINK)
 		|| GetBattlerAbility(gBattlerAttacker) == ABILITY_SKILL_LINK)))
     {
         // No acc checks for second hit of Parental Bond or multi hit moves
@@ -2806,7 +2807,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
 {
     s32 i, byTwo, affectsUser = 0;
     bool32 statusChanged = FALSE;
-    bool32 mirrorArmorReflected = (GetBattlerAbility(gBattlerTarget) == ABILITY_MIRROR_ARMOR);
+    bool32 mirrorArmorReflected = (GetBattlerAbility(gBattlerTarget) == ABILITY_MIRROR_ARMOR || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_MIRROR_ARMOR));
     u32 flags = 0;
     
     switch (gBattleScripting.moveEffect) // Set move effects which happen later on
@@ -2860,7 +2861,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
         {
         case STATUS1_SLEEP:
             // check active uproar
-            if (GetBattlerAbility(gEffectBattler) != ABILITY_SOUNDPROOF)
+            if (GetBattlerAbility(gEffectBattler) != ABILITY_SOUNDPROOF && !SpeciesHasInnate(gBattleMons[gEffectBattler].species, ABILITY_SOUNDPROOF))
             {
                 for (gActiveBattler = 0;
                     gActiveBattler < gBattlersCount && !(gBattleMons[gActiveBattler].status2 & STATUS2_UPROAR);
@@ -3613,7 +3614,7 @@ static void Cmd_seteffectwithchance(void)
     u8 moveType = gBattleMoves[gCurrentMove].type;
     u8 moveEffect = gBattleMoves[gCurrentMove].effect;
 
-    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE)
+    if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SERENE_GRACE))
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
     else if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PYROMANCY || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PYROMANCY))
              && moveType == TYPE_FIRE
@@ -8295,6 +8296,7 @@ static void Cmd_various(void)
         break;
     case VARIOUS_TRY_ACTIVATE_MOXIE:    // and chilling neigh + as one ice rider
         if ((GetBattlerAbility(gActiveBattler) == ABILITY_MOXIE
+		 || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MOXIE)
          || GetBattlerAbility(gActiveBattler) == ABILITY_CHILLING_NEIGH
          || GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_ICE_RIDER)
           && HasAttackerFaintedTarget()
@@ -8378,7 +8380,7 @@ static void Cmd_various(void)
         break;
     case VARIOUS_TRY_ACTIVATE_BEAST_BOOST:
         i = GetHighestStatId(gActiveBattler);
-        if (GetBattlerAbility(gActiveBattler) == ABILITY_BEAST_BOOST
+        if ((GetBattlerAbility(gActiveBattler) == ABILITY_BEAST_BOOST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_BEAST_BOOST))
             && HasAttackerFaintedTarget()
             && !NoAliveMonsForEitherParty()
             && CompareStat(gBattlerAttacker, i, MAX_STAT_STAGE, CMP_LESS_THAN))
@@ -10037,7 +10039,7 @@ bool8 UproarWakeUpCheck(u8 battlerId)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (!(gBattleMons[i].status2 & STATUS2_UPROAR) || GetBattlerAbility(battlerId) == ABILITY_SOUNDPROOF)
+        if (!(gBattleMons[i].status2 & STATUS2_UPROAR) || GetBattlerAbility(battlerId) == ABILITY_SOUNDPROOF || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SOUNDPROOF))
             continue;
 
         gBattleScripting.battler = i;
@@ -10382,7 +10384,8 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             }
             return STAT_CHANGE_DIDNT_WORK;
         }
-        else if (GetBattlerAbility(gActiveBattler) == ABILITY_MIRROR_ARMOR && !affectsUser && gBattlerAttacker != gBattlerTarget && gActiveBattler == gBattlerTarget)
+        else if ((GetBattlerAbility(gActiveBattler) == ABILITY_MIRROR_ARMOR || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MIRROR_ARMOR)) 
+			      && !affectsUser && gBattlerAttacker != gBattlerTarget && gActiveBattler == gBattlerTarget)
         {
             if (flags == STAT_BUFF_ALLOW_PTR)
             {
@@ -10564,7 +10567,7 @@ static void Cmd_setmultihitcounter(void)
     }
     else
     {
-        if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SKILL_LINK)
+        if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SKILL_LINK || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SKILL_LINK))
         {
             gMultiHitCounter = 5;
         }
@@ -11791,7 +11794,7 @@ static void Cmd_healpartystatus(void)
         else
             party = gEnemyParty;
 
-        if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF)
+        if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOUNDPROOF))
         {
             gBattleMons[gBattlerAttacker].status1 = 0;
             gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_NIGHTMARE);
@@ -11807,7 +11810,7 @@ static void Cmd_healpartystatus(void)
         if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
             && !(gAbsentBattlerFlags & gBitTable[gActiveBattler]))
         {
-            if (GetBattlerAbility(gActiveBattler) != ABILITY_SOUNDPROOF)
+            if (GetBattlerAbility(gActiveBattler) != ABILITY_SOUNDPROOF && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SOUNDPROOF))
             {
                 gBattleMons[gActiveBattler].status1 = 0;
                 gBattleMons[gActiveBattler].status2 &= ~(STATUS2_NIGHTMARE);
@@ -11839,7 +11842,7 @@ static void Cmd_healpartystatus(void)
                 else
                     ability = GetAbilityBySpecies(species, abilityNum);
 
-                if (ability != ABILITY_SOUNDPROOF)
+                if (ability != ABILITY_SOUNDPROOF && !SpeciesHasInnate(species, ABILITY_SOUNDPROOF))
                     toHeal |= (1 << i);
             }
         }
@@ -11921,6 +11924,7 @@ static void Cmd_trysetperishsong(void)
     {
         if (gStatuses3[i] & STATUS3_PERISH_SONG
             || GetBattlerAbility(i) == ABILITY_SOUNDPROOF
+			|| SpeciesHasInnate(gBattleMons[i].species, ABILITY_SOUNDPROOF)
             || BlocksPrankster(gCurrentMove, gBattlerAttacker, i, TRUE))
         {
             notAffectedCount++;

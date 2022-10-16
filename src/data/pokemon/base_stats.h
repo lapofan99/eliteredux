@@ -7005,7 +7005,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_DARK_AURA, ABILITY_STRONG_JAW, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
-		.innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
+		.innates = {ABILITY_ARENA_TRAP, ABILITY_NONE, ABILITY_NONE},
     },
 
     [SPECIES_MIGHTYENA] =

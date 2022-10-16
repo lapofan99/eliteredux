@@ -2795,7 +2795,8 @@ u8 DoBattlerEndTurnEffects(void)
                 for (gBattlerAttacker = 0; gBattlerAttacker < gBattlersCount; gBattlerAttacker++)
                 {
                     if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
-                     && GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF)
+                     && GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF
+				     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOUNDPROOF))
                     {
                         gBattleMons[gBattlerAttacker].status1 &= ~(STATUS1_SLEEP);
                         gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_NIGHTMARE);
@@ -3638,7 +3639,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             {
                 u16 ability = gBattleMons[gBattlerAttacker].ability;
 
-                if (ability == ABILITY_SKILL_LINK)
+                if (ability == ABILITY_SKILL_LINK || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SKILL_LINK))
                 {
                     gMultiHitCounter = 5;
                 }
@@ -5415,6 +5416,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 		}
 		
+		//
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MOLD_BREAKER)){
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                effect++;
+            }
+		}
+		
         break;
     case ABILITYEFFECT_ENDTURN: // 1
         if (gBattleMons[battler].hp != 0)
@@ -5866,7 +5878,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         break;
     case ABILITYEFFECT_MOVES_BLOCK: // 2
         if ((gLastUsedAbility == ABILITY_SOUNDPROOF && gBattleMoves[move].flags & FLAG_SOUND && !(gBattleMoves[move].target & MOVE_TARGET_USER))
-            || (gLastUsedAbility == ABILITY_BULLETPROOF && gBattleMoves[move].flags & FLAG_BALLISTIC))
+			|| (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOUNDPROOF) && gBattleMoves[move].flags & FLAG_SOUND && !(gBattleMoves[move].target & MOVE_TARGET_USER))
+            || (gLastUsedAbility == ABILITY_BULLETPROOF && gBattleMoves[move].flags & FLAG_BALLISTIC)
+			|| (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_BULLETPROOF) && gBattleMoves[move].flags & FLAG_BALLISTIC))
         {
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                 gHitMarker |= HITMARKER_NO_PPDEDUCT;
@@ -5887,7 +5901,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect = 1;
         }
         else if (BlocksPrankster(move, gBattlerAttacker, gBattlerTarget, TRUE)
-          && !(IS_MOVE_STATUS(move) && GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE))
+          && !(IS_MOVE_STATUS(move) && (GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_MAGIC_BOUNCE))))
         {
             if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) || !(gBattleMoves[move].target & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
                 CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
@@ -6054,8 +6068,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                         effect = 3;
                     }
-                }}
-                break;
+                }
+			}
+			
+			//Sap Sipper
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAP_SIPPER)){
+                if (moveType == TYPE_GRASS)
+                    effect = 2, statId = STAT_ATK;
+			}
+			
+			//Motor Drive
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MOTOR_DRIVE)){
+                if (moveType == TYPE_ELECTRIC)
+                    effect = 2, statId = STAT_SPEED;
+			}
 
             if (effect == 1) // Drain Hp ability.
             {
@@ -6337,7 +6363,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_TANGLING_HAIR:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
-             && (CompareStat(gBattlerAttacker, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN) || GetBattlerAbility(gBattlerAttacker) == ABILITY_MIRROR_ARMOR)
+             && (CompareStat(gBattlerAttacker, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN) || 
+			     GetBattlerAbility(gBattlerAttacker) == ABILITY_MIRROR_ARMOR || 
+				 SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MIRROR_ARMOR))
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
@@ -7017,7 +7045,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GOOEY) || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TANGLING_HAIR)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
-             && (CompareStat(gBattlerAttacker, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN) || GetBattlerAbility(gBattlerAttacker) == ABILITY_MIRROR_ARMOR)
+             && (CompareStat(gBattlerAttacker, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN) || 
+			     GetBattlerAbility(gBattlerAttacker) == ABILITY_MIRROR_ARMOR ||
+				 SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MIRROR_ARMOR))
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
@@ -7809,6 +7839,7 @@ u32 GetBattlerAbility(u8 battlerId)
         return ABILITY_NONE;
     
     if ((((gBattleMons[gBattlerAttacker].ability == ABILITY_MOLD_BREAKER
+	        || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MOLD_BREAKER)
             || gBattleMons[gBattlerAttacker].ability == ABILITY_TERAVOLT
             || gBattleMons[gBattlerAttacker].ability == ABILITY_TURBOBLAZE)
             && !(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID))
@@ -7826,7 +7857,11 @@ u32 IsAbilityOnSide(u32 battlerId, u32 ability)
 {
     if (IsBattlerAlive(battlerId) && GetBattlerAbility(battlerId) == ability)
         return battlerId + 1;
+	else if (IsBattlerAlive(battlerId) && SpeciesHasInnate(gBattleMons[battlerId].species, ability))
+        return battlerId + 1;
     else if (IsBattlerAlive(BATTLE_PARTNER(battlerId)) && GetBattlerAbility(BATTLE_PARTNER(battlerId)) == ability)
+        return BATTLE_PARTNER(battlerId) + 1;
+	else if (IsBattlerAlive(BATTLE_PARTNER(battlerId)) && SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerId)].species, ability))
         return BATTLE_PARTNER(battlerId) + 1;
     else
         return 0;
@@ -8048,7 +8083,7 @@ bool32 HasEnoughHpToEatBerry(u32 battlerId, u32 hpFraction, u32 itemId)
     if (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / hpFraction)
         return TRUE;
 
-    if (hpFraction <= 4 && GetBattlerAbility(battlerId) == ABILITY_GLUTTONY && isBerry
+    if (hpFraction <= 4 && (GetBattlerAbility(battlerId) == ABILITY_GLUTTONY || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GLUTTONY)) && isBerry
          && gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2)
     {
         RecordAbilityBattle(battlerId, ABILITY_GLUTTONY);
@@ -9082,7 +9117,7 @@ case ITEMEFFECT_KINGSROCK:
         {
         case HOLD_EFFECT_FLINCH:
             #if B_SERENE_GRACE_BOOST >= GEN_5
-                if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE)
+                if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SERENE_GRACE))
                     atkHoldEffectParam *= 2;
             #endif
             if (gBattleMoveDamage != 0  // Need to have done damage
@@ -12131,7 +12166,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
     {
         mod = UQ_4_12(1.0);
     }
-    else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST && GetBattlerAbility(battlerAtk) == ABILITY_SCRAPPY && mod == UQ_4_12(0.0))
+    else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST && (GetBattlerAbility(battlerAtk) == ABILITY_SCRAPPY || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SCRAPPY)) && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (recordAbilities)
