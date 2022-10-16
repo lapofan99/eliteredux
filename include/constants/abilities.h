@@ -381,8 +381,9 @@
 #define ABILITY_VIOLENT_RUSH     (ABILITIES_COUNT_LATEST_GEN + 82) // Boosts Speed by 1.5x, Attack by 1.2x on first turn (same activation requirements as Fake Out)
 #define ABILITY_FLAMING_SOUL     (ABILITIES_COUNT_LATEST_GEN + 83) // Fire type moves have +1 priority (Fire type Gale Wings).
 #define ABILITY_SAGE_POWER       (ABILITIES_COUNT_LATEST_GEN + 84) // Automatically locked into the first move chosen, but boosts Special Attack by 1.5x (Gorilla Tactics for Special moves)
+#define ABILITY_BONE_ZONE        (ABILITIES_COUNT_LATEST_GEN + 85) // Bone-Based moves ignore immunities and also deal double damage on not very effective. 
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SAGE_POWER + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_BONE_ZONE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

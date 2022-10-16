@@ -11989,6 +11989,10 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         if (typeEffectivenessModifier <= UQ_4_12(0.5))
             MulModifier(&finalModifier, UQ_4_12(2.0));
         break;
+    case ABILITY_BONE_ZONE:
+        if (typeEffectivenessModifier <= UQ_4_12(0.5) && (gBattleMoves[move].flags & FLAG_BONE_BASED))
+            MulModifier(&finalModifier, UQ_4_12(2.0));
+        break;
     case ABILITY_SNIPER:
         if (isCrit)
             MulModifier(&finalModifier, UQ_4_12(1.5));
@@ -12005,30 +12009,34 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	
 	
 	// Innates
-	
 	// Sniper
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SNIPER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SNIPER)){
         if (isCrit)
             MulModifier(&finalModifier, UQ_4_12(1.5));
     }
     
 	// Neuroforce
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_NEUROFORCE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NEUROFORCE)){
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(1.25));
 	}
 	
 	// Fatal Precision
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FATAL_PRECISION)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FATAL_PRECISION)){
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(1.2));
     }
 	// Tinted Lens
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_TINTED_LENS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TINTED_LENS)){
 		if (typeEffectivenessModifier <= UQ_4_12(0.5))
             MulModifier(&finalModifier, UQ_4_12(2.0));
     }
 	
+	// Bone Zone
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BONE_ZONE)){
+        if (typeEffectivenessModifier <= UQ_4_12(0.5) && (gBattleMoves[move].flags & FLAG_BONE_BASED))
+            MulModifier(&finalModifier, UQ_4_12(2.0));
+	}
 
     // target's abilities
     switch (abilityDef)
@@ -12244,6 +12252,13 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_OVERWHELM);
+    }
+	else if ((gBattleMoves[move].flags & FLAG_BONE_BASED) && (GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BONE_ZONE)) && mod == UQ_4_12(0.0))
+    {
+		//Has Innate Effect here too
+        mod = UQ_4_12(1.0);
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_BONE_ZONE);
     }
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))

@@ -306,6 +306,8 @@
 #define FLAG_HIT_IN_SUBSTITUTE                    (1 << 26) // Hyperspace Fury
 #define FLAG_TWO_STRIKES                          (1 << 27) // A move with this flag will strike twice, and may apply its effect on each hit
 #define FLAG_KEEN_EDGE_BOOST                      (1 << 28)
+#define FLAG_BONE_BASED                           (1 << 29) // For Bone Zone
+#define FLAG_WEATHER_BASED                        (1 << 30) // For Weather Control
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
