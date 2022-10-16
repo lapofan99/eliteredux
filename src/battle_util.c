@@ -12364,6 +12364,14 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_OVERCHARGE);
     }
+	// Molten Down
+	else if (moveType == TYPE_FIRE && defType == TYPE_ROCK && (GetBattlerAbility(battlerAtk) == ABILITY_MOLTEN_DOWN || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MOLTEN_DOWN)) && mod == UQ_4_12(0.0))
+    {
+		//Has Innate Effect here too
+        mod = UQ_4_12(2.0); // super-effective
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_MOLTEN_DOWN);
+    }
 	else if (moveType == TYPE_POISON && defType == TYPE_STEEL && (GetBattlerAbility(battlerAtk) == ABILITY_CORROSION || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CORROSION)) && mod == UQ_4_12(0.0))
     {
 		//Has Innate Effect here too
