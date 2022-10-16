@@ -10438,6 +10438,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
             MulModifier(&modifier, UQ_4_12(1.2));
 		break;
+	case ABILITY_VIOLENT_RUSH:
+		if (gDisableStructs[battlerAtk].isFirstTurn)
+           MulModifier(&modifier, UQ_4_12(1.2));
+	    break;
     }
 	
 	// Attacker Innates
@@ -10715,6 +10719,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
            MulModifier(&modifier, UQ_4_12(2.0));
 	}
 	
+	// Violent Rush
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_VIOLENT_RUSH)){
+        if (gDisableStructs[battlerAtk].isFirstTurn)
+           MulModifier(&modifier, UQ_4_12(1.2));
+	}
+	
     // Field Abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)
         || (IsAbilityOnField(ABILITY_FAIRY_AURA) && moveType == TYPE_FAIRY))
@@ -10841,7 +10851,6 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Target's Innates
 	
 	// Heatproof & Water Bubble
-	
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_HEATPROOF) || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WATER_BUBBLE)){
         if (moveType == TYPE_FIRE)
         {
@@ -11402,6 +11411,14 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 RecordAbilityBattle(battlerDef, ABILITY_SEAWEED);
         }
         break;
+    case ABILITY_WATER_COMPACTION:
+        if (moveType == TYPE_WATER)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_WATER_COMPACTION);
+        }
+        break;
     }
 	
 	// Target's Innates
@@ -11449,6 +11466,16 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_OVERCOAT)){
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(0.9));
+	}
+	
+	//Water Compaction
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WATER_COMPACTION)){
+        if (moveType == TYPE_WATER)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_WATER_COMPACTION);
+        }
 	}
 
     // ally's abilities

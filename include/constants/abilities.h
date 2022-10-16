@@ -378,8 +378,9 @@
 #define ABILITY_MULTI_HEADED     (ABILITIES_COUNT_LATEST_GEN + 79) // Hit two or three times depending on the number of heads with single target moves, dealing 25% or 33% more damage. (Doesn't work with multi-hit moves like Comet Punch, Flinch effect is not applied).
 #define ABILITY_NORTH_WIND       (ABILITIES_COUNT_LATEST_GEN + 80) // Sets Aurora Veil on entry. Immune to Hail damage.
 #define ABILITY_OVERCHARGE       (ABILITIES_COUNT_LATEST_GEN + 81) // Electric does 2x damage against Electric. Can paralyze Electric-types.
+#define ABILITY_VIOLENT_RUSH     (ABILITIES_COUNT_LATEST_GEN + 82) // Boosts Speed by 1.5x, Attack by 1.2x on first turn (same activation requirements as Fake Out)
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_OVERCHARGE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_VIOLENT_RUSH + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
