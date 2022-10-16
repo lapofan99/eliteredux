@@ -12106,6 +12106,14 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 			}
 		}
 	}
+	
+	// Hyper Aggressive
+	if(abilityAtk == ABILITY_HYPER_AGGRESSIVE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_HYPER_AGGRESSIVE)){
+		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
+		{
+			MulModifier(&finalModifier, UQ_4_12(0.25));
+		}
+	}
 
     // attacker's abilities
     switch (abilityAtk)

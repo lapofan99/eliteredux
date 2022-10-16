@@ -386,8 +386,9 @@
 #define ABILITY_SPEED_FORCE      (ABILITIES_COUNT_LATEST_GEN + 87) // Contact moves use 20% of its Speed stat additionally.
 #define ABILITY_SEA_GUARDIAN     (ABILITIES_COUNT_LATEST_GEN + 88) // Ups highest stat on entry when it rains.
 #define ABILITY_MOLTEN_DOWN      (ABILITIES_COUNT_LATEST_GEN + 89) // The Pokémon's Fire-type moves become super effective against Rock-type.
+#define ABILITY_HYPER_AGGRESSIVE (ABILITIES_COUNT_LATEST_GEN + 90) // Hits twice. Second hit does 25% damage.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_MOLTEN_DOWN + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_HYPER_AGGRESSIVE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

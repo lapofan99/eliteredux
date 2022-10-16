@@ -176,7 +176,7 @@ static const u8 sToughClawsDescription[] = _("Boosts contact moves by 30%.");
 static const u8 sPixilateDescription[] = _("Normal moves become Fairy\nand get a 20% boost.");
 static const u8 sGooeyDescription[] = _("Lowers Speed on contact by -1.");
 static const u8 sAerilateDescription[] = _("Normal moves become Flying.");
-static const u8 sParentalBondDescription[] = _("Moves hit twice.");
+static const u8 sParentalBondDescription[] = _("Moves hit twice.\n2nd hit does 25% damage.");
 static const u8 sDarkAuraDescription[] = _("Boosts Dark moves by 33%.");
 static const u8 sFairyAuraDescription[] = _("Boosts Fairy moves by 33%.");
 static const u8 sAuraBreakDescription[] = _("Reverse aura abilities.");
@@ -308,7 +308,7 @@ static const u8 sHydrateDescription[] =  _("Normal moves become Water\nand get a
 static const u8 sMetallicDescription[] =  _("Adds Steel-Type.");
 static const u8 sPermafrostDescription[] =  _("Weakens “supereffective”\nby 25%.");
 static const u8 sPrimalArmorDescription[] =  _("Weakens “supereffective”\nby 50%.");
-static const u8 sRagingBoxerDescription[] =  _("Punch moves hit twice.\nSecond hit does 0.5x damage.");
+static const u8 sRagingBoxerDescription[] =  _("Punch moves hit twice.\n2nd hit does 0.5x damage.");
 static const u8 sAirBlowerDescription[] =  _("Sets up Tailwind for 5 turns\nwhen sent out.");
 static const u8 sJuggernautDescription[] =  _("Contact moves use 20% of its\nDefense stat additionally.");
 static const u8 sTeravoltDescription[] =  _("Moves hit through abilities.\nAdds Electric-Type.");
@@ -349,6 +349,7 @@ static const u8 sWeatherControlDescription[] =  _("Negates all weather based\nmo
 static const u8 sSpeedForceDescription[] =  _("Contact moves use 20% of its\nSpeed stat additionally.");
 static const u8 sSeaGuardianDescription[] = _("Ups highest stat on entry\nwhen it rains.");
 static const u8 sMoltenDownDescription[] = _("Fire-type become super effective\nagainst Rock-type.");
+static const u8 sHyperAggressiveDescription[] = _("Moves hit twice.\n2nd hit does 25% damage.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -710,6 +711,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_SPEED_FORCE] = _("Speed Force"),
 	[ABILITY_SEA_GUARDIAN] = _("Sea Guardian"),
 	[ABILITY_MOLTEN_DOWN] = _("Molten Down"),
+	[ABILITY_HYPER_AGGRESSIVE] = _("Hyper Aggressive"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1072,4 +1074,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_SPEED_FORCE] = sSpeedForceDescription,
 	[ABILITY_SEA_GUARDIAN] = sSeaGuardianDescription,
 	[ABILITY_MOLTEN_DOWN] = sMoltenDownDescription,
+	[ABILITY_HYPER_AGGRESSIVE] = sHyperAggressiveDescription,
 };

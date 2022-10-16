@@ -1468,6 +1468,7 @@ static void Cmd_attackcanceler(void)
     #endif
     if (AtkCanceller_UnableToUseMove())
         return;
+	// Parental Bond
     if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_PARENTAL_BOND || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PARENTAL_BOND)) // Includes Innate
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
@@ -1478,6 +1479,7 @@ static void Cmd_attackcanceler(void)
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
+	// Raging Boxer
     if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
 	&& (GetBattlerAbility(gBattlerAttacker) == ABILITY_RAGING_BOXER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_RAGING_BOXER)) // Includes Innate
 	&& (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST)
@@ -1489,6 +1491,7 @@ static void Cmd_attackcanceler(void)
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
+	// Multi Headed
 	if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_MULTI_HEADED || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MULTI_HEADED)) // Includes Innate
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
@@ -1505,6 +1508,17 @@ static void Cmd_attackcanceler(void)
 			gSpecialStatuses[gBattlerAttacker].parentalBondOn = 3;
 		}
 		
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+        return;
+    }
+	// Hyper Aggressive
+	if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
+    && (GetBattlerAbility(gBattlerAttacker) == ABILITY_HYPER_AGGRESSIVE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_HYPER_AGGRESSIVE)) // Includes Innate
+    && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+    {
+        gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        gMultiHitCounter = 2;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
