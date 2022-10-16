@@ -341,7 +341,8 @@ static const u8 sTwistedDimensionDescription[] =  _("Sets up Trick Room\non entr
 static const u8 sMultiHeadedDescription[] =  _("Hits 2x with 2 heads,\n3x with 3 heads.");
 static const u8 sNorthWindDescription[] =  _("Sets Aurora Veil on entry.\nImmune to Hail damage.");
 static const u8 sOverchargeDescription[] =  _("Electric does 2x damage to Electric.\nCan paralyze Electric-types.");
-static const u8 sViolentRushDescription[] =  _("Boosts Speed by 1.5x, Attack\nby 1.2x on first turn..");
+static const u8 sViolentRushDescription[] =  _("Boosts Speed by 1.5x, Attack\nby 1.2x on first turn.");
+static const u8 sFlamingSoulDescription[] =  _("Fire moves go first.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -696,6 +697,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_NORTH_WIND] = _("North Wind"),
 	[ABILITY_OVERCHARGE] = _("Overcharge"),
 	[ABILITY_VIOLENT_RUSH] = _("Violent Rush"),
+	[ABILITY_FLAMING_SOUL] = _("Flaming Soul"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1051,4 +1053,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_NORTH_WIND] = sNorthWindDescription,
 	[ABILITY_OVERCHARGE] = sOverchargeDescription,
 	[ABILITY_VIOLENT_RUSH] = sViolentRushDescription,
+	[ABILITY_FLAMING_SOUL] = sFlamingSoulDescription,
 };

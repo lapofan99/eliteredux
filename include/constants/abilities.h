@@ -379,8 +379,9 @@
 #define ABILITY_NORTH_WIND       (ABILITIES_COUNT_LATEST_GEN + 80) // Sets Aurora Veil on entry. Immune to Hail damage.
 #define ABILITY_OVERCHARGE       (ABILITIES_COUNT_LATEST_GEN + 81) // Electric does 2x damage against Electric. Can paralyze Electric-types.
 #define ABILITY_VIOLENT_RUSH     (ABILITIES_COUNT_LATEST_GEN + 82) // Boosts Speed by 1.5x, Attack by 1.2x on first turn (same activation requirements as Fake Out)
+#define ABILITY_FLAMING_SOUL     (ABILITIES_COUNT_LATEST_GEN + 83) // Fire type moves have +1 priority (Fire type Gale Wings).
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_VIOLENT_RUSH + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_FLAMING_SOUL + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
