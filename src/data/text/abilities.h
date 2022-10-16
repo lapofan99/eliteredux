@@ -347,6 +347,7 @@ static const u8 sSagePowerDescription[] =  _("Ups Special Attack by 50%\nand loc
 static const u8 sBoneZoneDescription[] =  _("Bone moves ignore immunities and\ndeal 2x on not very effective.");
 static const u8 sWeatherControlDescription[] =  _("Negates all weather based\nmoves from enemies.");
 static const u8 sSpeedForceDescription[] =  _("Contact moves use 20% of its\nSpeed stat additionally.");
+static const u8 sSeaGuardianDescription[] = _("Ups highest stat on entry\nwhen it rains.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -706,6 +707,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_BONE_ZONE] = _("Bone Zone"),
 	[ABILITY_WEATHER_CONTROL] = _("Weather Control"),
 	[ABILITY_SPEED_FORCE] = _("Speed Force"),
+	[ABILITY_SEA_GUARDIAN] = _("Sea Guardian"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1066,4 +1068,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_BONE_ZONE] = sBoneZoneDescription,
 	[ABILITY_WEATHER_CONTROL] = sWeatherControlDescription,
 	[ABILITY_SPEED_FORCE] = sSpeedForceDescription,
+	[ABILITY_SEA_GUARDIAN] = sSeaGuardianDescription,
 };

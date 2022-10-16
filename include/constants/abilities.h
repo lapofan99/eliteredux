@@ -383,9 +383,10 @@
 #define ABILITY_SAGE_POWER       (ABILITIES_COUNT_LATEST_GEN + 84) // Automatically locked into the first move chosen, but boosts Special Attack by 1.5x (Gorilla Tactics for Special moves)
 #define ABILITY_BONE_ZONE        (ABILITIES_COUNT_LATEST_GEN + 85) // Bone-Based moves ignore immunities and also deal double damage on not very effective. 
 #define ABILITY_WEATHER_CONTROL  (ABILITIES_COUNT_LATEST_GEN + 86) // Negates all moves related to weather condition from opposing Pokémon. [Affected moves: Thunder, Blizzard, Solar Beam, Solar Blade, Hurricane]
-#define ABILITY_SPEED_FORCE      (ABILITIES_COUNT_LATEST_GEN + 87) // Contact moves use 20% of its Speed stat additionally. 
+#define ABILITY_SPEED_FORCE      (ABILITIES_COUNT_LATEST_GEN + 87) // Contact moves use 20% of its Speed stat additionally.
+#define ABILITY_SEA_GUARDIAN     (ABILITIES_COUNT_LATEST_GEN + 88) // Ups highest stat on entry when it rains.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SPEED_FORCE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SEA_GUARDIAN + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
