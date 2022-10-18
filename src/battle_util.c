@@ -11346,6 +11346,15 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
         break;
+	case ABILITY_FLOCK:
+        if (moveType == TYPE_FLYING)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+        }
+        break;
 	case ABILITY_ANTARTIC_BIRD:
         if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
@@ -11778,6 +11787,16 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             else
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
+	}
+	// Flock
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FLOCK)){
+		if (moveType == TYPE_FLYING)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.5));
+            else
+                MulModifier(&modifier, UQ_4_12(1.2));
+		}
 	}
 	// Electric Burst
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ELECTRIC_BURST)){

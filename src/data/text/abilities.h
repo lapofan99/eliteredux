@@ -350,6 +350,7 @@ static const u8 sSpeedForceDescription[] =  _("Contact moves use 20% of its\nSpe
 static const u8 sSeaGuardianDescription[] = _("Ups highest stat on entry\nwhen it rains.");
 static const u8 sMoltenDownDescription[] = _("Fire-type become super effective\nagainst Rock-type.");
 static const u8 sHyperAggressiveDescription[] = _("Moves hit twice.\n2nd hit does 25% damage.");
+static const u8 sFlockDescription[] = _("Ups Flying moves in a pinch.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -712,6 +713,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_SEA_GUARDIAN] = _("Sea Guardian"),
 	[ABILITY_MOLTEN_DOWN] = _("Molten Down"),
 	[ABILITY_HYPER_AGGRESSIVE] = _("Hyper Aggressive"),
+	[ABILITY_FLOCK] = _("Flock"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1075,4 +1077,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_SEA_GUARDIAN] = sSeaGuardianDescription,
 	[ABILITY_MOLTEN_DOWN] = sMoltenDownDescription,
 	[ABILITY_HYPER_AGGRESSIVE] = sHyperAggressiveDescription,
+	[ABILITY_FLOCK] = sFlockDescription,
 };
