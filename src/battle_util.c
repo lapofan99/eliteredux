@@ -4924,6 +4924,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Inates on Switch
 		
+		// Screen Cleaner
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCREEN_CLEANER)){
+            if (!gSpecialStatuses[battler].switchInAbilityDone && TryRemoveScreens(battler))
+            {
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SCREENCLEANER;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                effect++;
+            }
+        }
+		
 		// Drizzle
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRIZZLE)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
