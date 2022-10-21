@@ -290,7 +290,7 @@
 #define FLAG_STRONG_JAW_BOOST                     (1 << 10)
 #define FLAG_MEGA_LAUNCHER_BOOST                  (1 << 11)
 #define FLAG_STAT_STAGES_IGNORED                  (1 << 12)
-#define FLAG_DMG_MINIMIZE                         (1 << 13)
+#define FLAG_STRIKER_BOOST                        (1 << 13) // For Striker
 #define FLAG_DMG_UNDERGROUND                      (1 << 14)
 #define FLAG_DMG_UNDERWATER                       (1 << 15)
 #define FLAG_SOUND                                (1 << 16)
@@ -309,7 +309,6 @@
 #define FLAG_BONE_BASED                           (1 << 29) // For Bone Zone
 #define FLAG_WEATHER_BASED                        (1 << 30) // For Weather Control
 #define FLAG_FIELD_BASED                          (1 << 31) // For Field Explorer
-#define FLAG_STRIKER_BOOST                        (1 << 32) // For Striker
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
