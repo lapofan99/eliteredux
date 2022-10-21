@@ -308,6 +308,8 @@
 #define FLAG_KEEN_EDGE_BOOST                      (1 << 28)
 #define FLAG_BONE_BASED                           (1 << 29) // For Bone Zone
 #define FLAG_WEATHER_BASED                        (1 << 30) // For Weather Control
+#define FLAG_FIELD_BASED                          (1 << 31) // For Field Explorer
+#define FLAG_STRIKER_BOOST                        (1 << 32) // For Striker
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0

@@ -10426,7 +10426,14 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
         break;
-            break;
+	case ABILITY_STRIKER:
+        if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.3));
+        break;
+	case ABILITY_FIELD_EXPLORER:
+        if (gBattleMoves[move].flags & FLAG_FIELD_BASED)
+           MulModifier(&modifier, UQ_4_12(1.25));
+        break;
     case ABILITY_KEEN_EDGE:
         if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
@@ -10597,10 +10604,16 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
            MulModifier(&modifier, UQ_4_12(1.2));
     }
 	
-	// Keen Edge
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_KEEN_EDGE)){
-		if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
+	// Striker
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STRIKER)){
+		if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
+    }
+	
+	// Field Explorer
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIELD_EXPLORER)){
+		if (gBattleMoves[move].flags & FLAG_FIELD_BASED)
+           MulModifier(&modifier, UQ_4_12(1.25));
     }
 	
 	// Sheer Force
