@@ -353,6 +353,7 @@ static const u8 sHyperAggressiveDescription[] = _("Moves hit twice.\n2nd hit doe
 static const u8 sFlockDescription[] = _("Ups Flying moves in a pinch.");
 static const u8 sFieldExplorerDescription[] = _("Boosts field moves by 25%.");
 static const u8 sStrikerDescription[] = _("Boosts kicking moves by 1.3x.");
+static const u8 sFrozenSoulDescription[] = _("Ice-type moves go first.");
 
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -719,6 +720,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_FLOCK] = _("Flock"),
 	[ABILITY_FIELD_EXPLORER] = _("Field Explorer"),
 	[ABILITY_STRIKER] = _("Striker"),
+	[ABILITY_FROZEN_SOUL] = _("Frozen Soul"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1085,4 +1087,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_FLOCK] = sFlockDescription,
 	[ABILITY_FIELD_EXPLORER] = sFieldExplorerDescription,
 	[ABILITY_STRIKER] = sStrikerDescription,
+	[ABILITY_FROZEN_SOUL] = sFrozenSoulDescription,
 };

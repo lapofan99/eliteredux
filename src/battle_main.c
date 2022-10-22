@@ -4595,20 +4595,28 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     s8 priority;
 
     priority = gBattleMoves[move].priority;
+	// Gale Wings
     if ((GetBattlerAbility(battlerId) == ABILITY_GALE_WINGS  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GALE_WINGS))
         && gBattleMoves[move].type == TYPE_FLYING
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
     }
-	
+	// Flaming Soul
 	if ((GetBattlerAbility(battlerId) == ABILITY_FLAMING_SOUL  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_FLAMING_SOUL))
         && gBattleMoves[move].type == TYPE_FIRE
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
     }
-    
+	// Frozen Soul
+	if ((GetBattlerAbility(battlerId) == ABILITY_FROZEN_SOUL  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_FROZEN_SOUL))
+        && gBattleMoves[move].type == TYPE_ICE
+        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
+    {
+        priority++;
+    }
+    // Prankster
 	if ((GetBattlerAbility(battlerId) == ABILITY_PRANKSTER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_PRANKSTER)) && IS_MOVE_STATUS(move))
     {
         gProtectStructs[battlerId].pranksterElevated = 1;
