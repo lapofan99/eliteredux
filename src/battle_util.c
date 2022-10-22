@@ -10545,7 +10545,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_DRAGONS_MAW:
         if (moveType == TYPE_DRAGON)
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(1.3));
         break;
     case ABILITY_LIQUID_VOICE:
         if (gBattleMoves[move].flags & FLAG_SOUND)
@@ -11379,7 +11379,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
         break;
-	case ABILITY_ANTARTIC_BIRD:
+	case ABILITY_ANTARCTIC_BIRD:
         if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
@@ -11697,7 +11697,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	
 	// Innates
 	// Antarctic Bird
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANTARTIC_BIRD)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANTARCTIC_BIRD)){
 		if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
             MulModifier(&modifier, UQ_4_12(1.5));

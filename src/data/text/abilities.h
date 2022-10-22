@@ -267,7 +267,7 @@ static const u8 sVengeanceDescription[] = _("Ups Ghost moves in a pinch.");
 static const u8 sBlitzBoxerDescription[] = _("Punching moves go first.");
 
 // Darky's Custom Abilities
-static const u8 sAntarticBirdDescription[] = _("Ice and Flying-type moves\ngain 50% more power.");
+static const u8 sAntarcticBirdDescription[] = _("Ice and Flying-type moves\ngain 50% more power.");
 static const u8 sBurnateDescription[] = _("Normal moves become Fire\nand get a 20% boost.");
 static const u8 sCrystallizeDescription[] = _("Rock moves become Ice\nand get a 20% boost.");
 static const u8 sElectrocytesDescription[] = _("Increases Electric-type moves by 25%.");
@@ -635,7 +635,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_RAMPAGE] = _("Rampage"),
     [ABILITY_VENGEANCE] = _("Vengeance"),
     [ABILITY_BLITZ_BOXER] = _("Blitz Boxer"),
-    [ABILITY_ANTARTIC_BIRD] = _("Antarctic Bird"),
+    [ABILITY_ANTARCTIC_BIRD] = _("Antarctic Bird"),
     [ABILITY_BURNATE] = _("Burnate"),
     [ABILITY_CRYSTALLIZE] = _("Crystallize"),
     [ABILITY_ELECTROCYTES] = _("Electrocytes"),
@@ -1001,7 +1001,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_RAMPAGE] = sRampageDescription,
     [ABILITY_VENGEANCE] = sVengeanceDescription,
     [ABILITY_BLITZ_BOXER] = sBlitzBoxerDescription,
-    [ABILITY_ANTARTIC_BIRD] = sAntarticBirdDescription,
+    [ABILITY_ANTARCTIC_BIRD] = sAntarcticBirdDescription,
     [ABILITY_BURNATE] = sBurnateDescription,
     [ABILITY_CRYSTALLIZE] = sCrystallizeDescription,
     [ABILITY_ELECTROCYTES] = sElectrocytesDescription,
