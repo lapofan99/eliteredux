@@ -1504,7 +1504,9 @@ void PrepareStringBattle(u16 stringId, u8 battler)
                  || ((GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_COMPETITIVE))
 				    && CompareStat(gBattlerTarget, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
 				 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_FORT_KNOX))
-				     && CompareStat(gBattlerTarget, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN)))
+				     && CompareStat(gBattlerTarget, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+				 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_RUN_AWAY || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_RUN_AWAY))
+				     && CompareStat(gBattlerTarget, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)))
               && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget)
               && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget)
     {
@@ -1520,6 +1522,11 @@ void PrepareStringBattle(u16 stringId, u8 battler)
 			gBattleScripting.abilityPopupOverwrite = ABILITY_FORT_KNOX;
 			gLastUsedAbility = ABILITY_FORT_KNOX;
             SET_STATCHANGER(STAT_DEF, 2, FALSE);
+		}
+		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_RUN_AWAY || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_RUN_AWAY)){
+			gBattleScripting.abilityPopupOverwrite = ABILITY_RUN_AWAY;
+			gLastUsedAbility = ABILITY_RUN_AWAY;
+            SET_STATCHANGER(STAT_SPEED, 2, FALSE);
 		}
         else{ // if(GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_COMPETITIVE)) <- this is not necessary but just in case you want to see how it works
             gBattleScripting.abilityPopupOverwrite = ABILITY_COMPETITIVE;
