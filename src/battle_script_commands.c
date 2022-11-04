@@ -11640,7 +11640,9 @@ static u8 AttacksThisTurn(u8 battlerId, u16 move) // Note: returns 1 if it's a c
 {
     // first argument is unused
     if (gBattleMoves[move].effect == EFFECT_SOLARBEAM
-        && (IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY) || GetBattlerAbility(gBattlerAttacker) == ABILITY_CHLOROPLAST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)))
+        && (IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY) 
+        || GetBattlerAbility(gBattlerAttacker) == ABILITY_SOLAR_FLARE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOLAR_FLARE)
+        || GetBattlerAbility(gBattlerAttacker) == ABILITY_CHLOROPLAST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)))
         return 2;
 
     if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
@@ -12311,10 +12313,14 @@ static void Cmd_recoverbasedonsunlight(void)
         else
         {
             if ((!(gBattleWeather & WEATHER_ANY) || !WEATHER_HAS_EFFECT || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_UTILITY_UMBRELLA)
+                && GetBattlerAbility(gBattlerAttacker) != ABILITY_SOLAR_FLARE 
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOLAR_FLARE)
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_CHLOROPLAST 
 				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)) // Tidy up this block later
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 2;
-            else if (gBattleWeather & WEATHER_SUN_ANY || GetBattlerAbility(gBattlerAttacker) == ABILITY_CHLOROPLAST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST))
+            else if (gBattleWeather & WEATHER_SUN_ANY || 
+                    GetBattlerAbility(gBattlerAttacker) == ABILITY_SOLAR_FLARE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOLAR_FLARE) ||
+                    GetBattlerAbility(gBattlerAttacker) == ABILITY_CHLOROPLAST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST))
                 gBattleMoveDamage = 20 * gBattleMons[gBattlerAttacker].maxHP / 30;
             else if (!(gBattleWeather & WEATHER_ANY) || !WEATHER_HAS_EFFECT)
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 2;
