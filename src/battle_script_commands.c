@@ -3844,6 +3844,8 @@ static void Cmd_jumpifability(void)
         battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
         if (GetBattlerAbility(battlerId) == ability)
             hasAbility = TRUE;
+        else if (SpeciesHasInnate(gBattleMons[battlerId].species, ability))
+            hasAbility = TRUE;
         break;
     case BS_ATTACKER_SIDE:
         battlerId = IsAbilityOnSide(gBattlerAttacker, ability);
