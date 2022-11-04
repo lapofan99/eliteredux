@@ -11273,6 +11273,19 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].defense * 0.2);
         atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
     }
+    // Power Core
+	else if (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POWER_CORE)|| GetBattlerAbility(battlerAtk) == ABILITY_POWER_CORE){
+		if (IS_MOVE_PHYSICAL(move))
+        {
+            atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].defense * 0.2);
+            atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
+        }
+        else
+        {
+            atkStat = gBattleMons[battlerAtk].spAttack + (gBattleMons[battlerAtk].spDefense * 0.2);
+            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+        }
+    }
     else
     {
         if (IS_MOVE_PHYSICAL(move))
