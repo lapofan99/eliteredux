@@ -12102,6 +12102,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     // check stab
     if ((IS_BATTLER_OF_TYPE(battlerAtk, moveType) && move != MOVE_STRUGGLE) || 
 	     abilityAtk == ABILITY_MYSTIC_POWER || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MYSTIC_POWER)||
+         (abilityAtk == ABILITY_LUNAR_ECLIPSE && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LUNAR_ECLIPSE) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
 		 (abilityAtk == ABILITY_AURORA_BOREALIS && moveType == TYPE_ICE) || (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AURORA_BOREALIS) && moveType == TYPE_ICE))
     {
         if (abilityAtk == ABILITY_ADAPTABILITY || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ADAPTABILITY))

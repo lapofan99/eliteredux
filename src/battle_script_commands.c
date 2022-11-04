@@ -1841,6 +1841,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 	//Hypnotist + Hypnosis - Ability and Innate
 	if(move == MOVE_HYPNOSIS && (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYPNOTIST) || atkAbility == ABILITY_HYPNOTIST))
 		moveAcc = moveAcc * 1.5;
+
+    if(move == MOVE_HYPNOSIS && (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LUNAR_ECLIPSE) || atkAbility == ABILITY_LUNAR_ECLIPSE))
+		moveAcc = moveAcc * 1.5;
 	
 	//Inner Focus + Focus Blast - Ability and Innate
 	if(move == MOVE_FOCUS_BLAST && (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_INNER_FOCUS) || atkAbility == ABILITY_INNER_FOCUS))

@@ -356,7 +356,10 @@ static const u8 sStrikerDescription[] = _("Boosts kicking moves by 1.3x.");
 static const u8 sFrozenSoulDescription[] = _("Ice-type moves go first.");
 static const u8 sPredatorDescription[] =  _("Heals 1/4 HP when\ndefeating an enemy.");
 static const u8 sLooterDescription[] =  _("Heals 1/4 HP when\ndefeating an enemy.");
-
+static const u8 sLunarEclipseDescription[] =  _("Fairy & Dark gains STAB.\nHypnosis accuracy is +50%.");
+static const u8 sSolarFlareDescription[] =  _("Fire-type moves gain STAB.\nSolar Beam/Blade and Morning Sun are improved.");
+static const u8 sPowerCoreDescription[] =  _("The Pokémon uses 25% of\nits Defense/SpDef stats during moves.");
+static const u8 sSightingSystemDescription[] =  _("Low Accuracy moves always hit\nbut priority is lower.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -725,6 +728,10 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_FROZEN_SOUL] = _("Frozen Soul"),
 	[ABILITY_PREDATOR] = _("Predator"),
 	[ABILITY_LOOTER] = _("Looter"),
+	[ABILITY_LUNAR_ECLIPSE] = _("Lunar Eclipse"),
+	[ABILITY_SOLAR_FLARE] = _("Solar Flare"),
+	[ABILITY_POWER_CORE] = _("Power Core"),
+	[ABILITY_SIGHTING_SYSTEM] = _("Sighting System"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1094,4 +1101,8 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_FROZEN_SOUL] = sFrozenSoulDescription,
 	[ABILITY_PREDATOR] = sPredatorDescription,
 	[ABILITY_LOOTER] = sLooterDescription,
+	[ABILITY_LUNAR_ECLIPSE] = sLunarEclipseDescription,
+	[ABILITY_SOLAR_FLARE] = sSolarFlareDescription,
+	[ABILITY_POWER_CORE] = sPowerCoreDescription,
+	[ABILITY_SIGHTING_SYSTEM] = sSightingSystemDescription,
 };
