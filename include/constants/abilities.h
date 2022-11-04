@@ -391,8 +391,10 @@
 #define ABILITY_FIELD_EXPLORER   (ABILITIES_COUNT_LATEST_GEN + 92) // Increases the power of field moves by 25%. [Affected moves: Dig, Headbutt, Secret Power, Chatter, Fly, Cut, Strength, Surf, Waterfall, Rock Climb, Flash, Whirlpool, Dive]
 #define ABILITY_STRIKER          (ABILITIES_COUNT_LATEST_GEN + 93) // Boosts kicking moves by 1.3x. Moves affected by Striker: Blaze Kick, Jump Kick, High Jump Kick, Triple Axel, Triple Kick, Stomp, Mega Kick, Low Kick, Rolling Kick, Trop Kick, Pyro Ball, High Horsepower, Double Kick, Thunderous Kick.
 #define ABILITY_FROZEN_SOUL      (ABILITIES_COUNT_LATEST_GEN + 94) // Ice-type moves have +1 priority (Ice type Gale Wings).
+#define ABILITY_PREDATOR         (ABILITIES_COUNT_LATEST_GEN + 95) // Heals 1/4 HP when defeating an enemy.
+#define ABILITY_LOOTER           (ABILITIES_COUNT_LATEST_GEN + 96) // Heals 1/4 HP when defeating an enemy.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_FROZEN_SOUL + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_LOOTER + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

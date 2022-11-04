@@ -8323,7 +8323,11 @@ static void Cmd_various(void)
         if (GetBattlerAbility(gActiveBattler) == ABILITY_SOUL_EATER || 
 		    SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SOUL_EATER) || 
 		    GetBattlerAbility(gActiveBattler) == ABILITY_SCAVENGER || 
-		    SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SCAVENGER)) {
+		    SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SCAVENGER) || 
+		    GetBattlerAbility(gActiveBattler) == ABILITY_PREDATOR || 
+		    SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_PREDATOR) || 
+		    GetBattlerAbility(gActiveBattler) == ABILITY_LOOTER || 
+		    SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_LOOTER)) {
             if (!HasAttackerFaintedTarget() && NoAliveMonsForEitherParty())
                 break;
             
@@ -12304,7 +12308,8 @@ static void Cmd_recoverbasedonsunlight(void)
         else
         {
             if ((!(gBattleWeather & WEATHER_ANY) || !WEATHER_HAS_EFFECT || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_UTILITY_UMBRELLA)
-                && GetBattlerAbility(gBattlerAttacker) != ABILITY_CHLOROPLAST && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)) // Tidy up this block later
+                && GetBattlerAbility(gBattlerAttacker) != ABILITY_CHLOROPLAST 
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)) // Tidy up this block later
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 2;
             else if (gBattleWeather & WEATHER_SUN_ANY || GetBattlerAbility(gBattlerAttacker) == ABILITY_CHLOROPLAST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST))
                 gBattleMoveDamage = 20 * gBattleMons[gBattlerAttacker].maxHP / 30;

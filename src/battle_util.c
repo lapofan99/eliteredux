@@ -10431,7 +10431,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     case ABILITY_IRON_FIST:
     case ABILITY_POWER_FISTS:
         if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.2));
+           MulModifier(&modifier, UQ_4_12(1.3));
         break;
 	case ABILITY_STRIKER:
         if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
@@ -10608,7 +10608,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Iron Fist / Power Fists
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_IRON_FIST) || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POWER_FISTS)){
 		if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.2));
+           MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Striker

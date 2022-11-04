@@ -87,7 +87,7 @@ static const u8 sHeatproofDescription[] = _("Heat and burn protection.");
 static const u8 sSimpleDescription[] = _("Doubles all stat changes.");
 static const u8 sDrySkinDescription[] = _("Prefers moisture to heat.");
 static const u8 sDownloadDescription[] = _("Adjusts power favorably.");
-static const u8 sIronFistDescription[] = _("Boosts punching moves by 20%.");
+static const u8 sIronFistDescription[] = _("Boosts punching moves by 30%.");
 static const u8 sPoisonHealDescription[] = _("Restores HP 1/8 if poisoned.");
 static const u8 sAdaptabilityDescription[] = _("Boosts same type attacks.");
 static const u8 sSkillLinkDescription[] = _("Multi-hit moves hit 5 times.");
@@ -260,7 +260,7 @@ static const u8 sWhiteoutDescription[] = _("Boosts Ice moves by 50% in Hail.");
 static const u8 sPyromancyDescription[] = _("Fire moves burn 5x more often.");
 static const u8 sKeenEdgeDescription[] = _("Boosts slashing moves by 30%.");
 static const u8 sPrismScalesDescription[] = _("Weakens Special Attacks\nby 30%.");
-static const u8 sPowerFistsDescription[] = _("Punches do special damage.");
+static const u8 sPowerFistsDescription[] = _("Punches do special damage\nand 30% more damage.");
 static const u8 sSandSongDescription[] = _("Makes sound moves Ground.");
 static const u8 sRampageDescription[] = _("No recharge after a KO.");
 static const u8 sVengeanceDescription[] = _("Ups Ghost moves in a pinch.");
@@ -354,6 +354,8 @@ static const u8 sFlockDescription[] = _("Ups Flying moves in a pinch.");
 static const u8 sFieldExplorerDescription[] = _("Boosts field moves by 25%.");
 static const u8 sStrikerDescription[] = _("Boosts kicking moves by 1.3x.");
 static const u8 sFrozenSoulDescription[] = _("Ice-type moves go first.");
+static const u8 sPredatorDescription[] =  _("Heals 1/4 HP when\ndefeating an enemy.");
+static const u8 sLooterDescription[] =  _("Heals 1/4 HP when\ndefeating an enemy.");
 
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -721,6 +723,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_FIELD_EXPLORER] = _("Field Explorer"),
 	[ABILITY_STRIKER] = _("Striker"),
 	[ABILITY_FROZEN_SOUL] = _("Frozen Soul"),
+	[ABILITY_PREDATOR] = _("Predator"),
+	[ABILITY_LOOTER] = _("Looter"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1088,4 +1092,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_FIELD_EXPLORER] = sFieldExplorerDescription,
 	[ABILITY_STRIKER] = sStrikerDescription,
 	[ABILITY_FROZEN_SOUL] = sFrozenSoulDescription,
+	[ABILITY_PREDATOR] = sPredatorDescription,
+	[ABILITY_LOOTER] = sLooterDescription,
 };
