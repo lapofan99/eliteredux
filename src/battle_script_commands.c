@@ -1861,6 +1861,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if ((defAbility == ABILITY_WONDER_SKIN || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WONDER_SKIN)) && gBattleMoves[move].power == 0)
         moveAcc = 50;
 
+    if ((atkAbility == ABILITY_SIGHTING_SYSTEM || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SIGHTING_SYSTEM)) && gBattleMoves[move].accuracy <= 50)
+        moveAcc = 100;
+
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
 

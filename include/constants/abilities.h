@@ -396,7 +396,7 @@
 #define ABILITY_LUNAR_ECLIPSE    (ABILITIES_COUNT_LATEST_GEN + 97) // The Pokémon's Fairy- and Dark-type moves gain same-type attack bonus regardless the Pokémon's typing. Hypnosis has its Accuracy increased by 50%.
 #define ABILITY_SOLAR_FLARE      (ABILITIES_COUNT_LATEST_GEN + 98) // The Pokémon's Fire-type moves gain same-type attack bonus regardless the Pokémon's typing. The Pokémon does not need a turn to charge to use Solar Beam and Solar Blade and Morning Sun recovers twice as much HP.
 #define ABILITY_POWER_CORE       (ABILITIES_COUNT_LATEST_GEN + 99) // The Pokémon uses 25% of its Defense stat during physical moves and Special Defense stat during special moves in addition to the default stat. (Defense and Special Defense stat stages still affects these percentage).
-#define ABILITY_SIGHTING_SYSTEM  (ABILITIES_COUNT_LATEST_GEN + 100) // When the Pokémon uses a move with Accuracy of 50% or lower, the move will have 100% Accuracy and always crit, but have its priority decreased by 3.
+#define ABILITY_SIGHTING_SYSTEM  (ABILITIES_COUNT_LATEST_GEN + 100) // When the Pokémon uses a move with Accuracy of 50% or lower, the move will have 100% Accuracy, but have its priority decreased by 3.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_SIGHTING_SYSTEM + 1)
 
