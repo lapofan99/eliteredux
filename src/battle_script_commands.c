@@ -1768,6 +1768,14 @@ static bool32 AccuracyCalcHelper(u16 move)
             RecordAbilityBattle(gBattlerTarget, ABILITY_NO_GUARD);
         return TRUE;
     }
+
+    if((GetBattlerAbility(gBattlerAttacker) == ABILITY_GRIP_PINCER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_GRIP_PINCER)) &&
+        gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
+    {
+        if (!JumpIfMoveFailed(7, move))
+            RecordAbilityBattle(gBattlerAttacker, ABILITY_GRIP_PINCER);
+        return TRUE;
+    }
 	
 	if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_FATAL_PRECISION || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_FATAL_PRECISION)) &&
 	     CalcTypeEffectivenessMultiplier(move, gBattleMoves[move].type, gBattlerAttacker, gBattlerTarget, TRUE) >= UQ_4_12(2.0))

@@ -15157,7 +15157,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt4[] = {
     .lvl = -2,
     .species = SPECIES_GOLBAT,
     .spread = SPREAD_31_IV_80_EV,
-    .moves = MOVE_BRAVE_BIRD, MOVE_EFFECT_TOXIC, MOVE_CONFUSE_RAY, MOVE_ROOST
+    .moves = MOVE_BRAVE_BIRD, MOVE_TOXIC, MOVE_CONFUSE_RAY, MOVE_ROOST
     },
     {
     .lvl = -2,

@@ -757,9 +757,11 @@ static const u8 sText_PkmnBecameCursed[] = _("{B_ATK_NAME_WITH_PREFIX} became Cu
 static const u8 sText_BattlerAbilitySetUpStickyWeb[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Spider Lair\nset up a Sticky Web on the opposite side!");
 static const u8 sText_BattlerAbilitySetUpTrickRoom[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Twisted Dimension\nset up Trick Room!");
 static const u8 sText_BattlerAbilitySetUpAuroraVeil[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s North Wind\nset up Aurora Veil!");
+static const u8 sText_BattlerGripPincerActivated[] = _("{B_DEF_NAME_WITH_PREFIX} was trapped by\n{B_ACTIVE_NAME_WITH_PREFIX}'s Grip Pincer!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_GRIPPINCERACTIVATED - 12] = sText_BattlerGripPincerActivated,
 	[STRINGID_NORTHWINDACTIVATED - 12] = sText_BattlerAbilitySetUpAuroraVeil,
 	[STRINGID_TWISTEDDIMENSIONACTIVATED - 12] = sText_BattlerAbilitySetUpTrickRoom,
 	[STRINGID_SPIDERLAIRACTIVATED - 12] = sText_BattlerAbilitySetUpStickyWeb,

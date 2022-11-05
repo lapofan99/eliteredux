@@ -360,6 +360,11 @@ static const u8 sLunarEclipseDescription[] =  _("Fairy & Dark gains STAB.\nHypno
 static const u8 sSolarFlareDescription[] =  _("Fire-type moves gain STAB.\nSolar Beam/Blade and Morning Sun are improved.");
 static const u8 sPowerCoreDescription[] =  _("The Pokémon uses 25% of\nits Defense/SpDef stats during moves.");
 static const u8 sSightingSystemDescription[] =  _("Low Accuracy moves always hit\nbut priority is lower.");
+static const u8 sBadCompanyDescription[] =  _("Bad Company Description");
+static const u8 sOpportunistDescription[] =  _("Opportunist Description");
+static const u8 sGiantWingsDescription[] =  _("GiantWings Description");
+static const u8 sMomentumDescription[] =  _("Momentum Description");
+static const u8 sGripPincerDescription[] =  _("Grip Pincer Description");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -732,6 +737,11 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_SOLAR_FLARE] = _("Solar Flare"),
 	[ABILITY_POWER_CORE] = _("Power Core"),
 	[ABILITY_SIGHTING_SYSTEM] = _("Sighting System"),
+	[ABILITY_BAD_COMPANY] = _("Bad Company"),
+	[ABILITY_OPPORTUNIST] = _("Opportunist"),
+	[ABILITY_GIANT_WINGS] = _("Giant Wings"),
+	[ABILITY_MOMENTUM] = _("Momentum"),
+	[ABILITY_GRIP_PINCER] = _("Grip Pincer"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1105,4 +1115,9 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_SOLAR_FLARE] = sSolarFlareDescription,
 	[ABILITY_POWER_CORE] = sPowerCoreDescription,
 	[ABILITY_SIGHTING_SYSTEM] = sSightingSystemDescription,
+	[ABILITY_BAD_COMPANY] = sBadCompanyDescription,
+	[ABILITY_OPPORTUNIST] = sOpportunistDescription,
+	[ABILITY_GIANT_WINGS] = sGiantWingsDescription,
+	[ABILITY_MOMENTUM] = sMomentumDescription,
+	[ABILITY_GRIP_PINCER] = sGripPincerDescription,
 };

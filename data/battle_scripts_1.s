@@ -9437,3 +9437,10 @@ BattleScript_TwistedDimensionActivated::
 	printstring STRINGID_TWISTEDDIMENSIONACTIVATED
 	waitmessage B_WAIT_TIME_LONG
 	end3
+
+BattleScript_GripPincerActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_GRIPPINCERACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3

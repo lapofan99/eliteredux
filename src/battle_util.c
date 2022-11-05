@@ -7270,6 +7270,30 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_GRIP_PINCER:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && !(gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && (Random() % 3) == 0)
+            {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_GRIP_PINCER;
+				gLastUsedAbility = ABILITY_GRIP_PINCER;
+
+                gBattleMons[gBattlerTarget].status2 |= STATUS2_WRAPPED;
+                if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_GRIP_CLAW)
+                        gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
+                    else
+                        gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
+
+                gBattleStruct->wrappedMove[gBattlerTarget] = gCurrentMove;
+                gBattleStruct->wrappedBy[gBattlerTarget] = gBattlerAttacker;
+				BattleScriptPushCursorAndCallback(BattleScript_GripPincerActivated);
+                effect++;
+            }
+            break;
         case ABILITY_STATIC: // Attacker Static
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -7610,6 +7634,31 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}
+
+        if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GRIP_PINCER)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && gBattleMons[gBattlerTarget].hp != 0
+                && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                && IsMoveMakingContact(move, gBattlerAttacker)
+                && !(gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
+                && TARGET_TURN_DAMAGED // Need to actually hit the target
+                && (Random() % 3) == 0)
+                {
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_GRIP_PINCER;
+                    gLastUsedAbility = ABILITY_GRIP_PINCER;
+
+                    gBattleMons[gBattlerTarget].status2 |= STATUS2_WRAPPED;
+                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_GRIP_CLAW)
+                            gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
+                        else
+                            gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
+
+                    gBattleStruct->wrappedMove[gBattlerTarget] = gCurrentMove;
+                    gBattleStruct->wrappedBy[gBattlerTarget] = gBattlerAttacker;
+                    BattleScriptPushCursorAndCallback(BattleScript_GripPincerActivated);
+                    effect++;
+                }
+        }
 		
         break;
     case ABILITYEFFECT_MOVE_END_OTHER: // Abilities that activate on *another* battler's moveend: Dancer, Soul-Heart, Receiver, Symbiosis
@@ -11929,6 +11978,8 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         defStage = DEFAULT_STAT_STAGE;
     // pokemon with unaware ignore defense stat changes while dealing damage
     if (GetBattlerAbility(battlerAtk) == ABILITY_UNAWARE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_UNAWARE))
+        defStage = DEFAULT_STAT_STAGE;
+    if ((gBattleMons[battlerDef].status2 & STATUS2_WRAPPED) && (GetBattlerAbility(battlerAtk) == ABILITY_GRIP_PINCER || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GRIP_PINCER)))
         defStage = DEFAULT_STAT_STAGE;
     // certain moves also ignore stat changes
     if (gBattleMoves[move].flags & FLAG_STAT_STAGES_IGNORED)
