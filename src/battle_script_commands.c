@@ -3445,8 +3445,10 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_SP_ATK_TWO_DOWN: // Overheat
+                if (GetBattlerAbility(gBattlerAttacker) != ABILITY_BAD_COMPANY && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_BAD_COMPANY)){
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
                 gBattlescriptCurrInstr = BattleScript_SAtkDown2;
+                }
                 break;
             case MOVE_EFFECT_CLEAR_SMOG:
                 for (i = 0; i < NUM_BATTLE_STATS; i++)

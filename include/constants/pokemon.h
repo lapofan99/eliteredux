@@ -310,6 +310,9 @@
 #define FLAG_WEATHER_BASED                        (1 << 30) // For Weather Control
 #define FLAG_FIELD_BASED                          (1 << 31) // For Field Explorer
 
+// Battle move Flags 2
+#define FLAG_AIR_BASED                            (1 << 0) // For Giant Wings
+
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
 #define SPLIT_SPECIAL   0x1

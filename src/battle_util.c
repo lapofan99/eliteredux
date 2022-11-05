@@ -10441,6 +10441,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (gBattleMoves[move].flags & FLAG_FIELD_BASED)
            MulModifier(&modifier, UQ_4_12(1.25));
         break;
+    case ABILITY_GIANT_WINGS:
+        if (gBattleMoves[move].flags2 & FLAG_AIR_BASED)
+           MulModifier(&modifier, UQ_4_12(1.25));
+        break;
     case ABILITY_KEEN_EDGE:
         if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
@@ -10620,6 +10624,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Field Explorer
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIELD_EXPLORER)){
 		if (gBattleMoves[move].flags & FLAG_FIELD_BASED)
+           MulModifier(&modifier, UQ_4_12(1.25));
+    }
+
+    // Giant Wings
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GIANT_WINGS)){
+        if (gBattleMoves[move].flags2 & FLAG_AIR_BASED)
            MulModifier(&modifier, UQ_4_12(1.25));
     }
 	
