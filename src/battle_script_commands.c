@@ -3419,8 +3419,10 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 gBattlescriptCurrInstr = BattleScript_AtkDefDown;
                 break;
             case MOVE_EFFECT_DEF_SPDEF_DOWN: // Close Combat
-                BattleScriptPush(gBattlescriptCurrInstr + 1);
-                gBattlescriptCurrInstr = BattleScript_DefSpDefDown;
+                if (GetBattlerAbility(gBattlerAttacker) != ABILITY_BAD_COMPANY && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_BAD_COMPANY)){
+                    BattleScriptPush(gBattlescriptCurrInstr + 1);
+                    gBattlescriptCurrInstr = BattleScript_DefSpDefDown;
+                }
                 break;
             case MOVE_EFFECT_RECOIL_HP_25: // Struggle
                 gBattleMoveDamage = (gBattleMons[gEffectBattler].maxHP) / 4;
