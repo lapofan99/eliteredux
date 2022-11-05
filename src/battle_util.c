@@ -11277,6 +11277,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].speed * 0.2);
         atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
     }
+    // Momentum
+	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MOMENTUM)|| GetBattlerAbility(battlerAtk) == ABILITY_MOMENTUM) && 
+			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
+		atkStat = gBattleMons[battlerAtk].speed;
+        atkStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
+    }
 	// Juggernaut
 	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_JUGGERNAUT)|| GetBattlerAbility(battlerAtk) == ABILITY_JUGGERNAUT) && 
 			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
