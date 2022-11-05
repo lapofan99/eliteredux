@@ -4685,6 +4685,10 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     // Quick Draw
     if (!ignoreChosenMoves && GetBattlerAbility(battler1) == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && Random() % 100 < 30)
         gProtectStructs[battler1].quickDraw = TRUE;
+    // Opportunist
+    if (!ignoreChosenMoves && (GetBattlerAbility(battler1) == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[battler1].species, ABILITY_OPPORTUNIST)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        && gBattleMons[battler2].hp <= gBattleMons[battler2].maxHP / 2 && gBattleMoves[gBattleMons[battler1].moves[*(gBattleStruct->chosenMovePositions + battler1)]].target == MOVE_TARGET_SELECTED)
+        gProtectStructs[battler1].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler1].quickDraw
      && ((holdEffectBattler1 == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * GetBattlerHoldEffectParam(battler1)) / 100)
@@ -4698,6 +4702,10 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     holdEffectBattler2 = GetBattlerHoldEffect(battler2, TRUE);
     // Quick Draw
     if (!ignoreChosenMoves && GetBattlerAbility(battler2) == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && Random() % 100 < 30)
+        gProtectStructs[battler2].quickDraw = TRUE;
+    // Opportunist
+    if (!ignoreChosenMoves && (GetBattlerAbility(battler2) == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[battler2].species, ABILITY_OPPORTUNIST)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        && gBattleMons[battler1].hp <= gBattleMons[battler1].maxHP / 2 && gBattleMoves[gBattleMons[battler2].moves[*(gBattleStruct->chosenMovePositions + battler2)]].target == MOVE_TARGET_SELECTED)
         gProtectStructs[battler2].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler2].quickDraw
