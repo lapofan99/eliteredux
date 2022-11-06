@@ -7803,7 +7803,7 @@ u32 IsFlowerVeilProtected(u32 battler)
 
 u32 IsLeafGuardProtected(u32 battler)
 {
-    if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) && (GetBattlerAbility(battler) == ABILITY_LEAF_GUARD || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LEAF_GUARD)))
+    if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) && (GetBattlerAbility(battler) == ABILITY_LEAF_GUARD || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LEAF_GUARD) || GetBattlerAbility(battler) == ABILITY_BIG_LEAVES || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_BIG_LEAVES)))
         return 1;
     else
         return 0;
@@ -11659,7 +11659,8 @@ static u8 AttacksThisTurn(u8 battlerId, u16 move) // Note: returns 1 if it's a c
     if (gBattleMoves[move].effect == EFFECT_SOLARBEAM
         && (IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY) 
         || GetBattlerAbility(gBattlerAttacker) == ABILITY_SOLAR_FLARE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOLAR_FLARE)
-        || GetBattlerAbility(gBattlerAttacker) == ABILITY_CHLOROPLAST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)))
+        || GetBattlerAbility(gBattlerAttacker) == ABILITY_CHLOROPLAST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)
+        || GetBattlerAbility(gBattlerAttacker) == ABILITY_BIG_LEAVES || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_BIG_LEAVES)))
         return 2;
 
     if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
@@ -12332,11 +12333,14 @@ static void Cmd_recoverbasedonsunlight(void)
             if ((!(gBattleWeather & WEATHER_ANY) || !WEATHER_HAS_EFFECT || GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_UTILITY_UMBRELLA)
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_SOLAR_FLARE 
 				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOLAR_FLARE)
+                && GetBattlerAbility(gBattlerAttacker) != ABILITY_BIG_LEAVES 
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_BIG_LEAVES)
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_CHLOROPLAST 
 				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)) // Tidy up this block later
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 2;
             else if (gBattleWeather & WEATHER_SUN_ANY || 
                     GetBattlerAbility(gBattlerAttacker) == ABILITY_SOLAR_FLARE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOLAR_FLARE) ||
+                    GetBattlerAbility(gBattlerAttacker) == ABILITY_BIG_LEAVES || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_BIG_LEAVES) ||
                     GetBattlerAbility(gBattlerAttacker) == ABILITY_CHLOROPLAST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST))
                 gBattleMoveDamage = 20 * gBattleMons[gBattlerAttacker].maxHP / 30;
             else if (!(gBattleWeather & WEATHER_ANY) || !WEATHER_HAS_EFFECT)

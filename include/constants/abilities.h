@@ -303,7 +303,7 @@
 #define ABILITY_SAND_SONG        (ABILITIES_COUNT_LATEST_GEN + 6)  // Sound moves become Ground type. No damage boost.
 #define ABILITY_RAMPAGE          (ABILITIES_COUNT_LATEST_GEN + 7)  // If a recharge move KOs the foe, it doesn't need to recharge.
 #define ABILITY_VENGEANCE        (ABILITIES_COUNT_LATEST_GEN + 8)  // Overgrow for Ghost moves.
-#define ABILITY_BLITZ_BOXER      (ABILITIES_COUNT_LATEST_GEN + 9)  // Punching moves go first
+#define ABILITY_BLITZ_BOXER      (ABILITIES_COUNT_LATEST_GEN + 9)  // Punching moves go first.
 
 // Darky's Custom Abilities / Innates
 #define ABILITY_ANTARCTIC_BIRD   (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain 1.5x power.
@@ -402,8 +402,9 @@
 #define ABILITY_GIANT_WINGS      (ABILITIES_COUNT_LATEST_GEN + 103) // Boosts all air, wing and wind moves by 25%, including Twister, Hurricane and Heat Wave.
 #define ABILITY_MOMENTUM         (ABILITIES_COUNT_LATEST_GEN + 104) // Contact moves use Speed stat instead for the damage calculation (counts Speed stage-modifiers).
 #define ABILITY_GRIP_PINCER      (ABILITIES_COUNT_LATEST_GEN + 105) // Contact moves have 30% chance to trap the foe for two to three turns. If the target is trapped, contact moves bypass target's Defense and accuracy check.
+#define ABILITY_BIG_LEAVES       (ABILITIES_COUNT_LATEST_GEN + 106) // Solar Beam/Blade doesn't need to charge; Synthesis recovers twice as much HP; Growth doubles stat changes; Chlorophyll, Harvest, Leaf Guard and Solar Power are activated.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_GRIP_PINCER + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_BIG_LEAVES + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

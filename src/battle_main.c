@@ -4528,6 +4528,8 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
             speed *= 2;
         else if ((ability == ABILITY_CHLOROPHYLL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_CHLOROPHYLL)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed *= 2;
+        else if ((ability == ABILITY_BIG_LEAVES || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_BIG_LEAVES)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+            speed *= 2;
         else if ((ability == ABILITY_SAND_RUSH   || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SAND_RUSH)) && gBattleWeather & WEATHER_SANDSTORM_ANY)
             speed *= 2;
         else if ((ability == ABILITY_SLUSH_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLUSH_RUSH)) && gBattleWeather & WEATHER_HAIL_ANY)

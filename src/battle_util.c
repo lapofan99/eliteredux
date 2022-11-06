@@ -5546,6 +5546,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
                 break;
+            case ABILITY_BIG_LEAVES:
+                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
+                 && gBattleMons[battler].item == ITEM_NONE
+                 && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
+                 && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
+                    effect++;
+                }
+                break;
             case ABILITY_DRY_SKIN:
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
                 {
@@ -5774,6 +5784,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
 			
+            // Big Leaves
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_BIG_LEAVES)){
+                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
+                 && gBattleMons[battler].item == ITEM_NONE
+                 && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
+                 && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
+                    effect++;
+                }
+            }
+			
 			// Dry Skin
             if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_DRY_SKIN)){
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
@@ -5942,8 +5964,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if ((effect = ShouldChangeFormHpBased(battler)))
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
 			}
-			
-			/***********************************/
 			
 			// Self Sufficient
 			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SELF_SUFFICIENT)){
@@ -11239,6 +11259,8 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (IsBattlerWeatherAffected(battlerAtk, (WEATHER_HAIL_ANY | WEATHER_SANDSTORM_ANY | WEATHER_RAIN_ANY))
             && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOLAR_FLARE)
             && GetBattlerAbility(gBattlerAttacker) != ABILITY_SOLAR_FLARE
+            && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_BIG_LEAVES)
+            && GetBattlerAbility(gBattlerAttacker) != ABILITY_BIG_LEAVES
 			&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)
             && GetBattlerAbility(gBattlerAttacker) != ABILITY_CHLOROPLAST)
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -11391,6 +11413,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (gDisableStructs[battlerAtk].slowStartTimer != 0)
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
+    case ABILITY_BIG_LEAVES:
     case ABILITY_SOLAR_POWER:
         if (IS_MOVE_SPECIAL(move) && IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_ANY))
             MulModifier(&modifier, UQ_4_12(1.5));
@@ -11631,6 +11654,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 				MulModifier(&modifier, UQ_4_12(1.5));
 	}
 
+    //Big Leaves
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BIG_LEAVES)){
+		if (IS_MOVE_SPECIAL(move) && IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_ANY))
+				MulModifier(&modifier, UQ_4_12(1.5));
+	}
+
     // target's abilities
     switch (GetBattlerAbility(battlerDef))
     {
@@ -11645,7 +11674,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	case ABILITY_MAGMA_ARMOR:
         if (moveType == TYPE_WATER || moveType == TYPE_ICE)
         {
-            MulModifier(&modifier, UQ_4_12(0.8));
+            MulModifier(&modifier, UQ_4_12(0.7));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
         }
@@ -11699,7 +11728,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MAGMA_ARMOR)){
 		if (moveType == TYPE_WATER || moveType == TYPE_ICE)
         {
-            MulModifier(&modifier, UQ_4_12(0.8));
+            MulModifier(&modifier, UQ_4_12(0.7));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
         }
