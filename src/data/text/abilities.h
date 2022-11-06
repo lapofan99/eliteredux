@@ -742,6 +742,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_GIANT_WINGS] = _("Giant Wings"),
 	[ABILITY_MOMENTUM] = _("Momentum"),
 	[ABILITY_GRIP_PINCER] = _("Grip Pincer"),
+    [ABILITY_BIG_LEAVES] = _("Big Leaves"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1120,4 +1121,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_GIANT_WINGS] = sGiantWingsDescription,
 	[ABILITY_MOMENTUM] = sMomentumDescription,
 	[ABILITY_GRIP_PINCER] = sGripPincerDescription,
+    [ABILITY_BIG_LEAVES] = sBigLeavesDescription,
 };
