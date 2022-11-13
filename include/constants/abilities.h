@@ -316,7 +316,7 @@
 #define ABILITY_GROUND_SHOCK     (ABILITIES_COUNT_LATEST_GEN + 17) // Allow Electric-type moves to hit ground type Pokémon.
 #define ABILITY_ANCIENT_IDOL     (ABILITIES_COUNT_LATEST_GEN + 18) // The Pokémon uses its Def/SpDef stat and stages during physical/special moves.
 #define ABILITY_MYSTIC_POWER     (ABILITIES_COUNT_LATEST_GEN + 19) // All Pokémon's moves gain the same-type attack bonus (STAB) regardless the Pokémon's typing.
-#define ABILITY_PERFECTIONIST    (ABILITIES_COUNT_LATEST_GEN + 20) // Ups crit by +1 for moves with BP 40 or less. Ups crit rate by +1 and priority by +1 for moves with BP 20 or less.
+#define ABILITY_PERFECTIONIST    (ABILITIES_COUNT_LATEST_GEN + 20) // Ups crit by +1 for moves with BP 50 or less. Ups crit rate by +1 and priority by +1 for moves with BP 25 or less.
 #define ABILITY_GROWING_TOOTH    (ABILITIES_COUNT_LATEST_GEN + 21) // Increases the Attack stat by one stage after using a fang move.
 #define ABILITY_INFLATABLE       (ABILITIES_COUNT_LATEST_GEN + 22) // When the Pokémon is hit by Fire-type or Flying-type moves, its Defense and Special Defense stats are increased by one stage.
 #define ABILITY_AURORA_BOREALIS  (ABILITIES_COUNT_LATEST_GEN + 23) // Ice-type moves gain STAB. No damage from Hailstorm.
