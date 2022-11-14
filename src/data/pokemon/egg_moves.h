@@ -3630,6 +3630,8 @@ const u16 gEggMoves[] = {
         MOVE_SPIKES,
         MOVE_DEFENSE_CURL,
         MOVE_ROLLOUT,
+        MOVE_STEAMROLLER,
+        MOVE_STEEL_ROLLER,
         MOVE_POWER_UP_PUNCH),
 
     egg_moves(FENNEKIN,
