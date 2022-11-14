@@ -364,7 +364,8 @@ static const u8 sOpportunistDescription[] =  _("If target's HP < 50%, single-\nt
 static const u8 sGiantWingsDescription[] =  _("Boosts all air, wing and\nwind moves by 25%");
 static const u8 sMomentumDescription[] =  _("Contact moves use the Speed stat\nfor damage calculation");
 static const u8 sGripPincerDescription[] =  _("Can trap the foe. Then ignores\nDefense & accuracy checks.");
-static const u8 sBigLeavesDescription[] =  _("Chloroplast, Chlorophyll, Harvest,\nLeaf Guard and Solar Power.");
+static const u8 sBigLeavesDescription[] =  _("Chloroplast/phyll, Harvest,\nLeaf Guard and Solar Power.");
+static const u8 sPreciseFistDescription[] =  _("Punching moves get +1 crit\nand double effect chance.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -743,6 +744,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_MOMENTUM] = _("Momentum"),
 	[ABILITY_GRIP_PINCER] = _("Grip Pincer"),
     [ABILITY_BIG_LEAVES] = _("Big Leaves"),
+    [ABILITY_PRECISE_FIST] = _("Precise Fist"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1122,4 +1124,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_MOMENTUM] = sMomentumDescription,
 	[ABILITY_GRIP_PINCER] = sGripPincerDescription,
     [ABILITY_BIG_LEAVES] = sBigLeavesDescription,
+    [ABILITY_PRECISE_FIST] = sPreciseFistDescription,
 };

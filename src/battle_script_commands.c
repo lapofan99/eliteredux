@@ -2083,7 +2083,8 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
              || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
              || ((abilityAtk == ABILITY_MERCILESS    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MERCILESS)) && ((gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY) || gBattleMons[battlerDef].statStages[STAT_ATK] < DEFAULT_STAT_STAGE))
 			 || ((abilityAtk == ABILITY_HYPER_CUTTER || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYPER_CUTTER)) && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
-			 || move == MOVE_SURGING_STRIKES
+			 || ((abilityAtk == ABILITY_PRECISE_FIST || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PRECISE_FIST)) && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
+             || move == MOVE_SURGING_STRIKES
             #if B_LEEK_ALWAYS_CRIT >= GEN_6
              || ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk))
             #endif
@@ -3651,6 +3652,9 @@ static void Cmd_seteffectwithchance(void)
              && moveType == TYPE_FIRE
              && moveEffect == EFFECT_BURN_HIT)
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 5;
+    else if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PRECISE_FIST || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PRECISE_FIST))
+             && (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST))
+        percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
     else
         percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
 
