@@ -1960,6 +1960,64 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+
+                // Sets Pokemon Nature
+                SetMonData(&party[i], MON_DATA_NATURE, &partyData[i].nature);
+
+                //Sets EVs to fully customized spreads if difficulty is Hard or higher
+                if (difficultySetting > DIFFICULTY_NORMAL)
+                {
+                    for (j = 0; j < NUM_STATS; j++)
+                    {
+                        switch(j){
+                            case 0:
+                                SetMonData(&party[i], MON_DATA_HP_EV, &partyData[i].evs[j]);
+                            break;
+                            case 1:
+                                SetMonData(&party[i], MON_DATA_ATK_EV, &partyData[i].evs[j]);
+                            break;
+                            case 2:
+                                SetMonData(&party[i], MON_DATA_DEF_EV, &partyData[i].evs[j]);
+                            break;
+                            case 3:
+                                SetMonData(&party[i], MON_DATA_SPATK_EV, &partyData[i].evs[j]);
+                            break;
+                            case 4:
+                                SetMonData(&party[i], MON_DATA_SPDEF_EV, &partyData[i].evs[j]);
+                            break;
+                            case 5:
+                                SetMonData(&party[i], MON_DATA_SPEED_EV, &partyData[i].evs[j]);
+                            break;
+                        }
+                    }
+                }
+
+                //Sets Ivs for Hidden Power Customization
+                for (j = 0; j < NUM_STATS; j++){
+                    switch(j){
+                        case 0:
+                            SetMonData(&party[i], MON_DATA_HP_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 1:
+                            SetMonData(&party[i], MON_DATA_ATK_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 2:
+                            SetMonData(&party[i], MON_DATA_DEF_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 3:
+                            SetMonData(&party[i], MON_DATA_SPATK_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 4:
+                            SetMonData(&party[i], MON_DATA_SPDEF_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 5:
+                            SetMonData(&party[i], MON_DATA_SPEED_IV, &partyData[i].ivs[j]);
+                        break;
+                        }
+                }
+
+                CalculateMonStats(&party[i]);
+
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
@@ -1978,6 +2036,64 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                     SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                 }
+
+                // Sets Pokemon Nature
+                SetMonData(&party[i], MON_DATA_NATURE, &partyData[i].nature);
+
+                //Sets EVs to fully customized spreads if difficulty is Hard or higher
+                if (difficultySetting > DIFFICULTY_NORMAL)
+                {
+                    for (j = 0; j < NUM_STATS; j++)
+                    {
+                        switch(j){
+                            case 0:
+                                SetMonData(&party[i], MON_DATA_HP_EV, &partyData[i].evs[j]);
+                            break;
+                            case 1:
+                                SetMonData(&party[i], MON_DATA_ATK_EV, &partyData[i].evs[j]);
+                            break;
+                            case 2:
+                                SetMonData(&party[i], MON_DATA_DEF_EV, &partyData[i].evs[j]);
+                            break;
+                            case 3:
+                                SetMonData(&party[i], MON_DATA_SPATK_EV, &partyData[i].evs[j]);
+                            break;
+                            case 4:
+                                SetMonData(&party[i], MON_DATA_SPDEF_EV, &partyData[i].evs[j]);
+                            break;
+                            case 5:
+                                SetMonData(&party[i], MON_DATA_SPEED_EV, &partyData[i].evs[j]);
+                            break;
+                        }
+                    }
+                }
+
+                //Sets Ivs for Hidden Power Customization
+                for (j = 0; j < NUM_STATS; j++){
+                    switch(j){
+                        case 0:
+                            SetMonData(&party[i], MON_DATA_HP_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 1:
+                            SetMonData(&party[i], MON_DATA_ATK_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 2:
+                            SetMonData(&party[i], MON_DATA_DEF_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 3:
+                            SetMonData(&party[i], MON_DATA_SPATK_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 4:
+                            SetMonData(&party[i], MON_DATA_SPDEF_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 5:
+                            SetMonData(&party[i], MON_DATA_SPEED_IV, &partyData[i].ivs[j]);
+                        break;
+                        }
+                }
+
+                CalculateMonStats(&party[i]);
+
                 break;
             }
             case F_TRAINER_PARTY_HELD_ITEM:
@@ -1992,6 +2108,64 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+
+                // Sets Pokemon Nature
+                SetMonData(&party[i], MON_DATA_NATURE, &partyData[i].nature);
+
+                //Sets EVs to fully customized spreads if difficulty is Hard or higher
+                if (difficultySetting > DIFFICULTY_NORMAL)
+                {
+                    for (j = 0; j < NUM_STATS; j++)
+                    {
+                        switch(j){
+                            case 0:
+                                SetMonData(&party[i], MON_DATA_HP_EV, &partyData[i].evs[j]);
+                            break;
+                            case 1:
+                                SetMonData(&party[i], MON_DATA_ATK_EV, &partyData[i].evs[j]);
+                            break;
+                            case 2:
+                                SetMonData(&party[i], MON_DATA_DEF_EV, &partyData[i].evs[j]);
+                            break;
+                            case 3:
+                                SetMonData(&party[i], MON_DATA_SPATK_EV, &partyData[i].evs[j]);
+                            break;
+                            case 4:
+                                SetMonData(&party[i], MON_DATA_SPDEF_EV, &partyData[i].evs[j]);
+                            break;
+                            case 5:
+                                SetMonData(&party[i], MON_DATA_SPEED_EV, &partyData[i].evs[j]);
+                            break;
+                        }
+                    }
+                }
+
+                //Sets Ivs for Hidden Power Customization
+                for (j = 0; j < NUM_STATS; j++){
+                    switch(j){
+                        case 0:
+                            SetMonData(&party[i], MON_DATA_HP_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 1:
+                            SetMonData(&party[i], MON_DATA_ATK_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 2:
+                            SetMonData(&party[i], MON_DATA_DEF_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 3:
+                            SetMonData(&party[i], MON_DATA_SPATK_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 4:
+                            SetMonData(&party[i], MON_DATA_SPDEF_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 5:
+                            SetMonData(&party[i], MON_DATA_SPEED_IV, &partyData[i].ivs[j]);
+                        break;
+                        }
+                }
+
+                CalculateMonStats(&party[i]);
+
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:

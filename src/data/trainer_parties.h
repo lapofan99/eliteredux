@@ -303,6 +303,9 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute103Treecko[] = 
     {
     .lvl = 0,
     .species = SPECIES_TORCHIC,
+    .ivs = {31, 31, 31, 31, 31, 31}, 
+    .evs = {0, 0, 0, 0, 0, 0},      //Hp, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,   
 	.moves = MOVE_SCRATCH, MOVE_GROWL, MOVE_NONE, MOVE_NONE
     }
 };
