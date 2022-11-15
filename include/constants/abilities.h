@@ -404,8 +404,9 @@
 #define ABILITY_GRIP_PINCER      (ABILITIES_COUNT_LATEST_GEN + 105) // Contact moves have 30% chance to trap the foe for two to three turns. If the target is trapped, contact moves bypass target's Defense and accuracy check.
 #define ABILITY_BIG_LEAVES       (ABILITIES_COUNT_LATEST_GEN + 106) // Solar Beam/Blade doesn't need to charge; Synthesis recovers twice as much HP; Growth doubles stat changes; Chlorophyll, Harvest, Leaf Guard and Solar Power are activated.
 #define ABILITY_PRECISE_FIST     (ABILITIES_COUNT_LATEST_GEN + 107) // Punching moves have critical rate increased by +1 and have double the chance of secondary effects.
+#define ABILITY_DEADEYE          (ABILITIES_COUNT_LATEST_GEN + 108) // Never misses.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_PRECISE_FIST + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_DEADEYE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

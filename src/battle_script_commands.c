@@ -1872,6 +1872,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if ((atkAbility == ABILITY_SIGHTING_SYSTEM || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SIGHTING_SYSTEM)) && gBattleMoves[move].accuracy <= 50)
         moveAcc = 100;
 
+    if ((atkAbility == ABILITY_DEADEYE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DEADEYE)))
+        moveAcc = 100;
+
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
 

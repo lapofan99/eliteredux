@@ -366,6 +366,7 @@ static const u8 sMomentumDescription[] =  _("Contact moves use the Speed stat\nf
 static const u8 sGripPincerDescription[] =  _("Can trap the foe. Then ignores\nDefense & accuracy checks.");
 static const u8 sBigLeavesDescription[] =  _("Chloroplast/phyll, Harvest,\nLeaf Guard and Solar Power.");
 static const u8 sPreciseFistDescription[] =  _("Punching moves get +1 crit\nand double effect chance.");
+static const u8 sDeadeyeDescription[] =  _("Never misses.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -745,6 +746,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_GRIP_PINCER] = _("Grip Pincer"),
     [ABILITY_BIG_LEAVES] = _("Big Leaves"),
     [ABILITY_PRECISE_FIST] = _("Precise Fist"),
+    [ABILITY_DEADEYE] = _("Deadeye"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1125,4 +1127,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_GRIP_PINCER] = sGripPincerDescription,
     [ABILITY_BIG_LEAVES] = sBigLeavesDescription,
     [ABILITY_PRECISE_FIST] = sPreciseFistDescription,
+    [ABILITY_DEADEYE] = sDeadeyeDescription,
 };
