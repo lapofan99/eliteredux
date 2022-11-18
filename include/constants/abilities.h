@@ -52,7 +52,7 @@
 #define ABILITY_EARLY_BIRD 48
 #define ABILITY_FLAME_BODY 49
 #define ABILITY_RUN_AWAY 50
-#define ABILITY_KEEN_EYE 51
+#define ABILITY_KEEN_EYE 51 // Prevents loss of accuracy. Ups accuracy by 10%.
 #define ABILITY_HYPER_CUTTER 52
 #define ABILITY_PICKUP 53
 #define ABILITY_TRUANT 54

@@ -1888,7 +1888,10 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
         calc = (calc * 110) / 100; // 1.1 ally's victory star boost
 	
     if (atkAbility == ABILITY_ILLUMINATE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ILLUMINATE))
-        calc = (calc * 120) / 100; // 1.2 Illuminate boost
+        calc = (calc * 120) / 100; // 1.2 illuminate boost
+
+    if (atkAbility == ABILITY_KEEN_EYE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_KEEN_EYE))
+        calc = (calc * 110) / 100; // 1.1 keen eye boost
 
     if ((defAbility == ABILITY_SAND_VEIL || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_VEIL)) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
         calc = (calc * 80) / 100; // 1.2 sand veil loss
