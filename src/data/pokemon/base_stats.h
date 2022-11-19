@@ -7843,88 +7843,10 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_AMORPHOUS,
         .eggGroup2 = EGG_GROUP_AMORPHOUS,
-        .abilities = {ABILITY_QUEENLY_MAJESTY, ABILITY_SOUL_HEART, ABILITY_PSYCHIC_SURGE},
+        .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
-        .innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_DREAMCATCHER},
-    },
-
-    [SPECIES_SABLEYE_MEGA] =
-    {
-        .baseHP        = 80,
-        .baseAttack    = 105,
-        .baseDefense   = 180,
-        .baseSpeed     = 20,
-        .baseSpAttack  = 105,
-        .baseSpDefense = 170,
-        .type1 = TYPE_DARK,
-        .type2 = TYPE_GHOST,
-        .catchRate = 255,
-        .expYield = 168,
-        .evYield_Attack    = 1,
-        .evYield_Defense   = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 25,
-        .friendship = 35,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
-        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
-        .abilities = {ABILITY_PRANKSTER, ABILITY_UNAWARE, ABILITY_MAGIC_BOUNCE},
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_MAWILE_MEGA] =
-    {
-        .baseHP        = 80,
-        .baseAttack    = 105,
-        .baseDefense   = 150,
-        .baseSpeed     = 50,
-        .baseSpAttack  = 55,
-        .baseSpDefense = 120,
-        .type1 = TYPE_STEEL,
-        .type2 = TYPE_FAIRY,
-        .catchRate = 255,
-        .expYield = 168,
-        .evYield_Attack    = 1,
-        .evYield_Defense   = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_FAST,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FAIRY,
-        .abilities = {ABILITY_HUGE_POWER, ABILITY_HUGE_POWER, ABILITY_HUGE_POWER},
-        .bodyColor = BODY_COLOR_BLACK,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_AGGRON_MEGA] =
-    {
-        .baseHP        = 100,
-        .baseAttack    = 170,
-        .baseDefense   = 230,
-        .baseSpeed     = 50,
-        .baseSpAttack  = 60,
-        .baseSpDefense = 80,
-        .type1 = TYPE_STEEL,
-        .type2 = TYPE_STEEL,
-        .catchRate = 255,
-        .expYield = 284,
-        .evYield_Defense   = 3,
-        .item2 = ITEM_HARD_STONE,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 35,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_MONSTER,
-        .eggGroup2 = EGG_GROUP_MONSTER,
-        .abilities = {ABILITY_IRON_BARBS, ABILITY_ROCK_HEAD, ABILITY_ADAPTABILITY},
-        .bodyColor = BODY_COLOR_GRAY,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
+        .innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_HEART},
     },
 
     [SPECIES_SURSKIT] =
@@ -8415,12 +8337,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_SABLEYE] =
     {
+        .baseHP        = 70,
         .baseAttack    = 85,
+        .baseDefense   = 85,
         .baseSpeed     = 50,
-        .baseSpAttack  = 85,
-        .baseHP        = 80,
-        .baseDefense   = 100,
-        .baseSpDefense = 100,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 75,
         .type2 = TYPE_GHOST,
         .catchRate = 255,
         .expYield = 133,
@@ -8439,9 +8361,35 @@ const struct BaseStats gBaseStats[] =
         .innates = {ABILITY_ANALYTIC, ABILITY_KEEN_EYE, ABILITY_NOCTURNAL},
     },
 
+    [SPECIES_SABLEYE_MEGA] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 85,
+        .baseDefense   = 145,
+        .baseSpeed     = 20,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 135,
+        .type1 = TYPE_DARK,
+        .type2 = TYPE_GHOST,
+        .catchRate = 255,
+        .expYield = 168,
+        .evYield_Attack    = 1,
+        .evYield_Defense   = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = 35,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
+        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
+        .abilities = {ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE},
+        .bodyColor = BODY_COLOR_PURPLE,
+        .noFlip = FALSE,
+        .innates = {ABILITY_ANALYTIC, ABILITY_PRANKSTER, ABILITY_NOCTURNAL},
+    },
+
     [SPECIES_MAWILE] =
     {
-		.baseHP        = 80,
+		.baseHP        = 70,
         .baseAttack    = 85,
 		.baseDefense   = 115,
         .baseSpeed     = 50,
@@ -8463,8 +8411,35 @@ const struct BaseStats gBaseStats[] =
 		.abilities = {ABILITY_HUGE_POWER, ABILITY_INTIMIDATE, ABILITY_SCARE},
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
-        .innates = {ABILITY_DRAGONSLAYER, ABILITY_STRONG_JAW, ABILITY_MULTI_HEADED},
+        .innates = {ABILITY_GRIP_PINCER, ABILITY_STRONG_JAW, ABILITY_MULTI_HEADED},
         .flags = F_TWO_HEADED,
+    },
+
+    [SPECIES_MAWILE_MEGA] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 105,
+        .baseDefense   = 150,
+        .baseSpeed     = 50,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 120,
+        .type1 = TYPE_STEEL,
+        .type2 = TYPE_FAIRY,
+        .catchRate = 255,
+        .expYield = 168,
+        .evYield_Attack    = 1,
+        .evYield_Defense   = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_FAST,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FAIRY,
+        .abilities = {ABILITY_HUGE_POWER, ABILITY_HUGE_POWER, ABILITY_HUGE_POWER},
+        .bodyColor = BODY_COLOR_BLACK,
+        .noFlip = FALSE,
+        .innates = {ABILITY_GRIP_PINCER, ABILITY_STRONG_JAW, ABILITY_MULTI_HEADED},
+        .flags = F_THREE_HEADED,
     },
 
     [SPECIES_ARON] =
@@ -8490,7 +8465,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_IRON_BARBS},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
-        .innates = {ABILITY_FORT_KNOX, ABILITY_NONE, ABILITY_NONE},
+        .innates = {ABILITY_LEAD_COAT, ABILITY_NONE, ABILITY_NONE},
     },
 
     [SPECIES_LAIRON] =
@@ -8516,7 +8491,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_IRON_BARBS},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
-        .innates = {ABILITY_FORT_KNOX, ABILITY_JUGGERNAUT, ABILITY_IMPENETRABLE},
+        .innates = {ABILITY_LEAD_COAT, ABILITY_JUGGERNAUT, ABILITY_IMPENETRABLE},
     },
 
     [SPECIES_AGGRON] =
@@ -8542,7 +8517,33 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_PRIMAL_ARMOR, ABILITY_ROCK_HEAD, ABILITY_IRON_BARBS},
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
-        .innates = {ABILITY_FORT_KNOX, ABILITY_JUGGERNAUT, ABILITY_IMPENETRABLE},
+        .innates = {ABILITY_LEAD_COAT, ABILITY_JUGGERNAUT, ABILITY_IMPENETRABLE},
+    },
+
+    [SPECIES_AGGRON_MEGA] =
+    {
+        .baseHP        = 100,
+        .baseAttack    = 170,
+        .baseDefense   = 250,
+        .baseSpeed     = 50,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 80,
+        .type1 = TYPE_STEEL,
+        .type2 = TYPE_STEEL,
+        .catchRate = 255,
+        .expYield = 284,
+        .evYield_Defense   = 3,
+        .item2 = ITEM_HARD_STONE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 35,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_MONSTER,
+        .eggGroup2 = EGG_GROUP_MONSTER,
+        .abilities = {ABILITY_PRIMAL_ARMOR, ABILITY_ROCK_HEAD, ABILITY_IRON_BARBS},
+        .bodyColor = BODY_COLOR_GRAY,
+        .noFlip = FALSE,
+        .innates = {ABILITY_LEAD_COAT, ABILITY_JUGGERNAUT, ABILITY_IMPENETRABLE},
     },
 
     [SPECIES_MEDITITE] =
@@ -8589,10 +8590,35 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
         .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
-        .abilities = {ABILITY_PURE_POWER, ABILITY_PURE_POWER, ABILITY_TECHNICIAN},
+        .abilities = {ABILITY_PURE_POWER, ABILITY_NONE, ABILITY_TECHNICIAN},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .innates = {ABILITY_PSYCHIC_MIND, ABILITY_STRIKER, ABILITY_NONE},
+    },
+
+    [SPECIES_MEDICHAM_MEGA] =
+    {
+        .baseHP        = 75,
+        .baseAttack    = 100,
+        .baseDefense   = 85,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 85,
+        .type1 = TYPE_FIGHTING,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 255,
+        .expYield = 179,
+        .evYield_Speed     = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
+        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
+        .abilities = {ABILITY_PURE_POWER, ABILITY_PURE_POWER, ABILITY_PURE_POWER},
+        .bodyColor = BODY_COLOR_RED,
+        .noFlip = FALSE,
+        .innates = {ABILITY_PSYCHIC_MIND, ABILITY_STRIKER, ABILITY_TECHNICIAN},
     },
 
     [SPECIES_ELECTRIKE] =
@@ -8643,6 +8669,31 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
         .innates = {ABILITY_PLUS, ABILITY_LIGHTNING_ROD, ABILITY_UNNERVE},
+    },
+
+    [SPECIES_MANECTRIC_MEGA] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 75,
+        .baseDefense   = 80,
+        .baseSpeed     = 180,
+        .baseSpAttack  = 180,
+        .baseSpDefense = 80,
+        .type1 = TYPE_ELECTRIC,
+        .type2 = TYPE_ELECTRIC,
+        .catchRate = 255,
+        .expYield = 201,
+        .evYield_Speed     = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = {ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE},
+        .bodyColor = BODY_COLOR_YELLOW,
+        .noFlip = FALSE,
+        .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_GROUND_SHOCK, ABILITY_OVERCHARGE},
     },
 
     [SPECIES_PLUSLE] =
@@ -8878,7 +8929,33 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE, ABILITY_SPEED_BOOST},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
-        .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_ROUGH_SKIN},
+        .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
+    },
+
+    [SPECIES_SHARPEDO_MEGA] =
+    {
+        .baseHP        = 85,
+        .baseAttack    = 200,
+        .baseDefense   = 70,
+        .baseSpeed     = 145,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 65,
+        .type1 = TYPE_WATER,
+        .type2 = TYPE_DARK,
+        .catchRate = 255,
+        .expYield = 196,
+        .evYield_Attack    = 2,
+        .item2 = ITEM_DEEP_SEA_TOOTH,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_WATER_2,
+        .eggGroup2 = EGG_GROUP_WATER_2,
+        .abilities = {ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE},
+        .bodyColor = BODY_COLOR_BLUE,
+        .noFlip = FALSE,
+        .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
     },
 
     [SPECIES_WAILMER] =
@@ -8977,6 +9054,32 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
         .abilities = {ABILITY_STAMINA, ABILITY_ANGER_POINT, ABILITY_SHEER_FORCE},
+        .bodyColor = BODY_COLOR_RED,
+        .noFlip = FALSE,
+        .innates = {ABILITY_MAGMA_ARMOR, ABILITY_SOLID_ROCK, ABILITY_MOLTEN_DOWN},
+    },
+
+    [SPECIES_CAMERUPT_MEGA] =
+    {
+        .baseHP        = 110,
+        .baseAttack    = 120,
+        .baseDefense   = 140,
+        .baseSpeed     = 20,
+        .baseSpAttack  = 145,
+        .baseSpDefense = 125,
+        .type1 = TYPE_FIRE,
+        .type2 = TYPE_GROUND,
+        .catchRate = 150,
+        .expYield = 196,
+        .evYield_Attack    = 1,
+        .evYield_SpAttack  = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_FAST,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = {ABILITY_DROUGHT, ABILITY_DROUGHT, ABILITY_DROUGHT},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .innates = {ABILITY_MAGMA_ARMOR, ABILITY_SOLID_ROCK, ABILITY_MOLTEN_DOWN},
@@ -9262,6 +9365,31 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .innates = {ABILITY_NATURAL_CURE, ABILITY_FLUFFY, ABILITY_SWEET_DREAMS},
+    },
+
+    [SPECIES_ALTARIA_MEGA] =
+    {
+        .baseHP        = 95,
+        .baseAttack    = 120,
+        .baseDefense   = 120,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 135,
+        .type1 = TYPE_DRAGON,
+        .type2 = TYPE_FAIRY,
+        .catchRate = 255,
+        .expYield = 207,
+        .evYield_SpDefense = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_FLYING,
+        .eggGroup2 = EGG_GROUP_DRAGON,
+        .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
+        .bodyColor = BODY_COLOR_BLUE,
+        .noFlip = FALSE,
+        .innates = {ABILITY_NATURAL_CURE, ABILITY_FLUFFY, ABILITY_LEVITATE},
     },
 
     [SPECIES_ZANGOOSE] =
@@ -9779,6 +9907,32 @@ const struct BaseStats gBaseStats[] =
         .innates = {ABILITY_VENGEANCE, ABILITY_HAUNTED_SPIRIT, ABILITY_SOUL_EATER},
     },
 
+    [SPECIES_BANETTE_MEGA] =
+    {
+        .baseHP        = 84,
+        .baseAttack    = 215,
+        .baseDefense   = 95,
+        .baseSpeed     = 133,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 83,
+        .type1 = TYPE_GHOST,
+        .type2 = TYPE_NORMAL,
+        .catchRate = 255,
+        .expYield = 194,
+        .evYield_Attack    = 2,
+        .item2 = ITEM_SPELL_TAG,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = 35,
+        .growthRate = GROWTH_FAST,
+        .eggGroup1 = EGG_GROUP_AMORPHOUS,
+        .eggGroup2 = EGG_GROUP_AMORPHOUS,
+        .abilities = {ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER},
+        .bodyColor = BODY_COLOR_BLACK,
+        .noFlip = FALSE,
+        .innates = {ABILITY_VENGEANCE, ABILITY_HAUNTED_SPIRIT, ABILITY_SOUL_EATER},
+    },
+
     [SPECIES_DUSKULL] =
     {
         .baseHP        = 30,
@@ -9909,6 +10063,31 @@ const struct BaseStats gBaseStats[] =
         .innates = {ABILITY_SUPER_LUCK, ABILITY_MOUNTAINEER, ABILITY_KEEN_EDGE},
     },
 
+    [SPECIES_ABSOL_MEGA] =
+    {
+        .baseHP        = 85,
+        .baseAttack    = 170,
+        .baseDefense   = 60,
+        .baseSpeed     = 130,
+        .baseSpAttack  = 130,
+        .baseSpDefense = 60,
+        .type1 = TYPE_DARK,
+        .type2 = TYPE_FAIRY,
+        .catchRate = 255,
+        .expYield = 198,
+        .evYield_Attack    = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = 35,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroup1 = EGG_GROUP_FIELD,
+        .eggGroup2 = EGG_GROUP_FIELD,
+        .abilities = {ABILITY_DARK_AURA, ABILITY_DARK_AURA, ABILITY_DARK_AURA},
+        .bodyColor = BODY_COLOR_WHITE,
+        .noFlip = TRUE,
+        .innates = {ABILITY_SUPER_LUCK, ABILITY_KEEN_EDGE, ABILITY_MAGIC_GUARD},
+    },
+
     [SPECIES_WYNAUT] =
     {
         .baseHP        = 95,
@@ -9983,6 +10162,31 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GRAY,
         .noFlip = FALSE,
         .innates = {ABILITY_ICE_BODY, ABILITY_PERMAFROST, ABILITY_LOOTER},
+    },
+
+    [SPECIES_GLALIE_MEGA] =
+    {
+        .baseHP        = 90,
+        .baseAttack    = 160,
+        .baseDefense   = 80,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 150,
+        .baseSpDefense = 80,
+        .type1 = TYPE_ICE,
+        .type2 = TYPE_ROCK,
+        .catchRate = 255,
+        .expYield = 203,
+        .evYield_HP        = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 70,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroup1 = EGG_GROUP_FAIRY,
+        .eggGroup2 = EGG_GROUP_MINERAL,
+        .abilities = {ABILITY_REFRIGERATE, ABILITY_CRYSTALLIZE, ABILITY_WHITEOUT},
+        .bodyColor = BODY_COLOR_GRAY,
+        .noFlip = FALSE,
+        .innates = {ABILITY_ICE_BODY, ABILITY_PERMAFROST, ABILITY_LEVITATE},
     },
 
     [SPECIES_SPHEAL] =
@@ -10274,6 +10478,32 @@ const struct BaseStats gBaseStats[] =
         .innates = {ABILITY_OVERWHELM, ABILITY_ANGER_POINT, ABILITY_RAMPAGE},
     },
 
+    [SPECIES_SALAMENCE_MEGA] =
+    {
+        .baseHP        = 95,
+        .baseAttack    = 165,
+        .baseDefense   = 130,
+        .baseSpeed     = 130,
+        .baseSpAttack  = 130,
+        .baseSpDefense = 90,
+        .type1 = TYPE_DRAGON,
+        .type2 = TYPE_FLYING,
+        .catchRate = 255,
+        .expYield = 315,
+        .evYield_Attack    = 3,
+        .item2 = ITEM_DRAGON_FANG,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 40,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_DRAGON,
+        .eggGroup2 = EGG_GROUP_DRAGON,
+        .abilities = {ABILITY_MOXIE, ABILITY_MOXIE, ABILITY_MOXIE},
+        .bodyColor = BODY_COLOR_BLUE,
+        .noFlip = FALSE,
+        .innates = {ABILITY_OVERWHELM, ABILITY_AERILATE, ABILITY_PREDATOR},
+    },
+
     [SPECIES_BELDUM] =
     {
         .baseHP        = 50,
@@ -10350,6 +10580,32 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .innates = {ABILITY_PRISM_ARMOR, ABILITY_FULL_METAL_BODY, ABILITY_DOWNLOAD},
+    },
+
+    [SPECIES_METAGROSS_MEGA] =
+    {
+        .baseHP        = 90,
+        .baseAttack    = 165,
+        .baseDefense   = 170,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 110,
+        .type1 = TYPE_STEEL,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 255,
+        .expYield = 315,
+        .evYield_Defense   = 3,
+        .item2 = ITEM_METAL_COAT,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 40,
+        .friendship = 35,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_MINERAL,
+        .eggGroup2 = EGG_GROUP_MINERAL,
+        .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
+        .bodyColor = BODY_COLOR_BLUE,
+        .noFlip = FALSE,
+        .innates = {ABILITY_PREDATOR, ABILITY_FULL_METAL_BODY, ABILITY_LEVITATE},
     },
 
     [SPECIES_REGIROCK] =
@@ -10453,6 +10709,31 @@ const struct BaseStats gBaseStats[] =
         .innates = {ABILITY_LEVITATE, ABILITY_PRISM_ARMOR, ABILITY_MYSTIC_POWER},
     },
 
+    [SPECIES_LATIAS_MEGA] =
+    {
+        .baseHP        = 80,
+        .baseAttack    = 100,
+        .baseDefense   = 120,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 140,
+        .baseSpDefense = 170,
+        .type1 = TYPE_DRAGON,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 255,
+        .expYield = 315,
+        .evYield_SpDefense = 3,
+        .genderRatio = MON_FEMALE,
+        .eggCycles = 120,
+        .friendship = 90,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_MIRROR_ARMOR, ABILITY_MIRROR_ARMOR, ABILITY_MIRROR_ARMOR},
+        .bodyColor = BODY_COLOR_PURPLE,
+        .noFlip = FALSE,
+        .innates = {ABILITY_LEVITATE, ABILITY_PRISM_ARMOR, ABILITY_MYSTIC_POWER},
+    },
+
     [SPECIES_LATIOS] =
     {
         .baseHP        = 80,
@@ -10474,6 +10755,31 @@ const struct BaseStats gBaseStats[] =
         .eggGroup2 = EGG_GROUP_UNDISCOVERED,
         .abilities = {ABILITY_AVENGER, ABILITY_NEUROFORCE, ABILITY_SPEED_BOOST},
         .bodyColor = BODY_COLOR_BLUE,
+        .noFlip = FALSE,
+        .innates = {ABILITY_LEVITATE, ABILITY_VIOLENT_RUSH, ABILITY_MYSTIC_POWER},
+    },
+
+    [SPECIES_LATIOS_MEGA] =
+    {
+        .baseHP        = 80,
+        .baseAttack    = 130,
+        .baseDefense   = 100,
+        .baseSpeed     = 140,
+        .baseSpAttack  = 170,
+        .baseSpDefense = 120,
+        .type1 = TYPE_DRAGON,
+        .type2 = TYPE_PSYCHIC,
+        .catchRate = 255,
+        .expYield = 315,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_MALE,
+        .eggCycles = 120,
+        .friendship = 90,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
+        .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
         .innates = {ABILITY_LEVITATE, ABILITY_VIOLENT_RUSH, ABILITY_MYSTIC_POWER},
     },
@@ -10503,6 +10809,31 @@ const struct BaseStats gBaseStats[] =
         .innates = {ABILITY_SEA_GUARDIAN, ABILITY_WATER_VEIL, ABILITY_DRIZZLE},
     },
 
+    [SPECIES_KYOGRE_PRIMAL] =
+    {
+        .baseHP        = 100,
+        .baseAttack    = 150,
+        .baseDefense   = 100,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 210,
+        .baseSpDefense = 180,
+        .type1 = TYPE_WATER,
+        .type2 = TYPE_WATER,
+        .catchRate = 255,
+        .expYield = 302,
+        .evYield_SpAttack  = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_ARTILLERY, ABILITY_ARTILLERY, ABILITY_ARTILLERY},
+        .bodyColor = BODY_COLOR_BLUE,
+        .noFlip = FALSE,
+        .innates = {ABILITY_SEA_GUARDIAN, ABILITY_PRIMAL_ARMOR, ABILITY_PRIMORDIAL_SEA},
+    },
+
     [SPECIES_GROUDON] =
     {
         .baseHP        = 100,
@@ -10511,8 +10842,8 @@ const struct BaseStats gBaseStats[] =
         .baseSpeed     = 90,
         .baseSpAttack  = 100,
         .baseSpDefense = 90,
-        .type1 = TYPE_FIRE,
-        .type2 = TYPE_GROUND,
+        .type1 = TYPE_GROUND,
+        .type2 = TYPE_FIRE,
         .catchRate = 255,
         .expYield = 302,
         .evYield_Attack    = 3,
@@ -10526,6 +10857,31 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .innates = {ABILITY_MAGMA_ARMOR, ABILITY_JUGGERNAUT, ABILITY_DROUGHT},
+    },
+
+    [SPECIES_GROUDON_PRIMAL] =
+    {
+        .baseHP        = 100,
+        .baseAttack    = 210,
+        .baseDefense   = 180,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 150,
+        .baseSpDefense = 100,
+        .type1 = TYPE_GROUND,
+        .type2 = TYPE_FIRE,
+        .catchRate = 255,
+        .expYield = 302,
+        .evYield_Attack    = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_MOLTEN_DOWN, ABILITY_MOLTEN_DOWN, ABILITY_MOLTEN_DOWN},
+        .bodyColor = BODY_COLOR_RED,
+        .noFlip = FALSE,
+        .innates = {ABILITY_MAGMA_ARMOR, ABILITY_PRIMAL_ARMOR, ABILITY_DESOLATE_LAND},
     },
 
     [SPECIES_RAYQUAZA] =
@@ -10552,6 +10908,32 @@ const struct BaseStats gBaseStats[] =
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
         .innates = {ABILITY_AIR_LOCK, ABILITY_WEATHER_CONTROL, ABILITY_RAMPAGE},
+    },
+
+    [SPECIES_RAYQUAZA_MEGA] =
+    {
+        .baseHP        = 105,
+        .baseAttack    = 210,
+        .baseDefense   = 100,
+        .baseSpeed     = 135,
+        .baseSpAttack  = 210,
+        .baseSpDefense = 100,
+        .type1 = TYPE_DRAGON,
+        .type2 = TYPE_FLYING,
+        .catchRate = 255,
+        .expYield = 306,
+        .evYield_Attack    = 2,
+        .evYield_SpAttack  = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 120,
+        .friendship = 0,
+        .growthRate = GROWTH_SLOW,
+        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
+        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
+        .abilities = {ABILITY_DELTA_STREAM, ABILITY_ADAPTABILITY, ABILITY_AERILATE},
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = FALSE,
+        .innates = {ABILITY_DRAGONS_MAW, ABILITY_WEATHER_CONTROL, ABILITY_AERILATE},
     },
 
     [SPECIES_JIRACHI] =
@@ -25245,363 +25627,14 @@ const struct BaseStats gBaseStats[] =
     },
     */
 
-    [SPECIES_MEDICHAM_MEGA] =
-    {
-        .baseHP        = 75,
-        .baseAttack    = 100,
-        .baseDefense   = 85,
-        .baseSpeed     = 120,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 85,
-        .type1 = TYPE_FIGHTING,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 255,
-        .expYield = 179,
-        .evYield_Speed     = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
-        .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
-        .abilities = {ABILITY_PURE_POWER, ABILITY_PURE_POWER, ABILITY_PURE_POWER},
-        .bodyColor = BODY_COLOR_RED,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_MANECTRIC_MEGA] =
-    {
-        .baseHP        = 70,
-        .baseAttack    = 75,
-        .baseSpeed     = 175,
-        .baseSpAttack  = 175,
-        #ifdef REBALANCED_VERSION
-            .baseDefense   = 90,
-            .baseSpDefense = 90,
-        #else
-            .baseDefense   = 80,
-            .baseSpDefense = 80,
-        #endif
-        .type1 = TYPE_ELECTRIC,
-        .type2 = TYPE_ELECTRIC,
-        .catchRate = 255,
-        .expYield = 201,
-        .evYield_Speed     = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_TECHNICIAN, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
-        .bodyColor = BODY_COLOR_YELLOW,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_SHARPEDO_MEGA] =
-    {
-        .baseHP        = 85,
-        .baseDefense   = 70,
-        .baseSpAttack  = 120,
-        .baseSpDefense = 65,
-        #ifdef REBALANCED_VERSION
-            .baseAttack    = 200,
-            .baseSpeed     = 145,
-        #else
-            .baseAttack    = 140,
-            .baseSpeed     = 105,
-        #endif
-        .type1 = TYPE_WATER,
-        .type2 = TYPE_DARK,
-        .catchRate = 255,
-        .expYield = 196,
-        .evYield_Attack    = 2,
-        .item2 = ITEM_DEEP_SEA_TOOTH,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_WATER_2,
-        .eggGroup2 = EGG_GROUP_WATER_2,
-        .abilities = {ABILITY_ADAPTABILITY, ABILITY_STRONG_JAW, ABILITY_ADAPTABILITY},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_CAMERUPT_MEGA] =
-    {
-        .baseAttack    = 130,
-        .baseSpeed     = 20,
-        .baseSpAttack  = 145,
-        #ifdef REBALANCED_VERSION
-            .baseHP        = 110,
-            .baseDefense   = 140,
-            .baseSpDefense = 135,
-        #else
-            .baseHP        = 70,
-            .baseDefense   = 100,
-            .baseSpDefense = 105,
-        #endif
-        .type1 = TYPE_FIRE,
-        .type2 = TYPE_GROUND,
-        .catchRate = 150,
-        .expYield = 196,
-        .evYield_Attack    = 1,
-        .evYield_SpAttack  = 1,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_FAST,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_DESOLATE_LAND, ABILITY_DESOLATE_LAND, ABILITY_DESOLATE_LAND},
-        .bodyColor = BODY_COLOR_RED,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_ALTARIA_MEGA] =
-    {
-        .baseHP        = 95,
-        .baseAttack    = 120,
-        .baseDefense   = 110,
-        .baseSpAttack  = 110,
-        .baseSpDefense = 135,
-        #ifdef REBALANCED_VERSION
-            .baseSpeed     = 110,
-        #else
-            .baseSpeed     = 80,
-        #endif
-        .type1 = TYPE_DRAGON,
-        .type2 = TYPE_FAIRY,
-        .catchRate = 255,
-        .expYield = 207,
-        .evYield_SpDefense = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_FLYING,
-        .eggGroup2 = EGG_GROUP_DRAGON,
-        .abilities = {ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_BANETTE_MEGA] =
-    {
-        .baseHP        = 84,
-        .baseAttack    = 215,
-        .baseSpDefense = 83,
-        #ifdef REBALANCED_VERSION
-            .baseDefense   = 95,
-            .baseSpeed     = 133,
-            .baseSpAttack  = 75,
-            .type1 = TYPE_GHOST,
-            .type2 = TYPE_NORMAL,
-        #else
-            .baseDefense   = 75,
-            .baseSpeed     = 75,
-            .baseSpAttack  = 93,
-            .type1 = TYPE_GHOST,
-            .type2 = TYPE_GHOST,
-        #endif
-        .catchRate = 255,
-        .expYield = 194,
-        .evYield_Attack    = 2,
-        .item2 = ITEM_SPELL_TAG,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 25,
-        .friendship = 35,
-        .growthRate = GROWTH_FAST,
-        .eggGroup1 = EGG_GROUP_AMORPHOUS,
-        .eggGroup2 = EGG_GROUP_AMORPHOUS,
-        .abilities = {ABILITY_VENGEANCE, ABILITY_PRANKSTER, ABILITY_SHADOW_TAG},
-        .bodyColor = BODY_COLOR_BLACK,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_ABSOL_MEGA] =
-    {
-        .baseHP        = 85,
-        .baseDefense   = 60,
-        .baseSpeed     = 115,
-        .baseSpDefense = 60,
-        #ifdef REBALANCED_VERSION
-            .baseAttack    = 190,
-            .baseSpAttack  = 175,
-        #else
-            .baseAttack    = 150,
-            .baseSpAttack  = 115,
-        #endif
-        .type1 = TYPE_DARK,
-        .type2 = TYPE_FAIRY,
-        .catchRate = 255,
-        .expYield = 198,
-        .evYield_Attack    = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 25,
-        .friendship = 35,
-        .growthRate = GROWTH_MEDIUM_SLOW,
-        .eggGroup1 = EGG_GROUP_FIELD,
-        .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_KEEN_EDGE, ABILITY_SUPER_LUCK, ABILITY_DARK_AURA},
-        .bodyColor = BODY_COLOR_WHITE,
-        .noFlip = TRUE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_GLALIE_MEGA] =
-    {
-        .baseHP        = 90,
-        .baseDefense   = 80,
-        .baseSpAttack  = 150,
-        .baseSpDefense = 80,
-        #ifdef REBALANCED_VERSION
-            .baseAttack    = 160,
-            .baseSpeed     = 120,
-            .type1 = TYPE_ICE,
-            .type2 = TYPE_ROCK,
-        #else
-            .baseAttack    = 120,
-            .baseSpeed     = 100,
-            .type1 = TYPE_ICE,
-            .type2 = TYPE_ICE,
-        #endif
-        .catchRate = 255,
-        .expYield = 203,
-        .evYield_HP        = 2,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 20,
-        .friendship = 70,
-        .growthRate = GROWTH_MEDIUM_FAST,
-        .eggGroup1 = EGG_GROUP_FAIRY,
-        .eggGroup2 = EGG_GROUP_MINERAL,
-        .abilities = {ABILITY_REFRIGERATE, ABILITY_ADAPTABILITY, ABILITY_MOODY},
-        .bodyColor = BODY_COLOR_GRAY,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_SALAMENCE_MEGA] =
-    {
-        .baseHP        = 95,
-        .baseAttack    = 145,
-        .baseDefense   = 130,
-        .baseSpeed     = 120,
-        .baseSpAttack  = 120,
-        .baseSpDefense = 90,
-        .type1 = TYPE_DRAGON,
-        .type2 = TYPE_FLYING,
-        .catchRate = 255,
-        .expYield = 315,
-        .evYield_Attack    = 3,
-        .item2 = ITEM_DRAGON_FANG,
-        .genderRatio = PERCENT_FEMALE(50),
-        .eggCycles = 40,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_DRAGON,
-        .eggGroup2 = EGG_GROUP_DRAGON,
-        .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_AERILATE, ABILITY_AERILATE},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_METAGROSS_MEGA] =
-    {
-        .baseHP        = 90,
-        .baseAttack    = 145,
-        .baseDefense   = 150,
-        .baseSpeed     = 110,
-        .baseSpAttack  = 105,
-        .baseSpDefense = 110,
-        .type1 = TYPE_STEEL,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 255,
-        .expYield = 315,
-        .evYield_Defense   = 3,
-        .item2 = ITEM_METAL_COAT,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 40,
-        .friendship = 35,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_MINERAL,
-        .eggGroup2 = EGG_GROUP_MINERAL,
-        .abilities = {ABILITY_TOUGH_CLAWS, ABILITY_ADAPTABILITY, ABILITY_TOUGH_CLAWS},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_LATIAS_MEGA] =
-    {
-        .baseHP        = 80,
-        .baseAttack    = 100,
-        .baseDefense   = 120,
-        .baseSpeed     = 110,
-        .baseSpAttack  = 140,
-        .baseSpDefense = 150,
-        .type1 = TYPE_DRAGON,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 255,
-        .expYield = 315,
-        .evYield_SpDefense = 3,
-        .genderRatio = MON_FEMALE,
-        .eggCycles = 120,
-        .friendship = 90,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_MAGIC_GUARD, ABILITY_REGENERATOR, ABILITY_MAGIC_BOUNCE},
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_LATIOS_MEGA] =
-    {
-        .baseHP        = 80,
-        .baseAttack    = 130,
-        .baseDefense   = 100,
-        .baseSpeed     = 110,
-        .baseSpAttack  = 160,
-        .baseSpDefense = 120,
-        .type1 = TYPE_DRAGON,
-        .type2 = TYPE_PSYCHIC,
-        .catchRate = 255,
-        .expYield = 315,
-        .evYield_SpAttack  = 3,
-        .genderRatio = MON_MALE,
-        .eggCycles = 120,
-        .friendship = 90,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_ADAPTABILITY, ABILITY_MAGIC_GUARD, ABILITY_ADAPTABILITY},
-        .bodyColor = BODY_COLOR_PURPLE,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_LOPUNNY_MEGA] =
+    [SPECIES_LOPUNNY_MEGA] = // continue
     {
         .baseHP        = 75,
         .baseAttack    = 156,
         .baseDefense   = 94,
         .baseSpeed     = 175,
+        .baseSpAttack  = 84,
         .baseSpDefense = 96,
-        #ifdef REBALANCED_VERSION
-            .baseSpAttack  = 84,
-        #else
-            .baseSpAttack  = 54,
-        #endif
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_FIGHTING,
         .catchRate = 255,
@@ -25623,16 +25656,10 @@ const struct BaseStats gBaseStats[] =
     {
         .baseHP        = 108,
         .baseAttack    = 170,
+        .baseDefense   = 110,
+        .baseSpeed     = 102,
         .baseSpAttack  = 120,
-        #ifdef REBALANCED_VERSION
-            .baseSpeed     = 102,
-            .baseDefense   = 110,
-            .baseSpDefense = 90,
-        #else
-            .baseSpeed     = 92,
-            .baseDefense   = 115,
-            .baseSpDefense = 95,
-        #endif
+        .baseSpDefense = 90,
         .type1 = TYPE_DRAGON,
         .type2 = TYPE_GROUND,
         .catchRate = 255,
@@ -25679,18 +25706,11 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_ABOMASNOW_MEGA] =
     {
         .baseHP        = 100,
+        .baseAttack    = 162,
         .baseDefense   = 115,
         .baseSpeed     = 30,
+        .baseSpAttack  = 162,
         .baseSpDefense = 115,
-        #ifdef REBALANCED_VERSION
-            .baseAttack    = 162,
-            .baseSpAttack  = 162,
-            .abilities = {ABILITY_WHITEOUT, ABILITY_WHITEOUT, ABILITY_ICE_SCALES},
-        #else
-            .baseAttack    = 132,
-            .baseSpAttack  = 132,
-            .abilities = {ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING, ABILITY_SNOW_WARNING},
-        #endif
         .type1 = TYPE_GRASS,
         .type2 = TYPE_ICE,
         .catchRate = 255,
@@ -25704,6 +25724,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_MONSTER,
         .eggGroup2 = EGG_GROUP_GRASS,
+        .abilities = {ABILITY_WHITEOUT, ABILITY_WHITEOUT, ABILITY_ICE_SCALES},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
@@ -25714,16 +25735,9 @@ const struct BaseStats gBaseStats[] =
         .baseHP        = 68,
         .baseAttack    = 185,
         .baseDefense   = 95,
+        .baseSpeed     = 135,
         .baseSpAttack  = 65,
-        #ifdef REBALANCED_VERSION
-            .baseSpeed     = 135,
-            .baseSpDefense = 135,
-            .abilities = {ABILITY_KEEN_EDGE, ABILITY_KEEN_EDGE, ABILITY_KEEN_EDGE},
-        #else
-            .baseSpeed     = 110,
-            .baseSpDefense = 115,
-            .abilities = {ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS},
-        #endif
+        .baseSpDefense = 135,
         .type1 = TYPE_PSYCHIC,
         .type2 = TYPE_FIGHTING,
         .catchRate = 255,
@@ -25735,6 +25749,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
         .eggGroup2 = EGG_GROUP_AMORPHOUS,
+        .abilities = {ABILITY_KEEN_EDGE, ABILITY_KEEN_EDGE, ABILITY_KEEN_EDGE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
@@ -25746,14 +25761,8 @@ const struct BaseStats gBaseStats[] =
         .baseAttack    = 60,
         .baseDefense   = 156,
         .baseSpeed     = 50,
+        .baseSpAttack  = 110,
         .baseSpDefense = 156,
-        #ifdef REBALANCED_VERSION
-            .baseSpAttack  = 130,
-            .abilities = {ABILITY_FAIRY_AURA, ABILITY_REGENERATOR, ABILITY_UNAWARE},
-        #else
-            .baseSpAttack  = 80,
-            .abilities = {ABILITY_HEALER, ABILITY_HEALER, ABILITY_HEALER},
-        #endif
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_FAIRY,
         .catchRate = 255,
@@ -25767,6 +25776,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroup1 = EGG_GROUP_FAIRY,
         .eggGroup2 = EGG_GROUP_FAIRY,
+        .abilities = {ABILITY_FAIRY_AURA, ABILITY_REGENERATOR, ABILITY_UNAWARE},
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = FALSE,
         .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
@@ -25828,15 +25838,9 @@ const struct BaseStats gBaseStats[] =
         .baseHP        = 60,
         .baseAttack    = 105,
         .baseDefense   = 60,
-        #ifdef REBALANCED_VERSION
-            .baseSpAttack  = 170,
-            .baseSpDefense = 140,
-            .baseSpeed     = 140,
-        #else
-            .baseSpAttack  = 150,
-            .baseSpDefense = 90,
-            .baseSpeed     = 110,
-        #endif
+        .baseSpeed     = 140,
+        .baseSpAttack  = 170,
+        .baseSpDefense = 140,
         .type1 = TYPE_BUG,
         .type2 = TYPE_FLYING,
         .catchRate = 255,
@@ -25882,16 +25886,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_KINGLER_MEGA] =
     {
+        .baseHP        = 80,
         .baseAttack    = 210,
         .baseDefense   = 175,
         .baseSpeed     = 85,
         .baseSpAttack  = 50,
         .baseSpDefense = 80,
-        #ifdef REBALANCED_VERSION
-            .baseHP        = 80,
-        #else
-            .baseHP        = 55,
-        #endif
         .type1 = TYPE_WATER,
         .type2 = TYPE_WATER,
         .catchRate = 255,
@@ -25915,12 +25915,8 @@ const struct BaseStats gBaseStats[] =
         .baseAttack    = 105,
         .baseDefense   = 110,
         .baseSpeed     = 50,
+        .baseSpAttack  = 145,
         .baseSpDefense = 135,
-        #ifdef REBALANCED_VERSION
-            .baseSpAttack  = 145,
-        #else
-            .baseSpAttack  = 115,
-        #endif
         .type1 = TYPE_WATER,
         .type2 = TYPE_ICE,
         .catchRate = 255,
@@ -25942,15 +25938,10 @@ const struct BaseStats gBaseStats[] =
     {
         .baseHP        = 80,
         .baseAttack    = 150,
+        .baseDefense   = 100,
         .baseSpAttack  = 140,
         .baseSpeed     = 120,
-        #ifdef REBALANCED_VERSION
-            .baseDefense   = 100,
-            .baseSpDefense = 100,
-        #else
-            .baseDefense   = 90,
-            .baseSpDefense = 90,
-        #endif
+        .baseSpDefense = 100,
         .type1 = TYPE_GROUND,
         .type2 = TYPE_DRAGON,
         .catchRate = 255,
@@ -25996,82 +25987,6 @@ const struct BaseStats gBaseStats[] =
         .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
     },
 
-    [SPECIES_RAYQUAZA_MEGA] =
-    {
-        .baseHP        = 105,
-        .baseAttack    = 210,
-        .baseDefense   = 100,
-        .baseSpeed     = 135,
-        .baseSpAttack  = 210,
-        .baseSpDefense = 100,
-        .type1 = TYPE_DRAGON,
-        .type2 = TYPE_FLYING,
-        .catchRate = 255,
-        .expYield = 306,
-        .evYield_Attack    = 2,
-        .evYield_SpAttack  = 1,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_DELTA_STREAM, ABILITY_ADAPTABILITY, ABILITY_AERILATE},
-        .bodyColor = BODY_COLOR_GREEN,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_KYOGRE_PRIMAL] =
-    {
-        .baseHP        = 100,
-        .baseAttack    = 150,
-        .baseDefense   = 100,
-        .baseSpeed     = 100,
-        .baseSpAttack  = 210,
-        .baseSpDefense = 180,
-        .type1 = TYPE_WATER,
-        .type2 = TYPE_WATER,
-        .catchRate = 255,
-        .expYield = 302,
-        .evYield_SpAttack  = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_PRIMORDIAL_SEA, ABILITY_PRIMORDIAL_SEA, ABILITY_PRIMORDIAL_SEA},
-        .bodyColor = BODY_COLOR_BLUE,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
-    [SPECIES_GROUDON_PRIMAL] =
-    {
-        .baseHP        = 100,
-        .baseAttack    = 210,
-        .baseDefense   = 180,
-        .baseSpeed     = 100,
-        .baseSpAttack  = 150,
-        .baseSpDefense = 100,
-        .type1 = TYPE_GROUND,
-        .type2 = TYPE_FIRE,
-        .catchRate = 255,
-        .expYield = 302,
-        .evYield_Attack    = 3,
-        .genderRatio = MON_GENDERLESS,
-        .eggCycles = 120,
-        .friendship = 0,
-        .growthRate = GROWTH_SLOW,
-        .eggGroup1 = EGG_GROUP_UNDISCOVERED,
-        .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-        .abilities = {ABILITY_DESOLATE_LAND, ABILITY_DESOLATE_LAND, ABILITY_DESOLATE_LAND},
-        .bodyColor = BODY_COLOR_RED,
-        .noFlip = FALSE,
-        .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
-    },
-
     [SPECIES_RATTATA_ALOLAN] =
     {
         .baseHP        = 30,
@@ -26102,16 +26017,11 @@ const struct BaseStats gBaseStats[] =
     [SPECIES_RATICATE_ALOLAN] =
     {
         .baseHP        = 75,
+        .baseAttack    = 106,
+        .baseDefense   = 80,
         .baseSpeed     = 127,
         .baseSpAttack  = 40,
         .baseSpDefense = 80,
-        #ifdef REBALANCED_VERSION
-            .baseAttack    = 116,
-            .baseDefense   = 80,
-        #else
-            .baseAttack    = 71,
-            .baseDefense   = 70,
-        #endif
         .type1 = TYPE_DARK,
         .type2 = TYPE_NORMAL,
         .catchRate = 127,
@@ -26124,11 +26034,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        #ifdef REBALANCED_VERSION
-            .abilities = {ABILITY_STRONG_JAW, ABILITY_GUTS, ABILITY_ROCK_HEAD},
-        #else
-            .abilities = {ABILITY_GLUTTONY, ABILITY_HUSTLE, ABILITY_THICK_FAT},
-        #endif
+        .abilities = {ABILITY_STRONG_JAW, ABILITY_GUTS, ABILITY_ROCK_HEAD}, //Gluttony, Hustle, Thick Fat
         .bodyColor = BODY_COLOR_BLACK,
         .noFlip = FALSE,
         .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
@@ -26140,13 +26046,9 @@ const struct BaseStats gBaseStats[] =
         .baseHP        = 75,
         .baseAttack    = 95,
         .baseDefense   = 50,
+        .baseSpeed     = 130,
         .baseSpAttack  = 95,
         .baseSpDefense = 85,
-        #ifdef REBALANCED_VERSION
-            .baseSpeed     = 130,
-        #else
-            .baseSpeed     = 100,
-        #endif
         .type1 = TYPE_ELECTRIC,
         .type2 = TYPE_PSYCHIC,
         .catchRate = 255,
@@ -26194,17 +26096,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_SANDSLASH_ALOLAN] =
     {
+        .baseHP        = 95,
+        .baseAttack    = 115,
         .baseDefense   = 135,
         .baseSpeed     = 65,
         .baseSpAttack  = 25,
         .baseSpDefense = 65,
-        #ifdef REBALANCED_VERSION
-            .baseHP        = 95,
-            .baseAttack    = 115,
-        #else
-            .baseHP        = 75,
-            .baseAttack    = 100,
-        #endif
         .type1 = TYPE_ICE,
         .type2 = TYPE_STEEL,
         .catchRate = 255,
@@ -26257,12 +26154,8 @@ const struct BaseStats gBaseStats[] =
         .baseAttack    = 67,
         .baseDefense   = 75,
         .baseSpeed     = 125,
+        .baseSpAttack  = 126,
         .baseSpDefense = 135,
-        #ifdef REBALANCED_VERSION
-            .baseSpAttack  = 126,
-        #else
-            .baseSpAttack  = 81,
-        #endif
         .type1 = TYPE_ICE,
         .type2 = TYPE_FAIRY,
         .catchRate = 255,
@@ -26368,15 +26261,10 @@ const struct BaseStats gBaseStats[] =
     {
         .baseHP        = 75,
         .baseAttack    = 90,
+        .baseDefense   = 70,
         .baseSpeed     = 125,
+        .baseSpAttack  = 115,
         .baseSpDefense = 75,
-        #ifdef REBALANCED_VERSION
-            .baseDefense   = 70,
-            .baseSpAttack  = 115,
-        #else
-            .baseDefense   = 60,
-            .baseSpAttack  = 75,
-        #endif
         .type1 = TYPE_DARK,
         .type2 = TYPE_DARK,
         .catchRate = 255,
@@ -26453,17 +26341,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_GOLEM_ALOLAN] =
     {
+        .baseHP        = 95,
+        .baseAttack    = 140,
         .baseDefense   = 180,
         .baseSpeed     = 45,
         .baseSpAttack  = 55,
         .baseSpDefense = 65,
-        #ifdef REBALANCED_VERSION
-            .baseHP        = 95,
-            .baseAttack    = 140,
-        #else
-            .baseHP        = 80,
-            .baseAttack    = 120,
-        #endif
         .type1 = TYPE_ROCK,
         .type2 = TYPE_ELECTRIC,
         .catchRate = 255,
@@ -26568,16 +26451,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_MAROWAK_ALOLAN] =
     {
+        .baseHP        = 85,
         .baseAttack    = 85,
         .baseDefense   = 130,
         .baseSpeed     = 60,
         .baseSpAttack  = 50,
         .baseSpDefense = 85,
-        #ifdef REBALANCED_VERSION
-            .baseHP        = 85,
-        #else
-            .baseHP        = 60,
-        #endif
         .type1 = TYPE_FIRE,
         .type2 = TYPE_GHOST,
         .catchRate = 255,
