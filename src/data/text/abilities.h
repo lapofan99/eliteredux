@@ -369,6 +369,7 @@ static const u8 sPreciseFistDescription[] =  _("Punching moves get +1 crit\nand 
 static const u8 sDeadeyeDescription[] =  _("Never misses.");
 static const u8 sArtilleryDescription[] =  _("Mega Launcher moves always hit.\nSingle-target now hits both foes.");
 static const u8 sAmplifierDescription[] =  _("Sound based Single-target now \nhits both foes.");
+static const u8 sIceDewDescription[] = _("Ice ups Atk\nor SpAtk by +1.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -751,6 +752,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_DEADEYE] = _("Deadeye"),
     [ABILITY_ARTILLERY] = _("Artillery"),
     [ABILITY_AMPLIFIER] = _("Amplifier"),
+    [ABILITY_ICE_DEW] = _("Ice Dew"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1134,4 +1136,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_DEADEYE] = sDeadeyeDescription,
     [ABILITY_ARTILLERY] = sArtilleryDescription,
     [ABILITY_AMPLIFIER] = sAmplifierDescription,
+    [ABILITY_ICE_DEW] = sIceDewDescription,
 };

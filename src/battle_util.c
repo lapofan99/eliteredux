@@ -6119,6 +6119,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         statId = STAT_SPATK;
 				}
                 break;
+            case ABILITY_ICE_DEW:
+                if (moveType == TYPE_ICE){
+					u16 userAttack;					
+					u16 userSpAttack;
+                    effect = 2;
+					
+                    userAttack   = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
+                    userSpAttack = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
+
+                    if (userSpAttack < userAttack)
+                        statId = STAT_ATK;
+                    else
+                        statId = STAT_SPATK;
+				}
+                break;
             case ABILITY_FLASH_FIRE:
                 if (moveType == TYPE_FIRE && !((gBattleMons[battler].status1 & STATUS1_FREEZE) && B_FLASH_FIRE_FROZEN <= GEN_4))
                 {
@@ -6249,6 +6264,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             // Sap Sipper
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAP_SIPPER)){
 				if (moveType == TYPE_GRASS){
+					u16 userAttack = 0;					
+					u16 userSpAttack = 0;
+                    effect = 2;
+					
+                    userAttack   += gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
+                    userSpAttack += gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
+
+                    if (userSpAttack < userAttack)
+                        statId = STAT_ATK;
+                    else
+                        statId = STAT_SPATK;
+				}
+			}
+
+            // Ice Dew
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ICE_DEW)){
+				if (moveType == TYPE_ICE){
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
                     effect = 2;

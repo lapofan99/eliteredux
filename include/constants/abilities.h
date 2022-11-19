@@ -407,8 +407,9 @@
 #define ABILITY_DEADEYE          (ABILITIES_COUNT_LATEST_GEN + 108) // Never misses.
 #define ABILITY_ARTILLERY        (ABILITIES_COUNT_LATEST_GEN + 109) // Beam, pump, cannon, zooka, shot, aura and pulse moves cannot miss and single-target moves hit both foes.
 #define ABILITY_AMPLIFIER        (ABILITIES_COUNT_LATEST_GEN + 110) // Sound-based moves now target all foes [Affected moves: Bug Buzz, Chatter, Confide, Disarming Voice, Echoed Voice, Eerie Spell, Grass Whistle, Metal Sound, Noble Roar, Parting Shot, Roar, Round, Screech, Sing, Snore, Supersonic, Uproar].
+#define ABILITY_ICE_DEW          (ABILITIES_COUNT_LATEST_GEN + 111) // Immune to Ice-type moves. Instead of being hit by Ice-type moves, it boosts its Attack or Sp. Attack stat (which is higher).
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_AMPLIFIER + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_ICE_DEW + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
