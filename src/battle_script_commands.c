@@ -1971,7 +1971,7 @@ static void Cmd_accuracycheck(void)
                 gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
             
             if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE &&
-                (gBattleMoves[move].target == MOVE_TARGET_BOTH || gBattleMoves[move].target == MOVE_TARGET_FOES_AND_ALLY))
+                (GetBattleMoveTargetFlags(move, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_BOTH || GetBattleMoveTargetFlags(move, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_FOES_AND_ALLY))
                 gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_ATK;
             else
                 gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
@@ -2005,7 +2005,7 @@ static void Cmd_ppreduce(void)
 
     if (!gSpecialStatuses[gBattlerAttacker].ppNotAffectedByPressure)
     {
-        switch (gBattleMoves[gCurrentMove].target)
+        switch (GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability))
         {
         case MOVE_TARGET_FOES_AND_ALLY:
             for (i = 0; i < gBattlersCount; i++)
@@ -2331,9 +2331,9 @@ static void Cmd_attackanimation(void)
 			return;
         }
 
-        if ((gBattleMoves[gCurrentMove].target & MOVE_TARGET_BOTH
-             || gBattleMoves[gCurrentMove].target & MOVE_TARGET_FOES_AND_ALLY
-             || gBattleMoves[gCurrentMove].target & MOVE_TARGET_DEPENDS)
+        if ((GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_BOTH
+             || GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_FOES_AND_ALLY
+             || GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_DEPENDS)
             && gBattleScripting.animTargetsHit)
         {
             gBattlescriptCurrInstr++;
@@ -5489,12 +5489,12 @@ static void Cmd_moveend(void)
             if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 && gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                 && !gProtectStructs[gBattlerAttacker].chargingTurn
-                && (gBattleMoves[gCurrentMove].target == MOVE_TARGET_BOTH || gBattleMoves[gCurrentMove].target == MOVE_TARGET_FOES_AND_ALLY)
+                && (GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_BOTH || GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_FOES_AND_ALLY)
                 && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
             {
                 u8 battlerId;
 
-                if (gBattleMoves[gCurrentMove].target == MOVE_TARGET_FOES_AND_ALLY)
+                if (GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_FOES_AND_ALLY)
                 {
                     gHitMarker |= HITMARKER_NO_PPDEDUCT;
                     for (battlerId = gBattlerTarget + 1; battlerId < gBattlersCount; battlerId++)
@@ -9837,7 +9837,7 @@ static void Cmd_jumpifnexttargetvalid(void)
 
     for (gBattlerTarget++; gBattlerTarget < gBattlersCount; gBattlerTarget++)
     {
-        if (gBattlerTarget == gBattlerAttacker && !(gBattleMoves[gCurrentMove].target & MOVE_TARGET_USER))
+        if (gBattlerTarget == gBattlerAttacker && !(GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_USER))
             continue;
         if (IsBattlerAlive(gBattlerTarget))
             break;
@@ -12394,7 +12394,7 @@ static void Cmd_selectfirstvalidtarget(void)
 {
     for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
     {
-        if (gBattlerTarget == gBattlerAttacker && !(gBattleMoves[gCurrentMove].target & MOVE_TARGET_USER))
+        if (gBattlerTarget == gBattlerAttacker && !(GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_USER))
             continue;
         if (IsBattlerAlive(gBattlerTarget))
             break;

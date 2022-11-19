@@ -164,6 +164,7 @@ void TryToApplyMimicry(u8 battlerId, bool8 various);
 void TryToRevertMimicry(void);
 void RestoreBattlerOriginalTypes(u8 battlerId);
 bool8 IsMoveAffectedByParentalBond(u16 move, u8 battlerId);
+u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);
