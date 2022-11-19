@@ -58,8 +58,8 @@
 #define ABILITY_TRUANT 54 // The Pokémon can't use a move if it had used a move on the previous turn.
 #define ABILITY_HUSTLE 55 // Boosts the Attack stat by 50%, but lowers accuracy by 20%.
 #define ABILITY_CUTE_CHARM 56 // The opponent has a 30% chance of being induced with Attract when using an attack, that requires physical contact, against this Pokémon.
-#define ABILITY_PLUS 57 // Powers up 50% with Plus/Minus.
-#define ABILITY_MINUS 58 // Powers up 50% with Plus/Minus.
+#define ABILITY_PLUS 57 // When battling with Plus or Minus, Special Attack increases by 50%.
+#define ABILITY_MINUS 58 // When battling with Plus or Minus, Special Attack increases by 50%.
 #define ABILITY_FORECAST 59 // *No innate* This Pokémon’ changes its form and type if Harsh Sunlight, Heavy Rain or Hail is in effect.
 #define ABILITY_STICKY_HOLD 60 // Prevents item theft.
 #define ABILITY_SHED_SKIN 61 // Every turn, it has a 1 in 3 chance of healing from a status condition (BURN, PARALYZE, SLEEP, POISON, FREEZE).
@@ -68,8 +68,8 @@
 #define ABILITY_LIQUID_OOZE 64 // *No innate* The oozed liquid has a strong stench, which damages attackers using any draining move.
 #define ABILITY_OVERGROW 65 // Now always provides a 20% damage boost to their move types. This increases to 50% while the Pokémon is at or below 1/3 HP. These boosts do not stack (the 50% boost replaces the 20% one while weakened).
 #define ABILITY_BLAZE 66 // // Now always provides a 20% damage boost to their move types. This increases to 50% while the Pokémon is at or below 1/3 HP. These boosts do not stack (the 50% boost replaces the 20% one while weakened).
-#define ABILITY_TORRENT 67 // // Now always provides a 20% damage boost to their move types. This increases to 50% while the Pokémon is at or below 1/3 HP. These boosts do not stack (the 50% boost replaces the 20% one while weakened).
-#define ABILITY_SWARM 68 // // Now always provides a 20% damage boost to their move types. This increases to 50% while the Pokémon is at or below 1/3 HP. These boosts do not stack (the 50% boost replaces the 20% one while weakened).
+#define ABILITY_TORRENT 67 // Now always provides a 20% damage boost to their move types. This increases to 50% while the Pokémon is at or below 1/3 HP. These boosts do not stack (the 50% boost replaces the 20% one while weakened).
+#define ABILITY_SWARM 68 // Now always provides a 20% damage boost to their move types. This increases to 50% while the Pokémon is at or below 1/3 HP. These boosts do not stack (the 50% boost replaces the 20% one while weakened).
 #define ABILITY_ROCK_HEAD 69 // Prevents recoil damage.
 #define ABILITY_DROUGHT 70 // Summons sunshine on entry.
 #define ABILITY_ARENA_TRAP 71 // Prevents fleeing.
@@ -119,7 +119,7 @@
 #define ABILITY_FILTER 111 // Reduces the power of supereffective attacks taken (3/4).
 #define ABILITY_SLOW_START 112 // For five turns, the Pokémon's Attack and Speed stats are halved, but restores its stats after these five turns.
 #define ABILITY_SCRAPPY 113 // The Pokémon can hit: Ghost-type Pokémon with Normal- and Fighting-type moves.
-#define ABILITY_STORM_DRAIN 114 // *No innate* Water-type moves are drawn to this Pokémon. Water-type moves will do no damage and the Pokémon's SP ATK is raised one stage
+#define ABILITY_STORM_DRAIN 114 // Water-type moves are drawn to this Pokémon. Water-type moves will do no damage and the Pokémon's SP ATK is raised one stage
 #define ABILITY_ICE_BODY 115 // Restores 1/8 HP every turn in hailstorm.
 #define ABILITY_SOLID_ROCK 116 // Reduces the power of supereffective attacks taken (3/4).
 #define ABILITY_SNOW_WARNING 117 // The Pokémon summons a hailstorm when it enters a battle.
@@ -162,11 +162,11 @@
 #define ABILITY_IMPOSTER 150 // *No innate* The Pokémon transforms itself into the Pokémon it's facing.
 #define ABILITY_INFILTRATOR 151 // Passes through the opposing Pokémon's barrier, substitute, and the like and strikes.
 #define ABILITY_MUMMY 152 // *No innate* Contact with the Pokémon changes the attacker's Ability to Mummy.
-#define ABILITY_MOXIE 153 // *No innate* Attack is raised by one stage when the Pokémon knocks out another Pokémon
+#define ABILITY_MOXIE 153 // Attack is raised by one stage when the Pokémon knocks out another Pokémon
 #define ABILITY_JUSTIFIED 154 // Attack is raised by one stage when the Pokémon is hit by a Dark-type move
 #define ABILITY_RATTLED 155 // Dark-, Ghost-, and Bug-type moves scare the Pokémon and boost its Speed stats.
-#define ABILITY_MAGIC_BOUNCE 156 // *No innate* Reflects status moves instead of getting hit by them.
-#define ABILITY_SAP_SIPPER 157 // Attack is raised by one stage when the Pokémon is hit by a Grass-type move. User receives no damage from Grass-type attacks.
+#define ABILITY_MAGIC_BOUNCE 156 // Reflects status moves instead of getting hit by them.
+#define ABILITY_SAP_SIPPER 157 // Immune to Grass-type moves. Instead of being hit by Grass-type moves, it boosts its Attack or Sp. Attack stat (which is higher).
 #define ABILITY_PRANKSTER 158 // Gives priority to a status move.
 #define ABILITY_SAND_FORCE 159 // Boosts the power of Rock-, Ground-, and Steel-type moves by 30% in a sandstorm.
 #define ABILITY_IRON_BARBS 160 // Deals 1/8 HP damage on contact.
@@ -199,8 +199,8 @@
 #define ABILITY_GOOEY 183 // Lowers speed on contact.
 #define ABILITY_AERILATE 184 // All Normal-type moves used by the Pokémon to become Flying-type and receive a 20% power boost.
 #define ABILITY_PARENTAL_BOND 185 // Hits twice. Second hit deals 0.25x damage.
-#define ABILITY_DARK_AURA 186 // *No innate* Powers up each Pokémon's Dark-type moves by 50%.
-#define ABILITY_FAIRY_AURA 187 // *No innate* Powers up each Pokémon's Fairy-type moves by 50%.
+#define ABILITY_DARK_AURA 186 // Powers up each Pokémon's Dark-type moves by 50%.
+#define ABILITY_FAIRY_AURA 187 // Powers up each Pokémon's Fairy-type moves by 50%.
 #define ABILITY_AURA_BREAK 188 // *No innate* The effects of “Aura” Abilities are reversed to lower the power of affected moves.
 #define ABILITY_PRIMORDIAL_SEA 189 // The Pokémon changes the weather to nullify Fire-type attacks.
 #define ABILITY_DESOLATE_LAND 190 // The Pokémon changes the weather to nullify Water-type attacks.
@@ -237,7 +237,7 @@
 #define ABILITY_BATTERY 217 // Powers up ally Pokémon's special moves by 30%.
 #define ABILITY_FLUFFY 218 // A Pokémon with Fluffy takes half damage from moves that make contact. It also takes double damage from Fire-type moves.
 #define ABILITY_DAZZLING 219 // Surprises the opposing Pokémon, making it unable to attack using priority moves.
-#define ABILITY_SOUL_HEART 220 // *No innate* Boosts its Sp. Atk stat every time a Pokémon faints.
+#define ABILITY_SOUL_HEART 220 // Boosts its Sp. Atk stat every time a Pokémon faints.
 #define ABILITY_TANGLING_HAIR 221 // Contact with the Pokémon will lowers its Speed stat
 #define ABILITY_RECEIVER 222 // *No innate* The Pokémon copies the Ability of a defeated ally.
 #define ABILITY_POWER_OF_ALCHEMY 223 // *No innate* The Pokémon copies the Ability of a defeated ally.
