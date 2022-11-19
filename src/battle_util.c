@@ -11617,6 +11617,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	
 	//Innates
 	
+    // Deafitist
+    if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DEFEATIST)){
+        if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+            MulModifier(&modifier, UQ_4_12(0.5));
+    }
+
 	// Slow Start
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SLOW_START)){
         if (gDisableStructs[battlerAtk].slowStartTimer != 0)
