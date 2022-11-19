@@ -368,6 +368,7 @@ static const u8 sBigLeavesDescription[] =  _("Chloroplast/phyll, Harvest,\nLeaf 
 static const u8 sPreciseFistDescription[] =  _("Punching moves get +1 crit\nand double effect chance.");
 static const u8 sDeadeyeDescription[] =  _("Never misses.");
 static const u8 sArtilleryDescription[] =  _("Mega Launcher moves always hit.\nSingle-target now hits both foes.");
+static const u8 sAmplifierDescription[] =  _("Sound based Single-target now \nhits both foes.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -749,6 +750,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_PRECISE_FIST] = _("Precise Fist"),
     [ABILITY_DEADEYE] = _("Deadeye"),
     [ABILITY_ARTILLERY] = _("Artillery"),
+    [ABILITY_AMPLIFIER] = _("Amplifier"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1131,4 +1133,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_PRECISE_FIST] = sPreciseFistDescription,
     [ABILITY_DEADEYE] = sDeadeyeDescription,
     [ABILITY_ARTILLERY] = sArtilleryDescription,
+    [ABILITY_AMPLIFIER] = sAmplifierDescription,
 };

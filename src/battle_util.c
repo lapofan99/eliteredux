@@ -271,6 +271,10 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
          && (gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
+    else if ((ability == ABILITY_AMPLIFIER || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_AMPLIFIER)) 
+         && (gBattleMoves[moveId].flags & FLAG_SOUND)
+         && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
+        return MOVE_TARGET_BOTH;
     return gBattleMoves[moveId].target;
 }
 
