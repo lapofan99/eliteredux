@@ -349,16 +349,16 @@ void HandleAction_UseMove(void)
     else if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
            && gSideTimers[side].followmeTimer == 0
            && (gBattleMoves[gCurrentMove].power != 0 || gBattleMoves[gCurrentMove].target != MOVE_TARGET_USER)
-           && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
-            || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN && moveType == TYPE_WATER)))
+           && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && !SpeciesHasInnate(gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].species, ABILITY_LIGHTNING_ROD) && moveType == TYPE_ELECTRIC)
+            || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN   && !SpeciesHasInnate(gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].species, ABILITY_STORM_DRAIN) && moveType == TYPE_WATER)))
     {
         side = GetBattlerSide(gBattlerAttacker);
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
         {
             if (side != GetBattlerSide(gActiveBattler)
                 && *(gBattleStruct->moveTarget + gBattlerAttacker) != gActiveBattler
-                && ((GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD && moveType == TYPE_ELECTRIC)
-                 || (GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN && moveType == TYPE_WATER))
+                && (((GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_LIGHTNING_ROD)) && moveType == TYPE_ELECTRIC)
+                 || ((GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_STORM_DRAIN)) && moveType == TYPE_WATER))
                 && GetBattlerTurnOrderNum(gActiveBattler) < var
                 && gBattleMoves[gCurrentMove].effect != EFFECT_SNIPE_SHOT
                 && (GetBattlerAbility(gBattlerAttacker) != ABILITY_PROPELLER_TAIL
@@ -419,9 +419,9 @@ void HandleAction_UseMove(void)
         {
             gActiveBattler = gBattlerByTurnOrder[var];
             RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
-            if (GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD)
+            if (GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_LIGHTNING_ROD)) 
                 gSpecialStatuses[gActiveBattler].lightningRodRedirected = TRUE;
-            else if (GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN)
+            else if (GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_STORM_DRAIN))
                 gSpecialStatuses[gActiveBattler].stormDrainRedirected = TRUE;
             gBattlerTarget = gActiveBattler;
         }
@@ -6076,8 +6076,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				}
                 break;
             case ABILITY_STORM_DRAIN:
-                if (moveType == TYPE_WATER)
-                    effect = 2, statId = STAT_SPATK;
+                if (moveType == TYPE_WATER){
+					u16 userAttack;					
+					u16 userSpAttack;
+                    effect = 2;
+					
+                    userAttack   = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
+                    userSpAttack = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
+
+                    if (userSpAttack < userAttack)
+                        statId = STAT_ATK;
+                    else
+                        statId = STAT_SPATK;
+				}
                 break;
             case ABILITY_SAP_SIPPER:
                 if (moveType == TYPE_GRASS)
@@ -6151,6 +6162,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			// Lighting Rod
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LIGHTNING_ROD)){
 				if (moveType == TYPE_ELECTRIC){
+					u16 userAttack = 0;					
+					u16 userSpAttack = 0;
+                    effect = 2;
+					
+                    userAttack   += gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
+                    userSpAttack += gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
+
+                    if (userSpAttack < userAttack)
+                        statId = STAT_ATK;
+                    else
+                        statId = STAT_SPATK;
+				}
+			}
+
+            // Storm Drain
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STORM_DRAIN)){
+				if (moveType == TYPE_WATER){
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
                     effect = 2;
@@ -9737,7 +9765,8 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             targetBattler = SetRandomTarget(gBattlerAttacker);
             if (gBattleMoves[move].type == TYPE_ELECTRIC
                 && IsAbilityOnOpposingSide(gBattlerAttacker, ABILITY_LIGHTNING_ROD)
-                && GetBattlerAbility(targetBattler) != ABILITY_LIGHTNING_ROD)
+                && GetBattlerAbility(targetBattler) != ABILITY_LIGHTNING_ROD
+                && !SpeciesHasInnate(gBattleMons[targetBattler].species, ABILITY_LIGHTNING_ROD))
             {
                 targetBattler ^= BIT_FLANK;
                 RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
@@ -9745,6 +9774,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             }
             else if (gBattleMoves[move].type == TYPE_WATER
                 && IsAbilityOnOpposingSide(gBattlerAttacker, ABILITY_STORM_DRAIN)
+                && !SpeciesHasInnate(gBattleMons[targetBattler].species, ABILITY_STORM_DRAIN)
                 && GetBattlerAbility(targetBattler) != ABILITY_STORM_DRAIN)
             {
                 targetBattler ^= BIT_FLANK;

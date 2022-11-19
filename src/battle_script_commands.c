@@ -8439,7 +8439,7 @@ static void Cmd_various(void)
         while (gBattleStruct->soulheartBattlerId < gBattlersCount)
         {
             gBattleScripting.battler = gBattleStruct->soulheartBattlerId++;
-            if (GetBattlerAbility(gBattleScripting.battler) == ABILITY_SOUL_HEART
+            if ((GetBattlerAbility(gBattleScripting.battler) == ABILITY_SOUL_HEART || SpeciesHasInnate(gBattleMons[gBattleScripting.battler].species, ABILITY_SOUL_HEART))
                 && IsBattlerAlive(gBattleScripting.battler)
                 && !NoAliveMonsForEitherParty()
                 && CompareStat(gBattleScripting.battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
