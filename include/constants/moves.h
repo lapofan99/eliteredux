@@ -784,7 +784,12 @@
 
 #define MOVES_COUNT_GEN8 755
 
-#define MOVES_COUNT MOVES_COUNT_GEN8
+// Darky's Custom Moves
+#define MOVE_DEATHROLL 755
+
+#define MOVES_COUNT_DARKY 756
+
+#define MOVES_COUNT MOVES_COUNT_DARKY // before Custom Moves >> #define MOVES_COUNT MOVES_COUNT_GEN8
 
 // Moves with names longer than 12 characters
 #define MOVE_LONG_NONE                 MOVE_NONE

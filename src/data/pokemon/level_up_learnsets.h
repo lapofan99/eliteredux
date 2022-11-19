@@ -2753,6 +2753,7 @@ static const struct LevelUpMove sGyaradosLevelUpLearnset[] = {
     LEVEL_UP_MOVE(49, MOVE_HURRICANE),
     LEVEL_UP_MOVE(51, MOVE_RAIN_DANCE),
     LEVEL_UP_MOVE(54, MOVE_HYPER_BEAM),
+    LEVEL_UP_MOVE(57, MOVE_DEATHROLL),
     LEVEL_UP_END
 };
 
@@ -3417,6 +3418,7 @@ static const struct LevelUpMove sFeraligatrLevelUpLearnset[] = {
     LEVEL_UP_MOVE(49, MOVE_WATERFALL),
     LEVEL_UP_MOVE(54, MOVE_SUPERPOWER),
     LEVEL_UP_MOVE(61, MOVE_HYDRO_PUMP),
+    LEVEL_UP_MOVE(68, MOVE_DEATHROLL),
     LEVEL_UP_END
 };
 
@@ -17621,6 +17623,7 @@ static const struct LevelUpMove sDrednawLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_LIQUIDATION),
     LEVEL_UP_MOVE(57, MOVE_BODY_SLAM),
     LEVEL_UP_MOVE(66, MOVE_HEAD_SMASH),
+    LEVEL_UP_MOVE(75, MOVE_DEATHROLL),
     LEVEL_UP_END
 };
 

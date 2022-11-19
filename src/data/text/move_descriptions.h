@@ -2984,6 +2984,11 @@ static const u8 sEERIE_SPELLDescription[] = _(
     "Attacks with psychic power.\n"
     "Foe's last move has 3 PP cut.");
 
+// Darky's Custom Moves
+static const u8 sDeathrollDescription[] = _(
+    "Does a deadly roll in water.\n"
+    "Ignores target's stat changes.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3746,6 +3751,9 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_GLACIAL_LANCE - 1] = sGLACIAL_LANCEDescription,
     [MOVE_ASTRAL_BARRAGE - 1] = sASTRAL_BARRAGEDescription,
     [MOVE_EERIE_SPELL - 1] = sEERIE_SPELLDescription,
+
+    // Darky's Custom Moves
+    [MOVE_DEATHROLL - 1] = sDeathrollDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4534,6 +4542,9 @@ static const u8 sMoveFourLineDescription_GlacialLance[] = _("Strikes by hurling\
 static const u8 sMoveFourLineDescription_AstralBarrage[] = _("Strikes by sending\na frightful amount\nof small ghosts at\nopposing Pokémon.");
 static const u8 sMoveFourLineDescription_EerieSpell[] = _("Attacks with its\ntremendous psychic\npower. Foe's last\nmove has 3 PP cut.");
 
+// Darky's Custom Moves
+static const u8 sMoveFourLineDescription_Deathroll[] = _("Does a deadly roll\nin the water.\nIgnores target's\nstat changes.");
+
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = sMoveFourLineDescription_KarateChop,
@@ -5291,4 +5302,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_GLACIAL_LANCE     - 1] = sMoveFourLineDescription_GlacialLance,
     [MOVE_ASTRAL_BARRAGE    - 1] = sMoveFourLineDescription_AstralBarrage,
     [MOVE_EERIE_SPELL       - 1] = sMoveFourLineDescription_EerieSpell,
+
+    //Darky's Custom Moves
+    [MOVE_DEATHROLL    - 1] = sMoveFourLineDescription_Deathroll,
 };
