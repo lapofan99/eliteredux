@@ -4105,11 +4105,11 @@ static void BufferMonPokemonAbilityAndInnates(void)
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sMemoMiscTextColor);
     BufferCharacteristicString();
 	
-	x = 80;
+	x = 60;
 	y = 4;
 	
 	if(ModifyMode)
-		BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryAbilitySlider, 72, 8, 80, 8);
+		BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryAbilitySlider, (x-8), 8, 96, 8);
 
 	// Main Ability
 	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_MainAbility);
@@ -4122,9 +4122,11 @@ static void BufferMonPokemonAbilityAndInnates(void)
 	AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, (y + 8), 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
 	
 	// Innates
+
 	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
 		if(gBaseStats[species].innates[i] != ABILITY_NONE){
 			y += 32;
+
 			//Title
 			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
 			AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);

@@ -28,7 +28,7 @@ struct UnknownPokemonStruct4
 };
 
 #define TYPE_NAME_LENGTH 6
-#define ABILITY_NAME_LENGTH 30
+#define ABILITY_NAME_LENGTH 20
 
 // defines for the 'DoBounceEffect' function
 #define BOUNCE_MON          0x0
