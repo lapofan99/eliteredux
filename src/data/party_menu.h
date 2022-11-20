@@ -702,6 +702,7 @@ enum
     MENU_TRADE1,
     MENU_TRADE2,
     MENU_TOSS,
+    MENU_SUB_FIELD_MOVES,
     MENU_FIELD_MOVES,
 };
 
@@ -754,6 +755,7 @@ struct
     [MENU_TRADE1] = {gText_Trade4, CursorCb_Trade1},
     [MENU_TRADE2] = {gText_Trade4, CursorCb_Trade2},
     [MENU_TOSS] = {gMenuText_Toss, CursorCb_Toss},
+    [MENU_SUB_FIELD_MOVES] = {gText_FieldMoves, CursorCb_FieldMovesSubMenu},
     [MENU_FIELD_MOVES + FIELD_MOVE_CUT] = {gMoveNames[MOVE_CUT], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_FLASH] = {gMoveNames[MOVE_FLASH], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_ROCK_SMASH] = {gMoveNames[MOVE_ROCK_SMASH], CursorCb_FieldMove},
@@ -799,7 +801,8 @@ enum
     ACTIONS_REGISTER,
     ACTIONS_TRADE,
     ACTIONS_SPIN_TRADE,
-    ACTIONS_TAKEITEM_TOSS
+    ACTIONS_TAKEITEM_TOSS,
+    ACTIONS_FIELDMOVE_SUB,
 };
 
 static const u8 *const sPartyMenuActions[] =
