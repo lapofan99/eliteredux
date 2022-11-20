@@ -2985,9 +2985,13 @@ static const u8 sEERIE_SPELLDescription[] = _(
     "Foe's last move has 3 PP cut.");
 
 // Darky's Custom Moves
-static const u8 sDeathrollDescription[] = _(
+static const u8 sDEATHROLLDescription[] = _(
     "Does a deadly roll in water.\n"
     "Ignores target's stat changes.");
+
+static const u8 sEXCALIBURDescription[] = _(
+	"Super effective on Dragon-\n"
+	"types. High critical ratio.");
 
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
@@ -3753,7 +3757,8 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_EERIE_SPELL - 1] = sEERIE_SPELLDescription,
 
     // Darky's Custom Moves
-    [MOVE_DEATHROLL - 1] = sDeathrollDescription,
+    [MOVE_DEATHROLL - 1] = sDEATHROLLDescription,
+    [MOVE_EXCALIBUR - 1] = sEXCALIBURDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4544,6 +4549,7 @@ static const u8 sMoveFourLineDescription_EerieSpell[] = _("Attacks with its\ntre
 
 // Darky's Custom Moves
 static const u8 sMoveFourLineDescription_Deathroll[] = _("Does a deadly roll\nin the water.\nIgnores target's\nstat changes.");
+static const u8 sMoveFourLineDescription_Excalibur[] = _("Super effective\non Dragon-.\ntypes. High\ncritical ratio.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5305,4 +5311,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
 
     //Darky's Custom Moves
     [MOVE_DEATHROLL    - 1] = sMoveFourLineDescription_Deathroll,
+    [MOVE_EXCALIBUR    - 1] = sMoveFourLineDescription_Excalibur,
 };

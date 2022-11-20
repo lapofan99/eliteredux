@@ -386,7 +386,9 @@
 #define EFFECT_OCTOLOCK 380
 #define EFFECT_CLANGOROUS_SOUL 381
 #define EFFECT_BOLT_BEAK 382
+// Darky's Custom Effects (Moves)
+#define EFFECT_EXCALIBUR 383
 
-#define NUM_BATTLE_MOVE_EFFECTS 383
+#define NUM_BATTLE_MOVE_EFFECTS 384 // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
