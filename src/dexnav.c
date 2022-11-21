@@ -751,6 +751,8 @@ static bool8 TryStartHiddenMonFieldEffect(u8 environment, u8 xSize, u8 ySize, bo
                     fldEffId = FLDEFF_SAND_HOLE;
                 else if (MetatileBehavior_IsMountain(metatileBehaviour)) //Rough Terrain
                     fldEffId = FLDEFF_CAVE_DUST;
+                else if(MetatileBehavior_IsAshGrass(metatileBehaviour))//Ash Grass
+                    fldEffId = FLDEFF_CAVE_DUST;
                 else
                     fldEffId = FLDEFF_BERRY_TREE_GROWTH_SPARKLE; //default
             }

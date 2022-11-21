@@ -1854,6 +1854,8 @@ BattleScript_GrowthDoMoveAnim::
 	playstatchangeanimation BS_ATTACKER, BIT_ATK | BIT_SPATK, 0
 	jumpifweatheraffected BS_ATTACKER, WEATHER_SUN_ANY, BattleScript_GrowthAtk2
 	jumpifability BS_ATTACKER, ABILITY_CHLOROPLAST, BattleScript_GrowthAtk2
+	jumpifability BS_ATTACKER, ABILITY_BIG_LEAVES, BattleScript_GrowthAtk2
+	jumpifability BS_ATTACKER, ABILITY_SOLAR_FLARE, BattleScript_GrowthAtk2
 	setstatchanger STAT_ATK, 1, FALSE
 	goto BattleScript_GrowthAtk
 BattleScript_GrowthAtk2:
@@ -1866,6 +1868,8 @@ BattleScript_GrowthAtk:
 BattleScript_GrowthTrySpAtk::
 	jumpifweatheraffected BS_ATTACKER, WEATHER_SUN_ANY, BattleScript_GrowthSpAtk2
 	jumpifability BS_ATTACKER, ABILITY_CHLOROPLAST, BattleScript_GrowthSpAtk2
+	jumpifability BS_ATTACKER, ABILITY_BIG_LEAVES, BattleScript_GrowthSpAtk2
+	jumpifability BS_ATTACKER, ABILITY_SOLAR_FLARE, BattleScript_GrowthSpAtk2
 	setstatchanger STAT_SPATK, 1, FALSE
 	goto BattleScript_GrowthSpAtk
 BattleScript_GrowthSpAtk2:
@@ -4758,6 +4762,8 @@ BattleScript_EffectGust::
 
 BattleScript_EffectSolarbeam::
 	jumpifability BS_ATTACKER, ABILITY_CHLOROPLAST, BattleScript_SolarbeamOnFirstTurn
+	jumpifability BS_ATTACKER, ABILITY_BIG_LEAVES, BattleScript_SolarbeamOnFirstTurn
+	jumpifability BS_ATTACKER, ABILITY_SOLAR_FLARE, BattleScript_SolarbeamOnFirstTurn
 	jumpifweatheraffected BS_ATTACKER, WEATHER_SUN_ANY, BattleScript_SolarbeamOnFirstTurn
 BattleScript_SolarbeamDecideTurn::
 	jumpifstatus2 BS_ATTACKER, STATUS2_MULTIPLETURNS, BattleScript_TwoTurnMovesSecondTurn

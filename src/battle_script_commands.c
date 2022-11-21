@@ -1495,11 +1495,11 @@ static void Cmd_attackcanceler(void)
 	if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_MULTI_HEADED || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MULTI_HEADED)) // Includes Innate
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
-	&& (gBaseStats[gBattleMons[gBattlerAttacker].species].flags == F_TWO_HEADED || gBaseStats[gBattleMons[gBattlerAttacker].species].flags == F_THREE_HEADED)
+	&& ((gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED) || (gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED))
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
         
-		if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags == F_TWO_HEADED){
+		if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED){
 			gMultiHitCounter = 2;
 			gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
 		}
@@ -1551,6 +1551,9 @@ static void Cmd_attackcanceler(void)
         u32 currentType;
         u32 bestType = gBattleMons[gBattlerTarget].type1;
         u16 bestModifier = GetTypeModifier(moveType, bestType);
+
+        gBattleScripting.abilityPopupOverwrite = ABILITY_COLOR_CHANGE;
+		gLastUsedAbility = ABILITY_COLOR_CHANGE;
 
         for (currentType = TYPE_NORMAL; currentType < NUMBER_OF_MON_TYPES; ++currentType) {
             u16 currentModifier = GetTypeModifier(moveType, currentType);
@@ -3869,8 +3872,9 @@ static void Cmd_jumpifability(void)
         battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
         if (GetBattlerAbility(battlerId) == ability)
             hasAbility = TRUE;
-        else if (SpeciesHasInnate(gBattleMons[battlerId].species, ability))
+        else if (SpeciesHasInnate(gBattleMons[battlerId].species, ability)){
             hasAbility = TRUE;
+        }
         break;
     case BS_ATTACKER_SIDE:
         battlerId = IsAbilityOnSide(gBattlerAttacker, ability);
@@ -10378,6 +10382,22 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 }
                 else
                 {
+                    if(GetBattlerAbility(gActiveBattler) == ABILITY_CLEAR_BODY || 
+                       SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_CLEAR_BODY)){
+                        gBattleScripting.abilityPopupOverwrite = ABILITY_CLEAR_BODY;
+                        gLastUsedAbility = ABILITY_CLEAR_BODY;
+                    }
+                    else if(GetBattlerAbility(gActiveBattler) == ABILITY_FULL_METAL_BODY || 
+                       SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_FULL_METAL_BODY)){
+                        gBattleScripting.abilityPopupOverwrite = ABILITY_FULL_METAL_BODY;
+                        gLastUsedAbility = ABILITY_FULL_METAL_BODY;
+                    }
+                    else if(GetBattlerAbility(gActiveBattler) == ABILITY_WHITE_SMOKE || 
+                       SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_WHITE_SMOKE)){
+                        gBattleScripting.abilityPopupOverwrite = ABILITY_WHITE_SMOKE;
+                        gLastUsedAbility = ABILITY_WHITE_SMOKE;
+                    }
+
                     BattleScriptPush(BS_ptr);
                     gBattleScripting.battler = gActiveBattler;
                     gBattlerAbility = gActiveBattler;

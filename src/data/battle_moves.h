@@ -11799,7 +11799,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_EXCALIBUR] =
     {
-        .effect = EFFECT_EXCALIBUR,
+        .effect = EFFECT_HIT,
         .power = 120,
         .type = TYPE_STEEL,
         .accuracy = 80,

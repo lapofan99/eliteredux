@@ -4650,6 +4650,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		case ABILITY_LETS_ROLL:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
+                gBattlerAttacker = battler;
 				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 SET_STATCHANGER(STAT_DEF, 1, FALSE);
 				gBattleMons[battler].status2 = STATUS2_DEFENSE_CURL;
@@ -5124,6 +5125,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL)){
 			if (!gSpecialStatuses[battler].switchInAbilityDone)
 			{
+                gBattlerAttacker = battler;
 				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_LETS_ROLL;
 				gLastUsedAbility = ABILITY_LETS_ROLL;
@@ -5793,6 +5795,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
                  && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
                 {
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_HARVEST;
+			        gLastUsedAbility = ABILITY_HARVEST;
                     BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
                     effect++;
                 }
@@ -5838,6 +5842,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
                  && gBattleMons[battler].status1 & STATUS1_ANY)
                 {
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_HYDRATION;
+			        gLastUsedAbility = ABILITY_HYDRATION;
                     goto ABILITY_HEAL_MON_STATUS_INNATE;
                 }
             }
@@ -6206,6 +6212,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					u16 userSpAttack = 0;
                     effect = 2;
 					
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_LIGHTNING_ROD;
+			        gLastUsedAbility = ABILITY_LIGHTNING_ROD;
                     userAttack   += gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
                     userSpAttack += gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
 
@@ -6580,6 +6588,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && IS_MOVE_PHYSICAL(gCurrentMove)
              && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
+                gBattlerAttacker = battler;
 				gBattleMons[battler].statStages[STAT_ATK]++;
                 gBattleScripting.animArg1 = 14 + STAT_ATK;
                 gBattleScripting.animArg2 = 0;
@@ -6935,6 +6944,37 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN) || 
+            SpeciesHasInnate(gBattleMons[battler].species, ABILITY_IRON_BARBS)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+                if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN)){
+					gBattleScripting.abilityPopupOverwrite = ABILITY_ROUGH_SKIN;
+					gLastUsedAbility = ABILITY_ROUGH_SKIN;
+				}
+				else{
+					gBattleScripting.abilityPopupOverwrite = ABILITY_IRON_BARBS;
+					gLastUsedAbility = ABILITY_IRON_BARBS;
+				}
+
+                #if B_ROUGH_SKIN_DMG >= GEN_4
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
+                #else
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
+                #endif
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
+                effect++;
+            }
+        }
+
 		// Rattled
         if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_RATTLED)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -7095,6 +7135,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_EFFECT_SPORE;
+			    gLastUsedAbility = ABILITY_EFFECT_SPORE;
+
                 i = Random() % 3;
                 if (i == 0)
                     goto POISON_POINT;
@@ -7230,6 +7273,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && IS_MOVE_PHYSICAL(gCurrentMove)
              && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
 			{
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_ANGER_POINT;
 				gLastUsedAbility = ABILITY_ANGER_POINT;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);

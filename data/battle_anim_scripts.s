@@ -777,7 +777,10 @@ gBattleAnims_Moves::
 	.4byte Move_THUNDEROUS_KICK
 	.4byte Move_GLACIAL_LANCE
 	.4byte Move_ASTRAL_BARRAGE
-	.4byte Move_EERIE_SPELL
+	.4byte Move_EERIE_SPELL 
+@@@@@@@@@@@@ Custom Moves @@@@@@@@@@@@
+	.4byte Move_EXCALIBUR 
+	.4byte Move_DEATHROLL
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
 
 	.align 2
@@ -6434,6 +6437,7 @@ Move_HORN_LEECH:
 	waitforvisualfinish
 	end
 
+Move_EXCALIBUR:
 Move_SACRED_SWORD:
 	loadspritegfx ANIM_TAG_CUT @Cut
 	loadspritegfx ANIM_TAG_SWORD @Sword
@@ -14241,6 +14245,9 @@ Move_ASTRAL_BARRAGE::
 
 Move_EERIE_SPELL::
 	end @to do:
+
+Move_DEATHROLL::
+	goto Move_CRUNCH
 
 @@@@@@@@@@@@@@@@@@@@@@@ GEN 1-3 @@@@@@@@@@@@@@@@@@@@@@@
 Move_NONE:
