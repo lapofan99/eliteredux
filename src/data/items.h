@@ -4025,7 +4025,7 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-// TMs/HMs
+// TMs and HMs
 
     [ITEM_TM01_FOCUS_PUNCH] =
     {

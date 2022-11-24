@@ -8038,8 +8038,8 @@ const struct BaseStats gBaseStats[] =
         .baseHP        = 85,
 		.baseAttack    = 115,
         .baseDefense   = 70,
-        .baseSpAttack  = 115,
-		.baseSpeed     = 95,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 85,
         .baseSpDefense = 60,
         .type1 = TYPE_DARK,
         .type2 = TYPE_DARK,
@@ -8419,7 +8419,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TANGLED_FEET, ABILITY_NONE, ABILITY_SCRAPPY},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
-        .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_NONE},
+        .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
     },
 
     [SPECIES_SWELLOW] =
@@ -8672,7 +8672,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_POISON_HEAL, ABILITY_NONE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .innates = {ABILITY_EFFECT_SPORE, ABILITY_IMMUNITY, ABILITY_NONE},
+        .innates = {ABILITY_EFFECT_SPORE, ABILITY_TOXIC_BOOST, ABILITY_NONE},
     },
 
     [SPECIES_BRELOOM] =
@@ -8696,10 +8696,10 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_FAIRY,
         .eggGroup2 = EGG_GROUP_GRASS,
-        .abilities = {ABILITY_POISON_HEAL, ABILITY_BLITZ_BOXER, ABILITY_LONG_REACH},
+        .abilities = {ABILITY_POISON_HEAL, ABILITY_PRECISE_FIST, ABILITY_LONG_REACH},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
-        .innates = {ABILITY_EFFECT_SPORE, ABILITY_IMMUNITY, ABILITY_TECHNICIAN},
+        .innates = {ABILITY_EFFECT_SPORE, ABILITY_TOXIC_BOOST, ABILITY_TECHNICIAN},
     },
 
     [SPECIES_SLAKOTH] =
@@ -15845,8 +15845,8 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_STOUTLAND] =
     {
-        .baseHP        = 85,
-        .baseAttack    = 110,
+        .baseHP        = 95,
+        .baseAttack    = 120,
         .baseDefense   = 70,
         .baseSpeed     = 85,
         .baseSpAttack  = 65,
@@ -18141,7 +18141,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_BUG,
         .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_HYDRATION, ABILITY_NONE, ABILITY_UNBURDEN},
+        .abilities = {ABILITY_NO_GUARD, ABILITY_HYDRATION, ABILITY_UNBURDEN},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .innates = {ABILITY_SWARM, ABILITY_SHED_SKIN, ABILITY_STICKY_HOLD},
@@ -19177,7 +19177,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_FLYING,
         .eggGroup2 = EGG_GROUP_FLYING,
-        .abilities = {ABILITY_BIG_PECKS, ABILITY_WEAK_ARMOR, ABILITY_NO_GUARD},
+        .abilities = {ABILITY_BIG_PECKS, ABILITY_WEAK_ARMOR, ABILITY_OVERCOAT},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
         .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_SCAVENGER},
@@ -20478,10 +20478,10 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_INTIMIDATE, ABILITY_COMPETITIVE, ABILITY_MOXIE},
+        .abilities = {ABILITY_UNNERVE, ABILITY_COMPETITIVE, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .innates = {ABILITY_RIVALRY, ABILITY_UNNERVE, ABILITY_NONE},
+        .innates = {ABILITY_RIVALRY, ABILITY_NONE, ABILITY_NONE},
     },
 
     [SPECIES_PYROAR] =
@@ -20506,7 +20506,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_INTIMIDATE, ABILITY_COMPETITIVE, ABILITY_MOXIE},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .innates = {ABILITY_RIVALRY, ABILITY_UNNERVE, ABILITY_OPPORTUNIST},
+        .innates = {ABILITY_RIVALRY, ABILITY_OPPORTUNIST, ABILITY_NONE},
     },
 
     [SPECIES_FLABEBE] =
@@ -23204,7 +23204,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_BUG,
         .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_SPEED_BOOST, ABILITY_GALVANIZE, ABILITY_OVERCHARGE},
+        .abilities = {ABILITY_SPEED_BOOST, ABILITY_AERODYNAMICS, ABILITY_OVERCHARGE},
         .bodyColor = BODY_COLOR_BLUE,
         .noFlip = FALSE,
         .innates = {ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_ELECTROCYTES},

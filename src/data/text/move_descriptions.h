@@ -4549,7 +4549,7 @@ static const u8 sMoveFourLineDescription_EerieSpell[] = _("Attacks with its\ntre
 
 // Darky's Custom Moves
 static const u8 sMoveFourLineDescription_Deathroll[] = _("Does a deadly roll\nin the water.\nIgnores target's\nstat changes.");
-static const u8 sMoveFourLineDescription_Excalibur[] = _("Super effective\non Dragon-.\ntypes. High\ncritical ratio.");
+static const u8 sMoveFourLineDescription_Excalibur[] = _("Hits hard. Super-\neffective on\nDragon-types.\nHigh critical ratio.");
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5001,7 +5001,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_GRASS_KNOT        - 1] = sMoveFourLineDescription_GrassKnot,
     [MOVE_CHATTER           - 1] = sMoveFourLineDescription_Chatter,
     [MOVE_JUDGMENT          - 1] = sMoveFourLineDescription_Judgment,
-    [MOVE_BUG_BITE          - 1] = sMoveFourLineDescription_Pluck,
+    [MOVE_BUG_BITE          - 1] = sMoveFourLineDescription_BugBite,
     [MOVE_CHARGE_BEAM       - 1] = sMoveFourLineDescription_ChargeBeam,
     [MOVE_WOOD_HAMMER       - 1] = sMoveFourLineDescription_WoodHammer,
     [MOVE_AQUA_JET          - 1] = sMoveFourLineDescription_AquaJet,
