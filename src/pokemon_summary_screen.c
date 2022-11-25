@@ -3474,7 +3474,7 @@ static void BufferNatureString(void)
 	if(ModifyMode)
 		BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryNatureSlider, 4, 16, 88, 16);
 	
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNatureNamePointers[GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_NATURE)]);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNatureNamePointers[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE)]);
 }
 
 static void BufferCharacteristicString(void)
@@ -3708,7 +3708,7 @@ static void PrintSkillsPage(void)
     u16 *dst;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
-    const s8 *natureMod = gNatureStatTable[GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_NATURE)];
+    const s8 *natureMod = gNatureStatTable[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE)];
 
     FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT, PIXEL_FILL(0));
 	
