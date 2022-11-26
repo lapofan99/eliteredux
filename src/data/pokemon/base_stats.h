@@ -1544,10 +1544,10 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroup1 = EGG_GROUP_BUG,
         .eggGroup2 = EGG_GROUP_GRASS,
-        .abilities = {ABILITY_DRY_SKIN, ABILITY_OVERCOAT, ABILITY_NONE},
+        .abilities = {ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
-        .innates = {ABILITY_EFFECT_SPORE, ABILITY_NONE, ABILITY_NONE},
+        .innates = {ABILITY_EFFECT_SPORE, ABILITY_DRY_SKIN, ABILITY_NONE},
     },
 
     [SPECIES_PARASECT] =
@@ -1597,10 +1597,10 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_BUG,
         .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_TINTED_LENS, ABILITY_MAGICAL_DUST, ABILITY_NONE},
+        .abilities = {ABILITY_TINTED_LENS, ABILITY_NONE, ABILITY_NONE},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
-        .innates = {ABILITY_COMPOUND_EYES, ABILITY_TINTED_LENS, ABILITY_NONE},
+        .innates = {ABILITY_COMPOUND_EYES, ABILITY_NOCTURNAL, ABILITY_MAGICAL_DUST},
     },
 
     [SPECIES_VENOMOTH] =
@@ -1627,7 +1627,7 @@ const struct BaseStats gBaseStats[] =
         .abilities = {ABILITY_TINTED_LENS, ABILITY_MAGICAL_DUST, ABILITY_MAGIC_GUARD},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
-        .innates = {ABILITY_LEVITATE, ABILITY_MAJESTIC_MOTH, ABILITY_COMPOUND_EYES},
+        .innates = {ABILITY_COMPOUND_EYES, ABILITY_MAJESTIC_MOTH, ABILITY_LEVITATE},
     },
 
     [SPECIES_DIGLETT] =
@@ -5233,10 +5233,10 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_FUR_COAT},
+        .abilities = {ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_QUICK_FEET},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .innates = {ABILITY_KEEN_EYE, ABILITY_FIELD_EXPLORER, ABILITY_QUICK_FEET},
+        .innates = {ABILITY_KEEN_EYE, ABILITY_FIELD_EXPLORER, ABILITY_FUR_COAT},
     },
 
     [SPECIES_FURRET] =
@@ -5258,10 +5258,10 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_FUR_COAT},
+        .abilities = {ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_QUICK_FEET},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
-        .innates = {ABILITY_KEEN_EYE, ABILITY_FIELD_EXPLORER, ABILITY_QUICK_FEET},
+        .innates = {ABILITY_KEEN_EYE, ABILITY_FIELD_EXPLORER, ABILITY_FUR_COAT},
     },
 
     [SPECIES_HOOTHOOT] =
@@ -8822,10 +8822,10 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_BUG,
         .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_SPEED_BOOST, ABILITY_SPEED_FORCE, ABILITY_MOMENTUM},
+        .abilities = {ABILITY_AERODYNAMICS, ABILITY_SPEED_FORCE, ABILITY_AERILATE},
         .bodyColor = BODY_COLOR_YELLOW,
         .noFlip = FALSE,
-        .innates = {ABILITY_COMPOUND_EYES, ABILITY_INFILTRATOR, ABILITY_AERODYNAMICS},
+        .innates = {ABILITY_COMPOUND_EYES, ABILITY_INFILTRATOR, ABILITY_SPEED_BOOST},
     },
 
     [SPECIES_SHEDINJA] =
@@ -9647,7 +9647,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_SLOW,
         .eggGroup1 = EGG_GROUP_WATER_2,
         .eggGroup2 = EGG_GROUP_WATER_2,
-        .abilities = {ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_NONE},
+        .abilities = {ABILITY_WEAK_ARMOR, ABILITY_NONE, ABILITY_SPEED_BOOST},
         .bodyColor = BODY_COLOR_RED,
         .noFlip = FALSE,
         .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_ROUGH_SKIN},
@@ -23743,10 +23743,10 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_WATER_1,
         .eggGroup2 = EGG_GROUP_BUG,
-        .abilities = {ABILITY_WATER_BUBBLE, ABILITY_WATER_BUBBLE, ABILITY_WATER_ABSORB},
+        .abilities = {ABILITY_WATER_VEIL, ABILITY_OPPORTUNIST, ABILITY_WATER_ABSORB},
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = FALSE,
-        .innates = {ABILITY_WATER_ABSORB, ABILITY_SPIDER_LAIR, ABILITY_PREDATOR},
+        .innates = {ABILITY_WATER_BUBBLE, ABILITY_SPIDER_LAIR, ABILITY_PREDATOR},
     },
 
     [SPECIES_FOMANTIS] =

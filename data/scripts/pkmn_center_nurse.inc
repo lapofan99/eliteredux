@@ -35,6 +35,7 @@ EventScript_PkmnCenterNurseHasVial::
     call_if_eq Give_Nuzlocke_Items
 	call_if_eq Give_all_TMHMs
 	call_if_eq Give_BattleItems
+	call_if_eq Give_Z_Power
 	call_if_eq Give_Cut_Items_After_Roxanne
 	call_if_eq Give_Thief_Items_After_Thief
 	call_if_eq Give_Thief_Items_After_Museum
@@ -182,10 +183,10 @@ Give_Nuzlocke_Items:
 	return
 
 Give_BattleItems:
-	checkitem ITEM_EVIOLITE, 50
+  checkitem ITEM_EVIOLITE, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_EVIOLITE
-	checkitem ITEM_LEFTOVERS, 50
+  checkitem ITEM_LEFTOVERS, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_LEFTOVERS
   checkitem ITEM_BLACK_SLUDGE, 50
@@ -219,8 +220,119 @@ Give_BattleItems:
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_RED_ORB
   checkitem ITEM_BLUE_ORB, 3
-  compare VAR_RESULT, TRUE
-  call_if_ne ADDITEM_BLUE_ORB
+  	compare VAR_RESULT, TRUE
+  	call_if_ne ADDITEM_BLUE_ORB
+	return
+
+Give_Z_Power:
+  checkitem ITEM_Z_RING, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_Z_RING
+  checkitem ITEM_NORMALIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_NORMALIUM_Z
+  checkitem ITEM_FIGHTINIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_FIGHTINIUM_Z
+  checkitem ITEM_FLYINIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_FLYINIUM_Z
+  checkitem ITEM_POISONIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_POISONIUM_Z
+  checkitem ITEM_GROUNDIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_GROUNDIUM_Z
+  checkitem ITEM_ROCKIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_ROCKIUM_Z
+  checkitem ITEM_BUGINIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_BUGINIUM_Z
+  checkitem ITEM_GHOSTIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_GHOSTIUM_Z
+  checkitem ITEM_STEELIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_STEELIUM_Z
+  checkitem ITEM_FIRIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_FIRIUM_Z
+  checkitem ITEM_WATERIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_WATERIUM_Z
+  checkitem ITEM_GRASSIUM_Z, 50
+  	compare VAR_RESULT, TRUE
+  	call_if_ne ADDITEM_ITEM_GRASSIUM_Z
+  checkitem ITEM_ELECTRIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_ELECTRIUM_Z
+  checkitem ITEM_PSYCHIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_PSYCHIUM_Z
+  checkitem ITEM_ICIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_ICIUM_Z
+  checkitem ITEM_DRAGONIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_DRAGONIUM_Z
+  checkitem ITEM_DARKINIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_DARKINIUM_Z
+  checkitem ITEM_FAIRIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_FAIRIUM_Z
+  checkitem ITEM_ALORAICHIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_ALORAICHIUM_Z
+  checkitem ITEM_DECIDIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_DECIDIUM_Z
+  checkitem ITEM_EEVIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_EEVIUM_Z
+  checkitem ITEM_INCINIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_INCINIUM_Z
+  checkitem ITEM_KOMMONIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_KOMMONIUM_Z
+  checkitem ITEM_LUNALIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_LUNALIUM_Z
+  checkitem ITEM_LYCANIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_LYCANIUM_Z
+  checkitem ITEM_MARSHADIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_MARSHADIUM_Z
+  checkitem ITEM_MEWNIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_MEWNIUM_Z
+  checkitem ITEM_MIMIKIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_MIMIKIUM_Z
+  checkitem ITEM_PIKANIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_PIKANIUM_Z
+  checkitem ITEM_PIKASHUNIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_PIKASHUNIUM_Z
+  checkitem ITEM_PRIMARIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_PRIMARIUM_Z
+  checkitem ITEM_SNORLIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_SNORLIUM_Z
+  checkitem ITEM_SOLGANIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_SOLGANIUM_Z
+  checkitem ITEM_TAPUNIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_TAPUNIUM_Z
+  checkitem ITEM_ULTRANECROZIUM_Z, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ITEM_ULTRANECROZIUM_Z
 	return
 
 Give_all_TMHMs:
@@ -833,6 +945,149 @@ ADDITEM_POKEBLOCK_CASE:
 
 ADDITEM_RARE_CANDY:
 	additem ITEM_RARE_CANDY, 400
+	return
+
+ADDITEM_ITEM_Z_RING:
+    additem ITEM_Z_RING, 1
+    return
+
+ADDITEM_ITEM_NORMALIUM_Z:
+	additem ITEM_NORMALIUM_Z, 50
+	return
+
+ADDITEM_ITEM_FIGHTINIUM_Z:
+	additem ITEM_FIGHTINIUM_Z, 50
+	return
+
+ADDITEM_ITEM_FLYINIUM_Z:
+	additem ITEM_FLYINIUM_Z, 50
+	return
+
+ADDITEM_ITEM_POISONIUM_Z:
+	additem ITEM_POISONIUM_Z, 50
+	return
+
+ADDITEM_ITEM_GROUNDIUM_Z:
+	additem ITEM_GROUNDIUM_Z, 50
+	return
+
+ADDITEM_ITEM_ROCKIUM_Z:
+	additem ITEM_ROCKIUM_Z, 50
+	return
+
+ADDITEM_ITEM_BUGINIUM_Z:
+	additem ITEM_BUGINIUM_Z, 50
+	return
+
+ADDITEM_ITEM_GHOSTIUM_Z:
+	additem ITEM_GHOSTIUM_Z, 50
+	return
+
+ADDITEM_ITEM_STEELIUM_Z:
+	additem ITEM_STEELIUM_Z, 50
+	return
+
+ADDITEM_ITEM_FIRIUM_Z:
+	additem ITEM_FIRIUM_Z, 50
+	return
+
+ADDITEM_ITEM_WATERIUM_Z:
+	additem ITEM_WATERIUM_Z, 50
+	return
+
+ADDITEM_ITEM_GRASSIUM_Z:
+	additem ITEM_GRASSIUM_Z, 50
+	return
+
+ADDITEM_ITEM_ELECTRIUM_Z:
+	additem ITEM_ELECTRIUM_Z, 50
+	return
+
+ADDITEM_ITEM_PSYCHIUM_Z:
+	additem ITEM_PSYCHIUM_Z, 50
+	return
+
+ADDITEM_ITEM_ICIUM_Z:
+	additem ITEM_ICIUM_Z, 50
+	return
+
+ADDITEM_ITEM_DRAGONIUM_Z:
+	additem ITEM_DRAGONIUM_Z, 50
+	return
+
+ADDITEM_ITEM_DARKINIUM_Z:
+	additem ITEM_DARKINIUM_Z, 50
+	return
+
+ADDITEM_ITEM_FAIRIUM_Z:
+	additem ITEM_FAIRIUM_Z, 50
+    return
+ADDITEM_ITEM_ALORAICHIUM_Z:
+	additem ITEM_ALORAICHIUM_Z, 50
+	return
+
+ADDITEM_ITEM_DECIDIUM_Z:
+	additem ITEM_DECIDIUM_Z, 50
+	return
+
+ADDITEM_ITEM_EEVIUM_Z:
+	additem ITEM_EEVIUM_Z, 50
+	return
+
+ADDITEM_ITEM_INCINIUM_Z:
+	additem ITEM_INCINIUM_Z, 50
+	return
+
+ADDITEM_ITEM_KOMMONIUM_Z:
+	additem ITEM_KOMMONIUM_Z, 50
+	return
+
+ADDITEM_ITEM_LUNALIUM_Z:
+	additem ITEM_LUNALIUM_Z, 50
+	return
+
+ADDITEM_ITEM_LYCANIUM_Z:
+	additem ITEM_LYCANIUM_Z, 50
+	return
+
+ADDITEM_ITEM_MARSHADIUM_Z:
+	additem ITEM_MARSHADIUM_Z, 50
+	return
+
+ADDITEM_ITEM_MEWNIUM_Z:
+	additem ITEM_MEWNIUM_Z, 50
+	return
+
+ADDITEM_ITEM_MIMIKIUM_Z:
+	additem ITEM_MIMIKIUM_Z, 50
+	return
+
+ADDITEM_ITEM_PIKANIUM_Z:
+	additem ITEM_PIKANIUM_Z, 50
+	return
+
+ADDITEM_ITEM_PIKASHUNIUM_Z:
+	additem ITEM_PIKASHUNIUM_Z, 50
+	return
+
+ADDITEM_ITEM_PRIMARIUM_Z:
+	additem ITEM_PRIMARIUM_Z, 50
+	return
+
+ADDITEM_ITEM_SNORLIUM_Z:
+	additem ITEM_SNORLIUM_Z, 50
+	return
+
+ADDITEM_ITEM_SOLGANIUM_Z:
+	additem ITEM_SOLGANIUM_Z, 50
+	return
+
+ADDITEM_ITEM_TAPUNIUM_Z:
+	additem ITEM_TAPUNIUM_Z, 50
+	return
+
+ADDITEM_ITEM_ULTRANECROZIUM_Z:
+	additem ITEM_ULTRANECROZIUM_Z, 50
 	return
 
 ADDITEM_ITEM_TM01_FOCUS_PUNCH:
