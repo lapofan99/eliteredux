@@ -1448,7 +1448,8 @@ bool32 IsSemiInvulnerable(u8 battlerDef, u16 move)
 bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
 {
     // No Guard and Toxic can hit semi-invulnerable mons
-    if (AI_GetAbility(battlerDef) == ABILITY_NO_GUARD || AI_GetAbility(battlerAtk) == ABILITY_NO_GUARD)
+    if (AI_GetAbility(battlerDef) == ABILITY_NO_GUARD || AI_GetAbility(battlerAtk) == ABILITY_NO_GUARD ||
+        BattlerHasInnate(battlerDef, ABILITY_NO_GUARD) || BattlerHasInnate(battlerAtk, ABILITY_NO_GUARD))
         return TRUE;
     
     if (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
@@ -1456,6 +1457,9 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
 
     if (IsSemiInvulnerable(battlerDef, move))
         return FALSE;
+
+    if ((BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY) || AI_GetAbility(battlerAtk) == ABILITY_ARTILLERY) && gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
+        return TRUE;
     
     //TODO - anticipate protect move?
         
