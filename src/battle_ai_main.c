@@ -567,6 +567,12 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
 
+        if (moveType == TYPE_ROCK
+          && (AI_DATA->defAbility == ABILITY_MOUNTAINEER || DefSpeciesHasInnate(ABILITY_MOUNTAINEER)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
         if (moveType == TYPE_ICE
           && (AI_DATA->defAbility == ABILITY_ICE_DEW || DefSpeciesHasInnate(ABILITY_ICE_DEW)))
         {
