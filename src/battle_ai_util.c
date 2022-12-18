@@ -1463,6 +1463,9 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
 
     if ((BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY) || AI_GetAbility(battlerAtk) == ABILITY_ARTILLERY) && gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
         return TRUE;
+
+    if((BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM) || AI_GetAbility(battlerAtk) == ABILITY_SIGHTING_SYSTEM) && gBattleMoves[moveId].accuracy <= 50)
+        return TRUE;   
     
     //TODO - anticipate protect move?
         
