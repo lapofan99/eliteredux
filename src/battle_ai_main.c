@@ -731,6 +731,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                   && IsNonVolatileStatusMoveEffect(moveEffect))
                     RETURN_SCORE_MINUS(10);
                 break;
+            case ABILITY_WEATHER_CONTROL:
+                if (TestMoveFlags(move, FLAG_WEATHER_BASED))
+                    RETURN_SCORE_MINUS(20);
+                break;
             } // def ability checks
             
             // target partner ability checks & not attacking partner
@@ -770,7 +774,144 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 }
             } // def partner ability checks
         } // ignore def ability check
-    
+
+        //check for def innates
+        //Soundproof
+        if(DefSpeciesHasInnate(ABILITY_SOUNDPROOF) && TestMoveFlags(move, FLAG_SOUND))
+            RETURN_SCORE_MINUS(20);
+
+        //Magic Guard
+        if(DefSpeciesHasInnate(ABILITY_MAGIC_GUARD)){
+            switch (moveEffect)
+            {
+            case EFFECT_POISON:
+            case EFFECT_WILL_O_WISP:
+            case EFFECT_TOXIC:
+            case EFFECT_LEECH_SEED:
+                score -= 5;
+                break;
+            case EFFECT_CURSE:
+                if (IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GHOST)) // Don't use Curse if you're a ghost type vs a Magic Guard user, they'll take no damage.
+                    score -= 5;
+                break;
+            }
+        }
+
+        //Volt Absorb, Motor Drive and Lighting Rod
+        if((DefSpeciesHasInnate(ABILITY_VOLT_ABSORB)  || 
+            DefSpeciesHasInnate(ABILITY_MOTOR_DRIVE)  || 
+            DefSpeciesHasInnate(ABILITY_LIGHTNING_ROD)) && 
+            moveType == TYPE_ELECTRIC)
+            RETURN_SCORE_MINUS(20);
+
+        //Water Absorb, Dry skin and Storm Drain
+        if((DefSpeciesHasInnate(ABILITY_WATER_ABSORB)  || 
+            DefSpeciesHasInnate(ABILITY_DRY_SKIN)  || 
+            DefSpeciesHasInnate(ABILITY_STORM_DRAIN)) && 
+            moveType == TYPE_WATER)
+            RETURN_SCORE_MINUS(20);
+
+        //Flash Fire
+        if(DefSpeciesHasInnate(ABILITY_FLASH_FIRE) && 
+            moveType == TYPE_FIRE)
+            RETURN_SCORE_MINUS(20);
+        
+        //Wonder Guard
+        if(DefSpeciesHasInnate(ABILITY_WONDER_GUARD) && 
+           effectiveness != AI_EFFECTIVENESS_x2 && effectiveness != AI_EFFECTIVENESS_x4)
+            RETURN_SCORE_MINUS(20);
+
+        //Sap Sipper
+        if(DefSpeciesHasInnate(ABILITY_SAP_SIPPER) && 
+            moveType == TYPE_GRASS)
+            RETURN_SCORE_MINUS(20);
+
+        //Justified
+        if(DefSpeciesHasInnate(ABILITY_JUSTIFIED) && 
+            moveType == TYPE_DARK && !IS_MOVE_STATUS(move))
+            RETURN_SCORE_MINUS(10);
+
+        //Rattled
+        if(DefSpeciesHasInnate(ABILITY_RATTLED) && !IS_MOVE_STATUS(move) &&
+            (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG))
+            RETURN_SCORE_MINUS(10);
+
+        //Bulletproof
+        if(DefSpeciesHasInnate(ABILITY_BULLETPROOF) &&
+           TestMoveFlags(move, FLAG_BALLISTIC))
+            RETURN_SCORE_MINUS(20);
+
+        //Dazzling and Queenly Majesty
+        if((DefSpeciesHasInnate(ABILITY_DAZZLING) || DefSpeciesHasInnate(ABILITY_QUEENLY_MAJESTY)) &&
+           atkPriority > 0)
+            RETURN_SCORE_MINUS(20);
+
+        //Aroma Veil - Unused
+        if(DefSpeciesHasInnate(ABILITY_AROMA_VEIL) &&
+           IsAromaVeilProtectedMove(move))
+            RETURN_SCORE_MINUS(20);
+
+        //Sweet Veil - Unused
+        if(DefSpeciesHasInnate(ABILITY_SWEET_VEIL) &&
+           (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN))
+            RETURN_SCORE_MINUS(10);
+
+        //Magic Bounce
+        if(DefSpeciesHasInnate(ABILITY_MAGIC_BOUNCE) &&
+           TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED))
+            RETURN_SCORE_MINUS(20);
+
+        //Weather Control
+        if(DefSpeciesHasInnate(ABILITY_WEATHER_CONTROL) &&
+           TestMoveFlags(move, FLAG_WEATHER_BASED))
+            RETURN_SCORE_MINUS(20);
+
+        //Contrary
+        if(DefSpeciesHasInnate(ABILITY_CONTRARY) &&
+           IsStatLoweringMoveEffect(moveEffect))
+            RETURN_SCORE_MINUS(20);
+
+        //Clear Body, Full Metal Body and White Smoke
+        if((DefSpeciesHasInnate(ABILITY_CLEAR_BODY) ||
+            DefSpeciesHasInnate(ABILITY_FULL_METAL_BODY) ||
+            DefSpeciesHasInnate(ABILITY_WHITE_SMOKE)) &&
+           IsStatLoweringMoveEffect(moveEffect))
+            RETURN_SCORE_MINUS(10);
+
+        //Rattled
+        if(DefSpeciesHasInnate(ABILITY_HYPER_CUTTER) &&
+           (moveEffect == EFFECT_ATTACK_DOWN ||  moveEffect == EFFECT_ATTACK_DOWN_2) &&
+            move != MOVE_PLAY_NICE && move != MOVE_NOBLE_ROAR && move != MOVE_TEARFUL_LOOK && move != MOVE_VENOM_DRENCH)
+            RETURN_SCORE_MINUS(10);
+
+        //Keen Eye
+        if(DefSpeciesHasInnate(ABILITY_KEEN_EYE) &&
+          (moveEffect == EFFECT_ACCURACY_DOWN || moveEffect == EFFECT_ACCURACY_DOWN_2))
+            RETURN_SCORE_MINUS(10);
+
+        //Defiant and Competitive
+        if((DefSpeciesHasInnate(ABILITY_DEFIANT) ||
+            DefSpeciesHasInnate(ABILITY_COMPETITIVE)) &&
+            IsStatLoweringMoveEffect(moveEffect) && !IsTargetingPartner(battlerAtk, battlerDef))
+            RETURN_SCORE_MINUS(8);
+
+        //Comatose
+        if(DefSpeciesHasInnate(ABILITY_COMATOSE) &&
+           IsNonVolatileStatusMoveEffect(moveEffect))
+            RETURN_SCORE_MINUS(10);
+
+        //Wonder Skin
+        if(DefSpeciesHasInnate(ABILITY_WONDER_SKIN) &&
+           IS_MOVE_STATUS(move))
+            accuracy = 50;
+
+        //Leaf Guard
+        if(DefSpeciesHasInnate(ABILITY_LEAF_GUARD) &&
+           AI_WeatherHasEffect() && (gBattleWeather & WEATHER_SUN_ANY)
+           && AI_DATA->defHoldEffect != HOLD_EFFECT_UTILITY_UMBRELLA
+           && IsNonVolatileStatusMoveEffect(moveEffect))
+            RETURN_SCORE_MINUS(10);
+        
         // gen7+ dark type mons immune to priority->elevated moves from prankster
         #if B_PRANKSTER >= GEN_7
         if (AI_DATA->atkAbility == ABILITY_PRANKSTER && IS_BATTLER_OF_TYPE(battlerDef, TYPE_DARK) && IS_MOVE_STATUS(move)
