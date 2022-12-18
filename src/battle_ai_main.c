@@ -549,7 +549,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
         
-        // check ground immunities
+        // Immunity checks
         if (moveType == TYPE_GROUND
           && !IsBattlerGrounded(battlerDef)
           && (((AI_DATA->defAbility == ABILITY_LEVITATE || DefSpeciesHasInnate(ABILITY_LEVITATE))
@@ -557,6 +557,12 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
           || AI_DATA->defHoldEffect == HOLD_EFFECT_AIR_BALLOON
           || (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
           && !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
+        if (moveType == TYPE_FLYING
+          && (AI_DATA->defAbility == ABILITY_AERODYNAMICS || DefSpeciesHasInnate(ABILITY_AERODYNAMICS)))
         {
             RETURN_SCORE_MINUS(20);
         }
