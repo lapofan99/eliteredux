@@ -306,7 +306,7 @@ static u8 ChooseMoveOrAction_Singles(void)
 
         // Consider switching if your mon with truant is bodied by Protect spam.
         // Or is using a double turn semi invulnerable move(such as Fly) and is faster.
-        if (GetBattlerAbility(sBattler_AI) == ABILITY_TRUANT
+        if ((GetBattlerAbility(sBattler_AI) == ABILITY_TRUANT || BattlerHasInnate(sBattler_AI, ABILITY_TRUANT))
             && IsTruantMonVulnerable(sBattler_AI, gBattlerTarget)
             && gDisableStructs[sBattler_AI].truantCounter
             && gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
@@ -552,13 +552,21 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         // check ground immunities
         if (moveType == TYPE_GROUND
           && !IsBattlerGrounded(battlerDef)
-          && ((AI_DATA->defAbility == ABILITY_LEVITATE
+          && (((AI_DATA->defAbility == ABILITY_LEVITATE || DefSpeciesHasInnate(ABILITY_LEVITATE))
           && DoesBattlerIgnoreAbilityChecks(AI_DATA->atkAbility, move))
           || AI_DATA->defHoldEffect == HOLD_EFFECT_AIR_BALLOON
           || (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
           && !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
         {
             RETURN_SCORE_MINUS(20);
+        }
+
+        // Innates test
+        if (moveType == TYPE_ELECTRIC
+          && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GROUND)
+          && (AI_DATA->atkAbility == ABILITY_GROUND_SHOCK || AtkSpeciesHasInnate(ABILITY_GROUND_SHOCK)))
+        {
+            score += 2;
         }
         
         // check off screen
@@ -5093,4 +5101,41 @@ static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         AI_Flee();
 
     return score;
+}
+
+bool8 AtkSpeciesHasInnate(u16 ability){
+	u8 i;
+	
+	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
+		if(gBaseStats[AI_DATA->atkSpecies].innates[i] == ability){
+			return TRUE;
+        }
+	}
+	
+	return FALSE;
+}
+
+bool8 DefSpeciesHasInnate(u16 ability){
+	u8 i;
+	
+	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
+		if(gBaseStats[AI_DATA->defSpecies].innates[i] == ability){
+			return TRUE;
+        }
+	}
+	
+	return FALSE;
+}
+
+bool8 BattlerHasInnate(u8 battlerId, u16 ability){
+	u8 i;
+	//battlerId
+    //ABILITY_
+	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
+		if(gBaseStats[AI_DATA->defSpecies].innates[i] == ability){
+			return TRUE;
+        }
+	}
+	
+	return FALSE;
 }

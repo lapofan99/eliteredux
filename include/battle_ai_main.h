@@ -25,6 +25,10 @@ void BattleAI_SetupFlags(void);
 void BattleAI_SetupAIData(u8 defaultScoreMoves);
 u8 BattleAI_ChooseMoveOrAction(void);
 
+bool8 AtkSpeciesHasInnate(u16 ability);
+bool8 DefSpeciesHasInnate(u16 ability);
+bool8 BattlerHasInnate(u8 battlerId, u16 ability);
+
 extern u8 sBattler_AI;
 
 #endif // GUARD_BATTLE_AI_MAIN_H
