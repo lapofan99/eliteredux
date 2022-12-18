@@ -1219,6 +1219,8 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (holdEffect == HOLD_EFFECT_AIR_BALLOON)
         return FALSE;
+    else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE))
+        return FALSE;
     else if (AI_GetAbility(battlerId) == ABILITY_LEVITATE)
         return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
@@ -2458,7 +2460,7 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
     if (flags == 0)
         return FALSE;
     
-    if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_LEVITATE
+    if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_LEVITATE || SpeciesHasInnate(GetMonData(mon, MON_DATA_SPECIES), ABILITY_LEVITATE)
       || holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
         return FALSE;
     

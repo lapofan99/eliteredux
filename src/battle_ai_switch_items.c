@@ -518,6 +518,7 @@ static u32 CalculateHazardDamage(void)
 
     if ((gSideTimers[GetBattlerSide(gActiveBattler)].spikesAmount > 0) 
        && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE
+       && !BattlerHasInnate(gActiveBattler, ABILITY_LEVITATE)
        && holdEffect != HOLD_EFFECT_AIR_BALLOON
        && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING)
        )
