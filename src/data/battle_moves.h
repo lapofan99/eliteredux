@@ -6931,7 +6931,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #endif
         .effect = EFFECT_CONFUSE_HIT,
         .power = 90,
-        .accuracy = 85,
+        .accuracy = 90,
         .pp = 20,
         .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
