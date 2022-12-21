@@ -752,7 +752,7 @@ static void DoMoveRelearnerMain(void)
             if(FlagGet(FLAG_MOVE_RELEARNER) == TRUE){
                 sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
             } else {
-                sMoveRelearnerStruct->state = MENU_STATE_CHOOSE_AGAIN;
+                sMoveRelearnerStruct->state = MENU_STATE_RETURN_TO_PARTY_MENU;
             }
         }
         break;

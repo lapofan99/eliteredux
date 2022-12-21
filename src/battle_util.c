@@ -4958,12 +4958,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		
-		// Inates on Switch
-		
+		// Innates on Switch
 		// Screen Cleaner
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCREEN_CLEANER)){
             if (!gSpecialStatuses[battler].switchInAbilityDone && TryRemoveScreens(battler))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SCREEN_CLEANER;
+				gLastUsedAbility = ABILITY_SCREEN_CLEANER;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SCREENCLEANER;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -4973,6 +4974,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Drizzle
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRIZZLE)){
+            gBattleScripting.abilityPopupOverwrite = ABILITY_DRIZZLE;
+			gLastUsedAbility = ABILITY_DRIZZLE;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
@@ -4990,6 +4993,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAND_STREAM)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SAND_STREAM;
+				gLastUsedAbility = ABILITY_SAND_STREAM;
                 BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
                 effect++;
             }
@@ -5005,6 +5010,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DROUGHT)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_DROUGHT;
+				gLastUsedAbility = ABILITY_DROUGHT;
                 BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
                 effect++;
             }
@@ -5020,6 +5027,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SNOW_WARNING)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SNOW_WARNING;
+				gLastUsedAbility = ABILITY_SNOW_WARNING;
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
                 effect++;
             }
@@ -5035,6 +5044,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ELECTRIC_SURGE)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_ELECTRIC_SURGE;
+				gLastUsedAbility = ABILITY_ELECTRIC_SURGE;
                 BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
                 effect++;
             }
@@ -5044,6 +5055,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GRASSY_SURGE)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_GRASSY_SURGE;
+				gLastUsedAbility = ABILITY_GRASSY_SURGE;
                 BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
                 effect++;
             }
@@ -5053,6 +5066,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MISTY_SURGE)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_MISTY_SURGE;
+				gLastUsedAbility = ABILITY_MISTY_SURGE;
                 BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
                 effect++;
             }
@@ -5062,6 +5077,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PSYCHIC_SURGE)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_PSYCHIC_SURGE;
+				gLastUsedAbility = ABILITY_PSYCHIC_SURGE;
                 BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
                 effect++;
             }
@@ -5071,6 +5088,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DESOLATE_LAND)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_DESOLATE_LAND;
+				gLastUsedAbility = ABILITY_DESOLATE_LAND;
                 BattleScriptPushCursorAndCallback(BattleScript_DesolateLandActivates);
                 effect++;
             }
@@ -5080,6 +5099,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRIMORDIAL_SEA)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_PRIMORDIAL_SEA;
+				gLastUsedAbility = ABILITY_PRIMORDIAL_SEA;
                 BattleScriptPushCursorAndCallback(BattleScript_PrimordialSeaActivates);
                 effect++;
             }
@@ -5089,18 +5110,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DELTA_STREAM)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_STRONG_WINDS, TRUE))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_DELTA_STREAM;
+				gLastUsedAbility = ABILITY_DELTA_STREAM;
                 BattleScriptPushCursorAndCallback(BattleScript_DeltaStreamActivates);
                 effect++;
             }
         }
 		
 		// Download
-		
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DOWNLOAD)){
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 u32 statId, opposingBattler;
                 u32 opposingDef = 0, opposingSpDef = 0;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_DOWNLOAD;
+				gLastUsedAbility = ABILITY_DOWNLOAD;
 
                 opposingBattler = BATTLE_OPPOSITE(battler);
                 for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
@@ -5203,8 +5227,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		// Sea Guardian
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SEA_GUARDIAN)){
             if (!gSpecialStatuses[battler].switchInAbilityDone
-			&& IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
-			)
+			&& IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY))
             {
                 u32 statId = STAT_ATK;
                 u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
@@ -5212,6 +5235,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				u32 userSpAtk = gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1]; 
 				u32 userSpDef = gBattleMons[battler].spDefense * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPDEF]][1]; 
 				u32 userSpd = gBattleMons[battler].speed * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPEED]][1];
+				gBattleScripting.abilityPopupOverwrite = ABILITY_SEA_GUARDIAN;
+				gLastUsedAbility = ABILITY_SEA_GUARDIAN;
 
                 if (userAtk >= userDef && userAtk >= userSpAtk && userAtk >= userSpDef && userAtk >= userSpd) // Attack is higher
                     statId = STAT_ATK;
@@ -5225,8 +5250,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     statId = STAT_SPEED;
 
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_SEA_GUARDIAN;
-				gLastUsedAbility = ABILITY_SEA_GUARDIAN;
 
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
@@ -6188,6 +6211,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				if (move != MOVE_NONE && moveType == TYPE_FLYING){
 					effect = 2;
 					statId = STAT_SPEED;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_AERODYNAMICS;
+				    gLastUsedAbility = ABILITY_AERODYNAMICS;
 				}
 			}
 			
@@ -6195,6 +6220,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_VOLT_ABSORB)){
 				if (move != MOVE_NONE && moveType == TYPE_ELECTRIC){
                     effect = 1;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_VOLT_ABSORB;
+				    gLastUsedAbility = ABILITY_VOLT_ABSORB;
 				}
 			}
 			
@@ -6202,6 +6229,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_ABSORB)){
 				if (move != MOVE_NONE && moveType == TYPE_WATER){
                     effect = 1;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_WATER_ABSORB;
+				    gLastUsedAbility = ABILITY_WATER_ABSORB;
 				}
 			}
 			
@@ -6209,6 +6238,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRY_SKIN)){
 				if (move != MOVE_NONE && moveType == TYPE_WATER){
                     effect = 1;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_DRY_SKIN;
+				    gLastUsedAbility = ABILITY_DRY_SKIN;
 				}
 			}
 			
@@ -6216,6 +6247,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_ABSORB)){
 				if (move != MOVE_NONE && moveType == TYPE_POISON){
                     effect = 1;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_POISON_ABSORB;
+				    gLastUsedAbility = ABILITY_POISON_ABSORB;
 				}
 			}
 			
@@ -6244,6 +6277,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
                     effect = 2;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_STORM_DRAIN;
+				    gLastUsedAbility = ABILITY_STORM_DRAIN;
 					
                     userAttack   += gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
                     userSpAttack += gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
@@ -6259,6 +6294,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_FLASH_FIRE)){
                 if (moveType == TYPE_FIRE && !((gBattleMons[battler].status1 & STATUS1_FREEZE) && B_FLASH_FIRE_FROZEN <= GEN_4))
                 {
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_FLASH_FIRE;
+				    gLastUsedAbility = ABILITY_FLASH_FIRE;
+
                     if (!(gBattleResources->flags->flags[battler] & RESOURCE_FLAG_FLASH_FIRE))
                     {
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_FLASH_FIRE_BOOST;
@@ -6289,6 +6327,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
                     effect = 2;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_SAP_SIPPER;
+				    gLastUsedAbility = ABILITY_SAP_SIPPER;
 					
                     userAttack   += gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
                     userSpAttack += gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
@@ -6306,6 +6346,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
                     effect = 2;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_ICE_DEW;
+				    gLastUsedAbility = ABILITY_ICE_DEW;
 					
                     userAttack   += gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
                     userSpAttack += gBattleMons[battler].spAttack * gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_SPATK]][1];
@@ -6319,6 +6361,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			
 			//Motor Drive
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MOTOR_DRIVE)){
+                gBattleScripting.abilityPopupOverwrite = ABILITY_MOTOR_DRIVE;
+				gLastUsedAbility = ABILITY_MOTOR_DRIVE;
                 if (moveType == TYPE_ELECTRIC)
                     effect = 2, statId = STAT_SPEED;
 			}
