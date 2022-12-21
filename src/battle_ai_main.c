@@ -878,7 +878,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
            IsStatLoweringMoveEffect(moveEffect))
             RETURN_SCORE_MINUS(10);
 
-        //Rattled
+        //Hyper Cutter
         if(DefSpeciesHasInnate(ABILITY_HYPER_CUTTER) &&
            (moveEffect == EFFECT_ATTACK_DOWN ||  moveEffect == EFFECT_ATTACK_DOWN_2) &&
             move != MOVE_PLAY_NICE && move != MOVE_NOBLE_ROAR && move != MOVE_TEARFUL_LOOK && move != MOVE_VENOM_DRENCH)

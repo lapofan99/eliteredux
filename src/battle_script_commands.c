@@ -8372,6 +8372,28 @@ static void Cmd_various(void)
             if (BATTLER_MAX_HP(gBattlerAttacker))
                 break;
 
+            if (GetBattlerAbility(gActiveBattler) == ABILITY_SOUL_EATER || 
+		        SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SOUL_EATER)){
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SOUL_EATER;
+				gLastUsedAbility = ABILITY_SOUL_EATER;
+            }
+            else if (GetBattlerAbility(gActiveBattler) == ABILITY_SCAVENGER || 
+		        SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SCAVENGER)){
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SCAVENGER;
+				gLastUsedAbility = ABILITY_SCAVENGER;
+            }
+            else if (GetBattlerAbility(gActiveBattler) == ABILITY_PREDATOR || 
+		        SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_PREDATOR)){
+                gBattleScripting.abilityPopupOverwrite = ABILITY_PREDATOR;
+				gLastUsedAbility = ABILITY_PREDATOR;
+            }
+            else if (GetBattlerAbility(gActiveBattler) == ABILITY_LOOTER || 
+		        SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_LOOTER)){
+                gBattleScripting.abilityPopupOverwrite = ABILITY_LOOTER;
+				gLastUsedAbility = ABILITY_LOOTER;
+            }
+                
+
             // Let the battle script handler decide the stat changes
             BattleScriptPush(gBattlescriptCurrInstr + 3);
             gLastUsedAbility = GetBattlerAbility(gActiveBattler);

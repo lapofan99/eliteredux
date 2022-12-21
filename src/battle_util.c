@@ -4752,6 +4752,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_AQUATIC;
 				gLastUsedAbility = ABILITY_AQUATIC;
 				gBattleMons[battler].type3 = TYPE_WATER;
@@ -4764,6 +4765,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_GROUNDED;
 				gLastUsedAbility = ABILITY_GROUNDED;
 				gBattleMons[battler].type3 = TYPE_GROUND;
@@ -4776,6 +4778,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_ICE_AGE;
 				gLastUsedAbility = ABILITY_ICE_AGE;
 				gBattleMons[battler].type3 = TYPE_ICE;
@@ -4788,6 +4791,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_HALF_DRAKE;
 				gLastUsedAbility = ABILITY_HALF_DRAKE;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
@@ -4800,6 +4804,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_METALLIC;
 				gLastUsedAbility = ABILITY_METALLIC;
 				gBattleMons[battler].type3 = TYPE_STEEL;
@@ -4812,6 +4817,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
 				gLastUsedAbility = ABILITY_DRAGONFLY;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
@@ -4824,6 +4830,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_PHANTOM;
 				gLastUsedAbility = ABILITY_PHANTOM;
 				gBattleMons[battler].type3 = TYPE_GHOST;
@@ -4836,6 +4843,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TERAVOLT;
 				gLastUsedAbility = ABILITY_TERAVOLT;
 				gBattleMons[battler].type3 = TYPE_ELECTRIC;
@@ -4848,6 +4856,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TURBOBLAZE;
 				gLastUsedAbility = ABILITY_TURBOBLAZE;
 				gBattleMons[battler].type3 = TYPE_FIRE;
@@ -4860,6 +4869,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_COIL_UP;
 				gLastUsedAbility = ABILITY_COIL_UP;
 				gStatuses4[battler] = STATUS4_COILED;
@@ -4872,6 +4882,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_AIR_BLOWER;
 				gLastUsedAbility = ABILITY_AIR_BLOWER;
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
@@ -4909,6 +4920,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_NORTH_WIND;
 				gLastUsedAbility = ABILITY_NORTH_WIND;
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_AURORA_VEIL;
@@ -4921,6 +4933,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!IsCurrentlyDay())
             {
+                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_NOCTURNAL;
 				gLastUsedAbility = ABILITY_NOCTURNAL;
 				gBattleMons[battler].type3 = TYPE_DARK;
@@ -4933,6 +4946,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!(gStatuses3[battler] & STATUS3_AQUA_RING))
             {
+                gBattlerAttacker = battler;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_WATER_VEIL;
 				gLastUsedAbility = ABILITY_WATER_VEIL;
@@ -7016,6 +7030,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
               && TARGET_TURN_DAMAGED)
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SOUL_LINKER;
+				gLastUsedAbility = ABILITY_SOUL_LINKER;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AttackerSoulLinker;
                 effect++;
@@ -7029,6 +7045,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED)
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_COTTON_DOWN;
+				gLastUsedAbility = ABILITY_COTTON_DOWN;
                 gEffectBattler = gBattlerTarget;
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_CottonDownActivates;
@@ -12438,15 +12456,19 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	
 	// Multi Headed
 	if(abilityAtk == ABILITY_MULTI_HEADED || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MULTI_HEADED)){
-		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1 || gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2)
-		{
-			if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1){
-				MulModifier(&finalModifier, UQ_4_12(0.2));
-			}
-			else if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2){
-				MulModifier(&finalModifier, UQ_4_12(0.15));
-			}
-		}
+        if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED){
+            if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1){
+			MulModifier(&finalModifier, UQ_4_12(0.2));
+            }
+            else if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2){
+                MulModifier(&finalModifier, UQ_4_12(0.15));
+            }
+        }
+        else if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED){
+            if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1){
+			MulModifier(&finalModifier, UQ_4_12(0.2));
+            }
+        }
 	}
 	
 	// Hyper Aggressive
