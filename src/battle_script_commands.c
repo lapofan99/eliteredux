@@ -3388,6 +3388,8 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     else if (gBattleMons[gBattlerTarget].item
                         && (GetBattlerAbility(gBattlerTarget) == ABILITY_STICKY_HOLD  || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_STICKY_HOLD)))
                     {
+                        gBattleScripting.abilityPopupOverwrite = ABILITY_STICKY_HOLD;
+				        gLastUsedAbility = ABILITY_STICKY_HOLD;
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_NoItemSteal;
 
@@ -5053,6 +5055,8 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
     {
         if ((GetBattlerAbility(battlerDef) == ABILITY_STICKY_HOLD || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_STICKY_HOLD)) && IsBattlerAlive(battlerDef))
         {
+            gBattleScripting.abilityPopupOverwrite = ABILITY_STICKY_HOLD;
+			gLastUsedAbility = ABILITY_STICKY_HOLD;
             gBattlerAbility = battlerDef;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_StickyHoldActivates;
