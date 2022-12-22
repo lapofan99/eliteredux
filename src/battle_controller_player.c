@@ -131,6 +131,7 @@ static void DoSwitchOutAnimation(void);
 static void PlayerDoMoveAnimation(void);
 static void Task_StartSendOutAnim(u8 taskId);
 static void EndDrawPartyStatusSummary(void);
+static void ChangeMoveDisplayMode();
 
 static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
@@ -631,6 +632,7 @@ static void HandleInputChooseMove(void)
 
     if (gMain.newKeys & A_BUTTON)
     {
+        FlagClear(FLAG_SYS_MOVE_INFO);
         PlaySE(SE_SELECT);
         if (moveInfo->moves[gMoveSelectionCursor[gActiveBattler]] == MOVE_CURSE)
         {
@@ -732,8 +734,20 @@ static void HandleInputChooseMove(void)
         BtlController_EmitTwoReturnValues(1, 10, 0xFFFF);
         HideMegaTriggerSprite();
         PlayerBufferExecCompleted();
+        FlagClear(FLAG_SYS_MOVE_INFO);
     }
-    else if (JOY_NEW(DPAD_LEFT))
+    else if (JOY_NEW(L_BUTTON) || gPlayerDpadHoldFrames > 59)
+    {
+        if(!FlagGet(FLAG_SYS_MOVE_INFO)){
+            ChangeMoveDisplayMode();
+            FlagSet(FLAG_SYS_MOVE_INFO);
+        }
+        else{
+            MoveSelectionDisplayMoveNames();
+            FlagClear(FLAG_SYS_MOVE_INFO);
+        }
+    }
+    else if (JOY_NEW(DPAD_LEFT) && !FlagGet(FLAG_SYS_MOVE_INFO))
     {
         if (gMoveSelectionCursor[gActiveBattler] & 1)
         {
@@ -745,7 +759,7 @@ static void HandleInputChooseMove(void)
             MoveSelectionDisplayMoveType();
         }
     }
-    else if (JOY_NEW(DPAD_RIGHT))
+    else if (JOY_NEW(DPAD_RIGHT) && !FlagGet(FLAG_SYS_MOVE_INFO))
     {
         if (!(gMoveSelectionCursor[gActiveBattler] & 1)
          && (gMoveSelectionCursor[gActiveBattler] ^ 1) < gNumberOfMovesToChoose)
@@ -758,7 +772,7 @@ static void HandleInputChooseMove(void)
             MoveSelectionDisplayMoveType();
         }
     }
-    else if (JOY_NEW(DPAD_UP))
+    else if (JOY_NEW(DPAD_UP) && !FlagGet(FLAG_SYS_MOVE_INFO))
     {
         if (gMoveSelectionCursor[gActiveBattler] & 2)
         {
@@ -770,7 +784,7 @@ static void HandleInputChooseMove(void)
             MoveSelectionDisplayMoveType();
         }
     }
-    else if (JOY_NEW(DPAD_DOWN))
+    else if (JOY_NEW(DPAD_DOWN) && !FlagGet(FLAG_SYS_MOVE_INFO))
     {
         if (!(gMoveSelectionCursor[gActiveBattler] & 2)
          && (gMoveSelectionCursor[gActiveBattler] ^ 2) < gNumberOfMovesToChoose)
@@ -3532,4 +3546,50 @@ static void PlayerHandleBattleDebug(void)
 
 static void PlayerCmdEnd(void)
 {
+}
+
+static void ChangeMoveDisplayMode(){
+    static const u8 gPowerText[] =  _("Power: {STR_VAR_1}");
+    static const u8 gAccuracyText[] =  _("Acc: {STR_VAR_1}");
+    static const u8 gContactText[] =  _("Contact");
+    static const u8 gNoContactText[] =  _("No Contact");
+    u8 *txtPtr;
+    u8 power = 0;
+    u8 accuracy = 0;
+    u16 move = MOVE_NONE;
+
+	struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleResources->bufferA[gActiveBattler][4]);
+    //Move Name
+    move = moveInfo->moves[gMoveSelectionCursor[gActiveBattler]];
+    StringCopy(gDisplayedStringBattle, gMoveNames[move]);
+
+    BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_NAME_1);
+    PutWindowTilemap(B_WIN_MOVE_NAME_1 );
+	CopyWindowToVram(B_WIN_MOVE_NAME_1 , 3);
+
+    //Move Power
+    power = gBattleMoves[move].power;
+	ConvertIntToDecimalStringN(gStringVar1, power, STR_CONV_MODE_RIGHT_ALIGN, 4);
+	StringExpandPlaceholders(gStringVar4, gPowerText);
+    BattlePutTextOnWindow(gStringVar4, B_WIN_MOVE_NAME_3);
+    PutWindowTilemap(B_WIN_MOVE_NAME_3 );
+	CopyWindowToVram(B_WIN_MOVE_NAME_3 , 3);
+
+    //Move Power
+    accuracy = gBattleMoves[move].accuracy;
+	ConvertIntToDecimalStringN(gStringVar1, accuracy, STR_CONV_MODE_RIGHT_ALIGN, 4);
+	StringExpandPlaceholders(gStringVar4, gAccuracyText);
+    BattlePutTextOnWindow(gStringVar4, B_WIN_MOVE_NAME_4);
+    PutWindowTilemap(B_WIN_MOVE_NAME_4 );
+	CopyWindowToVram(B_WIN_MOVE_NAME_4 , 3);
+
+    //Contact Move
+    if(gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
+	    StringExpandPlaceholders(gStringVar4, gContactText);
+    else
+        StringExpandPlaceholders(gStringVar4, gNoContactText);
+
+    BattlePutTextOnWindow(gStringVar4, B_WIN_MOVE_NAME_2);
+    PutWindowTilemap(B_WIN_MOVE_NAME_2 );
+	CopyWindowToVram(B_WIN_MOVE_NAME_2 , 3);
 }
