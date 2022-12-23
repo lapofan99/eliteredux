@@ -17,9 +17,22 @@ General_Pokemart_Script::
 
 	.align 2
 PokeMart_No_Badges::
-	.2byte ITEM_MENTAL_HERB
-	.2byte ITEM_RED_CARD
-	.2byte ITEM_CELL_BATTERY
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_LEAF_STONE
+    .2byte ITEM_WATER_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_DUSK_STONE
+    .2byte ITEM_DAWN_STONE
+    .2byte ITEM_SHINY_STONE
+    .2byte ITEM_PRISM_SCALE
+    .2byte ITEM_METAL_COAT
+    .2byte ITEM_KINGS_ROCK
+    .2byte ITEM_RAZOR_FANG
+    .2byte ITEM_RAZOR_CLAW
+    .2byte ITEM_UPGRADE
+	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_NONE
 	release
 	end
@@ -32,11 +45,22 @@ Mart_Stone_Badge::
 
 	.align 2
 PokeMart_Stone_Badge::
-	.2byte ITEM_MENTAL_HERB
-	.2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
-	.2byte ITEM_CELL_BATTERY
-	.2byte ITEM_ABSORB_BULB
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_LEAF_STONE
+    .2byte ITEM_WATER_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_DUSK_STONE
+    .2byte ITEM_DAWN_STONE
+    .2byte ITEM_SHINY_STONE
+    .2byte ITEM_PRISM_SCALE
+    .2byte ITEM_METAL_COAT
+    .2byte ITEM_KINGS_ROCK
+    .2byte ITEM_RAZOR_FANG
+    .2byte ITEM_RAZOR_CLAW
+    .2byte ITEM_UPGRADE
+	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_NONE
 	release
 	end
@@ -49,13 +73,22 @@ Mart_Knuckle_Badge::
 
 	.align 2
 PokeMart_Knuckle_Badge::
-	.2byte ITEM_MENTAL_HERB
-    .2byte ITEM_WHITE_HERB
-	.2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
-	.2byte ITEM_CELL_BATTERY
-	.2byte ITEM_ABSORB_BULB
-    .2byte ITEM_SNOWBALL
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_LEAF_STONE
+    .2byte ITEM_WATER_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_DUSK_STONE
+    .2byte ITEM_DAWN_STONE
+    .2byte ITEM_SHINY_STONE
+    .2byte ITEM_PRISM_SCALE
+    .2byte ITEM_METAL_COAT
+    .2byte ITEM_KINGS_ROCK
+    .2byte ITEM_RAZOR_FANG
+    .2byte ITEM_RAZOR_CLAW
+    .2byte ITEM_UPGRADE
+	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_NONE
 	release
 	end
@@ -68,14 +101,22 @@ Mart_Dynamo_Badge::
 
 	.align 2
 PokeMart_Dynamo_Badge::
-	.2byte ITEM_MENTAL_HERB
-    .2byte ITEM_WHITE_HERB
-	.2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
-	.2byte ITEM_CELL_BATTERY
-	.2byte ITEM_ABSORB_BULB
-    .2byte ITEM_SNOWBALL
-    .2byte ITEM_LUMINOUS_MOSS
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_LEAF_STONE
+    .2byte ITEM_WATER_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_DUSK_STONE
+    .2byte ITEM_DAWN_STONE
+    .2byte ITEM_SHINY_STONE
+    .2byte ITEM_PRISM_SCALE
+    .2byte ITEM_METAL_COAT
+    .2byte ITEM_KINGS_ROCK
+    .2byte ITEM_RAZOR_FANG
+    .2byte ITEM_RAZOR_CLAW
+    .2byte ITEM_UPGRADE
+	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_NONE
 	release
 	end
@@ -88,16 +129,22 @@ Mart_Heat_Badge::
 
 	.align 2
 PokeMart_Heat_Badge::
-	.2byte ITEM_MENTAL_HERB
-    .2byte ITEM_WHITE_HERB
-    .2byte ITEM_POWER_HERB
-	.2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
-	.2byte ITEM_CELL_BATTERY
-	.2byte ITEM_ABSORB_BULB
-    .2byte ITEM_SNOWBALL
-    .2byte ITEM_LUMINOUS_MOSS
-    .2byte ITEM_AIR_BALLOON
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_LEAF_STONE
+    .2byte ITEM_WATER_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_DUSK_STONE
+    .2byte ITEM_DAWN_STONE
+    .2byte ITEM_SHINY_STONE
+    .2byte ITEM_PRISM_SCALE
+    .2byte ITEM_METAL_COAT
+    .2byte ITEM_KINGS_ROCK
+    .2byte ITEM_RAZOR_FANG
+    .2byte ITEM_RAZOR_CLAW
+    .2byte ITEM_UPGRADE
+	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_NONE
 	release
 	end
@@ -110,20 +157,22 @@ Mart_Balance_Badge::
 
 	.align 2
 PokeMart_Balance_Badge::
-	.2byte ITEM_MENTAL_HERB
-    .2byte ITEM_WHITE_HERB
-    .2byte ITEM_POWER_HERB
-	.2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
-	.2byte ITEM_CELL_BATTERY
-	.2byte ITEM_ABSORB_BULB
-    .2byte ITEM_SNOWBALL
-    .2byte ITEM_LUMINOUS_MOSS
-    .2byte ITEM_AIR_BALLOON
-    .2byte ITEM_ELECTRIC_SEED
-    .2byte ITEM_GRASSY_SEED
-    .2byte ITEM_MISTY_SEED
-    .2byte ITEM_PSYCHIC_SEED
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_LEAF_STONE
+    .2byte ITEM_WATER_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_DUSK_STONE
+    .2byte ITEM_DAWN_STONE
+    .2byte ITEM_SHINY_STONE
+    .2byte ITEM_PRISM_SCALE
+    .2byte ITEM_METAL_COAT
+    .2byte ITEM_KINGS_ROCK
+    .2byte ITEM_RAZOR_FANG
+    .2byte ITEM_RAZOR_CLAW
+    .2byte ITEM_UPGRADE
+	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_NONE
 	release
 	end
@@ -136,21 +185,22 @@ Mart_Feather_Badge::
 
 	.align 2
 PokeMart_Feather_Badge::
-	.2byte ITEM_MENTAL_HERB
-    .2byte ITEM_WHITE_HERB
-    .2byte ITEM_POWER_HERB
-	.2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
-	.2byte ITEM_CELL_BATTERY
-	.2byte ITEM_ABSORB_BULB
-    .2byte ITEM_SNOWBALL
-    .2byte ITEM_LUMINOUS_MOSS
-    .2byte ITEM_AIR_BALLOON
-    .2byte ITEM_ELECTRIC_SEED
-    .2byte ITEM_GRASSY_SEED
-    .2byte ITEM_MISTY_SEED
-    .2byte ITEM_PSYCHIC_SEED
-    .2byte ITEM_WEAKNESS_POLICY
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_LEAF_STONE
+    .2byte ITEM_WATER_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_DUSK_STONE
+    .2byte ITEM_DAWN_STONE
+    .2byte ITEM_SHINY_STONE
+    .2byte ITEM_PRISM_SCALE
+    .2byte ITEM_METAL_COAT
+    .2byte ITEM_KINGS_ROCK
+    .2byte ITEM_RAZOR_FANG
+    .2byte ITEM_RAZOR_CLAW
+    .2byte ITEM_UPGRADE
+	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_NONE
 	release
 	end
@@ -163,22 +213,22 @@ Mart_Mind_Badge::
 
 	.align 2
 PokeMart_Mind_Badge::
-	.2byte ITEM_MENTAL_HERB
-    .2byte ITEM_WHITE_HERB
-    .2byte ITEM_POWER_HERB
-	.2byte ITEM_RED_CARD
-    .2byte ITEM_EJECT_BUTTON
-	.2byte ITEM_CELL_BATTERY
-	.2byte ITEM_ABSORB_BULB
-    .2byte ITEM_SNOWBALL
-    .2byte ITEM_LUMINOUS_MOSS
-    .2byte ITEM_AIR_BALLOON
-    .2byte ITEM_ELECTRIC_SEED
-    .2byte ITEM_GRASSY_SEED
-    .2byte ITEM_MISTY_SEED
-    .2byte ITEM_PSYCHIC_SEED
-    .2byte ITEM_WEAKNESS_POLICY
-    .2byte ITEM_FOCUS_SASH
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_LEAF_STONE
+    .2byte ITEM_WATER_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_DUSK_STONE
+    .2byte ITEM_DAWN_STONE
+    .2byte ITEM_SHINY_STONE
+    .2byte ITEM_PRISM_SCALE
+    .2byte ITEM_METAL_COAT
+    .2byte ITEM_KINGS_ROCK
+    .2byte ITEM_RAZOR_FANG
+    .2byte ITEM_RAZOR_CLAW
+    .2byte ITEM_UPGRADE
+	.2byte ITEM_DUBIOUS_DISC
 	.2byte ITEM_NONE
 	release
 	end

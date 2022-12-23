@@ -456,12 +456,6 @@ PetalburgCity_Gym_EventScript_NormanGiveKeystone::
 	giveitem ITEM_MEGA_BRACELET
 	setflag FLAG_SYS_RECEIVED_KEYSTONE
 	msgbox PetalburgCity_Gym_Text_NormanMegaBracelet, MSGBOX_DEFAULT
-	giveitem ITEM_SCEPTILITE
-	waitmessage
-	giveitem ITEM_BLAZIKENITE
-	waitmessage
-	giveitem ITEM_SWAMPERTITE
-	waitmessage
 	msgbox PetalburgCity_Gym_Text_NormanWheneverReady, MSGBOX_DEFAULT
 	closemessage
 	end

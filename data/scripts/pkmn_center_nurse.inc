@@ -35,7 +35,8 @@ EventScript_PkmnCenterNurseHasVial::
     call_if_eq Give_Nuzlocke_Items
 	call_if_eq Give_all_TMHMs
 	call_if_eq Give_BattleItems
-	call_if_eq Give_Z_Power
+	call_if_eq Give_all_Type_Gems
+	call_if_eq Give_all_Mega_Stones
 	call_if_eq Give_Cut_Items_After_Roxanne
 	call_if_eq Give_Thief_Items_After_Thief
 	call_if_eq Give_Thief_Items_After_Museum
@@ -183,6 +184,66 @@ Give_Nuzlocke_Items:
 	return
 
 Give_BattleItems:
+  checkitem ITEM_ROCKY_HELMET, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ROCKY_HELMET
+  checkitem ITEM_HEAVY_DUTY_BOOTS, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_HEAVY_DUTY_BOOTS
+  checkitem ITEM_THROAT_SPRAY, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_THROAT_SPRAY
+  checkitem ITEM_ADAMANT_ORB, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ADAMANT_ORB
+  checkitem ITEM_LUSTROUS_ORB, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_LUSTROUS_ORB
+  checkitem ITEM_GRISEOUS_ORB, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_GRISEOUS_ORB
+  checkitem ITEM_SOUL_DEW, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_SOUL_DEW
+  checkitem ITEM_AIR_BALLOON, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_AIR_BALLOON
+  checkitem ITEM_WEAKNESS_POLICY, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_WEAKNESS_POLICY
+  checkitem ITEM_ASSAULT_VEST, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ASSAULT_VEST
+  checkitem ITEM_DAMP_ROCK, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_DAMP_ROCK
+  checkitem ITEM_HEAT_ROCK, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_HEAT_ROCK
+  checkitem ITEM_ICY_ROCK, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ICY_ROCK
+  checkitem ITEM_SMOOTH_ROCK, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_SMOOTH_ROCK
+  checkitem ITEM_EXPERT_BELT, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_EXPERT_BELT
+  checkitem ITEM_LIGHT_BALL, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_LIGHT_BALL
+  checkitem ITEM_SCOPE_LENS, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_SCOPE_LENS
+  checkitem ITEM_SHED_SHELL, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_SHED_SHELL
+  checkitem ITEM_TERRAIN_EXTENDER, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_TERRAIN_EXTENDER
+  checkitem ITEM_WIDE_LENS, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_WIDE_LENS
   checkitem ITEM_EVIOLITE, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_EVIOLITE
@@ -335,6 +396,299 @@ Give_Z_Power:
 	call_if_ne ADDITEM_ITEM_ULTRANECROZIUM_Z
 	return
 
+Give_all_Type_Gems:
+	checkitem ITEM_BUG_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_BUG_GEM
+	
+	checkitem ITEM_DARK_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_DARK_GEM
+	
+	checkitem ITEM_DRAGON_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_DRAGON_GEM
+	
+	checkitem ITEM_ELECTRIC_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_ELECTRIC_GEM
+	
+	checkitem ITEM_FAIRY_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_FAIRY_GEM
+	
+	checkitem ITEM_FIGHTING_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_FIGHTING_GEM
+	
+	checkitem ITEM_FIRE_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_FIRE_GEM
+	
+	checkitem ITEM_FLYING_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_FLYING_GEM
+	
+	checkitem ITEM_GHOST_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_GHOST_GEM
+	
+	checkitem ITEM_GRASS_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_GRASS_GEM
+	
+	checkitem ITEM_GROUND_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_GROUND_GEM
+	
+	checkitem ITEM_ICE_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_ICE_GEM
+	
+	checkitem ITEM_NORMAL_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_NORMAL_GEM
+	
+	checkitem ITEM_POISON_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_POISON_GEM
+	
+	checkitem ITEM_PSYCHIC_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_PSYCHIC_GEM
+	
+	checkitem ITEM_ROCK_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_ROCK_GEM
+	
+	checkitem ITEM_STEEL_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_STEEL_GEM
+	
+	checkitem ITEM_WATER_GEM, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_WATER_GEM
+
+	return
+
+Give_all_Mega_Stones:
+	checkitem ITEM_ABOMASITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_ABOMASITE
+	
+	checkitem ITEM_ABSOLITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_ABSOLITE
+	
+	checkitem ITEM_AERODACTYLITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_AERODACTYLITE
+	
+	checkitem ITEM_AGGRONITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_AGGRONITE
+	
+	checkitem ITEM_ALAKAZITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_ALAKAZITE
+	
+	checkitem ITEM_ALTARIANITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_ALTARIANITE
+	
+	checkitem ITEM_AMPHAROSITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_AMPHAROSITE
+	
+	checkitem ITEM_AUDINITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_AUDINITE
+	
+	checkitem ITEM_BANETTITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_BANETTITE
+	
+	checkitem ITEM_BEEDRILLITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_BEEDRILLITE
+	
+	checkitem ITEM_BLASTOISINITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_BLASTOISINITE
+	
+	checkitem ITEM_BLAZIKENITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_BLAZIKENITE
+	
+	checkitem ITEM_CAMERUPTITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_CAMERUPTITE
+	
+	checkitem ITEM_CHARIZARDITE_X, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_CHARIZARDITE_X
+	
+	checkitem ITEM_CHARIZARDITE_Y, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_CHARIZARDITE_Y
+	
+	checkitem ITEM_DIANCITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_DIANCITE
+	
+	checkitem ITEM_GALLADITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_GALLADITE
+	
+	checkitem ITEM_GARCHOMPITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_GARCHOMPITE
+	
+	checkitem ITEM_GARDEVOIRITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_GARDEVOIRITE
+	
+	checkitem ITEM_GENGARITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_GENGARITE
+	
+	checkitem ITEM_GLALITITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_GLALITITE
+	
+	checkitem ITEM_GYARADOSITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_GYARADOSITE
+	
+	checkitem ITEM_HERACRONITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_HERACRONITE
+	
+	checkitem ITEM_HOUNDOOMINITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_HOUNDOOMINITE
+	
+	checkitem ITEM_KANGASKHANITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_KANGASKHANITE
+	
+	checkitem ITEM_LATIASITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_LATIASITE
+	
+	checkitem ITEM_LATIOSITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_LATIOSITE
+	
+	checkitem ITEM_LOPUNNITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_LOPUNNITE
+	
+	checkitem ITEM_LUCARIONITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_LUCARIONITE
+	
+	checkitem ITEM_MANECTITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_MANECTITE
+	
+	checkitem ITEM_MAWILITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_MAWILITE
+	
+	checkitem ITEM_MEDICHAMITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_MEDICHAMITE
+	
+	checkitem ITEM_METAGROSSITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_METAGROSSITE
+	
+	checkitem ITEM_MEWTWONITE_X, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_MEWTWONITE_X
+	
+	checkitem ITEM_MEWTWONITE_Y, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_MEWTWONITE_Y
+	
+	checkitem ITEM_PIDGEOTITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_PIDGEOTITE
+	
+	checkitem ITEM_PINSIRITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_PINSIRITE
+	
+	checkitem ITEM_SABLENITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_SABLENITE
+	
+	checkitem ITEM_SALAMENCITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_SALAMENCITE
+	
+	checkitem ITEM_SCEPTILITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_SCEPTILITE
+	
+	checkitem ITEM_SCIZORITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_SCIZORITE
+	
+	checkitem ITEM_SHARPEDONITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_SHARPEDONITE
+	
+	checkitem ITEM_SLOWBRONITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_SLOWBRONITE
+	
+	checkitem ITEM_STEELIXITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_STEELIXITE
+	
+	checkitem ITEM_SWAMPERTITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_SWAMPERTITE
+	
+	checkitem ITEM_TYRANITARITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_TYRANITARITE
+	
+	checkitem ITEM_VENUSAURITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_VENUSAURITE
+	
+	checkitem ITEM_MILOTICITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_MILOTICITE
+	
+	checkitem ITEM_FLYGONITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_FLYGONITE
+	
+	checkitem ITEM_BUTTERFRENITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_BUTTERFRENITE
+	
+	checkitem ITEM_LAPRASITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_LAPRASITE
+	
+	checkitem ITEM_MACHAMPITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_MACHAMPITE
+	
+	checkitem ITEM_KINGLERITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_KINGLERITE
+	
+	checkitem ITEM_KINGDRANITE, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADD_ITEM_KINGDRANITE
+
+	return
 Give_all_TMHMs:
 	checkitem ITEM_TM01_FOCUS_PUNCH, 1
 	compare VAR_RESULT, TRUE
@@ -934,7 +1288,7 @@ Give_Thief_Items_After_Norman:
 	return
 
 Give_Thief_Items_After_Winoma:
-	checkitem ITEM_PP_MAX, 50
+	checkitem ITEM_PP_MAX, 90
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_PP_MAX
 	return
@@ -1514,6 +1868,294 @@ ADDITEM_ITEM_HM08_DIVE:
 	additem ITEM_HM08_DIVE, 1
 	return
 
+ADD_ITEM_ABOMASITE:
+	additem ITEM_ABOMASITE, 1
+	return
+	
+ADD_ITEM_ABSOLITE:
+	additem ITEM_ABSOLITE, 1
+	return
+	
+ADD_ITEM_AERODACTYLITE:
+	additem ITEM_AERODACTYLITE, 1
+	return
+	
+ADD_ITEM_AGGRONITE:
+	additem ITEM_AGGRONITE, 1
+	return
+	
+ADD_ITEM_ALAKAZITE:
+	additem ITEM_ALAKAZITE, 1
+	return
+	
+ADD_ITEM_ALTARIANITE:
+	additem ITEM_ALTARIANITE, 1
+	return
+	
+ADD_ITEM_AMPHAROSITE:
+	additem ITEM_AMPHAROSITE, 1
+	return
+	
+ADD_ITEM_AUDINITE:
+	additem ITEM_AUDINITE, 1
+	return
+	
+ADD_ITEM_BANETTITE:
+	additem ITEM_BANETTITE, 1
+	return
+	
+ADD_ITEM_BEEDRILLITE:
+	additem ITEM_BEEDRILLITE, 1
+	return
+	
+ADD_ITEM_BLASTOISINITE:
+	additem ITEM_BLASTOISINITE, 1
+	return
+	
+ADD_ITEM_BLAZIKENITE:
+	additem ITEM_BLAZIKENITE, 1
+	return
+	
+ADD_ITEM_CAMERUPTITE:
+	additem ITEM_CAMERUPTITE, 1
+	return
+	
+ADD_ITEM_CHARIZARDITE_X:
+	additem ITEM_CHARIZARDITE_X, 1
+	return
+	
+ADD_ITEM_CHARIZARDITE_Y:
+	additem ITEM_CHARIZARDITE_Y, 1
+	return
+	
+ADD_ITEM_DIANCITE:
+	additem ITEM_DIANCITE, 1
+	return
+	
+ADD_ITEM_GALLADITE:
+	additem ITEM_GALLADITE, 1
+	return
+	
+ADD_ITEM_GARCHOMPITE:
+	additem ITEM_GARCHOMPITE, 1
+	return
+	
+ADD_ITEM_GARDEVOIRITE:
+	additem ITEM_GARDEVOIRITE, 1
+	return
+	
+ADD_ITEM_GENGARITE:
+	additem ITEM_GENGARITE, 1
+	return
+	
+ADD_ITEM_GLALITITE:
+	additem ITEM_GLALITITE, 1
+	return
+	
+ADD_ITEM_GYARADOSITE:
+	additem ITEM_GYARADOSITE, 1
+	return
+	
+ADD_ITEM_HERACRONITE:
+	additem ITEM_HERACRONITE, 1
+	return
+	
+ADD_ITEM_HOUNDOOMINITE:
+	additem ITEM_HOUNDOOMINITE, 1
+	return
+	
+ADD_ITEM_KANGASKHANITE:
+	additem ITEM_KANGASKHANITE, 1
+	return
+	
+ADD_ITEM_LATIASITE:
+	additem ITEM_LATIASITE, 1
+	return
+	
+ADD_ITEM_LATIOSITE:
+	additem ITEM_LATIOSITE, 1
+	return
+	
+ADD_ITEM_LOPUNNITE:
+	additem ITEM_LOPUNNITE, 1
+	return
+	
+ADD_ITEM_LUCARIONITE:
+	additem ITEM_LUCARIONITE, 1
+	return
+	
+ADD_ITEM_MANECTITE:
+	additem ITEM_MANECTITE, 1
+	return
+	
+ADD_ITEM_MAWILITE:
+	additem ITEM_MAWILITE, 1
+	return
+	
+ADD_ITEM_MEDICHAMITE:
+	additem ITEM_MEDICHAMITE, 1
+	return
+	
+ADD_ITEM_METAGROSSITE:
+	additem ITEM_METAGROSSITE, 1
+	return
+	
+ADD_ITEM_MEWTWONITE_X:
+	additem ITEM_MEWTWONITE_X, 1
+	return
+	
+ADD_ITEM_MEWTWONITE_Y:
+	additem ITEM_MEWTWONITE_Y, 1
+	return
+	
+ADD_ITEM_PIDGEOTITE:
+	additem ITEM_PIDGEOTITE, 1
+	return
+	
+ADD_ITEM_PINSIRITE:
+	additem ITEM_PINSIRITE, 1
+	return
+	
+ADD_ITEM_SABLENITE:
+	additem ITEM_SABLENITE, 1
+	return
+	
+ADD_ITEM_SALAMENCITE:
+	additem ITEM_SALAMENCITE, 1
+	return
+	
+ADD_ITEM_SCEPTILITE:
+	additem ITEM_SCEPTILITE, 1
+	return
+	
+ADD_ITEM_SCIZORITE:
+	additem ITEM_SCIZORITE, 1
+	return
+	
+ADD_ITEM_SHARPEDONITE:
+	additem ITEM_SHARPEDONITE, 1
+	return
+	
+ADD_ITEM_SLOWBRONITE:
+	additem ITEM_SLOWBRONITE, 1
+	return
+	
+ADD_ITEM_STEELIXITE:
+	additem ITEM_STEELIXITE, 1
+	return
+	
+ADD_ITEM_SWAMPERTITE:
+	additem ITEM_SWAMPERTITE, 1
+	return
+	
+ADD_ITEM_TYRANITARITE:
+	additem ITEM_TYRANITARITE, 1
+	return
+	
+ADD_ITEM_VENUSAURITE:
+	additem ITEM_VENUSAURITE, 1
+	return
+	
+ADD_ITEM_MILOTICITE:
+	additem ITEM_MILOTICITE, 1
+	return
+	
+ADD_ITEM_FLYGONITE:
+	additem ITEM_FLYGONITE, 1
+	return
+	
+ADD_ITEM_BUTTERFRENITE:
+	additem ITEM_BUTTERFRENITE, 1
+	return
+	
+ADD_ITEM_LAPRASITE:
+	additem ITEM_LAPRASITE, 1
+	return
+	
+ADD_ITEM_MACHAMPITE:
+	additem ITEM_MACHAMPITE, 1
+	return
+	
+ADD_ITEM_KINGLERITE:
+	additem ITEM_KINGLERITE, 1
+	return
+	
+ADD_ITEM_KINGDRANITE:
+	additem ITEM_KINGDRANITE, 1
+	return
+
+ADD_ITEM_BUG_GEM:
+	additem ITEM_BUG_GEM, 50
+	return
+
+ADD_ITEM_DARK_GEM:
+	additem ITEM_DARK_GEM, 50
+	return
+
+ADD_ITEM_DRAGON_GEM:
+	additem ITEM_DRAGON_GEM, 50
+	return
+
+ADD_ITEM_ELECTRIC_GEM:
+	additem ITEM_ELECTRIC_GEM, 50
+	return
+
+ADD_ITEM_FAIRY_GEM:
+	additem ITEM_FAIRY_GEM, 50
+	return
+
+ADD_ITEM_FIGHTING_GEM:
+	additem ITEM_FIGHTING_GEM, 50
+	return
+
+ADD_ITEM_FIRE_GEM:
+	additem ITEM_FIRE_GEM, 50
+	return
+
+ADD_ITEM_FLYING_GEM:
+	additem ITEM_FLYING_GEM, 50
+	return
+
+ADD_ITEM_GHOST_GEM:
+	additem ITEM_GHOST_GEM, 50
+	return
+
+ADD_ITEM_GRASS_GEM:
+	additem ITEM_GRASS_GEM, 50
+	return
+
+ADD_ITEM_GROUND_GEM:
+	additem ITEM_GROUND_GEM, 50
+	return
+
+ADD_ITEM_ICE_GEM:
+	additem ITEM_ICE_GEM, 50
+	return
+
+ADD_ITEM_NORMAL_GEM:
+	additem ITEM_NORMAL_GEM, 50
+	return
+
+ADD_ITEM_POISON_GEM:
+	additem ITEM_POISON_GEM, 50
+	return
+
+ADD_ITEM_PSYCHIC_GEM:
+	additem ITEM_PSYCHIC_GEM, 50
+	return
+
+ADD_ITEM_ROCK_GEM:
+	additem ITEM_ROCK_GEM, 50
+	return
+
+ADD_ITEM_STEEL_GEM:
+	additem ITEM_STEEL_GEM, 50
+	return
+
+ADD_ITEM_WATER_GEM:
+	additem ITEM_WATER_GEM, 50
+	return
+
 ADDITEM_MASTER_BALL:
 	additem ITEM_MASTER_BALL, 400
 	return
@@ -1682,6 +2324,86 @@ ADDITEM_EVIOLITE:
 	additem ITEM_EVIOLITE, 50
 	return
 
+ADDITEM_ROCKY_HELMET:
+	additem ITEM_ROCKY_HELMET, 50
+	return
+
+ADDITEM_HEAVY_DUTY_BOOTS:
+	additem ITEM_HEAVY_DUTY_BOOTS, 50
+	return
+
+ADDITEM_THROAT_SPRAY:
+	additem ITEM_THROAT_SPRAY, 50
+	return
+
+ADDITEM_ADAMANT_ORB:
+	additem ITEM_ADAMANT_ORB, 50
+	return
+
+ADDITEM_LUSTROUS_ORB:
+	additem ITEM_LUSTROUS_ORB, 50
+	return
+
+ADDITEM_GRISEOUS_ORB:
+	additem ITEM_GRISEOUS_ORB, 50
+	return
+
+ADDITEM_SOUL_DEW:
+	additem ITEM_SOUL_DEW, 50
+	return
+
+ADDITEM_AIR_BALLOON:
+	additem ITEM_AIR_BALLOON, 50
+	return
+
+ADDITEM_WEAKNESS_POLICY:
+	additem ITEM_WEAKNESS_POLICY, 50
+	return
+
+ADDITEM_ASSAULT_VEST:
+  additem ITEM_ASSAULT_VEST, 50
+  return
+
+ADDITEM_DAMP_ROCK:
+  additem ITEM_DAMP_ROCK, 50
+  return
+
+ADDITEM_HEAT_ROCK:
+  additem ITEM_HEAT_ROCK, 50
+  return
+
+ADDITEM_ICY_ROCK:
+  additem ITEM_ICY_ROCK, 50
+  return
+
+ADDITEM_SMOOTH_ROCK:
+  additem ITEM_SMOOTH_ROCK, 50
+  return
+
+ADDITEM_EXPERT_BELT:
+  additem ITEM_EXPERT_BELT, 50
+  return
+
+ADDITEM_LIGHT_BALL:
+  additem ITEM_LIGHT_BALL, 50
+  return
+
+ADDITEM_SCOPE_LENS:
+  additem ITEM_SCOPE_LENS, 50
+  return
+
+ADDITEM_SHED_SHELL:
+  additem ITEM_SHED_SHELL, 50
+  return
+
+ADDITEM_TERRAIN_EXTENDER:
+  additem ITEM_TERRAIN_EXTENDER, 50
+  return
+
+ADDITEM_WIDE_LENS:
+  additem ITEM_WIDE_LENS, 50
+  return
+
 ADDITEM_BLACK_SLUDGE:
   additem ITEM_BLACK_SLUDGE, 50
   return
@@ -1787,5 +2509,5 @@ ADDITEM_DRAGON_FANG:
 	return
 
 ADDITEM_PP_MAX:
-	additem ITEM_PP_MAX, 50
+	additem ITEM_PP_MAX, 90
 	return
