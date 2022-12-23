@@ -5472,12 +5472,18 @@ static const struct TrainerMonItemCustomMoves sParty_Johanna[] = {
     {
     .lvl = 0,
     .species = SPECIES_GOLDEEN,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {84, 84, 84, 84, 84, 84},      //Hp, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_HARDY,
     .ability = 2, // Lightningrod
     .moves = MOVE_BUBBLE_BEAM, MOVE_PECK, MOVE_HORN_ATTACK, MOVE_SUPERSONIC
     },
     {
     .lvl = 0,
     .species = SPECIES_BRUXISH,
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {84, 84, 84, 84, 84, 84},      //Hp, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_HARDY,
     .ability = 1, // Strong Jaw
     .moves = MOVE_AQUA_JET, MOVE_BITE, MOVE_CONFUSION, MOVE_ASTONISH
     }
