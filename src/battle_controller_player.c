@@ -745,7 +745,7 @@ static void HandleInputChooseMove(void)
             ChangeMoveDisplayMode();
             FlagSet(FLAG_SYS_MOVE_INFO);
         }
-        else{//asdf
+        else{
             MoveSelectionDestroyCursorAt(0);
             MoveSelectionDisplayMoveNames();
             MoveSelectionCreateCursorAt(gMoveSelectionCursor[gActiveBattler], 0);
@@ -1896,24 +1896,56 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId)
 
 static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId)
 {
-	u8 *txtPtr;
+	u8 WindowID;
+    u16 move;
+
+    static const u16 gType_Text_Pal[]         = INCBIN_U16("graphics/battle_interface/text_se.gbapal");
+    static const u8 gEffectivenessUp[]           =  _("{COLOR 12}{SHADOW 11}{STR_VAR_1} {COLOR 5}{UP_ARROW_2} {COLOR 12}{STR_VAR_2}");
+    static const u8 gEffectivenessDown[]         =  _("{COLOR 12}{SHADOW 11}{STR_VAR_1} {COLOR 6}{DOWN_ARROW_2} {COLOR 12}{STR_VAR_2}");
+    static const u8 gEffectivenessNoDamage[]     =  _("{COLOR 12}{SHADOW 11}{STR_VAR_1} {COLOR 7}{BIG_MULT_X} {COLOR 12}{STR_VAR_2}");
+    static const u8 gEffectivenessNormalDamage[] =  _("{STR_VAR_1} {STR_VAR_2}");
+    static const u8 gStabIcon[]   =  _("{PLUS}");
+    static const u8 gNoStabIcon[] =  _(" ");
+
 	struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleResources->bufferA[gActiveBattler][4]);
+    //Move Name
+    LoadPalette(gType_Text_Pal, 5 * 0x10, 0x20);
+    move = moveInfo->moves[gMoveSelectionCursor[gActiveBattler]];
+	StringCopy(gStringVar1, gTypeNames[gBattleMoves[move].type]);
+    if(IS_BATTLER_OF_TYPE(gActiveBattler, gBattleMoves[move].type))
+	    StringCopy(gStringVar2, gStabIcon);
+    else
+	    StringCopy(gStringVar2, gNoStabIcon);
 
-	txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-	txtPtr[0] = EXT_CTRL_CODE_BEGIN;
-	txtPtr++;
-	txtPtr[0] = 6;
-	txtPtr++;
-	txtPtr[0] = 1;
-	txtPtr++;
+    
+    switch(GetMoveTypeEffectiveness(move, targetId)){
+        case MOVE_EFFECTIVENESS_NONE:
+            StringExpandPlaceholders(gStringVar4, gEffectivenessNoDamage);
+            WindowID = B_WIN_NO_EFFECT;
+        break;
+        case MOVE_EFFECTIVENESS_HALF:
+            StringExpandPlaceholders(gStringVar4, gEffectivenessDown);
+            WindowID = B_WIN_NOT_VERY_EFFECTIVE;
+        break;
+        case MOVE_EFFECTIVENESS_DOUBLE:
+            StringExpandPlaceholders(gStringVar4, gEffectivenessUp);
+            WindowID = B_WIN_SUPER_EFFECTIVE;
+        break;
+        default: //MOVE_EFFECTIVENESS_NORMAL
+            StringExpandPlaceholders(gStringVar4, gEffectivenessNormalDamage);
+            WindowID = B_WIN_MOVE_TYPE;
+        break;
+    }
+    BattlePutTextOnWindow(gStringVar4, WindowID);
+    PutWindowTilemap(WindowID );
+	CopyWindowToVram(WindowID , 3);
 
-	StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type]);
-	BattlePutTextOnWindow(gDisplayedStringBattle, TypeEffectiveness(moveInfo, targetId));
+    //BattlePutTextOnWindow(gDisplayedStringBattle, TypeEffectiveness(moveInfo, 1));
+    MoveSelectionDisplaySplitIcon();
 }
 
 static void MoveSelectionDisplayMoveType(void)
 {
-    //asdf
     u8 WindowID;
     u16 move;
 
