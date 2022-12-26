@@ -3652,4 +3652,12 @@ extern const u8 gText_Effect_Recoil[];
 extern const u8 gText_Effect_Always_Crit[];
 extern const u8 gText_Effect_Protect[];
 
+// frlg_tm_case_port
+extern const u8 gText_TMCase[];
+extern const u8 gText_Close[];
+extern const u8 gText_TMCaseWillBePutAway[];
+extern const u8 gText_FontSmall[];
+extern const u8 gText_FontShort[];
+extern const u8 gText_TMCase_Blue[];
+
 #endif // GUARD_STRINGS_H

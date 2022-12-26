@@ -2459,6 +2459,7 @@ const struct SpritePalette gMonIconPaletteTable[] =
     { gMonIconPalettes[3], POKE_ICON_BASE_PAL_TAG + 3 },
     { gMonIconPalettes[4], POKE_ICON_BASE_PAL_TAG + 4 },
     { gMonIconPalettes[5], POKE_ICON_BASE_PAL_TAG + 5 },
+	{ gMonIconPalettes[6], POKE_ICON_BASE_PAL_TAG + 6 },
 };
 
 const struct OamData sMonIconOamData =
@@ -2671,6 +2672,17 @@ void LoadMonIconPalettes(void)
     for (i = 0; i < ARRAY_COUNT(gMonIconPaletteTable); i++)
         LoadSpritePalette(&gMonIconPaletteTable[i]);
 }
+
+
+void LoadMonIconPalettesTinted(void)
+{
+    u8 i;
+    for (i = 0; i < ARRAY_COUNT(gMonIconPaletteTable); i++)
+    {
+        LoadSpritePalette(&gMonIconPaletteTable[ARRAY_COUNT(gMonIconPaletteTable)]);
+        //TintPalette_GrayScale2(&gPlttBufferUnfaded[0x170 + i*16], 16);
+    }
+}  
 
 // unused
 void SafeLoadMonIconPalette(u16 species)

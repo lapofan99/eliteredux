@@ -2335,3 +2335,13 @@ const u8 gText_Effect_ContactNo[]             = _("No");
 const u8 gText_Stats[]               = _("Stats");
 const u8 gText_BaseStats[]           = _("BS");
 const u8 gText_EVs[]                 = _("Evs");
+
+// frlg_tm_case_port
+const u8 gText_TMCase[] =               _("TM CASE");
+const u8 gText_Close[] =                _("CLOSE");
+const u8 gText_TMCaseWillBePutAway[] =  _("The TM CASE will be\nput away.");
+//const u8 gText_FontSmall[] =            _("{FONT_SMALL}");
+//const u8 gText_FontShort[] =            _("{FONT_SHORT}");
+const u8 gText_FontSmall[] =            _("");
+const u8 gText_FontShort[] =            _("");
+const u8 gText_TMCase_Blue[] =          _("{COLOR_HIGHLIGHT_SHADOW BLUE TRANSPARENT LIGHT_BLUE}{STR_VAR_2}");
