@@ -2085,7 +2085,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #ifdef REBALANCED_VERSION
             .power = 25,
             .type = TYPE_WATER,
-            .accuracy = 90,
+            .accuracy = 100,
         #else
             .power = 20,
             .type = TYPE_NORMAL,
