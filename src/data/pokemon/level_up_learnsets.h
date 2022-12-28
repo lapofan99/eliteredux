@@ -3380,6 +3380,7 @@ static const struct LevelUpMove sTotodileLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_WATERFALL),
     LEVEL_UP_MOVE(40, MOVE_SUPERPOWER),
     LEVEL_UP_MOVE(44, MOVE_HYDRO_PUMP),
+    LEVEL_UP_MOVE(48, MOVE_DEATHROLL),
     LEVEL_UP_END
 };
 
@@ -3401,6 +3402,7 @@ static const struct LevelUpMove sCroconawLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_WATERFALL),
     LEVEL_UP_MOVE(49, MOVE_SUPERPOWER),
     LEVEL_UP_MOVE(53, MOVE_HYDRO_PUMP),
+    LEVEL_UP_MOVE(57, MOVE_DEATHROLL),
     LEVEL_UP_END
 };
 
