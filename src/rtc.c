@@ -1,4 +1,5 @@
 #include "global.h"
+#include "event_data.h"
 #include "rtc.h"
 #include "string_util.h"
 #include "text.h"
@@ -347,8 +348,25 @@ u32 RtcGetLocalDayCount(void)
 
 bool8 IsCurrentlyDay(void)
 {
-	RtcCalcLocalTime();
-    if (gLocalTime.hours >= 6 && gLocalTime.hours < 18)
+    RtcCalcLocalTime();
+    if(!FlagGet(FLAG_IS_DAYNIGHT_INVERTED)){
+		if (gLocalTime.hours >= 6 && gLocalTime.hours < 18)
+			return TRUE;
+		return FALSE;
+	}
+	else{
+		if (gLocalTime.hours >= 6 && gLocalTime.hours < 18)
+			return FALSE;
 		return TRUE;
-	return FALSE;
+	}
+}
+
+bool8 IsCurrentlyDusk(void)
+{
+    RtcCalcLocalTime();
+    if((!FlagGet(FLAG_IS_DAYNIGHT_INVERTED) && gLocalTime.hours == 17) ||
+	    (FlagGet(FLAG_IS_DAYNIGHT_INVERTED) && gLocalTime.hours == 5))
+		return TRUE;
+	else
+		return FALSE;
 }

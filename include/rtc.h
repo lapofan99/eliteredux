@@ -46,5 +46,6 @@ void CalcTimeDifference(struct Time *result, struct Time *t1, struct Time *t2);
 u32 RtcGetMinuteCount(void);
 u32 RtcGetLocalDayCount(void);
 bool8 IsCurrentlyDay(void);
+bool8 IsCurrentlyDusk(void);
 
 #endif // GUARD_RTC_UTIL_H

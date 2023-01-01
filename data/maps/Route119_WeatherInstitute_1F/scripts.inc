@@ -75,6 +75,14 @@ Route119_WeatherInstitute_1F_EventScript_Bed:: @ 826FB18
 	lockall
 	msgbox Route119_WeatherInstitute_1F_Text_TakeRestInBed, MSGBOX_DEFAULT
 	closemessage
+	goto_if_set FLAG_IS_DAYNIGHT_INVERTED, Route119_WeatherInstitute_1F_EventScript_Bed2
+	setflag FLAG_IS_DAYNIGHT_INVERTED
+	call Common_EventScript_OutOfCenterPartyHeal
+	releaseall
+	end
+	
+Route119_WeatherInstitute_1F_EventScript_Bed2:: @ 826FB18
+	clearflag FLAG_IS_DAYNIGHT_INVERTED
 	call Common_EventScript_OutOfCenterPartyHeal
 	releaseall
 	end

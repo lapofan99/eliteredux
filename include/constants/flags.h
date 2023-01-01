@@ -703,8 +703,8 @@
 #define FLAG_SYS_NO_CATCHING         0x298 //DEBUG
 #define FLAG_SYS_PC_FROM_DEBUG_MENU  0x299 //DEBUG
 
-#define FLAG_SYS_MOVE_INFO 0x29A // Battle Interface
-#define FLAG_UNUSED_0x29B  0x29B // Unused Flag
+#define FLAG_SYS_MOVE_INFO           0x29A // Battle Interface
+#define FLAG_IS_DAYNIGHT_INVERTED    0x29B // Ported from ROWE
 #define FLAG_UNUSED_0x29C  0x29C // Unused Flag
 #define FLAG_UNUSED_0x29D  0x29D // Unused Flag
 #define FLAG_UNUSED_0x29E  0x29E // Unused Flag
