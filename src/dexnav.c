@@ -1130,7 +1130,7 @@ static void Task_DexNavSearch(u8 taskId)
         return;
     }
 
-    //Caves and water the pokemon moves around
+    /*/Caves and water the pokemon moves around
     if ((sDexNavSearchDataPtr->environment == ENCOUNTER_TYPE_WATER || GetCurrentMapType() == MAP_TYPE_UNDERGROUND)
         && sDexNavSearchDataPtr->proximity < GetMovementProximityBySearchLevel() && sDexNavSearchDataPtr->movementCount < 2
         && task->tRevealed)
@@ -1144,7 +1144,7 @@ static void Task_DexNavSearch(u8 taskId)
         }
         
         sDexNavSearchDataPtr->movementCount++;
-    }
+    }*/
 
     DexNavProximityUpdate();
     if (task->tProximity != sDexNavSearchDataPtr->proximity)
