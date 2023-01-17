@@ -15546,10 +15546,11 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM46_THIEF)
                                         | TMHM1(TM49_SLEEP_TALK)
                                         | TMHM1(TM52_FOCUS_BLAST)
+                                        | TMHM1(TM55_SCALD)
                                         | TMHM1(TM58_ENDURE)
                                         | TMHM1(TM60_DRAIN_PUNCH)
                                         | TMHM1(TM63_ROCK_SLIDE),
-                                          TMHM2(TM66_PAYBACK)
+                                        | TMHM2(TM66_PAYBACK)
                                         | TMHM2(TM68_GIGA_IMPACT)
                                         | TMHM2(TM71_STONE_EDGE)
                                         | TMHM2(TM75_SWORDS_DANCE)
@@ -15563,8 +15564,11 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM97_DARK_PULSE)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM01_CUT)
+                                        | TMHM2(HM03_SURF)
                                         | TMHM2(HM04_STRENGTH)
-                                        | TMHM2(HM06_ROCK_SMASH)),
+                                        | TMHM2(HM06_ROCK_SMASH)
+                                        | TMHM2(HM07_WATERFALL)
+                                        | TMHM2(HM08_DIVE)),
     [SPECIES_CARNIVINE]   = TMHM_LEARNSET (TMHM1(TM06_TOXIC)
                                         | TMHM1(TM09_BULLET_SEED)
                                         | TMHM1(TM10_HIDDEN_POWER)
