@@ -83,7 +83,7 @@ SootopolisCity_Gym_1F_Movement_FallThroughIce: @ 8224F42
 	step_end
 
 SootopolisCity_Gym_1F_EventScript_Juan:: @ 8224F44
-	goto_if_set FLAG_DAILY_REMATCH_JUAN, SootopolisCity_Gym_1F_EventScript_AlreadyRematched
+	//goto_if_set FLAG_DAILY_REMATCH_JUAN, SootopolisCity_Gym_1F_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, SootopolisCity_Gym_1F_EventScript_JuanRematch
 	trainerbattle_single TRAINER_JUAN_1, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
 	goto_if_unset FLAG_RECEIVED_TM03, SootopolisCity_Gym_1F_EventScript_GiveScald2
@@ -165,7 +165,7 @@ SootopolisCity_Gym_1F_EventScript_SetSingles::
 	compare VAR_RESULT, 0
 	goto_if_eq SootopolisCity_Gym_1F_EventScript_JuanSinglesRematch
 	trainerbattle_no_intro TRAINER_JUAN_4, SootopolisCity_Gym_1F_Text_JuanRematchDefeat
-	setflag FLAG_DAILY_REMATCH_JUAN
+	//setflag FLAG_DAILY_REMATCH_JUAN
 	releaseall
 	end
 
@@ -174,19 +174,19 @@ SootopolisCity_Gym_1F_EventScript_SetDoubles::
 	compare VAR_RESULT, 0
 	goto_if_eq SootopolisCity_Gym_1F_EventScript_JuanDoublesRematch
 	trainerbattle_no_intro TRAINER_JUAN_5, SootopolisCity_Gym_1F_Text_JuanRematchDefeat
-	setflag FLAG_DAILY_REMATCH_JUAN
+	//setflag FLAG_DAILY_REMATCH_JUAN
 	releaseall
 	end
 
 SootopolisCity_Gym_1F_EventScript_JuanSinglesRematch::
 	trainerbattle_no_intro TRAINER_JUAN_2, SootopolisCity_Gym_1F_Text_JuanRematchDefeat
-	setflag FLAG_DAILY_REMATCH_JUAN
+	//setflag FLAG_DAILY_REMATCH_JUAN
 	releaseall
 	end
 
 SootopolisCity_Gym_1F_EventScript_JuanDoublesRematch::
 	trainerbattle_no_intro TRAINER_JUAN_3, SootopolisCity_Gym_1F_Text_JuanRematchDefeat
-	setflag FLAG_DAILY_REMATCH_JUAN
+	//setflag FLAG_DAILY_REMATCH_JUAN
 	releaseall
 	end
 

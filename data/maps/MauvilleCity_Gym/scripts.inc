@@ -74,7 +74,7 @@ MauvilleCity_Gym_EventScript_DeactivatePuzzle:: @ 820DEE7
 	end
 
 MauvilleCity_Gym_EventScript_Wattson:: @ 820DEEB
-	goto_if_set FLAG_DAILY_REMATCH_WATTSON, MauvilleCity_Gym_EventScript_AlreadyRematched
+	//goto_if_set FLAG_DAILY_REMATCH_WATTSON, MauvilleCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, MauvilleCity_Gym_EventScript_WattsonRematch
 	trainerbattle_single TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
 	goto_if_unset FLAG_RECEIVED_TM72, MauvilleCity_Gym_EventScript_GiveVoltSwitch2
@@ -160,7 +160,7 @@ MauvilleCity_Gym_EventScript_SetSingles::
 	compare VAR_RESULT, NO
 	goto_if_eq MauvilleCity_Gym_EventScript_WattsonSinglesRematch
 	trainerbattle_no_intro TRAINER_WATTSON_3, MauvilleCity_Gym_Text_WattsonRematchDefeat
-	setflag FLAG_DAILY_REMATCH_WATTSON
+	//setflag FLAG_DAILY_REMATCH_WATTSON
 	releaseall
 	end
 
@@ -169,19 +169,19 @@ MauvilleCity_Gym_EventScript_SetDoubles::
 	compare VAR_RESULT, NO
 	goto_if_eq MauvilleCity_Gym_EventScript_WattsonDoublesRematch
 	trainerbattle_no_intro TRAINER_WATTSON_5, MauvilleCity_Gym_Text_WattsonRematchDefeat
-	setflag FLAG_DAILY_REMATCH_WATTSON
+	//setflag FLAG_DAILY_REMATCH_WATTSON
 	releaseall
 	end
 
 MauvilleCity_Gym_EventScript_WattsonSinglesRematch::
 	trainerbattle_no_intro TRAINER_WATTSON_2, MauvilleCity_Gym_Text_WattsonRematchDefeat
-	setflag FLAG_DAILY_REMATCH_WATTSON
+	//setflag FLAG_DAILY_REMATCH_WATTSON
 	releaseall
 	end
 
 MauvilleCity_Gym_EventScript_WattsonDoublesRematch::
 	trainerbattle_no_intro TRAINER_WATTSON_4, MauvilleCity_Gym_Text_WattsonRematchDefeat
-	setflag FLAG_DAILY_REMATCH_WATTSON
+	//setflag FLAG_DAILY_REMATCH_WATTSON
 	releaseall
 	end
 

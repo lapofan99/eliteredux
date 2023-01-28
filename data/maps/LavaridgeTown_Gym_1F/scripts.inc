@@ -49,7 +49,7 @@ LavaridgeTown_Gym_1F_EventScript_EndCheckBuryTrainers:: @ 81FE78B
 	return
 
 LavaridgeTown_Gym_1F_EventScript_Flannery:: @ 81FE78C
-	goto_if_set FLAG_DAILY_REMATCH_FLANNERY, LavaridgeTown_Gym_1F_EventScript_AlreadyRematched
+	//goto_if_set FLAG_DAILY_REMATCH_FLANNERY, LavaridgeTown_Gym_1F_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
 	trainerbattle_single TRAINER_FLANNERY_1, LavaridgeTown_Gym_1F_Text_FlanneryIntro, LavaridgeTown_Gym_1F_Text_FlanneryDefeat, LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated, NO_MUSIC
 	goto_if_unset FLAG_RECEIVED_TM50, LavaridgeTown_Gym_1F_EventScript_GiveOverheat2
@@ -131,7 +131,7 @@ LavaridgeTown_Gym_1F_EventScript_SetSingles::
 	compare VAR_RESULT, NO
 	goto_if_eq LavaridgeTown_Gym_1F_EventScript_FlannerySinglesRematch
 	trainerbattle_no_intro TRAINER_FLANNERY_3, LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat
-	setflag FLAG_DAILY_REMATCH_FLANNERY
+	//setflag FLAG_DAILY_REMATCH_FLANNERY
 	releaseall
 	end
 
@@ -140,19 +140,19 @@ LavaridgeTown_Gym_1F_EventScript_SetDoubles::
 	compare VAR_RESULT, NO
 	goto_if_eq LavaridgeTown_Gym_1F_EventScript_FlanneryDoublesRematch
 	trainerbattle_no_intro TRAINER_FLANNERY_4, LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat
-	setflag FLAG_DAILY_REMATCH_FLANNERY
+	//setflag FLAG_DAILY_REMATCH_FLANNERY
 	releaseall
 	end
 
 LavaridgeTown_Gym_1F_EventScript_FlannerySinglesRematch::
 	trainerbattle_no_intro TRAINER_FLANNERY_2, LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat
-	setflag FLAG_DAILY_REMATCH_FLANNERY
+	//setflag FLAG_DAILY_REMATCH_FLANNERY
 	releaseall
 	end
 
 LavaridgeTown_Gym_1F_EventScript_FlanneryDoublesRematch::
 	trainerbattle_no_intro TRAINER_FLANNERY_5, LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat
-	setflag FLAG_DAILY_REMATCH_FLANNERY
+	//setflag FLAG_DAILY_REMATCH_FLANNERY
 	releaseall
 	end
 

@@ -4280,6 +4280,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_MOLD_BREAKER:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_MOLD_BREAKER;
+				gLastUsedAbility = ABILITY_MOLD_BREAKER;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -5577,6 +5579,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_MOLD_BREAKER;
+				gLastUsedAbility = ABILITY_MOLD_BREAKER;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
             }
@@ -5678,6 +5682,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_SPEED_BOOST:
                 if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gDisableStructs[battler].isFirstTurn != 2)
                 {
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_SPEED_BOOST;
+				    gLastUsedAbility = ABILITY_SPEED_BOOST;
                     gBattleMons[battler].statStages[STAT_SPEED]++;
                     gBattleScripting.animArg1 = 14 + STAT_SPEED;
                     gBattleScripting.animArg2 = 0;
@@ -5810,6 +5816,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			case ABILITY_SELF_SUFFICIENT:
 				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
 				{
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_SUFFICIENT;
+			        gLastUsedAbility = ABILITY_SELF_SUFFICIENT;
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
@@ -5915,6 +5923,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SPEED_BOOST)){
                 if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gDisableStructs[battler].isFirstTurn != 2)
                 {
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_SPEED_BOOST;
+				    gLastUsedAbility = ABILITY_SPEED_BOOST;
                     gBattleMons[battler].statStages[STAT_SPEED]++;
                     gBattleScripting.animArg1 = 14 + STAT_SPEED;
                     gBattleScripting.animArg2 = 0;
@@ -5930,6 +5940,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 {
                     u32 validToRaise = 0, validToLower = 0;
                     u32 statsNum = (B_MOODY_ACC_EVASION != GEN_8) ? NUM_BATTLE_STATS : NUM_STATS;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_MOODY;
+			        gLastUsedAbility = ABILITY_MOODY;
 
                     for (i = STAT_ATK; i < statsNum; i++)
                     {
@@ -6753,6 +6765,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_EFFECT_SPORE;
+			    gLastUsedAbility = ABILITY_EFFECT_SPORE;
                 i = Random() % 3;
                 if (i == 0)
                     goto POISON_POINT;
@@ -7168,6 +7182,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && IsBattlerAlive(gBattlerAttacker)
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_AFTERMATH;
+				gLastUsedAbility = ABILITY_AFTERMATH;
                 gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
@@ -8128,7 +8144,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if ((GetBattlerAbility(i) == ABILITY_INTIMIDATE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_INTIMIDATE))
 				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
             {
-                gLastUsedAbility = ABILITY_INTIMIDATE;
+                //gLastUsedAbility = ABILITY_INTIMIDATE;
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
                 if (caseID == ABILITYEFFECT_INTIMIDATE1)
                 {
@@ -8146,7 +8162,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			else if ((GetBattlerAbility(i) == ABILITY_SCARE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_SCARE))
 				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
             {
-                gLastUsedAbility = ABILITY_SCARE;
+                //gLastUsedAbility = ABILITY_SCARE;
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
                 if (caseID == ABILITYEFFECT_INTIMIDATE1)
                 {
@@ -9830,7 +9846,7 @@ case ITEMEFFECT_KINGSROCK:
             if (!gBattleMons[battlerId].status1
                 && !IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
                 && GetBattlerAbility(battlerId) != ABILITY_WATER_VEIL
-				&& SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_VEIL)
+				&& !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_VEIL)
                 && GetBattlerAbility(battlerId) != ABILITY_WATER_BUBBLE
 				&& !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_BUBBLE)
                 && GetBattlerAbility(battlerId) != ABILITY_COMATOSE

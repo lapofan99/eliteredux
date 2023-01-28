@@ -1472,6 +1472,7 @@ static void Cmd_attackcanceler(void)
     if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_PARENTAL_BOND || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PARENTAL_BOND)) // Includes Innate
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && TARGET_TURN_DAMAGED // Need to actually hit the target
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
@@ -1484,6 +1485,7 @@ static void Cmd_attackcanceler(void)
 	&& (GetBattlerAbility(gBattlerAttacker) == ABILITY_RAGING_BOXER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_RAGING_BOXER)) // Includes Innate
 	&& (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && TARGET_TURN_DAMAGED // Need to actually hit the target
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
@@ -1495,10 +1497,10 @@ static void Cmd_attackcanceler(void)
 	if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_MULTI_HEADED || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MULTI_HEADED)) // Includes Innate
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && TARGET_TURN_DAMAGED // Need to actually hit the target
 	&& ((gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED) || (gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED))
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-        
 		if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED){
 			gMultiHitCounter = 2;
 			gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
@@ -2227,6 +2229,7 @@ static void Cmd_adjustdamage(void)
     {
         gMoveResultFlags |= MOVE_RESULT_STURDIED;
         gLastUsedAbility = ABILITY_STURDY;
+        gBattleScripting.abilityPopupOverwrite = ABILITY_STURDY;
     }
 
 END:
@@ -8396,7 +8399,6 @@ static void Cmd_various(void)
                 gBattleScripting.abilityPopupOverwrite = ABILITY_LOOTER;
 				gLastUsedAbility = ABILITY_LOOTER;
             }
-                
 
             // Let the battle script handler decide the stat changes
             BattleScriptPush(gBattlescriptCurrInstr + 3);
@@ -8474,6 +8476,8 @@ static void Cmd_various(void)
                 && !NoAliveMonsForEitherParty()
                 && CompareStat(gBattleScripting.battler, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_SOUL_HEART;
+				gLastUsedAbility = ABILITY_SOUL_HEART;
                 gBattleMons[gBattleScripting.battler].statStages[STAT_SPATK]++;
                 SET_STATCHANGER(STAT_SPATK, 1, FALSE);
                 PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
@@ -11042,10 +11046,12 @@ static void Cmd_tryKO(void)
         RecordItemEffectBattle(gBattlerTarget, holdEffect);
     }
 
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_STURDY || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_STURDY))
+    if (GetBattlerAbility(gBattlerTarget) == ABILITY_STURDY || 
+        SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_STURDY))
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
-        gLastUsedAbility = ABILITY_STURDY;
+        gBattleScripting.abilityPopupOverwrite = ABILITY_STURDY;
+		gLastUsedAbility = ABILITY_STURDY;
         gBattlescriptCurrInstr = BattleScript_SturdyPreventsOHKO;
         gBattlerAbility = gBattlerTarget;
     }

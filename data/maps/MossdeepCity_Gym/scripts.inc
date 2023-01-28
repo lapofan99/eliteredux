@@ -50,7 +50,7 @@ MossdeepCity_Gym_EventScript_SetSwitch4Metatiles:: @ 8220885
 
 MossdeepCity_Gym_EventScript_TateAndLiza:: @ 8220898
 	setflag FLAG_SYS_INVERSE_BATTLE
-	goto_if_set FLAG_DAILY_REMATCH_TATE_AND_LIZA, MossdeepCity_Gym_EventScript_AlreadyRematched
+	//goto_if_set FLAG_DAILY_REMATCH_TATE_AND_LIZA, MossdeepCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_Gym_EventScript_TateAndLizaRematch
 	trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
 	clearflag FLAG_SYS_INVERSE_BATTLE
@@ -123,14 +123,14 @@ MossdeepCity_Gym_EventScript_TateAndLizaRematch::
 	compare VAR_RESULT, NO
 	goto_if_eq MossdeepCity_Gym_EventScript_TateAndLizaDoublesRematch
 	trainerbattle_no_intro TRAINER_TATE_AND_LIZA_3, MossdeepCity_Gym_Text_TateAndLizaRematchDefeat
-	setflag FLAG_DAILY_REMATCH_TATE_AND_LIZA
+	//setflag FLAG_DAILY_REMATCH_TATE_AND_LIZA
 	clearflag FLAG_SYS_INVERSE_BATTLE
 	releaseall
 	end
 
 MossdeepCity_Gym_EventScript_TateAndLizaDoublesRematch::
 	trainerbattle_no_intro TRAINER_TATE_AND_LIZA_2, MossdeepCity_Gym_Text_TateAndLizaRematchDefeat
-	setflag FLAG_DAILY_REMATCH_TATE_AND_LIZA
+	//setflag FLAG_DAILY_REMATCH_TATE_AND_LIZA
 	clearflag FLAG_SYS_INVERSE_BATTLE
 	releaseall
 	end

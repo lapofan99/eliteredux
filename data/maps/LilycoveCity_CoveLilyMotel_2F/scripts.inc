@@ -35,14 +35,14 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma:: @ 821870F
 LilycoveCity_CoveLilyMotel_2F_EventScript_SelfInsert::
 	lockall
 	faceplayer
-	goto_if_set FLAG_DAILY_REMATCH_BUFFEL, LilycoveCity_CoveLilyMotel_2F_EventScript_BuffelDefeated
+	//goto_if_set FLAG_DAILY_REMATCH_BUFFEL, LilycoveCity_CoveLilyMotel_2F_EventScript_BuffelDefeated
 	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ImBuffel, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq LilycoveCity_CoveLilyMotel_2F_EventScript_SelfInsertNo
 	message LilycoveCity_CoveLilyMotel_2F_Text_SelfInsertBattle
 	waitmessage
 	trainerbattle_no_intro TRAINER_BUFFEL, LilycoveCity_CoveLilyMotel_2F_Text_BuffelDefeat
-	setflag FLAG_DAILY_REMATCH_BUFFEL
+	//setflag FLAG_DAILY_REMATCH_BUFFEL
 LilycoveCity_CoveLilyMotel_2F_EventScript_BuffelDefeated::
 	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ThanksAgain, MSGBOX_DEFAULT
 	release

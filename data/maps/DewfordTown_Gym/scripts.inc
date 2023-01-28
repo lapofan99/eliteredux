@@ -144,7 +144,7 @@ DewfordTown_Gym_EventScript_StopCountingTrainers:: @ 81FC7C1
 	return
 
 DewfordTown_Gym_EventScript_Brawly:: @ 81FC7C2
-	goto_if_set FLAG_DAILY_REMATCH_BRAWLY, DewfordTown_Gym_EventScript_AlreadyRematched
+	//goto_if_set FLAG_DAILY_REMATCH_BRAWLY, DewfordTown_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, DewfordTown_Gym_EventScript_BrawlyRematch
 	trainerbattle_single TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
 	goto_if_unset FLAG_RECEIVED_TM08, DewfordTown_Gym_EventScript_GiveBulkUp2
@@ -214,7 +214,7 @@ DewfordTown_Gym_EventScript_SetSingles::
 	compare VAR_RESULT, NO
 	goto_if_eq DewfordTown_Gym_EventScript_BrawlySinglesRematch
 	trainerbattle_no_intro TRAINER_BRAWLY_3, DewfordTown_Gym_Text_BrawlyRematchDefeat
-	setflag FLAG_DAILY_REMATCH_BRAWLY
+	//setflag FLAG_DAILY_REMATCH_BRAWLY
 	releaseall
 	end
 
@@ -223,19 +223,19 @@ DewfordTown_Gym_EventScript_SetDoubles::
 	compare VAR_RESULT, NO
 	goto_if_eq DewfordTown_Gym_EventScript_BrawlyDoublesRematch
 	trainerbattle_no_intro TRAINER_BRAWLY_5, DewfordTown_Gym_Text_BrawlyRematchDefeat
-	setflag FLAG_DAILY_REMATCH_BRAWLY
+	//setflag FLAG_DAILY_REMATCH_BRAWLY
 	releaseall
 	end
 
 DewfordTown_Gym_EventScript_BrawlySinglesRematch::
 	trainerbattle_no_intro TRAINER_BRAWLY_2, DewfordTown_Gym_Text_BrawlyRematchDefeat
-	setflag FLAG_DAILY_REMATCH_BRAWLY
+	//setflag FLAG_DAILY_REMATCH_BRAWLY
 	releaseall
 	end
 
 DewfordTown_Gym_EventScript_BrawlyDoublesRematch::
 	trainerbattle_no_intro TRAINER_BRAWLY_4, DewfordTown_Gym_Text_BrawlyRematchDefeat
-	setflag FLAG_DAILY_REMATCH_BRAWLY
+	//setflag FLAG_DAILY_REMATCH_BRAWLY
 	releaseall
 	end
 

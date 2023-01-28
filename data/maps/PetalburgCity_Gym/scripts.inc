@@ -58,7 +58,7 @@ PetalburgCity_Gym_EventScript_MoveNormanToEntrance:: @ 8204955
 	return
 
 PetalburgCity_Gym_EventScript_CheckNormanForRematch:: @ 820495D
-	goto_if_unset FLAG_DAILY_REMATCH_NORMAN, PetalburgCity_Gym_EventScript_DontMoveNormanToFront
+	//goto_if_unset FLAG_DAILY_REMATCH_NORMAN, PetalburgCity_Gym_EventScript_DontMoveNormanToFront
 	compare VAR_PETALBURG_GYM_STATE, 8
 	goto_if_eq PetalburgCity_Gym_EventScript_DontMoveNormanToFront @ If var = 8 set var = 8? Why
 	setobjectxyperm LOCALID_NORMAN, 4, 107
@@ -388,7 +388,7 @@ PetalburgCity_Gym_EventScript_SetSingles::
 	compare VAR_RESULT, NO
 	goto_if_eq PetalburgCity_Gym_EventScript_NormanSinglesRematch
 	trainerbattle_no_intro TRAINER_NORMAN_4, PetalburgCity_Gym_Text_NormanRematchDefeat
-	setflag FLAG_DAILY_REMATCH_NORMAN
+	//setflag FLAG_DAILY_REMATCH_NORMAN
 	releaseall
 	end
 
@@ -397,19 +397,19 @@ PetalburgCity_Gym_EventScript_SetDoubles::
 	compare VAR_RESULT, NO
 	goto_if_eq PetalburgCity_Gym_EventScript_NormanDoublesRematch
 	trainerbattle_no_intro TRAINER_NORMAN_5, PetalburgCity_Gym_Text_NormanRematchDefeat
-	setflag FLAG_DAILY_REMATCH_NORMAN
+	//setflag FLAG_DAILY_REMATCH_NORMAN
 	releaseall
 	end
 
 PetalburgCity_Gym_EventScript_NormanSinglesRematch::
 	trainerbattle_no_intro TRAINER_NORMAN_2, PetalburgCity_Gym_Text_NormanRematchDefeat
-	setflag FLAG_DAILY_REMATCH_NORMAN
+	//setflag FLAG_DAILY_REMATCH_NORMAN
 	releaseall
 	end
 
 PetalburgCity_Gym_EventScript_NormanDoublesRematch::
 	trainerbattle_no_intro TRAINER_NORMAN_3, PetalburgCity_Gym_Text_NormanRematchDefeat
-	setflag FLAG_DAILY_REMATCH_NORMAN
+	//setflag FLAG_DAILY_REMATCH_NORMAN
 	releaseall
 	end
 

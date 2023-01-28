@@ -2,7 +2,7 @@ RustboroCity_Gym_MapScripts:: @ 8212F30
 	.byte 0
 
 RustboroCity_Gym_EventScript_Roxanne::
-	goto_if_set FLAG_DAILY_REMATCH_ROXANNE, RustboroCity_Gym_EventScript_AlreadyRematched
+	//goto_if_set FLAG_DAILY_REMATCH_ROXANNE, RustboroCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, RustboroCity_Gym_EventScript_RoxanneRematch
 	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
 	goto_if_eq RustboroCity_Gym_EventScript_RoxanneRematch
@@ -53,7 +53,7 @@ RustboroCity_Gym_EventScript_SetSingles::
 	compare VAR_RESULT, NO
 	goto_if_eq RustboroCity_Gym_EventScript_RoxanneSinglesRematch
 	trainerbattle_no_intro TRAINER_ROXANNE_3, RustboroCity_Gym_Text_RoxanneRematchDefeat
-	setflag FLAG_DAILY_REMATCH_ROXANNE
+	//setflag FLAG_DAILY_REMATCH_ROXANNE
 	releaseall
 	end
 
@@ -62,19 +62,19 @@ RustboroCity_Gym_EventScript_SetDoubles::
 	compare VAR_RESULT, NO
 	goto_if_eq RustboroCity_Gym_EventScript_RoxanneDoublesRematch
 	trainerbattle_no_intro TRAINER_ROXANNE_5, RustboroCity_Gym_Text_RoxanneRematchDefeat
-	setflag FLAG_DAILY_REMATCH_ROXANNE
+	//setflag FLAG_DAILY_REMATCH_ROXANNE
 	releaseall
 	end
 
 RustboroCity_Gym_EventScript_RoxanneSinglesRematch::
 	trainerbattle_no_intro TRAINER_ROXANNE_2, RustboroCity_Gym_Text_RoxanneRematchDefeat
-	setflag FLAG_DAILY_REMATCH_ROXANNE
+	//setflag FLAG_DAILY_REMATCH_ROXANNE
 	releaseall
 	end
 
 RustboroCity_Gym_EventScript_RoxanneDoublesRematch::
 	trainerbattle_no_intro TRAINER_ROXANNE_4, RustboroCity_Gym_Text_RoxanneRematchDefeat
-	setflag FLAG_DAILY_REMATCH_ROXANNE
+	//setflag FLAG_DAILY_REMATCH_ROXANNE
 	releaseall
 	end
 
