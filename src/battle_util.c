@@ -4868,7 +4868,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_COIL_UP:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+                !(gStatuses4[battler] & STATUS4_COILED))
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
