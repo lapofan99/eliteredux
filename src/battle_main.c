@@ -5711,12 +5711,12 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && ((attackerAbility == ABILITY_PIXILATE && (ateType = TYPE_FAIRY))
-                 || (attackerAbility == ABILITY_REFRIGERATE && (ateType = TYPE_ICE))
-                 || (attackerAbility == ABILITY_AERILATE && (ateType = TYPE_FLYING))
-				 || (attackerAbility == ABILITY_BURNATE && (ateType = TYPE_FIRE))
-				 || (attackerAbility == ABILITY_FIGHT_SPIRIT && (ateType = TYPE_FIGHTING))
-                 || ((attackerAbility == ABILITY_GALVANIZE) && (ateType = TYPE_ELECTRIC))
+             && (   ((attackerAbility == ABILITY_PIXILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PIXILATE))     && (ateType = TYPE_FAIRY))
+                 || ((attackerAbility == ABILITY_REFRIGERATE  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_REFRIGERATE))  && (ateType = TYPE_ICE))
+                 || ((attackerAbility == ABILITY_AERILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AERILATE))     && (ateType = TYPE_FLYING))
+				 || ((attackerAbility == ABILITY_BURNATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE))      && (ateType = TYPE_FIRE))
+				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)) && (ateType = TYPE_FIGHTING))
+                 || (((attackerAbility == ABILITY_GALVANIZE)  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GALVANIZE))    && (ateType = TYPE_ELECTRIC))
                 )
              )
     {
