@@ -1450,7 +1450,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .effect = EFFECT_EARTHQUAKE,
         .power = 120,
         .type = TYPE_GROUND,
-        .accuracy = 80,
+        .accuracy = 85,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_BOTH,
@@ -5006,8 +5006,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_BALLISTIC,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_BALLISTIC | FLAG_WEATHER_BASED,
         .split = SPLIT_SPECIAL,
+        .flags2 = FLAG_AIR_BASED,
     },
 
     [MOVE_AROMATHERAPY] =
@@ -6556,7 +6557,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
             .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
         #endif
         .effect = EFFECT_FLINCH_HIT,
-        .power = 95,
+        .power = 100,
         .type = TYPE_DRAGON,
         .accuracy = 90,
         .pp = 10,

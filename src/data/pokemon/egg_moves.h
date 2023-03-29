@@ -348,6 +348,7 @@ const u16 gEggMoves[] = {
         MOVE_FIRE_PUNCH,
         MOVE_THUNDER_PUNCH,
         MOVE_ICE_PUNCH,
+        MOVE_MACH_PUNCH, // new
         MOVE_BULLET_PUNCH,
         MOVE_POWER_TRICK,
         MOVE_HEAVY_SLAM,
@@ -758,6 +759,7 @@ const u16 gEggMoves[] = {
         MOVE_TICKLE,
         MOVE_REFRESH,
         MOVE_DRAGON_DANCE,
+        MOVE_DRAGON_TAIL, // new
         MOVE_CURSE,
         MOVE_SLEEP_TALK,
         MOVE_HORN_DRILL,
@@ -767,7 +769,8 @@ const u16 gEggMoves[] = {
         MOVE_DRAGON_PULSE,
         MOVE_AVALANCHE,
         MOVE_FUTURE_SIGHT,
-        MOVE_FREEZE_DRY),
+        MOVE_FREEZE_DRY,
+        MOVE_DRILL_RUN), // new
 
     egg_moves(EEVEE,
         MOVE_CHARM,
@@ -1277,6 +1280,7 @@ const u16 gEggMoves[] = {
         MOVE_SNORE,
         MOVE_SMELLING_SALTS,
         MOVE_CLOSE_COMBAT,
+        MOVE_HYPER_FANG, // new
         MOVE_ICE_FANG,
         MOVE_FIRE_FANG,
         MOVE_THUNDER_FANG,
@@ -2041,6 +2045,7 @@ const u16 gEggMoves[] = {
         MOVE_ENDURE,
         MOVE_IRON_HEAD,
         MOVE_GROWTH,
+        MOVE_SLACK_OFF, // new
         MOVE_HEAVY_SLAM),
 
     egg_moves(TORKOAL,
@@ -2096,6 +2101,13 @@ const u16 gEggMoves[] = {
         MOVE_ENDURE,
         MOVE_EARTH_POWER,
         MOVE_BUG_BITE,
+        MOVE_BODY_SLAM, // new
+        MOVE_BUG_BUZZ, // new
+        MOVE_FIRST_IMPRESSION, // new
+        MOVE_LEECH_LIFE, // new
+        MOVE_LUNGE, // new
+        MOVE_QUIVER_DANCE, // new
+        MOVE_X_SCISSOR, // new
         MOVE_SIGNAL_BEAM),
 
     egg_moves(CACNEA,
