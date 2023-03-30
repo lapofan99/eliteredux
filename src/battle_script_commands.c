@@ -8354,8 +8354,12 @@ static void Cmd_various(void)
             PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_ATK);
             BattleScriptPush(gBattlescriptCurrInstr + 3);
             gLastUsedAbility = GetBattlerAbility(gActiveBattler);
-            if (GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_ICE_RIDER)
+            if(GetBattlerAbility(gActiveBattler) == ABILITY_MOXIE || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MOXIE)){
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MOXIE;
+            }
+            else if (GetBattlerAbility(gActiveBattler) == ABILITY_AS_ONE_ICE_RIDER){
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHILLING_NEIGH;
+            }
             gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
             return;
         }
