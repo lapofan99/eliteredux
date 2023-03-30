@@ -10067,7 +10067,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_CACTURNE] =
     {
-    .baseHP        = 90,
+    .baseHP        = 80,
     .baseAttack    = 135,
     .baseDefense   = 60,
     .baseSpeed     = 90,
@@ -12527,7 +12527,7 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_ERRATIC,
     .eggGroup1 = EGG_GROUP_MONSTER,
     .eggGroup2 = EGG_GROUP_MONSTER,
-    .abilities = {ABILITY_MOLD_BREAKER, ABILITY_RAMPAGE, ABILITY_PREDATOR},
+    .abilities = {ABILITY_MOLD_BREAKER, ABILITY_SHEER_FORCE, ABILITY_PREDATOR},
     .innates = {ABILITY_FOSSILIZED, ABILITY_RECKLESS, ABILITY_ROCK_HEAD},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = FALSE,
@@ -12578,7 +12578,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_MONSTER,
     .eggGroup2 = EGG_GROUP_MONSTER,
     .abilities = {ABILITY_BATTLE_ARMOR, ABILITY_STAMINA, ABILITY_IRON_BARBS},
-    .innates = {ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_PRIMAL_ARMOR},
+    .innates = {ABILITY_DAUNTLESS_SHIELD, ABILITY_IMPENETRABLE, ABILITY_PRIMAL_ARMOR},
     .bodyColor = BODY_COLOR_GRAY,
     .noFlip = FALSE,
     },
@@ -12971,7 +12971,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_AMBIPOM] =
     {
     .baseHP        = 75,
-    .baseAttack    = 110,
+    .baseAttack    = 100,
     .baseDefense   = 66,
     .baseSpeed     = 135,
     .baseSpAttack  = 60,

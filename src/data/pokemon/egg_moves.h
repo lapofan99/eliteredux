@@ -2540,6 +2540,7 @@ const u16 gEggMoves[] = {
         MOVE_IRON_HEAD),
 
     egg_moves(SHIELDON,
+        MOVE_DRAGON_TAIL, // new
         MOVE_HEADBUTT,
         MOVE_SCARY_FACE,
         MOVE_FOCUS_ENERGY,
@@ -2906,6 +2907,7 @@ const u16 gEggMoves[] = {
         MOVE_SKULL_BASH,
         MOVE_AVALANCHE,
         MOVE_NATURAL_GIFT,
+        MOVE_DRAIN_PUNCH, // new
         MOVE_BULLET_SEED),
 
     egg_moves(SNIVY,
@@ -3262,6 +3264,7 @@ const u16 gEggMoves[] = {
         MOVE_ACID_SPRAY),
 
     egg_moves(SIGILYPH,
+        MOVE_SHADOW_BALL, // new
         MOVE_STORED_POWER,
         MOVE_PSYCHO_SHIFT,
         MOVE_ANCIENT_POWER,

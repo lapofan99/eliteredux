@@ -155,7 +155,7 @@
 #define ABILITY_POISON_TOUCH 143 // 30% chance to badly poison a target when the Pokémon makes contact.
 #define ABILITY_REGENERATOR 144 // Restores 1/3 HP when withdrawn from battle.
 #define ABILITY_BIG_PECKS 145 // Powers up moves that make direct contact by 30%.
-#define ABILITY_SAND_RUSH 146 // Boosts the Pokémon's Speed stat by 33% in a sandstorm.
+#define ABILITY_SAND_RUSH 146 // Doubles the Pokémon's Speed stat in a sandstorm.
 #define ABILITY_WONDER_SKIN 147 // Makes non-damaging moves that are targeted at this Pokémon have the accuracy of 50%.
 #define ABILITY_ANALYTIC 148 // Boosts move power by 30% when the Pokémon moves last.
 #define ABILITY_ILLUSION 149 // 1.3x damage boost when in Illusion mode.
