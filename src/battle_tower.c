@@ -2998,7 +2998,7 @@ static void FillPartnerParty(u16 trainerId)
     u16 monId;
     u32 otID;
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
-    SetFacilityPtrsGetLevel();
+    SetFacilityPtrsGetLevel();//
 
     if (trainerId == TRAINER_STEVEN_PARTNER)
     {
@@ -3058,6 +3058,30 @@ static void FillPartnerParty(u16 trainerId)
 
                 CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, partyData[i].iv * 31 / 255, TRUE, j, TRUE, otID);
 
+                for (j = 0; j < NUM_STATS; j++)
+                {
+                    switch(j){
+                        case 0:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_EV, &partyData[i].evs[j]);
+                        break;
+                        case 1:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_ATK_EV, &partyData[i].evs[j]);
+                        break;
+                        case 2:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_DEF_EV, &partyData[i].evs[j]);
+                        break;
+                        case 3:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPATK_EV, &partyData[i].evs[j]);
+                        break;
+                        case 4:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPDEF_EV, &partyData[i].evs[j]);
+                        break;
+                        case 5:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPEED_EV, &partyData[i].evs[j]);
+                        break;
+                    }
+                }
+
                 for (j = 0; j < 4; j++)
                 {
                     SetMonData(&gPlayerParty[i + 3], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
@@ -3070,6 +3094,30 @@ static void FillPartnerParty(u16 trainerId)
                 const struct TrainerMonItemDefaultMoves *partyData = gTrainers[trainerId - TRAINER_CUSTOM_PARTNER].party.ItemDefaultMoves;
 
                 CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, partyData[i].iv * 31 / 255, TRUE, j, TRUE, otID);
+
+                for (j = 0; j < NUM_STATS; j++)
+                {
+                    switch(j){
+                        case 0:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_EV, &partyData[i].evs[j]);
+                        break;
+                        case 1:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_ATK_EV, &partyData[i].evs[j]);
+                        break;
+                        case 2:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_DEF_EV, &partyData[i].evs[j]);
+                        break;
+                        case 3:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPATK_EV, &partyData[i].evs[j]);
+                        break;
+                        case 4:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPDEF_EV, &partyData[i].evs[j]);
+                        break;
+                        case 5:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPEED_EV, &partyData[i].evs[j]);
+                        break;
+                    }
+                }
 
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 break;
@@ -3094,11 +3142,54 @@ static void FillPartnerParty(u16 trainerId)
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_ABILITY_NUM, &partyData[i].ability);
 
-                // Set EVs and IVs from premade spreads
-                for (j = 0; j < 6; j++)
+                //SetPartnerPokemonData
+
+                for (j = 0; j < NUM_STATS; j++)
                 {
-                    SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_EV + j, &gSets[partyData[i].spread].EVs[j]);
-                    SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_IV + j, &gSets[partyData[i].spread].IVs[j]);
+                    switch(j){
+                        case 0:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_EV, &partyData[i].evs[j]);
+                        break;
+                        case 1:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_ATK_EV, &partyData[i].evs[j]);
+                        break;
+                        case 2:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_DEF_EV, &partyData[i].evs[j]);
+                        break;
+                        case 3:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPATK_EV, &partyData[i].evs[j]);
+                        break;
+                        case 4:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPDEF_EV, &partyData[i].evs[j]);
+                        break;
+                        case 5:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPEED_EV, &partyData[i].evs[j]);
+                        break;
+                    }
+                }
+
+                //Sets Ivs for Hidden Power Customization
+                for (j = 0; j < NUM_STATS; j++){
+                    switch(j){
+                        case 0:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_HP_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 1:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_ATK_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 2:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_DEF_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 3:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPATK_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 4:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPDEF_IV, &partyData[i].ivs[j]);
+                        break;
+                        case 5:
+                            SetMonData(&gPlayerParty[i + 3], MON_DATA_SPEED_IV, &partyData[i].ivs[j]);
+                        break;
+                        }
                 }
 
                 CalculateMonStats(&gPlayerParty[i + 3]); // called twice; fix in future
