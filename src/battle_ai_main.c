@@ -578,12 +578,62 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         {
             RETURN_SCORE_MINUS(20);
         }
-        
 
+        if (moveType == TYPE_ROCK
+          && (AI_DATA->defAbility == ABILITY_MOMENTUM || DefSpeciesHasInnate(ABILITY_MOMENTUM)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
+        if (moveType == TYPE_ROCK
+          && (AI_DATA->defAbility == ABILITY_MOMENTUM || DefSpeciesHasInnate(ABILITY_MOMENTUM)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
+        if (moveType == TYPE_ELECTRIC
+          && (AI_DATA->defAbility == ABILITY_LIGHTNING_ROD || DefSpeciesHasInnate(ABILITY_LIGHTNING_ROD)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
+        if (moveType == TYPE_ELECTRIC
+          && (AI_DATA->defAbility == ABILITY_VOLT_ABSORB || DefSpeciesHasInnate(ABILITY_VOLT_ABSORB)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
+        if (move == MOVE_LEECH_SEED
+          && (AI_DATA->defAbility == ABILITY_IMPENETRABLE || DefSpeciesHasInnate(ABILITY_IMPENETRABLE)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+        
         // Innates test
         if (moveType == TYPE_ELECTRIC
           && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GROUND)
           && (AI_DATA->atkAbility == ABILITY_GROUND_SHOCK || AtkSpeciesHasInnate(ABILITY_GROUND_SHOCK)))
+        {
+            score += 2;
+        }
+
+        if (moveType == TYPE_ELECTRIC
+          && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_ELECTRIC)
+          && (AI_DATA->atkAbility == ABILITY_OVERCHARGE || AtkSpeciesHasInnate(ABILITY_OVERCHARGE)))
+        {
+            score += 2;
+        }
+
+        if (moveType == TYPE_FIRE
+          && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_ROCK)
+          && (AI_DATA->atkAbility == ABILITY_MOLTEN_DOWN || AtkSpeciesHasInnate(ABILITY_MOLTEN_DOWN)))
+        {
+            score += 2;
+        }
+
+        if (moveType == TYPE_DRAGON
+          && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_FAIRY)
+          && (AI_DATA->atkAbility == ABILITY_OVERWHELM || AtkSpeciesHasInnate(ABILITY_OVERWHELM)))
         {
             score += 2;
         }
