@@ -1472,7 +1472,6 @@ static void Cmd_attackcanceler(void)
     if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_PARENTAL_BOND || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PARENTAL_BOND)) // Includes Innate
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
-    && TARGET_TURN_DAMAGED // Need to actually hit the target
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
@@ -1485,7 +1484,6 @@ static void Cmd_attackcanceler(void)
 	&& (GetBattlerAbility(gBattlerAttacker) == ABILITY_RAGING_BOXER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_RAGING_BOXER)) // Includes Innate
 	&& (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
-    && TARGET_TURN_DAMAGED // Need to actually hit the target
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
         gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
@@ -1497,7 +1495,6 @@ static void Cmd_attackcanceler(void)
 	if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_MULTI_HEADED || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MULTI_HEADED)) // Includes Innate
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
-    && TARGET_TURN_DAMAGED // Need to actually hit the target
 	&& ((gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED) || (gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED))
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
