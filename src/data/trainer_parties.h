@@ -816,38 +816,42 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute119Mudkip[] = {
     {
     .lvl = 0,
     .species = SPECIES_ARAQUANID,
-    .heldItem = ITEM_MYSTIC_WATER,
-    .ability = 0, // 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // ABILITY_WATER_VEIL, ABILITY_OPPORTUNIST, ABILITY_WATER_ABSORB},
+    // .innates = {ABILITY_WATER_BUBBLE, ABILITY_SPIDER_LAIR, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_LIQUIDATION, MOVE_LEECH_LIFE, MOVE_ICE_FANG, MOVE_STICKY_WEB
+    .moves = MOVE_LIQUIDATION, MOVE_LEECH_LIFE, MOVE_ICE_FANG, MOVE_MIRROR_COAT
     },
     {
     .lvl = 0,
     .species = SPECIES_SWELLOW,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Scrappy
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_HURRICANE, MOVE_BOOMBURST, MOVE_HEAT_WAVE, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_ARCANINE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // Intimidate
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_STRONG_JAW, ABILITY_BURNATE},
+    // .innates = {ABILITY_FUR_COAT, ABILITY_FLASH_FIRE, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_FLARE_BLITZ, MOVE_WILD_CHARGE, MOVE_CLOSE_COMBAT, MOVE_EXTREME_SPEED
+    .evs = {248, 8, 252, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_CLOSE_COMBAT, MOVE_EXTREME_SPEED, MOVE_WILL_O_WISP, MOVE_MORNING_SUN
     },
     {
     .lvl = 0,
     .species = SPECIES_MIMIKYU,
     .heldItem = ITEM_LUM_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_AVENGER, ABILITY_HAUNTED_SPIRIT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -857,21 +861,26 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute119Mudkip[] = {
     .lvl = 0,
     .species = SPECIES_VIKAVOLT,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_SPEED_BOOST, ABILITY_AERODYNAMICS, ABILITY_OVERCHARGE},
+    // .innates = {ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_ELECTROCYTES},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_MUD_SHOT
+    .moves = MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_AURORA_BEAM
     },   
     {
-    .lvl = 2,
-    .species = SPECIES_SCEPTILE,
+    .lvl = 3,
+    .species = SPECIES_SCEPTILE, // Mega
     .heldItem = ITEM_SCEPTILITE,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_BIG_LEAVES, ABILITY_BIG_LEAVES, ABILITY_BIG_LEAVES},
+    // .innates = {ABILITY_OVERGROW, ABILITY_SPEED_FORCE, ABILITY_KEEN_EDGE},
+    // Pre-Mega
+    // ABILITY_CHLOROPLAST, ABILITY_PROTEAN, ABILITY_SPEED_FORCE},
+    // .innates = {ABILITY_OVERGROW, ABILITY_SKILL_LINK, ABILITY_KEEN_EDGE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_FRENZY_PLANT, MOVE_DRAGON_PULSE, MOVE_FOCUS_BLAST, MOVE_GRASSY_TERRAIN
+    .moves = MOVE_FRENZY_PLANT, MOVE_DRACO_METEOR, MOVE_FOCUS_BLAST, MOVE_GROWTH
     }
 };
 
@@ -879,20 +888,22 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute119Treecko[] = 
     {
     .lvl = 0,
     .species = SPECIES_ARAQUANID,
-    .heldItem = ITEM_MYSTIC_WATER,
-    .ability = 0, // 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // ABILITY_WATER_VEIL, ABILITY_OPPORTUNIST, ABILITY_WATER_ABSORB},
+    // .innates = {ABILITY_WATER_BUBBLE, ABILITY_SPIDER_LAIR, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_LIQUIDATION, MOVE_LEECH_LIFE, MOVE_ICE_FANG, MOVE_STICKY_WEB
+    .moves = MOVE_LIQUIDATION, MOVE_LEECH_LIFE, MOVE_ICE_FANG, MOVE_MIRROR_COAT
     },
     {
     .lvl = 0,
     .species = SPECIES_SWELLOW,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Scrappy
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_HURRICANE, MOVE_BOOMBURST, MOVE_HEAT_WAVE, MOVE_U_TURN
     },
@@ -900,7 +911,8 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute119Treecko[] = 
     .lvl = 0,
     .species = SPECIES_BRELOOM,
     .heldItem = ITEM_TOXIC_ORB,
-    .ability = 1, // Poison Heal
+    .ability = 0, // ABILITY_POISON_HEAL, ABILITY_PRECISE_FIST, ABILITY_LONG_REACH},
+    // .innates = {ABILITY_EFFECT_SPORE, ABILITY_TOXIC_BOOST, ABILITY_TECHNICIAN},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -910,7 +922,8 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute119Treecko[] = 
     .lvl = 0,
     .species = SPECIES_MIMIKYU,
     .heldItem = ITEM_LUM_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_AVENGER, ABILITY_HAUNTED_SPIRIT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -920,17 +933,22 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute119Treecko[] = 
     .lvl = 0,
     .species = SPECIES_VIKAVOLT,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_SPEED_BOOST, ABILITY_AERODYNAMICS, ABILITY_OVERCHARGE},
+    // .innates = {ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_ELECTROCYTES},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_MUD_SHOT
+    .moves = MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_AURORA_BEAM
     }, 
     {
-    .lvl = 2,
+    .lvl = 3,
     .species = SPECIES_BLAZIKEN, // Mega
     .heldItem = ITEM_BLAZIKENITE,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_BLAZE, ABILITY_IRON_FIST, ABILITY_STRIKER},
+    // Pre-Mega
+    // ABILITY_IRON_FIST, ABILITY_AERODYNAMICS, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_BLAZE, ABILITY_FLAME_BODY, ABILITY_STRIKER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
@@ -942,28 +960,31 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute119Torchic[] = 
     {
     .lvl = 0,
     .species = SPECIES_SWELLOW,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Scrappy
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_HURRICANE, MOVE_BOOMBURST, MOVE_HEAT_WAVE, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_ARCANINE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // Intimidate
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_STRONG_JAW, ABILITY_BURNATE},
+    // .innates = {ABILITY_FUR_COAT, ABILITY_FLASH_FIRE, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_FLARE_BLITZ, MOVE_WILD_CHARGE, MOVE_CLOSE_COMBAT, MOVE_EXTREME_SPEED
+    .evs = {248, 8, 252, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_CLOSE_COMBAT, MOVE_EXTREME_SPEED, MOVE_WILL_O_WISP, MOVE_MORNING_SUN
     },
     {
     .lvl = 0,
     .species = SPECIES_BRELOOM,
     .heldItem = ITEM_TOXIC_ORB,
-    .ability = 1, // Poison Heal
+    .ability = 0, // ABILITY_POISON_HEAL, ABILITY_PRECISE_FIST, ABILITY_LONG_REACH},
+    // .innates = {ABILITY_EFFECT_SPORE, ABILITY_TOXIC_BOOST, ABILITY_TECHNICIAN},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -973,7 +994,8 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute119Torchic[] = 
     .lvl = 0,
     .species = SPECIES_MIMIKYU,
     .heldItem = ITEM_LUM_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_AVENGER, ABILITY_HAUNTED_SPIRIT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -983,21 +1005,26 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanRoute119Torchic[] = 
     .lvl = 0,
     .species = SPECIES_VIKAVOLT,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_SPEED_BOOST, ABILITY_AERODYNAMICS, ABILITY_OVERCHARGE},
+    // .innates = {ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_ELECTROCYTES},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_MUD_SHOT
-    },  
+    .moves = MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_AURORA_BEAM
+    },
     {
-    .lvl = 2,
-    .species = SPECIES_SWAMPERT,
+    .lvl = 3,
+    .species = SPECIES_SWAMPERT, // Mega
     .heldItem = ITEM_SWAMPERTITE,
-    .ability = 2, // Swift Swim
+    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM},
+    // .innates = {ABILITY_TORRENT, ABILITY_STAMINA, ABILITY_JUGGERNAUT},
+    // Pre-Mega
+    // ABILITY_SWIFT_SWIM, ABILITY_FIELD_EXPLORER, ABILITY_STAMINA},
+    // .innates = {ABILITY_TORRENT, ABILITY_DRY_SKIN, ABILITY_JUGGERNAUT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 4, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_NAIVE,
-    .moves = MOVE_HYDRO_CANNON, MOVE_EARTHQUAKE, MOVE_ICE_PUNCH, MOVE_RAIN_DANCE
+    .moves = MOVE_HYDRO_CANNON, MOVE_HIGH_HORSEPOWER, MOVE_ICE_PUNCH, MOVE_RAIN_DANCE
     }
 };
 
@@ -1584,10 +1611,11 @@ static const struct TrainerMonItemCustomMoves sParty_MayRoute119Mudkip[] = {
     {
     .lvl = 0,
     .species = SPECIES_SWELLOW,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Scrappy
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_HURRICANE, MOVE_BOOMBURST, MOVE_HEAT_WAVE, MOVE_U_TURN
     },
@@ -1595,27 +1623,30 @@ static const struct TrainerMonItemCustomMoves sParty_MayRoute119Mudkip[] = {
     .lvl = 0,
     .species = SPECIES_STARMIE,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Analytic
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_MYSTIC_POWER, ABILITY_ILLUMINATE},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_ANALYTIC, ABILITY_VICTORY_STAR},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_HYDRO_PUMP, MOVE_PSYSHOCK, MOVE_THUNDER, MOVE_ICE_BEAM
+    .moves = MOVE_SCALD, MOVE_PSYSHOCK, MOVE_THUNDERBOLT, MOVE_ICE_BEAM
     },
     {
     .lvl = 0,
     .species = SPECIES_RAPIDASH,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // Reckless
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 2, // ABILITY_RECKLESS, ABILITY_TURBOBLAZE, ABILITY_STRIKER},
+    // .innates = {ABILITY_FLASH_FIRE, ABILITY_SPEED_FORCE, ABILITY_FLAME_BODY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_FLARE_BLITZ, MOVE_JUMP_KICK, MOVE_WILD_CHARGE, MOVE_POISON_JAB
+    .moves = MOVE_BLAZE_KICK, MOVE_WILD_CHARGE, MOVE_HIGH_HORSEPOWER, MOVE_HIGH_JUMP_KICK
     },
     {
     .lvl = 0,
     .species = SPECIES_MIMIKYU,
     .heldItem = ITEM_LUM_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_AVENGER, ABILITY_HAUNTED_SPIRIT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -1625,21 +1656,26 @@ static const struct TrainerMonItemCustomMoves sParty_MayRoute119Mudkip[] = {
     .lvl = 0,
     .species = SPECIES_VIKAVOLT,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_SPEED_BOOST, ABILITY_AERODYNAMICS, ABILITY_OVERCHARGE},
+    // .innates = {ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_ELECTROCYTES},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_MUD_SHOT
+    .moves = MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_AURORA_BEAM
     },
     {
-    .lvl = 2,
-    .species = SPECIES_SCEPTILE,
+    .lvl = 3,
+    .species = SPECIES_SCEPTILE, // Mega
     .heldItem = ITEM_SCEPTILITE,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_BIG_LEAVES, ABILITY_BIG_LEAVES, ABILITY_BIG_LEAVES},
+    // .innates = {ABILITY_OVERGROW, ABILITY_SPEED_FORCE, ABILITY_KEEN_EDGE},
+    // Pre-Mega
+    // ABILITY_CHLOROPLAST, ABILITY_PROTEAN, ABILITY_SPEED_FORCE},
+    // .innates = {ABILITY_OVERGROW, ABILITY_SKILL_LINK, ABILITY_KEEN_EDGE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_FRENZY_PLANT, MOVE_DRAGON_PULSE, MOVE_FOCUS_BLAST, MOVE_GRASSY_TERRAIN
+    .moves = MOVE_FRENZY_PLANT, MOVE_DRACO_METEOR, MOVE_FOCUS_BLAST, MOVE_GROWTH
     }
 };
 
@@ -1647,10 +1683,11 @@ static const struct TrainerMonItemCustomMoves sParty_MayRoute119Treecko[] = {
     {
     .lvl = 0,
     .species = SPECIES_SWELLOW,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Scrappy
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_HURRICANE, MOVE_BOOMBURST, MOVE_HEAT_WAVE, MOVE_U_TURN
     },
@@ -1658,27 +1695,30 @@ static const struct TrainerMonItemCustomMoves sParty_MayRoute119Treecko[] = {
     .lvl = 0,
     .species = SPECIES_STARMIE,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Analytic
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_MYSTIC_POWER, ABILITY_ILLUMINATE},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_ANALYTIC, ABILITY_VICTORY_STAR},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_HYDRO_PUMP, MOVE_PSYSHOCK, MOVE_THUNDER, MOVE_ICE_BEAM
+    .moves = MOVE_SCALD, MOVE_PSYSHOCK, MOVE_THUNDERBOLT, MOVE_ICE_BEAM
     },
     {
     .lvl = 0,
     .species = SPECIES_TSAREENA,
     .heldItem = ITEM_GRASS_GEM,
-    .ability = 1, // Queenly Majesty
+    .ability = 1, // ABILITY_OBLIVIOUS, ABILITY_HYPER_AGGRESSIVE, ABILITY_SWEET_VEIL},
+    // .innates = {ABILITY_KEEN_EDGE, ABILITY_STRIKER, ABILITY_QUEENLY_MAJESTY},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_POWER_WHIP, MOVE_HIGH_JUMP_KICK, MOVE_PLAY_ROUGH, MOVE_STRENGTH
+    .moves = MOVE_TROP_KICK, MOVE_HIGH_JUMP_KICK, MOVE_NIGHT_SLASH, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_MIMIKYU,
     .heldItem = ITEM_LUM_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_AVENGER, ABILITY_HAUNTED_SPIRIT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -1688,17 +1728,22 @@ static const struct TrainerMonItemCustomMoves sParty_MayRoute119Treecko[] = {
     .lvl = 0,
     .species = SPECIES_VIKAVOLT,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_SPEED_BOOST, ABILITY_AERODYNAMICS, ABILITY_OVERCHARGE},
+    // .innates = {ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_ELECTROCYTES},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_MUD_SHOT
-    },
+    .moves = MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_AURORA_BEAM
+    }, 
     {
-    .lvl = 2,
+    .lvl = 3,
     .species = SPECIES_BLAZIKEN, // Mega
     .heldItem = ITEM_BLAZIKENITE,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_BLAZE, ABILITY_IRON_FIST, ABILITY_STRIKER},
+    // Pre-Mega
+    // ABILITY_IRON_FIST, ABILITY_AERODYNAMICS, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_BLAZE, ABILITY_FLAME_BODY, ABILITY_STRIKER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
@@ -1710,38 +1755,42 @@ static const struct TrainerMonItemCustomMoves sParty_MayRoute119Torchic[] = {
     {
     .lvl = 0,
     .species = SPECIES_SWELLOW,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Scrappy
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_HURRICANE, MOVE_BOOMBURST, MOVE_HEAT_WAVE, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_RAPIDASH,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // Reckless
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 2, // ABILITY_RECKLESS, ABILITY_TURBOBLAZE, ABILITY_STRIKER},
+    // .innates = {ABILITY_FLASH_FIRE, ABILITY_SPEED_FORCE, ABILITY_FLAME_BODY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_FLARE_BLITZ, MOVE_JUMP_KICK, MOVE_WILD_CHARGE, MOVE_POISON_JAB
+    .moves = MOVE_BLAZE_KICK, MOVE_WILD_CHARGE, MOVE_HIGH_HORSEPOWER, MOVE_HIGH_JUMP_KICK
     },
     {
     .lvl = 0,
     .species = SPECIES_TSAREENA,
     .heldItem = ITEM_GRASS_GEM,
-    .ability = 1, // Queenly Majesty
+    .ability = 1, // ABILITY_OBLIVIOUS, ABILITY_HYPER_AGGRESSIVE, ABILITY_SWEET_VEIL},
+    // .innates = {ABILITY_KEEN_EDGE, ABILITY_STRIKER, ABILITY_QUEENLY_MAJESTY},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_POWER_WHIP, MOVE_HIGH_JUMP_KICK, MOVE_PLAY_ROUGH, MOVE_STRENGTH
+    .moves = MOVE_TROP_KICK, MOVE_HIGH_JUMP_KICK, MOVE_NIGHT_SLASH, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_MIMIKYU,
     .heldItem = ITEM_LUM_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_AVENGER, ABILITY_HAUNTED_SPIRIT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -1751,21 +1800,26 @@ static const struct TrainerMonItemCustomMoves sParty_MayRoute119Torchic[] = {
     .lvl = 0,
     .species = SPECIES_VIKAVOLT,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_SPEED_BOOST, ABILITY_AERODYNAMICS, ABILITY_OVERCHARGE},
+    // .innates = {ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_ELECTROCYTES},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_MUD_SHOT
+    .moves = MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_AURORA_BEAM
     }, 
     {
-    .lvl = 2,
-    .species = SPECIES_SWAMPERT,
+    .lvl = 3,
+    .species = SPECIES_SWAMPERT, // Mega
     .heldItem = ITEM_SWAMPERTITE,
-    .ability = 2, // Swift Swim
+    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM},
+    // .innates = {ABILITY_TORRENT, ABILITY_STAMINA, ABILITY_JUGGERNAUT},
+    // Pre-Mega
+    // ABILITY_SWIFT_SWIM, ABILITY_FIELD_EXPLORER, ABILITY_STAMINA},
+    // .innates = {ABILITY_TORRENT, ABILITY_DRY_SKIN, ABILITY_JUGGERNAUT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 4, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_NAIVE,
-    .moves = MOVE_HYDRO_CANNON, MOVE_EARTHQUAKE, MOVE_ICE_PUNCH, MOVE_RAIN_DANCE
+    .moves = MOVE_HYDRO_CANNON, MOVE_HIGH_HORSEPOWER, MOVE_ICE_PUNCH, MOVE_RAIN_DANCE
     }
 };
 
@@ -3120,7 +3174,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winston3[] = {
     .ability = 0, // ABILITY_LETS_ROLL, ABILITY_OBLIVIOUS, ABILITY_COMATOSE},
     // .innates = {ABILITY_FIELD_EXPLORER, ABILITY_THICK_FAT, ABILITY_GLUTTONY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {188, 0, 144, 0, 0, 176},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {188, 0, 144, 0, 176, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_CAREFUL,
     .moves = MOVE_HEADBUTT, MOVE_REST, MOVE_SLEEP_TALK, MOVE_CURSE
     },
@@ -4402,10 +4456,13 @@ static const struct TrainerMonItemCustomMoves sParty_Jerry2[] = {
 static const struct TrainerMonItemCustomMoves sParty_Jerry3[] = {
     {
     .lvl = 3,
-    .species = SPECIES_GARDEVOIR,
+    .species = SPECIES_GARDEVOIR, // Mega
     .heldItem = ITEM_GARDEVOIRITE,
     .ability = 2, // ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
-    // .innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_HEART},
+    //.innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_HEART},
+    // Pre-Mega
+    // ABILITY_QUEENLY_MAJESTY, ABILITY_SOUL_HEART, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_DREAMCATCHER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {240, 0, 16, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -4460,10 +4517,13 @@ static const struct TrainerMonItemCustomMoves sParty_Jerry4[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_BANETTE,
+    .species = SPECIES_BANETTE, // Mega
     .heldItem = ITEM_BANETTITE,
     .ability = 1, // ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER},
     // .innates = {ABILITY_VENGEANCE, ABILITY_HAUNTED_SPIRIT, ABILITY_SOUL_EATER},
+    // Pre-Mega
+    // ABILITY_CURSED_BODY, ABILITY_SCARE, ABILITY_INSOMNIA},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_EATER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -5408,9 +5468,12 @@ static const struct TrainerMonItemCustomMoves sParty_Elliot4[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_GYARADOS,
+    .species = SPECIES_GYARADOS, // Mega
     .heldItem = ITEM_GYARADOSITE,
     .ability = 0, // ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE},
+    // .innates = {ABILITY_SEA_GUARDIAN, ABILITY_MOXIE, ABILITY_LEVITATE},
+    // Pre-Mega
+    // ABILITY_INTIMIDATE, ABILITY_AERILATE, ABILITY_OVERWHELM},
     // .innates = {ABILITY_SEA_GUARDIAN, ABILITY_MOXIE, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -5733,7 +5796,7 @@ static const struct TrainerMonItemCustomMoves sParty_Brawly2[] = { // singles
     .lvl = 3,
     .species = SPECIES_TOXICROAK,
     .heldItem = ITEM_SHELL_BELL,
-    .ability = 2, // ABILITY_POISON_TOUCH, ABILITY_DRY_SKIN, ABILITY_FIGHT_SPIRIT},
+    .ability = 2, // ABILITY_POISON_TOUCH, ABILITY_HYDRATE, ABILITY_FIGHT_SPIRIT},
     // .innates = {ABILITY_DRY_SKIN, ABILITY_AMPHIBIOUS, ABILITY_OPPORTUNIST},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -5871,7 +5934,7 @@ static const struct TrainerMonItemCustomMoves sParty_Brawly4[] = { // doubles
     .lvl = 3,
     .species = SPECIES_TOXICROAK,
     .heldItem = ITEM_SHELL_BELL,
-    .ability = 2, // ABILITY_POISON_TOUCH, ABILITY_DRY_SKIN, ABILITY_FIGHT_SPIRIT},
+    .ability = 2, // ABILITY_POISON_TOUCH, ABILITY_HYDRATE, ABILITY_FIGHT_SPIRIT},
     // .innates = {ABILITY_DRY_SKIN, ABILITY_AMPHIBIOUS, ABILITY_OPPORTUNIST},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -5902,7 +5965,7 @@ static const struct TrainerMonItemCustomMoves sParty_Brawly4[] = { // doubles
     },
     {
     .lvl = 3,
-    .species = SPECIES_MACHAMP,
+    .species = SPECIES_MACHAMP, // Mega
     .heldItem = ITEM_MACHAMPITE,
     .ability = 1, // ABILITY_RAGING_BOXER, ABILITY_RAGING_BOXER, ABILITY_RAGING_BOXER},
     // .innates = {ABILITY_NO_GUARD, ABILITY_IRON_FIST, ABILITY_GUTS},
@@ -6492,8 +6555,8 @@ static const struct TrainerMonItemCustomMoves sParty_Simon[] = {
     .lvl = 0,
     .species = SPECIES_SEEL,
     .heldItem = ITEM_EVIOLITE,
-    .ability = 0, // ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_NONE},
-    // .innates = {ABILITY_THICK_FAT, ABILITY_PERMAFROST, ABILITY_SWIFT_SWIM},
+    .ability = 0, // ABILITY_WATER_VEIL, ABILITY_SWIFT_SWIM, ABILITY_NONE},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_FUR_COAT, ABILITY_NONE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {236, 0, 236, 0, 36, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BOLD,
@@ -7982,6 +8045,9 @@ static const struct TrainerMonItemCustomMoves sParty_Pete[] = {
     .heldItem = ITEM_BLASTOISINITE,
     .ability = 0, // ABILITY_ARTILLERY, ABILITY_ARTILLERY, ABILITY_ARTILLERY},
     // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    // Pre-Mega
+    // ABILITY_STAMINA, ABILITY_REGENERATOR, ABILITY_BULLETPROOF},
+    // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -8759,8 +8825,8 @@ static const struct TrainerMonItemCustomMoves sParty_Jasmine[] = {
     .lvl = 0,
     .species = SPECIES_HELIOLISK,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // ABILITY_LIGHTNING_ROD, ABILITY_SPEED_FORCE, ABILITY_SOLAR_POWER},
-    // .innates = {ABILITY_PLUS, ABILITY_ELECTROCYTES, ABILITY_SAND_RUSH},
+    .ability = 0, // ABILITY_LIGHTNING_ROD, ABILITY_PLUS, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_DRY_SKIN, ABILITY_ELECTROCYTES, ABILITY_SAND_RUSH},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -8905,7 +8971,7 @@ static const struct TrainerMonItemCustomMoves sParty_Paul[] = {
     .heldItem = ITEM_POISON_GEM,
     .ability = 0, // ABILITY_MERCILESS, ABILITY_COMPETITIVE, ABILITY_EXPLOIT_WEAKNESS},
     // .innates = {ABILITY_CORROSION, ABILITY_POISON_TOUCH, ABILITY_HALF_DRAKE},
-    .ivs = {31, 31, 31, 31, 31, 31},
+    .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {8, 0, 0, 248, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_FLAMETHROWER, MOVE_SLUDGE_WAVE, MOVE_DRAGON_PULSE, MOVE_NASTY_PLOT
@@ -9002,7 +9068,7 @@ static const struct TrainerMonItemCustomMoves sParty_Martha[] = {
     .lvl = 0,
     .species = SPECIES_MEOWSTIC_FEMALE,
     .heldItem = ITEM_EXPERT_BELT,
-    .ability = 0, // ABILITY_INFILTRATOR, ABILITY_NONE, ABILITY_SAGE_POWER},
+    .ability = 0, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
     // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -9137,7 +9203,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cora[] = {
     .lvl = 0,
     .species = SPECIES_TOXICROAK,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 1, // ABILITY_POISON_TOUCH, ABILITY_DRY_SKIN, ABILITY_FIGHT_SPIRIT},
+    .ability = 1, // ABILITY_POISON_TOUCH, ABILITY_HYDRATE, ABILITY_FIGHT_SPIRIT},
     // .innates = {ABILITY_DRY_SKIN, ABILITY_AMPHIBIOUS, ABILITY_OPPORTUNIST},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -10091,7 +10157,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wade[] = {
     .lvl = 0,
     .species = SPECIES_LANTURN,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_SHORT_CIRCUIT},
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_DRIZZLE},
     // .innates = {ABILITY_PLUS, ABILITY_WATER_ABSORB, ABILITY_VOLT_ABSORB},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 132, 124},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -11274,7 +11340,7 @@ static const struct TrainerMonItemCustomMoves sParty_Brandi[] = { // potential d
     .lvl = 0,
     .species = SPECIES_MEOWSTIC_FEMALE,
     .heldItem = ITEM_LIGHT_CLAY,
-    .ability = 0, // ABILITY_INFILTRATOR, ABILITY_NONE, ABILITY_SAGE_POWER},
+    .ability = 0, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
     // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -11285,7 +11351,7 @@ static const struct TrainerMonItemCustomMoves sParty_Brandi[] = { // potential d
     .lvl = 1,
     .species = SPECIES_MUSHARNA,
     .heldItem = ITEM_WIKI_BERRY,
-    .ability = 1, // ABILITY_NEUROFORCE, ABILITY_SWEET_DREAMS, ABILITY_MISTY_SURGE},
+    .ability = 1, // ABILITY_NEUROFORCE, ABILITY_SWEET_DREAMS, ABILITY_PSYCHIC_SURGE},
     // .innates = {ABILITY_DREAMCATCHER, ABILITY_COMATOSE, ABILITY_LEVITATE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {244, 0, 168, 0, 96, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -13532,7 +13598,7 @@ static const struct TrainerMonItemCustomMoves sParty_Ben[] = {
 static const struct TrainerMonItemCustomMoves sParty_Angelo[] = { // potential double w/ Shawn
     {
     .lvl = 0,
-    .species = SPECIES_ILLUMISE,
+    .species = SPECIES_ILLUMISE, // Doubles
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 2, // ABILITY_PIXILATE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
     // .innates = {ABILITY_SWARM, ABILITY_NOCTURNAL, ABILITY_CUTE_CHARM},
@@ -13543,7 +13609,7 @@ static const struct TrainerMonItemCustomMoves sParty_Angelo[] = { // potential d
     },
     {
     .lvl = 0,
-    .species = SPECIES_VOLBEAT,
+    .species = SPECIES_VOLBEAT, // Doubles
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // ABILITY_GALVANIZE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
     // .innates = {ABILITY_SWARM, ABILITY_ILLUMINATE, ABILITY_ELECTROCYTES},
@@ -13568,7 +13634,7 @@ static const struct TrainerMonItemCustomMoves sParty_Angelo[] = { // potential d
 static const struct TrainerMonItemCustomMoves sParty_Shawn[] = { // potential double w/ Angelo
     {
     .lvl = 0,
-    .species = SPECIES_ROTOM_FAN,
+    .species = SPECIES_ROTOM_FAN, // Doubles
     .heldItem = ITEM_IAPAPA_BERRY,
     .ability = 0, // ABILITY_AIR_BLOWER, ABILITY_NONE, ABILITY_MOTOR_DRIVE},
     // .innates = {ABILITY_LEVITATE, ABILITY_MINUS, ABILITY_PHANTOM},
@@ -13579,7 +13645,7 @@ static const struct TrainerMonItemCustomMoves sParty_Shawn[] = { // potential do
     },
     {
     .lvl = 0,
-    .species = SPECIES_RAICHU,
+    .species = SPECIES_RAICHU, // Doubles
     .heldItem = ITEM_LIGHT_BALL,
     .ability = 2, // ABILITY_ELECTROCYTES, ABILITY_STATIC, ABILITY_ELECTRIC_BURST},
     // .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_PLUS, ABILITY_GROUND_SHOCK},
@@ -13592,8 +13658,8 @@ static const struct TrainerMonItemCustomMoves sParty_Shawn[] = { // potential do
     .lvl = 1,
     .species = SPECIES_HELIOLISK,
     .heldItem = ITEM_CHOICE_SPECS,
-    .ability = 2, // ABILITY_LIGHTNING_ROD, ABILITY_SPEED_FORCE, ABILITY_SOLAR_POWER},
-    // .innates = {ABILITY_PLUS, ABILITY_ELECTROCYTES, ABILITY_SAND_RUSH},
+    .ability = 2, // ABILITY_LIGHTNING_ROD, ABILITY_PLUS, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_DRY_SKIN, ABILITY_ELECTROCYTES, ABILITY_SAND_RUSH},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -14491,7 +14557,7 @@ static const struct TrainerMonItemCustomMoves sParty_Madeline1[] = {
     .lvl = 0,
     .species = SPECIES_COMFEY,
     .heldItem = ITEM_BIG_ROOT,
-    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_FLOWER_GIFT},
+    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_GRASSY_SURGE},
     // .innates = {ABILITY_NATURAL_CURE, ABILITY_HEALER, ABILITY_REGENERATOR},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {236, 0, 0, 252, 0, 20},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -14549,7 +14615,7 @@ static const struct TrainerMonItemCustomMoves sParty_Madeline2[] = {
     .lvl = 0,
     .species = SPECIES_COMFEY,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_FLOWER_GIFT},
+    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_GRASSY_SURGE},
     // .innates = {ABILITY_NATURAL_CURE, ABILITY_HEALER, ABILITY_REGENERATOR},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -14607,7 +14673,7 @@ static const struct TrainerMonItemCustomMoves sParty_Madeline3[] = {
     .lvl = 0,
     .species = SPECIES_COMFEY,
     .heldItem = ITEM_BIG_ROOT,
-    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_FLOWER_GIFT},
+    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_GRASSY_SURGE},
     // .innates = {ABILITY_NATURAL_CURE, ABILITY_HEALER, ABILITY_REGENERATOR},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -14665,7 +14731,7 @@ static const struct TrainerMonItemCustomMoves sParty_Madeline4[] = {
     .lvl = 0,
     .species = SPECIES_COMFEY,
     .heldItem = ITEM_BIG_ROOT,
-    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_FLOWER_GIFT},
+    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_GRASSY_SURGE},
     // .innates = {ABILITY_NATURAL_CURE, ABILITY_HEALER, ABILITY_REGENERATOR},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -14991,7 +15057,7 @@ static const struct TrainerMonItemCustomMoves sParty_Coby[] = { // potential dou
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 180, 0, 76, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_RASH,
-    .moves = MOVE_BEAK_BLAST, MOVE_BULLET_SEED, MOVE_BOOMBURST, MOVE_ROCK_BLAST
+    .moves = MOVE_BRAVE_BIRD, MOVE_BULLET_SEED, MOVE_BOOMBURST, MOVE_ROCK_BLAST
     },
     {
     .lvl = 0,
@@ -15568,9 +15634,9 @@ static const struct TrainerMonItemCustomMoves sParty_Lucas[] = { // potential do
 static const struct TrainerMonItemCustomMoves sParty_Angelina[] = { // potential double w/ Lucas
     {
     .lvl = 0,
-    .species = SPECIES_EMPOLEON,
+    .species = SPECIES_EMPOLEON, // Doubles
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // ABILITY_COMPETITIVE, ABILITY_DEFIANT, ABILITY_BIG_PECKS},
+    .ability = 0, // ABILITY_COMPETITIVE, ABILITY_DEFIANT, ABILITY_SLUSH_RUSH},
     // .innates = {ABILITY_TORRENT, ABILITY_ANTARCTIC_BIRD, ABILITY_SWIFT_SWIM},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 76, 0, 180, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -15729,13 +15795,13 @@ static const struct TrainerMonItemCustomMoves sParty_MayTorchicMeteorFalls[] = {
     {
     .lvl = 0,
     .species = SPECIES_SWAMPERT,
-    .heldItem = ITEM_RINDO_BERRY,
-    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_FIELD_EXPLORER, ABILITY_STAMINA},
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_FIELD_EXPLORER, ABILITY_STAMINA},
     // .innates = {ABILITY_TORRENT, ABILITY_DRY_SKIN, ABILITY_JUGGERNAUT},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_WATERFALL, MOVE_DIG, MOVE_ROCK_SLIDE, MOVE_ICE_PUNCH
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_FLIP_TURN, MOVE_HIGH_HORSEPOWER, MOVE_ROCK_SLIDE, MOVE_ICE_PUNCH
     },
     {
     .lvl = 0,
@@ -15873,13 +15939,13 @@ static const struct TrainerMonItemCustomMoves sParty_BrendanMudkipMeteorFalls[] 
     {
     .lvl = 0,
     .species = SPECIES_SCEPTILE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // ABILITY_CHLOROPLAST, ABILITY_PROTEAN, ABILITY_SPEED_FORCE},
+    .heldItem = ITEM_EXPERT_BELT,
+    .ability = 1, // ABILITY_CHLOROPLAST, ABILITY_PROTEAN, ABILITY_SPEED_FORCE},
     // .innates = {ABILITY_OVERGROW, ABILITY_SKILL_LINK, ABILITY_KEEN_EDGE},
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_GRASS_PLEDGE, MOVE_DRAGON_PULSE, MOVE_FOCUS_BLAST, MOVE_THUNDER_PUNCH
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_HASTY,
+    .moves = MOVE_BULLET_SEED, MOVE_DRAGON_PULSE, MOVE_FOCUS_BLAST, MOVE_THUNDER_PUNCH
     },
     {
     .lvl = 0,
@@ -16584,7 +16650,7 @@ static const struct TrainerMonItemCustomMoves sParty_Alix[] = { // potential dou
     .lvl = 0,
     .species = SPECIES_MUSHARNA,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_NEUROFORCE, ABILITY_SWEET_DREAMS, ABILITY_MISTY_SURGE},
+    .ability = 1, // ABILITY_NEUROFORCE, ABILITY_SWEET_DREAMS, ABILITY_PSYCHIC_SURGE},
     // .innates = {ABILITY_DREAMCATCHER, ABILITY_COMATOSE, ABILITY_LEVITATE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {244, 0, 168, 0, 96, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -17658,7 +17724,7 @@ static const struct TrainerMonItemCustomMoves sParty_Ethan2[] = {
     .lvl = 0,
     .species = SPECIES_BRAVIARY,
     .heldItem = ITEM_CHOICE_SCARF,
-    .ability = 0, // ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_GALE_WINGS},
+    .ability = 1, // ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_GALE_WINGS},
     // .innates = {ABILITY_FLOCK, ABILITY_GIANT_WINGS, ABILITY_BIG_PECKS},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -18649,31 +18715,45 @@ static const struct TrainerMonItemCustomMoves sParty_Randall[] = { // Speed Room
     .lvl = 0,
     .species = SPECIES_SWELLOW,
     .heldItem = ITEM_FLAME_ORB,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_QUICK_ATTACK, MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_PROTECT
+    .moves = MOVE_EXTREME_SPEED, MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_PROTECT
     },
     {
     .lvl = 0,
     .species = SPECIES_LOPUNNY,
     .heldItem = ITEM_SALAC_BERRY,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_QUICK_ATTACK, MOVE_JUMP_KICK, MOVE_RETURN, MOVE_ICE_PUNCH
+    .moves = MOVE_FAKE_OUT, MOVE_HIGH_JUMP_KICK, MOVE_MEGA_KICK, MOVE_ICE_PUNCH
     },
     {
     .lvl = 0,
     .species = SPECIES_SAWSBUCK,
-    .heldItem = ITEM_HEAT_ROCK,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_SERENE_GRACE},
+    // .innates = {ABILITY_SAP_SIPPER, ABILITY_VIOLENT_RUSH, ABILITY_RIVALRY},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_SUNNY_DAY, MOVE_JUMP_KICK, MOVE_RETURN, MOVE_HORN_LEECH
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_HORN_LEECH, MOVE_DOUBLE_EDGE, MOVE_WILD_CHARGE, MOVE_JUMP_KICK
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_LINOONE,
+    .heldItem = ITEM_FIGY_BERRY,
+    .ability = 2, // ABILITY_PICKUP, ABILITY_RUN_AWAY, ABILITY_LIMBER},
+    // .innates = {ABILITY_GLUTTONY, ABILITY_QUICK_FEET, ABILITY_FIELD_EXPLORER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {148, 248, 8, 0, 88, 16},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+	.moves = MOVE_BELLY_DRUM, MOVE_EXTREME_SPEED, MOVE_STOMPING_TANTRUM, MOVE_SEED_BOMB
     }
 };
 
@@ -18682,31 +18762,67 @@ static const struct TrainerMonItemCustomMoves sParty_Mary[] = { // Accuracy Room
     .lvl = 0,
     .species = SPECIES_BRAVIARY,
     .heldItem = ITEM_WHITE_HERB,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_GALE_WINGS},
+    // .innates = {ABILITY_FLOCK, ABILITY_GIANT_WINGS, ABILITY_BIG_PECKS},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_HONE_CLAWS, MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_SUPERPOWER
+    .moves = MOVE_HONE_CLAWS, MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_CLOSE_COMBAT
     },
     {
     .lvl = 0,
     .species = SPECIES_RATICATE_ALOLAN,
     .heldItem = ITEM_SALAC_BERRY,
-    .ability = 1, // Hustle
+    .ability = 1, // ABILITY_HUSTLE, ABILITY_CHEEK_POUCH, ABILITY_LOOTER},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_GLUTTONY, ABILITY_GROWING_TOOTH},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_QUICK_ATTACK, MOVE_DOUBLE_EDGE, MOVE_CRUNCH, MOVE_HONE_CLAWS
+    .moves = MOVE_QUICK_ATTACK, MOVE_HYPER_FANG, MOVE_CRUNCH, MOVE_HONE_CLAWS
     },
     {
     .lvl = 0,
     .species = SPECIES_DRAMPA,
     .heldItem = ITEM_DAMP_ROCK,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_BERSERK, ABILITY_ANGER_POINT, ABILITY_CLOUD_NINE},
+    // .innates = {ABILITY_MOUNTAINEER, ABILITY_SAP_SIPPER, ABILITY_AVENGER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
-    .moves = MOVE_RAIN_DANCE, MOVE_THUNDER, MOVE_HURRICANE, MOVE_WORK_UP
+    .moves = MOVE_RAIN_DANCE, MOVE_THUNDER, MOVE_DRAGON_PULSE, MOVE_HYPER_VOICE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_KRICKETUNE,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_SCRAPPY, ABILITY_COMPOUND_EYES, ABILITY_SOUNDPROOF},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_TECHNICIAN},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_BOOMBURST, MOVE_BUG_BUZZ, MOVE_BRICK_BREAK, MOVE_SWIFT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_PIDGEOT,
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 0, // ABILITY_NO_GUARD, ABILITY_MAJESTIC_BIRD, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GIANT_WINGS},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HURRICANE, MOVE_HYPER_VOICE, MOVE_FOCUS_BLAST, MOVE_HEAT_WAVE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_PORYGON_Z,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_DOWNLOAD, ABILITY_SIGHTING_SYSTEM, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_ANALYTIC, ABILITY_ADAPTABILITY, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_TECHNO_BLAST, MOVE_ICE_BEAM, MOVE_ZAP_CANNON, MOVE_RECOVER
     }
 };
 
@@ -18715,7 +18831,8 @@ static const struct TrainerMonItemCustomMoves sParty_Parker[] = { // Confusion R
     .lvl = 0,
     .species = SPECIES_SPINDA,
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 2, // Contrary
+    .ability = 0, // ABILITY_CONTRARY, ABILITY_UNAWARE, ABILITY_NONE},
+    // .innates = {ABILITY_TANGLED_FEET, ABILITY_OWN_TEMPO, ABILITY_NONE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -18724,73 +18841,125 @@ static const struct TrainerMonItemCustomMoves sParty_Parker[] = { // Confusion R
     {
     .lvl = 0,
     .species = SPECIES_STANTLER,
-    .heldItem = ITEM_PERSIM_BERRY,
-    .ability = 2, // Sap Sipper
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_QUICK_FEET, ABILITY_RIVALRY, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_SAP_SIPPER, ABILITY_VIOLENT_RUSH, ABILITY_HYPNOTIST},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_SWAGGER, MOVE_DISABLE, MOVE_PROTECT, MOVE_THRASH
+    .moves = MOVE_HYPNOSIS, MOVE_JUMP_KICK, MOVE_SUCKER_PUNCH, MOVE_DOUBLE_EDGE
+    },
+    {
+    .lvl = 1,
+    .species = SPECIES_GIRAFARIG,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_SCARE, ABILITY_CONTRARY, ABILITY_SAP_SIPPER},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_NOCTURNAL, ABILITY_STRONG_JAW},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 180, 0, 76, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_HASTY,
+    .moves = MOVE_PSYCHO_BOOST, MOVE_SWAGGER, MOVE_CRUNCH, MOVE_HYPER_FANG
     },
     {
     .lvl = 0,
-    .species = SPECIES_GIRAFARIG,
-    .heldItem = ITEM_DAMP_ROCK,
-    .ability = 1, // Contrary
+    .species = SPECIES_CHATOT,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_TANGLED_FEET, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_BIG_PECKS, ABILITY_NONE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_PSYCHIC, MOVE_SWAGGER, MOVE_FOUL_PLAY, MOVE_THUNDER_WAVE
+    .moves = MOVE_BOOMBURST, MOVE_CHATTER, MOVE_NASTY_PLOT, MOVE_HEAT_WAVE
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Alexia[] = { // Defense Room
     {
+    .lvl = 3,
+    .species = SPECIES_PORYGON2,
+    .heldItem = ITEM_EVIOLITE,
+    .ability = 2, // ABILITY_DOWNLOAD, ABILITY_TRACE, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_ANALYTIC, ABILITY_REGENERATOR, ABILITY_LEVITATE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_RECOVER, MOVE_ICE_BEAM, MOVE_THUNDERBOLT, MOVE_TOXIC
+    },
+    {
     .lvl = 0,
     .species = SPECIES_SNORLAX,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // Thick Fat
+    .ability = 0, // ABILITY_LETS_ROLL, ABILITY_OBLIVIOUS, ABILITY_COMATOSE},
+    // .innates = {ABILITY_FIELD_EXPLORER, ABILITY_THICK_FAT, ABILITY_GLUTTONY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_IMPISH,
-    .moves = MOVE_BODY_SLAM, MOVE_CURSE, MOVE_REST, MOVE_SLEEP_TALK
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_BODY_SLAM, MOVE_CURSE, MOVE_SLACK_OFF, MOVE_FIRE_PUNCH
     },
     {
     .lvl = 0,
     .species = SPECIES_FURFROU,
     .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_CUTE_CHARM, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_FUR_COAT, ABILITY_NONE, ABILITY_NONE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
-    .moves = MOVE_THUNDER_WAVE, MOVE_HEADBUTT, MOVE_COTTON_GUARD, MOVE_BITE
+    .moves = MOVE_THUNDER_WAVE, MOVE_HEADBUTT, MOVE_COTTON_GUARD, MOVE_SUCKER_PUNCH
     },
     {
     .lvl = 0,
     .species = SPECIES_MILTANK,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // Scrappy
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 2, // ABILITY_SELF_SUFFICIENT, ABILITY_SCRAPPY, ABILITY_STAMINA},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_SAP_SIPPER, ABILITY_JUGGERNAUT},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
-    .moves = MOVE_DEFENSE_CURL, MOVE_ROLLOUT, MOVE_BODY_SLAM, MOVE_MILK_DRINK
+    .moves = MOVE_TOXIC, MOVE_SEISMIC_TOSS, MOVE_ZEN_HEADBUTT, MOVE_MILK_DRINK
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_BLISSEY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_SERENE_GRACE, ABILITY_SELF_SUFFICIENT},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_HEALER, ABILITY_SUPER_LUCK},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SEISMIC_TOSS, MOVE_HEAL_BELL, MOVE_TOXIC, MOVE_SOFT_BOILED
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_LICKILICKY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_CLOUD_NINE, ABILITY_REGENERATOR, ABILITY_LONG_REACH},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_OWN_TEMPO, ABILITY_UNAWARE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_WISH, MOVE_PROTECT, MOVE_KNOCK_OFF, MOVE_DRAGON_TAIL
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_George[] = { // Recovery Room
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_CHANSEY,
     .heldItem = ITEM_EVIOLITE,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_NONE, ABILITY_TRIAGE},
+    // .innates = {ABILITY_HEALER, ABILITY_NATURAL_CURE, ABILITY_SERENE_GRACE},
+    .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BOLD,
-    .moves = MOVE_MINIMIZE, MOVE_SOFT_BOILED, MOVE_SEISMIC_TOSS, MOVE_AROMATHERAPY
+    .moves = MOVE_STEALTH_ROCK, MOVE_SOFT_BOILED, MOVE_SEISMIC_TOSS, MOVE_AROMATHERAPY
     },
     {
     .lvl = 0,
     .species = SPECIES_DUNSPARCE,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_SERENE_GRACE, ABILITY_SIMPLE, ABILITY_UNAWARE},
+    // .innates = {ABILITY_LEVITATE, ABILITY_RUN_AWAY, ABILITY_RATTLED},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
@@ -18800,11 +18969,45 @@ static const struct TrainerMonItemCustomMoves sParty_George[] = { // Recovery Ro
     .lvl = 0,
     .species = SPECIES_PORYGON2,
     .heldItem = ITEM_EVIOLITE,
-    .ability = 2, // Analytic
+    .ability = 1, // ABILITY_DOWNLOAD, ABILITY_TRACE, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_ANALYTIC, ABILITY_REGENERATOR, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BOLD,
-    .moves = MOVE_TRI_ATTACK, MOVE_RECOVER, MOVE_ICE_BEAM, MOVE_THUNDERBOLT
+    .moves = MOVE_THUNDER_WAVE, MOVE_RECOVER, MOVE_ICE_BEAM, MOVE_THUNDERBOLT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_AUDINO,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_CUTE_CHARM, ABILITY_NONE, ABILITY_SERENE_GRACE},
+    // .innates = {ABILITY_HEALER, ABILITY_REGENERATOR, ABILITY_NONE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_SASSY,
+    .moves = MOVE_MOONBLAST, MOVE_KNOCK_OFF, MOVE_ENCORE, MOVE_RECOVER
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_BEWEAR,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_UNNERVE, ABILITY_UNAWARE, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_FLUFFY, ABILITY_GUTS, ABILITY_OWN_TEMPO},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_DRAIN_PUNCH, MOVE_DOUBLE_EDGE, MOVE_PAYBACK, MOVE_BULK_UP
+    },
+    {
+    .lvl = 1,
+    .species = SPECIES_DELCATTY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_CUTE_CHARM, ABILITY_FRIEND_GUARD, ABILITY_WONDER_SKIN},
+    // .innates = {ABILITY_NORMALIZE, ABILITY_SKILL_LINK, ABILITY_NATURAL_CURE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_FAKE_OUT, MOVE_DOUBLE_SLAP, MOVE_WISH, MOVE_PROTECT
     }
 };
 
@@ -18813,31 +19016,67 @@ static const struct TrainerMonItemCustomMoves sParty_Jody[] = { // Strength Room
     .lvl = 0,
     .species = SPECIES_ZANGOOSE,
     .heldItem = ITEM_TOXIC_ORB,
-    .ability = 2, // Toxic Boost
+    .ability = 2, // ABILITY_ANGER_POINT, ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE},
+    // .innates = {ABILITY_TOXIC_BOOST, ABILITY_FATAL_PRECISION, ABILITY_TOUGH_CLAWS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_SWORDS_DANCE, MOVE_FACADE, MOVE_CLOSE_COMBAT, MOVE_KNOCK_OFF
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_FACADE, MOVE_KNOCK_OFF, MOVE_CLOSE_COMBAT, MOVE_QUICK_ATTACK
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_BOUFFALANT,
-    .heldItem = ITEM_LIECHI_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_ANGER_POINT, ABILITY_RAMPAGE, ABILITY_RECKLESS},
+    // .innates = {ABILITY_VIOLENT_RUSH, ABILITY_FUR_COAT, ABILITY_ROCK_HEAD},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_SWORDS_DANCE, MOVE_HEAD_CHARGE, MOVE_MEGAHORN, MOVE_EARTHQUAKE
+    .moves = MOVE_HEAD_CHARGE, MOVE_EARTHQUAKE, MOVE_HEAD_SMASH, MOVE_WILD_CHARGE
     },
     {
     .lvl = 0,
     .species = SPECIES_PORYGON_Z,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 1, // Download
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 0, // ABILITY_DOWNLOAD, ABILITY_SIGHTING_SYSTEM, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_ANALYTIC, ABILITY_ADAPTABILITY, ABILITY_LEVITATE},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_TRI_ATTACK, MOVE_NASTY_PLOT, MOVE_ICE_BEAM, MOVE_SHADOW_BALL
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_TECHNO_BLAST, MOVE_ICE_BEAM, MOVE_THUNDERBOLT, MOVE_SHADOW_BALL
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_CINCCINO,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_PERFECTIONIST, ABILITY_OVERCOAT, ABILITY_SKILL_LINK},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_CUTE_CHARM, ABILITY_LIMBER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_TAIL_SLAP, MOVE_BULLET_SEED, MOVE_ROCK_BLAST, MOVE_U_TURN
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_VIGOROTH,
+    .heldItem = ITEM_EVIOLITE,
+    .ability = 1, // ABILITY_SHEER_FORCE, ABILITY_MOXIE, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_ANGER_POINT, ABILITY_HYPER_AGGRESSIVE, ABILITY_VITAL_SPIRIT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 0, 164, 92},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_BULK_UP, MOVE_FACADE, MOVE_SUCKER_PUNCH, MOVE_SLACK_OFF
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_TOUCANNON,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_BURNATE, ABILITY_SUPER_LUCK, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_SKILL_LINK},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 180, 0, 76, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_RASH,
+    .moves = MOVE_BRAVE_BIRD, MOVE_BULLET_SEED, MOVE_BOOMBURST, MOVE_ROCK_BLAST
     }
 };
 
@@ -18846,7 +19085,8 @@ static const struct TrainerMonItemCustomMoves sParty_Berke[] = { // OHKO Room
     .lvl = 0,
     .species = SPECIES_LICKILICKY,
     .heldItem = ITEM_CUSTAP_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_CLOUD_NINE, ABILITY_REGENERATOR, ABILITY_LONG_REACH},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_OWN_TEMPO, ABILITY_UNAWARE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -18856,384 +19096,468 @@ static const struct TrainerMonItemCustomMoves sParty_Berke[] = { // OHKO Room
     .lvl = 0,
     .species = SPECIES_SNORLAX,
     .heldItem = ITEM_NORMAL_GEM,
-    .ability = 1, // Thick Fat
+    .ability = 1, // ABILITY_LETS_ROLL, ABILITY_OBLIVIOUS, ABILITY_COMATOSE},
+    // .innates = {ABILITY_FIELD_EXPLORER, ABILITY_THICK_FAT, ABILITY_GLUTTONY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_FISSURE, MOVE_SELF_DESTRUCT, MOVE_NONE, MOVE_NONE
+    .moves = MOVE_GIGA_IMPACT, MOVE_SELF_DESTRUCT, MOVE_NONE, MOVE_NONE
+    },
+    {
+    .lvl = 1,
+    .species = SPECIES_URSARING,
+    .heldItem = ITEM_FLAME_ORB,
+    .ability = 1, // ABILITY_INTIMIDATE, ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_GUTS, ABILITY_QUICK_FEET, ABILITY_FUR_COAT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_PROTECT, MOVE_FACADE, MOVE_CLOSE_COMBAT, MOVE_CRUNCH
     },
     {
     .lvl = 0,
-    .species = SPECIES_URSARING,
-    .heldItem = ITEM_FLAME_ORB,
-    .ability = 0, // 
+    .species = SPECIES_BEWEAR,
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 1, // ABILITY_UNNERVE, ABILITY_UNAWARE, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_FLUFFY, ABILITY_GUTS, ABILITY_OWN_TEMPO},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_PROTECT, MOVE_GIGA_IMPACT, MOVE_NONE, MOVE_NONE
+    .moves = MOVE_CLOSE_COMBAT, MOVE_GIGA_IMPACT, MOVE_DARKEST_LARIAT, MOVE_EARTHQUAKE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DRAMPA,
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 0, // ABILITY_BERSERK, ABILITY_ANGER_POINT, ABILITY_CLOUD_NINE},
+    // .innates = {ABILITY_MOUNTAINEER, ABILITY_SAP_SIPPER, ABILITY_AVENGER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYPER_BEAM, MOVE_FIRE_BLAST, MOVE_DRACO_METEOR, MOVE_FOCUS_BLAST
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_EXPLOUD,
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_SOUNDPROOF, ABILITY_COMPETITIVE, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_SCRAPPY, ABILITY_LOUD_BANG, ABILITY_AMPLIFIER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_FOCUS_BLAST, MOVE_SURF, MOVE_FIRE_BLAST
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Norman1[] = {
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_SWELLOW,
-    .heldItem = ITEM_FLAME_ORB,
-    .ability = 0, // Guts
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_FACADE, MOVE_REVERSAL, MOVE_U_TURN
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_U_TURN, MOVE_HEAT_WAVE, MOVE_AIR_SLASH
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_TAUROS,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // Intimidate
+    .ability = 1, // ABILITY_VIOLENT_RUSH, ABILITY_ROCK_HEAD, ABILITY_RAMPAGE},
+    // .innates = {ABILITY_HYPER_AGGRESSIVE, ABILITY_ANGER_POINT, ABILITY_SCRAPPY},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_FACADE, MOVE_EARTHQUAKE, MOVE_THROAT_CHOP, MOVE_CLOSE_COMBAT
+    .moves = MOVE_HEAD_CHARGE, MOVE_EARTHQUAKE, MOVE_HEAD_SMASH, MOVE_CLOSE_COMBAT
     },
     {
-    .lvl = 0,
-    .species = SPECIES_LINOONE,
-    .heldItem = ITEM_FIGY_BERRY,
-    .ability = 1, // Gluttony
+    .lvl = 3,
+    .species = SPECIES_BLISSEY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_SERENE_GRACE, ABILITY_SELF_SUFFICIENT},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_HEALER, ABILITY_SUPER_LUCK},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SEISMIC_TOSS, MOVE_TOXIC, MOVE_SOFT_BOILED, MOVE_HEAL_BELL
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_BANETTE,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_CURSED_BODY, ABILITY_SCARE, ABILITY_INSOMNIA},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_HAUNTED_SPIRIT, ABILITY_SOUL_EATER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_EXTREME_SPEED, MOVE_BELLY_DRUM, MOVE_SHADOW_CLAW, MOVE_SEED_BOMB
+    .moves = MOVE_CRUSH_CLAW, MOVE_SHADOW_CLAW, MOVE_WILL_O_WISP, MOVE_SHADOW_SNEAK
     },
     {
-    .lvl = 0,
-    .species = SPECIES_EXPLOUD,
-    .heldItem = ITEM_EXPERT_BELT,
-    .ability = 2, // Scrappy
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_BOOMBURST, MOVE_FIRE_BLAST, MOVE_SURF, MOVE_EXTRASENSORY
-    },
-    {
-    .lvl = 2,
+    .lvl = 3,
     .species = SPECIES_SLAKING,
-    .heldItem = ITEM_LUM_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_TRUANT, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_COMATOSE, ABILITY_UNAWARE, ABILITY_MOLD_BREAKER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_GIGA_IMPACT, MOVE_YAWN, MOVE_NIGHT_SLASH, MOVE_EARTHQUAKE
+    .moves = MOVE_FACADE, MOVE_SLACK_OFF, MOVE_PUNISHMENT, MOVE_EARTHQUAKE
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_KANGASKHAN,
     .heldItem = ITEM_KANGASKHANITE,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_SCRAPPY, ABILITY_AVENGER},
+    // Pre-Mega
+    // ABILITY_IRON_FIST, ABILITY_SCRAPPY, ABILITY_GUTS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_EARLY_BIRD, ABILITY_AVENGER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_FACADE, MOVE_CRUNCH, MOVE_SEISMIC_TOSS, MOVE_EARTHQUAKE
+    .moves = MOVE_FACADE, MOVE_POWER_UP_PUNCH, MOVE_FAKE_OUT, MOVE_EARTHQUAKE
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Norman2[] = { // singles
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_SWELLOW,
     .heldItem = ITEM_FLAME_ORB,
-    .ability = 0, // Guts
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_FACADE, MOVE_REVERSAL, MOVE_U_TURN
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_BRAVE_BIRD, MOVE_FACADE, MOVE_QUICK_ATTACK, MOVE_U_TURN
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_TAUROS,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Sheer Force
+    .ability = 2, // ABILITY_VIOLENT_RUSH, ABILITY_ROCK_HEAD, ABILITY_RAMPAGE},
+    // .innates = {ABILITY_HYPER_AGGRESSIVE, ABILITY_ANGER_POINT, ABILITY_SCRAPPY},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_BODY_SLAM, MOVE_EARTHQUAKE, MOVE_THROAT_CHOP, MOVE_CLOSE_COMBAT
+    .moves = MOVE_GIGA_IMPACT, MOVE_EARTHQUAKE, MOVE_THROAT_CHOP, MOVE_CLOSE_COMBAT
     },
     {
-    .lvl = 0,
-    .species = SPECIES_LINOONE,
-    .heldItem = ITEM_FIGY_BERRY,
-    .ability = 1, // Gluttony
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_EXTREME_SPEED, MOVE_BELLY_DRUM, MOVE_THROAT_CHOP, MOVE_SEED_BOMB
+    .lvl = 3,
+    .species = SPECIES_DITTO,
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 2, // ABILITY_PRANKSTER, ABILITY_LIMBER, ABILITY_IMPOSTER},
+    // .innates = {ABILITY_LIQUIFIED, ABILITY_NONE, ABILITY_NONE},
+    .ivs = {31, 30, 31, 30, 31, 0},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_RELAXED,
+    .moves = MOVE_TRANSFORM, MOVE_NONE, MOVE_NONE, MOVE_NONE
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_GIRAFARIG,
-    .heldItem = ITEM_PSYCHIC_GEM,
-    .ability = 1, // Contrary
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_PSYCHO_BOOST, MOVE_HYPER_VOICE, MOVE_DARK_PULSE, MOVE_THUNDERBOLT
-    },
-    {
-    .lvl = 2,
-    .species = SPECIES_SLAKING,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // Stall
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 0, // ABILITY_SCARE, ABILITY_CONTRARY, ABILITY_SAP_SIPPER},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_NOCTURNAL, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_BODY_SLAM, MOVE_SLACK_OFF, MOVE_NIGHT_SLASH, MOVE_EARTHQUAKE
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_PSYCHIC_FANGS, MOVE_HYPER_FANG, MOVE_EARTHQUAKE, MOVE_CRUNCH
     },
     {
-    .lvl = 0,
+    .lvl = 3,
+    .species = SPECIES_SLAKING,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_TRUANT, ABILITY_NONE, ABILITY_STALL},
+    // .innates = {ABILITY_COMATOSE, ABILITY_UNAWARE, ABILITY_MOLD_BREAKER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_RETURN, MOVE_SLACK_OFF, MOVE_SUCKER_PUNCH, MOVE_EARTHQUAKE
+    },
+    {
+    .lvl = 3,
     .species = SPECIES_KANGASKHAN,
     .heldItem = ITEM_KANGASKHANITE,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_SCRAPPY, ABILITY_AVENGER},
+    // Pre-Mega
+    // ABILITY_IRON_FIST, ABILITY_SCRAPPY, ABILITY_GUTS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_EARLY_BIRD, ABILITY_AVENGER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_RETURN, MOVE_CRUNCH, MOVE_SEISMIC_TOSS, MOVE_EARTHQUAKE
+    .moves = MOVE_BODY_SLAM, MOVE_POWER_UP_PUNCH, MOVE_FAKE_OUT, MOVE_EARTHQUAKE
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Norman3[] = { // Doubles
     {
-    .lvl = 2,
+    .lvl = 3,
     .species = SPECIES_SLAKING,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_TRUANT, ABILITY_NONE, ABILITY_STALL},
+    // .innates = {ABILITY_COMATOSE, ABILITY_UNAWARE, ABILITY_MOLD_BREAKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_BODY_SLAM, MOVE_SLACK_OFF, MOVE_NIGHT_SLASH, MOVE_EARTHQUAKE
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_BODY_SLAM, MOVE_SLACK_OFF, MOVE_NIGHT_SLASH, MOVE_STOMPING_TANTRUM
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_CHANSEY,
     .heldItem = ITEM_EVIOLITE,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_NONE, ABILITY_TRIAGE},
+    // .innates = {ABILITY_HEALER, ABILITY_NATURAL_CURE, ABILITY_SERENE_GRACE},
+    .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BOLD,
     .moves = MOVE_SEISMIC_TOSS, MOVE_SKILL_SWAP, MOVE_HEAL_PULSE, MOVE_ICY_WIND
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_TAUROS,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // Intimidate
+    .ability = 0, // ABILITY_VIOLENT_RUSH, ABILITY_ROCK_HEAD, ABILITY_RAMPAGE},
+    // .innates = {ABILITY_HYPER_AGGRESSIVE, ABILITY_ANGER_POINT, ABILITY_SCRAPPY},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
     .moves = MOVE_BODY_SLAM, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_CLOSE_COMBAT
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_STARAPTOR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_GUTS, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_PREDATOR, ABILITY_RECKLESS, ABILITY_GIANT_WINGS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
     .moves = MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_CLOSE_COMBAT, MOVE_U_TURN
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_SNORLAX,
-    .heldItem = ITEM_CHOPLE_BERRY,
-    .ability = 2, // Gluttony
+    .heldItem = ITEM_WIKI_BERRY,
+    .ability = 0, // ABILITY_LETS_ROLL, ABILITY_OBLIVIOUS, ABILITY_COMATOSE},
+    // .innates = {ABILITY_FIELD_EXPLORER, ABILITY_THICK_FAT, ABILITY_GLUTTONY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_BODY_SLAM, MOVE_CRUNCH, MOVE_ZEN_HEADBUTT, MOVE_SLACK_OFF
+    .evs = {228, 4, 180, 0, 96, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_RELAXED,
+    .moves = MOVE_HEADBUTT, MOVE_FIRE_PUNCH, MOVE_BELLY_DRUM, MOVE_PROTECT
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_KANGASKHAN,
     .heldItem = ITEM_KANGASKHANITE,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_SCRAPPY, ABILITY_AVENGER},
+    // Pre-Mega
+    // ABILITY_IRON_FIST, ABILITY_SCRAPPY, ABILITY_GUTS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_EARLY_BIRD, ABILITY_AVENGER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_RETURN, MOVE_CRUNCH, MOVE_SEISMIC_TOSS, MOVE_FAKE_OUT
+    .moves = MOVE_RETURN, MOVE_POWER_UP_PUNCH, MOVE_FAKE_OUT, MOVE_SUCKER_PUNCH
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Norman4[] = { // Singles with legendaries
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_SWELLOW,
-    .heldItem = ITEM_FLAME_ORB,
-    .ability = 0, // Guts
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_FACADE, MOVE_REVERSAL, MOVE_U_TURN
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_U_TURN, MOVE_HEAT_WAVE, MOVE_AIR_SLASH
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_REGIGIGAS,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // Clear Body
+    .ability = 2, // ABILITY_SLOW_START, ABILITY_SLOW_START, ABILITY_SLOW_START},
+    // .innates = {ABILITY_POWER_CORE, ABILITY_IMPENETRABLE, ABILITY_CLEAR_BODY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_BODY_SLAM, MOVE_EARTHQUAKE, MOVE_POWER_UP_PUNCH, MOVE_FIRE_PUNCH
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_DOUBLE_EDGE, MOVE_FAKE_OUT, MOVE_DRAIN_PUNCH, MOVE_FIRE_PUNCH
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_ARCEUS,
-    .heldItem = ITEM_POWER_HERB,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOPLE_BERRY,
+    .ability = 0, // ABILITY_MULTITYPE, ABILITY_MULTITYPE, ABILITY_MULTITYPE},
+    // .innates = {ABILITY_POWER_CORE, ABILITY_PRESSURE, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {240, 252, 0, 0, 0, 16},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_EXTREME_SPEED, MOVE_SWORDS_DANCE, MOVE_EARTHQUAKE, MOVE_SHADOW_FORCE
+    .moves = MOVE_EXTREME_SPEED, MOVE_SWORDS_DANCE, MOVE_RECOVER, MOVE_SHADOW_CLAW
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_MELOETTA,
     .heldItem = ITEM_SHELL_BELL,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_QUEENLY_MAJESTY, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
+    // .innates = {ABILITY_SERENE_GRACE, ABILITY_INNER_FOCUS, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_HYPER_VOICE, MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_QUIVER_DANCE
+    .moves = MOVE_HYPER_VOICE, MOVE_PSYSHOCK, MOVE_FOCUS_BLAST, MOVE_QUIVER_DANCE
     },
     {
-    .lvl = 2,
-    .species = SPECIES_SLAKING,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // Slow Start
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_BODY_SLAM, MOVE_SLACK_OFF, MOVE_NIGHT_SLASH, MOVE_BULK_UP
+    .lvl = 3,
+    .species = SPECIES_PORYGON_Z,
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_DOWNLOAD, ABILITY_SIGHTING_SYSTEM, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_ANALYTIC, ABILITY_ADAPTABILITY, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_TECHNO_BLAST, MOVE_ICE_BEAM, MOVE_THUNDERBOLT, MOVE_SHADOW_BALL
     },
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_KANGASKHAN,
     .heldItem = ITEM_KANGASKHANITE,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_SCRAPPY, ABILITY_AVENGER},
+    // Pre-Mega
+    // ABILITY_IRON_FIST, ABILITY_SCRAPPY, ABILITY_GUTS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_EARLY_BIRD, ABILITY_AVENGER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {52, 180, 36, 0, 8, 232},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_RETURN, MOVE_SUCKER_PUNCH, MOVE_POWER_UP_PUNCH, MOVE_CRUNCH
+    .moves = MOVE_SEISMIC_TOSS, MOVE_SHADOW_CLAW, MOVE_FAKE_OUT, MOVE_BODY_SLAM
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Norman5[] = { // doubles with legendaries
     {
-    .lvl = 2,
-    .species = SPECIES_SLAKING,
+    .lvl = 3,
+    .species = SPECIES_BRAVIARY,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_GALE_WINGS},
+    // .innates = {ABILITY_FLOCK, ABILITY_GIANT_WINGS, ABILITY_BIG_PECKS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_BRAVE_BIRD, MOVE_SUPERPOWER, MOVE_ROCK_SLIDE, MOVE_PROTECT
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_PORYGON_Z,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_BODY_SLAM, MOVE_SLACK_OFF, MOVE_NIGHT_SLASH, MOVE_EARTHQUAKE
+    .ability = 1, // ABILITY_DOWNLOAD, ABILITY_SIGHTING_SYSTEM, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_ANALYTIC, ABILITY_ADAPTABILITY, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_TECHNO_BLAST, MOVE_ICE_BEAM, MOVE_ZAP_CANNON, MOVE_RECOVER
     },
     {
-    .lvl = 0,
-    .species = SPECIES_CHANSEY,
-    .heldItem = ITEM_EVIOLITE,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
+    .lvl = 3,
+    .species = SPECIES_DITTO,
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 2, // ABILITY_PRANKSTER, ABILITY_LIMBER, ABILITY_IMPOSTER},
+    // .innates = {ABILITY_LIQUIFIED, ABILITY_NONE, ABILITY_NONE},
+    .ivs = {31, 30, 31, 30, 31, 0},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_BOLD,
-    .moves = MOVE_SEISMIC_TOSS, MOVE_SKILL_SWAP, MOVE_HEAL_PULSE, MOVE_ICY_WIND
+	.nature = NATURE_RELAXED,
+    .moves = MOVE_TRANSFORM, MOVE_NONE, MOVE_NONE, MOVE_NONE
     },
     {
-    .lvl = 0,
-    .species = SPECIES_TAUROS,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // Intimidate
+    .lvl = 3,
+    .species = SPECIES_REGIGIGAS,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_SLOW_START, ABILITY_SLOW_START, ABILITY_SLOW_START},
+    // .innates = {ABILITY_POWER_CORE, ABILITY_IMPENETRABLE, ABILITY_CLEAR_BODY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_BODY_SLAM, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_CLOSE_COMBAT
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_DOUBLE_EDGE, MOVE_FAKE_OUT, MOVE_DRAIN_PUNCH, MOVE_FIRE_PUNCH
     },
     {
-    .lvl = 0,
-    .species = SPECIES_STARAPTOR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_CLOSE_COMBAT, MOVE_U_TURN
-    },
-    {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_ARCEUS,
-    .heldItem = ITEM_POWER_HERB,
-    .ability = 0, // 
+    .heldItem = ITEM_SPOOKY_PLATE,
+    .ability = 0, // ABILITY_MULTITYPE, ABILITY_MULTITYPE, ABILITY_MULTITYPE},
+    // .innates = {ABILITY_POWER_CORE, ABILITY_PRESSURE, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_EXTREME_SPEED, MOVE_SWORDS_DANCE, MOVE_EARTHQUAKE, MOVE_SHADOW_FORCE
+    .evs = {140, 0, 0, 244, 0, 124},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_BOOMBURST, MOVE_NASTY_PLOT, MOVE_JUDGMENT, MOVE_EXTREME_SPEED
     },
     {
-    .lvl = 0,
-    .species = SPECIES_KANGASKHAN,
-    .heldItem = ITEM_KANGASKHANITE,
-    .ability = 0, // 
+    .lvl = 3,
+    .species = SPECIES_BANETTE, // Mega
+    .heldItem = ITEM_BANETTITE,
+    .ability = 1, // ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_HAUNTED_SPIRIT, ABILITY_SOUL_EATER},
+    // Pre-Mega
+    // ABILITY_CURSED_BODY, ABILITY_SCARE, ABILITY_INSOMNIA},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_EATER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_RETURN, MOVE_CRUNCH, MOVE_SEISMIC_TOSS, MOVE_FAKE_OUT
+    .moves = MOVE_FAKE_OUT, MOVE_RETURN, MOVE_GUNK_SHOT, MOVE_SHADOW_SNEAK
     }
 };
 
-// Route 105
+// Route 105 (Surf / Optional)
 
 static const struct TrainerMonItemCustomMoves sParty_Imani[] = {
     {
     .lvl = 0,
     .species = SPECIES_AZUMARILL,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Huge Power
+    .heldItem = ITEM_FAIRY_GEM,
+    .ability = 0, // ABILITY_SAP_SIPPER, ABILITY_SWIFT_SWIM, ABILITY_WATER_VEIL},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_HYDRATION, ABILITY_HUGE_POWER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AQUA_TAIL, MOVE_PLAY_ROUGH, MOVE_SUPERPOWER, MOVE_AQUA_RING
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_AQUA_TAIL, MOVE_AQUA_JET, MOVE_PLAY_ROUGH, MOVE_BELLY_DRUM
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_DEWGONG,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AQUA_TAIL, MOVE_ICE_BEAM, MOVE_SIGNAL_BEAM, MOVE_ENCORE
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_PERMAFROST, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_FUR_COAT, ABILITY_ICE_SCALES},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_FREEZE_DRY, MOVE_SCALD, MOVE_ENCORE, MOVE_TOXIC
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Dominik[] = {
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_GYARADOS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_AERILATE, ABILITY_OVERWHELM},
+    // .innates = {ABILITY_SEA_GUARDIAN, ABILITY_MOXIE, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AQUA_TAIL, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_LEER
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_DEATHROLL, MOVE_DRAGON_RUSH, MOVE_COIL, MOVE_SUBSTITUTE
     },
     {
     .lvl = 0,
     .species = SPECIES_BRUXISH,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_DAZZLING, ABILITY_DEFIANT, ABILITY_PREDATOR},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_WONDER_SKIN, ABILITY_PSYCHIC_MIND},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AQUA_TAIL, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_PSYCHIC_FANGS
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_LIQUIDATION, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_PSYCHIC_FANGS
     }
 };
 
@@ -19241,21 +19565,23 @@ static const struct TrainerMonItemCustomMoves sParty_Foster[] = {
     {
     .lvl = 0,
     .species = SPECIES_OMASTAR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SURF, MOVE_ROCK_SLIDE, MOVE_SHELL_SMASH, MOVE_MUD_SHOT
+    .heldItem = ITEM_WATER_GEM,
+    .ability = 2, // ABILITY_WEAK_ARMOR, ABILITY_SWIFT_SWIM, ABILITY_WATER_COMPACTION},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_RAIN_DISH, ABILITY_SHELL_ARMOR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SURF, MOVE_ICE_BEAM, MOVE_EARTH_POWER, MOVE_SHELL_SMASH
     },
     {
     .lvl = 0,
     .species = SPECIES_BRONZONG,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Heat Proof
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_LEAD_COAT, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_LEVITATE, ABILITY_HEATPROOF, ABILITY_BULLETPROOF},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
     .moves = MOVE_HYPNOSIS, MOVE_CONFUSE_RAY, MOVE_EXTRASENSORY, MOVE_FLASH_CANNON
     }/* ,
     {
@@ -19271,56 +19597,36 @@ static const struct TrainerMonItemCustomMoves sParty_Foster[] = {
 static const struct TrainerMonItemCustomMoves sParty_Beverly[] = {
     {
     .lvl = 0,
-    .species = SPECIES_WAILORD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SURF, MOVE_BOUNCE, MOVE_BODY_SLAM, MOVE_NOBLE_ROAR
+    .species = SPECIES_WAILORD, // Pressure Stall
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_WATER_VEIL, ABILITY_STAMINA, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_LIQUID_VOICE, ABILITY_THICK_FAT, ABILITY_PRESSURE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {4, 0, 252, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_BLOCK, MOVE_PROTECT, MOVE_SUBSTITUTE, MOVE_AQUA_RING
     },
     {
     .lvl = 0,
     .species = SPECIES_PELIPPER,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AIR_SLASH, MOVE_HYDRO_PUMP, MOVE_STOCKPILE, MOVE_ROOST
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 0, // ABILITY_DRIZZLE, ABILITY_HYDRATION, ABILITY_AIR_BLOWER},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_RAIN_DISH, ABILITY_FLOCK},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+	.moves = MOVE_HURRICANE, MOVE_HYDRO_PUMP, MOVE_U_TURN, MOVE_DEFOG
     },
     {
     .lvl = 0,
     .species = SPECIES_TOXAPEX,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BANEFUL_BUNKER, MOVE_LIQUIDATION, MOVE_POISON_JAB, MOVE_RECOVER
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Josue[] = { // Double with Andres
-    {
-    .lvl = 0,
-    .species = SPECIES_UNFEZANT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DRILL_PECK, MOVE_RETURN, MOVE_SUBMISSION, MOVE_ROOST
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_DELIBIRD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_FLY, MOVE_EXTREME_SPEED, MOVE_SEED_BOMB, MOVE_GUNK_SHOT
+    .heldItem = ITEM_BLACK_SLUDGE,
+    .ability = 2, // ABILITY_ROUGH_SKIN, ABILITY_FORT_KNOX, ABILITY_EXPLOIT_WEAKNESS},
+    // .innates = {ABILITY_POISON_TOUCH, ABILITY_REGENERATOR, ABILITY_MERCILESS},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SCALD, MOVE_VENOSHOCK, MOVE_BANEFUL_BUNKER, MOVE_RECOVER
     }
 };
 
@@ -19328,55 +19634,96 @@ static const struct TrainerMonItemCustomMoves sParty_Luis[] = {
     {
     .lvl = 0,
     .species = SPECIES_SHARPEDO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_POISON_FANG, MOVE_AQUA_JET
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_POISON_FANG, MOVE_CRUNCH, MOVE_AQUA_JET, MOVE_ICE_FANG
     },
     {
     .lvl = 0,
     .species = SPECIES_SLURPUFF,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_SWEET_VEIL, ABILITY_NONE, ABILITY_UNBURDEN},
+    // .innates = {ABILITY_GOOEY, ABILITY_PIXILATE, ABILITY_STICKY_HOLD},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
     .moves = MOVE_SURF, MOVE_ENERGY_BALL, MOVE_PLAY_ROUGH, MOVE_FAKE_TEARS
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Andres1[] = {
+static const struct TrainerMonItemCustomMoves sParty_Josue[] = { // potential double w/ Andres
     {
     .lvl = 0,
-    .species = SPECIES_ARCHEOPS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_ACROBATICS, MOVE_ROCK_SLIDE, MOVE_DRAGON_CLAW, MOVE_ENDEAVOR
+    .species = SPECIES_DELIBIRD,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_VITAL_SPIRIT, ABILITY_ICE_BODY, ABILITY_SLUSH_RUSH},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_PRANKSTER, ABILITY_CHRISTMAS_SPIRIT},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_ICY_WIND, MOVE_EXTREME_SPEED, MOVE_SPIKES, MOVE_DESTINY_BOND
     },
     {
     .lvl = 0,
-    .species = SPECIES_AURORUS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .species = SPECIES_UNFEZANT,
+    .heldItem = ITEM_SCOPE_LENS,
+    .ability = 0, // ABILITY_SUPER_LUCK, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_BIG_PECKS, ABILITY_RIVALRY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HYPER_VOICE, MOVE_POWER_GEM, MOVE_DISCHARGE, MOVE_ROAR
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_DRILL_PECK, MOVE_SUBMISSION, MOVE_TAILWIND, MOVE_HYPNOSIS
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_SWANNA,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_HYDRATION, ABILITY_GIANT_WINGS, ABILITY_MAJESTIC_BIRD},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_BIG_PECKS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HURRICANE, MOVE_SCALD, MOVE_ROOST, MOVE_DEFOG
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Andres1[] = { // potential double w/ Josue
+    {
+    .lvl = 0,
+    .species = SPECIES_ARCHEOPS,
+    .heldItem = ITEM_ROCK_GEM,
+    .ability = 0, // ABILITY_DEFEATIST, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_PREDATOR},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_ACROBATICS, MOVE_ROCK_SLIDE, MOVE_STEALTH_ROCK, MOVE_HEAT_WAVE
+    },
+    {
+    .lvl = 1,
+    .species = SPECIES_AURORUS,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_REFRIGERATE, ABILITY_SOLID_ROCK, ABILITY_SNOW_WARNING},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ICE_BODY, ABILITY_PERMAFROST},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYPER_VOICE, MOVE_POWER_GEM, MOVE_DISCHARGE, MOVE_EARTH_POWER
     },
     {
     .lvl = 0,
     .species = SPECIES_PROBOPASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_POWER_GEM, MOVE_EARTH_POWER, MOVE_FLASH_CANNON, MOVE_ZAP_CANNON
+    .heldItem = ITEM_GROUND_GEM,
+    .ability = 1, // ABILITY_IMPENETRABLE, ABILITY_MAGNET_PULL, ABILITY_STEELWORKER},
+    // .innates = {ABILITY_SOLID_ROCK, ABILITY_SAND_FORCE, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_POWER_GEM, MOVE_EARTH_POWER, MOVE_FLASH_CANNON, MOVE_VOLT_SWITCH
     }
 };
 
@@ -19384,32 +19731,35 @@ static const struct TrainerMonItemCustomMoves sParty_Andres2[] = {
     {
     .lvl = 0,
     .species = SPECIES_ARCHEOPS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 0, // ABILITY_DEFEATIST, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_ACROBATICS, MOVE_ROCK_SLIDE, MOVE_DRAGON_CLAW, MOVE_ENDEAVOR
+    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_FLY, MOVE_HEAD_SMASH, MOVE_QUICK_ATTACK, MOVE_U_TURN
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_AURORUS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HYPER_VOICE, MOVE_POWER_GEM, MOVE_DISCHARGE, MOVE_ROAR
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 0, // ABILITY_REFRIGERATE, ABILITY_SOLID_ROCK, ABILITY_SNOW_WARNING},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ICE_BODY, ABILITY_PERMAFROST},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYPER_VOICE, MOVE_POWER_GEM, MOVE_DISCHARGE, MOVE_EARTH_POWER
     },
     {
     .lvl = 0,
     .species = SPECIES_PROBOPASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_POWER_GEM, MOVE_EARTH_POWER, MOVE_FLASH_CANNON, MOVE_ZAP_CANNON
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_IMPENETRABLE, ABILITY_MAGNET_PULL, ABILITY_STEELWORKER},
+    // .innates = {ABILITY_SOLID_ROCK, ABILITY_SAND_FORCE, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 0, 172, 84},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_POWER_GEM, MOVE_TOXIC, MOVE_FLASH_CANNON, MOVE_VOLT_SWITCH
     },
 /*     {
     .lvl = 0,
@@ -19425,32 +19775,35 @@ static const struct TrainerMonItemCustomMoves sParty_Andres3[] = {
     {
     .lvl = 0,
     .species = SPECIES_ARCHEOPS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_DEFEATIST, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_ACROBATICS, MOVE_ROCK_SLIDE, MOVE_DRAGON_CLAW, MOVE_ENDEAVOR
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_STEALTH_ROCK, MOVE_HEAD_SMASH, MOVE_ENDEAVOR, MOVE_QUICK_ATTACK
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_AURORUS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HYPER_VOICE, MOVE_POWER_GEM, MOVE_DISCHARGE, MOVE_ROAR
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_REFRIGERATE, ABILITY_SOLID_ROCK, ABILITY_SNOW_WARNING},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ICE_BODY, ABILITY_PERMAFROST},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HYPER_VOICE, MOVE_POWER_GEM, MOVE_FREEZE_DRY, MOVE_EARTH_POWER
     },
     {
     .lvl = 0,
     .species = SPECIES_PROBOPASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_POWER_GEM, MOVE_EARTH_POWER, MOVE_FLASH_CANNON, MOVE_ZAP_CANNON
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_IMPENETRABLE, ABILITY_MAGNET_PULL, ABILITY_STEELWORKER},
+    // .innates = {ABILITY_SOLID_ROCK, ABILITY_SAND_FORCE, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_POWER_GEM, MOVE_TOXIC, MOVE_FLASH_CANNON, MOVE_PROTECT
     },
 /*     {
     .lvl = 0,
@@ -19466,32 +19819,35 @@ static const struct TrainerMonItemCustomMoves sParty_Andres4[] = {
     {
     .lvl = 0,
     .species = SPECIES_ARCHEOPS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_DEFEATIST, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_NAUGHTY,
-    .moves = MOVE_ACROBATICS, MOVE_STONE_EDGE, MOVE_EARTHQUAKE, MOVE_HEAT_WAVE
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_HEAT_WAVE, MOVE_HEAD_SMASH, MOVE_AERIAL_ACE, MOVE_QUICK_ATTACK
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_AURORUS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_REFRIGERATE, ABILITY_SOLID_ROCK, ABILITY_SNOW_WARNING},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ICE_BODY, ABILITY_PERMAFROST},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_HYPER_VOICE, MOVE_POWER_GEM, MOVE_DISCHARGE, MOVE_ROAR
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_LIGHT_SCREEN, MOVE_POWER_GEM, MOVE_FREEZE_DRY, MOVE_THUNDER_WAVE
     },
     {
     .lvl = 0,
     .species = SPECIES_PROBOPASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_IMPENETRABLE, ABILITY_MAGNET_PULL, ABILITY_STEELWORKER},
+    // .innates = {ABILITY_SOLID_ROCK, ABILITY_SAND_FORCE, ABILITY_LEVITATE},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_POWER_GEM, MOVE_EARTH_POWER, MOVE_FLASH_CANNON, MOVE_ZAP_CANNON
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_POWER_GEM, MOVE_TOXIC, MOVE_FLASH_CANNON, MOVE_PROTECT
     },
 /*    {
     .lvl = 0,
@@ -19574,160 +19930,30 @@ static const struct TrainerMonItemCustomMoves sParty_Douglas[] = {
     }
 };
 
-// Route 107
+// Route 107 (Surf / Optional)
 
 static const struct TrainerMonItemCustomMoves sParty_Denise[] = {
     {
     .lvl = 0,
     .species = SPECIES_SWANNA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_RAIN_DANCE, MOVE_SURF, MOVE_HURRICANE, MOVE_ROOST
+    .heldItem = ITEM_WIDE_LENS,
+    .ability = 1, // ABILITY_HYDRATION, ABILITY_GIANT_WINGS, ABILITY_MAJESTIC_BIRD},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_BIG_PECKS},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HURRICANE, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_SEAKING,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 2, // ABILITY_MULTISCALE, ABILITY_WATER_VEIL, ABILITY_HUSTLE},
+    // .innates = {ABILITY_LIGHTNING_ROD, ABILITY_SWIFT_SWIM, ABILITY_FIELD_EXPLORER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATERFALL, MOVE_MEGAHORN, MOVE_DRILL_RUN, MOVE_POISON_JAB
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_LisaAndRay[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_CLAWITZER,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATER_PULSE, MOVE_DARK_PULSE, MOVE_AURA_SPHERE, MOVE_DRAGON_PULSE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_DRAGALGE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DRAGON_PULSE, MOVE_SLUDGE_BOMB, MOVE_HYDRO_PUMP, MOVE_SMOKESCREEN
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_BASCULIN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AQUA_TAIL, MOVE_CRUNCH, MOVE_DOUBLE_EDGE, MOVE_HEAD_SMASH
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_ALOMOMOLA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HEAL_PULSE, MOVE_WHIRLPOOL, MOVE_HELPING_HAND, MOVE_AQUA_RING
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Darrin[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_TENTACOOL,
-    .heldItem = ITEM_BLACK_SLUDGE,
-    .ability = 0, // 
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_WATER_PULSE, MOVE_SLUDGE_BOMB, MOVE_TOXIC_SPIKES, MOVE_SUPERSONIC
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_WINGULL,
-    .heldItem = ITEM_DAMP_ROCK,
-    .ability = 1, // Hydration
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_WATER_PULSE, MOVE_HURRICANE, MOVE_RAIN_DANCE, MOVE_REST
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_TENTACOOL,
-    .heldItem = ITEM_BLACK_SLUDGE,
-    .ability = 2, // Rain Dish
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_WATERFALL, MOVE_POISON_JAB, MOVE_SCREECH, MOVE_KNOCK_OFF
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_WINGULL,
-    .heldItem = ITEM_DAMP_ROCK,
-    .ability = 2, // Rain Dish
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_WATER_PULSE, MOVE_HURRICANE, MOVE_RAIN_DANCE, MOVE_SUPERSONIC
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_TENTACOOL,
-    .heldItem = ITEM_BLACK_SLUDGE,
-    .ability = 2, // Rain Dish
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_WATER_PULSE, MOVE_SLUDGE_BOMB, MOVE_TOXIC_SPIKES, MOVE_SUPERSONIC
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_WINGULL,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // Rain Dish
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_WATER_PULSE, MOVE_HURRICANE, MOVE_RAIN_DANCE, MOVE_AGILITY
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Beth[] = { // Double with Camron
-    {
-    .lvl = 0,
-    .species = SPECIES_POLITOED,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Drizzle
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_MUD_SHOT, MOVE_HYDRO_PUMP, MOVE_HYPNOSIS, MOVE_HYPER_VOICE
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Camron[] = { // Double with Beth
-    {
-    .lvl = 0,
-    .species = SPECIES_STARMIE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Natural Cure
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_THUNDER, MOVE_HYDRO_PUMP, MOVE_PSYCHIC, MOVE_POWER_GEM
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_WATERFALL, MOVE_DRILL_RUN, MOVE_POISON_JAB, MOVE_MEGAHORN
     }
 };
 
@@ -19735,22 +19961,24 @@ static const struct TrainerMonItemCustomMoves sParty_Tony1[] = {
     {
     .lvl = 0,
     .species = SPECIES_SHARPEDO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Speed Boost
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_PETAYA_BERRY,
+    .ability = 2, // ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
     .moves = MOVE_SURF, MOVE_DARK_PULSE, MOVE_ICE_BEAM, MOVE_PROTECT
     },
     {
     .lvl = 0,
     .species = SPECIES_GOLISOPOD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_EMERGENCY_EXIT, ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_SHELL_ARMOR, ABILITY_POISON_POINT, ABILITY_HYPER_CUTTER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_LEECH_LIFE, MOVE_AQUA_JET, MOVE_LIQUIDATION, MOVE_ROCK_SLIDE
+    .evs = {168, 252, 0, 0, 0, 88},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_FIRST_IMPRESSION, MOVE_RAZOR_SHELL, MOVE_ROCK_SLIDE, MOVE_AQUA_JET
     }
 };
 
@@ -19758,22 +19986,24 @@ static const struct TrainerMonItemCustomMoves sParty_Tony2[] = {
     {
     .lvl = 0,
     .species = SPECIES_SHARPEDO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Speed Boost
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SURF, MOVE_DARK_PULSE, MOVE_ICE_BEAM, MOVE_PROTECT
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 2, // ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYDRO_PUMP, MOVE_DARK_PULSE, MOVE_ICE_BEAM, MOVE_HYPER_BEAM
     },
     {
     .lvl = 0,
     .species = SPECIES_GOLISOPOD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_EMERGENCY_EXIT, ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_SHELL_ARMOR, ABILITY_POISON_POINT, ABILITY_HYPER_CUTTER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_LEECH_LIFE, MOVE_AQUA_JET, MOVE_LIQUIDATION, MOVE_ROCK_SLIDE
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_LEECH_LIFE, MOVE_RAZOR_SHELL, MOVE_DRILL_RUN, MOVE_AQUA_JET
     }
 };
 
@@ -19781,22 +20011,24 @@ static const struct TrainerMonItemCustomMoves sParty_Tony3[] = {
     {
     .lvl = 0,
     .species = SPECIES_SHARPEDO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Speed Boost
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SURF, MOVE_DARK_PULSE, MOVE_ICE_BEAM, MOVE_PROTECT
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 1, // ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_SCALD, MOVE_DARK_PULSE, MOVE_BLIZZARD, MOVE_DESTINY_BOND
     },
     {
     .lvl = 0,
     .species = SPECIES_GOLISOPOD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // ABILITY_EMERGENCY_EXIT, ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_SHELL_ARMOR, ABILITY_POISON_POINT, ABILITY_HYPER_CUTTER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_LEECH_LIFE, MOVE_AQUA_JET, MOVE_LIQUIDATION, MOVE_ROCK_SLIDE
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_LEECH_LIFE, MOVE_LIQUIDATION, MOVE_DRILL_RUN, MOVE_AQUA_JET
     },
 /*     {
     .lvl = 0,
@@ -19812,22 +20044,24 @@ static const struct TrainerMonItemCustomMoves sParty_Tony4[] = {
     {
     .lvl = 0,
     .species = SPECIES_SHARPEDO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Speed Boost
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_HYDRO_PUMP, MOVE_DARK_PULSE, MOVE_ICE_BEAM, MOVE_PROTECT
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_PSYCHIC_FANGS, MOVE_CRUNCH, MOVE_AQUA_JET, MOVE_ICE_FANG
     },
     {
     .lvl = 0,
     .species = SPECIES_GOLISOPOD,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_EMERGENCY_EXIT, ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_SHELL_ARMOR, ABILITY_POISON_POINT, ABILITY_HYPER_CUTTER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {168, 252, 0, 0, 0, 88},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_LEECH_LIFE, MOVE_CLOSE_COMBAT, MOVE_LIQUIDATION, MOVE_ROCK_SLIDE
+    .moves = MOVE_FIRST_IMPRESSION, MOVE_LIQUIDATION, MOVE_CLOSE_COMBAT, MOVE_AQUA_JET
     },
 /*     {
     .lvl = 0,
@@ -19839,60 +20073,209 @@ static const struct TrainerMonItemCustomMoves sParty_Tony4[] = {
     } */
 };
 
-// Route 108
+static const struct TrainerMonItemCustomMoves sParty_LisaAndRay[] = { // Double
+    {
+    .lvl = 0,
+    .species = SPECIES_CLAWITZER,
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_GRIP_PINCER},
+    // .innates = {ABILITY_HUGE_POWER, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_WATER_PULSE, MOVE_DARK_PULSE, MOVE_AURA_SPHERE, MOVE_DRAGON_PULSE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DRAGALGE,
+    .heldItem = ITEM_POISON_BARB,
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_CORROSION, ABILITY_PROPELLER_TAIL},
+    // .innates = {ABILITY_ADAPTABILITY, ABILITY_POISON_TOUCH, ABILITY_AQUATIC},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {224, 0, 0, 252, 4, 28},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYDRO_PUMP, MOVE_SLUDGE_WAVE, MOVE_DRACO_METEOR, MOVE_TOXIC_SPIKES
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_BASCULIN,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_MOLD_BREAKER, ABILITY_STRONG_JAW, ABILITY_PREDATOR},
+    // .innates = {ABILITY_RECKLESS, ABILITY_ADAPTABILITY, ABILITY_HYPER_AGGRESSIVE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_HEAD_SMASH, MOVE_LIQUIDATION, MOVE_DOUBLE_EDGE, MOVE_AQUA_JET
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_ALOMOMOLA,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_HYDRATION, ABILITY_NATURAL_CURE, ABILITY_WATER_VEIL},
+    // .innates = {ABILITY_HEALER, ABILITY_REGENERATOR, ABILITY_SELF_SUFFICIENT},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {8, 0, 252, 0, 248, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_HEAL_PULSE, MOVE_WHIRLPOOL, MOVE_HELPING_HAND, MOVE_PROTECT
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Darrin[] = {
+    {
+    .lvl = 1,
+    .species = SPECIES_TENTACRUEL,
+    .heldItem = ITEM_BLACK_SLUDGE,
+    .ability = 2, // ABILITY_LIQUID_OOZE, ABILITY_NEUROFORCE, ABILITY_WATER_VEIL},
+    // .innates = {ABILITY_CLEAR_BODY, ABILITY_POISON_TOUCH, ABILITY_WATER_ABSORB},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 112, 0, 0, 144},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SCALD, MOVE_SLUDGE_BOMB, MOVE_TOXIC_SPIKES, MOVE_HAZE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_PELIPPER,
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 0, // ABILITY_DRIZZLE, ABILITY_HYDRATION, ABILITY_AIR_BLOWER},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_RAIN_DISH, ABILITY_FLOCK},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+	.moves = MOVE_HURRICANE, MOVE_SCALD, MOVE_U_TURN, MOVE_ROOST
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_TENTACOOL,
+    .heldItem = ITEM_EVIOLITE,
+    .ability = 0, // ABILITY_LIQUID_OOZE, ABILITY_NEUROFORCE, ABILITY_NONE},
+    // .innates = {ABILITY_CLEAR_BODY, ABILITY_POISON_TOUCH, ABILITY_WATER_ABSORB},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_SASSY,
+    .moves = MOVE_SCALD, MOVE_KNOCK_OFF, MOVE_HAZE, MOVE_RAPID_SPIN
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_WINGULL,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_HYDRATION, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_RAIN_DISH, ABILITY_FLOCK},
+    .ivs = {30, 31, 31, 30, 31, 31}, // Grass
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SCALD, MOVE_HURRICANE, MOVE_HIDDEN_POWER, MOVE_U_TURN
+    },
+    {
+    .lvl = 1,
+    .species = SPECIES_TENTACRUEL,
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_LIQUID_OOZE, ABILITY_NEUROFORCE, ABILITY_WATER_VEIL},
+    // .innates = {ABILITY_CLEAR_BODY, ABILITY_POISON_TOUCH, ABILITY_WATER_ABSORB},
+    .ivs = {30, 0, 31, 30, 31, 31}, // Grass
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HYDRO_PUMP, MOVE_SLUDGE_BOMB, MOVE_ICE_BEAM, MOVE_HIDDEN_POWER
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_PELIPPER,
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_DRIZZLE, ABILITY_HYDRATION, ABILITY_AIR_BLOWER},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_RAIN_DISH, ABILITY_FLOCK},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+	.moves = MOVE_AIR_CUTTER, MOVE_SEED_BOMB, MOVE_STEEL_WING, MOVE_GIGA_IMPACT
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Beth[] = { // potential double w/ Camron
+    {
+    .lvl = 2,
+    .species = SPECIES_POLITOED,
+    .heldItem = ITEM_WIKI_BERRY,
+    .ability = 2, // ABILITY_STORM_DRAIN, ABILITY_UNAWARE, ABILITY_HYDRATE},
+    // .innates = {ABILITY_DAMP, ABILITY_HYDRATION, ABILITY_DRIZZLE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 188, 60, 8, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_PROTECT, MOVE_ENCORE, MOVE_HYPNOSIS, MOVE_HYPER_VOICE
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Camron[] = { // potential double w/ Beth
+    {
+    .lvl = 2,
+    .species = SPECIES_STARMIE,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_MYSTIC_POWER, ABILITY_ILLUMINATE},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_ANALYTIC, ABILITY_VICTORY_STAR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_THUNDER, MOVE_HYDRO_PUMP, MOVE_PSYCHIC, MOVE_POWER_GEM
+    }
+};
+
+// Route 108 (Surf / Optional)
 
 static const struct TrainerMonItemCustomMoves sParty_Tara[] = {
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_SEADRA,
-    .heldItem = ITEM_SCOPE_LENS,
-    .ability = 2, // Sniper
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SURF, MOVE_DRAGON_PULSE, MOVE_FOCUS_ENERGY, MOVE_AGILITY
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_IMMUNITY, ABILITY_POISON_HEAL},
+    // .innates = {ABILITY_POISON_POINT, ABILITY_SNIPER, ABILITY_MEGA_LAUNCHER},
+    .ivs = {30, 0, 31, 30, 31, 31}, // Grass
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYDRO_PUMP, MOVE_AGILITY, MOVE_ICE_BEAM, MOVE_HIDDEN_POWER
     },
     {
     .lvl = 0,
     .species = SPECIES_FERALIGATR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Sheer Force
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_TORRENT, ABILITY_STRONG_JAW, ABILITY_ROUGH_SKIN},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATERFALL, MOVE_AQUA_JET, MOVE_CRUNCH, MOVE_ICE_PUNCH
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_DEATHROLL, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
     .species = SPECIES_AUDINO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_CUTE_CHARM, ABILITY_NONE, ABILITY_SERENE_GRACE},
+    // .innates = {ABILITY_HEALER, ABILITY_REGENERATOR, ABILITY_NONE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SURF, MOVE_HYPER_VOICE, MOVE_MOONBLAST, MOVE_ATTRACT
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_SASSY,
+    .moves = MOVE_MOONBLAST, MOVE_KNOCK_OFF, MOVE_SURF, MOVE_RECOVER
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Missy[] = {
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_GOREBYSS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Hydration
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_WHITE_HERB,
+    .ability = 2, // ABILITY_WATER_VEIL, ABILITY_HYDRATION, ABILITY_COLOR_CHANGE},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_ADAPTABILITY, ABILITY_PREDATOR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
     .moves = MOVE_HYDRO_PUMP, MOVE_DRAINING_KISS, MOVE_PSYCHIC, MOVE_SHELL_SMASH
     },
     {
     .lvl = 0,
     .species = SPECIES_PYUKUMUKU,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_INNARDS_OUT, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_UNAWARE, ABILITY_NONE, ABILITY_NONE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
     .moves = MOVE_RECOVER, MOVE_COUNTER, MOVE_SOAK, MOVE_TOXIC
     }
 };
@@ -19901,41 +20284,48 @@ static const struct TrainerMonItemCustomMoves sParty_Matthew[] = {
     {
     .lvl = 0,
     .species = SPECIES_MANTINE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Water Absorb
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AIR_SLASH, MOVE_AQUA_RING, MOVE_AGILITY, MOVE_ROOST
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_WATER_VEIL, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_RAIN_DISH, ABILITY_WATER_ABSORB, ABILITY_GIANT_WINGS},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 36, 0, 220, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_SCALD, MOVE_HAZE, MOVE_TOXIC, MOVE_ROOST
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_RAICHU,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Lightningrod
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LIGHT_BALL,
+    .ability = 0, // ABILITY_ELECTROCYTES, ABILITY_STATIC, ABILITY_ELECTRIC_BURST},
+    // .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_PLUS, ABILITY_GROUND_SHOCK},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_THUNDER, MOVE_SURF, MOVE_GRASS_KNOT, MOVE_NASTY_PLOT
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Carolina[] = { // Ace, double with Cory
+static const struct TrainerMonItemCustomMoves sParty_Carolina[] = { // Ace, potential double w/ Cory
     {
-    .lvl = 0,
-    .species = SPECIES_MANECTRIC,
-    .heldItem = ITEM_WHITE_HERB,
-    .ability = 0, // 
+    .lvl = 3,
+    .species = SPECIES_MANECTRIC, // Mega
+    .heldItem = ITEM_MANECTITE,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_GROUND_SHOCK, ABILITY_OVERCHARGE},
+    // Pre-Mega
+    // ABILITY_STATIC, ABILITY_ILLUMINATE, ABILITY_ELECTRIC_BURST},
+    // .innates = {ABILITY_PLUS, ABILITY_LIGHTNING_ROD, ABILITY_UNNERVE},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {128, 0, 44, 80, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDERBOLT, MOVE_OVERHEAT, MOVE_AURORA_BEAM, MOVE_HYPER_BEAM
+    .moves = MOVE_VOLT_SWITCH, MOVE_OVERHEAT, MOVE_SNARL, MOVE_PROTECT
     },
     {
     .lvl = 0,
     .species = SPECIES_HAWLUCHA,
     .heldItem = ITEM_ELECTRIC_SEED,
-    .ability = 1, // Unburden
+    .ability = 0, // ABILITY_UNBURDEN, ABILITY_AERILATE, ABILITY_MOLD_BREAKER},
+    // .innates = {ABILITY_LIMBER, ABILITY_NO_GUARD, ABILITY_AERODYNAMICS},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -19945,7 +20335,8 @@ static const struct TrainerMonItemCustomMoves sParty_Carolina[] = { // Ace, doub
     .lvl = 0,
     .species = SPECIES_SAWSBUCK,
     .heldItem = ITEM_ELECTRIC_GEM,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_SERENE_GRACE},
+    // .innates = {ABILITY_SAP_SIPPER, ABILITY_VIOLENT_RUSH, ABILITY_RIVALRY},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -19953,144 +20344,24 @@ static const struct TrainerMonItemCustomMoves sParty_Carolina[] = { // Ace, doub
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Jerome[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_BARBARACLE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_RAZOR_SHELL, MOVE_STRENGTH, MOVE_NIGHT_SLASH, MOVE_CROSS_CHOP
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_BEARTIC,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_ICICLE_CRASH, MOVE_LIQUIDATION, MOVE_THRASH, MOVE_CHARM
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Cory1[] = {
+static const struct TrainerMonItemCustomMoves sParty_Cory1[] = { // potential double w/ Carolina
     {
     .lvl = 0,
     .species = SPECIES_STUNFISK,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Electric Surge
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_THUNDERBOLT, MOVE_EARTH_POWER, MOVE_YAWN, MOVE_CHARGE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_POLIWRATH,
-    .heldItem = ITEM_ELECTRIC_SEED,
-    .ability = 2, // Swift Swim
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATERFALL, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_HYPNOSIS
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Cory2[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_STUNFISK,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Electric Surge
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_THUNDERBOLT, MOVE_EARTH_POWER, MOVE_YAWN, MOVE_CHARGE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_POLIWRATH,
-    .heldItem = ITEM_ELECTRIC_SEED,
-    .ability = 2, // Swift Swim
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATERFALL, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_HYPNOSIS
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_WAILORD,
-    .heldItem = ITEM_DAMP_ROCK,
-    .ability = 2, // Drizzle
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATER_SPOUT, MOVE_ICE_BEAM, MOVE_HEAVY_SLAM, MOVE_RAIN_DANCE
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Cory3[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_STUNFISK,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Electric Surge
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_THUNDERBOLT, MOVE_EARTH_POWER, MOVE_YAWN, MOVE_CHARGE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_POLIWRATH,
-    .heldItem = ITEM_ELECTRIC_SEED,
-    .ability = 2, // Swift Swim
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATERFALL, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_HYPNOSIS
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_WAILORD,
-    .heldItem = ITEM_DAMP_ROCK,
-    .ability = 2, // Drizzle
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATER_SPOUT, MOVE_ICE_BEAM, MOVE_HEAVY_SLAM, MOVE_RAIN_DANCE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_LANTURN,
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // Drizzle
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_VOLT_SWITCH, MOVE_ICE_BEAM, MOVE_HYDRO_PUMP, MOVE_DISCHARGE
-    }    
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Cory4[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_STUNFISK,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Electric Surge
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_WATER_COMPACTION, ABILITY_STATIC, ABILITY_ELECTRIC_SURGE},
+    // .innates = {ABILITY_MINUS, ABILITY_AMPHIBIOUS, ABILITY_DRY_SKIN},
     .ivs = {31, 0, 31, 31, 31, 0},
-    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_QUIET,
-    .moves = MOVE_THUNDERBOLT, MOVE_EARTH_POWER, MOVE_YAWN, MOVE_CHARGE
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_DISCHARGE, MOVE_EARTH_POWER, MOVE_YAWN, MOVE_STEALTH_ROCK
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_POLIWRATH,
     .heldItem = ITEM_ELECTRIC_SEED,
-    .ability = 2, // Swift Swim
+    .ability = 1, // ABILITY_PRECISE_FIST, ABILITY_IRON_FIST, ABILITY_POWER_FISTS},
+    // .innates = {ABILITY_HYPNOTIST, ABILITY_SWIFT_SWIM, ABILITY_HYDRATION},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -20098,24 +20369,181 @@ static const struct TrainerMonItemCustomMoves sParty_Cory4[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_WAILORD,
-    .heldItem = ITEM_DAMP_ROCK,
-    .ability = 2, // Drizzle
+    .species = SPECIES_LANTURN,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_PLUS, ABILITY_WATER_ABSORB, ABILITY_VOLT_ABSORB},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_WATER_SPOUT, MOVE_ICE_BEAM, MOVE_YAWN, MOVE_RAIN_DANCE
+	.nature = NATURE_MODEST,
+    .moves = MOVE_VOLT_SWITCH, MOVE_BLIZZARD, MOVE_HYDRO_PUMP, MOVE_DISCHARGE
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Cory2[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_STUNFISK,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_WATER_COMPACTION, ABILITY_STATIC, ABILITY_ELECTRIC_SURGE},
+    // .innates = {ABILITY_MINUS, ABILITY_AMPHIBIOUS, ABILITY_DRY_SKIN},
+    .ivs = {31, 0, 31, 31, 31, 0},
+    .evs = {252, 0, 76, 180, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_THUNDERBOLT, MOVE_EARTH_POWER, MOVE_MUDDY_WATER, MOVE_STEALTH_ROCK
+    },
+    {
+    .lvl = 1,
+    .species = SPECIES_POLIWRATH,
+    .heldItem = ITEM_ELECTRIC_SEED,
+    .ability = 1, // ABILITY_PRECISE_FIST, ABILITY_IRON_FIST, ABILITY_POWER_FISTS},
+    // .innates = {ABILITY_HYPNOTIST, ABILITY_SWIFT_SWIM, ABILITY_HYDRATION},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_WATERFALL, MOVE_DRAIN_PUNCH, MOVE_ICE_PUNCH, MOVE_HYPNOSIS
     },
     {
     .lvl = 0,
     .species = SPECIES_LANTURN,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // Drizzle
+    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_PLUS, ABILITY_WATER_ABSORB, ABILITY_VOLT_ABSORB},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
-    .moves = MOVE_VOLT_SWITCH, MOVE_ICE_BEAM, MOVE_HYDRO_PUMP, MOVE_DISCHARGE
-    }   
+    .moves = MOVE_VOLT_SWITCH, MOVE_ICE_BEAM, MOVE_SCALD, MOVE_PARABOLIC_CHARGE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_WAILORD,
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 2, // ABILITY_WATER_VEIL, ABILITY_STAMINA, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_LIQUID_VOICE, ABILITY_THICK_FAT, ABILITY_PRESSURE},
+    .ivs = {30, 0, 31, 30, 31, 31}, // Grass
+    .evs = {0, 0, 56, 252, 60, 140},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_WATER_SPOUT, MOVE_ICE_BEAM, MOVE_HIDDEN_POWER, MOVE_BOOMBURST
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Cory3[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_STUNFISK,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_WATER_COMPACTION, ABILITY_STATIC, ABILITY_ELECTRIC_SURGE},
+    // .innates = {ABILITY_MINUS, ABILITY_AMPHIBIOUS, ABILITY_DRY_SKIN},
+    .ivs = {31, 0, 31, 31, 31, 0},
+    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_THUNDERBOLT, MOVE_EARTH_POWER, MOVE_MUDDY_WATER, MOVE_STEALTH_ROCK
+    },
+    {
+    .lvl = 1,
+    .species = SPECIES_POLIWRATH,
+    .heldItem = ITEM_ELECTRIC_SEED,
+    .ability = 1, // ABILITY_PRECISE_FIST, ABILITY_IRON_FIST, ABILITY_POWER_FISTS},
+    // .innates = {ABILITY_HYPNOTIST, ABILITY_SWIFT_SWIM, ABILITY_HYDRATION},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_LIQUIDATION, MOVE_CLOSE_COMBAT, MOVE_DARKEST_LARIAT, MOVE_HYPNOSIS
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_LANTURN,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_PLUS, ABILITY_WATER_ABSORB, ABILITY_VOLT_ABSORB},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_VOLT_SWITCH, MOVE_ICE_BEAM, MOVE_HYDRO_PUMP, MOVE_THUNDER
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_WAILORD,
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 1, // ABILITY_WATER_VEIL, ABILITY_STAMINA, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_LIQUID_VOICE, ABILITY_THICK_FAT, ABILITY_PRESSURE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_TOXIC, MOVE_NOBLE_ROAR, MOVE_REST, MOVE_BLOCK
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Cory4[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_LANTURN,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_PLUS, ABILITY_WATER_ABSORB, ABILITY_VOLT_ABSORB},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {40, 0, 216, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_VOLT_SWITCH, MOVE_HEAL_BELL, MOVE_SCALD, MOVE_THUNDER_WAVE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_STUNFISK,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_WATER_COMPACTION, ABILITY_STATIC, ABILITY_ELECTRIC_SURGE},
+    // .innates = {ABILITY_MINUS, ABILITY_AMPHIBIOUS, ABILITY_DRY_SKIN},
+    .ivs = {31, 0, 31, 31, 31, 0},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_THUNDERBOLT, MOVE_EARTH_POWER, MOVE_MUDDY_WATER, MOVE_STEALTH_ROCK
+    },
+    {
+    .lvl = 1,
+    .species = SPECIES_POLIWRATH,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_PRECISE_FIST, ABILITY_IRON_FIST, ABILITY_POWER_FISTS},
+    // .innates = {ABILITY_HYPNOTIST, ABILITY_SWIFT_SWIM, ABILITY_HYDRATION},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_RELAXED,
+    .moves = MOVE_SCALD, MOVE_CIRCLE_THROW, MOVE_REST, MOVE_SLEEP_TALK
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_WAILORD,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_WATER_VEIL, ABILITY_STAMINA, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_LIQUID_VOICE, ABILITY_THICK_FAT, ABILITY_PRESSURE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_TOXIC, MOVE_SUBSTITUTE, MOVE_PROTECT, MOVE_BOOMBURST
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Jerome[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_BARBARACLE,
+    .heldItem = ITEM_SHUCA_BERRY,
+    .ability = 1, // ABILITY_PICKPOCKET, ABILITY_LIMBER, ABILITY_SAND_FORCE},
+    // .innates = {ABILITY_TOUGH_CLAWS, ABILITY_SNIPER, ABILITY_MULTI_HEADED},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_RAZOR_SHELL, MOVE_STRENGTH, MOVE_CROSS_CHOP, MOVE_NIGHT_SLASH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_BEARTIC,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_SLUSH_RUSH, ABILITY_AQUATIC, ABILITY_SWIFT_SWIM},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {132, 252, 0, 0, 0, 124},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_ICICLE_CRASH, MOVE_AQUA_JET, MOVE_DRAIN_PUNCH, MOVE_BULK_UP
+    }
 };
 
 // Route 109 Surfing
@@ -20258,7 +20686,7 @@ static const struct TrainerMonItemCustomMoves sParty_Carter[] = { // Potential D
     .lvl = 0,
     .species = SPECIES_LANTURN,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_SHORT_CIRCUIT},
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_DRIZZLE},
     // .innates = {ABILITY_PLUS, ABILITY_WATER_ABSORB, ABILITY_VOLT_ABSORB},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -20339,173 +20767,77 @@ static const struct TrainerMonItemCustomMoves sParty_MelAndPaul[] = {
     }
 };
 
-// Abandoned Ship
+// Abandoned Ship (Optional)
 
-static const struct TrainerMonItemCustomMoves sParty_Demetrius[] = { // Double with Thalia
+static const struct TrainerMonItemCustomMoves sParty_Demetrius[] = { // potential double w/ Thalia
     {
-    .lvl = 0,
-    .species = SPECIES_LUXRAY,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .lvl = 1,
+    .species = SPECIES_LUXRAY, // Doubles
+    .heldItem = ITEM_FLAME_ORB,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_ELECTRIC_BURST, ABILITY_PREDATOR},
+    // .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_DEADEYE, ABILITY_GUTS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WILD_CHARGE, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_SCARY_FACE
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_VOLT_TACKLE, MOVE_PROTECT, MOVE_FACADE, MOVE_CRUNCH
     },
     {
     .lvl = 0,
-    .species = SPECIES_STOUTLAND,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .species = SPECIES_STOUTLAND, // Doubles
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_SAND_RUSH, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_OVERCOAT, ABILITY_FUR_COAT, ABILITY_FILTER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_RETALIATE, MOVE_CRUNCH, MOVE_PLAY_ROUGH, MOVE_WORK_UP
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Duncan[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_MACHAMP,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // No Guard
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DYNAMIC_PUNCH, MOVE_STRENGTH, MOVE_DUAL_CHOP, MOVE_KNOCK_OFF
+    .evs = {252, 4, 252, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_RETALIATE, MOVE_PLAY_ROUGH, MOVE_CRUNCH, MOVE_THUNDER_WAVE
     },
     {
     .lvl = 0,
-    .species = SPECIES_WALREIN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Ice Body
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BLIZZARD, MOVE_SLACK_OFF, MOVE_AQUA_TAIL, MOVE_HAIL
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_DHELMISE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_ANCHOR_SHOT, MOVE_PHANTOM_FORCE, MOVE_POWER_WHIP, MOVE_WHIRLPOOL
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Charlie[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_LUMINEON,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HYDRO_PUMP, MOVE_AIR_SLASH, MOVE_QUIVER_DANCE, MOVE_SOAK
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_OCTILLERY,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Sniper
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_OCTAZOOKA, MOVE_ICE_BEAM, MOVE_SIGNAL_BEAM, MOVE_FOCUS_ENERGY
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Garrison[] = { // Double with Jani
-    {
-    .lvl = 0,
-    .species = SPECIES_CARRACOSTA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Sturdy
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AQUA_TAIL, MOVE_ROCK_SLIDE, MOVE_CRUNCH, MOVE_SHELL_SMASH
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_STEELIX,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Sturdy
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_EARTHQUAKE, MOVE_IRON_TAIL, MOVE_FIRE_FANG, MOVE_SCREECH
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_GOLEM_ALOLAN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Sturdy
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_THUNDER_PUNCH, MOVE_CURSE
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Jani[] = { // Double with Garrison
-    {
-    .lvl = 0,
-    .species = SPECIES_DRAGONAIR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AQUA_TAIL, MOVE_DRAGON_RUSH, MOVE_THUNDER_WAVE, MOVE_SAFEGUARD
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_SIMIPOUR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SCALD, MOVE_ACROBATICS, MOVE_CRUNCH, MOVE_PLAY_NICE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_FURRET,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_COIL, MOVE_SLAM, MOVE_SUCKER_PUNCH, MOVE_AMNESIA
+    .species = SPECIES_HOUNDOOM, // Doubles
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_STRONG_JAW, ABILITY_MOLTEN_DOWN, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_NOCTURNAL, ABILITY_SOLENOGLYPHS, ABILITY_SOUL_EATER},
+    .ivs = {30, 0, 30, 31, 31, 31}, // Ice
+    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_SUCKER_PUNCH, MOVE_HEAT_WAVE, MOVE_PROTECT, MOVE_HIDDEN_POWER
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Thalia1[] = { // Double with Demetrius
     {
     .lvl = 0,
-    .species = SPECIES_FLORGES,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Misty Surge
+    .species = SPECIES_FLORGES, // Doubles
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_FLOWER_VEIL, ABILITY_MISTY_SURGE, ABILITY_SYMBIOSIS},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_REGENERATOR, ABILITY_SELF_SUFFICIENT},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_MOONBLAST, MOVE_PETAL_DANCE, MOVE_LEECH_SEED, MOVE_WISH
+    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_MOONBLAST, MOVE_LEECH_SEED, MOVE_PROTECT, MOVE_WISH
     },
     {
     .lvl = 0,
-    .species = SPECIES_GARDEVOIR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Trace
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYCHIC, MOVE_DAZZLING_GLEAM, MOVE_MYSTICAL_FIRE, MOVE_CALM_MIND
+    .species = SPECIES_GARDEVOIR, // Doubles
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_QUEENLY_MAJESTY, ABILITY_SOUL_HEART, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_DREAMCATCHER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_PSYSHOCK, MOVE_DAZZLING_GLEAM, MOVE_MYSTICAL_FIRE, MOVE_PROTECT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_LUVDISC,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_HYDRATION, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_SOUL_HEART, ABILITY_NONE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HYDRO_PUMP, MOVE_DRAINING_KISS, MOVE_LOVELY_KISS, MOVE_ICE_BEAM
     }
 };
 
@@ -20513,65 +20845,77 @@ static const struct TrainerMonItemCustomMoves sParty_Thalia2[] = {
     {
     .lvl = 0,
     .species = SPECIES_FLORGES,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Misty Surge
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_MOONBLAST, MOVE_PETAL_DANCE, MOVE_LEECH_SEED, MOVE_WISH
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_MISTY_SURGE, ABILITY_SYMBIOSIS},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_REGENERATOR, ABILITY_SELF_SUFFICIENT},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 120, 0, 0, 136},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_MOONBLAST, MOVE_SYNTHESIS, MOVE_PETAL_DANCE, MOVE_WISH
     },
     {
-    .lvl = 0,
-    .species = SPECIES_GARDEVOIR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Trace
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYCHIC, MOVE_DRAINING_KISS, MOVE_MYSTICAL_FIRE, MOVE_CALM_MIND
+    .lvl = 3,
+    .species = SPECIES_GARDEVOIR, // Mega
+    .heldItem = ITEM_GARDEVOIRITE,
+    .ability = 2, // ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
+    //.innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_HEART},
+    // Pre-Mega
+    // ABILITY_QUEENLY_MAJESTY, ABILITY_SOUL_HEART, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_DREAMCATCHER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {240, 0, 16, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HYPER_VOICE, MOVE_PSYSHOCK, MOVE_HYPER_BEAM, MOVE_CALM_MIND
     },
     {
     .lvl = 0,
     .species = SPECIES_LUVDISC,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Soul-Heart
-    .ivs = {31, 0, 31, 31, 31, 31},
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_HYDRATION, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_SOUL_HEART, ABILITY_NONE},
+    .ivs = {30, 31, 31, 30, 31, 31}, // Grass
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_HYDRO_PUMP, MOVE_DRAINING_KISS, MOVE_LOVELY_KISS, MOVE_ICE_BEAM
-    }    
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HIDDEN_POWER, MOVE_DRAINING_KISS
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Thalia3[] = {
     {
     .lvl = 0,
     .species = SPECIES_FLORGES,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Misty Surge
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_MISTY_SURGE, ABILITY_SYMBIOSIS},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_REGENERATOR, ABILITY_SELF_SUFFICIENT},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_MOONBLAST, MOVE_ENERGY_BALL, MOVE_EARTH_POWER, MOVE_CALM_MIND
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_MOONBLAST, MOVE_SYNTHESIS, MOVE_LEECH_SEED, MOVE_CALM_MIND
     },
     {
-    .lvl = 0,
-    .species = SPECIES_GARDEVOIR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Trace
+    .lvl = 3,
+    .species = SPECIES_GARDEVOIR, // Mega
+    .heldItem = ITEM_GARDEVOIRITE,
+    .ability = 2, // ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
+    //.innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_HEART},
+    // Pre-Mega
+    // ABILITY_QUEENLY_MAJESTY, ABILITY_SOUL_HEART, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_DREAMCATCHER},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_PSYCHIC, MOVE_DRAINING_KISS, MOVE_MYSTICAL_FIRE, MOVE_CALM_MIND
+    .moves = MOVE_HYPER_VOICE, MOVE_PSYSHOCK, MOVE_FOCUS_BLAST, MOVE_WILL_O_WISP
     },
     {
     .lvl = 0,
     .species = SPECIES_LUVDISC,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Soul-Heart
-    .ivs = {31, 0, 31, 31, 31, 31},
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_HYDRATION, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_SOUL_HEART, ABILITY_NONE},
+    .ivs = {30, 31, 31, 30, 31, 31}, // Grass
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_HYDRO_PUMP, MOVE_DRAINING_KISS, MOVE_LOVELY_KISS, MOVE_ICE_BEAM
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HIDDEN_POWER, MOVE_DRAINING_KISS
     }
 };
 
@@ -20579,172 +20923,327 @@ static const struct TrainerMonItemCustomMoves sParty_Thalia4[] = {
     {
     .lvl = 0,
     .species = SPECIES_FLORGES,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Misty Surge
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_FLOWER_VEIL, ABILITY_MISTY_SURGE, ABILITY_SYMBIOSIS},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_REGENERATOR, ABILITY_SELF_SUFFICIENT},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_MOONBLAST, MOVE_ENERGY_BALL, MOVE_EARTH_POWER, MOVE_CALM_MIND
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_MOONBLAST, MOVE_ENERGY_BALL, MOVE_HYPER_BEAM, MOVE_PETAL_DANCE
     },
     {
-    .lvl = 0,
-    .species = SPECIES_GARDEVOIR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Trace
+    .lvl = 3,
+    .species = SPECIES_GARDEVOIR, // Mega
+    .heldItem = ITEM_GARDEVOIRITE,
+    .ability = 2, // ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
+    //.innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_HEART},
+    // Pre-Mega
+    // ABILITY_QUEENLY_MAJESTY, ABILITY_SOUL_HEART, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_DREAMCATCHER},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_PSYCHIC, MOVE_DRAINING_KISS, MOVE_MYSTICAL_FIRE, MOVE_CALM_MIND
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_LUVDISC,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Soul-Heart
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_HYDRO_PUMP, MOVE_DRAINING_KISS, MOVE_LOVELY_KISS, MOVE_ICE_BEAM
+    .moves = MOVE_HYPER_BEAM, MOVE_PSYCHIC, MOVE_FOCUS_BLAST, MOVE_TAUNT
     },
     {
     .lvl = 0,
     .species = SPECIES_LUVDISC,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Soul-Heart
-    .ivs = {31, 0, 31, 31, 31, 31},
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_HYDRATION, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_SOUL_HEART, ABILITY_NONE},
+    .ivs = {30, 31, 31, 30, 31, 31}, // Grass
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HIDDEN_POWER, MOVE_DRAINING_KISS
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_LUVDISC,
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 0, // ABILITY_HYDRATION, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_SOUL_HEART, ABILITY_NONE},
+    .ivs = {30, 31, 31, 30, 31, 31}, // Grass
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_HYDRO_PUMP, MOVE_DRAINING_KISS, MOVE_LOVELY_KISS, MOVE_ICE_BEAM
-    }    
+    .moves = MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HIDDEN_POWER, MOVE_DRAINING_KISS
+    }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_KiraAndDan1[] = {
+static const struct TrainerMonItemCustomMoves sParty_Duncan[] = {
+    {
+    .lvl = 3,
+    .species = SPECIES_MACHAMP, // Mega
+    .heldItem = ITEM_MACHAMPITE,
+    .ability = 0, // ABILITY_RAGING_BOXER, ABILITY_RAGING_BOXER, ABILITY_RAGING_BOXER},
+    // .innates = {ABILITY_NO_GUARD, ABILITY_IRON_FIST, ABILITY_GUTS},
+    // Pre-Mega
+    // ABILITY_PRECISE_FIST, ABILITY_POWER_FISTS, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_NO_GUARD, ABILITY_IRON_FIST, ABILITY_GUTS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_DYNAMIC_PUNCH, MOVE_DUAL_CHOP, MOVE_KNOCK_OFF, MOVE_MACH_PUNCH
+    },
     {
     .lvl = 0,
-    .species = SPECIES_VOLBEAT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Prankster
+    .species = SPECIES_WALREIN,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_SHEER_FORCE, ABILITY_REFRIGERATE, ABILITY_SNOW_WARNING},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_ICE_BODY, ABILITY_GROWING_TOOTH},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {252, 180, 0, 76, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BRAVE,
+	.moves = MOVE_SHEER_COLD, MOVE_SLACK_OFF, MOVE_AQUA_TAIL, MOVE_HYPER_FANG
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DHELMISE,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // ABILITY_WATER_ABSORB, ABILITY_SOUL_EATER, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_METALLIC, ABILITY_SEAWEED, ABILITY_STEELWORKER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_POWER_WHIP, MOVE_PHANTOM_FORCE, MOVE_LIQUIDATION, MOVE_ANCHOR_SHOT
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Charlie[] = {
+    {
+    .lvl = 1,
+    .species = SPECIES_LUMINEON,
+    .heldItem = ITEM_DARK_GEM,
+    .ability = 2, // ABILITY_STORM_DRAIN, ABILITY_NONE, ABILITY_WATER_VEIL},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_ILLUMINATE, ABILITY_NOCTURNAL},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_HYDRO_PUMP, MOVE_AIR_SLASH, MOVE_QUIVER_DANCE, MOVE_DARK_PULSE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_OCTILLERY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_SUCTION_CUPS, ABILITY_SNIPER, ABILITY_MOODY},
+    // .innates = {ABILITY_ARTILLERY, ABILITY_SWIFT_SWIM, ABILITY_MEGA_LAUNCHER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_PROTECT, MOVE_SUBSTITUTE, MOVE_RECOVER, MOVE_OCTAZOOKA
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Garrison[] = { // potential or forced double w/ Jani
+    {
+    .lvl = 0,
+    .species = SPECIES_CARRACOSTA,
+    .heldItem = ITEM_WHITE_HERB,
+    .ability = 0, // ABILITY_OPPORTUNIST, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SOLID_ROCK},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_ICE_FANG, MOVE_STONE_EDGE, MOVE_AQUA_JET, MOVE_SHELL_SMASH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_STEELIX,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_FISSURE, MOVE_IRON_TAIL, MOVE_FIRE_FANG, MOVE_SHORE_UP
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GOLEM_ALOLAN,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_MAGNET_PULL, ABILITY_GROUND_SHOCK, ABILITY_FORT_KNOX},
+    // .innates = {ABILITY_LETS_ROLL, ABILITY_STURDY, ABILITY_GALVANIZE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_FISSURE, MOVE_STONE_EDGE, MOVE_WILD_CHARGE, MOVE_CURSE
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Jani[] = { // potential or forced double w/ Garrison
+    {
+    .lvl = 3,
+    .species = SPECIES_DRAGONAIR,
+    .heldItem = ITEM_EVIOLITE,
+    .ability = 0, // ABILITY_REGENERATOR, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_MULTISCALE, ABILITY_MARVEL_SCALE, ABILITY_SHED_SKIN},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 0, 236, 20},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_THUNDER_WAVE, MOVE_DRAGON_RUSH, MOVE_EXTREME_SPEED, MOVE_SAFEGUARD
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_SIMIPOUR,
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 0, // ABILITY_STORM_DRAIN, ABILITY_NONE, ABILITY_HEALER},
+    // .innates = {ABILITY_TORRENT, ABILITY_PRANKSTER, ABILITY_GLUTTONY},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_RASH,
+    .moves = MOVE_HYDRO_PUMP, MOVE_FOCUS_BLAST, MOVE_KNOCK_OFF, MOVE_GRASS_KNOT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_FURRET,
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 1, // {ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_QUICK_FEET},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_FIELD_EXPLORER, ABILITY_FUR_COAT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_TRICK, MOVE_DOUBLE_EDGE, MOVE_U_TURN, MOVE_KNOCK_OFF
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_KiraAndDan1[] = { // Double
+    {
+    .lvl = 0,
+    .species = SPECIES_VOLBEAT, // Doubles
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_GALVANIZE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_SWARM, ABILITY_ILLUMINATE, ABILITY_ELECTROCYTES},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
     .moves = MOVE_TAIL_GLOW, MOVE_BUG_BUZZ, MOVE_THUNDER_WAVE, MOVE_PROTECT
     },
     {
     .lvl = 0,
-    .species = SPECIES_ILLUMISE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Tinted Lens
+    .species = SPECIES_ILLUMISE, // Doubles
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_PIXILATE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_SWARM, ABILITY_NOCTURNAL, ABILITY_CUTE_CHARM},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {252, 0, 252, 4, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
     .moves = MOVE_STRUGGLE_BUG, MOVE_DAZZLING_GLEAM, MOVE_THUNDERBOLT, MOVE_ENCORE
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_KiraAndDan2[] = {
+static const struct TrainerMonItemCustomMoves sParty_KiraAndDan2[] = { // Double
     {
     .lvl = 0,
-    .species = SPECIES_VOLBEAT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Prankster
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_TAIL_GLOW, MOVE_BUG_BUZZ, MOVE_THUNDER_WAVE, MOVE_PROTECT
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_ILLUMISE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Tinted Lens
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BUG_BUZZ, MOVE_DAZZLING_GLEAM, MOVE_THUNDERBOLT, MOVE_ENCORE
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_KiraAndDan3[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_VOLBEAT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Prankster
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_TAIL_GLOW, MOVE_BUG_BUZZ, MOVE_THUNDER_WAVE, MOVE_PROTECT
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_ILLUMISE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Tinted Lens
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BUG_BUZZ, MOVE_DAZZLING_GLEAM, MOVE_THUNDERBOLT, MOVE_ENCORE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_FROSLASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Cursed Body
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_ICE_BEAM, MOVE_SHADOW_BALL, MOVE_WILL_O_WISP, MOVE_DRAINING_KISS
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_GLALIE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HEADBUTT, MOVE_ROCK_SLIDE, MOVE_ICE_SHARD, MOVE_PROTECT
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_KiraAndDan4[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_VOLBEAT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Prankster
+    .species = SPECIES_VOLBEAT, // Doubles
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_GALVANIZE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_SWARM, ABILITY_ILLUMINATE, ABILITY_ELECTROCYTES},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
+	.nature = NATURE_NAIVE,
     .moves = MOVE_TAIL_GLOW, MOVE_BUG_BUZZ, MOVE_THUNDER_WAVE, MOVE_PROTECT
     },
     {
     .lvl = 0,
-    .species = SPECIES_ILLUMISE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Tinted Lens
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_BUG_BUZZ, MOVE_DAZZLING_GLEAM, MOVE_THUNDERBOLT, MOVE_ENCORE
+    .species = SPECIES_ILLUMISE, // Doubles
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_PIXILATE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_SWARM, ABILITY_NOCTURNAL, ABILITY_CUTE_CHARM},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 4, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_STRUGGLE_BUG, MOVE_DAZZLING_GLEAM, MOVE_THUNDERBOLT, MOVE_ENCORE
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_KiraAndDan3[] = { // Double
+    {
+    .lvl = 0,
+    .species = SPECIES_VOLBEAT, // Doubles
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_GALVANIZE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_SWARM, ABILITY_ILLUMINATE, ABILITY_ELECTROCYTES},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_TAIL_GLOW, MOVE_BUG_BUZZ, MOVE_THUNDER_WAVE, MOVE_PROTECT
     },
     {
     .lvl = 0,
-    .species = SPECIES_FROSLASS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Cursed Body
+    .species = SPECIES_ILLUMISE, // Doubles
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_PIXILATE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_SWARM, ABILITY_NOCTURNAL, ABILITY_CUTE_CHARM},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 4, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_STRUGGLE_BUG, MOVE_DAZZLING_GLEAM, MOVE_THUNDERBOLT, MOVE_ENCORE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_FROSLASS, // Doubles
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_BAD_LUCK, ABILITY_REFRIGERATE, ABILITY_WHITEOUT},
+    // .innates = {ABILITY_ICE_BODY, ABILITY_CURSED_BODY, ABILITY_SLUSH_RUSH},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_ICE_BEAM, MOVE_SHADOW_BALL, MOVE_WILL_O_WISP, MOVE_THUNDERBOLT
+    .moves = MOVE_ICY_WIND, MOVE_SHADOW_BALL, MOVE_WILL_O_WISP, MOVE_DRAINING_KISS
     },
     {
     .lvl = 0,
     .species = SPECIES_GLALIE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_REFRIGERATE, ABILITY_CRYSTALLIZE, ABILITY_WHITEOUT},
+    // .innates = {ABILITY_ICE_BODY, ABILITY_MOODY, ABILITY_LOOTER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 40, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_FROST_BREATH, MOVE_TAUNT, MOVE_SUBSTITUTE, MOVE_PROTECT
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_KiraAndDan4[] = { // Double
+    {
+    .lvl = 0,
+    .species = SPECIES_VOLBEAT, // Doubles
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_GALVANIZE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_SWARM, ABILITY_ILLUMINATE, ABILITY_ELECTROCYTES},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 0, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_TAIL_GLOW, MOVE_BUG_BUZZ, MOVE_THUNDER_WAVE, MOVE_PROTECT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_ILLUMISE, // Doubles
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_PIXILATE, ABILITY_TINTED_LENS, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_SWARM, ABILITY_NOCTURNAL, ABILITY_CUTE_CHARM},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 4, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_STRUGGLE_BUG, MOVE_DAZZLING_GLEAM, MOVE_THUNDERBOLT, MOVE_ENCORE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_FROSLASS, // Doubles
+    .heldItem = ITEM_ICE_GEM,
+    .ability = 0, // ABILITY_BAD_LUCK, ABILITY_REFRIGERATE, ABILITY_WHITEOUT},
+    // .innates = {ABILITY_ICE_BODY, ABILITY_CURSED_BODY, ABILITY_SLUSH_RUSH},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BLIZZARD, MOVE_SHADOW_BALL, MOVE_DESTINY_BOND, MOVE_PROTECT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GLALIE,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_REFRIGERATE, ABILITY_CRYSTALLIZE, ABILITY_WHITEOUT},
+    // .innates = {ABILITY_ICE_BODY, ABILITY_MOODY, ABILITY_LOOTER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
     .moves = MOVE_DOUBLE_EDGE, MOVE_ROCK_SLIDE, MOVE_ICE_SHARD, MOVE_PROTECT
     }
@@ -20863,55 +21362,65 @@ static const struct TrainerMonItemCustomMoves sParty_Perry[] = {
 
 // Route 123: Route 118 access
 
-static const struct TrainerMonItemCustomMoves sParty_Davis[] = {
+// Bug Catcher
+static const struct TrainerMonItemCustomMoves sParty_Davis[] = { // potential double w/ Jazmyn
     {
     .lvl = 0,
     .species = SPECIES_PINSIR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Mold Breaker
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_ANGER_POINT, ABILITY_VIOLENT_RUSH, ABILITY_MOXIE},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_X_SCISSOR, MOVE_THRASH, MOVE_SUPERPOWER, MOVE_SWORDS_DANCE
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_X_SCISSOR, MOVE_STONE_EDGE, MOVE_KNOCK_OFF, MOVE_STONE_EDGE
     },
     {
     .lvl = 0,
     .species = SPECIES_SCOLIPEDE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_POISON_POINT, ABILITY_PREDATOR, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_LETS_ROLL, ABILITY_SOLENOGLYPHS, ABILITY_HYPER_AGGRESSIVE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_POISON_JAB, MOVE_X_SCISSOR, MOVE_DOUBLE_EDGE, MOVE_PURSUIT
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_POISON_FANG, MOVE_X_SCISSOR, MOVE_ROCK_SLIDE, MOVE_PROTECT
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Jazmyn[] = {
+// Ace
+static const struct TrainerMonItemCustomMoves sParty_Jazmyn[] = { // potential double w/ Davis
     {
-    .lvl = 0,
-    .species = SPECIES_ABSOL,
-    .heldItem = ITEM_SCOPE_LENS,
-    .ability = 1, // Super Luck
+    .lvl = 3,
+    .species = SPECIES_ABSOL, // Mega
+    .heldItem = ITEM_ABSOLITE,
+    .ability = 1, // ABILITY_DARK_AURA, ABILITY_DARK_AURA, ABILITY_DARK_AURA},
+    // .innates = {ABILITY_SUPER_LUCK, ABILITY_KEEN_EDGE, ABILITY_MAGIC_GUARD},
+    // Pre-Mega
+    // ABILITY_AVENGER, ABILITY_PIXILATE, ABILITY_SCARE},
+    // .innates = {ABILITY_SUPER_LUCK, ABILITY_MOUNTAINEER, ABILITY_KEEN_EDGE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_NIGHT_SLASH, MOVE_PLAY_ROUGH, MOVE_SUCKER_PUNCH, MOVE_MEGAHORN
+    .moves = MOVE_KNOCK_OFF, MOVE_PLAY_ROUGH, MOVE_SUCKER_PUNCH, MOVE_CLOSE_COMBAT
     },
     {
     .lvl = 0,
     .species = SPECIES_GOODRA,
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_CORROSION},
+    // .innates = {ABILITY_AMPHIBIOUS, ABILITY_GOOEY, ABILITY_HYDRATE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
     .moves = MOVE_DRAGON_PULSE, MOVE_SLUDGE_WAVE, MOVE_FLAMETHROWER, MOVE_THUNDERBOLT
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_SCIZOR,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // Technician
+    .ability = 1, // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_LEVITATE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_CAREFUL,
@@ -20921,7 +21430,8 @@ static const struct TrainerMonItemCustomMoves sParty_Jazmyn[] = {
     .lvl = 0,
     .species = SPECIES_JOLTEON,
     .heldItem = ITEM_EXPERT_BELT,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_SPEED_BOOST, ABILITY_ELECTRIC_BURST, ABILITY_ELECTRIC_SURGE},
+    // .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_LIGHTNING_ROD, ABILITY_ILLUMINATE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -20929,12 +21439,14 @@ static const struct TrainerMonItemCustomMoves sParty_Jazmyn[] = {
     }
 };
 
+// Aroma Lady
 static const struct TrainerMonItemCustomMoves sParty_Violet[] = {
     {
     .lvl = 0,
     .species = SPECIES_ROSERADE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_GRASS_GEM,
+    .ability = 2, // ABILITY_TECHNICIAN, ABILITY_MERCILESS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_CHLOROPHYLL, ABILITY_POISON_POINT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_HARDY,
@@ -20944,34 +21456,37 @@ static const struct TrainerMonItemCustomMoves sParty_Violet[] = {
     .lvl = 0,
     .species = SPECIES_TROPIUS,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_AERILATE, ABILITY_AIR_BLOWER, ABILITY_GRASS_PELT},
+    // .innates = {ABILITY_LEVITATE, ABILITY_GIANT_WINGS, ABILITY_BIG_LEAVES},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_LEAF_BLADE, MOVE_AIR_SLASH, MOVE_BODY_SLAM, MOVE_SYNTHESIS
-    },
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_LEAF_BLADE, MOVE_DRAGON_DANCE, MOVE_BODY_SLAM, MOVE_SYNTHESIS
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_MiuAndYuki[] = {
     {
-    .lvl = 0,
-    .species = SPECIES_NINETALES,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_FLAMETHROWER, MOVE_HYPNOSIS, MOVE_HEX, MOVE_DREAM_EATER
+    .lvl = 2,
+    .species = SPECIES_NINETALES, // Doubles
+    .heldItem = ITEM_PASSHO_BERRY,
+    .ability = 1, // ABILITY_FLAMING_SOUL, ABILITY_PIXILATE, ABILITY_DROUGHT},
+    // .innates = {ABILITY_QUEENLY_MAJESTY, ABILITY_PYROMANCY, ABILITY_FLASH_FIRE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HEAT_WAVE, MOVE_NASTY_PLOT, MOVE_HYPER_VOICE, MOVE_PROTECT
     },
     {
-    .lvl = 0,
+    .lvl = 2,
     .species = SPECIES_NINETALES_ALOLAN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_FREEZE_DRY, MOVE_HYPNOSIS, MOVE_HEX, MOVE_DREAM_EATER
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_FROZEN_SOUL, ABILITY_NORTH_WIND, ABILITY_SNOW_WARNING},
+    // .innates = {ABILITY_QUEENLY_MAJESTY, ABILITY_REFRIGERATE, ABILITY_ICE_DEW},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {184, 0, 72, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_FREEZE_DRY, MOVE_ICY_WIND, MOVE_ENCORE, MOVE_PROTECT
     }
 };
 
@@ -20981,22 +21496,24 @@ static const struct TrainerMonItemCustomMoves sParty_Kent[] = {
     {
     .lvl = 0,
     .species = SPECIES_NINJASK,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_AERODYNAMICS, ABILITY_SPEED_FORCE, ABILITY_AERILATE},
+    // .innates = {ABILITY_COMPOUND_EYES, ABILITY_INFILTRATOR, ABILITY_SPEED_BOOST},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_LEECH_LIFE, MOVE_SUBSTITUTE, MOVE_DOUBLE_TEAM, MOVE_BATON_PASS
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_LEECH_LIFE, MOVE_SUBSTITUTE, MOVE_SWORDS_DANCE, MOVE_BATON_PASS
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_SHEDINJA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SHADOW_CLAW, MOVE_SWORDS_DANCE, MOVE_X_SCISSOR, MOVE_DIG
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_WONDER_GUARD, ABILITY_WONDER_GUARD, ABILITY_WONDER_GUARD},
+    // .innates = {ABILITY_WONDER_SKIN, ABILITY_LEVITATE, ABILITY_NONE},
+    .ivs = {31, 31, 0, 31, 0, 31}, // 0 Def and 0 SpDef for enemy Ditto
+    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_LONELY,
+    .moves = MOVE_SHADOW_CLAW, MOVE_SHADOW_SNEAK, MOVE_X_SCISSOR, MOVE_DIG
     }
 };
 
@@ -21004,32 +21521,35 @@ static const struct TrainerMonItemCustomMoves sParty_Donald[] = {
     {
     .lvl = 0,
     .species = SPECIES_LEAVANNY,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 2, // ABILITY_LEAF_GUARD, ABILITY_NONE, ABILITY_KEEN_EDGE},
+    // .innates = {ABILITY_SWARM, ABILITY_CHLOROPHYLL, ABILITY_OVERCOAT},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_LEAF_BLADE, MOVE_X_SCISSOR, MOVE_STICKY_WEB, MOVE_SWORDS_DANCE
     },
     {
     .lvl = 0,
     .species = SPECIES_BUTTERFREE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_TINTED_LENS, ABILITY_MAGICAL_DUST, ABILITY_EFFECT_SPORE},
+    // .innates = {ABILITY_MAJESTIC_MOTH, ABILITY_COMPOUND_EYES, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
     .moves = MOVE_BUG_BUZZ, MOVE_HURRICANE, MOVE_SLEEP_POWDER, MOVE_QUIVER_DANCE
     },
     {
     .lvl = 0,
     .species = SPECIES_GALVANTULA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_SUCKER_PUNCH, MOVE_THUNDER_WAVE
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_MINUS, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SWARM, ABILITY_COMPOUND_EYES},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_SUCKER_PUNCH, MOVE_GIGA_DRAIN
     }
 };
 
@@ -21037,32 +21557,35 @@ static const struct TrainerMonItemCustomMoves sParty_Greg[] = {
     {
     .lvl = 0,
     .species = SPECIES_LEDIAN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_AERILATE, ABILITY_TECHNICIAN, ABILITY_IRON_FIST},
+    // .innates = {ABILITY_SWARM, ABILITY_EARLY_BIRD, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DOUBLE_EDGE, MOVE_LEECH_LIFE, MOVE_CLOSE_COMBAT, MOVE_REFLECT
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_DOUBLE_EDGE, MOVE_LEECH_LIFE, MOVE_CLOSE_COMBAT, MOVE_ICE_PUNCH
     },
     {
     .lvl = 0,
     .species = SPECIES_BEEDRILL,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_SCOPE_LENS,
+    .ability = 1, // ABILITY_POISON_TOUCH, ABILITY_SNIPER, ABILITY_SPEED_FORCE},
+    // .innates = {ABILITY_HYPER_AGGRESSIVE, ABILITY_MERCILESS, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_X_SCISSOR, MOVE_POISON_JAB, MOVE_DRILL_PECK, MOVE_ENDEAVOR
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_X_SCISSOR, MOVE_POISON_JAB, MOVE_DRILL_PECK, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_ESCAVALIER,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_NO_GUARD, ABILITY_OVERCOAT, ABILITY_FULL_METAL_BODY},
+    // .innates = {ABILITY_SWARM, ABILITY_SHELL_ARMOR, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_IRON_HEAD, MOVE_X_SCISSOR, MOVE_RAZOR_SHELL, MOVE_REVERSAL
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_IRON_HEAD, MOVE_X_SCISSOR, MOVE_RAZOR_SHELL, MOVE_DRILL_RUN
     }
 };
 
@@ -21070,32 +21593,35 @@ static const struct TrainerMonItemCustomMoves sParty_Taylor[] = {
     {
     .lvl = 0,
     .species = SPECIES_RIBOMBEE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_POLLEN_PUFF, MOVE_DAZZLING_GLEAM, MOVE_QUIVER_DANCE, MOVE_AROMATHERAPY
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 2, // ABILITY_COMPOUND_EYES, ABILITY_CUTE_CHARM, ABILITY_SWEET_VEIL},
+    // .innates = {ABILITY_LEVITATE, ABILITY_SHIELD_DUST, ABILITY_EFFECT_SPORE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_POLLEN_PUFF, MOVE_MOONBLAST, MOVE_QUIVER_DANCE, MOVE_PSYCHIC
     },
     {
     .lvl = 0,
     .species = SPECIES_ARAQUANID,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // ABILITY_WATER_VEIL, ABILITY_OPPORTUNIST, ABILITY_WATER_ABSORB},
+    // .innates = {ABILITY_WATER_BUBBLE, ABILITY_SPIDER_LAIR, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_LIQUIDATION, MOVE_LUNGE, MOVE_ICE_FANG, MOVE_MIRROR_COAT
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_LIQUIDATION, MOVE_LEECH_LIFE, MOVE_ICE_FANG, MOVE_MIRROR_COAT
     },
     {
     .lvl = 0,
     .species = SPECIES_VIVILLON,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HURRICANE, MOVE_BUG_BUZZ, MOVE_SLEEP_POWDER, MOVE_POWDER
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_SWARM, ABILITY_TINTED_LENS, ABILITY_COLOR_CHANGE},
+    // .innates = {ABILITY_SHIELD_DUST, ABILITY_COMPOUND_EYES, ABILITY_MAJESTIC_MOTH},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 136, 120, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HURRICANE, MOVE_SUBSTITUTE, MOVE_SLEEP_POWDER, MOVE_QUIVER_DANCE
     }
 };
 
@@ -21103,87 +21629,96 @@ static const struct TrainerMonItemCustomMoves sParty_Doug[] = {
     {
     .lvl = 0,
     .species = SPECIES_MASQUERAIN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_SCARE, ABILITY_UNNERVE},
+    // .innates = {ABILITY_COMPOUND_EYES, ABILITY_MAJESTIC_MOTH, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_BUG_BUZZ, MOVE_AIR_SLASH, MOVE_QUIVER_DANCE, MOVE_HYDRO_PUMP
     },
     {
     .lvl = 0,
     .species = SPECIES_ARIADOS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_POISON_TOUCH, ABILITY_SNIPER, ABILITY_EXPLOIT_WEAKNESS},
+    // .innates = {ABILITY_SPIDER_LAIR, ABILITY_MERCILESS, ABILITY_OPPORTUNIST},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_POISON_JAB, MOVE_LEECH_LIFE, MOVE_SUCKER_PUNCH, MOVE_PSYCHIC_FANGS
     },
     {
     .lvl = 0,
     .species = SPECIES_KRICKETUNE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BOOMBURST, MOVE_BUG_BUZZ, MOVE_AIR_SLASH, MOVE_PERISH_SONG
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_SCRAPPY, ABILITY_COMPOUND_EYES, ABILITY_SOUNDPROOF},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_TECHNICIAN},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_SILVER_WIND, MOVE_AIR_SLASH, MOVE_PERISH_SONG
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Brent[] = {
     {
-    .lvl = 0,
+    .lvl = 5,
     .species = SPECIES_VOLCARONA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_FLAMETHROWER, MOVE_BUG_BUZZ, MOVE_HURRICANE, MOVE_QUIVER_DANCE
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_COMPOUND_EYES, ABILITY_FLASH_FIRE, ABILITY_DROUGHT},
+    // .innates = {ABILITY_SWARM, ABILITY_MAJESTIC_MOTH, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_HEAT_WAVE, MOVE_GIGA_DRAIN, MOVE_QUIVER_DANCE, MOVE_HURRICANE
     }
 };
 
+// Fisherman
 static const struct TrainerMonItemCustomMoves sParty_Chris[] = {
     {
     .lvl = 0,
     .species = SPECIES_SHARPEDO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATERFALL, MOVE_CRUNCH, MOVE_PSYCHIC_FANGS, MOVE_SCREECH
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 2, // ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYDRO_PUMP, MOVE_DARK_PULSE, MOVE_ICE_BEAM, MOVE_HYPER_BEAM
     },
     {
     .lvl = 0,
     .species = SPECIES_BASCULIN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 1, // ABILITY_MOLD_BREAKER, ABILITY_STRONG_JAW, ABILITY_PREDATOR},
+    // .innates = {ABILITY_RECKLESS, ABILITY_ADAPTABILITY, ABILITY_HYPER_AGGRESSIVE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HEAD_SMASH, MOVE_THRASH, MOVE_AQUA_TAIL, MOVE_CRUNCH
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_CRUNCH, MOVE_AQUA_TAIL, MOVE_SUPERPOWER, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
     .species = SPECIES_GYARADOS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_AERILATE, ABILITY_OVERWHELM},
+    // .innates = {ABILITY_SEA_GUARDIAN, ABILITY_MOXIE, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_HASTY,
     .moves = MOVE_AQUA_TAIL, MOVE_HURRICANE, MOVE_CRUNCH, MOVE_WHIRLPOOL
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_WHISCASH,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIECHI_BERRY,
+    .ability = 2, // ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_ELECTROCYTES, ABILITY_GALVANIZE, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_EARTHQUAKE, MOVE_AQUA_TAIL, MOVE_SPARK, MOVE_ZEN_HEADBUTT
     }
 };
@@ -21192,41 +21727,45 @@ static const struct TrainerMonItemCustomMoves sParty_Catherine1[] = {
     {
     .lvl = 0,
     .species = SPECIES_BELLOSSOM,
-    .heldItem = ITEM_MIRACLE_SEED,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .ability = 2, // ABILITY_CHLOROPLAST, ABILITY_HARVEST, ABILITY_TRIAGE},
+    // .innates = {ABILITY_CHLOROPHYLL, ABILITY_HEALER, ABILITY_LEAF_GUARD},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {248, 0, 8, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_QUIVER_DANCE, MOVE_MOONBLAST, MOVE_GIGA_DRAIN, MOVE_SLEEP_POWDER
     },
     {
     .lvl = 0,
     .species = SPECIES_NOIVERN,
     .heldItem = ITEM_PETAYA_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .ability = 2, // ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_AERODYNAMICS},
+    // .innates = {ABILITY_LOUD_BANG, ABILITY_NOCTURNAL, ABILITY_HYPER_AGGRESSIVE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_HURRICANE, MOVE_WATER_PULSE, MOVE_DRAGON_PULSE, MOVE_BOOMBURST
     },
     {
     .lvl = 0,
     .species = SPECIES_BEARTIC,
     .heldItem = ITEM_WATER_GEM,
-    .ability = 2, // Swift Swim
+    .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_SLUSH_RUSH, ABILITY_AQUATIC, ABILITY_SWIFT_SWIM},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_ICICLE_CRASH, MOVE_LIQUIDATION, MOVE_THROAT_CHOP, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
     .species = SPECIES_SEISMITOAD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_EARTHBOUND, ABILITY_IMMUNITY},
+    // .innates = {ABILITY_WATER_ABSORB, ABILITY_AMPLIFIER, ABILITY_POISON_TOUCH},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
     .moves = MOVE_EARTH_POWER, MOVE_HYDRO_PUMP, MOVE_SLUDGE_WAVE, MOVE_POWER_WHIP
     }
 };
@@ -21235,52 +21774,57 @@ static const struct TrainerMonItemCustomMoves sParty_Catherine2[] = {
     {
     .lvl = 0,
     .species = SPECIES_BELLOSSOM,
-    .heldItem = ITEM_MIRACLE_SEED,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_QUIVER_DANCE, MOVE_MOONBLAST, MOVE_GIGA_DRAIN, MOVE_SLEEP_POWDER
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_CHLOROPLAST, ABILITY_HARVEST, ABILITY_TRIAGE},
+    // .innates = {ABILITY_CHLOROPHYLL, ABILITY_HEALER, ABILITY_LEAF_GUARD},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {248, 0, 8, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_QUIVER_DANCE, MOVE_MOONBLAST, MOVE_SOLAR_BEAM, MOVE_SLEEP_POWDER
     },
     {
     .lvl = 0,
     .species = SPECIES_NOIVERN,
-    .heldItem = ITEM_PETAYA_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_AERODYNAMICS},
+    // .innates = {ABILITY_LOUD_BANG, ABILITY_NOCTURNAL, ABILITY_HYPER_AGGRESSIVE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HURRICANE, MOVE_WATER_PULSE, MOVE_DRAGON_PULSE, MOVE_BOOMBURST
+    .evs = {104, 0, 0, 252, 0, 152},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HURRICANE, MOVE_U_TURN, MOVE_DRACO_METEOR, MOVE_BOOMBURST
     },
     {
     .lvl = 0,
     .species = SPECIES_BEARTIC,
-    .heldItem = ITEM_WATER_GEM,
-    .ability = 2, // Swift Swim
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_SLUSH_RUSH, ABILITY_AQUATIC, ABILITY_SWIFT_SWIM},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_ICICLE_CRASH, MOVE_LIQUIDATION, MOVE_THROAT_CHOP, MOVE_AQUA_JET
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_ICE_PUNCH, MOVE_PLAY_ROUGH, MOVE_CLOSE_COMBAT, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
     .species = SPECIES_SEISMITOAD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_EARTHBOUND, ABILITY_IMMUNITY},
+    // .innates = {ABILITY_WATER_ABSORB, ABILITY_AMPLIFIER, ABILITY_POISON_TOUCH},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_EARTH_POWER, MOVE_HYDRO_PUMP, MOVE_SLUDGE_WAVE, MOVE_POWER_WHIP
+    .evs = {252, 0, 232, 0, 0, 24},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_EARTHQUAKE, MOVE_STEALTH_ROCK, MOVE_KNOCK_OFF, MOVE_TOXIC
     },
     {
     .lvl = 0,
     .species = SPECIES_BLASTOISE,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // Rain Dish
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SCALD, MOVE_PROTECT, MOVE_YAWN, MOVE_AQUA_RING
+    .ability = 0, // ABILITY_STAMINA, ABILITY_REGENERATOR, ABILITY_BULLETPROOF},
+    // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_WATER_PULSE, MOVE_PROTECT, MOVE_YAWN, MOVE_AQUA_RING
     }
 };
 
@@ -21288,52 +21832,57 @@ static const struct TrainerMonItemCustomMoves sParty_Catherine3[] = {
     {
     .lvl = 0,
     .species = SPECIES_BELLOSSOM,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_BOLD,
-    .moves = MOVE_QUIVER_DANCE, MOVE_MOONBLAST, MOVE_GIGA_DRAIN, MOVE_SLEEP_POWDER
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_CHLOROPLAST, ABILITY_HARVEST, ABILITY_TRIAGE},
+    // .innates = {ABILITY_CHLOROPHYLL, ABILITY_HEALER, ABILITY_LEAF_GUARD},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {248, 0, 8, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_QUIVER_DANCE, MOVE_MOONBLAST, MOVE_SOLAR_BEAM, MOVE_SLEEP_POWDER
     },
     {
     .lvl = 0,
     .species = SPECIES_NOIVERN,
-    .heldItem = ITEM_PETAYA_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_HURRICANE, MOVE_WATER_PULSE, MOVE_DRAGON_PULSE, MOVE_BOOMBURST
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 2, // ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_AERODYNAMICS},
+    // .innates = {ABILITY_LOUD_BANG, ABILITY_NOCTURNAL, ABILITY_HYPER_AGGRESSIVE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {104, 0, 0, 252, 0, 152},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_MODEST,
+    .moves = MOVE_HURRICANE, MOVE_U_TURN, MOVE_DRACO_METEOR, MOVE_BOOMBURST
     },
     {
     .lvl = 0,
     .species = SPECIES_BEARTIC,
-    .heldItem = ITEM_WATER_GEM,
-    .ability = 2, // Swift Swim
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 0, // ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_SLUSH_RUSH, ABILITY_AQUATIC, ABILITY_SWIFT_SWIM},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_ICICLE_CRASH, MOVE_LIQUIDATION, MOVE_THROAT_CHOP, MOVE_CLOSE_COMBAT
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_ICE_PUNCH, MOVE_PLAY_ROUGH, MOVE_DRAIN_PUNCH, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
     .species = SPECIES_SEISMITOAD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HASTY,
-    .moves = MOVE_EARTH_POWER, MOVE_HYDRO_PUMP, MOVE_SLUDGE_WAVE, MOVE_POWER_WHIP
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_EARTHBOUND, ABILITY_IMMUNITY},
+    // .innates = {ABILITY_WATER_ABSORB, ABILITY_AMPLIFIER, ABILITY_POISON_TOUCH},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_EARTH_POWER, MOVE_STEALTH_ROCK, MOVE_HYDRO_PUMP, MOVE_FOCUS_BLAST
     },
     {
     .lvl = 0,
     .species = SPECIES_BLASTOISE,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // Rain Dish
+    .ability = 1, // ABILITY_STAMINA, ABILITY_REGENERATOR, ABILITY_BULLETPROOF},
+    // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_CALM,
-    .moves = MOVE_SCALD, MOVE_PROTECT, MOVE_YAWN, MOVE_AQUA_RING
+    .nature = NATURE_CALM,
+    .moves = MOVE_SCALD, MOVE_PROTECT, MOVE_YAWN, MOVE_ICE_BEAM
     }
 };
 
@@ -21341,59 +21890,68 @@ static const struct TrainerMonItemCustomMoves sParty_Catherine4[] = {
     {
     .lvl = 0,
     .species = SPECIES_BELLOSSOM,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_BOLD,
-    .moves = MOVE_QUIVER_DANCE, MOVE_MOONBLAST, MOVE_GIGA_DRAIN, MOVE_SLEEP_POWDER
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_CHLOROPLAST, ABILITY_HARVEST, ABILITY_TRIAGE},
+    // .innates = {ABILITY_CHLOROPHYLL, ABILITY_HEALER, ABILITY_LEAF_GUARD},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {248, 0, 8, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_QUIVER_DANCE, MOVE_MOONBLAST, MOVE_SOLAR_BEAM, MOVE_SLEEP_POWDER
     },
     {
     .lvl = 0,
     .species = SPECIES_NOIVERN,
-    .heldItem = ITEM_PETAYA_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_AERODYNAMICS},
+    // .innates = {ABILITY_LOUD_BANG, ABILITY_NOCTURNAL, ABILITY_HYPER_AGGRESSIVE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_HURRICANE, MOVE_WATER_PULSE, MOVE_DRAGON_PULSE, MOVE_BOOMBURST
+    .moves = MOVE_HURRICANE, MOVE_U_TURN, MOVE_DRACO_METEOR, MOVE_BOOMBURST
     },
     {
     .lvl = 0,
     .species = SPECIES_BEARTIC,
-    .heldItem = ITEM_WATER_GEM,
-    .ability = 2, // Swift Swim
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_SLUSH_RUSH, ABILITY_AQUATIC, ABILITY_SWIFT_SWIM},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_ICICLE_CRASH, MOVE_LIQUIDATION, MOVE_THROAT_CHOP, MOVE_CLOSE_COMBAT
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_ICICLE_CRASH, MOVE_LIQUIDATION, MOVE_CLOSE_COMBAT, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
     .species = SPECIES_SEISMITOAD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HASTY,
-    .moves = MOVE_EARTH_POWER, MOVE_HYDRO_PUMP, MOVE_SLUDGE_WAVE, MOVE_POWER_WHIP
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_EARTHBOUND, ABILITY_IMMUNITY},
+    // .innates = {ABILITY_WATER_ABSORB, ABILITY_AMPLIFIER, ABILITY_POISON_TOUCH},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_EARTH_POWER, MOVE_STEALTH_ROCK, MOVE_HYDRO_PUMP, MOVE_SLUDGE_WAVE
     },
     {
-    .lvl = 0,
-    .species = SPECIES_BLASTOISE,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // Rain Dish
+    .lvl = 3,
+    .species = SPECIES_BLASTOISE, // Mega
+    .heldItem = ITEM_BLASTOISINITE,
+    .ability = 0, // ABILITY_ARTILLERY, ABILITY_ARTILLERY, ABILITY_ARTILLERY},
+    // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    // Pre-Mega
+    // ABILITY_STAMINA, ABILITY_REGENERATOR, ABILITY_BULLETPROOF},
+    // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_CALM,
-    .moves = MOVE_SCALD, MOVE_PROTECT, MOVE_YAWN, MOVE_AQUA_RING
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_RAPID_SPIN, MOVE_DARK_PULSE, MOVE_AURA_SPHERE, MOVE_ICE_BEAM
     },
     {
     .lvl = 0,
     .species = SPECIES_AUDINO,
-    .heldItem = ITEM_AUDINITE,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_CUTE_CHARM, ABILITY_NONE, ABILITY_SERENE_GRACE},
+    // .innates = {ABILITY_HEALER, ABILITY_REGENERATOR, ABILITY_NONE},
+    .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BOLD,
     .moves = MOVE_DRAINING_KISS, MOVE_THUNDER, MOVE_CALM_MIND, MOVE_SURF
@@ -21404,42 +21962,46 @@ static const struct TrainerMonItemCustomMoves sParty_Jackson1[] = {
     {
     .lvl = 0,
     .species = SPECIES_MANTINE,
-    .heldItem = ITEM_MYSTIC_WATER,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_WATER_VEIL, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_RAIN_DISH, ABILITY_WATER_ABSORB, ABILITY_GIANT_WINGS},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 36, 0, 220, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
     .moves = MOVE_HYDRO_PUMP, MOVE_HURRICANE, MOVE_SIGNAL_BEAM, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_ROTOM_FAN,
     .heldItem = ITEM_SALAC_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_AIR_BLOWER, ABILITY_NONE, ABILITY_MOTOR_DRIVE},
+    // .innates = {ABILITY_LEVITATE, ABILITY_MINUS, ABILITY_PHANTOM},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_HURRICANE, MOVE_THUNDER, MOVE_SHADOW_BALL, MOVE_NASTY_PLOT
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_PARASECT,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // Dry Skin
+    .heldItem = ITEM_BIG_ROOT,
+    .ability = 1, // ABILITY_SELF_SUFFICIENT, ABILITY_SHADOW_TAG, ABILITY_SOUL_EATER},
+    // .innates = {ABILITY_EFFECT_SPORE, ABILITY_PHANTOM, ABILITY_OPPORTUNIST},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SPORE, MOVE_SUBSTITUTE, MOVE_LEECH_SEED, MOVE_LEECH_LIFE
+    .evs = {248, 0, 8, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_RELAXED,
+    .moves = MOVE_SPORE, MOVE_HEX, MOVE_LEECH_SEED, MOVE_LEECH_LIFE
     },
     {
     .lvl = 0,
     .species = SPECIES_LAPRAS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Hydration
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_REGENERATOR, ABILITY_ICE_DEW, ABILITY_PERMAFROST},
+    // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_LIQUIDATION, MOVE_DRILL_RUN, MOVE_CURSE, MOVE_REST
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_LIQUIDATION, MOVE_ICICLE_CRASH, MOVE_CURSE, MOVE_RECOVER
     }
 };
 
@@ -21447,349 +22009,388 @@ static const struct TrainerMonItemCustomMoves sParty_Jackson2[] = {
     {
     .lvl = 0,
     .species = SPECIES_MANTINE,
-    .heldItem = ITEM_MYSTIC_WATER,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HYDRO_PUMP, MOVE_HURRICANE, MOVE_SIGNAL_BEAM, MOVE_ROOST
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_REGENERATOR, ABILITY_WATER_VEIL, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_RAIN_DISH, ABILITY_WATER_ABSORB, ABILITY_GIANT_WINGS},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SCALD, MOVE_AIR_SLASH, MOVE_DEFOG, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_ROTOM_FAN,
-    .heldItem = ITEM_SALAC_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_AIR_BLOWER, ABILITY_NONE, ABILITY_MOTOR_DRIVE},
+    // .innates = {ABILITY_LEVITATE, ABILITY_MINUS, ABILITY_PHANTOM},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HURRICANE, MOVE_THUNDER, MOVE_SHADOW_BALL, MOVE_NASTY_PLOT
+    .evs = {252, 0, 208, 0, 0, 48},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_VOLT_SWITCH, MOVE_HURRICANE, MOVE_WILL_O_WISP, MOVE_DEFOG
     },
     {
     .lvl = 0,
     .species = SPECIES_PARASECT,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // Dry Skin
+    .ability = 0, // ABILITY_SELF_SUFFICIENT, ABILITY_SHADOW_TAG, ABILITY_SOUL_EATER},
+    // .innates = {ABILITY_EFFECT_SPORE, ABILITY_PHANTOM, ABILITY_OPPORTUNIST},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SPORE, MOVE_SUBSTITUTE, MOVE_LEECH_SEED, MOVE_LEECH_LIFE
+    .evs = {248, 0, 8, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_SPORE, MOVE_SHADOW_CLAW, MOVE_LEECH_SEED, MOVE_LEECH_LIFE
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_LAPRAS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Hydration
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_LIQUIDATION, MOVE_DRILL_RUN, MOVE_CURSE, MOVE_REST
+    .heldItem = ITEM_DRAGON_GEM,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_ICE_DEW, ABILITY_PERMAFROST},
+    // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
+    .ivs = {31, 0, 31, 30, 31, 30}, // Fire
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_FREEZE_DRY, MOVE_HYDRO_PUMP, MOVE_DRAGON_PULSE, MOVE_HIDDEN_POWER
     },
     {
     .lvl = 0,
     .species = SPECIES_TOXICROAK,
     .heldItem = ITEM_BLACK_SLUDGE,
-    .ability = 1, // Dry Skin
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .ability = 0, // ABILITY_POISON_TOUCH, ABILITY_HYDRATE, ABILITY_FIGHT_SPIRIT},
+    // .innates = {ABILITY_DRY_SKIN, ABILITY_AMPHIBIOUS, ABILITY_OPPORTUNIST},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_DRAIN_PUNCH, MOVE_POISON_JAB, MOVE_BULK_UP, MOVE_PROTECT
-    }    
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Jackson3[] = {
     {
     .lvl = 0,
     .species = SPECIES_MANTINE,
-    .heldItem = ITEM_MYSTIC_WATER,
-    .ability = 0, // 
+    .heldItem = ITEM_HEAVY_DUTY_BOOTS,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_WATER_VEIL, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_RAIN_DISH, ABILITY_WATER_ABSORB, ABILITY_GIANT_WINGS},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 0, 40, 216, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
-    .moves = MOVE_HYDRO_PUMP, MOVE_HURRICANE, MOVE_ICE_BEAM, MOVE_ROOST
+    .moves = MOVE_HURRICANE, MOVE_TAILWIND, MOVE_HYDRO_PUMP, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_ROTOM_FAN,
-    .heldItem = ITEM_SALAC_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_HURRICANE, MOVE_THUNDER, MOVE_SHADOW_BALL, MOVE_NASTY_PLOT
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_AIR_BLOWER, ABILITY_NONE, ABILITY_MOTOR_DRIVE},
+    // .innates = {ABILITY_LEVITATE, ABILITY_MINUS, ABILITY_PHANTOM},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 208, 0, 0, 48},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_VOLT_SWITCH, MOVE_HURRICANE, MOVE_WILL_O_WISP, MOVE_DEFOG
     },
     {
     .lvl = 0,
     .species = SPECIES_PARASECT,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // Dry Skin
+    .ability = 0, // ABILITY_SELF_SUFFICIENT, ABILITY_SHADOW_TAG, ABILITY_SOUL_EATER},
+    // .innates = {ABILITY_EFFECT_SPORE, ABILITY_PHANTOM, ABILITY_OPPORTUNIST},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_SPORE, MOVE_SUBSTITUTE, MOVE_LEECH_SEED, MOVE_LEECH_LIFE
+    .evs = {248, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_SPORE, MOVE_SHADOW_CLAW, MOVE_LEECH_SEED, MOVE_FELL_STINGER
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_LAPRAS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Hydration
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_CAREFUL,
-    .moves = MOVE_LIQUIDATION, MOVE_ICICLE_CRASH, MOVE_CURSE, MOVE_REST
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_ICE_DEW, ABILITY_PERMAFROST},
+    // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
+    .ivs = {31, 0, 31, 30, 31, 30}, // Fire
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_FREEZE_DRY, MOVE_HYDRO_PUMP, MOVE_DRAGON_PULSE, MOVE_HIDDEN_POWER
     },
     {
     .lvl = 0,
     .species = SPECIES_TOXICROAK,
-    .heldItem = ITEM_BLACK_SLUDGE,
-    .ability = 1, // Dry Skin
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DRAIN_PUNCH, MOVE_POISON_JAB, MOVE_BULK_UP, MOVE_PROTECT
-    }   
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_POISON_TOUCH, ABILITY_HYDRATE, ABILITY_FIGHT_SPIRIT},
+    // .innates = {ABILITY_DRY_SKIN, ABILITY_AMPHIBIOUS, ABILITY_OPPORTUNIST},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_RETURN, MOVE_LIQUIDATION, MOVE_GUNK_SHOT, MOVE_SUCKER_PUNCH
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Jackson4[] = {
     {
     .lvl = 0,
     .species = SPECIES_MANTINE,
-    .heldItem = ITEM_MYSTIC_WATER,
-    .ability = 0, // 
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 1, // ABILITY_REGENERATOR, ABILITY_WATER_VEIL, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_RAIN_DISH, ABILITY_WATER_ABSORB, ABILITY_GIANT_WINGS},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_HYDRO_PUMP, MOVE_HURRICANE, MOVE_ICE_BEAM, MOVE_ROOST
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_HURRICANE, MOVE_DEFOG, MOVE_SCALD, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_ROTOM_FAN,
-    .heldItem = ITEM_SALAC_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_HURRICANE, MOVE_THUNDER, MOVE_SHADOW_BALL, MOVE_NASTY_PLOT
+    .heldItem = ITEM_WIKI_BERRY,
+    .ability = 0, // ABILITY_AIR_BLOWER, ABILITY_NONE, ABILITY_MOTOR_DRIVE},
+    // .innates = {ABILITY_LEVITATE, ABILITY_MINUS, ABILITY_PHANTOM},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 208, 0, 0, 48},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_VOLT_SWITCH, MOVE_HURRICANE, MOVE_WILL_O_WISP, MOVE_PAIN_SPLIT
     },
     {
     .lvl = 0,
     .species = SPECIES_PARASECT,
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // Dry Skin
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_SELF_SUFFICIENT, ABILITY_SHADOW_TAG, ABILITY_SOUL_EATER},
+    // .innates = {ABILITY_EFFECT_SPORE, ABILITY_PHANTOM, ABILITY_OPPORTUNIST},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 252, 4, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_SPORE, MOVE_SUBSTITUTE, MOVE_LEECH_SEED, MOVE_LEECH_LIFE
+    .moves = MOVE_SPORE, MOVE_PHANTOM_FORCE, MOVE_SHADOW_SNEAK, MOVE_X_SCISSOR
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_LAPRAS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Hydration
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_CAREFUL,
-    .moves = MOVE_LIQUIDATION, MOVE_ICICLE_CRASH, MOVE_CURSE, MOVE_REST
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 0, // ABILITY_REGENERATOR, ABILITY_ICE_DEW, ABILITY_PERMAFROST},
+    // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
+    .ivs = {31, 0, 31, 30, 31, 30}, // Fire
+    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SHEER_COLD, MOVE_HYDRO_PUMP, MOVE_DRACO_METEOR, MOVE_HIDDEN_POWER
     },
     {
     .lvl = 0,
     .species = SPECIES_TOXICROAK,
-    .heldItem = ITEM_BLACK_SLUDGE,
-    .ability = 1, // Dry Skin
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_IMPISH,
-    .moves = MOVE_DRAIN_PUNCH, MOVE_POISON_JAB, MOVE_BULK_UP, MOVE_PROTECT
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 1, // ABILITY_POISON_TOUCH, ABILITY_HYDRATE, ABILITY_FIGHT_SPIRIT},
+    // .innates = {ABILITY_DRY_SKIN, ABILITY_AMPHIBIOUS, ABILITY_OPPORTUNIST},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_RETURN, MOVE_DRAIN_PUNCH, MOVE_GUNK_SHOT, MOVE_KNOCK_OFF
     },
     {
     .lvl = 0,
     .species = SPECIES_SALAMENCE,
     .heldItem = ITEM_WHITE_HERB,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_PREDATOR, ABILITY_MOXIE},
+    // .innates = {ABILITY_OVERWHELM, ABILITY_ANGER_POINT, ABILITY_RAMPAGE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_HASTY,
     .moves = MOVE_HURRICANE, MOVE_HYDRO_PUMP, MOVE_DRACO_METEOR, MOVE_EARTHQUAKE
-    }    
+    }
 };
 
 // Other
+// Parasol Lady
 static const struct TrainerMonItemCustomMoves sParty_Rachel[] = { // with Phil
     {
     .lvl = 0,
     .species = SPECIES_LUDICOLO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Rain Dish
+    .heldItem = ITEM_SAFETY_GOGGLES,
+    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_CHLOROPHYLL, ABILITY_OWN_TEMPO},
+    // .innates = {ABILITY_SEAWEED, ABILITY_RAIN_DISH, ABILITY_HYDRATION},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_GIGA_DRAIN, MOVE_HYDRO_PUMP, MOVE_ZEN_HEADBUTT, MOVE_FAKE_OUT
+    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_LONELY,
+    .moves = MOVE_FAKE_OUT, MOVE_GIGA_DRAIN, MOVE_KNOCK_OFF, MOVE_HYDRO_PUMP
     },
     {
     .lvl = 0,
-    .species = SPECIES_HELIOLISK,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_THUNDERBOLT, MOVE_HYPER_VOICE, MOVE_THUNDER_WAVE, MOVE_QUICK_ATTACK
+    .species = SPECIES_HELIOLISK, // Doubles, Electrify Cheese
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_LIGHTNING_ROD, ABILITY_PLUS, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_DRY_SKIN, ABILITY_ELECTROCYTES, ABILITY_SAND_RUSH},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SUBSTITUTE, MOVE_HYPER_VOICE, MOVE_ELECTRIFY, MOVE_CHARGE_BEAM
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Phil[] = {
+// Bird Keeper
+static const struct TrainerMonItemCustomMoves sParty_Phil[] = { // with Rachel
     {
     .lvl = 0,
     .species = SPECIES_STARAPTOR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_GUTS, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_PREDATOR, ABILITY_RECKLESS, ABILITY_GIANT_WINGS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_CLOSE_COMBAT, MOVE_QUICK_ATTACK, MOVE_AGILITY
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_BRAVE_BIRD, MOVE_QUICK_ATTACK, MOVE_U_TURN, MOVE_CLOSE_COMBAT
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_FARFETCHD,
     .heldItem = ITEM_LEEK,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_SUPER_LUCK, ABILITY_FIGHT_SPIRIT, ABILITY_DEFIANT},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_FIELD_EXPLORER, ABILITY_KEEN_EDGE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_BRAVE_BIRD, MOVE_CLOSE_COMBAT, MOVE_LEAF_BLADE, MOVE_POISON_JAB
     }
 };
 
+// Ninja Boy
 static const struct TrainerMonItemCustomMoves sParty_Takashi[] = { // with Dayton
     {
     .lvl = 0,
     .species = SPECIES_ACCELGOR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_WATER_SHURIKEN, MOVE_SLUDGE_BOMB
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_MOMENTUM, ABILITY_POISON_TOUCH, ABILITY_UNBURDEN},
+    // .innates = {ABILITY_SWARM, ABILITY_PERFECTIONIST, ABILITY_SPEED_FORCE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_WATER_SHURIKEN, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_SLUDGE_BOMB
     },
     {
     .lvl = 0,
     .species = SPECIES_WEEZING,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SLUDGE_BOMB, MOVE_SMOKESCREEN, MOVE_TOXIC, MOVE_EXPLOSION
+    .heldItem = ITEM_BLACK_SLUDGE,
+    .ability = 0, // ABILITY_POISON_ABSORB, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH},
+    // .innates = {ABILITY_LEVITATE, ABILITY_MULTI_HEADED, ABILITY_INFLATABLE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 152, 0, 88, 16},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SLUDGE_BOMB, MOVE_HEAT_WAVE, MOVE_WILL_O_WISP, MOVE_PAIN_SPLIT
     }
 };
 
+// Kindler
 static const struct TrainerMonItemCustomMoves sParty_Dayton[] = {
     {
     .lvl = 0,
-    .species = SPECIES_MAGCARGO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .species = SPECIES_DARMANITAN, // Doubles
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 0, // ABILITY_GORILLA_TACTICS, ABILITY_SHEER_FORCE, ABILITY_ZEN_MODE},
+    // .innates = {ABILITY_FLAME_BODY, ABILITY_IRON_FIST, ABILITY_TURBOBLAZE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_FLAMETHROWER, MOVE_STONE_EDGE, MOVE_EARTH_POWER, MOVE_SHELL_SMASH
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_FLARE_BLITZ, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_U_TURN
     },
     {
     .lvl = 0,
-    .species = SPECIES_DARMANITAN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_FLARE_BLITZ, MOVE_SUPERPOWER, MOVE_THRASH, MOVE_ROCK_SLIDE
+    .species = SPECIES_MAGCARGO, // Doubles
+    .heldItem = ITEM_WHITE_HERB,
+    .ability = 0, // ABILITY_SIMPLE, ABILITY_MOUNTAINEER, ABILITY_SHELL_ARMOR},
+    // .innates = {ABILITY_MOLTEN_DOWN, ABILITY_FLASH_FIRE, ABILITY_MAGMA_ARMOR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SHELL_SMASH, MOVE_EARTH_POWER, MOVE_POWER_GEM, MOVE_LAVA_PLUME
     }
 };
 
+// Bird Keeper
 static const struct TrainerMonItemCustomMoves sParty_Hugh[] = {
     {
     .lvl = 0,
     .species = SPECIES_NOCTOWL,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_TINTED_LENS, ABILITY_AERILATE, ABILITY_AIR_BLOWER},
+    // .innates = {ABILITY_NOCTURNAL, ABILITY_INSOMNIA, ABILITY_MAJESTIC_BIRD},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
     .moves = MOVE_BOOMBURST, MOVE_AIR_SLASH, MOVE_HYPNOSIS, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_FEAROW,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Sniper
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_INTIMIDATE, ABILITY_GALE_WINGS, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_FLOCK, ABILITY_SNIPER, ABILITY_KEEN_EYE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_FOCUS_ENERGY, MOVE_NONE
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_RETURN, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_TROPIUS,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Aerilate
+    .ability = 0, // ABILITY_AERILATE, ABILITY_AIR_BLOWER, ABILITY_GRASS_PELT},
+    // .innates = {ABILITY_LEVITATE, ABILITY_GIANT_WINGS, ABILITY_BIG_LEAVES},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BODY_SLAM, MOVE_DRAGON_HAMMER, MOVE_LEAF_BLADE, MOVE_DRAGON_DANCE
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_BODY_SLAM, MOVE_DRAGON_HAMMER, MOVE_SOLAR_BLADE, MOVE_DRAGON_DANCE
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Fabian[] = {
+// Guitarist
+static const struct TrainerMonItemCustomMoves sParty_Fabian[] = { // with Yasu
     {
     .lvl = 0,
     .species = SPECIES_MANECTRIC,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_THUNDER, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_FLAMETHROWER
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 2, // ABILITY_STATIC, ABILITY_ILLUMINATE, ABILITY_ELECTRIC_BURST},
+    // .innates = {ABILITY_PLUS, ABILITY_LIGHTNING_ROD, ABILITY_UNNERVE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_VOLT_SWITCH, MOVE_OVERHEAT, MOVE_AURORA_BEAM, MOVE_SIGNAL_BEAM
     },
     {
     .lvl = 0,
     .species = SPECIES_CHATOT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_TANGLED_FEET, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_BIG_PECKS, ABILITY_NONE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_BOOMBURST, MOVE_CHATTER, MOVE_NASTY_PLOT, MOVE_FEATHER_DANCE
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Yasu[] = {
+// Ninja Boy
+static const struct TrainerMonItemCustomMoves sParty_Yasu[] = { // with Fabian
     {
     .lvl = 0,
     .species = SPECIES_GRENINJA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_EXPERT_BELT,
+    .ability = 0, // ABILITY_FATAL_PRECISION, ABILITY_SPEED_BOOST, ABILITY_PROTEAN},
+    // .innates = {ABILITY_TORRENT, ABILITY_SKILL_LINK, ABILITY_LONG_REACH},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WATER_SHURIKEN, MOVE_DARK_PULSE, MOVE_EXTRASENSORY, MOVE_SMOKESCREEN
+    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_WATER_SHURIKEN, MOVE_DARK_PULSE, MOVE_GUNK_SHOT, MOVE_ICE_BEAM
     },
     {
     .lvl = 0,
     .species = SPECIES_CROBAT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_SNIPER, ABILITY_INFILTRATOR, ABILITY_OPPORTUNIST},
+    // .innates = {ABILITY_LEVITATE, ABILITY_STRONG_JAW, ABILITY_NOCTURNAL},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WING_ATTACK, MOVE_CROSS_POISON, MOVE_CRUNCH, MOVE_SCREECH
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_DUAL_WINGBEAT, MOVE_CROSS_POISON, MOVE_CRUNCH, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_DRAPION,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Sniper
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_POISON_TOUCH, ABILITY_FATAL_PRECISION, ABILITY_LOOTER},
+    // .innates = {ABILITY_SHELL_ARMOR, ABILITY_GRIP_PINCER, ABILITY_NOCTURNAL},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_NIGHT_SLASH, MOVE_CROSS_POISON, MOVE_SCARY_FACE, MOVE_PURSUIT
     }
 };
@@ -21798,22 +22399,24 @@ static const struct TrainerMonItemCustomMoves sParty_Hideo[] = {
     {
     .lvl = 0,
     .species = SPECIES_BISHARP,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_DEFIANT, ABILITY_HYPER_CUTTER, ABILITY_OPPORTUNIST},
+    // .innates = {ABILITY_INNER_FOCUS, ABILITY_KEEN_EDGE, ABILITY_BATTLE_ARMOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_NIGHT_SLASH, MOVE_IRON_HEAD, MOVE_LASER_FOCUS, MOVE_TORMENT
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_NIGHT_SLASH, MOVE_EXCALIBUR, MOVE_GUILLOTINE, MOVE_SUCKER_PUNCH
     },
     {
     .lvl = 0,
     .species = SPECIES_MUK,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_POISON_TOUCH, ABILITY_REGENERATOR, ABILITY_SELF_SUFFICIENT},
+    // .innates = {ABILITY_LIQUIFIED, ABILITY_STENCH, ABILITY_STICKY_HOLD},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_GUNK_SHOT, MOVE_SCREECH, MOVE_SHADOW_SNEAK, MOVE_ACID_ARMOR
+    .evs = {252, 252, 4, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_GUNK_SHOT, MOVE_KNOCK_OFF, MOVE_SHADOW_SNEAK, MOVE_FIRE_PUNCH
     }
 };
 
@@ -21824,17 +22427,19 @@ static const struct TrainerMonItemCustomMoves sParty_ShellyWeatherInstitute[] = 
     .lvl = 0,
     .species = SPECIES_NINETALES_ALOLAN,
     .heldItem = ITEM_LIGHT_CLAY,
-    .ability = 2, // Snow Warning
+    .ability = 2, // ABILITY_FROZEN_SOUL, ABILITY_NORTH_WIND, ABILITY_SNOW_WARNING},
+    // .innates = {ABILITY_QUEENLY_MAJESTY, ABILITY_REFRIGERATE, ABILITY_ICE_DEW},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_BLIZZARD, MOVE_MOONBLAST, MOVE_WATER_PULSE, MOVE_AURORA_VEIL
+    .moves = MOVE_HYPER_VOICE, MOVE_MOONBLAST, MOVE_SHEER_COLD, MOVE_AURORA_VEIL
     },
     {
     .lvl = 0,
     .species = SPECIES_EMPOLEON,
     .heldItem = ITEM_PETAYA_BERRY,
-    .ability = 1, // Slush Rush
+    .ability = 2, // ABILITY_COMPETITIVE, ABILITY_DEFIANT, ABILITY_SLUSH_RUSH},
+    // .innates = {ABILITY_TORRENT, ABILITY_ANTARCTIC_BIRD, ABILITY_SWIFT_SWIM},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
@@ -21844,19 +22449,21 @@ static const struct TrainerMonItemCustomMoves sParty_ShellyWeatherInstitute[] = 
     .lvl = 1,
     .species = SPECIES_CRAWDAUNT,
     .heldItem = ITEM_ICE_GEM,
-    .ability = 2, // Adaptability
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_HYPER_AGGRESSIVE, ABILITY_ADAPTABILITY},
+    // .innates = {ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_GRIP_PINCER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_NAIVE,
-    .moves = MOVE_CRABHAMMER, MOVE_CRUNCH, MOVE_DRAGON_DANCE, MOVE_BLIZZARD
+    .moves = MOVE_CRABHAMMER, MOVE_KNOCK_OFF, MOVE_DRAGON_DANCE, MOVE_BLIZZARD
     },
     {
     .lvl = 0,
     .species = SPECIES_CLEFABLE,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // Magic Guard
+    .ability = 2, // ABILITY_UNAWARE, ABILITY_MAGIC_GUARD, ABILITY_FLUFFY},
+    // .innates = {ABILITY_CUTE_CHARM, ABILITY_HEALER, ABILITY_NATURAL_CURE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BOLD,
     .moves = MOVE_FLAMETHROWER, MOVE_BLIZZARD, MOVE_CALM_MIND, MOVE_SOFT_BOILED
     },
@@ -21864,53 +22471,100 @@ static const struct TrainerMonItemCustomMoves sParty_ShellyWeatherInstitute[] = 
     .lvl = 0,
     .species = SPECIES_LUDICOLO,
     .heldItem = ITEM_SAFETY_GOGGLES,
-    .ability = 1, // Swift Swim
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_CHLOROPHYLL, ABILITY_OWN_TEMPO},
+    // .innates = {ABILITY_SEAWEED, ABILITY_RAIN_DISH, ABILITY_HYDRATION},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
     .moves = MOVE_SCALD, MOVE_GIGA_DRAIN, MOVE_LEECH_SEED, MOVE_BLIZZARD
     },
     {
-    .lvl = 2,
+    .lvl = 3,
     .species = SPECIES_BEEDRILL,
     .heldItem = ITEM_BEEDRILLITE,
+    .ability = 0, // ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY},
+    // .innates = {ABILITY_HYPER_AGGRESSIVE, ABILITY_MERCILESS, ABILITY_LEVITATE},
+    // Pre-Mega
+    // ABILITY_POISON_TOUCH, ABILITY_SNIPER, ABILITY_SPEED_FORCE},
+    // .innates = {ABILITY_HYPER_AGGRESSIVE, ABILITY_MERCILESS, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_X_SCISSOR, MOVE_POISON_JAB, MOVE_DRILL_RUN, MOVE_DRILL_PECK
+    .moves = MOVE_TWINEEDLE, MOVE_POISON_JAB, MOVE_DRILL_RUN, MOVE_DRILL_PECK
     }
 };
 
+// Entrance, 1st Grunt
+static const struct TrainerMonItemCustomMoves sParty_Grunt20[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_WALREIN,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .ability = 1, // ABILITY_SHEER_FORCE, ABILITY_REFRIGERATE, ABILITY_SNOW_WARNING},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_ICE_BODY, ABILITY_GROWING_TOOTH},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_RELAXED,
+    .moves = MOVE_SHEER_COLD, MOVE_AQUA_TAIL, MOVE_HYPER_FANG, MOVE_AQUA_RING
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_FLOATZEL,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_TECHNICIAN, ABILITY_HYDRATE, ABILITY_LOOTER},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_FIELD_EXPLORER, ABILITY_INFLATABLE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_SURF, MOVE_CRUNCH, MOVE_ICE_PUNCH, MOVE_FOCUS_BLAST
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_MALAMAR,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .ability = 2, // ABILITY_SUCTION_CUPS, ABILITY_NONE, ABILITY_INFILTRATOR},
+    // .innates = {ABILITY_HYPNOTIST, ABILITY_CONTRARY, ABILITY_ILLUMINATE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_THROAT_CHOP, MOVE_PSYCHO_CUT, MOVE_SUPERPOWER, MOVE_TOPSY_TURVY
+    }
+};
+
+// Entrance, 2nd Grunt
 static const struct TrainerMonItemCustomMoves sParty_Grunt11[] = {
     {
     .lvl = 0,
-    .species = SPECIES_GOLBAT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .species = SPECIES_CROBAT,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_SNIPER, ABILITY_INFILTRATOR, ABILITY_OPPORTUNIST},
+    // .innates = {ABILITY_LEVITATE, ABILITY_STRONG_JAW, ABILITY_NOCTURNAL},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_ACROBATICS, MOVE_LEECH_LIFE, MOVE_CONFUSE_RAY, MOVE_HYPNOSIS
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_DUAL_WINGBEAT, MOVE_CROSS_POISON, MOVE_CRUNCH, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_DRAGALGE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Adaptability
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SLUDGE_BOMB, MOVE_DRAGON_PULSE, MOVE_HYDRO_PUMP, MOVE_TOXIC
+    .heldItem = ITEM_POISON_GEM,
+    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_CORROSION, ABILITY_PROPELLER_TAIL},
+    // .innates = {ABILITY_ADAPTABILITY, ABILITY_POISON_TOUCH, ABILITY_AQUATIC},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_SLUDGE_WAVE, MOVE_DRACO_METEOR, MOVE_HYDRO_PUMP, MOVE_TOXIC
     },
     {
     .lvl = 0,
     .species = SPECIES_LIEPARD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_UNBURDEN, ABILITY_SNIPER, ABILITY_MOODY},
+    // .innates = {ABILITY_LIMBER, ABILITY_PRANKSTER, ABILITY_OPPORTUNIST},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SUCKER_PUNCH, MOVE_PLAY_ROUGH, MOVE_SWAGGER, MOVE_IRON_TAIL
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_SUCKER_PUNCH, MOVE_PLAY_ROUGH, MOVE_FAKE_OUT, MOVE_IRON_TAIL
     }
 };
 
@@ -21918,45 +22572,49 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt12[] = { // with 37
     {
     .lvl = 0,
     .species = SPECIES_PELIPPER,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // Drizzle
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_DRIZZLE, ABILITY_HYDRATION, ABILITY_AIR_BLOWER},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_RAIN_DISH, ABILITY_FLOCK},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HURRICANE, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_ROOST
+    .evs = {252, 0, 252, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_HURRICANE, MOVE_HYDRO_PUMP, MOVE_PROTECT, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_FERROTHORN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_IMPENETRABLE, ABILITY_BULLETPROOF, ABILITY_FORT_KNOX},
+    // .innates = {ABILITY_IRON_BARBS, ABILITY_LETS_ROLL, ABILITY_BATTLE_ARMOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
     .moves = MOVE_POWER_WHIP, MOVE_IRON_HEAD, MOVE_PAYBACK, MOVE_THUNDER_WAVE
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Grunt37[] = { // with 11
+static const struct TrainerMonItemCustomMoves sParty_Grunt37[] = { // with 12
     {
     .lvl = 0,
-    .species = SPECIES_TOXICROAK,
+    .species = SPECIES_TOXICROAK, // Doubles
     .heldItem = ITEM_BLACK_SLUDGE,
-    .ability = 1, // Dry Skin
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_POISON_JAB, MOVE_DRAIN_PUNCH, MOVE_SUCKER_PUNCH, MOVE_PROTECT
+    .ability = 1, // ABILITY_POISON_TOUCH, ABILITY_HYDRATE, ABILITY_FIGHT_SPIRIT},
+    // .innates = {ABILITY_DRY_SKIN, ABILITY_AMPHIBIOUS, ABILITY_OPPORTUNIST},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_FAKE_OUT, MOVE_DRAIN_PUNCH, MOVE_SUCKER_PUNCH, MOVE_PROTECT
     },
     {
     .lvl = 0,
-    .species = SPECIES_EELEKTROSS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .species = SPECIES_EELEKTROSS, // Doubles
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 1, // ABILITY_PREDATOR, ABILITY_HYDRATE, ABILITY_SWIFT_SWIM},
+    // .innates = {ABILITY_ELECTROCYTES, ABILITY_LEVITATE, ABILITY_AQUATIC},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_THUNDER, MOVE_AQUA_TAIL, MOVE_GIGA_DRAIN, MOVE_IRON_TAIL
+    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_DISCHARGE, MOVE_THRASH, MOVE_GIGA_DRAIN, MOVE_IRON_TAIL
     }
 };
 
@@ -21964,120 +22622,99 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt13[] = {
     {
     .lvl = 0,
     .species = SPECIES_MIGHTYENA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 1, // ABILITY_INTIMIDATE, ABILITY_STRONG_JAW, ABILITY_MOXIE},
+    // .innates = {ABILITY_QUICK_FEET, ABILITY_EXPLOIT_WEAKNESS, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_CRUNCH, MOVE_PLAY_ROUGH, MOVE_FIRE_FANG, MOVE_ICE_FANG
     },
     {
     .lvl = 0,
     .species = SPECIES_GOLISOPOD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_MUSCLE_BAND,
+    .ability = 1, // ABILITY_EMERGENCY_EXIT, ABILITY_TOUGH_CLAWS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_SHELL_ARMOR, ABILITY_POISON_POINT, ABILITY_HYPER_CUTTER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
     .moves = MOVE_FIRST_IMPRESSION, MOVE_LIQUIDATION, MOVE_SUCKER_PUNCH, MOVE_CLOSE_COMBAT
     },
     {
     .lvl = 0,
     .species = SPECIES_MUK_ALOLAN,
+    .heldItem = ITEM_FIGY_BERRY,
+    .ability = 1, // ABILITY_REGENERATOR, ABILITY_STICKY_HOLD, ABILITY_POISON_ABSORB},
+    // .innates = {ABILITY_POISON_TOUCH, ABILITY_LIQUIFIED, ABILITY_GLUTTONY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_CRUNCH, MOVE_POISON_JAB, MOVE_FIRE_BLAST, MOVE_SCREECH
-    }
-};
-
-static const struct TrainerMonItemCustomMoves sParty_Grunt20[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_WALREIN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_ICE_BEAM, MOVE_AQUA_TAIL, MOVE_CRUNCH, MOVE_AQUA_RING
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_FLOATZEL,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HYDRO_PUMP, MOVE_CRUNCH, MOVE_ICE_PUNCH, MOVE_FOCUS_BLAST
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_MALAMAR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_THROAT_CHOP, MOVE_PSYCHO_CUT, MOVE_SUPERPOWER, MOVE_TOPSY_TURVY
+    .evs = {252, 252, 4, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BRAVE,
+    .moves = MOVE_KNOCK_OFF, MOVE_POISON_JAB, MOVE_FIRE_BLAST, MOVE_SHADOW_SNEAK
     }
 };
 
 // Route 120
 
+// Parasol Lady
 static const struct TrainerMonItemCustomMoves sParty_Clarissa[] = {
     {
     .lvl = 0,
     .species = SPECIES_TANGROWTH,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_CHLOROPHYLL, ABILITY_BATTLE_ARMOR, ABILITY_LONG_REACH},
+    // .innates = {ABILITY_REGENERATOR, ABILITY_SEAWEED, ABILITY_SELF_SUFFICIENT},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_POWER_WHIP, MOVE_ANCIENT_POWER, MOVE_SLEEP_POWDER, MOVE_LEECH_SEED
+    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_QUIET,
+    .moves = MOVE_GIGA_DRAIN, MOVE_ANCIENT_POWER, MOVE_FOCUS_BLAST, MOVE_EARTHQUAKE
     },
     {
     .lvl = 0,
     .species = SPECIES_WAILORD,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_WATER_VEIL, ABILITY_STAMINA, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_LIQUID_VOICE, ABILITY_THICK_FAT, ABILITY_PRESSURE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
     .moves = MOVE_WATER_SPOUT, MOVE_HEAVY_SLAM, MOVE_BOUNCE, MOVE_AQUA_RING
     },
     {
     .lvl = 0,
     .species = SPECIES_PYROAR,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_COMPETITIVE, ABILITY_MOXIE},
+    // .innates = {ABILITY_RIVALRY, ABILITY_OPPORTUNIST, ABILITY_NONE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_FIRE_BLAST, MOVE_HYPER_VOICE, MOVE_NOBLE_ROAR, MOVE_WORK_UP
     }
 };
 
+// Bird Keeper
 static const struct TrainerMonItemCustomMoves sParty_Robert1[] = {
     {
     .lvl = 0,
     .species = SPECIES_FEAROW,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Sniper
+    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_GALE_WINGS, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_FLOCK, ABILITY_SNIPER, ABILITY_KEEN_EYE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_FOCUS_ENERGY, MOVE_PURSUIT
     },
     {
     .lvl = 0,
     .species = SPECIES_STARAPTOR,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_GUTS, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_PREDATOR, ABILITY_RECKLESS, ABILITY_GIANT_WINGS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_RETURN, MOVE_BRAVE_BIRD, MOVE_CLOSE_COMBAT, MOVE_WORK_UP
     }
 };
@@ -22086,23 +22723,36 @@ static const struct TrainerMonItemCustomMoves sParty_Robert2[] = {
     {
     .lvl = 0,
     .species = SPECIES_FEAROW,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Sniper
+    .heldItem = ITEM_SCOPE_LENS,
+    .ability = 1, // ABILITY_INTIMIDATE, ABILITY_GALE_WINGS, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_FLOCK, ABILITY_SNIPER, ABILITY_KEEN_EYE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_FOCUS_ENERGY, MOVE_PURSUIT
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_DOUBLE_EDGE, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_STARAPTOR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_FLAME_ORB,
+    .ability = 1, // ABILITY_INTIMIDATE, ABILITY_GUTS, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_PREDATOR, ABILITY_RECKLESS, ABILITY_GIANT_WINGS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_RETURN, MOVE_BRAVE_BIRD, MOVE_CLOSE_COMBAT, MOVE_WORK_UP
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_BRAVE_BIRD, MOVE_FACADE, MOVE_U_TURN, MOVE_CLOSE_COMBAT
     },
+    {
+    .lvl = 0,
+    .species = SPECIES_TALONFLAME,
+    .heldItem = ITEM_POWER_HERB,
+    .ability = 1, // ABILITY_PREDATOR, ABILITY_SPEED_FORCE, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_FLOCK, ABILITY_VIOLENT_RUSH, ABILITY_GALE_WINGS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_BRAVE_BIRD, MOVE_FIRE_BLAST, MOVE_SOLAR_BEAM, MOVE_STEEL_WING
+    }
 /*     {
     .lvl = 0,
     .species = SPECIES_CORVIKNIGHT,
@@ -22117,24 +22767,37 @@ static const struct TrainerMonItemCustomMoves sParty_Robert3[] = {
     {
     .lvl = 0,
     .species = SPECIES_FEAROW,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Sniper
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_GALE_WINGS, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_FLOCK, ABILITY_SNIPER, ABILITY_KEEN_EYE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_FOCUS_ENERGY, MOVE_PURSUIT
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_DOUBLE_EDGE, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_STARAPTOR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_GUTS, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_PREDATOR, ABILITY_RECKLESS, ABILITY_GIANT_WINGS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_RETURN, MOVE_BRAVE_BIRD, MOVE_CLOSE_COMBAT, MOVE_WORK_UP
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_U_TURN, MOVE_CLOSE_COMBAT
     },
-/*     {
+    {
+    .lvl = 0,
+    .species = SPECIES_TALONFLAME,
+    .heldItem = ITEM_HEAVY_DUTY_BOOTS,
+    .ability = 0, // ABILITY_PREDATOR, ABILITY_SPEED_FORCE, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_FLOCK, ABILITY_VIOLENT_RUSH, ABILITY_GALE_WINGS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_BRAVE_BIRD, MOVE_FLARE_BLITZ, MOVE_TAUNT, MOVE_SWORDS_DANCE
+    }
+    /*     {
     .lvl = 0,
     .species = SPECIES_CORVIKNIGHT,
     .ivs = {31, 31, 31, 31, 31, 31},
@@ -22142,40 +22805,43 @@ static const struct TrainerMonItemCustomMoves sParty_Robert3[] = {
 	.nature = NATURE_HARDY,
     .moves = MOVE_BRAVE_BIRD, MOVE_STEEL_WING, MOVE_BODY_PRESS, MOVE_BULK_UP
     }, */
-    {
-    .lvl = 0,
-    .species = SPECIES_TALONFLAME,
-    .heldItem = ITEM_POWER_HERB,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_FIRE_BLAST, MOVE_SOLAR_BEAM, MOVE_STEEL_WING
-    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Robert4[] = {
     {
     .lvl = 0,
     .species = SPECIES_FEAROW,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Sniper
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_GALE_WINGS, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_FLOCK, ABILITY_SNIPER, ABILITY_KEEN_EYE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_FOCUS_ENERGY, MOVE_PURSUIT
+    .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_DOUBLE_EDGE, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_STARAPTOR,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_GUTS, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_PREDATOR, ABILITY_RECKLESS, ABILITY_GIANT_WINGS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_RETURN, MOVE_BRAVE_BIRD, MOVE_CLOSE_COMBAT, MOVE_WORK_UP
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_U_TURN, MOVE_CLOSE_COMBAT
     },
-/*     {
+    {
+    .lvl = 0,
+    .species = SPECIES_TALONFLAME,
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_PREDATOR, ABILITY_SPEED_FORCE, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_FLOCK, ABILITY_VIOLENT_RUSH, ABILITY_GALE_WINGS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_BRAVE_BIRD, MOVE_FLARE_BLITZ, MOVE_STEEL_WING, MOVE_U_TURN
+    }
+    /*     {
     .lvl = 0,
     .species = SPECIES_CORVIKNIGHT,
     .ivs = {31, 31, 31, 31, 31, 31},
@@ -22183,67 +22849,66 @@ static const struct TrainerMonItemCustomMoves sParty_Robert4[] = {
 	.nature = NATURE_IMPISH,
     .moves = MOVE_BRAVE_BIRD, MOVE_STEEL_WING, MOVE_BODY_PRESS, MOVE_BULK_UP
     }, */
-    {
-    .lvl = 0,
-    .species = SPECIES_TALONFLAME,
-    .heldItem = ITEM_POWER_HERB,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_NAUGHTY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_FIRE_BLAST, MOVE_SOLAR_BEAM, MOVE_STEEL_WING
-    }
 };
 
+// After Fortree Gym
+
+// Bird Keeper
 static const struct TrainerMonItemCustomMoves sParty_Colin[] = {
     {
     .lvl = 0,
     .species = SPECIES_DODRIO,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_SPEED_FORCE, ABILITY_MOXIE, ABILITY_BIG_PECKS},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_GROUNDED, ABILITY_MOODY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_RETURN, MOVE_JUMP_KICK, MOVE_SWORDS_DANCE
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_BRAVE_BIRD, MOVE_JUMP_KICK, MOVE_EARTHQUAKE, MOVE_SWORDS_DANCE
     },
     {
     .lvl = 0,
     .species = SPECIES_XATU,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Magic Bounce
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_FOREWARN, ABILITY_EARLY_BIRD, ABILITY_SYNCHRONIZE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_DREAMCATCHER, ABILITY_MAGIC_BOUNCE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_PSYCHIC, MOVE_AIR_SLASH, MOVE_ROOST, MOVE_NIGHT_SHADE
     },
     {
     .lvl = 0,
     .species = SPECIES_ORICORIO,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .ability = 0, // ABILITY_DANCER, ABILITY_DANCER, ABILITY_DANCER},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_FLASH_FIRE, ABILITY_NONE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_HURRICANE, MOVE_REVELATION_DANCE, MOVE_ROOST, MOVE_AGILITY
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Leonel[] = {
+// Ace
+static const struct TrainerMonItemCustomMoves sParty_Leonel[] = { // with Angelica
     {
     .lvl = 0,
     .species = SPECIES_VIKAVOLT,
     .heldItem = ITEM_ELECTRIC_GEM,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_SPEED_BOOST, ABILITY_AERODYNAMICS, ABILITY_OVERCHARGE},
+    // .innates = {ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_ELECTROCYTES},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_MUD_SHOT
+    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_VENUSAUR,
     .heldItem = ITEM_WIDE_LENS,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_CHLOROPLAST, ABILITY_EFFECT_SPORE, ABILITY_CHLOROPHYLL},
+    // .innates = {ABILITY_OVERGROW, ABILITY_THICK_FAT, ABILITY_POISON_TOUCH},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
@@ -22252,8 +22917,9 @@ static const struct TrainerMonItemCustomMoves sParty_Leonel[] = {
     {
     .lvl = 0,
     .species = SPECIES_GOLDUCK,
-    .heldItem = ITEM_MYSTIC_WATER,
-    .ability = 2, // Swift Swim
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_TOUGH_CLAWS, ABILITY_SAGE_POWER, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_WEATHER_CONTROL, ABILITY_PSYCHIC_MIND, ABILITY_SWIFT_SWIM},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
@@ -22261,7 +22927,8 @@ static const struct TrainerMonItemCustomMoves sParty_Leonel[] = {
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Angelica[] = {
+// Parasol Lady
+static const struct TrainerMonItemCustomMoves sParty_Angelica[] = { // with Leonel
     {
     .lvl = 0,
     .species = SPECIES_MEOWSTIC,
@@ -24928,37 +25595,40 @@ static const struct TrainerMonItemCustomMoves sParty_MattMtPyre[] = {
     }
 };
 
-// Route 123
+// Route 123 (Optional)
 
 static const struct TrainerMonItemCustomMoves sParty_Kindra[] = { // with Ed
     {
     .lvl = 0,
     .species = SPECIES_COFAGRIGUS,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HEX, MOVE_FLASH_CANNON, MOVE_WILL_O_WISP, MOVE_TOXIC_SPIKES
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_MUMMY, ABILITY_SHADOW_SHIELD, ABILITY_SHADOW_TAG},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_CURSED_BODY, ABILITY_HAUNTED_SPIRIT},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_HEX, MOVE_FLASH_CANNON, MOVE_WILL_O_WISP, MOVE_HAZE
     },
     {
-    .lvl = 0,
-    .species = SPECIES_MAROWAK_ALOLAN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Rock Head
+    .lvl = 1,
+    .species = SPECIES_MAROWAK_ALOLAN, // Doubles
+    .heldItem = ITEM_THICK_CLUB,
+    .ability = 1, // ABILITY_FLAME_BODY, ABILITY_LIGHTNING_ROD, ABILITY_SKILL_LINK},
+    // .innates = {ABILITY_BONE_ZONE, ABILITY_VENGEANCE, ABILITY_ROCK_HEAD},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SHADOW_BONE, MOVE_FLARE_BLITZ, MOVE_BONEMERANG, MOVE_RETALIATE
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_SHADOW_BONE, MOVE_FLARE_BLITZ, MOVE_BONEMERANG, MOVE_PROTECT
     },
     {
     .lvl = 0,
     .species = SPECIES_ROTOM_FROST,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_ICE_DEW, ABILITY_NONE, ABILITY_MOTOR_DRIVE},
+    // .innates = {ABILITY_LEVITATE, ABILITY_MINUS, ABILITY_PHANTOM},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_FREEZE_DRY, MOVE_THUNDERBOLT, MOVE_HEX, MOVE_NASTY_PLOT
     }
 };
@@ -24967,51 +25637,60 @@ static const struct TrainerMonItemCustomMoves sParty_Ed[] = { // with Kindra
     {
     .lvl = 0,
     .species = SPECIES_SEVIPER,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_MERCILESS, ABILITY_COLOR_CHANGE, ABILITY_HYPER_AGGRESSIVE},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_SOLENOGLYPHS, ABILITY_COIL_UP},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_VENOSHOCK, MOVE_FLAMETHROWER, MOVE_GIGA_DRAIN, MOVE_TOXIC
+    .evs = {8, 224, 0, 56, 0, 220},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAUGHTY,
+    .moves = MOVE_CRUNCH, MOVE_POISON_FANG, MOVE_FLAMETHROWER, MOVE_GIGA_DRAIN
     },
     {
     .lvl = 0,
     .species = SPECIES_ZANGOOSE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_ANGER_POINT, ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE},
+    // .innates = {ABILITY_TOXIC_BOOST, ABILITY_FATAL_PRECISION, ABILITY_TOUGH_CLAWS},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
     .moves = MOVE_DOUBLE_EDGE, MOVE_CLOSE_COMBAT, MOVE_X_SCISSOR, MOVE_QUICK_ATTACK
     },
     {
     .lvl = 0,
     .species = SPECIES_GLACEON,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_FREEZE_DRY, MOVE_SHADOW_BALL, MOVE_YAWN, MOVE_ICE_SHARD
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_ICE_SCALES, ABILITY_WHITEOUT, ABILITY_FROZEN_SOUL},
+    // .innates = {ABILITY_ICE_BODY, ABILITY_REFRIGERATE, ABILITY_SLUSH_RUSH},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_FREEZE_DRY, MOVE_SHADOW_BALL, MOVE_YAWN, MOVE_HYPER_VOICE
     }
 };
 
+// Ace
 static const struct TrainerMonItemCustomMoves sParty_Wendy[] = {
     {
-    .lvl = 0,
-    .species = SPECIES_MAWILE,
+    .lvl = 3,
+    .species = SPECIES_MAWILE, // Mega
     .heldItem = ITEM_MAWILITE,
-    .ability = 1, // Intimidate
+    .ability = 2, // ABILITY_HUGE_POWER, ABILITY_HUGE_POWER, ABILITY_HUGE_POWER},
+    // .innates = {ABILITY_GRIP_PINCER, ABILITY_STRONG_JAW, ABILITY_MULTI_HEADED},
+    // Pre-Mega
+    // ABILITY_STRONG_JAW, ABILITY_INTIMIDATE, ABILITY_SCARE},
+    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HUGE_POWER, ABILITY_MULTI_HEADED},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {92, 252, 0, 0, 0, 164},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_IRON_HEAD, MOVE_PLAY_ROUGH, MOVE_FIRE_FANG, MOVE_SUCKER_PUNCH
+    .moves = MOVE_PLAY_ROUGH, MOVE_SWORDS_DANCE, MOVE_SUCKER_PUNCH, MOVE_IRON_HEAD
     },
     {
     .lvl = 0,
     .species = SPECIES_ROSERADE,
     .heldItem = ITEM_BIG_ROOT,
-    .ability = 2, // Technician
+    .ability = 2, // ABILITY_TECHNICIAN, ABILITY_MERCILESS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_CHLOROPHYLL, ABILITY_POISON_POINT},
     .ivs = {31, 0, 31, 30, 31, 30}, // Fire
     .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -25021,40 +25700,56 @@ static const struct TrainerMonItemCustomMoves sParty_Wendy[] = {
     .lvl = 0,
     .species = SPECIES_SWANNA,
     .heldItem = ITEM_WIDE_LENS,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_HYDRATION, ABILITY_GIANT_WINGS, ABILITY_MAJESTIC_BIRD},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_BIG_PECKS},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_AIR_SLASH, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_ROOST
+    .moves = MOVE_HURRICANE, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_HYDREIGON,
-    .heldItem = ITEM_EXPERT_BELT,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_SCARE, ABILITY_VIOLENT_RUSH, ABILITY_BEAST_BOOST},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_LEVITATE, ABILITY_PREDATOR},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_DARK_PULSE, MOVE_DRAGON_PULSE, MOVE_EARTH_POWER, MOVE_FIRE_BLAST
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_MIENSHAO,
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // Reckless
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_IRON_FIST, ABILITY_LIMBER, ABILITY_REGENERATOR},
+    // .innates = {ABILITY_INNER_FOCUS, ABILITY_RECKLESS, ABILITY_SPEED_FORCE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_HIGH_JUMP_KICK, MOVE_KNOCK_OFF, MOVE_POISON_JAB, MOVE_BLAZE_KICK
+    .moves = MOVE_HIGH_JUMP_KICK, MOVE_KNOCK_OFF, MOVE_FAKE_OUT, MOVE_U_TURN
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_INFERNAPE,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_IRON_FIST, ABILITY_POWER_FISTS, ABILITY_GORILLA_TACTICS},
+    // .innates = {ABILITY_BLAZE, ABILITY_PRANKSTER, ABILITY_DEFIANT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_CLOSE_COMBAT, MOVE_FLARE_BLITZ, MOVE_THUNDER_PUNCH, MOVE_STONE_EDGE
     }
 };
 
+// Ace
 static const struct TrainerMonItemCustomMoves sParty_Braxton[] = {
     {
     .lvl = 0,
     .species = SPECIES_BRAVIARY,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Defiant
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_SHEER_FORCE, ABILITY_DEFIANT, ABILITY_GALE_WINGS},
+    // .innates = {ABILITY_FLOCK, ABILITY_GIANT_WINGS, ABILITY_BIG_PECKS},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -25064,7 +25759,8 @@ static const struct TrainerMonItemCustomMoves sParty_Braxton[] = {
     .lvl = 0,
     .species = SPECIES_GARCHOMP,
     .heldItem = ITEM_FIRE_GEM,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_OVERWHELM, ABILITY_PREDATOR, ABILITY_KEEN_EDGE},
+    // .innates = {ABILITY_HYPER_AGGRESSIVE, ABILITY_SPEED_FORCE, ABILITY_ROUGH_SKIN},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -25074,64 +25770,85 @@ static const struct TrainerMonItemCustomMoves sParty_Braxton[] = {
     .lvl = 0,
     .species = SPECIES_SCOLIPEDE,
     .heldItem = ITEM_SALAC_BERRY,
-    .ability = 2, // Speed Boost
+    .ability = 2, // ABILITY_POISON_POINT, ABILITY_PREDATOR, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_LETS_ROLL, ABILITY_SOLENOGLYPHS, ABILITY_HYPER_AGGRESSIVE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_PROTECT, MOVE_IRON_DEFENSE, MOVE_POISON_JAB, MOVE_BATON_PASS
+    .moves = MOVE_PROTECT, MOVE_IRON_DEFENSE, MOVE_POISON_FANG, MOVE_BATON_PASS
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_MAGNEZONE,
-    .heldItem = ITEM_AIR_BALLOON,
-    .ability = 2, // Analytic
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 1, // ABILITY_SIGHTING_SYSTEM, ABILITY_OVERCHARGE, ABILITY_DOWNLOAD},
+    // .innates = {ABILITY_LEVITATE, ABILITY_MULTI_HEADED, ABILITY_MAGNET_PULL},
     .ivs = {31, 0, 31, 30, 31, 30}, // Fire
     .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_FLASH_CANNON, MOVE_VOLT_SWITCH, MOVE_HIDDEN_POWER, MOVE_SIGNAL_BEAM
     },
     {
-    .lvl = 0,
-    .species = SPECIES_BLASTOISE,
+    .lvl = 3,
+    .species = SPECIES_BLASTOISE, // Mega
     .heldItem = ITEM_BLASTOISINITE,
-    .ability = 0, // 
+    .ability = 2, // ABILITY_ARTILLERY, ABILITY_ARTILLERY, ABILITY_ARTILLERY},
+    // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    // Pre-Mega
+    // ABILITY_STAMINA, ABILITY_REGENERATOR, ABILITY_BULLETPROOF},
+    // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {104, 0, 0, 252, 0, 152},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
-    .moves = MOVE_WATER_PULSE, MOVE_DARK_PULSE, MOVE_AURA_SPHERE, MOVE_ICE_BEAM
+    .moves = MOVE_HYDRO_CANNON, MOVE_DARK_PULSE, MOVE_AURA_SPHERE, MOVE_ICE_BEAM
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_EXEGGUTOR,
+    .heldItem = ITEM_IAPAPA_BERRY,
+    .ability = 1, // ABILITY_MAGIC_BOUNCE, ABILITY_CHLOROPLAST, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_HARVEST, ABILITY_MULTI_HEADED, ABILITY_CHLOROPHYLL},
+    .ivs = {31, 0, 31, 31, 31, 0},
+    .evs = {244, 0, 40, 0, 224, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_QUIET,
+    .moves = MOVE_PSYCHIC, MOVE_SOLAR_BEAM, MOVE_SLEEP_POWDER, MOVE_LEECH_SEED
     }
 };
 
+// Guitarist
 static const struct TrainerMonItemCustomMoves sParty_Fernando1[] = { // with Alberto
     {
     .lvl = 0,
     .species = SPECIES_ZEBSTRIKA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_RECKLESS, ABILITY_SPEED_FORCE, ABILITY_MOMENTUM},
+    // .innates = {ABILITY_ILLUMINATE, ABILITY_MOTOR_DRIVE, ABILITY_SAP_SIPPER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WILD_CHARGE, MOVE_PURSUIT, MOVE_OVERHEAT, MOVE_QUICK_ATTACK
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_VOLT_TACKLE, MOVE_JUMP_KICK, MOVE_FLARE_BLITZ, MOVE_QUICK_ATTACK
     },
     {
     .lvl = 0,
     .species = SPECIES_CHATOT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HYPER_VOICE, MOVE_CHATTER, MOVE_NASTY_PLOT, MOVE_SING
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_TANGLED_FEET, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_BIG_PECKS, ABILITY_NONE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_HURRICANE, MOVE_NASTY_PLOT, MOVE_HEAT_WAVE
     },
     {
     .lvl = 0,
     .species = SPECIES_KRICKETUNE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_HYPER_VOICE, MOVE_BUG_BUZZ, MOVE_GIGA_DRAIN, MOVE_SING
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_SCRAPPY, ABILITY_COMPOUND_EYES, ABILITY_SOUNDPROOF},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_TECHNICIAN},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_BUG_BUZZ, MOVE_GIGA_DRAIN, MOVE_SING
     }
 };
 
@@ -25139,32 +25856,35 @@ static const struct TrainerMonItemCustomMoves sParty_Fernando2[] = {
     {
     .lvl = 0,
     .species = SPECIES_ZEBSTRIKA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_RECKLESS, ABILITY_SPEED_FORCE, ABILITY_MOMENTUM},
+    // .innates = {ABILITY_ILLUMINATE, ABILITY_MOTOR_DRIVE, ABILITY_SAP_SIPPER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WILD_CHARGE, MOVE_PURSUIT, MOVE_OVERHEAT, MOVE_QUICK_ATTACK
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_VOLT_TACKLE, MOVE_HIGH_JUMP_KICK, MOVE_FLARE_BLITZ, MOVE_DOUBLE_EDGE
     },
     {
     .lvl = 0,
     .species = SPECIES_CHATOT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BOOMBURST, MOVE_CHATTER, MOVE_NASTY_PLOT, MOVE_SING
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_TANGLED_FEET, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_BIG_PECKS, ABILITY_NONE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_CHATTER, MOVE_NASTY_PLOT, MOVE_FEATHER_DANCE
     },
     {
     .lvl = 0,
     .species = SPECIES_KRICKETUNE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BOOMBURST, MOVE_BUG_BUZZ, MOVE_GIGA_DRAIN, MOVE_SING
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 2, // ABILITY_SCRAPPY, ABILITY_COMPOUND_EYES, ABILITY_SOUNDPROOF},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_TECHNICIAN},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_NAIVE,
+    .moves = MOVE_BRICK_BREAK, MOVE_BUG_BUZZ, MOVE_PROTECT, MOVE_PERISH_SONG
     },
 /*     {
     .lvl = 0,
@@ -25180,32 +25900,35 @@ static const struct TrainerMonItemCustomMoves sParty_Fernando3[] = {
     {
     .lvl = 0,
     .species = SPECIES_ZEBSTRIKA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 1, // ABILITY_RECKLESS, ABILITY_SPEED_FORCE, ABILITY_MOMENTUM},
+    // .innates = {ABILITY_ILLUMINATE, ABILITY_MOTOR_DRIVE, ABILITY_SAP_SIPPER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_WILD_CHARGE, MOVE_JUMP_KICK, MOVE_OVERHEAT, MOVE_QUICK_ATTACK
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_VOLT_TACKLE, MOVE_HIGH_JUMP_KICK, MOVE_FLARE_BLITZ, MOVE_DOUBLE_EDGE
     },
     {
     .lvl = 0,
     .species = SPECIES_CHATOT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BOOMBURST, MOVE_CHATTER, MOVE_NASTY_PLOT, MOVE_SING
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 0, // ABILITY_TANGLED_FEET, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_BIG_PECKS, ABILITY_NONE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_CHATTER, MOVE_HEAT_WAVE, MOVE_U_TURN
     },
     {
     .lvl = 0,
     .species = SPECIES_KRICKETUNE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BOOMBURST, MOVE_BUG_BUZZ, MOVE_GIGA_DRAIN, MOVE_SING
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 2, // ABILITY_SCRAPPY, ABILITY_COMPOUND_EYES, ABILITY_SOUNDPROOF},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_TECHNICIAN},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_BRICK_BREAK, MOVE_FELL_STINGER, MOVE_NIGHT_SLASH, MOVE_CUT
     },
 /*     {
     .lvl = 0,
@@ -25221,32 +25944,35 @@ static const struct TrainerMonItemCustomMoves sParty_Fernando4[] = {
     {
     .lvl = 0,
     .species = SPECIES_ZEBSTRIKA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_VOLT_TACKLE, MOVE_JUMP_KICK, MOVE_FLARE_BLITZ, MOVE_QUICK_ATTACK
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_RECKLESS, ABILITY_SPEED_FORCE, ABILITY_MOMENTUM},
+    // .innates = {ABILITY_ILLUMINATE, ABILITY_MOTOR_DRIVE, ABILITY_SAP_SIPPER},
+    .ivs = {30, 31, 31, 30, 31, 31}, // Grass
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_THUNDER, MOVE_VOLT_SWITCH, MOVE_BLAZE_KICK, MOVE_HIDDEN_POWER
     },
     {
     .lvl = 0,
     .species = SPECIES_CHATOT,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_TANGLED_FEET, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_BIG_PECKS, ABILITY_NONE},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_BOOMBURST, MOVE_HURRICANE, MOVE_NASTY_PLOT, MOVE_HEAT_WAVE
+    .evs = {252, 0, 252, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_BOOMBURST, MOVE_TAUNT, MOVE_TOXIC, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_KRICKETUNE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_SCRAPPY, ABILITY_COMPOUND_EYES, ABILITY_SOUNDPROOF},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_TECHNICIAN},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_BOOMBURST, MOVE_BUG_BUZZ, MOVE_GIGA_DRAIN, MOVE_SING
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_BRICK_BREAK, MOVE_FELL_STINGER, MOVE_NIGHT_SLASH, MOVE_CUT
     },
 /*     {
     .lvl = 0,
@@ -25258,68 +25984,76 @@ static const struct TrainerMonItemCustomMoves sParty_Fernando4[] = {
     } */
 };
 
+// Bird Keeper
 static const struct TrainerMonItemCustomMoves sParty_Alberto[] = { // with Fernando
     {
     .lvl = 0,
     .species = SPECIES_PELIPPER,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Rain Dish
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_DRIZZLE, ABILITY_HYDRATION, ABILITY_AIR_BLOWER},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_RAIN_DISH, ABILITY_FLOCK},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_RAIN_DANCE, MOVE_HURRICANE, MOVE_BRINE, MOVE_ROOST
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+	.moves = MOVE_AIR_SLASH, MOVE_SCALD, MOVE_U_TURN, MOVE_ROOST
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_ALTARIA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_DRAGON_CLAW, MOVE_ICE_BEAM, MOVE_SING
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_COTTON_DOWN, ABILITY_SERENE_GRACE, ABILITY_CLOUD_NINE},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_FLUFFY, ABILITY_SWEET_DREAMS},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 0, 160, 96},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_DEFOG, MOVE_TOXIC, MOVE_DRAGON_PULSE, MOVE_ROOST
     },
     {
     .lvl = 0,
     .species = SPECIES_XATU,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_FOREWARN, ABILITY_EARLY_BIRD, ABILITY_SYNCHRONIZE},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_DREAMCATCHER, ABILITY_MAGIC_BOUNCE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_AIR_SLASH, MOVE_PSYCHIC, MOVE_GIGA_DRAIN, MOVE_DAZZLING_GLEAM
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HURRICANE, MOVE_PSYCHIC, MOVE_HEAT_WAVE, MOVE_DAZZLING_GLEAM
     }
 };
 
+// Psychic
 static const struct TrainerMonItemCustomMoves sParty_Jacki1[] = { // with Fredrick
     {
     .lvl = 0,
     .species = SPECIES_MUSHARNA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Psychic Surge
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_NEUROFORCE, ABILITY_SWEET_DREAMS, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_DREAMCATCHER, ABILITY_COMATOSE, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
     .moves = MOVE_DREAM_EATER, MOVE_YAWN, MOVE_MOONBLAST, MOVE_MOONLIGHT
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_GIRAFARIG,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIECHI_BERRY,
+    .ability = 0, // ABILITY_SCARE, ABILITY_CONTRARY, ABILITY_SAP_SIPPER},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_NOCTURNAL, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYCHIC_FANGS, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_THUNDER_FANG
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_PSYCHIC_FANGS, MOVE_CRUNCH, MOVE_HYPER_FANG, MOVE_THUNDER_FANG
     },
     {
     .lvl = 0,
-    .species = SPECIES_ESPEON,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .species = SPECIES_ESPEON, // Doubles
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_INSOMNIA, ABILITY_SAGE_POWER, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_MAGIC_BOUNCE, ABILITY_HYPNOTIST, ABILITY_PSYCHIC_MIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_GRASS_KNOT, MOVE_DAZZLING_GLEAM
     }
 };
@@ -25328,32 +26062,35 @@ static const struct TrainerMonItemCustomMoves sParty_Jacki2[] = {
     {
     .lvl = 0,
     .species = SPECIES_MUSHARNA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Psychic Surge
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DREAM_EATER, MOVE_YAWN, MOVE_MOONBLAST, MOVE_MOONLIGHT
+    .heldItem = ITEM_COLBUR_BERRY,
+    .ability = 2, // ABILITY_NEUROFORCE, ABILITY_SWEET_DREAMS, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_DREAMCATCHER, ABILITY_COMATOSE, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_FUTURE_SIGHT, MOVE_HYPNOSIS, MOVE_MOONBLAST, MOVE_MOONLIGHT
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_GIRAFARIG,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_SALAC_BERRY,
+    .ability = 2, // ABILITY_SCARE, ABILITY_CONTRARY, ABILITY_SAP_SIPPER},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_NOCTURNAL, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYCHIC_FANGS, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_THUNDER_FANG
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_PSYCHIC_FANGS, MOVE_CRUNCH, MOVE_HYPER_FANG, MOVE_THUNDER_FANG
     },
     {
     .lvl = 0,
     .species = SPECIES_ESPEON,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_GRASS_KNOT, MOVE_DAZZLING_GLEAM
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_INSOMNIA, ABILITY_SAGE_POWER, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_MAGIC_BOUNCE, ABILITY_HYPNOTIST, ABILITY_PSYCHIC_MIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_FREEZE_DRY, MOVE_MOONBLAST
     },
 /*     {
     .lvl = 0,
@@ -25368,33 +26105,36 @@ static const struct TrainerMonItemCustomMoves sParty_Jacki2[] = {
 static const struct TrainerMonItemCustomMoves sParty_Jacki3[] = {
     {
     .lvl = 0,
-    .species = SPECIES_MUSHARNA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Psychic Surge
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_DREAM_EATER, MOVE_YAWN, MOVE_MOONBLAST, MOVE_MOONLIGHT
+    .species = SPECIES_MUSHARNA, // 1v1
+    .heldItem = ITEM_WIKI_BERRY,
+    .ability = 2, // ABILITY_NEUROFORCE, ABILITY_SWEET_DREAMS, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_DREAMCATCHER, ABILITY_COMATOSE, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {244, 0, 168, 0, 96, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_STORED_POWER, MOVE_CALM_MIND, MOVE_BARRIER, MOVE_MOONLIGHT
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_GIRAFARIG,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 0, // ABILITY_SCARE, ABILITY_CONTRARY, ABILITY_SAP_SIPPER},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_NOCTURNAL, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYCHIC_FANGS, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_THUNDER_FANG
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_PSYCHIC_FANGS, MOVE_HYPER_FANG, MOVE_EARTHQUAKE, MOVE_CRUNCH
     },
     {
     .lvl = 0,
     .species = SPECIES_ESPEON,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_GRASS_KNOT, MOVE_DAZZLING_GLEAM
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_INSOMNIA, ABILITY_SAGE_POWER, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_MAGIC_BOUNCE, ABILITY_HYPNOTIST, ABILITY_PSYCHIC_MIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_CALM_MIND, MOVE_MORNING_SUN
     },
 /*     {
     .lvl = 0,
@@ -25409,43 +26149,47 @@ static const struct TrainerMonItemCustomMoves sParty_Jacki3[] = {
 static const struct TrainerMonItemCustomMoves sParty_Jacki4[] = {
     {
     .lvl = 0,
-    .species = SPECIES_MUSHARNA,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // Psychic Surge
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_BOLD,
-    .moves = MOVE_DREAM_EATER, MOVE_YAWN, MOVE_MOONBLAST, MOVE_CALM_MIND
+    .species = SPECIES_MUSHARNA, // 1v1
+    .heldItem = ITEM_WIKI_BERRY,
+    .ability = 2, // ABILITY_NEUROFORCE, ABILITY_SWEET_DREAMS, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_DREAMCATCHER, ABILITY_COMATOSE, ABILITY_LEVITATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {244, 0, 168, 0, 96, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_STORED_POWER, MOVE_CALM_MIND, MOVE_BARRIER, MOVE_MOONLIGHT
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_GIRAFARIG,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_SCARE, ABILITY_CONTRARY, ABILITY_SAP_SIPPER},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_NOCTURNAL, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_PSYCHIC_FANGS, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_THUNDER_FANG
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_PSYCHIC_FANGS, MOVE_HYPER_FANG, MOVE_EARTHQUAKE, MOVE_CRUNCH
     },
     {
     .lvl = 0,
     .species = SPECIES_ESPEON,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_LIGHT_CLAY,
+    .ability = 2, // ABILITY_INSOMNIA, ABILITY_SAGE_POWER, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_MAGIC_BOUNCE, ABILITY_HYPNOTIST, ABILITY_PSYCHIC_MIND},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {236, 0, 44, 4, 4, 220},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_GRASS_KNOT, MOVE_DAZZLING_GLEAM
+    .moves = MOVE_PSYCHIC, MOVE_REFLECT, MOVE_LIGHT_SCREEN, MOVE_YAWN
     },
     {
     .lvl = 0,
     .species = SPECIES_MEOWSTIC_FEMALE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 2, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_PSYCHIC, MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_SIGNAL_BEAM
+    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_SIGNAL_BEAM
     },
 /*     {
     .lvl = 0,
@@ -25457,12 +26201,14 @@ static const struct TrainerMonItemCustomMoves sParty_Jacki4[] = {
     }   */
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Fredrick[] = { // With Jacki
+// Expert
+static const struct TrainerMonItemCustomMoves sParty_Fredrick[] = { // with Jacki
     {
     .lvl = 0,
     .species = SPECIES_AEGISLASH,
-    .heldItem = ITEM_AIR_BALLOON,
-    .ability = 0, // 
+    .heldItem = ITEM_COLBUR_BERRY,
+    .ability = 0, // ABILITY_STANCE_CHANGE, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_LEVITATE, ABILITY_KEEN_EDGE, ABILITY_DRAGONSLAYER},
     .ivs = {31, 31, 31, 31, 31, 0},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BRAVE,
@@ -25472,17 +26218,20 @@ static const struct TrainerMonItemCustomMoves sParty_Fredrick[] = { // With Jack
     .lvl = 0,
     .species = SPECIES_COMFEY,
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // No Triage due to psychic terrain from ally
+    .ability = 2, // No Triage due to psychic terrain from ally
+    // ABILITY_FLOWER_VEIL, ABILITY_TRIAGE, ABILITY_GRASSY_SURGE},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_HEALER, ABILITY_REGENERATOR},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
     .moves = MOVE_DRAINING_KISS, MOVE_GIGA_DRAIN, MOVE_CALM_MIND, MOVE_CHARM
     },
     {
-    .lvl = 0,
+    .lvl = 1,
     .species = SPECIES_TYRANITAR,
     .heldItem = ITEM_WATER_GEM,
-    .ability = 0, // 
+    .ability = 1, // ABILITY_STRONG_JAW, ABILITY_MOXIE, ABILITY_SAND_STREAM},
+    // .innates = {ABILITY_IMPENETRABLE, ABILITY_JUGGERNAUT, ABILITY_ROUGH_SKIN},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
@@ -25490,35 +26239,40 @@ static const struct TrainerMonItemCustomMoves sParty_Fredrick[] = { // With Jack
     }
 };
 
+// After Cut
+
 static const struct TrainerMonItemCustomMoves sParty_Cameron1[] = {
     {
     .lvl = 0,
     .species = SPECIES_SOLROCK,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_COLBUR_BERRY,
+    .ability = 2, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_VICTORY_STAR},
+    // .innates = {ABILITY_LEVITATE, ABILITY_ILLUMINATE, ABILITY_SOLAR_FLARE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_STONE_EDGE, MOVE_SUNNY_DAY, MOVE_ZEN_HEADBUTT, MOVE_EXPLOSION
+    .evs = {252, 4, 252, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_STONE_EDGE, MOVE_SOLAR_BLADE, MOVE_ZEN_HEADBUTT, MOVE_STEALTH_ROCK
     },
     {
     .lvl = 0,
     .species = SPECIES_EXEGGUTOR_ALOLAN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_GRASS_GEM,
+    .ability = 1, // ABILITY_NATURAL_CURE, ABILITY_CHLOROPLAST, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_HARVEST, ABILITY_MULTI_HEADED, ABILITY_SKILL_LINK},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SOLAR_BEAM, MOVE_DRAGON_HAMMER, MOVE_FLAMETHROWER, MOVE_PSYCHIC
+    .evs = {252, 4, 0, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_QUIET,
+    .moves = MOVE_SOLAR_BEAM, MOVE_DRAGON_HAMMER, MOVE_FLAMETHROWER, MOVE_LEECH_SEED
     },
     {
     .lvl = 0,
     .species = SPECIES_DELPHOX,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_BURNATE, ABILITY_NEUROFORCE, ABILITY_MAGIC_GUARD},
+    // .innates = {ABILITY_BLAZE, ABILITY_PYROMANCY, ABILITY_PSYCHIC_MIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_MYSTICAL_FIRE, MOVE_WILL_O_WISP
     }
 };
@@ -25527,85 +26281,93 @@ static const struct TrainerMonItemCustomMoves sParty_Cameron2[] = {
     {
     .lvl = 0,
     .species = SPECIES_SOLROCK,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_STONE_EDGE, MOVE_SUNNY_DAY, MOVE_ZEN_HEADBUTT, MOVE_EXPLOSION
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_VICTORY_STAR},
+    // .innates = {ABILITY_LEVITATE, ABILITY_ILLUMINATE, ABILITY_SOLAR_FLARE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_POWER_GEM, MOVE_SOLAR_BEAM, MOVE_PSYCHIC, MOVE_EARTH_POWER
     },
     {
     .lvl = 0,
     .species = SPECIES_EXEGGUTOR_ALOLAN,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SOLAR_BEAM, MOVE_DRAGON_HAMMER, MOVE_FLAMETHROWER, MOVE_PSYCHIC
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_NATURAL_CURE, ABILITY_CHLOROPLAST, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_HARVEST, ABILITY_MULTI_HEADED, ABILITY_SKILL_LINK},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_SOLAR_BEAM, MOVE_DRACO_METEOR, MOVE_FLAMETHROWER, MOVE_SYNTHESIS
     },
     {
     .lvl = 0,
     .species = SPECIES_DELPHOX,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_MYSTICAL_FIRE, MOVE_WILL_O_WISP
+    .heldItem = ITEM_EXPERT_BELT,
+    .ability = 1, // ABILITY_BURNATE, ABILITY_NEUROFORCE, ABILITY_MAGIC_GUARD},
+    // .innates = {ABILITY_BLAZE, ABILITY_PYROMANCY, ABILITY_PSYCHIC_MIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_FLAMETHROWER, MOVE_GRASS_KNOT
     },
     {
     .lvl = 0,
     .species = SPECIES_LUNATONE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_CALM_MIND, MOVE_MOONLIGHT
-    }    
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_DREAMCATCHER},
+    // .innates = {ABILITY_LEVITATE, ABILITY_NOCTURNAL, ABILITY_LUNAR_ECLIPSE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_POWER_GEM, MOVE_DARK_PULSE, MOVE_MOONLIGHT, MOVE_CALM_MIND
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Cameron3[] = {
     {
     .lvl = 0,
     .species = SPECIES_SOLROCK,
-    .heldItem = ITEM_HEAT_ROCK,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_STONE_EDGE, MOVE_SUNNY_DAY, MOVE_ZEN_HEADBUTT, MOVE_EXPLOSION
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_VICTORY_STAR},
+    // .innates = {ABILITY_LEVITATE, ABILITY_ILLUMINATE, ABILITY_SOLAR_FLARE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_STONE_EDGE, MOVE_SOLAR_BLADE, MOVE_PSYCHIC, MOVE_FLARE_BLITZ
     },
     {
     .lvl = 0,
     .species = SPECIES_EXEGGUTOR_ALOLAN,
-    .heldItem = ITEM_GRASS_GEM,
-    .ability = 0, // 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_NATURAL_CURE, ABILITY_CHLOROPLAST, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_HARVEST, ABILITY_MULTI_HEADED, ABILITY_SKILL_LINK},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_SOLAR_BEAM, MOVE_DRAGON_HAMMER, MOVE_FLAMETHROWER, MOVE_PSYCHIC
+    .evs = {252, 252, 4, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BRAVE,
+    .moves = MOVE_BULLET_SEED, MOVE_DRACO_METEOR, MOVE_FLAMETHROWER, MOVE_SYNTHESIS
     },
     {
     .lvl = 0,
     .species = SPECIES_DELPHOX,
-    .heldItem = ITEM_KASIB_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_MYSTICAL_FIRE, MOVE_WILL_O_WISP
+    .heldItem = ITEM_SALAC_BERRY,
+    .ability = 2, // ABILITY_BURNATE, ABILITY_NEUROFORCE, ABILITY_MAGIC_GUARD},
+    // .innates = {ABILITY_BLAZE, ABILITY_PYROMANCY, ABILITY_PSYCHIC_MIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_PSYSHOCK, MOVE_FIRE_BLAST, MOVE_CALM_MIND, MOVE_SUBSTITUTE
     },
     {
     .lvl = 0,
     .species = SPECIES_LUNATONE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
-    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_CALM_MIND, MOVE_MOONLIGHT
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_DREAMCATCHER},
+    // .innates = {ABILITY_LEVITATE, ABILITY_NOCTURNAL, ABILITY_LUNAR_ECLIPSE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_POWER_GEM, MOVE_DARK_PULSE, MOVE_MOONBLAST, MOVE_PSYCHIC
     }
 };
 
@@ -25613,42 +26375,46 @@ static const struct TrainerMonItemCustomMoves sParty_Cameron4[] = {
     {
     .lvl = 0,
     .species = SPECIES_SOLROCK,
-    .heldItem = ITEM_HEAT_ROCK,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_VICTORY_STAR},
+    // .innates = {ABILITY_LEVITATE, ABILITY_ILLUMINATE, ABILITY_SOLAR_FLARE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_STONE_EDGE, MOVE_SUNNY_DAY, MOVE_ZEN_HEADBUTT, MOVE_EXPLOSION
+    .moves = MOVE_STONE_EDGE, MOVE_STEALTH_ROCK, MOVE_PSYCHIC, MOVE_EXPLOSION
     },
     {
     .lvl = 0,
     .species = SPECIES_EXEGGUTOR_ALOLAN,
-    .heldItem = ITEM_GRASS_GEM,
-    .ability = 0, // 
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 0, // ABILITY_NATURAL_CURE, ABILITY_CHLOROPLAST, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_HARVEST, ABILITY_MULTI_HEADED, ABILITY_SKILL_LINK},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_SOLAR_BEAM, MOVE_DRACO_METEOR, MOVE_FLAMETHROWER, MOVE_PSYCHIC
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_TOXIC, MOVE_DRACO_METEOR, MOVE_FLAMETHROWER, MOVE_LEECH_SEED
     },
     {
     .lvl = 0,
     .species = SPECIES_DELPHOX,
-    .heldItem = ITEM_KASIB_BERRY,
-    .ability = 0, // 
+    .heldItem = ITEM_FIRE_GEM,
+    .ability = 1, // ABILITY_BURNATE, ABILITY_NEUROFORCE, ABILITY_MAGIC_GUARD},
+    // .innates = {ABILITY_BLAZE, ABILITY_PYROMANCY, ABILITY_PSYCHIC_MIND},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_FIRE_BLAST, MOVE_THUNDERBOLT
+    .moves = MOVE_PSYCHIC, MOVE_BLAST_BURN, MOVE_MYSTICAL_FIRE, MOVE_SUBSTITUTE
     },
     {
     .lvl = 0,
     .species = SPECIES_LUNATONE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_BOLD,
-    .moves = MOVE_PSYSHOCK, MOVE_SHADOW_BALL, MOVE_CALM_MIND, MOVE_MOONLIGHT
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_DREAMCATCHER},
+    // .innates = {ABILITY_LEVITATE, ABILITY_NOCTURNAL, ABILITY_LUNAR_ECLIPSE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 4, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_POWER_GEM, MOVE_DARK_PULSE, MOVE_HYPNOSIS, MOVE_PSYSHOCK
     }
 };
 
@@ -25656,44 +26422,48 @@ static const struct TrainerMonItemCustomMoves sParty_Jonas[] = { // with Kayley
     {
     .lvl = 0,
     .species = SPECIES_WEEZING,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_POISON_ABSORB, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH},
+    // .innates = {ABILITY_LEVITATE, ABILITY_MULTI_HEADED, ABILITY_INFLATABLE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 152, 0, 88, 16},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
     .moves = MOVE_HEAT_WAVE, MOVE_TOXIC, MOVE_VENOM_DRENCH, MOVE_THUNDERBOLT
     },
     {
     .lvl = 0,
     .species = SPECIES_SALAZZLE,
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .heldItem = ITEM_POISON_GEM,
+    .ability = 2, // ABILITY_MERCILESS, ABILITY_COMPETITIVE, ABILITY_EXPLOIT_WEAKNESS},
+    // .innates = {ABILITY_CORROSION, ABILITY_POISON_TOUCH, ABILITY_HALF_DRAKE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {8, 0, 0, 248, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
     .moves = MOVE_SLUDGE_BOMB, MOVE_FLAMETHROWER, MOVE_DRAGON_PULSE, MOVE_THUNDER_WAVE
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Kayley[] = {
+static const struct TrainerMonItemCustomMoves sParty_Kayley[] = { // with Jonas
     {
     .lvl = 0,
     .species = SPECIES_CASTFORM,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .ability = 0, // ABILITY_FORECAST, ABILITY_FORECAST, ABILITY_FORECAST},
+    // .innates = {ABILITY_LEVITATE, ABILITY_WEATHER_CONTROL, ABILITY_LIMBER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 252, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
     .moves = MOVE_SUNNY_DAY, MOVE_WEATHER_BALL, MOVE_ICE_BEAM, MOVE_SOLAR_BEAM
     },
     {
     .lvl = 0,
     .species = SPECIES_SAWSBUCK,
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // 
+    .ability = 0, // ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_SERENE_GRACE},
+    // .innates = {ABILITY_SAP_SIPPER, ABILITY_VIOLENT_RUSH, ABILITY_RIVALRY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_HARDY,
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
     .moves = MOVE_DOUBLE_EDGE, MOVE_HORN_LEECH, MOVE_JUMP_KICK, MOVE_MEGAHORN
     }
 };

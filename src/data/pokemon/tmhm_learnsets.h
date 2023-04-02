@@ -2866,6 +2866,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM45_ATTRACT)
                                         | TMHM1(TM46_THIEF)
                                         | TMHM1(TM49_SLEEP_TALK)
+                                        | TMHM1(TM55_SCALD) // new
                                         | TMHM1(TM58_ENDURE),
                                           TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM100_CURSE)
@@ -2893,6 +2894,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM45_ATTRACT)
                                         | TMHM1(TM46_THIEF)
                                         | TMHM1(TM49_SLEEP_TALK)
+                                        | TMHM1(TM55_SCALD) // new
                                         | TMHM1(TM58_ENDURE),
                                           TMHM2(TM68_GIGA_IMPACT)
                                         | TMHM2(TM79_FREEZE_DRY)

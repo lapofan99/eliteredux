@@ -191,7 +191,7 @@
 #define ABILITY_SWEET_VEIL 175 // *No innate* Prevents itself and ally Pokémon from falling asleep.
 #define ABILITY_STANCE_CHANGE 176 // *No innate* The Pokémon changes its form to Blade Forme when it uses an attack move and changes to Shield Forme when it uses King's Shield.
 #define ABILITY_GALE_WINGS 177 // Flying moves have priority. Doesn’t require full HP.
-#define ABILITY_MEGA_LAUNCHER 178 // Boosts all beam, pump, cannon, zooka, shot, gun, aura and pulse moves.
+#define ABILITY_MEGA_LAUNCHER 178 // Boosts all beam, pump, cannon, zooka, shot, gun, aura and pulse moves by 50%.
 #define ABILITY_GRASS_PELT 179 // Increases Defense by 50% when battling on Grass or if the move Grassy Terrain is in effect
 #define ABILITY_SYMBIOSIS 180 // May pass an item to an ally.
 #define ABILITY_TOUGH_CLAWS 181 // Powers up moves by 30% that make direct contact.
@@ -367,7 +367,7 @@
 #define ABILITY_ELECTRIC_BURST   (ABILITIES_COUNT_LATEST_GEN + 68) // The Pokémon's Electric-type moves are boosted by 35%, but the Pokémon takes 10% of damage dealt.
 #define ABILITY_RAW_WOOD         (ABILITIES_COUNT_LATEST_GEN + 69) // Only takes half damage from Grass-type moves
 #define ABILITY_SOLENOGLYPHS     (ABILITIES_COUNT_LATEST_GEN + 70) // Biting moves have a 50% chance of badly poisoning the target.
-#define ABILITY_SPIDER_LAIR      (ABILITIES_COUNT_LATEST_GEN + 71) // Sets an Sticky web to the opposite side when entering battle.
+#define ABILITY_SPIDER_LAIR      (ABILITIES_COUNT_LATEST_GEN + 71) // Sets up Sticky Web on entry.
 #define ABILITY_FATAL_PRECISION  (ABILITIES_COUNT_LATEST_GEN + 72) // Super Effective Moves from this Pokemon can’t miss and receive a 20% damage boost.
 #define ABILITY_FORT_KNOX        (ABILITIES_COUNT_LATEST_GEN + 73) // Boosts the Pokémon's Defense stat sharply when its stats are lowered.
 #define ABILITY_SEAWEED          (ABILITIES_COUNT_LATEST_GEN + 74) // Grass-type takes neutral damage from Fire-type moves. Deals neutral damage against Fire-type with Grass-type moves.
