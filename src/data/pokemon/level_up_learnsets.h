@@ -127,6 +127,7 @@ static const struct LevelUpMove sCharizardLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(46, MOVE_FIRE_SPIN),
 	LEVEL_UP_MOVE(54, MOVE_INFERNO),
 	LEVEL_UP_MOVE(62, MOVE_FLARE_BLITZ),
+    LEVEL_UP_MOVE(70, MOVE_DRACO_METEOR), // new
     LEVEL_UP_END
 };
 
@@ -3058,6 +3059,7 @@ static const struct LevelUpMove sAerodactylLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(25, MOVE_TAUNT),
 	LEVEL_UP_MOVE(30, MOVE_CRUNCH),
 	LEVEL_UP_MOVE(35, MOVE_WING_ATTACK),
+    LEVEL_UP_MOVE(35, MOVE_DUAL_WINGBEAT), // new
 	LEVEL_UP_MOVE(40, MOVE_IRON_HEAD),
 	LEVEL_UP_MOVE(45, MOVE_BRAVE_BIRD),
 	LEVEL_UP_MOVE(45, MOVE_DRAGON_TAIL),
@@ -4954,6 +4956,7 @@ static const struct LevelUpMove sMantineLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(40, MOVE_BOUNCE),
 	LEVEL_UP_MOVE(44, MOVE_TAKE_DOWN),
 	LEVEL_UP_MOVE(48, MOVE_HYDRO_PUMP),
+    LEVEL_UP_MOVE(48, MOVE_HURRICANE), // new
     LEVEL_UP_END
 };
 
@@ -4971,6 +4974,7 @@ static const struct LevelUpMove sSkarmoryLevelUpLearnset[] = {
     LEVEL_UP_MOVE(31, MOVE_AGILITY),
     LEVEL_UP_MOVE(34, MOVE_STEEL_WING),
     LEVEL_UP_MOVE(39, MOVE_SLASH),
+    LEVEL_UP_MOVE(40, MOVE_BODY_PRESS), // new
     LEVEL_UP_MOVE(42, MOVE_METAL_SOUND),
     LEVEL_UP_MOVE(45, MOVE_AIR_SLASH),
     LEVEL_UP_MOVE(50, MOVE_AUTOTOMIZE),
@@ -6081,6 +6085,7 @@ static const struct LevelUpMove sTaillowLevelUpLearnset[] = {
 static const struct LevelUpMove sSwellowLevelUpLearnset[] = {
     #ifdef REBALANCED_VERSION
     LEVEL_UP_MOVE( 0, MOVE_EXTREME_SPEED),
+    LEVEL_UP_MOVE( 0, MOVE_DUAL_WINGBEAT), // new
     #endif
     LEVEL_UP_MOVE( 1, MOVE_PLUCK),
     LEVEL_UP_MOVE( 1, MOVE_PECK),
@@ -8259,9 +8264,11 @@ static const struct LevelUpMove sRayquazaLevelUpLearnset[] = {
     LEVEL_UP_MOVE(65, MOVE_FLY),
     LEVEL_UP_MOVE(75, MOVE_HYPER_VOICE),
     LEVEL_UP_MOVE(80, MOVE_OUTRAGE),
+    LEVEL_UP_MOVE(80, MOVE_CORE_ENFORCER), // new
     LEVEL_UP_MOVE(85, MOVE_BOOMBURST),
     LEVEL_UP_MOVE(90, MOVE_HYPER_BEAM),
     LEVEL_UP_MOVE(95, MOVE_DRAGON_ASCENT),
+    LEVEL_UP_MOVE(95, MOVE_AEROBLAST), // new
     LEVEL_UP_MOVE(100, MOVE_V_CREATE),
     LEVEL_UP_END
 };

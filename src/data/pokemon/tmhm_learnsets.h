@@ -14510,6 +14510,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM85_DREAM_EATER)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)
+                                        | TMHM2(TM97_DARK_PULSE) // new
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM01_CUT)
                                         | TMHM2(HM05_FLASH)),
@@ -14547,6 +14548,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM85_DREAM_EATER)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)
+                                        | TMHM2(TM97_DARK_PULSE) // new
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM01_CUT)
                                         | TMHM2(HM02_FLY)
@@ -22073,17 +22075,20 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM08_BULK_UP)
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM12_TAUNT)
+                                        | TMHM1(TM14_BLIZZARD) // new
                                         | TMHM1(TM15_HYPER_BEAM)
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM18_RAIN_DANCE)
                                         | TMHM1(TM21_FRUSTRATION)
                                         | TMHM1(TM23_IRON_TAIL)
+                                        | TMHM1(TM25_THUNDER) // new
                                         | TMHM1(TM27_RETURN)
                                         | TMHM1(TM29_PSYCHIC)
                                         | TMHM1(TM31_BRICK_BREAK)
                                         | TMHM1(TM32_DOUBLE_TEAM)
                                         | TMHM1(TM34_SLUDGE_WAVE)
                                         | TMHM1(TM36_SLUDGE_BOMB)
+                                        | TMHM1(TM38_FIRE_BLAST) // new
                                         | TMHM1(TM40_AERIAL_ACE)
                                         | TMHM1(TM41_TORMENT)
                                         | TMHM1(TM42_FACADE)
@@ -33858,17 +33863,20 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM08_BULK_UP)
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM12_TAUNT)
+                                        | TMHM1(TM14_BLIZZARD) // new
                                         | TMHM1(TM15_HYPER_BEAM)
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM18_RAIN_DANCE)
                                         | TMHM1(TM21_FRUSTRATION)
                                         | TMHM1(TM23_IRON_TAIL)
+                                        | TMHM1(TM25_THUNDER) // new
                                         | TMHM1(TM27_RETURN)
                                         | TMHM1(TM29_PSYCHIC)
                                         | TMHM1(TM31_BRICK_BREAK)
                                         | TMHM1(TM32_DOUBLE_TEAM)
                                         | TMHM1(TM34_SLUDGE_WAVE)
                                         | TMHM1(TM36_SLUDGE_BOMB)
+                                        | TMHM1(TM38_FIRE_BLAST) // new
                                         | TMHM1(TM40_AERIAL_ACE)
                                         | TMHM1(TM41_TORMENT)
                                         | TMHM1(TM42_FACADE)

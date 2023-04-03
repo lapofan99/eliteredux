@@ -1458,6 +1458,7 @@ const u16 gEggMoves[] = {
         MOVE_AMNESIA),
 
     egg_moves(SKARMORY,
+        MOVE_BODY_PRESS, // new
         MOVE_DUAL_WINGBEAT, // new
         MOVE_DRILL_PECK,
         MOVE_PURSUIT,
@@ -1705,6 +1706,7 @@ const u16 gEggMoves[] = {
         MOVE_GRASSY_TERRAIN),
 
     egg_moves(TAILLOW,
+        MOVE_DUAL_WINGBEAT, // new
         MOVE_PURSUIT,
         MOVE_SUPERSONIC,
         MOVE_REFRESH,
@@ -2299,6 +2301,8 @@ const u16 gEggMoves[] = {
         MOVE_HAZE),
 
     egg_moves(TROPIUS,
+        MOVE_DUAL_WINGBEAT, // new
+        MOVE_HURRICANE, // new
         MOVE_HEADBUTT,
         MOVE_SLAM,
         MOVE_RAZOR_WIND,
@@ -2637,6 +2641,7 @@ const u16 gEggMoves[] = {
         MOVE_ACID_ARMOR),
 
     egg_moves(DRIFLOON,
+        MOVE_DARK_PULSE, // new
         MOVE_MEMENTO,
         MOVE_BODY_SLAM,
         MOVE_DESTINY_BOND,
