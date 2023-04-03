@@ -23786,7 +23786,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winona2[] = { // singles
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_DRILL_PECK, MOVE_DRILL_RUN, MOVE_SUBSTITUTE, MOVE_QUICK_ATTACK
-    },,
+    },
     {
     .lvl = 3,
     .species = SPECIES_CHARIZARD, // Mega
