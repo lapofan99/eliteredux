@@ -14211,7 +14211,28 @@ Move_DUAL_WINGBEAT::
 	end @to do:
 
 Move_SCORCHING_SANDS::
-	end @to do:
+	loadspritegfx ANIM_TAG_MUD_SAND
+	monbg ANIM_DEF_PARTNER
+	monbgprio_28 ANIM_TARGET
+	setalpha 12, 8
+	createvisualtask AnimTask_BlendColorCycle, 2, 4, 2, 2, 0, 11, RGB_RED
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 3, 0, 37, 1
+	createvisualtask AnimTask_StartSinAnimTimer, 5, 100
+	panse_1B SE_M_FLAMETHROWER, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +2, 0
+	call SandAttackDirt
+	call SandAttackDirt
+	call SandAttackDirt
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 3, 0, 43, 1
+	call SandAttackDirt
+	call SandAttackDirt
+	call SandAttackDirt
+	call SandAttackDirt
+	call SandAttackDirt
+	call SandAttackDirt
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
 
 Move_JUNGLE_HEALING::
 	goto Move_AROMATHERAPY
