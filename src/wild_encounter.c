@@ -234,7 +234,7 @@ static u8 GetMedianLevelOfPlayerParty(void)
     return medianLevel;
 }
 
-static u8 ChooseWildMonLevel(void)
+u8 ChooseWildMonLevel(void)
 {
     u8 playerMedianLevel = GetMedianLevelOfPlayerParty();
     u8 min;

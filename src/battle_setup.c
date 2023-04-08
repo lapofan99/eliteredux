@@ -100,6 +100,7 @@ EWRAM_DATA static u8 *sTrainerABattleScriptRetAddr = NULL;
 EWRAM_DATA static u8 *sTrainerBBattleScriptRetAddr = NULL;
 EWRAM_DATA static bool8 sShouldCheckTrainerBScript = FALSE;
 EWRAM_DATA static u8 sNoOfPossibleTrainerRetScripts = 0;
+EWRAM_DATA static u32 sPrevTrainerSeeing = 0;
 
 // const rom data
 

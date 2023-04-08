@@ -48,6 +48,7 @@
 #include "text_window.h"
 #include "wild_encounter.h"
 #include "window.h"
+#include "wild_encounter.h"
 #include "constants/map_types.h"
 #include "constants/species.h"
 #include "constants/maps.h"
@@ -1261,7 +1262,7 @@ static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityN
 //if it was a hidden encounter, updates the environment it is to be found from the wildheader encounterRate
 static u8 DexNavTryGenerateMonLevel(u16 species, u8 environment)
 {
-    u8 levelBase = GetEncounterLevelFromMapData(species, environment);
+    u8 levelBase = ChooseWildMonLevel();//GetEncounterLevelFromMapData(species, environment);//asdf
     u8 levelBonus = gSaveBlock1Ptr->dexNavChain / 5;
 
     if (levelBase == MON_LEVEL_NONEXISTENT)
@@ -1270,7 +1271,9 @@ static u8 DexNavTryGenerateMonLevel(u16 species, u8 environment)
     if (Random() % 100 < 4)
         levelBonus += 10; //4% chance of having a +10 level
 
-    if (levelBase + levelBonus > MAX_LEVEL)
+    if(levelBase + levelBonus > GetLevelCap() && GetLevelCap() < MAX_LEVEL)
+        return GetLevelCap();
+    else if (levelBase + levelBonus > MAX_LEVEL)
         return MAX_LEVEL;
     else
         return levelBase + levelBonus;

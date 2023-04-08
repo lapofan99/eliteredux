@@ -46,6 +46,8 @@
 #include "trainer_card.h"
 #include "window.h"
 #include "constants/songs.h"
+#include "constants/map_groups.h"
+#include "constants/maps.h"
 #include "union_room.h"
 #include "constants/rgb.h"
 
@@ -309,6 +311,8 @@ static void AddStartMenuAction(u8 action)
 
 static void BuildNormalStartMenu(void)
 {
+    bool8 DisableSave = FALSE;
+
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
     {
         AddStartMenuAction(MENU_ACTION_POKEDEX);
@@ -328,10 +332,55 @@ static void BuildNormalStartMenu(void)
         AddStartMenuAction(MENU_ACTION_POKENAV);
     }
 
+    switch(gSaveBlock1Ptr->location.mapNum){
+		case MAP_NUM(EVER_GRANDE_CITY_SIDNEYS_ROOM):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_SIDNEYS_ROOM))
+				DisableSave = TRUE;
+		break;
+		case MAP_NUM(EVER_GRANDE_CITY_PHOEBES_ROOM):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_PHOEBES_ROOM))
+				DisableSave = TRUE;
+		break;
+		case MAP_NUM(EVER_GRANDE_CITY_GLACIAS_ROOM):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_GLACIAS_ROOM))
+				DisableSave = TRUE;
+		break;
+		case MAP_NUM(EVER_GRANDE_CITY_DRAKES_ROOM):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_DRAKES_ROOM))
+				DisableSave = TRUE;
+		break;
+		case MAP_NUM(EVER_GRANDE_CITY_CHAMPIONS_ROOM):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_CHAMPIONS_ROOM))
+				DisableSave = TRUE;
+		break;
+		case MAP_NUM(EVER_GRANDE_CITY_HALL1):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL1))
+				DisableSave = TRUE;
+		break;
+		case MAP_NUM(EVER_GRANDE_CITY_HALL2):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL2))
+				DisableSave = TRUE;
+		break;
+		case MAP_NUM(EVER_GRANDE_CITY_HALL3):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL3))
+				DisableSave = TRUE;
+		break;
+		case MAP_NUM(EVER_GRANDE_CITY_HALL4):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL4))
+				DisableSave = TRUE;
+		break;
+		case MAP_NUM(EVER_GRANDE_CITY_HALL5):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL5))
+				DisableSave = TRUE;
+		break;
+	}
+
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
-	AddStartMenuAction(MENU_ACTION_ACCESS_PC);
+
+    if(!DisableSave)
+	    AddStartMenuAction(MENU_ACTION_ACCESS_PC);
     //AddStartMenuAction(MENU_ACTION_EXIT);
 }
 

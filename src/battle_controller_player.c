@@ -33,6 +33,7 @@
 #include "text.h"
 #include "util.h"
 #include "window.h"
+#include "constants/abilities.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_config.h"
 #include "constants/battle_move_effects.h"
@@ -1855,8 +1856,11 @@ enum{
     MOVE_EFFECTIVENESS_STATUS,
 };
 
-u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId)
+u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 {
+    bool8 abilityNullifiesDamage = FALSE;
+    u16 tempMod;
+
 	if (gBattleMoves[moveNum].power == 0 || 
 	    gBattleMoves[moveNum].effect == EFFECT_HIDDEN_POWER)
 		return MOVE_EFFECTIVENESS_STATUS;
@@ -1870,8 +1874,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId)
 			MulModifier(&mod, mod2);
 		}
 
-		// EFFECT_TWO_TYPED_MOVE = 275 in battle_move_effects.h
-		if (gBattleMoves[moveNum].effect == 275)
+		if (gBattleMoves[moveNum].effect == EFFECT_TWO_TYPED_MOVE)
 		{
 			u16 mod3 = sTypeEffectivenessTable[gBattleMoves[moveNum].argument][gBattleMons[targetId].type1];
 			MulModifier(&mod, mod3);
@@ -1883,7 +1886,49 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId)
 			}
 		}
 
-		if (mod == UQ_4_12(0.0))
+        switch(gBattleMoves[moveNum].type){
+            case TYPE_GROUND:
+                if(gBattleMons[targetId].ability == ABILITY_LEVITATE || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_LEVITATE))
+                    abilityNullifiesDamage = TRUE;
+                else if(gBattleMons[targetId].item == ITEM_AIR_BALLOON)
+                    abilityNullifiesDamage = TRUE;
+            break;
+            case TYPE_ELECTRIC:
+                if(gBattleMons[targetId].ability == ABILITY_VOLT_ABSORB || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_VOLT_ABSORB))
+                    abilityNullifiesDamage = TRUE;
+
+                if(gBattleMons[targetId].ability == ABILITY_LIGHTNING_ROD || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_LIGHTNING_ROD))
+                    abilityNullifiesDamage = TRUE;
+            break;
+            case TYPE_FIRE:
+                if(gBattleMons[targetId].ability == ABILITY_FLASH_FIRE || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_FLASH_FIRE))
+                    abilityNullifiesDamage = TRUE;
+
+                if(gBattleMons[targetId].ability == ABILITY_SEAWEED || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_SEAWEED)){
+                    if(gBattleMons[targetId].type1 == TYPE_GRASS  || gBattleMons[targetId].type2 == TYPE_GRASS){
+                        tempMod = UQ_4_12(0.5);
+                        MulModifier(&mod, tempMod);
+                    }
+                }
+            break;
+            case TYPE_GRASS:
+                if(gBattleMons[userId].ability == ABILITY_SEAWEED || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_SEAWEED)){
+                    if(gBattleMons[targetId].type1 == TYPE_FIRE  || gBattleMons[targetId].type2 == TYPE_FIRE){
+                        tempMod = UQ_4_12(2.0);
+                        MulModifier(&mod, tempMod);
+                    }
+                }
+            break;
+            case TYPE_POISON:
+                if(gBattleMons[userId].ability == ABILITY_CORROSION || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_CORROSION)){
+                    if(gBattleMons[targetId].type1 == TYPE_STEEL  || gBattleMons[targetId].type2 == TYPE_STEEL){
+                        mod = UQ_4_12(2.0);
+                    }
+                }
+            break;
+        }
+
+		if (mod == UQ_4_12(0.0) || abilityNullifiesDamage)
 			return MOVE_EFFECTIVENESS_NONE;
 		else if (mod <= UQ_4_12(0.5))
 			return MOVE_EFFECTIVENESS_HALF;
@@ -1918,7 +1963,7 @@ static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId)
 	    StringCopy(gStringVar2, gNoStabIcon);
 
     
-    switch(GetMoveTypeEffectiveness(move, targetId)){
+    switch(GetMoveTypeEffectiveness(move, targetId, gActiveBattler)){
         case MOVE_EFFECTIVENESS_NONE:
             StringExpandPlaceholders(gStringVar4, gEffectivenessNoDamage);
             WindowID = B_WIN_NO_EFFECT;
@@ -1968,7 +2013,7 @@ static void MoveSelectionDisplayMoveType(void)
 	    StringCopy(gStringVar2, gNoStabIcon);
 
     
-    switch(GetMoveTypeEffectiveness(move, B_POSITION_OPPONENT_LEFT)){
+    switch(GetMoveTypeEffectiveness(move, B_POSITION_OPPONENT_LEFT, gActiveBattler)){
         case MOVE_EFFECTIVENESS_NONE:
             StringExpandPlaceholders(gStringVar4, gEffectivenessNoDamage);
             WindowID = B_WIN_NO_EFFECT;
