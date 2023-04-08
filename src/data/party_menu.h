@@ -683,6 +683,8 @@ enum
     MENU_SUMMARY,
 	MENU_MOVES,
 	MENU_EGG_MOVES,
+	MENU_TM_MOVES,
+	MENU_TUTOR_MOVES,
     MENU_SWITCH,
     MENU_CANCEL1,
     MENU_ITEM,
@@ -735,7 +737,9 @@ struct
 {
     [MENU_SUMMARY] = {gText_Summary5, CursorCb_Summary},
 	[MENU_MOVES] = {gText_Moves, CursorCb_ChangeMoves},
-	[MENU_EGG_MOVES] = {gText_Egg_Moves, CursorCb_ChangeEggMoves},
+	[MENU_EGG_MOVES]   = {gText_Egg_Moves, CursorCb_ChangeEggMoves},
+	[MENU_TM_MOVES]    = {gText_TM_Moves, CursorCb_ChangeTMMoves},
+	[MENU_TUTOR_MOVES] = {gText_Tutor_Moves, CursorCb_ChangeTutorMoves},
     [MENU_SWITCH] = {gText_Switch2, CursorCb_Switch},
     [MENU_CANCEL1] = {gText_Cancel2, CursorCb_Cancel1},
     [MENU_ITEM] = {gText_Item, CursorCb_Item},
@@ -1187,7 +1191,7 @@ static const u8 *const sUnused_StatStrings[] =
     gText_Speed2
 };
 
-static const u16 sTMHMMoves[] =
+const u16 sTMHMMoves[] =
 {
     MOVE_FOCUS_PUNCH,
     MOVE_DRAGON_CLAW,

@@ -418,6 +418,12 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon);
 //Egg Moves ---------------------------------------------------
 u8 GetNumberOfEggMoves(struct Pokemon *mon);
 u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves);
+//TM Moves ---------------------------------------------------
+u8 GetNumberOfTMMoves(struct Pokemon *mon);
+u8 GetTMMoveTutorMoves(struct Pokemon *mon, u16 *moves);
+//TM Moves ---------------------------------------------------
+u8 GetNumberOfTutorMoves(struct Pokemon *mon);
+u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves);
 //-------------------------------------------------------------
 u16 SpeciesToPokedexNum(u16 species);
 bool32 IsSpeciesInHoennDex(u16 species);

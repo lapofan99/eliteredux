@@ -928,6 +928,12 @@ static void CreateLearnableMovesList(void)
 		case MOVE_TUTOR_EGG_MOVES:
 			sMoveRelearnerStruct->numMenuChoices = GetEggMoveTutorMoves(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->movesToLearn);
 		break;
+		case MOVE_TUTOR_TM_MOVES:
+			sMoveRelearnerStruct->numMenuChoices = GetTMMoveTutorMoves(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->movesToLearn);
+		break;
+		case MOVE_TUTOR_MOVES:
+			sMoveRelearnerStruct->numMenuChoices = GetMoveTutorMoves(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->movesToLearn);
+		break;
 	}
 
     for (i = 0; i < sMoveRelearnerStruct->numMenuChoices; i++)

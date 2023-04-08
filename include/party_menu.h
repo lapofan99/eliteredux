@@ -26,6 +26,7 @@ extern u8 gSelectedMonPartyId;
 extern MainCallback gPostMenuFieldCallback;
 extern u8 gSelectedOrderFromParty[MAX_FRONTIER_PARTY_SIZE];
 extern u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2];
+extern const u16 sTMHMMove[];
 
 extern void (*gItemUseCB)(u8, TaskFunc);
 
@@ -98,6 +99,7 @@ void MoveDeleterChooseMoveToForget(void);
 void DoItemFormChange (u16 newSpecies);
 void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 void CB2_ShowPartyMenuForItemUseTMCase(void);
+u16 GetTutorMove(u8 tutor);
 
 bool32 CanLearnTutorMove(u16, u8);
 

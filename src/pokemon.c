@@ -48,6 +48,7 @@
 #include "constants/layouts.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
+#include "constants/party_menu.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
 #include "constants/weather.h"
@@ -7435,18 +7436,17 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
 }
 
 //Egg Moves --------------------------------------------------------------------
-
 u8 GetNumberOfEggMoves(struct Pokemon *mon)
 {
-	u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
+    u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
     u16 learnedMoves[MAX_MON_MOVES];
     u8 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
-	u16 firsStage = GetEggSpecies(species);
-	u8 numEggMoves = GetEggMovesSpecies(firsStage, eggMoveBuffer);
+    u16 firstStage = GetEggSpecies(species);
+    u8 numEggMoves = GetEggMovesSpecies(firstStage, eggMoveBuffer);
     u16 moves[numEggMoves];
     int i, j;
-	bool8 hasMonMove = FALSE;
+    bool8 hasMonMove = FALSE;
 
     if (species == SPECIES_EGG)
         return 0;
@@ -7456,17 +7456,17 @@ u8 GetNumberOfEggMoves(struct Pokemon *mon)
 
     for (i = 0; i < numEggMoves; i++)
     {
-		hasMonMove = FALSE;
-		
-		for (j = 0; j < MAX_MON_MOVES; j++){
-			if(learnedMoves[j] == eggMoveBuffer[i])
-				hasMonMove = TRUE;
-		}
-		
-		if(!hasMonMove)
-			moves[numMoves++] = eggMoveBuffer[i];
+        hasMonMove = FALSE;
+        
+        for (j = 0; j < MAX_MON_MOVES; j++){
+            if(learnedMoves[j] == eggMoveBuffer[i])
+                hasMonMove = TRUE;
+        }
+                
+        if(!hasMonMove)
+            moves[numMoves++] = eggMoveBuffer[i];
     }
-	
+            
     return numMoves;
 }
 
@@ -7474,33 +7474,100 @@ u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 {
     u16 learnedMoves[4];
     u8 numMoves = 0;
-	u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
+    u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
     u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
-	u16 firsStage = GetEggSpecies(species);
-	u16 numEggMoves = GetEggMovesSpecies(firsStage, eggMoveBuffer);
+    u16 firsStage = GetEggSpecies(species);
+    u16 numEggMoves = GetEggMovesSpecies(firsStage, eggMoveBuffer);
     int i, j, k;
-	const u8 *learnableMoves;
-	bool8 hasMonMove = FALSE;
+    const u8 *learnableMoves;
+    bool8 hasMonMove = FALSE;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
-	
-	for (i = 0; i < numEggMoves; i++)
+            
+    for (i = 0; i < numEggMoves; i++)
     {
-		hasMonMove = FALSE;
-		
-		for (j = 0; j < MAX_MON_MOVES; j++){
-			if(learnedMoves[j] == eggMoveBuffer[i])
-				hasMonMove = TRUE;
+        hasMonMove = FALSE;
+        
+        for (j = 0; j < MAX_MON_MOVES; j++){
+            if(learnedMoves[j] == eggMoveBuffer[i])
+                hasMonMove = TRUE;
+        }
+                
+        if(!hasMonMove)
+            moves[numMoves++] = eggMoveBuffer[i];
+    }
+            
+    return numMoves;
+}
+//TM Moves --------------------------------------------------------------------
+u8 GetNumberOfTMMoves(struct Pokemon *mon)
+{
+    u16 i, j;
+	u16 numMoves = 0;
+	
+	for (i = 0; i < NUM_TECHNICAL_MACHINES; i++)
+    {
+		if(CanMonLearnTMHM(mon, i) && !MonKnowsMove(mon, ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH))){
+			numMoves++;
 		}
-		
-		if(!hasMonMove)
-			moves[numMoves++] = eggMoveBuffer[i];
+    }
+    return numMoves;
+}
+
+u8 GetTMMoveTutorMoves(struct Pokemon *mon, u16 *moves)
+{
+    u16 i, j;
+	u16 numMoves = 0;
+	
+	for (i = 0; i < NUM_TECHNICAL_MACHINES; i++)
+    {
+		if(CanMonLearnTMHM(mon, i) && !MonKnowsMove(mon, ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH))){
+            moves[numMoves] = ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH);
+			numMoves++;
+        }
+    }
+    return numMoves;
+}
+//Tutor Moves --------------------------------------------------------------------
+u8 GetNumberOfTutorMoves(struct Pokemon *mon)
+{
+    u8 numMoves = 0;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+    int i;
+
+    if (species == SPECIES_EGG)
+        return 0;
+	
+	for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    {
+        if (CanLearnTutorMove(species, i) && !MonKnowsMove(mon, GetTutorMove(i)))
+            numMoves++;
     }
 	
     return numMoves;
 }
-//---------------------------------------------------------------------
+
+u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves)
+{
+    u8 numMoves = 0;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+    int i;
+
+    if (species == SPECIES_EGG)
+        return 0;
+	
+	for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    {
+        if (CanLearnTutorMove(species, i) && !MonKnowsMove(mon, GetTutorMove(i)))
+        {
+            moves[numMoves] = GetTutorMove(i);
+            numMoves++;
+        }
+    }
+	
+    return numMoves;
+}
 
 u16 SpeciesToPokedexNum(u16 species)
 {

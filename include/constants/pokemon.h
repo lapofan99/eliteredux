@@ -250,7 +250,7 @@
 #define LEVEL_UP_MOVE_LV   0xFE00
 #define LEVEL_UP_END       0xFFFF
 
-#define MAX_LEVEL_UP_MOVES       30
+#define MAX_LEVEL_UP_MOVES       100
 
 #define MON_MALE       0x00
 #define MON_FEMALE     0xFE
@@ -405,6 +405,8 @@
 
 //Move Relearner
 #define MOVE_TUTOR_LEVEL_UP_MOVES 0
-#define MOVE_TUTOR_EGG_MOVES 1
+#define MOVE_TUTOR_EGG_MOVES      1
+#define MOVE_TUTOR_TM_MOVES       2
+#define MOVE_TUTOR_MOVES          3
 
 #endif // GUARD_CONSTANTS_POKEMON_H

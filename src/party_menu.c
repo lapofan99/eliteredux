@@ -259,7 +259,6 @@ static bool16 IsMonAllowedInDodrioBerryPicking(struct Pokemon*);
 static void Task_CancelParticipationYesNo(u8);
 static void Task_HandleCancelParticipationYesNoInput(u8);
 // static bool32 CanLearnTutorMove(u16, u8);
-static u16 GetTutorMove(u8);
 static bool8 ShouldUseChooseMonText(void);
 static void SetPartyMonFieldSelectionActions(struct Pokemon*, u8);
 static void SetPartyMonFieldMoveSelectionActions(struct Pokemon*, u8);
@@ -388,6 +387,8 @@ static void BlitBitmapToPartyWindow_RightColumn(u8, u8, u8, u8, u8, u8);
 static void CursorCb_Summary(u8);
 static void CursorCb_ChangeMoves(u8);
 static void CursorCb_ChangeEggMoves(u8);
+static void CursorCb_ChangeTMMoves(u8);
+static void CursorCb_ChangeTutorMoves(u8);
 static void CursorCb_Switch(u8);
 static void CursorCb_Cancel1(u8);
 static void CursorCb_Item(u8);
@@ -1991,7 +1992,7 @@ static u8 CanMonLearnTMTutor(struct Pokemon *mon, u16 item, u8 tutor)
 }
 
 
-static u16 GetTutorMove(u8 tutor)
+u16 GetTutorMove(u8 tutor)
 {
     return gTutorMoves[tutor];
 }
@@ -2612,10 +2613,19 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 
     if (!InBattlePike())
     {
+        //Level Up Moves
 		if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE && GetNumberOfRelearnableMoves(&mons[slotId]) > 0)
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_MOVES);
+        //Egg Moves
 		if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE && GetNumberOfEggMoves(&mons[slotId]) > 0)
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_EGG_MOVES);
+        //TM Moves
+		if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE && GetNumberOfTMMoves(&mons[slotId]) > 0)
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TM_MOVES);
+        //Tutor Moves
+		if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE && GetNumberOfTutorMoves(&mons[slotId]) > 0)
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_TUTOR_MOVES);
+
         if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SWITCH);
         if (ItemIsMail(GetMonData(&mons[slotId], MON_DATA_HELD_ITEM)))
@@ -2798,6 +2808,25 @@ static void CursorCb_ChangeEggMoves(u8 taskId)
 {
     PlaySE(SE_SELECT);
 	VarSet(VAR_PARTY_MENU_TUTOR_STATE, MOVE_TUTOR_EGG_MOVES);
+    gLastViewedMonIndex =  gPartyMenu.slotId;
+    VarSet(VAR_0x8004, gPartyMenu.slotId);
+    TeachMoveRelearnerMove();
+    Task_ClosePartyMenu(taskId);
+}
+
+static void CursorCb_ChangeTMMoves(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+	VarSet(VAR_PARTY_MENU_TUTOR_STATE, MOVE_TUTOR_TM_MOVES);
+    gLastViewedMonIndex =  gPartyMenu.slotId;
+    VarSet(VAR_0x8004, gPartyMenu.slotId);
+    TeachMoveRelearnerMove();
+    Task_ClosePartyMenu(taskId);
+}
+static void CursorCb_ChangeTutorMoves(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+	VarSet(VAR_PARTY_MENU_TUTOR_STATE, MOVE_TUTOR_MOVES);
     gLastViewedMonIndex =  gPartyMenu.slotId;
     VarSet(VAR_0x8004, gPartyMenu.slotId);
     TeachMoveRelearnerMove();

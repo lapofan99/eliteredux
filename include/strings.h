@@ -3595,6 +3595,8 @@ extern const u8 gText_AccessPC[];
 extern const u8 gText_Modify_Pss[];
 extern const u8 gText_Moves[];
 extern const u8 gText_Egg_Moves[];
+extern const u8 gText_TM_Moves[];
+extern const u8 gText_Tutor_Moves[];
 
 extern const u8 gText_Effect[];
 extern const u8 gText_Chance[];

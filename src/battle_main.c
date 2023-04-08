@@ -4404,11 +4404,14 @@ static void HandleTurnActionSelectionState(void)
                          && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
                          && gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_RUN)
                 {
-                    BattleScriptExecute(BattleScript_PrintCantRunFromTrainer);
-                    gBattleCommunication[gActiveBattler] = STATE_BEFORE_ACTION_CHOSEN;
+                    gSelectionBattleScripts[gActiveBattler] = BattleScript_AskIfWantsToForfeitMatch;
+                    gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT_MAY_RUN;
+                    *(gBattleStruct->selectionScriptFinished + gActiveBattler) = FALSE;
+                    *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
+                    return;
                 }
-                else if (IsRunningFromBattleImpossible()
-                         && gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_RUN)
+                
+                if (IsRunningFromBattleImpossible() && gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_RUN)
                 {
                     gSelectionBattleScripts[gActiveBattler] = BattleScript_PrintCantEscapeFromBattle;
                     gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT;
@@ -4596,31 +4599,72 @@ static void HandleTurnActionSelectionState(void)
             }
             break;
         case STATE_SELECTION_SCRIPT_MAY_RUN:
-            if (*(gBattleStruct->selectionScriptFinished + gActiveBattler))
-            {
-                if (gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_NOTHING_FAINTED)
+            if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))){
+                //Ran from in-game Trainer
+                if (*(gBattleStruct->selectionScriptFinished + gActiveBattler))
                 {
-                    gHitMarker |= HITMARKER_RUN;
-                    gChosenActionByBattler[gActiveBattler] = B_ACTION_RUN;
-                    gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
+                    if (gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_NOTHING_FAINTED)
+                    {
+                        if(gActiveBattler == B_POSITION_PLAYER_LEFT){
+                            gHitMarker |= HITMARKER_RUN;
+                            gChosenActionByBattler[gActiveBattler] = B_ACTION_RUN;
+                            gChosenActionByBattler[B_POSITION_PLAYER_RIGHT] = B_ACTION_RUN;
+                            gBattleOutcome = B_OUTCOME_LOST;
+                            gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED;
+                            gBattleCommunication[B_POSITION_PLAYER_RIGHT] = STATE_WAIT_ACTION_CONFIRMED;
+                        }
+                        else{
+                            gHitMarker |= HITMARKER_RUN;
+                            gChosenActionByBattler[gActiveBattler] = B_ACTION_RUN;
+                            gBattleOutcome = B_OUTCOME_LOST;
+                            gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED;
+                        }
+                    }
+                    else
+                    {
+                        RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
+                        gBattleCommunication[gActiveBattler] = *(gBattleStruct->stateIdAfterSelScript + gActiveBattler);
+                    }
                 }
                 else
                 {
-                    RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
-                    gBattleCommunication[gActiveBattler] = *(gBattleStruct->stateIdAfterSelScript + gActiveBattler);
+                    gBattlerAttacker = gActiveBattler;
+                    gBattlescriptCurrInstr = gSelectionBattleScripts[gActiveBattler];
+                    if (!(gBattleControllerExecFlags & ((gBitTable[gActiveBattler]) | (0xF << 28) | (gBitTable[gActiveBattler] << 4) | (gBitTable[gActiveBattler] << 8) | (gBitTable[gActiveBattler] << 12))))
+                    {
+                        gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
+                    }
+                    gSelectionBattleScripts[gActiveBattler] = gBattlescriptCurrInstr;
                 }
+                break;
             }
-            else
-            {
-                gBattlerAttacker = gActiveBattler;
-                gBattlescriptCurrInstr = gSelectionBattleScripts[gActiveBattler];
-                if (!(gBattleControllerExecFlags & ((gBitTable[gActiveBattler]) | (0xF << 28) | (gBitTable[gActiveBattler] << 4) | (gBitTable[gActiveBattler] << 8) | (gBitTable[gActiveBattler] << 12))))
+            else{
+                if (*(gBattleStruct->selectionScriptFinished + gActiveBattler))
                 {
-                    gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
+                    if (gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_NOTHING_FAINTED)
+                    {
+                        gHitMarker |= HITMARKER_RUN;
+                        gChosenActionByBattler[gActiveBattler] = B_ACTION_RUN;
+                        gBattleCommunication[gActiveBattler] = STATE_WAIT_ACTION_CONFIRMED_STANDBY;
+                    }
+                    else
+                    {
+                        RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
+                        gBattleCommunication[gActiveBattler] = *(gBattleStruct->stateIdAfterSelScript + gActiveBattler);
+                    }
                 }
-                gSelectionBattleScripts[gActiveBattler] = gBattlescriptCurrInstr;
+                else
+                {
+                    gBattlerAttacker = gActiveBattler;
+                    gBattlescriptCurrInstr = gSelectionBattleScripts[gActiveBattler];
+                    if (!(gBattleControllerExecFlags & ((gBitTable[gActiveBattler]) | (0xF << 28) | (gBitTable[gActiveBattler] << 4) | (gBitTable[gActiveBattler] << 8) | (gBitTable[gActiveBattler] << 12))))
+                    {
+                        gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
+                    }
+                    gSelectionBattleScripts[gActiveBattler] = gBattlescriptCurrInstr;
+                }
+                break;
             }
-            break;
         }
     }
 
