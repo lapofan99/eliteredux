@@ -22115,6 +22115,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM08_BULK_UP)
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM12_TAUNT)
+                                        | TMHM1(TM14_BLIZZARD) // new
                                         | TMHM1(TM15_HYPER_BEAM)
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM18_RAIN_DANCE)
@@ -22128,6 +22129,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM32_DOUBLE_TEAM)
                                         | TMHM1(TM34_SLUDGE_WAVE)
                                         | TMHM1(TM36_SLUDGE_BOMB)
+                                        | TMHM1(TM38_FIRE_BLAST) // new
                                         | TMHM1(TM41_TORMENT)
                                         | TMHM1(TM42_FACADE)
                                         | TMHM1(TM43_SECRET_POWER)
@@ -33904,6 +33906,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM12_TAUNT)
                                         | TMHM1(TM15_HYPER_BEAM)
+                                        | TMHM1(TM14_BLIZZARD) // new
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM18_RAIN_DANCE)
                                         | TMHM1(TM21_FRUSTRATION)
@@ -33916,6 +33919,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM32_DOUBLE_TEAM)
                                         | TMHM1(TM34_SLUDGE_WAVE)
                                         | TMHM1(TM36_SLUDGE_BOMB)
+                                        | TMHM1(TM38_FIRE_BLAST) // new
                                         | TMHM1(TM41_TORMENT)
                                         | TMHM1(TM42_FACADE)
                                         | TMHM1(TM43_SECRET_POWER)

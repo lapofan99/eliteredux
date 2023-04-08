@@ -358,7 +358,7 @@ static const u8 sLooterDescription[] =  _("Heals 1/4 HP when\ndefeating an enemy
 static const u8 sLunarEclipseDescription[] =  _("Fairy & Dark gains STAB.\nHypnosis accuracy is +50%.");
 static const u8 sSolarFlareDescription[] =  _("Fire-type moves gain STAB.\nBoosts Solar/Sun moves.");
 static const u8 sPowerCoreDescription[] =  _("The Pokémon uses +25% of its\nDefense/SpDef during moves.");
-static const u8 sSightingSystemDescription[] =  _("<=50% acc moves> moves always\nhit but priority is lower.");
+static const u8 sSightingSystemDescription[] =  _("<=50% acc moves always hit\n but it moves last.");
 static const u8 sBadCompanyDescription[] =  _("Prevents self lowering\nstat drops and recoil.");
 static const u8 sOpportunistDescription[] =  _("If target's HP < 50%, single-\ntarget moves get +1 priority.");
 static const u8 sGiantWingsDescription[] =  _("Boosts all air, wing and\nwind moves by 25%");

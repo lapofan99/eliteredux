@@ -1722,6 +1722,7 @@ const u16 gEggMoves[] = {
         MOVE_HURRICANE),
 
     egg_moves(WINGULL,
+        MOVE_WEATHER_BALL, // new
         MOVE_DUAL_WINGBEAT, // new
         MOVE_MIST,
         MOVE_TWISTER,

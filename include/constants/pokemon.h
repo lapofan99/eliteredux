@@ -90,9 +90,9 @@
 #define MAX_STAT_STAGE    12
 
 // Shiny odds
-#define SHINY_ODDS 21865 // Actual probability is SHINY_ODDS/65536 -> 1/3
-#define SHINY_ODDS_1 21865 // Actual probability is SHINY_ODDS/65536
-#define SHINY_ODDS_2 21865 // Actual probability is SHINY_ODDS/65536
+#define SHINY_ODDS 3276 // Actual probability is SHINY_ODDS/65536 -> 1/20
+#define SHINY_ODDS_1 3276 // Actual probability is SHINY_ODDS/65536
+#define SHINY_ODDS_2 3276 // Actual probability is SHINY_ODDS/65536
 
 // Flags for Get(Box)MonData / Set(Box)MonData
 #define MON_DATA_PERSONALITY        0
