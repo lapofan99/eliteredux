@@ -1807,6 +1807,9 @@ static void Task_HandleInput(u8 taskId)
 					}
 				}
 				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
+                ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
 				RefreshPageAfterChange(0);
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY && ModifyMode){ //Ability Modifier
@@ -1899,6 +1902,9 @@ static void Task_HandleInput(u8 taskId)
 					}
 				}
 				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
+                ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
 				RefreshPageAfterChange(0);
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY && ModifyMode){ //Ability Modifier
@@ -1969,26 +1975,10 @@ static void Task_HandleInput(u8 taskId)
 							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
 						}
 					break;
-					/*/case 6: // Start Ability Modifier
-						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-						CalculateMonStats(&sMonSummaryScreen->currentMon);
-						
-						if(abilityNum != 2 && 
-						   GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) &&
-						   GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) != ABILITY_NONE)
-							abilityNum++;
-						else
-							abilityNum = 0;
-						
-						if(GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != ABILITY_NONE){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-						}
-							
-						PlaySE(SE_SELECT);
-					break;/*/
 					}
 				}
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
 				RefreshPageAfterChange(0);
 			}
 		}
@@ -2037,26 +2027,10 @@ static void Task_HandleInput(u8 taskId)
 							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
 						}
 					break;
-					/*/case 6: // Start Ability Modifier
-						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-						CalculateMonStats(&sMonSummaryScreen->currentMon);
-						
-						if(abilityNum != 0 && 
-						   GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) &&
-						   GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) != ABILITY_NONE)
-							abilityNum--;
-						else
-							abilityNum = 2;
-						
-						if(GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != ABILITY_NONE){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-						}
-							
-						PlaySE(SE_SELECT);
-					break;/*/
 					}
 				}
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
 				RefreshPageAfterChange(0);
 			}
 		}
@@ -3759,9 +3733,9 @@ static void PrintSkillsPage(void)
 	for(i = 0; i < NUM_STAT_TYPES; i++){
 		switch(i){
 			case 0:
-				ConvertIntToDecimalStringN(gStringVar1, summary->currentHP, STR_CONV_MODE_LEFT_ALIGN, 3);
+				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
 				StringAppend(gStringVar1, gText_Slash);
-				ConvertIntToDecimalStringN(gStringVar2, summary->maxHP, STR_CONV_MODE_LEFT_ALIGN, 3);
+                ConvertIntToDecimalStringN(gStringVar2, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
 				StringAppend(gStringVar1, gStringVar2);
 				x = 7;
 			break;
@@ -3770,7 +3744,6 @@ static void PrintSkillsPage(void)
 				x = 13;
 			break;
 			case 2:
-			
 				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 16;
 			break;
@@ -3796,7 +3769,7 @@ static void PrintSkillsPage(void)
 	for(i = 0; i < NUM_STAT_TYPES; i++){
 		switch(i){
 			case 0:
-				ConvertIntToDecimalStringN(gStringVar1, summary->atk, STR_CONV_MODE_LEFT_ALIGN, 3);
+                ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
 			break;
 			case 1:
@@ -3823,7 +3796,7 @@ static void PrintSkillsPage(void)
 	for(i = 0; i < NUM_STAT_TYPES; i++){
 		switch(i){
 			case 0:
-				ConvertIntToDecimalStringN(gStringVar1, summary->def, STR_CONV_MODE_LEFT_ALIGN, 3);
+				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
 			break;
 			case 1:
@@ -3850,7 +3823,7 @@ static void PrintSkillsPage(void)
 	for(i = 0; i < NUM_STAT_TYPES; i++){
 		switch(i){
 			case 0:
-				ConvertIntToDecimalStringN(gStringVar1, summary->spatk, STR_CONV_MODE_LEFT_ALIGN, 3);
+                ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
 			break;
 			case 1:
@@ -3877,7 +3850,7 @@ static void PrintSkillsPage(void)
 	for(i = 0; i < NUM_STAT_TYPES; i++){
 		switch(i){
 			case 0:
-				ConvertIntToDecimalStringN(gStringVar1, summary->spdef, STR_CONV_MODE_LEFT_ALIGN, 3);
+                ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
 			break;
 			case 1:
@@ -3903,7 +3876,7 @@ static void PrintSkillsPage(void)
 	for(i = 0; i < NUM_STAT_TYPES; i++){
 		switch(i){
 			case 0:
-				ConvertIntToDecimalStringN(gStringVar1, summary->speed, STR_CONV_MODE_LEFT_ALIGN, 3);
+                ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
 			break;
 			case 1:
