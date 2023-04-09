@@ -1659,11 +1659,14 @@ static void CloseSummaryScreen(u8 taskId)
     }
 }
 
+#define LEFTRIGHT_EV_AMOUNT_CHANGE 4
+#define LR_EV_AMOUNT_CHANGE 64
+
 static void Task_HandleInput(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-	u8 i;
-	u8  CurrentEv = 0;
+	u8  i;
+	u16 CurrentEv = 0;
 	u16 TotalEvs = 0;
 	u16 RemainingEvs = 0;
 	u8 abilityNum = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM);
@@ -1765,8 +1768,12 @@ static void Task_HandleInput(u8 taskId)
 				//DrawModifyIcon();
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode){ //Ev Modifier
-				if(CurrentEv != 0 || gCurrentModifyIndex == 6){
-					CurrentEv--;
+				if(CurrentEv != 0){
+                    if(CurrentEv >= LEFTRIGHT_EV_AMOUNT_CHANGE)
+					    CurrentEv = CurrentEv - LEFTRIGHT_EV_AMOUNT_CHANGE;
+                    else
+                        CurrentEv = 0;
+                    
 					switch(gCurrentModifyIndex){
 					case 0:
 						if (!sMonSummaryScreen->isBoxMon){
@@ -1860,8 +1867,15 @@ static void Task_HandleInput(u8 taskId)
 				//DrawModifyIcon();
 			}
             else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode){ //Ev Modifier
-				if((CurrentEv != 252 && TotalEvs != 510) || gCurrentModifyIndex == 6){
-					CurrentEv++;
+				if((CurrentEv != MAX_PER_STAT_EVS && TotalEvs < MAX_TOTAL_EVS) || gCurrentModifyIndex == 6){
+					CurrentEv = CurrentEv + LEFTRIGHT_EV_AMOUNT_CHANGE;
+
+                    if(CurrentEv > MAX_PER_STAT_EVS)
+                        CurrentEv = MAX_PER_STAT_EVS;
+
+                    if((TotalEvs + LEFTRIGHT_EV_AMOUNT_CHANGE) > MAX_TOTAL_EVS)
+                        CurrentEv = CurrentEv - ((TotalEvs + LEFTRIGHT_EV_AMOUNT_CHANGE) - MAX_TOTAL_EVS);
+                    
 					switch(gCurrentModifyIndex){
 					case 0:
 						if (!sMonSummaryScreen->isBoxMon){
@@ -1931,107 +1945,111 @@ static void Task_HandleInput(u8 taskId)
 		{
 			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
 				ChangePage(taskId, 1);
-			else {
-				if((CurrentEv != 252 && TotalEvs != 510) || gCurrentModifyIndex == 6){
-					if(RemainingEvs + CurrentEv <= 252)
-						CurrentEv = RemainingEvs + CurrentEv;
-					else
-						CurrentEv = 252;
-						
-					switch(gCurrentModifyIndex){
-					case 0:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
-						}
-					break;
-					case 1:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
-						}
-					break;
-					case 2:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
-						}
-					break;
-					case 3:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
-						}
-					break;
-					case 4:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
-						}
-					break;
-					case 5:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
-						}
-					break;
-					}
+			else if((CurrentEv != MAX_PER_STAT_EVS && TotalEvs < MAX_TOTAL_EVS) || gCurrentModifyIndex == 6){
+				CurrentEv = CurrentEv + LR_EV_AMOUNT_CHANGE;
+
+                if(CurrentEv > MAX_PER_STAT_EVS)
+                    CurrentEv = MAX_PER_STAT_EVS;
+
+                if((TotalEvs + LR_EV_AMOUNT_CHANGE) > MAX_TOTAL_EVS)
+                    CurrentEv = CurrentEv - ((TotalEvs + LR_EV_AMOUNT_CHANGE) - MAX_TOTAL_EVS);
+                    
+				switch(gCurrentModifyIndex){
+                    case 0:
+                        if (!sMonSummaryScreen->isBoxMon){
+                            SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+                            SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
+                        }
+                    break;
+                    case 1:
+                        if (!sMonSummaryScreen->isBoxMon){
+                            SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+                            SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+                        }
+                    break;
+                    case 2:
+                        if (!sMonSummaryScreen->isBoxMon){
+                            SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+                            SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+                        }
+                    break;
+                    case 3:
+                        if (!sMonSummaryScreen->isBoxMon){
+                            SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+                            SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+                        }
+                    break;
+                    case 4:
+                        if (!sMonSummaryScreen->isBoxMon){
+                            SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+                            SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+                        }
+                    break;
+                    case 5:
+                        if (!sMonSummaryScreen->isBoxMon){
+                            SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+                            SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+                        }
+                    break;
 				}
-				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-				CalculateMonStats(&sMonSummaryScreen->currentMon);
-				RefreshPageAfterChange(0);
+
+                CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+                CalculateMonStats(&sMonSummaryScreen->currentMon);
+                RefreshPageAfterChange(0);
 			}
 		}
 		else if (gMain.newKeys & L_BUTTON)
 		{
 			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
 				ChangePage(taskId, -1);
-			else {
-				if(CurrentEv != 0 || gCurrentModifyIndex == 6){
-					CurrentEv = 0;
-						
-					switch(gCurrentModifyIndex){
-					case 0:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
-						}
-					break;
-					case 1:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
-						}
-					break;
-					case 2:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
-						}
-					break;
-					case 3:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
-						}
-					break;
-					case 4:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
-						}
-					break;
-					case 5:
-						if (!sMonSummaryScreen->isBoxMon){
-							SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
-							SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
-						}
-					break;
+			else if(CurrentEv != 0){
+                if(CurrentEv >= LR_EV_AMOUNT_CHANGE)
+					CurrentEv = CurrentEv - LR_EV_AMOUNT_CHANGE;
+                else
+                    CurrentEv = 0;
+                    
+				switch(gCurrentModifyIndex){
+				case 0:
+					if (!sMonSummaryScreen->isBoxMon){
+						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_HP_EV, &CurrentEv);
+						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV, &CurrentEv);
 					}
+				break;
+				case 1:
+					if (!sMonSummaryScreen->isBoxMon){
+						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ATK_EV, &CurrentEv);
+						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV, &CurrentEv);
+					}
+				break;
+				case 2:
+					if (!sMonSummaryScreen->isBoxMon){
+						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_DEF_EV, &CurrentEv);
+						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV, &CurrentEv);
+					}
+				break;
+				case 3:
+					if (!sMonSummaryScreen->isBoxMon){
+						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPATK_EV, &CurrentEv);
+						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV, &CurrentEv);
+					}
+				break;
+				case 4:
+					if (!sMonSummaryScreen->isBoxMon){
+						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPDEF_EV, &CurrentEv);
+						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV, &CurrentEv);
+					}
+				break;
+				case 5:
+					if (!sMonSummaryScreen->isBoxMon){
+						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_EV, &CurrentEv);
+						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV, &CurrentEv);
+					}
+				break;
 				}
-				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-				CalculateMonStats(&sMonSummaryScreen->currentMon);
-				RefreshPageAfterChange(0);
+
+                CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+                CalculateMonStats(&sMonSummaryScreen->currentMon);
+                RefreshPageAfterChange(0);
 			}
 		}
         else if (JOY_NEW(A_BUTTON))
@@ -3683,6 +3701,8 @@ static void PrintSkillsPage(void)
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     const s8 *natureMod = gNatureStatTable[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE)];
+    static const u8 sText_Help_Bar[] = _("{DPAD_LEFTRIGHT} Add / Remove 4 EVs\n{L_BUTTON}{R_BUTTON} Add / Remove 64 EVs");
+    u8 offset = 0;
 
     FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT, PIXEL_FILL(0));
 	
@@ -3695,32 +3715,27 @@ static void PrintSkillsPage(void)
 			switch(j){
 				case 0:
 					y = 0;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 1:
 					y = 3;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 2:
 					y = 5;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 3:
 					y = 7;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 4:
 					y = 9;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 				case 5:
 					y = 11;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8) + 4, (y * 8), 24, 16);
-				break;
-				case 6:
-					x = 8;
-					y = 14;
-					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryInfoPageIcon, (x * 8), (y * 8), 72, 16);
+					BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryEVIcon, (x * 8), (y * 8), 24, 16);
 				break;
 			}
 		}
@@ -3748,7 +3763,8 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}	
 
 	// HP Bar ----------------------------------------------------------------------------------------------------
@@ -3781,7 +3797,8 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}	
 
 	// Defense ----------------------------------------------------------------------------------------------------
@@ -3808,7 +3825,8 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}	
 	
 	// Sp.Atk ----------------------------------------------------------------------------------------------------
@@ -3835,7 +3853,8 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}
 	
 	// Sp.Def ----------------------------------------------------------------------------------------------------
@@ -3862,7 +3881,8 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}
 	
 	// Speed ----------------------------------------------------------------------------------------------------
@@ -3888,7 +3908,8 @@ static void PrintSkillsPage(void)
 				x = 16;
 			break;
 		}	
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, (x * 8), y, 0, 0);
+        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}
 	
 	//---------------------------------------------------------------------------------------------------------
@@ -3911,8 +3932,10 @@ static void PrintSkillsPage(void)
 	}
 	//---------------------------------------------------------------------------------------------------------
 	
-    /*PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Ability, 8, 112, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
-    StringCopy(gStringVar1, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
+
+
+    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Help_Bar, 16, 116, 4, PSS_COLOR_BLACK_GRAY_SHADOW);
+    /*StringCopy(gStringVar1, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
     x = GetStringCenterAlignXOffset(FONT_NORMAL, gStringVar1, 88) + 58;
     PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, 112, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
     StringCopy(gStringVar1, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);

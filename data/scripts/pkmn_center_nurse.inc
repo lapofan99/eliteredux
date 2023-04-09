@@ -10,6 +10,10 @@ Common_EventScript_PkmnCenterNurse::
     setvar VAR_POKE_VIAL_CHARGES, 1
     msgbox gText_ExplainPokeVial, MSGBOX_YESNO
     compare VAR_RESULT, YES
+    checkitem ITEM_POKE_VIAL, 1
+    compare VAR_RESULT, 1
+    goto_if_eq EventScript_PkmnCenterNurseHasVial
+
     goto_if_eq EventScript_PkmnCenterNurse_HealPkmn
     compare VAR_RESULT, NO
     goto_if_eq EventScript_PkmnCenterNurse_Goodbye
@@ -31,20 +35,20 @@ EventScript_PkmnCenterNurseHasVial::
     call_if_ne ADDITEM_ABILITY_CAPSULE
     setvar VAR_0x8006, 4
     special GetSettingsMonStats
-    compare VAR_0x8005, 1
-    call_if_eq Give_Nuzlocke_Items
-	call_if_eq Give_all_TMHMs
-	call_if_eq Give_BattleItems
-	call_if_eq Give_all_Type_Gems
-	call_if_eq Give_all_Mega_Stones
-	call_if_eq Give_Cut_Items_After_Roxanne
-	call_if_eq Give_Thief_Items_After_Thief
-	call_if_eq Give_Thief_Items_After_Museum
-    call_if_eq Give_Thief_Items_After_Wattson
-    call_if_eq Give_Thief_Items_After_Flannery
-    call_if_eq Give_Thief_Items_After_Norman
-    call_if_eq Give_Thief_Items_After_Winoma
+    call Give_Nuzlocke_Items
+	call Give_all_TMHMs
+	call Give_BattleItems
+	call Give_all_Type_Gems
+	call Give_all_Mega_Stones
+	call Give_Cut_Items_After_Roxanne
+	call Give_Thief_Items_After_Thief
+	call Give_Thief_Items_After_Museum
+    call Give_Thief_Items_After_Wattson
+    call Give_Thief_Items_After_Flannery
+    call Give_Thief_Items_After_Norman
+    call Give_Thief_Items_After_Winoma
     call EventScript_PkmnCenterNurse_HealPkmn
+	release
     end
 
 EventScript_PkmnCenterNurse_Goodbye::

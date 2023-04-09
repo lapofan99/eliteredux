@@ -2336,7 +2336,7 @@ const u8 gText_Effect_ContactNo[]             = _("No");
 
 const u8 gText_Stats[]               = _("Stats");
 const u8 gText_BaseStats[]           = _("BS");
-const u8 gText_EVs[]                 = _("Evs");
+const u8 gText_EVs[]                 = _("EVs");
 
 // frlg_tm_case_port
 const u8 gText_TMCase[] =               _("TM CASE");
