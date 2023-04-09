@@ -8290,7 +8290,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_GRASS,
     .abilities = {ABILITY_SWIFT_SWIM, ABILITY_CHLOROPHYLL, ABILITY_OWN_TEMPO},
-    .innates = {ABILITY_NONE, ABILITY_NONE, ABILITY_NONE},
+    .innates = {ABILITY_SEAWEED, ABILITY_RAIN_DISH, ABILITY_HYDRATION},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },
