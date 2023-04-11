@@ -10715,6 +10715,11 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             && IsBattlerGrounded(gBattlerAttacker))
             basePower *= 2;
         break;
+    case EFFECT_RISING_VOLTAGE:
+        if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && !IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING)
+            && gBattleMons[battlerDef].item != ITEM_AIR_BALLOON && gBattleMons[battlerDef].ability != ABILITY_LEVITATE)
+        basePower *= 2;
+        break;
     }
 
     // move-specific base power changes
@@ -12863,6 +12868,18 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
     MulModifier(modifier, mod);
 }
 
+static void TryNoticeIllusionInTypeEffectiveness(u32 move, u32 moveType, u32 battlerAtk, u32 battlerDef, u16 resultingModifier, u32 illusionSpecies)
+{
+    // Check if the type effectiveness would've been different if the pokemon really had the types as the disguise.
+    u16 presumedModifier = UQ_4_12(1.0);
+    MulByTypeEffectiveness(&presumedModifier, move, moveType, battlerDef, gBaseStats[illusionSpecies].type1, battlerAtk, FALSE);
+    if (gBaseStats[illusionSpecies].type2 != gBaseStats[illusionSpecies].type1)
+        MulByTypeEffectiveness(&presumedModifier, move, moveType, battlerDef, gBaseStats[illusionSpecies].type2, battlerAtk, FALSE);
+
+    if (presumedModifier != resultingModifier)
+        RecordAbilityBattle(battlerDef, ABILITY_ILLUSION);
+}
+
 static void UpdateMoveResultFlags(u16 modifier)
 {
     if (modifier == UQ_4_12(0.0))
@@ -12888,12 +12905,16 @@ static void UpdateMoveResultFlags(u16 modifier)
 
 static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 battlerAtk, u8 battlerDef, bool32 recordAbilities, u16 modifier)
 {
+    u32 illusionSpecies;
     MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type1, battlerAtk, recordAbilities);
     if (gBattleMons[battlerDef].type2 != gBattleMons[battlerDef].type1)
         MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type2, battlerAtk, recordAbilities);
     if (gBattleMons[battlerDef].type3 != TYPE_MYSTERY && gBattleMons[battlerDef].type3 != gBattleMons[battlerDef].type2
         && gBattleMons[battlerDef].type3 != gBattleMons[battlerDef].type1)
         MulByTypeEffectiveness(&modifier, move, moveType, battlerDef, gBattleMons[battlerDef].type3, battlerAtk, recordAbilities);
+
+    if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
+        TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
     if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) && !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
     {
@@ -13320,6 +13341,14 @@ bool32 CanBattlerGetOrLoseItem(u8 battlerId, u16 itemId)
 #endif
     else
         return TRUE;
+}
+
+u32 GetIllusionMonSpecies(u32 battlerId)
+{
+    struct Pokemon *illusionMon = GetIllusionMonPtr(battlerId);
+    if (illusionMon != NULL)
+        return GetMonData(illusionMon, MON_DATA_SPECIES);
+    return SPECIES_NONE;
 }
 
 struct Pokemon *GetIllusionMonPtr(u32 battlerId)

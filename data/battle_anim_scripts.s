@@ -14040,7 +14040,7 @@ Move_STEEL_ROLLER::
 	goto Move_GYRO_BALL
 
 Move_SCALE_SHOT::
-	end @to do:
+	goto Move_FURY_ATTACK
 
 Move_METEOR_BEAM::
 	end @to do:
@@ -14092,13 +14092,13 @@ Move_SHELL_SIDE_ARM_SPECIAL: @ Modified Snipe Shot, placeholder
 	end
 
 Move_MISTY_EXPLOSION::
-	end @to do:
+	goto Move_EXPLOSION
 
 Move_GRASSY_GLIDE::
-	end @to do:
+	goto Move_LEAF_TORNADO
 
 Move_RISING_VOLTAGE::
-	end @to do:
+	goto Move_VOLT_TACKLE
 
 Move_TERRAIN_PULSE::
 	loadspritegfx ANIM_TAG_DRAGON_PULSE
@@ -14196,19 +14196,19 @@ Move_POLTERGEIST::
 	end @to do:
 
 Move_CORROSIVE_GAS::
-	end @to do:
+	goto Move_POISON_GAS
 
 Move_COACHING::
 	end @to do:
 
 Move_FLIP_TURN::
-	end @to do:
+	goto Move_U_TURN
 
 Move_TRIPLE_AXEL::
-	end @to do:
+	goto Move_TRIPLE_KICK
 
 Move_DUAL_WINGBEAT::
-	end @to do:
+	goto Move_WING_ATTACK
 
 Move_SCORCHING_SANDS::
 	loadspritegfx ANIM_TAG_MUD_SAND

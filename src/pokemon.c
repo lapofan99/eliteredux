@@ -7541,7 +7541,7 @@ u8 GetNumberOfTutorMoves(struct Pokemon *mon)
 	
 	for (i = 0; i< TUTOR_MOVE_COUNT; i++)
     {
-        if (CanLearnTutorMove(species, i) && !MonKnowsMove(mon, GetTutorMove(i)))
+        if (CanLearnTutorMove(species, i) && !MonKnowsMove(mon, GetTutorMove(i)) && gBattleMoves[GetTutorMove(i)].effect != EFFECT_PLACEHOLDER)
             numMoves++;
     }
 	
@@ -7559,7 +7559,7 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 	
 	for (i = 0; i< TUTOR_MOVE_COUNT; i++)
     {
-        if (CanLearnTutorMove(species, i) && !MonKnowsMove(mon, GetTutorMove(i)))
+        if (CanLearnTutorMove(species, i) && !MonKnowsMove(mon, GetTutorMove(i)) && gBattleMoves[GetTutorMove(i)].effect != EFFECT_PLACEHOLDER)
         {
             moves[numMoves] = GetTutorMove(i);
             numMoves++;

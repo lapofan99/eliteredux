@@ -543,39 +543,85 @@ void SaveBattlerData(u8 battlerId)
         AI_THINKING_STRUCT->saved[battlerId].species = gBattleMons[battlerId].species;
         for (i = 0; i < 4; i++)
             AI_THINKING_STRUCT->saved[battlerId].moves[i] = gBattleMons[battlerId].moves[i];
+
+        AI_THINKING_STRUCT->saved[battlerId].type1 = gBattleMons[battlerId].type1;
+        AI_THINKING_STRUCT->saved[battlerId].type2 = gBattleMons[battlerId].type2;
     }
+}
+
+static bool32 ShouldFailForIllusion(u16 illusionSpecies, u32 battlerId)
+{
+    u32 i, j;
+
+    if (BATTLE_HISTORY->abilities[battlerId] == ABILITY_ILLUSION)
+        return FALSE;
+
+    // Don't fall for Illusion if the mon used a move it cannot know.
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u16 move = BATTLE_HISTORY->usedMoves[battlerId][i];
+        if (move == MOVE_NONE)
+            continue;
+
+        for (j = 0; gLevelUpLearnsets[illusionSpecies][j].move != LEVEL_UP_END; j++)
+        {
+            if (gLevelUpLearnsets[illusionSpecies][j].move == move)
+                break;
+        }
+        // The used move is in the learnsets of the fake species.
+        if (gLevelUpLearnsets[illusionSpecies][j].move != LEVEL_UP_END)
+            continue;
+
+        // The used move can be learned from Tm/Hm or Move Tutors.
+        //if (CanLearnTeachableMove(illusionSpecies, move))
+        //    continue;
+
+        // 'Illegal move', AI won't fail for the illusion.
+        return FALSE;
+    }
+
+    return TRUE;
 }
 
 void SetBattlerData(u8 battlerId)
 {
     if (!IsBattlerAIControlled(battlerId))
     {
-        struct Pokemon *illusionMon;
-        u32 i;
+        u32 i, species, illusionSpecies;
+
+        // Simulate Illusion
+        species = gBattleMons[battlerId].species;
+        illusionSpecies = GetIllusionMonSpecies(battlerId);
+
+        if (illusionSpecies != SPECIES_NONE && ShouldFailForIllusion(illusionSpecies, battlerId))
+        {
+            // If the battler's type has not been changed, AI assumes the types of the illusion mon.
+            if (gBattleMons[battlerId].type1 == gBaseStats[species].type1
+                && gBattleMons[battlerId].type2 == gBaseStats[species].type2)
+            {
+                gBattleMons[battlerId].type1 = gBaseStats[illusionSpecies].type1;
+                gBattleMons[battlerId].type2 = gBaseStats[illusionSpecies].type2;
+            }
+            species = illusionSpecies;
+        }
 
         // Use the known battler's ability.
         if (BATTLE_HISTORY->abilities[battlerId] != ABILITY_NONE)
             gBattleMons[battlerId].ability = BATTLE_HISTORY->abilities[battlerId];
         // Check if mon can only have one ability.
-        else if (gBaseStats[gBattleMons[battlerId].species].abilities[1] == ABILITY_NONE
-                 || gBaseStats[gBattleMons[battlerId].species].abilities[1] == gBaseStats[gBattleMons[battlerId].species].abilities[0])
-            gBattleMons[battlerId].ability = gBaseStats[gBattleMons[battlerId].species].abilities[0];
+        else if (gBaseStats[species].abilities[1] == ABILITY_NONE
+                 || gBaseStats[species].abilities[1] == gBaseStats[species].abilities[0])
+            gBattleMons[battlerId].ability = gBaseStats[species].abilities[0];
         // The ability is unknown.
         else
             gBattleMons[battlerId].ability = ABILITY_NONE;
-
         if (BATTLE_HISTORY->itemEffects[battlerId] == 0)
             gBattleMons[battlerId].item = 0;
-
         for (i = 0; i < 4; i++)
         {
             if (BATTLE_HISTORY->usedMoves[battlerId][i] == 0)
                 gBattleMons[battlerId].moves[i] = 0;
         }
-
-        // Simulate Illusion
-        if ((illusionMon = GetIllusionMonPtr(battlerId)) != NULL)
-            gBattleMons[battlerId].species = GetMonData(illusionMon, MON_DATA_SPECIES2);
     }
 }
 
@@ -590,6 +636,9 @@ void RestoreBattlerData(u8 battlerId)
         gBattleMons[battlerId].species = AI_THINKING_STRUCT->saved[battlerId].species;
         for (i = 0; i < 4; i++)
             gBattleMons[battlerId].moves[i] = AI_THINKING_STRUCT->saved[battlerId].moves[i];
+
+        gBattleMons[battlerId].type1 = AI_THINKING_STRUCT->saved[battlerId].type1;
+        gBattleMons[battlerId].type2 = AI_THINKING_STRUCT->saved[battlerId].type2;
     }
 }
 

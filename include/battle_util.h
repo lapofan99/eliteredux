@@ -195,4 +195,6 @@ bool32 IsGastroAcidBannedAbility(u16 ability);
 bool32 IsEntrainmentBannedAbilityAttacker(u16 ability);
 bool32 IsEntrainmentTargetOrSimpleBeamBannedAbility(u16 ability);
 
+u32 GetIllusionMonSpecies(u32 battlerId);
+
 #endif // GUARD_BATTLE_UTIL_H

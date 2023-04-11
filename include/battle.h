@@ -252,7 +252,10 @@ struct AI_SavedBattleMon
     u16 ability;
     u16 moves[MAX_MON_MOVES];
     u16 heldItem;
-    u16 species;
+    u16 species;    
+    u8 type1;
+    u8 type2;
+    u8 type3;
 };
 
 struct AiLogicData

@@ -403,6 +403,64 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectOctolock                @ EFFECT_OCTOLOCK
 	.4byte BattleScript_EffectClangorousSoul          @ EFFECT_CLANGOROUS_SOUL
 	.4byte BattleScript_EffectHit                     @ EFFECT_BOLT_BEAK
+	.4byte BattleScript_EffectRisingVoltage			  @ EFFECT_RISING_VOLTAGE
+	.4byte BattleScript_EffectScaleShot			  	  @ EFFECT_SCALE_SHOT
+
+BattleScript_EffectScaleShot::
+	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+	attackstring
+	ppreduce
+	setmultihitcounter 0x0
+	initmultihitstring
+	sethword sMULTIHIT_EFFECT, 0x0
+BattleScript_ScaleShotLoop::
+	jumpifhasnohp BS_ATTACKER, BattleScript_ScaleShotEnd
+	jumpifhasnohp BS_TARGET, BattleScript_ScaleShotPrintStrings
+	jumpifhalfword CMP_EQUAL, gChosenMove, MOVE_SLEEP_TALK, BattleScript_ScaleShotDoMultiHit
+	jumpifstatus BS_ATTACKER, STATUS1_SLEEP, BattleScript_ScaleShotPrintStrings
+BattleScript_ScaleShotDoMultiHit::
+	movevaluescleanup
+	copyhword sMOVE_EFFECT, sMULTIHIT_EFFECT
+	critcalc
+	damagecalc
+	jumpifmovehadnoeffect BattleScript_ScaleShotMultiHitNoMoreHits
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage 0x40
+	multihitresultmessage
+	printstring STRINGID_EMPTYSTRING3
+	waitmessage 0x1
+	addbyte sMULTIHIT_STRING + 4, 0x1
+	moveendto MOVEEND_NEXT_TARGET
+	jumpifbyte CMP_COMMON_BITS, gMoveResultFlags, MOVE_RESULT_FOE_ENDURED, BattleScript_ScaleShotPrintStrings
+	decrementmultihit BattleScript_ScaleShotLoop
+	goto BattleScript_ScaleShotPrintStrings
+BattleScript_ScaleShotMultiHitNoMoreHits::
+	pause 0x20
+BattleScript_ScaleShotPrintStrings::
+	resultmessage
+	waitmessage 0x40
+	jumpifmovehadnoeffect BattleScript_ScaleShotEnd
+	copyarray gBattleTextBuff1, sMULTIHIT_STRING, 0x6
+	printstring STRINGID_HITXTIMES
+	waitmessage 0x40
+BattleScript_ScaleShotEnd::
+	setmoveeffect MOVE_EFFECT_SPD_PLUS_1 | MOVE_EFFECT_AFFECTS_USER
+	seteffectwithchance
+	setmoveeffect MOVE_EFFECT_DEF_MINUS_1 | MOVE_EFFECT_AFFECTS_USER
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+	moveendcase MOVEEND_SYNCHRONIZE_TARGET
+	moveendfrom MOVEEND_STATUS_IMMUNITY_ABILITIES
+	end
 
 BattleScript_EffectShellSideArm:
 	shellsidearmcheck
@@ -2633,6 +2691,8 @@ BattleScript_EffectPlaceholder:
 	pause 5
 	printstring STRINGID_NOTDONEYET
 	goto BattleScript_MoveEnd
+
+BattleScript_EffectRisingVoltage:
 
 BattleScript_EffectHit::
 BattleScript_HitFromAtkCanceler::

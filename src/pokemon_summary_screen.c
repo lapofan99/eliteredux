@@ -1945,14 +1945,17 @@ static void Task_HandleInput(u8 taskId)
 		{
 			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
 				ChangePage(taskId, 1);
-			else if((CurrentEv != MAX_PER_STAT_EVS && TotalEvs < MAX_TOTAL_EVS) || gCurrentModifyIndex == 6){
+			else if((CurrentEv != MAX_PER_STAT_EVS && TotalEvs < MAX_TOTAL_EVS)){
+                RemainingEvs = CurrentEv;
 				CurrentEv = CurrentEv + LR_EV_AMOUNT_CHANGE;
 
                 if(CurrentEv > MAX_PER_STAT_EVS)
                     CurrentEv = MAX_PER_STAT_EVS;
 
-                if((TotalEvs + LR_EV_AMOUNT_CHANGE) > MAX_TOTAL_EVS)
-                    CurrentEv = CurrentEv - ((TotalEvs + LR_EV_AMOUNT_CHANGE) - MAX_TOTAL_EVS);
+                RemainingEvs = CurrentEv - RemainingEvs;
+
+                if((TotalEvs + RemainingEvs) > MAX_TOTAL_EVS)
+                    CurrentEv = CurrentEv - ((TotalEvs + RemainingEvs) - MAX_TOTAL_EVS);
                     
 				switch(gCurrentModifyIndex){
                     case 0:

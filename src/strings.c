@@ -1507,6 +1507,7 @@ const u8 gText_Option[] = _("Option");
 const u8 gText_TextSpeed[] = _("Text Speed");
 const u8 gText_BattleScene[] = _("Battle Scene");
 const u8 gText_BattleStyle[] = _("Battle Style");
+const u8 gText_AutoRun[] = _("Auto Run");
 const u8 gText_Sound[] = _("Sound");
 const u8 gText_Frame[] = _("Frame");
 const u8 gText_OptionMenuCancel[] = _("Cancel");
