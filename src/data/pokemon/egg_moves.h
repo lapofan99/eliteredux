@@ -1264,6 +1264,7 @@ const u16 gEggMoves[] = {
     egg_moves(GLIGAR,
         MOVE_METAL_CLAW,
         MOVE_WING_ATTACK,
+        MOVE_DUAL_WINGBEAT, // new
         MOVE_RAZOR_WIND,
         MOVE_COUNTER,
         MOVE_SAND_TOMB,
@@ -3797,6 +3798,7 @@ const u16 gEggMoves[] = {
         MOVE_VENOM_DRENCH),
 
     egg_moves(CLAUNCHER,
+        MOVE_FLIP_TURN, //
         MOVE_AQUA_JET,
         MOVE_ENTRAINMENT,
         MOVE_ENDURE,
