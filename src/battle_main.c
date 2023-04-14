@@ -5665,6 +5665,146 @@ void RunBattleScriptCommands(void)
         gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
 }
 
+u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
+    u32 moveType, ateType, attackerAbility, tempstuff;
+    u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
+
+    if (move == MOVE_STRUGGLE)
+        return TYPE_NORMAL;
+
+    if (gBattleMoves[move].effect == EFFECT_WEATHER_BALL)
+    {
+        if (WEATHER_HAS_EFFECT)
+        {
+            if (gBattleWeather & WEATHER_RAIN_ANY && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
+                return TYPE_WATER;
+            else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+                return TYPE_ROCK;
+            else if (gBattleWeather & WEATHER_SUN_ANY && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
+                return TYPE_FIRE;
+            else if (gBattleWeather & WEATHER_HAIL_ANY)
+                return TYPE_ICE;
+            else
+                return TYPE_NORMAL;
+        }
+    }
+    else if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
+    {
+        u8 typeBits  = ((gBattleMons[battlerAtk].hpIV & 1) << 0)
+                     | ((gBattleMons[battlerAtk].attackIV & 1) << 1)
+                     | ((gBattleMons[battlerAtk].defenseIV & 1) << 2)
+                     | ((gBattleMons[battlerAtk].speedIV & 1) << 3)
+                     | ((gBattleMons[battlerAtk].spAttackIV & 1) << 4)
+                     | ((gBattleMons[battlerAtk].spDefenseIV & 1) << 5);
+
+        ateType = (15 * typeBits) / 63 + 1;
+        if (ateType >= TYPE_MYSTERY)
+            ateType++;
+
+        return ateType;
+    }
+    else if (gBattleMoves[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
+    {
+        if (holdEffect == gBattleMoves[move].argument)
+            return ItemId_GetSecondaryId(gBattleMons[battlerAtk].item);
+    }
+    else if (gBattleMoves[move].effect == EFFECT_REVELATION_DANCE)
+    {
+        if (gBattleMons[battlerAtk].type1 != TYPE_MYSTERY)
+            return gBattleMons[battlerAtk].type1;
+        else if (gBattleMons[battlerAtk].type2 != TYPE_MYSTERY)
+            return gBattleMons[battlerAtk].type2;
+        else if (gBattleMons[battlerAtk].type3 != TYPE_MYSTERY)
+            return gBattleMons[battlerAtk].type3;
+    }
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
+    {
+        if (ItemId_GetPocket(gBattleMons[battlerAtk].item) == POCKET_BERRIES)
+            return gNaturalGiftTable[ITEM_TO_BERRY(gBattleMons[battlerAtk].item)].type;
+    }
+    else if (gBattleMoves[move].effect == EFFECT_TERRAIN_PULSE)
+    {
+        if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_TERRAIN_ANY))
+        {
+            if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+                return TYPE_ELECTRIC;
+            else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+                return TYPE_GRASS;
+            else if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+                return TYPE_FAIRY;
+            else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+                return TYPE_PSYCHIC;
+            else //failsafe
+                return TYPE_NORMAL;
+        }
+    }
+
+    attackerAbility = GetBattlerAbility(battlerAtk);
+    GET_MOVE_TYPE(move, moveType);
+    if ((gFieldStatuses & STATUS_FIELD_ION_DELUGE && moveType == TYPE_NORMAL) || gStatuses4[battlerAtk] & STATUS4_ELECTRIFIED)
+        return TYPE_ELECTRIC;
+    else if (gBattleMoves[move].type == TYPE_NORMAL
+             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && (   ((attackerAbility == ABILITY_PIXILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PIXILATE))     && (ateType = TYPE_FAIRY))
+                 || ((attackerAbility == ABILITY_REFRIGERATE  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_REFRIGERATE))  && (ateType = TYPE_ICE))
+                 || ((attackerAbility == ABILITY_AERILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AERILATE))     && (ateType = TYPE_FLYING))
+				 || ((attackerAbility == ABILITY_BURNATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE))      && (ateType = TYPE_FIRE))
+				 || ((attackerAbility == ABILITY_GROUNDATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUNDATE))    && (ateType = TYPE_GROUND))
+				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)) && (ateType = TYPE_FIGHTING))
+                 || ((attackerAbility == ABILITY_POISONATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POISONATE))    && (ateType = TYPE_POISON))
+                 || ((attackerAbility == ABILITY_HYDRATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYDRATE))      && (ateType = TYPE_WATER))
+                 || (((attackerAbility == ABILITY_GALVANIZE)  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GALVANIZE))    && (ateType = TYPE_ELECTRIC))
+                )
+             )
+        return ateType;
+	else if(gBattleMoves[move].type == TYPE_ROCK && attackerAbility == ABILITY_CRYSTALLIZE)
+		return TYPE_ICE;
+    else if (gBattleMoves[move].type != TYPE_NORMAL
+             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+             && attackerAbility == ABILITY_NORMALIZE)
+        return TYPE_NORMAL;
+    else if (gBattleMoves[move].flags & FLAG_SOUND
+             && attackerAbility == ABILITY_LIQUID_VOICE)
+        return TYPE_WATER;
+    else if (gBattleMoves[move].flags & FLAG_SOUND && (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
+        return TYPE_GROUND;
+    else if (gStatuses4[battlerAtk] & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
+        return TYPE_ELECTRIC;
+    else if (move == MOVE_AURA_WHEEL && gBattleMons[battlerAtk].species == SPECIES_MORPEKO_HANGRY)
+        return TYPE_DARK;
+	
+	//Inates
+	//Burnate
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
+		if(gBattleMoves[move].type == TYPE_NORMAL
+             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT)
+				return TYPE_FIRE;
+	}
+	//Crystallize
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
+		if(gBattleMoves[move].type == TYPE_ROCK)
+			return TYPE_ICE;
+	}
+	//Fight Spirit
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)){
+		if(gBattleMoves[move].type == TYPE_NORMAL
+             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT)
+				return TYPE_FIGHTING;
+	}
+
+    return gBattleMoves[move].type;
+}
+
 void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
 {
     u32 moveType, ateType, attackerAbility;

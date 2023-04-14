@@ -1860,17 +1860,20 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 {
     bool8 abilityNullifiesDamage = FALSE;
     u16 tempMod;
+    u8 moveType = GetTypeBeforeUsingMove(moveNum, userId);
 
 	if (gBattleMoves[moveNum].power == 0 || 
-	    gBattleMoves[moveNum].effect == EFFECT_HIDDEN_POWER)
+        gBattleMoves[moveNum].effect == EFFECT_SONICBOOM ||
+        gBattleMoves[moveNum].effect == EFFECT_LEVEL_DAMAGE ||
+        gBattleMoves[moveNum].effect == EFFECT_DRAGON_RAGE)
 		return MOVE_EFFECTIVENESS_STATUS;
 	else
 	{
-		u16 mod = sTypeEffectivenessTable[gBattleMoves[moveNum].type][gBattleMons[targetId].type1];
+		u16 mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
 
 		if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
 		{
-			u16 mod2 = sTypeEffectivenessTable[gBattleMoves[moveNum].type][gBattleMons[targetId].type2];
+			u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
 			MulModifier(&mod, mod2);
 		}
 
@@ -1894,13 +1897,13 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
         }
 
         if(gBattleMons[targetId].type1 == TYPE_FLYING  || gBattleMons[targetId].type2 == TYPE_FLYING){
-            if((gBattleWeather & WEATHER_STRONG_WINDS) && sTypeEffectivenessTable[gBattleMoves[moveNum].type][TYPE_FLYING]){
+            if((gBattleWeather & WEATHER_STRONG_WINDS) && sTypeEffectivenessTable[moveType][TYPE_FLYING]){
                 tempMod = UQ_4_12(0.5);
                 MulModifier(&mod, tempMod);
             }
         }
 
-        switch(gBattleMoves[moveNum].type){
+        switch(moveType){
             case TYPE_GROUND:
                 if(gBattleMons[targetId].ability == ABILITY_LEVITATE || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_LEVITATE))
                     abilityNullifiesDamage = TRUE;
@@ -1912,6 +1915,26 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_ELECTRIC:
+                if(gBattleMons[userId].ability == ABILITY_GROUND_SHOCK || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_GROUND_SHOCK)){
+                    if(gBattleMons[targetId].type1 == TYPE_GROUND  || gBattleMons[targetId].type2 == TYPE_GROUND){
+                        if(gBattleMons[targetId].type1 == TYPE_GROUND && gBattleMons[targetId].type2 != TYPE_GROUND){
+                            //Removes First Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                        }
+                        else if(gBattleMons[targetId].type2 == TYPE_GROUND && gBattleMons[targetId].type1 != TYPE_GROUND){
+                            //Removes Second Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+                        }
+                        else if(gBattleMons[targetId].type1 == TYPE_GROUND && gBattleMons[targetId].type2 == TYPE_GROUND){
+                            //Has the same type twice
+                            mod = UQ_4_12(1.0);
+                        }
+                        
+                        tempMod = UQ_4_12(2.0);
+                        MulModifier(&mod, tempMod);
+                    }
+                }
+
                 if(gBattleMons[targetId].ability == ABILITY_VOLT_ABSORB || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_VOLT_ABSORB))
                     abilityNullifiesDamage = TRUE;
 
@@ -1947,7 +1970,21 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             case TYPE_POISON:
                 if(gBattleMons[userId].ability == ABILITY_CORROSION || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_CORROSION)){
                     if(gBattleMons[targetId].type1 == TYPE_STEEL  || gBattleMons[targetId].type2 == TYPE_STEEL){
-                        mod = UQ_4_12(2.0);
+                        if(gBattleMons[targetId].type1 == TYPE_STEEL && gBattleMons[targetId].type2 != TYPE_STEEL){
+                            //Removes First Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                        }
+                        else if(gBattleMons[targetId].type2 == TYPE_STEEL && gBattleMons[targetId].type1 != TYPE_STEEL){
+                            //Removes Second Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+                        }
+                        else if(gBattleMons[targetId].type1 == TYPE_STEEL && gBattleMons[targetId].type2 == TYPE_STEEL){
+                            //Has the same type twice
+                            mod = UQ_4_12(1.0);
+                        }
+                        
+                        tempMod = UQ_4_12(2.0);
+                        MulModifier(&mod, tempMod);
                     }
                 }
 
@@ -2030,6 +2067,59 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 
                 if(gBattleMons[targetId].ability == ABILITY_MOUNTAINEER || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_MOUNTAINEER))
                     abilityNullifiesDamage = TRUE;
+            break;
+            case TYPE_NORMAL:
+                if(gBattleMons[userId].ability == ABILITY_SCRAPPY || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_SCRAPPY)){
+                    if(gBattleMons[targetId].type1 == TYPE_GHOST  || gBattleMons[targetId].type2 == TYPE_GHOST){
+                        if(gBattleMons[targetId].type1 == TYPE_GHOST && gBattleMons[targetId].type2 != TYPE_GHOST){
+                            //Removes First Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                        }
+                        else if(gBattleMons[targetId].type2 == TYPE_GHOST && gBattleMons[targetId].type1 != TYPE_GHOST){
+                            //Removes Second Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+                        }
+                        else if(gBattleMons[targetId].type1 == TYPE_GHOST && gBattleMons[targetId].type2 == TYPE_GHOST){
+                            //Has the same type twice
+                            mod = UQ_4_12(1.0);
+                        }
+                    }
+                }
+            break;
+            case TYPE_FIGHTING:
+                if(gBattleMons[userId].ability == ABILITY_SCRAPPY || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_SCRAPPY)){
+                    if(gBattleMons[targetId].type1 == TYPE_GHOST  || gBattleMons[targetId].type2 == TYPE_GHOST){
+                        if(gBattleMons[targetId].type1 == TYPE_GHOST && gBattleMons[targetId].type2 != TYPE_GHOST){
+                            //Removes First Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                        }
+                        else if(gBattleMons[targetId].type2 == TYPE_GHOST && gBattleMons[targetId].type1 != TYPE_GHOST){
+                            //Removes Second Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+                        }
+                        else if(gBattleMons[targetId].type1 == TYPE_GHOST && gBattleMons[targetId].type2 == TYPE_GHOST){
+                            //Has the same type twice
+                            mod = UQ_4_12(1.0);
+                        }
+                    }
+                }
+            break;
+            case TYPE_DRAGON:
+                if(gBattleMons[userId].ability == ABILITY_OVERWHELM || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_OVERWHELM)){
+                    if(gBattleMons[targetId].type1 == TYPE_FAIRY  || gBattleMons[targetId].type2 == TYPE_FAIRY){
+                        if(gBattleMons[targetId].type1 == TYPE_FAIRY && gBattleMons[targetId].type2 != TYPE_FAIRY){
+                            //Removes First Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                        }
+                        else if(gBattleMons[targetId].type2 == TYPE_FAIRY && gBattleMons[targetId].type1 != TYPE_FAIRY){
+                            //Removes Second Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+                        }
+                        else if(gBattleMons[targetId].type1 == TYPE_FAIRY && gBattleMons[targetId].type2 == TYPE_FAIRY){
+                            mod = UQ_4_12(1.0);
+                        }
+                    }
+                }
             break;
         }
 
