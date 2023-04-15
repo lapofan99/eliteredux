@@ -406,12 +406,12 @@ static const struct WindowTemplate sSummaryTemplate[] =
     },
     [PSS_LABEL_PANE_LEFT_BOTTOM] = {
         .bg = 0,
-        .tilemapLeft = 0,//3
+        .tilemapLeft = 0,
         .tilemapTop = 16,
         .width = 11,
         .height = 5,
         .paletteNum = 2,
-        .baseBlock = 416,//440 - 320 = 120
+        .baseBlock = 416,
     },
     [PSS_LABEL_PANE_LEFT_MOVE] = {
         .bg = 0,
@@ -420,7 +420,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 14,
         .height = 16,
         .paletteNum = 2,
-        .baseBlock = 418 + 120,
+        .baseBlock = 418,
     },
     [PSS_LABEL_PANE_RIGHT] = {
         .bg = 0,

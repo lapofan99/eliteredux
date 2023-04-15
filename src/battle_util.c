@@ -4971,7 +4971,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			break;
 		case ABILITY_NOCTURNAL:
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
-				!IsCurrentlyDay())
+				!IsCurrentlyDay() && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_DARK))
             {
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_NOCTURNAL;
@@ -5518,7 +5519,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Nocturnal
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NOCTURNAL)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone  && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_DARK))
 			{
 				gSpecialStatuses[battler].switchInInnateDone = TRUE;
                 gBattlerAttacker = battler;

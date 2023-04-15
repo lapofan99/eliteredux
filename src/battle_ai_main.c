@@ -567,6 +567,12 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
 
+        if ((moveType == TYPE_FLYING || moveType == TYPE_FIRE)
+          && (AI_DATA->defAbility == ABILITY_INFLATABLE || DefSpeciesHasInnate(ABILITY_INFLATABLE)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
         if (moveType == TYPE_ROCK
           && (AI_DATA->defAbility == ABILITY_MOUNTAINEER || DefSpeciesHasInnate(ABILITY_MOUNTAINEER)))
         {
@@ -592,7 +598,9 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
 
         if (moveType == TYPE_ELECTRIC
-          && (AI_DATA->defAbility == ABILITY_LIGHTNING_ROD || DefSpeciesHasInnate(ABILITY_LIGHTNING_ROD)))
+          && (AI_DATA->defAbility == ABILITY_LIGHTNING_ROD || BattlerHasInnate(battlerDef, ABILITY_LIGHTNING_ROD) || 
+             (gBattleMons[BATTLE_PARTNER(battlerDef)].ability == ABILITY_LIGHTNING_ROD && IsBattlerAlive(BATTLE_PARTNER(battlerDef))) || 
+             (BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_LIGHTNING_ROD) && IsBattlerAlive(BATTLE_PARTNER(battlerDef)))))
         {
             RETURN_SCORE_MINUS(20);
         }
@@ -613,31 +621,45 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         {
             RETURN_SCORE_MINUS(20);
         }
+
+        if (moveType == TYPE_FIRE
+          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)
+          && (AI_DATA->defAbility == ABILITY_SEAWEED || BattlerHasInnate(battlerDef, ABILITY_SEAWEED)))
+        {
+            score += 2;
+        }
         
         // Innates test
+        if (moveType == TYPE_GRASS
+          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE)
+          && (AI_DATA->atkAbility == ABILITY_SEAWEED || AtkSpeciesHasInnate(ABILITY_SEAWEED)))
+        {
+            score += 2;
+        }
+
         if (moveType == TYPE_ELECTRIC
-          && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GROUND)
+          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GROUND)
           && (AI_DATA->atkAbility == ABILITY_GROUND_SHOCK || AtkSpeciesHasInnate(ABILITY_GROUND_SHOCK)))
         {
             score += 2;
         }
 
         if (moveType == TYPE_ELECTRIC
-          && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_ELECTRIC)
+          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ELECTRIC)
           && (AI_DATA->atkAbility == ABILITY_OVERCHARGE || AtkSpeciesHasInnate(ABILITY_OVERCHARGE)))
         {
             score += 2;
         }
 
         if (moveType == TYPE_FIRE
-          && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_ROCK)
+          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK)
           && (AI_DATA->atkAbility == ABILITY_MOLTEN_DOWN || AtkSpeciesHasInnate(ABILITY_MOLTEN_DOWN)))
         {
             score += 2;
         }
 
         if (moveType == TYPE_DRAGON
-          && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_FAIRY)
+          && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FAIRY)
           && (AI_DATA->atkAbility == ABILITY_OVERWHELM || AtkSpeciesHasInnate(ABILITY_OVERWHELM)))
         {
             score += 2;
@@ -4859,7 +4881,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         break;
     case EFFECT_RECHARGE:
-        if (AI_DATA->atkAbility == ABILITY_RAMPAGE && CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
+        if ((AI_DATA->atkAbility == ABILITY_RAMPAGE || AtkSpeciesHasInnate(ABILITY_RAMPAGE))&& CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
             score += 4; // No recharge if Rampage attacker KOs the target
         break;
     //case EFFECT_EXTREME_EVOBOOST: // TODO
