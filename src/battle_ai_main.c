@@ -603,6 +603,11 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
 
+        if (TestMoveFlags(move, FLAG_BONE_BASED) && (AI_DATA->defAbility == ABILITY_BONE_ZONE || DefSpeciesHasInnate(ABILITY_BONE_ZONE)))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
         if (move == MOVE_LEECH_SEED
           && (AI_DATA->defAbility == ABILITY_IMPENETRABLE || DefSpeciesHasInnate(ABILITY_IMPENETRABLE)))
         {

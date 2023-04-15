@@ -406,12 +406,12 @@ static const struct WindowTemplate sSummaryTemplate[] =
     },
     [PSS_LABEL_PANE_LEFT_BOTTOM] = {
         .bg = 0,
-        .tilemapLeft = 3,
+        .tilemapLeft = 0,//3
         .tilemapTop = 16,
-        .width = 8,
+        .width = 11,
         .height = 5,
         .paletteNum = 2,
-        .baseBlock = 44,
+        .baseBlock = 416,//440 - 320 = 120
     },
     [PSS_LABEL_PANE_LEFT_MOVE] = {
         .bg = 0,
@@ -420,7 +420,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 14,
         .height = 16,
         .paletteNum = 2,
-        .baseBlock = 418,
+        .baseBlock = 418 + 120,
     },
     [PSS_LABEL_PANE_RIGHT] = {
         .bg = 0,
@@ -3144,8 +3144,8 @@ static void PrintNotEggInfo(void)
     else
         CopyItemName(sMonSummaryScreen->summary.item, gStringVar1);
 
-    x = GetStringCenterAlignXOffset(0, gStringVar1, 60);
-    AddTextPrinterParameterized4(PSS_LABEL_PANE_LEFT_BOTTOM, 0, 9, 7, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, sText_HeldItem);
+    x = GetStringCenterAlignXOffset(0, gStringVar1, 84);
+    AddTextPrinterParameterized4(PSS_LABEL_PANE_LEFT_BOTTOM, 0, 33, 7, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, sText_HeldItem);
     AddTextPrinterParameterized4(PSS_LABEL_PANE_LEFT_BOTTOM, 0, x, 19, 0, 0, sTextColors[PSS_COLOR_BLACK_GRAY_SHADOW], 0, gStringVar1);
 }
 
@@ -4870,7 +4870,7 @@ static void CreateHeldItemSprite(struct Pokemon *mon)
         gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]].callback = SpriteCallbackDummy;
         gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]].oam.priority = 0;
         gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]].x = 16;
-        gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]].y = 153;
+        gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_ITEM]].y = 145;
     }
 }
 
