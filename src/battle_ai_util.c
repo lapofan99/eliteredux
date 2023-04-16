@@ -1278,9 +1278,10 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return TRUE;
 }
 
-bool32 DoesBattlerIgnoreAbilityChecks(u16 atkAbility, u16 move)
+bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u16 move)
 {
     u32 i;
+    u16 atkAbility = gBattleMons[gActiveBattler].ability;
     
     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
@@ -1296,6 +1297,11 @@ bool32 DoesBattlerIgnoreAbilityChecks(u16 atkAbility, u16 move)
       || atkAbility == ABILITY_TURBOBLAZE)
         return TRUE;
 
+    if(BattlerHasInnate(battler, ABILITY_MOLD_BREAKER) || 
+       BattlerHasInnate(battler, ABILITY_TERAVOLT) || 
+       BattlerHasInnate(battler, ABILITY_TURBOBLAZE))
+        return TRUE;
+
     return FALSE;
 }
 
@@ -1309,7 +1315,8 @@ bool32 AI_WeatherHasEffect(void)
     for (i = 0; i < gBattlersCount; i++)
     {
         if (IsBattlerAlive(i)
-          && (AI_GetAbility(i) == ABILITY_AIR_LOCK || AI_GetAbility(i) == ABILITY_CLOUD_NINE))
+          && (AI_GetAbility(i) == ABILITY_AIR_LOCK   || BattlerHasInnate(i, ABILITY_AIR_LOCK) ||
+              AI_GetAbility(i) == ABILITY_CLOUD_NINE || BattlerHasInnate(i, ABILITY_CLOUD_NINE)))
             return FALSE;
     }
     return TRUE;
@@ -1584,7 +1591,7 @@ bool32 ShouldTryOHKO(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbilit
     if (holdEffect == HOLD_EFFECT_FOCUS_SASH && AtMaxHp(battlerDef))
         return FALSE;
     
-    if (!DoesBattlerIgnoreAbilityChecks(atkAbility, move) && defAbility == ABILITY_STURDY)
+    if (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move) && defAbility == ABILITY_STURDY)
         return FALSE;
     
     if ((((gStatuses3[battlerDef] & STATUS3_ALWAYS_HITS)
@@ -1611,10 +1618,15 @@ bool32 ShouldSetSandstorm(u8 battler, u16 ability, u16 holdEffect)
         return FALSE;
     
     if (ability == ABILITY_SAND_VEIL
+      || BattlerHasInnate(battler, ABILITY_SAND_VEIL)
       || ability == ABILITY_SAND_RUSH
+      || BattlerHasInnate(battler, ABILITY_SAND_RUSH)
       || ability == ABILITY_SAND_FORCE
+      || BattlerHasInnate(battler, ABILITY_SAND_FORCE)
       || ability == ABILITY_OVERCOAT
+      || BattlerHasInnate(battler, ABILITY_OVERCOAT)
       || ability == ABILITY_MAGIC_GUARD
+      || BattlerHasInnate(battler, ABILITY_MAGIC_GUARD)
       || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES
       || IS_BATTLER_OF_TYPE(battler, TYPE_ROCK)
       || IS_BATTLER_OF_TYPE(battler, TYPE_STEEL)
@@ -1635,11 +1647,17 @@ bool32 ShouldSetHail(u8 battler, u16 ability, u16 holdEffect)
         return FALSE;
     
     if (ability == ABILITY_SNOW_CLOAK
+      || BattlerHasInnate(battler, ABILITY_SNOW_CLOAK)
       || ability == ABILITY_ICE_BODY
+      || BattlerHasInnate(battler, ABILITY_ICE_BODY)
       || ability == ABILITY_FORECAST
+      || BattlerHasInnate(battler, ABILITY_FORECAST)
       || ability == ABILITY_SLUSH_RUSH
+      || BattlerHasInnate(battler, ABILITY_SLUSH_RUSH)
       || ability == ABILITY_MAGIC_GUARD
+      || BattlerHasInnate(battler, ABILITY_MAGIC_GUARD)
       || ability == ABILITY_OVERCOAT
+      || BattlerHasInnate(battler, ABILITY_OVERCOAT)
       || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES
       || IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
       || HasMove(battler, MOVE_BLIZZARD)
@@ -1660,10 +1678,15 @@ bool32 ShouldSetRain(u8 battlerAtk, u16 atkAbility, u16 holdEffect)
     
     if (holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA
      && (atkAbility == ABILITY_SWIFT_SWIM
+      || BattlerHasInnate(battlerAtk, ABILITY_SWIFT_SWIM)
       || atkAbility == ABILITY_FORECAST
+      || BattlerHasInnate(battlerAtk, ABILITY_FORECAST)
       || atkAbility == ABILITY_HYDRATION
+      || BattlerHasInnate(battlerAtk, ABILITY_HYDRATION)
       || atkAbility == ABILITY_RAIN_DISH
+      || BattlerHasInnate(battlerAtk, ABILITY_RAIN_DISH)
       || atkAbility == ABILITY_DRY_SKIN
+      || BattlerHasInnate(battlerAtk, ABILITY_DRY_SKIN)
       || HasMoveEffect(battlerAtk, EFFECT_THUNDER)
       || HasMoveEffect(battlerAtk, EFFECT_HURRICANE)
       || HasMoveEffect(battlerAtk, EFFECT_WEATHER_BALL)
@@ -1683,11 +1706,17 @@ bool32 ShouldSetSun(u8 battlerAtk, u16 atkAbility, u16 holdEffect)
     
     if (holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA
      && (atkAbility == ABILITY_CHLOROPHYLL
+      || BattlerHasInnate(battlerAtk, ABILITY_CHLOROPHYLL)
       || atkAbility == ABILITY_FLOWER_GIFT
+      || BattlerHasInnate(battlerAtk, ABILITY_FLOWER_GIFT)
       || atkAbility == ABILITY_FORECAST
+      || BattlerHasInnate(battlerAtk, ABILITY_FORECAST)
       || atkAbility == ABILITY_LEAF_GUARD
+      || BattlerHasInnate(battlerAtk, ABILITY_LEAF_GUARD)
       || atkAbility == ABILITY_SOLAR_POWER
+      || BattlerHasInnate(battlerAtk, ABILITY_SOLAR_POWER)
       || atkAbility == ABILITY_HARVEST
+      || BattlerHasInnate(battlerAtk, ABILITY_HARVEST)
       || HasMoveEffect(battlerAtk, EFFECT_SOLARBEAM)
       || HasMoveEffect(battlerAtk, EFFECT_MORNING_SUN)
       || HasMoveEffect(battlerAtk, EFFECT_SYNTHESIS)
@@ -1746,21 +1775,30 @@ void ProtectChecks(u8 battlerAtk, u8 battlerDef, u16 move, u16 predictedMove, s1
 // stat stages
 bool32 ShouldLowerStat(u8 battler, u16 battlerAbility, u8 stat)
 {
-    if ((gBattleMons[battler].statStages[stat] > MIN_STAT_STAGE && battlerAbility != ABILITY_CONTRARY)
-      || (battlerAbility == ABILITY_CONTRARY && gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE))
+     if ((gBattleMons[battler].statStages[stat] > MIN_STAT_STAGE && battlerAbility != ABILITY_CONTRARY && !BattlerHasInnate(battler, ABILITY_CONTRARY))
+      || ((battlerAbility == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY)) && gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE))
     {
         if (battlerAbility == ABILITY_CLEAR_BODY
+         || BattlerHasInnate(battler, ABILITY_CLEAR_BODY)
          || battlerAbility == ABILITY_WHITE_SMOKE
-         || battlerAbility == ABILITY_FULL_METAL_BODY)
+         || BattlerHasInnate(battler, ABILITY_WHITE_SMOKE)
+         || battlerAbility == ABILITY_FULL_METAL_BODY
+         || BattlerHasInnate(battler, ABILITY_FULL_METAL_BODY))
             return FALSE;
 
-        if (stat == STAT_ATK && (battlerAbility == ABILITY_HYPER_CUTTER || battlerAbility == ABILITY_DEFIANT))
+        if (stat == STAT_ATK && 
+           (battlerAbility == ABILITY_HYPER_CUTTER || 
+            BattlerHasInnate(battler, ABILITY_HYPER_CUTTER) ||
+            battlerAbility == ABILITY_DEFIANT ||
+            BattlerHasInnate(battler, ABILITY_DEFIANT)))
             return FALSE;
 
-        if (stat == STAT_DEF && battlerAbility == ABILITY_BIG_PECKS)
-            return FALSE;
+        /*if (stat == STAT_DEF && 
+            (battlerAbility == ABILITY_BIG_PECKS || BattlerHasInnate(battler, ABILITY_BIG_PECKS)))
+            return FALSE;*/
 
-        if (stat == STAT_SPATK && battlerAbility == ABILITY_COMPETITIVE)
+        if (stat == STAT_SPATK && 
+           (battlerAbility == ABILITY_COMPETITIVE || BattlerHasInnate(battler, ABILITY_COMPETITIVE)))
             return FALSE;
             
         return TRUE;
@@ -1771,8 +1809,10 @@ bool32 ShouldLowerStat(u8 battler, u16 battlerAbility, u8 stat)
 
 bool32 BattlerStatCanRise(u8 battler, u16 battlerAbility, u8 stat)
 {
-    if ((gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE && battlerAbility != ABILITY_CONTRARY)
-      || (battlerAbility == ABILITY_CONTRARY && gBattleMons[battler].statStages[stat] > MIN_STAT_STAGE))
+    if ((gBattleMons[battler].statStages[stat] < MAX_STAT_STAGE && 
+          (battlerAbility != ABILITY_CONTRARY || !BattlerHasInnate(battler, ABILITY_CONTRARY)))
+      || ((battlerAbility == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY))
+          && gBattleMons[battler].statStages[stat] > MIN_STAT_STAGE))
         return TRUE;
     return FALSE;
 }
@@ -1832,10 +1872,19 @@ bool32 ShouldLowerAttack(u8 battlerAtk, u8 battlerDef, u16 defAbility)
     if (gBattleMons[battlerDef].statStages[STAT_ATK] > 4
       && HasMoveWithSplit(battlerDef, SPLIT_PHYSICAL)
       && defAbility != ABILITY_CONTRARY
+      && !BattlerHasInnate(battlerDef, ABILITY_CONTRARY)
       && defAbility != ABILITY_CLEAR_BODY
+      && !BattlerHasInnate(battlerDef, ABILITY_CLEAR_BODY)
       && defAbility != ABILITY_WHITE_SMOKE
+      && !BattlerHasInnate(battlerDef, ABILITY_WHITE_SMOKE)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_HYPER_CUTTER)
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY)
+      && defAbility != ABILITY_FORT_KNOX
+      && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
+      && defAbility != ABILITY_RUN_AWAY
+      && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
+      && defAbility != ABILITY_HYPER_CUTTER
+      && !BattlerHasInnate(battlerDef, ABILITY_HYPER_CUTTER))
         return TRUE;
     return FALSE;
 }
@@ -1848,10 +1897,17 @@ bool32 ShouldLowerDefense(u8 battlerAtk, u8 battlerDef, u16 defAbility)
     if (gBattleMons[battlerDef].statStages[STAT_DEF] > 4
       && HasMoveWithSplit(battlerAtk, SPLIT_PHYSICAL)
       && defAbility != ABILITY_CONTRARY
+      && !BattlerHasInnate(battlerDef, ABILITY_CONTRARY)
       && defAbility != ABILITY_CLEAR_BODY
+      && !BattlerHasInnate(battlerDef, ABILITY_CLEAR_BODY)
       && defAbility != ABILITY_WHITE_SMOKE
+      && !BattlerHasInnate(battlerDef, ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_FORT_KNOX
+      && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
+      && defAbility != ABILITY_RUN_AWAY
+      && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_BIG_PECKS)
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
     return FALSE;
 }
@@ -1863,9 +1919,17 @@ bool32 ShouldLowerSpeed(u8 battlerAtk, u8 battlerDef, u16 defAbility)
 
     if (IsAiFaster(AI_CHECK_SLOWER)
       && defAbility != ABILITY_CONTRARY
+      && !BattlerHasInnate(battlerDef, ABILITY_CONTRARY)
       && defAbility != ABILITY_CLEAR_BODY
+      && !BattlerHasInnate(battlerDef, ABILITY_CLEAR_BODY)
+      && defAbility != ABILITY_WHITE_SMOKE
+      && !BattlerHasInnate(battlerDef, ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_FORT_KNOX
+      && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
+      && defAbility != ABILITY_RUN_AWAY
+      && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_WHITE_SMOKE)
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
     return FALSE;
 }
@@ -1878,9 +1942,17 @@ bool32 ShouldLowerSpAtk(u8 battlerAtk, u8 battlerDef, u16 defAbility)
     if (gBattleMons[battlerDef].statStages[STAT_SPATK] > 4
       && HasMoveWithSplit(battlerDef, SPLIT_SPECIAL)
       && defAbility != ABILITY_CONTRARY
+      && !BattlerHasInnate(battlerDef, ABILITY_CONTRARY)
       && defAbility != ABILITY_CLEAR_BODY
+      && !BattlerHasInnate(battlerDef, ABILITY_CLEAR_BODY)
+      && defAbility != ABILITY_WHITE_SMOKE
+      && !BattlerHasInnate(battlerDef, ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_FORT_KNOX
+      && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
+      && defAbility != ABILITY_RUN_AWAY
+      && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_WHITE_SMOKE)
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
     return FALSE;
 }
@@ -1893,9 +1965,17 @@ bool32 ShouldLowerSpDef(u8 battlerAtk, u8 battlerDef, u16 defAbility)
     if (gBattleMons[battlerDef].statStages[STAT_SPDEF] > 4
       && HasMoveWithSplit(battlerAtk, SPLIT_SPECIAL)
       && defAbility != ABILITY_CONTRARY
+      && !BattlerHasInnate(battlerDef, ABILITY_CONTRARY)
       && defAbility != ABILITY_CLEAR_BODY
+      && !BattlerHasInnate(battlerDef, ABILITY_CLEAR_BODY)
+      && defAbility != ABILITY_WHITE_SMOKE
+      && !BattlerHasInnate(battlerDef, ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_FORT_KNOX
+      && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
+      && defAbility != ABILITY_RUN_AWAY
+      && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_WHITE_SMOKE)
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
     return FALSE;
 }
@@ -1906,10 +1986,17 @@ bool32 ShouldLowerAccuracy(u8 battlerAtk, u8 battlerDef, u16 defAbility)
         return FALSE; // Don't bother lowering stats if can kill enemy.
 
     if (defAbility != ABILITY_CONTRARY
+      && !BattlerHasInnate(battlerDef, ABILITY_CONTRARY)
       && defAbility != ABILITY_CLEAR_BODY
+      && !BattlerHasInnate(battlerDef, ABILITY_CLEAR_BODY)
       && defAbility != ABILITY_WHITE_SMOKE
+      && !BattlerHasInnate(battlerDef, ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_FORT_KNOX
+      && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
+      && defAbility != ABILITY_RUN_AWAY
+      && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_KEEN_EYE)
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
     return FALSE;
 }
@@ -1921,9 +2008,17 @@ bool32 ShouldLowerEvasion(u8 battlerAtk, u8 battlerDef, u16 defAbility)
 
     if (gBattleMons[battlerDef].statStages[STAT_EVASION] > DEFAULT_STAT_STAGE
       && defAbility != ABILITY_CONTRARY
+      && !BattlerHasInnate(battlerDef, ABILITY_CONTRARY)
       && defAbility != ABILITY_CLEAR_BODY
+      && !BattlerHasInnate(battlerDef, ABILITY_CLEAR_BODY)
+      && defAbility != ABILITY_WHITE_SMOKE
+      && !BattlerHasInnate(battlerDef, ABILITY_WHITE_SMOKE)
+      && defAbility != ABILITY_FORT_KNOX
+      && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
+      && defAbility != ABILITY_RUN_AWAY
+      && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
       && defAbility != ABILITY_FULL_METAL_BODY
-      && defAbility != ABILITY_WHITE_SMOKE)
+      && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
     return FALSE;
 }
