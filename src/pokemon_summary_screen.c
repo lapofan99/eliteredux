@@ -1007,7 +1007,7 @@ const u8 sText_TitleInfo[] = _("Pokémon Info");
 const u8 sText_TitleMemo[] = _("Trainer Memo");
 const u8 sText_TitleAbilities[] = _("Abilities");
 const u8 sText_TitleSkills[] = _("Pokémon Stats");
-const u8 sText_TitleBattleMoves[] = _("Battle Moves");
+const u8 sText_TitleBattleMoves[] = _("Moves");
 const u8 sText_TitleCondition[] = _("Condition");
 const u8 sText_TitleContestMoves[] = _("Contest Moves");
 const u8 sText_TitleRibbons[] = _("Ribbons");
@@ -1015,7 +1015,7 @@ const u8 sText_TitleIVs[] = _("Pokémon IVs");
 const u8 sText_TitleEVs[] = _("Pokémon EVs");
 const u8 sText_TitlePage[] = _("{DPAD_LEFTRIGHT}Page");
 const u8 sText_TitlePageDetail[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Detail");
-const u8 sText_TitlePickSwitch[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}Switch");
+const u8 sText_TitlePickSwitch[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}Switch {L_BUTTON}Details");
 const u8 sText_TitlePageIVs[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Modify");
 const u8 sText_TitlePageEVs[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}EVs");
 const u8 sText_TitlePageStats[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Stats");
@@ -4112,13 +4112,13 @@ static void BufferMonPokemonAbilityAndInnates(void)
 
 	// Main Ability
 	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_MainAbility);
-	AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
 	// Name ---------------------------------------------------------------------------------------------------
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
-	AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, x, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
 	// Description ---------------------------------------------------------------------------------------------------
 	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
-	AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, (y + 8), 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
 	
 	// Innates
 
@@ -4128,13 +4128,13 @@ static void BufferMonPokemonAbilityAndInnates(void)
 
 			//Title
 			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
-			AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+            PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
 			// Name ---------------------------------------------------------------------------------------------------
 			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[gBaseStats[species].innates[i]]);
-			AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, x, y, 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+            PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
 			// Description ---------------------------------------------------------------------------------------------------
 			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[gBaseStats[species].innates[i]]);
-			AddTextPrinterParameterized4(PSS_LABEL_PANE_RIGHT, 0, 0, (y + 8), 0, 0, sTextColors[PSS_COLOR_WHITE_BLACK_SHADOW], 0, gStringVar4);
+			PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
 		}
 	}
 }

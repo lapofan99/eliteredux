@@ -3217,6 +3217,14 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
     }
 
+    //Player can Defeat the AI in the next turn, force it to use a damaging move
+    if(gBattleMoves[move].split == SPLIT_STATUS && CanTargetFaintAi(battlerDef, battlerAtk))
+        score -= 20;
+
+    //Player can Defeat the AI in the next turn, the Player is faster, force it to use a priority move
+    if(gBattleMoves[move].priority > 0 && CanTargetFaintAi(battlerDef, battlerAtk) && GetWhoStrikesFirst(battlerDef, battlerAtk, TRUE) == 0)
+        score += 8;
+
     if (HOLD_EFFECT_CHOICE(AI_DATA->atkHoldEffect))
     {
         // If AI can't 2HKO foe OR foe can KO AI and is faster, force it to switch
@@ -3281,7 +3289,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 // stat raising effects
 	case EFFECT_ATTACK_UP:
     case EFFECT_ATTACK_UP_2:
-        if (MovesWithSplitUnusable(battlerAtk, battlerDef, SPLIT_PHYSICAL))
+        if (MovesWithSplitUnusable(battlerAtk, battlerDef, SPLIT_PHYSICAL))//asdf
         {
             score -= 8;
             break;
