@@ -634,6 +634,7 @@ static void HandleInputChooseMove(void)
 
     if (gMain.newKeys & A_BUTTON)
     {
+        TryToHideMoveInfoWindow();
         FlagClear(FLAG_SYS_MOVE_INFO);
         PlaySE(SE_SELECT);
         if (moveInfo->moves[gMoveSelectionCursor[gActiveBattler]] == MOVE_CURSE)
@@ -737,6 +738,7 @@ static void HandleInputChooseMove(void)
         HideMegaTriggerSprite();
         PlayerBufferExecCompleted();
         FlagClear(FLAG_SYS_MOVE_INFO);
+        TryToHideMoveInfoWindow();
     }
     else if (JOY_NEW(L_BUTTON) || gPlayerDpadHoldFrames > 59)
     {
@@ -3439,6 +3441,7 @@ static void PlayerHandleChooseMove(void)
     {
         InitMoveSelectionsVarsAndStrings();
         gBattleStruct->mega.playerSelect = FALSE;
+        TryToAddMoveInfoWindow();
         if (!IsMegaTriggerSpriteActive())
             gBattleStruct->mega.triggerSpriteId = 0xFF;
         if (CanMegaEvolve(gActiveBattler))
