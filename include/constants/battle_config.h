@@ -171,4 +171,8 @@
 #define B_ENABLE_DEBUG                  TRUE    // If set to TRUE, enables a debug menu to use in battles by pressing the Select button.
 #define B_PERFECT_IVS         			TRUE    // If set to TRUE, the stat calculation makes it as if the Pokemon has perfect Ivs.
 
+// Item Restoration Settings
+#define B_RESTORE_ALL_ITEMS             TRUE     // If set to TRUE, all items are restored after Trainer battles, including berries, even they were not stolen.
+#define B_ALWAYS_RESTORE_ITEMS          TRUE     // If set to TRUE, stolen items (or all items if set above) will be restored after Wild battles.
+
 #endif // GUARD_CONSTANTS_BATTLE_CONFIG_H
