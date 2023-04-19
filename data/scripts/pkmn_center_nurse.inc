@@ -20,19 +20,19 @@ Common_EventScript_PkmnCenterNurse::
     end
 
 EventScript_PkmnCenterNurseHasVial::
-    call_if_set FLAG_RECEIVED_OLD_ROD, Give_Pokeblock_Case
-    checkitem ITEM_RARE_CANDY, 400
+    // call_if_set FLAG_RECEIVED_OLD_ROD, Give_Pokeblock_Case
+    /*checkitem ITEM_RARE_CANDY, 400
     compare VAR_RESULT, TRUE
-    call_if_ne ADDITEM_RARE_CANDY
-    checkitem ITEM_MASTER_BALL, 400
+    call_if_ne ADDITEM_RARE_CANDY*/
+    checkitem ITEM_MASTER_BALL, 800
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_MASTER_BALL
-    checkitem ITEM_ABILITY_PATCH, 400
+    /*checkitem ITEM_ABILITY_PATCH, 400
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_ABILITY_PATCH
     checkitem ITEM_ABILITY_CAPSULE, 400
     compare VAR_RESULT, TRUE
-    call_if_ne ADDITEM_ABILITY_CAPSULE
+    call_if_ne ADDITEM_ABILITY_CAPSULE*/
     setvar VAR_0x8006, 4
     special GetSettingsMonStats
     call Give_Nuzlocke_Items
@@ -179,9 +179,9 @@ Give_Nuzlocke_Items:
     	call_if_set FLAG_BADGE04_GET, Give_Thief_Items_After_Flannery
     	call_if_set FLAG_BADGE05_GET, Give_Thief_Items_After_Norman
     	call_if_set FLAG_BADGE06_GET, Give_Thief_Items_After_Winoma
-	checkitem ITEM_BIG_PEARL, 400
+	/*checkitem ITEM_BIG_PEARL, 400
 	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_BIG_PEARL
+	call_if_ne ADDITEM_BIG_PEARL*/
 	checkitem ITEM_MAX_REPEL, 250
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_MAX_REPEL
@@ -200,16 +200,16 @@ Give_BattleItems:
   checkitem ITEM_THROAT_SPRAY, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_THROAT_SPRAY
-  checkitem ITEM_ADAMANT_ORB, 50
+  checkitem ITEM_ADAMANT_ORB, 5
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_ADAMANT_ORB
-  checkitem ITEM_LUSTROUS_ORB, 50
+  checkitem ITEM_LUSTROUS_ORB, 5
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_LUSTROUS_ORB
-  checkitem ITEM_GRISEOUS_ORB, 50
+  checkitem ITEM_GRISEOUS_ORB, 5
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_GRISEOUS_ORB
-  checkitem ITEM_SOUL_DEW, 50
+  checkitem ITEM_SOUL_DEW, 5
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_SOUL_DEW
   checkitem ITEM_AIR_BALLOON, 50
@@ -1160,6 +1160,33 @@ Give_Cut_Items_After_Roxanne:
 	checkitem ITEM_MISTY_SEED, 100
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_MISTY_SEED
+	checkitem ITEM_AGUAV_BERRY, 100 // Aguav
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_AGUAV_BERRY
+	checkitem ITEM_APICOT_BERRY, 100 // Apicot
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_APICOT_BERRY
+	checkitem ITEM_CUSTAP_BERRY, 100 // Custap
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_CUSTAP_BERRY
+	checkitem ITEM_FIGY_BERRY, 100 // Figy
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_FIGY_BERRY
+	checkitem ITEM_IAPAPA_BERRY, 100 // Iapapa
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_IAPAPA_BERRY
+	checkitem ITEM_LIECHI_BERRY, 100 // Liechi
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_LIECHI_BERRY
+	checkitem ITEM_PETAYA_BERRY, 100 // Petaya
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_PETAYA_BERRY
+	checkitem ITEM_SALAC_BERRY, 100 // Salac
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_SALAC_BERRY
+	checkitem ITEM_WIKI_BERRY, 100 // Wiki
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_WIKI_BERRY
 	checkitem ITEM_CHERI_BERRY, 100
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_CHERI_BERRY
@@ -2171,7 +2198,7 @@ ADD_ITEM_WATER_GEM:
 	return
 
 ADDITEM_MASTER_BALL:
-	additem ITEM_MASTER_BALL, 400
+	additem ITEM_MASTER_BALL, 800
 	return
 
 ADDITEM_ABILITY_CAPSULE:
@@ -2236,6 +2263,42 @@ ADDITEM_MISTY_SEED:
 
 ADDITEM_CHERI_BERRY:
 	additem ITEM_CHERI_BERRY, 100
+	return
+
+ADDITEM_AGUAV_BERRY:
+	additem ITEM_AGUAV_BERRY, 100
+	return
+
+ADDITEM_APICOT_BERRY:
+	additem ITEM_APICOT_BERRY, 100
+	return
+
+ADDITEM_CUSTAP_BERRY:
+	additem ITEM_CUSTAP_BERRY, 100
+	return
+
+ADDITEM_FIGY_BERRY:
+	additem ITEM_FIGY_BERRY, 100
+	return
+
+ADDITEM_IAPAPA_BERRY:
+	additem ITEM_IAPAPA_BERRY, 100
+	return
+
+ADDITEM_LIECHI_BERRY:
+	additem ITEM_LIECHI_BERRY, 100
+	return
+
+ADDITEM_PETAYA_BERRY:
+	additem ITEM_PETAYA_BERRY, 100
+	return
+
+ADDITEM_SALAC_BERRY:
+	additem ITEM_SALAC_BERRY, 100
+	return
+
+ADDITEM_WIKI_BERRY:
+	additem ITEM_WIKI_BERRY, 100
 	return
 
 ADDITEM_CHESTO_BERRY:
@@ -2355,19 +2418,19 @@ ADDITEM_THROAT_SPRAY:
 	return
 
 ADDITEM_ADAMANT_ORB:
-	additem ITEM_ADAMANT_ORB, 50
+	additem ITEM_ADAMANT_ORB, 5
 	return
 
 ADDITEM_LUSTROUS_ORB:
-	additem ITEM_LUSTROUS_ORB, 50
+	additem ITEM_LUSTROUS_ORB, 5
 	return
 
 ADDITEM_GRISEOUS_ORB:
-	additem ITEM_GRISEOUS_ORB, 50
+	additem ITEM_GRISEOUS_ORB, 5
 	return
 
 ADDITEM_SOUL_DEW:
-	additem ITEM_SOUL_DEW, 50
+	additem ITEM_SOUL_DEW, 5
 	return
 
 ADDITEM_AIR_BALLOON:

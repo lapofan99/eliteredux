@@ -4413,6 +4413,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM44_REST)
                                         | TMHM1(TM45_ATTRACT)
                                         | TMHM1(TM49_SLEEP_TALK)
+                                        | TMHM1(TM51_ROOST) // new
                                         | TMHM1(TM55_SCALD)
                                         | TMHM1(TM58_ENDURE)
                                         | TMHM1(TM59_DRAGON_PULSE),
@@ -11257,6 +11258,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM71_STONE_EDGE)
                                         | TMHM2(TM77_STRUGGLE_BUG)
                                         | TMHM2(TM78_BULLDOZE)
+                                        | TMHM2(TM81_X_SCISSOR) // new
                                         | TMHM2(TM82_DRAGON_TAIL)
                                         | TMHM2(TM89_U_TURN)
                                         | TMHM2(TM90_SUBSTITUTE)
@@ -18384,6 +18386,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM63_ROCK_SLIDE),
                                           TMHM2(TM65_SHADOW_CLAW)
                                         | TMHM2(TM68_GIGA_IMPACT)
+                                        | TMHM2(TM71_STONE_EDGE) // new
                                         | TMHM2(TM75_SWORDS_DANCE)
                                         | TMHM2(TM76_STEALTH_ROCK)
                                         | TMHM2(TM78_BULLDOZE)
