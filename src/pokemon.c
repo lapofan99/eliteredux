@@ -8886,11 +8886,21 @@ bool8 SpeciesHasInnate(u16 species, u16 ability){
 	
 	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
 		if(gBaseStats[species].innates[i] == ability){
-            //gBattleScripting.abilityPopupOverwrite = ability;
-			//gLastUsedAbility = ability;
 			return TRUE;
         }
 	}
 	
 	return FALSE;
+}
+
+u8 GetSpeciesInnateNum(u16 species, u16 ability){
+	u8 i;
+	
+	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
+		if(gBaseStats[species].innates[i] == ability){
+			return i;
+        }
+	}
+	
+	return i;
 }

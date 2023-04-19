@@ -4998,16 +4998,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         }
 		
-		
 		// Innates on Switch
 		// Screen Cleaner
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCREEN_CLEANER)){
-            if (!gSpecialStatuses[battler].switchInInnateDone && TryRemoveScreens(battler))
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCREEN_CLEANER)] && TryRemoveScreens(battler))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_SCREEN_CLEANER;
 				gLastUsedAbility = ABILITY_SCREEN_CLEANER;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SCREENCLEANER;
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCREEN_CLEANER)] = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
             }
@@ -5022,9 +5021,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
                 effect++;
             }
-            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInInnateDone)
+            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DRIZZLE)])
             {
-                gSpecialStatuses[battler].switchInInnateDone = 1;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DRIZZLE)] = 1;
                 BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
                 effect++;
             }
@@ -5039,9 +5038,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
                 effect++;
             }
-            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInInnateDone)
+            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SAND_STREAM)])
             {
-                gSpecialStatuses[battler].switchInInnateDone = 1;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SAND_STREAM)] = 1;
                 BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
                 effect++;
             }
@@ -5056,9 +5055,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
                 effect++;
             }
-            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInInnateDone)
+            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DROUGHT)])
             {
-                gSpecialStatuses[battler].switchInInnateDone = 1;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DROUGHT)] = 1;
                 BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
                 effect++;
             }
@@ -5073,9 +5072,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
                 effect++;
             }
-            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInInnateDone)
+            else if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_PRIMAL_ANY && !gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SNOW_WARNING)])
             {
-                gSpecialStatuses[battler].switchInInnateDone = 1;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SNOW_WARNING)] = 1;
                 BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
                 effect++;
             }
@@ -5160,7 +5159,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Download
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DOWNLOAD)){
-            if (!gSpecialStatuses[battler].switchInInnateDone)
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DOWNLOAD)])
             {
                 u32 statId, opposingBattler;
                 u32 opposingDef = 0, opposingSpDef = 0;
@@ -5186,7 +5185,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 else
                     statId = STAT_SPATK;
 
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DOWNLOAD)] = TRUE;
 
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
@@ -5202,10 +5201,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Lets Roll
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_LETS_ROLL)])
 			{
                 gBattlerAttacker = battler;
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_LETS_ROLL)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_LETS_ROLL;
 				gLastUsedAbility = ABILITY_LETS_ROLL;
 				SET_STATCHANGER(STAT_DEF, 1, FALSE);
@@ -5217,11 +5216,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Slow Start
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SLOW_START)){
-            if (!gSpecialStatuses[battler].switchInInnateDone)
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SLOW_START)])
             {
                 gDisableStructs[battler].slowStartTimer = 5;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SLOWSTART;
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SLOW_START)] = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
             }
@@ -5229,7 +5228,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Majestic Moth
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAJESTIC_MOTH)){
-            if (!gSpecialStatuses[battler].switchInInnateDone)
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_MAJESTIC_MOTH)])
             {
                 u32 statId = STAT_ATK;
                 u32 userAtk = gBattleMons[battler].attack * gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][0] / gStatStageRatios[gBattleMons[battler].statStages[STAT_ATK]][1];
@@ -5249,7 +5248,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
                     statId = STAT_SPEED;
 
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_MAJESTIC_MOTH)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_MAJESTIC_MOTH;
 				gLastUsedAbility = ABILITY_MAJESTIC_MOTH;
 
@@ -5267,7 +5266,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Sea Guardian
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SEA_GUARDIAN)){
-            if (!gSpecialStatuses[battler].switchInInnateDone
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SEA_GUARDIAN)]
 			&& IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY))
             {
                 u32 statId = STAT_ATK;
@@ -5290,7 +5289,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
                     statId = STAT_SPEED;
 
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SEA_GUARDIAN)] = TRUE;
 
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
@@ -5306,7 +5305,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         // Sun Worship
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SUN_WORSHIP)){
-            if (!gSpecialStatuses[battler].switchInInnateDone
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SUN_WORSHIP)]
 			&& IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
             {
                 u32 statId = STAT_ATK;
@@ -5329,7 +5328,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 else if (userSpd >= userAtk && userSpd >= userSpAtk && userSpd >= userSpDef && userSpd >= userDef) // Speed is higher
                     statId = STAT_SPEED;
 
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SUN_WORSHIP)] = TRUE;
 
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
@@ -5343,26 +5342,31 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 		
-		// Intimidate + Scare
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE) ||
-		   SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCARE)){
-			if (!gSpecialStatuses[battler].switchInInnateDone &&!(gSpecialStatuses[battler].intimidatedMon) )
+		// Intimidate
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE)){
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTIMIDATE)] &&!(gSpecialStatuses[battler].intimidatedMon) )
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
-				if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE)){
-					gBattleScripting.abilityPopupOverwrite = ABILITY_INTIMIDATE;
-					gLastUsedAbility = ABILITY_INTIMIDATE;
-				}
-				else{
-					gBattleScripting.abilityPopupOverwrite = ABILITY_SCARE;
-					gLastUsedAbility = ABILITY_SCARE;
-				}
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTIMIDATE)] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_INTIMIDATE;
+				gLastUsedAbility = ABILITY_INTIMIDATE;
+				gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
+				gSpecialStatuses[battler].intimidatedMon = TRUE;
+			}
+		}
+
+        //Scare
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCARE)){
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCARE)] &&!(gSpecialStatuses[battler].intimidatedMon) )
+			{
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCARE)] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_SCARE;
+				gLastUsedAbility = ABILITY_SCARE;
 				gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
 				gSpecialStatuses[battler].intimidatedMon = TRUE;
 			}
 		}
 		
-		//Zen Mode
+		/*Zen Mode // This ability is never an innnate
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ZEN_MODE)){
             if (ShouldChangeFormHpBased(battler))
             {
@@ -5371,14 +5375,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
                 effect++;
             }
-		}
+		}*/
 		
 		// Water Veil
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL)){
-			if (!gSpecialStatuses[battler].switchInInnateDone &&
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_WATER_VEIL)] &&
 				!(gStatuses3[battler] & STATUS3_AQUA_RING))
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_WATER_VEIL)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_WATER_VEIL;
 				gLastUsedAbility = ABILITY_WATER_VEIL;
 				gStatuses3[battler] |= STATUS3_AQUA_RING;
@@ -5389,9 +5393,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Aquatic
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AQUATIC)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AQUATIC)] && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_WATER))
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AQUATIC)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_AQUATIC;
 				gLastUsedAbility = ABILITY_AQUATIC;
 				gBattleMons[battler].type3 = TYPE_WATER;
@@ -5403,10 +5408,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Grounded
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GROUNDED)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_GROUNDED)] && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_GROUND))
 			{
                 gBattlerAttacker = battler;
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_GROUNDED)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_GROUNDED;
 				gLastUsedAbility = ABILITY_GROUNDED;
 				gBattleMons[battler].type3 = TYPE_GROUND;
@@ -5418,9 +5424,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Ice Age
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ICE_AGE)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_ICE_AGE)] && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_ICE))
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_ICE_AGE)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_ICE_AGE;
 				gLastUsedAbility = ABILITY_ICE_AGE;
 				gBattleMons[battler].type3 = TYPE_ICE;
@@ -5432,9 +5439,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Half Drake
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_HALF_DRAKE)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_HALF_DRAKE)] && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_DRAGON))
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_HALF_DRAKE)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_HALF_DRAKE;
 				gLastUsedAbility = ABILITY_HALF_DRAKE;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
@@ -5446,9 +5454,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Metallic
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_METALLIC)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_METALLIC)] && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_STEEL))
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_METALLIC)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_METALLIC;
 				gLastUsedAbility = ABILITY_METALLIC;
 				gBattleMons[battler].type3 = TYPE_STEEL;
@@ -5460,9 +5469,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Dragonfly
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRAGONFLY)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DRAGONFLY)] && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_DRAGON))
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DRAGONFLY)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
 				gLastUsedAbility = ABILITY_DRAGONFLY;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
@@ -5472,26 +5482,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 		}
 		
-		// Phantom
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PHANTOM)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
-			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
-                gBattlerAttacker = battler;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_PHANTOM;
-				gLastUsedAbility = ABILITY_PHANTOM;
-				gBattleMons[battler].type3 = TYPE_GHOST;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
-				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
-				effect++;
-			}
-		}
-		
 		// Teravolt
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TERAVOLT)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TERAVOLT)] && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC))
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TERAVOLT)] = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TERAVOLT;
 				gLastUsedAbility = ABILITY_TERAVOLT;
@@ -5504,9 +5500,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Turboblaze
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TURBOBLAZE)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TURBOBLAZE)] && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_FIRE))
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TURBOBLAZE)] = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TURBOBLAZE;
 				gLastUsedAbility = ABILITY_TURBOBLAZE;
@@ -5519,10 +5516,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Nocturnal
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NOCTURNAL)){
-			if (!gSpecialStatuses[battler].switchInInnateDone  && 
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NOCTURNAL)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_DARK))
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NOCTURNAL)] = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_NOCTURNAL;
 				gLastUsedAbility = ABILITY_NOCTURNAL;
@@ -5535,9 +5532,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Coiled Up
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_COIL_UP)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_COIL_UP)])
 			{
-				gSpecialStatuses[battler].switchInInnateDone = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_COIL_UP)] = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_COIL_UP;
 				gLastUsedAbility = ABILITY_COIL_UP;
@@ -5550,24 +5547,37 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Air Blower
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_BLOWER)){
-			if (!gSpecialStatuses[battler].switchInInnateDone)
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_BLOWER)])
             {
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
-                gBattlerAttacker = battler;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_AIR_BLOWER;
-				gLastUsedAbility = ABILITY_AIR_BLOWER;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_BLOWER)] = TRUE;
+                gActiveBattler = gBattlerAttacker = battler;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_AIR_BLOWER;
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
 				gSideTimers[GetBattlerSide(battler)].tailwindTimer = 5;
 				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
 				effect++;
 			}
 		}
+
+		// Phantom
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PHANTOM)){
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PHANTOM)])
+			{
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PHANTOM)] = TRUE;
+                gActiveBattler = gBattlerAttacker = battler;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PHANTOM;
+				gBattleMons[battler].type3 = TYPE_GHOST;
+				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
+				effect++;
+			}
+		}
 		
 		// North Wind
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NORTH_WIND)){
-            if (!gSpecialStatuses[battler].switchInInnateDone)
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NORTH_WIND)])
             {
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NORTH_WIND)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_NORTH_WIND;
 				gLastUsedAbility = ABILITY_NORTH_WIND;
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_AURORA_VEIL;
@@ -5579,10 +5589,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
 		// Spider Lair
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SPIDER_LAIR)){
-            if (!gSpecialStatuses[battler].switchInInnateDone &&
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SPIDER_LAIR)] &&
 				!(gSideStatuses[BATTLE_OPPOSITE(battler)] & SIDE_STATUS_STICKY_WEB))
             {
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SPIDER_LAIR)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_SPIDER_LAIR;
 				gLastUsedAbility = ABILITY_SPIDER_LAIR;
 				gSideStatuses[BATTLE_OPPOSITE(battler)] |= SIDE_STATUS_STICKY_WEB;
@@ -5593,9 +5603,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Intrepid Sword
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTREPID_SWORD)){
-            if (!gSpecialStatuses[battler].switchInInnateDone)
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTREPID_SWORD)])
             {
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTREPID_SWORD)] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_INTREPID_SWORD;
 				gLastUsedAbility = ABILITY_INTREPID_SWORD;
                 SET_STATCHANGER(STAT_ATK, 1, FALSE);
@@ -5606,9 +5616,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Dauntless Shield
         if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAUNTLESS_SHIELD)){
-            if (!gSpecialStatuses[battler].switchInInnateDone)
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DAUNTLESS_SHIELD)])
             {
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DAUNTLESS_SHIELD)] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_DAUNTLESS_SHIELD;
 				gLastUsedAbility = ABILITY_DAUNTLESS_SHIELD;
                 SET_STATCHANGER(STAT_DEF, 1, FALSE);
@@ -5619,29 +5629,33 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Pressure
         if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRESSURE)){
-            if (!gSpecialStatuses[battler].switchInInnateDone)
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PRESSURE)])
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PRESSURE;
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PRESSURE)] = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
             }
         }
 		
-		//Air Lock & Cloud Nine
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_LOCK) || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_CLOUD_NINE)){
-            if (!gSpecialStatuses[battler].switchInInnateDone)
+		//Air Lock
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_LOCK)){
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_LOCK)])
             {
-				if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_LOCK)){
-					gBattleScripting.abilityPopupOverwrite = ABILITY_AIR_LOCK;
-					gLastUsedAbility = ABILITY_AIR_LOCK;
-				}
-				else{
-					gBattleScripting.abilityPopupOverwrite = ABILITY_CLOUD_NINE;
-					gLastUsedAbility = ABILITY_CLOUD_NINE;
-				}
-				
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_LOCK)] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_CLOUD_NINE;
+				gLastUsedAbility = ABILITY_CLOUD_NINE;
+                BattleScriptPushCursorAndCallback(BattleScript_AnnounceAirLockCloudNine);
+                effect++;
+            }
+		}
+
+        //Cloud Nine
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_CLOUD_NINE)){
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_CLOUD_NINE)])
+            {
+				gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_CLOUD_NINE;
+				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_CLOUD_NINE)] = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_AnnounceAirLockCloudNine);
                 effect++;
             }
@@ -5649,10 +5663,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		//Twisted Dimension
         if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TWISTED_DIMENSION)){
-            if (!gSpecialStatuses[battler].switchInInnateDone &&
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TWISTED_DIMENSION)] &&
 			    !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM))
             {
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TWISTED_DIMENSION)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TWISTED_DIMENSION;
 				gLastUsedAbility = ABILITY_TWISTED_DIMENSION;
 				gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
@@ -5662,19 +5676,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 		}
 		
-		//
+		//Mold Breaker
         if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MOLD_BREAKER)){
-            if (!gSpecialStatuses[battler].switchInInnateDone)
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_MOLD_BREAKER)])
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
-                gSpecialStatuses[battler].switchInInnateDone = TRUE;
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_MOLD_BREAKER)] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_MOLD_BREAKER;
 				gLastUsedAbility = ABILITY_MOLD_BREAKER;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
             }
 		}
-		
         break;
     case ABILITYEFFECT_ENDTURN: // 1
         if (gBattleMons[battler].hp != 0)

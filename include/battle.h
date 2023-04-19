@@ -176,7 +176,7 @@ struct SpecialStatus
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
     u8 switchInAbilityDone:1;
-    u8 switchInInnateDone:1;
+    bool8 switchInInnateDone[NUM_INNATE_PER_SPECIES];
     u8 switchInItemDone:1;
     u8 instructedChosenTarget:3; //8
     u8 berryReduced:1;
