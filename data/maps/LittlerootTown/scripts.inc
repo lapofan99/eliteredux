@@ -1267,7 +1267,6 @@ LittlerootTown_EventScript_PatchSettings_Others::
 	givemon SPECIES_RATTATA, 0, ITEM_NONE
 	compare VAR_RESULT, 1
 	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
-	call LittlerootTown_EventScript_PatchSettings_Items
 	call LittlerootTown_EventScript_PatchSettings_Berries
 	call LittlerootTown_EventScript_PatchSettings_ShinyRate
 	call LittlerootTown_EventScript_PatchSettings_Pokevial

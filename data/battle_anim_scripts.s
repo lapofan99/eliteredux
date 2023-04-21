@@ -14184,7 +14184,7 @@ TerrainPulseEnd:
 	end
 
 Move_SKITTER_SMACK::
-	end @to do:
+	goto Move_SHADOW_SNEAK
 
 Move_BURNING_JEALOUSY::
 	goto Move_OVERHEAT

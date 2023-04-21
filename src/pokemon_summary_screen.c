@@ -1007,6 +1007,7 @@ const u8 sText_TitleEVs[] = _("Pokémon EVs");
 const u8 sText_TitlePage[] = _("{DPAD_LEFTRIGHT}Page");
 const u8 sText_TitlePageDetail[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Detail");
 const u8 sText_TitlePickSwitch[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}Switch {L_BUTTON}Details");
+const u8 sText_TitlePickSwitchContest[] = _("{DPAD_UPDOWN}Pick {A_BUTTON}Switch");
 const u8 sText_TitlePageIVs[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Modify");
 const u8 sText_TitlePageEVs[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}EVs");
 const u8 sText_TitlePageStats[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Stats");
@@ -1737,26 +1738,20 @@ static void Task_HandleInput(u8 taskId)
 				ChangePage(taskId, -1);
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_MEMO && ModifyMode){
-				switch(gCurrentModifyIndex){
-					case 0://Nature
-						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-						CalculateMonStats(&sMonSummaryScreen->currentMon);
+				//Nature
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
 						
-						if(nature == 0)
-							nature = NATURE_QUIRKY;
-						else
-							nature--;
+				if(nature == 0)
+					nature = NATURE_QUIRKY;
+				else
+					nature--;
 							
-						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE, &nature);
-						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_NATURE, &nature);
+				SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE, &nature);
+				SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_NATURE, &nature);
 							
-						PlaySE(SE_SELECT);
-						PrintMemoPage();
-						//RefreshPageAfterChange(PSS_PAGE_MEMO);
-					break;
-				}
-				
-				//DrawModifyIcon();
+				PlaySE(SE_SELECT);
+				PrintMemoPage();
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode){ //Ev Modifier
 				if(CurrentEv != 0){
@@ -1835,27 +1830,20 @@ static void Task_HandleInput(u8 taskId)
             if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES){ //Normal Page Change
 				ChangePage(taskId, 1);
 			}
-			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_MEMO && ModifyMode){
-				switch(gCurrentModifyIndex){
-					case 0://Nature
+			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_MEMO && ModifyMode){	
+				if(nature != NATURE_QUIRKY)
+					nature++;
+				else
+					nature = NATURE_HARDY;
 						
-						if(nature != NATURE_QUIRKY)
-							nature++;
-						else
-							nature = NATURE_HARDY;
+				SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE, &nature);
+				SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_NATURE, &nature);
 						
-						SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE, &nature);
-						SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_NATURE, &nature);
-						
-						CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-						CalculateMonStats(&sMonSummaryScreen->currentMon);
+				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				CalculateMonStats(&sMonSummaryScreen->currentMon);
 							
-						PlaySE(SE_SELECT);
-						PrintMemoPage();
-					break;
-				}
-				
-				//DrawModifyIcon();
+				PlaySE(SE_SELECT);
+				PrintMemoPage();
 			}
             else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode){ //Ev Modifier
 				if((CurrentEv != MAX_PER_STAT_EVS && TotalEvs < MAX_TOTAL_EVS) || gCurrentModifyIndex == 6){
@@ -2086,9 +2074,28 @@ static void Task_HandleInput(u8 taskId)
         }
         else if (JOY_NEW(B_BUTTON))
         {
-            StopPokemonAnimations();
-            PlaySE(SE_SELECT);
-            BeginCloseSummaryScreen(taskId);
+            if(!ModifyMode){
+                StopPokemonAnimations();
+                PlaySE(SE_SELECT);
+                BeginCloseSummaryScreen(taskId);
+            }
+            else{
+                ModifyMode = !ModifyMode;
+                switch(sMonSummaryScreen->currPageIndex){
+                    case PSS_PAGE_ABILITY:
+                        PrintAbilityAndInnates();
+                    break;
+                    case PSS_PAGE_MEMO:
+                        PrintMemoPage();
+                    break;
+                    case PSS_PAGE_SKILLS:
+                        CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+                        CalculateMonStats(&sMonSummaryScreen->currentMon);
+                        RefreshPageAfterChange(0);
+                    break;
+                }
+                PlaySE(SE_SELECT);
+            }
         }
         #if P_ENABLE_DEBUG == TRUE
         else if (JOY_NEW(SELECT_BUTTON) && !gMain.inBattle)
@@ -5317,7 +5324,7 @@ static void PrintInfoBar(u8 pageIndex, bool8 detailsShown)
         case PSS_PAGE_CONTEST_MOVES:
             StringCopy(gStringVar1, sText_TitleContestMoves);
             if (detailsShown)
-                StringCopy(gStringVar2, sText_TitlePickSwitch);
+                StringCopy(gStringVar2, sText_TitlePickSwitchContest);
             else
                 StringCopy(gStringVar2, sText_TitlePageDetail);
             break;

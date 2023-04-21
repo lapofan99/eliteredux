@@ -266,6 +266,9 @@ Give_Nuzlocke_Items:
 	return
 
 Give_BattleItems:
+    checkitem ITEM_CANDY_BOX, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_CANDY_BOX
   checkitem ITEM_HONEY, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_HONEY
@@ -2592,6 +2595,11 @@ ADDITEM_ROCKY_HELMET:
 
 ADDITEM_PROTECTIVE_PADS:
 	additem ITEM_PROTECTIVE_PADS, 50
+	return
+
+ADDITEM_CANDY_BOX:
+	additem ITEM_CANDY_BOX, 1
+	setflag FLAG_SYS_DEXNAV_GET
 	return
 
 ADDITEM_HONEY:
