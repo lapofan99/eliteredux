@@ -21183,7 +21183,7 @@ static const struct TrainerMonItemCustomMoves sParty_Jani[] = { // potential or 
     // .innates = {ABILITY_TORRENT, ABILITY_PRANKSTER, ABILITY_GLUTTONY},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_RASH,<
+	.nature = NATURE_RASH,
     .moves = MOVE_HYDRO_PUMP, MOVE_FOCUS_BLAST, MOVE_KNOCK_OFF, MOVE_GRASS_KNOT
     },
     {
