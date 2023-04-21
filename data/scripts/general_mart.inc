@@ -3,15 +3,7 @@ General_Mart_Script::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	goto_if_set FLAG_BADGE06_GET, Mart_Poke_Center_Feather_Badge
-	goto_if_set FLAG_BADGE05_GET, Mart_Poke_Center_Balance_Badge
-	goto_if_set FLAG_BADGE04_GET, Mart_Poke_Center_Heat_Badge
-	goto_if_set FLAG_BADGE03_GET, Mart_Poke_Center_Dynamo_Badge
-	goto_if_set FLAG_BADGE02_GET, Mart_Poke_Center_Knuckle_Badge
-	goto_if_set FLAG_BADGE01_GET, Mart_Poke_Center_Stone_Badge
-	goto_if_set FLAG_VISITED_RUSTBORO_CITY, Mart_Poke_Center_Rustboro
-	goto_if_set FLAG_ADVENTURE_STARTED, Mart_Poke_Center_Pokedex
-	pokemart PokeMart_Poke_Center_No_Badges
+	pokemart PokeMart_No_Badges
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end

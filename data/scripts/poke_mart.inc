@@ -3,13 +3,6 @@ General_Pokemart_Script::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-    goto_if_set FLAG_BADGE07_GET, Mart_Mind_Badge
-	goto_if_set FLAG_BADGE06_GET, Mart_Feather_Badge
-	goto_if_set FLAG_BADGE05_GET, Mart_Balance_Badge
-	goto_if_set FLAG_BADGE04_GET, Mart_Heat_Badge
-	goto_if_set FLAG_BADGE03_GET, Mart_Dynamo_Badge
-	goto_if_set FLAG_BADGE02_GET, Mart_Knuckle_Badge
-	goto_if_set FLAG_BADGE01_GET, Mart_Stone_Badge
 	pokemart PokeMart_No_Badges
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
@@ -26,6 +19,7 @@ PokeMart_No_Badges::
 	.2byte ITEM_DUSK_STONE
     .2byte ITEM_DAWN_STONE
     .2byte ITEM_SHINY_STONE
+	.2byte ITEM_ICE_STONE
     .2byte ITEM_PRISM_SCALE
     .2byte ITEM_METAL_COAT
     .2byte ITEM_KINGS_ROCK
@@ -33,6 +27,16 @@ PokeMart_No_Badges::
     .2byte ITEM_RAZOR_CLAW
     .2byte ITEM_UPGRADE
 	.2byte ITEM_DUBIOUS_DISC
+	.2byte ITEM_PROTECTOR
+	.2byte ITEM_DRAGON_SCALE
+	.2byte ITEM_ELECTIRIZER
+	.2byte ITEM_MAGMARIZER
+	.2byte ITEM_REAPER_CLOTH
+	.2byte ITEM_DEEP_SEA_TOOTH
+	.2byte ITEM_DEEP_SEA_SCALE
+	.2byte ITEM_OVAL_STONE
+	.2byte ITEM_SACHET
+	.2byte ITEM_WHIPPED_DREAM
 	.2byte ITEM_NONE
 	release
 	end

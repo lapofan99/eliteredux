@@ -23,7 +23,7 @@ enum
     TD_TEXTSPEED,
     TD_BATTLESCENE,
     TD_AUTORUN,
-    TD_SOUND,
+    TD_PERMANENTREPEL,
     TD_BUTTONMODE,
     TD_FRAMETYPE,
 };
@@ -34,7 +34,7 @@ enum
     MENUITEM_TEXTSPEED,
     MENUITEM_BATTLESCENE,
     MENUITEM_AUTORUN,
-    MENUITEM_SOUND,
+    MENUITEM_PERMANENTREPEL,
     MENUITEM_BUTTONMODE,
     MENUITEM_FRAMETYPE,
     MENUITEM_CANCEL,
@@ -51,7 +51,7 @@ enum
 #define YPOS_TEXTSPEED    (MENUITEM_TEXTSPEED * 16)
 #define YPOS_BATTLESCENE  (MENUITEM_BATTLESCENE * 16)
 #define YPOS_BATTLESTYLE  (MENUITEM_AUTORUN * 16)
-#define YPOS_SOUND        (MENUITEM_SOUND * 16)
+#define YPOS_PERMANENTREPEL        (MENUITEM_PERMANENTREPEL * 16)
 #define YPOS_BUTTONMODE   (MENUITEM_BUTTONMODE * 16)
 #define YPOS_FRAMETYPE    (MENUITEM_FRAMETYPE * 16)
 
@@ -67,8 +67,8 @@ static u8   BattleScene_ProcessInput(u8 selection);
 static void BattleScene_DrawChoices(u8 selection);
 static u8   AutoRun_ProcessInput(u8 selection);
 static void AutoRun_DrawChoices(u8 selection);
-static u8   Sound_ProcessInput(u8 selection);
-static void Sound_DrawChoices(u8 selection);
+static u8   PermanentRepel_ProcessInput(u8 selection);
+static void PermanentRepel_DrawChoices(u8 selection);
 static u8   FrameType_ProcessInput(u8 selection);
 static void FrameType_DrawChoices(u8 selection);
 static u8   ButtonMode_ProcessInput(u8 selection);
@@ -85,13 +85,13 @@ static const u8 sEqualSignGfx[] = INCBIN_U8("graphics/misc/option_menu_equals_si
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
-    [MENUITEM_TEXTSPEED]   = gText_TextSpeed,
-    [MENUITEM_BATTLESCENE] = gText_BattleScene,
-    [MENUITEM_AUTORUN]     = gText_AutoRun,
-    [MENUITEM_SOUND]       = gText_Sound,
-    [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
-    [MENUITEM_FRAMETYPE]   = gText_Frame,
-    [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
+    [MENUITEM_TEXTSPEED]      = gText_TextSpeed,
+    [MENUITEM_BATTLESCENE]    = gText_BattleScene,
+    [MENUITEM_AUTORUN]        = gText_AutoRun,
+    [MENUITEM_PERMANENTREPEL] = gText_Sound,
+    [MENUITEM_BUTTONMODE]     = gText_ButtonMode,
+    [MENUITEM_FRAMETYPE]      = gText_Frame,
+    [MENUITEM_CANCEL]         = gText_OptionMenuCancel,
 };
 
 static const struct WindowTemplate sOptionMenuWinTemplates[] =
@@ -239,14 +239,14 @@ void CB2_InitOptionMenu(void)
         gTasks[taskId].data[TD_TEXTSPEED] = gSaveBlock2Ptr->optionsTextSpeed;
         gTasks[taskId].data[TD_BATTLESCENE] = gSaveBlock2Ptr->optionsBattleSceneOff;
         gTasks[taskId].data[TD_AUTORUN] = gSaveBlock2Ptr->autoRun;
-        gTasks[taskId].data[TD_SOUND] = gSaveBlock2Ptr->optionsSound;
+        gTasks[taskId].data[TD_PERMANENTREPEL] = gSaveBlock2Ptr->permanentRepel;
         gTasks[taskId].data[TD_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
         gTasks[taskId].data[TD_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
 
         TextSpeed_DrawChoices(gTasks[taskId].data[TD_TEXTSPEED]);
         BattleScene_DrawChoices(gTasks[taskId].data[TD_BATTLESCENE]);
         AutoRun_DrawChoices(gTasks[taskId].data[TD_AUTORUN]);
-        Sound_DrawChoices(gTasks[taskId].data[TD_SOUND]);
+        PermanentRepel_DrawChoices(gTasks[taskId].data[TD_PERMANENTREPEL]);
         ButtonMode_DrawChoices(gTasks[taskId].data[TD_BUTTONMODE]);
         FrameType_DrawChoices(gTasks[taskId].data[TD_FRAMETYPE]);
         HighlightOptionMenuItem(gTasks[taskId].data[TD_MENUSELECTION]);
@@ -323,12 +323,12 @@ static void Task_OptionMenuProcessInput(u8 taskId)
             if (previousOption != gTasks[taskId].data[TD_AUTORUN])
                 AutoRun_DrawChoices(gTasks[taskId].data[TD_AUTORUN]);
             break;
-        case MENUITEM_SOUND:
-            previousOption = gTasks[taskId].data[TD_SOUND];
-            gTasks[taskId].data[TD_SOUND] = Sound_ProcessInput(gTasks[taskId].data[TD_SOUND]);
+        case MENUITEM_PERMANENTREPEL:
+            previousOption = gTasks[taskId].data[TD_PERMANENTREPEL];
+            gTasks[taskId].data[TD_PERMANENTREPEL] = PermanentRepel_ProcessInput(gTasks[taskId].data[TD_PERMANENTREPEL]);
 
-            if (previousOption != gTasks[taskId].data[TD_SOUND])
-                Sound_DrawChoices(gTasks[taskId].data[TD_SOUND]);
+            if (previousOption != gTasks[taskId].data[TD_PERMANENTREPEL])
+                PermanentRepel_DrawChoices(gTasks[taskId].data[TD_PERMANENTREPEL]);
             break;
         case MENUITEM_BUTTONMODE:
             previousOption = gTasks[taskId].data[TD_BUTTONMODE];
@@ -361,7 +361,7 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsTextSpeed = gTasks[taskId].data[TD_TEXTSPEED];
     gSaveBlock2Ptr->optionsBattleSceneOff = gTasks[taskId].data[TD_BATTLESCENE];
     gSaveBlock2Ptr->autoRun = gTasks[taskId].data[TD_AUTORUN];
-    gSaveBlock2Ptr->optionsSound = gTasks[taskId].data[TD_SOUND];
+    gSaveBlock2Ptr->permanentRepel = gTasks[taskId].data[TD_PERMANENTREPEL];
     gSaveBlock2Ptr->optionsButtonMode = gTasks[taskId].data[TD_BUTTONMODE];
     gSaveBlock2Ptr->optionsWindowFrameType = gTasks[taskId].data[TD_FRAMETYPE];
 
@@ -496,19 +496,18 @@ static void AutoRun_DrawChoices(u8 selection)
     DrawOptionMenuChoice(gText_BattleSceneOn, GetStringRightAlignXOffset(1, gText_BattleSceneOn, 198), YPOS_BATTLESTYLE, styles[1]);
 }
 
-static u8 Sound_ProcessInput(u8 selection)
+static u8 PermanentRepel_ProcessInput(u8 selection)
 {
     if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
     {
         selection ^= 1;
-        SetPokemonCryStereo(selection);
         sArrowPressed = TRUE;
     }
 
     return selection;
 }
 
-static void Sound_DrawChoices(u8 selection)
+static void PermanentRepel_DrawChoices(u8 selection)
 {
     u8 styles[2];
 
@@ -516,8 +515,8 @@ static void Sound_DrawChoices(u8 selection)
     styles[1] = 0;
     styles[selection] = 1;
 
-    DrawOptionMenuChoice(gText_SoundMono, 104, YPOS_SOUND, styles[0]);
-    DrawOptionMenuChoice(gText_SoundStereo, GetStringRightAlignXOffset(1, gText_SoundStereo, 198), YPOS_SOUND, styles[1]);
+    DrawOptionMenuChoice(gText_BattleSceneOff, 104, YPOS_PERMANENTREPEL, styles[0]);
+    DrawOptionMenuChoice(gText_BattleSceneOn, GetStringRightAlignXOffset(1, gText_BattleSceneOn, 198), YPOS_PERMANENTREPEL, styles[1]);
 }
 
 static u8 FrameType_ProcessInput(u8 selection)

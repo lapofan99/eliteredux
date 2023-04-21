@@ -408,10 +408,10 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 16,
-        .width = 11,
+        .width = 10,
         .height = 5,
         .paletteNum = 2,
-        .baseBlock = 416,
+        .baseBlock = 752,
     },
     [PSS_LABEL_PANE_LEFT_MOVE] = {
         .bg = 0,
@@ -429,7 +429,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .width = 19,
         .height = 18,
         .paletteNum = 2,
-        .baseBlock = 76,
+        .baseBlock = 44,
     },
     [PSS_LABEL_PANE_RIGHT_HP] = {
         .bg = 0,
@@ -448,15 +448,6 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .height = 15,
         .paletteNum = 2,
         .baseBlock = 152,
-    },
-    [PSS_LABEL_PANE_RIGHT_BOTTOM] = {
-        .bg = 0,
-        .tilemapLeft = 11,
-        .tilemapTop = 15,
-        .width = 19,
-        .height = 6,
-        .paletteNum = 2,
-        .baseBlock = 684,
     },
     [PSS_LABEL_PANE_TITLE] = {
         .bg = 0,
@@ -2275,6 +2266,7 @@ static void Task_ChangeSummaryMon(u8 taskId)
         break;
     case 18:
         gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON]].data[2] = 0;
+        CreateSetStatusSprite();
         break;
     default:
         if (MenuHelpers_CallLinkSomething() == 0)
@@ -4044,12 +4036,12 @@ static void PrintMoveNameAndPP(u8 moveIndex)
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_PP, 80, moveIndex * 29 + 13, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, x, moveIndex * 29 + 13, 0, color);
 
-        if (moveIndex == 3)
+        /*if (moveIndex == 3)
         {
             FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT_BOTTOM, PIXEL_FILL(0));
             PrintTextOnWindowSigned(PSS_LABEL_PANE_RIGHT_BOTTOM, sText_PP, 80, -4, 0, PSS_COLOR_BLACK_GRAY_SHADOW);
             PrintTextOnWindowSigned(PSS_LABEL_PANE_RIGHT_BOTTOM, gStringVar1, x, -4, 0, color);
-        }
+        }*/
     }
     else
     {
@@ -4880,7 +4872,7 @@ static void CreateSetStatusSprite(void)
     u8 statusAnim;
 
     if (*spriteId == SPRITE_NONE)
-        *spriteId = CreateSprite(&sSpriteTemplate_StatusCondition, 20, 132, 0);
+        *spriteId = CreateSprite(&sSpriteTemplate_StatusCondition, 20, 124, 0);
 
     statusAnim = GetMonAilment(&sMonSummaryScreen->currentMon);
     if (statusAnim != 0)

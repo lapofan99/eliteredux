@@ -4613,7 +4613,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = substruct0->experience;
         break;
     case MON_DATA_PP_BONUSES:
-        retVal = substruct0->ppBonuses;
+        retVal = 255;//substruct0->ppBonuses;
         break;
     case MON_DATA_FRIENDSHIP:
         retVal = substruct0->friendship;

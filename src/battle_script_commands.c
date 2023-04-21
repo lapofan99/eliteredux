@@ -13975,7 +13975,8 @@ static void Cmd_handleballthrow(void)
             {   
                 u8 Friendship= 200;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_FRIENDSHIP, &Friendship);
-            }  
+            }
+            AddBagItem(gLastUsedItem, 1);
         }
         else // mon may be caught, calculate shakes
         {

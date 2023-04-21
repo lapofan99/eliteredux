@@ -1906,6 +1906,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     s32 i, j = 0;
     u8 monsCount;
     u8 level;
+    u8 pp;
     u8 friendship;
     u8 difficultySetting = gSaveBlock2Ptr->gameDifficulty;
         
@@ -2034,7 +2035,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 for (j = 0; j < MAX_MON_MOVES; j++)
                 {
                     SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
-                    SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
+                    pp = CalculatePPWithBonus(GetMonData(&party[i], MON_DATA_MOVE1 + j, NULL), GetMonData(&party[i], MON_DATA_PP_BONUSES, NULL), j);
+                    SetMonData(&party[i], MON_DATA_PP1 + j, &pp);
                 }
 
                 // Sets Pokemon Nature
@@ -2264,7 +2266,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     {
                         move = selectMoves(species, j, GetMonData(&party[i], MON_DATA_ATK, NULL), GetMonData(&party[i], MON_DATA_SPATK, NULL));        
                         SetMonData(&party[i], MON_DATA_MOVE1 + j, &move);
-                        SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[GetMonData(&party[i], MON_DATA_MOVE1 + j, NULL)].pp);
+                        pp = CalculatePPWithBonus(GetMonData(&party[i], MON_DATA_MOVE1 + j, NULL), GetMonData(&party[i], MON_DATA_PP_BONUSES, NULL), j);
+                        SetMonData(&party[i], MON_DATA_PP1 + j, &pp);
                     }
                 }
                 else
@@ -2272,7 +2275,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     for (j = 0; j < MAX_MON_MOVES; j++)
                     {
                         SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
-                        SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
+                        pp = CalculatePPWithBonus(GetMonData(&party[i], MON_DATA_MOVE1 + j, NULL), GetMonData(&party[i], MON_DATA_PP_BONUSES, NULL), j);
+                        SetMonData(&party[i], MON_DATA_PP1 + j, &pp);
                     }
                 }
                 // Set max friendship if trainer mon knows Return /  Added Veevee Volley and Pika Papow to the list

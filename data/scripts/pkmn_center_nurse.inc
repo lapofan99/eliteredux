@@ -21,18 +21,96 @@ Common_EventScript_PkmnCenterNurse::
 
 EventScript_PkmnCenterNurseHasVial::
     // call_if_set FLAG_RECEIVED_OLD_ROD, Give_Pokeblock_Case
-    /*checkitem ITEM_RARE_CANDY, 400
-    compare VAR_RESULT, TRUE
-    call_if_ne ADDITEM_RARE_CANDY*/
-    checkitem ITEM_MASTER_BALL, 800
+    // checkitem ITEM_RARE_CANDY, 400
+    // compare VAR_RESULT, TRUE
+    // call_if_ne ADDITEM_RARE_CANDY
+    checkitem ITEM_MASTER_BALL, 1
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_MASTER_BALL
-    /*checkitem ITEM_ABILITY_PATCH, 400
+	checkitem ITEM_ULTRA_BALL, 1
     compare VAR_RESULT, TRUE
-    call_if_ne ADDITEM_ABILITY_PATCH
-    checkitem ITEM_ABILITY_CAPSULE, 400
+    call_if_ne ADDITEM_ULTRA_BALL
+	checkitem ITEM_GREAT_BALL, 1
     compare VAR_RESULT, TRUE
-    call_if_ne ADDITEM_ABILITY_CAPSULE*/
+    call_if_ne ADDITEM_GREAT_BALL
+	checkitem ITEM_POKE_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_POKE_BALL
+	checkitem ITEM_SAFARI_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_SAFARI_BALL
+	checkitem ITEM_NET_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_NET_BALL
+	checkitem ITEM_DIVE_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_DIVE_BALL
+	checkitem ITEM_NEST_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_NEST_BALL
+	checkitem ITEM_REPEAT_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_REPEAT_BALL
+	checkitem ITEM_TIMER_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_TIMER_BALL
+	checkitem ITEM_LUXURY_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_LUXURY_BALL
+	checkitem ITEM_DUSK_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_DUSK_BALL
+	checkitem ITEM_HEAL_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_HEAL_BALL
+	checkitem ITEM_QUICK_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_QUICK_BALL
+	checkitem ITEM_CHERISH_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_CHERISH_BALL
+	checkitem ITEM_FAST_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_FAST_BALL
+	checkitem ITEM_LEVEL_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_LEVEL_BALL
+	checkitem ITEM_LURE_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_LURE_BALL
+	checkitem ITEM_HEAVY_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_HEAVY_BALL
+	checkitem ITEM_LOVE_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_LOVE_BALL
+	checkitem ITEM_FRIEND_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_FRIEND_BALL
+	checkitem ITEM_MOON_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_MOON_BALL
+	checkitem ITEM_SPORT_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_SPORT_BALL
+	checkitem ITEM_PARK_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_PARK_BALL
+	checkitem ITEM_DREAM_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_DREAM_BALL
+	checkitem ITEM_BEAST_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_BEAST_BALL
+	checkitem ITEM_PREMIER_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_PREMIER_BALL
+    // checkitem ITEM_ABILITY_PATCH, 400
+    // compare VAR_RESULT, TRUE
+    // call_if_ne ADDITEM_ABILITY_PATCH
+    // checkitem ITEM_ABILITY_CAPSULE, 400
+    // compare VAR_RESULT, TRUE
+    // call_if_ne ADDITEM_ABILITY_CAPSULE
     setvar VAR_0x8006, 4
     special GetSettingsMonStats
     call Give_Nuzlocke_Items
@@ -179,15 +257,18 @@ Give_Nuzlocke_Items:
     	call_if_set FLAG_BADGE04_GET, Give_Thief_Items_After_Flannery
     	call_if_set FLAG_BADGE05_GET, Give_Thief_Items_After_Norman
     	call_if_set FLAG_BADGE06_GET, Give_Thief_Items_After_Winoma
-	/*checkitem ITEM_BIG_PEARL, 400
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_BIG_PEARL*/
+	// checkitem ITEM_BIG_PEARL, 400
+	// compare VAR_RESULT, TRUE
+	// call_if_ne ADDITEM_BIG_PEARL
 	checkitem ITEM_MAX_REPEL, 250
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_MAX_REPEL
 	return
 
 Give_BattleItems:
+  checkitem ITEM_HONEY, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_HONEY
   checkitem ITEM_PROTECTIVE_PADS, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_PROTECTIVE_PADS
@@ -2198,7 +2279,111 @@ ADD_ITEM_WATER_GEM:
 	return
 
 ADDITEM_MASTER_BALL:
-	additem ITEM_MASTER_BALL, 800
+	additem ITEM_MASTER_BALL, 1
+	return
+
+ADDITEM_ULTRA_BALL:
+	additem ITEM_ULTRA_BALL, 1
+	return
+
+ADDITEM_GREAT_BALL:
+	additem ITEM_GREAT_BALL, 1
+	return
+
+ADDITEM_POKE_BALL:
+	additem ITEM_POKE_BALL, 1
+	return
+
+ADDITEM_SAFARI_BALL:
+	additem ITEM_SAFARI_BALL, 1
+	return
+
+ADDITEM_NET_BALL:
+	additem ITEM_NET_BALL, 1
+	return
+
+ADDITEM_DIVE_BALL:
+	additem ITEM_DIVE_BALL, 1
+	return
+
+ADDITEM_NEST_BALL:
+	additem ITEM_NEST_BALL, 1
+	return
+
+ADDITEM_REPEAT_BALL:
+	additem ITEM_REPEAT_BALL, 1
+	return
+	
+ADDITEM_TIMER_BALL:
+	additem ITEM_TIMER_BALL, 1
+	return
+	
+ADDITEM_LUXURY_BALL:
+	additem ITEM_LUXURY_BALL, 1
+	return
+	
+ADDITEM_DUSK_BALL:
+	additem ITEM_DUSK_BALL, 1
+	return
+	
+ADDITEM_HEAL_BALL:
+	additem ITEM_HEAL_BALL, 1
+	return
+	
+ADDITEM_QUICK_BALL:
+	additem ITEM_QUICK_BALL, 1
+	return
+	
+ADDITEM_CHERISH_BALL:
+	additem ITEM_CHERISH_BALL, 1
+	return
+	
+ADDITEM_FAST_BALL:
+	additem ITEM_FAST_BALL, 1
+	return
+	
+ADDITEM_LEVEL_BALL:
+	additem ITEM_LEVEL_BALL, 1
+	return
+	
+ADDITEM_LURE_BALL:
+	additem ITEM_LURE_BALL, 1
+	return
+	
+ADDITEM_HEAVY_BALL:
+	additem ITEM_HEAVY_BALL, 1
+	return
+	
+ADDITEM_LOVE_BALL:
+	additem ITEM_LOVE_BALL, 1
+	return
+	
+ADDITEM_FRIEND_BALL:
+	additem ITEM_FRIEND_BALL, 1
+	return
+	
+ADDITEM_MOON_BALL:
+	additem ITEM_MOON_BALL, 1
+	return
+	
+ADDITEM_SPORT_BALL:
+	additem ITEM_SPORT_BALL, 1
+	return
+	
+ADDITEM_PARK_BALL:
+	additem ITEM_PARK_BALL, 1
+	return
+	
+ADDITEM_DREAM_BALL:
+	additem ITEM_DREAM_BALL, 1
+	return
+	
+ADDITEM_BEAST_BALL:
+	additem ITEM_BEAST_BALL, 1
+	return
+	
+ADDITEM_PREMIER_BALL:
+	additem ITEM_PREMIER_BALL, 1
 	return
 
 ADDITEM_ABILITY_CAPSULE:
@@ -2407,6 +2592,10 @@ ADDITEM_ROCKY_HELMET:
 
 ADDITEM_PROTECTIVE_PADS:
 	additem ITEM_PROTECTIVE_PADS, 50
+	return
+
+ADDITEM_HONEY:
+	additem ITEM_HONEY, 50
 	return
 
 ADDITEM_HEAVY_DUTY_BOOTS:
