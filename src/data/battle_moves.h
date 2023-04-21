@@ -2084,7 +2084,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         #ifdef REBALANCED_VERSION
             .power = 25,
-            .type = TYPE_WATER,
+            //.type = TYPE_WATER,
             .accuracy = 100,
         #else
             .power = 20,
@@ -7373,7 +7373,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .effect = EFFECT_HIT,
         .power = 100,
         .type = TYPE_DRAGON,
-        .accuracy = 95,
+        .accuracy = 100,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
