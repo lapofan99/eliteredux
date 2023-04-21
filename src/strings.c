@@ -2165,6 +2165,7 @@ const u8 gMenuText_Move[] = _("Move");
 const u8 gText_MoveItemWhere[] = _("Move item to where?");
 const u8 gText_XsYAnd[] = _("Swapped {STR_VAR_1}'s {STR_VAR_2}\n");
 const u8 gText_XsYWereSwapped[] = _("and {STR_VAR_1}'s {STR_VAR_2}!{PAUSE_UNTIL_PRESS}");
+const u8 gText_WhatLevel[] = _("To what level?");
 
 //HGSS_Ui PokedexPlus
 const u8 gText_Stats_Buttons[]  = _("{A_BUTTON}TOGGLE   {DPAD_UPDOWN}MOVES");

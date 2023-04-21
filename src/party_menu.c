@@ -2501,6 +2501,9 @@ static u8 DisplaySelectionWindow(u8 windowType)
     case SELECTWINDOW_MAIL:
         window = sMailReadTakeWindowTemplate;
         break;
+    case SELECTWINDOW_LEVEL_UP:
+        window = sLevelUpSelectWindowTemplate;
+        break;
     default: // SELECTWINDOW_MOVES
         window = sMoveSelectWindowTemplate;
         break;
@@ -4827,6 +4830,35 @@ static void ShowMoveSelectWindow(u8 slot)
     ScheduleBgCopyTilemapToVram(2);
 }
 
+#define MAX_CANDY_BOX_LEVELS 5
+
+static void ShowLevelUpSelectWindow(u8 slot)
+{
+    u8 nextlevel, newlevels, i;
+    u8 levelCount = 0;
+    u8 fontId = 1;
+    u8 windowId = DisplaySelectionWindow(SELECTWINDOW_LEVEL_UP);
+    u8 level = GetMonData(&gPlayerParty[slot], MON_DATA_LEVEL);
+
+    newlevels = GetLevelCap() - level;
+
+    if(newlevels >= MAX_CANDY_BOX_LEVELS)
+        newlevels = MAX_CANDY_BOX_LEVELS;
+
+    nextlevel = level;
+
+    for (i = 0; i < newlevels; i++)
+    {
+        nextlevel++;
+        ConvertIntToDecimalStringN(gStringVar1, nextlevel, STR_CONV_MODE_RIGHT_ALIGN, 3);
+        AddTextPrinterParameterized(windowId, fontId, gStringVar1, 8, (i * 16) + 1, TEXT_SPEED_FF, NULL);
+        if(nextlevel <= GetLevelCap() && nextlevel <= MAX_LEVEL)
+            levelCount++;
+    }
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(windowId, levelCount, 0);
+    ScheduleBgCopyTilemapToVram(2);
+}
+
 static void Task_HandleWhichMoveInput(u8 taskId)
 {
     s8 input = Menu_ProcessInput();
@@ -5241,6 +5273,35 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     }
 }
 
+static void Task_HandleWhichLevelInput(u8 taskId)
+{
+    s8 input = Menu_ProcessInput();
+
+    if (input != MENU_NOTHING_CHOSEN)
+    {
+        if (input == MENU_B_PRESSED)
+        {
+            PlaySE(SE_SELECT);
+            ReturnToUseOnWhichMon(taskId);
+        }
+        else
+        {
+            VarSet(VAR_CANDY_BOX_LEVEL, Menu_GetCursorPos());
+            PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+            gTasks[taskId].func = ItemUseCB_CandyBox;
+        }
+    }
+}
+
+void ItemUseCB_CandyBox2(u8 taskId, TaskFunc task)
+{
+    PlaySE(SE_SELECT);
+    FlagSet(FLAG_USED_CANDY_BOX);
+    DisplayPartyMenuStdMessage(PARTY_MSG_CHOSE_LEVEL);
+    ShowLevelUpSelectWindow(gPartyMenu.slotId);
+    gTasks[taskId].func = Task_HandleWhichLevelInput;
+}
+
 void ItemUseCB_CandyBox(u8 taskId, TaskFunc task)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
@@ -5281,6 +5342,8 @@ void ItemUseCB_CandyBox(u8 taskId, TaskFunc task)
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = Task_TryLearnNewMoves;
     }
+    FlagClear(FLAG_USED_CANDY_BOX);
+    VarSet(VAR_CANDY_BOX_LEVEL, 0);
 }
 
 static void UpdateMonDisplayInfoAfterRareCandy(u8 slot, struct Pokemon *mon)

@@ -1381,7 +1381,7 @@
 #define FLAG_SHINY_CREATION                         (SYSTEM_FLAGS + 0x22) // force creation of a shiny mon
 #define FLAG_SYS_DETECTOR_MODE                      (SYSTEM_FLAGS + 0x23) // allow player to find hidden mons
 #define FLAG_SYS_DEXNAV_GET                         (SYSTEM_FLAGS + 0x24) // dexnav shows in start menu
-#define FLAG_UNUSED_0x885                           (SYSTEM_FLAGS + 0x25) // Unused Flag
+#define FLAG_USED_CANDY_BOX                         (SYSTEM_FLAGS + 0x25)
 #define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
 #define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag
 

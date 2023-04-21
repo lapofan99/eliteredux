@@ -840,7 +840,7 @@ void ItemUseOutOfBattle_RareCandy(u8 taskId)
 
 void ItemUseOutOfBattle_CandyBox(u8 taskId)
 {
-    gItemUseCB = ItemUseCB_CandyBox;
+    gItemUseCB = ItemUseCB_CandyBox2;
     SetUpItemUseCallback(taskId);
 }
 
