@@ -12232,7 +12232,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_STARAPTOR] =
     {
     .baseHP        = 90,
-    .baseAttack    = 140,
+    .baseAttack    = 130,
     .baseDefense   = 80,
     .baseSpeed     = 140,
     .baseSpAttack  = 80,
@@ -14354,9 +14354,9 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 85,
     .baseAttack    = 80,
-    .baseDefense   = 80,
+    .baseDefense   = 70,
     .baseSpeed     = 95,
-    .baseSpAttack  = 155,
+    .baseSpAttack  = 135,
     .baseSpDefense = 95,
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_ELECTRIC,

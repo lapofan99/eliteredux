@@ -2501,6 +2501,7 @@ const u16 gEggMoves[] = {
         MOVE_POWER_TRIP),
 
     egg_moves(STARLY,
+        MOVE_DUAL_WINGBEAT, // new
         MOVE_FEATHER_DANCE,
         MOVE_FURY_ATTACK,
         MOVE_PURSUIT,

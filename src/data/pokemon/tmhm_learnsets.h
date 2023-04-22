@@ -10267,6 +10267,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM11_SUNNY_DAY)
                                         | TMHM1(TM12_TAUNT)
+                                        | TMHM1(TM16_LIGHT_SCREEN) // new
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM18_RAIN_DANCE)
                                         | TMHM1(TM21_FRUSTRATION)
@@ -10276,6 +10277,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM30_SHADOW_BALL)
                                         | TMHM1(TM31_BRICK_BREAK)
                                         | TMHM1(TM32_DOUBLE_TEAM)
+                                        | TMHM1(TM33_REFLECT) // new
                                         | TMHM1(TM39_ROCK_TOMB)
                                         | TMHM1(TM40_AERIAL_ACE)
                                         | TMHM1(TM41_TORMENT)
