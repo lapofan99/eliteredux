@@ -5288,7 +5288,8 @@ static void Task_HandleWhichLevelInput(u8 taskId)
         {
             VarSet(VAR_CANDY_BOX_LEVEL, Menu_GetCursorPos());
             PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
-            gTasks[taskId].func = ItemUseCB_CandyBox;
+            ItemUseCB_CandyBox(taskId, gTasks[taskId].func);
+            //gTasks[taskId].func = ItemUseCB_CandyBox;
         }
     }
 }
