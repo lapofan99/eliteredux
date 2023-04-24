@@ -2400,23 +2400,6 @@ static void Cmd_healthbarupdate(void)
             BtlController_EmitHealthBarUpdate(0, healthValue);
             MarkBattlerForControllerExec(gActiveBattler);
 
-            // Print damage ammount message
-			if (!(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE) &&
-				!(gMoveResultFlags & MOVE_RESULT_ONE_HIT_KO) &&
-				!(gMoveResultFlags & MOVE_RESULT_FOE_ENDURED) &&
-				!(gMoveResultFlags & MOVE_RESULT_FAILED) &&
-				!(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) &&
-				gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
-				gBattleMoves[gCurrentMove].power > 0 &&
-                GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER &&
-				gBattleMoveDamage > 0)
-			{
-                PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerAttacker, gBattlerPartyIndexes[gBattlerAttacker]);
-				PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
-				PrepareStringBattle(STRINGID_POKEMONDIDAMMOUNTDAMAGE, gBattlerAttacker);
-                gBattleCommunication[MSG_DISPLAY] = 1;
-			}
-
             if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER && gBattleMoveDamage > 0)
                 gBattleResults.playerMonWasDamaged = TRUE;
         }
@@ -2726,6 +2709,22 @@ static void Cmd_resultmessage(void)
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_PrintBerryReduceString;
     }
+    
+    if (!(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE) &&
+		!(gMoveResultFlags & MOVE_RESULT_ONE_HIT_KO) &&
+		!(gMoveResultFlags & MOVE_RESULT_FOE_ENDURED) &&
+		!(gMoveResultFlags & MOVE_RESULT_FAILED) &&
+		!(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) &&
+		gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
+		gBattleMoves[gCurrentMove].power > 0 &&
+		gBattleMoveDamage > 0)
+	{
+        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerAttacker, gBattlerPartyIndexes[gBattlerAttacker]);
+		PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
+		PrepareStringBattle(STRINGID_POKEMONDIDAMMOUNTDAMAGE, gBattlerAttacker);
+        BattleScriptPushCursor();
+        gBattleCommunication[MSG_DISPLAY] = 1;
+	}
 }
 
 static void Cmd_printstring(void)

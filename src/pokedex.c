@@ -6463,7 +6463,7 @@ static bool8 CalculateMoves(void)
     u8 i,j;
 
     // sTutorLearnsets
-    for (i=0; i<TUTOR_MOVE_COUNT; i++)
+    for (i=0; i< TUTOR_MOVE_COUNT; i++)
     {
         if (CanLearnTutorMove(species, i)) //if (sTutorLearnsets[species] & (1 << i))
         {
