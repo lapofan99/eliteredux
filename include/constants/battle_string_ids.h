@@ -630,8 +630,9 @@
 #define STRINGID_TWISTEDDIMENSIONACTIVATED            628
 #define STRINGID_NORTHWINDACTIVATED                   629
 #define STRINGID_GRIPPINCERACTIVATED                  630
+#define STRINGID_POKEMONDIDAMMOUNTDAMAGE		      631
 
-#define BATTLESTRINGS_COUNT                           631
+#define BATTLESTRINGS_COUNT                           (STRINGID_POKEMONDIDAMMOUNTDAMAGE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

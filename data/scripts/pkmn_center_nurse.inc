@@ -24,6 +24,7 @@ EventScript_PkmnCenterNurseHasVial::
     // checkitem ITEM_RARE_CANDY, 400
     // compare VAR_RESULT, TRUE
     // call_if_ne ADDITEM_RARE_CANDY
+	setflag FLAG_SYS_DEXNAV_GET
     checkitem ITEM_MASTER_BALL, 1
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_MASTER_BALL
@@ -2599,7 +2600,6 @@ ADDITEM_PROTECTIVE_PADS:
 
 ADDITEM_CANDY_BOX:
 	additem ITEM_CANDY_BOX, 1
-	setflag FLAG_SYS_DEXNAV_GET
 	return
 
 ADDITEM_HONEY:

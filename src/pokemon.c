@@ -7522,28 +7522,32 @@ u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 //TM Moves --------------------------------------------------------------------
 u8 GetNumberOfTMMoves(struct Pokemon *mon)
 {
-    u16 i, j;
+    u16 i;
 	u16 numMoves = 0;
-	
-	for (i = 0; i < NUM_TECHNICAL_MACHINES; i++)
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+
+    for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
     {
-		if(CanMonLearnTMHM(mon, i) && !MonKnowsMove(mon, ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH))){
-			numMoves++;
-		}
+        if(CanSpeciesLearnTMHM(species, i) && !MonKnowsMove(mon, ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH)))
+        {
+            numMoves++;
+        }
     }
     return numMoves;
 }
 
 u8 GetTMMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 {
-    u16 i, j;
+    u16 i;
 	u16 numMoves = 0;
-	
-	for (i = 0; i < NUM_TECHNICAL_MACHINES; i++)
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+
+    for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
     {
-		if(CanMonLearnTMHM(mon, i) && !MonKnowsMove(mon, ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH))){
-            moves[numMoves] = ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH);
-			numMoves++;
+        if(CanSpeciesLearnTMHM(species, i) && !MonKnowsMove(mon, ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH)))
+        {
+            moves[numMoves] = ItemIdToBattleMoveId(ITEM_TM01_FOCUS_PUNCH + i);
+            numMoves++;
         }
     }
     return numMoves;

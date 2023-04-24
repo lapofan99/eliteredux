@@ -7469,6 +7469,11 @@ BattleScript_MoveUsedIsConfusedNoMore::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_PrintDamageDoneString::
+	printstring STRINGID_POKEMONDIDAMMOUNTDAMAGE
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_PrintPayDayMoneyString::
 	printstring STRINGID_PLAYERPICKEDUPMONEY
 	waitmessage B_WAIT_TIME_LONG
