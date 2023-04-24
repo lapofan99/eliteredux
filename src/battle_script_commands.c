@@ -2397,6 +2397,16 @@ static void Cmd_healthbarupdate(void)
         {
             s16 healthValue = min(gBattleMoveDamage, 10000); // Max damage (10000) not present in R/S, ensures that huge damage values don't change sign
 
+            if (!(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE) &&
+                !(gMoveResultFlags & MOVE_RESULT_ONE_HIT_KO) &&
+                !(gMoveResultFlags & MOVE_RESULT_FOE_ENDURED) &&
+                !(gMoveResultFlags & MOVE_RESULT_FAILED) &&
+                !(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) &&
+                gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
+                gBattleMoves[gCurrentMove].power > 0 &&
+                gBattleMoveDamage > 0)
+		        PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
+
             BtlController_EmitHealthBarUpdate(0, healthValue);
             MarkBattlerForControllerExec(gActiveBattler);
 
@@ -2719,11 +2729,8 @@ static void Cmd_resultmessage(void)
 		gBattleMoves[gCurrentMove].power > 0 &&
 		gBattleMoveDamage > 0)
 	{
-        PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattlerAttacker, gBattlerPartyIndexes[gBattlerAttacker]);
-		PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
-		PrepareStringBattle(STRINGID_POKEMONDIDAMMOUNTDAMAGE, gBattlerAttacker);
         BattleScriptPushCursor();
-        gBattleCommunication[MSG_DISPLAY] = 1;
+        gBattlescriptCurrInstr = BattleScript_PrintDamageDoneString;
 	}
 }
 

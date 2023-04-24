@@ -758,7 +758,7 @@ static const u8 sText_BattlerAbilitySetUpStickyWeb[] = _("{B_ACTIVE_NAME_WITH_PR
 static const u8 sText_BattlerAbilitySetUpTrickRoom[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Twisted Dimension\nset up Trick Room!");
 static const u8 sText_BattlerAbilitySetUpAuroraVeil[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s North Wind\nset up Aurora Veil!");
 static const u8 sText_BattlerGripPincerActivated[] = _("{B_DEF_NAME_WITH_PREFIX} was trapped by\n{B_ACTIVE_NAME_WITH_PREFIX}'s Grip Pincer!");
-static const u8 sText_PkmnDidAmmountDamage[] = _("{B_BUFF1} did {B_BUFF3} Damage!{PAUSE 64}");
+static const u8 sText_PkmnDidAmmountDamage[] = _("{B_ACTIVE_NAME_WITH_PREFIX} did {B_BUFF3} Damage!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
