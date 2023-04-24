@@ -1869,6 +1869,7 @@ static const struct LevelUpMove sDewgongLevelUpLearnset[] = {
     LEVEL_UP_MOVE(27, MOVE_AURORA_BEAM),
     LEVEL_UP_MOVE(31, MOVE_AQUA_JET),
     LEVEL_UP_MOVE(33, MOVE_BRINE),
+    LEVEL_UP_MOVE(36, MOVE_SLACK_OFF), // new
     LEVEL_UP_MOVE(39, MOVE_TAKE_DOWN),
     LEVEL_UP_MOVE(40, MOVE_SCALD), // new
     LEVEL_UP_MOVE(45, MOVE_DIVE),
@@ -13809,6 +13810,7 @@ static const struct LevelUpMove sGolurkLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(46, MOVE_PHANTOM_FORCE),
 	LEVEL_UP_MOVE(52, MOVE_HAMMER_ARM),
 	LEVEL_UP_MOVE(58, MOVE_EARTHQUAKE),
+	LEVEL_UP_MOVE(61, MOVE_FISSURE), // new
 	LEVEL_UP_MOVE(64, MOVE_DYNAMIC_PUNCH),
 	LEVEL_UP_END
 };
@@ -15075,7 +15077,7 @@ static const struct LevelUpMove sAegislashLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_PURSUIT),
 	LEVEL_UP_MOVE( 1, MOVE_AUTOTOMIZE),
 	LEVEL_UP_MOVE( 1, MOVE_SHADOW_SNEAK),
-    LEVEL_UP_MOVE( 1, MOVE_EXCALIBUR),
+    LEVEL_UP_MOVE( 1, MOVE_EXCALIBUR), // new
 	LEVEL_UP_MOVE(57, MOVE_SACRED_SWORD),
     LEVEL_UP_MOVE(61, MOVE_PSYCHO_CUT), // new
     LEVEL_UP_MOVE(65, MOVE_EXCALIBUR), // new
@@ -15276,6 +15278,7 @@ static const struct LevelUpMove sSkrelpLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sDragalgeLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_FLIP_TURN), // new
     LEVEL_UP_MOVE( 0, MOVE_TWISTER),
 	LEVEL_UP_MOVE( 1, MOVE_DRAGON_TAIL),
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE),

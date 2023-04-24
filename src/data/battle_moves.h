@@ -1408,7 +1408,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #endif
         .effect = EFFECT_THUNDER,
         .type = TYPE_ELECTRIC,
-        .accuracy = 80,
+        .accuracy = 75,
         .pp = 10,
         .secondaryEffectChance = 30,
         .target = MOVE_TARGET_SELECTED,
@@ -8630,7 +8630,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #endif
         .effect = EFFECT_HURRICANE,
         .type = TYPE_FLYING,
-        .accuracy = 70,
+        .accuracy = 75,
         .pp = 10,
         .secondaryEffectChance = 30,
         .target = MOVE_TARGET_SELECTED,
@@ -9102,7 +9102,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_FREEZE_DRY] =
     {
         #ifdef REBALANCED_VERSION
-            .power = 95,
+            .power = 90,
             .pp = 15,
         #else
             .power = 70,

@@ -3824,6 +3824,7 @@ const u16 gEggMoves[] = {
         MOVE_WATER_SPORT),
 
     egg_moves(SKRELP,
+        MOVE_FLIP_TURN, // new
         MOVE_TOXIC_SPIKES,
         MOVE_PLAY_ROUGH,
         MOVE_HAZE,
