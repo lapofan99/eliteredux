@@ -7764,7 +7764,7 @@ BattleScript_BattlerEnvelopedItselfInAVeil::
 BattleScript_AirBlowerActivated::
 	copybyte gBattlerAbility, gBattlerAttacker
 	sethword sABILITY_OVERWRITE, ABILITY_AIR_BLOWER
-	showabilitypopup BS_TARGET
+	showabilitypopup BS_ABILITY_BATTLER
 	printstring STRINGID_AIRBLOWERACTIVATED
 	waitmessage B_WAIT_TIME_LONG
 	sethword sABILITY_OVERWRITE, 0
