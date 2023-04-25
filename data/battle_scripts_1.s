@@ -7738,11 +7738,10 @@ BattleScript_BattlerCoiledUp::
 	end3
 	
 BattleScript_AttackerBecameTheType::
-	copybyte gBattlerAbility, gBattlerTarget
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ATTACKERTYPECHANGEDTO
 	waitmessage B_WAIT_TIME_LONG
-	end3
+	return
 	
 BattleScript_SelfSufficientActivates::
 	copybyte gBattlerAbility, gBattlerAttacker
@@ -7991,15 +7990,15 @@ BattleScript_IntimidateActivatesLoop:
 	setstatchanger STAT_ATK, 1, TRUE
 	trygetintimidatetarget BattleScript_IntimidateActivatesReturn
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_IntimidateActivatesLoopIncrement
-	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_IntimidatePrevented
-	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_IntimidatePrevented
-	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_CLEAR_BODY, BattleScript_IntimidatePrevented_Clear_Body
+	jumpifability BS_TARGET, ABILITY_HYPER_CUTTER, BattleScript_IntimidatePrevented_Hyper_Cutter
+	jumpifability BS_TARGET, ABILITY_WHITE_SMOKE, BattleScript_IntimidatePrevented_White_Smoke
 .if B_UPDATED_INTIMIDATE >= GEN_8
-	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_IntimidatePrevented
-	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_IntimidatePrevented
-	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_IntimidatePrevented
-	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_IntimidatePrevented
-	jumpifability BS_TARGET, ABILITY_OVERWHELM, BattleScript_IntimidatePrevented
+	jumpifability BS_TARGET, ABILITY_INNER_FOCUS, BattleScript_IntimidatePrevented_Inner_Focus
+	jumpifability BS_TARGET, ABILITY_SCRAPPY, BattleScript_IntimidatePrevented_Scrappy
+	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_IntimidatePrevented_Own_Tempo
+	jumpifability BS_TARGET, ABILITY_OBLIVIOUS, BattleScript_IntimidatePrevented_Oblivious
+	jumpifability BS_TARGET, ABILITY_OVERWHELM, BattleScript_IntimidatePrevented_Overwhelm
 .endif
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_IntimidateActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_IntimidateActivatesLoopIncrement
@@ -8022,6 +8021,38 @@ BattleScript_IntimidatePrevented:
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryAdrenalineOrb
 	goto BattleScript_IntimidateActivatesLoopIncrement
+
+BattleScript_IntimidatePrevented_Overwhelm:
+	sethword sABILITY_OVERWRITE, ABILITY_OVERWHELM
+	goto BattleScript_IntimidatePrevented
+
+BattleScript_IntimidatePrevented_Oblivious:
+	sethword sABILITY_OVERWRITE, ABILITY_OBLIVIOUS
+	goto BattleScript_IntimidatePrevented
+
+BattleScript_IntimidatePrevented_Own_Tempo:
+	sethword sABILITY_OVERWRITE, ABILITY_OWN_TEMPO
+	goto BattleScript_IntimidatePrevented
+
+BattleScript_IntimidatePrevented_Inner_Focus:
+	sethword sABILITY_OVERWRITE, ABILITY_INNER_FOCUS
+	goto BattleScript_IntimidatePrevented
+
+BattleScript_IntimidatePrevented_White_Smoke:
+	sethword sABILITY_OVERWRITE, ABILITY_WHITE_SMOKE
+	goto BattleScript_IntimidatePrevented
+
+BattleScript_IntimidatePrevented_Clear_Body:
+	sethword sABILITY_OVERWRITE, ABILITY_CLEAR_BODY
+	goto BattleScript_IntimidatePrevented
+
+BattleScript_IntimidatePrevented_Hyper_Cutter:
+	sethword sABILITY_OVERWRITE, ABILITY_HYPER_CUTTER
+	goto BattleScript_IntimidatePrevented
+
+BattleScript_IntimidatePrevented_Scrappy:
+	sethword sABILITY_OVERWRITE, ABILITY_SCRAPPY
+	goto BattleScript_IntimidatePrevented
 	
 BattleScript_ScareActivatesEnd3::
 	call BattleScript_PauseScareActivates

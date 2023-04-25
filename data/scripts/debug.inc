@@ -43,6 +43,8 @@ Debug_CheatStart::
 	end
 
 Debug_Script_1::
+	cleartrainerflag TRAINER_NORMAN_1
+	trainerbattle_single TRAINER_NORMAN_1, Route102_Text_RickIntro, Route102_Text_RickDefeated
 	end
 
 Debug_Script_2::

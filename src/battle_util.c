@@ -2662,7 +2662,8 @@ u8 DoBattlerEndTurnEffects(void)
                 && gBattleMons[gActiveBattler].hp != 0)
             {
                 MAGIC_GUARD_CHECK;
-				TOXIC_BOOST_CHECK;
+                if(ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL))
+				    TOXIC_BOOST_CHECK;
 
                 if (ability == ABILITY_POISON_HEAL || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL))
                 {
@@ -2692,7 +2693,8 @@ u8 DoBattlerEndTurnEffects(void)
                 && gBattleMons[gActiveBattler].hp != 0)
             {
                 MAGIC_GUARD_CHECK;
-				TOXIC_BOOST_CHECK;
+                if(ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL))
+				    TOXIC_BOOST_CHECK;
 
                 if (ability == ABILITY_POISON_HEAL || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL))
                 {
@@ -2785,8 +2787,14 @@ u8 DoBattlerEndTurnEffects(void)
 
                     gBattleScripting.animArg1 = gBattleStruct->wrappedMove[gActiveBattler];
                     gBattleScripting.animArg2 = gBattleStruct->wrappedMove[gActiveBattler] >> 8;
-                    PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->wrappedMove[gActiveBattler]);
+                    if(gBattleMoves[gBattleStruct->wrappedMove[gActiveBattler]].effect == EFFECT_TRAP){
+                        PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->wrappedMove[gActiveBattler]);
+                    }
+                    else{
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, ABILITY_GRIP_PINCER);
+                    }
                     gBattlescriptCurrInstr = BattleScript_WrapTurnDmg;
+
                     if (GetBattlerHoldEffect(gBattleStruct->wrappedBy[gActiveBattler], TRUE) == HOLD_EFFECT_BINDING_BAND)
                         gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / ((B_BINDING_DAMAGE >= GEN_6) ? 6 : 8);
                     else
@@ -4923,10 +4931,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_AIR_BLOWER;
-				gLastUsedAbility = ABILITY_AIR_BLOWER;
-				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
-				gSideTimers[GetBattlerSide(battler)].tailwindTimer = 5;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_AIR_BLOWER;
+                gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
+                gSideTimers[GetBattlerSide(battler)].tailwindBattlerId = gBattlerAttacker;
+                gSideTimers[GetBattlerSide(battler)].tailwindTimer = (B_TAILWIND_TURNS >= GEN_5) ? 4 : 3;
 				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
 				effect++;
 			}
@@ -5546,14 +5554,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Air Blower
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_BLOWER)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_BLOWER) &&
+         !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_BLOWER)])
             {
                 gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_BLOWER)] = TRUE;
                 gActiveBattler = gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_AIR_BLOWER;
-				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
-				gSideTimers[GetBattlerSide(battler)].tailwindTimer = 5;
+                gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
+                gSideTimers[GetBattlerSide(battler)].tailwindBattlerId = gBattlerAttacker;
+                gSideTimers[GetBattlerSide(battler)].tailwindTimer = (B_TAILWIND_TURNS >= GEN_5) ? 4 : 3;
 				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
 				effect++;
 			}
@@ -6871,6 +6880,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OVERCOAT
 			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
+             && GetBattlerAbility(gBattlerAttacker) != ABILITY_EFFECT_SPORE
+             && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE)
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_EFFECT_SPORE;
@@ -6887,6 +6898,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && TARGET_TURN_DAMAGED
                  && CanSleep(gBattlerAttacker)
                  && IsMoveMakingContact(move, gBattlerAttacker)
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_EFFECT_SPORE
+                 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE)
+                 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
                  && (Random() % 3) == 0)
                 {
                     gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_SLEEP;
@@ -6959,6 +6973,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
 				gBattleMons[gBattlerAttacker].type3 = TYPE_PSYCHIC;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].type3);
+                BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AttackerBecameTheType;
 				//BattleScriptPushCursorAndCallback(BattleScript_AttackerBecameTheType);
 				effect++;
@@ -7319,6 +7334,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OVERCOAT
 			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
+             && GetBattlerAbility(gBattlerAttacker) != ABILITY_EFFECT_SPORE
+             && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE)
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_EFFECT_SPORE;
@@ -7326,9 +7343,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 i = Random() % 3;
                 if (i == 0)
-                    goto POISON_POINT;
+                    goto POISON_POINT_INNATE;
                 if (i == 1)
-                    goto STATIC;
+                    goto STATIC_INNATE;
                 // Sleep
                 if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                  && gBattleMons[gBattlerAttacker].hp != 0
@@ -7336,6 +7353,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && TARGET_TURN_DAMAGED
                  && CanSleep(gBattlerAttacker)
                  && IsMoveMakingContact(move, gBattlerAttacker)
+                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_EFFECT_SPORE
+                 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE)
+                 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
                  && (Random() % 3) == 0)
                 {
                     gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_SLEEP;
@@ -7404,6 +7424,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gLastUsedAbility = ABILITY_MAGICAL_DUST;
 				gBattleMons[gBattlerAttacker].type3 = TYPE_PSYCHIC;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].type3);
+                BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AttackerBecameTheType;
 				effect++;
             }
@@ -7474,6 +7495,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Static (Defender)
+        STATIC_INNATE:
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STATIC)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
@@ -7514,6 +7536,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Poison Point
+        POISON_POINT_INNATE:
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_POINT)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 				 && gBattleMons[gBattlerAttacker].hp != 0
@@ -7661,9 +7684,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 gBattleMons[gBattlerTarget].status2 |= STATUS2_WRAPPED;
                 if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_GRIP_CLAW)
-                        gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
-                    else
-                        gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
+                    gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
+                else
+                    gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
 
                 gBattleStruct->wrappedMove[gBattlerTarget] = gCurrentMove;
                 gBattleStruct->wrappedBy[gBattlerTarget] = gBattlerAttacker;

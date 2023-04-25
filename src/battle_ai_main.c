@@ -140,7 +140,7 @@ void BattleAI_SetupFlags(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
         AI_THINKING_STRUCT->aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE;
     else
-        AI_THINKING_STRUCT->aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE;
+        AI_THINKING_STRUCT->aiFlags = gTrainers[gTrainerBattleOpponent_A].aiFlags;
 
     if (gBattleTypeFlags & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS) || gTrainers[gTrainerBattleOpponent_A].doubleBattle)
         AI_THINKING_STRUCT->aiFlags |= AI_FLAG_DOUBLE_BATTLE; // Act smart in doubles and don't attack your partner.
@@ -3225,7 +3225,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if(gBattleMoves[move].priority > 0 && CanTargetFaintAi(battlerDef, battlerAtk) && GetWhoStrikesFirst(battlerDef, battlerAtk, TRUE) == 0)
         score += 8;
 
-    if (HOLD_EFFECT_CHOICE(AI_DATA->atkHoldEffect))
+    /*if (HOLD_EFFECT_CHOICE(AI_DATA->atkHoldEffect))
     {
         // If AI can't 2HKO foe OR foe can KO AI and is faster, force it to switch
         if (!CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 2)
@@ -3234,7 +3234,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         {
             score -= 20;
         }
-    }
+    }*/
     
     // Attacker ability checks
     switch (AI_DATA->atkAbility)
@@ -4917,6 +4917,11 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     // check effects to prioritize first turn
     switch (gBattleMoves[move].effect)
     {
+    case EFFECT_STEALTH_ROCK:
+    case EFFECT_TOXIC_SPIKES:
+    case EFFECT_SPIKES:
+        score += 20;
+        break;
     case EFFECT_ATTACK_UP:
     case EFFECT_DEFENSE_UP:
     case EFFECT_SPEED_UP:
@@ -4960,7 +4965,6 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_CURSE:
     case EFFECT_SWAGGER:
     case EFFECT_CAMOUFLAGE:
-    case EFFECT_YAWN:
     case EFFECT_DEFENSE_CURL:
     case EFFECT_TORMENT:
     case EFFECT_FLATTER:
@@ -4984,8 +4988,6 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_GRASSY_TERRAIN:
     case EFFECT_ELECTRIC_TERRAIN:
     case EFFECT_MISTY_TERRAIN:
-    case EFFECT_STEALTH_ROCK:
-    case EFFECT_TOXIC_SPIKES:
     case EFFECT_TRICK_ROOM:
     case EFFECT_WONDER_ROOM:
     case EFFECT_MAGIC_ROOM:
