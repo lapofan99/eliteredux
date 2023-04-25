@@ -2791,7 +2791,8 @@ u8 DoBattlerEndTurnEffects(void)
                         PREPARE_MOVE_BUFFER(gBattleTextBuff1, gBattleStruct->wrappedMove[gActiveBattler]);
                     }
                     else{
-                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, ABILITY_GRIP_PINCER);
+                        gLastUsedAbility = ABILITY_GRIP_PINCER;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                     }
                     gBattlescriptCurrInstr = BattleScript_WrapTurnDmg;
 
