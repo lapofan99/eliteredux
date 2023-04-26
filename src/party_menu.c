@@ -4323,6 +4323,53 @@ void CB2_ShowPartyMenuForItemUse(void)
     InitPartyMenu(menuType, partyLayout, PARTY_ACTION_USE_ITEM, TRUE, msgId, task, callback);
 }
 
+void CB2_ShowPartyMenuForItemUseFromField(void)
+{
+    MainCallback callback = CB2_ReturnToField;
+    u8 partyLayout;
+    u8 menuType;
+    u8 i;
+    u8 msgId;
+    TaskFunc task;
+
+    if (gMain.inBattle)
+    {
+        menuType = PARTY_MENU_TYPE_IN_BATTLE;
+        partyLayout = GetPartyLayoutFromBattleType();
+    }
+    else
+    {
+        menuType = PARTY_MENU_TYPE_FIELD;
+        partyLayout = PARTY_LAYOUT_SINGLE;
+    }
+
+    if (GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_SACRED_ASH)
+    {
+        gPartyMenu.slotId = 0;
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE && GetMonData(&gPlayerParty[i], MON_DATA_HP) == 0)
+            {
+                gPartyMenu.slotId = i;
+                break;
+            }
+        }
+        task = Task_SetSacredAshCB;
+        msgId = PARTY_MSG_NONE;
+    }
+    else
+    {
+        if (GetPocketByItemId(gSpecialVar_ItemId) == POCKET_TM_HM)
+            msgId = PARTY_MSG_TEACH_WHICH_MON;
+        else
+            msgId = PARTY_MSG_USE_ON_WHICH_MON;
+
+        task = Task_HandleChooseMonInput;
+    }
+
+    InitPartyMenu(menuType, partyLayout, PARTY_ACTION_USE_ITEM, TRUE, msgId, task, callback);
+}
+
 static void CB2_OpenTMCaseOnField(void)
 {
     InitTMCase(0, CB2_BagMenuFromStartMenu, 0);
@@ -5454,7 +5501,7 @@ static void CB2_ReturnToPartyMenuUsingRareCandy(void)
 
 static void CB2_ReturnToPartyMenuUsingCandyBox(void)
 {
-    gItemUseCB = ItemUseCB_CandyBox;
+    gItemUseCB = ItemUseCB_CandyBox2;
     SetMainCallback2(CB2_ShowPartyMenuForItemUse);
 }
 
