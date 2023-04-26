@@ -3324,7 +3324,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_SPEED_UP_2:
         if (IsAiFaster(AI_CHECK_SLOWER))
         {
-            if (!AI_RandLessThan(70))
+            if (!AI_RandLessThan(70) && CompareStat(battlerAtk, STAT_SPEED, MAX_STAT_STAGE, 3))
                 score += 3;
         }
         else
