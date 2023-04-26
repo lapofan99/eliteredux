@@ -4483,7 +4483,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     SET_STATCHANGER(statId, 1, FALSE);
                     gBattlerAttacker = battler;
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth);
                     effect++;
                 }
             }
@@ -4803,7 +4803,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_AQUATIC;
 				gLastUsedAbility = ABILITY_AQUATIC;
 				gBattleMons[battler].type3 = TYPE_WATER;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -4816,7 +4816,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_GROUNDED;
 				gLastUsedAbility = ABILITY_GROUNDED;
 				gBattleMons[battler].type3 = TYPE_GROUND;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -4829,7 +4829,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_ICE_AGE;
 				gLastUsedAbility = ABILITY_ICE_AGE;
 				gBattleMons[battler].type3 = TYPE_ICE;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -4842,7 +4842,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_HALF_DRAKE;
 				gLastUsedAbility = ABILITY_HALF_DRAKE;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -4855,7 +4855,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_METALLIC;
 				gLastUsedAbility = ABILITY_METALLIC;
 				gBattleMons[battler].type3 = TYPE_STEEL;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -4868,7 +4868,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
 				gLastUsedAbility = ABILITY_DRAGONFLY;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -4881,7 +4881,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_PHANTOM;
 				gLastUsedAbility = ABILITY_PHANTOM;
 				gBattleMons[battler].type3 = TYPE_GHOST;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -4894,7 +4894,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TERAVOLT;
 				gLastUsedAbility = ABILITY_TERAVOLT;
 				gBattleMons[battler].type3 = TYPE_ELECTRIC;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -4907,7 +4907,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TURBOBLAZE;
 				gLastUsedAbility = ABILITY_TURBOBLAZE;
 				gBattleMons[battler].type3 = TYPE_FIRE;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -4987,7 +4987,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_NOCTURNAL;
 				gLastUsedAbility = ABILITY_NOCTURNAL;
 				gBattleMons[battler].type3 = TYPE_DARK;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
@@ -5267,7 +5267,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     SET_STATCHANGER(statId, 1, FALSE);
                     gBattlerAttacker = battler;
                     PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    BattleScriptPushCursorAndCallback(BattleScript_BattlerInnateStatRaiseOnSwitchIn);
+                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth);
                     effect++;
                 }
             }
@@ -5409,7 +5409,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_AQUATIC;
 				gLastUsedAbility = ABILITY_AQUATIC;
 				gBattleMons[battler].type3 = TYPE_WATER;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
@@ -5425,7 +5425,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_GROUNDED;
 				gLastUsedAbility = ABILITY_GROUNDED;
 				gBattleMons[battler].type3 = TYPE_GROUND;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
@@ -5440,7 +5440,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_ICE_AGE;
 				gLastUsedAbility = ABILITY_ICE_AGE;
 				gBattleMons[battler].type3 = TYPE_ICE;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
@@ -5455,7 +5455,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_HALF_DRAKE;
 				gLastUsedAbility = ABILITY_HALF_DRAKE;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
@@ -5470,7 +5470,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_METALLIC;
 				gLastUsedAbility = ABILITY_METALLIC;
 				gBattleMons[battler].type3 = TYPE_STEEL;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
@@ -5485,7 +5485,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
 				gLastUsedAbility = ABILITY_DRAGONFLY;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
@@ -5501,7 +5501,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TERAVOLT;
 				gLastUsedAbility = ABILITY_TERAVOLT;
 				gBattleMons[battler].type3 = TYPE_ELECTRIC;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
@@ -5517,7 +5517,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TURBOBLAZE;
 				gLastUsedAbility = ABILITY_TURBOBLAZE;
 				gBattleMons[battler].type3 = TYPE_FIRE;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
@@ -5533,7 +5533,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_NOCTURNAL;
 				gLastUsedAbility = ABILITY_NOCTURNAL;
 				gBattleMons[battler].type3 = TYPE_DARK;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
@@ -5577,7 +5577,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gActiveBattler = gBattlerAttacker = battler;
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PHANTOM;
 				gBattleMons[battler].type3 = TYPE_GHOST;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type3);
+				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}

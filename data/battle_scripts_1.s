@@ -8597,6 +8597,11 @@ BattleScript_AttackerAbilityStatRaiseEnd3::
 	call BattleScript_AttackerAbilityStatRaise
 	end3
 
+BattleScript_AttackerAbilityStatRaiseEnd3FromMajesticMoth::
+	sethword sABILITY_OVERWRITE, ABILITY_MAJESTIC_MOTH
+	call BattleScript_AttackerAbilityStatRaise
+	end3
+
 BattleScript_SwitchInAbilityMsg::
 	call BattleScript_AbilityPopUp
 	printfromtable gSwitchInAbilityStringIds
