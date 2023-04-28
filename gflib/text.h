@@ -272,6 +272,12 @@
 
 #define TEXT_SPEED_FF 0xFF
 
+//Mgba Stuff
+#define CHAR_DBL_QUOTE_LEFT    0xB1
+#define CHAR_DBL_QUOTE_RIGHT   0xB2
+#define CHAR_SGL_QUOTE_LEFT    0xB3
+#define CHAR_SGL_QUOTE_RIGHT   0xB4
+
 enum
 {
     FONTATTR_MAX_LETTER_WIDTH,

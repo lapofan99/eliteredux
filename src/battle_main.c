@@ -69,6 +69,8 @@
 #include "constants/opponents.h"
 #include "constants/spreads.h"
 #include "cable_club.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_SE1;
 extern struct MusicPlayerInfo gMPlayInfo_SE2;
@@ -1914,7 +1916,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         
     u16 move = 1;
     u16 species = 1;
-    
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
@@ -2205,7 +2206,15 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 // Sets Pokemon Nature
                 SetMonData(&party[i], MON_DATA_NATURE, &partyData[i].nature);
 
-                SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+                if(partyData[i].heldItem != ITEM_NONE)
+                    SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+
+                MgbaOpen();
+                MgbaPrintf(MGBA_LOG_WARN, "Pokemon %d Item has the ID:%d", i, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
+                if(GetMonData(&party[i], MON_DATA_HELD_ITEM, 0) == ITEM_NONE && partyData[i].heldItem != ITEM_NONE)
+                    MgbaPrintf(MGBA_LOG_WARN, "WARNING THE POKEMON %d HAS NO ITEM!, it should have the item with the ID:%d", i, partyData[i].heldItem);
+                MgbaClose();
+
                 SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].ability);
 
                 //Sets EVs to fully customized spreads if difficulty is Hard or higher
