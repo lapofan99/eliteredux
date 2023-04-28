@@ -2378,6 +2378,7 @@ const u16 gEggMoves[] = {
         MOVE_SWITCHEROO),
 
     egg_moves(SPHEAL,
+        MOVE_FLIP_TURN, // new
         MOVE_WATER_SPORT,
         MOVE_STOCKPILE,
         MOVE_SWALLOW,
