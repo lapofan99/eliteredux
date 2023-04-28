@@ -82,6 +82,14 @@
             5,
             5
           ]
+        },
+        {
+          "type": "hidden_mons",
+          "encounter_rates": [
+            33,
+            33,
+            34
+          ]
         }
       ],
       "encounters": [
@@ -369,6 +377,26 @@
                 "min_level": 3,
                 "max_level": 3,
                 "species": "SPECIES_GOTHORITA"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 50,
+                "species": "SPECIES_SUICUNE"
+              },
+              {
+                "min_level": 50,
+                "max_level": 50,
+                "species": "SPECIES_SUICUNE"
+              },
+              {
+                "min_level": 50,
+                "max_level": 50,
+                "species": "SPECIES_SUICUNE"
               }
             ]
           }

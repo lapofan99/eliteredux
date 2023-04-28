@@ -59,6 +59,10 @@
 #include "constants/rgb.h"
 #include "constants/region_map_sections.h"
 #include "gba/m4a_internal.h"
+#include "constants/map_groups.h"
+#include "constants/maps.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 #define GLOBAL_DEXNAV_SEARCH_LEVEL 0
 #define HIDDEN_WILD_COUNT 3
@@ -158,6 +162,7 @@ static void EndDexNavSearchSetupScript(const u8 *script, u8 taskId);
 // HIDDEN MONS
 static void DexNavDrawHiddenIcons(void);
 static void DrawHiddenSearchWindow(u8 width);
+bool8 CanFindHiddenPokemon(void);
 
 //// Const Data
 // gui image data
@@ -2040,7 +2045,7 @@ static void DrawSpeciesIcons(void)
         species = sDexNavUiDataPtr->hiddenSpecies[i];
         x = ROW_HIDDEN_ICON_X + 24 * i;
         y = ROW_HIDDEN_ICON_Y;
-        if (FlagGet(FLAG_SYS_DETECTOR_MODE))
+        if (CanFindHiddenPokemon())
             TryDrawIconInSlot(species, x, y);
        else if (species == SPECIES_NONE || species > NUM_SPECIES)
             CreateNoDataIcon(x, y);
@@ -2065,7 +2070,7 @@ static u16 DexNavGetSpecies(void)
         species = sDexNavUiDataPtr->landSpecies[sDexNavUiDataPtr->cursorCol + COL_LAND_COUNT];
         break;
     case ROW_HIDDEN:
-        if (!FlagGet(FLAG_SYS_DETECTOR_MODE))
+        if (!CanFindHiddenPokemon())
             species = SPECIES_NONE;
         else
             species = sDexNavUiDataPtr->hiddenSpecies[sDexNavUiDataPtr->cursorCol];
@@ -2520,7 +2525,7 @@ bool8 TryFindHiddenPokemon(void)
     u32 attempts = 0;
     u16 currSteps;
 
-    if (!FlagGet(FLAG_SYS_DETECTOR_MODE) || FlagGet(FLAG_SYS_DEXNAV_SEARCH) || gSaveBlock1Ptr->flashLevel > 0)
+    if (!CanFindHiddenPokemon() || FlagGet(FLAG_SYS_DEXNAV_SEARCH) || gSaveBlock1Ptr->flashLevel > 0)
     {
         (*stepPtr) = 0;
         return FALSE;
@@ -2742,4 +2747,31 @@ void IncrementDexNavChain(void)
 {
     if (gSaveBlock1Ptr->dexNavChain < DEXNAV_CHAIN_MAX)
         gSaveBlock1Ptr->dexNavChain++;
+}
+
+bool8 CanFindHiddenPokemon(void)
+{
+    bool8 CanFindHiddenMon = FALSE;
+    switch(gSaveBlock1Ptr->location.mapNum){
+		case MAP_NUM(ROUTE102)://Route 102
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE102)){
+                if( HasTrainerBeenFought(TRAINER_RICK) && 
+                    //HasTrainerBeenFought(TRAINER_OLDPLAYER) && 
+                    HasTrainerBeenFought(TRAINER_CALVIN_1) &&
+                    HasTrainerBeenFought(TRAINER_ALLEN) && 
+                    HasTrainerBeenFought(TRAINER_TIANA))
+                    CanFindHiddenMon = TRUE;
+                    #ifdef DEBUG_BUILD
+                       MgbaOpen();
+                        MgbaPrintf(MGBA_LOG_WARN, "Route 102 - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+                        MgbaClose();
+                    #endif
+            }
+		break;
+    }
+
+    if(!FlagGet(FLAG_SYS_GAME_CLEAR))
+        CanFindHiddenMon = FALSE;
+
+    return CanFindHiddenMon;
 }
