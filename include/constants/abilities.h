@@ -397,7 +397,7 @@
 #define ABILITY_SOLAR_FLARE      (ABILITIES_COUNT_LATEST_GEN + 98) // The Pokémon's Fire-type moves gain same-type attack bonus regardless the Pokémon's typing. The Pokémon does not need a turn to charge to use Solar Beam and Solar Blade and Morning Sun recovers twice as much HP.
 #define ABILITY_POWER_CORE       (ABILITIES_COUNT_LATEST_GEN + 99) // The Pokémon uses 25% of its Defense stat during physical moves and Special Defense stat during special moves in addition to the default stat. (Defense and Special Defense stat stages still affects these percentage).
 #define ABILITY_SIGHTING_SYSTEM  (ABILITIES_COUNT_LATEST_GEN + 100) // When the Pokémon uses a move with Accuracy of 50% or lower, the move will have 100% Accuracy, but have its priority decreased by 3.
-#define ABILITY_BAD_COMPANY      (ABILITIES_COUNT_LATEST_GEN + 101) // Prevents self lowering stat drops and recoil.
+#define ABILITY_BAD_COMPANY      (ABILITIES_COUNT_LATEST_GEN + 101) // *NO USE* Prevents self lowering stat drops and recoil.
 #define ABILITY_OPPORTUNIST      (ABILITIES_COUNT_LATEST_GEN + 102) // If target's HP is 50% or below, your single-target damaging moves get priority +1.
 #define ABILITY_GIANT_WINGS      (ABILITIES_COUNT_LATEST_GEN + 103) // Boosts all air, wing and wind moves by 25%, including Twister, Hurricane and Heat Wave.
 #define ABILITY_MOMENTUM         (ABILITIES_COUNT_LATEST_GEN + 104) // Contact moves use Speed stat instead for the damage calculation (counts Speed stage-modifiers).

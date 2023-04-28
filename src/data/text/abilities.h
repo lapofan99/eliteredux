@@ -347,7 +347,7 @@ static const u8 sBoneZoneDescription[] =  _("Bone moves ignore immunities and\nd
 static const u8 sWeatherControlDescription[] =  _("Negates all weather based\nmoves from enemies.");
 static const u8 sSpeedForceDescription[] =  _("Contact moves use 20% of its\nSpeed stat additionally.");
 static const u8 sSeaGuardianDescription[] = _("Ups highest stat on entry\nwhen it rains.");
-static const u8 sMoltenDownDescription[] = _("Fire-type become super effective\nagainst Rock-type.");
+static const u8 sMoltenDownDescription[] = _("Fire-type is super effective\nagainst Rock-type.");
 static const u8 sHyperAggressiveDescription[] = _("Moves hit twice.\n2nd hit does 25% damage.");
 static const u8 sFlockDescription[] = _("Ups Flying moves in a pinch.");
 static const u8 sFieldExplorerDescription[] = _("Boosts field moves by 25%.");
@@ -359,7 +359,7 @@ static const u8 sLunarEclipseDescription[] =  _("Fairy & Dark gains STAB.\nHypno
 static const u8 sSolarFlareDescription[] =  _("Fire-type moves gain STAB.\nBoosts Solar/Sun moves.");
 static const u8 sPowerCoreDescription[] =  _("The Pokémon uses +25% of its\nDefense/SpDef during moves.");
 static const u8 sSightingSystemDescription[] =  _("<=50% acc moves always hit\n but it moves last.");
-static const u8 sBadCompanyDescription[] =  _("Prevents self lowering\nstat drops and recoil.");
+static const u8 sBadCompanyDescription[] =  _("No use right now.");
 static const u8 sOpportunistDescription[] =  _("If target's HP < 50%, single-\ntarget moves get +1 priority.");
 static const u8 sGiantWingsDescription[] =  _("Boosts all air, wing and\nwind moves by 25%");
 static const u8 sMomentumDescription[] =  _("Contact moves use the Speed stat\nfor damage calculation");
