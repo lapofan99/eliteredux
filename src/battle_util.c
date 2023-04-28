@@ -711,6 +711,12 @@ bool8 TryRunFromBattle(u8 battler)
             if (speedVar > (Random() & 0xFF))
                 effect++;
         }
+        #ifdef DEBUG_BUILD
+        else // Debug roms can always run
+        {
+            effect++;
+        }
+        #else
         else if (gBattleMons[battler].speed < gBattleMons[runningFromBattler].speed)
         {
             speedVar = (gBattleMons[battler].speed * 128) / (gBattleMons[runningFromBattler].speed) + (gBattleStruct->runTries * 30);
@@ -721,6 +727,7 @@ bool8 TryRunFromBattle(u8 battler)
         {
             effect++;
         }
+        #endif
 
         gBattleStruct->runTries++;
     }

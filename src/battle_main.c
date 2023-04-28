@@ -2206,14 +2206,22 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 // Sets Pokemon Nature
                 SetMonData(&party[i], MON_DATA_NATURE, &partyData[i].nature);
 
-                if(partyData[i].heldItem != ITEM_NONE)
-                    SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
-
+                #ifdef DEBUG_BUILD
                 MgbaOpen();
-                MgbaPrintf(MGBA_LOG_WARN, "Pokemon %d Item has the ID:%d", i, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
-                if(GetMonData(&party[i], MON_DATA_HELD_ITEM, 0) == ITEM_NONE && partyData[i].heldItem != ITEM_NONE)
+                
+                if(GetMonData(&party[i], MON_DATA_HELD_ITEM, 0) != ITEM_NONE)
+                    MgbaPrintf(MGBA_LOG_WARN, "WARNING THE POKEMON %d HAS AN ITEM BEFORE WE GAVE IT ONE!, it has the item ID:%d", i, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
+                
+                SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+                if(GetMonData(&party[i], MON_DATA_HELD_ITEM, 0) == ITEM_NONE)
                     MgbaPrintf(MGBA_LOG_WARN, "WARNING THE POKEMON %d HAS NO ITEM!, it should have the item with the ID:%d", i, partyData[i].heldItem);
+                else if(GetMonData(&party[i], MON_DATA_HELD_ITEM, 0) != partyData[i].heldItem)
+                    MgbaPrintf(MGBA_LOG_WARN, "WARNING THE POKEMON %d HAS A DIFFERENT ITEM!, it should have the item with the ID:%d but has the item with the ID: %d instead", i, partyData[i].heldItem, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
+                else
+                    MgbaPrintf(MGBA_LOG_WARN, "Pokemon %d Item has the ID:%d", i, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
                 MgbaClose();
+                SetTrainerFlag(trainerNum);
+                #endif
 
                 SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].ability);
 
@@ -4096,6 +4104,10 @@ u8 IsRunningFromBattleImpossible(void)
 {
     u32 holdEffect, i;
 
+    #ifdef DEBUG_BUILD
+        return 0;
+    #endif
+
     if (gBattleMons[gActiveBattler].item == ITEM_ENIGMA_BERRY)
         holdEffect = gEnigmaBerries[gActiveBattler].holdEffect;
     else
@@ -4400,11 +4412,13 @@ static void HandleTurnActionSelectionState(void)
                     MarkBattlerForControllerExec(gActiveBattler);
                     return;
                 case B_ACTION_DEBUG:
+                    #ifdef DEBUG_BUILD
                     BtlController_EmitDebugMenu(0);
                     MarkBattlerForControllerExec(gActiveBattler);
                     break;
+                    #endif
                 }
-
+                
                 if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
                     && gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL)
                     && gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_RUN)
@@ -4415,6 +4429,12 @@ static void HandleTurnActionSelectionState(void)
                     *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
                     return;
                 }
+                #ifdef DEBUG_BUILD
+                else
+                {
+                    gBattleCommunication[gActiveBattler]++;
+                }
+                #else
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
                          && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
                          && gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_RUN)
@@ -4438,6 +4458,7 @@ static void HandleTurnActionSelectionState(void)
                 {
                     gBattleCommunication[gActiveBattler]++;
                 }
+                #endif
             }
             break;
         case STATE_WAIT_ACTION_CASE_CHOSEN:

@@ -48,6 +48,8 @@
     b = temp;               \
 }
 
+#define DEBUG_BUILD
+
 // useful math macros
 
 // Converts a number to Q8.8 fixed-point format
