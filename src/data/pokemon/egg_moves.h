@@ -4173,7 +4173,6 @@ const u16 gEggMoves[] = {
 
     egg_moves(SOBBLE,
         MOVE_AQUA_JET,
-        MOVE_DOUBLE_TEAM,
         MOVE_AQUA_RING,
         MOVE_MIST,
         MOVE_HAZE,
@@ -4348,7 +4347,6 @@ const u16 gEggMoves[] = {
         MOVE_CURSE,
         MOVE_GRUDGE,
         MOVE_CONFUSE_RAY,
-        MOVE_DOUBLE_TEAM,
         MOVE_DISABLE,
         MOVE_DRAGON_TAIL,
         MOVE_SUCKER_PUNCH),
