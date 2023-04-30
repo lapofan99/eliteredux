@@ -158,8 +158,8 @@ LilycoveCity_CoveLilyMotel_2F_Text_ContestsDoTakeStrategy: @ 8218C33
 
 LilycoveCity_CoveLilyMotel_2F_Text_ImBuffel:
 	.string "Hey {PLAYER}!\p"
-	.string "I'm Buffel, the creator of this\n"
-	.string "mod (or ROM hack).\p"
+	.string "I'm Buffel, the creator of the\n"
+	.string "ROM base (Inclement Emerald).\p"
 	.string "Thanks for playing!\p"
 	.string "I hope you had fun on your journey,\n"
 	.string "and didn't run in to too many bugs!\p"

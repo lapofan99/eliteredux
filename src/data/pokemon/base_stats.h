@@ -4657,7 +4657,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_AERODACTYL] =
     {
     .baseHP        = 85,
-    .baseAttack    = 140,
+    .baseAttack    = 135,
     .baseDefense   = 75,
     .baseSpeed     = 160,
     .baseSpAttack  = 60,
@@ -4758,7 +4758,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_ZAPDOS] =
     {
-    .baseHP        = 95,
+    .baseHP        = 90,
     .baseAttack    = 90,
     .baseDefense   = 85,
     .baseSpeed     = 120,
@@ -4785,7 +4785,7 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 90,
     .baseAttack    = 125,
-    .baseDefense   = 95,
+    .baseDefense   = 90,
     .baseSpeed     = 90,
     .baseSpAttack  = 145,
     .baseSpDefense = 85,
@@ -7472,8 +7472,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_SLOW,
     .eggGroup1 = EGG_GROUP_UNDISCOVERED,
     .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-    .abilities = {ABILITY_OVERCHARGE, ABILITY_GROUND_SHOCK, ABILITY_DRIZZLE},
-    .innates = {ABILITY_FATAL_PRECISION, ABILITY_BEAST_BOOST, ABILITY_ELECTROCYTES},
+    .abilities = {ABILITY_ELECTRIC_SURGE, ABILITY_GROUND_SHOCK, ABILITY_DRIZZLE},
+    .innates = {ABILITY_OVERCHARGE, ABILITY_BEAST_BOOST, ABILITY_ELECTROCYTES},
     .bodyColor = BODY_COLOR_YELLOW,
     .noFlip = FALSE,
     },
@@ -7762,10 +7762,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_SCEPTILE] =
     {
     .baseHP        = 70,
-    .baseAttack    = 115,
+    .baseAttack    = 120,
     .baseDefense   = 65,
     .baseSpeed     = 150,
-    .baseSpAttack  = 135,
+    .baseSpAttack  = 130,
     .baseSpDefense = 85,
     .type1 = TYPE_GRASS,
     .type2 = TYPE_DRAGON,
@@ -18953,7 +18953,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
     .abilities = {ABILITY_IRON_FIST, ABILITY_LIMBER, ABILITY_REGENERATOR},
-    .innates = {ABILITY_INNER_FOCUS, ABILITY_RECKLESS, ABILITY_SPEED_FORCE},
+    .innates = {ABILITY_INNER_FOCUS, ABILITY_SCRAPPY, ABILITY_SPEED_FORCE},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },
@@ -25592,7 +25592,7 @@ const struct BaseStats gBaseStats[] =
     .baseHP        = 119,
     .baseAttack    = 53,
     .baseDefense   = 47,
-    .baseSpeed     = 113,
+    .baseSpeed     = 123,
     .baseSpAttack  = 137,
     .baseSpDefense = 141,
     .type1 = TYPE_ROCK,
@@ -25749,7 +25749,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_GUZZLORD] =
     {
     .baseHP        = 243,
-    .baseAttack    = 121,
+    .baseAttack    = 141,
     .baseDefense   = 53,
     .baseSpeed     = 43,
     .baseSpAttack  = 107,
@@ -25980,7 +25980,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_NAGANADEL] =
     {
     .baseHP        = 83,
-    .baseAttack    = 83,
+    .baseAttack    = 133,
     .baseDefense   = 83,
     .baseSpeed     = 141,
     .baseSpAttack  = 147,

@@ -3056,6 +3056,7 @@ const u32 gTMHMLearnsets[][4] =
                                           TMHM2(TM65_SHADOW_CLAW)
                                         | TMHM2(TM66_PAYBACK)
                                         | TMHM2(TM68_GIGA_IMPACT)
+                                        | TMHM2(TM75_SWORDS_DANCE) // new
                                         | TMHM2(TM80_VENOSHOCK)
                                         | TMHM2(TM84_POISON_JAB)
                                         | TMHM2(TM85_DREAM_EATER)
@@ -4673,6 +4674,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM76_STEALTH_ROCK)
                                         | TMHM2(TM78_BULLDOZE)
                                         | TMHM2(TM87_SMACK_DOWN)
+                                        | TMHM2(TM89_U_TURN) // new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM02_FLY)
@@ -12720,8 +12722,10 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM58_ENDURE)
                                         | TMHM1(TM63_ROCK_SLIDE),
                                           TMHM2(TM68_GIGA_IMPACT)
+                                        | TMHM2(TM70_AURORA_VEIL) // new
                                         | TMHM2(TM73_THUNDER_WAVE)
                                         | TMHM2(TM78_BULLDOZE)
+                                        | TMHM2(TM79_FREEZE_DRY) // new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM96_AVALANCHE)
                                         | TMHM2(TM100_CURSE)
@@ -26415,6 +26419,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM71_STONE_EDGE)
                                         | TMHM2(TM75_SWORDS_DANCE)
                                         | TMHM2(TM86_GRASS_KNOT)
+                                        | TMHM2(TM89_U_TURN) // new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM94_SUCKER_PUNCH)
                                         | TMHM2(TM95_SNARL)
@@ -26929,6 +26934,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM59_DRAGON_PULSE)
                                         | TMHM1(TM62_ACROBATICS),
                                           TMHM2(TM65_SHADOW_CLAW)
+                                        | TMHM2(TM75_SWORDS_DANCE) // new
                                         | TMHM2(TM80_VENOSHOCK)
                                         | TMHM2(TM81_X_SCISSOR)
                                         | TMHM2(TM82_DRAGON_TAIL)
