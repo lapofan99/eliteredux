@@ -41,6 +41,8 @@ LittlerootTown_MapScripts:: @ 81E7DCB
 
 
 LittlerootTown_OnTransition: @ 81E7DDB
+	call_if_unset FLAG_SYS_GAME_CLEAR, LittlerootTown_EventScript_RemoveLegendaryNPC
+	call_if_set FLAG_SYS_GAME_CLEAR, LittlerootTown_EventScript_EnableLegendaryNPC
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	call Common_EventScript_SetupRivalGfxId
 	compare VAR_LITTLEROOT_INTRO_STATE, 2
@@ -61,6 +63,14 @@ LittlerootTown_OnTransition: @ 81E7DDB
 	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
 	call_if_eq LittlerootTown_EventScript_LeftLabAfterDexUpgrade
 	end
+	
+LittlerootTown_EventScript_RemoveLegendaryNPC:: @ 81E7E45
+	setflag FLAG_REMOVE_LEGENDARY_NPC
+	return
+	
+LittlerootTown_EventScript_EnableLegendaryNPC:: @ 81E7E45
+	clearflag FLAG_REMOVE_LEGENDARY_NPC
+	return
 
 LittlerootTown_EventScript_LeftLabAfterDexUpgrade:: @ 81E7E45
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
@@ -1706,33 +1716,91 @@ LittlerootTown_EventScript_EnableLegends::
 	setvar VAR_0x8007, 1
 	special SetSettingsMonStats
 	return
-		
+	
 LittlerootTown_EventScript_DisableLegends::
 	setvar VAR_0x8006, 8
 	setvar VAR_0x8007, 0
 	special SetSettingsMonStats
 	return		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+LittlerootTown_EventScript_LegendaryNPC:: @ 81E8034
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_LEGENDARY_NPC_ITEMS, LittlerootTown_EventScript_LegendaryNPC_AfterGivingItems
+	msgbox LittlerootTown_Text_LegendaryNPC_GiveItems, MSGBOX_DEFAULT
+	additem ITEM_GRACIDEA
+	additem ITEM_REVEAL_GLASS
+	additem ITEM_DNA_SPLICERS
+	additem ITEM_PRISON_BOTTLE
+	additem ITEM_N_LUNARIZER
+	additem ITEM_N_SOLARIZER
+	additem ITEM_FLAME_PLATE
+	additem ITEM_SPLASH_PLATE
+	additem ITEM_ZAP_PLATE
+	additem ITEM_MEADOW_PLATE
+	additem ITEM_ICICLE_PLATE
+	additem ITEM_FIST_PLATE
+	additem ITEM_TOXIC_PLATE
+	additem ITEM_EARTH_PLATE
+	additem ITEM_SKY_PLATE
+	additem ITEM_MIND_PLATE
+	additem ITEM_INSECT_PLATE
+	additem ITEM_STONE_PLATE
+	additem ITEM_SPOOKY_PLATE
+	additem ITEM_DRACO_PLATE
+	additem ITEM_DREAD_PLATE
+	additem ITEM_IRON_PLATE
+	additem ITEM_PIXIE_PLATE
+	additem ITEM_FIRE_MEMORY
+	additem ITEM_WATER_MEMORY
+	additem ITEM_ELECTRIC_MEMORY
+	additem ITEM_GRASS_MEMORY
+	additem ITEM_ICE_MEMORY
+	additem ITEM_FIGHTING_MEMORY
+	additem ITEM_POISON_MEMORY
+	additem ITEM_GROUND_MEMORY
+	additem ITEM_FLYING_MEMORY
+	additem ITEM_PSYCHIC_MEMORY
+	additem ITEM_BUG_MEMORY
+	additem ITEM_ROCK_MEMORY
+	additem ITEM_GHOST_MEMORY
+	additem ITEM_DRAGON_MEMORY
+	additem ITEM_DARK_MEMORY
+	additem ITEM_STEEL_MEMORY
+	additem ITEM_FAIRY_MEMORY
+	message LittlerootTown_Text_LegendaryNPC_GiveItems_2
+	waitmessage
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
+	msgbox LittlerootTown_Text_LegendaryNPC, MSGBOX_DEFAULT
+	setflag FLAG_GOT_LEGENDARY_NPC_ITEMS
+	release
+	end
 	
-		
-		
-		
-		
-		
-		
+LittlerootTown_EventScript_LegendaryNPC_AfterGivingItems:: @ 81E8034
+	msgbox LittlerootTown_Text_LegendaryNPC, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_Text_LegendaryNPC:
+	.string "As you are the champion now,\n"
+	.string "you can now catch some very\l"
+	.string "powerful legendaries. But you\l"
+	.string "have to defeat all trainers in\l"
+	.string "certain places, then they will\l"
+	.string "appear on your DexNav.\p"
+	.string "Someone on each of these places\n"
+	.string "will tell you which legendaries\l"
+	.string "you can find there.$"
+	
+LittlerootTown_Text_LegendaryNPC_GiveItems:
+	.string "Take these legendary items.$"
+	
+LittlerootTown_Text_LegendaryNPC_GiveItems_2:
+	.string "{PLAYER} got a bunch of Special Items.$"
+	
+	
+	
 LittlerootTown_Text_ChangeStarters:
 	.string "Enable random starters?$"
 		

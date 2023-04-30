@@ -6219,18 +6219,6 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_GRACIDEA] =
-    {
-        .name = _("Gracidea"),
-        .itemId = ITEM_GRACIDEA,
-        .price = 0,
-        .holdEffect = HOLD_EFFECT_GRACIDEA,
-        .description = sGracideaDesc,
-        .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
     [ITEM_BUG_MEMORY] =
     {
         .name = _("Bug Memory"),
@@ -8925,5 +8913,74 @@ const struct Item gItems[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CandyBox,
         .importance = 1,
+    },
+
+    [ITEM_REVEAL_GLASS] =
+    {
+        .name = _("Reveal Glass"),
+        .itemId = ITEM_REVEAL_GLASS,
+        .price = 0,
+        .description = sRevealGlassDesc,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RevealGlass,
+        .importance = 1,
+    },
+
+    [ITEM_DNA_SPLICERS] =
+    {
+        .name = _("DNA Splicers"),
+        .itemId = ITEM_DNA_SPLICERS,
+        .price = 0,
+        .description = sDNASplicersDesc,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_DNASplicers,
+        .importance = 1,
+    },
+
+    [ITEM_GRACIDEA] =
+    {
+        .name = _("Gracidea"),
+        .itemId = ITEM_GRACIDEA,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_GRACIDEA,
+        .description = sGracideaDesc,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Gracidea,
+    },
+
+    [ITEM_PRISON_BOTTLE] =
+    {
+        .name = _("Prison Bottle"),
+        .itemId = ITEM_PRISON_BOTTLE,
+        .price = 0,
+        .description = sPrisonBottleDesc,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_PrisonBottle,
+    },
+
+    [ITEM_N_LUNARIZER] =
+    {
+        .name = _("N-Lunarizer"),
+        .itemId = ITEM_N_LUNARIZER,
+        .price = 0,
+        .description = sNLunarizerDesc,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_NLunarizer,
+    },
+
+    [ITEM_N_SOLARIZER] =
+    {
+        .name = _("N-Solarizer"),
+        .itemId = ITEM_N_SOLARIZER,
+        .price = 0,
+        .description = sNSolarizerDesc,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_NSolarizer,
     },
 };

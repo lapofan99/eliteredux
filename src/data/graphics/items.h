@@ -1795,6 +1795,21 @@ const u32 gItemIconPalette_WoodenCrown[] = INCBIN_U32("graphics/items/icon_palet
 const u32 gItemIcon_EjectPack[] = INCBIN_U32("graphics/items/icons/eject_pack.4bpp.lz");
 const u32 gItemIconPalette_EjectPack[] = INCBIN_U32("graphics/items/icon_palettes/eject_pack.gbapal.lz");
 
+const u32 gItemIcon_RevealGlass[] = INCBIN_U32("graphics/items/icons/reveal_glass.4bpp.lz");
+const u32 gItemIconPalette_RevealGlass[] = INCBIN_U32("graphics/items/icon_palettes/reveal_glass.gbapal.lz");
+
+const u32 gItemIcon_DNASplicers[] = INCBIN_U32("graphics/items/icons/dna_splicers.4bpp.lz");
+const u32 gItemIconPalette_DNASplicers[] = INCBIN_U32("graphics/items/icon_palettes/dna_splicers.gbapal.lz");
+
+const u32 gItemIcon_PrisonBottle[] = INCBIN_U32("graphics/items/icons/prison_bottle.4bpp.lz");
+const u32 gItemIconPalette_PrisonBottle[] = INCBIN_U32("graphics/items/icon_palettes/prison_bottle.gbapal.lz");
+
+const u32 gItemIcon_NSolarizer[] = INCBIN_U32("graphics/items/icons/n_solarizer.4bpp.lz");
+const u32 gItemIconPalette_NSolarizer[] = INCBIN_U32("graphics/items/icon_palettes/n_solarizer.gbapal.lz");
+
+const u32 gItemIcon_NLunarizer[] = INCBIN_U32("graphics/items/icons/n_lunarizer.4bpp.lz");
+const u32 gItemIconPalette_NLunarizer[] = INCBIN_U32("graphics/items/icon_palettes/n_lunarizer.gbapal.lz");
+
 // Custom Items
 const u32 gItemIcon_TrainingBand[] = INCBIN_U32("graphics/items/icons/focus_sash.4bpp.lz");
 const u32 gItemIconPalette_TrainingBand[] = INCBIN_U32("graphics/items/icon_palettes/training_band.gbapal.lz");

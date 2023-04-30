@@ -41,6 +41,8 @@
 #include "constants/moves.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#include "constants/abilities.h"
+#include "constants/hold_effects.h"
 
 /*
     NOTE: This file is large. Some general groups of functions have
@@ -863,6 +865,12 @@ static void TilemapUtil_Free(void);
 static void TilemapUtil_Update(u8);
 static void TilemapUtil_DrawPrev(u8);
 static void TilemapUtil_Draw(u8);
+
+void SetArceusFormPSS(struct BoxPokemon *boxMon);
+u16 GetArceusFormPSS(struct BoxPokemon *boxMon);
+u16 GetSilvallyFormPSS(struct BoxPokemon *boxMon);
+u16 GetGiratinaFormPSS(struct BoxPokemon *boxMon);
+void UpdateSpeciesSpritePSS(struct BoxPokemon *boxmon);
 
 // Unknown utility
 static void UnkUtil_Init(struct UnkUtil *, struct UnkUtilData *, u32);
@@ -6902,6 +6910,136 @@ static void ReshowDisplayMon(void)
         TryRefreshDisplayMon();
 }
 
+void SetArceusFormPSS(struct BoxPokemon *boxMon)
+{
+    u16 species = GetMonData(boxMon, MON_DATA_SPECIES);
+    u16 forme;
+    u8 abilityNum = GetMonData(boxMon, MON_DATA_ABILITY_NUM);
+    u16 ability = GetAbilityBySpecies(species, abilityNum);
+
+    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS   && (ability == ABILITY_MULTITYPE  || SpeciesHasInnate(GET_BASE_SPECIES_ID(species), ABILITY_MULTITYPE)))
+    {
+        forme = GetArceusFormPSS(boxMon);
+        SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);
+        UpdateSpeciesSpritePSS(boxMon);
+    }
+    else if(GET_BASE_SPECIES_ID(species) == SPECIES_SILVALLY && (ability == ABILITY_RKS_SYSTEM || SpeciesHasInnate(GET_BASE_SPECIES_ID(species), ABILITY_RKS_SYSTEM)))
+    {
+        forme = GetSilvallyFormPSS(boxMon);
+        SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);
+        UpdateSpeciesSpritePSS(boxMon);
+    }
+    else if(GET_BASE_SPECIES_ID(species) == SPECIES_GIRATINA)
+    {
+        forme = GetGiratinaFormPSS(boxMon);
+        SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);
+        UpdateSpeciesSpritePSS(boxMon);
+    }
+}
+
+u16 GetArceusFormPSS(struct BoxPokemon *boxMon)
+{
+    u16 item = GetMonData(boxMon, MON_DATA_HELD_ITEM, NULL);
+
+    switch (item)
+    {
+        case ITEM_FLAME_PLATE:
+            return SPECIES_ARCEUS_FIRE;
+        case ITEM_SPLASH_PLATE:
+            return SPECIES_ARCEUS_WATER;
+        case ITEM_ZAP_PLATE:
+            return SPECIES_ARCEUS_ELECTRIC;
+        case ITEM_MEADOW_PLATE:
+            return SPECIES_ARCEUS_GRASS;
+        case ITEM_ICICLE_PLATE:
+            return SPECIES_ARCEUS_ICE;
+        case ITEM_FIST_PLATE:
+            return SPECIES_ARCEUS_FIGHTING;
+        case ITEM_TOXIC_PLATE:
+            return SPECIES_ARCEUS_POISON;
+        case ITEM_EARTH_PLATE:
+            return SPECIES_ARCEUS_GROUND;
+        case ITEM_SKY_PLATE:
+            return SPECIES_ARCEUS_FLYING;
+        case ITEM_MIND_PLATE:
+            return SPECIES_ARCEUS_PSYCHIC;
+        case ITEM_INSECT_PLATE:
+            return SPECIES_ARCEUS_BUG;
+        case ITEM_STONE_PLATE:
+            return SPECIES_ARCEUS_ROCK;
+        case ITEM_SPOOKY_PLATE:
+            return SPECIES_ARCEUS_GHOST;
+        case ITEM_DRACO_PLATE:
+            return SPECIES_ARCEUS_DRAGON;
+        case ITEM_DREAD_PLATE:
+            return SPECIES_ARCEUS_DARK;
+        case ITEM_IRON_PLATE:
+            return SPECIES_ARCEUS_STEEL;
+        case ITEM_PIXIE_PLATE:
+            return SPECIES_ARCEUS_FAIRY;
+        default:
+            return SPECIES_ARCEUS;
+    }
+}
+
+u16 GetSilvallyFormPSS(struct BoxPokemon *boxMon)
+{
+    u16 item = GetMonData(boxMon, MON_DATA_HELD_ITEM, NULL);
+
+    switch (item)
+    {
+        case ITEM_FIRE_MEMORY:
+            return SPECIES_SILVALLY_FIRE;
+        case ITEM_WATER_MEMORY:
+            return SPECIES_SILVALLY_WATER;
+        case ITEM_ELECTRIC_MEMORY:
+            return SPECIES_SILVALLY_ELECTRIC;
+        case ITEM_GRASS_MEMORY:
+            return SPECIES_SILVALLY_GRASS;
+        case ITEM_ICE_MEMORY:
+            return SPECIES_SILVALLY_ICE;
+        case ITEM_FIGHTING_MEMORY:
+            return SPECIES_SILVALLY_FIGHTING;
+        case ITEM_POISON_MEMORY:
+            return SPECIES_SILVALLY_POISON;
+        case ITEM_GROUND_MEMORY:
+            return SPECIES_SILVALLY_GROUND;
+        case ITEM_FLYING_MEMORY:
+            return SPECIES_SILVALLY_FLYING;
+        case ITEM_PSYCHIC_MEMORY:
+            return SPECIES_SILVALLY_PSYCHIC;
+        case ITEM_BUG_MEMORY:
+            return SPECIES_SILVALLY_BUG;
+        case ITEM_ROCK_MEMORY:
+            return SPECIES_SILVALLY_ROCK;
+        case ITEM_GHOST_MEMORY:
+            return SPECIES_SILVALLY_GHOST;
+        case ITEM_DRAGON_MEMORY:
+            return SPECIES_SILVALLY_DRAGON;
+        case ITEM_DARK_MEMORY:
+            return SPECIES_SILVALLY_DARK;
+        case ITEM_STEEL_MEMORY:
+            return SPECIES_SILVALLY_STEEL;
+        case ITEM_FAIRY_MEMORY:
+            return SPECIES_SILVALLY_FAIRY;
+        default:
+            return SPECIES_SILVALLY;
+    }
+}
+
+u16 GetGiratinaFormPSS(struct BoxPokemon *boxMon)
+{
+    u16 item = GetMonData(boxMon, MON_DATA_HELD_ITEM, NULL);
+
+    switch (item)
+    {
+        case ITEM_GRISEOUS_ORB:
+            return SPECIES_GIRATINA_ORIGIN;
+        default:
+            return SPECIES_GIRATINA;
+    }
+}
+
 static void SetDisplayMonData(void *pokemon, u8 mode)
 {
     u8 *txtPtr;
@@ -6988,6 +7126,11 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
     {
         if (sStorage->displayMonSpecies == SPECIES_NIDORAN_F || sStorage->displayMonSpecies == SPECIES_NIDORAN_M)
             gender = MON_GENDERLESS;
+
+        if (GET_BASE_SPECIES_ID(sStorage->displayMonSpecies) == SPECIES_ARCEUS || 
+            GET_BASE_SPECIES_ID(sStorage->displayMonSpecies) == SPECIES_GIRATINA || 
+            GET_BASE_SPECIES_ID(sStorage->displayMonSpecies) == SPECIES_SILVALLY)
+            SetArceusFormPSS(pokemon);
 
         StringCopyPadded(sStorage->displayMonNameText, sStorage->displayMonName, CHAR_SPACE, 5);
 
@@ -10131,4 +10274,16 @@ static void UnkUtil_DmaRun(struct UnkUtilData *data)
         Dma3FillLarge16_(0, data->dest, data->size);
         data->dest += 64;
     }
+}
+
+void UpdateSpeciesSpritePSS(struct BoxPokemon *boxMon)
+{
+    u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
+    u32 otId = GetBoxMonData(boxMon, MON_DATA_OT_ID);
+    u32 pid = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
+
+    // Update front sprite
+    sStorage->displayMonSpecies = species;
+    sStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(species, otId, pid);
+    LoadDisplayMonGfx(species, pid);
 }

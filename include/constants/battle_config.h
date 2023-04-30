@@ -168,7 +168,7 @@
 #define B_NEW_IMPACT_PALETTE            FALSE    // If set to TRUE, it updates the basic 'hit' palette.
 #define B_NEW_SURF_PARTICLE_PALETTE     FALSE    // If set to TRUE, it updates Surf's wave palette.
 
-#define B_ENABLE_DEBUG                  FALSE    // If set to TRUE, enables a debug menu to use in battles by pressing the Select button.
+#define B_ENABLE_DEBUG                  TRUE    // If set to TRUE, enables a debug menu to use in battles by pressing the Select button.
 #define B_PERFECT_IVS         			TRUE    // If set to TRUE, the stat calculation makes it as if the Pokemon has perfect Ivs.
 
 // Item Restoration Settings

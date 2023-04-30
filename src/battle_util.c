@@ -5648,6 +5648,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRESSURE)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PRESSURE)])
             {
+				gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_PRESSURE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PRESSURE;
                 gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PRESSURE)] = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -5660,8 +5661,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_LOCK)])
             {
                 gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_LOCK)] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_CLOUD_NINE;
-				gLastUsedAbility = ABILITY_CLOUD_NINE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_AIR_LOCK;
+				gLastUsedAbility = ABILITY_AIR_LOCK;
                 BattleScriptPushCursorAndCallback(BattleScript_AnnounceAirLockCloudNine);
                 effect++;
             }

@@ -1317,7 +1317,7 @@
 #define FLAG_DEFEATED_METEOR_FALLS_STEVEN                           0x4F8 // Unused Flag
 
 #define FLAG_USED_0x4F9                                             0x4F9 // Unused Flag
-#define FLAG_UNUSED_0x4FA                                           0x4FA // Unused Flag
+#define FLAG_GOT_LEGENDARY_NPC_ITEMS                                0x4FA
 
 #define FLAG_DEFEATED_ELITE_4_SIDNEY                                0x4FB
 #define FLAG_DEFEATED_ELITE_4_PHOEBE                                0x4FC
@@ -1340,7 +1340,7 @@
 #define FLAG_SYS_POKEMON_GET                         (SYSTEM_FLAGS + 0x0) // FLAG_0x860
 #define FLAG_SYS_POKEDEX_GET                         (SYSTEM_FLAGS + 0x1)
 #define FLAG_SYS_POKENAV_GET                         (SYSTEM_FLAGS + 0x2)
-#define FLAG_UNUSED_0x863                            (SYSTEM_FLAGS + 0x3) // Unused Flag
+#define FLAG_REMOVE_LEGENDARY_NPC                    (SYSTEM_FLAGS + 0x3)
 #define FLAG_SYS_GAME_CLEAR                          (SYSTEM_FLAGS + 0x4)
 #define FLAG_SYS_CHAT_USED                           (SYSTEM_FLAGS + 0x5)
 #define FLAG_SYS_HIPSTER_MEET                        (SYSTEM_FLAGS + 0x6)

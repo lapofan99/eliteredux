@@ -48,7 +48,7 @@
     b = temp;               \
 }
 
-//#define DEBUG_BUILD
+#define DEBUG_BUILD
 
 // useful math macros
 

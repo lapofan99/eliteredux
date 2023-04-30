@@ -865,6 +865,86 @@ void ItemUseOutOfBattle_CandyBox(u8 taskId)
     }
 }
 
+void ItemUseOutOfBattle_RevealGlass(u8 taskId)
+{
+    if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gItemUseCB = ItemUseCB_RevealGlass;
+        SetUpItemUseCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+void ItemUseOutOfBattle_DNASplicers(u8 taskId)
+{
+    if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gItemUseCB = ItemUseCB_DNASplicer;
+        SetUpItemUseCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+void ItemUseOutOfBattle_Gracidea(u8 taskId)
+{
+    if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gItemUseCB = ItemUseCB_Gracidea;
+        SetUpItemUseCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+void ItemUseOutOfBattle_PrisonBottle(u8 taskId)
+{
+    if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gItemUseCB = ItemUseCB_PrisonBottle;
+        SetUpItemUseCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+void ItemUseOutOfBattle_NLunarizer(u8 taskId)
+{
+    if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gItemUseCB = ItemUseCB_NLunarizer;
+        SetUpItemUseCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+void ItemUseOutOfBattle_NSolarizer(u8 taskId)
+{
+    if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gItemUseCB = ItemUseCB_NSolarizer;
+        SetUpItemUseCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+
+
 void ItemUseOutOfBattle_TypeGems(u8 taskId)
 {
     gItemUseCB = ItemUseCB_TypeGems;

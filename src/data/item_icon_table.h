@@ -735,6 +735,13 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_WOODEN_CROWN] = {gItemIcon_WoodenCrown, gItemIconPalette_WoodenCrown},
     [ITEM_EJECT_PACK] = {gItemIcon_EjectPack, gItemIconPalette_EjectPack},
 
+    // Form Change Items
+    [ITEM_REVEAL_GLASS]  = {gItemIcon_RevealGlass, gItemIconPalette_RevealGlass},
+    [ITEM_DNA_SPLICERS]  = {gItemIcon_DNASplicers, gItemIconPalette_DNASplicers},
+    [ITEM_PRISON_BOTTLE] = {gItemIcon_PrisonBottle, gItemIconPalette_PrisonBottle},
+    [ITEM_N_LUNARIZER] = {gItemIcon_NLunarizer, gItemIconPalette_NLunarizer},
+    [ITEM_N_SOLARIZER] = {gItemIcon_NSolarizer, gItemIconPalette_NSolarizer},
+
     // Custom Items
     [ITEM_TRAINING_BAND] = {gItemIcon_TrainingBand, gItemIconPalette_TrainingBand},
     [ITEM_CANDY_BOX] = {gItemIcon_OaksParcel, gItemIconPalette_OaksParcel},

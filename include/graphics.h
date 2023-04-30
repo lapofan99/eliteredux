@@ -8315,6 +8315,16 @@ extern const u32 gItemIcon_WoodenCrown[];
 extern const u32 gItemIconPalette_WoodenCrown[];
 extern const u32 gItemIcon_EjectPack[];
 extern const u32 gItemIconPalette_EjectPack[];
+extern const u32 gItemIcon_RevealGlass[];
+extern const u32 gItemIconPalette_RevealGlass[];
+extern const u32 gItemIcon_DNASplicers[];
+extern const u32 gItemIconPalette_DNASplicers[];
+extern const u32 gItemIcon_PrisonBottle[];
+extern const u32 gItemIconPalette_PrisonBottle[];
+extern const u32 gItemIcon_NSolarizer[];
+extern const u32 gItemIconPalette_NSolarizer[];
+extern const u32 gItemIcon_NLunarizer[];
+extern const u32 gItemIconPalette_NLunarizer[];
 
 // Custom items
 extern const u32 gItemIcon_TrainingBand[];

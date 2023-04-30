@@ -3530,3 +3530,33 @@ static const u8 sWoodenCrownDesc[] = _(
     "A mysterious wooden\n"
     "object. Is it meant\n"
     "for something?");
+
+static const u8 sRevealGlassDesc[] = _(
+    "This glass returns\n"
+    "a Pokémon back to\n"
+    "its original form.");
+
+static const u8 sDNASplicersDesc[] = _(
+    "Splicer that fuses\n"
+    "Kyurem and a\n"
+    "certain Pokémon.");
+
+static const u8 sZygardeCubeDesc[] = _(
+    "An item to store\n"
+    "Zygarde Cores and\n"
+    "Cells.");
+
+static const u8 sPrisonBottleDesc[] = _(
+    "A bottle used to\n"
+    "seal a certain\n"
+    "Pokémon long ago.");
+
+static const u8 sNSolarizerDesc[] = _(
+    "A device to fuse\n"
+    "and split Necrozma\n"
+    "using a Solgaleo.");
+
+static const u8 sNLunarizerDesc[] = _(
+    "A device to fuse\n"
+    "and split Necrozma\n"
+    "using a Lunala.");

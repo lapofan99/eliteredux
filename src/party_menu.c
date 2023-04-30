@@ -49,6 +49,7 @@
 #include "pokemon_jump.h"
 #include "pokemon_storage_system.h"
 #include "pokemon_summary_screen.h"
+#include "rtc.h"
 #include "region_map.h"
 #include "reshow_battle_screen.h"
 #include "scanline_effect.h"
@@ -77,6 +78,8 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 #include "data/pokemon/form_species_tables.h"
+#include "constants/abilities.h"
+#include "constants/hold_effects.h"
 //#include "data/pokemon/form_species_table_pointers.h"
 
 #define PARTY_PAL_SELECTED     (1 << 0)
@@ -413,6 +416,10 @@ static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Dive(void);
+void SetArceusForm(struct Pokemon *mon);
+u16 GetArceusForm(struct Pokemon *mon);
+u16 GetSilvallyForm(struct Pokemon *mon);
+u16 GetGiratinaForm(struct Pokemon *mon);
 
 // static const data
 #include "data/pokemon/tutor_learnsets.h"
@@ -1741,6 +1748,7 @@ static void GiveItemToMon(struct Pokemon *mon, u16 item)
     itemBytes[0] = item;
     itemBytes[1] = item >> 8;
     SetMonData(mon, MON_DATA_HELD_ITEM, itemBytes);
+    SetArceusForm(&gPlayerParty[gPartyMenu.slotId]);
 }
 
 static u8 TryTakeMonItem(struct Pokemon* mon)
@@ -1754,6 +1762,7 @@ static u8 TryTakeMonItem(struct Pokemon* mon)
 
     item = ITEM_NONE;
     SetMonData(mon, MON_DATA_HELD_ITEM, &item);
+    SetArceusForm(&gPlayerParty[gPartyMenu.slotId]);
     return 2;
 }
 
@@ -5394,6 +5403,320 @@ void ItemUseCB_CandyBox(u8 taskId, TaskFunc task)
     VarSet(VAR_CANDY_BOX_LEVEL, 0);
 }
 
+
+#define tState        	  data[0]
+#define tMonId        	  data[1]
+#define tMonSpecies       data[2]
+#define tNewMonSpecies    data[3]
+#define tRemoveItem       data[4]
+#define tnoEffect         data[5]
+#define tOldFunc    	  6
+
+void Task_ChangeMonForm(u8 taskId)
+{
+    static const u8 askText[] = _("Would you like to change {STR_VAR_1}'s\nForm?");
+    static const u8 doneText[] = _("{STR_VAR_1}'s Form Changed!{PAUSE_UNTIL_PRESS}");
+    s16 *data = gTasks[taskId].data;
+    u16 item = gSpecialVar_ItemId;
+
+    switch (tState)
+    {
+    case 0:
+        gPartyMenuUseExitCallback = TRUE;
+        GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
+
+        StringCopy(gStringVar2, gTypeNames[ItemId_GetSecondaryId(gSpecialVar_ItemId)]);
+        StringExpandPlaceholders(gStringVar4, askText);
+
+        PlaySE(SE_SELECT);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState++;
+        break;
+    case 1:
+        if (!IsPartyMenuTextPrinterActive())
+        {
+            PartyMenuDisplayYesNoMenu();
+            tState++;
+        }
+        break;
+    case 2:
+        switch (Menu_ProcessInputNoWrapClearOnChoose())
+        {
+        case 0:
+            tState++;
+            break;
+        case 1:
+        case MENU_B_PRESSED:
+            gPartyMenuUseExitCallback = FALSE;
+            PlaySE(SE_SELECT);
+            ScheduleBgCopyTilemapToVram(2);
+            // Don't exit party selections screen, return to choosing a mon.
+            ClearStdWindowAndFrameToTransparent(6, 0);
+            ClearWindowTilemap(6);
+            DisplayPartyMenuStdMessage(5);
+            gTasks[taskId].func = (void *)GetWordTaskArg(taskId, tOldFunc);
+            return;
+        }
+        break;
+    case 3:
+        PlaySE(SE_USE_ITEM);
+        StringExpandPlaceholders(gStringVar4, doneText);
+        DisplayPartyMenuMessage(gStringVar4, 1);
+        ScheduleBgCopyTilemapToVram(2);
+        tState++;
+        break;
+    case 4:
+        if (!IsPartyMenuTextPrinterActive())
+            tState++;
+        break;
+    case 5:
+        SetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES, &tNewMonSpecies);
+        if(tRemoveItem)
+            RemoveBagItem(gSpecialVar_ItemId, 1);
+        gTasks[taskId].func = Task_ClosePartyMenu;
+        break;
+    }
+}
+
+void ItemUseCB_RevealGlass(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    tMonSpecies = GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES, 0);
+    tRemoveItem = FALSE;
+    tnoEffect = TRUE;
+
+    switch(tMonSpecies){
+        case SPECIES_TORNADUS:
+            tNewMonSpecies = SPECIES_TORNADUS_THERIAN;
+        break;
+        case SPECIES_TORNADUS_THERIAN:
+            tNewMonSpecies = SPECIES_TORNADUS;
+        break;
+        case SPECIES_THUNDURUS:
+            tNewMonSpecies = SPECIES_THUNDURUS_THERIAN;
+        break;
+        case SPECIES_THUNDURUS_THERIAN:
+            tNewMonSpecies = SPECIES_THUNDURUS;
+        break;
+        case SPECIES_LANDORUS:
+            tNewMonSpecies = SPECIES_LANDORUS_THERIAN;
+        break;
+        case SPECIES_LANDORUS_THERIAN:
+            tNewMonSpecies = SPECIES_LANDORUS;
+        break;
+        default:
+            tNewMonSpecies = tMonSpecies;
+            tnoEffect = FALSE;
+        break;
+    }
+
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+
+    if(!tnoEffect){
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+    else
+        gTasks[taskId].func = Task_ChangeMonForm;
+}
+
+void ItemUseCB_DNASplicer(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    tMonSpecies = GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES, 0);
+    tRemoveItem = FALSE;
+    tnoEffect = TRUE;
+    
+    switch(tMonSpecies){
+        case SPECIES_KYUREM:
+            tNewMonSpecies = SPECIES_KYUREM_WHITE;
+        break;
+        case SPECIES_KYUREM_WHITE:
+            tNewMonSpecies = SPECIES_KYUREM_BLACK;
+        break;
+        case SPECIES_KYUREM_BLACK:
+            tNewMonSpecies = SPECIES_KYUREM;
+        break;
+        default:
+            tNewMonSpecies = tMonSpecies;
+            tnoEffect = FALSE;
+        break;
+    }
+
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+
+    if(!tnoEffect){
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+    else
+        gTasks[taskId].func = Task_ChangeMonForm;
+}
+
+void ItemUseCB_Gracidea(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+    u8 monStatus;
+
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    tMonSpecies = GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES, 0);
+    tRemoveItem = FALSE;
+    tnoEffect = TRUE;
+
+    monStatus = GetMonData(&gPlayerParty[tMonId], MON_DATA_STATUS, 0); 
+    
+    switch(tMonSpecies){
+        case SPECIES_SHAYMIN:
+            if(IsCurrentlyDay() && monStatus != STATUS1_FREEZE){
+                tNewMonSpecies = SPECIES_SHAYMIN_SKY;
+            }
+            else{
+                tNewMonSpecies = tMonSpecies;
+                tnoEffect = FALSE;
+            }
+        break;
+        case SPECIES_SHAYMIN_SKY:
+            tNewMonSpecies = SPECIES_SHAYMIN;
+        break;
+        default:
+            tNewMonSpecies = tMonSpecies;
+            tnoEffect = FALSE;
+        break;
+    }
+
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+
+    if(!tnoEffect){
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+    else
+        gTasks[taskId].func = Task_ChangeMonForm;
+}
+
+void ItemUseCB_PrisonBottle(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    tMonSpecies = GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES, 0);
+    tRemoveItem = FALSE;
+    tnoEffect = TRUE;
+    
+    switch(tMonSpecies){
+        case SPECIES_HOOPA:
+            tNewMonSpecies = SPECIES_HOOPA_UNBOUND;
+        break;
+        case SPECIES_HOOPA_UNBOUND:
+            tNewMonSpecies = SPECIES_HOOPA;
+        break;
+        default:
+            tNewMonSpecies = tMonSpecies;
+            tnoEffect = FALSE;
+        break;
+    }
+
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+
+    if(!tnoEffect){
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+    else
+        gTasks[taskId].func = Task_ChangeMonForm;
+}
+
+void ItemUseCB_NLunarizer(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    tMonSpecies = GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES, 0);
+    tRemoveItem = FALSE;
+    tnoEffect = TRUE;
+    
+    switch(tMonSpecies){
+        case SPECIES_NECROZMA:
+            tNewMonSpecies = SPECIES_NECROZMA_DAWN_WINGS;
+        break;
+        case SPECIES_NECROZMA_DAWN_WINGS:
+            tNewMonSpecies = SPECIES_NECROZMA;
+        break;
+        default:
+            tNewMonSpecies = tMonSpecies;
+            tnoEffect = FALSE;
+        break;
+    }
+
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+
+    if(!tnoEffect){
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+    else
+        gTasks[taskId].func = Task_ChangeMonForm;
+}
+
+void ItemUseCB_NSolarizer(u8 taskId, TaskFunc task)
+{
+    s16 *data = gTasks[taskId].data;
+    tState = 0;
+    tMonId = gPartyMenu.slotId;
+    tMonSpecies = GetMonData(&gPlayerParty[tMonId], MON_DATA_SPECIES, 0);
+    tRemoveItem = FALSE;
+    tnoEffect = TRUE;
+    
+    switch(tMonSpecies){
+        case SPECIES_NECROZMA:
+            tNewMonSpecies = SPECIES_NECROZMA_DUSK_MANE;
+        break;
+        case SPECIES_NECROZMA_DUSK_MANE:
+            tNewMonSpecies = SPECIES_NECROZMA;
+        break;
+        default:
+            tNewMonSpecies = tMonSpecies;
+            tnoEffect = FALSE;
+        break;
+    }
+
+    SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
+
+    if(!tnoEffect){
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+    }
+    else
+        gTasks[taskId].func = Task_ChangeMonForm;
+}
+
+#undef tState
+#undef tMonId
+#undef tMonSpecies
+#undef tNewMonSpecies
+#undef tRemoveItem
+#undef tOldFunc
+
 static void UpdateMonDisplayInfoAfterRareCandy(u8 slot, struct Pokemon *mon)
 {
     SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[slot]);
@@ -7407,3 +7730,133 @@ void ItemUseCB_TypeGems(u8 taskId, TaskFunc task)
 #undef tnewSpdIV
 #undef tOldIVs
 #undef tOldFunc
+
+void SetArceusForm(struct Pokemon *mon)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    u16 forme;
+    u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
+    u16 ability = GetAbilityBySpecies(species, abilityNum);
+
+    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS   && (ability == ABILITY_MULTITYPE  || SpeciesHasInnate(GET_BASE_SPECIES_ID(species), ABILITY_MULTITYPE)))
+    {
+        forme = GetArceusForm(mon);
+        SetMonData(mon, MON_DATA_SPECIES, &forme);
+        CalculateMonStats(mon);
+    }
+    else if(GET_BASE_SPECIES_ID(species) == SPECIES_SILVALLY && (ability == ABILITY_RKS_SYSTEM || SpeciesHasInnate(GET_BASE_SPECIES_ID(species), ABILITY_RKS_SYSTEM)))
+    {
+        forme = GetSilvallyForm(mon);
+        SetMonData(mon, MON_DATA_SPECIES, &forme);
+        CalculateMonStats(mon);
+    }
+    else if(GET_BASE_SPECIES_ID(species) == SPECIES_GIRATINA)
+    {
+        forme = GetGiratinaForm(mon);
+        SetMonData(mon, MON_DATA_SPECIES, &forme);
+        CalculateMonStats(mon);
+    }
+}
+
+u16 GetArceusForm(struct Pokemon *mon)
+{
+    u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+
+    switch (item)
+    {
+        case ITEM_FLAME_PLATE:
+            return SPECIES_ARCEUS_FIRE;
+        case ITEM_SPLASH_PLATE:
+            return SPECIES_ARCEUS_WATER;
+        case ITEM_ZAP_PLATE:
+            return SPECIES_ARCEUS_ELECTRIC;
+        case ITEM_MEADOW_PLATE:
+            return SPECIES_ARCEUS_GRASS;
+        case ITEM_ICICLE_PLATE:
+            return SPECIES_ARCEUS_ICE;
+        case ITEM_FIST_PLATE:
+            return SPECIES_ARCEUS_FIGHTING;
+        case ITEM_TOXIC_PLATE:
+            return SPECIES_ARCEUS_POISON;
+        case ITEM_EARTH_PLATE:
+            return SPECIES_ARCEUS_GROUND;
+        case ITEM_SKY_PLATE:
+            return SPECIES_ARCEUS_FLYING;
+        case ITEM_MIND_PLATE:
+            return SPECIES_ARCEUS_PSYCHIC;
+        case ITEM_INSECT_PLATE:
+            return SPECIES_ARCEUS_BUG;
+        case ITEM_STONE_PLATE:
+            return SPECIES_ARCEUS_ROCK;
+        case ITEM_SPOOKY_PLATE:
+            return SPECIES_ARCEUS_GHOST;
+        case ITEM_DRACO_PLATE:
+            return SPECIES_ARCEUS_DRAGON;
+        case ITEM_DREAD_PLATE:
+            return SPECIES_ARCEUS_DARK;
+        case ITEM_IRON_PLATE:
+            return SPECIES_ARCEUS_STEEL;
+        case ITEM_PIXIE_PLATE:
+            return SPECIES_ARCEUS_FAIRY;
+        default:
+            return SPECIES_ARCEUS;
+    }
+}
+
+u16 GetSilvallyForm(struct Pokemon *mon)
+{
+    u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+
+    switch (item)
+    {
+        case ITEM_FIRE_MEMORY:
+            return SPECIES_SILVALLY_FIRE;
+        case ITEM_WATER_MEMORY:
+            return SPECIES_SILVALLY_WATER;
+        case ITEM_ELECTRIC_MEMORY:
+            return SPECIES_SILVALLY_ELECTRIC;
+        case ITEM_GRASS_MEMORY:
+            return SPECIES_SILVALLY_GRASS;
+        case ITEM_ICE_MEMORY:
+            return SPECIES_SILVALLY_ICE;
+        case ITEM_FIGHTING_MEMORY:
+            return SPECIES_SILVALLY_FIGHTING;
+        case ITEM_POISON_MEMORY:
+            return SPECIES_SILVALLY_POISON;
+        case ITEM_GROUND_MEMORY:
+            return SPECIES_SILVALLY_GROUND;
+        case ITEM_FLYING_MEMORY:
+            return SPECIES_SILVALLY_FLYING;
+        case ITEM_PSYCHIC_MEMORY:
+            return SPECIES_SILVALLY_PSYCHIC;
+        case ITEM_BUG_MEMORY:
+            return SPECIES_SILVALLY_BUG;
+        case ITEM_ROCK_MEMORY:
+            return SPECIES_SILVALLY_ROCK;
+        case ITEM_GHOST_MEMORY:
+            return SPECIES_SILVALLY_GHOST;
+        case ITEM_DRAGON_MEMORY:
+            return SPECIES_SILVALLY_DRAGON;
+        case ITEM_DARK_MEMORY:
+            return SPECIES_SILVALLY_DARK;
+        case ITEM_STEEL_MEMORY:
+            return SPECIES_SILVALLY_STEEL;
+        case ITEM_FAIRY_MEMORY:
+            return SPECIES_SILVALLY_FAIRY;
+        default:
+            return SPECIES_SILVALLY;
+    }
+}
+
+u16 GetGiratinaForm(struct Pokemon *mon)
+{
+    u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+
+    switch (item)
+    {
+        case ITEM_GRISEOUS_ORB:
+            return SPECIES_GIRATINA_ORIGIN;
+        default:
+            return SPECIES_GIRATINA;
+    }
+}
