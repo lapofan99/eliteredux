@@ -18,4 +18,3 @@ SkyPillar_2F_SetHoleWarp: @ 8239650
 	setstepcallback STEP_CB_CRACKED_FLOOR
 	setholewarp MAP_SKY_PILLAR_1F, 255, 0, 0
 	end
-

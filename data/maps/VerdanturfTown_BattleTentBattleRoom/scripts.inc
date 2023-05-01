@@ -181,4 +181,3 @@ VerdanturfTown_BattleTentBattleRoom_Movement_OpponentExit: @ 8202581
 	walk_up
 	walk_up
 	step_end
-

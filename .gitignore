@@ -37,3 +37,4 @@ porymap.project.cfg
 *.sna
 agbcc/
 *.bak
+tools/poryscript/poryscript

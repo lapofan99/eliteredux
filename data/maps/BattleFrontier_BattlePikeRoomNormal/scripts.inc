@@ -864,4 +864,3 @@ BattleFrontier_BattlePikeRoomNormal_Text_WillRestoreTwoMons: @ 825E32E
 	.string "I'm in good spirits now.\p"
 	.string "I will restore two of your Pokémon\n"
 	.string "to full health!$"
-

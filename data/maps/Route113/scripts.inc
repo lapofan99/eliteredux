@@ -167,4 +167,3 @@ Route113_Text_TrainerTipsRegisterKeyItems: @ 81F2471
 Route113_Text_GlassWorkshopSign: @ 81F24F8
 	.string "Glass Workshop\n"
 	.string "“Turning Volcanic Ash into Glass Items”$"
-

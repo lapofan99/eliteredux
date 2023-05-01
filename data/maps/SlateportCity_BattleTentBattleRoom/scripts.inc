@@ -104,4 +104,3 @@ SlateportCity_BattleTentBattleRoom_Movement_OpponentEnter: @ 8209A9E
 	walk_down
 	walk_in_place_fastest_left
 	step_end
-

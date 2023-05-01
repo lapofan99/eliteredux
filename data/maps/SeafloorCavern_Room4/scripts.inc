@@ -33,4 +33,3 @@ SeafloorCavern_Room4_Text_Grunt4PostBattle: @ 8234D79
 	.string "My partner forgot the map in that\n"
 	.string "submarine!\p"
 	.string "How's that for being useless?$"
-

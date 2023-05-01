@@ -26,4 +26,3 @@ FortreeCity_House3_Text_OhYouHavePokedex: @ 8217C22
 	.string "… … … … … …\p"
 	.string "Oh, it's called a Pokédex?\n"
 	.string "It's really awesome!$"
-

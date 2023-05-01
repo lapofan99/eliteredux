@@ -173,4 +173,3 @@ Route112_Text_MtChimneySign: @ 81F20ED
 Route112_Text_RouteSignLavaridge: @ 81F2138
 	.string "Route 112\n"
 	.string "{LEFT_ARROW} Lavaridge Town$"
-

@@ -76,4 +76,3 @@ Route110_TrickHousePuzzle1_Text_RobinDefeat: @ 826BB2E
 Route110_TrickHousePuzzle1_Text_RobinPostBattle: @ 826BB52
 	.string "You're strong!\n"
 	.string "Just who are you?$"
-

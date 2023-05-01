@@ -155,4 +155,3 @@ FortreeCity_Text_GymSign: @ 81E2AE6
 	.string "Leader: Winona\p"
 	.string "“The bird user taking flight into\n"
 	.string "the world.”$"
-

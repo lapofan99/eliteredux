@@ -17,4 +17,3 @@ SootopolisCity_PokemonCenter_2F_EventScript_TradeCenter:: @ 8226788
 SootopolisCity_PokemonCenter_2F_EventScript_RecordCorner:: @ 822678E
 	call CableClub_EventScript_RecordCorner
 	end
-

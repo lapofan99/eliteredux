@@ -105,4 +105,3 @@ VictoryRoad_B2F_Text_DianneDefeat: @ 8236D6E
 VictoryRoad_B2F_Text_DiannePostBattle: @ 8236D8C
 	.string "You do have guts! I like that!\n"
 	.string "Keep it going!$"
-

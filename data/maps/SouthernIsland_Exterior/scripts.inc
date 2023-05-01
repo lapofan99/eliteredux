@@ -55,4 +55,3 @@ Ferry_EventScript_DepartIslandBoardWest: @ 8242A39
 SouthernIsland_Exterior_EventScript_Sign:: @ 8242A3C
 	msgbox SouthernIsland_Exterior_Text_Sign, MSGBOX_SIGN
 	end
-

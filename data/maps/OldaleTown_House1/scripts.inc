@@ -13,4 +13,3 @@ OldaleTown_House1_Text_LeftPokemonGoesOutFirst: @ 81FBE8F
 	.string "party, try switching around the order\l"
 	.string "of your Pokémon.\p"
 	.string "It could give you an advantage.$"
-

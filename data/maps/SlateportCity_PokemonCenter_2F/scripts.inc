@@ -17,4 +17,3 @@ SlateportCity_PokemonCenter_2F_EventScript_TradeCenter:: @ 820DC3C
 SlateportCity_PokemonCenter_2F_EventScript_RecordCorner:: @ 820DC42
 	call CableClub_EventScript_RecordCorner
 	end
-

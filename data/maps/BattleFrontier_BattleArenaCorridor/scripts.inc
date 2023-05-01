@@ -89,4 +89,3 @@ BattleFrontier_BattleArenaCorridor_Movement_AttendantMoveOutOfWay: @ 8257446
 BattleFrontier_BattleArenaCorridor_Text_PleaseStepIn: @ 8257449
 	.string "Your battles shall be waged in\n"
 	.string "the next room. Please step in!$"
-

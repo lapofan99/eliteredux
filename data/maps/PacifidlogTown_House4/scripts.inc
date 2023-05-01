@@ -52,4 +52,3 @@ PacifidlogTown_House4_Text_YouHaveToComeFromSomewhere: @ 8204084
 	.string "You have to come from somewhere.\p"
 	.string "Oh! Wait! You're not going to say you\n"
 	.string "were born at the bottom of the sea?$"
-

@@ -376,4 +376,3 @@ BattleFrontier_Lounge2_Text_AmazingPowerOfPersuasion:: @ 8261D1D
 BattleFrontier_Lounge2_Text_ThisPlaceIsScaringMe:: @ 8261D5C
 	.string "…What is this place?\n"
 	.string "It's scaring me…$"
-

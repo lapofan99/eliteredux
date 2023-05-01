@@ -15,4 +15,3 @@ RustboroCity_Flat1_1F_Text_EveryPokemonHasAbility: @ 82150E0
 
 RustboroCity_Flat1_1F_Text_PokemonStrange: @ 8215115
 	.string "Pokémon are such strange creatures.$"
-

@@ -51,4 +51,3 @@ Route111_OldLadysRestStop_Text_StillTiredTakeAnotherRest: @ 822AA16
 Route111_OldLadysRestStop_Text_DontNeedToBeShy: @ 822AA8F
 	.string "Is that so?\n"
 	.string "You don't need to be shy about it.$"
-

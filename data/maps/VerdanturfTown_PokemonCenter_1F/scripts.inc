@@ -100,4 +100,3 @@ VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent: @ 820280B
 	.string "saying.\p"
 	.string "Or is there somebody here that you\n"
 	.string "came to see?$"
-

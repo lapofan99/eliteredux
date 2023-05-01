@@ -535,4 +535,3 @@ LilycoveCity_ContestHall_Text_CuteContestStage: @ 821C548
 LilycoveCity_ContestHall_Text_SmartContestStage: @ 821C57B
 	.string "Smartness Contest STAGE\n"
 	.string "BE IMPRESSED BY SMART POKéMON!$"
-

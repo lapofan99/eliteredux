@@ -36,4 +36,3 @@ SSTidalLowerDeck_Text_LeonardPostBattle: @ 823C98E
 	.string "We're the Cleanup Brothers!\p"
 	.string "The old one dumps the detergent,\n"
 	.string "and the young one does the scrubbing!$"
-

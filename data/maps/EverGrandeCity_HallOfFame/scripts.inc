@@ -98,4 +98,3 @@ EverGrandeCity_HallOfFame_Text_LetsRecordYouAndYourPartnersNames: @ 82299A3
 	.string "name as a Trainer who triumphed over\l"
 	.string "the Pokémon League, and the names of\l"
 	.string "the partners who battled with you.$"
-

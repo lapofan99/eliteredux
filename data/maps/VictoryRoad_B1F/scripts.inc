@@ -88,4 +88,3 @@ VictoryRoad_B1F_Text_HallePostBattle: @ 823684C
 	.string "the path you've taken so far.\p"
 	.string "Try to enjoy things the rest of\n"
 	.string "the way!$"
-

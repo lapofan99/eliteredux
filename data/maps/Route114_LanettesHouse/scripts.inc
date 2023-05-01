@@ -107,4 +107,3 @@ Route114_LanettesHouse_Text_EmailFromBill: @ 822B6FC
 	.string "research in Storage Systems.\p"
 	.string "“From Bill\n"
 	.string "… … … … … … … …”$"
-

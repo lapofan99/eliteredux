@@ -72,4 +72,3 @@ MagmaHideout_2F_1R_Text_Grunt5Defeat: @ 8239DDA
 
 MagmaHideout_2F_1R_Text_Grunt5PostBattle: @ 8239DE2
 	.string "Actually, I'm no expert at battling…$"
-

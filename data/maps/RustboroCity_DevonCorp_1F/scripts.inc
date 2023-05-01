@@ -143,4 +143,3 @@ RustboroCity_DevonCorp_1F_Text_ProductDisplay: @ 8211722
 	.string "“Recently, Devon has begun marketing\n"
 	.string "tools for Pokémon Trainers, including\l"
 	.string "Poké Balls and PokéNav systems.”$"
-

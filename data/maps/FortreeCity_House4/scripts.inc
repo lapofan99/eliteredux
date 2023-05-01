@@ -95,4 +95,3 @@ FortreeCity_House4_Text_FriendsFarAwayThanksToWingull: @ 8217EA8
 
 FortreeCity_House4_Text_Wingull: @ 8217EE0
 	.string "Wingull: Pihyoh!$"
-

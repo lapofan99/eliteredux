@@ -162,4 +162,3 @@ Route104_MrBrineysHouse_Text_TellMeWheneverYouWantToSail: @ 822A2C3
 
 Route104_MrBrineysHouse_Text_Peeko: @ 822A337
 	.string "Peeko: Pii piihyoro!$"
-

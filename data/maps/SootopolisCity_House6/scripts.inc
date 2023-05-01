@@ -52,4 +52,3 @@ SootopolisCity_House6_Text_DontWantThisDoll: @ 822708F
 
 SootopolisCity_House6_Text_LovePlushDolls: @ 82270B7
 	.string "I love plush Dolls!$"
-

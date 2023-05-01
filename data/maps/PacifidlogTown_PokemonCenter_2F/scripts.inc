@@ -17,4 +17,3 @@ PacifidlogTown_PokemonCenter_2F_EventScript_TradeCenter:: @ 8203650
 PacifidlogTown_PokemonCenter_2F_EventScript_RecordCorner:: @ 8203656
 	call CableClub_EventScript_RecordCorner
 	end
-

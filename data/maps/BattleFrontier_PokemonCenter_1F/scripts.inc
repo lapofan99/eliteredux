@@ -58,4 +58,3 @@ BattleFrontier_PokemonCenter_1F_Text_GoingThroughEveryChallenge: @ 8267A4B
 
 BattleFrontier_PokemonCenter_1F_Text_Skitty: @ 8267A90
 	.string "Skitty: Mya myaaah!$"
-

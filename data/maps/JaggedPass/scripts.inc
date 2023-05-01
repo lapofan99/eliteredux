@@ -350,4 +350,3 @@ JaggedPass_Text_AutumnDefeat: @ 8230ECD
 JaggedPass_Text_AutumnPostBattle: @ 8230EE3
 	.string "What is that odd rock protrusion\n"
 	.string "a little up the hill from here?$"
-

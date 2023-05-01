@@ -54,4 +54,3 @@ Route129_EventScript_Clarence:: @ 81F7348
 	trainerbattle_single TRAINER_CLARENCE, Route129_Text_ClarenceIntro, Route129_Text_ClarenceDefeat
 	msgbox Route129_Text_ClarencePostBattle, MSGBOX_AUTOCLOSE
 	end
-

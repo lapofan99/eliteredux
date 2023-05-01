@@ -344,4 +344,3 @@ BattleFrontier_BattlePyramidTop_Text_FarewellForNow: @ 8255B82
 BattleFrontier_BattlePyramidTop_Text_StepForwardWhenReady: @ 8255BFE
 	.string "Now, when you are ready, take courage\n"
 	.string "and step forward.$"
-

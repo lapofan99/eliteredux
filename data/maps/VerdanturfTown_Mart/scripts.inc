@@ -82,4 +82,3 @@ VerdanturfTown_Mart_Text_NoStrategyGuidesForBattleTent: @ 820264C
 VerdanturfTown_Mart_Text_NestBallOnWeakenedPokemon:
 	.string "The Nest Ball works better on\n"
 	.string "weaker Pokémon.$"
-

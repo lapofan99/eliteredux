@@ -1768,6 +1768,10 @@ LittlerootTown_EventScript_LegendaryNPC:: @ 81E8034
 	additem ITEM_DARK_MEMORY
 	additem ITEM_STEEL_MEMORY
 	additem ITEM_FAIRY_MEMORY
+	additem ITEM_SHOCK_DRIVE
+	additem ITEM_BURN_DRIVE
+	additem ITEM_CHILL_DRIVE
+	additem ITEM_DOUSE_DRIVE
 	message LittlerootTown_Text_LegendaryNPC_GiveItems_2
 	waitmessage
 	playfanfare MUS_OBTAIN_ITEM
@@ -1799,7 +1803,7 @@ LittlerootTown_Text_LegendaryNPC_GiveItems:
 LittlerootTown_Text_LegendaryNPC_GiveItems_2:
 	.string "{PLAYER} got a bunch of Special Items.$"
 	
-	
+
 	
 LittlerootTown_Text_ChangeStarters:
 	.string "Enable random starters?$"
@@ -2002,4 +2006,4 @@ LittlerootTown_EventScript_DisableAltForms::
 	setvar VAR_0x8006, 11
 	setvar VAR_0x8007, 0
 	special SetSettingsMonStats
-	return	
+	return

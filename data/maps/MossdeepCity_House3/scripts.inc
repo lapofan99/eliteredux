@@ -48,4 +48,3 @@ MossdeepCity_House3_Text_DontYouLikeToFish: @ 8222733
 MossdeepCity_House3_Text_GoAfterSeafloorPokemon: @ 8222751
 	.string "Go after the seafloor Pokémon with\n"
 	.string "your Super Rod.$"
-

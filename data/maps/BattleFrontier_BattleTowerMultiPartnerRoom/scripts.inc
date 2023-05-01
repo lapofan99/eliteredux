@@ -1808,4 +1808,3 @@ BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerMAccept:: @ 8248CCF
 BattleFrontier_BattleTowerMultiPartnerRoom_Text_SwimmerMReject:: @ 8248D04
 	.string "If we meet again, you have to team up\n"
 	.string "with me. You'll do that, right?$"
-

@@ -64,4 +64,3 @@ LavaridgeTown_HerbShop_Text_HerbalMedicineWorksButMonWillDislike: @ 81FE685
 	.string "Herbal medicine works impressively well.\n"
 	.string "But your Pokémon will dislike you for it.\l"
 	.string "It must be horribly bitter!$"
-

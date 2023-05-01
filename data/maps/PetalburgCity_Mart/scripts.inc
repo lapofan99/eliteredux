@@ -53,4 +53,3 @@ PetalburgCity_Mart_Text_TakeSomeAntidotesWithYou: @ 8207EB0
 	.string "If you walk around with a poisoned\n"
 	.string "Pokémon, it will lose HP until it faints.\l"
 	.string "Take some Antidotes with you.$"
-

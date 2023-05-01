@@ -34,4 +34,3 @@ RustboroCity_House3_Text_NamingPikachuPekachu: @ 821622A
 
 RustboroCity_House3_Text_Pekachu: @ 82162AB
 	.string "Pekachu: Peka!$"
-

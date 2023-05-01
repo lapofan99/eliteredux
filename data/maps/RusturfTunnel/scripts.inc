@@ -541,4 +541,3 @@ RusturfTunnel_Text_MikePostBattle: @ 822D8F9
 	.string "They halted development here to\n"
 	.string "protect Pokémon, right?\l"
 	.string "There's a feel-good story!$"
-

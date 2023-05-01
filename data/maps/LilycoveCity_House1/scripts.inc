@@ -23,4 +23,3 @@ LilycoveCity_House1_Text_PokemonPartnersNotTools: @ 821ECEA
 
 LilycoveCity_House1_Text_Kecleon: @ 821ED63
 	.string "Kecleon: Ruroro?$"
-

@@ -91,4 +91,3 @@ FallarborTown_Mart_Text_SellNuggetIFound: @ 81FFE09
 	.string "This Nugget I found here…\n"
 	.string "I suppose I'll have to sell it, seeing\l"
 	.string "as how it has no other use.$"
-

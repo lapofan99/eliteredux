@@ -200,4 +200,3 @@ Route123_Text_RouteSignMtPyre: @ 81F6529
 
 Route123_Text_BerryMastersHouse: @ 81F6557
 	.string "Berry Master's House$"
-

@@ -433,4 +433,3 @@ BattleFrontier_BattlePikeLobby_Text_ExplainMonOrderRules: @ 825C6EB
 	.string "changed.\p"
 	.string "The sequence must be set before\n"
 	.string "starting your challenge.$"
-

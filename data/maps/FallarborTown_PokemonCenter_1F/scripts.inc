@@ -131,4 +131,3 @@ FallarborTown_PokemonCenter_1F_Text_PlantHardyTrees: @ 8200E8B
 	.string "In the fields of Fallarbor, we plant\n"
 	.string "seedlings of hardy trees that thrive\l"
 	.string "even in volcanic ash.$"
-

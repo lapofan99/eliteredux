@@ -154,4 +154,3 @@ BattleFrontier_BattlePalaceCorridor_Text_BeginningToUnderstandNature: @ 824F78C
 BattleFrontier_BattlePalaceCorridor_Text_HeartfeltBondBetweenYouAndMons: @ 824F7D4
 	.string "Ah… I see a strong, heartfelt bond\n"
 	.string "between you and your Pokémon…$"
-

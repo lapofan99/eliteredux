@@ -17,4 +17,3 @@ OldaleTown_House2_Text_YoullGoFurtherWithStrongPokemon: @ 81FBFB0
 	.string "If the Pokémon with you become\n"
 	.string "stronger, you'll be able to go farther\l"
 	.string "away from here.$"
-

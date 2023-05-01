@@ -36,4 +36,3 @@ SootopolisCity_House4_Text_StrollUnderwaterWithPokemon: @ 8226DEA
 
 SootopolisCity_House4_Text_Azumarill: @ 8226E7F
 	.string "Azumarill: Marurii.$"
-

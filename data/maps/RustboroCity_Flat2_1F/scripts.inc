@@ -21,4 +21,3 @@ RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere: @ 8215F93
 
 RustboroCity_Flat2_1F_Text_Skitty: @ 8215FC6
 	.string "Skitty: Gyaaaah!$"
-

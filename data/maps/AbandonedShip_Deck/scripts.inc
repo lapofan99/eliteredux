@@ -5,4 +5,3 @@ AbandonedShip_Deck_MapScripts:: @ 823799A
 AbandonedShip_Deck_OnTransition: @ 82379A0
 	setflag FLAG_LANDMARK_ABANDONED_SHIP
 	end
-

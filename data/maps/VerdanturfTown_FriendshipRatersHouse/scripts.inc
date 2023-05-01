@@ -181,4 +181,3 @@ VerdanturfTown_FriendshipRatersHouse_Text_DetestsYou: @ 82032DF
 
 VerdanturfTown_FriendshipRatersHouse_Text_Pikachu: @ 820334A
 	.string "Pikachu: Pika pika!$"
-

@@ -17,4 +17,3 @@ RustboroCity_PokemonCenter_2F_EventScript_TradeCenter:: @ 8214EF9
 RustboroCity_PokemonCenter_2F_EventScript_RecordCorner:: @ 8214EFF
 	call CableClub_EventScript_RecordCorner
 	end
-

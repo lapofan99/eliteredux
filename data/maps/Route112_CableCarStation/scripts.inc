@@ -98,4 +98,3 @@ Route112_CableCarStation_Text_StepThisWay: @ 822ABC2
 
 Route112_CableCarStation_Text_RideAnotherTime: @ 822ABD8
 	.string "Please ride with us another time.$"
-

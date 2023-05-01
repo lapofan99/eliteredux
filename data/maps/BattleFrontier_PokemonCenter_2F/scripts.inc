@@ -17,4 +17,3 @@ BattleFrontier_PokemonCenter_2F_EventScript_TradeCenter:: @ 8267ABF
 BattleFrontier_PokemonCenter_2F_EventScript_RecordCorner:: @ 8267AC5
 	call CableClub_EventScript_RecordCorner
 	end
-

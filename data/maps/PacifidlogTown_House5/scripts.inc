@@ -34,4 +34,3 @@ PacifidlogTown_House5_Text_MirageIslandAppearDependingOnWeather: @ 820418B
 	.string "that make mirages appear.\p"
 	.string "Or is it really appearing and\n"
 	.string "disappearing?$"
-

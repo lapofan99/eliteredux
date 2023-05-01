@@ -392,4 +392,3 @@ Route110_TrickHousePuzzle7_Text_EverettDefeat: @ 826E7AB
 Route110_TrickHousePuzzle7_Text_EverettPostBattle: @ 826E7C4
 	.string "I was hoping to switch places with you\n"
 	.string "when I beat you, but…$"
-

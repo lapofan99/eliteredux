@@ -183,4 +183,3 @@ RustboroCity_Flat1_2F_Text_ThankYouIllGiveYouWallpaper: @ 8215792
 
 RustboroCity_Flat1_2F_Text_ItsAPokemonPlushDoll: @ 8215923
 	.string "It's a Pokémon plush Doll!$"
-

@@ -17,4 +17,3 @@ VerdanturfTown_PokemonCenter_2F_EventScript_TradeCenter:: @ 82028B2
 VerdanturfTown_PokemonCenter_2F_EventScript_RecordCorner:: @ 82028B8
 	call CableClub_EventScript_RecordCorner
 	end
-

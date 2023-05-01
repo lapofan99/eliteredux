@@ -132,4 +132,3 @@ AbandonedShip_HiddenFloorRooms_EventScript_OldSeaMap::
 AbandonedShip_HiddenFloorRooms_Text_BrightShinyTrash: @ 8238DFE
 	.string "It's bright and shiny!\n"
 	.string "But it's just trash…$"
-

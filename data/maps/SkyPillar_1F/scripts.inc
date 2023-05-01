@@ -10,4 +10,3 @@ SkyPillar_1F_OnTransition: @ 823961B
 SkyPillar_1F_EventScript_CleanFloor:: @ 8239627
 	setmaplayoutindex LAYOUT_SKY_PILLAR_1F_CLEAN
 	return
-

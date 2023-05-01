@@ -910,4 +910,3 @@ BattleFrontier_BattlePyramidLobby_Text_ExplainBagRules: @ 8252924
 	.string "of ten kinds of items.\p"
 	.string "The contents of the BATTLE Bag are\n"
 	.string "lost if you fail in your quest.$"
-

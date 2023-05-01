@@ -8,4 +8,3 @@ SafariZone_Southwest_EventScript_Woman:: @ 823D267
 SafariZone_Southwest_EventScript_RestHouseSign:: @ 823D270
 	msgbox SafariZone_Southwest_Text_RestHouseSign, MSGBOX_SIGN
 	end
-

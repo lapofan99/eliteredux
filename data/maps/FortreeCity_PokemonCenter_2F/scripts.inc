@@ -17,4 +17,3 @@ FortreeCity_PokemonCenter_2F_EventScript_TradeCenter:: @ 8217659
 FortreeCity_PokemonCenter_2F_EventScript_RecordCorner:: @ 821765F
 	call CableClub_EventScript_RecordCorner
 	end
-

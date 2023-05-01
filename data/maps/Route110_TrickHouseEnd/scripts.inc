@@ -368,4 +368,3 @@ Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou: @ 826B7EF
 Route110_TrickHouseEnd_Text_YoureIgnoringMe: @ 826B8BD
 	.string "Now, now! You're ignoring me now?\n"
 	.string "Now that, I consider heartbreaking!$"
-

@@ -340,4 +340,3 @@ Route119_WeatherInstitute_2F_Text_NoAbnormalWeather: @ 82708FC
 	.string "no longer being reported.\p"
 	.string "The occasional rainfall is a blessing,\n"
 	.string "really.$"
-

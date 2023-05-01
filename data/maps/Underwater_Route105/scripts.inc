@@ -5,4 +5,3 @@ Underwater_Route105_MapScripts:: @ 81F773D
 Underwater_Route105_OnResume: @ 81F7743
 	call AbnormalWeather_Underwater_SetupEscapeWarp
 	end
-

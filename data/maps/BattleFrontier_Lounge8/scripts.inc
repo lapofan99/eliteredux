@@ -42,4 +42,3 @@ BattleFrontier_Lounge8_Text_ToldMeIHaveTalentForBattling: @ 826782C
 	.string "But I'm no good at Contests!\p"
 	.string "I guess having talent and liking\n"
 	.string "something aren't the same.$"
-

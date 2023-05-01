@@ -12,4 +12,3 @@ SafariZone_RestHouse_EventScript_PsychicM:: @ 8242BF0
 SafariZone_RestHouse_EventScript_FatMan:: @ 8242BF9
 	msgbox SafariZone_RestHouse_Text_FatMan, MSGBOX_NPC
 	end
-

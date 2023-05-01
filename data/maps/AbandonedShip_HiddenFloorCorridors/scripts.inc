@@ -156,4 +156,3 @@ AbandonedShip_HiddenFloorCorridors_Text_InsertedKey: @ 8238BF7
 	.string "KEY.\p"
 	.string "The inserted Key stuck fast,\n"
 	.string "but the door opened.$"
-

@@ -376,4 +376,3 @@ EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations: @ 82294F5
 	.string "It can't be helped if that's the rule.\p"
 	.string "{PLAYER}, way to go!\n"
 	.string "Congratulations!$"
-

@@ -4,4 +4,3 @@ SafariZone_Northwest_MapScripts:: @ 823D249
 SafariZone_Northwest_EventScript_Man:: @ 823D24A
 	msgbox SafariZone_Northwest_Text_Man, MSGBOX_NPC
 	end
-

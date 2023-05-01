@@ -127,4 +127,3 @@ SealedChamber_OuterRoom_EventScript_BrailleDigHere:: @ 82391ED
 	closebraillemessage
 	releaseall
 	end
-

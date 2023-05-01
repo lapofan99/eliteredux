@@ -64,4 +64,3 @@ RustboroCity_Mart_Text_GettingEscapeRopeJustInCase: @ 821505C
 	.string "case I get lost in a cave.\p"
 	.string "I just need to use it to get back to\n"
 	.string "the entrance.$"
-

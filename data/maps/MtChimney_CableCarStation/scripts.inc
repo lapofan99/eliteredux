@@ -97,4 +97,3 @@ MtChimney_CableCarStation_Text_StepThisWay: @ 822ACF8
 
 MtChimney_CableCarStation_Text_RideAnotherTime: @ 822AD0E
 	.string "Please ride with us another time.$"
-

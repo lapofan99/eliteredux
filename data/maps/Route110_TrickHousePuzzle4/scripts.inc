@@ -68,4 +68,3 @@ Route110_TrickHousePuzzle4_Text_PaulaDefeat: @ 826CACB
 
 Route110_TrickHousePuzzle4_Text_PaulaPostBattle: @ 826CAD1
 	.string "Has anyone made it to the end?$"
-

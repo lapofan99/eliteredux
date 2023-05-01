@@ -17,4 +17,3 @@ SootopolisCity_House5_Text_SootopolisMtPyreConnection: @ 8226EA6
 
 SootopolisCity_House5_Text_BrotherUsedToStudySea: @ 8226F35
 	.string "My big brother used to study the sea.$"
-

@@ -25,4 +25,3 @@ Underwater_SealedChamber_EventScript_Braille:: @ 82390FC
 	closebraillemessage
 	releaseall
 	end
-

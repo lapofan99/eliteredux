@@ -55,4 +55,3 @@ SeafloorCavern_Room3_Text_Grunt5PostBattle: @ 8234C04
 	.string "going up against our Boss.\p"
 	.string "Maybe…\n"
 	.string "You must be something…$"
-

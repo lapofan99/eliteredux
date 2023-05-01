@@ -669,4 +669,3 @@ MtPyre_Summit_Text_HoennTrioTale: @ 823325D
 	.string "becalmed the two enraged Pokémon.\p"
 	.string "Then, its duty done, the green Pokémon\n"
 	.string "flew off into the wild blue yonder…$"
-

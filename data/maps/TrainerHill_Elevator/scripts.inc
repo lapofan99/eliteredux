@@ -88,4 +88,3 @@ TrainerHill_Elevator_Movement_AttendantFacePlayer: @ 82693EE
 TrainerHill_Elevator_Movement_AttendantFaceDown: @ 82693F0
 	face_down
 	step_end
-

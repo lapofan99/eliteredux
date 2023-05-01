@@ -84,4 +84,3 @@ Route110_TrickHousePuzzle6_Text_SebastianDefeat: @ 826E004
 Route110_TrickHousePuzzle6_Text_SebastianPostBattle: @ 826E048
 	.string "You don't seem to be affected at all.\n"
 	.string "Or do you have your poker face on?$"
-

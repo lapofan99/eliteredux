@@ -17,4 +17,3 @@ FallarborTown_PokemonCenter_2F_EventScript_TradeCenter:: @ 8200F06
 FallarborTown_PokemonCenter_2F_EventScript_RecordCorner:: @ 8200F0C
 	call CableClub_EventScript_RecordCorner
 	end
-

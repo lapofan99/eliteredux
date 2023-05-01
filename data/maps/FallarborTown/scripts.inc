@@ -287,4 +287,3 @@ FallarborTown_Text_TownSign: @ 81EB4FE
 FallarborTown_Text_MoveTutorSign: @ 81EB534
 	.string "Ivy and Evie's House\n"
 	.string "“Special training for Pokémon.”$"
-

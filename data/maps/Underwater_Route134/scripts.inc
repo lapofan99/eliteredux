@@ -5,4 +5,3 @@ Underwater_Route134_MapScripts:: @ 82390B5
 Underwater_Route134_OnResume: @ 82390BB
 	setdivewarp MAP_ROUTE134, 255, 60, 31
 	end
-

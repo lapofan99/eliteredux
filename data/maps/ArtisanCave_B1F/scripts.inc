@@ -5,4 +5,3 @@ ArtisanCave_B1F_MapScripts:: @ 823AFAD
 ArtisanCave_B1F_OnTransition: @ 823AFB3
 	setflag FLAG_LANDMARK_ARTISAN_CAVE
 	end
-

@@ -134,4 +134,3 @@ PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling: @ 82047A7
 	.string "he's surprisingly strong-willed.\p"
 	.string "I'm sure that he'll come back safe\n"
 	.string "and sound one day!$"
-

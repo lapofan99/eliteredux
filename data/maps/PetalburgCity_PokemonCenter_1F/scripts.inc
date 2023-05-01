@@ -97,4 +97,3 @@ PetalburgCity_PokemonCenter_1F_Text_MudkipIsWaterType: @ 8207CB7
 	.string "It's strong against the Fire type.\p"
 	.string "But, it's weak against Grass-type\n"
 	.string "and Electric-type Pokémon.$"
-

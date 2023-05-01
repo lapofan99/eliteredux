@@ -502,7 +502,7 @@ static const struct MenuAction sMenuActions_Gender[] = {
 
 static const struct MenuAction sMenuActions_Difficulty[] = {
     {gText_BirchNormalMode, NULL},
-    {gText_BirchHardMode, NULL},
+    //{gText_BirchHardMode, NULL},
     {gText_BirchChallengeMode, NULL},
 };
 

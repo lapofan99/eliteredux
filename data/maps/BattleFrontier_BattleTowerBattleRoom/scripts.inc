@@ -580,4 +580,3 @@ BattleFrontier_BattleTowerBattleRoom_Text_WishICouldBattleYouAgain: @ 824295D
 	.string "I have never had a Pokémon battle\n"
 	.string "so enjoyable before…\p"
 	.string "I wish I could battle with you again…$"
-

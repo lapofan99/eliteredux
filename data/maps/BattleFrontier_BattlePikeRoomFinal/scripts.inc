@@ -39,4 +39,3 @@ BattleFrontier_BattlePikeRoomFinal_EventScript_TurnPlayerNorth:: @ 825E3E8
 BattleFrontier_BattlePikeRoomFinal_Text_CongratsThisWayPlease: @ 825E3F2
 	.string "Congratulations…\n"
 	.string "Now, this way, please…$"
-

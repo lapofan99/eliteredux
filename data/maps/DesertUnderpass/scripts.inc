@@ -35,4 +35,3 @@ DesertUnderpass_Text_FoundRootFossil:: @ 823AF79
 @ Unused
 DesertUnderpass_Text_FoundClawFossil:: @ 823AF93
 	.string "{PLAYER} found the Claw Fossil.$"
-

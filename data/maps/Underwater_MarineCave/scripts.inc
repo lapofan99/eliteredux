@@ -10,4 +10,3 @@ Underwater_MarineCave_OnTransition: @ 823AFC3
 Underwater_MarineCave_OnResume: @ 823AFC7
 	setdivewarp MAP_MARINE_CAVE_ENTRANCE, 255, 10, 17
 	end
-

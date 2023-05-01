@@ -102,4 +102,3 @@ EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou: @ 8229BF1
 	.string "I'll get in touch with you then.\p"
 	.string "Okay, {PLAYER}{KUN}.\n"
 	.string "Go for greatness!$"
-

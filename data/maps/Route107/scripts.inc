@@ -52,4 +52,3 @@ Route107_EventScript_Camron:: @ 81EE672
 	trainerbattle_single TRAINER_CAMRON, Route107_Text_CamronIntro, Route107_Text_CamronDefeated
 	msgbox Route107_Text_CamronPostBattle, MSGBOX_AUTOCLOSE
 	end
-

@@ -393,4 +393,3 @@ BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerSilverShort: @ 824BC2A
 BattleFrontier_BattleDomePreBattleRoom_Text_ReadyForTuckerGoldShort: @ 824BC63
 	.string "Your final battle against TUCKER is\n"
 	.string "next. Are you ready?$"
-

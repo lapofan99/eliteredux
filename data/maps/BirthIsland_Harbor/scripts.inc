@@ -27,4 +27,3 @@ BirthIsland_Harbor_EventScript_AsYouLike:: @ 82680A2
 	msgbox EventTicket_Text_AsYouLike, MSGBOX_DEFAULT
 	release
 	end
-

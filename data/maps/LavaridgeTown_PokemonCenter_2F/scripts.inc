@@ -17,4 +17,3 @@ LavaridgeTown_PokemonCenter_2F_EventScript_TradeCenter:: @ 81FFCB2
 LavaridgeTown_PokemonCenter_2F_EventScript_RecordCorner:: @ 81FFCB8
 	call CableClub_EventScript_RecordCorner
 	end
-

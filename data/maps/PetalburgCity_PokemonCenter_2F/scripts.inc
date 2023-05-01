@@ -17,4 +17,3 @@ PetalburgCity_PokemonCenter_2F_EventScript_TradeCenter:: @ 8207D5C
 PetalburgCity_PokemonCenter_2F_EventScript_RecordCorner:: @ 8207D62
 	call CableClub_EventScript_RecordCorner
 	end
-

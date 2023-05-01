@@ -180,4 +180,3 @@ SootopolisCity_Gym_B1F_Text_BriannaDefeat: @ 8226495
 SootopolisCity_Gym_B1F_Text_BriannaPostBattle: @ 82264BC
 	.string "You couldn't lay a finger on Juan,\n"
 	.string "I'm sure. Giggle…$"
-

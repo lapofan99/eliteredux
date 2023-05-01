@@ -483,4 +483,3 @@ PetalburgWoods_Text_TrainerTipsPP: @ 822ED07
 	.string "make moves during battle.\p"
 	.string "If a Pokémon runs out of PP, it must be\n"
 	.string "taken to a Pokémon Center.$"
-

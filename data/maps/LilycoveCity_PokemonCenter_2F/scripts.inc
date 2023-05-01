@@ -17,4 +17,3 @@ LilycoveCity_PokemonCenter_2F_EventScript_TradeCenter:: @ 821C778
 LilycoveCity_PokemonCenter_2F_EventScript_RecordCorner:: @ 821C77E
 	call CableClub_EventScript_RecordCorner
 	end
-

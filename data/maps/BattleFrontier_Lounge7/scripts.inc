@@ -1105,4 +1105,3 @@ PokemonCenterMoveTutor_Text_QuiverDanceDesc::
 	.string "A mystic dance\n"
 	.string "that ups Sp. Atk,\n"
 	.string "Sp. Def & Speed.$"
-

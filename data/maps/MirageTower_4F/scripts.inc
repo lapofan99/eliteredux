@@ -79,4 +79,3 @@ MirageTower_4F_Text_TakeClawFossil: @ 823AE98
 
 MirageTower_4F_Text_LeaveClawFossilAlone: @ 823AF18
 	.string "{PLAYER} left the Claw Fossil alone.$"
-

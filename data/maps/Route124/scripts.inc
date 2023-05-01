@@ -104,4 +104,3 @@ Route124_EventScript_Isabella:: @ 81F6722
 
 Route124_Text_HuntersHouse: @ 81F6739
 	.string "Hunter's House$"
-

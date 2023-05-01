@@ -134,4 +134,3 @@ Route121_SafariZoneEntrance_Movement_EnterSafariZone: @ 822BD18
 Route121_SafariZoneEntrance_EventScript_TrainerTipSign:: @ 822BD21
 	msgbox Route121_SafariZoneEntrance_Text_TrainerTip, MSGBOX_SIGN
 	end
-

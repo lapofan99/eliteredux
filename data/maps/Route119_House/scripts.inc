@@ -24,4 +24,3 @@ Route119_House_Text_RumorAboutCaveOfOrigin: @ 8270982
 
 Route119_House_Text_Wingull: @ 8270A17
 	.string "Wingull: Pihyoh!$"
-

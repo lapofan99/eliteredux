@@ -211,4 +211,3 @@ Route117_Text_RouteSignMauville: @ 81F3D74
 Route117_Text_DayCareSign: @ 81F3D8E
 	.string "Pokémon Day Care\n"
 	.string "“Let us raise your Pokémon.”$"
-

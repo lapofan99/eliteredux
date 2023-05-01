@@ -193,4 +193,3 @@ LilycoveCity_DepartmentStore_1F_Text_WirelessCommIsFun: @ 821FA13
 LilycoveCity_DepartmentStore_1F_Text_SpreadWordAboutWirelessComm: @ 821FAE5
 	.string "I want to spread the word about how\n"
 	.string "fun Wireless Communication can be.$"
-

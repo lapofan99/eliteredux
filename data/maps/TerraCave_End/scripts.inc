@@ -77,4 +77,3 @@ TerraCave_End_Movement_GroudonApproach: @ 823B16E
 	delay_16
 	walk_down_affine
 	step_end
-

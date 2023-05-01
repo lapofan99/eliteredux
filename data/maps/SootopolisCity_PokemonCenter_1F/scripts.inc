@@ -90,4 +90,3 @@ SootopolisCity_PokemonCenter_1F_Text_AlwaysBeFriendsWithPokemon: @ 82266B9
 SootopolisCity_PokemonCenter_1F_Text_ArentPokemonOurFriends: @ 822672F
 	.string "Aren't Pokémon our friends?\p"
 	.string "Why are they going wild this way?$"
-

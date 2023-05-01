@@ -357,4 +357,3 @@ Route110_TrickHousePuzzle3_Text_AlanPostBattle: @ 826C80C
 	.string "I don't get it.\n"
 	.string "How many traps are in this house?\p"
 	.string "You may be the one to solve that.$"
-

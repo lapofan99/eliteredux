@@ -17,4 +17,3 @@ DewfordTown_PokemonCenter_2F_EventScript_TradeCenter:: @ 81FC630
 DewfordTown_PokemonCenter_2F_EventScript_RecordCorner:: @ 81FC636
 	call CableClub_EventScript_RecordCorner
 	end
-

@@ -113,4 +113,3 @@ UnionRoom_EventScript_Unused:: @ 823D240
 	waitstate
 	releaseall
 	end
-

@@ -27,4 +27,3 @@ NavelRock_Harbor_EventScript_AsYouLike:: @ 8269102
 	msgbox EventTicket_Text_AsYouLike, MSGBOX_DEFAULT
 	release
 	end
-

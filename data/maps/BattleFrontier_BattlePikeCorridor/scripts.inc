@@ -59,4 +59,3 @@ BattleFrontier_BattlePikeCorridor_Movement_AttendantEnterCorridor: @ 825C812
 BattleFrontier_BattlePikeCorridor_Text_YourChallengeHasBegun: @ 825C817
 	.string "Your Battle Choice challenge\n"
 	.string "has now begun…$"
-

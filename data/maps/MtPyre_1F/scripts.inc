@@ -45,4 +45,3 @@ MtPyre_1F_Text_ComeToPayRespects: @ 823104F
 MtPyre_1F_Text_RestingPlaceOfZigzagoon: @ 82310BA
 	.string "This is the final resting place of my\n"
 	.string "Zigzagoon. I cherished it…$"
-

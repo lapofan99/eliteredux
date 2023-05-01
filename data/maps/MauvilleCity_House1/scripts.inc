@@ -44,4 +44,3 @@ MauvilleCity_House1_Text_MonCanFlyOutOfSmashedRock: @ 820FB67
 	.string "Sometimes you'll find an item, or even\n"
 	.string "a Fossil.\p"
 	.string "Woohoo!$"
-

@@ -55,4 +55,3 @@ BattleFrontier_BattleTowerCorridor_Movement_AttendantWalkToDoor: @ 8241B3A
 	walk_up
 	set_invisible
 	step_end
-

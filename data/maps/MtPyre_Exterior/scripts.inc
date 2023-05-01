@@ -25,4 +25,3 @@ MtPyre_Exterior_EventScript_SunTrigger:: @ 8231FF2
 	setweather WEATHER_SUNNY
 	doweather
 	end
-

@@ -17,4 +17,3 @@ EverGrandeCity_PokemonLeague_2F_EventScript_TradeCenter:: @ 8229D22
 EverGrandeCity_PokemonLeague_2F_EventScript_RecordCorner:: @ 8229D28
 	call CableClub_EventScript_RecordCorner
 	end
-

@@ -46,4 +46,3 @@ FarawayIsland_Entrance_EventScript_AsYouLike:: @ 8267CE7
 FarawayIsland_Entrance_EventScript_Sign:: @ 8267CF1
 	msgbox FarawayIsland_Entrance_Text_Sign, MSGBOX_SIGN
 	end
-

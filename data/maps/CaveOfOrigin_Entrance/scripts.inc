@@ -5,4 +5,3 @@ CaveOfOrigin_Entrance_MapScripts:: @ 8235759
 CaveOfOrigin_Entrance_OnResume: @ 823575F
 	setescapewarp MAP_SOOTOPOLIS_CITY, 255, 31, 17
 	end
-

@@ -5,4 +5,3 @@ Underwater_SootopolisCity_MapScripts:: @ 822D94C
 Underwater_SootopolisCity_OnResume: @ 822D952
 	setdivewarp MAP_SOOTOPOLIS_CITY, 255, 29, 53
 	end
-

@@ -51,4 +51,3 @@ PacifidlogTown_Text_TownSign: @ 81EBC7A
 	.string "Pacifidlog Town\p"
 	.string "“Where the morning sun smiles upon\n"
 	.string "the waters.”$"
-

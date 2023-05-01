@@ -131,4 +131,3 @@ FortreeCity_House2_Text_ExplainHiddenPower: @ 8217A91
 FortreeCity_House2_Text_YouGuessedWrong: @ 8217AC7
 	.string "No, too bad.\n"
 	.string "You guessed wrong.$"
-

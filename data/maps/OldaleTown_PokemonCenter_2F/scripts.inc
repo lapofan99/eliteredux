@@ -17,4 +17,3 @@ OldaleTown_PokemonCenter_2F_EventScript_TradeCenter:: @ 81FC233
 OldaleTown_PokemonCenter_2F_EventScript_RecordCorner:: @ 81FC239
 	call CableClub_EventScript_RecordCorner
 	end
-

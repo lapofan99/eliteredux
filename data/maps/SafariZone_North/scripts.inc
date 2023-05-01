@@ -8,4 +8,3 @@ SafariZone_North_EventScript_Fisherman:: @ 823D254
 SafariZone_North_EventScript_Man:: @ 823D25D
 	msgbox SafariZone_North_Text_Man, MSGBOX_NPC
 	end
-

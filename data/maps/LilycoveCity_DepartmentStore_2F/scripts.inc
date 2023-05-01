@@ -57,4 +57,3 @@ LilycoveCity_DepartmentStore_2F_Text_GoodGiftForHusband: @ 821FBDF
 LilycoveCity_DepartmentStore_2F_Text_StockUpOnItems: @ 821FC23
 	.string "I'm leaving on a long journey soon.\n"
 	.string "I need to stock up on items.$"
-

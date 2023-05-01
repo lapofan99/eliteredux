@@ -5,4 +5,3 @@ Seaspray_Cave_MapScripts::
 Seaspray_Cave_OnTransition::
 	setflag FLAG_LANDMARK_SEASPRAY_CAVE
 	end
-

@@ -178,4 +178,3 @@ BattleFrontier_BattleTowerMultiCorridor_Movement_AttendantEnterDoor: @ 8248EE3
 BattleFrontier_BattleTowerMultiCorridor_Movement_ExitElevator: @ 8248EE6
 	walk_down
 	step_end
-

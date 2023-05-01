@@ -53,4 +53,3 @@ LavaridgeTown_Mart_Text_LocalSpecialtyOnMtChimney: @ 81FFA83
 	.string "On Mt. Chimney's peak, there's a local\n"
 	.string "specialty that you can buy only there.\p"
 	.string "Give it to a Pokémon--it will be elated.$"
-

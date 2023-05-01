@@ -5,4 +5,3 @@ AlteringCave_MapScripts:: @ 823B177
 AlteringCave_OnTransition: @ 823B17D
 	setflag FLAG_LANDMARK_ALTERING_CAVE
 	end
-

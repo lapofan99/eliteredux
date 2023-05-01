@@ -5,4 +5,3 @@ TerraCave_Entrance_MapScripts:: @ 823B0A6
 TerraCave_Entrance_OnTransition: @ 823B0AC
 	setflag FLAG_ARRIVED_AT_TERRA_CAVE_ENTRANCE
 	end
-

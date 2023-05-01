@@ -197,4 +197,3 @@ VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande: @ 8202FDB
 	.string "Wally was in Ever Grande?\p"
 	.string "His parents in Petalburg would be\n"
 	.string "astonished to hear that!$"
-

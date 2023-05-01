@@ -59,4 +59,3 @@ Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough: @ 822BB3B
 	.string "has gone through!\p"
 	.string "Sometimes, if you hope strongly enough,\n"
 	.string "dreams do come true.$"
-

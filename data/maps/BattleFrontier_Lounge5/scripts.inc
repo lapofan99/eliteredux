@@ -203,4 +203,3 @@ BattleFrontier_Lounge5_Text_GirlPlaysAtRedHouseALot:: @ 8264FAB
 	.string "I know something!\p"
 	.string "That little girl plays at the red house\n"
 	.string "a lot!$"
-

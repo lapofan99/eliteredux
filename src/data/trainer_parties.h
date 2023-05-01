@@ -19314,12 +19314,12 @@ static const struct TrainerMonItemCustomMoves sParty_Norman1[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_SLAKING, // Norman, Bulky
+    .species = SPECIES_SLAKING, // Norman, Stall, Bulky
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // ABILITY_TRUANT, ABILITY_NONE, ABILITY_NONE},
+    .ability = 2, // ABILITY_TRUANT, ABILITY_NONE, ABILITY_STALL},
     // .innates = {ABILITY_COMATOSE, ABILITY_UNAWARE, ABILITY_MOLD_BREAKER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_FACADE, MOVE_SLACK_OFF, MOVE_PUNISHMENT, MOVE_EARTHQUAKE
     },
@@ -19386,7 +19386,7 @@ static const struct TrainerMonItemCustomMoves sParty_Norman2[] = { // singles
     },
     {
     .lvl = 3,
-    .species = SPECIES_SLAKING, // Norman, Bulky Vest
+    .species = SPECIES_SLAKING, // Norman, Stall, Bulky Vest
     .heldItem = ITEM_ASSAULT_VEST,
     .ability = 2, // ABILITY_TRUANT, ABILITY_NONE, ABILITY_STALL},
     // .innates = {ABILITY_COMATOSE, ABILITY_UNAWARE, ABILITY_MOLD_BREAKER},
@@ -19414,7 +19414,7 @@ static const struct TrainerMonItemCustomMoves sParty_Norman2[] = { // singles
 static const struct TrainerMonItemCustomMoves sParty_Norman3[] = { // Doubles
     {
     .lvl = 3,
-    .species = SPECIES_SLAKING, // Norman, Fast
+    .species = SPECIES_SLAKING, // Norman, Doubles, Truant, Fast
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // ABILITY_TRUANT, ABILITY_NONE, ABILITY_STALL},
     // .innates = {ABILITY_COMATOSE, ABILITY_UNAWARE, ABILITY_MOLD_BREAKER},
@@ -19425,7 +19425,7 @@ static const struct TrainerMonItemCustomMoves sParty_Norman3[] = { // Doubles
     },
     {
     .lvl = 3,
-    .species = SPECIES_CHANSEY,
+    .species = SPECIES_CHANSEY, // Norman, Doubles, Skill Swap with Slaking (Truant)
     .heldItem = ITEM_EVIOLITE,
     .ability = 2, // ABILITY_REGENERATOR, ABILITY_NONE, ABILITY_TRIAGE},
     // .innates = {ABILITY_HEALER, ABILITY_NATURAL_CURE, ABILITY_SERENE_GRACE},
@@ -19447,7 +19447,7 @@ static const struct TrainerMonItemCustomMoves sParty_Norman3[] = { // Doubles
     },
     {
     .lvl = 3,
-    .species = SPECIES_STARAPTOR, // Scarf
+    .species = SPECIES_STARAPTOR, // Norman, Scarf
     .heldItem = ITEM_CHOICE_SCARF,
     .ability = 0, // ABILITY_INTIMIDATE, ABILITY_GUTS, ABILITY_VIOLENT_RUSH},
     // .innates = {ABILITY_PREDATOR, ABILITY_RECKLESS, ABILITY_GIANT_WINGS},

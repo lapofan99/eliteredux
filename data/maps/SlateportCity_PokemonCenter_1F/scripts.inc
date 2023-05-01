@@ -39,4 +39,3 @@ SlateportCity_PokemonCenter_1F_Text_TradedMonWithFriend: @ 820DBBC
 	.string "I trade Pokémon with my friends.\p"
 	.string "If a traded Pokémon is holding an\n"
 	.string "item, it makes me twice as happy!$"
-
