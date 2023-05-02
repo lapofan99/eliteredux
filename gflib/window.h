@@ -3,6 +3,14 @@
 
 #define PIXEL_FILL(num) ((num) | ((num) << 4))
 
+// Mode for CopyWindowToVram, CopyWindowRectToVram and CopyWindowToVram8Bit
+enum {
+    COPYWIN_NONE,
+    COPYWIN_MAP,
+    COPYWIN_GFX,
+    COPYWIN_FULL,
+};
+
 enum
 {
     WINDOW_BG,

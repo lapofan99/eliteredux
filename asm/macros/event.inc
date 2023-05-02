@@ -1878,3 +1878,22 @@
 	.macro totemboost_evas2 battler:req
 	settotemboost \battler, 0, 0, 0, 0, 0, 0, 2
 	.endm
+
+	@ Multichoice2 (https://www.pokecommunity.com/showpost.php?p=10521985)
+	@ Displays a multichoice box from which the user can choose a selection, and blocks script execution until a selection is made.
+	@ Parameters:
+	@ - x & y are tile coordinates for the top-left corner of the multichoice.
+	@ - choices can either be the id of predefined options (sMultichoiceLists)
+	@ OR a string pointer to the options (each option must end with $ and the option list ends with an empty option).
+	@ - ignoreBPress prevents backing out of the menu with the B button if set to a non-zero value.
+	@ - per_row is the number of options displayed on each horizontal row.
+	@ - cursorPos is the cursor's starting position.
+	.macro multichoice2 x:req, y:req, choices:req, ignoreBPress=0, per_row=1, cursorPos=0
+	.byte 0xe5
+	.byte \x
+	.byte \y
+	.4byte \choices
+	.byte \ignoreBPress
+	.byte \per_row
+	.byte \cursorPos
+	.endm
