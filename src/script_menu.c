@@ -18,7 +18,6 @@
 #include "constants/items.h"
 #include "constants/script_menu.h"
 #include "constants/songs.h"
-
 #include "data/script_menu.h"
 
 static EWRAM_DATA u8 sProcessInputDelay = 0;
@@ -932,5 +931,144 @@ bool8 ScriptMenu_MultichoiceGridCustom(u8 left, u8 top, u8 cursorPos, bool8 igno
         InitMenuActionGrid(gTasks[taskId].data[6], newWidth * 8, columnCount, rowCount, cursorPos);
         CopyWindowToVram(gTasks[taskId].data[6], COPYWIN_FULL);
         return TRUE;
+    }
+}
+
+//Scrolling Multichoice
+// Text displayed as options.
+// sTutorialNPCOptions ------------------------------------------------------------------------------------------------
+const u8 gText_TutorialTalkToNurseJoy[]          = _("Talk to Nurse Joy!");
+const u8 gText_TutorialPokemonChanges[]          = _("Pokémon changes");
+const u8 gText_TutorialAbilityChanges[]          = _("Ability changes");
+const u8 gText_TutorialMoveChanges[]             = _("Move changes");
+const u8 gText_TutorialQOLChanges[]             = _("Quality of Life");
+const u8 gText_TutorialBattleChanges[]           = _("Battle changes"); // Weather, IVs, PP Max
+const u8 gText_TutorialBattleUIChanges[]         = _("Battle UI changes"); // Press L, move effectiveness + STAB
+const u8 gText_TutorialCatchingPokemon[]         = _("Catching Pokémon"); // DexNav & Pokéballs
+const u8 gText_TutorialSwitchAbility[]           = _("Switch abilities"); // Summary Screen
+const u8 gText_TutorialSwitchNature[]            = _("Switch nature"); // Summary Screen
+const u8 gText_TutorialSwitchHiddenPower[]       = _("Switch Hidden Power"); // Type Gems
+const u8 gText_TutorialSetEVs[]                  = _("Set EVs"); // Summary Screen
+const u8 gText_TutorialLearnMoves[]              = _("Learn moves"); // from Party Menu
+const u8 gText_TutorialHealing[]              	 = _("Auto-Healing"); // before battle
+const u8 gText_TutorialLeveling[]              	 = _("Leveling"); // Candy Box
+const u8 gText_TutorialEvolutions[]              = _("Evolutions"); // Check Pokédex
+const u8 gText_TutorialExit[]                    = _("Exit"); // Exit
+// --------------------------------------------------------------------------------------------------------------------
+
+// Sets of multichoices.
+static const struct ListMenuItem sTutorialNPCOptions[] =
+{
+    {gText_TutorialTalkToNurseJoy, 0},
+    {gText_TutorialPokemonChanges, 1},
+    {gText_TutorialAbilityChanges, 2},
+    {gText_TutorialMoveChanges, 3},
+    {gText_TutorialQOLChanges, 4},
+    {gText_TutorialBattleChanges, 5},
+    {gText_TutorialBattleUIChanges, 6},
+    {gText_TutorialCatchingPokemon, 7},
+    {gText_TutorialSwitchAbility, 8},
+    {gText_TutorialSwitchNature, 9},
+    {gText_TutorialSwitchHiddenPower, 10},
+    {gText_TutorialSetEVs, 11},
+    {gText_TutorialLearnMoves, 12},
+    {gText_TutorialHealing, 13},
+    {gText_TutorialLeveling, 14},
+    {gText_TutorialEvolutions, 15},
+    {gText_TutorialExit, 16},
+};
+
+// Table of your multichoice sets.
+struct
+{
+    const struct ListMenuItem *set;
+    int count;
+} static const sScrollingSets[] =
+{
+    {sTutorialNPCOptions, ARRAY_COUNT(sTutorialNPCOptions)},
+};
+
+static void Task_ScrollingMultichoiceInput(u8 taskId);
+
+static const struct ListMenuTemplate sMultichoiceListTemplate =
+{
+    .header_X = 0,
+    .item_X = 8,
+    .cursor_X = 0,
+    .upText_Y = 1,
+    .cursorPal = 2,
+    .fillValue = 1,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 1,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
+    .fontId = 1,
+    .cursorKind = 0
+};
+
+// 0x8004 = set id
+// 0x8005 = window X
+// 0x8006 = window y
+// 0x8007 = showed at once
+// 0x8008 = Allow B press
+void ScriptMenu_ScrollingMultichoice2(void)
+{
+    int i, windowId, taskId, width = 0;
+    int setId = gSpecialVar_0x8004;
+    int left = gSpecialVar_0x8005;
+    int top = gSpecialVar_0x8006;
+    int maxShowed = gSpecialVar_0x8007;
+
+    for (i = 0; i < sScrollingSets[setId].count; i++)
+        width = DisplayTextAndGetWidth(sScrollingSets[setId].set[i].name, width);
+
+    width = ConvertPixelWidthToTileWidth(width);
+    left = ScriptMenu_AdjustLeftCoordFromWidth(left, width);
+    windowId = CreateWindowFromRect(left, top, width, maxShowed * 2);
+    SetStandardWindowBorderStyle(windowId, 0);
+    CopyWindowToVram(windowId, 3);
+
+    gMultiuseListMenuTemplate = sMultichoiceListTemplate;
+    gMultiuseListMenuTemplate.windowId = windowId;
+    gMultiuseListMenuTemplate.items = sScrollingSets[setId].set;
+    gMultiuseListMenuTemplate.totalItems = sScrollingSets[setId].count;
+    gMultiuseListMenuTemplate.maxShowed = maxShowed;
+
+    taskId = CreateTask(Task_ScrollingMultichoiceInput, 0);
+    gTasks[taskId].data[0] = ListMenuInit(&gMultiuseListMenuTemplate, 0, 0);
+    gTasks[taskId].data[1] = gSpecialVar_0x8008;
+    gTasks[taskId].data[2] = windowId;
+}
+
+static void Task_ScrollingMultichoiceInput(u8 taskId)
+{
+    bool32 done = FALSE;
+    s32 input = ListMenu_ProcessInput(gTasks[taskId].data[0]);
+
+    switch (input)
+    {
+    case LIST_HEADER:
+    case LIST_NOTHING_CHOSEN:
+        break;
+    case LIST_CANCEL:
+        if (gTasks[taskId].data[1])
+        {
+            gSpecialVar_Result = 0x7F;
+            done = TRUE;
+        }
+        break;
+    default:
+        gSpecialVar_Result = input;
+        done = TRUE;
+        break;
+    }
+
+    if (done)
+    {
+        DestroyListMenuTask(gTasks[taskId].data[0], NULL, NULL);
+        ClearStdWindowAndFrame(gTasks[taskId].data[2], TRUE);
+        RemoveWindow(gTasks[taskId].data[2]);
+        EnableBothScriptContexts();
+        DestroyTask(taskId);
     }
 }

@@ -1897,3 +1897,14 @@
 	.byte \per_row
 	.byte \cursorPos
 	.endm
+
+	@ ScrollingMultiChoice (https://www.pokecommunity.com/showpost.php?p=10172069&postcount=95)
+	.macro scrollingmultichoice2 id:req, x:req, y:req, show:req, b:req
+	setvar VAR_0x8004, \id,
+	setvar VAR_0x8005, \x,
+	setvar VAR_0x8006, \y,
+	setvar VAR_0x8007, \show,
+	setvar VAR_0x8008, \b,
+	callnative ScriptMenu_ScrollingMultichoice2
+	waitstate
+	.endm

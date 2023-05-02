@@ -2000,6 +2000,124 @@ LittlerootTown_EventScript_LegendaryNPC_6:
 	goto LittlerootTown_EventScript_LegendaryNPC_1
 
 
+LittlerootTown_EventScript_TutorialNPC::
+	lock
+	faceplayer
+	msgbox LittlerootTown_EventScript_TutorialNPC_Text_0
+	goto LittlerootTown_EventScript_TutorialNPC2
+	release
+	end
+
+
+LittlerootTown_EventScript_TutorialNPC2::
+	messageinstant LittlerootTown_EventScript_TutorialNPC2_Text_0
+	scrollingmultichoice2 0, 0, 0, 6, TRUE
+	switch VAR_RESULT
+	case 0, LittlerootTown_EventScript_TutorialNPC2_3
+	case 1, LittlerootTown_EventScript_TutorialNPC2_4
+	case 2, LittlerootTown_EventScript_TutorialNPC2_5
+	case 3, LittlerootTown_EventScript_TutorialNPC2_6
+	case 4, LittlerootTown_EventScript_TutorialNPC2_7
+	case 5, LittlerootTown_EventScript_TutorialNPC2_8
+	case 6, LittlerootTown_EventScript_TutorialNPC2_9
+	case 7, LittlerootTown_EventScript_TutorialNPC2_10
+	case 8, LittlerootTown_EventScript_TutorialNPC2_11
+	case 9, LittlerootTown_EventScript_TutorialNPC2_12
+	case 10, LittlerootTown_EventScript_TutorialNPC2_13
+	case 11, LittlerootTown_EventScript_TutorialNPC2_14
+	case 12, LittlerootTown_EventScript_TutorialNPC2_15
+	case 13, LittlerootTown_EventScript_TutorialNPC2_16
+	case 14, LittlerootTown_EventScript_TutorialNPC2_17
+	case 15, LittlerootTown_EventScript_TutorialNPC2_18
+	case 16, LittlerootTown_EventScript_TutorialNPC2_19
+	case MULTI_B_PRESSED, LittlerootTown_EventScript_TutorialNPC2_19
+LittlerootTown_EventScript_TutorialNPC2_19:
+	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_4
+LittlerootTown_EventScript_TutorialNPC2_1:
+	release
+	end
+
+LittlerootTown_EventScript_TutorialNPC2_3:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_1
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_4:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_2
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_5:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_3
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_6:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_4
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_7:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_5
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_8:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_6
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_9:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_7
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_10:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_8
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_11:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_9
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_12:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_10
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_13:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_11
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_14:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_12
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_15:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_13
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_16:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_14
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_17:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_15
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_18:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_16
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+
 LittlerootTown_EventScript_LegendaryNPC_Text_0:
 	.string "Take these legendary items.$"
 
@@ -2023,6 +2141,149 @@ LittlerootTown_EventScript_LegendaryNPC_Text_3:
 
 LittlerootTown_EventScript_LegendaryNPC_Text_4:
 	.string "See you later.$"
+
+LittlerootTown_EventScript_TutorialNPC_Text_0:
+	.string "Hi {PLAYER}, I can tell you about the\n"
+	.string "changes Elite Redux has.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_0:
+	.string "What do you want to know?$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_1:
+	.string "Talk to Nurse Joy in any Pokémon\n"
+	.string "Center, she will give you the following:\p"
+	.string "Battle items, all Pokéballs, all TMs &\n"
+	.string "HMs, all Mega Stones, all Berries, all\l"
+	.string "Type Gems etc.\p"
+	.string "Every time you speak to her, all items\n"
+	.string "get refilled.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_2:
+	.string "Almost every Pokémon has been buffed\n"
+	.string "to be more fun and useful.\p"
+	.string "Some Pokémon have been reworked - e.g.\n"
+	.string "Arbok is Poison/Dark and Gyarados is\l"
+	.string "Water/Dragon with Levitate now.\l"
+	.string "Gengar is levitating all the time and\l"
+	.string "can be played special or physical now\l"
+	.string "with fitting moves.\p"
+	.string "Check out the Online Pokédex for more\n"
+	.string "information.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_3:
+	.string "There are over 110 new abilities, but\n"
+	.string "many exisiting abilities also have a\l"
+	.string "new effect. E.g. Ice Body etc. now\l"
+	.string "recovers 1/8 HP per turn or Big Pecks\l"
+	.string "acts like Tough Claws now.\p"
+	.string "Check out the Online Pokédex for more\n"
+	.string "information.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_4:
+	.string "Many moves have been buffed (mostly\n"
+	.string "accuracy, but some have more drastic\l"
+	.string "changes).\p"
+	.string "OHKO moves like Fissure aren't OHKO\n"
+	.string "anymore and deal roughly 120 damage\l"
+	.string "with 80% accuracy.\p"
+	.string "More moves are affected by certain\n"
+	.string "abilities (i.e. Mega Launcher).\p"
+	.string "Check out the Online Pokédex for more\n"
+	.string "information.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_5:
+	.string "You now have a portable PC (Start Menu).\n"
+	.string "It's disabled for the Elite Four.\p"
+	.string "You can switch Auto Run and a\n"
+	.string "Permanent Repel in the Options.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_6:
+	.string "Weather induced by abilities is\n"
+	.string "permament now, but\p"
+	.string "When induced by moves such as Sunny\n"
+	.string "Day or Rain Dance, still lasts 5 rounds,\l"
+	.string "but has 50% power boost for the\l"
+	.string "respective types.\p"
+	.string "All held items stay on your Pokémon\n"
+	.string "after a battle. All moves are PP maxed,\l"
+	.string "just like in Showdown.\p"
+	.string "Every Pokémon has 31 IVs by default,\n"
+	.string "but you can change them in Slateport\l"
+	.string "or Fallarbor.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_7:
+	.string "Press L in battle to check move power,\n"
+	.string "accuracy and if the move makes\l"
+	.string "contact.\p"
+	.string "Now you also see if a move's\n"
+	.string "effectiveness before attacking. This\l"
+	.string "even considers some abilities like\l"
+	.string "Levitate or Sap Sipper!\p"
+	.string "STAB (50% Same Type Attack Bonus) is\n"
+	.string "noted with a Plus Icon.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_8:
+	.string "You'll get one of each Pokéball from\n"
+	.string "Nurse Joy. Every ball has 100% catch\l"
+	.string "rate.\p"
+	.string "Nurse Joy gives you an upgraded\n"
+	.string "DexNav: you can directly search the\l"
+	.string "Pokémon you want. No need to walk slow\l"
+	.string "when approaching.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_9:
+	.string "You can directly switch the ability in\n"
+	.string "the Pokémon Summary Screen.\p"
+	.string "Some Pokémon only have one ability,\n"
+	.string "others have up to three.\p"
+	.string "You can't change innates.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_10:
+	.string "You can directly switch the nature in\n"
+	.string "the Pokémon Summary Screen.\p"
+	.string "The nature will increase one Base Stat\n"
+	.string "by 10% while decreasing another one by\l"
+	.string "10%.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_11:
+	.string "Just use the Type Gems which Nurse Joy\n"
+	.string "gives you on any Pokémon.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_12:
+	.string "You can directly set the EVs on your\n"
+	.string "Pokémon in the Summary Screen. No more\l"
+	.string "grinding!\p"
+	.string "You can have up to 252 EVs in one stat,\n"
+	.string "but you can only have 510 EVs in total.\p"
+	.string "In most cases, you'd want to put 252\n"
+	.string "EVs in your best two stats.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_13:
+	.string "You can easily learn new moves directly\n"
+	.string "in the Party Menu, but you still need to\l"
+	.string "level up to learn certain moves.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_14:
+	.string "Your whole party will get healed before\n"
+	.string "every battle.\p"
+	.string "This is also to prevent you from\n"
+	.string "pre-burning/poisoning ;-)$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_15:
+	.string "There is a new key item - the Candy Box.\n"
+	.string "You can easily level up this way (up to\l"
+	.string "5 levels at once).\p"
+	.string "As there are level caps and\n"
+	.string "auto-scaling levels (wild + trainer\l"
+	.string "battles), you don't have to worry about\l"
+	.string "overleveling.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_16:
+	.string "You can buy all evolution items in the\n"
+	.string "Poké Mart.\p"
+	.string "You can check the In-Game or Online\n"
+	.string "Pokédex for how to evolve a certain\l"
+	.string "Pokémon.$"
 
 LittlerootTown_EventScript_LegendaryNPC_Options::
 	.string "Please explain things to me again$"

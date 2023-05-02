@@ -2008,3 +2008,96 @@ text LittlerootTown_EventScript_LegendaryNPC_Options{
     "Nevermind$"
     "$"
 }
+
+script LittlerootTown_EventScript_TutorialNPC{
+    lock
+    faceplayer
+	msgbox(format("Hi {PLAYER}, I can tell you about the changes Elite Redux has."))
+	goto(LittlerootTown_EventScript_TutorialNPC2)
+    release
+    end
+}
+
+script LittlerootTown_EventScript_TutorialNPC2{
+	messageinstant(format("What do you want to know?"))
+	scrollingmultichoice2(0, 0, 0, 6, TRUE)
+	switch (var(VAR_RESULT)) {
+		case 0:// Nurse Joy
+			msgbox(format("Talk to Nurse Joy in any Pokémon Center, she will give you the following:\p"
+                          "Battle items, all Pokéballs, all TMs & HMs, all Mega Stones, all Berries, all Type Gems etc.\p"
+                          "Every time you speak to her, all items get refilled."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 1:// Pokémon changes
+			msgbox(format("Almost every Pokémon has been buffed to be more fun and useful.\p"
+                          "Some Pokémon have been reworked - e.g. Arbok is Poison/Dark and Gyarados is Water/Dragon with Levitate now. Gengar is levitating all the time and can be played special or physical now with fitting moves.\p"
+                          "Check out the Online Pokédex for more information."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 2:// Ability changes
+			msgbox(format("There are over 110 new abilities, but many exisiting abilities also have a new effect. E.g. Ice Body etc. now recovers 1/8 HP per turn or Big Pecks acts like Tough Claws now.\p"
+                          "Check out the Online Pokédex for more information."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 3:// Move changes
+			msgbox(format("Many moves have been buffed (mostly accuracy, but some have more drastic changes).\p"
+                          "OHKO moves like Fissure aren't OHKO anymore and deal roughly 120 damage with 80% accuracy.\p"
+                          "More moves are affected by certain abilities (i.e. Mega Launcher).\p"
+                          "Check out the Online Pokédex for more information."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 4:// Quality of Life
+			msgbox(format("You now have a portable PC (Start Menu). It's disabled for the Elite Four.\p"
+                          "You can switch Auto Run and a Permanent Repel in the Options."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 5:// Battle changes 
+			msgbox(format("Weather induced by abilities is permament now, but \p"
+                          "When induced by moves such as Sunny Day or Rain Dance, still lasts 5 rounds, but has 50% power boost for the respective types.\p"
+                          "All held items stay on your Pokémon after a battle. All moves are PP maxed, just like in Showdown.\p"
+                          "Every Pokémon has 31 IVs by default, but you can change them in Slateport or Fallarbor."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 6:// Battle UI changes
+			msgbox(format("Press L in battle to check move power, accuracy and if the move makes contact.\p"
+                          "Now you also see if a move's effectiveness before attacking. This even considers some abilities like Levitate or Sap Sipper!\p"
+                          "STAB (50% Same Type Attack Bonus) is noted with a Plus Icon."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 7:// Catching Pokémon
+			msgbox(format("You'll get one of each Pokéball from Nurse Joy. Every ball has 100% catch rate.\p"
+                          "Nurse Joy gives you an upgraded DexNav: you can directly search the Pokémon you want. No need to walk slow when approaching."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 8:// Switch abilities 
+			msgbox(format("You can directly switch the ability in the Pokémon Summary Screen.\p"
+                          "Some Pokémon only have one ability, others have up to three.\p"
+                          "You can't change innates."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 9:// Switch nature
+			msgbox(format("You can directly switch the nature in the Pokémon Summary Screen.\p"
+                          "The nature will increase one Base Stat by 10% while decreasing another one by 10%."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 10:// Switch Hidden Power
+			msgbox(format("Just use the Type Gems which Nurse Joy gives you on any Pokémon."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 11:// Set EVs
+			msgbox(format("You can directly set the EVs on your Pokémon in the Summary Screen. No more grinding!\p"
+                          "You can have up to 252 EVs in one stat, but you can only have 510 EVs in total.\p"
+                          "In most cases, you'd want to put 252 EVs in your best two stats."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 12:// Learn moves
+			msgbox(format("You can easily learn new moves directly in the Party Menu, but you still need to level up to learn certain moves."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 13:// Auto-Healing
+			msgbox(format("Your whole party will get healed before every battle.\p"
+                          "This is also to prevent you from pre-burning/poisoning ;-)"))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 14:// Leveling
+			msgbox(format("There is a new key item - the Candy Box. You can easily level up this way (up to 5 levels at once).\p"
+                          "As there are level caps and auto-scaling levels (wild + trainer battles), you don't have to worry about overleveling."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 15:// Evolutions
+			msgbox(format("You can buy all evolution items in the Poké Mart.\p"
+                          "You can check the In-Game or Online Pokédex for how to evolve a certain Pokémon."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)
+		case 16:// Exit
+		case MULTI_B_PRESSED:
+		default:
+			msgbox("See you later.")
+	}
+    release
+    end
+}
