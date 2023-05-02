@@ -1542,7 +1542,7 @@ void PrepareStringBattle(u16 stringId, u8 battler)
 		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_FORT_KNOX)){
 			gBattleScripting.abilityPopupOverwrite = ABILITY_FORT_KNOX;
 			gLastUsedAbility = ABILITY_FORT_KNOX;
-            SET_STATCHANGER(STAT_DEF, 2, FALSE);
+            SET_STATCHANGER(STAT_DEF, 3, FALSE);
 		}
 		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_RUN_AWAY || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_RUN_AWAY)){
 			gBattleScripting.abilityPopupOverwrite = ABILITY_RUN_AWAY;
@@ -6162,7 +6162,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				{
 					gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_SUFFICIENT;
 					gLastUsedAbility = ABILITY_SELF_SUFFICIENT;
-				   gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
+				    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
 					if (gBattleMoveDamage == 0)
 						gBattleMoveDamage = 1;
 					gBattleMoveDamage *= -1;
@@ -7793,7 +7793,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && CanBeConfused(gBattlerTarget)
              && TARGET_TURN_DAMAGED // Need to actually hit the target
 			 && (gBattleMoves[move].flags & FLAG_SOUND)//Sound Based Move
-             && (Random() % 10) == 0)
+             && (Random() % 20) == 0)
             {
                 gBattleScripting.moveEffect = MOVE_EFFECT_CONFUSION;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
@@ -7888,7 +7888,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				 && CanBeConfused(gBattlerTarget)
 				 && TARGET_TURN_DAMAGED // Need to actually hit the target
 				 && (gBattleMoves[move].flags & FLAG_SOUND)//Sound Based Move
-				 && (Random() % 10) == 0)
+				 && (Random() % 20) == 0)
 				{
 					gBattleScripting.abilityPopupOverwrite = ABILITY_LOUD_BANG;
 					gLastUsedAbility = ABILITY_LOUD_BANG;
@@ -10936,7 +10936,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
 	case ABILITY_DRAGONSLAYER: // Dragonslayer
 		if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.5));
 		break;
     case ABILITY_ANALYTIC:
         if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
@@ -11040,7 +11040,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
 	case ABILITY_AVENGER:
 		if (gSideTimers[atkSide].retaliateTimer == 1)
-            MulModifier(&modifier, UQ_4_12(1.3));
+            MulModifier(&modifier, UQ_4_12(1.5));
 		break;
 	case ABILITY_NOCTURNAL:
 		if (!IsCurrentlyDay())
@@ -11205,7 +11205,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Avenger
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AVENGER)){
 		if (gSideTimers[atkSide].retaliateTimer == 1)
-            MulModifier(&modifier, UQ_4_12(1.3));
+            MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	//Nocturnal
@@ -11296,7 +11296,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Dragonslayer
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DRAGONSLAYER)){
 	if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Huge Power

@@ -25,6 +25,9 @@ EventScript_PkmnCenterNurseHasVial::
     // compare VAR_RESULT, TRUE
     // call_if_ne ADDITEM_RARE_CANDY
 	setflag FLAG_SYS_DEXNAV_GET
+	checkitem ITEM_POKE_BALL, 1
+    compare VAR_RESULT, TRUE
+    call_if_ne ADDITEM_POKE_BALL
     checkitem ITEM_MASTER_BALL, 1
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_MASTER_BALL
@@ -34,9 +37,6 @@ EventScript_PkmnCenterNurseHasVial::
 	checkitem ITEM_GREAT_BALL, 1
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_GREAT_BALL
-	checkitem ITEM_POKE_BALL, 1
-    compare VAR_RESULT, TRUE
-    call_if_ne ADDITEM_POKE_BALL
 	checkitem ITEM_SAFARI_BALL, 1
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_SAFARI_BALL
@@ -244,9 +244,9 @@ Movement_PkmnCenterNurse_Bow:
 
 
 Give_Pokeblock_Case:
-	checkitem ITEM_POKEBLOCK_CASE, 1
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_POKEBLOCK_CASE
+	//checkitem ITEM_POKEBLOCK_CASE, 1
+	//compare VAR_RESULT, TRUE
+	//call_if_ne ADDITEM_POKEBLOCK_CASE
 	return
 
 
@@ -261,9 +261,9 @@ Give_Nuzlocke_Items:
 	// checkitem ITEM_BIG_PEARL, 400
 	// compare VAR_RESULT, TRUE
 	// call_if_ne ADDITEM_BIG_PEARL
-	checkitem ITEM_MAX_REPEL, 250
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_MAX_REPEL
+	//checkitem ITEM_MAX_REPEL, 250
+	//compare VAR_RESULT, TRUE
+	//call_if_ne ADDITEM_MAX_REPEL
 	return
 
 Give_BattleItems:
@@ -273,69 +273,6 @@ Give_BattleItems:
   checkitem ITEM_HONEY, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_HONEY
-  checkitem ITEM_PROTECTIVE_PADS, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_PROTECTIVE_PADS
-  checkitem ITEM_ROCKY_HELMET, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_ROCKY_HELMET
-  checkitem ITEM_HEAVY_DUTY_BOOTS, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_HEAVY_DUTY_BOOTS
-  checkitem ITEM_THROAT_SPRAY, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_THROAT_SPRAY
-  checkitem ITEM_ADAMANT_ORB, 5
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_ADAMANT_ORB
-  checkitem ITEM_LUSTROUS_ORB, 5
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_LUSTROUS_ORB
-  checkitem ITEM_GRISEOUS_ORB, 5
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_GRISEOUS_ORB
-  checkitem ITEM_SOUL_DEW, 5
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_SOUL_DEW
-  checkitem ITEM_AIR_BALLOON, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_AIR_BALLOON
-  checkitem ITEM_WEAKNESS_POLICY, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_WEAKNESS_POLICY
-  checkitem ITEM_ASSAULT_VEST, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_ASSAULT_VEST
-  checkitem ITEM_DAMP_ROCK, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_DAMP_ROCK
-  checkitem ITEM_HEAT_ROCK, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_HEAT_ROCK
-  checkitem ITEM_ICY_ROCK, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_ICY_ROCK
-  checkitem ITEM_SMOOTH_ROCK, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_SMOOTH_ROCK
-  checkitem ITEM_EXPERT_BELT, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_EXPERT_BELT
-  checkitem ITEM_LIGHT_BALL, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_LIGHT_BALL
-  checkitem ITEM_SCOPE_LENS, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_SCOPE_LENS
-  checkitem ITEM_SHED_SHELL, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_SHED_SHELL
-  checkitem ITEM_TERRAIN_EXTENDER, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_TERRAIN_EXTENDER
-  checkitem ITEM_WIDE_LENS, 50
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_WIDE_LENS
   checkitem ITEM_EVIOLITE, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_EVIOLITE
@@ -345,6 +282,9 @@ Give_BattleItems:
   checkitem ITEM_BLACK_SLUDGE, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_BLACK_SLUDGE
+  checkitem ITEM_FOCUS_SASH, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_FOCUS_SASH
   checkitem ITEM_TOXIC_ORB, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_TOXIC_ORB
@@ -363,12 +303,72 @@ Give_BattleItems:
   checkitem ITEM_CHOICE_SCARF, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_CHOICE_SCARF
-  checkitem ITEM_FOCUS_SASH, 50
+  checkitem ITEM_ROCKY_HELMET, 50
 	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_FOCUS_SASH
+	call_if_ne ADDITEM_ROCKY_HELMET
+  checkitem ITEM_ASSAULT_VEST, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ASSAULT_VEST
   checkitem ITEM_LIGHT_CLAY, 50
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_LIGHT_CLAY
+  checkitem ITEM_HEAVY_DUTY_BOOTS, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_HEAVY_DUTY_BOOTS
+  checkitem ITEM_AIR_BALLOON, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_AIR_BALLOON
+  checkitem ITEM_WEAKNESS_POLICY, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_WEAKNESS_POLICY
+  checkitem ITEM_WIDE_LENS, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_WIDE_LENS
+  checkitem ITEM_DAMP_ROCK, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_DAMP_ROCK
+  checkitem ITEM_HEAT_ROCK, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_HEAT_ROCK
+  checkitem ITEM_ICY_ROCK, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ICY_ROCK
+  checkitem ITEM_SMOOTH_ROCK, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_SMOOTH_ROCK
+  checkitem ITEM_EXPERT_BELT, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_EXPERT_BELT
+  checkitem ITEM_SCOPE_LENS, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_SCOPE_LENS
+  checkitem ITEM_PROTECTIVE_PADS, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_PROTECTIVE_PADS
+  checkitem ITEM_LIGHT_BALL, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_LIGHT_BALL
+  checkitem ITEM_SHED_SHELL, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_SHED_SHELL
+  checkitem ITEM_TERRAIN_EXTENDER, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_TERRAIN_EXTENDER
+  checkitem ITEM_THROAT_SPRAY, 50
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_THROAT_SPRAY
+  checkitem ITEM_ADAMANT_ORB, 5
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_ADAMANT_ORB
+  checkitem ITEM_LUSTROUS_ORB, 5
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_LUSTROUS_ORB
+  checkitem ITEM_GRISEOUS_ORB, 5
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_GRISEOUS_ORB
+  checkitem ITEM_SOUL_DEW, 5
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_SOUL_DEW
   checkitem ITEM_RED_ORB, 3
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_RED_ORB
@@ -1269,6 +1269,9 @@ Give_Cut_Items_After_Roxanne:
 	checkitem ITEM_SALAC_BERRY, 100 // Salac
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_SALAC_BERRY
+	checkitem ITEM_KEE_BERRY, 100 // Kee
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_KEE_BERRY
 	checkitem ITEM_WIKI_BERRY, 100 // Wiki
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_WIKI_BERRY
@@ -1411,9 +1414,9 @@ Give_Thief_Items_After_Norman:
 	return
 
 Give_Thief_Items_After_Winoma:
-	checkitem ITEM_PP_MAX, 90
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_PP_MAX
+	//checkitem ITEM_PP_MAX, 90
+	//compare VAR_RESULT, TRUE
+	//call_if_ne ADDITEM_PP_MAX
 	return
 
 ADDITEM_POKEBLOCK_CASE:
@@ -2482,6 +2485,9 @@ ADDITEM_PETAYA_BERRY:
 	additem ITEM_PETAYA_BERRY, 100
 	return
 
+ADDITEM_KEE_BERRY:
+	additem ITEM_KEE_BERRY, 100
+	return
 ADDITEM_SALAC_BERRY:
 	additem ITEM_SALAC_BERRY, 100
 	return
@@ -2786,6 +2792,3 @@ ADDITEM_DRAGON_FANG:
 	additem ITEM_DRAGON_FANG, 10
 	return
 
-ADDITEM_PP_MAX:
-	additem ITEM_PP_MAX, 90
-	return

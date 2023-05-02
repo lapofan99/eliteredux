@@ -6120,7 +6120,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_FIELD,
     .abilities = {ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_OBLIVIOUS},
-    .innates = {ABILITY_UNAWARE, ABILITY_DRY_SKIN, ABILITY_REGENERATOR},
+    .innates = {ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_REGENERATOR},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = FALSE,
     },
@@ -6178,10 +6178,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_MURKROW] =
     {
     .baseHP        = 60,
-    .baseAttack    = 95,
+    .baseAttack    = 85,
     .baseDefense   = 42,
     .baseSpeed     = 101,
-    .baseSpAttack  = 95,
+    .baseSpAttack  = 85,
     .baseSpDefense = 42,
     .type1 = TYPE_DARK,
     .type2 = TYPE_FLYING,
@@ -13148,7 +13148,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_HONCHKROW] =
     {
     .baseHP        = 105,
-    .baseAttack    = 125,
+    .baseAttack    = 105, // nerf bc of Big Pecks
     .baseDefense   = 52,
     .baseSpeed     = 71,
     .baseSpAttack  = 125,
