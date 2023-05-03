@@ -56,6 +56,8 @@ Debug_Script_3::
 	end
 
 Debug_Script_4::
+	additem ITEM_MEGA_BRACELET
+	setflag FLAG_SYS_RECEIVED_KEYSTONE
 	end
 
 Debug_Script_5::

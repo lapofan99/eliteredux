@@ -4759,6 +4759,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_INTREPID_SWORD:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
+                gBattlerAttacker = battler;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 SET_STATCHANGER(STAT_ATK, 1, FALSE);
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
@@ -4768,6 +4769,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_DAUNTLESS_SHIELD:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
+                gBattlerAttacker = battler;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 SET_STATCHANGER(STAT_DEF, 1, FALSE);
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatRaiseOnSwitchIn);
@@ -5622,6 +5624,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTREPID_SWORD)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTREPID_SWORD)])
             {
+                gBattlerAttacker = battler;
                 gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTREPID_SWORD)] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_INTREPID_SWORD;
 				gLastUsedAbility = ABILITY_INTREPID_SWORD;
@@ -5635,6 +5638,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAUNTLESS_SHIELD)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DAUNTLESS_SHIELD)])
             {
+                gBattlerAttacker = battler;
                 gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DAUNTLESS_SHIELD)] = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_DAUNTLESS_SHIELD;
 				gLastUsedAbility = ABILITY_DAUNTLESS_SHIELD;
@@ -6208,6 +6212,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && GetChosenMovePriority(gBattlerAttacker) > 0
                  && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
         {
+            if(GetBattlerAbility(battler) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAZZLING)){
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAZZLING;
+            }
+            else if(GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_QUEENLY_MAJESTY)){
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
+            }
+
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                 gHitMarker |= HITMARKER_NO_PPDEDUCT;
             gBattlescriptCurrInstr = BattleScript_DazzlingProtected;

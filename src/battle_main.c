@@ -4945,8 +4945,6 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     if (!ignoreChosenMoves && (GetBattlerAbility(battler1) == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[battler1].species, ABILITY_OPPORTUNIST)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         && gBattleMons[battler2].hp <= gBattleMons[battler2].maxHP / 2 && gBattleMoves[gBattleMons[battler1].moves[*(gBattleStruct->chosenMovePositions + battler1)]].target == MOVE_TARGET_SELECTED){
             gProtectStructs[battler1].quickDraw = TRUE;
-            gBattleScripting.abilityPopupOverwrite = ABILITY_OPPORTUNIST;
-			gLastUsedAbility = ABILITY_OPPORTUNIST;
     }
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler1].quickDraw
@@ -5307,11 +5305,25 @@ static void CheckQuickClaw_CustapBerryActivation(void)
                 }
                 else if (gProtectStructs[gActiveBattler].quickDraw)
                 {
-                    gProtectStructs[gActiveBattler].quickDraw = FALSE;
-                    gLastUsedAbility = gBattleMons[gActiveBattler].ability;
-                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-                    RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
-                    BattleScriptExecute(BattleScript_QuickDrawActivation);
+                    if(gBattleMons[gActiveBattler].ability == ABILITY_QUICK_DRAW || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_QUICK_DRAW)){
+                        gProtectStructs[gActiveBattler].quickDraw = FALSE;
+                        gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_QUICK_DRAW;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        //gBattlerAbility = gActiveBattler;
+                        RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
+                        BattleScriptExecute(BattleScript_QuickDrawActivation);
+                    }
+                    else if(gBattleMons[gActiveBattler].ability == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_OPPORTUNIST)){
+                        gProtectStructs[gActiveBattler].quickDraw = FALSE;
+                        gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_OPPORTUNIST;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        gBattlerAbility = gActiveBattler;
+                        //RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
+                        BattleScriptExecute(BattleScript_QuickDrawActivation);
+                    }
+                    else{
+                        BattleScriptExecute(BattleScript_QuickClawActivation);
+                    }
                 }
                 return;
             }

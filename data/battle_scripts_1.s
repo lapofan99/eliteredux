@@ -6230,6 +6230,7 @@ BattleScript_DamagingWeatherLoop::
 	hitanimation BS_ATTACKER
 	goto BattleScript_DamagingWeatherHpChange
 BattleScript_DamagingWeatherHeal:
+	sethword sABILITY_OVERWRITE, ABILITY_ICE_BODY
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ICEBODYHPGAIN
 	waitmessage B_WAIT_TIME_LONG
@@ -8110,6 +8111,7 @@ BattleScript_DroughtActivates::
 
 BattleScript_DesolateLandActivates::
 	pause B_WAIT_TIME_SHORT
+	sethword sABILITY_OVERWRITE, ABILITY_DESOLATE_LAND
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_EXTREMELYHARSHSUNLIGHT
 	waitstate
@@ -8128,6 +8130,7 @@ BattleScript_DesolateLandEvaporatesWaterTypeMoves::
 
 BattleScript_PrimordialSeaActivates::
 	pause B_WAIT_TIME_SHORT
+	sethword sABILITY_OVERWRITE, ABILITY_PRIMORDIAL_SEA
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_HEAVYRAIN
 	waitstate
