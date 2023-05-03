@@ -284,7 +284,7 @@
 #define ABILITY_UNSEEN_FIST 260 // *No innate* If the Pokémon uses moves that make direct contact, it can attack the target even if the target protects itself.
 #define ABILITY_CURIOUS_MEDICINE 261 // *No innate* When the Pokémon enters a battle, it scatters medicine from its shell, which removes all stat changes from allies.
 #define ABILITY_TRANSISTOR 262 // Powers up Electric-type moves by 50%.
-#define ABILITY_DRAGONS_MAW 263 // Powers up Dragon-type moves by 30%.
+#define ABILITY_DRAGONS_MAW 263 // Powers up Dragon-type moves by 50%.
 #define ABILITY_CHILLING_NEIGH 264 // *No innate* When the Pokémon knocks out a target, it utters a chilling neigh, which boosts its Attack stat.
 #define ABILITY_GRIM_NEIGH 265 // *No innate* When the Pokémon knocks out a target, it utters a terrifying neigh, which boosts its Sp. Atk stat.
 #define ABILITY_AS_ONE_ICE_RIDER 266 // *No innate* This ability combines the effects of both Calyrex's Unnerve ability and Glastrier's Chilling Neigh ability/Spectrier's Grim Neigh ability.
@@ -320,10 +320,10 @@
 #define ABILITY_GROWING_TOOTH    (ABILITIES_COUNT_LATEST_GEN + 21) // Increases the Attack stat by one stage after using a fang move.
 #define ABILITY_INFLATABLE       (ABILITIES_COUNT_LATEST_GEN + 22) // When the Pokémon is hit by Fire-type or Flying-type moves, its Defense and Special Defense stats are increased by one stage.
 #define ABILITY_AURORA_BOREALIS  (ABILITIES_COUNT_LATEST_GEN + 23) // Ice-type moves gain STAB. No damage from Hailstorm.
-#define ABILITY_AVENGER          (ABILITIES_COUNT_LATEST_GEN + 24) // Boosts the power of the move by 30% if a Pokémon from the user's party has fainted in the previous turn.
+#define ABILITY_AVENGER          (ABILITIES_COUNT_LATEST_GEN + 24) // Boosts the power of the move by 50% if a Pokémon from the user's party has fainted in the previous turn.
 #define ABILITY_LETS_ROLL        (ABILITIES_COUNT_LATEST_GEN + 25) // Pokémon starts in Defense Curl, boosting the Defense stage by +1.
 #define ABILITY_AQUATIC          (ABILITIES_COUNT_LATEST_GEN + 26) // Adds the Water-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_LOUD_BANG        (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 10% chance that the enemy will become confused when affected by the Pokémon's sound-based damaging moves.
+#define ABILITY_LOUD_BANG        (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 20% chance that the enemy will become confused when affected by the Pokémon's sound-based damaging moves.
 #define ABILITY_LEAD_COAT        (ABILITIES_COUNT_LATEST_GEN + 28) // Triples the Pokémon's weight. Increases the Defense stat by 30%, but decreases Speed stat by 10%.
 #define ABILITY_AMPHIBIOUS       (ABILITIES_COUNT_LATEST_GEN + 29) // Water-type moves gain 1.5x power.
 #define ABILITY_GROUNDED         (ABILITIES_COUNT_LATEST_GEN + 30) // Adds the Ground-type to the Pokémon, in addition to the Pokémon's original type(s).
@@ -369,7 +369,7 @@
 #define ABILITY_SOLENOGLYPHS     (ABILITIES_COUNT_LATEST_GEN + 70) // Biting moves have a 50% chance of badly poisoning the target.
 #define ABILITY_SPIDER_LAIR      (ABILITIES_COUNT_LATEST_GEN + 71) // Sets up Sticky Web on entry.
 #define ABILITY_FATAL_PRECISION  (ABILITIES_COUNT_LATEST_GEN + 72) // Super Effective Moves from this Pokemon can’t miss and receive a 20% damage boost.
-#define ABILITY_FORT_KNOX        (ABILITIES_COUNT_LATEST_GEN + 73) // Boosts the Pokémon's Defense stat sharply when its stats are lowered.
+#define ABILITY_FORT_KNOX        (ABILITIES_COUNT_LATEST_GEN + 73) // Boosts the Pokémon's Defense stat by +3 when its stats are lowered.
 #define ABILITY_SEAWEED          (ABILITIES_COUNT_LATEST_GEN + 74) // Grass-type takes neutral damage from Fire-type moves. Deals neutral damage against Fire-type with Grass-type moves.
 #define ABILITY_PSYCHIC_MIND     (ABILITIES_COUNT_LATEST_GEN + 75) // Boosts the power of Psychic-type moves by 25%.
 #define ABILITY_POISON_ABSORB    (ABILITIES_COUNT_LATEST_GEN + 76) // Restore 1/4 HP when hit by Poison-type moves.

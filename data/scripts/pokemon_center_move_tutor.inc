@@ -448,7 +448,7 @@ PKMN_Center_EventReset_Text_AlreadyReset:
 
 PKMN_Center_EventResetText_WhatsBrokenThisTime:
 	.string "If you've updated from an earlier\n"
-	.string "version of Inclement Emerald, you may\l"
+	.string "version of Elite Redux, you may\l"
 	.string "have encountered some buggy events.\p"
 	.string "If needed, I can reset these events\n"
 	.string "so they can be played again.\p"

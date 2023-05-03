@@ -541,16 +541,11 @@ HyperTraining_EventScript_ChangeIV31::
 	goto HyperTraining_EventScript_ChangeOneIV
 
 HyperTraining_EventScript_ChangeOneIV::
-	checkitem ITEM_BOTTLE_CAP, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq HyperTraining_EventScript_NotEnoughCaps
 	special ChangeChosenMonIVs
-	msgbox HyperTraining_Text_PayOneCap, MSGBOX_DEFAULT
-	removeitem ITEM_BOTTLE_CAP
 	goto HyperTraining_EventScript_DoHyperTraining
 
 HyperTraining_EventScript_ChangeHiddenPower::
-	msgbox HyperTraining_Text_ForThreeCapsChangeAllIVs, MSGBOX_DEFAULT
+	msgbox HyperTraining_Text_ChangeAllIVs, MSGBOX_DEFAULT
 	copyvar VAR_0x800A, VAR_0x8004
 	setvar VAR_0x8004, SCROLL_MULTI_HIDDEN_POWER
 	special ShowScrollableMultichoice
@@ -642,12 +637,7 @@ HyperTraining_EventScript_ChangeHPDark::
 	goto HyperTraining_EventScript_ChangeAllIVs
 
 HyperTraining_EventScript_ChangeAllIVs::
-	checkitem ITEM_BOTTLE_CAP, 3
-	compare VAR_RESULT, FALSE
-	goto_if_eq HyperTraining_EventScript_NotEnoughCaps
 	special ChangeChosenMonHiddenPower
-	msgbox HyperTraining_Text_PayThreeCaps, MSGBOX_DEFAULT
-	removeitem ITEM_BOTTLE_CAP, 3
 	goto HyperTraining_EventScript_DoHyperTraining
 
 HyperTraining_EventScript_DoHyperTraining::
@@ -730,10 +720,9 @@ HyperTraining_Text_HyperTrainingMadeMonStronger:
 	.string "stronger!\p"
 	.string "Would you like to train some more?$"
 
-HyperTraining_Text_ForThreeCapsChangeAllIVs:
-	.string "For three Bottle Caps, I can change all\n"
-	.string "of a Pokémon's IVs at once to give them\l"
-	.string "a new Hidden Power type.\p"
+HyperTraining_Text_ChangeAllIVs:
+	.string "I can change all of a Pokémon's IVs\n"
+	.string "to give a new Hidden Power type.\p"
 	.string "Would you like to change {STR_VAR_1}'s\n"
 	.string "Hidden Power to one of these types?$"
 

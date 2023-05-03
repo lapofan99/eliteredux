@@ -2047,8 +2047,9 @@ script LittlerootTown_EventScript_TutorialNPC2{
                           "You can switch Auto Run and a Permanent Repel in the Options."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 5:// Battle changes 
-			msgbox(format("Weather induced by abilities is permament now, but \p"
-                          "When induced by moves such as Sunny Day or Rain Dance, still lasts 5 rounds, but has 50% power boost for the respective types.\p"
+			msgbox(format("Weather induced by abilities is permament now, but the damage boost for Fire and Water moves in permanent sun and rain has been reduced from 50% to 20%. Sandstream and Snow Warning have no penalties.\p"
+                          "Ice-types now get a 50% defense boost in hail. Sandstorm still gives the same 50% SpDef boost.\p"
+						  "When the weather is induced by moves such as Sunny Day or Rain Dance, it still lasts 5 rounds, but has 50% power boost for the respective types.\p"
                           "All held items stay on your Pokémon after a battle. All moves are PP maxed, just like in Showdown.\p"
                           "Every Pokémon has 31 IVs by default, but you can change them in Slateport or Fallarbor."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
@@ -2064,7 +2065,7 @@ script LittlerootTown_EventScript_TutorialNPC2{
 		case 8:// Switch abilities 
 			msgbox(format("You can directly switch the ability in the Pokémon Summary Screen.\p"
                           "Some Pokémon only have one ability, others have up to three.\p"
-                          "You can't change innates."))
+                          "Every Pokémon has up to 3 fixed innates. You can't change innates."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 9:// Switch nature
 			msgbox(format("You can directly switch the nature in the Pokémon Summary Screen.\p"

@@ -2199,11 +2199,18 @@ LittlerootTown_EventScript_TutorialNPC2_Text_5:
 
 LittlerootTown_EventScript_TutorialNPC2_Text_6:
 	.string "Weather induced by abilities is\n"
-	.string "permament now, but\p"
-	.string "When induced by moves such as Sunny\n"
-	.string "Day or Rain Dance, still lasts 5 rounds,\l"
-	.string "but has 50% power boost for the\l"
-	.string "respective types.\p"
+	.string "permament now, but the damage boost\l"
+	.string "for Fire and Water moves in permanent\l"
+	.string "sun and rain has been reduced from 50%\l"
+	.string "to 20%. Sandstream and Snow Warning\l"
+	.string "have no penalties.\p"
+	.string "Ice-types now get a 50% defense boost\n"
+	.string "in hail. Sandstorm still gives the same\l"
+	.string "50% SpDef boost.\p"
+	.string "When the weather is induced by moves\n"
+	.string "such as Sunny Day or Rain Dance, it\l"
+	.string "still lasts 5 rounds, but has 50% power\l"
+	.string "boost for the respective types.\p"
 	.string "All held items stay on your Pokémon\n"
 	.string "after a battle. All moves are PP maxed,\l"
 	.string "just like in Showdown.\p"
@@ -2236,7 +2243,8 @@ LittlerootTown_EventScript_TutorialNPC2_Text_9:
 	.string "the Pokémon Summary Screen.\p"
 	.string "Some Pokémon only have one ability,\n"
 	.string "others have up to three.\p"
-	.string "You can't change innates.$"
+	.string "Every Pokémon has up to 3 fixed\n"
+	.string "innates. You can't change innates.$"
 
 LittlerootTown_EventScript_TutorialNPC2_Text_10:
 	.string "You can directly switch the nature in\n"

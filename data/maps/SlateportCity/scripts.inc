@@ -1421,7 +1421,7 @@ SlateportCity_Text_HarborSign: @ 81DEB5A
 
 SlateportCity_Text_NameRatersHouseSign: @ 81DEBA0
 	.string "Pokémon Chef's House\n"
-	.string "“Change your Pokémon's Nature!”$"
+	.string "“Change your Pokémon's IVs!”$"
 
 SlateportCity_Text_ExplainBerries: @ 81DEBCE
 	.string "If a wild Pokémon gets hurt, it heals\n"
