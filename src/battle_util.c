@@ -5740,6 +5740,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_DRY_SKIN:
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
                 {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRY_SKIN;
                     BattleScriptPushCursorAndCallback(BattleScript_SolarPowerActivates);
                     gBattleMoveDamage = gBattleMons[battler].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -5750,6 +5751,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && !BATTLER_MAX_HP(battler)
                  && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
                 {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRY_SKIN;
                     BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
                     gBattleMoveDamage = gBattleMons[battler].maxHP / (gLastUsedAbility == ABILITY_RAIN_DISH ? 8 : 8); // was 16 : 8
                     if (gBattleMoveDamage == 0)
@@ -5988,6 +5990,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_DRY_SKIN)){
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
                 {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRY_SKIN;
                     BattleScriptPushCursorAndCallback(BattleScript_SolarPowerActivates);
                     gBattleMoveDamage = gBattleMons[battler].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -5998,6 +6001,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && !BATTLER_MAX_HP(battler)
                  && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
                 {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRY_SKIN;
                     BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
                     gBattleMoveDamage = gBattleMons[battler].maxHP / (gLastUsedAbility == ABILITY_RAIN_DISH ? 8 : 8); // was 16 : 8
                     if (gBattleMoveDamage == 0)
@@ -6383,8 +6387,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRY_SKIN)){
 				if (move != MOVE_NONE && moveType == TYPE_WATER){
                     effect = 1;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_DRY_SKIN;
-				    gLastUsedAbility = ABILITY_DRY_SKIN;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRY_SKIN;
 				}
 			}
 			
@@ -6634,6 +6637,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 			else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // old effect
+             && move != MOVE_SUBSTITUTE
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
              && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
@@ -6704,8 +6708,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerAttacker].pp[gChosenMovePos] != 0
              && (Random() % 3) == 0)
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_CURSED_BODY;
-				gLastUsedAbility = ABILITY_CURSED_BODY;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CURSED_BODY;
                 gDisableStructs[gBattlerAttacker].disabledMove = gChosenMove;
                 gDisableStructs[gBattlerAttacker].disableTimer = 4;
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, gChosenMove);
@@ -7215,6 +7218,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerAttacker].pp[gChosenMovePos] != 0
              && (Random() % 3) == 0)
             {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CURSED_BODY;
                 gDisableStructs[gBattlerAttacker].disabledMove = gChosenMove;
                 gDisableStructs[gBattlerAttacker].disableTimer = 4;
                 PREPARE_MOVE_BUFFER(gBattleTextBuff1, gChosenMove);
@@ -7466,6 +7470,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 			else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // old effect
+             && move != MOVE_SUBSTITUTE
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
              && CompareStat(battler, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))

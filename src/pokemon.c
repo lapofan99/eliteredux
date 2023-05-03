@@ -8488,13 +8488,13 @@ u8 GetLevelCap(void)
     switch (levelCapSetting)
     {
     default:
-    case LEVEL_CAPS_DEFAULT:
+    case LEVEL_CAPS_EASY:
         currentLevelCap = levelCapsStandard[currentBadge];
         break;
     case LEVEL_CAPS_MORE:
         currentLevelCap = levelCapsMore[currentBadge];
         break;
-    case LEVEL_CAPS_STRICT:
+    case LEVEL_CAPS_ELITE:
         currentLevelCap = levelCapsStrict[currentBadge];
         break;
     }

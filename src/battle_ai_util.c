@@ -2951,7 +2951,8 @@ bool32 AI_CanPoison(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u16 
 
 static bool32 AI_CanBeParalyzed(u8 battler, u16 ability)
 {
-    if (ability == ABILITY_LIMBER
+    if (ability == ABILITY_LIMBER 
+      || BattlerHasInnate(battler, ABILITY_LIMBER)
       || IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler))

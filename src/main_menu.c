@@ -502,7 +502,6 @@ static const struct MenuAction sMenuActions_Gender[] = {
 
 static const struct MenuAction sMenuActions_Difficulty[] = {
     {gText_BirchNormalMode, NULL},
-    //{gText_BirchHardMode, NULL},
     {gText_BirchChallengeMode, NULL},
 };
 
@@ -1841,23 +1840,19 @@ static void Task_NewGameBirchSpeech_ChooseDifficulty(u8 taskId)
     {
         case 0:
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_NORMAL;
+            gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_EASY;
+            gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
             NewGameBirchSpeech_ClearGenderWindow(4, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_DifficultyDesc;
             break;
         case 1:
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_HARD;
-            NewGameBirchSpeech_ClearGenderWindow(4, 1);
-            gTasks[taskId].func = Task_NewGameBirchSpeech_DifficultyDesc;
-            break;
-        case 2:
-            PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_CHALLENGE;
+            gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_ELITE;
             gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
             NewGameBirchSpeech_ClearGenderWindow(4, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_DifficultyDesc;
             break;
+        case 2:
     }
 }
 
@@ -1868,13 +1863,10 @@ static void Task_NewGameBirchSpeech_DifficultyDesc(u8 taskId)
     switch (difficulty)
     {
         default:
-        case DIFFICULTY_NORMAL:
+        case DIFFICULTY_EASY:
             str = gText_Pie_NormalMode;
             break;
-        case DIFFICULTY_HARD:
-            str = gText_Pie_HardMode;
-            break;
-        case DIFFICULTY_CHALLENGE:
+        case DIFFICULTY_ELITE:
             str = gText_Pie_ChallengeMode;
             break;
     }
@@ -1913,7 +1905,7 @@ static void Task_NewGameBirchSpeech_ChooseLevelCaps(u8 taskId)
     {
         case 0:
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->levelCaps = LEVEL_CAPS_DEFAULT;
+            gSaveBlock2Ptr->levelCaps = LEVEL_CAPS_EASY;
             NewGameBirchSpeech_ClearGenderWindow(5, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_LevelCapsDesc;
             break;
@@ -1925,7 +1917,7 @@ static void Task_NewGameBirchSpeech_ChooseLevelCaps(u8 taskId)
             break;
         case 2:
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->levelCaps = LEVEL_CAPS_STRICT;
+            gSaveBlock2Ptr->levelCaps = LEVEL_CAPS_ELITE;
             NewGameBirchSpeech_ClearGenderWindow(5, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_LevelCapsDesc;
             break;
@@ -1939,13 +1931,13 @@ static void Task_NewGameBirchSpeech_LevelCapsDesc(u8 taskId)
     switch (levelCap)
     {
         default:
-        case LEVEL_CAPS_DEFAULT:
+        case LEVEL_CAPS_EASY:
             str = gText_Pie_StandardCaps;
             break;
         case LEVEL_CAPS_MORE:
             str = gText_Pie_MoreCaps;
             break;
-        case LEVEL_CAPS_STRICT:
+        case LEVEL_CAPS_ELITE:
             str = gText_Pie_StrictCaps;
             break;
     }
@@ -2342,12 +2334,12 @@ static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void)
 
 static void NewGameBirchSpeech_ShowDifficultyMenu(void)
 {
-    DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[4], 0xF3);
-    FillWindowPixelBuffer(4, PIXEL_FILL(1));
-    PrintMenuTable(4, ARRAY_COUNT(sMenuActions_Difficulty), sMenuActions_Difficulty);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(4, 3, 0);
-    PutWindowTilemap(4);
-    CopyWindowToVram(4, 3);
+    DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[1], 0xF3);
+    FillWindowPixelBuffer(1, PIXEL_FILL(1));
+    PrintMenuTable(1, ARRAY_COUNT(sMenuActions_Difficulty), sMenuActions_Difficulty);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0);
+    PutWindowTilemap(1);
+    CopyWindowToVram(1, 3);
 }
 
 static void NewGameBirchSpeech_ShowLevelCapMenu(void)

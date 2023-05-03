@@ -1969,7 +1969,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 SetMonData(&party[i], MON_DATA_NATURE, &partyData[i].nature);
 
                 //Sets EVs to fully customized spreads if difficulty is Hard or higher
-                if (difficultySetting > DIFFICULTY_NORMAL)
+                if (difficultySetting > DIFFICULTY_EASY)
                 {
                     for (j = 0; j < NUM_STATS; j++)
                     {
@@ -2046,7 +2046,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 SetMonData(&party[i], MON_DATA_NATURE, &partyData[i].nature);
 
                 //Sets EVs to fully customized spreads if difficulty is Hard or higher
-                if (difficultySetting > DIFFICULTY_NORMAL)
+                if (difficultySetting > DIFFICULTY_EASY)
                 {
                     for (j = 0; j < NUM_STATS; j++)
                     {
@@ -2118,7 +2118,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 SetMonData(&party[i], MON_DATA_NATURE, &partyData[i].nature);
 
                 //Sets EVs to fully customized spreads if difficulty is Hard or higher
-                if (difficultySetting > DIFFICULTY_NORMAL)
+                if (difficultySetting > DIFFICULTY_EASY)
                 {
                     for (j = 0; j < NUM_STATS; j++)
                     {
@@ -2226,7 +2226,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].ability);
 
                 //Sets EVs to fully customized spreads if difficulty is Hard or higher
-                if (difficultySetting > DIFFICULTY_NORMAL)
+                if (difficultySetting > DIFFICULTY_EASY)
                 {
                     for (j = 0; j < NUM_STATS; j++)
                     {
@@ -4320,7 +4320,8 @@ static void HandleTurnActionSelectionState(void)
                                             | BATTLE_TYPE_FRONTIER_NO_PYRAMID
                                             | BATTLE_TYPE_EREADER_TRAINER
                                             | BATTLE_TYPE_RECORDED_LINK)
-                        || (gSaveBlock2Ptr->gameDifficulty == DIFFICULTY_CHALLENGE && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
+                        || (gSaveBlock2Ptr->gameDifficulty == DIFFICULTY_EASY && (gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+                        || (gSaveBlock2Ptr->gameDifficulty == DIFFICULTY_ELITE && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
                     {
                         RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
                         gSelectionBattleScripts[gActiveBattler] = BattleScript_ActionSelectionItemsCantBeUsed;

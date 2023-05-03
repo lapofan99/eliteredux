@@ -2207,13 +2207,10 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
             difficultySetting = gSaveBlock2Ptr->gameDifficulty;
             switch (difficultySetting)
             {
-                case DIFFICULTY_NORMAL:
+                case DIFFICULTY_EASY:
                     StringCopy(string, gText_SavingNormalMode);
                     break;
-                case DIFFICULTY_HARD:
-                    StringCopy(string, gText_SavingHardMode);
-                    break;
-                case DIFFICULTY_CHALLENGE:
+                case DIFFICULTY_ELITE:
                     StringCopy(string, gText_SavingChallengeMode);
                     break;
                 case DIFFICULTY_INSANITY:

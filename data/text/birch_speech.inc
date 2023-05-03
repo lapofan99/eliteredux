@@ -170,7 +170,7 @@ gText_Pie_StrictCaps::
 	.string "won't be able to reach level 100\l"
 	.string "before becoming Champion.\p"
 	.string "So, would you like to play with\n"
-	.string "strict level caps?$"
+	.string "elite level caps?$"
 
 gText_Pie_WhichLevelCapSetting::
 	.string "Which level cap setting would you\n"
