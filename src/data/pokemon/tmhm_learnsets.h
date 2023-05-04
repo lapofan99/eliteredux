@@ -10875,7 +10875,8 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM49_SLEEP_TALK)
                                         | TMHM1(TM58_ENDURE)
                                         | TMHM1(TM63_ROCK_SLIDE),
-                                          TMHM2(TM77_STRUGGLE_BUG)
+                                          TMHM2(TM76_STEALTH_ROCK) // new
+                                        | TMHM2(TM77_STRUGGLE_BUG)
                                         | TMHM2(TM78_BULLDOZE)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM100_CURSE)
@@ -10904,7 +10905,8 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM58_ENDURE)
                                         | TMHM1(TM59_DRAGON_PULSE)
                                         | TMHM1(TM63_ROCK_SLIDE),
-                                          TMHM2(TM77_STRUGGLE_BUG)
+                                          TMHM2(TM76_STEALTH_ROCK) // new
+                                        | TMHM2(TM77_STRUGGLE_BUG)
                                         | TMHM2(TM78_BULLDOZE)
                                         | TMHM2(TM89_U_TURN)
                                         | TMHM2(TM90_SUBSTITUTE)
@@ -10942,6 +10944,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM63_ROCK_SLIDE),
                                           TMHM2(TM68_GIGA_IMPACT)
                                         | TMHM2(TM71_STONE_EDGE)
+                                        | TMHM2(TM76_STEALTH_ROCK) // new
                                         | TMHM2(TM77_STRUGGLE_BUG)
                                         | TMHM2(TM78_BULLDOZE)
                                         | TMHM2(TM81_X_SCISSOR) // new

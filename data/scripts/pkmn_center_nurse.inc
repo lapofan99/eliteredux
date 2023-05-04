@@ -1348,6 +1348,9 @@ Give_Cut_Items_After_Roxanne:
 
 
 Give_Thief_Items_After_Thief:
+	checkitem ITEM_BERRY_JUICE, 400
+	compare VAR_RESULT, TRUE
+	call_if_ne ADDITEM_BERRY_JUICE
 	checkitem ITEM_SITRUS_BERRY, 400
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_SITRUS_BERRY
@@ -2586,6 +2589,10 @@ ADDITEM_ROSELI_BERRY:
 
 ADDITEM_SITRUS_BERRY:
 	additem ITEM_SITRUS_BERRY, 400
+	return
+
+ADDITEM_BERRY_JUICE:
+	additem ITEM_BERRY_JUICE, 400
 	return
 
 ADDITEM_LEFTOVERS:
