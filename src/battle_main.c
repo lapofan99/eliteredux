@@ -2220,7 +2220,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 else
                     MgbaPrintf(MGBA_LOG_WARN, "Pokemon %d Item has the ID:%d", i, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
                 MgbaClose();
-                SetTrainerFlag(trainerNum);
+                if(FlagGet(FLAG_SYS_AUTOWIN))
+                    SetTrainerFlag(trainerNum);
                 #endif
 
                 SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].ability);
@@ -4431,11 +4432,11 @@ static void HandleTurnActionSelectionState(void)
                     return;
                 }
                 #ifdef DEBUG_BUILD
-                else
+                else if(FlagGet(FLAG_SYS_AUTOWIN))
                 {
                     gBattleCommunication[gActiveBattler]++;
                 }
-                #else
+                #endif
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
                          && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
                          && gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_RUN)
@@ -4459,7 +4460,6 @@ static void HandleTurnActionSelectionState(void)
                 {
                     gBattleCommunication[gActiveBattler]++;
                 }
-                #endif
             }
             break;
         case STATE_WAIT_ACTION_CASE_CHOSEN:
