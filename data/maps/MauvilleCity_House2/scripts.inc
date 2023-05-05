@@ -1,17 +1,6 @@
 MauvilleCity_House2_MapScripts:: @ 8210C5C
 	.byte 0
 
-MauvilleCity_House2_EventScript_Woman:: @ 8210C5D
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_COIN_CASE, MauvilleCity_House2_EventScript_ReceivedCoinCase
-	msgbox MauvilleCity_House2_Text_BuyIceStoneAtSlateport, MSGBOX_DEFAULT
-	checkitem ITEM_ICE_STONE, 1
-	compare VAR_RESULT, TRUE
-	goto_if_eq MauvilleCity_House2_EventScript_AskToTradeForIceStone
-	release
-	end
-
 MauvilleCity_House2_EventScript_AskToTradeForIceStone:: @ 8210C82
 	playse SE_PIN
 	applymovement VAR_LAST_TALKED, Common_Movement_ExclamationMark
@@ -167,3 +156,15 @@ MauvilleCity_House2_Text_StarterMoveWhichMove:
 MauvilleCity_House2_Text_StarterMoveWhichMon:
 	.string "Which Pokémon should learn\n"
 	.string "{STR_VAR_1}?$"
+
+MauvilleCity_House2_EventScript_Woman::
+	lock
+	faceplayer
+	msgbox MauvilleCity_House2_EventScript_Woman_Text_0
+	release
+	end
+
+
+MauvilleCity_House2_EventScript_Woman_Text_0:
+	.string "You can get awesome Pokémon in the\n"
+	.string "Casino.$"

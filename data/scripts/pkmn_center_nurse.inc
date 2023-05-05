@@ -1,30 +1,4 @@
-Common_EventScript_PkmnCenterNurse::
-    lock
-    faceplayer
-    checkitem ITEM_POKE_VIAL, 1
-    compare VAR_RESULT, 1
-    goto_if_eq EventScript_PkmnCenterNurseHasVial
-    msgbox gText_AreYouARookieTrainer, MSGBOX_DEFAULT
-    giveitem ITEM_POKE_VIAL, 1
-    setvar VAR_POKE_VIAL_MAX_CHARGES, 1
-    setvar VAR_POKE_VIAL_CHARGES, 1
-    msgbox gText_ExplainPokeVial, MSGBOX_YESNO
-    compare VAR_RESULT, YES
-    checkitem ITEM_POKE_VIAL, 1
-    compare VAR_RESULT, 1
-    goto_if_eq EventScript_PkmnCenterNurseHasVial
-
-    goto_if_eq EventScript_PkmnCenterNurse_HealPkmn
-    compare VAR_RESULT, NO
-    goto_if_eq EventScript_PkmnCenterNurse_Goodbye
-    end
-
 EventScript_PkmnCenterNurseHasVial::
-    // call_if_set FLAG_RECEIVED_OLD_ROD, Give_Pokeblock_Case
-    // checkitem ITEM_RARE_CANDY, 400
-    // compare VAR_RESULT, TRUE
-    // call_if_ne ADDITEM_RARE_CANDY
-	setflag FLAG_SYS_DEXNAV_GET
 	checkitem ITEM_POKE_BALL, 1
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_POKE_BALL
@@ -106,12 +80,6 @@ EventScript_PkmnCenterNurseHasVial::
 	checkitem ITEM_PREMIER_BALL, 1
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_PREMIER_BALL
-    // checkitem ITEM_ABILITY_PATCH, 400
-    // compare VAR_RESULT, TRUE
-    // call_if_ne ADDITEM_ABILITY_PATCH
-    // checkitem ITEM_ABILITY_CAPSULE, 400
-    // compare VAR_RESULT, TRUE
-    // call_if_ne ADDITEM_ABILITY_CAPSULE
     setvar VAR_0x8006, 4
     special GetSettingsMonStats
     call Give_Nuzlocke_Items

@@ -103,3 +103,90 @@ VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent: @ 820280B
 	.string "came to see?$"
 
 `
+script Common_EventScript_PkmnCenterNurse{
+    lock
+    faceplayer
+	//Checks if the player has the Poke Vial
+    checkitem(ITEM_POKE_VIAL, 1)
+    if(var(VAR_RESULT) == 1){
+		//Calls the script that checks if you have certain items if you do
+    	goto(EventScript_PkmnCenterNurseHasVial)
+		release
+		end
+	}
+	else{
+		//First time talking to the nurse
+		msgbox(format("Hello, and welcome to the Pokémon Center.\p"
+		"We can restore your tired Pokémon to full health, but that's not really needed as your Pokémon will auto-heal before every battle.\p"
+		"This is your first time here, isn't it?\p"
+		"It's your lucky day!\p"
+		"We're currently giving out tons of useful items to all rookie Trainers.\p"
+		"Here, take this DexNav first!"), MSGBOX_DEFAULT)
+		//Give the DexNav
+		playfanfare(MUS_OBTAIN_ITEM)
+		message("{PLAYER} received the DexNav!")
+		waitmessage
+		setflag(FLAG_SYS_DEXNAV_GET)
+		waitfanfare
+		//Give the other items
+		msgbox(format("I'll give you all Battle items, all Pokéballs, all TMs & HMs, all Mega Stones, all Berries, all Type Gems and some more stuff.\p"
+		"Every time you speak to me, I'll fill all your items up again."), MSGBOX_DEFAULT)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message("{PLAYER} received a LOT of items!")
+		waitmessage
+		call(Common_EventScript_PkmnCenterNurse_GiveItems_First_Time)
+		waitfanfare
+		//Give Silent Items
+		applymovement(VAR_0x800B, Movement_PkmnCenterNurse_Bow)
+		additem(ITEM_POKE_VIAL)
+		setvar(VAR_POKE_VIAL_MAX_CHARGES, 1)
+		setvar(VAR_POKE_VIAL_CHARGES, 1)
+		msgbox("We hope to see you again!", MSGBOX_DEFAULT)
+		release
+		end
+	}
+}
+
+script Common_EventScript_PkmnCenterNurse_GiveItems_First_Time{
+	call(ADDITEM_POKE_BALL)
+    call(ADDITEM_MASTER_BALL)
+    call(ADDITEM_ULTRA_BALL)
+    call(ADDITEM_GREAT_BALL)
+    call(ADDITEM_SAFARI_BALL)
+    call(ADDITEM_NET_BALL)
+    call(ADDITEM_DIVE_BALL)
+    call(ADDITEM_NEST_BALL)
+    call(ADDITEM_REPEAT_BALL)
+    call(ADDITEM_TIMER_BALL)
+    call(ADDITEM_LUXURY_BALL)
+    call(ADDITEM_DUSK_BALL)
+    call(ADDITEM_HEAL_BALL)
+    call(ADDITEM_QUICK_BALL)
+    call(ADDITEM_CHERISH_BALL)
+    call(ADDITEM_FAST_BALL)
+    call(ADDITEM_LEVEL_BALL)
+    call(ADDITEM_LURE_BALL)
+    call(ADDITEM_HEAVY_BALL)
+    call(ADDITEM_LOVE_BALL)
+    call(ADDITEM_FRIEND_BALL)
+    call(ADDITEM_MOON_BALL)
+    call(ADDITEM_SPORT_BALL)
+    call(ADDITEM_PARK_BALL)
+    call(ADDITEM_DREAM_BALL)
+    call(ADDITEM_BEAST_BALL)
+    call(ADDITEM_PREMIER_BALL)
+    setvar(VAR_0x8006, 4)
+    special(GetSettingsMonStats)
+    call(Give_Nuzlocke_Items)
+	call(Give_all_TMHMs)
+	call(Give_BattleItems)
+	call(Give_all_Type_Gems)
+	call(Give_all_Mega_Stones)
+	call(Give_Cut_Items_After_Roxanne)
+	call(Give_Thief_Items_After_Thief)
+	call(Give_Thief_Items_After_Museum)
+    call(Give_Thief_Items_After_Wattson)
+    call(Give_Thief_Items_After_Flannery)
+    call(Give_Thief_Items_After_Norman)
+	return
+}

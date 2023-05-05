@@ -1,22 +1,4 @@
-Common_EventScript_PkmnCenterNurse::
-    lock
-    faceplayer
-    checkitem ITEM_POKE_VIAL, 1
-    compare VAR_RESULT, 1
-    goto_if_eq EventScript_PkmnCenterNurseHasVial
-    msgbox gText_AreYouARookieTrainer, MSGBOX_DEFAULT
-    giveitem ITEM_POKE_VIAL, 1
-    setvar VAR_POKE_VIAL_MAX_CHARGES, 1
-    setvar VAR_POKE_VIAL_CHARGES, 1
-    msgbox gText_ExplainPokeVial, MSGBOX_YESNO
-    compare VAR_RESULT, YES
-    goto_if_eq EventScript_PkmnCenterNurse_HealPkmn
-    compare VAR_RESULT, NO
-    goto_if_eq EventScript_PkmnCenterNurse_Goodbye
-    end
-
 EventScript_PkmnCenterNurseHasVial::
-    call_if_set FLAG_RECEIVED_OLD_ROD, Give_Pokeblock_Case
     checkitem ITEM_RARE_CANDY, 400
     compare VAR_RESULT, TRUE
     call_if_ne ADDITEM_RARE_CANDY
@@ -42,6 +24,9 @@ EventScript_PkmnCenterNurseHasVial::
     call_if_eq Give_Thief_Items_After_Flannery
     call_if_eq Give_Thief_Items_After_Norman
     call_if_eq Give_Thief_Items_After_Winoma
+	checkitem ITEM_POKE_VIAL, 1
+    compare VAR_RESULT, 1
+    goto_if_eq EventScript_PkmnCenterNurse_HealPkmn
     call EventScript_PkmnCenterNurse_HealPkmn
     end
 
@@ -156,13 +141,6 @@ Movement_PkmnCenterNurse_Bow:
     nurse_joy_bow
     delay_4
     step_end
-
-
-Give_Pokeblock_Case:
-	checkitem ITEM_POKEBLOCK_CASE, 1
-	compare VAR_RESULT, TRUE
-	call_if_ne ADDITEM_POKEBLOCK_CASE
-	return
 
 
 Give_Nuzlocke_Items:

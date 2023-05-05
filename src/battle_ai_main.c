@@ -3225,6 +3225,17 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if(gBattleMoves[move].priority > 0 && CanTargetFaintAi(battlerDef, battlerAtk) && GetWhoStrikesFirst(battlerDef, battlerAtk, TRUE) == 0)
         score += 8;
 
+    if (HOLD_EFFECT_CHOICE(AI_DATA->atkHoldEffect)     || 
+        AI_DATA->atkAbility == ABILITY_GORILLA_TACTICS || AtkSpeciesHasInnate(ABILITY_GORILLA_TACTICS) ||
+        AI_DATA->atkAbility == ABILITY_SAGE_POWER      || AtkSpeciesHasInnate(ABILITY_SAGE_POWER))
+    {
+        // If AI can't hit the foe with its current chosen move switch out
+        if (CountUsablePartyMons(battlerAtk) > 1 && AI_CheckBadMove(battlerAtk, battlerDef, move, score) <= 80)
+        {
+            score -= 20;
+        }
+    }
+
     /*if (HOLD_EFFECT_CHOICE(AI_DATA->atkHoldEffect))
     {
         // If AI can't 2HKO foe OR foe can KO AI and is faster, force it to switch

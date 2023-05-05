@@ -100,3 +100,109 @@ VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent: @ 820280B
 	.string "saying.\p"
 	.string "Or is there somebody here that you\n"
 	.string "came to see?$"
+
+Common_EventScript_PkmnCenterNurse::
+	lock
+	faceplayer
+	checkitem ITEM_POKE_VIAL, 1
+	compare VAR_RESULT, 1
+	goto_if_eq Common_EventScript_PkmnCenterNurse_1
+	msgbox Common_EventScript_PkmnCenterNurse_Text_0, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message Common_EventScript_PkmnCenterNurse_Text_1
+	waitmessage
+	setflag FLAG_SYS_DEXNAV_GET
+	waitfanfare
+	msgbox Common_EventScript_PkmnCenterNurse_Text_2, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message Common_EventScript_PkmnCenterNurse_Text_3
+	waitmessage
+	call Common_EventScript_PkmnCenterNurse_GiveItems_First_Time
+	waitfanfare
+	applymovement VAR_0x800B, Movement_PkmnCenterNurse_Bow
+	additem ITEM_POKE_VIAL
+	setvar VAR_POKE_VIAL_MAX_CHARGES, 1
+	setvar VAR_POKE_VIAL_CHARGES, 1
+	msgbox Common_EventScript_PkmnCenterNurse_Text_4, MSGBOX_DEFAULT
+	release
+	end
+
+Common_EventScript_PkmnCenterNurse_1:
+	goto EventScript_PkmnCenterNurseHasVial
+	release
+	end
+
+
+Common_EventScript_PkmnCenterNurse_GiveItems_First_Time::
+	call ADDITEM_POKE_BALL
+	call ADDITEM_MASTER_BALL
+	call ADDITEM_ULTRA_BALL
+	call ADDITEM_GREAT_BALL
+	call ADDITEM_SAFARI_BALL
+	call ADDITEM_NET_BALL
+	call ADDITEM_DIVE_BALL
+	call ADDITEM_NEST_BALL
+	call ADDITEM_REPEAT_BALL
+	call ADDITEM_TIMER_BALL
+	call ADDITEM_LUXURY_BALL
+	call ADDITEM_DUSK_BALL
+	call ADDITEM_HEAL_BALL
+	call ADDITEM_QUICK_BALL
+	call ADDITEM_CHERISH_BALL
+	call ADDITEM_FAST_BALL
+	call ADDITEM_LEVEL_BALL
+	call ADDITEM_LURE_BALL
+	call ADDITEM_HEAVY_BALL
+	call ADDITEM_LOVE_BALL
+	call ADDITEM_FRIEND_BALL
+	call ADDITEM_MOON_BALL
+	call ADDITEM_SPORT_BALL
+	call ADDITEM_PARK_BALL
+	call ADDITEM_DREAM_BALL
+	call ADDITEM_BEAST_BALL
+	call ADDITEM_PREMIER_BALL
+	setvar VAR_0x8006, 4
+	special GetSettingsMonStats
+	call Give_Nuzlocke_Items
+	call Give_all_TMHMs
+	call Give_BattleItems
+	call Give_all_Type_Gems
+	call Give_all_Mega_Stones
+	call Give_Cut_Items_After_Roxanne
+	call Give_Thief_Items_After_Thief
+	call Give_Thief_Items_After_Museum
+	call Give_Thief_Items_After_Wattson
+	call Give_Thief_Items_After_Flannery
+	call Give_Thief_Items_After_Norman
+	return
+
+
+Common_EventScript_PkmnCenterNurse_Text_0:
+	.string "Hello, and welcome to the Pokémon\n"
+	.string "Center.\p"
+	.string "We can restore your tired Pokémon to\n"
+	.string "full health, but that's not really\l"
+	.string "needed as your Pokémon will auto-heal\l"
+	.string "before every battle.\p"
+	.string "This is your first time here, isn't it?\p"
+	.string "It's your lucky day!\p"
+	.string "We're currently giving out tons of\n"
+	.string "useful items to all rookie Trainers.\p"
+	.string "Here, take this DexNav first!$"
+
+Common_EventScript_PkmnCenterNurse_Text_1:
+	.string "{PLAYER} received the DexNav!$"
+
+Common_EventScript_PkmnCenterNurse_Text_2:
+	.string "I'll give you all Battle items, all\n"
+	.string "Pokéballs, all TMs & HMs, all Mega\l"
+	.string "Stones, all Berries, all Type Gems and\l"
+	.string "some more stuff.\p"
+	.string "Every time you speak to me, I'll fill all\n"
+	.string "your items up again.$"
+
+Common_EventScript_PkmnCenterNurse_Text_3:
+	.string "{PLAYER} received a LOT of items!$"
+
+Common_EventScript_PkmnCenterNurse_Text_4:
+	.string "We hope to see you again!$"
