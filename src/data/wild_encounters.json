@@ -8921,6 +8921,26 @@
                 "species": "SPECIES_WHISCASH"
               }
             ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 50,
+                "species": "SPECIES_CALYREX_SHADOW_RIDER"
+              },
+              {
+                "min_level": 50,
+                "max_level": 50,
+                "species": "SPECIES_TAPU_FINI"
+              },
+              {
+                "min_level": 50,
+                "max_level": 50,
+                "species": "SPECIES_TAPU_LELE"
+              }
+            ]
           }
         },
         {

@@ -925,7 +925,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_REGIDRAGO] = gMonIcon_Regidrago,
     [SPECIES_GLASTRIER] = gMonIcon_Glastrier,
     [SPECIES_SPECTRIER] = gMonIcon_Spectrier,
-    [SPECIES_CALYREX] = gMonIcon_QuestionMark,//gMonIcon_Calyrex,
+    [SPECIES_CALYREX] = gMonIcon_Calyrex,
     [SPECIES_VENUSAUR_MEGA] = gMonIcon_VenusaurMega,
     [SPECIES_CHARIZARD_MEGA_X] = gMonIcon_CharizardMegaX,
     [SPECIES_CHARIZARD_MEGA_Y] = gMonIcon_CharizardMegaY,
@@ -1239,8 +1239,8 @@ const u8 *const gMonIconTable[] =
     [SPECIES_ETERNATUS_ETERNAMAX] = gMonIcon_EternatusEternamax,
     [SPECIES_URSHIFU_RAPID_STRIKE_STYLE] = gMonIcon_Urshifu,
     [SPECIES_ZARUDE_DADA] = gMonIcon_ZarudeDada,
-    [SPECIES_CALYREX_ICE_RIDER] = gMonIcon_QuestionMark,//gMonIcon_CalyrexIceRider,
-    [SPECIES_CALYREX_SHADOW_RIDER] = gMonIcon_QuestionMark,//gMonIcon_CalyrexShadowRider,
+    [SPECIES_CALYREX_ICE_RIDER] = gMonIcon_CalyrexIceRider,
+    [SPECIES_CALYREX_SHADOW_RIDER] = gMonIcon_CalyrexShadowRider,
     [SPECIES_EGG] = gMonIcon_Egg,
 };
 

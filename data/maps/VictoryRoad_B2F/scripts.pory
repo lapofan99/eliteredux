@@ -108,3 +108,26 @@ VictoryRoad_B2F_Text_DiannePostBattle: @ 8236D8C
 	.string "Keep it going!$"
 
 `
+
+script VictoryRoad_B2F_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_JULIE)    &&
+		   defeated(TRAINER_CAROLINE) &&
+		   defeated(TRAINER_OWEN)     &&
+		   defeated(TRAINER_VITO)     &&
+		   defeated(TRAINER_FELIX)    &&
+		   defeated(TRAINER_DIANNE)){
+			msgbox(format("You are now worthy to catch Calyrex-Shadow, Tapu Fini and Tapu Lele here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Calyrex-Shadow, Tapu Fini or Tapu Lele. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}

@@ -52,7 +52,13 @@ Debug_Script_2::
 	end
 
 Debug_Script_3::
-	clearflag FLAG_SYS_GAME_CLEAR
+	setflag FLAG_SYS_GAME_CLEAR
+	settrainerflag TRAINER_JULIE
+	settrainerflag TRAINER_CAROLINE
+	settrainerflag TRAINER_OWEN
+	settrainerflag TRAINER_VITO
+	settrainerflag TRAINER_FELIX
+	settrainerflag TRAINER_DIANNE
 	end
 
 Debug_Script_4::

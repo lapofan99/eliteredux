@@ -105,3 +105,66 @@ VictoryRoad_B2F_Text_DianneDefeat: @ 8236D6E
 VictoryRoad_B2F_Text_DiannePostBattle: @ 8236D8C
 	.string "You do have guts! I like that!\n"
 	.string "Keep it going!$"
+
+VictoryRoad_B2F_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, VictoryRoad_B2F_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_JULIE
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_8
+VictoryRoad_B2F_EventScript_LegendaryNPC_6:
+	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_2
+VictoryRoad_B2F_EventScript_LegendaryNPC_1:
+	release
+	end
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_2:
+	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_0
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_1
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_5:
+	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_1
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_1
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_OWEN
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_12
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_CAROLINE
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_7
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_FELIX
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_15
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_VITO
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_11
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_DIANNE
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_5
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
+
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch\n"
+	.string "Calyrex-Shadow, Tapu Fini and Tapu\l"
+	.string "Lele here. Just use your DexNav, they\l"
+	.string "will now appear.$"
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch\n"
+	.string "Calyrex-Shadow, Tapu Fini or Tapu Lele.\l"
+	.string "Beat all trainers here first.$"
