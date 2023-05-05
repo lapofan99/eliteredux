@@ -2762,9 +2762,11 @@ bool8 CanFindHiddenPokemon(void)
                     HasTrainerBeenFought(TRAINER_TIANA))
                     CanFindHiddenMon = TRUE;
                     #ifdef DEBUG_BUILD
-                       MgbaOpen();
-                        MgbaPrintf(MGBA_LOG_WARN, "Route 102 - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-                        MgbaClose();
+                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                            MgbaOpen();
+                            MgbaPrintf(MGBA_LOG_WARN, "Route 102 - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+                            MgbaClose();
+                        }
                     #endif
             }
 		break;
@@ -2779,9 +2781,11 @@ bool8 CanFindHiddenPokemon(void)
                     CanFindHiddenMon = TRUE;
 
                     #ifdef DEBUG_BUILD
-                        MgbaOpen();
-                        MgbaPrintf(MGBA_LOG_WARN, "Victory Road B2F - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-                        MgbaClose();
+                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                            MgbaOpen();
+                            MgbaPrintf(MGBA_LOG_WARN, "Victory Road B2F - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+                            MgbaClose();
+                        }
                     #endif
             }
 

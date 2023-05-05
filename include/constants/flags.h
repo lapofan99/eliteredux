@@ -705,8 +705,8 @@
 
 #define FLAG_SYS_MOVE_INFO           0x29A // Battle Interface
 #define FLAG_IS_DAYNIGHT_INVERTED    0x29B // Ported from ROWE
-#define FLAG_SYS_AUTOWIN             0x29C  //DEBUG
-#define FLAG_UNUSED_0x29D  0x29D // Unused Flag
+#define FLAG_SYS_AUTOWIN             0x29C //DEBUG
+#define FLAG_SYS_MGBA_PRINT          0x29D //DEBUG
 #define FLAG_UNUSED_0x29E  0x29E // Unused Flag
 #define FLAG_UNUSED_0x29F  0x29F // Unused Flag
 #define FLAG_UNUSED_0x2A0  0x2A0 // Unused Flag

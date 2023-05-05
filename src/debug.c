@@ -118,6 +118,7 @@ enum { // Flags and Vars
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_AUTOWIN,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_MGBA_PRINT,
 };
 enum { // Battle 0 Type
     DEBUG_BATTLE_0_MENU_ITEM_WILD,
@@ -334,6 +335,7 @@ static void DebugAction_FlagsVars_ToggleBadgeFlags(u8 taskId);
 static void DebugAction_FlagsVars_ToggleFrontierPass(u8 taskId);
 static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId);
 static void DebugAction_FlagsVars_AutoWinOnOff(u8 taskId);
+static void DebugAction_FlagsVars_MgbaPrintOnOff(u8 taskId);
 static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId);
 static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId);
 static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId);
@@ -464,6 +466,7 @@ static const u8 sDebugText_FlagsVars_SwitchTrainerSee[] =       _("Toggle {STR_V
 static const u8 sDebugText_FlagsVars_SwitchBagUse[] =           _("Toggle {STR_VAR_1}BagUse OFF");
 static const u8 sDebugText_FlagsVars_SwitchCatching[] =         _("Toggle {STR_VAR_1}Catching OFF");
 static const u8 sDebugText_FlagsVars_SwitchAutowin[] =          _("Toggle {STR_VAR_1}Autowin OFF");
+static const u8 sDebugText_FlagsVars_SwitchmGBAPrint[] =        _("Toggle {STR_VAR_1}mGBA Print OFF");
 // Battle
 static const u8 sDebugText_Battle_0_Wild[] =        _("Wild…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Battle_0_WildDouble[] =  _("Wild Double…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -645,6 +648,7 @@ static const struct ListMenuItem sDebugMenu_Items_FlagsVars[] =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = {sDebugText_FlagsVars_SwitchBagUse,       DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = {sDebugText_FlagsVars_SwitchCatching,     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_AUTOWIN]       = {sDebugText_FlagsVars_SwitchAutowin,      DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_AUTOWIN},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_MGBA_PRINT]    = {sDebugText_FlagsVars_SwitchmGBAPrint,    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_MGBA_PRINT},
 };
 static const struct ListMenuItem sDebugMenu_Items_Battle_0[] =
 {
@@ -780,6 +784,7 @@ static void (*const sDebugMenu_Actions_Flags[])(u8) =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]       = DebugAction_FlagsVars_BagUseOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]      = DebugAction_FlagsVars_CatchingOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_AUTOWIN]       = DebugAction_FlagsVars_AutoWinOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_MGBA_PRINT]    = DebugAction_FlagsVars_MgbaPrintOnOff,
 };
 static void (*const sDebugMenu_Actions_Give[])(u8) =
 {
@@ -1092,6 +1097,9 @@ static u8 Debug_CheckToggleFlags(u8 id)
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_AUTOWIN:
             result = FlagGet(FLAG_SYS_AUTOWIN);
+            break;
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_MGBA_PRINT:
+            result = FlagGet(FLAG_SYS_MGBA_PRINT);
             break;
         default:
             result = 0xFF;
@@ -2456,11 +2464,19 @@ static void DebugAction_FlagsVars_CollisionOnOff(u8 taskId)
 }
 static void DebugAction_FlagsVars_AutoWinOnOff(u8 taskId)
 {
-    if (FlagGet(FLAG_SYS_NO_COLLISION))
-        PlaySE(FLAG_SYS_AUTOWIN);
+    if (FlagGet(FLAG_SYS_AUTOWIN))
+        PlaySE(SE_PC_OFF);
     else
         PlaySE(SE_PC_LOGIN);
     FlagToggle(FLAG_SYS_AUTOWIN);
+}
+static void DebugAction_FlagsVars_MgbaPrintOnOff(u8 taskId)
+{
+    if (FlagGet(FLAG_SYS_MGBA_PRINT))
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    FlagToggle(FLAG_SYS_MGBA_PRINT);
 }
 static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId)
 {
