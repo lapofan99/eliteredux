@@ -2770,6 +2770,23 @@ bool8 CanFindHiddenPokemon(void)
                     #endif
             }
 		break;
+        case MAP_NUM(VICTORY_ROAD_B1F):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(VICTORY_ROAD_B1F)){
+                if( HasTrainerBeenFought(TRAINER_HALLE)    && 
+                    HasTrainerBeenFought(TRAINER_MITCHELL) && 
+                    HasTrainerBeenFought(TRAINER_SHANNON)  &&
+                    HasTrainerBeenFought(TRAINER_SAMUEL))
+                    CanFindHiddenMon = TRUE;
+
+                    #ifdef DEBUG_BUILD
+                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                            MgbaOpen();
+                            MgbaPrintf(MGBA_LOG_WARN, "Victory Road B1F - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+                            MgbaClose();
+                        }
+                    #endif
+            }
+        break;
         case MAP_NUM(VICTORY_ROAD_B2F):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(VICTORY_ROAD_B2F)){
                 if( HasTrainerBeenFought(TRAINER_JULIE) && 
@@ -2788,7 +2805,6 @@ bool8 CanFindHiddenPokemon(void)
                         }
                     #endif
             }
-
         break;
     }
 

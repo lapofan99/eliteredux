@@ -91,3 +91,24 @@ VictoryRoad_B1F_Text_HallePostBattle: @ 823684C
 	.string "the way!$"
 
 `
+
+script VictoryRoad_B1F_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_HALLE)    &&
+		   defeated(TRAINER_MITCHELL) &&
+		   defeated(TRAINER_SHANNON)  &&
+		   defeated(TRAINER_SAMUEL)){
+			msgbox(format("You are now worthy to catch Type:Null, Silvally and Marshadow here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Type:Null, Silvally or Marshadow. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}
