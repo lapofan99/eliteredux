@@ -106,7 +106,7 @@ Common_EventScript_PkmnCenterNurse::
 	faceplayer
 	checkitem ITEM_POKE_VIAL, 1
 	compare VAR_RESULT, 1
-	goto_if_eq Common_EventScript_PkmnCenterNurse_1
+	goto_if_eq Common_EventScript_PkmnCenterNurse_2
 	msgbox Common_EventScript_PkmnCenterNurse_Text_0, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_ITEM
 	message Common_EventScript_PkmnCenterNurse_Text_1
@@ -124,13 +124,13 @@ Common_EventScript_PkmnCenterNurse::
 	setvar VAR_POKE_VIAL_MAX_CHARGES, 1
 	setvar VAR_POKE_VIAL_CHARGES, 1
 	msgbox Common_EventScript_PkmnCenterNurse_Text_4, MSGBOX_DEFAULT
+Common_EventScript_PkmnCenterNurse_1:
 	release
 	end
 
-Common_EventScript_PkmnCenterNurse_1:
+Common_EventScript_PkmnCenterNurse_2:
 	goto EventScript_PkmnCenterNurseHasVial
-	release
-	end
+	goto Common_EventScript_PkmnCenterNurse_1
 
 
 Common_EventScript_PkmnCenterNurse_GiveItems_First_Time::
@@ -194,8 +194,8 @@ Common_EventScript_PkmnCenterNurse_Text_1:
 	.string "{PLAYER} received the DexNav!$"
 
 Common_EventScript_PkmnCenterNurse_Text_2:
-	.string "I'll give you all Battle items, all\n"
-	.string "Pokéballs, all TMs & HMs, all Mega\l"
+	.string "I'll give you a TM Case, all Battle items,\n"
+	.string "all Pokéballs, all TMs & HMs, all Mega\l"
 	.string "Stones, all Berries, all Type Gems and\l"
 	.string "some more stuff.\p"
 	.string "Every time you speak to me, I'll fill all\n"

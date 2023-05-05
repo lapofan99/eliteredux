@@ -80,6 +80,8 @@
 #include "data/pokemon/form_species_tables.h"
 #include "constants/abilities.h"
 #include "constants/hold_effects.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 //#include "data/pokemon/form_species_table_pointers.h"
 
 #define PARTY_PAL_SELECTED     (1 << 0)
@@ -2525,12 +2527,14 @@ static u8 DisplaySelectionWindow(u8 windowType)
     cursorDimension = GetMenuCursorDimensionByFont(1, 0);
     fontAttribute = GetFontAttribute(1, 2);
 
-    for (i = 0; i < sPartyMenuInternal->numActions; i++)
-    {
-        u8 fontColorsId = 3;
-        if ((sPartyMenuInternal->actions[i] >= MENU_FIELD_MOVES) || (sPartyMenuInternal->actions[i] == MENU_SUB_FIELD_MOVES))
-            fontColorsId = 4;
-        AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
+    if(sPartyMenuInternal->numActions != 255){
+        for (i = 0; i < sPartyMenuInternal->numActions; i++)
+        {
+            u8 fontColorsId = 3;
+            if ((sPartyMenuInternal->actions[i] >= MENU_FIELD_MOVES) || (sPartyMenuInternal->actions[i] == MENU_SUB_FIELD_MOVES))
+                fontColorsId = 4;
+            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
+        }
     }
 
     InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], sPartyMenuInternal->numActions, 0, 1);
@@ -5352,11 +5356,23 @@ static void Task_HandleWhichLevelInput(u8 taskId)
 
 void ItemUseCB_CandyBox2(u8 taskId, TaskFunc task)
 {
+    u8 levelCap = GetLevelCap();
+    u8 level = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL);
+
     PlaySE(SE_SELECT);
     FlagSet(FLAG_USED_CANDY_BOX);
     DisplayPartyMenuStdMessage(PARTY_MSG_CHOSE_LEVEL);
-    ShowLevelUpSelectWindow(gPartyMenu.slotId);
-    gTasks[taskId].func = Task_HandleWhichLevelInput;
+    if(level + 1 < levelCap){
+        ShowLevelUpSelectWindow(gPartyMenu.slotId);
+        gTasks[taskId].func = Task_HandleWhichLevelInput;
+    }
+    else if(level + 1 == levelCap){
+        VarSet(VAR_CANDY_BOX_LEVEL, 0);
+        ItemUseCB_CandyBox(taskId, task);
+    }
+    else{
+        ItemUseCB_CandyBox(taskId, task);
+    }
 }
 
 void ItemUseCB_CandyBox(u8 taskId, TaskFunc task)
@@ -5397,10 +5413,10 @@ void ItemUseCB_CandyBox(u8 taskId, TaskFunc task)
         StringExpandPlaceholders(gStringVar4, gText_PkmnElevatedToLvVar2);
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
+        FlagClear(FLAG_USED_CANDY_BOX);
+        VarSet(VAR_CANDY_BOX_LEVEL, 0);
         gTasks[taskId].func = Task_TryLearnNewMoves;
     }
-    FlagClear(FLAG_USED_CANDY_BOX);
-    VarSet(VAR_CANDY_BOX_LEVEL, 0);
 }
 
 
@@ -5836,21 +5852,26 @@ static void PartyMenuTryEvolution(u8 taskId)
     if (targetSpecies != SPECIES_NONE)
     {
         FreePartyPointers();
-        if (gSpecialVar_ItemId == ITEM_RARE_CANDY  && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
+        if (gSpecialVar_ItemId == ITEM_RARE_CANDY  && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1)){
             gCB2_AfterEvolution = CB2_ReturnToPartyMenuUsingRareCandy;
-		else if (gSpecialVar_ItemId == ITEM_CANDY_BOX && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
+        }
+		else if (gSpecialVar_ItemId == ITEM_CANDY_BOX && gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD){
             gCB2_AfterEvolution = CB2_ReturnToPartyMenuUsingCandyBox;
-        else
+        }
+        else{
             gCB2_AfterEvolution = gPartyMenu.exitCallback;
+        }
         BeginEvolutionScene(mon, targetSpecies, 1, gPartyMenu.slotId);
         DestroyTask(taskId);
     }
     else
     {
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1)){
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
-        else
+        }
+        else{
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        }
     }
 }
 

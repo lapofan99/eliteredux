@@ -54,6 +54,8 @@
 #include "constants/weather.h"
 #include "constants/battle_config.h"
 #include "data/trainer_spreads.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 
 struct SpeciesItem

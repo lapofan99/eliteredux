@@ -2101,3 +2101,68 @@ script LittlerootTown_EventScript_TutorialNPC2{
     release
     end
 }
+
+script PKMN_Center_Move_Tutor{
+	lockall
+	messageinstant("How can I help you today?")
+	multichoice2(0, 0, MultiChoice_Move_Tutor_NPC)
+	switch(var(VAR_RESULT)){
+		case 0:
+			closemessage
+			goto(PKMN_Center_EventScript_DayNightToggle)
+		break
+		case 1:
+			closemessage
+			goto(PKMN_Center_NameRater_EventScript)
+		break
+		case 2:
+			closemessage
+			goto(PKMN_Center_EventScript_Mystery_Gift)
+		break
+		case 3:
+			closemessage
+			goto(PKMN_Center_EventScript_Event_Reset)
+		break
+		case MULTI_B_PRESSED:
+		default:
+		case 4:
+			closemessage
+			goto(PKMN_Center_Move_Tutor_General_Exit)
+		break
+	}
+}
+
+script PKMN_Center_EventScript_DayNightToggle{
+	msgbox("Do you want to invert day/night?\n"
+           "Useful for wild encounters.$", MSGBOX_YESNO)
+	switch(var(VAR_RESULT)){
+		case YES:
+			if(flag(FLAG_IS_DAYNIGHT_INVERTED)){
+				clearflag(FLAG_IS_DAYNIGHT_INVERTED)
+			}
+			else{
+				setflag(FLAG_IS_DAYNIGHT_INVERTED)
+			}
+			playfanfare(MUS_OBTAIN_ITEM)
+			message(format("The Day and Night time was inverted."))
+			waitmessage
+			waitfanfare
+		break
+		case NO:
+		case MULTI_B_PRESSED:
+		default:
+			goto(PKMN_Center_Move_Tutor)
+		break
+	}
+    release
+    end
+}
+
+text MultiChoice_Move_Tutor_NPC{
+    "Invert Day and Night$"
+    "Rate a nickname$"
+    "Mystery Gift$"
+    "Reset Events$"
+    "Exit$"
+    "$"
+}

@@ -2117,6 +2117,70 @@ LittlerootTown_EventScript_TutorialNPC2_18:
 	goto LittlerootTown_EventScript_TutorialNPC2_1
 
 
+PKMN_Center_Move_Tutor::
+	lockall
+	messageinstant PKMN_Center_Move_Tutor_Text_0
+	multichoice2 0, 0, MultiChoice_Move_Tutor_NPC
+	switch VAR_RESULT
+	case 0, PKMN_Center_Move_Tutor_2
+	case 1, PKMN_Center_Move_Tutor_3
+	case 2, PKMN_Center_Move_Tutor_4
+	case 3, PKMN_Center_Move_Tutor_5
+	case MULTI_B_PRESSED, PKMN_Center_Move_Tutor_6
+	case 4, PKMN_Center_Move_Tutor_6
+PKMN_Center_Move_Tutor_6:
+	closemessage
+	goto PKMN_Center_Move_Tutor_General_Exit
+	return
+
+PKMN_Center_Move_Tutor_2:
+	closemessage
+	goto PKMN_Center_EventScript_DayNightToggle
+	return
+
+PKMN_Center_Move_Tutor_3:
+	closemessage
+	goto PKMN_Center_NameRater_EventScript
+	return
+
+PKMN_Center_Move_Tutor_4:
+	closemessage
+	goto PKMN_Center_EventScript_Mystery_Gift
+	return
+
+PKMN_Center_Move_Tutor_5:
+	closemessage
+	goto PKMN_Center_EventScript_Event_Reset
+	return
+
+
+PKMN_Center_EventScript_DayNightToggle::
+	msgbox PKMN_Center_EventScript_DayNightToggle_Text_0, MSGBOX_YESNO
+	switch VAR_RESULT
+	case YES, PKMN_Center_EventScript_DayNightToggle_3
+	case NO, PKMN_Center_EventScript_DayNightToggle_4
+	case MULTI_B_PRESSED, PKMN_Center_EventScript_DayNightToggle_4
+PKMN_Center_EventScript_DayNightToggle_4:
+	goto PKMN_Center_Move_Tutor
+PKMN_Center_EventScript_DayNightToggle_1:
+	release
+	end
+
+PKMN_Center_EventScript_DayNightToggle_3:
+	goto_if_set FLAG_IS_DAYNIGHT_INVERTED, PKMN_Center_EventScript_DayNightToggle_6
+	setflag FLAG_IS_DAYNIGHT_INVERTED
+PKMN_Center_EventScript_DayNightToggle_5:
+	playfanfare MUS_OBTAIN_ITEM
+	message PKMN_Center_EventScript_DayNightToggle_Text_1
+	waitmessage
+	waitfanfare
+	goto PKMN_Center_EventScript_DayNightToggle_1
+
+PKMN_Center_EventScript_DayNightToggle_6:
+	clearflag FLAG_IS_DAYNIGHT_INVERTED
+	goto PKMN_Center_EventScript_DayNightToggle_5
+
+
 LittlerootTown_EventScript_LegendaryNPC_Text_0:
 	.string "Take these legendary items.$"
 
@@ -2292,7 +2356,25 @@ LittlerootTown_EventScript_TutorialNPC2_Text_16:
 	.string "Pokédex for how to evolve a certain\l"
 	.string "Pokémon.$"
 
+PKMN_Center_Move_Tutor_Text_0:
+	.string "How can I help you today?$"
+
+PKMN_Center_EventScript_DayNightToggle_Text_0:
+	.string "Do you want to invert day/night?\n"
+	.string "Useful for wild encounters.$"
+
+PKMN_Center_EventScript_DayNightToggle_Text_1:
+	.string "The Day and Night time was inverted.$"
+
 LittlerootTown_EventScript_LegendaryNPC_Options::
 	.string "Please explain things to me again$"
 	.string "Nevermind$"
+	.string "$"
+
+MultiChoice_Move_Tutor_NPC::
+	.string "Invert Day and Night$"
+	.string "Rate a nickname$"
+	.string "Mystery Gift$"
+	.string "Reset Events$"
+	.string "Exit$"
 	.string "$"

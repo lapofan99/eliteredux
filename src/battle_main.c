@@ -4799,7 +4799,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     // other abilities
     if ((ability == ABILITY_QUICK_FEET  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_QUICK_FEET)) && gBattleMons[battlerId].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
-    else if ((ability == ABILITY_SURGE_SURFER  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SURGE_SURFER)) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+    else if ((ability == ABILITY_SURGE_SURFER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SURGE_SURFER)) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed *= 2;
     else if ((ability == ABILITY_SLOW_START  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLOW_START)) && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;

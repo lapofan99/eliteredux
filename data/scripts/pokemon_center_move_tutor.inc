@@ -1,20 +1,3 @@
-PKMN_Center_Move_Tutor::
-	lockall
-	message PKMN_Center_Move_Tutor_Text_HowCanHelp
-	waitmessage
-	setvar VAR_0x8004, SCROLL_MULTI_POKE_CENTER_TUTOR
-	special ShowScrollableMultichoice
-	waitstate
-	switch VAR_RESULT
-	case 0, PKMN_Center_MoveReminder_EventScript
-	case 1, PKMN_Center_MoveDeleter_EventScript
-	case 2, PKMN_Center_Move_Tutor_MoveTutorIntro
-	case 3, PKMN_Center_NameRater_EventScript
-	case 4, PKMN_Center_EventScript_Mystery_Gift
-	case 5, PKMN_Center_EventScript_Event_Reset
-	case 6, PKMN_Center_Move_Tutor_General_Exit
-	case MULTI_B_PRESSED, PKMN_Center_Move_Tutor_General_Exit
-
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Move Reminder @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 PKMN_Center_MoveReminder_EventScript::
