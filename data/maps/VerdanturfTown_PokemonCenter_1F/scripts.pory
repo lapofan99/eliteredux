@@ -111,8 +111,6 @@ script Common_EventScript_PkmnCenterNurse{
     if(var(VAR_RESULT) == 1){
 		//Calls the script that checks if you have certain items if you do
     	goto(EventScript_PkmnCenterNurseHasVial)
-		release
-		end
 	}
 	else{
 		//First time talking to the nurse
@@ -129,7 +127,7 @@ script Common_EventScript_PkmnCenterNurse{
 		setflag(FLAG_SYS_DEXNAV_GET)
 		waitfanfare
 		//Give the other items
-		msgbox(format("I'll give you all Battle items, all Pokéballs, all TMs & HMs, all Mega Stones, all Berries, all Type Gems and some more stuff.\p"
+		msgbox(format("I'll give you a TM Case, all Battle items, all Pokéballs, all TMs & HMs, all Mega Stones, all Berries, all Type Gems and some more stuff.\p"
 		"Every time you speak to me, I'll fill all your items up again."), MSGBOX_DEFAULT)
 		playfanfare(MUS_OBTAIN_ITEM)
 		message("{PLAYER} received a LOT of items!")
@@ -142,9 +140,9 @@ script Common_EventScript_PkmnCenterNurse{
 		setvar(VAR_POKE_VIAL_MAX_CHARGES, 1)
 		setvar(VAR_POKE_VIAL_CHARGES, 1)
 		msgbox("We hope to see you again!", MSGBOX_DEFAULT)
-		release
-		end
 	}
+	release
+	end
 }
 
 script Common_EventScript_PkmnCenterNurse_GiveItems_First_Time{
