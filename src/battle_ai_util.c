@@ -2953,6 +2953,8 @@ static bool32 AI_CanBeParalyzed(u8 battler, u16 ability)
 {
     if (ability == ABILITY_LIMBER 
       || BattlerHasInnate(battler, ABILITY_LIMBER)
+      || ability == ABILITY_JUGGERNAUT 
+      || BattlerHasInnate(battler, ABILITY_JUGGERNAUT)
       || IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler))
