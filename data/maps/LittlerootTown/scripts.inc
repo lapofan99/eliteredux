@@ -2215,9 +2215,9 @@ LittlerootTown_EventScript_TutorialNPC2_Text_0:
 LittlerootTown_EventScript_TutorialNPC2_Text_1:
 	.string "Talk to Nurse Joy in any Pokémon\n"
 	.string "Center, she will give you the following:\p"
-	.string "Battle items, all Pokéballs, all TMs &\n"
-	.string "HMs, all Mega Stones, all Berries, all\l"
-	.string "Type Gems etc.\p"
+	.string "TM Case, Battle items, all Pokéballs, all\n"
+	.string "TMs & HMs, all Mega Stones, all Berries,\l"
+	.string "all Type Gems etc.\p"
 	.string "Every time you speak to her, all items\n"
 	.string "get refilled.$"
 
@@ -2258,7 +2258,12 @@ LittlerootTown_EventScript_TutorialNPC2_Text_5:
 	.string "You now have a portable PC (Start Menu).\n"
 	.string "It's disabled for the Elite Four.\p"
 	.string "You can switch Auto Run and a\n"
-	.string "Permanent Repel in the Options.$"
+	.string "Permanent Repel in the Options.\p"
+	.string "No need to teach HMs, also you can fly\n"
+	.string "to already visited places with every\l"
+	.string "Pokémon.\p"
+	.string "You can register items in a new list\n"
+	.string "menu (press L to access list).$"
 
 LittlerootTown_EventScript_TutorialNPC2_Text_6:
 	.string "Weather induced by abilities is\n"
@@ -2279,7 +2284,10 @@ LittlerootTown_EventScript_TutorialNPC2_Text_6:
 	.string "just like in Showdown.\p"
 	.string "Every Pokémon has 31 IVs by default,\n"
 	.string "but you can change them in Slateport\l"
-	.string "or Fallarbor.$"
+	.string "or Fallarbor.\p"
+	.string "Every move is already PP maxed. All held\n"
+	.string "items stay on your Pokémon after\l"
+	.string "battling.$"
 
 LittlerootTown_EventScript_TutorialNPC2_Text_7:
 	.string "Press L in battle to check move power,\n"
@@ -2290,7 +2298,10 @@ LittlerootTown_EventScript_TutorialNPC2_Text_7:
 	.string "even considers some abilities like\l"
 	.string "Levitate or Sap Sipper!\p"
 	.string "STAB (50% Same Type Attack Bonus) is\n"
-	.string "noted with a Plus Icon.$"
+	.string "noted with a Plus Icon.\p"
+	.string "You can forfeit trainer battles now.\n"
+	.string "You will get sent to the last Pokémon\l"
+	.string "Center.$"
 
 LittlerootTown_EventScript_TutorialNPC2_Text_8:
 	.string "You'll get one of each Pokéball from\n"
@@ -2299,7 +2310,11 @@ LittlerootTown_EventScript_TutorialNPC2_Text_8:
 	.string "Nurse Joy gives you an upgraded\n"
 	.string "DexNav: you can directly search the\l"
 	.string "Pokémon you want. No need to walk slow\l"
-	.string "when approaching.$"
+	.string "when approaching.\p"
+	.string "The Shiny rate has been massively\n"
+	.string "boosted, it's 1/20 now.\p"
+	.string "You can catch every Pokémon from Gen 1\n"
+	.string "to 7 + two Special Pokémon from Gen 8.$"
 
 LittlerootTown_EventScript_TutorialNPC2_Text_9:
 	.string "You can directly switch the ability in\n"
@@ -2318,7 +2333,7 @@ LittlerootTown_EventScript_TutorialNPC2_Text_10:
 
 LittlerootTown_EventScript_TutorialNPC2_Text_11:
 	.string "Just use the Type Gems which Nurse Joy\n"
-	.string "gives you on any Pokémon.$"
+	.string "gives you, on any Pokémon.$"
 
 LittlerootTown_EventScript_TutorialNPC2_Text_12:
 	.string "You can directly set the EVs on your\n"

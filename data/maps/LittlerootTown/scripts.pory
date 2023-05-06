@@ -2023,7 +2023,7 @@ script LittlerootTown_EventScript_TutorialNPC2{
 	switch (var(VAR_RESULT)) {
 		case 0:// Nurse Joy
 			msgbox(format("Talk to Nurse Joy in any Pokémon Center, she will give you the following:\p"
-                          "Battle items, all Pokéballs, all TMs & HMs, all Mega Stones, all Berries, all Type Gems etc.\p"
+                          "TM Case, Battle items, all Pokéballs, all TMs & HMs, all Mega Stones, all Berries, all Type Gems etc.\p"
                           "Every time you speak to her, all items get refilled."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 1:// Pokémon changes
@@ -2043,23 +2043,29 @@ script LittlerootTown_EventScript_TutorialNPC2{
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 4:// Quality of Life
 			msgbox(format("You now have a portable PC (Start Menu). It's disabled for the Elite Four.\p"
-                          "You can switch Auto Run and a Permanent Repel in the Options."))
+                          "You can switch Auto Run and a Permanent Repel in the Options.\p"
+						  "No need to teach HMs, also you can fly to already visited places with every Pokémon.\p"
+						  "You can register items in a new list menu (press L to access list)."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
-		case 5:// Battle changes 
+		case 5:// Battle changes
 			msgbox(format("Weather induced by abilities is permament now, but the damage boost for Fire and Water moves in permanent sun and rain has been reduced from 50% to 20%. Sandstream and Snow Warning have no penalties.\p"
                           "Ice-types now get a 50% defense boost in hail. Sandstorm still gives the same 50% SpDef boost.\p"
 						  "When the weather is induced by moves such as Sunny Day or Rain Dance, it still lasts 5 rounds, but has 50% power boost for the respective types.\p"
                           "All held items stay on your Pokémon after a battle. All moves are PP maxed, just like in Showdown.\p"
-                          "Every Pokémon has 31 IVs by default, but you can change them in Slateport or Fallarbor."))
+                          "Every Pokémon has 31 IVs by default, but you can change them in Slateport or Fallarbor.\p"
+						  "Every move is already PP maxed. All held items stay on your Pokémon after battling."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 6:// Battle UI changes
 			msgbox(format("Press L in battle to check move power, accuracy and if the move makes contact.\p"
                           "Now you also see if a move's effectiveness before attacking. This even considers some abilities like Levitate or Sap Sipper!\p"
-                          "STAB (50% Same Type Attack Bonus) is noted with a Plus Icon."))
+                          "STAB (50% Same Type Attack Bonus) is noted with a Plus Icon.\p"
+						  "You can forfeit trainer battles now. You will get sent to the last Pokémon Center."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 7:// Catching Pokémon
 			msgbox(format("You'll get one of each Pokéball from Nurse Joy. Every ball has 100% catch rate.\p"
-                          "Nurse Joy gives you an upgraded DexNav: you can directly search the Pokémon you want. No need to walk slow when approaching."))
+                          "Nurse Joy gives you an upgraded DexNav: you can directly search the Pokémon you want. No need to walk slow when approaching.\p"
+						  "The Shiny rate has been massively boosted, it's 1/20 now.\p"
+						  "You can catch every Pokémon from Gen 1 to 7 + two Special Pokémon from Gen 8."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 8:// Switch abilities 
 			msgbox(format("You can directly switch the ability in the Pokémon Summary Screen.\p"
@@ -2071,7 +2077,7 @@ script LittlerootTown_EventScript_TutorialNPC2{
                           "The nature will increase one Base Stat by 10% while decreasing another one by 10%."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 10:// Switch Hidden Power
-			msgbox(format("Just use the Type Gems which Nurse Joy gives you on any Pokémon."))
+			msgbox(format("Just use the Type Gems which Nurse Joy gives you, on any Pokémon."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 11:// Set EVs
 			msgbox(format("You can directly set the EVs on your Pokémon in the Summary Screen. No more grinding!\p"
