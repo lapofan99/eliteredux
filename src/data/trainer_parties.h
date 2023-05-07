@@ -2582,6 +2582,7 @@ static const struct TrainerMonItemCustomMoves sParty_Rick[] = {
     }
 };
 
+// Youngster
 static const struct TrainerMonItemCustomMoves sParty_Allen[] = {
     {
     .lvl = 0,
@@ -2594,7 +2595,7 @@ static const struct TrainerMonItemCustomMoves sParty_Allen[] = {
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_BELLY_DRUM, MOVE_EXTREME_SPEED, MOVE_THIEF, MOVE_SEED_BOMB
     },
-    {
+    /*{
     .lvl = 0,
     .species = SPECIES_TAILLOW,
     .heldItem = ITEM_LIFE_ORB,
@@ -2604,7 +2605,7 @@ static const struct TrainerMonItemCustomMoves sParty_Allen[] = {
     .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_NAIVE,
     .moves = MOVE_BOOMBURST, MOVE_HIDDEN_POWER, MOVE_HEAT_WAVE, MOVE_BRAVE_BIRD
-    },
+    },*/
     {
     .lvl = 0,
     .species = SPECIES_TAILLOW,
@@ -2627,7 +2628,7 @@ static const struct TrainerMonItemCustomMoves sParty_Allen[] = {
 	.nature = NATURE_JOLLY,
     .moves = MOVE_FURY_SWIPES, MOVE_BRICK_BREAK, MOVE_FAKE_OUT, MOVE_KNOCK_OFF
     },
-    {
+    /*{
     .lvl = 0,
     .species = SPECIES_PIDOVE,
     .heldItem = ITEM_LIFE_ORB,
@@ -2648,7 +2649,7 @@ static const struct TrainerMonItemCustomMoves sParty_Allen[] = {
     .evs = {200, 196, 36, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_RETURN, MOVE_PURSUIT, MOVE_ICE_PUNCH, MOVE_HAMMER_ARM
-    }
+    }*/
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Tiana[] = {
@@ -2685,7 +2686,7 @@ static const struct TrainerMonItemCustomMoves sParty_Tiana[] = {
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_CRABHAMMER, MOVE_AQUA_JET, MOVE_KNOCK_OFF, MOVE_SWORDS_DANCE
     },
-    {
+    /*{
     .lvl = 0,
     .species = SPECIES_BIDOOF,
     .heldItem = ITEM_EVIOLITE,
@@ -2706,7 +2707,7 @@ static const struct TrainerMonItemCustomMoves sParty_Tiana[] = {
     .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_SCALD, MOVE_HURRICANE, MOVE_RAIN_DANCE, MOVE_U_TURN
-    }
+    }*/
 };
 
 // Route 104 South
@@ -2759,7 +2760,7 @@ static const struct TrainerMonItemCustomMoves sParty_Billy[] = {
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Darian[] = {
-    {
+    /*{
     .lvl = 10,
     .species = SPECIES_MAGIKARP, // Bright Powder
     .heldItem = ITEM_BRIGHT_POWDER,
@@ -2769,7 +2770,7 @@ static const struct TrainerMonItemCustomMoves sParty_Darian[] = {
     .evs = {0, 252, 76, 0, 0, 180},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
     .moves = MOVE_SPLASH, MOVE_TACKLE, MOVE_FLAIL, MOVE_BOUNCE
-    },
+    },*/
     {
     .lvl = 0,
     .species = SPECIES_GOLDEEN,
@@ -2851,7 +2852,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy1[] = {
     .moves = MOVE_SWORDS_DANCE, MOVE_RETURN, MOVE_BRICK_BREAK, MOVE_ICE_PUNCH
     },
     {
-    .lvl = 5,
+    .lvl = 0,
     .species = SPECIES_FURRET,
     .heldItem = ITEM_CHOICE_SCARF,
     .ability = 1, // ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_QUICK_FEET},
@@ -2887,7 +2888,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy2[] = {
     .moves = MOVE_RETURN, MOVE_SHADOW_CLAW, MOVE_BRICK_BREAK, MOVE_FACADE
     },
     {
-    .lvl = 5,
+    .lvl = 0,
     .species = SPECIES_FURRET,
     .heldItem = ITEM_CHOICE_SCARF,
     .ability = 1, // ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_QUICK_FEET},
@@ -2923,7 +2924,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy3[] = {
     .moves = MOVE_RETURN, MOVE_SHADOW_CLAW, MOVE_BRICK_BREAK, MOVE_FACADE
     },
     {
-    .lvl = 5,
+    .lvl = 0,
     .species = SPECIES_FURRET,
     .heldItem = ITEM_CHOICE_SCARF,
     .ability = 1, // ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_QUICK_FEET},
@@ -2948,7 +2949,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy3[] = {
 
 static const struct TrainerMonItemCustomMoves sParty_Cindy4[] = {
     {
-    .lvl = 0,
+    .lvl = 3,
     .species = SPECIES_LOPUNNY, // Mega
     .heldItem = ITEM_LOPUNNITE,
     .ability = 0, // ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY},
@@ -2973,7 +2974,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy4[] = {
     .moves = MOVE_BULK_UP, MOVE_SHADOW_CLAW, MOVE_BRICK_BREAK, MOVE_FACADE
     },
     {
-    .lvl = 5,
+    .lvl = 0,
     .species = SPECIES_FURRET,
     .heldItem = ITEM_CHOICE_SCARF,
     .ability = 1, // ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_QUICK_FEET},
@@ -3043,7 +3044,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winston1[] = {
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_WISH, MOVE_RETURN, MOVE_PROTECT, MOVE_BATON_PASS
     },
-    {
+    /*{
     .lvl = 0,
     .species = SPECIES_LICKITUNG,
     .heldItem = ITEM_EVIOLITE,
@@ -3053,7 +3054,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winston1[] = {
     .evs = {180, 0, 72, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
     .moves = MOVE_WISH, MOVE_PROTECT, MOVE_BODY_SLAM, MOVE_HEAL_BELL
-    },
+    },*/
     {
     .lvl = 0,
     .species = SPECIES_MUNCHLAX,
@@ -3530,7 +3531,7 @@ static const struct TrainerMonItemCustomMoves sParty_Haley4[] = {
 // Twins at Bridge
 static const struct TrainerMonItemCustomMoves sParty_GinaAndMia1[] = {
     {
-    .lvl = 3,
+    .lvl = 0,
     .species = SPECIES_PETILIL,
     .heldItem = ITEM_HEAT_ROCK,
     .ability = 0, // ABILITY_SOLAR_POWER, ABILITY_LEAF_GUARD, ABILITY_CHLOROPLAST},
@@ -3541,7 +3542,7 @@ static const struct TrainerMonItemCustomMoves sParty_GinaAndMia1[] = {
     .moves = MOVE_SUNNY_DAY, MOVE_SOLAR_BEAM, MOVE_HIDDEN_POWER, MOVE_SLEEP_POWDER
     },
     {
-    .lvl = 3,
+    .lvl = 0,
     .species = SPECIES_COTTONEE,
     .heldItem = ITEM_EVIOLITE,
     .ability = 0, // ABILITY_PRANKSTER, ABILITY_STICKY_HOLD, ABILITY_LEAF_GUARD},
@@ -3563,7 +3564,7 @@ static const struct TrainerMonItemCustomMoves sParty_GinaAndMia1[] = {
     .moves = MOVE_GIGA_DRAIN, MOVE_HIDDEN_POWER, MOVE_LEECH_SEED, MOVE_KNOCK_OFF
     },
     {
-    .lvl = 3,
+    .lvl = 0,
     .species = SPECIES_BOUNSWEET,
     .heldItem = ITEM_EVIOLITE,
     .ability = 2, // ABILITY_OBLIVIOUS, ABILITY_NONE, ABILITY_SWEET_VEIL},
@@ -3574,7 +3575,7 @@ static const struct TrainerMonItemCustomMoves sParty_GinaAndMia1[] = {
     .moves = MOVE_RAPID_SPIN, MOVE_SEED_BOMB, MOVE_SYNTHESIS, MOVE_PLAY_ROUGH
     },
     {
-    .lvl = 3,
+    .lvl = 0,
     .species = SPECIES_CHERUBI,
     .heldItem = ITEM_EVIOLITE,
     .ability = 0, // ABILITY_LEAF_GUARD, ABILITY_NONE, ABILITY_NONE},
@@ -3599,7 +3600,7 @@ static const struct TrainerMonItemCustomMoves sParty_GinaAndMia1[] = {
 
 static const struct TrainerMonItemCustomMoves sParty_Ivan[] = {
     {
-    .lvl = 1,
+    .lvl = 0,
     .species = SPECIES_LUVDISC, // Orb, Rain Setter
     .heldItem = ITEM_LIFE_ORB,
     .ability = 0, // ABILITY_HYDRATION, ABILITY_NONE, ABILITY_NONE},
@@ -3609,7 +3610,7 @@ static const struct TrainerMonItemCustomMoves sParty_Ivan[] = {
 	.nature = NATURE_MODEST,
     .moves = MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HIDDEN_POWER, MOVE_RAIN_DANCE
     },
-    {
+    /*{
     .lvl = 10,
     .species = SPECIES_FEEBAS,
     .heldItem = ITEM_FOCUS_SASH,
@@ -3619,7 +3620,7 @@ static const struct TrainerMonItemCustomMoves sParty_Ivan[] = {
     .evs = {4, 0, 0, 0, 252, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_HASTY,
     .moves = MOVE_PROTECT, MOVE_TOXIC, MOVE_MIRROR_COAT, MOVE_LIGHT_SCREEN
-    },
+    },*/
     {
     .lvl = 0,
     .species = SPECIES_TENTACOOL,
@@ -3642,7 +3643,7 @@ static const struct TrainerMonItemCustomMoves sParty_Ivan[] = {
 	.nature = NATURE_TIMID,
     .moves = MOVE_WATER_SPOUT, MOVE_SHADOW_BALL, MOVE_ICE_BEAM, MOVE_TRICK
     },
-    {
+    /*{
     .lvl = 0,
     .species = SPECIES_STARYU,
     .heldItem = ITEM_EVIOLITE,
@@ -3652,7 +3653,7 @@ static const struct TrainerMonItemCustomMoves sParty_Ivan[] = {
     .evs = {252, 0, 200, 0, 0, 56},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BOLD,
     .moves = MOVE_RAPID_SPIN, MOVE_TOXIC, MOVE_SCALD, MOVE_RECOVER
-    },
+    },*/
     {
     .lvl = 0,
     .species = SPECIES_SLOWPOKE,
@@ -3692,7 +3693,7 @@ static const struct TrainerMonItemCustomMoves sParty_Lyle[] = {
     .moves = MOVE_STICKY_WEB, MOVE_SCALD, MOVE_GIGA_DRAIN, MOVE_HAZE
     },
     {
-    .lvl = 5,
+    .lvl = 0,
     .species = SPECIES_CASCOON,
     .heldItem = ITEM_ROCKY_HELMET,
     .ability = 2, // ABILITY_SHED_SKIN, ABILITY_SHED_SKIN, ABILITY_POISON_POINT},
@@ -3702,8 +3703,8 @@ static const struct TrainerMonItemCustomMoves sParty_Lyle[] = {
 	.nature = NATURE_RELAXED,
     .moves = MOVE_BUG_BITE, MOVE_IRON_DEFENSE, MOVE_STRING_SHOT, MOVE_ELECTROWEB
     },
-    {
-    .lvl = 5,
+    /*{
+    .lvl = 0,
     .species = SPECIES_KAKUNA,
     .heldItem = ITEM_BLACK_SLUDGE,
     .ability = 1, // ABILITY_SHED_SKIN, ABILITY_SHELL_ARMOR, ABILITY_NONE},
@@ -3712,7 +3713,7 @@ static const struct TrainerMonItemCustomMoves sParty_Lyle[] = {
     .evs = {252, 80, 176, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
     .moves = MOVE_POISON_STING, MOVE_IRON_DEFENSE, MOVE_STRING_SHOT, MOVE_BUG_BITE
-    },
+    },*/
     {
     .lvl = 0,
     .species = SPECIES_KRICKETUNE,
@@ -3724,7 +3725,7 @@ static const struct TrainerMonItemCustomMoves sParty_Lyle[] = {
 	.nature = NATURE_JOLLY,
     .moves = MOVE_SWORDS_DANCE, MOVE_BUG_BITE, MOVE_BRICK_BREAK, MOVE_NIGHT_SLASH
     },
-    {
+    /*{
     .lvl = 0,
     .species = SPECIES_VENONAT,
     .heldItem = ITEM_EVIOLITE,
@@ -3734,7 +3735,7 @@ static const struct TrainerMonItemCustomMoves sParty_Lyle[] = {
     .evs = {0, 0, 0, 76, 180, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_CALM,
     .moves = MOVE_SLEEP_POWDER, MOVE_MORNING_SUN, MOVE_SLUDGE_BOMB, MOVE_PSYCHIC
-    }
+    }*/
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Grunt8[] = { // Aqua
@@ -3797,7 +3798,7 @@ static const struct TrainerMonItemCustomMoves sParty_James1[] = {
     .moves = MOVE_FINAL_GAMBIT, MOVE_LEECH_LIFE, MOVE_GIGA_DRAIN, MOVE_TOXIC
     },
     {
-    .lvl = 5,
+    .lvl = 0,
     .species = SPECIES_PARAS,
     .heldItem = ITEM_EVIOLITE,
     .ability = 0, // ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_NONE},
@@ -4388,7 +4389,7 @@ static const struct TrainerMonItemCustomMoves sParty_Sarah[] = {
     .moves = MOVE_LEAF_STORM, MOVE_SURF, MOVE_ICE_BEAM, MOVE_FOCUS_BLAST
     },
     {
-    .lvl = 3,
+    .lvl = 0,
     .species = SPECIES_FURRET,
     .heldItem = ITEM_CHOICE_SCARF,
     .ability = 1, // ABILITY_RUN_AWAY, ABILITY_SAP_SIPPER, ABILITY_QUICK_FEET},
@@ -4427,7 +4428,7 @@ static const struct TrainerMonItemCustomMoves sParty_Dawson[] = { // Route 116
 
 static const struct TrainerMonItemCustomMoves sParty_Jerry1[] = {
     {
-    .lvl = 3,
+    .lvl = 0,
     .species = SPECIES_KIRLIA,
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 1, // ABILITY_PSYCHIC_MIND, ABILITY_TRACE, ABILITY_SYNCHRONIZE},
@@ -4613,7 +4614,7 @@ static const struct TrainerMonItemCustomMoves sParty_Jerry4[] = {
 
 static const struct TrainerMonItemCustomMoves sParty_Janice[] = { // Route 116
     {
-    .lvl = 1,
+    .lvl = 0,
     .species = SPECIES_AZUMARILL, // Sitrus, Belly Drum
     .heldItem = ITEM_SITRUS_BERRY,
     .ability = 0, // ABILITY_SAP_SIPPER, ABILITY_SWIFT_SWIM, ABILITY_WATER_VEIL},
@@ -4676,7 +4677,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt10[] = { // Aqua
 // From Verdanturf Side
 static const struct TrainerMonItemCustomMoves sParty_Mike2[] = { // Actually the first and only Mike
     {
-    .lvl = 2,
+    .lvl = 0,
     .species = SPECIES_GIGALITH,
     .heldItem = ITEM_PASSHO_BERRY,
     .ability = 1, // ABILITY_STURDY, ABILITY_SAND_STREAM, ABILITY_SOLAR_POWER},
@@ -4933,7 +4934,7 @@ static const struct TrainerMonItemCustomMoves sParty_Marc[] = { // Rustboro Gym
 static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
     {
     .lvl = 3,
-    .species = SPECIES_ONIX,
+    .species = SPECIES_ONIX, // Roxanne
     .heldItem = ITEM_EVIOLITE,
     .ability = 2, // ABILITY_ROCK_HEAD, ABILITY_STAMINA, ABILITY_SAND_STREAM},
     // .innates = {ABILITY_SOLID_ROCK, ABILITY_ROUGH_SKIN, ABILITY_STURDY},
@@ -4944,8 +4945,8 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_LAIRON,
-    .heldItem = ITEM_EVIOLITE,
+    .species = SPECIES_LAIRON, // Roxanne
+    .heldItem = ITEM_BERRY_JUICE,
     .ability = 1, // ABILITY_STURDY, ABILITY_ROCK_HEAD, ABILITY_IRON_BARBS},
     // .innates = {ABILITY_LEAD_COAT, ABILITY_JUGGERNAUT, ABILITY_IMPENETRABLE},
     .ivs = {31, 31, 31, 31, 31, 31},
@@ -4955,7 +4956,7 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_AMAURA,
+    .species = SPECIES_AMAURA, // Roxanne
     .heldItem = ITEM_CHOPLE_BERRY,
     .ability = 0, // ABILITY_REFRIGERATE, ABILITY_SOLID_ROCK, ABILITY_SNOW_WARNING},
     // .innates = {ABILITY_FOSSILIZED, ABILITY_ICE_BODY, ABILITY_PERMAFROST},
@@ -4977,7 +4978,7 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_LILEEP,
+    .species = SPECIES_LILEEP, // Roxanne
     .heldItem = ITEM_EVIOLITE,
     .ability = 2, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
     // .innates = {ABILITY_FOSSILIZED, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
@@ -4988,7 +4989,7 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_SHUCKLE,
+    .species = SPECIES_SHUCKLE, // Roxanne
     .heldItem = ITEM_MENTAL_HERB,
     .ability = 0, // ABILITY_MOODY, ABILITY_REGENERATOR, ABILITY_CONTRARY},
     // .innates = {ABILITY_SHELL_ARMOR, ABILITY_FORT_KNOX, ABILITY_SOLID_ROCK},
@@ -5404,7 +5405,7 @@ static const struct TrainerMonItemCustomMoves sParty_Elliot2[] = {
     .moves = MOVE_RETURN, MOVE_ICICLE_CRASH, MOVE_ROCK_BLAST, MOVE_SHELL_SMASH
     },
     {
-    .lvl = 5,
+    .lvl = 0,
     .species = SPECIES_QWILFISH, // Def Wall RH, Spikes + Boom
     .heldItem = ITEM_ROCKY_HELMET,
     .ability = 0, // ABILITY_INNARDS_OUT, ABILITY_POISONATE, ABILITY_INTIMIDATE},
@@ -5451,7 +5452,7 @@ static const struct TrainerMonItemCustomMoves sParty_Elliot3[] = {
     .moves = MOVE_RETURN, MOVE_ICICLE_CRASH, MOVE_ROCK_BLAST, MOVE_SHELL_SMASH
     },
     {
-    .lvl = 5,
+    .lvl = 0,
     .species = SPECIES_QWILFISH, // Def Wall RH, Spikes + Boom
     .heldItem = ITEM_ROCKY_HELMET,
     .ability = 0, // ABILITY_INNARDS_OUT, ABILITY_POISONATE, ABILITY_INTIMIDATE},
@@ -5509,7 +5510,7 @@ static const struct TrainerMonItemCustomMoves sParty_Elliot4[] = {
     .moves = MOVE_RETURN, MOVE_ICICLE_CRASH, MOVE_ROCK_BLAST, MOVE_SHELL_SMASH
     },
     {
-    .lvl = 5,
+    .lvl = 0,
     .species = SPECIES_QWILFISH, // Def Wall RH, Spikes + Boom
     .heldItem = ITEM_ROCKY_HELMET,
     .ability = 0, // ABILITY_INNARDS_OUT, ABILITY_POISONATE, ABILITY_INTIMIDATE},

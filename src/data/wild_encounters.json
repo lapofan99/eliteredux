@@ -1772,17 +1772,17 @@
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_SKITTY"
+                "species": "SPECIES_SCRAFTY"
               },
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_HOUNDOUR"
+                "species": "SPECIES_PANCHAM"
               },
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_SKITTY"
+                "species": "SPECIES_SCRAFTY"
               }
             ]
           },

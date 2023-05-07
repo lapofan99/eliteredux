@@ -844,8 +844,8 @@ LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait: @ 81FAD6F
 LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese: @ 81FADD7
 	.string "May: Oh, wow, {PLAYER}{KUN}!\n"
 	.string "You got a Pokédex, too!\p"
-	.string "That's great! Just like me!\n"
-	.string "end text$"
+	.string "Talk to Nurse Joy now.\n"
+	.string "She gives you Poké Balls.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls: @ 81FAE40
 	.string "May: It's fun if you can get a lot of\n"
@@ -865,8 +865,8 @@ LittlerootTown_ProfessorBirchsLab_Text_MayWhereShouldIGoNext: @ 81FAF08
 LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese: @ 81FAF3F
 	.string "Brendan: Huh…\n"
 	.string "So you got a Pokédex, too.\p"
-	.string "Well then, here.\n"
-	.string "I'll give you these.$"
+	.string "Talk to Nurse Joy now.\n"
+	.string "She gives you Poké Balls.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls: @ 81FAF8E
 	.string "Brendan: You know it's more fun to\n"

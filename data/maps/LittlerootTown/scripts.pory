@@ -1672,7 +1672,7 @@ LittlerootTown_EventScript_PatchSettings_Random::
 
 LittlerootTown_Text_ChangeLegends:
 	.string "Enable Legendary/Mythical?\n"
-	.string "This affect random starters/eggs$"
+	.string "This affects random starters/eggs$"
 		
 LittlerootTown_Text_ChangeLegendsEnabled:
 	.string "Legendary/Mythical are enabled.\n"
@@ -2023,7 +2023,7 @@ script LittlerootTown_EventScript_TutorialNPC2{
 	switch (var(VAR_RESULT)) {
 		case 0:// Nurse Joy
 			msgbox(format("Talk to Nurse Joy in any Pokémon Center, she will give you the following:\p"
-                          "TM Case, Battle items, all Pokéballs, all TMs & HMs, all Mega Stones, all Berries, all Type Gems etc.\p"
+                          "Candy Box, DexNav, TM Case, all TMs & HMs, Battle items, all Pokéballs, all Mega Stones, all Berries, all Type Gems etc.\p"
                           "Every time you speak to her, all items get refilled."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 1:// Pokémon changes

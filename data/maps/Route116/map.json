@@ -14,14 +14,14 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_VERDANTURF_TOWN",
+      "direction": "down",
       "offset": 80,
-      "direction": "down"
+      "map": "MAP_VERDANTURF_TOWN"
     },
     {
-      "map": "MAP_RUSTBORO_CITY",
+      "direction": "left",
       "offset": 0,
-      "direction": "left"
+      "map": "MAP_RUSTBORO_CITY"
     }
   ],
   "object_events": [

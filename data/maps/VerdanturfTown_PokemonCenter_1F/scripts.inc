@@ -194,10 +194,10 @@ Common_EventScript_PkmnCenterNurse_Text_1:
 	.string "{PLAYER} received the DexNav!$"
 
 Common_EventScript_PkmnCenterNurse_Text_2:
-	.string "I'll give you a TM Case, all Battle items,\n"
-	.string "all Pokéballs, all TMs & HMs, all Mega\l"
-	.string "Stones, all Berries, all Type Gems and\l"
-	.string "some more stuff.\p"
+	.string "I'll give you a Candy Box, TM Case, all\n"
+	.string "Battle items, all Pokéballs, all TMs &\l"
+	.string "HMs, all Mega Stones, all Berries, all\l"
+	.string "Type Gems and some more stuff.\p"
 	.string "Every time you speak to me, I'll fill all\n"
 	.string "your items up again.$"
 
