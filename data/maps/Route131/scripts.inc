@@ -55,3 +55,69 @@ Route131_EventScript_Kevin:: @ 81F74D2
 	trainerbattle_single TRAINER_KEVIN, Route131_Text_KevinIntro, Route131_Text_KevinDefeat
 	msgbox Route131_Text_KevinPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+Route131_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route131_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_RICHARD
+	goto_if 1, Route131_EventScript_LegendaryNPC_8
+Route131_EventScript_LegendaryNPC_6:
+	msgbox Route131_EventScript_LegendaryNPC_Text_2
+Route131_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route131_EventScript_LegendaryNPC_2:
+	msgbox Route131_EventScript_LegendaryNPC_Text_0
+	goto Route131_EventScript_LegendaryNPC_1
+
+Route131_EventScript_LegendaryNPC_5:
+	msgbox Route131_EventScript_LegendaryNPC_Text_1
+	goto Route131_EventScript_LegendaryNPC_1
+
+Route131_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_SUSIE
+	goto_if 1, Route131_EventScript_LegendaryNPC_12
+	goto Route131_EventScript_LegendaryNPC_6
+
+Route131_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_HERMAN
+	goto_if 1, Route131_EventScript_LegendaryNPC_7
+	goto Route131_EventScript_LegendaryNPC_6
+
+Route131_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_RELI_AND_IAN
+	goto_if 1, Route131_EventScript_LegendaryNPC_16
+	goto Route131_EventScript_LegendaryNPC_6
+
+Route131_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_KARA
+	goto_if 1, Route131_EventScript_LegendaryNPC_11
+	goto Route131_EventScript_LegendaryNPC_6
+
+Route131_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_KEVIN
+	goto_if 1, Route131_EventScript_LegendaryNPC_5
+	goto Route131_EventScript_LegendaryNPC_6
+
+Route131_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_TALIA
+	goto_if 1, Route131_EventScript_LegendaryNPC_15
+	goto Route131_EventScript_LegendaryNPC_6
+
+
+Route131_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route131_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Necrozma\n"
+	.string "here. Just use your DexNav, it will now\l"
+	.string "appear.$"
+
+Route131_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch\n"
+	.string "Necrozma. Beat all trainers here first.$"

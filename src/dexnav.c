@@ -2753,7 +2753,7 @@ bool8 CanFindHiddenPokemon(void)
 {
     bool8 CanFindHiddenMon = FALSE;
     switch(gSaveBlock1Ptr->location.mapNum){
-		case MAP_NUM(ROUTE102)://Route 102
+		case MAP_NUM(ROUTE102): // Route 102, for testing
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE102)){
                 if( HasTrainerBeenFought(TRAINER_RICK) && 
                     //HasTrainerBeenFought(TRAINER_OLDPLAYER) && 
@@ -2806,6 +2806,26 @@ bool8 CanFindHiddenPokemon(void)
                     #endif
             }
         break;
+        /*case MAP_NUM(ROUTE131):
+			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE131)){
+                if( HasTrainerBeenFought(TRAINER_RICHARD) && 
+                    HasTrainerBeenFought(TRAINER_HERMAN) && 
+                    HasTrainerBeenFought(TRAINER_SUSIE) &&
+                    HasTrainerBeenFought(TRAINER_KARA) && 
+                    HasTrainerBeenFought(TRAINER_RELI_AND_IAN) && 
+                    HasTrainerBeenFought(TRAINER_TALIA) && 
+                    HasTrainerBeenFought(TRAINER_KEVIN))
+                    CanFindHiddenMon = TRUE;
+
+                    #ifdef DEBUG_BUILD
+                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                            MgbaOpen();
+                            MgbaPrintf(MGBA_LOG_WARN, "Route 131 - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+                            MgbaClose();
+                        }
+                    #endif
+            }
+		break;*/
     }
 
     if(!FlagGet(FLAG_SYS_GAME_CLEAR))

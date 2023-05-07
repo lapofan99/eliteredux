@@ -58,3 +58,26 @@ Route131_EventScript_Kevin:: @ 81F74D2
 	end
 
 `
+script Route131_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_RICHARD)	&&
+		   defeated(TRAINER_HERMAN)		&&
+		   defeated(TRAINER_SUSIE)	&&
+		   defeated(TRAINER_KARA) &&
+		   defeated(TRAINER_RELI_AND_IAN)  &&
+		   defeated(TRAINER_TALIA) &&
+		   defeated(TRAINER_KEVIN)){
+			msgbox(format("You are now worthy to catch Necrozma here. Just use your DexNav, it will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Necrozma. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}
