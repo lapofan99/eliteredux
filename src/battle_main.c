@@ -2225,7 +2225,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                         MgbaPrintf(MGBA_LOG_WARN, "WARNING THE POKEMON %d HAS A DIFFERENT ITEM!, it should have the item with the ID:%d but has the item with the ID: %d instead", i, partyData[i].heldItem, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
                     else
                         MgbaPrintf(MGBA_LOG_WARN, "Pokemon %d Item has the ID:%d", i, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
-                    
                 }
                 
                 if(FlagGet(FLAG_SYS_AUTOWIN))

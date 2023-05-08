@@ -2749,65 +2749,33 @@ void IncrementDexNavChain(void)
         gSaveBlock1Ptr->dexNavChain++;
 }
 
+#define MAP_GROUP_ROUTES_AND_TOWNS MAP_GROUP(PETALBURG_CITY)
+#define MAP_GROUP_DUNGEONS         MAP_GROUP(METEOR_FALLS_1F_1R)
+
 bool8 CanFindHiddenPokemon(void)
 {
     bool8 CanFindHiddenMon = FALSE;
-    switch(gSaveBlock1Ptr->location.mapNum){
-		case MAP_NUM(ROUTE102): // Route 102, for testing
-			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE102)){
+    switch(gSaveBlock1Ptr->location.mapGroup){
+		case MAP_GROUP_ROUTES_AND_TOWNS:
+			if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE102)){ //Route 102
                 if( HasTrainerBeenFought(TRAINER_RICK) && 
                     //HasTrainerBeenFought(TRAINER_OLDPLAYER) && 
                     HasTrainerBeenFought(TRAINER_CALVIN_1) &&
                     HasTrainerBeenFought(TRAINER_ALLEN) && 
                     HasTrainerBeenFought(TRAINER_TIANA))
                     CanFindHiddenMon = TRUE;
-                    #ifdef DEBUG_BUILD
-                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                            MgbaOpen();
-                            MgbaPrintf(MGBA_LOG_WARN, "Route 102 - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-                            MgbaClose();
-                        }
-                    #endif
-            }
-		break;
-        case MAP_NUM(VICTORY_ROAD_B1F):
-			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(VICTORY_ROAD_B1F)){
-                if( HasTrainerBeenFought(TRAINER_HALLE)    && 
-                    HasTrainerBeenFought(TRAINER_MITCHELL) && 
-                    HasTrainerBeenFought(TRAINER_SHANNON)  &&
-                    HasTrainerBeenFought(TRAINER_SAMUEL))
-                    CanFindHiddenMon = TRUE;
 
-                    #ifdef DEBUG_BUILD
-                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                            MgbaOpen();
-                            MgbaPrintf(MGBA_LOG_WARN, "Victory Road B1F - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-                            MgbaClose();
-                        }
-                    #endif
+                /*
+                #ifdef DEBUG_BUILD
+                    if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                        MgbaOpen();
+                        MgbaPrintf(MGBA_LOG_WARN, "Route 102 - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+                        MgbaClose();
+                    }
+                #endif
+                */
             }
-        break;
-        case MAP_NUM(VICTORY_ROAD_B2F):
-			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(VICTORY_ROAD_B2F)){
-                if( HasTrainerBeenFought(TRAINER_JULIE) && 
-                    HasTrainerBeenFought(TRAINER_CAROLINE) && 
-                    HasTrainerBeenFought(TRAINER_OWEN) &&
-                    HasTrainerBeenFought(TRAINER_VITO) && 
-                    HasTrainerBeenFought(TRAINER_FELIX) && 
-                    HasTrainerBeenFought(TRAINER_DIANNE))
-                    CanFindHiddenMon = TRUE;
-
-                    #ifdef DEBUG_BUILD
-                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                            MgbaOpen();
-                            MgbaPrintf(MGBA_LOG_WARN, "Victory Road B2F - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-                            MgbaClose();
-                        }
-                    #endif
-            }
-        break;
-        /*case MAP_NUM(ROUTE131):
-			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE131)){
+            else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE131)){ //Route 131
                 if( HasTrainerBeenFought(TRAINER_RICHARD) && 
                     HasTrainerBeenFought(TRAINER_HERMAN) && 
                     HasTrainerBeenFought(TRAINER_SUSIE) &&
@@ -2816,16 +2784,35 @@ bool8 CanFindHiddenPokemon(void)
                     HasTrainerBeenFought(TRAINER_TALIA) && 
                     HasTrainerBeenFought(TRAINER_KEVIN))
                     CanFindHiddenMon = TRUE;
-
-                    #ifdef DEBUG_BUILD
-                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                            MgbaOpen();
-                            MgbaPrintf(MGBA_LOG_WARN, "Route 131 - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-                            MgbaClose();
-                        }
-                    #endif
             }
-		break;*/
+		break;
+        case MAP_GROUP_DUNGEONS:
+            if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(VICTORY_ROAD_1F)){ //Victory Road B1F
+                if( HasTrainerBeenFought(TRAINER_WALLY_VR_1) && 
+                    HasTrainerBeenFought(TRAINER_EDGAR)      && 
+                    HasTrainerBeenFought(TRAINER_ALBERT)     &&
+                    HasTrainerBeenFought(TRAINER_HOPE)       &&
+                    HasTrainerBeenFought(TRAINER_QUINCY)     &&
+                    HasTrainerBeenFought(TRAINER_KATELYNN))
+                    CanFindHiddenMon = TRUE;
+            }
+			else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(VICTORY_ROAD_B1F)){ //Victory Road B1F
+                if( HasTrainerBeenFought(TRAINER_HALLE)    && 
+                    HasTrainerBeenFought(TRAINER_MITCHELL) && 
+                    HasTrainerBeenFought(TRAINER_SHANNON)  &&
+                    HasTrainerBeenFought(TRAINER_SAMUEL))
+                    CanFindHiddenMon = TRUE;
+            }
+			else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(VICTORY_ROAD_B2F)){ //Victory Road B2F
+                if( HasTrainerBeenFought(TRAINER_JULIE) && 
+                    HasTrainerBeenFought(TRAINER_CAROLINE) && 
+                    HasTrainerBeenFought(TRAINER_OWEN) &&
+                    HasTrainerBeenFought(TRAINER_VITO) && 
+                    HasTrainerBeenFought(TRAINER_FELIX) && 
+                    HasTrainerBeenFought(TRAINER_DIANNE))
+                    CanFindHiddenMon = TRUE;
+            }
+		break;
     }
 
     if(!FlagGet(FLAG_SYS_GAME_CLEAR))

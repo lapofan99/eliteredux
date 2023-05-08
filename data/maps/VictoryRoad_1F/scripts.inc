@@ -221,3 +221,65 @@ VictoryRoad_1F_Text_KatelynnDefeat: @ 82364A7
 VictoryRoad_1F_Text_KatelynnPostBattle: @ 82364BB
 	.string "Humph, go right on ahead.\n"
 	.string "See if I care.$"
+
+VictoryRoad_1F_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, VictoryRoad_1F_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_WALLY_VR_1
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_8
+VictoryRoad_1F_EventScript_LegendaryNPC_6:
+	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_2
+VictoryRoad_1F_EventScript_LegendaryNPC_1:
+	release
+	end
+
+VictoryRoad_1F_EventScript_LegendaryNPC_2:
+	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_0
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_1
+
+VictoryRoad_1F_EventScript_LegendaryNPC_5:
+	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_1
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_1
+
+VictoryRoad_1F_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_ALBERT
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_12
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
+
+VictoryRoad_1F_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_EDGAR
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_7
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
+
+VictoryRoad_1F_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_QUINCY
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_15
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
+
+VictoryRoad_1F_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_HOPE
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_11
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
+
+VictoryRoad_1F_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_KATELYNN
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_5
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
+
+
+VictoryRoad_1F_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+VictoryRoad_1F_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Poipole,\n"
+	.string "Naganadel and Zeraora here. Just use\l"
+	.string "your DexNav, they will now appear.$"
+
+VictoryRoad_1F_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch\n"
+	.string "Poipole, Naganadel or Zeraora. Beat all\l"
+	.string "trainers here first.$"
