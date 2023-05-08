@@ -43,3 +43,27 @@ Route132_EventScript_Makayla:: @ 81F758B
 	end
 
 `
+script Route132_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_MAKAYLA)  &&
+		   defeated(TRAINER_JONATHAN) &&
+		   defeated(TRAINER_DARCY)    &&
+		   defeated(TRAINER_PAXTON)   &&
+		   defeated(TRAINER_KIYO)     &&
+		   defeated(TRAINER_RONALD)   &&
+		   defeated(TRAINER_DANA)     &&
+		   defeated(TRAINER_GILBERT)){
+			msgbox(format("You are now worthy to catch Buzzwole, Pheromosa and Kartana here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Buzzwole, Pheromosa or Kartana. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}

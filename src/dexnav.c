@@ -2785,6 +2785,25 @@ bool8 CanFindHiddenPokemon(void)
                     HasTrainerBeenFought(TRAINER_KEVIN))
                     CanFindHiddenMon = TRUE;
             }
+            else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE132)){ //Route 132
+                if( HasTrainerBeenFought(TRAINER_MAKAYLA)  && 
+                    HasTrainerBeenFought(TRAINER_JONATHAN) && 
+                    HasTrainerBeenFought(TRAINER_DARCY)    &&
+                    HasTrainerBeenFought(TRAINER_PAXTON)   && 
+                    HasTrainerBeenFought(TRAINER_KIYO)     && 
+                    HasTrainerBeenFought(TRAINER_RONALD)   && 
+                    HasTrainerBeenFought(TRAINER_DANA)     && 
+                    HasTrainerBeenFought(TRAINER_GILBERT))
+                    CanFindHiddenMon = TRUE;
+
+                #ifdef DEBUG_BUILD
+                    if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                        MgbaOpen();
+                        MgbaPrintf(MGBA_LOG_WARN, "Route 132 - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+                        MgbaClose();
+                    }
+                #endif
+            }
             else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE133)){ //Route 133
                 if( HasTrainerBeenFought(TRAINER_CONOR) && 
                     HasTrainerBeenFought(TRAINER_MOLLIE) && 
