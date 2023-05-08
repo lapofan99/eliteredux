@@ -6394,6 +6394,26 @@
                 "species": "SPECIES_CORSOLA"
               }
             ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 1,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_TAPU_KOKO"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_TAPU_BULU"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_CALYREX_ICE_RIDER"
+              }
+            ]
           }
         },
         {

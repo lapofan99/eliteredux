@@ -308,3 +308,26 @@ Route128_Text_StevenImGoingToSootopolis: @ 81F721B
 	.string "I'm going to Sootopolis.$"
 
 `
+script Route128_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_CARLEE)    &&
+		   defeated(TRAINER_HARRISON)  &&
+		   defeated(TRAINER_WAYNE)     &&
+		   defeated(TRAINER_RUBEN)     &&
+		   defeated(TRAINER_ALEXA)     &&
+		   defeated(TRAINER_KATELYN_1) &&
+		   defeated(TRAINER_ISAIAH_1)){
+			msgbox(format("You are now worthy to catch Tapu Koko, Tapu Bulu and Calyrex-Ice here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Tapu Koko, Tapu Bulu or Calyrex-Ice. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}

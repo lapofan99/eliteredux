@@ -305,3 +305,70 @@ Route128_Text_StevenImGoingToSootopolis: @ 81F721B
 	.string "but don't do anything reckless.\p"
 	.string "Okay.\n"
 	.string "I'm going to Sootopolis.$"
+
+Route128_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route128_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_CARLEE
+	goto_if 1, Route128_EventScript_LegendaryNPC_8
+Route128_EventScript_LegendaryNPC_6:
+	msgbox Route128_EventScript_LegendaryNPC_Text_2
+Route128_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route128_EventScript_LegendaryNPC_2:
+	msgbox Route128_EventScript_LegendaryNPC_Text_0
+	goto Route128_EventScript_LegendaryNPC_1
+
+Route128_EventScript_LegendaryNPC_5:
+	msgbox Route128_EventScript_LegendaryNPC_Text_1
+	goto Route128_EventScript_LegendaryNPC_1
+
+Route128_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_WAYNE
+	goto_if 1, Route128_EventScript_LegendaryNPC_12
+	goto Route128_EventScript_LegendaryNPC_6
+
+Route128_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_HARRISON
+	goto_if 1, Route128_EventScript_LegendaryNPC_7
+	goto Route128_EventScript_LegendaryNPC_6
+
+Route128_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_ALEXA
+	goto_if 1, Route128_EventScript_LegendaryNPC_16
+	goto Route128_EventScript_LegendaryNPC_6
+
+Route128_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_RUBEN
+	goto_if 1, Route128_EventScript_LegendaryNPC_11
+	goto Route128_EventScript_LegendaryNPC_6
+
+Route128_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_ISAIAH_1
+	goto_if 1, Route128_EventScript_LegendaryNPC_5
+	goto Route128_EventScript_LegendaryNPC_6
+
+Route128_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_KATELYN_1
+	goto_if 1, Route128_EventScript_LegendaryNPC_15
+	goto Route128_EventScript_LegendaryNPC_6
+
+
+Route128_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route128_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Tapu Koko,\n"
+	.string "Tapu Bulu and Calyrex-Ice here. Just\l"
+	.string "use your DexNav, they will now appear.$"
+
+Route128_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch Tapu\n"
+	.string "Koko, Tapu Bulu or Calyrex-Ice. Beat\l"
+	.string "all trainers here first.$"
