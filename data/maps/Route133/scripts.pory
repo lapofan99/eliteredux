@@ -154,3 +154,26 @@ Route133_Text_NurseDoneHaveVialUpgrade:
 	.string "from now on.\p"
 	.string "See you around!$"
 `
+script Route133_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_CONOR)  &&
+		   defeated(TRAINER_MOLLIE) &&
+		   defeated(TRAINER_BECK)   &&
+		   defeated(TRAINER_WARREN) &&
+		   defeated(TRAINER_LINDA)  &&
+		   defeated(TRAINER_DEBRA)  &&
+		   defeated(TRAINER_FRANKLIN)){
+			msgbox(format("You are now worthy to catch Celesteela, Nihilego and Guzzlord here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Celesteela, Nihilego or Guzzlord. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}

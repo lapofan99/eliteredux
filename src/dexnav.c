@@ -2785,6 +2785,15 @@ bool8 CanFindHiddenPokemon(void)
                     HasTrainerBeenFought(TRAINER_KEVIN))
                     CanFindHiddenMon = TRUE;
             }
+            else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE133)){ //Route 133
+                if( HasTrainerBeenFought(TRAINER_CONOR) && 
+                    HasTrainerBeenFought(TRAINER_MOLLIE) && 
+                    HasTrainerBeenFought(TRAINER_BECK) &&
+                    HasTrainerBeenFought(TRAINER_WARREN) && 
+                    HasTrainerBeenFought(TRAINER_LINDA) && 
+                    HasTrainerBeenFought(TRAINER_DEBRA))
+                    CanFindHiddenMon = TRUE;
+            }
             else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE134)){ //Route 134
                 if( HasTrainerBeenFought(TRAINER_KELVIN) && 
                     HasTrainerBeenFought(TRAINER_MARLEY) && 

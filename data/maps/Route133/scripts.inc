@@ -152,3 +152,70 @@ Route133_Text_NurseDoneHaveVialUpgrade:
 	.string "whenever you refill your Poké Vial\l"
 	.string "from now on.\p"
 	.string "See you around!$"
+
+Route133_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route133_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_CONOR
+	goto_if 1, Route133_EventScript_LegendaryNPC_8
+Route133_EventScript_LegendaryNPC_6:
+	msgbox Route133_EventScript_LegendaryNPC_Text_2
+Route133_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route133_EventScript_LegendaryNPC_2:
+	msgbox Route133_EventScript_LegendaryNPC_Text_0
+	goto Route133_EventScript_LegendaryNPC_1
+
+Route133_EventScript_LegendaryNPC_5:
+	msgbox Route133_EventScript_LegendaryNPC_Text_1
+	goto Route133_EventScript_LegendaryNPC_1
+
+Route133_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_BECK
+	goto_if 1, Route133_EventScript_LegendaryNPC_12
+	goto Route133_EventScript_LegendaryNPC_6
+
+Route133_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_MOLLIE
+	goto_if 1, Route133_EventScript_LegendaryNPC_7
+	goto Route133_EventScript_LegendaryNPC_6
+
+Route133_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_LINDA
+	goto_if 1, Route133_EventScript_LegendaryNPC_16
+	goto Route133_EventScript_LegendaryNPC_6
+
+Route133_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_WARREN
+	goto_if 1, Route133_EventScript_LegendaryNPC_11
+	goto Route133_EventScript_LegendaryNPC_6
+
+Route133_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_FRANKLIN
+	goto_if 1, Route133_EventScript_LegendaryNPC_5
+	goto Route133_EventScript_LegendaryNPC_6
+
+Route133_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_DEBRA
+	goto_if 1, Route133_EventScript_LegendaryNPC_15
+	goto Route133_EventScript_LegendaryNPC_6
+
+
+Route133_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route133_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Celesteela,\n"
+	.string "Nihilego and Guzzlord here. Just use\l"
+	.string "your DexNav, they will now appear.$"
+
+Route133_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch\n"
+	.string "Celesteela, Nihilego or Guzzlord. Beat\l"
+	.string "all trainers here first.$"

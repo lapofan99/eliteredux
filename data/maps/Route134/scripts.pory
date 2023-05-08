@@ -60,12 +60,15 @@ script Route134_EventScript_LegendaryNPC{
 		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
 	}
 	else{
-		if(defeated(TRAINER_WALLY_VR_1) &&
-		   defeated(TRAINER_EDGAR)      &&
-		   defeated(TRAINER_ALBERT)     &&
-		   defeated(TRAINER_HOPE)       &&
-		   defeated(TRAINER_QUINCY)     &&
-		   defeated(TRAINER_KATELYNN)){
+		if(defeated(TRAINER_KELVIN)  &&
+		   defeated(TRAINER_MARLEY)  &&
+		   defeated(TRAINER_REYNA)   &&
+		   defeated(TRAINER_HUDSON)  &&
+		   defeated(TRAINER_HITOSHI) &&
+		   defeated(TRAINER_AARON)   &&
+		   defeated(TRAINER_ALEX)    &&
+		   defeated(TRAINER_LAUREL)  &&
+		   defeated(TRAINER_JACK)){
 			msgbox(format("You are now worthy to catch Xurkitree, Stakataka and Blacephalon here. Just use your DexNav, they will now appear."))
 		}
 		else{

@@ -55,7 +55,7 @@ Route134_EventScript_LegendaryNPC::
 	lock
 	faceplayer
 	goto_if_unset FLAG_SYS_GAME_CLEAR, Route134_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_WALLY_VR_1
+	checktrainerflag TRAINER_KELVIN
 	goto_if 1, Route134_EventScript_LegendaryNPC_8
 Route134_EventScript_LegendaryNPC_6:
 	msgbox Route134_EventScript_LegendaryNPC_Text_2
@@ -72,28 +72,43 @@ Route134_EventScript_LegendaryNPC_5:
 	goto Route134_EventScript_LegendaryNPC_1
 
 Route134_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_ALBERT
+	checktrainerflag TRAINER_REYNA
 	goto_if 1, Route134_EventScript_LegendaryNPC_12
 	goto Route134_EventScript_LegendaryNPC_6
 
 Route134_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_EDGAR
+	checktrainerflag TRAINER_MARLEY
 	goto_if 1, Route134_EventScript_LegendaryNPC_7
 	goto Route134_EventScript_LegendaryNPC_6
 
 Route134_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_QUINCY
-	goto_if 1, Route134_EventScript_LegendaryNPC_15
+	checktrainerflag TRAINER_HITOSHI
+	goto_if 1, Route134_EventScript_LegendaryNPC_16
 	goto Route134_EventScript_LegendaryNPC_6
 
 Route134_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_HOPE
+	checktrainerflag TRAINER_HUDSON
 	goto_if 1, Route134_EventScript_LegendaryNPC_11
 	goto Route134_EventScript_LegendaryNPC_6
 
 Route134_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_KATELYNN
+	checktrainerflag TRAINER_ALEX
+	goto_if 1, Route134_EventScript_LegendaryNPC_20
+	goto Route134_EventScript_LegendaryNPC_6
+
+Route134_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_AARON
+	goto_if 1, Route134_EventScript_LegendaryNPC_15
+	goto Route134_EventScript_LegendaryNPC_6
+
+Route134_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_JACK
 	goto_if 1, Route134_EventScript_LegendaryNPC_5
+	goto Route134_EventScript_LegendaryNPC_6
+
+Route134_EventScript_LegendaryNPC_20:
+	checktrainerflag TRAINER_LAUREL
+	goto_if 1, Route134_EventScript_LegendaryNPC_19
 	goto Route134_EventScript_LegendaryNPC_6
 
 
