@@ -2758,10 +2758,10 @@ bool8 CanFindHiddenPokemon(void)
     switch(gSaveBlock1Ptr->location.mapGroup){
 		case MAP_GROUP_ROUTES_AND_TOWNS:
 			if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE102)){ //Route 102
-                if( HasTrainerBeenFought(TRAINER_RICK) && 
+                if( HasTrainerBeenFought(TRAINER_RICK)        && 
                     //HasTrainerBeenFought(TRAINER_OLDPLAYER) && 
-                    HasTrainerBeenFought(TRAINER_CALVIN_1) &&
-                    HasTrainerBeenFought(TRAINER_ALLEN) && 
+                    HasTrainerBeenFought(TRAINER_CALVIN_1)    &&
+                    HasTrainerBeenFought(TRAINER_ALLEN)       && 
                     HasTrainerBeenFought(TRAINER_TIANA))
                     CanFindHiddenMon = TRUE;
 
@@ -2775,13 +2775,24 @@ bool8 CanFindHiddenPokemon(void)
                 #endif
                 */
             }
+            else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE127)){ //Route 127
+                if( HasTrainerBeenFought(TRAINER_KOJI_1) && 
+                    HasTrainerBeenFought(TRAINER_ATHENA) && 
+                    HasTrainerBeenFought(TRAINER_AIDAN)  &&
+                    HasTrainerBeenFought(TRAINER_ROGER)  && 
+                    HasTrainerBeenFought(TRAINER_HENRY)  && 
+                    HasTrainerBeenFought(TRAINER_JONAH)  && 
+                    HasTrainerBeenFought(TRAINER_CAMDEN) && 
+                    HasTrainerBeenFought(TRAINER_DONNY))
+                    CanFindHiddenMon = TRUE;
+            }
             else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE131)){ //Route 131
-                if( HasTrainerBeenFought(TRAINER_RICHARD) && 
-                    HasTrainerBeenFought(TRAINER_HERMAN) && 
-                    HasTrainerBeenFought(TRAINER_SUSIE) &&
-                    HasTrainerBeenFought(TRAINER_KARA) && 
+                if( HasTrainerBeenFought(TRAINER_RICHARD)      && 
+                    HasTrainerBeenFought(TRAINER_HERMAN)       && 
+                    HasTrainerBeenFought(TRAINER_SUSIE)        &&
+                    HasTrainerBeenFought(TRAINER_KARA)         && 
                     HasTrainerBeenFought(TRAINER_RELI_AND_IAN) && 
-                    HasTrainerBeenFought(TRAINER_TALIA) && 
+                    HasTrainerBeenFought(TRAINER_TALIA)        && 
                     HasTrainerBeenFought(TRAINER_KEVIN))
                     CanFindHiddenMon = TRUE;
             }
@@ -2795,33 +2806,25 @@ bool8 CanFindHiddenPokemon(void)
                     HasTrainerBeenFought(TRAINER_DANA)     && 
                     HasTrainerBeenFought(TRAINER_GILBERT))
                     CanFindHiddenMon = TRUE;
-
-                #ifdef DEBUG_BUILD
-                    if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                        MgbaOpen();
-                        MgbaPrintf(MGBA_LOG_WARN, "Route 132 - Map Num: %d - Map Group: %d", gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-                        MgbaClose();
-                    }
-                #endif
             }
             else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE133)){ //Route 133
-                if( HasTrainerBeenFought(TRAINER_CONOR) && 
+                if( HasTrainerBeenFought(TRAINER_CONOR)  && 
                     HasTrainerBeenFought(TRAINER_MOLLIE) && 
-                    HasTrainerBeenFought(TRAINER_BECK) &&
+                    HasTrainerBeenFought(TRAINER_BECK)   &&
                     HasTrainerBeenFought(TRAINER_WARREN) && 
-                    HasTrainerBeenFought(TRAINER_LINDA) && 
+                    HasTrainerBeenFought(TRAINER_LINDA)  && 
                     HasTrainerBeenFought(TRAINER_DEBRA))
                     CanFindHiddenMon = TRUE;
             }
             else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE134)){ //Route 134
-                if( HasTrainerBeenFought(TRAINER_KELVIN) && 
-                    HasTrainerBeenFought(TRAINER_MARLEY) && 
-                    HasTrainerBeenFought(TRAINER_REYNA) &&
-                    HasTrainerBeenFought(TRAINER_HUDSON) && 
+                if( HasTrainerBeenFought(TRAINER_KELVIN)  && 
+                    HasTrainerBeenFought(TRAINER_MARLEY)  && 
+                    HasTrainerBeenFought(TRAINER_REYNA)   &&
+                    HasTrainerBeenFought(TRAINER_HUDSON)  && 
                     HasTrainerBeenFought(TRAINER_HITOSHI) && 
-                    HasTrainerBeenFought(TRAINER_AARON) && 
-                    HasTrainerBeenFought(TRAINER_ALEX) && 
-                    HasTrainerBeenFought(TRAINER_LAUREL) && 
+                    HasTrainerBeenFought(TRAINER_AARON)   && 
+                    HasTrainerBeenFought(TRAINER_ALEX)    && 
+                    HasTrainerBeenFought(TRAINER_LAUREL)  && 
                     HasTrainerBeenFought(TRAINER_JACK))
                     CanFindHiddenMon = TRUE;
             }
@@ -2844,11 +2847,11 @@ bool8 CanFindHiddenPokemon(void)
                     CanFindHiddenMon = TRUE;
             }
 			else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(VICTORY_ROAD_B2F)){ //Victory Road B2F
-                if( HasTrainerBeenFought(TRAINER_JULIE) && 
+                if( HasTrainerBeenFought(TRAINER_JULIE)    && 
                     HasTrainerBeenFought(TRAINER_CAROLINE) && 
-                    HasTrainerBeenFought(TRAINER_OWEN) &&
-                    HasTrainerBeenFought(TRAINER_VITO) && 
-                    HasTrainerBeenFought(TRAINER_FELIX) && 
+                    HasTrainerBeenFought(TRAINER_OWEN)     &&
+                    HasTrainerBeenFought(TRAINER_VITO)     && 
+                    HasTrainerBeenFought(TRAINER_FELIX)    && 
                     HasTrainerBeenFought(TRAINER_DIANNE))
                     CanFindHiddenMon = TRUE;
             }

@@ -6290,6 +6290,26 @@
                 "species": "SPECIES_JELLICENT"
               }
             ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 1,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_GENESECT"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_VOLCANION"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_HOOPA"
+              }
+            ]
           }
         },
         {

@@ -84,3 +84,28 @@ Route127_EventScript_RematchKoji:: @ 81F6B21
 	end
 
 `
+
+script Route127_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_KOJI_1) &&
+		   defeated(TRAINER_ATHENA) &&
+		   defeated(TRAINER_AIDAN)  &&
+		   defeated(TRAINER_ROGER)  &&
+		   defeated(TRAINER_HENRY)  &&
+		   defeated(TRAINER_JONAH)  &&
+		   defeated(TRAINER_DONNY)  &&
+		   defeated(TRAINER_CAMDEN)){
+			msgbox(format("You are now worthy to catch Genesect, Volcanion and Hoopa here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Genesect, Volcanion or Hoopa. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}

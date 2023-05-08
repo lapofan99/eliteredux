@@ -81,3 +81,75 @@ Route127_EventScript_RematchKoji:: @ 81F6B21
 	trainerbattle_rematch TRAINER_KOJI_1, Route127_Text_KojiRematchIntro, Route127_Text_KojiRematchDefeat
 	msgbox Route127_Text_KojiPostRematch, MSGBOX_AUTOCLOSE
 	end
+
+Route127_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route127_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_KOJI_1
+	goto_if 1, Route127_EventScript_LegendaryNPC_8
+Route127_EventScript_LegendaryNPC_6:
+	msgbox Route127_EventScript_LegendaryNPC_Text_2
+Route127_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route127_EventScript_LegendaryNPC_2:
+	msgbox Route127_EventScript_LegendaryNPC_Text_0
+	goto Route127_EventScript_LegendaryNPC_1
+
+Route127_EventScript_LegendaryNPC_5:
+	msgbox Route127_EventScript_LegendaryNPC_Text_1
+	goto Route127_EventScript_LegendaryNPC_1
+
+Route127_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_AIDAN
+	goto_if 1, Route127_EventScript_LegendaryNPC_12
+	goto Route127_EventScript_LegendaryNPC_6
+
+Route127_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_ATHENA
+	goto_if 1, Route127_EventScript_LegendaryNPC_7
+	goto Route127_EventScript_LegendaryNPC_6
+
+Route127_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_HENRY
+	goto_if 1, Route127_EventScript_LegendaryNPC_16
+	goto Route127_EventScript_LegendaryNPC_6
+
+Route127_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_ROGER
+	goto_if 1, Route127_EventScript_LegendaryNPC_11
+	goto Route127_EventScript_LegendaryNPC_6
+
+Route127_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_DONNY
+	goto_if 1, Route127_EventScript_LegendaryNPC_19
+	goto Route127_EventScript_LegendaryNPC_6
+
+Route127_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_JONAH
+	goto_if 1, Route127_EventScript_LegendaryNPC_15
+	goto Route127_EventScript_LegendaryNPC_6
+
+Route127_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_CAMDEN
+	goto_if 1, Route127_EventScript_LegendaryNPC_5
+	goto Route127_EventScript_LegendaryNPC_6
+
+
+Route127_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route127_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Genesect,\n"
+	.string "Volcanion and Hoopa here. Just use\l"
+	.string "your DexNav, they will now appear.$"
+
+Route127_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch\n"
+	.string "Genesect, Volcanion or Hoopa. Beat all\l"
+	.string "trainers here first.$"
