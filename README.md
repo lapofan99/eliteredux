@@ -6,4 +6,4 @@ For details, credits, and other projects used, see the hack's [**Poké Community
 
 ## Contacts
 
-You can join the hack's Discord server by clicking [**here**](#).
+You can join the hack's Discord server by clicking [**here**](http://discord.elite.redux.com).
