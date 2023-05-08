@@ -2785,9 +2785,21 @@ bool8 CanFindHiddenPokemon(void)
                     HasTrainerBeenFought(TRAINER_KEVIN))
                     CanFindHiddenMon = TRUE;
             }
+            else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE134)){ //Route 134
+                if( HasTrainerBeenFought(TRAINER_KELVIN) && 
+                    HasTrainerBeenFought(TRAINER_MARLEY) && 
+                    HasTrainerBeenFought(TRAINER_REYNA) &&
+                    HasTrainerBeenFought(TRAINER_HUDSON) && 
+                    HasTrainerBeenFought(TRAINER_HITOSHI) && 
+                    HasTrainerBeenFought(TRAINER_AARON) && 
+                    HasTrainerBeenFought(TRAINER_ALEX) && 
+                    HasTrainerBeenFought(TRAINER_LAUREL) && 
+                    HasTrainerBeenFought(TRAINER_JACK))
+                    CanFindHiddenMon = TRUE;
+            }
 		break;
         case MAP_GROUP_DUNGEONS:
-            if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(VICTORY_ROAD_1F)){ //Victory Road B1F
+            if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(VICTORY_ROAD_1F)){ //Victory Road 1F
                 if( HasTrainerBeenFought(TRAINER_WALLY_VR_1) && 
                     HasTrainerBeenFought(TRAINER_EDGAR)      && 
                     HasTrainerBeenFought(TRAINER_ALBERT)     &&
