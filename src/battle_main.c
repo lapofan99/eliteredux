@@ -4439,7 +4439,10 @@ static void HandleTurnActionSelectionState(void)
                     return;
                 }
                 #ifdef DEBUG_BUILD
-                else if(FlagGet(FLAG_SYS_AUTOWIN))
+                else if(FlagGet(FLAG_SYS_AUTOWIN)
+                         && gBattleTypeFlags & BATTLE_TYPE_TRAINER
+                         && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
+                         && gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_RUN)
                 {
                     gBattleCommunication[gActiveBattler]++;
                 }
