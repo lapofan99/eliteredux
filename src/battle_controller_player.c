@@ -1933,8 +1933,8 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                             //Has the same type twice
                             mod = UQ_4_12(1.0);
                         }
-                        tempMod = UQ_4_12(2.0);
-                        MulModifier(&mod, tempMod);
+                        //tempMod = UQ_4_12(2.0);
+                        //MulModifier(&mod, tempMod);
                     }
                 }
 
