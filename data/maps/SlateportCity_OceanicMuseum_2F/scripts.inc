@@ -9,6 +9,7 @@ SlateportCity_OceanicMuseum_2F_MapScripts:: @ 820BAFF
 SlateportCity_OceanicMuseum_2F_EventScript_CaptStern:: @ 820BB00
 	lock
 	faceplayer
+	setflag FLAG_SYS_DISABLE_AUTOHEAL
 	msgbox SlateportCity_OceanicMuseum_2F_Text_ThankYouForTheParts, MSGBOX_DEFAULT
 	closemessage
 	playbgm MUS_ENCOUNTER_AQUA, TRUE
@@ -96,6 +97,7 @@ SlateportCity_OceanicMuseum_2F_EventScript_CaptStern:: @ 820BB00
 	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1
 	fadescreen FADE_FROM_BLACK
+	clearflag FLAG_SYS_DISABLE_AUTOHEAL
 	release
 	end
 

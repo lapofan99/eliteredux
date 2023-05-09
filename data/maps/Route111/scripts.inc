@@ -292,6 +292,7 @@ Route111_EventScript_Victor:: @ 81F0FC5
 	end
 
 Route111_EventScript_BattleWinstrates:: @ 81F0FE7
+	setflag FLAG_SYS_DISABLE_AUTOHEAL
 	msgbox Route111_Text_VictorIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_VICTOR, Route111_Text_VictorDefeat
 	applymovement LOCALID_VICTOR, Common_Movement_WalkInPlaceFastestUp
@@ -356,6 +357,7 @@ Route111_EventScript_BattleWinstrates:: @ 81F0FE7
 	applymovement LOCALID_VICKY, Route111_Movement_WinstrateEnterHouse
 	waitmovement 0
 	removeobject LOCALID_VICKY
+	clearflag FLAG_SYS_DISABLE_AUTOHEAL
 	call Route111_EventScript_CloseWinstrateDoor
 	release
 	end

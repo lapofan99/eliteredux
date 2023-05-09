@@ -928,7 +928,8 @@ static void CB2_HandleStartBattle(void)
     playerMultiplayerId = GetMultiplayerId();
     gBattleScripting.multiplayerId = playerMultiplayerId;
     enemyMultiplayerId = playerMultiplayerId ^ BIT_SIDE;
-    HealPlayerParty();
+    if(!FlagGet(FLAG_SYS_DISABLE_AUTOHEAL))
+        HealPlayerParty();
 
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
