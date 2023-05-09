@@ -4799,7 +4799,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
             speed *= 2;
         else if ((ability == ABILITY_SLUSH_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLUSH_RUSH)) && gBattleWeather & WEATHER_HAIL_ANY)
             speed *= 2;
-		else if ((ability == ABILITY_VIOLENT_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_VIOLENT_RUSH)) && gDisableStructs[gBattlerAttacker].isFirstTurn)
+		else if ((ability == ABILITY_VIOLENT_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_VIOLENT_RUSH)) && gDisableStructs[battlerId].isFirstTurn)
             speed = (speed * 150) / 100;
     }
 
