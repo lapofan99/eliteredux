@@ -5804,6 +5804,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     if (gBattleMons[battler].status1 & STATUS1_FREEZE)
                         StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
 
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SHED_SKIN;
                     gBattleMons[battler].status1 = 0;
                     gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
                     gBattleScripting.battler = gActiveBattler = battler;
@@ -6046,6 +6047,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     if (gBattleMons[battler].status1 & STATUS1_FREEZE)
                         StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
 
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SHED_SKIN;
                     gBattleMons[battler].status1 = 0;
                     gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
                     gBattleScripting.battler = gActiveBattler = battler;
