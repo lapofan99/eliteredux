@@ -2032,7 +2032,9 @@ script LittlerootTown_EventScript_TutorialNPC2{
                           "Check out the Online Pokédex for more information."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 2:// Ability changes
-			msgbox(format("There are over 110 new abilities, but many exisiting abilities also have a new effect. E.g. Ice Body etc. now recovers 1/8 HP per turn or Big Pecks acts like Tough Claws now.\p"
+			msgbox(format("Every Pokémon now has up to four abilities at the same time.\p"
+						  "There are up to three fixed ones, called innates.\p"
+						  "There are over 110 new abilities, but many exisiting abilities also have a new effect. E.g. Ice Body etc. now recovers 1/8 HP per turn or Big Pecks acts like Tough Claws now.\p"
                           "Check out the Online Pokédex for more information."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 3:// Move changes

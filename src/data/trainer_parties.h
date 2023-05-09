@@ -2503,7 +2503,7 @@ static const struct TrainerMonItemCustomMoves sParty_Calvin4[] = {
     .lvl = 0,
     .species = SPECIES_PRIMEAPE, // Scarf, Gorilla Tactics
     .heldItem = ITEM_CHOICE_SCARF,
-    .ability = 1, // ABILITY_FATAL_PRECISION, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
+    .ability = 1, // ABILITY_MOXIE, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
     // .innates = {ABILITY_ANGER_POINT, ABILITY_HYPER_AGGRESSIVE, ABILITY_VIOLENT_RUSH},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -4702,7 +4702,7 @@ static const struct TrainerMonItemCustomMoves sParty_Mike2[] = { // Actually the
     .lvl = 0,
     .species = SPECIES_PRIMEAPE, // Fist Plate, No Guard, Encore
     .heldItem = ITEM_FIST_PLATE,
-    .ability = 2, // ABILITY_FATAL_PRECISION, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
+    .ability = 2, // ABILITY_MOXIE, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
     // .innates = {ABILITY_ANGER_POINT, ABILITY_HYPER_AGGRESSIVE, ABILITY_VIOLENT_RUSH},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -5565,8 +5565,8 @@ static const struct TrainerMonItemCustomMoves sParty_Jocelyn[] = {
     .lvl = 0,
     .species = SPECIES_MANKEY,
     .heldItem = ITEM_EXPERT_BELT,
-    .ability = 0, // ABILITY_FATAL_PRECISION, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
-    // .innates = {ABILITY_ANGER_POINT, ABILITY_HYPER_AGGRESSIVE, ABILITY_VIOLENT_RUSH},
+    .ability = 0, // ABILITY_MOXIE, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
+    // .innates = {ABILITY_ANGER_POINT, ABILITY_HYPER_AGGRESSIVE, ABILITY_NONE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -8070,14 +8070,14 @@ static const struct TrainerMonItemCustomMoves sParty_Rhett[] = { // potential do
     },
     {
     .lvl = 1,
-    .species = SPECIES_PRIMEAPE, // Belt, Fatal Precision
+    .species = SPECIES_PRIMEAPE, // Belt, Moxie
     .heldItem = ITEM_EXPERT_BELT,
-    .ability = 0, // ABILITY_FATAL_PRECISION, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
+    .ability = 0, // ABILITY_MOXIE, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
     // .innates = {ABILITY_ANGER_POINT, ABILITY_HYPER_AGGRESSIVE, ABILITY_VIOLENT_RUSH},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_DYNAMIC_PUNCH, MOVE_STONE_EDGE, MOVE_U_TURN, MOVE_GUNK_SHOT
+    .moves = MOVE_CLOSE_COMBAT, MOVE_STONE_EDGE, MOVE_U_TURN, MOVE_GUNK_SHOT
     },
     {
     .lvl = 0,
@@ -30882,9 +30882,9 @@ static const struct TrainerMonItemCustomMoves sParty_Kiyo[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_PRIMEAPE, // Def Wall, Vest, Fatal Precision
+    .species = SPECIES_PRIMEAPE, // Def Wall, Vest, Moxie
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_FATAL_PRECISION, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
+    .ability = 0, // ABILITY_MOXIE, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
     // .innates = {ABILITY_ANGER_POINT, ABILITY_HYPER_AGGRESSIVE, ABILITY_VIOLENT_RUSH},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed

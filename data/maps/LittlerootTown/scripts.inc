@@ -2235,6 +2235,10 @@ LittlerootTown_EventScript_TutorialNPC2_Text_2:
 	.string "information.$"
 
 LittlerootTown_EventScript_TutorialNPC2_Text_3:
+	.string "Every Pokémon now has up to four\n"
+	.string "abilities at the same time.\p"
+	.string "There are up to three fixed ones, called\n"
+	.string "innates.\p"
 	.string "There are over 110 new abilities, but\n"
 	.string "many exisiting abilities also have a\l"
 	.string "new effect. E.g. Ice Body etc. now\l"
