@@ -858,10 +858,10 @@ void ItemUseOutOfBattle_CandyBox(u8 taskId)
     }
     else
     {
-        //DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
-        gFieldCallback = FieldCB_ReturnToFieldNoScript;
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        /*gFieldCallback = FieldCB_ReturnToFieldNoScript;
         FadeScreen(FADE_TO_BLACK, 0);
-        gTasks[taskId].func = Task_InitCandyBoxFromField;
+        gTasks[taskId].func = Task_InitCandyBoxFromField;*/
     }
 }
 

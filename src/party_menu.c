@@ -2527,15 +2527,52 @@ static u8 DisplaySelectionWindow(u8 windowType)
     cursorDimension = GetMenuCursorDimensionByFont(1, 0);
     fontAttribute = GetFontAttribute(1, 2);
 
-    if(sPartyMenuInternal->numActions != 255){
-        for (i = 0; i < sPartyMenuInternal->numActions; i++)
-        {
-            u8 fontColorsId = 3;
-            if ((sPartyMenuInternal->actions[i] >= MENU_FIELD_MOVES) || (sPartyMenuInternal->actions[i] == MENU_SUB_FIELD_MOVES))
-                fontColorsId = 4;
-            AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
-        }
+    for (i = 0; i < sPartyMenuInternal->numActions; i++)
+    {
+        u8 fontColorsId = 3;
+        if ((sPartyMenuInternal->actions[i] >= MENU_FIELD_MOVES) || (sPartyMenuInternal->actions[i] == MENU_SUB_FIELD_MOVES))
+            fontColorsId = 4;
+        AddTextPrinterParameterized4(sPartyMenuInternal->windowId[0], 1, cursorDimension, (i * 16) + 1, fontAttribute, 0, sFontColorTable[fontColorsId], 0, sCursorOptions[sPartyMenuInternal->actions[i]].text);
     }
+
+    InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], sPartyMenuInternal->numActions, 0, 1);
+    ScheduleBgCopyTilemapToVram(2);
+
+    return sPartyMenuInternal->windowId[0];
+}
+
+static u8 DisplaySelectionWindowNew(u8 windowType)
+{
+    struct WindowTemplate window;
+    u8 cursorDimension;
+    u8 fontAttribute;
+    u8 i;
+
+    switch (windowType)
+    {
+    case SELECTWINDOW_ACTIONS:
+        SetWindowTemplateFields(&window, 2, 19, 19 - (sPartyMenuInternal->numActions * 2), 10, sPartyMenuInternal->numActions * 2, 14, 0x2E9);
+        break;
+    case SELECTWINDOW_ITEM:
+        window = sItemGiveTakeWindowTemplate;
+        break;
+    case SELECTWINDOW_MAIL:
+        window = sMailReadTakeWindowTemplate;
+        break;
+    case SELECTWINDOW_LEVEL_UP:
+        window = sLevelUpSelectWindowTemplate;
+        break;
+    default: // SELECTWINDOW_MOVES
+        window = sMoveSelectWindowTemplate;
+        break;
+    }
+
+    sPartyMenuInternal->windowId[0] = AddWindow(&window);
+    DrawStdFrameWithCustomTileAndPalette(sPartyMenuInternal->windowId[0], FALSE, 0x4F, 13);
+    if (windowType == SELECTWINDOW_MOVES)
+        return sPartyMenuInternal->windowId[0];
+    cursorDimension = GetMenuCursorDimensionByFont(1, 0);
+    fontAttribute = GetFontAttribute(1, 2);
 
     InitMenuInUpperLeftCorner(sPartyMenuInternal->windowId[0], sPartyMenuInternal->numActions, 0, 1);
     ScheduleBgCopyTilemapToVram(2);
@@ -4897,7 +4934,7 @@ static void ShowLevelUpSelectWindow(u8 slot)
     u8 nextlevel, newlevels, i;
     u8 levelCount = 0;
     u8 fontId = 1;
-    u8 windowId = DisplaySelectionWindow(SELECTWINDOW_LEVEL_UP);
+    u8 windowId = DisplaySelectionWindowNew(SELECTWINDOW_LEVEL_UP);
     u8 level = GetMonData(&gPlayerParty[slot], MON_DATA_LEVEL);
 
     newlevels = GetLevelCap() - level;
