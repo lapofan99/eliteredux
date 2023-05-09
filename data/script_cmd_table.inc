@@ -230,6 +230,7 @@ gScriptCmdTable::
 	.4byte ScrCmd_checkPartyHasSpecies      @ 0xe3
 	.4byte ScrCmd_isChosenMonSpecies        @ 0xe4
 	.4byte ScrCmd_multichoice2              @ 0xe5
+	.4byte ScrCmd_giveBattleItems           @ 0xe6
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

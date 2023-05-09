@@ -1644,6 +1644,10 @@
 	.2byte \species
 	.endm
 
+	.macro giveBattleItems
+	.byte 0xe6
+	.endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req
