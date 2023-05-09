@@ -467,14 +467,10 @@ PetalburgWoods_Text_MiracleSeedExplanation: @ 822EB63
 	.string "to hold.$"
 
 PetalburgWoods_Text_TrainerTipsExperience: @ 822EC10
-	.string "Trainer Tips\p"
-	.string "Any Pokémon that appears even once\n"
-	.string "in a battle is awarded Exp. Points.\p"
-	.string "To raise a weak Pokémon, put it at the\n"
-	.string "left of the team list.\p"
-	.string "As soon as a battle starts, switch it\n"
-	.string "out. It will earn Exp. Points without\l"
-	.string "being exposed to any harm.$"
+	.string "Elite Redux Trainer Tips\p"
+	.string "You can easily level up your\n"
+	.string "Pokémon with the new Candy Box.\p"
+	.string "There is no need to grind anymore.$"
 
 PetalburgWoods_Text_TrainerTipsPP: @ 822ED07
 	.string "Trainer Tips\p"

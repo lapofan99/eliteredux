@@ -18109,6 +18109,7 @@ const struct BaseStats gBaseStats[] =
     .baseSpeed     = 123,
     .baseSpAttack  = 85,
     .baseSpDefense = 60,
+    .type1 = TYPE_ELECTRIC,
     .type2 = TYPE_FLYING,
     .catchRate = 200,
     .expYield = 150,
