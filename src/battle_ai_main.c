@@ -2189,6 +2189,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             if (gDisableStructs[battlerDef].tauntTimer > 0
               || DoesPartnerHaveSameMoveEffect(AI_DATA->battlerAtkPartner, battlerDef, move, AI_DATA->partnerMove))
                 score--;
+            if (gDisableStructs[battlerDef].tauntTimer != 0)
+                score -= 10;
             break;
         case EFFECT_BESTOW:
             if (AI_DATA->atkHoldEffect == HOLD_EFFECT_NONE
