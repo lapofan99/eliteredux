@@ -88,6 +88,7 @@ enum { // Util
     DEBUG_UTIL_MENU_ITEM_TRAINER_NAME,
     DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER,
     DEBUG_UTIL_MENU_ITEM_TRAINER_ID,
+    DEBUG_UTIL_MENU_ITEM_RESET_TRAINER_FLAGS,
     DEBUG_UTIL_MENU_ITEM_CHEAT,
 };
 enum { // Scripts
@@ -318,6 +319,7 @@ static void DebugAction_Util_WatchCredits(u8 taskId);
 static void DebugAction_Util_Trainer_Name(u8 taskId);
 static void DebugAction_Util_Trainer_Gender(u8 taskId);
 static void DebugAction_Util_Trainer_Id(u8 taskId);
+static void DebugAction_Util_ResetTrainerFlags(u8 taskId);
 static void DebugAction_Util_CheatStart(u8 taskId);
 
 static void DebugAction_FlagsVars_Flags(u8 taskId);
@@ -442,6 +444,7 @@ static const u8 sDebugText_Util_WatchCredits[] =            _("Watch Credits…{
 static const u8 sDebugText_Util_Trainer_Name[] =            _("Trainer name");
 static const u8 sDebugText_Util_Trainer_Gender[] =          _("Toggle T. Gender");
 static const u8 sDebugText_Util_Trainer_Id[] =              _("New Trainer Id");
+static const u8 sDebugText_Util_Reset_Trainer_Flags[] =     _("Reset Trainer Flags");
 static const u8 sDebugText_Util_CheatStart[] =              _("CHEAT Start");
 // Flags/Vars Menu
 static const u8 sDebugText_FlagsVars_Flags[] =                  _("Set Flag XYZ…{CLEAR_TO 110}{RIGHT_ARROW}");
@@ -604,19 +607,20 @@ static const struct ListMenuItem sDebugMenu_Items_Main[] =
 };
 static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
 {
-    [DEBUG_UTIL_MENU_ITEM_HEAL_PARTY]       = {sDebugText_Util_HealParty,        DEBUG_UTIL_MENU_ITEM_HEAL_PARTY},
-    [DEBUG_UTIL_MENU_ITEM_FLY]              = {sDebugText_Util_Fly,              DEBUG_UTIL_MENU_ITEM_FLY},
-    [DEBUG_UTIL_MENU_ITEM_WARP]             = {sDebugText_Util_WarpToMap,        DEBUG_UTIL_MENU_ITEM_WARP},
-    [DEBUG_UTIL_MENU_ITEM_POISON_MONS]      = {sDebugText_Util_PoisonMons,       DEBUG_UTIL_MENU_ITEM_POISON_MONS},
-    [DEBUG_UTIL_MENU_ITEM_SAVEBLOCK]        = {sDebugText_Util_SaveBlockSpace,   DEBUG_UTIL_MENU_ITEM_SAVEBLOCK},
-    [DEBUG_UTIL_MENU_ITEM_WEATHER]          = {sDebugText_Util_Weather,          DEBUG_UTIL_MENU_ITEM_WEATHER},
-    [DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK]   = {sDebugText_Util_CheckWallClock,   DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK},
-    [DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK]     = {sDebugText_Util_SetWallClock,     DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK},
-    [DEBUG_UTIL_MENU_ITEM_WATCHCREDITS]     = {sDebugText_Util_WatchCredits,     DEBUG_UTIL_MENU_ITEM_WATCHCREDITS},
-    [DEBUG_UTIL_MENU_ITEM_TRAINER_NAME]     = {sDebugText_Util_Trainer_Name,     DEBUG_UTIL_MENU_ITEM_TRAINER_NAME},
-    [DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER]   = {sDebugText_Util_Trainer_Gender,   DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER},
-    [DEBUG_UTIL_MENU_ITEM_TRAINER_ID]       = {sDebugText_Util_Trainer_Id,       DEBUG_UTIL_MENU_ITEM_TRAINER_ID},
-    [DEBUG_UTIL_MENU_ITEM_CHEAT]            = {sDebugText_Util_CheatStart,        DEBUG_UTIL_MENU_ITEM_CHEAT},
+    [DEBUG_UTIL_MENU_ITEM_HEAL_PARTY]          = {sDebugText_Util_HealParty,           DEBUG_UTIL_MENU_ITEM_HEAL_PARTY},
+    [DEBUG_UTIL_MENU_ITEM_FLY]                 = {sDebugText_Util_Fly,                 DEBUG_UTIL_MENU_ITEM_FLY},
+    [DEBUG_UTIL_MENU_ITEM_WARP]                = {sDebugText_Util_WarpToMap,           DEBUG_UTIL_MENU_ITEM_WARP},
+    [DEBUG_UTIL_MENU_ITEM_POISON_MONS]         = {sDebugText_Util_PoisonMons,          DEBUG_UTIL_MENU_ITEM_POISON_MONS},
+    [DEBUG_UTIL_MENU_ITEM_SAVEBLOCK]           = {sDebugText_Util_SaveBlockSpace,      DEBUG_UTIL_MENU_ITEM_SAVEBLOCK},
+    [DEBUG_UTIL_MENU_ITEM_WEATHER]             = {sDebugText_Util_Weather,             DEBUG_UTIL_MENU_ITEM_WEATHER},
+    [DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK]      = {sDebugText_Util_CheckWallClock,      DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK},
+    [DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK]        = {sDebugText_Util_SetWallClock,        DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK},
+    [DEBUG_UTIL_MENU_ITEM_WATCHCREDITS]        = {sDebugText_Util_WatchCredits,        DEBUG_UTIL_MENU_ITEM_WATCHCREDITS},
+    [DEBUG_UTIL_MENU_ITEM_TRAINER_NAME]        = {sDebugText_Util_Trainer_Name,        DEBUG_UTIL_MENU_ITEM_TRAINER_NAME},
+    [DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER]      = {sDebugText_Util_Trainer_Gender,      DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER},
+    [DEBUG_UTIL_MENU_ITEM_TRAINER_ID]          = {sDebugText_Util_Trainer_Id,          DEBUG_UTIL_MENU_ITEM_TRAINER_ID},
+    [DEBUG_UTIL_MENU_ITEM_RESET_TRAINER_FLAGS] = {sDebugText_Util_Reset_Trainer_Flags, DEBUG_UTIL_MENU_ITEM_RESET_TRAINER_FLAGS},
+    [DEBUG_UTIL_MENU_ITEM_CHEAT]               = {sDebugText_Util_CheatStart,          DEBUG_UTIL_MENU_ITEM_CHEAT},
 };
 static const struct ListMenuItem sDebugMenu_Items_Scripts[] =
 {
@@ -740,19 +744,20 @@ static void (*const sDebugMenu_Actions_Main[])(u8) =
 };
 static void (*const sDebugMenu_Actions_Utilities[])(u8) =
 {
-    [DEBUG_UTIL_MENU_ITEM_HEAL_PARTY]       = DebugAction_Util_HealParty,
-    [DEBUG_UTIL_MENU_ITEM_FLY]              = DebugAction_Util_Fly,
-    [DEBUG_UTIL_MENU_ITEM_WARP]             = DebugAction_Util_Warp_Warp,
-    [DEBUG_UTIL_MENU_ITEM_POISON_MONS]      = DebugAction_Util_PoisonMons,
-    [DEBUG_UTIL_MENU_ITEM_SAVEBLOCK]        = DebugAction_Util_CheckSaveBlock,
-    [DEBUG_UTIL_MENU_ITEM_WEATHER]          = DebugAction_Util_Weather,
-    [DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK]   = DebugAction_Util_CheckWallClock,
-    [DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK]     = DebugAction_Util_SetWallClock,
-    [DEBUG_UTIL_MENU_ITEM_WATCHCREDITS]     = DebugAction_Util_WatchCredits,
-    [DEBUG_UTIL_MENU_ITEM_TRAINER_NAME]     = DebugAction_Util_Trainer_Name,
-    [DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER]   = DebugAction_Util_Trainer_Gender,
-    [DEBUG_UTIL_MENU_ITEM_TRAINER_ID]       = DebugAction_Util_Trainer_Id,
-    [DEBUG_UTIL_MENU_ITEM_CHEAT]            = DebugAction_Util_CheatStart,
+    [DEBUG_UTIL_MENU_ITEM_HEAL_PARTY]           = DebugAction_Util_HealParty,
+    [DEBUG_UTIL_MENU_ITEM_FLY]                  = DebugAction_Util_Fly,
+    [DEBUG_UTIL_MENU_ITEM_WARP]                 = DebugAction_Util_Warp_Warp,
+    [DEBUG_UTIL_MENU_ITEM_POISON_MONS]          = DebugAction_Util_PoisonMons,
+    [DEBUG_UTIL_MENU_ITEM_SAVEBLOCK]            = DebugAction_Util_CheckSaveBlock,
+    [DEBUG_UTIL_MENU_ITEM_WEATHER]              = DebugAction_Util_Weather,
+    [DEBUG_UTIL_MENU_ITEM_CHECKWALLCLOCK]       = DebugAction_Util_CheckWallClock,
+    [DEBUG_UTIL_MENU_ITEM_SETWALLCLOCK]         = DebugAction_Util_SetWallClock,
+    [DEBUG_UTIL_MENU_ITEM_WATCHCREDITS]         = DebugAction_Util_WatchCredits,
+    [DEBUG_UTIL_MENU_ITEM_TRAINER_NAME]         = DebugAction_Util_Trainer_Name,
+    [DEBUG_UTIL_MENU_ITEM_TRAINER_GENDER]       = DebugAction_Util_Trainer_Gender,
+    [DEBUG_UTIL_MENU_ITEM_TRAINER_ID]           = DebugAction_Util_Trainer_Id,
+    [DEBUG_UTIL_MENU_ITEM_RESET_TRAINER_FLAGS]  = DebugAction_Util_ResetTrainerFlags,
+    [DEBUG_UTIL_MENU_ITEM_CHEAT]                = DebugAction_Util_CheatStart,
 };
 static void (*const sDebugMenu_Actions_Scripts[])(u8) =
 {
@@ -1966,6 +1971,15 @@ static void DebugAction_Util_Trainer_Id(u8 taskId)
 {
     u32 trainerId = ((Random() << 16) | Random());
     SetTrainerId(trainerId, gSaveBlock2Ptr->playerTrainerId);
+    Debug_DestroyMenu_Full(taskId);
+    EnableBothScriptContexts();
+}
+static void DebugAction_Util_ResetTrainerFlags(u8 taskId)
+{
+    u16 i;
+    for(i = 0; i < MAX_TRAINERS_COUNT; i++){
+        ClearTrainerFlag(i);
+    }
     Debug_DestroyMenu_Full(taskId);
     EnableBothScriptContexts();
 }
