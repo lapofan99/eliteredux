@@ -148,6 +148,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanEast:: @ 81F8594
 	return
 
 LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet::
+	msgbox PlayersHouse_1F_Text_Which_Region, MSGBOX_DEFAULT
 	setvar VAR_0x8004, SCROLL_MULTI_REGION_NAMES
 	special ShowScrollableMultichoice
 	waitstate
@@ -159,40 +160,61 @@ LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet::
 	case 4, LittlerootTown_BrendansHouse_2F_EventScript_Unova
 	case 5, LittlerootTown_BrendansHouse_2F_EventScript_Kalos
 	case 6, LittlerootTown_BrendansHouse_2F_EventScript_Alola
-	goto LittlerootTown_BrendansHouse_2F_EventScript_Hoenn
+	goto LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	end
 
 LittlerootTown_BrendansHouse_2F_EventScript_Kanto:
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 1
 	bufferstring 1, StarterRegionStringKanto
 	return
 
 LittlerootTown_BrendansHouse_2F_EventScript_Johto:
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 2
 	bufferstring 1, StarterRegionStringJohto
 	return
 
 LittlerootTown_BrendansHouse_2F_EventScript_Hoenn:
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 3
 	bufferstring 1, StarterRegionStringHoenn
 	return
 
 LittlerootTown_BrendansHouse_2F_EventScript_Sinnoh:
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 4
 	bufferstring 1, StarterRegionStringSinnoh
 	return
 
 LittlerootTown_BrendansHouse_2F_EventScript_Unova:
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 5
 	bufferstring 1, StarterRegionStringUnova
 	return
 
 LittlerootTown_BrendansHouse_2F_EventScript_Kalos:
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 6
 	bufferstring 1, StarterRegionStringKalos
 	return
 
 LittlerootTown_BrendansHouse_2F_EventScript_Alola:
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 7
 	bufferstring 1, StarterRegionStringAlola
 	return

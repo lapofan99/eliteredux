@@ -148,6 +148,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMayEast:: @ 81F9440
 	return
 
 LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet::
+	msgbox RivalsHouse_1F_Text_Which_Region, MSGBOX_DEFAULT
 	setvar VAR_0x8004, SCROLL_MULTI_REGION_NAMES
 	special ShowScrollableMultichoice
 	waitstate
@@ -159,40 +160,61 @@ LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet::
 	case 4, LittlerootTown_MaysHouse_2F_EventScript_Unova
 	case 5, LittlerootTown_MaysHouse_2F_EventScript_Kalos
 	case 6, LittlerootTown_MaysHouse_2F_EventScript_Alola
-	goto LittlerootTown_MaysHouse_2F_EventScript_Hoenn
+	goto LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	end
 
 LittlerootTown_MaysHouse_2F_EventScript_Kanto::
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 1
 	bufferstring 1, StarterRegionStringKanto
 	return
 
 LittlerootTown_MaysHouse_2F_EventScript_Johto::
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 2
 	bufferstring 1, StarterRegionStringJohto
 	return
 
 LittlerootTown_MaysHouse_2F_EventScript_Hoenn::
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 3
 	bufferstring 1, StarterRegionStringHoenn
 	return
 
 LittlerootTown_MaysHouse_2F_EventScript_Sinnoh::
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 4
 	bufferstring 1, StarterRegionStringSinnoh
 	return
 
 LittlerootTown_MaysHouse_2F_EventScript_Unova::
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 5
 	bufferstring 1, StarterRegionStringUnova
 	return
 
 LittlerootTown_MaysHouse_2F_EventScript_Kalos::
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 6
 	bufferstring 1, StarterRegionStringKalos
 	return
 
 LittlerootTown_MaysHouse_2F_EventScript_Alola::
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_MaysHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 7
 	bufferstring 1, StarterRegionStringAlola
 	return
@@ -412,8 +434,7 @@ RivalsHouse_2F_Text_MayWhoAreYou: @ 81F959C
 	.string "Oh, hey, that reminds me!\n"
 	.string "You should go see Dad's newest Pokémon!\p"
 	.string "He just got three really rare ones\n"
-	.string "from the, um…\p"
-	.string "Oh, darn. Which region was it again?$"
+	.string "from the, um…$"
 
 RivalsHouse_2F_Text_MayCatchYouLater:
 	.string "Huh? The {STR_VAR_2} region?\n"
