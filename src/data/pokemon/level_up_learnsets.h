@@ -19365,7 +19365,6 @@ static const struct LevelUpMove sCalyrexLevelUpLearnset[] = {
 static const struct LevelUpMove sRaichuAlolanLevelUpLearnset[] = {
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE( 0, MOVE_PSYBEAM),
-	    LEVEL_UP_MOVE( 0, MOVE_RISING_VOLTAGE), // new
     #endif
     LEVEL_UP_MOVE( 1, MOVE_SPEED_SWAP),
 	LEVEL_UP_MOVE( 1, MOVE_AGILITY),
