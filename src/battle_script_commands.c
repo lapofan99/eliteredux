@@ -2727,7 +2727,8 @@ static void Cmd_resultmessage(void)
 		!(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) &&
 		gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
 		gBattleMoves[gCurrentMove].power > 0 &&
-		gBattleMoveDamage > 0)
+		gBattleMoveDamage > 0 &&
+        gSaveBlock2Ptr->damageDone)
 	{
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_PrintDamageDoneString;

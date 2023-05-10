@@ -505,8 +505,10 @@ struct SaveBlock2
     /*0x18*/ struct Pokedex pokedex;
     /*0x90*/ u8 filler_90[0x6];
              u8 levelCaps; // Various options for level caps
-             bool8 autoRun;
+             u16 autoRun:1;
              u16 permanentRepel:1;
+             u16 damageDone:1;
+             u16 askForNickname:1;
     /*0x98*/ struct Time localTimeOffset;
     /*0xA0*/ struct Time lastBerryTreeUpdate;
     /*0xA8*/ u32 gcnLinkFlags; // Read by Pokemon Colosseum/XD

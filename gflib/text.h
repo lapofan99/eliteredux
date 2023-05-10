@@ -290,6 +290,23 @@ enum
     FONTATTR_COLOR_SHADOW
 };
 
+// Given as a text speed when all the text should be
+// loaded at once but not copied to vram yet.
+#define TEXT_SKIP_DRAW 0xFF
+
+enum {
+    FONT_SMALL,
+    FONT_NORMAL,
+    FONT_SHORT,
+    FONT_SHORT_COPY_1,
+    FONT_SHORT_COPY_2,
+    FONT_SHORT_COPY_3,
+    FONT_BRAILLE,
+    FONT_NARROW,
+    FONT_SMALL_NARROW, // Very similar to FONT_SMALL, some glyphs are narrower
+    FONT_BOLD, // JP glyph set only
+};
+
 struct TextPrinterSubStruct
 {
     u8 glyphId:4;  // 0x14

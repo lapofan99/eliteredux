@@ -68,8 +68,6 @@
 #define CONFIG_FATEFUL_ENCOUNTER_MARK                   TRUE
 // Make sure gBallIconTable in src/data/item_icon_table.h is ordered correctly.  Default does not match RHH
 
-#define FONT_NORMAL 1
-
 enum {
     PSS_PAGE_INFO,
     PSS_PAGE_ABILITY,
