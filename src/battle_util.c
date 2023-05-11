@@ -5714,9 +5714,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
         #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT))
+        if(FlagGet(FLAG_SYS_MGBA_PRINT) && GetBattlerSide(battler) == B_SIDE_OPPONENT){
             if(gBattleMons[battler].item == ITEM_NONE)
                 MgbaPrintf(MGBA_LOG_WARN, "WARNING THE BATTLER %d HAS NO ITEM", battler);
+            else
+                MgbaPrintf(MGBA_LOG_WARN, "THE BATTLER %d HAS THE ITEM %d", battler, gBattleMons[battler].item);
+        }
         #endif
         break;
     case ABILITYEFFECT_ENDTURN: // 1
