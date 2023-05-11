@@ -3124,7 +3124,7 @@ static u8 CreateContestantSprite(u16 species, u32 otId, u32 personality, u32 ind
     species = SanitizeSpecies(species);
 
     HandleLoadSpecialPokePic(&gMonBackPicTable[species], gMonSpritesGfxPtr->sprites.ptr[0], species, personality);
-    if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+    if (gSaveBlock2Ptr->individualColors)
         LoadHueShiftedMonPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x120, 0x20, personality);
     else
         LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x120, 0x20);

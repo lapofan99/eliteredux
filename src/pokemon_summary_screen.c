@@ -1749,7 +1749,7 @@ static void Task_HandleInput(u8 taskId)
 				PlaySE(SE_SELECT);
 				PrintMemoPage();
 			}
-			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode){ //Ev Modifier
+			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode && gSaveBlock2Ptr->enableEvs){ //Ev Modifier
 				if(CurrentEv != 0){
                     if(CurrentEv >= LEFTRIGHT_EV_AMOUNT_CHANGE)
 					    CurrentEv = CurrentEv - LEFTRIGHT_EV_AMOUNT_CHANGE;
@@ -1841,7 +1841,7 @@ static void Task_HandleInput(u8 taskId)
 				PlaySE(SE_SELECT);
 				PrintMemoPage();
 			}
-            else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode){ //Ev Modifier
+            else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS && ModifyMode && gSaveBlock2Ptr->enableEvs){ //Ev Modifier
 				if((CurrentEv != MAX_PER_STAT_EVS && TotalEvs < MAX_TOTAL_EVS) || gCurrentModifyIndex == 6){
 					CurrentEv = CurrentEv + LEFTRIGHT_EV_AMOUNT_CHANGE;
 
@@ -1920,7 +1920,7 @@ static void Task_HandleInput(u8 taskId)
 		{
 			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
 				ChangePage(taskId, 1);
-			else if((CurrentEv != MAX_PER_STAT_EVS && TotalEvs < MAX_TOTAL_EVS)){
+			else if((CurrentEv != MAX_PER_STAT_EVS && TotalEvs < MAX_TOTAL_EVS && gSaveBlock2Ptr->enableEvs)){
                 RemainingEvs = CurrentEv;
 				CurrentEv = CurrentEv + LR_EV_AMOUNT_CHANGE;
 
@@ -1980,7 +1980,7 @@ static void Task_HandleInput(u8 taskId)
 		{
 			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
 				ChangePage(taskId, -1);
-			else if(CurrentEv != 0){
+			else if(CurrentEv != 0 && gSaveBlock2Ptr->enableEvs){
                 if(CurrentEv >= LR_EV_AMOUNT_CHANGE)
 					CurrentEv = CurrentEv - LR_EV_AMOUNT_CHANGE;
                 else
@@ -2042,13 +2042,15 @@ static void Task_HandleInput(u8 taskId)
 			   !sMonSummaryScreen->lockMovesFlag)
             {
                 // Start EVs Modifier
-                ModifyMode = !ModifyMode;
-				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-				CalculateMonStats(&sMonSummaryScreen->currentMon);
-				
-				//SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
-				RefreshPageAfterChange(0);
-				PlaySE(SE_SELECT);
+                if(gSaveBlock2Ptr->enableEvs){
+                    ModifyMode = !ModifyMode;
+                    CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+                    CalculateMonStats(&sMonSummaryScreen->currentMon);
+                    
+                    //SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
+                    RefreshPageAfterChange(0);
+                    PlaySE(SE_SELECT);
+                }
             }
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_MEMO &&
 				!sMonSummaryScreen->isBoxMon &&
@@ -3696,6 +3698,7 @@ static void PrintSkillsPage(void)
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     const s8 *natureMod = gNatureStatTable[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE)];
     static const u8 sText_Help_Bar[] = _("{DPAD_LEFTRIGHT} Add / Remove 4 EVs\n{L_BUTTON}{R_BUTTON} Add / Remove 64 EVs");
+    static const u8 sText_Evs_Disabled[] = _("0");
     u8 offset = 0;
 
     FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT, PIXEL_FILL(0));
@@ -3753,7 +3756,10 @@ static void PrintSkillsPage(void)
 				x = 13;
 			break;
 			case 2:
-				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+                if(gSaveBlock2Ptr->enableEvs)
+                    ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+				else
+                    StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
 			break;
 		}	
@@ -3787,7 +3793,10 @@ static void PrintSkillsPage(void)
 				x = 13;
 			break;
 			case 2:
-				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+                if(gSaveBlock2Ptr->enableEvs)
+                    ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+                else
+                    StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
 			break;
 		}	
@@ -3815,7 +3824,10 @@ static void PrintSkillsPage(void)
 				x = 13;
 			break;
 			case 2:
-				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+                if(gSaveBlock2Ptr->enableEvs)
+                    ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+				else
+                    StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
 			break;
 		}	
@@ -3843,7 +3855,10 @@ static void PrintSkillsPage(void)
 				x = 13;
 			break;
 			case 2:
-				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+                if(gSaveBlock2Ptr->enableEvs)
+                    ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+				else
+                    StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
 			break;
 		}	
@@ -3871,7 +3886,10 @@ static void PrintSkillsPage(void)
 				x = 13;
 			break;
 			case 2:
-				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+                if(gSaveBlock2Ptr->enableEvs)
+                    ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+				else
+                    StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
 			break;
 		}	
@@ -3898,7 +3916,10 @@ static void PrintSkillsPage(void)
 				x = 13;
 			break;
 			case 2:
-				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+                if(gSaveBlock2Ptr->enableEvs)
+                    ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_EV), STR_CONV_MODE_LEFT_ALIGN, 3);
+				else
+                    StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
 			break;
 		}	

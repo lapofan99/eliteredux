@@ -437,7 +437,7 @@ static u8 EggHatchCreateMonSprite(u8 a0, u8 switchID, u8 pokeID, u16* speciesLoc
             HandleLoadSpecialPokePic(&gMonFrontPicTable[species],
                                      gMonSpritesGfxPtr->sprites.ptr[(a0 * 2) + 1],
                                      species, pid);
-            if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+            if (gSaveBlock2Ptr->individualColors)
                 LoadHueShiftedMonSpritePalette(GetMonSpritePalStruct(mon), pid);
             else
                 LoadCompressedSpritePalette(GetMonSpritePalStruct(mon));

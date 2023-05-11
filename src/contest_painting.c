@@ -367,7 +367,7 @@ static void InitContestMonPixels(u16 species, u8 whichSprite)
 {
     const void *pal = GetMonSpritePalFromSpeciesAndPersonality(species, gContestPaintingWinner->trainerId, gContestPaintingWinner->personality);
     LZDecompressVram(pal, gContestPaintingMonPalette);
-    if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+    if (gSaveBlock2Ptr->individualColors)
         HueShiftMonPalette(gContestPaintingMonPalette, gContestPaintingWinner->personality);
     if (whichSprite == 0)
     {

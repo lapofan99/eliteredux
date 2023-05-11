@@ -4413,7 +4413,7 @@ static void Task_ExitCaughtMonPage(u8 taskId)
         personality = ((u16)gTasks[taskId].tPersonalityHi << 16) | (u16)gTasks[taskId].tPersonalityLo;
         paletteNum = gSprites[gTasks[taskId].tMonSpriteId].oam.paletteNum;
         lzPaletteData = GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality);
-        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+        if (gSaveBlock2Ptr->individualColors)
             LoadHueShiftedMonPalette(lzPaletteData, 0x100 | paletteNum * 16, 32, personality);
         else
             LoadCompressedPalette(lzPaletteData, 0x100 | paletteNum * 16, 32);

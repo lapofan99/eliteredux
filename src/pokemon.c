@@ -3911,6 +3911,15 @@ void CalculateMonStats(struct Pokemon *mon)
 		speedIV 	= 31;
     }
 
+    if (!gSaveBlock2Ptr->enableEvs){//Evs are Disabled
+        hpEV 		= 0;
+		attackEV 	= 0;
+		defenseEV 	= 0;
+		spAttackEV 	= 0;
+		spDefenseEV = 0;
+		speedEV 	= 0;
+    }
+
     if (species == SPECIES_SHEDINJA)
     {
         newMaxHP = 1;
@@ -4970,46 +4979,22 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         SET8(substruct1->pp[field - MON_DATA_PP1]);
         break;
     case MON_DATA_HP_EV:
-	if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_ATK_IV) == 1
-	   && GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_EXP) == 0)
-		substruct2->hpEV = 0;
-	else
-		SET8(substruct2->hpEV);
+            SET8(substruct2->hpEV);
         break;
     case MON_DATA_ATK_EV:
-        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_ATK_IV) == 1
-	   && GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_EXP) == 0)
-		substruct2->attackEV = 0;
-	else
-		SET8(substruct2->attackEV);
+            SET8(substruct2->attackEV);
         break;
     case MON_DATA_DEF_EV:
-        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_ATK_IV) == 1
-	   && GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_EXP) == 0)
-		substruct2->defenseEV = 0;
-	else
-		SET8(substruct2->defenseEV);
+            SET8(substruct2->defenseEV);
         break;
     case MON_DATA_SPEED_EV:
-        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_ATK_IV) == 1
-	   && GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_EXP) == 0)
-		substruct2->speedEV = 0;
-	else
-		SET8(substruct2->speedEV);
+            SET8(substruct2->speedEV);
         break;
     case MON_DATA_SPATK_EV:
-        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_ATK_IV) == 1
-	   && GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_EXP) == 0)
-		substruct2->spAttackEV = 0;
-	else
-		SET8(substruct2->spAttackEV);
+            SET8(substruct2->spAttackEV);
         break;
     case MON_DATA_SPDEF_EV:
-        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_ATK_IV) == 1
-	   && GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_EXP) == 0)
-		substruct2->spDefenseEV = 0;
-	else
-		SET8(substruct2->spDefenseEV);
+            SET8(substruct2->spDefenseEV);
         break;
     case MON_DATA_COOL:
         SET8(substruct2->cool);
@@ -8580,9 +8565,9 @@ u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg)
 
 u16 getShinyOdds(void)
 {
-	if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_DEF_IV) == 1)
+	if (gSaveBlock2Ptr->shinyrate == 1)
 		return SHINY_ODDS_1;
-	else if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_DEF_IV) == 2)
+	else if (gSaveBlock2Ptr->shinyrate== 2)
 		return SHINY_ODDS_2;
 	else
 		return SHINY_ODDS;

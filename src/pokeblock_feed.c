@@ -742,7 +742,7 @@ static bool8 LoadMonAndSceneGfx(struct Pokemon *mon)
         trainerId = GetMonData(mon, MON_DATA_OT_ID);
         palette = GetMonSpritePalStructFromOtIdPersonality(species, trainerId, personality);
         
-        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+        if (gSaveBlock2Ptr->individualColors)
             LoadHueShiftedMonSpritePalette(palette, personality);
         else
             LoadCompressedSpritePalette(palette);

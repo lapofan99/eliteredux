@@ -13976,7 +13976,10 @@ static void Cmd_handleballthrow(void)
             BtlController_EmitBallThrowAnim(0, BALL_3_SHAKES_SUCCESS);
             MarkBattlerForControllerExec(gActiveBattler);
             UndoFormChange(gBattlerPartyIndexes[gBattlerTarget], GET_BATTLER_SIDE(gBattlerTarget), FALSE);
-            gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
+            if(gSaveBlock2Ptr->askForNickname)
+                gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
+            else
+                gBattlescriptCurrInstr = BattleScript_SuccessBallThrow_NoNickname;
             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 
             if (CalculatePlayerPartyCount() == PARTY_SIZE)
@@ -14040,7 +14043,11 @@ static void Cmd_handleballthrow(void)
                     gBattleSpritesDataPtr->animationData->criticalCaptureSuccess = 1;
 
                 UndoFormChange(gBattlerPartyIndexes[gBattlerTarget], GET_BATTLER_SIDE(gBattlerTarget), FALSE);
-                gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
+                if(gSaveBlock2Ptr->askForNickname)
+                    gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
+                else
+                    gBattlescriptCurrInstr = BattleScript_SuccessBallThrow_NoNickname;
+                
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
 
                 if (CalculatePlayerPartyCount() == PARTY_SIZE)
@@ -14250,13 +14257,21 @@ static void Cmd_trygivecaughtmonnick(void)
     switch (gBattleCommunication[MULTIUSE_STATE])
     {
     case 0:
-        HandleBattleWindow(0x18, 8, 0x1D, 0xD, 0);
-        BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
-        gBattleCommunication[MULTIUSE_STATE]++;
-        gBattleCommunication[CURSOR_POSITION] = 0;
-        BattleCreateYesNoCursorAt(0);
+        if(!gSaveBlock2Ptr->askForNickname){
+            gBattleCommunication[MULTIUSE_STATE]++;
+        }
+        else{
+            HandleBattleWindow(0x18, 8, 0x1D, 0xD, 0);
+            BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xC);
+            gBattleCommunication[MULTIUSE_STATE]++;
+            gBattleCommunication[CURSOR_POSITION] = 0;
+            BattleCreateYesNoCursorAt(0);
+        }
         break;
     case 1:
+        if(!gSaveBlock2Ptr->askForNickname){
+            gBattleCommunication[MULTIUSE_STATE] = 4;
+        }
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
         {
             PlaySE(SE_SELECT);

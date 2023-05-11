@@ -93,7 +93,7 @@ static void LoadPicPaletteByTagOrSlot(u16 species, u32 otId, u32 personality, u8
         if (paletteTag == 0xFFFF)
         {
             sCreatingSpriteTemplate.paletteTag = 0xFFFF;
-            if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+            if (gSaveBlock2Ptr->individualColors)
                 LoadHueShiftedMonPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x100 + paletteSlot * 0x10, 0x20, personality);
             else
                 LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), 0x100 + paletteSlot * 0x10, 0x20);
@@ -101,7 +101,7 @@ static void LoadPicPaletteByTagOrSlot(u16 species, u32 otId, u32 personality, u8
         else
         {
             sCreatingSpriteTemplate.paletteTag = paletteTag;
-            if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+            if (gSaveBlock2Ptr->individualColors)
                 LoadHueShiftedMonSpritePalette(GetMonSpritePalStructFromOtIdPersonality(species, otId, personality), personality);
             else
                 LoadCompressedSpritePalette(GetMonSpritePalStructFromOtIdPersonality(species, otId, personality));
@@ -112,7 +112,7 @@ static void LoadPicPaletteByTagOrSlot(u16 species, u32 otId, u32 personality, u8
         if (paletteTag == 0xFFFF)
         {
             sCreatingSpriteTemplate.paletteTag = 0xFFFF;
-            if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+            if (gSaveBlock2Ptr->individualColors)
                 LoadHueShiftedMonPalette(gTrainerFrontPicPaletteTable[species].data, 0x100 + paletteSlot * 0x10, 0x20, personality);
             else
                 LoadCompressedPalette(gTrainerFrontPicPaletteTable[species].data, 0x100 + paletteSlot * 0x10, 0x20);
@@ -120,7 +120,7 @@ static void LoadPicPaletteByTagOrSlot(u16 species, u32 otId, u32 personality, u8
         else
         {
             sCreatingSpriteTemplate.paletteTag = paletteTag;
-            if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+            if (gSaveBlock2Ptr->individualColors)
                 LoadHueShiftedMonSpritePalette(&gTrainerFrontPicPaletteTable[species], personality);
             else
                 LoadCompressedSpritePalette(&gTrainerFrontPicPaletteTable[species]);
@@ -132,7 +132,7 @@ static void LoadPicPaletteBySlot(u16 species, u32 otId, u32 personality, u8 pale
 {
     if (!isTrainer)
     {
-        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+        if (gSaveBlock2Ptr->individualColors)
             LoadHueShiftedMonPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), paletteSlot * 0x10, 0x20, personality);
         else
             LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), paletteSlot * 0x10, 0x20);

@@ -134,7 +134,7 @@ static void InitSinglePlayerBtlControllers(void)
         }
         else
         {
-	    if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY) == 1)
+	    if (gSaveBlock2Ptr->playerAI)
 		    gBattlerControllerFuncs[0] = SetControllerToPlayerPartner;
 	    else
 		    gBattlerControllerFuncs[0] = SetControllerToPlayer;
@@ -180,10 +180,10 @@ static void InitSinglePlayerBtlControllers(void)
             gBattlerControllerFuncs[0] = SetControllerToWally;
         else
 	{
-	    if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY) == 1 && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-		gBattlerControllerFuncs[0] = SetControllerToPlayerPartner;
+	    if (gSaveBlock2Ptr->playerAI && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+		    gBattlerControllerFuncs[0] = SetControllerToPlayerPartner;
 	    else
-            	gBattlerControllerFuncs[0] = SetControllerToPlayer;
+            gBattlerControllerFuncs[0] = SetControllerToPlayer;
 	}
 
         gBattlerPositions[0] = B_POSITION_PLAYER_LEFT;
@@ -233,7 +233,7 @@ static void InitSinglePlayerBtlControllers(void)
     else
     {
         gBattleMainFunc = BeginBattleIntro;
-	if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY) == 1 && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+	if (gSaveBlock2Ptr->playerAI && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
 		gBattlerControllerFuncs[0] = SetControllerToPlayerPartner;
 	else
         	gBattlerControllerFuncs[0] = SetControllerToPlayer;
@@ -242,7 +242,7 @@ static void InitSinglePlayerBtlControllers(void)
         gBattlerControllerFuncs[1] = SetControllerToOpponent;
         gBattlerPositions[1] = B_POSITION_OPPONENT_LEFT;
 	
-	if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY) == 1 && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+	if (gSaveBlock2Ptr->playerAI && gBattleTypeFlags & BATTLE_TYPE_TRAINER)
 		gBattlerControllerFuncs[2] = SetControllerToPlayerPartner;
 	else
         	gBattlerControllerFuncs[2] = SetControllerToPlayer;

@@ -263,7 +263,7 @@ void EvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopEvo, u
                                 currSpecies,
                                 personality);
     pokePal = GetMonSpritePalStructFromOtIdPersonality(currSpecies, trainerId, personality);
-    if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+    if (gSaveBlock2Ptr->individualColors)
         LoadHueShiftedMonPalette(pokePal->data, 0x110, 0x20, personality);
     else
         LoadCompressedPalette(pokePal->data, 0x110, 0x20);
@@ -281,7 +281,7 @@ void EvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopEvo, u
                                 postEvoSpecies,
                                 personality);
     pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
-    if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+    if (gSaveBlock2Ptr->individualColors)
         LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality);
     else
         LoadCompressedPalette(pokePal->data, 0x120, 0x20);
@@ -362,7 +362,7 @@ static void CB2_EvolutionSceneLoadGraphics(void)
                                 personality);
     pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
 
-    if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+    if (gSaveBlock2Ptr->individualColors)
         LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality);
     else
         LoadCompressedPalette(pokePal->data, 0x120, 0x20);
@@ -436,7 +436,7 @@ static void CB2_TradeEvolutionSceneLoadGraphics(void)
                                         postEvoSpecies,
                                         personality);
             pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
-            if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+            if (gSaveBlock2Ptr->individualColors)
                 LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality);
             else
                 LoadCompressedPalette(pokePal->data, 0x120, 0x20);
@@ -504,7 +504,7 @@ void TradeEvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, u8 preEvoSprit
                                 personality);
 
     pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
-    if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+    if (gSaveBlock2Ptr->individualColors)
         LoadHueShiftedMonPalette(pokePal->data, 0x120, 0x20, personality);
     else
         LoadCompressedPalette(pokePal->data, 0x120, 0x20);

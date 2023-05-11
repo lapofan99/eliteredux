@@ -5315,7 +5315,7 @@ void SetSettingsMonStats (void)
 			break;
 		case 6: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL, &value); // Individually-Unique Pokemon Colors
 			break;
-		case 7: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY, &value); // AI controlled patch
+		case 7: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY, &value); // AI controlled patch  
 			break;
 		case 8: SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_CUTE, &value); // Legendary
 			break;
@@ -5336,7 +5336,7 @@ void GetSettingsMonStats (void)
 	
 	switch (statToChange)
     	{
-    		case 0: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_HP_IV); // Perfect IVs settings
+    	case 0: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_HP_IV); // Perfect IVs settings
 			break;
 		case 1: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_ATK_IV); // EV settings
 			break;
@@ -5352,7 +5352,7 @@ void GetSettingsMonStats (void)
 			break;
 		case 7: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY); // AI controlled patch
 			break;
-		case 8: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_CUTE); // Legendart
+		case 8: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_CUTE); // Legendary
 			break;
 		case 9: gSpecialVar_0x8005 = GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SMART); // Random starters
 			break;

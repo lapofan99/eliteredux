@@ -449,7 +449,7 @@ void RecordLastUsedMoveByTarget(void)
 
 bool32 IsBattlerAIControlled(u32 battlerId)
 {
-	if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_BEAUTY) == 1)
+	if (gSaveBlock2Ptr->playerAI)
 	{
 		switch (GetBattlerPosition(battlerId))
 		{

@@ -2737,7 +2737,7 @@ static void CreateJumpMonSprite(struct PokemonJumpGfx *jumpGfx, struct PokemonJu
 
         spritePalette.data = GetMonSpritePalFromSpeciesAndPersonality(monInfo->species, monInfo->otId, monInfo->personality);
         spritePalette.tag = multiplayerId;
-        if (GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_COOL) == 1)
+        if (gSaveBlock2Ptr->individualColors)
             LoadHueShiftedMonSpritePalette(&spritePalette, monInfo->personality);
         else
             LoadCompressedSpritePalette(&spritePalette);

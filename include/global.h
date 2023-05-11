@@ -509,6 +509,11 @@ struct SaveBlock2
              u16 permanentRepel:1;
              u16 damageDone:1;
              u16 askForNickname:1;
+             u16 shinyrate:2;
+             u16 enableEvs:1;
+             u16 playerAI:1;
+             u16 individualColors:1;
+             u16 sandboxMode:1;
     /*0x98*/ struct Time localTimeOffset;
     /*0xA0*/ struct Time lastBerryTreeUpdate;
     /*0xA8*/ u32 gcnLinkFlags; // Read by Pokemon Colosseum/XD
