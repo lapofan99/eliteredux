@@ -379,4 +379,4 @@ FortreeCity_Gym_Text_WinonaChooseFormat:
 
 FortreeCity_Gym_Text_WinonaAllowLegends:
 	.string "Winona: and would you like to challenge\n"
-	.string "my Legendary Pokémon?$"
+	.string "my stronger Legendary Pokémon?$"

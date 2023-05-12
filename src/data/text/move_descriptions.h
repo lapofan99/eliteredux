@@ -3791,7 +3791,7 @@ static const u8 sMoveFourLineDescription_Bind[] = _("A long body or\ntentacles a
 #endif
 static const u8 sMoveFourLineDescription_Slam[] = _("The foe is struck\nwith a long tail,\nvines, etc.");
 static const u8 sMoveFourLineDescription_VineWhip[] = _("The foe is struck\nwith slender, whip-\nlike vines.");
-static const u8 sMoveFourLineDescription_Stomp[] = _("Stomps the foe.\nHas 30%\nflinch chance.\nStriker boost."); // new
+static const u8 sMoveFourLineDescription_Stomp[] = _("Stomps the foe.\nHas 30% flinch\nchance. Striker\nboost."); // new
 static const u8 sMoveFourLineDescription_DoubleKick[] = _("Kicks the foe\nquickly twice.\nStriker boost."); // new
 static const u8 sMoveFourLineDescription_MegaKick[] = _("The foe is attacked\nby a kick with\ngreat power.\nStriker boost."); // new
 static const u8 sMoveFourLineDescription_JumpKick[] = _("The user jumps up\nhigh, then kicks.\nHurts on miss.\nStriker boost."); // new
@@ -3802,7 +3802,7 @@ static const u8 sMoveFourLineDescription_HornAttack[] = _("The foe is jabbed\nwi
 static const u8 sMoveFourLineDescription_FuryAttack[] = _("The foe is jabbed\nrepeatedly with a\nhorn or beak two to\nfive times.");
 static const u8 sMoveFourLineDescription_HornDrill[] = _("Ignores the target's\nability, and also\nhis stat changes.\nHigh crit."); // new
 static const u8 sMoveFourLineDescription_Tackle[] = _("A physical attack\nin which the user\ncharges, full body,\ninto the foe.");
-static const u8 sMoveFourLineDescription_BodySlam[] = _("The user drops its\nfull body on the\nfoe. 30%\nparalyze chance."); // new
+static const u8 sMoveFourLineDescription_BodySlam[] = _("The user drops its\nfull body on the\nfoe. 30% paralyze\nchance."); // new
 #if B_BINDING_TURNS >= GEN_5
 static const u8 sMoveFourLineDescription_Wrap[] = _("A long body or\nvines are used to\nwrap the foe for\nfour or five turns.");
 #else

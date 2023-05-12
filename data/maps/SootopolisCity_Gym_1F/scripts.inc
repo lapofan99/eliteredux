@@ -387,4 +387,4 @@ SootopolisCity_Gym_1F_Text_JuanChooseFormat:
 
 SootopolisCity_Gym_1F_Text_JuanAllowLegends:
 	.string "And would you allow me to dance with\n"
-	.string "Legendary Pokémon?$"
+	.string "even stronger Legendary Pokémon?$"
