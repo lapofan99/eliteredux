@@ -211,3 +211,31 @@ Route114_Text_LanettesHouse: @ 81F2910
 	.string "Lanette's House$"
 
 `
+script Route114_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_LENNY) &&
+		   defeated(TRAINER_LUCAS_1) &&
+		   defeated(TRAINER_SHANE)  &&
+		   defeated(TRAINER_NANCY)  &&
+		   defeated(TRAINER_STEVE_1)  &&
+		   defeated(TRAINER_BERNIE_1)  &&
+		   defeated(TRAINER_CLAUDE)  &&
+		   defeated(TRAINER_NOLAN)  &&
+		   defeated(TRAINER_TYRA_AND_IVY)  &&
+		   defeated(TRAINER_ANGELINA)  &&
+		   defeated(TRAINER_CHARLOTTE)  &&
+		   defeated(TRAINER_KAI)){
+			msgbox(format("You are now worthy to catch Raikou, Entei and Suicune here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Raikou, Entei or Suicune. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}

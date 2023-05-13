@@ -208,3 +208,95 @@ Route114_Text_FossilManiacsHouseSign: @ 81F28DB
 
 Route114_Text_LanettesHouse: @ 81F2910
 	.string "Lanette's House$"
+
+Route114_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route114_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_LENNY
+	goto_if 1, Route114_EventScript_LegendaryNPC_8
+Route114_EventScript_LegendaryNPC_6:
+	msgbox Route114_EventScript_LegendaryNPC_Text_2
+Route114_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route114_EventScript_LegendaryNPC_2:
+	msgbox Route114_EventScript_LegendaryNPC_Text_0
+	goto Route114_EventScript_LegendaryNPC_1
+
+Route114_EventScript_LegendaryNPC_5:
+	msgbox Route114_EventScript_LegendaryNPC_Text_1
+	goto Route114_EventScript_LegendaryNPC_1
+
+Route114_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_SHANE
+	goto_if 1, Route114_EventScript_LegendaryNPC_12
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_LUCAS_1
+	goto_if 1, Route114_EventScript_LegendaryNPC_7
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_STEVE_1
+	goto_if 1, Route114_EventScript_LegendaryNPC_16
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_NANCY
+	goto_if 1, Route114_EventScript_LegendaryNPC_11
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_CLAUDE
+	goto_if 1, Route114_EventScript_LegendaryNPC_20
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_BERNIE_1
+	goto_if 1, Route114_EventScript_LegendaryNPC_15
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_TYRA_AND_IVY
+	goto_if 1, Route114_EventScript_LegendaryNPC_24
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_20:
+	checktrainerflag TRAINER_NOLAN
+	goto_if 1, Route114_EventScript_LegendaryNPC_19
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_CHARLOTTE
+	goto_if 1, Route114_EventScript_LegendaryNPC_27
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_24:
+	checktrainerflag TRAINER_ANGELINA
+	goto_if 1, Route114_EventScript_LegendaryNPC_23
+	goto Route114_EventScript_LegendaryNPC_6
+
+Route114_EventScript_LegendaryNPC_27:
+	checktrainerflag TRAINER_KAI
+	goto_if 1, Route114_EventScript_LegendaryNPC_5
+	goto Route114_EventScript_LegendaryNPC_6
+
+
+Route114_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route114_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Raikou,\n"
+	.string "Entei and Suicune here. Just use your\l"
+	.string "DexNav, they will now appear.$"
+
+Route114_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch Raikou,\n"
+	.string "Entei or Suicune. Beat all trainers here\l"
+	.string "first.$"

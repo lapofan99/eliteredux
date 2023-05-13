@@ -1716,6 +1716,26 @@
                 "species": "SPECIES_DONPHAN"
               }
             ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_RAIKOU"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_ENTEI"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_SUICUNE"
+              }
+            ]
           }
         },
         {
@@ -3843,7 +3863,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_DRIFBLIM"
+                "species": "SPECIES_DRIFLOON"
               },
               {
                 "min_level": 4,
@@ -3868,7 +3888,7 @@
               {
                 "min_level": 4,
                 "max_level": 4,
-                "species": "SPECIES_GRIMER"
+                "species": "SPECIES_GRIMER_ALOLAN"
               },
               {
                 "min_level": 4,
@@ -3883,7 +3903,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_GRIMER_ALOLAN"
+                "species": "SPECIES_GRIMER"
               }
             ]
           },
