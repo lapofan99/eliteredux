@@ -241,3 +241,85 @@ Route121_Nurse_Text_AllBetter:
 Route121_Nurse_Text_GoodLuck:
 	.string "Okay then!\n"
 	.string "Good luck on your journey!$"
+
+Route121_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route121_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_VANESSA
+	goto_if 1, Route121_EventScript_LegendaryNPC_8
+Route121_EventScript_LegendaryNPC_6:
+	msgbox Route121_EventScript_LegendaryNPC_Text_2
+Route121_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route121_EventScript_LegendaryNPC_2:
+	msgbox Route121_EventScript_LegendaryNPC_Text_0
+	goto Route121_EventScript_LegendaryNPC_1
+
+Route121_EventScript_LegendaryNPC_5:
+	msgbox Route121_EventScript_LegendaryNPC_Text_1
+	goto Route121_EventScript_LegendaryNPC_1
+
+Route121_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_TAMMY
+	goto_if 1, Route121_EventScript_LegendaryNPC_12
+	goto Route121_EventScript_LegendaryNPC_6
+
+Route121_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_WALTER_1
+	goto_if 1, Route121_EventScript_LegendaryNPC_7
+	goto Route121_EventScript_LegendaryNPC_6
+
+Route121_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_JESSICA_1
+	goto_if 1, Route121_EventScript_LegendaryNPC_16
+	goto Route121_EventScript_LegendaryNPC_6
+
+Route121_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_KATE_AND_JOY
+	goto_if 1, Route121_EventScript_LegendaryNPC_11
+	goto Route121_EventScript_LegendaryNPC_6
+
+Route121_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_MYLES
+	goto_if 1, Route121_EventScript_LegendaryNPC_20
+	goto Route121_EventScript_LegendaryNPC_6
+
+Route121_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_CALE
+	goto_if 1, Route121_EventScript_LegendaryNPC_15
+	goto Route121_EventScript_LegendaryNPC_6
+
+Route121_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_MARCEL
+	goto_if 1, Route121_EventScript_LegendaryNPC_23
+	goto Route121_EventScript_LegendaryNPC_6
+
+Route121_EventScript_LegendaryNPC_20:
+	checktrainerflag TRAINER_PAT
+	goto_if 1, Route121_EventScript_LegendaryNPC_19
+	goto Route121_EventScript_LegendaryNPC_6
+
+Route121_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_CRISTIN_1
+	goto_if 1, Route121_EventScript_LegendaryNPC_5
+	goto Route121_EventScript_LegendaryNPC_6
+
+
+Route121_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route121_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Virizion,\n"
+	.string "Cobalion and Terrakion here. Just use\l"
+	.string "your DexNav, they will now appear.$"
+
+Route121_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch\n"
+	.string "Virizion, Cobalion or Terrakion. Beat all\l"
+	.string "trainers here first.$"

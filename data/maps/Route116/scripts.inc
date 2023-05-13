@@ -491,3 +491,85 @@ Route116_Text_TrainerTipsBagHasPockets: @ 81F38D4
 	.string "placed in the appropriate Pockets.\p"
 	.string "No Trainer can afford to be without\n"
 	.string "a Bag of their own.$"
+
+Route116_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route116_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_JOEY
+	goto_if 1, Route116_EventScript_LegendaryNPC_8
+Route116_EventScript_LegendaryNPC_6:
+	msgbox Route116_EventScript_LegendaryNPC_Text_2
+Route116_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route116_EventScript_LegendaryNPC_2:
+	msgbox Route116_EventScript_LegendaryNPC_Text_0
+	goto Route116_EventScript_LegendaryNPC_1
+
+Route116_EventScript_LegendaryNPC_5:
+	msgbox Route116_EventScript_LegendaryNPC_Text_1
+	goto Route116_EventScript_LegendaryNPC_1
+
+Route116_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_JERRY_1
+	goto_if 1, Route116_EventScript_LegendaryNPC_12
+	goto Route116_EventScript_LegendaryNPC_6
+
+Route116_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_JOSE
+	goto_if 1, Route116_EventScript_LegendaryNPC_7
+	goto Route116_EventScript_LegendaryNPC_6
+
+Route116_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_JANICE
+	goto_if 1, Route116_EventScript_LegendaryNPC_16
+	goto Route116_EventScript_LegendaryNPC_6
+
+Route116_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_CLARK
+	goto_if 1, Route116_EventScript_LegendaryNPC_11
+	goto Route116_EventScript_LegendaryNPC_6
+
+Route116_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_SARAH
+	goto_if 1, Route116_EventScript_LegendaryNPC_20
+	goto Route116_EventScript_LegendaryNPC_6
+
+Route116_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_KAREN_1
+	goto_if 1, Route116_EventScript_LegendaryNPC_15
+	goto Route116_EventScript_LegendaryNPC_6
+
+Route116_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_DEVAN
+	goto_if 1, Route116_EventScript_LegendaryNPC_23
+	goto Route116_EventScript_LegendaryNPC_6
+
+Route116_EventScript_LegendaryNPC_20:
+	checktrainerflag TRAINER_DAWSON
+	goto_if 1, Route116_EventScript_LegendaryNPC_19
+	goto Route116_EventScript_LegendaryNPC_6
+
+Route116_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_JOHNSON
+	goto_if 1, Route116_EventScript_LegendaryNPC_5
+	goto Route116_EventScript_LegendaryNPC_6
+
+
+Route116_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route116_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Dialga,\n"
+	.string "Palkia and Giratina here. Just use your\l"
+	.string "DexNav, they will now appear.$"
+
+Route116_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch Dialga,\n"
+	.string "Palkia or Giratina. Beat all trainers\l"
+	.string "here first.$"

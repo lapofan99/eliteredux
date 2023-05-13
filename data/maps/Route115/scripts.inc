@@ -150,3 +150,85 @@ Route115_Text_RouteSignRustboro: @ 81F2BC9
 Route115_Text_MeteorFallsSign: @ 81F2BE3
 	.string "Meteor Falls\n"
 	.string "FALLARBOR TOWN THROUGH HERE$"
+
+Route115_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route115_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_TIMOTHY_1
+	goto_if 1, Route115_EventScript_LegendaryNPC_8
+Route115_EventScript_LegendaryNPC_6:
+	msgbox Route115_EventScript_LegendaryNPC_Text_2
+Route115_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route115_EventScript_LegendaryNPC_2:
+	msgbox Route115_EventScript_LegendaryNPC_Text_0
+	goto Route115_EventScript_LegendaryNPC_1
+
+Route115_EventScript_LegendaryNPC_5:
+	msgbox Route115_EventScript_LegendaryNPC_Text_1
+	goto Route115_EventScript_LegendaryNPC_1
+
+Route115_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_NOB_1
+	goto_if 1, Route115_EventScript_LegendaryNPC_12
+	goto Route115_EventScript_LegendaryNPC_6
+
+Route115_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_KOICHI
+	goto_if 1, Route115_EventScript_LegendaryNPC_7
+	goto Route115_EventScript_LegendaryNPC_6
+
+Route115_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_HECTOR
+	goto_if 1, Route115_EventScript_LegendaryNPC_16
+	goto Route115_EventScript_LegendaryNPC_6
+
+Route115_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_CYNDY_1
+	goto_if 1, Route115_EventScript_LegendaryNPC_11
+	goto Route115_EventScript_LegendaryNPC_6
+
+Route115_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_JAIDEN
+	goto_if 1, Route115_EventScript_LegendaryNPC_20
+	goto Route115_EventScript_LegendaryNPC_6
+
+Route115_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_KYRA
+	goto_if 1, Route115_EventScript_LegendaryNPC_15
+	goto Route115_EventScript_LegendaryNPC_6
+
+Route115_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_HELENE
+	goto_if 1, Route115_EventScript_LegendaryNPC_23
+	goto Route115_EventScript_LegendaryNPC_6
+
+Route115_EventScript_LegendaryNPC_20:
+	checktrainerflag TRAINER_ALIX
+	goto_if 1, Route115_EventScript_LegendaryNPC_19
+	goto Route115_EventScript_LegendaryNPC_6
+
+Route115_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_MARLENE
+	goto_if 1, Route115_EventScript_LegendaryNPC_5
+	goto Route115_EventScript_LegendaryNPC_6
+
+
+Route115_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route115_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Azelf,\n"
+	.string "Mesprit and Uxie here. Just use your\l"
+	.string "DexNav, they will now appear.$"
+
+Route115_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch Azelf,\n"
+	.string "Mesprit or Uxie. Beat all trainers here\l"
+	.string "first.$"

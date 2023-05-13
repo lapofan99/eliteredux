@@ -621,3 +621,120 @@ Route119_Text_TrainerTipsDecoration: @ 81F5339
 	.string "Pick your favorite items and create\n"
 	.string "your very own Secret Base exactly the\l"
 	.string "way you want.$"
+
+Route119_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route119_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_BRENT
+	goto_if 1, Route119_EventScript_LegendaryNPC_8
+Route119_EventScript_LegendaryNPC_6:
+	msgbox Route119_EventScript_LegendaryNPC_Text_2
+Route119_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route119_EventScript_LegendaryNPC_2:
+	msgbox Route119_EventScript_LegendaryNPC_Text_0
+	goto Route119_EventScript_LegendaryNPC_1
+
+Route119_EventScript_LegendaryNPC_5:
+	msgbox Route119_EventScript_LegendaryNPC_Text_1
+	goto Route119_EventScript_LegendaryNPC_1
+
+Route119_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_TAYLOR
+	goto_if 1, Route119_EventScript_LegendaryNPC_12
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_DONALD
+	goto_if 1, Route119_EventScript_LegendaryNPC_7
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_GREG
+	goto_if 1, Route119_EventScript_LegendaryNPC_16
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_DOUG
+	goto_if 1, Route119_EventScript_LegendaryNPC_11
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_JACKSON_1
+	goto_if 1, Route119_EventScript_LegendaryNPC_20
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_KENT
+	goto_if 1, Route119_EventScript_LegendaryNPC_15
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_HUGH
+	goto_if 1, Route119_EventScript_LegendaryNPC_24
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_20:
+	checktrainerflag TRAINER_CATHERINE_1
+	goto_if 1, Route119_EventScript_LegendaryNPC_19
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_YASU
+	goto_if 1, Route119_EventScript_LegendaryNPC_28
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_24:
+	checktrainerflag TRAINER_PHIL
+	goto_if 1, Route119_EventScript_LegendaryNPC_23
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_27:
+	checktrainerflag TRAINER_HIDEO
+	goto_if 1, Route119_EventScript_LegendaryNPC_32
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_28:
+	checktrainerflag TRAINER_TAKASHI
+	goto_if 1, Route119_EventScript_LegendaryNPC_27
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_31:
+	checktrainerflag TRAINER_FABIAN
+	goto_if 1, Route119_EventScript_LegendaryNPC_36
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_32:
+	checktrainerflag TRAINER_CHRIS
+	goto_if 1, Route119_EventScript_LegendaryNPC_31
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_35:
+	checktrainerflag TRAINER_RACHEL
+	goto_if 1, Route119_EventScript_LegendaryNPC_5
+	goto Route119_EventScript_LegendaryNPC_6
+
+Route119_EventScript_LegendaryNPC_36:
+	checktrainerflag TRAINER_DAYTON
+	goto_if 1, Route119_EventScript_LegendaryNPC_35
+	goto Route119_EventScript_LegendaryNPC_6
+
+
+Route119_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route119_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Arceus,\n"
+	.string "Shaymin and Victini here. Just use your\l"
+	.string "DexNav, they will now appear.$"
+
+Route119_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch Arceus,\n"
+	.string "Shaymin or Victini. Beat all trainers\l"
+	.string "here first.$"

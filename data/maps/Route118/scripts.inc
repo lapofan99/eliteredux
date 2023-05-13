@@ -404,3 +404,70 @@ Route118_Text_RouteSignMauville: @ 81F43F4
 Route118_Text_RouteSign119: @ 81F440E
 	.string "Route 118\n"
 	.string "{UP_ARROW} Route 119$"
+
+Route118_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route118_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_ROSE_1
+	goto_if 1, Route118_EventScript_LegendaryNPC_8
+Route118_EventScript_LegendaryNPC_6:
+	msgbox Route118_EventScript_LegendaryNPC_Text_2
+Route118_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route118_EventScript_LegendaryNPC_2:
+	msgbox Route118_EventScript_LegendaryNPC_Text_0
+	goto Route118_EventScript_LegendaryNPC_1
+
+Route118_EventScript_LegendaryNPC_5:
+	msgbox Route118_EventScript_LegendaryNPC_Text_1
+	goto Route118_EventScript_LegendaryNPC_1
+
+Route118_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_WADE
+	goto_if 1, Route118_EventScript_LegendaryNPC_12
+	goto Route118_EventScript_LegendaryNPC_6
+
+Route118_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_BARNY
+	goto_if 1, Route118_EventScript_LegendaryNPC_7
+	goto Route118_EventScript_LegendaryNPC_6
+
+Route118_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_PERRY
+	goto_if 1, Route118_EventScript_LegendaryNPC_16
+	goto Route118_EventScript_LegendaryNPC_6
+
+Route118_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_DALTON_1
+	goto_if 1, Route118_EventScript_LegendaryNPC_11
+	goto Route118_EventScript_LegendaryNPC_6
+
+Route118_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_DEANDRE
+	goto_if 1, Route118_EventScript_LegendaryNPC_5
+	goto Route118_EventScript_LegendaryNPC_6
+
+Route118_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_CHESTER
+	goto_if 1, Route118_EventScript_LegendaryNPC_15
+	goto Route118_EventScript_LegendaryNPC_6
+
+
+Route118_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route118_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Phione,\n"
+	.string "Manaphy and Celebi here. Just use your\l"
+	.string "DexNav, they will now appear.$"
+
+Route118_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch Phione,\n"
+	.string "Manaphy or Celebi. Beat all trainers\l"
+	.string "here first.$"

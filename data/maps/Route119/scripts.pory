@@ -623,3 +623,36 @@ Route119_Text_TrainerTipsDecoration: @ 81F5339
 	.string "your very own Secret Base exactly the\l"
 	.string "way you want.$"
 `
+script Route119_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_BRENT)  &&
+		   defeated(TRAINER_DONALD)  &&
+		   defeated(TRAINER_TAYLOR)  &&
+		   defeated(TRAINER_DOUG)  &&
+		   defeated(TRAINER_GREG)  &&
+		   defeated(TRAINER_KENT)  &&
+		   defeated(TRAINER_JACKSON_1)  &&
+		   defeated(TRAINER_CATHERINE_1)  &&
+		   defeated(TRAINER_HUGH)  &&
+		   defeated(TRAINER_PHIL)  &&
+		   defeated(TRAINER_YASU)  &&
+		   defeated(TRAINER_TAKASHI)  &&
+		   defeated(TRAINER_HIDEO)  &&
+		   defeated(TRAINER_CHRIS)  &&
+		   defeated(TRAINER_FABIAN)  &&
+		   defeated(TRAINER_DAYTON)  &&
+		   defeated(TRAINER_RACHEL)){
+			msgbox(format("You are now worthy to catch Arceus, Shaymin and Victini here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Arceus, Shaymin or Victini. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}

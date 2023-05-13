@@ -203,3 +203,34 @@ Route123_Text_BerryMastersHouse: @ 81F6557
 	.string "Berry Master's House$"
 
 `
+script Route123_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_WENDY)  &&
+		   defeated(TRAINER_BRAXTON)  &&
+		   defeated(TRAINER_VIOLET)  &&
+		   defeated(TRAINER_CAMERON_1)  &&
+		   defeated(TRAINER_JACKI_1)  &&
+		   defeated(TRAINER_MIU_AND_YUKI)  &&
+		   defeated(TRAINER_KINDRA)  &&
+		   defeated(TRAINER_FREDRICK)  &&
+		   defeated(TRAINER_ALBERTO)  &&
+		   defeated(TRAINER_ED)  &&
+		   defeated(TRAINER_KAYLEY)  &&
+		   defeated(TRAINER_JONAS)  &&
+		   defeated(TRAINER_JAZMYN)  &&
+		   defeated(TRAINER_DAVIS)  &&
+		   defeated(TRAINER_FERNANDO_1)){
+			msgbox(format("You are now worthy to catch Reshiram, Zekrom and Kyurem here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Reshiram, Zekrom or Kyurem. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}

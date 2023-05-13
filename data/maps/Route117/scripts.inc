@@ -211,3 +211,80 @@ Route117_Text_RouteSignMauville: @ 81F3D74
 Route117_Text_DayCareSign: @ 81F3D8E
 	.string "Pokémon Day Care\n"
 	.string "“Let us raise your Pokémon.”$"
+
+Route117_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route117_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_ISAAC_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_8
+Route117_EventScript_LegendaryNPC_6:
+	msgbox Route117_EventScript_LegendaryNPC_Text_2
+Route117_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route117_EventScript_LegendaryNPC_2:
+	msgbox Route117_EventScript_LegendaryNPC_Text_0
+	goto Route117_EventScript_LegendaryNPC_1
+
+Route117_EventScript_LegendaryNPC_5:
+	msgbox Route117_EventScript_LegendaryNPC_Text_1
+	goto Route117_EventScript_LegendaryNPC_1
+
+Route117_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_DYLAN_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_12
+	goto Route117_EventScript_LegendaryNPC_6
+
+Route117_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_LYDIA_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_7
+	goto Route117_EventScript_LegendaryNPC_6
+
+Route117_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_DEREK
+	goto_if 1, Route117_EventScript_LegendaryNPC_16
+	goto Route117_EventScript_LegendaryNPC_6
+
+Route117_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_MARIA_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_11
+	goto Route117_EventScript_LegendaryNPC_6
+
+Route117_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_MELINA
+	goto_if 1, Route117_EventScript_LegendaryNPC_20
+	goto Route117_EventScript_LegendaryNPC_6
+
+Route117_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_ANNA_AND_MEG_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_15
+	goto Route117_EventScript_LegendaryNPC_6
+
+Route117_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_AISHA
+	goto_if 1, Route117_EventScript_LegendaryNPC_5
+	goto Route117_EventScript_LegendaryNPC_6
+
+Route117_EventScript_LegendaryNPC_20:
+	checktrainerflag TRAINER_BRANDI
+	goto_if 1, Route117_EventScript_LegendaryNPC_19
+	goto Route117_EventScript_LegendaryNPC_6
+
+
+Route117_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route117_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Darkrai,\n"
+	.string "Cresselia and Keldeo here. Just use\l"
+	.string "your DexNav, they will now appear.$"
+
+Route117_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch\n"
+	.string "Darkrai, Cresselia or Keldeo. Beat all\l"
+	.string "trainers here first.$"

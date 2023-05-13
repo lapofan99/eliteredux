@@ -200,3 +200,110 @@ Route123_Text_RouteSignMtPyre: @ 81F6529
 
 Route123_Text_BerryMastersHouse: @ 81F6557
 	.string "Berry Master's House$"
+
+Route123_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route123_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_WENDY
+	goto_if 1, Route123_EventScript_LegendaryNPC_8
+Route123_EventScript_LegendaryNPC_6:
+	msgbox Route123_EventScript_LegendaryNPC_Text_2
+Route123_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route123_EventScript_LegendaryNPC_2:
+	msgbox Route123_EventScript_LegendaryNPC_Text_0
+	goto Route123_EventScript_LegendaryNPC_1
+
+Route123_EventScript_LegendaryNPC_5:
+	msgbox Route123_EventScript_LegendaryNPC_Text_1
+	goto Route123_EventScript_LegendaryNPC_1
+
+Route123_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_VIOLET
+	goto_if 1, Route123_EventScript_LegendaryNPC_12
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_BRAXTON
+	goto_if 1, Route123_EventScript_LegendaryNPC_7
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_JACKI_1
+	goto_if 1, Route123_EventScript_LegendaryNPC_16
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_CAMERON_1
+	goto_if 1, Route123_EventScript_LegendaryNPC_11
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_KINDRA
+	goto_if 1, Route123_EventScript_LegendaryNPC_20
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_MIU_AND_YUKI
+	goto_if 1, Route123_EventScript_LegendaryNPC_15
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_ALBERTO
+	goto_if 1, Route123_EventScript_LegendaryNPC_24
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_20:
+	checktrainerflag TRAINER_FREDRICK
+	goto_if 1, Route123_EventScript_LegendaryNPC_19
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_KAYLEY
+	goto_if 1, Route123_EventScript_LegendaryNPC_28
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_24:
+	checktrainerflag TRAINER_ED
+	goto_if 1, Route123_EventScript_LegendaryNPC_23
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_27:
+	checktrainerflag TRAINER_JAZMYN
+	goto_if 1, Route123_EventScript_LegendaryNPC_32
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_28:
+	checktrainerflag TRAINER_JONAS
+	goto_if 1, Route123_EventScript_LegendaryNPC_27
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_31:
+	checktrainerflag TRAINER_FERNANDO_1
+	goto_if 1, Route123_EventScript_LegendaryNPC_5
+	goto Route123_EventScript_LegendaryNPC_6
+
+Route123_EventScript_LegendaryNPC_32:
+	checktrainerflag TRAINER_DAVIS
+	goto_if 1, Route123_EventScript_LegendaryNPC_31
+	goto Route123_EventScript_LegendaryNPC_6
+
+
+Route123_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route123_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Reshiram,\n"
+	.string "Zekrom and Kyurem here. Just use your\l"
+	.string "DexNav, they will now appear.$"
+
+Route123_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch\n"
+	.string "Reshiram, Zekrom or Kyurem. Beat all\l"
+	.string "trainers here first.$"

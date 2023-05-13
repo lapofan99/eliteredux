@@ -457,3 +457,100 @@ Route120_Text_RouteSignFortree: @ 81F5DCB
 Route120_Text_RouteSign121: @ 81F5DE4
 	.string "{RIGHT_ARROW} Route 121\n"
 	.string "{LEFT_ARROW} Route 120$"
+
+Route120_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route120_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_COLIN
+	goto_if 1, Route120_EventScript_LegendaryNPC_8
+Route120_EventScript_LegendaryNPC_6:
+	msgbox Route120_EventScript_LegendaryNPC_Text_2
+Route120_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route120_EventScript_LegendaryNPC_2:
+	msgbox Route120_EventScript_LegendaryNPC_Text_0
+	goto Route120_EventScript_LegendaryNPC_1
+
+Route120_EventScript_LegendaryNPC_5:
+	msgbox Route120_EventScript_LegendaryNPC_Text_1
+	goto Route120_EventScript_LegendaryNPC_1
+
+Route120_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_LORENZO
+	goto_if 1, Route120_EventScript_LegendaryNPC_12
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_ROBERT_1
+	goto_if 1, Route120_EventScript_LegendaryNPC_7
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_JEFFREY_1
+	goto_if 1, Route120_EventScript_LegendaryNPC_16
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_JENNA
+	goto_if 1, Route120_EventScript_LegendaryNPC_11
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_CHIP
+	goto_if 1, Route120_EventScript_LegendaryNPC_20
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_JENNIFER
+	goto_if 1, Route120_EventScript_LegendaryNPC_15
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_ANGELICA
+	goto_if 1, Route120_EventScript_LegendaryNPC_24
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_20:
+	checktrainerflag TRAINER_CLARISSA
+	goto_if 1, Route120_EventScript_LegendaryNPC_19
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_RILEY
+	goto_if 1, Route120_EventScript_LegendaryNPC_28
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_24:
+	checktrainerflag TRAINER_KEIGO
+	goto_if 1, Route120_EventScript_LegendaryNPC_23
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_27:
+	checktrainerflag TRAINER_CALLIE
+	goto_if 1, Route120_EventScript_LegendaryNPC_5
+	goto Route120_EventScript_LegendaryNPC_6
+
+Route120_EventScript_LegendaryNPC_28:
+	checktrainerflag TRAINER_LEONEL
+	goto_if 1, Route120_EventScript_LegendaryNPC_27
+	goto Route120_EventScript_LegendaryNPC_6
+
+
+Route120_EventScript_LegendaryNPC_Text_0:
+	.string "You can find legendary Pokémon on this\n"
+	.string "route. But you have to beat all\l"
+	.string "trainers in this place and become the\l"
+	.string "Champion first. Talk to me again then.$"
+
+Route120_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy to catch Thundurus,\n"
+	.string "Tornadus and Landorus here. Just use\l"
+	.string "your DexNav, they will now appear.$"
+
+Route120_EventScript_LegendaryNPC_Text_2:
+	.string "You are not worthy yet to catch\n"
+	.string "Thundurus, Tornadus or Landorus. Beat\l"
+	.string "all trainers here first.$"
