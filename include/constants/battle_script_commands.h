@@ -210,6 +210,7 @@
 #define VARIOUS_TRY_END_NEUTRALIZING_GAS        137
 #define VARIOUS_TRY_ACTIVATE_RAMPAGE            138
 #define VARIOUS_TRY_ACTIVATE_SOUL_EATER         139
+#define VARIOUS_SET_BEAK_BLAST                  140
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

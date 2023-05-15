@@ -3,7 +3,7 @@
 #include "option_plus_menu.h"
 #include "main.h"
 #include "menu.h"
-#include "scanline_effect.h"
+#include "scanline_effect.h" 
 #include "palette.h"
 #include "sprite.h"
 #include "task.h"

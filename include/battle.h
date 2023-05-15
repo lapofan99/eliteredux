@@ -160,6 +160,7 @@ struct ProtectStruct
     u32 specialDmg;
     u8 physicalBattlerId;
     u8 specialBattlerId;
+    u32 beakBlastCharge:1;
 };
 
 struct SpecialStatus

@@ -444,5 +444,7 @@ extern const u8 BattleScript_TwistedDimensionActivated[];
 extern const u8 BattleScript_NorthWindActivated[];
 extern const u8 BattleScript_GripPincerActivated[];
 extern const u8 BattleScript_PrintDamageDoneString[];
+extern const u8 BattleScript_BeakBlastSetUp[];
+extern const u8 BattleScript_BeakBlastBurn[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

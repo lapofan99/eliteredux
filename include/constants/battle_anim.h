@@ -533,6 +533,7 @@
 #define B_ANIM_STRONG_WINDS             30
 #define B_ANIM_PRIMAL_REVERSION         31
 #define B_ANIM_ITEM_HEAL                32 // Leftovers and berries
+#define B_ANIM_BEAK_BLAST_SETUP         33
 
 // special animations table (gBattleAnims_Special)
 #define B_ANIM_LVL_UP                   0
