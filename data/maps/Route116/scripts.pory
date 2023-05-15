@@ -519,3 +519,22 @@ script Route116_EventScript_LegendaryNPC{
     release
     end
 }
+
+script Route116_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_JOEY) &&
+	   defeated(TRAINER_JOEY) &&
+	   defeated(TRAINER_JOEY)){
+		//For when you defeat every trainer
+		msgbox(format("Take this Pokémon from Galar. Take care!"))
+		givemon(SPECIES_DARUMAKA_GALARIAN, 10, ITEM_ICE_STONE)
+		msgbox(format("{PLAYER} got a Rattata as a gift for defeating every trainer!."))
+	}
+	else{
+		//Before defeating every Trainer on the route
+		msgbox(format("If you can beat all trainers here, I can give you a special Pokémon from the Galar region."))
+	}
+    release
+    end
+}

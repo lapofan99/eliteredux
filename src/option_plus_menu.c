@@ -246,7 +246,7 @@ static const u8 sText_AutoRun[]          = _("Auto Run");
 static const u8 sText_PermanentRepel[]   = _("Permanent Repel");
 static const u8 sText_DamageDone[]       = _("Display Damage");
 static const u8 sText_AskForNickname[]   = _("Ask for Nickname");
-static const u8 sText_EnableEvs[]        = _("Enable Evs");
+static const u8 sText_EnableEvs[]        = _("Enable EVs");
 static const u8 sText_PlayerAI[]         = _("Player AI");
 static const u8 sText_ShinyRate[]        = _("Shiny Rate");
 static const u8 sText_IndividualColors[] = _("Individual Colors");
@@ -368,8 +368,8 @@ static const u8 sText_Desc_Display_Damage_Off[]    = _("The damage dealt will no
 static const u8 sText_Desc_Ask_For_Nickname_On[]   = _("Each time you catch a Pokémon it will\nask you if you want to nickname it.");
 static const u8 sText_Desc_Ask_For_Nickname_Off[]  = _("Each time you catch a Pokémon it will\nnot ask you if you want to nickname it.");
 
-static const u8 sText_Desc_Enable_Evs[]            = _("Effort values will be enabled while\ncalculating the stats.");
-static const u8 sText_Desc_Disable_Evs[]           = _("Effort values will be disabled while\ncalculating the stats.");
+static const u8 sText_Desc_Enable_Evs[]            = _("EVs will be enabled while calculating\nthe stats for the player and AI.");
+static const u8 sText_Desc_Disable_Evs[]           = _("EVs will be disabled while calculating\nthe stats for the player and AI.");
 
 static const u8 sText_Desc_Player_AI_Enabled[]     = _("The AI will do trainer battles\ninstead of the player.");
 static const u8 sText_Desc_Player_AI_Disabled[]    = _("The Player will play every battle.");

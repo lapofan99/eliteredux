@@ -558,6 +558,34 @@ Route116_EventScript_LegendaryNPC_23:
 	goto Route116_EventScript_LegendaryNPC_6
 
 
+Route116_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_JOEY
+	goto_if 1, Route116_EventScript_Gen8_NPC_5
+Route116_EventScript_Gen8_NPC_3:
+	msgbox Route116_EventScript_Gen8_NPC_Text_2
+Route116_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route116_EventScript_Gen8_NPC_2:
+	msgbox Route116_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_DARUMAKA_GALARIAN, 10, ITEM_ICE_STONE
+	msgbox Route116_EventScript_Gen8_NPC_Text_1
+	goto Route116_EventScript_Gen8_NPC_1
+
+Route116_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_JOEY
+	goto_if 1, Route116_EventScript_Gen8_NPC_2
+	goto Route116_EventScript_Gen8_NPC_3
+
+Route116_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_JOEY
+	goto_if 1, Route116_EventScript_Gen8_NPC_4
+	goto Route116_EventScript_Gen8_NPC_3
+
+
 Route116_EventScript_LegendaryNPC_Text_0:
 	.string "You can find legendary Pokémon on this\n"
 	.string "route. But you have to beat all\l"
@@ -573,3 +601,16 @@ Route116_EventScript_LegendaryNPC_Text_2:
 	.string "You are not worthy yet to catch Dialga,\n"
 	.string "Palkia or Giratina. Beat all trainers\l"
 	.string "here first.$"
+
+Route116_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. Take\n"
+	.string "care!$"
+
+Route116_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Rattata as a gift for\n"
+	.string "defeating every trainer!.$"
+
+Route116_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers here, I can\n"
+	.string "give you a special Pokémon from the\l"
+	.string "Galar region.$"

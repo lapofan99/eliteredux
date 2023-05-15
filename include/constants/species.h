@@ -2489,25 +2489,6 @@
 
 #endif  // GUARD_CONSTANTS_SPECIES_H
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*  dex ignore
 // Galarian Forms
 #define SPECIES_MEOWTH_GALARIAN              FORMS_START + 69
 #define SPECIES_PONYTA_GALARIAN              FORMS_START + 70
@@ -2664,4 +2645,3 @@
 #define SPECIES_REGIELEKI 894
 #define SPECIES_REGIDRAGO 895
 #define SPECIES_CALYREX 898
-*/
