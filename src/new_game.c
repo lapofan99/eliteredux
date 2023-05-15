@@ -95,6 +95,12 @@ static void InitPlayerTrainerId(void)
 static void SetDefaultOptions(void)
 {
     gSaveBlock2Ptr->optionsTextSpeed = OPTIONS_TEXT_SPEED_FAST;
+    gSaveBlock2Ptr->enableEvs = TRUE;
+    gSaveBlock2Ptr->askForNickname = TRUE;
+    gSaveBlock2Ptr->individualColors = FALSE;
+    gSaveBlock2Ptr->autoRun = TRUE;
+    gSaveBlock2Ptr->damageDone = TRUE;
+    gSaveBlock2Ptr->shinyrate = 0; //Normal Shiny Rate
     gSaveBlock2Ptr->optionsWindowFrameType = 0;
     gSaveBlock2Ptr->optionsSound = OPTIONS_SOUND_STEREO;
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
