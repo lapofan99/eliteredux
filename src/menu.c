@@ -489,7 +489,7 @@ u8 GetPlayerTextSpeedDelay(void)
     return sTextSpeedFrameDelays[speed];
 }
 
-u8 sub_81979C4(u8 a1)
+u8 AddStartMenuWindow(u8 a1)
 {
     if (sStartMenuWindowId == WINDOW_NONE)
         sStartMenuWindowId = sub_8198AA4(0, 0x16, 1, 7, (a1 * 2) + 2, 0xF, 0x139);
