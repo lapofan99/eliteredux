@@ -5277,10 +5277,10 @@ static void CheckFocusPunch_ClearVarsBeforeTurnStarts(void)
                     BattleScriptExecute(BattleScript_FocusPunchSetUp);
                     return;
                 break;
-                case MOVE_BEAK_BLAST:
+                /*case MOVE_BEAK_BLAST:
                     BattleScriptExecute(BattleScript_BeakBlastSetUp);
                     return;
-                break;
+                break;*/
                 }
             }
         }

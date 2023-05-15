@@ -868,6 +868,16 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
         }
 
+        //Oblivious
+        if(DefSpeciesHasInnate(ABILITY_OBLIVIOUS)){
+            switch (moveEffect)
+            {
+            case EFFECT_TAUNT:
+                score -= 20;
+                break;
+            }
+        }
+
         //Volt Absorb, Motor Drive and Lighting Rod
         if((DefSpeciesHasInnate(ABILITY_VOLT_ABSORB)  || 
             DefSpeciesHasInnate(ABILITY_MOTOR_DRIVE)  || 
