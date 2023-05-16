@@ -37,6 +37,9 @@ PokeMart_No_Badges::
 	.2byte ITEM_OVAL_STONE
 	.2byte ITEM_SACHET
 	.2byte ITEM_WHIPPED_DREAM
+	.2byte ITEM_SWEET_APPLE
+	.2byte ITEM_TART_APPLE
+	.2byte ITEM_CRACKED_POT
 	.2byte ITEM_NONE
 	release
 	end

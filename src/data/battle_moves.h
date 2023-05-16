@@ -2379,7 +2379,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_FIELD_BASED,
-        .split = SPLIT_STATUS,
+        .split = SPLIT_SPECIAL,
     },
 
     [MOVE_PSYWAVE] =
@@ -10972,7 +10972,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_DRAGON_DARTS] =
     {
-        .effect = EFFECT_DOUBLE_HIT, //TODO
+        .effect = EFFECT_DOUBLE_HIT,
         .power = 50,
         .type = TYPE_DRAGON,
         .accuracy = 100,
@@ -11509,7 +11509,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .type = TYPE_FIRE,
         .accuracy = 100,
         .pp = 5,
-        .secondaryEffectChance = 100,
+        .secondaryEffectChance = 50,
         .target = MOVE_TARGET_BOTH,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,

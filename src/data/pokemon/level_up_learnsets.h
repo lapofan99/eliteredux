@@ -17925,7 +17925,7 @@ static const struct LevelUpMove sCinderaceLevelUpLearnset[] = {
     LEVEL_UP_MOVE(38, MOVE_COUNTER),
     LEVEL_UP_MOVE(46, MOVE_BOUNCE),
     LEVEL_UP_MOVE(54, MOVE_DOUBLE_EDGE),
-    LEVEL_UP_MOVE(62, MOVE_COURT_CHANGE),
+    //LEVEL_UP_MOVE(62, MOVE_COURT_CHANGE),
     LEVEL_UP_END
 };
 
@@ -18550,7 +18550,7 @@ static const struct LevelUpMove sSinisteaLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sPolteageistLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_TEATIME),
+    //LEVEL_UP_MOVE( 0, MOVE_TEATIME),
     LEVEL_UP_MOVE( 1, MOVE_STRENGTH_SAP),
     LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
     LEVEL_UP_MOVE( 1, MOVE_WITHDRAW),
@@ -20005,6 +20005,7 @@ static const struct LevelUpMove sArticunoGalarianLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sZapdosGalarianLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_DUAL_WINGBEAT), // new
     LEVEL_UP_MOVE( 1, MOVE_PECK),
     LEVEL_UP_MOVE( 1, MOVE_FOCUS_ENERGY),
     LEVEL_UP_MOVE( 5, MOVE_ROCK_SMASH),

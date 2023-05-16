@@ -527,7 +527,7 @@ script Route116_EventScript_Gen8_NPC{
 	   defeated(TRAINER_JOEY) &&
 	   defeated(TRAINER_JOEY)){
 		//For when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. Take care!"))
+		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
 		givemon(SPECIES_DARUMAKA_GALARIAN, 10, ITEM_ICE_STONE)
 		msgbox(format("{PLAYER} got a Rattata as a gift for defeating every trainer!."))
 	}
