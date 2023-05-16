@@ -14239,31 +14239,31 @@ Move_JUNGLE_HEALING::
 	goto Move_AROMATHERAPY
 
 Move_WICKED_BLOW::
-	end @to do:
+	goto Move_SUCKER_PUNCH
 
 Move_SURGING_STRIKES::
-	end @to do:
+	goto Move_LIQUIDATION
 
 Move_THUNDER_CAGE::
-	end @to do:
+	goto Move_THUNDER
 
 Move_DRAGON_ENERGY::
-	end @to do:
+	goto Move_HYPER_BEAM
 
 Move_FREEZING_GLARE::
-	end @to do:
+	goto Move_PSYSHOCK
 
 Move_FIERY_WRATH::
-	end @to do:
+	goto Move_DARK_PULSE
 
 Move_THUNDEROUS_KICK::
-	end @to do:
+	goto Move_METEOR_ASSAULT
 
 Move_GLACIAL_LANCE::
-	end @to do:
+	goto Move_ICICLE_CRASH
 
 Move_ASTRAL_BARRAGE::
-	end @to do:
+	goto Move_SHADOW_BALL
 
 Move_EERIE_SPELL::
 	end @to do:
