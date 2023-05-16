@@ -1424,13 +1424,18 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_SONICBOOM:
         //case EFFECT_MIRROR_COAT:
         case EFFECT_SKULL_BASH:
-        case EFFECT_FOCUS_PUNCH:
         case EFFECT_SUPERPOWER:
         //case EFFECT_ENDEAVOR:
         case EFFECT_LOW_KICK:
             // AI_CBM_HighRiskForDamage
             if (AI_DATA->defAbility == ABILITY_WONDER_GUARD && effectiveness < AI_EFFECTIVENESS_x2)
                 score -= 10;            
+            break;
+        case EFFECT_FOCUS_PUNCH:
+            if (gBattleMons[battlerAtk].status2 &= ~(STATUS2_SUBSTITUTE))
+                score += 5;    
+            else
+                score -= 10;    
             break;
         case EFFECT_COUNTER:
         case EFFECT_MIRROR_COAT:
@@ -4877,7 +4882,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         {
             if (IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility))
                 score += 2;
-            else if (gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
+            else if (gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION) || gBattleMons[battlerAtk].status2 &= ~(STATUS2_SUBSTITUTE))
                 score++;
         }
         break;
