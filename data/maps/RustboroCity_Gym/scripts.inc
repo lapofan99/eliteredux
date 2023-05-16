@@ -27,15 +27,6 @@ RustboroCity_Gym_EventScript_RoxanneDefeated:: @ 8212F66
 	goto RustboroCity_Gym_EventScript_GiveRockTomb
 	end
 
-RustboroCity_Gym_EventScript_GiveRockTomb:: @ 8212FA4
-	giveitem ITEM_TM39_ROCK_TOMB
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_TM39
-	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
-	release
-	end
-
 RustboroCity_Gym_EventScript_RoxanneRematch::
 	message RustboroCity_Gym_Text_RoxanneChooseFormat
 	waitmessage
@@ -499,3 +490,21 @@ RustboroCity_Gym_Text_RoxanneChooseFormat:
 RustboroCity_Gym_Text_RoxanneAllowLegends:
 	.string "And would you like me to battle with\n"
 	.string "Legendary Pokémon?$"
+
+RustboroCity_Gym_EventScript_GiveRockTomb::
+	msgbox RustboroCity_Gym_EventScript_GiveRockTomb_Text_0
+	givemon SPECIES_RATTATA, 10, ITEM_NONE
+	msgbox RustboroCity_Gym_EventScript_GiveRockTomb_Text_1
+	setflag FLAG_RECEIVED_TM39
+	msgbox RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+
+RustboroCity_Gym_EventScript_GiveRockTomb_Text_0:
+	.string "Take this Pokémon from Galar. Take\n"
+	.string "care!$"
+
+RustboroCity_Gym_EventScript_GiveRockTomb_Text_1:
+	.string "{PLAYER} got a Rattata as a gift for\n"
+	.string "defeating Roxanne!.$"
