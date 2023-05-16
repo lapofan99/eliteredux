@@ -96,6 +96,7 @@ EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
 EWRAM_DATA static bool8 sSavingComplete = FALSE;
 EWRAM_DATA static u8 sSaveInfoWindowId = 0;
+EWRAM_DATA static bool8 canSave = TRUE;
 
 // Menu action callbacks
 static bool8 StartMenuPokedexCallback(void);
@@ -314,7 +315,8 @@ static void AddStartMenuAction(u8 action)
 
 static void BuildNormalStartMenu(void)
 {
-    bool8 DisableSave = FALSE;
+    bool8 disablePC = FALSE;
+    canSave = TRUE;
 
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
     {
@@ -338,43 +340,43 @@ static void BuildNormalStartMenu(void)
     switch(gSaveBlock1Ptr->location.mapNum){
 		case MAP_NUM(EVER_GRANDE_CITY_SIDNEYS_ROOM):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_SIDNEYS_ROOM))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 		case MAP_NUM(EVER_GRANDE_CITY_PHOEBES_ROOM):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_PHOEBES_ROOM))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 		case MAP_NUM(EVER_GRANDE_CITY_GLACIAS_ROOM):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_GLACIAS_ROOM))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 		case MAP_NUM(EVER_GRANDE_CITY_DRAKES_ROOM):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_DRAKES_ROOM))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 		case MAP_NUM(EVER_GRANDE_CITY_CHAMPIONS_ROOM):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_CHAMPIONS_ROOM))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 		case MAP_NUM(EVER_GRANDE_CITY_HALL1):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL1))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 		case MAP_NUM(EVER_GRANDE_CITY_HALL2):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL2))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 		case MAP_NUM(EVER_GRANDE_CITY_HALL3):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL3))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 		case MAP_NUM(EVER_GRANDE_CITY_HALL4):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL4))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 		case MAP_NUM(EVER_GRANDE_CITY_HALL5):
 			if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL5))
-				DisableSave = TRUE;
+				disablePC = TRUE;
 		break;
 	}
 
@@ -382,9 +384,10 @@ static void BuildNormalStartMenu(void)
     //AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
 
-    if(!DisableSave)
+    if(!disablePC)
 	    AddStartMenuAction(MENU_ACTION_ACCESS_PC);
-    //AddStartMenuAction(MENU_ACTION_EXIT);
+    else
+        AddStartMenuAction(MENU_ACTION_EXIT);
 }
 
 static void BuildDebugStartMenu(void)
@@ -414,6 +417,7 @@ static void BuildDebugStartMenu(void)
 
 static void BuildSafariZoneStartMenu(void)
 {
+    canSave = FALSE;
     AddStartMenuAction(MENU_ACTION_RETIRE_SAFARI);
     AddStartMenuAction(MENU_ACTION_POKEDEX);
     AddStartMenuAction(MENU_ACTION_POKEMON);
@@ -425,6 +429,7 @@ static void BuildSafariZoneStartMenu(void)
 
 static void BuildLinkModeStartMenu(void)
 {
+    canSave = FALSE;
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
 
@@ -440,6 +445,7 @@ static void BuildLinkModeStartMenu(void)
 
 static void BuildUnionRoomStartMenu(void)
 {
+    canSave = FALSE;
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_BAG);
 
@@ -455,6 +461,7 @@ static void BuildUnionRoomStartMenu(void)
 
 static void BuildBattlePikeStartMenu(void)
 {
+    canSave = FALSE;
     AddStartMenuAction(MENU_ACTION_POKEDEX);
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PLAYER);
@@ -464,6 +471,7 @@ static void BuildBattlePikeStartMenu(void)
 
 static void BuildBattlePyramidStartMenu(void)
 {
+    canSave = FALSE;
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PYRAMID_BAG);
     AddStartMenuAction(MENU_ACTION_PLAYER);
@@ -475,6 +483,7 @@ static void BuildBattlePyramidStartMenu(void)
 
 static void BuildMultiPartnerRoomStartMenu(void)
 {
+    canSave = FALSE;
     AddStartMenuAction(MENU_ACTION_POKEMON);
     AddStartMenuAction(MENU_ACTION_PLAYER);
     AddStartMenuAction(MENU_ACTION_OPTION);
@@ -688,7 +697,7 @@ static bool8 HandleStartMenuInput(void)
         sStartMenuCursorPos = Menu_MoveCursor(1);
     }
 
-    if (JOY_NEW(SELECT_BUTTON))
+    if (JOY_NEW(SELECT_BUTTON) && canSave)
     {
         gMenuCallback = StartMenuSaveCallback;
         PlaySE(SE_SELECT);
@@ -1578,9 +1587,13 @@ static bool8 StartMenuDexNavCallback(void)
 static void ShowGameVersionWindow(void)
 {
 	static const u8 GameVersion[] =  _("Press Select\nto Save$");
+	static const u8 cantSave[] =  _("You can't save\nhere$");
 	sSafariBallsWindowId = AddWindow(&sExtraWindowTemplate);
     PutWindowTilemap(sSafariBallsWindowId);
     DrawStdWindowFrame(sSafariBallsWindowId, FALSE);
-    AddTextPrinterParameterized(sSafariBallsWindowId, 1, GameVersion, 0, 1, 0xFF, NULL);
+    if(canSave)
+        AddTextPrinterParameterized(sSafariBallsWindowId, 1, GameVersion, 0, 1, 0xFF, NULL);
+    else
+        AddTextPrinterParameterized(sSafariBallsWindowId, 1, cantSave, 0, 1, 0xFF, NULL);
     CopyWindowToVram(sSafariBallsWindowId, 2);
 }
