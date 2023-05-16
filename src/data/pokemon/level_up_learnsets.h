@@ -17961,6 +17961,7 @@ static const struct LevelUpMove sDrizzileLevelUpLearnset[] = {
 
 static const struct LevelUpMove sInteleonLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_SNIPE_SHOT),
+	LEVEL_UP_MOVE( 0, MOVE_WATER_SHURIKEN), // new
     LEVEL_UP_MOVE( 1, MOVE_ACROBATICS),
     LEVEL_UP_MOVE( 1, MOVE_POUND),
     LEVEL_UP_MOVE( 1, MOVE_GROWL),
@@ -17970,6 +17971,7 @@ static const struct LevelUpMove sInteleonLevelUpLearnset[] = {
     LEVEL_UP_MOVE(19, MOVE_TEARFUL_LOOK),
     LEVEL_UP_MOVE(24, MOVE_SUCKER_PUNCH),
     LEVEL_UP_MOVE(30, MOVE_U_TURN),
+    LEVEL_UP_MOVE(30, MOVE_FLIP_TURN), // new
     LEVEL_UP_MOVE(38, MOVE_LIQUIDATION),
     LEVEL_UP_MOVE(46, MOVE_SOAK),
     LEVEL_UP_MOVE(54, MOVE_RAIN_DANCE),
