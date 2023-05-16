@@ -6523,10 +6523,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			
 			//Motor Drive
 			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MOTOR_DRIVE)){
-                gBattleScripting.abilityPopupOverwrite = ABILITY_MOTOR_DRIVE;
-				gLastUsedAbility = ABILITY_MOTOR_DRIVE;
-                if (moveType == TYPE_ELECTRIC)
+                if (moveType == TYPE_ELECTRIC){
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MOTOR_DRIVE;
                     effect = 2, statId = STAT_SPEED;
+                }
 			}
 
             if (effect == 1) // Drain Hp ability.
