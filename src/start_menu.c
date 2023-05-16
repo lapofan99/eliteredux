@@ -147,7 +147,10 @@ static void Task_SaveAfterLinkBattle(u8 taskId);
 static void Task_WaitForBattleTowerLinkSave(u8 taskId);
 static bool8 FieldCB_ReturnToFieldStartMenu(void);
 
+static void ShowGameVersionWindow(void);
+
 static const struct WindowTemplate sSafariBallsWindowTemplate = {0, 1, 1, 9, 4, 0xF, 8};
+static const struct WindowTemplate sExtraWindowTemplate = {0, 1, 1, 0xE, 4, 0xF, 8};
 
 static const u8* const sPyramidFloorNames[] =
 {
@@ -376,7 +379,7 @@ static void BuildNormalStartMenu(void)
 	}
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
-    AddStartMenuAction(MENU_ACTION_SAVE);
+    //AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
 
     if(!DisableSave)
@@ -403,7 +406,7 @@ static void BuildDebugStartMenu(void)
     }
 
     AddStartMenuAction(MENU_ACTION_PLAYER);
-    AddStartMenuAction(MENU_ACTION_SAVE);
+    //AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
 	AddStartMenuAction(MENU_ACTION_ACCESS_PC);
     AddStartMenuAction(MENU_ACTION_DEBUG);
@@ -512,11 +515,17 @@ static void RemoveExtraStartMenuWindows(void)
         CopyWindowToVram(sSafariBallsWindowId, 2);
         RemoveWindow(sSafariBallsWindowId);
     }
-    if (InBattlePyramid())
+    else if (InBattlePyramid())
     {
         ClearStdWindowAndFrameToTransparent(sBattlePyramidFloorWindowId, FALSE);
         RemoveWindow(sBattlePyramidFloorWindowId);
     }
+    else 
+	{
+	    ClearStdWindowAndFrameToTransparent(sSafariBallsWindowId, FALSE);
+        CopyWindowToVram(sSafariBallsWindowId, 2);
+        RemoveWindow(sSafariBallsWindowId);
+	}
 }
 
 static bool32 PrintStartMenuActions(s8 *pIndex, u32 count)
@@ -572,8 +581,10 @@ static bool32 InitStartMenuStep(void)
     case 3:
         if (GetSafariZoneFlag())
             ShowSafariBallsWindow();
-        if (InBattlePyramid())
+        else if (InBattlePyramid())
             ShowPyramidFloorWindow();
+        else
+            ShowGameVersionWindow();
         sInitStartMenuData[0]++;
         break;
     case 4:
@@ -675,6 +686,13 @@ static bool8 HandleStartMenuInput(void)
     {
         PlaySE(SE_SELECT);
         sStartMenuCursorPos = Menu_MoveCursor(1);
+    }
+
+    if (JOY_NEW(SELECT_BUTTON))
+    {
+        gMenuCallback = StartMenuSaveCallback;
+        PlaySE(SE_SELECT);
+        return FALSE;
     }
 
     if (JOY_NEW(A_BUTTON))
@@ -1555,4 +1573,14 @@ static bool8 StartMenuDexNavCallback(void)
 {
     CreateTask(Task_OpenDexNavFromStartMenu, 0);
     return TRUE;
+}
+
+static void ShowGameVersionWindow(void)
+{
+	static const u8 GameVersion[] =  _("Press Select\nto Save$");
+	sSafariBallsWindowId = AddWindow(&sExtraWindowTemplate);
+    PutWindowTilemap(sSafariBallsWindowId);
+    DrawStdWindowFrame(sSafariBallsWindowId, FALSE);
+    AddTextPrinterParameterized(sSafariBallsWindowId, 1, GameVersion, 0, 1, 0xFF, NULL);
+    CopyWindowToVram(sSafariBallsWindowId, 2);
 }
