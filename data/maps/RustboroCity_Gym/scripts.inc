@@ -502,8 +502,8 @@ RustboroCity_Gym_EventScript_GiveRockTomb::
 
 
 RustboroCity_Gym_EventScript_GiveRockTomb_Text_0:
-	.string "Take this Pokémon from Galar. Take\n"
-	.string "care!$"
+	.string "Take this Pokémon from Galar as a gift\n"
+	.string "from me!$"
 
 RustboroCity_Gym_EventScript_GiveRockTomb_Text_1:
 	.string "{PLAYER} got a Rattata as a gift for\n"

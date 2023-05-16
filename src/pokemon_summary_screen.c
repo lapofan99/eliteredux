@@ -53,6 +53,8 @@
 #include "constants/songs.h"
 #include "constants/abilities.h"
 #include "constants/battle_move_effects.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 // Config options - Note that some config options need external modifications to fully work, such as CONFIG_CAN_FORGET_HM_MOVES, CONFIG_PHYSICAL_SPECIAL_SPLIT, and CONFIG_DECAPITALIZE_MET_LOCATION_STRINGS
 #define CONFIG_CAN_FORGET_HM_MOVES                      TRUE
@@ -1899,15 +1901,19 @@ static void Task_HandleInput(u8 taskId)
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY && ModifyMode){ //Ability Modifier
 				CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
 				CalculateMonStats(&sMonSummaryScreen->currentMon);
-						
+
 				if(abilityNum != 2 && 
-				    GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) &&
-				    GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum + 1)) != ABILITY_NONE)
-						abilityNum++;
+                    gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum + 1] &&
+                    gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum + 1] != ABILITY_NONE)
+					abilityNum++;
+                else if(abilityNum == 0 && 
+                   gBaseStats[sMonSummaryScreen->summary.species].abilities[1] == ABILITY_NONE && 
+                   gBaseStats[sMonSummaryScreen->summary.species].abilities[2] != ABILITY_NONE)
+                    abilityNum = 2;
 				else
-					abilityNum = 0;
+                    abilityNum = 0;
 						
-				if(GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != ABILITY_NONE){
+				if(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != ABILITY_NONE){
 					SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
 					SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
 				}
@@ -3703,8 +3709,7 @@ static void PrintSkillsPage(void)
 
     FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT, PIXEL_FILL(0));
 	
-	//Ev Modifier + Ability Modifier ---------------------------------------------------------------
-	
+	//Ev Modifier ---------------------------------------------------------------
 	for(j = 0; j < 7; j++){
 		x = 15;
 		
