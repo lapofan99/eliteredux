@@ -2411,7 +2411,7 @@ static void MainMenu_FormatSavegameTime(void)
     AddTextPrinterParameterized3(2, 1, GetStringRightAlignXOffset(1, str, 0xD0), 17, sTextColor_MenuInfo, -1, str);
 
     //Game Version
-    AddTextPrinterParameterized3(2, 1, 0x6C - 16, 1, sTextColor_Headers, -1, sText_GameVersion);
+    //AddTextPrinterParameterized3(2, 1, 0x6C - 16, 1, sTextColor_Headers, -1, sText_GameVersion);
     AddTextPrinterParameterized3(2, 1, GetStringRightAlignXOffset(1, gText_SavingVersionNum, 0xD0), 1, sTextColor_Headers, -1, gText_SavingVersionNum);
 }
 

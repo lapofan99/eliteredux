@@ -1589,6 +1589,8 @@ static void ShowGameVersionWindow(void)
 	static const u8 sText_Save[]        =  _("Press Select to Save$");
 	static const u8 sText_cantSave[]    =  _("You can't save here$");
 	static const u8 sText_GameVersion[] =  _("{STR_VAR_1}\nGame Version {STR_VAR_2}$");
+	static const u8 sText_LevelCap[]    =  _("{STR_VAR_1}\nLevel Cap {STR_VAR_2}$");
+    u8 levelCap = GetLevelCap();
 	sSafariBallsWindowId = AddWindow(&sExtraWindowTemplate);
     PutWindowTilemap(sSafariBallsWindowId);
     DrawStdWindowFrame(sSafariBallsWindowId, FALSE);
@@ -1598,9 +1600,10 @@ static void ShowGameVersionWindow(void)
     else
         StringCopy(gStringVar1, sText_cantSave);
 
-    StringCopy(gStringVar2, gText_SavingVersionNum);
+    //StringCopy(gStringVar2, gText_SavingVersionNum);
+    ConvertIntToDecimalStringN(gStringVar2, levelCap, STR_CONV_MODE_RIGHT_ALIGN, 3);
 
-	StringExpandPlaceholders(gStringVar4, sText_GameVersion);
+	StringExpandPlaceholders(gStringVar4, sText_LevelCap);
     AddTextPrinterParameterized(sSafariBallsWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL);
     CopyWindowToVram(sSafariBallsWindowId, 2);
 }

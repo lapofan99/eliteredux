@@ -474,5 +474,6 @@ u16 getShinyOdds(void);
 u16 getRandomSpecies(void);
 bool8 SpeciesHasInnate(u16 species, u16 ability);
 u8 GetSpeciesInnateNum(u16 species, u16 ability);
+void CreateShinyMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 nature);
 
 #endif // GUARD_POKEMON_H
