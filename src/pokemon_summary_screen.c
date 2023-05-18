@@ -3755,10 +3755,12 @@ static void PrintSkillsPage(void)
                 ConvertIntToDecimalStringN(gStringVar2, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MAX_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
 				StringAppend(gStringVar1, gStringVar2);
 				x = 7;
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->hpBS, STR_CONV_MODE_LEFT_ALIGN, 3);
-				x = 13;
+				x = 13;  
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 			case 2:
                 if(gSaveBlock2Ptr->enableEvs)
@@ -3766,10 +3768,10 @@ static void PrintSkillsPage(void)
 				else
                     StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 		}	
         offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}	
 
 	// HP Bar ----------------------------------------------------------------------------------------------------
@@ -3792,10 +3794,14 @@ static void PrintSkillsPage(void)
 			case 0:
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->atkBS, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 			case 2:
                 if(gSaveBlock2Ptr->enableEvs)
@@ -3803,10 +3809,10 @@ static void PrintSkillsPage(void)
                 else
                     StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+		        PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 		}	
-        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}	
 
 	// Defense ----------------------------------------------------------------------------------------------------
@@ -3823,10 +3829,14 @@ static void PrintSkillsPage(void)
 			case 0:
 				ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->defBS, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 			case 2:
                 if(gSaveBlock2Ptr->enableEvs)
@@ -3834,10 +3844,10 @@ static void PrintSkillsPage(void)
 				else
                     StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 		}	
-        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}	
 	
 	// Sp.Atk ----------------------------------------------------------------------------------------------------
@@ -3854,10 +3864,14 @@ static void PrintSkillsPage(void)
 			case 0:
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->spatkBS, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 			case 2:
                 if(gSaveBlock2Ptr->enableEvs)
@@ -3865,10 +3879,10 @@ static void PrintSkillsPage(void)
 				else
                     StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 		}	
-        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}
 	
 	// Sp.Def ----------------------------------------------------------------------------------------------------
@@ -3885,10 +3899,14 @@ static void PrintSkillsPage(void)
 			case 0:
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->spdefBS, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 			case 2:
                 if(gSaveBlock2Ptr->enableEvs)
@@ -3896,10 +3914,10 @@ static void PrintSkillsPage(void)
 				else
                     StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 		}	
-        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}
 	
 	// Speed ----------------------------------------------------------------------------------------------------
@@ -3915,10 +3933,14 @@ static void PrintSkillsPage(void)
 			case 0:
                 ConvertIntToDecimalStringN(gStringVar1, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED), STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 10;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 			case 1:
 				ConvertIntToDecimalStringN(gStringVar1, summary->speedBS, STR_CONV_MODE_LEFT_ALIGN, 3);
 				x = 13;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 1);
 			break;
 			case 2:
                 if(gSaveBlock2Ptr->enableEvs)
@@ -3926,10 +3948,10 @@ static void PrintSkillsPage(void)
 				else
                     StringCopy(gStringVar1, sText_Evs_Disabled);
 				x = 16;
+                offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
+                PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 			break;
 		}	
-        offset = GetStringCenterAlignXOffset(7, gStringVar1, 24);
-		PrintNarrowTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar1, ((x - 1)* 8) + offset, y, 0, 0);
 	}
 	
 	//---------------------------------------------------------------------------------------------------------
