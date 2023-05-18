@@ -2319,7 +2319,7 @@ LittlerootTown_EventScript_TutorialNPC2_Text_8:
 	.string "The Shiny rate has been massively\n"
 	.string "boosted, it's 1/20 now.\p"
 	.string "You can catch every Pokémon from Gen 1\n"
-	.string "to 7 + two Special Pokémon from Gen 8.$"
+	.string "to 7 + many from Gen 8.$"
 
 LittlerootTown_EventScript_TutorialNPC2_Text_9:
 	.string "You can directly switch the ability in\n"

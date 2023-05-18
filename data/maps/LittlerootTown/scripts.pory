@@ -2067,7 +2067,7 @@ script LittlerootTown_EventScript_TutorialNPC2{
 			msgbox(format("You'll get one of each Pokéball from Nurse Joy. Every ball has 100% catch rate.\p"
                           "Nurse Joy gives you an upgraded DexNav: you can directly search the Pokémon you want. No need to walk slow when approaching.\p"
 						  "The Shiny rate has been massively boosted, it's 1/20 now.\p"
-						  "You can catch every Pokémon from Gen 1 to 7 + two Special Pokémon from Gen 8."))
+						  "You can catch every Pokémon from Gen 1 to 7 + many from Gen 8."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 8:// Switch abilities 
 			msgbox(format("You can directly switch the ability in the Pokémon Summary Screen.\p"

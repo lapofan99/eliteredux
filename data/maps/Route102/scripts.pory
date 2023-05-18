@@ -117,3 +117,22 @@ Route102_Text_RouteSignPetalburg: @ 81EC373
 	.string "Route 102\n"
 	.string "{LEFT_ARROW} Petalburg City$"
 `
+script Route102_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_CALVIN_1) &&
+	   defeated(TRAINER_RICK) &&
+	   defeated(TRAINER_ALLEN) &&
+	   defeated(TRAINER_TIANA)){
+		// when you defeat every trainer
+		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		givemon(SPECIES_ROOKIDEE, 10, ITEM_NONE)
+		msgbox(format("{PLAYER} got a Rookidee as a gift for defeating every trainer!"))
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("If you can beat all trainers here, I will give you a special Pokémon from the Galar region."))
+	}
+    release
+    end
+}

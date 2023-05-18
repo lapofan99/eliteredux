@@ -115,3 +115,49 @@ Route102_Text_RouteSignOldale: @ 81EC35B
 Route102_Text_RouteSignPetalburg: @ 81EC373
 	.string "Route 102\n"
 	.string "{LEFT_ARROW} Petalburg City$"
+
+Route102_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_CALVIN_1
+	goto_if 1, Route102_EventScript_Gen8_NPC_5
+Route102_EventScript_Gen8_NPC_3:
+	msgbox Route102_EventScript_Gen8_NPC_Text_2
+Route102_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route102_EventScript_Gen8_NPC_2:
+	msgbox Route102_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_ROOKIDEE, 10, ITEM_NONE
+	msgbox Route102_EventScript_Gen8_NPC_Text_1
+	goto Route102_EventScript_Gen8_NPC_1
+
+Route102_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_ALLEN
+	goto_if 1, Route102_EventScript_Gen8_NPC_8
+	goto Route102_EventScript_Gen8_NPC_3
+
+Route102_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_RICK
+	goto_if 1, Route102_EventScript_Gen8_NPC_4
+	goto Route102_EventScript_Gen8_NPC_3
+
+Route102_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_TIANA
+	goto_if 1, Route102_EventScript_Gen8_NPC_2
+	goto Route102_EventScript_Gen8_NPC_3
+
+
+Route102_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route102_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Rookidee as a gift for\n"
+	.string "defeating every trainer!$"
+
+Route102_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers here, I will\n"
+	.string "give you a special Pokémon from the\l"
+	.string "Galar region.$"
