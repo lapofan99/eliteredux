@@ -2394,6 +2394,7 @@ static void Cmd_healthbarupdate(void)
         if (DoesSubstituteBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove) && gDisableStructs[gActiveBattler].substituteHP && !(gHitMarker & HITMARKER_IGNORE_SUBSTITUTE))
         {
             PrepareStringBattle(STRINGID_SUBSTITUTEDAMAGED, gActiveBattler);
+            FlagSet(FLAG_SYS_DISABLE_DAMAGE_DONE);
         }
         else if (!DoesDisguiseBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove))
         {
@@ -2404,10 +2405,14 @@ static void Cmd_healthbarupdate(void)
                 !(gMoveResultFlags & MOVE_RESULT_FOE_ENDURED) &&
                 !(gMoveResultFlags & MOVE_RESULT_FAILED) &&
                 !(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) &&
+                gDisableStructs[gActiveBattler].substituteHP == 0 &&
                 gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
                 gBattleMoves[gCurrentMove].power > 0 &&
-                gBattleMoveDamage > 0)
-		        PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
+                gBattleMoveDamage > 0 &&
+                gSaveBlock2Ptr->damageDone){
+		            PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
+                    FlagClear(FLAG_SYS_DISABLE_DAMAGE_DONE);
+                }
 
             BtlController_EmitHealthBarUpdate(0, healthValue);
             MarkBattlerForControllerExec(gActiveBattler);
@@ -2730,6 +2735,7 @@ static void Cmd_resultmessage(void)
 		gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
 		gBattleMoves[gCurrentMove].power > 0 &&
 		gBattleMoveDamage > 0 &&
+        !FlagGet(FLAG_SYS_DISABLE_DAMAGE_DONE) &&
         gSaveBlock2Ptr->damageDone)
 	{
         BattleScriptPushCursor();
