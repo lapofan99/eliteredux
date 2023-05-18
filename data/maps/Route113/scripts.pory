@@ -170,3 +170,29 @@ Route113_Text_GlassWorkshopSign: @ 81F24F8
 	.string "“Turning Volcanic Ash into Glass Items”$"
 
 `
+script Route113_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+	}
+	else{
+		if(defeated(TRAINER_JAYLEN) &&
+		   defeated(TRAINER_DILLON) &&
+		   defeated(TRAINER_MADELINE_1)  &&
+		   defeated(TRAINER_LAO_1)  &&
+		   defeated(TRAINER_LUNG)  &&
+		   defeated(TRAINER_TORI_AND_TIA)  &&
+		   defeated(TRAINER_SOPHIE)  &&
+		   defeated(TRAINER_COBY)  &&
+		   defeated(TRAINER_LAWRENCE)  &&
+		   defeated(TRAINER_WYATT)){
+			msgbox(format("You are now worthy to catch Articuno-Galar, Zapdos-Galar and Moltres-Galar here. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are not worthy yet to catch Articuno-Galar, Zapdos-Galar or Moltres-Galar. Beat all trainers here first."))
+		}
+	}
+    release
+    end
+}

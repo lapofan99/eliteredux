@@ -293,7 +293,6 @@
 #define ABILITIES_COUNT_LATEST_GEN 268
 
 // IE Custom Abilities
-
 #define ABILITY_CHLOROPLAST      (ABILITIES_COUNT_LATEST_GEN)      // Moves function as if it's sunny, regardless of weather
 #define ABILITY_WHITEOUT         (ABILITIES_COUNT_LATEST_GEN + 1)  // Boosts the power of Ice attacks in Hail by 50%
 #define ABILITY_PYROMANCY        (ABILITIES_COUNT_LATEST_GEN + 2)  // Fire attacks are 5x more likely to inflict a burn

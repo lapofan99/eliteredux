@@ -81,7 +81,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .power = 95,
         .type = TYPE_NORMAL,
         .accuracy = 100,
-        .pp = 20,
+        .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -305,7 +305,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_FLY] =
     {
-        .power = 90,
+        .power = 110,
         .effect = EFFECT_SEMI_INVULNERABLE,
         .type = TYPE_FLYING,
         #ifdef REBALANCED_VERSION
@@ -406,10 +406,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_MEGA_KICK] =
     {
         .effect = EFFECT_HIT,
-        .power = 120,
+        .power = 95,
         .type = TYPE_NORMAL,
-        .accuracy = 85,
-        .pp = 5,
+        .accuracy = 100,
+        .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -1462,7 +1462,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_DIG] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_4
-            .power = 90,
+            .power = 110,
         #else
             .power = 60,
         #endif
@@ -4679,7 +4679,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_DIVE] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_4
-            .power = 90,
+            .power = 110,
         #else
             .power = 60,
         #endif

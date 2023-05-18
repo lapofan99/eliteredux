@@ -2775,6 +2775,19 @@ bool8 CanFindHiddenPokemon(void)
                 #endif
                 */
             }
+            else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE113)){ // Route 113
+                if( HasTrainerBeenFought(TRAINER_JAYLEN)        &&
+                    HasTrainerBeenFought(TRAINER_DILLON)        &&
+                    HasTrainerBeenFought(TRAINER_MADELINE_1)    &&
+                    HasTrainerBeenFought(TRAINER_LAO_1)         &&
+                    HasTrainerBeenFought(TRAINER_LUNG)          &&
+                    HasTrainerBeenFought(TRAINER_TORI_AND_TIA)  &&
+                    HasTrainerBeenFought(TRAINER_SOPHIE)        &&
+                    HasTrainerBeenFought(TRAINER_COBY)          &&
+                    HasTrainerBeenFought(TRAINER_LAWRENCE)      &&
+                    HasTrainerBeenFought(TRAINER_WYATT))
+                    CanFindHiddenMon = TRUE;
+            }
             else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE114)){ // Route 114
                 if( HasTrainerBeenFought(TRAINER_LENNY)         &&
                     HasTrainerBeenFought(TRAINER_LUCAS_1)       &&

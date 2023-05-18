@@ -30536,6 +30536,8 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM05_ROAR)
                                         | TMHM1(TM06_TOXIC)
                                         | TMHM1(TM10_HIDDEN_POWER)
+                                        | TMHM1(TM13_ICE_BEAM) // new
+                                        | TMHM1(TM14_BLIZZARD) // new
                                         | TMHM1(TM15_HYPER_BEAM)
                                         | TMHM1(TM16_LIGHT_SCREEN)
                                         | TMHM1(TM17_PROTECT)
@@ -30587,9 +30589,12 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM62_ACROBATICS),
                                           TMHM2(TM66_PAYBACK)
                                         | TMHM2(TM68_GIGA_IMPACT)
+                                        | TMHM2(TM72_VOLT_SWITCH) // new
+                                        | TMHM2(TM73_THUNDER_WAVE)
                                         | TMHM2(TM88_LOW_SWEEP)
                                         | TMHM2(TM89_U_TURN)
                                         | TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM93_WILD_CHARGE) // new
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM02_FLY)
                                         | TMHM2(HM06_ROCK_SMASH)),
