@@ -5032,6 +5032,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
+        
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_UNNERVE)){
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_UNNERVE)])
+            {
+                gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_UNNERVE)] = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_ActivateUnnerve);
+                effect++;
+            }
+        }
 		
 		// Drizzle
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRIZZLE)){

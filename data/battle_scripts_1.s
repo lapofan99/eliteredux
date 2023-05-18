@@ -3199,6 +3199,7 @@ BattleScript_StatDownEnd::
 
 BattleScript_MirrorArmorReflect::
 	pause B_WAIT_TIME_SHORT
+	sethword sABILITY_OVERWRITE, ABILITY_MIRROR_ARMOR
 	call BattleScript_AbilityPopUp
 	jumpifsubstituteblocks BattleScript_AbilityNoSpecificStatLoss
 BattleScript_MirrorArmorReflectStatLoss:
@@ -8017,6 +8018,7 @@ BattleScript_PauseIntimidateActivates:
 	pause B_WAIT_TIME_SHORT
 BattleScript_IntimidateActivates::
 	setbyte gBattlerTarget, 0
+	sethword sABILITY_OVERWRITE, ABILITY_INTIMIDATE
 	call BattleScript_AbilityPopUp
 BattleScript_IntimidateActivatesLoop:
 	setstatchanger STAT_ATK, 1, TRUE
@@ -8030,6 +8032,7 @@ BattleScript_IntimidateActivatesLoop:
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO,    BattleScript_IntimidatePrevented_Own_Tempo
 	jumpifability BS_TARGET, ABILITY_OBLIVIOUS,    BattleScript_IntimidatePrevented_Oblivious
 	jumpifability BS_TARGET, ABILITY_OVERWHELM,    BattleScript_IntimidatePrevented_Overwhelm
+	jumpifability BS_TARGET, ABILITY_MIRROR_ARMOR, BattleScript_IntimidatePrevented_MirrorArmor
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_IntimidateActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_IntimidateActivatesLoopIncrement
 	setgraphicalstatchangevalues
@@ -8051,6 +8054,10 @@ BattleScript_IntimidatePrevented:
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryAdrenalineOrb
 	goto BattleScript_IntimidateActivatesLoopIncrement
+
+BattleScript_IntimidatePrevented_MirrorArmor:
+	sethword sABILITY_OVERWRITE, ABILITY_MIRROR_ARMOR
+	goto BattleScript_IntimidatePrevented
 
 BattleScript_IntimidatePrevented_Overwhelm:
 	sethword sABILITY_OVERWRITE, ABILITY_OVERWHELM
@@ -8105,6 +8112,7 @@ BattleScript_ScareActivatesLoop:
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO,    BattleScript_ScarePrevented_Own_Tempo
 	jumpifability BS_TARGET, ABILITY_OBLIVIOUS,    BattleScript_ScarePrevented_Oblivious
 	jumpifability BS_TARGET, ABILITY_OVERWHELM,    BattleScript_ScarePrevented_Overwhelm
+	jumpifability BS_TARGET, ABILITY_MIRROR_ARMOR, BattleScript_ScarePrevented_MirrorArmor
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_ScareActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_ScareActivatesLoopIncrement
 	setgraphicalstatchangevalues
@@ -8126,6 +8134,10 @@ BattleScript_ScarePrevented:
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryAdrenalineOrb
 	goto BattleScript_ScareActivatesLoopIncrement
+
+BattleScript_ScarePrevented_MirrorArmor:
+	sethword sABILITY_OVERWRITE, ABILITY_MIRROR_ARMOR
+	goto BattleScript_ScarePrevented
 
 BattleScript_ScarePrevented_Overwhelm:
 	sethword sABILITY_OVERWRITE, ABILITY_OVERWHELM
@@ -8675,6 +8687,14 @@ BattleScript_SwitchInAbilityMsgRet::
 	printfromtable gSwitchInAbilityStringIds
 	waitmessage B_WAIT_TIME_LONG
 	return
+
+BattleScript_ActivateUnnerve::
+	sethword sABILITY_OVERWRITE, ABILITY_UNNERVE
+	setbyte cMULTISTRING_CHOOSER, B_MSG_SWITCHIN_UNNERVE
+	call BattleScript_AbilityPopUp
+	printfromtable gSwitchInAbilityStringIds
+	waitmessage B_WAIT_TIME_LONG
+	end3
 
 BattleScript_ActivateAsOne::
 	call BattleScript_AbilityPopUp
