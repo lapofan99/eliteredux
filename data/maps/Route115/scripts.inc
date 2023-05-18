@@ -217,6 +217,69 @@ Route115_EventScript_LegendaryNPC_23:
 	goto Route115_EventScript_LegendaryNPC_6
 
 
+Route115_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_TIMOTHY_1
+	goto_if 1, Route115_EventScript_Gen8_NPC_5
+Route115_EventScript_Gen8_NPC_3:
+	msgbox Route115_EventScript_Gen8_NPC_Text_2
+Route115_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route115_EventScript_Gen8_NPC_2:
+	msgbox Route115_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_DRACOVISH, 50, ITEM_NONE
+	msgbox Route115_EventScript_Gen8_NPC_Text_1
+	goto Route115_EventScript_Gen8_NPC_1
+
+Route115_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_NOB_1
+	goto_if 1, Route115_EventScript_Gen8_NPC_9
+	goto Route115_EventScript_Gen8_NPC_3
+
+Route115_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_KOICHI
+	goto_if 1, Route115_EventScript_Gen8_NPC_4
+	goto Route115_EventScript_Gen8_NPC_3
+
+Route115_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_HECTOR
+	goto_if 1, Route115_EventScript_Gen8_NPC_13
+	goto Route115_EventScript_Gen8_NPC_3
+
+Route115_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_CYNDY_1
+	goto_if 1, Route115_EventScript_Gen8_NPC_8
+	goto Route115_EventScript_Gen8_NPC_3
+
+Route115_EventScript_Gen8_NPC_12:
+	checktrainerflag TRAINER_JAIDEN
+	goto_if 1, Route115_EventScript_Gen8_NPC_17
+	goto Route115_EventScript_Gen8_NPC_3
+
+Route115_EventScript_Gen8_NPC_13:
+	checktrainerflag TRAINER_KYRA
+	goto_if 1, Route115_EventScript_Gen8_NPC_12
+	goto Route115_EventScript_Gen8_NPC_3
+
+Route115_EventScript_Gen8_NPC_16:
+	checktrainerflag TRAINER_HELENE
+	goto_if 1, Route115_EventScript_Gen8_NPC_20
+	goto Route115_EventScript_Gen8_NPC_3
+
+Route115_EventScript_Gen8_NPC_17:
+	checktrainerflag TRAINER_ALIX
+	goto_if 1, Route115_EventScript_Gen8_NPC_16
+	goto Route115_EventScript_Gen8_NPC_3
+
+Route115_EventScript_Gen8_NPC_20:
+	checktrainerflag TRAINER_MARLENE
+	goto_if 1, Route115_EventScript_Gen8_NPC_2
+	goto Route115_EventScript_Gen8_NPC_3
+
+
 Route115_EventScript_LegendaryNPC_Text_0:
 	.string "You can find legendary Pokémon on this\n"
 	.string "route. But you have to beat all\l"
@@ -232,3 +295,17 @@ Route115_EventScript_LegendaryNPC_Text_2:
 	.string "You are not worthy yet to catch Azelf,\n"
 	.string "Mesprit or Uxie. Beat all trainers here\l"
 	.string "first.$"
+
+Route115_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route115_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Dracovish as a gift\n"
+	.string "for defeating every trainer here!$"
+
+Route115_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers here\n"
+	.string "(including the ones only reachable with\l"
+	.string "Surf), I will give you a special Pokémon\l"
+	.string "from the Galar region.$"

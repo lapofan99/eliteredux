@@ -656,3 +656,25 @@ script Route119_EventScript_LegendaryNPC{
     release
     end
 }
+
+script Route119_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+		if(defeated(TRAINER_DONALD)  &&
+		   defeated(TRAINER_GREG)  &&
+		   defeated(TRAINER_KENT)  &&
+		   defeated(TRAINER_DOUG)  &&
+		   defeated(TRAINER_TAYLOR)  &&
+		   defeated(TRAINER_BRENT)){
+		// when you defeat every trainer
+		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		givemon(SPECIES_ARCTOVISH, 50, ITEM_NONE)
+		msgbox(format("{PLAYER} got an Arctovish as a gift for defeating every trainer in the tall grass!"))
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("If you can beat all six trainers in this tall grass, I will give you a special Pokémon from the Galar region."))
+	}
+    release
+    end
+}

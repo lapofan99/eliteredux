@@ -600,3 +600,25 @@ Route109_Text_TrainerTipsSign: @ 81EF1D5
 	.string "Pokémon raised by Trainers are said\n"
 	.string "to grow stronger than wild Pokémon.$"
 `
+script Route109_Beach_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_HUEY) &&
+	   defeated(TRAINER_RICKY_1) &&
+	   defeated(TRAINER_LOLA_1) &&
+	   defeated(TRAINER_CHANDLER) &&
+	   defeated(TRAINER_HAILEY) &&
+	   defeated(TRAINER_EDMOND) &&
+	   defeated(TRAINER_TIANA)){
+		// when you defeat every trainer
+		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		givemon(SPECIES_YAMASK_GALARIAN, 10, ITEM_NONE)
+		msgbox(format("{PLAYER} got a Galarian Yamask as a gift for defeating every trainer at this beach!"))
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("If you can beat all trainers at this beach, I will give you a special Pokémon from the Galar region."))
+	}
+    release
+    end
+}

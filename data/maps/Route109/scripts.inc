@@ -598,3 +598,65 @@ Route109_Text_TrainerTipsSign: @ 81EF1D5
 	.string "always have identical stats.\p"
 	.string "Pokémon raised by Trainers are said\n"
 	.string "to grow stronger than wild Pokémon.$"
+
+Route109_Beach_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_HUEY
+	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_5
+Route109_Beach_EventScript_Gen8_NPC_3:
+	msgbox Route109_Beach_EventScript_Gen8_NPC_Text_2
+Route109_Beach_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route109_Beach_EventScript_Gen8_NPC_2:
+	msgbox Route109_Beach_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_YAMASK_GALARIAN, 10, ITEM_NONE
+	msgbox Route109_Beach_EventScript_Gen8_NPC_Text_1
+	goto Route109_Beach_EventScript_Gen8_NPC_1
+
+Route109_Beach_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_LOLA_1
+	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_9
+	goto Route109_Beach_EventScript_Gen8_NPC_3
+
+Route109_Beach_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_RICKY_1
+	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_4
+	goto Route109_Beach_EventScript_Gen8_NPC_3
+
+Route109_Beach_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_HAILEY
+	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_13
+	goto Route109_Beach_EventScript_Gen8_NPC_3
+
+Route109_Beach_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_CHANDLER
+	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_8
+	goto Route109_Beach_EventScript_Gen8_NPC_3
+
+Route109_Beach_EventScript_Gen8_NPC_12:
+	checktrainerflag TRAINER_TIANA
+	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_2
+	goto Route109_Beach_EventScript_Gen8_NPC_3
+
+Route109_Beach_EventScript_Gen8_NPC_13:
+	checktrainerflag TRAINER_EDMOND
+	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_12
+	goto Route109_Beach_EventScript_Gen8_NPC_3
+
+
+Route109_Beach_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route109_Beach_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Galarian Yamask as a\n"
+	.string "gift for defeating every trainer at\l"
+	.string "this beach!$"
+
+Route109_Beach_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers at this\n"
+	.string "beach, I will give you a special Pokémon\l"
+	.string "from the Galar region.$"

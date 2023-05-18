@@ -273,6 +273,64 @@ Route117_EventScript_LegendaryNPC_20:
 	goto Route117_EventScript_LegendaryNPC_6
 
 
+Route117_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_ISAAC_1
+	goto_if 1, Route117_EventScript_Gen8_NPC_5
+Route117_EventScript_Gen8_NPC_3:
+	msgbox Route117_EventScript_Gen8_NPC_Text_2
+Route117_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route117_EventScript_Gen8_NPC_2:
+	msgbox Route117_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_APPLIN, 10, ITEM_NONE
+	msgbox Route117_EventScript_Gen8_NPC_Text_1
+	goto Route117_EventScript_Gen8_NPC_1
+
+Route117_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_DYLAN_1
+	goto_if 1, Route117_EventScript_Gen8_NPC_9
+	goto Route117_EventScript_Gen8_NPC_3
+
+Route117_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_LYDIA_1
+	goto_if 1, Route117_EventScript_Gen8_NPC_4
+	goto Route117_EventScript_Gen8_NPC_3
+
+Route117_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_DEREK
+	goto_if 1, Route117_EventScript_Gen8_NPC_13
+	goto Route117_EventScript_Gen8_NPC_3
+
+Route117_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_MARIA_1
+	goto_if 1, Route117_EventScript_Gen8_NPC_8
+	goto Route117_EventScript_Gen8_NPC_3
+
+Route117_EventScript_Gen8_NPC_12:
+	checktrainerflag TRAINER_MELINA
+	goto_if 1, Route117_EventScript_Gen8_NPC_17
+	goto Route117_EventScript_Gen8_NPC_3
+
+Route117_EventScript_Gen8_NPC_13:
+	checktrainerflag TRAINER_ANNA_AND_MEG_1
+	goto_if 1, Route117_EventScript_Gen8_NPC_12
+	goto Route117_EventScript_Gen8_NPC_3
+
+Route117_EventScript_Gen8_NPC_16:
+	checktrainerflag TRAINER_AISHA
+	goto_if 1, Route117_EventScript_Gen8_NPC_2
+	goto Route117_EventScript_Gen8_NPC_3
+
+Route117_EventScript_Gen8_NPC_17:
+	checktrainerflag TRAINER_BRANDI
+	goto_if 1, Route117_EventScript_Gen8_NPC_16
+	goto Route117_EventScript_Gen8_NPC_3
+
+
 Route117_EventScript_LegendaryNPC_Text_0:
 	.string "You can find legendary Pokémon on this\n"
 	.string "route. But you have to beat all\l"
@@ -288,3 +346,15 @@ Route117_EventScript_LegendaryNPC_Text_2:
 	.string "You are not worthy yet to catch\n"
 	.string "Darkrai, Cresselia or Keldeo. Beat all\l"
 	.string "trainers here first.$"
+
+Route117_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route117_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got an Applin as a gift for\n"
+	.string "defeating every trainer here!$"
+
+Route117_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers here, I will\n"
+	.string "give you a fruit from the Galar region.$"

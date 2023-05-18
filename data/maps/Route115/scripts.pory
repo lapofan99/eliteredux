@@ -179,3 +179,29 @@ script Route115_EventScript_LegendaryNPC{
     release
     end
 }
+
+script Route115_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+		if(defeated(TRAINER_TIMOTHY_1) &&
+		   defeated(TRAINER_KOICHI) &&
+		   defeated(TRAINER_NOB_1)  &&
+		   defeated(TRAINER_CYNDY_1)  &&
+		   defeated(TRAINER_HECTOR)  &&
+		   defeated(TRAINER_KYRA)  &&
+		   defeated(TRAINER_JAIDEN)  &&
+		   defeated(TRAINER_ALIX)  &&
+		   defeated(TRAINER_HELENE)  &&
+		   defeated(TRAINER_MARLENE)){
+		// when you defeat every trainer
+		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		givemon(SPECIES_DRACOVISH, 50, ITEM_NONE)
+		msgbox(format("{PLAYER} got a Dracovish as a gift for defeating every trainer here!"))
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("If you can beat all trainers here (including the ones only reachable with Surf), I will give you a special Pokémon from the Galar region."))
+	}
+    release
+    end
+}

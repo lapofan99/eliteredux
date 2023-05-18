@@ -541,3 +541,33 @@ RusturfTunnel_Text_MikePostBattle: @ 822D8F9
 	.string "They halted development here to\n"
 	.string "protect Pokémon, right?\l"
 	.string "There's a feel-good story!$"
+
+RusturfTunnel_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_MIKE_2
+	goto_if 1, RusturfTunnel_EventScript_Gen8_NPC_2
+	msgbox RusturfTunnel_EventScript_Gen8_NPC_Text_2
+RusturfTunnel_EventScript_Gen8_NPC_1:
+	release
+	end
+
+RusturfTunnel_EventScript_Gen8_NPC_2:
+	msgbox RusturfTunnel_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_ROLYCOLY, 10, ITEM_NONE
+	msgbox RusturfTunnel_EventScript_Gen8_NPC_Text_1
+	goto RusturfTunnel_EventScript_Gen8_NPC_1
+
+
+RusturfTunnel_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+RusturfTunnel_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Rolycoly as a gift for\n"
+	.string "defeating the hiker!$"
+
+RusturfTunnel_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat this hiker over there, I\n"
+	.string "will give you a special Pokémon from\l"
+	.string "the Galar region.$"

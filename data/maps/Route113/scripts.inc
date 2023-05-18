@@ -234,6 +234,69 @@ Route113_EventScript_LegendaryNPC_23:
 	goto Route113_EventScript_LegendaryNPC_6
 
 
+Route113_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_JAYLEN
+	goto_if 1, Route113_EventScript_Gen8_NPC_5
+Route113_EventScript_Gen8_NPC_3:
+	msgbox Route113_EventScript_Gen8_NPC_Text_2
+Route113_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route113_EventScript_Gen8_NPC_2:
+	msgbox Route113_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_DREEPY, 10, ITEM_NONE
+	msgbox Route113_EventScript_Gen8_NPC_Text_1
+	goto Route113_EventScript_Gen8_NPC_1
+
+Route113_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_MADELINE_1
+	goto_if 1, Route113_EventScript_Gen8_NPC_9
+	goto Route113_EventScript_Gen8_NPC_3
+
+Route113_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_DILLON
+	goto_if 1, Route113_EventScript_Gen8_NPC_4
+	goto Route113_EventScript_Gen8_NPC_3
+
+Route113_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_LUNG
+	goto_if 1, Route113_EventScript_Gen8_NPC_13
+	goto Route113_EventScript_Gen8_NPC_3
+
+Route113_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_LAO_1
+	goto_if 1, Route113_EventScript_Gen8_NPC_8
+	goto Route113_EventScript_Gen8_NPC_3
+
+Route113_EventScript_Gen8_NPC_12:
+	checktrainerflag TRAINER_SOPHIE
+	goto_if 1, Route113_EventScript_Gen8_NPC_17
+	goto Route113_EventScript_Gen8_NPC_3
+
+Route113_EventScript_Gen8_NPC_13:
+	checktrainerflag TRAINER_TORI_AND_TIA
+	goto_if 1, Route113_EventScript_Gen8_NPC_12
+	goto Route113_EventScript_Gen8_NPC_3
+
+Route113_EventScript_Gen8_NPC_16:
+	checktrainerflag TRAINER_LAWRENCE
+	goto_if 1, Route113_EventScript_Gen8_NPC_20
+	goto Route113_EventScript_Gen8_NPC_3
+
+Route113_EventScript_Gen8_NPC_17:
+	checktrainerflag TRAINER_COBY
+	goto_if 1, Route113_EventScript_Gen8_NPC_16
+	goto Route113_EventScript_Gen8_NPC_3
+
+Route113_EventScript_Gen8_NPC_20:
+	checktrainerflag TRAINER_WYATT
+	goto_if 1, Route113_EventScript_Gen8_NPC_2
+	goto Route113_EventScript_Gen8_NPC_3
+
+
 Route113_EventScript_LegendaryNPC_Text_0:
 	.string "You can find legendary Pokémon on this\n"
 	.string "route. But you have to beat all\l"
@@ -251,3 +314,16 @@ Route113_EventScript_LegendaryNPC_Text_2:
 	.string "Articuno-Galar, Zapdos-Galar or\l"
 	.string "Moltres-Galar. Beat all trainers here\l"
 	.string "first.$"
+
+Route113_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route113_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Dreepy as a gift for\n"
+	.string "defeating every trainer here!$"
+
+Route113_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers here, I will\n"
+	.string "give you a special Pokémon from the\l"
+	.string "Galar region.$"

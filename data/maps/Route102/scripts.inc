@@ -155,7 +155,7 @@ Route102_EventScript_Gen8_NPC_Text_0:
 
 Route102_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a Rookidee as a gift for\n"
-	.string "defeating every trainer!$"
+	.string "defeating every trainer here!$"
 
 Route102_EventScript_Gen8_NPC_Text_2:
 	.string "If you can beat all trainers here, I will\n"

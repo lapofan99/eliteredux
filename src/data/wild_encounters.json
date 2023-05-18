@@ -440,7 +440,7 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_GRUBBIN"
+                "species": "SPECIES_PANCHAM"
               },
               {
                 "min_level": 4,
@@ -992,22 +992,22 @@
               {
                 "min_level": 12,
                 "max_level": 12,
-                "species": "SPECIES_PACHIRISU"
+                "species": "SPECIES_HELIOPTILE"
               },
               {
                 "min_level": 12,
                 "max_level": 12,
-                "species": "SPECIES_STUNKY"
+                "species": "SPECIES_SALANDIT"
               },
               {
                 "min_level": 12,
                 "max_level": 12,
-                "species": "SPECIES_PACHIRISU"
+                "species": "SPECIES_HELIOPTILE"
               },
               {
                 "min_level": 13,
                 "max_level": 13,
-                "species": "SPECIES_STUNKY"
+                "species": "SPECIES_SALANDIT"
               }
             ]
           },
@@ -1797,7 +1797,7 @@
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_HOUNDOUR"
+                "species": "SPECIES_STARLY"
               },
               {
                 "min_level": 8,
@@ -1817,7 +1817,7 @@
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_PANCHAM"
+                "species": "SPECIES_HOUNDOUR"
               },
               {
                 "min_level": 8,
@@ -4290,7 +4290,7 @@
             ]
           },
           "rock_smash_mons": {
-            "encounter_rate": 255,
+            "encounter_rate": 180,
             "mons": [
               {
                 "min_level": 14,
@@ -13546,12 +13546,17 @@
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_FLABEBE_YELLOW_FLOWER"
+                "species": "SPECIES_PONYTA_GALARIAN"
               },
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_FLABEBE_ORANGE_FLOWER"
+                "species": "SPECIES_CLEFAIRY"
+              },
+              {
+                "min_level": 12,
+                "max_level": 14,
+                "species": "SPECIES_COMFEY"
               },
               {
                 "min_level": 12,
@@ -13561,32 +13566,27 @@
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_COMBEE"
-              },
-              {
-                "min_level": 12,
-                "max_level": 14,
                 "species": "SPECIES_BUTTERFREE"
               },
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_BUTTERFREE"
+                "species": "SPECIES_SWIRLIX"
               },
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_BUTTERFREE"
+                "species": "SPECIES_SPRITZEE"
               },
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_BUTTERFREE"
+                "species": "SPECIES_SWIRLIX"
               },
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_BUTTERFREE"
+                "species": "SPECIES_SPRITZEE"
               }
             ]
           },
@@ -15506,7 +15506,7 @@
               {
                 "min_level": 9,
                 "max_level": 11,
-                "species": "SPECIES_COTTONEE"
+                "species": "SPECIES_JIGGLYPUFF"
               },
               {
                 "min_level": 9,

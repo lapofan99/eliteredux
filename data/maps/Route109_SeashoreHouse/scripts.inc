@@ -178,3 +178,44 @@ Route109_SeashoreHouse_Text_SimonPostBattle: @ 82699DF
 	.string "If one of my Pokémon knew the move\n"
 	.string "for carrying me across water on its\l"
 	.string "back, I could get rid of this inner tube.$"
+
+Route109_SeashoreHouse_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_DWAYNE
+	goto_if 1, Route109_SeashoreHouse_EventScript_Gen8_NPC_5
+Route109_SeashoreHouse_EventScript_Gen8_NPC_3:
+	msgbox Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_2
+Route109_SeashoreHouse_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route109_SeashoreHouse_EventScript_Gen8_NPC_2:
+	msgbox Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_YAMPER, 10, ITEM_NONE
+	msgbox Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_1
+	goto Route109_SeashoreHouse_EventScript_Gen8_NPC_1
+
+Route109_SeashoreHouse_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_SIMON
+	goto_if 1, Route109_SeashoreHouse_EventScript_Gen8_NPC_2
+	goto Route109_SeashoreHouse_EventScript_Gen8_NPC_3
+
+Route109_SeashoreHouse_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_JOHANNA
+	goto_if 1, Route109_SeashoreHouse_EventScript_Gen8_NPC_4
+	goto Route109_SeashoreHouse_EventScript_Gen8_NPC_3
+
+
+Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Yamper as a gift for\n"
+	.string "defeating every trainer here!$"
+
+Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers here, I will\n"
+	.string "give you a special Pokémon from the\l"
+	.string "Galar region.$"

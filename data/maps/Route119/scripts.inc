@@ -723,6 +723,49 @@ Route119_EventScript_LegendaryNPC_36:
 	goto Route119_EventScript_LegendaryNPC_6
 
 
+Route119_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_DONALD
+	goto_if 1, Route119_EventScript_Gen8_NPC_5
+Route119_EventScript_Gen8_NPC_3:
+	msgbox Route119_EventScript_Gen8_NPC_Text_2
+Route119_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route119_EventScript_Gen8_NPC_2:
+	msgbox Route119_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_ARCTOVISH, 50, ITEM_NONE
+	msgbox Route119_EventScript_Gen8_NPC_Text_1
+	goto Route119_EventScript_Gen8_NPC_1
+
+Route119_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_KENT
+	goto_if 1, Route119_EventScript_Gen8_NPC_9
+	goto Route119_EventScript_Gen8_NPC_3
+
+Route119_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_GREG
+	goto_if 1, Route119_EventScript_Gen8_NPC_4
+	goto Route119_EventScript_Gen8_NPC_3
+
+Route119_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_TAYLOR
+	goto_if 1, Route119_EventScript_Gen8_NPC_12
+	goto Route119_EventScript_Gen8_NPC_3
+
+Route119_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_DOUG
+	goto_if 1, Route119_EventScript_Gen8_NPC_8
+	goto Route119_EventScript_Gen8_NPC_3
+
+Route119_EventScript_Gen8_NPC_12:
+	checktrainerflag TRAINER_BRENT
+	goto_if 1, Route119_EventScript_Gen8_NPC_2
+	goto Route119_EventScript_Gen8_NPC_3
+
+
 Route119_EventScript_LegendaryNPC_Text_0:
 	.string "You can find legendary Pokémon on this\n"
 	.string "route. But you have to beat all\l"
@@ -738,3 +781,17 @@ Route119_EventScript_LegendaryNPC_Text_2:
 	.string "You are not worthy yet to catch Arceus,\n"
 	.string "Shaymin or Victini. Beat all trainers\l"
 	.string "here first.$"
+
+Route119_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route119_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got an Arctovish as a gift\n"
+	.string "for defeating every trainer in the tall\l"
+	.string "grass!$"
+
+Route119_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all six trainers in this\n"
+	.string "tall grass, I will give you a special\l"
+	.string "Pokémon from the Galar region.$"

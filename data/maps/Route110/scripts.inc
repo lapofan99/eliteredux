@@ -1040,3 +1040,117 @@ Route110_Text_KeepAnEyeOutForRival: @ 81F0C33
 	.string "… … … … … …\p"
 	.string "Well, I had better get going.\n"
 	.string "See you again, {PLAYER}{KUN}!$"
+
+Route110_Walking_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_ISABEL_1
+	goto_if 1, Route110_Walking_EventScript_Gen8_NPC_5
+Route110_Walking_EventScript_Gen8_NPC_3:
+	msgbox Route110_Walking_EventScript_Gen8_NPC_Text_2
+Route110_Walking_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route110_Walking_EventScript_Gen8_NPC_2:
+	msgbox Route110_Walking_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_TOXEL, 10, ITEM_NONE
+	msgbox Route110_Walking_EventScript_Gen8_NPC_Text_1
+	goto Route110_Walking_EventScript_Gen8_NPC_1
+
+Route110_Walking_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_TIMMY
+	goto_if 1, Route110_Walking_EventScript_Gen8_NPC_9
+	goto Route110_Walking_EventScript_Gen8_NPC_3
+
+Route110_Walking_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_KALEB
+	goto_if 1, Route110_Walking_EventScript_Gen8_NPC_4
+	goto Route110_Walking_EventScript_Gen8_NPC_3
+
+Route110_Walking_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_JOSEPH
+	goto_if 1, Route110_Walking_EventScript_Gen8_NPC_13
+	goto Route110_Walking_EventScript_Gen8_NPC_3
+
+Route110_Walking_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_EDWIN_1
+	goto_if 1, Route110_Walking_EventScript_Gen8_NPC_8
+	goto Route110_Walking_EventScript_Gen8_NPC_3
+
+Route110_Walking_EventScript_Gen8_NPC_12:
+	checktrainerflag TRAINER_EDWARD
+	goto_if 1, Route110_Walking_EventScript_Gen8_NPC_16
+	goto Route110_Walking_EventScript_Gen8_NPC_3
+
+Route110_Walking_EventScript_Gen8_NPC_13:
+	checktrainerflag TRAINER_ALYSSA
+	goto_if 1, Route110_Walking_EventScript_Gen8_NPC_12
+	goto Route110_Walking_EventScript_Gen8_NPC_3
+
+Route110_Walking_EventScript_Gen8_NPC_16:
+	checktrainerflag TRAINER_DALE
+	goto_if 1, Route110_Walking_EventScript_Gen8_NPC_2
+	goto Route110_Walking_EventScript_Gen8_NPC_3
+
+
+Route110_CyclingRoad_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_ABIGAIL_1
+	goto_if 1, Route110_CyclingRoad_EventScript_Gen8_NPC_5
+Route110_CyclingRoad_EventScript_Gen8_NPC_3:
+	msgbox Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1
+Route110_CyclingRoad_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route110_CyclingRoad_EventScript_Gen8_NPC_2:
+	msgbox Route110_Walking_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_IMPIDIMP, 10, ITEM_NONE
+	msgbox Route110_CyclingRoad_EventScript_Gen8_NPC_Text_0
+	goto Route110_CyclingRoad_EventScript_Gen8_NPC_1
+
+Route110_CyclingRoad_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_BENJAMIN_1
+	goto_if 1, Route110_CyclingRoad_EventScript_Gen8_NPC_9
+	goto Route110_CyclingRoad_EventScript_Gen8_NPC_3
+
+Route110_CyclingRoad_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_ANTHONY
+	goto_if 1, Route110_CyclingRoad_EventScript_Gen8_NPC_4
+	goto Route110_CyclingRoad_EventScript_Gen8_NPC_3
+
+Route110_CyclingRoad_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_JACOB
+	goto_if 1, Route110_CyclingRoad_EventScript_Gen8_NPC_2
+	goto Route110_CyclingRoad_EventScript_Gen8_NPC_3
+
+Route110_CyclingRoad_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_JASMINE
+	goto_if 1, Route110_CyclingRoad_EventScript_Gen8_NPC_8
+	goto Route110_CyclingRoad_EventScript_Gen8_NPC_3
+
+
+Route110_Walking_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route110_Walking_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Toxel as a gift for\n"
+	.string "defeating every trainer here!$"
+
+Route110_Walking_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers (excluding\n"
+	.string "Cycling Road) here, I will give you a\l"
+	.string "special Pokémon from the Galar region.$"
+
+Route110_CyclingRoad_EventScript_Gen8_NPC_Text_0:
+	.string "{PLAYER} got an Impidimp as a gift for\n"
+	.string "defeating every trainer on the Cycling\l"
+	.string "Road!$"
+
+Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1:
+	.string "If you can beat all trainers on this\n"
+	.string "Cycling Road, I will give you a special\l"
+	.string "Pokémon from the Galar region.$"

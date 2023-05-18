@@ -872,3 +872,66 @@ Route111_Text_TrainerHillSign: @ 81F1D61
 	.string "Trainers!”$"
 
 `
+script Route111South_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_TYRON) &&
+	   defeated(TRAINER_CELINA) &&
+	   defeated(TRAINER_BIANCA) &&
+	   defeated(TRAINER_HAYDEN) &&
+	   defeated(TRAINER_IRENE) &&
+	   defeated(TRAINER_TRAVIS)){
+		// when you defeat every trainer
+		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		givemon(SPECIES_SINISTEA, 10, ITEM_NONE)
+		msgbox(format("{PLAYER} got a Sinistea as a gift for defeating every trainer here!"))
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("If you can beat all trainers south here (up until the desert), I will give you a special Pokémon from the Galar region."))
+	}
+    release
+    end
+}
+
+script Route111North_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_BROOKE_1) &&
+	   defeated(TRAINER_WILTON_1)){
+		// when you defeat every trainer
+		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		givemon(SPECIES_DARUMAKA_GALARIAN, 10, ITEM_NONE)
+		msgbox(format("{PLAYER} got a Galarian Darumaka as a gift for defeating the two Ace trainers here!"))
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("If you can beat the two Ace trainers here, I will give you a special Pokémon from the Galar region."))
+	}
+    release
+    end
+}
+
+script Route111Desert_EventScript_Gen8_NPC{
+    lock
+    faceplayer
+	if(defeated(TRAINER_DREW) &&
+	   defeated(TRAINER_BEAU) &&
+	   defeated(TRAINER_HEIDI) &&
+	   defeated(TRAINER_BECKY) &&
+	   defeated(TRAINER_DUSTY_1) &&
+	   defeated(TRAINER_CELIA) &&
+	   defeated(TRAINER_BRANDEN) &&
+	   defeated(TRAINER_BRYAN)){
+		// when you defeat every trainer
+		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		givemon(SPECIES_ARCTOZOLT, 50, ITEM_NONE)
+		msgbox(format("{PLAYER} got an Arctozolt as a gift for defeating every trainer here!"))
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("If you can beat all trainers here, I will give you a special Pokémon from the Galar region."))
+	}
+    release
+    end
+}

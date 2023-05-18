@@ -1190,3 +1190,82 @@ Route104_Text_BrendanPostBattle: @ 81EE120
 	.string "making Pokémon battle.\p"
 	.string "Like Mr. Briney, it's important to\n"
 	.string "become friends with your Pokémon.$"
+
+Route104South_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_DARIAN
+	goto_if 1, Route104South_EventScript_Gen8_NPC_5
+Route104South_EventScript_Gen8_NPC_3:
+	msgbox Route104South_EventScript_Gen8_NPC_Text_2
+Route104South_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route104South_EventScript_Gen8_NPC_2:
+	msgbox Route104South_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_ZIGZAGOON_GALARIAN, 10, ITEM_NONE
+	msgbox Route104South_EventScript_Gen8_NPC_Text_1
+	goto Route104South_EventScript_Gen8_NPC_1
+
+Route104South_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_CINDY_1
+	goto_if 1, Route104South_EventScript_Gen8_NPC_2
+	goto Route104South_EventScript_Gen8_NPC_3
+
+Route104South_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_BILLY
+	goto_if 1, Route104South_EventScript_Gen8_NPC_4
+	goto Route104South_EventScript_Gen8_NPC_3
+
+
+Route104North_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_WINSTON_1
+	goto_if 1, Route104North_EventScript_Gen8_NPC_5
+Route104North_EventScript_Gen8_NPC_3:
+	msgbox Route104South_EventScript_Gen8_NPC_Text_2
+Route104North_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route104North_EventScript_Gen8_NPC_2:
+	msgbox Route104South_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_MEOWTH_GALARIAN, 10, ITEM_NONE
+	msgbox Route104North_EventScript_Gen8_NPC_Text_0
+	goto Route104North_EventScript_Gen8_NPC_1
+
+Route104North_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_GINA_AND_MIA_1
+	goto_if 1, Route104North_EventScript_Gen8_NPC_8
+	goto Route104North_EventScript_Gen8_NPC_3
+
+Route104North_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_HALEY_1
+	goto_if 1, Route104North_EventScript_Gen8_NPC_4
+	goto Route104North_EventScript_Gen8_NPC_3
+
+Route104North_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_IVAN
+	goto_if 1, Route104North_EventScript_Gen8_NPC_2
+	goto Route104North_EventScript_Gen8_NPC_3
+
+
+Route104South_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route104South_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Galarian Zigzagoon as\n"
+	.string "a gift for defeating every trainer\l"
+	.string "here!$"
+
+Route104South_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers here, I will\n"
+	.string "give you a special Pokémon from the\l"
+	.string "Galar region.$"
+
+Route104North_EventScript_Gen8_NPC_Text_0:
+	.string "{PLAYER} got a Galarian Meowth as a\n"
+	.string "gift for defeating every trainer here!$"

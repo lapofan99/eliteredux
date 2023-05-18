@@ -473,9 +473,55 @@ PetalburgWoods_Text_TrainerTipsExperience: @ 822EC10
 	.string "There is no need to grind anymore.$"
 
 PetalburgWoods_Text_TrainerTipsPP: @ 822ED07
-	.string "Trainer Tips\p"
+	.string "Elite Redux Trainer Tips\p"
 	.string "In addition to Hit Points (HP), Pokémon\n"
 	.string "have Power Points (PP) that are used to\l"
 	.string "make moves during battle.\p"
-	.string "If a Pokémon runs out of PP, it must be\n"
-	.string "taken to a Pokémon Center.$"
+	.string "Thanks to Auto-Heal, you don't have to\n"
+	.string "go to a Pokémon Center anymore.$"
+
+PetalburgWoods_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_WINSTON_1
+	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_5
+PetalburgWoods_EventScript_Gen8_NPC_3:
+	msgbox PetalburgWoods_EventScript_Gen8_NPC_Text_2
+PetalburgWoods_EventScript_Gen8_NPC_1:
+	release
+	end
+
+PetalburgWoods_EventScript_Gen8_NPC_2:
+	msgbox PetalburgWoods_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_SIZZLIPEDE, 10, ITEM_NONE
+	msgbox PetalburgWoods_EventScript_Gen8_NPC_Text_1
+	goto PetalburgWoods_EventScript_Gen8_NPC_1
+
+PetalburgWoods_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_GINA_AND_MIA_1
+	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_8
+	goto PetalburgWoods_EventScript_Gen8_NPC_3
+
+PetalburgWoods_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_HALEY_1
+	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_4
+	goto PetalburgWoods_EventScript_Gen8_NPC_3
+
+PetalburgWoods_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_IVAN
+	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_2
+	goto PetalburgWoods_EventScript_Gen8_NPC_3
+
+
+PetalburgWoods_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+PetalburgWoods_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Sizzlipede as a gift\n"
+	.string "for defeating every trainer here!$"
+
+PetalburgWoods_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers here, I will\n"
+	.string "give you a special Pokémon from the\l"
+	.string "Galar region.$"

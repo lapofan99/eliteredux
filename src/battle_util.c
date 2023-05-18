@@ -4990,7 +4990,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
-		case ABILITY_NOCTURNAL:
+		/*case ABILITY_NOCTURNAL: // Nocturnal old effect
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!IsCurrentlyDay() && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_DARK))
@@ -5003,7 +5003,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
             }
-            break;
+            break;*/
 		case ABILITY_WATER_VEIL:
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!(gStatuses3[battler] & STATUS3_AQUA_RING))
@@ -5545,8 +5545,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 		}
 		
-		// Nocturnal
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NOCTURNAL)){
+		// Nocturnal old effect
+		/*if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NOCTURNAL)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NOCTURNAL)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_DARK))
 			{
@@ -5559,7 +5559,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
 				effect++;
 			}
-		}
+		}*/
 		
 		// Coiled Up
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_COIL_UP)){
@@ -11085,10 +11085,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (gSideTimers[atkSide].retaliateTimer == 1)
             MulModifier(&modifier, UQ_4_12(1.5));
 		break;
-	case ABILITY_NOCTURNAL:
+	/*case ABILITY_NOCTURNAL: // Nocturnal old effect
 		if (!IsCurrentlyDay())
             MulModifier(&modifier, UQ_4_12(1.1));
-		break;
+		break;*/
 	case ABILITY_DREAMCATCHER:
 		if (numsleepmons == 1)
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -11251,11 +11251,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
-	//Nocturnal
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NOCTURNAL)){
+	//Nocturnal old effect
+	/*if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NOCTURNAL)){
 		if (!IsCurrentlyDay())
             MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	}*/
 
 	// Burnate
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
@@ -11946,6 +11946,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.25));
         }
         break;
+    case ABILITY_NOCTURNAL:
+        if (moveType == TYPE_DARK)
+        {
+            MulModifier(&modifier, UQ_4_12(1.25));
+        }
+        break;
 	case ABILITY_EARTHBOUND:
         if (moveType == TYPE_GROUND)
         {
@@ -12116,6 +12122,14 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 RecordAbilityBattle(battlerDef, ABILITY_THICK_FAT);
         }
         break;
+    case ABILITY_NOCTURNAL:
+        if (moveType == TYPE_DARK || moveType == TYPE_FAIRY)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_NOCTURNAL);
+        }
+        break;
 	case ABILITY_MAGMA_ARMOR:
         if (moveType == TYPE_WATER || moveType == TYPE_ICE)
         {
@@ -12166,6 +12180,16 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(0.5));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_THICK_FAT);
+        }
+    }
+
+    // Nocturnal
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_NOCTURNAL)){
+        if (moveType == TYPE_DARK || moveType == TYPE_FAIRY)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_NOCTURNAL);
         }
     }
 	
@@ -12281,6 +12305,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	// Electrocytes
 	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ELECTROCYTES)){
 		if (moveType == TYPE_ELECTRIC)
+        {
+            MulModifier(&modifier, UQ_4_12(1.25));
+        }
+	}
+    // Nocturnal
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NOCTURNAL)){
+		if (moveType == TYPE_DARK)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
         }

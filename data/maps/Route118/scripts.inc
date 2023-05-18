@@ -456,6 +456,67 @@ Route118_EventScript_LegendaryNPC_16:
 	goto Route118_EventScript_LegendaryNPC_6
 
 
+Route118West_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_ROSE_1
+	goto_if 1, Route118West_EventScript_Gen8_NPC_5
+Route118West_EventScript_Gen8_NPC_3:
+	msgbox Route118West_EventScript_Gen8_NPC_Text_2
+Route118West_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route118West_EventScript_Gen8_NPC_2:
+	msgbox Route118West_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_HATENNA, 10, ITEM_NONE
+	msgbox Route118West_EventScript_Gen8_NPC_Text_1
+	goto Route118West_EventScript_Gen8_NPC_1
+
+Route118West_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_DALTON_1
+	goto_if 1, Route118West_EventScript_Gen8_NPC_8
+	goto Route118West_EventScript_Gen8_NPC_3
+
+Route118West_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_WADE
+	goto_if 1, Route118West_EventScript_Gen8_NPC_4
+	goto Route118West_EventScript_Gen8_NPC_3
+
+Route118West_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_DEANDRE
+	goto_if 1, Route118West_EventScript_Gen8_NPC_2
+	goto Route118West_EventScript_Gen8_NPC_3
+
+
+Route118East_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_BARNY
+	goto_if 1, Route118East_EventScript_Gen8_NPC_5
+Route118East_EventScript_Gen8_NPC_3:
+	msgbox Route118East_EventScript_Gen8_NPC_Text_1
+Route118East_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route118East_EventScript_Gen8_NPC_2:
+	msgbox Route118West_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_DRACOZOLT, 50, ITEM_NONE
+	msgbox Route118East_EventScript_Gen8_NPC_Text_0
+	goto Route118East_EventScript_Gen8_NPC_1
+
+Route118East_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_CHESTER
+	goto_if 1, Route118East_EventScript_Gen8_NPC_2
+	goto Route118East_EventScript_Gen8_NPC_3
+
+Route118East_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_PERRY
+	goto_if 1, Route118East_EventScript_Gen8_NPC_4
+	goto Route118East_EventScript_Gen8_NPC_3
+
+
 Route118_EventScript_LegendaryNPC_Text_0:
 	.string "You can find legendary Pokémon on this\n"
 	.string "route. But you have to beat all\l"
@@ -471,3 +532,27 @@ Route118_EventScript_LegendaryNPC_Text_2:
 	.string "You are not worthy yet to catch Phione,\n"
 	.string "Manaphy or Celebi. Beat all trainers\l"
 	.string "here first.$"
+
+Route118West_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route118West_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Hatenna as a gift for\n"
+	.string "defeating every trainer at this beach!$"
+
+Route118West_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers at this\n"
+	.string "beach, I will give you a special Pokémon\l"
+	.string "from the Galar region.$"
+
+Route118East_EventScript_Gen8_NPC_Text_0:
+	.string "{PLAYER} got a Dracozolt as a gift\n"
+	.string "for defeating the three regular\l"
+	.string "trainers here!$"
+
+Route118East_EventScript_Gen8_NPC_Text_1:
+	.string "If you can beat all three regular\n"
+	.string "trainers at the east side of this\l"
+	.string "route, I will give you a special Pokémon\l"
+	.string "from the Galar region.$"

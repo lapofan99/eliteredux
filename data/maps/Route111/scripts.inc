@@ -869,3 +869,154 @@ Route111_Text_TrainerHillSign: @ 81F1D61
 	.string "{RIGHT_ARROW} Trainer Hill Entrance\p"
 	.string "“Scale the heights, you hot-blooded\n"
 	.string "Trainers!”$"
+
+Route111South_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_TYRON
+	goto_if 1, Route111South_EventScript_Gen8_NPC_5
+Route111South_EventScript_Gen8_NPC_3:
+	msgbox Route111South_EventScript_Gen8_NPC_Text_2
+Route111South_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route111South_EventScript_Gen8_NPC_2:
+	msgbox Route111South_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_SINISTEA, 10, ITEM_NONE
+	msgbox Route111South_EventScript_Gen8_NPC_Text_1
+	goto Route111South_EventScript_Gen8_NPC_1
+
+Route111South_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_BIANCA
+	goto_if 1, Route111South_EventScript_Gen8_NPC_9
+	goto Route111South_EventScript_Gen8_NPC_3
+
+Route111South_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_CELINA
+	goto_if 1, Route111South_EventScript_Gen8_NPC_4
+	goto Route111South_EventScript_Gen8_NPC_3
+
+Route111South_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_IRENE
+	goto_if 1, Route111South_EventScript_Gen8_NPC_12
+	goto Route111South_EventScript_Gen8_NPC_3
+
+Route111South_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_HAYDEN
+	goto_if 1, Route111South_EventScript_Gen8_NPC_8
+	goto Route111South_EventScript_Gen8_NPC_3
+
+Route111South_EventScript_Gen8_NPC_12:
+	checktrainerflag TRAINER_TRAVIS
+	goto_if 1, Route111South_EventScript_Gen8_NPC_2
+	goto Route111South_EventScript_Gen8_NPC_3
+
+
+Route111North_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_BROOKE_1
+	goto_if 1, Route111North_EventScript_Gen8_NPC_4
+Route111North_EventScript_Gen8_NPC_3:
+	msgbox Route111North_EventScript_Gen8_NPC_Text_1
+Route111North_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route111North_EventScript_Gen8_NPC_2:
+	msgbox Route111South_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_DARUMAKA_GALARIAN, 10, ITEM_NONE
+	msgbox Route111North_EventScript_Gen8_NPC_Text_0
+	goto Route111North_EventScript_Gen8_NPC_1
+
+Route111North_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_WILTON_1
+	goto_if 1, Route111North_EventScript_Gen8_NPC_2
+	goto Route111North_EventScript_Gen8_NPC_3
+
+
+Route111Desert_EventScript_Gen8_NPC::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_DREW
+	goto_if 1, Route111Desert_EventScript_Gen8_NPC_5
+Route111Desert_EventScript_Gen8_NPC_3:
+	msgbox Route111Desert_EventScript_Gen8_NPC_Text_1
+Route111Desert_EventScript_Gen8_NPC_1:
+	release
+	end
+
+Route111Desert_EventScript_Gen8_NPC_2:
+	msgbox Route111South_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_ARCTOZOLT, 50, ITEM_NONE
+	msgbox Route111Desert_EventScript_Gen8_NPC_Text_0
+	goto Route111Desert_EventScript_Gen8_NPC_1
+
+Route111Desert_EventScript_Gen8_NPC_4:
+	checktrainerflag TRAINER_HEIDI
+	goto_if 1, Route111Desert_EventScript_Gen8_NPC_9
+	goto Route111Desert_EventScript_Gen8_NPC_3
+
+Route111Desert_EventScript_Gen8_NPC_5:
+	checktrainerflag TRAINER_BEAU
+	goto_if 1, Route111Desert_EventScript_Gen8_NPC_4
+	goto Route111Desert_EventScript_Gen8_NPC_3
+
+Route111Desert_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_DUSTY_1
+	goto_if 1, Route111Desert_EventScript_Gen8_NPC_13
+	goto Route111Desert_EventScript_Gen8_NPC_3
+
+Route111Desert_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_BECKY
+	goto_if 1, Route111Desert_EventScript_Gen8_NPC_8
+	goto Route111Desert_EventScript_Gen8_NPC_3
+
+Route111Desert_EventScript_Gen8_NPC_12:
+	checktrainerflag TRAINER_BRANDEN
+	goto_if 1, Route111Desert_EventScript_Gen8_NPC_16
+	goto Route111Desert_EventScript_Gen8_NPC_3
+
+Route111Desert_EventScript_Gen8_NPC_13:
+	checktrainerflag TRAINER_CELIA
+	goto_if 1, Route111Desert_EventScript_Gen8_NPC_12
+	goto Route111Desert_EventScript_Gen8_NPC_3
+
+Route111Desert_EventScript_Gen8_NPC_16:
+	checktrainerflag TRAINER_BRYAN
+	goto_if 1, Route111Desert_EventScript_Gen8_NPC_2
+	goto Route111Desert_EventScript_Gen8_NPC_3
+
+
+Route111South_EventScript_Gen8_NPC_Text_0:
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route111South_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a Sinistea as a gift for\n"
+	.string "defeating every trainer here!$"
+
+Route111South_EventScript_Gen8_NPC_Text_2:
+	.string "If you can beat all trainers south here\n"
+	.string "(up until the desert), I will give you a\l"
+	.string "special Pokémon from the Galar region.$"
+
+Route111North_EventScript_Gen8_NPC_Text_0:
+	.string "{PLAYER} got a Galarian Darumaka as a\n"
+	.string "gift for defeating the two Ace\l"
+	.string "trainers here!$"
+
+Route111North_EventScript_Gen8_NPC_Text_1:
+	.string "If you can beat the two Ace trainers\n"
+	.string "here, I will give you a special Pokémon\l"
+	.string "from the Galar region.$"
+
+Route111Desert_EventScript_Gen8_NPC_Text_0:
+	.string "{PLAYER} got an Arctozolt as a gift\n"
+	.string "for defeating every trainer here!$"
+
+Route111Desert_EventScript_Gen8_NPC_Text_1:
+	.string "If you can beat all trainers here, I will\n"
+	.string "give you a special Pokémon from the\l"
+	.string "Galar region.$"

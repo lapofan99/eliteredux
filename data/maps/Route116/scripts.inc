@@ -571,18 +571,53 @@ Route116_EventScript_Gen8_NPC_1:
 
 Route116_EventScript_Gen8_NPC_2:
 	msgbox Route116_EventScript_Gen8_NPC_Text_0
-	givemon SPECIES_DARUMAKA_GALARIAN, 10, ITEM_ICE_STONE
+	givemon SPECIES_FARFETCHD_GALARIAN, 10, ITEM_NONE
 	msgbox Route116_EventScript_Gen8_NPC_Text_1
 	goto Route116_EventScript_Gen8_NPC_1
 
 Route116_EventScript_Gen8_NPC_4:
-	checktrainerflag TRAINER_JOEY
-	goto_if 1, Route116_EventScript_Gen8_NPC_2
+	checktrainerflag TRAINER_JERRY_1
+	goto_if 1, Route116_EventScript_Gen8_NPC_9
 	goto Route116_EventScript_Gen8_NPC_3
 
 Route116_EventScript_Gen8_NPC_5:
-	checktrainerflag TRAINER_JOEY
+	checktrainerflag TRAINER_JOSE
 	goto_if 1, Route116_EventScript_Gen8_NPC_4
+	goto Route116_EventScript_Gen8_NPC_3
+
+Route116_EventScript_Gen8_NPC_8:
+	checktrainerflag TRAINER_JANICE
+	goto_if 1, Route116_EventScript_Gen8_NPC_13
+	goto Route116_EventScript_Gen8_NPC_3
+
+Route116_EventScript_Gen8_NPC_9:
+	checktrainerflag TRAINER_CLARK
+	goto_if 1, Route116_EventScript_Gen8_NPC_8
+	goto Route116_EventScript_Gen8_NPC_3
+
+Route116_EventScript_Gen8_NPC_12:
+	checktrainerflag TRAINER_SARAH
+	goto_if 1, Route116_EventScript_Gen8_NPC_17
+	goto Route116_EventScript_Gen8_NPC_3
+
+Route116_EventScript_Gen8_NPC_13:
+	checktrainerflag TRAINER_KAREN_1
+	goto_if 1, Route116_EventScript_Gen8_NPC_12
+	goto Route116_EventScript_Gen8_NPC_3
+
+Route116_EventScript_Gen8_NPC_16:
+	checktrainerflag TRAINER_DEVAN
+	goto_if 1, Route116_EventScript_Gen8_NPC_20
+	goto Route116_EventScript_Gen8_NPC_3
+
+Route116_EventScript_Gen8_NPC_17:
+	checktrainerflag TRAINER_DAWSON
+	goto_if 1, Route116_EventScript_Gen8_NPC_16
+	goto Route116_EventScript_Gen8_NPC_3
+
+Route116_EventScript_Gen8_NPC_20:
+	checktrainerflag TRAINER_JOHNSON
+	goto_if 1, Route116_EventScript_Gen8_NPC_2
 	goto Route116_EventScript_Gen8_NPC_3
 
 
@@ -607,8 +642,9 @@ Route116_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route116_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Rattata as a gift for\n"
-	.string "defeating every trainer!.$"
+	.string "{PLAYER} got a Galarian Farfetch'd as\n"
+	.string "a gift for defeating every trainer\l"
+	.string "here!$"
 
 Route116_EventScript_Gen8_NPC_Text_2:
 	.string "If you can beat all trainers here, I will\n"
