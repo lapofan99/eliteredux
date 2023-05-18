@@ -1586,14 +1586,21 @@ static bool8 StartMenuDexNavCallback(void)
 
 static void ShowGameVersionWindow(void)
 {
-	static const u8 GameVersion[] =  _("Press Select\nto Save$");
-	static const u8 cantSave[] =  _("You can't save\nhere$");
+	static const u8 sText_Save[]        =  _("Press Select to Save$");
+	static const u8 sText_cantSave[]    =  _("You can't save here$");
+	static const u8 sText_GameVersion[] =  _("{STR_VAR_1}\nGame Version {STR_VAR_2}$");
 	sSafariBallsWindowId = AddWindow(&sExtraWindowTemplate);
     PutWindowTilemap(sSafariBallsWindowId);
     DrawStdWindowFrame(sSafariBallsWindowId, FALSE);
+
     if(canSave)
-        AddTextPrinterParameterized(sSafariBallsWindowId, 1, GameVersion, 0, 1, 0xFF, NULL);
+        StringCopy(gStringVar1, sText_Save);
     else
-        AddTextPrinterParameterized(sSafariBallsWindowId, 1, cantSave, 0, 1, 0xFF, NULL);
+        StringCopy(gStringVar1, sText_cantSave);
+
+    StringCopy(gStringVar2, gText_SavingVersionNum);
+
+	StringExpandPlaceholders(gStringVar4, sText_GameVersion);
+    AddTextPrinterParameterized(sSafariBallsWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL);
     CopyWindowToVram(sSafariBallsWindowId, 2);
 }
