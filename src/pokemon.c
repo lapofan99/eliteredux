@@ -4955,6 +4955,13 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     }
     case MON_DATA_HELD_ITEM:
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "SetMonData Held Item was called");
+            MgbaClose();
+        }
+        #endif
         SET16(substruct0->heldItem);
         break;
     case MON_DATA_EXP:
