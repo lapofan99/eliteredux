@@ -221,19 +221,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 20,
-      "y": 55,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route120_EventScript_ItemNugget",
-      "flag": "FLAG_ITEM_ROUTE_120_NUGGET"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
       "x": 37,
       "y": 5,
@@ -375,32 +362,6 @@
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route120_EventScript_Angelica",
       "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 22,
-      "y": 13,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route120_EventScript_ItemNestBall",
-      "flag": "FLAG_ITEM_ROUTE_120_NEST_BALL"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 23,
-      "y": 82,
-      "elevation": 5,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route120_EventScript_ItemHyperPotion",
-      "flag": "FLAG_ITEM_ROUTE_120_HYPER_POTION"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_KECLEON",
@@ -583,19 +544,6 @@
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route120_EventScript_Leonel",
       "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 24,
-      "y": 33,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route120_EventScript_ItemRevive",
-      "flag": "FLAG_ITEM_ROUTE_120_REVIVE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MYSTERY_GIFT_MAN",
@@ -830,35 +778,11 @@
     },
     {
       "type": "hidden_item",
-      "x": 9,
-      "y": 1,
-      "elevation": 3,
-      "item": "ITEM_RARE_CANDY",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_120_RARE_CANDY_1"
-    },
-    {
-      "type": "hidden_item",
       "x": 31,
       "y": 11,
       "elevation": 3,
       "item": "ITEM_TOXIC_PLATE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_120_TOXIC_PLATE"
-    },
-    {
-      "type": "hidden_item",
-      "x": 0,
-      "y": 86,
-      "elevation": 3,
-      "item": "ITEM_RARE_CANDY",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_120_RARE_CANDY_2"
-    },
-    {
-      "type": "hidden_item",
-      "x": 24,
-      "y": 42,
-      "elevation": 3,
-      "item": "ITEM_ZINC",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_120_ZINC"
     },
     {
       "type": "secret_base",

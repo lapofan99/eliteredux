@@ -96,32 +96,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 53,
-      "y": 7,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route113_EventScript_ItemMaxEther",
-      "flag": "FLAG_ITEM_ROUTE_113_MAX_ETHER"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 79,
-      "y": 5,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route113_EventScript_ItemShinyStone",
-      "flag": "FLAG_ITEM_ROUTE_113_SHINY_STONE"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
       "x": 29,
       "y": 6,
@@ -462,30 +436,6 @@
       "y": 8,
       "elevation": 3,
       "secret_base_id": "SECRET_BASE_RED_CAVE1_3"
-    },
-    {
-      "type": "hidden_item",
-      "x": 66,
-      "y": 3,
-      "elevation": 3,
-      "item": "ITEM_ETHER",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_113_ETHER"
-    },
-    {
-      "type": "hidden_item",
-      "x": 22,
-      "y": 5,
-      "elevation": 3,
-      "item": "ITEM_TM32_DOUBLE_TEAM",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_113_TM_32"
-    },
-    {
-      "type": "hidden_item",
-      "x": 73,
-      "y": 3,
-      "elevation": 3,
-      "item": "ITEM_NUGGET",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_113_NUGGET"
     }
   ]
 }

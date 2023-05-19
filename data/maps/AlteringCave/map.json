@@ -155,21 +155,6 @@
 
   ],
   "bg_events": [
-    {
-      "type": "hidden_item",
-      "x": 3,
-      "y": 11,
-      "elevation": 4,
-      "item": "ITEM_MAX_REVIVE",
-      "flag": "FLAG_HIDDEN_ITEM_ALTERING_CAVE_MAX_REVIVE"
-    },
-    {
-      "type": "hidden_item",
-      "x": 35,
-      "y": 1,
-      "elevation": 3,
-      "item": "ITEM_GOLD_BOTTLE_CAP",
-      "flag": "FLAG_HIDDEN_ITEM_ALTERING_CAVE_GOLD_BOTTLE_CAP"
-    }
+
   ]
 }

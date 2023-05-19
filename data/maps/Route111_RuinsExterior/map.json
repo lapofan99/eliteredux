@@ -41,21 +41,6 @@
 
   ],
   "bg_events": [
-    {
-      "type": "hidden_item",
-      "x": 8,
-      "y": 13,
-      "elevation": 3,
-      "item": "ITEM_STAR_PIECE",
-      "flag": "FLAG_HIDDEN_ITEM_RUINS_EXTERIOR_STAR_PIECE_1"
-    },
-    {
-      "type": "hidden_item",
-      "x": 14,
-      "y": 19,
-      "elevation": 3,
-      "item": "ITEM_STAR_PIECE",
-      "flag": "FLAG_HIDDEN_ITEM_RUINS_EXTERIOR_STAR_PIECE_2"
-    }
+
   ]
 }

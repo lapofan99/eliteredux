@@ -12125,7 +12125,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     case ABILITY_NOCTURNAL:
         if (moveType == TYPE_DARK || moveType == TYPE_FAIRY)
         {
-            MulModifier(&modifier, UQ_4_12(0.5));
+            MulModifier(&modifier, UQ_4_12(0.75));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_NOCTURNAL);
         }
@@ -12187,7 +12187,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_NOCTURNAL)){
         if (moveType == TYPE_DARK || moveType == TYPE_FAIRY)
         {
-            MulModifier(&modifier, UQ_4_12(0.5));
+            MulModifier(&modifier, UQ_4_12(0.75));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ABILITY_NOCTURNAL);
         }

@@ -28,32 +28,6 @@
       "flag": "FLAG_ASHEN_WOODS_PINSIRITE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 26,
-      "y": 5,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Ashen_Woods_ItemFlame_Orb",
-      "flag": "FLAG_ASHEN_WOODS_FLAME_ORB"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_GOLD_ITEM_BALL",
-      "x": 26,
-      "y": 43,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Ashen_Woods_ItemU_Turn",
-      "flag": "FLAG_ASHEN_WOODS_U_TURN"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "x": 10,
       "y": 13,
@@ -130,19 +104,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "AshenWoods_EventScript_Chansey",
       "flag": "FLAG_HIDE_ASHEN_WOODS_CHANSEY"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 27,
-      "y": 43,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "FLAG_HIDE_ASHEN_WOODS_POKE_BALL"
     }
   ],
   "warp_events": [
@@ -249,29 +210,6 @@
     }
   ],
   "bg_events": [
-    {
-      "type": "hidden_item",
-      "x": 23,
-      "y": 38,
-      "elevation": 3,
-      "item": "ITEM_BALM_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_ASHEN_WOODS_BALM_MUSHROOM_2"
-    },
-    {
-      "type": "hidden_item",
-      "x": 26,
-      "y": 27,
-      "elevation": 3,
-      "item": "ITEM_PP_MAX",
-      "flag": "FLAG_HIDDEN_ITEM_ASHEN_WOODS_PP_MAX"
-    },
-    {
-      "type": "hidden_item",
-      "x": 9,
-      "y": 39,
-      "elevation": 3,
-      "item": "ITEM_BALM_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_ASHEN_WOODS_BALM_MUSHROOM_1"
-    }
+
   ]
 }

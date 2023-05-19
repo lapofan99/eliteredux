@@ -246,8 +246,8 @@ static const u8 sBubbleBeamDescription[] = _(
     "that may lower Speed.");
 
 static const u8 sAuroraBeamDescription[] = _(
-    "Fires a rainbow-colored\n"
-    "beam that may lower Attack.");
+    "A rainbow-colored beam which\n"
+    "lowers the foe's Attack 100%.");
 
 static const u8 sHyperBeamDescription[] = _(
     "Powerful, but leaves the\n"
@@ -3834,7 +3834,7 @@ static const u8 sMoveFourLineDescription_IceBeam[] = _("The foe is struck\nwith 
 static const u8 sMoveFourLineDescription_Blizzard[] = _("The foe is blasted\nwith a blizzard.\n10% freeze chance.\nWeather-based."); // new
 static const u8 sMoveFourLineDescription_Psybeam[] = _("A peculiar ray is\nshot at the foe.\n30% confusion.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_BubbleBeam[] = _("A spray of bubbles\nstrikes the foe.\n10% speed drop.\nMega Launcher boost"); // new
-static const u8 sMoveFourLineDescription_AuroraBeam[] = _("A rainbow-colored\nattack beam.\n10% attack drop.\nMega Launcher boost"); // new
+static const u8 sMoveFourLineDescription_AuroraBeam[] = _("A rainbow-colored\nattack beam.\n100% attack drop.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_HyperBeam[] = _("Does severe\ndamage.\nNeeds recharging.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_GigaImpact[] = _("Does severe\ndamage.\nNeeds recharging."); // new
 static const u8 sMoveFourLineDescription_Peck[] = _("The foe is jabbed\nwith a sharply\npointed beak or\nhorn.");

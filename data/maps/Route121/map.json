@@ -291,19 +291,6 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 55,
-      "y": 10,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route121_EventScript_ItemCarbos",
-      "flag": "FLAG_ITEM_ROUTE_121_CARBOS"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
       "x": 26,
       "y": 12,
@@ -380,19 +367,6 @@
       "trainer_sight_or_berry_tree_id": "6",
       "script": "Route121_EventScript_Cristin",
       "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 60,
-      "y": 10,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route121_EventScript_ItemRevive",
-      "flag": "FLAG_ITEM_ROUTE_121_REVIVE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MEGA_STONE",
@@ -554,22 +528,6 @@
       "elevation": 3,
       "item": "ITEM_NUGGET",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_121_NUGGET"
-    },
-    {
-      "type": "hidden_item",
-      "x": 72,
-      "y": 5,
-      "elevation": 3,
-      "item": "ITEM_FULL_HEAL",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_121_FULL_HEAL"
-    },
-    {
-      "type": "hidden_item",
-      "x": 68,
-      "y": 8,
-      "elevation": 3,
-      "item": "ITEM_MAX_REVIVE",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_121_MAX_REVIVE"
     }
   ]
 }

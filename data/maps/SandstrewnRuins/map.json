@@ -476,14 +476,6 @@
       "elevation": 3,
       "item": "ITEM_PROTECTOR",
       "flag": "FLAG_SANDSTREWN_RUINS_PROTECTOR"
-    },
-    {
-      "type": "hidden_item",
-      "x": 9,
-      "y": 89,
-      "elevation": 3,
-      "item": "ITEM_BIG_NUGGET",
-      "flag": "FLAG_SANDSTREWN_RUINS_BIG_NUGGET"
     }
   ]
 }
