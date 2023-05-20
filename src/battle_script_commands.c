@@ -4981,9 +4981,18 @@ static void Cmd_playstatchangeanimation(void)
     statsToCheck = gBattlescriptCurrInstr[2];
 
     // Handle Contrary and Simple
-    if (ability == ABILITY_CONTRARY || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_CONTRARY))
+    if (ability == ABILITY_CONTRARY || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_CONTRARY)){
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "Contrary Detected %d", gActiveBattler);
+            MgbaClose();
+        }
+        #endif
         flags ^= STAT_CHANGE_NEGATIVE;
-    else if (ability == ABILITY_SIMPLE || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SIMPLE))
+    }
+    
+    if (ability == ABILITY_SIMPLE || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SIMPLE))
         flags |= STAT_CHANGE_BY_TWO;
 
     if (flags & STAT_CHANGE_NEGATIVE) // goes down
@@ -10188,7 +10197,8 @@ static void Cmd_jumpifcantmakeasleep(void)
     {
         gBattlescriptCurrInstr = jumpPtr;
     }
-    else if (ability == ABILITY_INSOMNIA || ability == ABILITY_VITAL_SPIRIT)
+    else if (ability == ABILITY_INSOMNIA     || BattlerHasInnate(gBattlerTarget, ABILITY_INSOMNIA) ||
+             ability == ABILITY_VITAL_SPIRIT || BattlerHasInnate(gBattlerTarget, ABILITY_VITAL_SPIRIT))
     {
         gLastUsedAbility = ability;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STAYED_AWAKE_USING;
@@ -10394,8 +10404,16 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         notProtectAffected++;
     flags &= ~(STAT_BUFF_NOT_PROTECT_AFFECTED);
 
-    if (GetBattlerAbility(gActiveBattler) == ABILITY_CONTRARY)
+    if (GetBattlerAbility(gActiveBattler) == ABILITY_CONTRARY || BattlerHasInnate(gActiveBattler, ABILITY_CONTRARY))
     {
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "Contrary Detected %d", gActiveBattler);
+            MgbaClose();
+        }
+        #endif
+
         statValue ^= STAT_BUFF_NEGATIVE;
         gBattleScripting.statChanger ^= STAT_BUFF_NEGATIVE;
         if (flags & STAT_BUFF_UPDATE_MOVE_EFFECT)
@@ -10404,7 +10422,8 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             gBattleScripting.moveEffect = ReverseStatChangeMoveEffect(gBattleScripting.moveEffect);
         }
     }
-    else if (GetBattlerAbility(gActiveBattler) == ABILITY_SIMPLE)
+
+    if (GetBattlerAbility(gActiveBattler) == ABILITY_SIMPLE || BattlerHasInnate(gActiveBattler, ABILITY_SIMPLE))
     {
         statValue = (SET_STAT_BUFF_VALUE(GET_STAT_BUFF_VALUE(statValue) * 2)) | ((statValue <= -1) ? STAT_BUFF_NEGATIVE : 0);
     }

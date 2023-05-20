@@ -1514,10 +1514,9 @@ void PrepareStringBattle(u16 stringId, u8 battler)
         stringId = STRINGID_STATSWONTINCREASE;
     else if (stringId == STRINGID_STATSWONTINCREASE && gBattleScripting.statChanger & STAT_BUFF_NEGATIVE)
         stringId = STRINGID_STATSWONTDECREASE;
-
-    else if (stringId == STRINGID_STATSWONTDECREASE2 && GetBattlerAbility(battler) == ABILITY_CONTRARY)
+    else if (stringId == STRINGID_STATSWONTDECREASE2 && (GetBattlerAbility(battler) == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY)))
         stringId = STRINGID_STATSWONTINCREASE2;
-    else if (stringId == STRINGID_STATSWONTINCREASE2 && GetBattlerAbility(battler) == ABILITY_CONTRARY)
+    else if (stringId == STRINGID_STATSWONTINCREASE2 && (GetBattlerAbility(battler) == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY)))
         stringId = STRINGID_STATSWONTDECREASE2;
 
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
@@ -8199,6 +8198,102 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect = 4;
                 break;
             }
+
+            //Innates
+            //Immunity
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_IMMUNITY)){
+                if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON | STATUS1_TOXIC_COUNTER))
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_IMMUNITY;
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_PoisonJpn);
+                    effect = 1;
+                }
+            }
+
+            //Own Tempo
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_OWN_TEMPO)){
+                if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_OWN_TEMPO;
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
+                    effect = 2;
+                }
+            }
+
+            //Limber
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LIMBER)){
+                if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LIMBER;
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
+                    effect = 2;
+                }
+            }
+
+            //Insomnia
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INSOMNIA)){
+                if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INSOMNIA;
+                    gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                    effect = 1;
+                }
+            }
+
+            //Vital Spirit
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_VITAL_SPIRIT)){
+                if (gBattleMons[battler].status1 & STATUS1_SLEEP)
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_VITAL_SPIRIT;
+                    gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_SleepJpn);
+                    effect = 1;
+                }
+            }
+
+            //Water Veil
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL)){
+                if (gBattleMons[battler].status1 & STATUS1_BURN)
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WATER_VEIL;
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                    effect = 1;
+                }
+            }
+
+            //Water Bubble
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_BUBBLE)){
+                if (gBattleMons[battler].status1 & STATUS1_BURN)
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WATER_BUBBLE;
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
+                    effect = 1;
+                }
+            }
+
+            //Magma Armor
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAGMA_ARMOR)){
+                if (gBattleMons[battler].status1 & STATUS1_FREEZE)
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAGMA_ARMOR;
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_IceJpn);
+                    effect = 1;
+                }
+            }
+
+            //Oblivious
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_OBLIVIOUS)){
+                if (gBattleMons[battler].status2 & STATUS2_INFATUATION){
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_OBLIVIOUS;
+                    effect = 3;
+                }
+                else if (gDisableStructs[battler].tauntTimer != 0){
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_OBLIVIOUS;
+                    effect = 4;
+                }
+            }
+
             if (effect)
             {
                 switch (effect)
@@ -8820,7 +8915,7 @@ static u8 RandomStatRaiseBerry(u32 battlerId, u32 itemId, bool32 end2)
         } while (!CompareStat(battlerId, STAT_ATK + i, MAX_STAT_STAGE, CMP_LESS_THAN));
 
         PREPARE_STAT_BUFFER(gBattleTextBuff1, i + 1);
-        stringId = (GetBattlerAbility(battlerId) == ABILITY_CONTRARY) ? STRINGID_STATFELL : STRINGID_STATROSE;
+        stringId = ((GetBattlerAbility(battlerId) == ABILITY_CONTRARY || BattlerHasInnate(battlerId, ABILITY_CONTRARY))) ? STRINGID_STATFELL : STRINGID_STATROSE;
         gBattleTextBuff2[0] = B_BUFF_PLACEHOLDER_BEGIN;
         gBattleTextBuff2[1] = B_BUFF_STRING;
         gBattleTextBuff2[2] = STRINGID_STATSHARPLY;
@@ -13964,8 +14059,16 @@ bool32 CompareStat(u8 battlerId, u8 statId, u8 cmpTo, u8 cmpKind)
     
     // Because this command is used as a way of checking if a stat can be lowered/raised,
     // we need to do some modification at run-time.
-    if (GetBattlerAbility(battlerId) == ABILITY_CONTRARY)
+    if (GetBattlerAbility(battlerId) == ABILITY_CONTRARY || BattlerHasInnate(battlerId, ABILITY_CONTRARY))
     {
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "Contrary Detected %d", battlerId);
+            MgbaClose();
+        }
+        #endif
+
         if (cmpKind == CMP_GREATER_THAN)
             cmpKind = CMP_LESS_THAN;
         else if (cmpKind == CMP_LESS_THAN)
@@ -14010,7 +14113,18 @@ bool32 CompareStat(u8 battlerId, u8 statId, u8 cmpTo, u8 cmpKind)
 
 void BufferStatChange(u8 battlerId, u8 statId, u8 stringId)
 {
-    bool8 hasContrary = (GetBattlerAbility(battlerId) == ABILITY_CONTRARY);
+    bool8 hasContrary = FALSE;
+    
+    if(GetBattlerAbility(battlerId) == ABILITY_CONTRARY || BattlerHasInnate(battlerId, ABILITY_CONTRARY))
+        hasContrary = TRUE;
+
+    #ifdef DEBUG_BUILD
+    if(FlagGet(FLAG_SYS_MGBA_PRINT) && hasContrary){
+        MgbaOpen();
+        MgbaPrintf(MGBA_LOG_WARN, "Contrary Detected %d", battlerId);
+        MgbaClose();
+    }
+    #endif
 
     PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
     if (stringId == STRINGID_STATFELL)

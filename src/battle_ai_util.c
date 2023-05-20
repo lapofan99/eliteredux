@@ -2879,7 +2879,9 @@ bool32 IsBattlerIncapacitated(u8 battler, u16 ability)
 bool32 AI_CanSleep(u8 battler, u16 ability)
 {
     if (ability == ABILITY_INSOMNIA
+      || BattlerHasInnate(battler, ABILITY_INSOMNIA)
       || ability == ABILITY_VITAL_SPIRIT
+      || BattlerHasInnate(battler, ABILITY_VITAL_SPIRIT)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || (gFieldStatuses & (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN))
