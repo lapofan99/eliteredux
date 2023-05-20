@@ -86,7 +86,7 @@ SootopolisCity_Gym_1F_EventScript_Juan:: @ 8224F44
 	//goto_if_set FLAG_DAILY_REMATCH_JUAN, SootopolisCity_Gym_1F_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, SootopolisCity_Gym_1F_EventScript_JuanRematch
 	trainerbattle_single TRAINER_JUAN_1, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
-	goto_if_unset FLAG_RECEIVED_TM03, SootopolisCity_Gym_1F_EventScript_GiveScald2
+	goto_if_unset FLAG_RECEIVED_TM03, SootopolisCity_Gym_1F_EventScript_GiveScald
 	goto_if_unset FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
 	msgbox SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT
 	release
@@ -123,23 +123,6 @@ SootopolisCity_Gym_1F_EventScript_JuanDefeated:: @ 8224F82
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_JUAN_MATCH_CALL
-	release
-	end
-
-SootopolisCity_Gym_1F_EventScript_GiveScald:: @ 8224FD4
-	giveitem ITEM_TM55_SCALD
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_BagIsFull
-	msgbox SootopolisCity_Gym_1F_Text_ExplainScald, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM03
-	return
-
-SootopolisCity_Gym_1F_EventScript_GiveScald2:: @ 8224FF7
-	giveitem ITEM_TM55_SCALD
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	msgbox SootopolisCity_Gym_1F_Text_ExplainScald, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM03
 	release
 	end
 
@@ -388,3 +371,20 @@ SootopolisCity_Gym_1F_Text_JuanChooseFormat:
 SootopolisCity_Gym_1F_Text_JuanAllowLegends:
 	.string "And would you allow me to dance with\n"
 	.string "even stronger Legendary Pokémon?$"
+
+SootopolisCity_Gym_1F_EventScript_GiveScald::
+	msgbox SootopolisCity_Gym_1F_EventScript_GiveScald_Text_0
+	givecustommon SPECIES_KINGDRA, 70, ITEM_KINGDRANITE, ITEM_CHERISH_BALL, NATURE_MODEST, 0, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_HYDRO_PUMP, MOVE_HURRICANE, MOVE_DRACO_METEOR, MOVE_FLASH_CANNON, FALSE
+	msgbox SootopolisCity_Gym_1F_EventScript_GiveScald_Text_1
+	setflag FLAG_RECEIVED_TM03
+	msgbox SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+
+SootopolisCity_Gym_1F_EventScript_GiveScald_Text_0:
+	.string "Take this special Pokémon as a gift\n"
+	.string "from me!$"
+
+SootopolisCity_Gym_1F_EventScript_GiveScald_Text_1:
+	.string "{PLAYER} got Juan's {COLOR BLUE}Kingdra{COLOR DARK_GRAY} as a gift!$"

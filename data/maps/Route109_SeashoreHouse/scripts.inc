@@ -212,7 +212,7 @@ Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Yamper as a gift for\n"
+	.string "{PLAYER} got a {COLOR BLUE}Yamper{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_2:

@@ -994,7 +994,7 @@ Route111South_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route111South_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Sinistea as a gift for\n"
+	.string "{PLAYER} got a {COLOR BLUE}Sinistea{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route111South_EventScript_Gen8_NPC_Text_2:
@@ -1003,7 +1003,7 @@ Route111South_EventScript_Gen8_NPC_Text_2:
 	.string "special Pokémon from the Galar region.$"
 
 Route111North_EventScript_Gen8_NPC_Text_0:
-	.string "{PLAYER} got a Galarian Darumaka as a\n"
+	.string "{PLAYER} got a {COLOR BLUE}Galarian Darumaka{COLOR DARK_GRAY} as a\n"
 	.string "gift for defeating the two Ace\l"
 	.string "trainers here!$"
 
@@ -1013,7 +1013,7 @@ Route111North_EventScript_Gen8_NPC_Text_1:
 	.string "from the Galar region.$"
 
 Route111Desert_EventScript_Gen8_NPC_Text_0:
-	.string "{PLAYER} got an Arctozolt as a gift\n"
+	.string "{PLAYER} got an {COLOR BLUE}Arctozolt{COLOR DARK_GRAY} as a gift\n"
 	.string "for defeating every trainer here!$"
 
 Route111Desert_EventScript_Gen8_NPC_Text_1:

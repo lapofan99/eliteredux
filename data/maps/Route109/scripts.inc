@@ -652,7 +652,7 @@ Route109_Beach_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route109_Beach_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Galarian Yamask as a\n"
+	.string "{PLAYER} got a {COLOR BLUE}Galarian Yamask{COLOR DARK_GRAY} as a\n"
 	.string "gift for defeating every trainer at\l"
 	.string "this beach!$"
 

@@ -55,7 +55,7 @@ MossdeepCity_Gym_EventScript_TateAndLiza:: @ 8220898
 	trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
 	clearflag FLAG_SYS_INVERSE_BATTLE
 	goto_if_eq MossdeepCity_Gym_EventScript_TateAndLizaRematch
-	goto_if_unset FLAG_RECEIVED_TM04, MossdeepCity_Gym_EventScript_GiveCalmMind2
+	goto_if_unset FLAG_RECEIVED_TM04, MossdeepCity_Gym_EventScript_GiveCalmMind
 	msgbox MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -100,23 +100,6 @@ MossdeepCity_Gym_EventScript_TateAndLizaDefeated:: @ 82208D1
 	setflag FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL
 	release
 	end
-
-MossdeepCity_Gym_EventScript_GiveCalmMind2:: @ 8220937
-	giveitem ITEM_TM04_CALM_MIND
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM04
-	release
-	end
-
-MossdeepCity_Gym_EventScript_GiveCalmMind:: @ 822095B
-	giveitem ITEM_TM04_CALM_MIND
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_BagIsFull
-	msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM04
-	return
 
 MossdeepCity_Gym_EventScript_TateAndLizaRematch::
 	msgbox MossdeepCity_Gym_Text_TateAndLizaAllowLegends, MSGBOX_YESNO
@@ -304,10 +287,7 @@ MossdeepCity_Gym_EventScript_GymGuide::
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_MOSSDEEP_GYM, MossdeepCity_Gym_EventScript_GymGuidePostVictory
-	goto_if_set FLAG_MOSSDEEP_GYM_REVIVAL_HERBS, MossdeepCity_Gym_Guide2
 	msgbox MossdeepCity_Gym_Text_Guide1, MSGBOX_DEFAULT
-	giveitem ITEM_REVIVAL_HERB, 10
-	setflag FLAG_MOSSDEEP_GYM_REVIVAL_HERBS
 	msgbox MossdeepCity_Gym_Text_Guide2, MSGBOX_DEFAULT
 	release
 	end
@@ -412,9 +392,7 @@ MossdeepCity_Gym_EventScript_RedFloorSwitch:: @ 8220CBF
 
 MossdeepCity_Gym_Text_Guide1: @ 8220CD5
 	.string "Yo, how's it going, Champion-\n"
-	.string "bound {PLAYER}?\p"
-	.string "Please, take these Revival Herbs to\n"
-	.string "help with your challenge!$"
+	.string "bound {PLAYER}?$"
 
 MossdeepCity_Gym_Text_Guide2: @ 8220CD5
 	.string "The Gym Leaders here use\n"
@@ -708,3 +686,21 @@ MossdeepCity_Gym_Text_TateAndLizaAllowLegends:
 	.string "Liza: I'll always be with Tate!\p"
 	.string "Tate: Tell us - will you battle…\n"
 	.string "Liza: Our Legendary Pokémon?$"
+
+MossdeepCity_Gym_EventScript_GiveCalmMind::
+	msgbox MossdeepCity_Gym_EventScript_GiveCalmMind_Text_0
+	givecustommon SPECIES_SLOWBRO, 60, ITEM_SLOWBRONITE, ITEM_CHERISH_BALL, NATURE_QUIET, 2, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_SCALD, MOVE_PSYCHIC, MOVE_SUBSTITUTE, MOVE_PROTECT, FALSE
+	msgbox MossdeepCity_Gym_EventScript_GiveCalmMind_Text_1
+	setflag FLAG_RECEIVED_TM04
+	msgbox MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+
+MossdeepCity_Gym_EventScript_GiveCalmMind_Text_0:
+	.string "Take this special Pokémon as a gift\n"
+	.string "from us!$"
+
+MossdeepCity_Gym_EventScript_GiveCalmMind_Text_1:
+	.string "{PLAYER} got Tate & Liza's {COLOR BLUE}Slowbro{COLOR DARK_GRAY} as\n"
+	.string "a gift!$"

@@ -538,7 +538,7 @@ Route118West_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route118West_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Hatenna as a gift for\n"
+	.string "{PLAYER} got a {COLOR BLUE}Hatenna{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer at this beach!$"
 
 Route118West_EventScript_Gen8_NPC_Text_2:
@@ -547,7 +547,7 @@ Route118West_EventScript_Gen8_NPC_Text_2:
 	.string "from the Galar region.$"
 
 Route118East_EventScript_Gen8_NPC_Text_0:
-	.string "{PLAYER} got a Dracozolt as a gift\n"
+	.string "{PLAYER} got a {COLOR BLUE}Dracozolt{COLOR DARK_GRAY} as a gift\n"
 	.string "for defeating the three regular\l"
 	.string "trainers here!$"
 

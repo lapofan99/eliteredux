@@ -787,7 +787,7 @@ Route119_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route119_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got an Arctovish as a gift\n"
+	.string "{PLAYER} got an {COLOR BLUE}Arctovish{COLOR DARK_GRAY} as a gift\n"
 	.string "for defeating every trainer in the tall\l"
 	.string "grass!$"
 

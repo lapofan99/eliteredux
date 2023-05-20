@@ -564,7 +564,7 @@ RusturfTunnel_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 RusturfTunnel_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Rolycoly as a gift for\n"
+	.string "{PLAYER} got a {COLOR BLUE}Rolycoly{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating the hiker!$"
 
 RusturfTunnel_EventScript_Gen8_NPC_Text_2:

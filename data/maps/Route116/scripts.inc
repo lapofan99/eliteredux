@@ -642,7 +642,7 @@ Route116_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route116_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Galarian Farfetch'd as\n"
+	.string "{PLAYER} got a {COLOR BLUE}Galarian Farfetch'd{COLOR DARK_GRAY} as\n"
 	.string "a gift for defeating every trainer\l"
 	.string "here!$"
 

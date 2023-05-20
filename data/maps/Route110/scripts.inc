@@ -1137,7 +1137,7 @@ Route110_Walking_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route110_Walking_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Toxel as a gift for\n"
+	.string "{PLAYER} got a {COLOR BLUE}Toxel{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route110_Walking_EventScript_Gen8_NPC_Text_2:
@@ -1146,7 +1146,7 @@ Route110_Walking_EventScript_Gen8_NPC_Text_2:
 	.string "special Pokémon from the Galar region.$"
 
 Route110_CyclingRoad_EventScript_Gen8_NPC_Text_0:
-	.string "{PLAYER} got an Impidimp as a gift for\n"
+	.string "{PLAYER} got an {COLOR BLUE}Impidimp{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer on the Cycling\l"
 	.string "Road!$"
 

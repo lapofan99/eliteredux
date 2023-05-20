@@ -352,7 +352,7 @@ Route117_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route117_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got an Applin as a gift for\n"
+	.string "{PLAYER} got an {COLOR BLUE}Applin{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route117_EventScript_Gen8_NPC_Text_2:

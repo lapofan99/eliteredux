@@ -518,7 +518,7 @@ PetalburgWoods_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 PetalburgWoods_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Sizzlipede as a gift\n"
+	.string "{PLAYER} got a {COLOR BLUE}Sizzlipede{COLOR DARK_GRAY} as a gift\n"
 	.string "for defeating every trainer here!$"
 
 PetalburgWoods_EventScript_Gen8_NPC_Text_2:

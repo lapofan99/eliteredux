@@ -501,14 +501,6 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	case DIR_EAST, PetalburgCity_Gym_EventScript_WallysDadArrivesEast
 	end
 
-PetalburgCity_Gym_EventScript_GiveFacade:: @ 8204ED2
-	giveitem ITEM_TM42_FACADE
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_BagIsFull
-	setflag FLAG_RECEIVED_TM42
-	msgbox PetalburgCity_Gym_Text_ExplainFacade, MSGBOX_DEFAULT
-	return
-
 PetalburgCity_Gym_EventScript_WallysDadArrivesNorth:: @ 8204EF5
 	setvar VAR_0x8008, 1
 	goto PetalburgCity_Gym_EventScript_WallysDadArrives
@@ -1259,10 +1251,7 @@ PetalburgCity_Gym_EventScript_GymGuide:: @ 820574F
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, PetalburgCity_Gym_EventScript_GymGuidePostVictory
-	goto_if_set FLAG_PETALBURG_GYM_CHILAN_BERRIES, PetalburgCity_Gym_EventScript_GymGuide2
 	msgbox PetalburgCity_Gym_Text_GymGuideAdvice1, MSGBOX_DEFAULT
-	giveitem ITEM_CHILAN_BERRY, 15
-	setflag FLAG_PETALBURG_GYM_CHILAN_BERRIES
 	msgbox PetalburgCity_Gym_Text_GymGuideAdvice2, MSGBOX_DEFAULT
 	release
 	end
@@ -1518,9 +1507,7 @@ PetalburgCity_Gym_Text_DadNoAmountOfTrainingIsEnough: @ 82064C3
 
 PetalburgCity_Gym_Text_GymGuideAdvice1: @ 8206542
 	.string "Hey, how's it going, Champion-\n"
-	.string "bound {PLAYER}?\p"
-	.string "Please, take these Chilan Berries\n"
-	.string "to help with your challenge.$"
+	.string "bound {PLAYER}?$"
 
 PetalburgCity_Gym_Text_GymGuideAdvice2:
 	.string "The doors in this Gym open when you\n"
@@ -1736,8 +1723,8 @@ PetalburgCity_Gym_Text_EnterOHKORoom: @ 82073A7
 
 PetalburgCity_Gym_Text_EnterGymLeadersRoom: @ 82073E4
 	.string "“Gym Leader's Room.”\p"
-	.string "“See for yourself what Pokémon await\n"
-	.string "you!” the sign says.\p"
+	.string "“Prepare to get spanked by your\n"
+	.string "dad!” the sign says.\p"
 	.string "Do you want to go through?$"
 
 PetalburgCity_Gym_Text_GymStatue: @ 820744C
@@ -1787,3 +1774,21 @@ PetalburgCity_Gym_Text_NormanChooseFormat:
 PetalburgCity_Gym_Text_NormanAllowLegends:
 	.string "Dad: Do you want to try battling my\n"
 	.string "Legendary Pokémon?$"
+
+PetalburgCity_Gym_EventScript_GiveFacade::
+	msgbox PetalburgCity_Gym_EventScript_GiveFacade_Text_0
+	givecustommon SPECIES_KANGASKHAN, 45, ITEM_KANGASKHANITE, ITEM_CHERISH_BALL, NATURE_JOLLY, 0, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_FACADE, MOVE_POWER_UP_PUNCH, MOVE_FAKE_OUT, MOVE_EARTHQUAKE, FALSE
+	msgbox PetalburgCity_Gym_EventScript_GiveFacade_Text_1
+	setflag FLAG_RECEIVED_TM42
+	msgbox PetalburgCity_Gym_EventScript_NormanPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+
+PetalburgCity_Gym_EventScript_GiveFacade_Text_0:
+	.string "Take this special Pokémon as a gift\n"
+	.string "from me!$"
+
+PetalburgCity_Gym_EventScript_GiveFacade_Text_1:
+	.string "{PLAYER} got Norman's {COLOR BLUE}Kangaskhan{COLOR DARK_GRAY} as\n"
+	.string "a gift!$"

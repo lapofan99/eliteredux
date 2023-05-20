@@ -669,7 +669,7 @@ script Route119_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
 		givemon(SPECIES_ARCTOVISH, 50, ITEM_NONE)
-		msgbox(format("{PLAYER} got an Arctovish as a gift for defeating every trainer in the tall grass!"))
+		msgbox(format("{PLAYER} got an {COLOR BLUE}Arctovish{COLOR DARK_GRAY} as a gift for defeating every trainer in the tall grass!"))
 	}
 	else{
 		// before defeating every trainer here

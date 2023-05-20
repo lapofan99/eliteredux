@@ -1257,7 +1257,7 @@ Route104South_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route104South_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Galarian Zigzagoon as\n"
+	.string "{PLAYER} got a {COLOR BLUE}Galarian Zigzagoon{COLOR DARK_GRAY} as\n"
 	.string "a gift for defeating every trainer\l"
 	.string "here!$"
 
@@ -1267,5 +1267,5 @@ Route104South_EventScript_Gen8_NPC_Text_2:
 	.string "Galar region.$"
 
 Route104North_EventScript_Gen8_NPC_Text_0:
-	.string "{PLAYER} got a Galarian Meowth as a\n"
+	.string "{PLAYER} got a {COLOR BLUE}Galarian Meowth{COLOR DARK_GRAY} as a\n"
 	.string "gift for defeating every trainer here!$"

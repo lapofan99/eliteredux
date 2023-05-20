@@ -196,7 +196,7 @@ script Route115_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
 		givemon(SPECIES_DRACOVISH, 50, ITEM_NONE)
-		msgbox(format("{PLAYER} got a Dracovish as a gift for defeating every trainer here!"))
+		msgbox(format("{PLAYER} got a {COLOR BLUE}Dracovish{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
 	}
 	else{
 		// before defeating every trainer here

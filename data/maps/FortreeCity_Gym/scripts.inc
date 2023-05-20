@@ -19,7 +19,7 @@ FortreeCity_Gym_EventScript_Winona:: @ 82165C8
 	//goto_if_set FLAG_DAILY_REMATCH_WINONA, FortreeCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, FortreeCity_Gym_EventScript_WinonaRematch
 	trainerbattle_single TRAINER_WINONA_1, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
-	goto_if_unset FLAG_RECEIVED_TM51, FortreeCity_Gym_EventScript_GiveRoost2
+	goto_if_unset FLAG_RECEIVED_TM51, FortreeCity_Gym_EventScript_GiveRoost
 	msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -46,23 +46,6 @@ FortreeCity_Gym_EventScript_WinonaDefeated:: @ 82165FD
 	setflag FLAG_SCOTT_CALL_FORTREE_GYM
 	release
 	end
-
-FortreeCity_Gym_EventScript_GiveRoost2:: @ 8216646
-	giveitem ITEM_TM51_ROOST
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	msgbox FortreeCity_Gym_Text_ExplainRoost, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM51
-	release
-	end
-
-FortreeCity_Gym_EventScript_GiveRoost:: @ 821666A
-	giveitem ITEM_TM51_ROOST
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_BagIsFull
-	msgbox FortreeCity_Gym_Text_ExplainRoost, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM51
-	return
 
 FortreeCity_Gym_EventScript_WinonaRematch::
 	message FortreeCity_Gym_Text_WinonaChooseFormat
@@ -380,3 +363,21 @@ FortreeCity_Gym_Text_WinonaChooseFormat:
 FortreeCity_Gym_Text_WinonaAllowLegends:
 	.string "Winona: and would you like to challenge\n"
 	.string "my stronger Legendary Pokémon?$"
+
+FortreeCity_Gym_EventScript_GiveRoost::
+	msgbox FortreeCity_Gym_EventScript_GiveRoost_Text_0
+	givecustommon SPECIES_DRAGONITE, 55, ITEM_ASSAULT_VEST, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_WINGBEAT, MOVE_DRAGON_RUSH, MOVE_FIRE_PUNCH, MOVE_EXTREME_SPEED, FALSE
+	msgbox FortreeCity_Gym_EventScript_GiveRoost_Text_1
+	setflag FLAG_RECEIVED_TM51
+	msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+
+FortreeCity_Gym_EventScript_GiveRoost_Text_0:
+	.string "Take this special Pokémon as a gift\n"
+	.string "from me!$"
+
+FortreeCity_Gym_EventScript_GiveRoost_Text_1:
+	.string "{PLAYER} got Winona's {COLOR BLUE}Dragonite{COLOR DARK_GRAY} as a\n"
+	.string "gift!$"

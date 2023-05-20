@@ -154,7 +154,7 @@ Route102_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 Route102_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a Rookidee as a gift for\n"
+	.string "{PLAYER} got a {COLOR BLUE}Rookidee{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route102_EventScript_Gen8_NPC_Text_2:

@@ -1057,7 +1057,7 @@ script Route110_Walking_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
 		givemon(SPECIES_TOXEL, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got a Toxel as a gift for defeating every trainer here!"))
+		msgbox(format("{PLAYER} got a {COLOR BLUE}Toxel{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
 	}
 	else{
 		// before defeating every trainer here
@@ -1078,7 +1078,7 @@ script Route110_CyclingRoad_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
 		givemon(SPECIES_IMPIDIMP, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got an Impidimp as a gift for defeating every trainer on the Cycling Road!"))
+		msgbox(format("{PLAYER} got an {COLOR BLUE}Impidimp{COLOR DARK_GRAY} as a gift for defeating every trainer on the Cycling Road!"))
 	}
 	else{
 		// before defeating every trainer here

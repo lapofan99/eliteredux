@@ -407,8 +407,7 @@ RustboroCity_Gym_Text_ReceivedStoneBadge: @ 82137EC
 RustboroCity_Gym_Text_StoneBadgeInfoTakeThis: @ 8213816
 	.string "The Stone Badge enables your Pokémon\n"
 	.string "to use the HM move Cut outside\l"
-	.string "of battle.\p"
-	.string "Please take this with you, too.$"
+	.string "of battle.$"
 
 RustboroCity_Gym_Text_ExplainRockTomb: @ 82138B1
 	.string "That Technical Machine, TM39,\n"
