@@ -2262,8 +2262,8 @@ LittlerootTown_EventScript_TutorialNPC2_Text_4:
 LittlerootTown_EventScript_TutorialNPC2_Text_5:
 	.string "You now have a portable PC (Start Menu).\n"
 	.string "It's disabled for the Elite Four.\p"
-	.string "You can switch Auto Run and a\n"
-	.string "Permanent Repel in the Options.\p"
+	.string "You can switch Auto Run, Permanent\n"
+	.string "Repel and much more in the Options.\p"
 	.string "No need to teach HMs, also you can fly\n"
 	.string "to already visited places with every\l"
 	.string "Pokémon.\p"
@@ -2316,8 +2316,8 @@ LittlerootTown_EventScript_TutorialNPC2_Text_8:
 	.string "DexNav: you can directly search the\l"
 	.string "Pokémon you want. No need to walk slow\l"
 	.string "when approaching.\p"
-	.string "The Shiny rate has been massively\n"
-	.string "boosted, it's 1/20 now.\p"
+	.string "The Shiny rate can be massively\n"
+	.string "boosted, up to 1/20.\p"
 	.string "You can catch every Pokémon from Gen 1\n"
 	.string "to 7 + many from Gen 8.$"
 

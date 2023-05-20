@@ -4381,11 +4381,11 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_GYARADOS] =
     {
     .baseHP        = 105,
-    .baseAttack    = 145,
-    .baseDefense   = 99,
-    .baseSpeed     = 91,
+    .baseAttack    = 140,
+    .baseDefense   = 79,
+    .baseSpeed     = 81,
     .baseSpAttack  = 100,
-    .baseSpDefense = 120,
+    .baseSpDefense = 100,
     .type1 = TYPE_WATER,
     .type2 = TYPE_DRAGON,
     .catchRate = 255,

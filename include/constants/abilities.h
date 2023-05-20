@@ -27,7 +27,7 @@
 #define ABILITY_SHADOW_TAG 23 // This Pokémon steps on the opposing Pokémon's shadow to prevent it from escaping.
 #define ABILITY_ROUGH_SKIN 24 // This Pokémon inflicts 1/8 HP damage on contact.
 #define ABILITY_WONDER_GUARD 25 // *No innate* Its mysterious power only lets supereffective moves hit the Pokémon.
-#define ABILITY_LEVITATE 26 // By floating in the air, the Pokémon receives full immunity to all Ground-type moves. Boosts the power of Flying-type moves by 50%.
+#define ABILITY_LEVITATE 26 // By floating in the air, the Pokémon receives full immunity to all Ground-type moves. Boosts the power of Flying-type moves by 25%.
 #define ABILITY_EFFECT_SPORE 27 // When a Pokémon with this Ability is hit by a move that makes contact, there is a 10% chance that the attacking Pokémon will become either poisoned, paralyzed, or asleep, with a 3.3% probability each.
 #define ABILITY_SYNCHRONIZE 28 // *No innate* The attacker will receive the same status condition if it inflicts a burn, poison, or paralysis to the Pokémon.
 #define ABILITY_CLEAR_BODY 29 // Prevents other Pokémon's moves or Abilities from lowering the Pokémon's stats.
@@ -273,7 +273,7 @@
 #define ABILITY_POWER_SPOT 249 // Increases the power of Ally Pokémon's attacks by 30%
 #define ABILITY_MIMICRY 250 // *No innate* Changes the Pokémon's type depending on the terrain.
 #define ABILITY_SCREEN_CLEANER 251 // *No innate* When the Pokémon enters a battle, the effects of Light Screen, Reflect, and Aurora Veil are nullified for both opposing and ally Pokémon.
-#define ABILITY_STEELY_SPIRIT 252 // Increases the power of Steel-type moves used by the user or any Ally Pokémon by 50%
+#define ABILITY_STEELY_SPIRIT 252 // Increases the power of Steel-type moves used by the user or any Ally Pokémon by 30%
 #define ABILITY_PERISH_BODY 253 // When hit by a move that makes direct contact, the Pokémon and the attacker will faint after three turns unless they switch out of battle.
 #define ABILITY_WANDERING_SPIRIT 254 // The Pokémon exchanges Abilities with a Pokémon that hits it with a move that makes direct contact.
 #define ABILITY_GORILLA_TACTICS 255 // Boosts the Pokémon's Attack stat but only allows the use of the first selected move.

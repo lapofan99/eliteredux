@@ -429,6 +429,7 @@ const u16 gEggMoves[] = {
         MOVE_BELCH),
 
     egg_moves(FARFETCHD,
+        MOVE_DUAL_WINGBEAT, // new
         MOVE_STEEL_WING,
         MOVE_FORESIGHT,
         MOVE_MIRROR_MOVE,
@@ -4471,6 +4472,7 @@ const u16 gEggMoves[] = {
         MOVE_STOMP),
 
     egg_moves(FARFETCHD_GALARIAN,
+        MOVE_DUAL_WINGBEAT, // new
         MOVE_COUNTER,
         MOVE_QUICK_ATTACK,
         MOVE_FLAIL,
@@ -4481,6 +4483,7 @@ const u16 gEggMoves[] = {
         MOVE_SIMPLE_BEAM,
         MOVE_DOUBLE_EDGE,
         MOVE_FEINT,
+        MOVE_FIRST_IMPRESSION, // new
         MOVE_SKY_ATTACK),
 
     egg_moves(MR_MIME_GALARIAN,

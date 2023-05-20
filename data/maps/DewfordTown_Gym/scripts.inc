@@ -147,7 +147,7 @@ DewfordTown_Gym_EventScript_Brawly:: @ 81FC7C2
 	//goto_if_set FLAG_DAILY_REMATCH_BRAWLY, DewfordTown_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, DewfordTown_Gym_EventScript_BrawlyRematch
 	trainerbattle_single TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
-	goto_if_unset FLAG_RECEIVED_TM08, DewfordTown_Gym_EventScript_GiveBulkUp2
+	goto_if_unset FLAG_RECEIVED_TM08, DewfordTown_Gym_EventScript_GiveBulkUp
 	msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -177,23 +177,6 @@ DewfordTown_Gym_EventScript_BrawlyDefeated:: @ 81FC7F7
 	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
 	setvar VAR_ROXANNE_CALL_STEP_COUNTER, 0
 	setflag FLAG_ENABLE_ROXANNE_FIRST_CALL
-	release
-	end
-
-DewfordTown_Gym_EventScript_GiveBulkUp:: @ 81FC855
-	giveitem ITEM_TM08_BULK_UP
-	compare VAR_RESULT, 0
-	goto_if_eq Common_EventScript_BagIsFull
-	msgbox DewfordTown_Gym_Text_ExplainBulkUp, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM08
-	return
-
-DewfordTown_Gym_EventScript_GiveBulkUp2: @ 81FC878
-	giveitem ITEM_TM08_BULK_UP
-	compare VAR_RESULT, 0
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	msgbox DewfordTown_Gym_Text_ExplainBulkUp, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM08
 	release
 	end
 
@@ -312,10 +295,6 @@ DewfordTown_Gym_EventScript_GymGuide::
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_DEWFORD_GYM, DewfordTown_Gym_EventScript_GymGuidePostVictory
-	goto_if_set FLAG_DEWFORD_GYM_FRESHWATER, DewfordTown_Gym_Guide2
-	msgbox DewfordTown_Gym_Text_Guide1, MSGBOX_DEFAULT
-	giveitem ITEM_FRESH_WATER, 10
-	setflag FLAG_DEWFORD_GYM_FRESHWATER
 	msgbox DewfordTown_Gym_Text_Guide2, MSGBOX_DEFAULT
 	release
 	end
@@ -354,14 +333,12 @@ DewfordTown_Gym_EventScript_GymStatue:: @ 81FC9CC
 
 DewfordTown_Gym_Text_Guide1::
 	.string "Hey, how's it going, Champion-\n"
-	.string "bound {PLAYER}?\p"
-	.string "Please, take this Fresh Water to\n"
-	.string "help with your challenge!$"
+	.string "bound {PLAYER}?$"
 
 DewfordTown_Gym_Text_Guide2::
 	.string "Dewford's Gym Leader Brawly commands\n"
 	.string "Fighting-type Pokémon.\p"
-	.string "His strongest Pokémon is his Hariyama,\n"
+	.string "His strongest Pokémon is his Hitmonchan,\n"
 	.string "and the rest of his team are no joke!\p"
 	.string "Bringing a Ghost-type Pokémon\n"
 	.string "could give you an advantage.\p"
@@ -541,3 +518,21 @@ DewfordTown_Gym_Text_BrawlyAllowLegends:
 	.string "Brawly: And how about battling my\n"
 	.string "Legendary Pokémon? Think you're up\l"
 	.string "to the challenge?$"
+
+DewfordTown_Gym_EventScript_GiveBulkUp::
+	msgbox DewfordTown_Gym_EventScript_GiveBulkUp_Text_0
+	givecustommon SPECIES_HITMONCHAN, 20, ITEM_COBA_BERRY, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DRAIN_PUNCH, MOVE_RAPID_SPIN, MOVE_ICE_PUNCH, MOVE_THUNDER_PUNCH, FALSE
+	msgbox DewfordTown_Gym_EventScript_GiveBulkUp_Text_1
+	setflag FLAG_RECEIVED_TM08
+	msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+
+DewfordTown_Gym_EventScript_GiveBulkUp_Text_0:
+	.string "Take this special Pokémon as a gift\n"
+	.string "from me!$"
+
+DewfordTown_Gym_EventScript_GiveBulkUp_Text_1:
+	.string "{PLAYER} got Brawly's {COLOR BLUE}Hitmonchan{COLOR DARK_GRAY} as a\n"
+	.string "gift!$"

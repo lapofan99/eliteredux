@@ -11056,7 +11056,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_STEELY_SPIRIT:
         if (moveType == TYPE_STEEL)
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(1.3));
         break;
     case ABILITY_TRANSISTOR:
         if (moveType == TYPE_ELECTRIC)
@@ -11967,7 +11967,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	case ABILITY_LEVITATE:
         if (moveType == TYPE_FLYING)
         {
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(1.25));
         }
         break;
 		

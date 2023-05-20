@@ -77,7 +77,7 @@ MauvilleCity_Gym_EventScript_Wattson:: @ 820DEEB
 	//goto_if_set FLAG_DAILY_REMATCH_WATTSON, MauvilleCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, MauvilleCity_Gym_EventScript_WattsonRematch
 	trainerbattle_single TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
-	goto_if_unset FLAG_RECEIVED_TM72, MauvilleCity_Gym_EventScript_GiveVoltSwitch2
+	goto_if_unset FLAG_RECEIVED_TM72, MauvilleCity_Gym_EventScript_GiveVoltSwitch
 	compare VAR_NEW_MAUVILLE_STATE, 6
 	goto_if_eq MauvilleCity_Gym_EventScript_CompletedNewMauville
 	msgbox MauvilleCity_Gym_Text_WattsonPostBattle, MSGBOX_DEFAULT
@@ -96,7 +96,6 @@ MauvilleCity_Gym_EventScript_WattsonDefeated:: @ 820DF2B
 	waitfanfare
 	closemessage
 	delay 30
-	msgbox MauvilleCity_Gym_Text_ExplainTakeThis, MSGBOX_DEFAULT
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_SCOTT
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
@@ -120,23 +119,6 @@ MauvilleCity_Gym_EventScript_WattsonDefeated:: @ 820DF2B
 	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
 	release
 	end
-
-MauvilleCity_Gym_EventScript_GiveVoltSwitch2:: @ 820DF8D
-	giveitem ITEM_TM72_VOLT_SWITCH
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	msgbox MauvilleCity_Gym_Text_ExplainVoltSwitch, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM72
-	release
-	end
-
-MauvilleCity_Gym_EventScript_GiveVoltSwitch:: @ 820DFB1
-	giveitem ITEM_TM72_VOLT_SWITCH
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_BagIsFull
-	msgbox MauvilleCity_Gym_Text_ExplainVoltSwitch, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_TM72
-	return
 
 MauvilleCity_Gym_EventScript_CompletedNewMauville:: @ 820DFD4
 	msgbox MauvilleCity_Gym_Text_WattsonGoForthAndEndeavor, MSGBOX_DEFAULT
@@ -287,10 +269,7 @@ MauvilleCity_Gym_EventScript_GymGuide::
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_MAUVILLE_GYM, MauvilleCity_Gym_EventScript_GymGuidePostVictory
-	goto_if_set FLAG_MAUVILLE_GYM_MOOMOOMILK, MauvilleCity_GymGuide_2
 	msgbox MauvilleCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
-	giveitem ITEM_MOOMOO_MILK, 12
-	setflag FLAG_MAUVILLE_GYM_MOOMOOMILK
 	msgbox MauvilleCity_Gym_Text_GymGuideAdvice2, MSGBOX_DEFAULT
 	release
 	end
@@ -339,9 +318,7 @@ MauvilleCity_Gym_Text_GymGuideAdvice2:
 
 MauvilleCity_Gym_Text_GymGuideAdvice:
 	.string "Hey, how's it going, Champion-\n"
-	.string "bound {PLAYER}?\p"
-	.string "Please, take this Moomoo Milk to\n"
-	.string "help with your challenge!$"
+	.string "bound {PLAYER}?$"
 
 MauvilleCity_Gym_Text_GymGuidePostVictory: @ 820E283
 	.string "Whoa, you're electrifying!\n"
@@ -508,3 +485,21 @@ MauvilleCity_Gym_Text_WattsonAllowLegends:
 	.string "Think you can handle my Legendary\n"
 	.string "Pokémon?\p"
 	.string "They're shockingly strong!$"
+
+MauvilleCity_Gym_EventScript_GiveVoltSwitch::
+	msgbox MauvilleCity_Gym_EventScript_GiveVoltSwitch_Text_0
+	givecustommon SPECIES_ROTOM_MOW, 30, ITEM_WHITE_HERB, ITEM_CHERISH_BALL, NATURE_TIMID, 0, 0, 0, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, MOVE_VOLT_SWITCH, MOVE_LEAF_STORM, MOVE_TOXIC, MOVE_HEX, TRUE
+	msgbox MauvilleCity_Gym_EventScript_GiveVoltSwitch_Text_1
+	setflag FLAG_RECEIVED_TM72
+	msgbox MauvilleCity_Gym_Text_WattsonPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+
+MauvilleCity_Gym_EventScript_GiveVoltSwitch_Text_0:
+	.string "Take this special Pokémon as a gift\n"
+	.string "from me!$"
+
+MauvilleCity_Gym_EventScript_GiveVoltSwitch_Text_1:
+	.string "{PLAYER} got Wattson's {COLOR BLUE}Rotom-Mow{COLOR DARK_GRAY} as\n"
+	.string "a gift!$"

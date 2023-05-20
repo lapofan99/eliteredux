@@ -198,7 +198,6 @@ Rustboro_Gym_Guide_Trigger4::
 
 Rustboro_Gym_Guide_Speech::
 	msgbox RustboroCity_Gym_Text_Tips, MSGBOX_DEFAULT
-	giveitem ITEM_FRESH_WATER, 5
 	setvar VAR_RUSTBORO_CITY_STATE, 1
 	compare VAR_TEMP_1, 1
 	goto_if_eq Rustboro_Gym_Guide_Walk_Away1
@@ -314,9 +313,7 @@ RustboroCity_Gym_Text_Tips::
 	.string "bulky Pokémon, which gives you a\l"
 	.string "better chance to withstand Roxanne.\p"
 	.string "Come see me afterwards, if you beat\n"
-	.string "the Gym Leader.\p"
-	.string "Oh, and take these bottles of\n"
-	.string "Fresh Water for your challenge!$"
+	.string "the Gym Leader.$"
 
 RustboroCity_Gym_Text_GymGuideAdvice::
 	.string "That's all I've got for now,\n"
@@ -493,7 +490,7 @@ RustboroCity_Gym_Text_RoxanneAllowLegends:
 
 RustboroCity_Gym_EventScript_GiveRockTomb::
 	msgbox RustboroCity_Gym_EventScript_GiveRockTomb_Text_0
-	givemon SPECIES_RATTATA, 10, ITEM_NONE
+	givecustommon SPECIES_AMAURA, 14, ITEM_CHOPLE_BERRY, ITEM_CHERISH_BALL, NATURE_BOLD, 0, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_FREEZE_DRY, MOVE_THUNDER_WAVE, MOVE_ANCIENT_POWER, MOVE_HYPER_VOICE, TRUE
 	msgbox RustboroCity_Gym_EventScript_GiveRockTomb_Text_1
 	setflag FLAG_RECEIVED_TM39
 	msgbox RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT
@@ -502,9 +499,9 @@ RustboroCity_Gym_EventScript_GiveRockTomb::
 
 
 RustboroCity_Gym_EventScript_GiveRockTomb_Text_0:
-	.string "Take this Pokémon from Galar as a gift\n"
+	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
 
 RustboroCity_Gym_EventScript_GiveRockTomb_Text_1:
-	.string "{PLAYER} got a Rattata as a gift for\n"
-	.string "defeating Roxanne!.$"
+	.string "{PLAYER} got Roxanne's {COLOR BLUE}Amaura{COLOR DARK_GRAY} as a\n"
+	.string "gift!$"
