@@ -1,6 +1,6 @@
 raw `
-.set LOCALID_NURSE, 11
-.set LOCALID_CHANSEY, 12
+.set LOCALID_NURSE, 8
+.set LOCALID_CHANSEY, 9
 
 Route133_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route133_OnTransition

@@ -1,7 +1,7 @@
 raw `
 .set LOCALID_RIVAL, 16
-.set LOCALID_RIVAL_ON_BIKE, 25
-.set LOCALID_SCOTT, 43
+.set LOCALID_RIVAL_ON_BIKE, 19
+.set LOCALID_SCOTT, 34
 
 Route119_MapScripts:: @ 81F4424
 	map_script MAP_SCRIPT_ON_RESUME, Route119_OnResume
