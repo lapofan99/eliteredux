@@ -980,11 +980,11 @@ static const u8 sTwisterDescription[] = _(
     "to tear at the foe.");
 
 static const u8 sRainDanceDescription[] = _(
-    "boosts the power of Water-\n"
+    "Boosts the power of Water-\n"
     "type moves for 5 turns.");
 
 static const u8 sSunnyDayDescription[] = _(
-    "boosts the power of Fire-\n"
+    "Boosts the power of Fire-\n"
     "type moves for 5 turns.");
 
 static const u8 sCrunchDescription[] = _(
@@ -1078,7 +1078,7 @@ static const u8 sMementoDescription[] = _(
     "the foe's abilities.");
 
 static const u8 sFacadeDescription[] = _(
-    "boosts Attack when burned,\n"
+    "Boosts Attack when burned,\n"
     "paralyzed, or poisoned.");
 
 static const u8 sFocusPunchDescription[] = _(
@@ -1106,7 +1106,7 @@ static const u8 sTauntDescription[] = _(
     "using attack moves.");
 
 static const u8 sHelpingHandDescription[] = _(
-    "boosts the power of the\n"
+    "Boosts the power of the\n"
     "recipient's moves.");
 
 static const u8 sTrickDescription[] = _(
@@ -1130,7 +1130,7 @@ static const u8 sIngrainDescription[] = _(
     "The user can't switch out.");
 
 static const u8 sSuperpowerDescription[] = _(
-    "boosts strength sharply,\n"
+    "Boosts strength sharply,\n"
     "but lowers abilities.");
 
 static const u8 sMagicCoatDescription[] = _(
@@ -2380,7 +2380,7 @@ static const u8 sGEOMANCYDescription[] = _(
     "Speed on the 2nd turn.");
 
 static const u8 sMAGNETIC_FLUXDescription[] = _(
-    "boosts the defenses of\n"
+    "Boosts the defenses of\n"
     "those with Plus or Minus.");
 
 static const u8 sHAPPY_HOURDescription[] = _(
@@ -2512,7 +2512,7 @@ static const u8 sLASER_FOCUSDescription[] = _(
     "will be a critical hit.");
 
 static const u8 sGEAR_UPDescription[] = _(
-    "boosts the attacks of\n"
+    "Boosts the attacks of\n"
     "those with Plus or Minus.");
 
 static const u8 sTHROAT_CHOPDescription[] = _(
