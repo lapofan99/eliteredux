@@ -5,7 +5,7 @@
 .set LOCALID_GRUNT_3, 6
 .set LOCALID_GRUNT_4, 7
 .set LOCALID_MAXIE, 8
-.set LOCALID_MATT, 10
+.set LOCALID_MATT, 9
 
 MtPyre_Summit_MapScripts:: @ 8231FF7
 	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Summit_OnTransition

@@ -1,5 +1,5 @@
 .set LOCALID_MATT, 1
-.set LOCALID_SUBMARINE, 4
+.set LOCALID_SUBMARINE, 3
 
 AquaHideout_B2F_MapScripts:: @ 8233DCF
 	map_script MAP_SCRIPT_ON_TRANSITION, AquaHideout_B2F_OnTransition

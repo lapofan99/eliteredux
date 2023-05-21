@@ -3,7 +3,7 @@
 .set LOCALID_MAXIE, 3
 .set LOCALID_GRUNT_1, 4
 .set LOCALID_GRUNT_2, 5
-.set LOCALID_KYOGRE_SLEEPING, 7
+.set LOCALID_KYOGRE_SLEEPING, 6
 
 SeafloorCavern_Room9_MapScripts:: @ 8234DC8
 	.byte 0

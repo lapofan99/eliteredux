@@ -1,5 +1,5 @@
-.set LOCALID_CHANSEY, 9
-.set LOCALID_POKE_BALL, 10
+.set LOCALID_CHANSEY, 6
+.set LOCALID_POKE_BALL, 7
 
 AshenWoods_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, AshenWoods_OnResume

@@ -1,5 +1,5 @@
-.set LOCALID_HIDEOUT_GUARD, 5
-.set LOCALID_CHANSEY, 8
+.set LOCALID_HIDEOUT_GUARD, 4
+.set LOCALID_CHANSEY, 7
 
 JaggedPass_MapScripts:: @ 8230656
 	map_script MAP_SCRIPT_ON_RESUME, JaggedPass_OnResume
