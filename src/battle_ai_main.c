@@ -573,6 +573,13 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
 
+        if(gBattleMoves[move].flags & FLAG_SOUND && (AI_DATA->atkAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
+        {
+            if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) || (AI_DATA->defAbility == ABILITY_LEVITATE || DefSpeciesHasInnate(ABILITY_LEVITATE)))
+                RETURN_SCORE_MINUS(20);
+        }
+
+
         if (moveType == TYPE_ROCK
           && (AI_DATA->defAbility == ABILITY_MOUNTAINEER || DefSpeciesHasInnate(ABILITY_MOUNTAINEER)))
         {
@@ -1797,7 +1804,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_TRICK:
         case EFFECT_KNOCK_OFF:
-            if (AI_DATA->defAbility == ABILITY_STICKY_HOLD)
+            if (AI_DATA->defAbility == ABILITY_STICKY_HOLD || DefSpeciesHasInnate(ABILITY_STICKY_HOLD))
                 score -= 10;
             break;
         case EFFECT_INGRAIN:

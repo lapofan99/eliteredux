@@ -5839,10 +5839,11 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && attackerAbility == ABILITY_NORMALIZE)
         return TYPE_NORMAL;
-    else if (gBattleMoves[move].flags & FLAG_SOUND
-             && attackerAbility == ABILITY_LIQUID_VOICE)
+    else if (gBattleMoves[move].flags & FLAG_SOUND &&
+             (attackerAbility == ABILITY_LIQUID_VOICE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LIQUID_VOICE)))
         return TYPE_WATER;
-    else if (gBattleMoves[move].flags & FLAG_SOUND && (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
+    else if (gBattleMoves[move].flags & FLAG_SOUND && 
+             (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
         return TYPE_GROUND;
     else if (gStatuses4[battlerAtk] & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
         return TYPE_ELECTRIC;
@@ -5995,12 +5996,13 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_NORMAL;
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
-    else if (gBattleMoves[move].flags & FLAG_SOUND
-             && attackerAbility == ABILITY_LIQUID_VOICE)
+    else if (gBattleMoves[move].flags & FLAG_SOUND &&
+            (attackerAbility == ABILITY_LIQUID_VOICE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LIQUID_VOICE)))
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_WATER;
     }
-    else if (gBattleMoves[move].flags & FLAG_SOUND && (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
+    else if (gBattleMoves[move].flags & FLAG_SOUND && 
+            (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_GROUND;
     }
