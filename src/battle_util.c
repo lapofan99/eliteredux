@@ -7,6 +7,7 @@
 #include "battle_controllers.h"
 #include "battle_interface.h"
 #include "battle_setup.h"
+#include "data.h"
 #include "party_menu.h"
 #include "pokemon.h"
 #include "international_string_util.h"
@@ -4177,6 +4178,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     u32 pidAtk, pidDef;
     u32 moveType, move;
     u32 i, j;
+    u16 trainerNum = VarGet(VAR_LAST_TRAINER_BATTLED);
 
     if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
         return 0;
@@ -5412,6 +5414,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_WATER_VEIL)] &&
 				!(gStatuses3[battler] & STATUS3_AQUA_RING))
 			{
+                gBattlerAttacker = battler;
 				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_WATER_VEIL)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_WATER_VEIL;
 				gLastUsedAbility = ABILITY_WATER_VEIL;
@@ -5722,6 +5725,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}
+
+        //Held item Workaraound
+        if(gBattleMons[battler].item == ITEM_NONE     && 
+           GetBattlerSide(battler) == B_SIDE_OPPONENT && 
+           (gBattleTypeFlags & BATTLE_TYPE_TRAINER)   && 
+           !(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)){
+            const struct TrainerMonItemCustomMoves *partyData = gTrainers[trainerNum].party.ItemCustomMoves;
+            for(i = 0; i < gTrainers[trainerNum].partySize; i++){
+                if(gBattleMons[battler].item == ITEM_NONE && gBattleMons[battler].species == partyData[i].species && partyData[i].heldItem != ITEM_NONE){
+                    gBattleMons[battler].item = partyData[i].heldItem;
+                    #ifdef DEBUG_BUILD
+                    if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                        MgbaOpen();
+                        MgbaPrintf(MGBA_LOG_WARN, "USED THE WORKAROUND TO GIVE THE ITEM ID:%d TO THE POKEMON:%d", gBattleMons[battler].item, i);
+                        MgbaClose();
+                    }
+                    #endif
+                }
+            }
+        }
 
         #ifdef DEBUG_BUILD
         if(FlagGet(FLAG_SYS_MGBA_PRINT) && GetBattlerSide(battler) == B_SIDE_OPPONENT){

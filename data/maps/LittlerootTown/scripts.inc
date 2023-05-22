@@ -2029,8 +2029,9 @@ LittlerootTown_EventScript_TutorialNPC2::
 	case 14, LittlerootTown_EventScript_TutorialNPC2_17
 	case 15, LittlerootTown_EventScript_TutorialNPC2_18
 	case 16, LittlerootTown_EventScript_TutorialNPC2_19
-	case MULTI_B_PRESSED, LittlerootTown_EventScript_TutorialNPC2_19
-LittlerootTown_EventScript_TutorialNPC2_19:
+	case 17, LittlerootTown_EventScript_TutorialNPC2_20
+	case MULTI_B_PRESSED, LittlerootTown_EventScript_TutorialNPC2_20
+LittlerootTown_EventScript_TutorialNPC2_20:
 	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_4
 LittlerootTown_EventScript_TutorialNPC2_1:
 	release
@@ -2113,6 +2114,11 @@ LittlerootTown_EventScript_TutorialNPC2_17:
 
 LittlerootTown_EventScript_TutorialNPC2_18:
 	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_16
+	goto LittlerootTown_EventScript_TutorialNPC2
+	goto LittlerootTown_EventScript_TutorialNPC2_1
+
+LittlerootTown_EventScript_TutorialNPC2_19:
+	msgbox LittlerootTown_EventScript_TutorialNPC2_Text_17
 	goto LittlerootTown_EventScript_TutorialNPC2
 	goto LittlerootTown_EventScript_TutorialNPC2_1
 
@@ -2372,6 +2378,10 @@ LittlerootTown_EventScript_TutorialNPC2_Text_16:
 	.string "You can check the In-Game or Online\n"
 	.string "Pokédex for how to evolve a certain\l"
 	.string "Pokémon.$"
+
+LittlerootTown_EventScript_TutorialNPC2_Text_17:
+	.string "To save the game, open the menu with\n"
+	.string "START and then press SELECT.$"
 
 PKMN_Center_Move_Tutor_Text_0:
 	.string "How can I help you today?$"
