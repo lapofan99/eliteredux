@@ -2100,7 +2100,10 @@ script LittlerootTown_EventScript_TutorialNPC2{
 			msgbox(format("You can buy all evolution items in the Poké Mart.\p"
                           "You can check the In-Game or Online Pokédex for how to evolve a certain Pokémon."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
-		case 16:// Exit
+		case 16:// New Save menu
+			msgbox(format("To save the game, open the menu with START and then press SELECT."))
+			goto(LittlerootTown_EventScript_TutorialNPC2)// new save menu
+		case 17:// Exit
 		case MULTI_B_PRESSED:
 		default:
 			msgbox("See you later.")
