@@ -2102,7 +2102,7 @@ script LittlerootTown_EventScript_TutorialNPC2{
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 16:// New Save menu
 			msgbox(format("To save the game, open the menu with START and then press SELECT."))
-			goto(LittlerootTown_EventScript_TutorialNPC2)// new save menu
+			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 17:// Exit
 		case MULTI_B_PRESSED:
 		default:
