@@ -953,7 +953,6 @@ const u8 gText_TutorialLearnMoves[]              = _("Learn moves"); // from Par
 const u8 gText_TutorialHealing[]              	 = _("Auto-Healing"); // before battle
 const u8 gText_TutorialLeveling[]              	 = _("Leveling"); // Candy Box
 const u8 gText_TutorialEvolutions[]              = _("Evolutions"); // Check Pokédex
-const u8 gText_TutorialSaving[]                  = _("Save Menu"); // Check Pokédex
 const u8 gText_TutorialExit[]                    = _("Exit"); // Exit
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -976,8 +975,7 @@ static const struct ListMenuItem sTutorialNPCOptions[] =
     {gText_TutorialHealing, 13},
     {gText_TutorialLeveling, 14},
     {gText_TutorialEvolutions, 15},
-    {gText_TutorialSaving, 16},
-    {gText_TutorialExit, 17},
+    {gText_TutorialExit, 16},
 };
 
 // Table of your multichoice sets.
