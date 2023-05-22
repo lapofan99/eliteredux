@@ -155,12 +155,15 @@ gText_Pie_StandardCaps::
 	.string "Easy level caps?$"
 
 gText_Pie_MoreCaps::
-	.string "The More Caps setting simply adds\n"
-	.string "more level caps to the game.\p"
+	.string "The More Caps setting is a good\n"
+	.string "introduction to difficulty hacks.\p"
 	.string "With this option, there will be a\n"
 	.string "level cap tied to each badge, and you\l"
 	.string "won't be able to reach level 100\l"
 	.string "before becoming Champion.\p"
+	.string "Enemy trainers will never have higher\n"
+	.string "leveled pokémon compared to yours,\l"
+	.string "so expect a difficult but fair challenge.\p"
 	.string "So, would you like to play with\n"
 	.string "more level caps?$"
 
@@ -171,6 +174,8 @@ gText_Pie_StrictCaps::
 	.string "level cap tied to each badge, and you\l"
 	.string "won't be able to reach level 100\l"
 	.string "before becoming Champion.\p"
+	.string "You may have to invent new strategies\n"
+	.string "for each fight, so tread with caution.\p"
 	.string "So, would you like to play with\n"
 	.string "elite level caps?$"
 
