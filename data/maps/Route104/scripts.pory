@@ -1230,3 +1230,18 @@ script Route104North_EventScript_Gen8_NPC{
     release
     end
 }
+
+script Route104_EventScript_TrainerTemplate{
+    lock
+    faceplayer
+	if(!defeated(TRAINER_IVAN)){//TRAINER_IVAN will be changed for the new trainer
+		trainerbattle_single(TRAINER_IVAN, format("Put the Intro here."), format("Put the Defeat message here."))
+		msgbox(format("Put the post battle message here."), MSGBOX_AUTOCLOSE)
+	}
+	else{
+		// before defeating every trainer here
+		msgbox(format("Put the post battle message here."))
+	}
+    release
+    end
+}

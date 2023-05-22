@@ -1252,6 +1252,22 @@ Route104North_EventScript_Gen8_NPC_8:
 	goto Route104North_EventScript_Gen8_NPC_3
 
 
+Route104_EventScript_TrainerTemplate::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_IVAN
+	goto_if 0, Route104_EventScript_TrainerTemplate_2
+	msgbox Route104_EventScript_TrainerTemplate_Text_2
+Route104_EventScript_TrainerTemplate_1:
+	release
+	end
+
+Route104_EventScript_TrainerTemplate_2:
+	trainerbattle_single TRAINER_IVAN, Route104_EventScript_TrainerTemplate_Text_0, Route104_EventScript_TrainerTemplate_Text_1
+	msgbox Route104_EventScript_TrainerTemplate_Text_2, MSGBOX_AUTOCLOSE
+	goto Route104_EventScript_TrainerTemplate_1
+
+
 Route104South_EventScript_Gen8_NPC_Text_0:
 	.string "Take this Pokémon from Galar. You can\n"
 	.string "have as many of them as you like!$"
@@ -1269,3 +1285,12 @@ Route104South_EventScript_Gen8_NPC_Text_2:
 Route104North_EventScript_Gen8_NPC_Text_0:
 	.string "{PLAYER} got a {COLOR BLUE}Galarian Meowth{COLOR DARK_GRAY} as a\n"
 	.string "gift for defeating every trainer here!$"
+
+Route104_EventScript_TrainerTemplate_Text_0:
+	.string "Put the Intro here.$"
+
+Route104_EventScript_TrainerTemplate_Text_1:
+	.string "Put the Defeat message here.$"
+
+Route104_EventScript_TrainerTemplate_Text_2:
+	.string "Put the post battle message here.$"
