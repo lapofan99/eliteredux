@@ -1918,6 +1918,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u16 move = 1;
     u16 species = 1;
 
+    if(!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
+        VarSet(VAR_LAST_TRAINER_BATTLED, trainerNum);
+
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
 
