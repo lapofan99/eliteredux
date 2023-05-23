@@ -1549,7 +1549,7 @@ const u8 gText_MenuOption[] = _("Option");
 const u8 gText_MenuExit[] = _("Exit");
 const u8 gText_MenuRetire[] = _("Retire");
 const u8 gText_MenuRest[] = _("Rest");
-const u8 gText_MenuDexNav[] = _("Dexnav");
+const u8 gText_MenuDexNav[] = _("{COLOR BLUE}Dexnav{COLOR DARK_GRAY}");
 const u8 gText_SafariBallStock[] = _("Safari Balls\nStock: {STR_VAR_1}");
 const u8 gText_BattlePyramidFloor[] = _("Battle Pyramid\n{STR_VAR_1}");
 const u8 gText_Floor1[] = _("Floor 1");
@@ -2281,7 +2281,7 @@ const u8 gText_FORMS_Buttons_PE[]                   = _("{A_BUTTON}EVOLUTIONS");
 const u8 gText_FORMS_Buttons_Decapped_PE[]          = _("{A_BUTTON}Evolutions");
 const u8 gText_FORMS_NONE[]                         = _("{STR_VAR_1} has no alternate forms.");
 
-const u8 gText_AccessPC[]               = _("PC");
+const u8 gText_AccessPC[]               = _("{COLOR RED}PC{COLOR DARK_GRAY}");
 const u8 gText_Modify_Pss[]             = _("Modify");
 //Summary Screen Move Effects
 const u8 gText_Effect[]                 = _("Effect");
