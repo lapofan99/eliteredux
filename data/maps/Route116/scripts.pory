@@ -497,7 +497,7 @@ script Route116_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("Ah, young trainer, I sense your curiosity has brought you here. But beware, for you tread on sacred grounds. The presence of the legendary Creation Trio looms over this place. They seek a guardian who can commune with their power, but you don't seem ready yet. Come back once you've accomplished an exceptional feat in the Pokémon League."))
 	}
 	else{
 		if(defeated(TRAINER_JOEY)  &&
@@ -510,10 +510,10 @@ script Route116_EventScript_LegendaryNPC{
 		   defeated(TRAINER_DAWSON)  &&
 		   defeated(TRAINER_DEVAN)  &&
 		   defeated(TRAINER_JOHNSON)){
-			msgbox(format("You are now worthy to catch Dialga, Palkia and Giratina here. Just use your DexNav, they will now appear."))
+			msgbox(format("Ah, young trainer, your potential shines through the shadows like a glimmering light. I can sense it: the Creation Trio has deemed you worthy of their time. Use your DexNav to meet them."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Dialga, Palkia or Giratina. Beat all trainers here first."))
+			msgbox(format("You are almost worthy. Defeat all remaining trainers to prove your might once and for all!"))
 		}
 	}
     release
@@ -540,7 +540,7 @@ script Route116_EventScript_Gen8_NPC{
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat all trainers here, I will give you a special Pokémon from the Galar region."))
+		msgbox(format("If you can beat all trainers here, I will give you an exotic Pokémon from the Galar region: a valiant wielder of longswords!"))
 	}
     release
     end
