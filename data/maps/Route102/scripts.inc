@@ -87,7 +87,7 @@ Route102_Text_WatchMeCatchPokemon: @ 81EC1F8
 	.string "don't they?\p"
 	.string "Please watch me and see if I can\n"
 	.string "catch one properly.\p"
-	.string "Go, zigzagoon!$"
+	.string "Go, Zigzagoon!$"
 
 Route102_Text_WallyIDidIt: @ 81EC271
 	.string "Wally: Come on, Poké Ball!\n"
