@@ -2535,6 +2535,7 @@ enum
     ENDTURN_EMBARGO,
     ENDTURN_LOCK_ON,
     ENDTURN_CHARGE,
+    ENDTURN_COILED_UP,
     ENDTURN_LASER_FOCUS,
     ENDTURN_TAUNT,
     ENDTURN_YAWN,
@@ -2961,6 +2962,11 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_CHARGE:  // charge
             if (gDisableStructs[gActiveBattler].chargeTimer && --gDisableStructs[gActiveBattler].chargeTimer == 0)
                 gStatuses3[gActiveBattler] &= ~STATUS3_CHARGED_UP;
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_COILED_UP:
+            if((gStatuses4[gActiveBattler] & STATUS4_COILED) && (gBattleMoves[gLastMoves[gActiveBattler]].flags & FLAG_STRONG_JAW_BOOST))
+                gStatuses4[gActiveBattler] &= ~(STATUS4_COILED);
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_TAUNT:  // taunt
@@ -4927,16 +4933,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
 		case ABILITY_COIL_UP:
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
-                !(gStatuses4[battler] & STATUS4_COILED))
+				!(gStatuses4[battler] & STATUS4_COILED))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_COIL_UP;
-				gLastUsedAbility = ABILITY_COIL_UP;
-				gStatuses4[battler] = STATUS4_COILED;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type1);
-				BattleScriptPushCursorAndCallback(BattleScript_BattlerCoiledUp);
-				effect++;
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COIL_UP;
+				gStatuses4[battler] |= STATUS4_COILED;
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerCoiledUp); // Try activate
+                effect++;
 			}
 			break;
 		case ABILITY_AIR_BLOWER:
@@ -5565,16 +5569,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Coiled Up
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_COIL_UP)){
-			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_COIL_UP)])
-			{
-				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_COIL_UP)] = TRUE;
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_COIL_UP)] &&
+				!(gStatuses4[battler] & STATUS4_COILED))
+            {
                 gBattlerAttacker = battler;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_COIL_UP;
-				gLastUsedAbility = ABILITY_COIL_UP;
-				gStatuses4[battler] = STATUS4_COILED;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff1, gBattleMons[battler].type1);
-				BattleScriptPushCursorAndCallback(BattleScript_BattlerCoiledUp);
-				effect++;
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COIL_UP;
+				gStatuses4[battler] |= STATUS4_COILED;
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerCoiledUp); // Try activate
+                effect++;
 			}
 		}
 		

@@ -4881,6 +4881,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     {
         priority++;
     }
+
 	// Frozen Soul
 	if ((GetBattlerAbility(battlerId) == ABILITY_FROZEN_SOUL  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_FROZEN_SOUL))
         && gBattleMoves[move].type == TYPE_ICE
@@ -4888,12 +4889,14 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     {
         priority++;
     }
+
     // Prankster
 	if ((GetBattlerAbility(battlerId) == ABILITY_PRANKSTER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_PRANKSTER)) && IS_MOVE_STATUS(move))
     {
         gProtectStructs[battlerId].pranksterElevated = 1;
         priority++;
     }
+
     // Sighting System
 	if ((GetBattlerAbility(battlerId) == ABILITY_SIGHTING_SYSTEM  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SIGHTING_SYSTEM))
         && gBattleMoves[move].accuracy <= 50)
@@ -4935,10 +4938,9 @@ s8 GetMovePriority(u32 battlerId, u16 move)
 
 	if((GetBattlerAbility(battlerId) == ABILITY_PERFECTIONIST || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_PERFECTIONIST)) && gBattleMoves[move].power <= 25)
 		priority++;
-	
-	if((gStatuses4[battlerId] & STATUS4_COILED) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)){
+
+    if((gStatuses4[battlerId] & STATUS4_COILED) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)){
 		priority++;
-		gStatuses4[battlerId] &= ~(STATUS4_COILED);
 	}
 
     return priority;
