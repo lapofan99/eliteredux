@@ -174,7 +174,7 @@ script Route113_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("These ashes seem to have affected even the most noble of bird lineages: that of Articuno, Zapdos and Moltres. Their kin has been spotted roaming this smoke-filled land, looking for a valiant aid... could you be the one?"))
 	}
 	else{
 		if(defeated(TRAINER_JAYLEN) &&
@@ -187,10 +187,10 @@ script Route113_EventScript_LegendaryNPC{
 		   defeated(TRAINER_COBY)  &&
 		   defeated(TRAINER_LAWRENCE)  &&
 		   defeated(TRAINER_WYATT)){
-			msgbox(format("You are now worthy to catch Articuno-Galar, Zapdos-Galar and Moltres-Galar here. Just use your DexNav, they will now appear."))
+			msgbox(format("You are now worthy of catching the legendary birds trio. Just use your DexNav, they will now appear. They might even be different than you remember..."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Articuno-Galar, Zapdos-Galar or Moltres-Galar. Beat all trainers here first."))
+			msgbox(format("I heard of your accomplishments, and the birds must have sensed that too. Show these last few trainers what you're capable of to finally meet them."))
 		}
 	}
     release

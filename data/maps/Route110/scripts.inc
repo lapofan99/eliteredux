@@ -1142,12 +1142,12 @@ Route110_Walking_EventScript_Gen8_NPC_Text_1:
 Route110_Walking_EventScript_Gen8_NPC_Text_2:
 	.string "Somebody once told me 'A trainer is\n"
 	.string "gonna roll them!'. Get your game on, go,\l"
-	.string "play, and come back to me to get the\l"
-	.string "sharpest tool in the shed!$"
+	.string "play!$"
 
 Route110_CyclingRoad_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Steam wins once again! Here, take this\n"
+	.string "wonder of nature and technology as a\l"
+	.string "sign of gratitude and recognition!$"
 
 Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Rolycoly{COLOR DARK_GRAY} as a gift for\n"
@@ -1155,6 +1155,9 @@ Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1:
 	.string "Road!$"
 
 Route110_CyclingRoad_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers on this\n"
-	.string "Cycling Road, I will give you a special\l"
-	.string "Pokémon from the Galar region.$"
+	.string "Did you know? Galarians used to build\n"
+	.string "machines powered by Pokémon! You can\l"
+	.string "have a steam-powered-pokémon too,\l"
+	.string "but only after showing these\l"
+	.string "muscle-powered-bike-wielding\l"
+	.string "Hoennians a lesson!$"

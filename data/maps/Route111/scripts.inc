@@ -919,15 +919,15 @@ Route111North_EventScript_Gen8_NPC::
 	checktrainerflag TRAINER_BROOKE_1
 	goto_if 1, Route111North_EventScript_Gen8_NPC_4
 Route111North_EventScript_Gen8_NPC_3:
-	msgbox Route111North_EventScript_Gen8_NPC_Text_1
+	msgbox Route111North_EventScript_Gen8_NPC_Text_2
 Route111North_EventScript_Gen8_NPC_1:
 	release
 	end
 
 Route111North_EventScript_Gen8_NPC_2:
-	msgbox Route111South_EventScript_Gen8_NPC_Text_0
-	givemon SPECIES_DARUMAKA_GALARIAN, 10, ITEM_NONE
 	msgbox Route111North_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_DARUMAKA_GALARIAN, 10, ITEM_NONE
+	msgbox Route111North_EventScript_Gen8_NPC_Text_1
 	goto Route111North_EventScript_Gen8_NPC_1
 
 Route111North_EventScript_Gen8_NPC_4:
@@ -942,15 +942,15 @@ Route111Desert_EventScript_Gen8_NPC::
 	checktrainerflag TRAINER_DREW
 	goto_if 1, Route111Desert_EventScript_Gen8_NPC_5
 Route111Desert_EventScript_Gen8_NPC_3:
-	msgbox Route111Desert_EventScript_Gen8_NPC_Text_1
+	msgbox Route111Desert_EventScript_Gen8_NPC_Text_2
 Route111Desert_EventScript_Gen8_NPC_1:
 	release
 	end
 
 Route111Desert_EventScript_Gen8_NPC_2:
-	msgbox Route111South_EventScript_Gen8_NPC_Text_0
-	givemon SPECIES_ARCTOZOLT, 50, ITEM_NONE
 	msgbox Route111Desert_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_ARCTOZOLT, 50, ITEM_NONE
+	msgbox Route111Desert_EventScript_Gen8_NPC_Text_1
 	goto Route111Desert_EventScript_Gen8_NPC_1
 
 Route111Desert_EventScript_Gen8_NPC_4:
@@ -990,33 +990,49 @@ Route111Desert_EventScript_Gen8_NPC_16:
 
 
 Route111South_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Well done indeed! Let us commence the\n"
+	.string "celebrations for your victory!$"
 
 Route111South_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Sinistea{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route111South_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers south here\n"
-	.string "(up until the desert), I will give you a\l"
-	.string "special Pokémon from the Galar region.$"
+	.string "Greetings, esteemed trainer! Allow me\n"
+	.string "to present an exceptional opportunity.\l"
+	.string "By besting all trainers on your path,\l"
+	.string "you shall be granted a mesmerizing\l"
+	.string "companion. I await your triumph.$"
 
 Route111North_EventScript_Gen8_NPC_Text_0:
+	.string "Your rad fighting gave me chills! You're\n"
+	.string "a natural born ice-breaker!$"
+
+Route111North_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Galarian Darumaka{COLOR DARK_GRAY} as a\n"
 	.string "gift for defeating the two Ace\l"
 	.string "trainers here!$"
 
-Route111North_EventScript_Gen8_NPC_Text_1:
-	.string "If you can beat the two Ace trainers\n"
-	.string "here, I will give you a special Pokémon\l"
-	.string "from the Galar region.$"
+Route111North_EventScript_Gen8_NPC_Text_2:
+	.string "If you ice those two guys, I'll show you\n"
+	.string "the coolest catch in Galar. Ready to\l"
+	.string "'snow' them who's boss and slide to\l"
+	.string "victory?$"
 
 Route111Desert_EventScript_Gen8_NPC_Text_0:
+	.string "Congrats... I guess... whatever, take\n"
+	.string "this and leave me alone, I got better\l"
+	.string "stuff to do than stay in this dried up\l"
+	.string "wasteland.$"
+
+Route111Desert_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got an {COLOR BLUE}Arctozolt{COLOR DARK_GRAY} as a gift\n"
 	.string "for defeating every trainer here!$"
 
-Route111Desert_EventScript_Gen8_NPC_Text_1:
-	.string "If you can beat all trainers here, I will\n"
-	.string "give you a special Pokémon from the\l"
-	.string "Galar region.$"
+Route111Desert_EventScript_Gen8_NPC_Text_2:
+	.string "Listen up, I think they scammed me, this\n"
+	.string "doesn't even look like a Pokémon, but\l"
+	.string "I'm supposed to give it out to people\l"
+	.string "like you... whatever. You know the drill\l"
+	.string "by now, defeat everyone, return, yada\l"
+	.string "yada yada, good luck.$"

@@ -561,7 +561,9 @@ RusturfTunnel_EventScript_Gen8_NPC_2:
 
 RusturfTunnel_EventScript_Gen8_NPC_Text_0:
 	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "have as many of them as you like! No,\l"
+	.string "really, take as many as you can!\l"
+	.string "(please...)$"
 
 RusturfTunnel_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got an {COLOR BLUE}Impidimp{COLOR DARK_GRAY} as a gift for\n"
@@ -570,4 +572,6 @@ RusturfTunnel_EventScript_Gen8_NPC_Text_1:
 RusturfTunnel_EventScript_Gen8_NPC_Text_2:
 	.string "If you can beat this hiker over there, I\n"
 	.string "will give you a special Pokémon from\l"
-	.string "the Galar region.$"
+	.string "the Galar region. They're kind of a pest\l"
+	.string "really... (shouldn't have said that!) but\l"
+	.string "I think you'll... like them. I guess.$"

@@ -208,14 +208,15 @@ Route109_SeashoreHouse_EventScript_Gen8_NPC_5:
 
 
 Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Excellent work! Here's your new friend,\n"
+	.string "on the house!$"
 
 Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Yamper{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route109_SeashoreHouse_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers here, I will\n"
-	.string "give you a special Pokémon from the\l"
-	.string "Galar region.$"
+	.string "In Galar, we call them 'men's best\n"
+	.string "friend'! And they can be your best\l"
+	.string "friend too, as long as your battling\l"
+	.string "skills are on par!$"

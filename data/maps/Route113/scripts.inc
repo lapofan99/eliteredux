@@ -298,32 +298,38 @@ Route113_EventScript_Gen8_NPC_20:
 
 
 Route113_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "These ashes seem to have affected\n"
+	.string "even the most noble of bird lineages:\l"
+	.string "that of Articuno, Zapdos and Moltres.\l"
+	.string "Their kin has been spotted roaming\l"
+	.string "this smoke-filled land, looking for a\l"
+	.string "valiant aid... could you be the one?$"
 
 Route113_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch\n"
-	.string "Articuno-Galar, Zapdos-Galar and\l"
-	.string "Moltres-Galar here. Just use your\l"
-	.string "DexNav, they will now appear.$"
+	.string "You are now worthy of catching the\n"
+	.string "legendary birds trio. Just use your\l"
+	.string "DexNav, they will now appear. They\l"
+	.string "might even be different than you\l"
+	.string "remember...$"
 
 Route113_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch\n"
-	.string "Articuno-Galar, Zapdos-Galar or\l"
-	.string "Moltres-Galar. Beat all trainers here\l"
-	.string "first.$"
+	.string "I heard of your accomplishments, and\n"
+	.string "the birds must have sensed that too.\l"
+	.string "Show these last few trainers what\l"
+	.string "you're capable of to finally meet them.$"
 
 Route113_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Way to go champ! Here, take this little\n"
+	.string "creature and nurture it, you'll reach\l"
+	.string "the ends of the world if you stick with\l"
+	.string "it enough!$"
 
 Route113_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Dreepy{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route113_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers here, I will\n"
-	.string "give you a special Pokémon from the\l"
-	.string "Galar region.$"
+	.string "This raging volcano calls for a raging\n"
+	.string "trainer! Soar to new heights in battle\l"
+	.string "to meet the ghost of a powerful\l"
+	.string "caretaker!$"

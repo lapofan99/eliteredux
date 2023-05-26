@@ -348,13 +348,15 @@ Route117_EventScript_LegendaryNPC_Text_2:
 	.string "trainers here first.$"
 
 Route117_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Tasteful battles you provided indeed! I\n"
+	.string "love the smell of sweet victory!$"
 
 Route117_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got an {COLOR BLUE}Applin{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route117_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers here, I will\n"
-	.string "give you a fruit from the Galar region.$"
+	.string "This meadow really is a delight to the\n"
+	.string "eye, but I can hook you up with a\l"
+	.string "delight for your mouth... for a price.\l"
+	.string "And a show!$"

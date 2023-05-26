@@ -783,15 +783,22 @@ Route119_EventScript_LegendaryNPC_Text_2:
 	.string "here first.$"
 
 Route119_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Thank you so much, you're my saviour! I\n"
+	.string "think this little guy got messed up on\l"
+	.string "the way to Hoenn, but I like them\l"
+	.string "regardless!$"
 
 Route119_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got an {COLOR BLUE}Arctovish{COLOR DARK_GRAY} as a gift\n"
-	.string "for defeating every trainer in the tall\l"
-	.string "grass!$"
+	.string "for finding and defeating every\l"
+	.string "trainer in the tall grass!$"
 
 Route119_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all six trainers in this\n"
-	.string "tall grass, I will give you a special\l"
-	.string "Pokémon from the Galar region.$"
+	.string "So I was just hiking here, but some guys\n"
+	.string "came up to me and asked to play hide\l"
+	.string "and seek. I was like 'man, I really wanna\l"
+	.string "go on with my hike, I don't have time\l"
+	.string "for this' but he insisted! And now\l"
+	.string "they're all gone. Can you help me find\l"
+	.string "them? I'll give you something special in\l"
+	.string "return!$"

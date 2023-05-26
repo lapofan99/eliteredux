@@ -297,15 +297,14 @@ Route115_EventScript_LegendaryNPC_Text_2:
 	.string "first.$"
 
 Route115_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "IT IS FINALLY DONE. THANKS BITER\n"
+	.string "FRIEND!$"
 
 Route115_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Dracovish{COLOR DARK_GRAY} as a gift\n"
 	.string "for defeating every trainer here!$"
 
 Route115_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers here\n"
-	.string "(including the ones only reachable with\l"
-	.string "Surf), I will give you a special Pokémon\l"
-	.string "from the Galar region.$"
+	.string "I HAVE A MOUTH AND I MUST BITE. JOIN ME\n"
+	.string "IN MY CARNIVOROUS JOURNEY THROUGH\l"
+	.string "THESE LANDS.$"
