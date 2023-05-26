@@ -1225,15 +1225,15 @@ Route104North_EventScript_Gen8_NPC::
 	checktrainerflag TRAINER_WINSTON_1
 	goto_if 1, Route104North_EventScript_Gen8_NPC_5
 Route104North_EventScript_Gen8_NPC_3:
-	msgbox Route104South_EventScript_Gen8_NPC_Text_2
+	msgbox Route104North_EventScript_Gen8_NPC_Text_2
 Route104North_EventScript_Gen8_NPC_1:
 	release
 	end
 
 Route104North_EventScript_Gen8_NPC_2:
-	msgbox Route104South_EventScript_Gen8_NPC_Text_0
-	givemon SPECIES_MEOWTH_GALARIAN, 10, ITEM_NONE
 	msgbox Route104North_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_MEOWTH_GALARIAN, 10, ITEM_NONE
+	msgbox Route104North_EventScript_Gen8_NPC_Text_1
 	goto Route104North_EventScript_Gen8_NPC_1
 
 Route104North_EventScript_Gen8_NPC_4:
@@ -1269,8 +1269,8 @@ Route104_EventScript_TrainerTemplate_2:
 
 
 Route104South_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Hehehe, I saw you smiling when you won\n"
+	.string "those battles! Take this, you earned it$"
 
 Route104South_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Galarian Zigzagoon{COLOR DARK_GRAY} as\n"
@@ -1278,13 +1278,23 @@ Route104South_EventScript_Gen8_NPC_Text_1:
 	.string "here!$"
 
 Route104South_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers here, I will\n"
-	.string "give you a special Pokémon from the\l"
-	.string "Galar region.$"
+	.string "Hey, soon-to-be-champ! Take down all\n"
+	.string "the route's trainers, and you'll be\l"
+	.string "rewarded with a sneaky surprise from\l"
+	.string "Galar. Ready to cause some mischief?$"
 
 Route104North_EventScript_Gen8_NPC_Text_0:
+	.string "Good job lad! Here, take this Pokémon,\n"
+	.string "today it's on the house!$"
+
+Route104North_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Galarian Meowth{COLOR DARK_GRAY} as a\n"
 	.string "gift for defeating every trainer here!$"
+
+Route104North_EventScript_Gen8_NPC_Text_2:
+	.string "I can reward you with a stalwart\n"
+	.string "feline... as long as you can defeat\l"
+	.string "every other trainer here!$"
 
 Route104_EventScript_TrainerTemplate_Text_0:
 	.string "Put the Intro here.$"

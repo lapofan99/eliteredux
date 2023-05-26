@@ -622,20 +622,28 @@ Route116_EventScript_Gen8_NPC_20:
 
 
 Route116_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "Ah, young trainer, I sense your\n"
+	.string "curiosity has brought you here. But\l"
+	.string "beware, for you tread on sacred\l"
+	.string "grounds. The presence of the legendary\l"
+	.string "Creation Trio looms over this place.\l"
+	.string "They seek a guardian who can commune\l"
+	.string "with their power, but you don't seem\l"
+	.string "ready yet. Come back once you've\l"
+	.string "accomplished an exceptional feat in\l"
+	.string "the Pokémon League.$"
 
 Route116_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch Dialga,\n"
-	.string "Palkia and Giratina here. Just use your\l"
-	.string "DexNav, they will now appear.$"
+	.string "Ah, young trainer, your potential shines\n"
+	.string "through the shadows like a glimmering\l"
+	.string "light. I can sense it: the Creation Trio\l"
+	.string "has deemed you worthy of their time.\l"
+	.string "Use your DexNav to meet them.$"
 
 Route116_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch Dialga,\n"
-	.string "Palkia or Giratina. Beat all trainers\l"
-	.string "here first.$"
+	.string "You are almost worthy. Defeat all\n"
+	.string "remaining trainers to prove your might\l"
+	.string "once and for all!$"
 
 Route116_EventScript_Gen8_NPC_Text_0:
 	.string "Take this Pokémon from Galar. You can\n"
@@ -648,5 +656,6 @@ Route116_EventScript_Gen8_NPC_Text_1:
 
 Route116_EventScript_Gen8_NPC_Text_2:
 	.string "If you can beat all trainers here, I will\n"
-	.string "give you a special Pokémon from the\l"
-	.string "Galar region.$"
+	.string "give you an exotic Pokémon from the\l"
+	.string "Galar region: a valiant wielder of\l"
+	.string "longswords!$"

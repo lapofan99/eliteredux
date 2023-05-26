@@ -8663,6 +8663,8 @@ u32 IsAbilityOnFieldExcept(u32 battlerId, u32 ability)
 u32 IsAbilityPreventingEscape(u32 battlerId)
 {
     u32 id;
+    if(ItemId_GetHoldEffect(gBattleMons[battlerId].item) == HOLD_EFFECT_SHED_SHELL)
+        return 0;
     #if B_GHOSTS_ESCAPE >= GEN_6
         if (IS_BATTLER_OF_TYPE(battlerId, TYPE_GHOST))
             return 0;

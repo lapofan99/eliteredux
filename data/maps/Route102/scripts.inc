@@ -154,14 +154,22 @@ Route102_EventScript_Gen8_NPC_8:
 
 
 Route102_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Great job winning those battles! Take\n"
+	.string "this Pokémon from Galar, you can have\l"
+	.string "as many of them as you like!$"
 
 Route102_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Rookidee{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer here!$"
 
 Route102_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers here, I will\n"
-	.string "give you a special Pokémon from the\l"
-	.string "Galar region.$"
+	.string "Hey there, fellow trainer! Have you\n"
+	.string "heard about the exciting promotion\l"
+	.string "we're running? We're students from\l"
+	.string "Galar, and we've traveled all the way to\l"
+	.string "beautiful Hoenn to show off the\l"
+	.string "awesomeness of our home region and its\l"
+	.string "incredible Pokémons. If you defeat\l"
+	.string "every trainer in a route and speak to\l"
+	.string "us, we'll gladly give you one, free of\l"
+	.string "charge!$"
