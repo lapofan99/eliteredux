@@ -3204,6 +3204,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM63_ROCK_SLIDE),
                                           TMHM2(TM75_SWORDS_DANCE)
                                         | TMHM2(TM81_X_SCISSOR)
+                                        | TMHM2(TM89_U_TURN) // new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM98_FALSE_SWIPE)
                                         | TMHM2(TM100_CURSE)
@@ -3270,6 +3271,7 @@ const u32 gTMHMLearnsets[][4] =
                                           TMHM2(TM72_VOLT_SWITCH)
                                         | TMHM2(TM73_THUNDER_WAVE)
                                         | TMHM2(TM74_GYRO_BALL)
+                                        | TMHM2(TM89_U_TURN) // new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM93_WILD_CHARGE)
                                         | TMHM2(TM94_SUCKER_PUNCH)
