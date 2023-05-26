@@ -1061,7 +1061,7 @@ script Route110_Walking_EventScript_Gen8_NPC{
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("Somebody once told me 'A trainer is gonna roll them!'. Get your game on, go, play, and come back to me to get the sharpest tool in the shed!"))
+		msgbox(format("Somebody once told me 'A trainer is gonna roll them!'. Get your game on, go, play!"))
 	}
     release
     end
