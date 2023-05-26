@@ -1055,13 +1055,13 @@ script Route110_Walking_EventScript_Gen8_NPC{
 	   defeated(TRAINER_EDWARD) &&
 	   defeated(TRAINER_DALE)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("Hey now, you're a rockstar!"))
 		givemon(SPECIES_TOXEL, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got a {COLOR BLUE}Toxel{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		msgbox(format("{PLAYER} got a {COLOR BLUE}Toxel{COLOR DARK_GRAY} as a gift for defeating every trainer!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat all trainers (excluding Cycling Road) here, I will give you a special Pokémon from the Galar region."))
+		msgbox(format("Somebody once told me 'A trainer is gonna roll them!'. Get your game on, go, play, and come back to me to get the sharpest tool in the shed!"))
 	}
     release
     end
