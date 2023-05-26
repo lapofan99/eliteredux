@@ -550,13 +550,13 @@ script RusturfTunnel_EventScript_Gen8_NPC{
     faceplayer
 	if(defeated(TRAINER_MIKE_2)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like! No, really, take as many as you can! (please...)"))
 		givemon(SPECIES_IMPIDIMP, 10, ITEM_NONE)
 		msgbox(format("{PLAYER} got an {COLOR BLUE}Impidimp{COLOR DARK_GRAY} as a gift for defeating the hiker!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat this hiker over there, I will give you a special Pokémon from the Galar region."))
+		msgbox(format("If you can beat this hiker over there, I will give you a special Pokémon from the Galar region. They're kind of a pest really... (shouldn't have said that!) but I think you'll... like them. I guess."))
 	}
     release
     end

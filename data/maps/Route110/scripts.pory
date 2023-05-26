@@ -1076,13 +1076,13 @@ script Route110_CyclingRoad_EventScript_Gen8_NPC{
 	   defeated(TRAINER_JASMINE) &&
 	   defeated(TRAINER_JACOB)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("Steam wins once again! Here, take this wonder of nature and technology as a sign of gratitude and recognition!"))
 		givemon(SPECIES_ROLYCOLY, 10, ITEM_NONE)
 		msgbox(format("{PLAYER} got a {COLOR BLUE}Rolycoly{COLOR DARK_GRAY} as a gift for defeating every trainer on the Cycling Road!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat all trainers on this Cycling Road, I will give you a special Pokémon from the Galar region."))
+		msgbox(format("Did you know? Galarians used to build machines powered by Pokémon! You can have a steam-powered-pokémon too, but only after showing these muscle-powered-bike-wielding Hoennians a lesson!"))
 	}
     release
     end
