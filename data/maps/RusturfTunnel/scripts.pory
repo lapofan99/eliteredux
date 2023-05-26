@@ -551,7 +551,7 @@ script RusturfTunnel_EventScript_Gen8_NPC{
 	if(defeated(TRAINER_MIKE_2)){
 		// when you defeat every trainer
 		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
-		givemon(SPECIES_ROLYCOLY, 10, ITEM_NONE)
+		givemon(SPECIES_IMPIDIMP, 10, ITEM_NONE)
 		msgbox(format("{PLAYER} got a {COLOR BLUE}Rolycoly{COLOR DARK_GRAY} as a gift for defeating the hiker!"))
 	}
 	else{
