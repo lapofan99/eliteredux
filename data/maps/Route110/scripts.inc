@@ -1,7 +1,7 @@
-.set LOCALID_CHALLENGE_BIKER, 21
-.set LOCALID_RIVAL, 28
-.set LOCALID_RIVAL_ON_BIKE, 29
-.set LOCALID_BIRCH, 36
+.set LOCALID_CHALLENGE_BIKER, 20
+.set LOCALID_RIVAL, 27
+.set LOCALID_RIVAL_ON_BIKE, 28
+.set LOCALID_BIRCH, 35
 
 Route110_MapScripts:: @ 81EF269
 	map_script MAP_SCRIPT_ON_RESUME, Route110_OnResume
@@ -1100,15 +1100,15 @@ Route110_CyclingRoad_EventScript_Gen8_NPC::
 	checktrainerflag TRAINER_ABIGAIL_1
 	goto_if 1, Route110_CyclingRoad_EventScript_Gen8_NPC_5
 Route110_CyclingRoad_EventScript_Gen8_NPC_3:
-	msgbox Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1
+	msgbox Route110_CyclingRoad_EventScript_Gen8_NPC_Text_2
 Route110_CyclingRoad_EventScript_Gen8_NPC_1:
 	release
 	end
 
 Route110_CyclingRoad_EventScript_Gen8_NPC_2:
-	msgbox Route110_Walking_EventScript_Gen8_NPC_Text_0
-	givemon SPECIES_IMPIDIMP, 10, ITEM_NONE
 	msgbox Route110_CyclingRoad_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_ROLYCOLY, 10, ITEM_NONE
+	msgbox Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1
 	goto Route110_CyclingRoad_EventScript_Gen8_NPC_1
 
 Route110_CyclingRoad_EventScript_Gen8_NPC_4:
@@ -1133,24 +1133,28 @@ Route110_CyclingRoad_EventScript_Gen8_NPC_9:
 
 
 Route110_Walking_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Hey now, you're a rockstar!$"
 
 Route110_Walking_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Toxel{COLOR DARK_GRAY} as a gift for\n"
-	.string "defeating every trainer here!$"
+	.string "defeating every trainer!$"
 
 Route110_Walking_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers (excluding\n"
-	.string "Cycling Road) here, I will give you a\l"
-	.string "special Pokémon from the Galar region.$"
+	.string "Somebody once told me 'A trainer is\n"
+	.string "gonna roll them!'. Get your game on, go,\l"
+	.string "play, and come back to me to get the\l"
+	.string "sharpest tool in the shed!$"
 
 Route110_CyclingRoad_EventScript_Gen8_NPC_Text_0:
-	.string "{PLAYER} got an {COLOR BLUE}Impidimp{COLOR DARK_GRAY} as a gift for\n"
+	.string "Take this Pokémon from Galar. You can\n"
+	.string "have as many of them as you like!$"
+
+Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1:
+	.string "{PLAYER} got a {COLOR BLUE}Rolycoly{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating every trainer on the Cycling\l"
 	.string "Road!$"
 
-Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1:
+Route110_CyclingRoad_EventScript_Gen8_NPC_Text_2:
 	.string "If you can beat all trainers on this\n"
 	.string "Cycling Road, I will give you a special\l"
 	.string "Pokémon from the Galar region.$"

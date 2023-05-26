@@ -648,8 +648,7 @@ Route109_Beach_EventScript_Gen8_NPC_13:
 
 
 Route109_Beach_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Yes, you are the one...$"
 
 Route109_Beach_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Galarian Yamask{COLOR DARK_GRAY} as a\n"
@@ -657,6 +656,6 @@ Route109_Beach_EventScript_Gen8_NPC_Text_1:
 	.string "this beach!$"
 
 Route109_Beach_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers at this\n"
-	.string "beach, I will give you a special Pokémon\l"
-	.string "from the Galar region.$"
+	.string "I'm seeking a soul hungry for battle and\n"
+	.string "wanderlust, but you don't seem ready\l"
+	.string "yet...$"

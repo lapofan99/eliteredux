@@ -554,7 +554,7 @@ RusturfTunnel_EventScript_Gen8_NPC_1:
 
 RusturfTunnel_EventScript_Gen8_NPC_2:
 	msgbox RusturfTunnel_EventScript_Gen8_NPC_Text_0
-	givemon SPECIES_ROLYCOLY, 10, ITEM_NONE
+	givemon SPECIES_IMPIDIMP, 10, ITEM_NONE
 	msgbox RusturfTunnel_EventScript_Gen8_NPC_Text_1
 	goto RusturfTunnel_EventScript_Gen8_NPC_1
 
@@ -564,7 +564,7 @@ RusturfTunnel_EventScript_Gen8_NPC_Text_0:
 	.string "have as many of them as you like!$"
 
 RusturfTunnel_EventScript_Gen8_NPC_Text_1:
-	.string "{PLAYER} got a {COLOR BLUE}Rolycoly{COLOR DARK_GRAY} as a gift for\n"
+	.string "{PLAYER} got an {COLOR BLUE}Impidimp{COLOR DARK_GRAY} as a gift for\n"
 	.string "defeating the hiker!$"
 
 RusturfTunnel_EventScript_Gen8_NPC_Text_2:

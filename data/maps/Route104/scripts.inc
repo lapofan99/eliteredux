@@ -1289,7 +1289,7 @@ Route104North_EventScript_Gen8_NPC_Text_0:
 
 Route104North_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Galarian Meowth{COLOR DARK_GRAY} as a\n"
-	.string "gift for defeating every trainer here!$"
+	.string "gift for defeating every trainer!$"
 
 Route104North_EventScript_Gen8_NPC_Text_2:
 	.string "I can reward you with a stalwart\n"
