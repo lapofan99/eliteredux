@@ -194,13 +194,13 @@ script Route115_EventScript_Gen8_NPC{
 		   defeated(TRAINER_HELENE)  &&
 		   defeated(TRAINER_MARLENE)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("IT IS FINALLY DONE. THANKS BITER FRIEND!"))
 		givemon(SPECIES_DRACOVISH, 50, ITEM_NONE)
 		msgbox(format("{PLAYER} got a {COLOR BLUE}Dracovish{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat all trainers here (including the ones only reachable with Surf), I will give you a special Pokémon from the Galar region."))
+		msgbox(format("I HAVE A MOUTH AND I MUST BITE. JOIN ME IN MY CARNIVOROUS JOURNEY THROUGH THESE LANDS."))
 	}
     release
     end

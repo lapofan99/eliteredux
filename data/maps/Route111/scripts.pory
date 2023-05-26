@@ -882,13 +882,13 @@ script Route111South_EventScript_Gen8_NPC{
 	   defeated(TRAINER_IRENE) &&
 	   defeated(TRAINER_TRAVIS)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("Well done indeed! Let us commence the celebrations for your victory!"))
 		givemon(SPECIES_SINISTEA, 10, ITEM_NONE)
 		msgbox(format("{PLAYER} got a {COLOR BLUE}Sinistea{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat all trainers south here (up until the desert), I will give you a special Pokémon from the Galar region."))
+		msgbox(format("Greetings, esteemed trainer! Allow me to present an exceptional opportunity. By besting all trainers on your path, you shall be granted a mesmerizing companion. I await your triumph."))
 	}
     release
     end
@@ -900,13 +900,13 @@ script Route111North_EventScript_Gen8_NPC{
 	if(defeated(TRAINER_BROOKE_1) &&
 	   defeated(TRAINER_WILTON_1)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("Your rad fighting gave me chills! You're a natural born ice-breaker!"))
 		givemon(SPECIES_DARUMAKA_GALARIAN, 10, ITEM_NONE)
 		msgbox(format("{PLAYER} got a {COLOR BLUE}Galarian Darumaka{COLOR DARK_GRAY} as a gift for defeating the two Ace trainers here!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat the two Ace trainers here, I will give you a special Pokémon from the Galar region."))
+		msgbox(format("If you ice those two guys, I'll show you the coolest catch in Galar. Ready to 'snow' them who's boss and slide to victory?"))
 	}
     release
     end
@@ -924,13 +924,13 @@ script Route111Desert_EventScript_Gen8_NPC{
 	   defeated(TRAINER_BRANDEN) &&
 	   defeated(TRAINER_BRYAN)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("Congrats... I guess... whatever, take this and leave me alone, I got better stuff to do than stay in this dried up wasteland."))
 		givemon(SPECIES_ARCTOZOLT, 50, ITEM_NONE)
 		msgbox(format("{PLAYER} got an {COLOR BLUE}Arctozolt{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat all trainers here, I will give you a special Pokémon from the Galar region."))
+		msgbox(format("Listen up, I think they scammed me, this doesn't even look like a Pokémon, but I'm supposed to give it out to people like you... whatever. You know the drill by now, defeat everyone, return, yada yada yada, good luck."))
 	}
     release
     end

@@ -667,13 +667,13 @@ script Route119_EventScript_Gen8_NPC{
 		   defeated(TRAINER_TAYLOR)  &&
 		   defeated(TRAINER_BRENT)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("Thank you so much, you're my saviour! I think this little guy got messed up on the way to Hoenn, but I like them regardless!"))
 		givemon(SPECIES_ARCTOVISH, 50, ITEM_NONE)
-		msgbox(format("{PLAYER} got an {COLOR BLUE}Arctovish{COLOR DARK_GRAY} as a gift for defeating every trainer in the tall grass!"))
+		msgbox(format("{PLAYER} got an {COLOR BLUE}Arctovish{COLOR DARK_GRAY} as a gift for finding and defeating every trainer in the tall grass!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat all six trainers in this tall grass, I will give you a special Pokémon from the Galar region."))
+		msgbox(format("So I was just hiking here, but some guys came up to me and asked to play hide and seek. I was like 'man, I really wanna go on with my hike, I don't have time for this' but he insisted! And now they're all gone. Can you help me find them? I'll give you something special in return!"))
 	}
     release
     end
