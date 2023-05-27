@@ -8128,7 +8128,7 @@ static const struct TrainerMonItemCustomMoves sParty_Andrew[] = {
     .moves = MOVE_WATERFALL, MOVE_ZEN_HEADBUTT, MOVE_FISSURE, MOVE_DRAGON_DANCE
     },
     {
-    .lvl = 5,
+    .lvl = 3,
     .species = SPECIES_SEADRA,
     .heldItem = ITEM_LIFE_ORB,
     .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_IMMUNITY, ABILITY_POISON_HEAL},

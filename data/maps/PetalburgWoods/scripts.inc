@@ -483,8 +483,8 @@ PetalburgWoods_Text_TrainerTipsPP: @ 822ED07
 PetalburgWoods_EventScript_Gen8_NPC::
 	lock
 	faceplayer
-	checktrainerflag TRAINER_WINSTON_1
-	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_5
+	checktrainerflag TRAINER_JAMES_1
+	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_4
 PetalburgWoods_EventScript_Gen8_NPC_3:
 	msgbox PetalburgWoods_EventScript_Gen8_NPC_Text_2
 PetalburgWoods_EventScript_Gen8_NPC_1:
@@ -498,17 +498,7 @@ PetalburgWoods_EventScript_Gen8_NPC_2:
 	goto PetalburgWoods_EventScript_Gen8_NPC_1
 
 PetalburgWoods_EventScript_Gen8_NPC_4:
-	checktrainerflag TRAINER_GINA_AND_MIA_1
-	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_8
-	goto PetalburgWoods_EventScript_Gen8_NPC_3
-
-PetalburgWoods_EventScript_Gen8_NPC_5:
-	checktrainerflag TRAINER_HALEY_1
-	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_4
-	goto PetalburgWoods_EventScript_Gen8_NPC_3
-
-PetalburgWoods_EventScript_Gen8_NPC_8:
-	checktrainerflag TRAINER_IVAN
+	checktrainerflag TRAINER_LYLE
 	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_2
 	goto PetalburgWoods_EventScript_Gen8_NPC_3
 
