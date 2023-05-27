@@ -174,7 +174,7 @@ script Route113_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("These ashes seem to have affected even the most noble of bird lineages: that of Articuno, Zapdos and Moltres. Their kin has been spotted roaming this smoke-filled land, looking for a valiant aid... could you be the one?"))
+		msgbox(format("These ashes seem to have affected even the most noble of bird lineages: that of Articuno, Zapdos and Moltres. Their kin has been spotted roaming this smoke-filled land, looking for a valiant aid... could you be the one they're looking for?"))
 	}
 	else{
 		if(defeated(TRAINER_JAYLEN) &&
@@ -187,7 +187,7 @@ script Route113_EventScript_LegendaryNPC{
 		   defeated(TRAINER_COBY)  &&
 		   defeated(TRAINER_LAWRENCE)  &&
 		   defeated(TRAINER_WYATT)){
-			msgbox(format("You are now worthy of catching the legendary birds trio. Just use your DexNav, they will now appear. They might even be different than you remember..."))
+			msgbox(format("You are now worthy of catching the legendary birds trio. Just use your DexNav, they will now appear. Their appearance might even surprise you..."))
 		}
 		else{
 			msgbox(format("I heard of your accomplishments, and the birds must have sensed that too. Show these last few trainers what you're capable of to finally meet them."))
