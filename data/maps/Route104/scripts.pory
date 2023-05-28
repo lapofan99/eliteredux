@@ -1219,7 +1219,7 @@ script Route104North_EventScript_Gen8_NPC{
 	   defeated(TRAINER_GINA_AND_MIA_1) &&
 	   defeated(TRAINER_IVAN)){
 		// when you defeat every trainer
-		msgbox(format("Good job lad! Here, take this Pokémon, today it's on the house!"))
+		msgbox(format("Good job lad! This cat could really use the company of a true Hoennian geezer like ya!"))
 		givemon(SPECIES_MEOWTH_GALARIAN, 10, ITEM_NONE)
 		msgbox(format("{PLAYER} got a {COLOR BLUE}Galarian Meowth{COLOR DARK_GRAY} as a gift for defeating every trainer!"))
 	}
