@@ -439,13 +439,13 @@ script Route118West_EventScript_Gen8_NPC{
 	   defeated(TRAINER_DALTON_1) &&
 	   defeated(TRAINER_DEANDRE)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("Cute might not be the word that best describes your battling... but I liked it! Here, take this!"))
 		givemon(SPECIES_HATENNA, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got a {COLOR BLUE}Hatenna{COLOR DARK_GRAY} as a gift for defeating every trainer at this beach!"))
+		msgbox(format("{PLAYER} got a {COLOR BLUE}Hatenna{COLOR DARK_GRAY} as a gift for defeating every trainer at the beach!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat all trainers at this beach, I will give you a special Pokémon from the Galar region."))
+		msgbox(format("Have you ever heard the expression 'cute and deadly'? I have a Pokémon here that fits that description to a tee! Show your cuteness in battle to receive it!"))
 	}
     release
     end
@@ -458,13 +458,13 @@ script Route118East_EventScript_Gen8_NPC{
 	   defeated(TRAINER_PERRY) &&
 	   defeated(TRAINER_CHESTER)){
 		// when you defeat every trainer
-		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
+		msgbox(format("Here, take it and don't tell anyone!"))
 		givemon(SPECIES_DRACOZOLT, 50, ITEM_NONE)
 		msgbox(format("{PLAYER} got a {COLOR BLUE}Dracozolt{COLOR DARK_GRAY} as a gift for defeating the three regular trainers here!"))
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("If you can beat all three regular trainers at the east side of this route, I will give you a special Pokémon from the Galar region."))
+		msgbox(format("If you can beat all three regular trainers at the east side of this route, I will give you this fossil I stole from school!"))
 	}
     release
     end
