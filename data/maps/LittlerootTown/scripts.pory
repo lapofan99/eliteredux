@@ -1991,9 +1991,10 @@ script LittlerootTown_EventScript_LegendaryNPC {
 		multichoice2(1, 1, LittlerootTown_EventScript_LegendaryNPC_Options)
 		switch (var(VAR_RESULT)) {
 			case 0:
-				msgbox(format("As you are the champion now, you can now catch some very powerful legendaries.\p"
-					   "But you have to defeat all trainers in certain places, then they will appear on your DexNav.\p"
-					   "Someone on each of these places will tell you which legendaries you can find there."))
+				msgbox(format("The legendary Pokémon that once roamed these lands have returned, thanks to you.\p"
+			"Clear all opponents in a route to make it suitable for these legendary beasts to appear.\p"
+			"If you're unsure about something, just ask my associates on the field, they'll tell you everything you need to know.\p"
+			"Good luck, champion, we look forward to your success!"))
 			case MULTI_B_PRESSED:
 			default:
 				msgbox("See you later.")

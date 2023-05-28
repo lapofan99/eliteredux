@@ -215,7 +215,7 @@ script Route114_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("By talking to me, I assume you want confirmation on the fact that legendary Pokémon roam this route. Rest assured: they do. The Legendary beastly trio of Raikou, Suicune and Entei have chosen these wind-swept lands as their lair. Should you continue to display such promise, the privilege of capturing these majestic creatures may fall upon you. Embrace your burgeoning strength, for it may lead you to an extraordinary fate."))
 	}
 	else{
 		if(defeated(TRAINER_LENNY) &&
@@ -230,10 +230,10 @@ script Route114_EventScript_LegendaryNPC{
 		   defeated(TRAINER_ANGELINA)  &&
 		   defeated(TRAINER_CHARLOTTE)  &&
 		   defeated(TRAINER_KAI)){
-			msgbox(format("You are now worthy to catch Raikou, Entei and Suicune here. Just use your DexNav, they will now appear."))
+			msgbox(format("Ah, at last, we meet again. Your prowess in battle has been recognized by many, including the Beasts. Walk this path with your DexNav, and their greatness shall be revealed to you."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Raikou, Entei or Suicune. Beat all trainers here first."))
+			msgbox(format("Ah, an interesting development indeed. Your capabilities have surpassed my initial expectations. While your journey has not yet reached its climax, you have shown remarkable potential. Your destiny is calling: finish these last few battles to finally greet the Beasts."))
 		}
 	}
     release
