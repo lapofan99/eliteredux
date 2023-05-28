@@ -303,14 +303,14 @@ Route113_EventScript_LegendaryNPC_Text_0:
 	.string "that of Articuno, Zapdos and Moltres.\l"
 	.string "Their kin has been spotted roaming\l"
 	.string "this smoke-filled land, looking for a\l"
-	.string "valiant aid... could you be the one?$"
+	.string "valiant aid... could you be the one\l"
+	.string "they're looking for?$"
 
 Route113_EventScript_LegendaryNPC_Text_1:
 	.string "You are now worthy of catching the\n"
 	.string "legendary birds trio. Just use your\l"
-	.string "DexNav, they will now appear. They\l"
-	.string "might even be different than you\l"
-	.string "remember...$"
+	.string "DexNav, they will now appear. Their\l"
+	.string "appearance might even surprise you...$"
 
 Route113_EventScript_LegendaryNPC_Text_2:
 	.string "I heard of your accomplishments, and\n"

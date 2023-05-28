@@ -1284,8 +1284,9 @@ Route104South_EventScript_Gen8_NPC_Text_2:
 	.string "Galar. Ready to cause some mischief?$"
 
 Route104North_EventScript_Gen8_NPC_Text_0:
-	.string "Good job lad! Here, take this Pokémon,\n"
-	.string "today it's on the house!$"
+	.string "Good job lad! This cat could really use\n"
+	.string "the company of a true Hoennian geezer\l"
+	.string "like ya!$"
 
 Route104North_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Galarian Meowth{COLOR DARK_GRAY} as a\n"

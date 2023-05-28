@@ -286,17 +286,32 @@ Route114_EventScript_LegendaryNPC_27:
 
 
 Route114_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "By talking to me, I assume you want\n"
+	.string "confirmation on the fact that\l"
+	.string "legendary Pokémon roam this route.\l"
+	.string "Rest assured: they do. The Legendary\l"
+	.string "beastly trio of Raikou, Suicune and\l"
+	.string "Entei have chosen these wind-swept\l"
+	.string "lands as their lair. Should you continue\l"
+	.string "to display such promise, the privilege\l"
+	.string "of capturing these majestic creatures\l"
+	.string "may fall upon you. Embrace your\l"
+	.string "burgeoning strength, for it may lead\l"
+	.string "you to an extraordinary fate.$"
 
 Route114_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch Raikou,\n"
-	.string "Entei and Suicune here. Just use your\l"
-	.string "DexNav, they will now appear.$"
+	.string "Ah, at last, we meet again. Your prowess\n"
+	.string "in battle has been recognized by many,\l"
+	.string "including the Beasts. Walk this path\l"
+	.string "with your DexNav, and their greatness\l"
+	.string "shall be revealed to you.$"
 
 Route114_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch Raikou,\n"
-	.string "Entei or Suicune. Beat all trainers here\l"
-	.string "first.$"
+	.string "Ah, an interesting development indeed.\n"
+	.string "Your capabilities have surpassed my\l"
+	.string "initial expectations. While your\l"
+	.string "journey has not yet reached its climax,\l"
+	.string "you have shown remarkable potential.\l"
+	.string "Your destiny is calling: finish these\l"
+	.string "last few battles to finally greet the\l"
+	.string "Beasts.$"

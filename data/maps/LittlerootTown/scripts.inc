@@ -2182,22 +2182,28 @@ PKMN_Center_EventScript_DayNightToggle_6:
 
 
 LittlerootTown_EventScript_LegendaryNPC_Text_0:
-	.string "Take these legendary items.$"
+	.string "Congratulations on becoming champion!\n"
+	.string "Your efforts haven't gone unnoticed.\l"
+	.string "I've been waiting this day for ages,\l"
+	.string "but I can finally put these items in\l"
+	.string "hands I can trust.$"
 
 LittlerootTown_EventScript_LegendaryNPC_Text_1:
-	.string "{PLAYER} got a bunch of Special\n"
-	.string "Items.$"
+	.string "{PLAYER} received legendary\n"
+	.string "artifacts from the Sage!$"
 
 LittlerootTown_EventScript_LegendaryNPC_Text_2:
-	.string "As you are the champion now, you can\n"
-	.string "now catch some very powerful\l"
-	.string "legendaries.\p"
-	.string "But you have to defeat all trainers in\n"
-	.string "certain places, then they will appear\l"
-	.string "on your DexNav.\p"
-	.string "Someone on each of these places will\n"
-	.string "tell you which legendaries you can find\l"
-	.string "there.$"
+	.string "The legendary Pokémon that once\n"
+	.string "roamed these lands have returned,\l"
+	.string "thanks to you.\p"
+	.string "Clear all opponents in a route to make\n"
+	.string "it suitable for these legendary beasts\l"
+	.string "to appear.\p"
+	.string "If you're unsure about something, just\n"
+	.string "ask my associates on the field, they'll\l"
+	.string "tell you everything you need to know.\p"
+	.string "Good luck, champion, we look forward to\n"
+	.string "your success!$"
 
 LittlerootTown_EventScript_LegendaryNPC_Text_3:
 	.string "Do you need anything?$"

@@ -3373,7 +3373,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_PANCHAM] =
     {
         .size = 0x67,
-        .y_offset = 9,
+        .y_offset = 10,
     },
     [SPECIES_PANGORO] =
     {

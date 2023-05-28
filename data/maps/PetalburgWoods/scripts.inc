@@ -504,14 +504,16 @@ PetalburgWoods_EventScript_Gen8_NPC_4:
 
 
 PetalburgWoods_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Good job, every Venipede in a thousand\n"
+	.string "mile radius will fear you now!$"
 
 PetalburgWoods_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Sizzlipede{COLOR DARK_GRAY} as a gift\n"
 	.string "for defeating every trainer here!$"
 
 PetalburgWoods_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers here, I will\n"
-	.string "give you a special Pokémon from the\l"
-	.string "Galar region.$"
+	.string "In Galar, wild Venipede and Sizzlipede\n"
+	.string "fight in a constant struggle for\l"
+	.string "supremacy. Will you join me on the side\l"
+	.string "of the latter? Defeat every trainer\l"
+	.string "here, and I'll give you a Sizzlipede!$"

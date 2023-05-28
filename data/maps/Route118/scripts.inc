@@ -495,15 +495,15 @@ Route118East_EventScript_Gen8_NPC::
 	checktrainerflag TRAINER_BARNY
 	goto_if 1, Route118East_EventScript_Gen8_NPC_5
 Route118East_EventScript_Gen8_NPC_3:
-	msgbox Route118East_EventScript_Gen8_NPC_Text_1
+	msgbox Route118East_EventScript_Gen8_NPC_Text_2
 Route118East_EventScript_Gen8_NPC_1:
 	release
 	end
 
 Route118East_EventScript_Gen8_NPC_2:
-	msgbox Route118West_EventScript_Gen8_NPC_Text_0
-	givemon SPECIES_DRACOZOLT, 50, ITEM_NONE
 	msgbox Route118East_EventScript_Gen8_NPC_Text_0
+	givemon SPECIES_DRACOZOLT, 50, ITEM_NONE
+	msgbox Route118East_EventScript_Gen8_NPC_Text_1
 	goto Route118East_EventScript_Gen8_NPC_1
 
 Route118East_EventScript_Gen8_NPC_4:
@@ -534,25 +534,31 @@ Route118_EventScript_LegendaryNPC_Text_2:
 	.string "here first.$"
 
 Route118West_EventScript_Gen8_NPC_Text_0:
-	.string "Take this Pokémon from Galar. You can\n"
-	.string "have as many of them as you like!$"
+	.string "Cute might not be the word that best\n"
+	.string "describes your battling... but I liked\l"
+	.string "it! Here, take this!$"
 
 Route118West_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Hatenna{COLOR DARK_GRAY} as a gift for\n"
-	.string "defeating every trainer at this beach!$"
+	.string "defeating every trainer at the beach!$"
 
 Route118West_EventScript_Gen8_NPC_Text_2:
-	.string "If you can beat all trainers at this\n"
-	.string "beach, I will give you a special Pokémon\l"
-	.string "from the Galar region.$"
+	.string "Have you ever heard the expression\n"
+	.string "'cute and deadly'? I have a Pokémon\l"
+	.string "here that fits that description to a\l"
+	.string "tee! Show your cuteness in battle to\l"
+	.string "receive it!$"
 
 Route118East_EventScript_Gen8_NPC_Text_0:
+	.string "Here, take it and don't tell anyone!$"
+
+Route118East_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Dracozolt{COLOR DARK_GRAY} as a gift\n"
 	.string "for defeating the three regular\l"
 	.string "trainers here!$"
 
-Route118East_EventScript_Gen8_NPC_Text_1:
+Route118East_EventScript_Gen8_NPC_Text_2:
 	.string "If you can beat all three regular\n"
 	.string "trainers at the east side of this\l"
-	.string "route, I will give you a special Pokémon\l"
-	.string "from the Galar region.$"
+	.string "route, I will give you this fossil I\l"
+	.string "stole from school!$"
