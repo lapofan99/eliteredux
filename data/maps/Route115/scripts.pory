@@ -157,7 +157,7 @@ script Route115_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("Knowledge. Emotion. Willpower. The slumbering Lake Guardians await a chosen one who can fathom their depths. It is through understanding their purpose that you shall become the conduit of their might. Embrace their call, young trainer, and return to me."))
 	}
 	else{
 		if(defeated(TRAINER_TIMOTHY_1) &&
@@ -170,10 +170,10 @@ script Route115_EventScript_LegendaryNPC{
 		   defeated(TRAINER_ALIX)  &&
 		   defeated(TRAINER_HELENE)  &&
 		   defeated(TRAINER_MARLENE)){
-			msgbox(format("You are now worthy to catch Azelf, Mesprit and Uxie here. Just use your DexNav, they will now appear."))
+			msgbox(format("Insight. Zeal. Perseverance. These virtues burn within you. The Guardians are ready to meet you: use your DexNav to discover their location."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Azelf, Mesprit or Uxie. Beat all trainers here first."))
+			msgbox(format("Wisdom. Passion. Determination. Your control over the crevaces of our psyche is exceptional, but not universal. Clean this route from any opposition, and the Guardian trio will rise again."))
 		}
 	}
     release

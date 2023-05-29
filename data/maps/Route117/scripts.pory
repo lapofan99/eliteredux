@@ -218,7 +218,12 @@ script Route117_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("Once upon a time, a legend was whispered among the lands. It was a legend of light. It was a legend of darkness.\p"
+		"Cresselia, soother of troubled souls and the radiant embodiment of the moon's ethereal glow was challenged by Darkrai, harbringer of shadows and the essence of the Moon's darkest allure.\p"
+		"What Darkrai anticipated as a swift engagement transformed into a struggle lasting a hundred years. For a century, their battle ravaged the world.\p"
+		"Skies cloaked under eternal darkness. Cities crumbled. Forests whitered. The seas, once governed by their power, surged in turmoil.\p"
+		"But, when all hope was lost, Keldeo, the valiant warrior of unyielding spirit, driven by a relentless pursuit of purpose, swung his sword at the prince of darkness, tearing apart his plans for domination and ending the century-long struggle.\p"
+		"If you want to meet these creatures of legend, fight with the might of Keldeo, and become champion!"))
 	}
 	else{
 		if(defeated(TRAINER_ISAAC_1)  &&
@@ -230,10 +235,10 @@ script Route117_EventScript_LegendaryNPC{
 		   defeated(TRAINER_MELINA)  &&
 		   defeated(TRAINER_BRANDI)  &&
 		   defeated(TRAINER_AISHA)){
-			msgbox(format("You are now worthy to catch Darkrai, Cresselia and Keldeo here. Just use your DexNav, they will now appear."))
+			msgbox(format("I have no doubts in my mind, you are now worthy of meeting Darkrai, Cresselia and Keldeo. Use your DexNav to discover their precise location. Which side of their conflict will you choose?"))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Darkrai, Cresselia or Keldeo. Beat all trainers here first."))
+			msgbox(format("I see a star on that trainer card... you have become champion, haven't you? Keldeo, Darkrai and Cresselia are almost among us. Just defeat these last few trainers and you'll be able to meet them."))
 		}
 	}
     release
