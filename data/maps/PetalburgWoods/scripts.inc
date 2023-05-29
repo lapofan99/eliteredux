@@ -486,7 +486,7 @@ PetalburgWoods_EventScript_Gen8_NPC::
 	checktrainerflag TRAINER_JAMES_1
 	goto_if 1, PetalburgWoods_EventScript_Gen8_NPC_4
 PetalburgWoods_EventScript_Gen8_NPC_3:
-	msgbox PetalburgWoods_EventScript_Gen8_NPC_Text_2
+	msgbox PetalburgWoods_EventScript_Gen8_NPC_Text_3
 PetalburgWoods_EventScript_Gen8_NPC_1:
 	release
 	end
@@ -495,6 +495,7 @@ PetalburgWoods_EventScript_Gen8_NPC_2:
 	msgbox PetalburgWoods_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_SIZZLIPEDE, 10, ITEM_NONE
 	msgbox PetalburgWoods_EventScript_Gen8_NPC_Text_1
+	msgbox PetalburgWoods_EventScript_Gen8_NPC_Text_2
 	goto PetalburgWoods_EventScript_Gen8_NPC_1
 
 PetalburgWoods_EventScript_Gen8_NPC_4:
@@ -512,6 +513,9 @@ PetalburgWoods_EventScript_Gen8_NPC_Text_1:
 	.string "for defeating every trainer here!$"
 
 PetalburgWoods_EventScript_Gen8_NPC_Text_2:
+	.string "Come back if you want more!$"
+
+PetalburgWoods_EventScript_Gen8_NPC_Text_3:
 	.string "In Galar, wild Venipede and Sizzlipede\n"
 	.string "fight in a constant struggle for\l"
 	.string "supremacy. Will you join me on the side\l"
