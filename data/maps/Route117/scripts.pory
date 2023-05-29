@@ -241,6 +241,7 @@ script Route117_EventScript_LegendaryNPC{
 			msgbox(format("I see a star on that trainer card... you have become champion, haven't you? Keldeo, Darkrai and Cresselia are almost among us. Just defeat these last few trainers and you'll be able to meet them."))
 		}
 	}
+	face_down
     release
     end
 }
