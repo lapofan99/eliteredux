@@ -218,12 +218,13 @@ script Route117_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("Once upon a time, a legend was whispered among the lands. It was a legend of light. It was a legend of darkness.\p"
-		"Cresselia, soother of troubled souls and the radiant embodiment of the moon's ethereal glow was challenged by Darkrai, harbringer of shadows and the essence of the Moon's darkest allure.\p"
-		"What Darkrai anticipated as a swift engagement transformed into a struggle lasting a hundred years. For a century, their battle ravaged the world.\p"
-		"Skies cloaked under eternal darkness. Cities crumbled. Forests whitered. The seas, once governed by their power, surged in turmoil.\p"
-		"But, when all hope was lost, Keldeo, the valiant warrior of unyielding spirit, driven by a relentless pursuit of purpose, swung his sword at the prince of darkness, tearing apart his plans for domination and ending the century-long struggle.\p"
-		"If you want to meet these creatures of legend, fight with the might of Keldeo, and become champion!"))
+		msgbox(format("Once upon a time, a legend was whispered among the lands.\p"
+		"Cresselia, soother of troubled souls, was challenged by Darkrai, the essence of the Moon's darkest allure.\p"
+		"What Darkrai anticipated as a swift engagement transformed into a struggle lasting a hundred years. Their battle ravaged the whole world.\p"
+		"Skies cloaked under eternal darkness. Life whitered. Seas surged in turmoil.\p"
+		"But, when all hope was lost, Keldeo, a valiant warrior of unyielding spirit, swung his sword at the prince of darkness, tearing him apart.\p"
+		"And so, the order once lost was finally restored\p."
+		"If you want to meet these creatures of legend, become champion and come back to me!"))
 	}
 	else{
 		if(defeated(TRAINER_ISAAC_1)  &&
