@@ -3666,7 +3666,7 @@ void IncreaseStatUpScore(u8 battlerAtk, u8 battlerDef, u8 statId, s16 *score)
     if (CanTargetFaintAi(battlerDef, battlerAtk))
         return;
 
-    if (AI_DATA->atkAbility == ABILITY_CONTRARY)
+    if (AI_DATA->atkAbility == ABILITY_CONTRARY || (DefSpeciesHasInnate(ABILITY_UNAWARE) && statId != STAT_SPEED)|| (AI_DATA->defAbility == ABILITY_UNAWARE && statId != STAT_SPEED))
         return;
     
     if (GetHealthPercentage(battlerAtk) < 80 && AI_RandLessThan(128))
