@@ -7945,6 +7945,7 @@ BattleScript_SolarPowerActivates::
 	end3
 	
 BattleScript_HealerActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_HEALER
 	call BattleScript_AbilityPopUp
 	curestatus BS_SCRIPTING
 	updatestatusicon BS_SCRIPTING
