@@ -281,20 +281,28 @@ Route115_EventScript_Gen8_NPC_20:
 
 
 Route115_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "Knowledge. Emotion. Willpower. The\n"
+	.string "slumbering Lake Guardians await a\l"
+	.string "chosen one who can fathom their\l"
+	.string "depths. It is through understanding\l"
+	.string "their purpose that you shall become\l"
+	.string "the conduit of their might. Embrace\l"
+	.string "their call, young trainer, and return to\l"
+	.string "me.$"
 
 Route115_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch Azelf,\n"
-	.string "Mesprit and Uxie here. Just use your\l"
-	.string "DexNav, they will now appear.$"
+	.string "Insight. Zeal. Perseverance. These\n"
+	.string "virtues burn within you. The Guardians\l"
+	.string "are ready to meet you: use your DexNav\l"
+	.string "to discover their location.$"
 
 Route115_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch Azelf,\n"
-	.string "Mesprit or Uxie. Beat all trainers here\l"
-	.string "first.$"
+	.string "Wisdom. Passion. Determination. Your\n"
+	.string "control over the crevaces of our\l"
+	.string "psyche is exceptional, but not\l"
+	.string "universal. Clean this route from any\l"
+	.string "opposition, and the Guardian trio will\l"
+	.string "rise again.$"
 
 Route115_EventScript_Gen8_NPC_Text_0:
 	.string "IT IS FINALLY DONE. THANKS BITER\n"

@@ -518,20 +518,35 @@ Route118East_EventScript_Gen8_NPC_5:
 
 
 Route118_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "This land we stand on is blessed by the\n"
+	.string "presence of some truly remarkable\l"
+	.string "speciments: Manaphy, the sea guardian,\l"
+	.string "Phione, their offspring, and Celebi, the\l"
+	.string "time travelling steward of nature\p"
+	.string "Remember, as you explore, to remain in\n"
+	.string "harmony with nature, treating every\l"
+	.string "blade of grass, every little rock, every\l"
+	.string "grain of sand as if it was your dearest\l"
+	.string "treasure\p"
+	.string ". If you want to meet these angelic\n"
+	.string "guardians of nature, become Champion\l"
+	.string "and come back to this sacred place.$"
 
 Route118_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch Phione,\n"
-	.string "Manaphy and Celebi here. Just use your\l"
-	.string "DexNav, they will now appear.$"
+	.string "Your skills in battle have been tested,\n"
+	.string "and you have succeded against all\l"
+	.string "odds. Congratulations. Use your DexNav\l"
+	.string "to finally meet these extraordinary\l"
+	.string "protectors.$"
 
 Route118_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch Phione,\n"
-	.string "Manaphy or Celebi. Beat all trainers\l"
-	.string "here first.$"
+	.string "You have defeated the Pokémon\n"
+	.string "League... and the champion too? I'm\l"
+	.string "impressed, and the guardians of this\l"
+	.string "place are, too. Once you'll have\l"
+	.string "defeated these last few trainers,\l"
+	.string "nothing will stand between you and\l"
+	.string "them!$"
 
 Route118West_EventScript_Gen8_NPC_Text_0:
 	.string "Cute might not be the word that best\n"

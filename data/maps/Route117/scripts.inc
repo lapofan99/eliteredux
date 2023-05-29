@@ -221,6 +221,7 @@ Route117_EventScript_LegendaryNPC::
 Route117_EventScript_LegendaryNPC_6:
 	msgbox Route117_EventScript_LegendaryNPC_Text_2
 Route117_EventScript_LegendaryNPC_1:
+	face_down
 	release
 	end
 
@@ -332,20 +333,49 @@ Route117_EventScript_Gen8_NPC_17:
 
 
 Route117_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "Once upon a time, a legend was\n"
+	.string "whispered among the lands. It was a\l"
+	.string "legend of light. It was a legend of\l"
+	.string "darkness.\p"
+	.string "Cresselia, soother of troubled souls\n"
+	.string "and the radiant embodiment of the\l"
+	.string "moon's ethereal glow was challenged by\l"
+	.string "Darkrai, harbringer of shadows and the\l"
+	.string "essence of the Moon's darkest allure.\p"
+	.string "What Darkrai anticipated as a swift\n"
+	.string "engagement transformed into a\l"
+	.string "struggle lasting a hundred years. For a\l"
+	.string "century, their battle ravaged the\l"
+	.string "world.\p"
+	.string "Skies cloaked under eternal darkness.\n"
+	.string "Cities crumbled. Forests whitered. The\l"
+	.string "seas, once governed by their power,\l"
+	.string "surged in turmoil.\p"
+	.string "But, when all hope was lost, Keldeo, the\n"
+	.string "valiant warrior of unyielding spirit,\l"
+	.string "driven by a relentless pursuit of\l"
+	.string "purpose, swung his sword at the prince\l"
+	.string "of darkness, tearing apart his plans\l"
+	.string "for domination and ending the\l"
+	.string "century-long struggle.\p"
+	.string "If you want to meet these creatures of\n"
+	.string "legend, fight with the might of Keldeo,\l"
+	.string "and become champion!$"
 
 Route117_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch Darkrai,\n"
-	.string "Cresselia and Keldeo here. Just use\l"
-	.string "your DexNav, they will now appear.$"
+	.string "I have no doubts in my mind, you are now\n"
+	.string "worthy of meeting Darkrai, Cresselia\l"
+	.string "and Keldeo. Use your DexNav to\l"
+	.string "discover their precise location. Which\l"
+	.string "side of their conflict will you choose?$"
 
 Route117_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch\n"
-	.string "Darkrai, Cresselia or Keldeo. Beat all\l"
-	.string "trainers here first.$"
+	.string "I see a star on that trainer card... you\n"
+	.string "have become champion, haven't you?\l"
+	.string "Keldeo, Darkrai and Cresselia are\l"
+	.string "almost among us. Just defeat these\l"
+	.string "last few trainers and you'll be able to\l"
+	.string "meet them.$"
 
 Route117_EventScript_Gen8_NPC_Text_0:
 	.string "Tasteful battles you provided indeed! I\n"
