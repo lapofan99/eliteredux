@@ -2735,6 +2735,7 @@ static void Cmd_resultmessage(void)
 		gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
 		gBattleMoves[gCurrentMove].power > 0 &&
 		gBattleMoveDamage > 0 &&
+        (gMultiHitCounter == 0) &&
         !FlagGet(FLAG_SYS_DISABLE_DAMAGE_DONE) &&
         gSaveBlock2Ptr->damageDone)
 	{
