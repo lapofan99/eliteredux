@@ -176,6 +176,7 @@
 
 #define B_PERFECT_IVS         			TRUE    // If set to TRUE, the stat calculation makes it as if the Pokemon has perfect Ivs.
 #define B_ENABLE_FIELD_POISON         	FALSE   // If set to FALSE, your Pokemon won't get damaged when Poisoned in the overworld
+#define B_USE_COUNTER_MIRROR_COAT_RIGHT TRUE    // If set to TRUE, the AI will use Mirror coat when it predicts an Special Move and counter for Physical moves
 
 // Item Restoration Settings
 #define B_RESTORE_ALL_ITEMS             TRUE     // If set to TRUE, all items are restored after Trainer battles, including berries, even they were not stolen.

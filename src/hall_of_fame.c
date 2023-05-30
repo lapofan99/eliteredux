@@ -1114,9 +1114,52 @@ static void Task_HofPC_ExitOnButtonPress(u8 taskId)
 
 static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 {
-    FillWindowPixelBuffer(0, PIXEL_FILL(0));
+    static const u8 gText_WelcomeToHOF[] 		= _("Elite Redux v1.0 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}Number of Losses: {STR_VAR_3}");
+	
+    static const u8 easyCapText[] 				= _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
+	static const u8 moreCapText[] 			    = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}More$");
+	static const u8 eliteCapText[] 				= _("{COLOR LIGHT_RED}{SHADOW RED}Elite$");
+
+    static const u8 easyModeText[] 				= _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
+	static const u8 eliteModeText[] 			= _("{COLOR LIGHT_BLUE}{SHADOW RED}Elite$");
+
+	u8 numWhiteOuts = 0 + VarGet(VAR_TIMES_WHITED_OUT);
+	
+	//Difficulty
+	switch (gSaveBlock2Ptr->gameDifficulty)
+    {
+        default:
+        case DIFFICULTY_EASY:
+            StringCopy(gStringVar1, easyModeText);
+            break;
+        case DIFFICULTY_ELITE:
+            StringCopy(gStringVar1, eliteModeText);
+            break;
+    }
+	
+    //Level Caps
+	switch (gSaveBlock2Ptr->levelCaps)
+    {
+        default:
+        case LEVEL_CAPS_EASY:
+            StringCopy(gStringVar2, easyCapText);
+            break;
+        case LEVEL_CAPS_MORE:
+            StringCopy(gStringVar2, moreCapText);
+            break;
+        case LEVEL_CAPS_ELITE:
+            StringCopy(gStringVar2, eliteCapText);
+            break;
+    }
+	
+	//Number of whiteouts
+	ConvertIntToDecimalStringN(gStringVar3, numWhiteOuts, STR_CONV_MODE_RIGHT_ALIGN, 2);
+	
+	StringExpandPlaceholders(gStringVar4, gText_WelcomeToHOF);
+	
+	FillWindowPixelBuffer(0, PIXEL_FILL(0));
     PutWindowTilemap(0);
-    AddTextPrinterParameterized3(0, 1, GetStringCenterAlignXOffset(1, gText_WelcomeToHOF, 0xD0), 1, sMonInfoTextColors, 0, gText_WelcomeToHOF);
+    AddTextPrinterParameterized3(0, 1, GetStringCenterAlignXOffset(1, gStringVar4, 0xD0), 1, sMonInfoTextColors, 0, gStringVar4);
     CopyWindowToVram(0, 3);
 }
 

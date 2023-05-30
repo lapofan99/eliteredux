@@ -1,5 +1,5 @@
-.set LOCALID_WOMAN_1, 19
-.set LOCALID_MAN_1, 20
+.set LOCALID_WOMAN_1, 18
+.set LOCALID_MAN_1, 19
 
 LilycoveCity_MapScripts:: @ 81E2B3C
 	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_OnTransition
