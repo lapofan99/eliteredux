@@ -540,17 +540,32 @@ Route120_EventScript_LegendaryNPC_28:
 
 
 Route120_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "It might not seem like it at first, but\n"
+	.string "you have entered the domain of the\l"
+	.string "Forces of Nature. They strayed all the\l"
+	.string "way from Unima to here, looking for wild\l"
+	.string "lands to unleash their powers onto.But,\l"
+	.string "despite what we initially feared, it\l"
+	.string "seems like Hoenn has rather soothed\l"
+	.string "their spirits. No ferocious gales nor\l"
+	.string "fierce thunderstorms have grazed this\l"
+	.string "place, yet. Perhaps their master,\l"
+	.string "Landorus, has regained control of\l"
+	.string "them? Nobody knows for sure. If you\l"
+	.string "want to catch them, however, you must\l"
+	.string "first prove your worth by becoming\l"
+	.string "champion!$"
 
 Route120_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch Thundurus,\n"
-	.string "Tornadus and Landorus here. Just use\l"
-	.string "your DexNav, they will now appear.$"
+	.string "Seek after the eye of the storm: the\n"
+	.string "Forces of Nature have deemed you\l"
+	.string "worthy of meeting them. Use your\l"
+	.string "DexNav to discover their location, and\l"
+	.string "get ready to face nature's wrath!$"
 
 Route120_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch\n"
-	.string "Thundurus, Tornadus or Landorus. Beat\l"
-	.string "all trainers here first.$"
+	.string "I can sense it: the Forces of Nature\n"
+	.string "are awake and vigilant. They're almost\l"
+	.string "ready to come out and meet you. Defeat\l"
+	.string "the remaining trainers on this route to\l"
+	.string "meet them!$"

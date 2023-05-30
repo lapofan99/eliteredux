@@ -347,12 +347,12 @@ Route117_EventScript_LegendaryNPC_Text_0:
 	.string "But, when all hope was lost, Keldeo, a\n"
 	.string "valiant warrior of unyielding spirit,\l"
 	.string "swung his sword at the prince of\l"
-	.string "darkness, tearing his plans apart.\p"
+	.string "darkness, tearing him apart.\p"
 	.string "And so, the order once lost was finally\n"
-	.string "restored\p"
-	.string ". If you want to meet these creatures\n"
-	.string "of legend, become champion and come\l"
-	.string "back to me!$"
+	.string "restored.\p"
+	.string "If you want to meet these creatures of\n"
+	.string "legend, become champion and come back\l"
+	.string "to me!$"
 
 Route117_EventScript_LegendaryNPC_Text_1:
 	.string "I have no doubts in my mind, you are now\n"
