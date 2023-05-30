@@ -154,7 +154,9 @@ SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGrunt:: @ 820AEF8
 	applymovement LOCALID_FAMILIAR_GRUNT, Common_Movement_Delay48
 	waitmovement 0
 	msgbox SlateportCity_OceanicMuseum_1F_Text_RememberMeTakeThis, MSGBOX_DEFAULT
-	givecustommon SPECIES_HITMONCHAN, 20, ITEM_COBA_BERRY, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DRAIN_PUNCH, MOVE_RAPID_SPIN, MOVE_ICE_PUNCH, MOVE_THUNDER_PUNCH, FALSE
+	giveitem ITEM_TM46_THIEF
+	compare VAR_RESULT, 0
+	goto_if_eq SlateportCity_OceanicMuseum_1F_EventScript_NoRoomForThief
 	setflag FLAG_RECEIVED_TM46
 	msgbox SlateportCity_OceanicMuseum_1F_Text_HopeINeverSeeYouAgain, MSGBOX_DEFAULT
 	closemessage
@@ -304,7 +306,7 @@ SlateportCity_OceanicMuseum_1F_Text_RememberMeTakeThis: @ 820B3AB
 	.string "You have to forgive me!$"
 
 SlateportCity_OceanicMuseum_1F_Text_HopeINeverSeeYouAgain: @ 820B449
-	.string "That Pokémon, it suits you more than it\n"
+	.string "That TM, it suits you more than it\n"
 	.string "does me.\p"
 	.string "Hope I never see you again!\n"
 	.string "Wahahaha!$"

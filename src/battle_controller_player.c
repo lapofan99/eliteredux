@@ -2008,7 +2008,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     MulModifier(&mod, tempMod);
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_HEATPROOF || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_HEATPROOF)){
+                if(gBattleMons[targetId].ability == ABILITY_HEATPROOF || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_FLUFFY)){
                     tempMod = UQ_4_12(0.5);
                     MulModifier(&mod, tempMod);
                 }
@@ -2042,10 +2042,10 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     MulModifier(&mod, tempMod);
                 }
 
-                /*if(gBattleMons[userId].ability == ABILITY_WATER_BUBBLE || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_WATER_BUBBLE)){
+                if(gBattleMons[userId].ability == ABILITY_WATER_BUBBLE || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_WATER_BUBBLE)){
                     tempMod = UQ_4_12(2.0);
                     MulModifier(&mod, tempMod);
-                }*/
+                }
 
                 if(gBattleMons[targetId].ability == ABILITY_WATER_COMPACTION || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_WATER_COMPACTION)){
                     tempMod = UQ_4_12(0.5);
@@ -2165,7 +2165,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             }
         }
 
-        /*switch(gBattleMoves[moveNum].split){
+        switch(gBattleMoves[moveNum].split){
             case SPLIT_PHYSICAL:
                 if(gBattleMons[targetId].ability == ABILITY_LIQUIFIED || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_LIQUIFIED)){
                     tempMod = UQ_4_12(0.5);
@@ -2177,10 +2177,10 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     MulModifier(&mod, tempMod);
                 }
             break;
-            case SPLIT_SPECIAL:
+            /*case SPLIT_SPECIAL:
 
-            break;
-        }*/
+            break;*/
+        }
 
 		if (mod == UQ_4_12(0.0) || abilityNullifiesDamage)
 			return MOVE_EFFECTIVENESS_NONE;
@@ -2216,8 +2216,6 @@ static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId)
     else
 	    StringCopy(gStringVar2, gNoStabIcon);
 
-    if(!IsBattlerAlive(targetId))
-        targetId = BATTLE_PARTNER(targetId);
     
     switch(GetMoveTypeEffectiveness(move, targetId, gActiveBattler)){
         case MOVE_EFFECTIVENESS_NONE:
@@ -2249,7 +2247,6 @@ static void MoveSelectionDisplayMoveType(void)
 {
     u8 WindowID;
     u16 move;
-    u8 targetId = B_POSITION_OPPONENT_LEFT;
 
     static const u16 gType_Text_Pal[]         = INCBIN_U16("graphics/battle_interface/text_se.gbapal");
     static const u8 gEffectivenessUp[]           =  _("{COLOR 12}{SHADOW 11}{STR_VAR_1} {COLOR 5}{UP_ARROW_2} {COLOR 12}{STR_VAR_2}");
@@ -2269,10 +2266,8 @@ static void MoveSelectionDisplayMoveType(void)
     else
 	    StringCopy(gStringVar2, gNoStabIcon);
 
-    if(!IsBattlerAlive(targetId))
-        targetId = BATTLE_PARTNER(targetId);
     
-    switch(GetMoveTypeEffectiveness(move, targetId, gActiveBattler)){
+    switch(GetMoveTypeEffectiveness(move, B_POSITION_OPPONENT_LEFT, gActiveBattler)){
         case MOVE_EFFECTIVENESS_NONE:
             StringExpandPlaceholders(gStringVar4, gEffectivenessNoDamage);
             WindowID = B_WIN_NO_EFFECT;

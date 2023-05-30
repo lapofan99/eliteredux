@@ -1,7 +1,7 @@
 raw `
 .set LOCALID_WALLY, 6
 .set LOCALID_WALLYS_UNCLE, 7
-.set LOCALID_SCOTT, 10
+.set LOCALID_SCOTT, 11
 
 MauvilleCity_MapScripts:: @ 81DF385
 	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_OnTransition

@@ -4656,10 +4656,6 @@ static void HandleTurnActionSelectionState(void)
                 {
                     if (gBattleResources->bufferB[gActiveBattler][1] == B_ACTION_NOTHING_FAINTED)
                     {
-                        u8 numWhiteOuts = 0 + VarGet(VAR_TIMES_WHITED_OUT);
-                        numWhiteOuts++;
-                        VarSet(VAR_TIMES_WHITED_OUT, numWhiteOuts);
-                        
                         if(gActiveBattler == B_POSITION_PLAYER_LEFT){
                             gHitMarker |= HITMARKER_RUN;
                             gChosenActionByBattler[gActiveBattler] = B_ACTION_RUN;

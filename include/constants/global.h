@@ -126,7 +126,7 @@
 
 #define DIFFICULTY_EASY        0
 #define DIFFICULTY_ELITE       1
-#define DIFFICULTY_INSANITY    2 //Unused
+#define DIFFICULTY_INSANITY    2
 
 #define LEVEL_CAPS_EASY        0
 #define LEVEL_CAPS_MORE        1
