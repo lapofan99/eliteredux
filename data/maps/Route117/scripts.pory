@@ -223,7 +223,7 @@ script Route117_EventScript_LegendaryNPC{
 		"What Darkrai anticipated as a swift engagement transformed into a struggle lasting a hundred years. Their battle ravaged the whole world.\p"
 		"Skies cloaked under eternal darkness. Life whitered. Seas surged in turmoil.\p"
 		"But, when all hope was lost, Keldeo, a valiant warrior of unyielding spirit, swung his sword at the prince of darkness, tearing him apart.\p"
-		"And so, the order once lost was finally restored\p."
+		"And so, the order once lost was finally restored.\p"
 		"If you want to meet these creatures of legend, become champion and come back to me!"))
 	}
 	else{

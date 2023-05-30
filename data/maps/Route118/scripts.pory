@@ -411,8 +411,8 @@ script Route118_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("This land we stand on is blessed by the presence of some truly remarkable speciments: Manaphy, the sea guardian, Phione, their offspring, and Celebi, the time travelling steward of nature\p"
-		"Remember, as you explore, to remain in harmony with nature, treating every blade of grass, every little rock, every grain of sand as if it was your dearest treasure\p."
+		msgbox(format("This land we stand on is blessed by the presence of the stewards of nature: Manaphy, the sea guardian, Phione, their offspring, and Celebi, the time travelling wild spirit.\p"
+		"Remember, as you explore, to remain in harmony with nature, treating every blade of grass, every little crevace, every grain of sand as if it was your dearest treasure.\p"
 		"If you want to meet these angelic guardians of nature, become Champion and come back to this sacred place."))
 	}
 	else{
