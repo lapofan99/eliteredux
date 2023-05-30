@@ -3892,12 +3892,12 @@ static const struct TrainerMonItemCustomMoves sParty_James2[] = {
     .lvl = 0,
     .species = SPECIES_GALVANTULA, // Sash, Looter, Sticky Web
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1, // ABILITY_MINUS, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
-    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SWARM, ABILITY_COMPOUND_EYES},
+    .ability = 1, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
     .ivs = {31, 0, 31, 31, 31, 30}, // Ice
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_STICKY_WEB, MOVE_THUNDER, MOVE_HIDDEN_POWER, MOVE_ENERGY_BALL
+    .moves = MOVE_STICKY_WEB, MOVE_THUNDERBOLT, MOVE_HIDDEN_POWER, MOVE_ENERGY_BALL
     },
     {
     .lvl = 0,
@@ -3939,12 +3939,12 @@ static const struct TrainerMonItemCustomMoves sParty_James3[] = {
     .lvl = 0,
     .species = SPECIES_GALVANTULA, // Sash, Looter, Sticky Web
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1, // ABILITY_MINUS, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
-    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SWARM, ABILITY_COMPOUND_EYES},
+    .ability = 1, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
     .ivs = {31, 0, 31, 31, 31, 30}, // Ice
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_STICKY_WEB, MOVE_THUNDER, MOVE_HIDDEN_POWER, MOVE_ENERGY_BALL
+    .moves = MOVE_STICKY_WEB, MOVE_THUNDERBOLT, MOVE_HIDDEN_POWER, MOVE_ENERGY_BALL
     },
     {
     .lvl = 0,
@@ -3997,12 +3997,12 @@ static const struct TrainerMonItemCustomMoves sParty_James4[] = {
     .lvl = 0,
     .species = SPECIES_GALVANTULA, // Sash, Spider Lair
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 2, // ABILITY_MINUS, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
-    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SWARM, ABILITY_COMPOUND_EYES},
+    .ability = 2, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
     .ivs = {31, 0, 31, 31, 31, 30}, // Ice
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_VOLT_SWITCH, MOVE_THUNDER, MOVE_HIDDEN_POWER, MOVE_ENERGY_BALL
+    .moves = MOVE_VOLT_SWITCH, MOVE_THUNDERBOLT, MOVE_HIDDEN_POWER, MOVE_ENERGY_BALL
     },
     {
     .lvl = 0,
@@ -13916,12 +13916,12 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1[] = {
     .lvl = 3,
     .species = SPECIES_GALVANTULA, // Wattson, Grass Gem, Spider Lair
     .heldItem = ITEM_GRASS_GEM,
-    .ability = 2, // ABILITY_MINUS, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
-    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SWARM, ABILITY_COMPOUND_EYES},
+    .ability = 2, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL
+    .moves = MOVE_THUNDERBOLT, MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL
     },
     {
     .lvl = 3,
@@ -13996,12 +13996,12 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson2[] = { // singles
     .lvl = 3,
     .species = SPECIES_GALVANTULA, // Wattson, Sash, Spider Lair
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 2, // ABILITY_MINUS, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
-    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SWARM, ABILITY_COMPOUND_EYES},
+    .ability = 2, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL
+    .moves = MOVE_THUNDERBOLT, MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL
     },
     {
     .lvl = 3,
@@ -21810,12 +21810,12 @@ static const struct TrainerMonItemCustomMoves sParty_Donald[] = {
     .lvl = 0,
     .species = SPECIES_GALVANTULA, // Sash, Looter, Special + Sucker Punch
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1, // ABILITY_MINUS, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
-    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SWARM, ABILITY_COMPOUND_EYES},
+    .ability = 1, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_SUCKER_PUNCH, MOVE_GIGA_DRAIN
+    .moves = MOVE_THUNDERBOLT, MOVE_BUG_BUZZ, MOVE_SUCKER_PUNCH, MOVE_GIGA_DRAIN
     }
 };
 
@@ -30524,12 +30524,12 @@ static const struct TrainerMonItemCustomMoves sParty_Allison[] = {
     .lvl = 0,
     .species = SPECIES_GALVANTULA, // Sitrus, Looter, Mixed
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 1, // ABILITY_MINUS, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
-    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SWARM, ABILITY_COMPOUND_EYES},
+    .ability = 1, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 180, 0, 76, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_LONELY,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_SUCKER_PUNCH, MOVE_POISON_JAB
+    .moves = MOVE_THUNDERBOLT, MOVE_BUG_BUZZ, MOVE_SUCKER_PUNCH, MOVE_POISON_JAB
     }
 };
 
@@ -34546,12 +34546,12 @@ static const struct TrainerMonItemCustomMoves sParty_Samuel[] = {
     .lvl = 0,
     .species = SPECIES_GALVANTULA, // Specs, Spider Lair
     .heldItem = ITEM_CHOICE_SPECS,
-    .ability = 2, // ABILITY_MINUS, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
-    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SWARM, ABILITY_COMPOUND_EYES},
+    .ability = 2, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_THUNDER, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_VOLT_SWITCH
+    .moves = MOVE_THUNDERBOLT, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL, MOVE_VOLT_SWITCH
     },
     {
     .lvl = 0,
