@@ -3962,60 +3962,6 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
     }
 }
 
-u8 TryWeatherFormChange(u8 battler)
-{
-    u8 ret = 0;
-    bool32 weatherEffect = WEATHER_HAS_EFFECT;
-    u16 holdEffect = GetBattlerHoldEffect(battler, TRUE);
-    
-    if (gBattleMons[battler].species == SPECIES_CASTFORM)
-    {
-        if (GetBattlerAbility(battler) != ABILITY_FORECAST || gBattleMons[battler].hp == 0)
-        {
-            ret = 0;
-        }
-        else if (!weatherEffect && !IS_BATTLER_OF_TYPE(battler, TYPE_NORMAL))
-        {
-            SET_BATTLER_TYPE(battler, TYPE_NORMAL);
-            ret = 1;
-        }
-        else if (!weatherEffect)
-        {
-            ret = 0;
-        }
-        else if (holdEffect == HOLD_EFFECT_UTILITY_UMBRELLA || (!(gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_SUN_ANY | WEATHER_HAIL_ANY)) && !IS_BATTLER_OF_TYPE(battler, TYPE_NORMAL)))
-        {
-            SET_BATTLER_TYPE(battler, TYPE_NORMAL);
-            ret = 1;
-        }
-        else if (gBattleWeather & WEATHER_SUN_ANY && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && !IS_BATTLER_OF_TYPE(battler, TYPE_FIRE))
-        {
-            SET_BATTLER_TYPE(battler, TYPE_FIRE);
-            ret = 2;
-        }
-        else if (gBattleWeather & WEATHER_RAIN_ANY && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && !IS_BATTLER_OF_TYPE(battler, TYPE_WATER))
-        {
-            SET_BATTLER_TYPE(battler, TYPE_WATER);
-            ret = 3;
-        }
-        else if (gBattleWeather & WEATHER_HAIL_ANY && !IS_BATTLER_OF_TYPE(battler, TYPE_ICE))
-        {
-            SET_BATTLER_TYPE(battler, TYPE_ICE);
-            ret = 4;
-        }
-    }
-    else if (gBattleMons[battler].species == SPECIES_CHERRIM)
-    {
-        if (GetBattlerAbility(battler) != ABILITY_FLOWER_GIFT || gBattleMons[battler].hp == 0)
-            ret = 0;
-        else if (gBattleMonForms[battler] == 0 && weatherEffect && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
-            ret = 2;
-        else if (gBattleMonForms[battler] != 0 && (!weatherEffect || holdEffect == HOLD_EFFECT_UTILITY_UMBRELLA || !(gBattleWeather & WEATHER_SUN_ANY)))
-            ret = 1;
-    }
-
-    return ret;
-}
 static const u16 sWeatherFlagsInfo[][3] =
 {
     [ENUM_WEATHER_RAIN] = {WEATHER_RAIN_TEMPORARY, WEATHER_RAIN_PERMANENT, HOLD_EFFECT_DAMP_ROCK},
@@ -4078,7 +4024,7 @@ static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
     return FALSE;
 }
 
-static bool32 ShouldChangeFormHpBased(u32 battler)
+bool32 ShouldChangeFormHpBased(u32 battler)
 {
     // Ability,     form >, form <=, hp divided
     static const u16 forms[][4] =
@@ -4116,6 +4062,54 @@ static bool32 ShouldChangeFormHpBased(u32 battler)
             }
         }
     }
+
+    //Castform
+    if (gBattleMons[battler].species == SPECIES_CASTFORM && 
+	    gBattleMons[battler].ability == ABILITY_FORECAST &&
+		gBattleMons[battler].hp != 0){
+		if (gBattleWeather & (WEATHER_RAIN_ANY) && gBattleMons[battler].species != SPECIES_CASTFORM_RAINY)
+        {
+            gBattleMons[battler].species = SPECIES_CASTFORM_RAINY;
+			return TRUE;
+        }else if (gBattleWeather & (WEATHER_SUN_ANY) && gBattleMons[battler].species != SPECIES_CASTFORM_SUNNY)
+        {
+            gBattleMons[battler].species = SPECIES_CASTFORM_SUNNY;
+			return TRUE;
+        }
+		else if (gBattleWeather & (WEATHER_HAIL_ANY) && gBattleMons[battler].species != SPECIES_CASTFORM_SNOWY)
+        {
+            gBattleMons[battler].species = SPECIES_CASTFORM_SNOWY;
+			return TRUE;
+        }else
+			return FALSE;
+	}
+
+    //Cherrim
+    if (gBattleMons[battler].species == SPECIES_CHERRIM && 
+	          gBattleMons[battler].ability == ABILITY_FLOWER_GIFT &&
+		      gBattleMons[battler].hp != 0){
+			if (gBattleWeather & (WEATHER_SUN_ANY))
+        {
+            #ifdef DEBUG_BUILD
+            if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                MgbaOpen();
+                MgbaPrintf(MGBA_LOG_WARN, "Cherrim Transformation Battler ID:%d", battler);
+                MgbaClose();
+            }
+            #endif
+            gBattleMons[battler].species = SPECIES_CHERRIM_SUNSHINE;
+			return TRUE;
+		}
+	}
+    else if(gBattleMons[battler].species == SPECIES_CHERRIM_SUNSHINE &&
+	          gBattleMons[battler].ability == ABILITY_FLOWER_GIFT &&
+		      gBattleMons[battler].hp != 0){
+			if (!(gBattleWeather & (WEATHER_SUN_ANY)))
+        {
+            gBattleMons[battler].species = SPECIES_CHERRIM;
+			return TRUE;
+		}
+	}
     return FALSE;
 }
 
@@ -4730,15 +4724,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gSpecialStatuses[battler].intimidatedMon = TRUE;
             }
             break;
-        case ABILITY_FORECAST:
-        case ABILITY_FLOWER_GIFT:
-            effect = TryWeatherFormChange(battler);
-            if (effect != 0)
-            {
-                BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
-                *(&gBattleStruct->formToChangeInto) = effect - 1;
-            }
-            break;
         case ABILITY_TRACE:
             if (!(gSpecialStatuses[battler].traced))
             {
@@ -4760,6 +4745,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
 		case ABILITY_ZEN_MODE:
         case ABILITY_SHIELDS_DOWN:
+        case ABILITY_FORECAST:
+        case ABILITY_FLOWER_GIFT:
             if (ShouldChangeFormHpBased(battler))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
@@ -5948,6 +5935,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     break;
             case ABILITY_ZEN_MODE:
             case ABILITY_SHIELDS_DOWN:
+            case ABILITY_FORECAST:
+            case ABILITY_FLOWER_GIFT:
                 if ((effect = ShouldChangeFormHpBased(battler)))
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
                 break;
@@ -8387,12 +8376,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         {
             if (GetBattlerAbility(battler) == ABILITY_FORECAST || GetBattlerAbility(battler) == ABILITY_FLOWER_GIFT)
             {
-                effect = TryWeatherFormChange(battler);
-                if (effect)
+                if (ShouldChangeFormHpBased(battler))
                 {
-                    BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
-                    gBattleScripting.battler = battler;
-                    gBattleStruct->formToChangeInto = effect - 1;
+                    BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
                     return effect;
                 }
             }
