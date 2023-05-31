@@ -464,12 +464,6 @@ DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis: @ 81FD0A8
 	.string "If you'd like, use this Technical\n"
 	.string "Machine, too.$"
 
-DewfordTown_Gym_Text_ExplainBulkUp: @ 81FD181
-	.string "That TM08 contains Bulk Up.\p"
-	.string "It's a move that raises both Attack\n"
-	.string "and Defense stats.\p"
-	.string "… … … … … …$"
-
 DewfordTown_Gym_Text_RegisteredBrawly: @ 81FD1E0
 	.string "Registered Gym Leader Brawly\n"
 	.string "in the PokéNav.$"
