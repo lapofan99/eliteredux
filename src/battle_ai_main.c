@@ -3329,7 +3329,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 // stat raising effects
 	case EFFECT_ATTACK_UP:
     case EFFECT_ATTACK_UP_2:
-        if (MovesWithSplitUnusable(battlerAtk, battlerDef, SPLIT_PHYSICAL))//asdf
+        if (MovesWithSplitUnusable(battlerAtk, battlerDef, SPLIT_PHYSICAL))
         {
             score -= 8;
             break;
@@ -4446,6 +4446,12 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score++;
         if (gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_AURORA_VEIL)
             score++;
+        break;
+    case EFFECT_STORED_POWER:
+            if(CountBattlerStatIncreases(battlerAtk, TRUE) < 2)
+                score -= 4;
+            else if(CountBattlerStatIncreases(battlerAtk, TRUE) > 6)
+                score += 4;
         break;
     case EFFECT_KNOCK_OFF:
         if (CanKnockOffItem(battlerDef, AI_DATA->defItem))

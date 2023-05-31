@@ -165,6 +165,7 @@ void RestoreBattlerOriginalTypes(u8 battlerId);
 bool8 IsMoveAffectedByParentalBond(u16 move, u8 battlerId);
 u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability);
 bool32 ShouldChangeFormHpBased(u32 battler);
+u32 CountBattlerStatIncreases(u8 battlerId, bool32 countEvasionAcc);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);
