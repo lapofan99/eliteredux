@@ -247,7 +247,26 @@ script Route121_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("In the realm where justice's light doth shine,\p"
+		"Three swords emerged with valor strong and true.\p"
+		"Virizion, Cobalion, Terrakion,\p"
+		"they wield their blades as the most noble, righteous crew.\p"
+		"Virizion, swift and graceful as the breeze,\p"
+		"With verdant elegance and keen insight.\p"
+		"Its blade cuts through deceit and brings release,\p"
+		"Ensuring truth prevails with all its might.\p"
+		"Cobalion, sturdy guardian of law,\p"
+		"With iron will and virtue as its guide.\p"
+		"Its sword strikes down the wicked, without flaw,\p"
+		"Protecting innocent souls far and wide.\p"
+		"Terrakion, a force with strength untamed,\p"
+		"Its blade unyielding, never to relent.\p"
+		"Defending those in need, it stands unblamed,\p"
+		"A beacon of justice brightly sent.\p"
+		"With hearts determined and spirits aligned,\p"
+		"You embark on a noble quest.\p"
+		"Two destinies entwined, two wills put to test,\p"
+		"To seize the Swords of Justice, a quest expressed."))
 	}
 	else{
 		if(defeated(TRAINER_VANESSA)  &&
@@ -260,10 +279,16 @@ script Route121_EventScript_LegendaryNPC{
 		   defeated(TRAINER_PAT)  &&
 		   defeated(TRAINER_MARCEL)  &&
 		   defeated(TRAINER_CRISTIN_1)){
-			msgbox(format("You are now worthy to catch Virizion, Cobalion and Terrakion here. Just use your DexNav, they will now appear."))
+			msgbox(format("Triumphant now, your quest complete,\p"
+			"your efforts rewarded, the Swords now near.\p"
+			"Show yourself, give him a treat,\p"
+			"Victory's embrace, your heart holds dear."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Virizion, Cobalion or Terrakion. Beat all trainers here first."))
+			msgbox(format("You stands at the route's final bend,\p"
+			"For your journey is near completion, victory in sight!\p"
+			"To catch the Swords of Justice, you must transcend,\p"
+			"by triumphing over others with might!"))
 		}
 	}
     release
