@@ -174,7 +174,10 @@ script Route113_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("These ashes seem to have affected even the most noble of bird lineages: that of Articuno, Zapdos and Moltres. Their kin has been spotted roaming this smoke-filled land, looking for a valiant aid... could you be the one they're looking for?"))
+		msgbox(format("These ashes seem to have affected even the most noble of bird lineages:\p"
+		"that of Articuno, Zapdos and Moltres.\p"
+		"Their kin has been spotted roaming this smoke-filled land, looking for a valiant aid...\p"
+		"Could you be the one they're looking for?"))
 	}
 	else{
 		if(defeated(TRAINER_JAYLEN) &&

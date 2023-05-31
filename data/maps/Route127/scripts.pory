@@ -89,7 +89,15 @@ script Route127_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("In the pursuit of power, mankind has often strayed from what we would call 'ethical experimentation'.\p"
+		"The only law? The one of the strongest. For some people, anything goes, as long as it's for their gain.\p"
+		"That has been the case for the Mechanical Marvels that rest in these shores.\p"
+		"Genesect, Volcanion, Magearna. Creatures so powerful, their makers feared their possible retaliation.\p"
+		"They were used as weapons of mass destruction against their will, tarnishing them in body and spirit.\p"
+		"Nothing could stand their power, so they ended up outliving their usefulness. They broke free from captivity, and escaped to\p"
+		"this peaceful place, in search for peace and tranquility, repenting over their past deeds.\p"
+		"And now, in the pursuit of redemption, they strive to protect this haven, ensuring that no other creature suffers the same fate.\p"
+		"Only a true champion can earn their trust. Come back when you're ready."))
 	}
 	else{
 		if(defeated(TRAINER_KOJI_1) &&
@@ -100,10 +108,11 @@ script Route127_EventScript_LegendaryNPC{
 		   defeated(TRAINER_JONAH)  &&
 		   defeated(TRAINER_DONNY)  &&
 		   defeated(TRAINER_CAMDEN)){
-			msgbox(format("You are now worthy to catch Genesect, Volcanion and Hoopa here. Just use your DexNav, they will now appear."))
+			msgbox(format("You have demonstrated the strength and compassion necessary to form an unbreakable bond with these creatures.\p"
+			"I updated your DexNav with their location. Go forth: they're waiting for you."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Genesect, Volcanion or Hoopa. Beat all trainers here first."))
+			msgbox(format("You have the curiosity of the Mechanical Marvels on your side. Show them your strenght on this route: defeat these last few trainers first, and I'll show you their location."))
 		}
 	}
     release

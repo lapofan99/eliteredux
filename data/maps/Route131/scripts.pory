@@ -62,7 +62,12 @@ script Route131_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("The influence of the Sky Pillar has attracted a peculiar visitor from outer space:\p"
+		"Necrozma, an alien creature whose hunger for light consumes everything that crosses their path.\p"
+		"Hopping from planet to planet like a flock of hungry locusts, they only leave a trail of darkness and desolation behind.\p"
+		"Their insatiable void within knows no bounds, so one must a stop at this!\p"
+		"Me and my colleagues managed to temporarly stall him out here, but you must help us.\p"
+		"You're already destined to become champion. Once you do, come back here and help us stop this disgrace from happening!"))
 	}
 	else{
 		if(defeated(TRAINER_RICHARD)	&&
@@ -72,10 +77,11 @@ script Route131_EventScript_LegendaryNPC{
 		   defeated(TRAINER_RELI_AND_IAN)  &&
 		   defeated(TRAINER_TALIA) &&
 		   defeated(TRAINER_KEVIN)){
-			msgbox(format("You are now worthy to catch Necrozma here. Just use your DexNav, it will now appear."))
+			msgbox(format("Great job with those trainers! Finally, we're ready to proceed: I marked Necrozma's location on your DexNav.\p"
+			"The stakes couldn't be higher, but I'm sure you'll succeed in bringing this monster down!"))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Necrozma. Beat all trainers here first."))
+			msgbox(format("Finally you came back! Before proceeding, make sure no one's getting caught in the crossfire: defeat all trainers in this route first!"))
 		}
 	}
     release

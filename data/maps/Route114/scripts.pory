@@ -215,7 +215,11 @@ script Route114_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("By talking to me, I assume you want confirmation on the fact that legendary Pokémon roam this route. Rest assured: they do. The Legendary beastly trio of Raikou, Suicune and Entei have chosen these wind-swept lands as their lair. Should you continue to display such promise, the privilege of capturing these majestic creatures may fall upon you. Embrace your burgeoning strength, for it may lead you to an extraordinary fate."))
+		msgbox(format("By talking to me, I assume you want confirmation on the fact that legendary Pokémon roam this route.\p"
+		"Rest assured: they do. The Legendary beastly trio of Raikou, Suicune and Entei\p"
+		"have chosen these wind-swept lands as their lair.\p"
+		"Should you continue to display such promise, the privilege of capturing these majestic creatures may fall upon you.\p"
+		"Embrace your burgeoning strength, for it may lead you to an extraordinary fate."))
 	}
 	else{
 		if(defeated(TRAINER_LENNY) &&

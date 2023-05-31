@@ -463,7 +463,12 @@ script Route120_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("It might not seem like it at first, but you have entered the domain of the Forces of Nature. They strayed all the way from Unima to here, looking for wild lands to unleash their powers onto.But, despite what we initially feared, it seems like Hoenn has rather soothed their spirits. No ferocious gales nor fierce thunderstorms have grazed this place, yet. Perhaps their master, Landorus, has regained control of them? Nobody knows for sure. If you want to catch them, however, you must first prove your worth by becoming champion!"))
+		msgbox(format("It might not seem like it at first, but you have entered the domain of the Forces of Nature.\p"
+		"They strayed all the way from Unima to here, looking for wild lands to unleash their powers onto.\p"
+		"But, despite what we initially feared, it seems like Hoenn has rather soothed their spirits.\p"
+		"No ferocious gales nor fierce thunderstorms have grazed this place, yet.\p"
+		"Perhaps their master, Landorus, has regained control of them? Nobody knows for sure.1p"
+		"If you want to catch them, however, you must first prove your worth by becoming champion!"))
 	}
 	else{
 		if(defeated(TRAINER_COLIN)  &&
