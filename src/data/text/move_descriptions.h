@@ -4023,7 +4023,11 @@ static const u8 sMoveFourLineDescription_CrossChop[] = _("The foe is hit with\nd
 static const u8 sMoveFourLineDescription_Twister[] = _("A vicious twister\nattacks the foe.\n20% flinch chance.\nAir-based."); // new
 static const u8 sMoveFourLineDescription_RainDance[] = _("A heavy rain falls\nfor five turns,\npowering up Water-\ntype moves 50%."); // new
 static const u8 sMoveFourLineDescription_SunnyDay[] = _("The sun blazes for\nfive turns, powering\nup Fire-type\nmoves by 50%."); // new
+#if B_UPDATED_MOVE_DATA >= GEN_4
+static const u8 sMoveFourLineDescription_Crunch[] = _("The foe is crunched\nwith sharp fangs.\n20% chance to\nlower foe's Def."); // new
+#else
 static const u8 sMoveFourLineDescription_Crunch[] = _("The foe is crunched\nwith sharp fangs.\n20% chance to\nlower foe's SpDef."); // new
+#endif
 static const u8 sMoveFourLineDescription_MirrorCoat[] = _("A retaliation move\nthat pays back the\nfoe's special attack\ndouble.");
 static const u8 sMoveFourLineDescription_PsychUp[] = _("The user hypnotizes\nitself into copying\nany stat change\nmade by the foe.");
 static const u8 sMoveFourLineDescription_ExtremeSpeed[] = _("A blindingly speedy\ncharge attack with\n+2 priority."); // new

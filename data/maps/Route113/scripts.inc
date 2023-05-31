@@ -299,12 +299,13 @@ Route113_EventScript_Gen8_NPC_20:
 
 Route113_EventScript_LegendaryNPC_Text_0:
 	.string "These ashes seem to have affected\n"
-	.string "even the most noble of bird lineages:\l"
-	.string "that of Articuno, Zapdos and Moltres.\l"
-	.string "Their kin has been spotted roaming\l"
-	.string "this smoke-filled land, looking for a\l"
-	.string "valiant aid... could you be the one\l"
-	.string "they're looking for?$"
+	.string "even the most noble of bird lineages:\p"
+	.string "that of Articuno, Zapdos and Moltres.\p"
+	.string "Their kin has been spotted roaming this\n"
+	.string "smoke-filled land, looking for a valiant\l"
+	.string "aid...\p"
+	.string "Could you be the one they're looking\n"
+	.string "for?$"
 
 Route113_EventScript_LegendaryNPC_Text_1:
 	.string "You are now worthy of catching the\n"
