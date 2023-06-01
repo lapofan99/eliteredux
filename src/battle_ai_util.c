@@ -3679,6 +3679,10 @@ void IncreaseStatUpScore(u8 battlerAtk, u8 battlerDef, u8 statId, s16 *score)
     if((gBattleMons[battlerDef].status1 & STATUS1_SLEEP) && gBattleMons[battlerAtk].statStages[statId] < STAT_UP_2_STAGE)
         *score += 5;
 
+    //If the mon has stored power make it so it uses Stat up moves more likely, but don't go too far
+    if(HasMoveEffect(battlerAtk, EFFECT_STORED_POWER) && gBattleMons[battlerAtk].statStages[statId] < STAT_UP_2_STAGE && GetHealthPercentage(battlerAtk) > 40)
+        *score += 5;
+
     switch (statId)
     {
     case STAT_ATK:

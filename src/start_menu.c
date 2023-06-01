@@ -1595,6 +1595,9 @@ static void ShowGameVersionWindow(void)
     PutWindowTilemap(sSafariBallsWindowId);
     DrawStdWindowFrame(sSafariBallsWindowId, FALSE);
 
+    if(levelCap > MAX_LEVEL)
+        levelCap = MAX_LEVEL;
+
     if(canSave)
         StringCopy(gStringVar1, sText_Save);
     else

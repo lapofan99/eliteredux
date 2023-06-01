@@ -294,6 +294,7 @@ Route111_EventScript_Victor:: @ 81F0FC5
 
 Route111_EventScript_BattleWinstrates:: @ 81F0FE7
 	setflag FLAG_SYS_DISABLE_AUTOHEAL
+	special HealPlayerParty
 	msgbox Route111_Text_VictorIntro, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_VICTOR, Route111_Text_VictorDefeat
 	applymovement LOCALID_VICTOR, Common_Movement_WalkInPlaceFastestUp

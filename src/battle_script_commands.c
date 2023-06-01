@@ -13543,12 +13543,10 @@ static void Cmd_trycastformdatachange(void)
     u8 form;
 
     gBattlescriptCurrInstr++;
-    form = TryWeatherFormChange(gBattleScripting.battler);
-    if (form)
+    /*if (ShouldChangeFormHpBased(gBattleScripting.battler))
     {
-        BattleScriptPushCursorAndCallback(BattleScript_CastformChange);
-        *(&gBattleStruct->formToChangeInto) = form - 1;
-    }
+        BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
+    }*/
 }
 
 static void Cmd_settypebasedhalvers(void) // water and mud sport

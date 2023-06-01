@@ -609,7 +609,6 @@ MauvilleCity_GameCorner_EventScript_Woman2:: @ 8210125
 	end
 
 MauvilleCity_GameCorner_EventScript_Gentleman:: @ 821012E
-	givecustommon SPECIES_TORCHIC, 5, ITEM_NONE, ITEM_PREMIER_BALL, NATURE_ADAMANT, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_WATER_PLEDGE, MOVE_CONFUSION, MOVE_ROCK_TOMB, MOVE_HYPER_BEAM, TRUE
 	msgbox MauvilleCity_GameCorner_Text_RouletteOnlyLuck, MSGBOX_NPC
 	end
 
