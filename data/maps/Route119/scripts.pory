@@ -627,7 +627,13 @@ script Route119_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("It is said that, when Arceus created mankind, the result was initally less than desirable.\p"
+		"The humans were just hollow husks, bodies without mind and soul. They needed a vital spirit:\p"
+		"so Arceus brought forth Azelf, Mesprit and Uxie. The three gifted them with conscience, intelligence and emotion. But that wasn't enough.\p"
+		"Humans lacked what made them, well, humans: empathy and willpower. So, he created Victini and Shaymin. Victini, envoy of success,\p"
+		"embued humans with an indomitable spirit. Shaymin, envoy of gratitude, made them look after one another.\p"
+		"Together, they gave us the tools to work toward common goals and objectives, allowing civilization to finally prosper.\p"
+		"I now look forward to you: embrace Victini and Shaymin's call! Rekindle your love for victory, be grateful towards your traveling companions, and return when you're finally champion!"))
 	}
 	else{
 		if(defeated(TRAINER_BRENT)  &&
@@ -647,10 +653,11 @@ script Route119_EventScript_LegendaryNPC{
 		   defeated(TRAINER_FABIAN)  &&
 		   defeated(TRAINER_DAYTON)  &&
 		   defeated(TRAINER_RACHEL)){
-			msgbox(format("You are now worthy to catch Arceus, Shaymin and Victini here. Just use your DexNav, they will now appear."))
+			msgbox(format("I have no doubts in my mind... you are now worthy of meeting Arceus, Shaymin and Victini; you are truly blessed with this once in a lifetime opportunity. Their location will appear when you use your DexNav, so make sure you're prepared. Good luck..."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Arceus, Shaymin or Victini. Beat all trainers here first."))
+			msgbox(format("You truly are one special human. While initially it seemed like only Shaymin and Victini would be willing to meet you, it now seems like Arceus is about to get involved.\p"
+			"However, it won't be easy convincing him. There's a lot of trainers around here, but if you best them... he might give you a chance."))
 		}
 	}
     release
