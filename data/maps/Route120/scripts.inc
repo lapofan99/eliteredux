@@ -554,9 +554,10 @@ Route120_EventScript_LegendaryNPC_Text_0:
 	.string "yet.\p"
 	.string "Perhaps their master, Landorus, has\n"
 	.string "regained control of them? Nobody\l"
-	.string "knows for sure.1p If you want to catch\l"
-	.string "them, however, you must first prove\l"
-	.string "your worth by becoming champion!$"
+	.string "knows for sure.\p"
+	.string "If you want to catch them, however, you\n"
+	.string "must first prove your worth by\l"
+	.string "becoming champion!$"
 
 Route120_EventScript_LegendaryNPC_Text_1:
 	.string "Seek after the eye of the storm: the\n"

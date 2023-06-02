@@ -2,6 +2,7 @@ RustboroCity_Gym_MapScripts:: @ 8212F30
 	.byte 0
 
 RustboroCity_Gym_EventScript_Roxanne::
+	call RustboroCity_Gym_EventScript_CheckTrainers //Make sure to call this before the Gym Leader Script
 	//goto_if_set FLAG_DAILY_REMATCH_ROXANNE, RustboroCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, RustboroCity_Gym_EventScript_RoxanneRematch
 	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
@@ -497,6 +498,26 @@ RustboroCity_Gym_EventScript_GiveRockTomb::
 	end
 
 
+RustboroCity_Gym_EventScript_CheckTrainers::
+	checktrainerflag TRAINER_JOSH
+	goto_if 0, RustboroCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_TOMMY
+	goto_if 0, RustboroCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_MARC
+	goto_if 0, RustboroCity_Gym_EventScript_CheckTrainers_3
+RustboroCity_Gym_EventScript_CheckTrainers_2:
+	return
+
+RustboroCity_Gym_EventScript_CheckTrainers_1:
+	msgbox RustboroCity_Gym_EventScript_CheckTrainers_Text_0, MSGBOX_NPC
+	release
+	end
+
+RustboroCity_Gym_EventScript_CheckTrainers_3:
+	goto_if_unset FLAG_BADGE01_GET, RustboroCity_Gym_EventScript_CheckTrainers_1
+	goto RustboroCity_Gym_EventScript_CheckTrainers_2
+
+
 RustboroCity_Gym_EventScript_GiveRockTomb_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
@@ -504,3 +525,8 @@ RustboroCity_Gym_EventScript_GiveRockTomb_Text_0:
 RustboroCity_Gym_EventScript_GiveRockTomb_Text_1:
 	.string "{PLAYER} got Roxanne's {COLOR BLUE}Amaura{COLOR DARK_GRAY} as a\n"
 	.string "gift!$"
+
+RustboroCity_Gym_EventScript_CheckTrainers_Text_0:
+	.string "Roxanne: Sorry, but you need to defeat\n"
+	.string "every trainer on this Gym before\l"
+	.string "battling me$"

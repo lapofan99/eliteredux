@@ -3,6 +3,7 @@ RustboroCity_Gym_MapScripts:: @ 8212F30
 	.byte 0
 
 RustboroCity_Gym_EventScript_Roxanne::
+	call RustboroCity_Gym_EventScript_CheckTrainers //Make sure to call this before the Gym Leader Script
 	//goto_if_set FLAG_DAILY_REMATCH_ROXANNE, RustboroCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, RustboroCity_Gym_EventScript_RoxanneRematch
 	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
@@ -496,4 +497,20 @@ script RustboroCity_Gym_EventScript_GiveRockTomb{
 	msgbox(RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT)
 	release
 	end
+}
+
+script RustboroCity_Gym_EventScript_CheckTrainers{
+	//Check that you have defeated every trainer in that Gym and that you don't have that badge yet
+	if(((!defeated(TRAINER_JOSH)  || 
+	     !defeated(TRAINER_TOMMY) || 
+		 !defeated(TRAINER_MARC)) &&
+		 !flag(FLAG_BADGE01_GET))){
+		msgbox(format("Roxanne: Sorry, but you need to defeat every trainer on this Gym before battling me"), MSGBOX_NPC)
+		release
+		end
+	}
+	else{
+		//If you have beaten every trainer or you have the badge just return to the previous script
+		return
+	}
 }
