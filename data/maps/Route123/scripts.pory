@@ -207,7 +207,14 @@ script Route123_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("The armonious imbalance of the Tao dragons can be felt all the way from here.\p"
+		"They embody the paradoxical nature of our world, one where\p"
+		"the fiery, flaming passion of Reshiram can coexist with the methodical,\p"
+		"unburdened rhythm of Zekrom. They dance in eternal opposition, and yet,\p"
+		"somehow they managed to find a point of equilibrium.\p"
+		"Kyurem, embodiment of all orderly things, is a testament to how\p"
+		"even the most disorderly of creatures can find harmony within themselves.\p"
+		"Keep training your poise, and come back once you've become champion."))
 	}
 	else{
 		if(defeated(TRAINER_WENDY)  &&
@@ -225,10 +232,10 @@ script Route123_EventScript_LegendaryNPC{
 		   defeated(TRAINER_JAZMYN)  &&
 		   defeated(TRAINER_DAVIS)  &&
 		   defeated(TRAINER_FERNANDO_1)){
-			msgbox(format("You are now worthy to catch Reshiram, Zekrom and Kyurem here. Just use your DexNav, they will now appear."))
+			msgbox(format("Your Chi is harmonious, and your soul is in accord with itself. I grant you the privilege of meeting the Tao trio. Use your Dexnav, they will now appear."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Reshiram, Zekrom or Kyurem. Beat all trainers here first."))
+			msgbox(format("Seeker of balance, your efforts have been noticed. The Tao dragons have taken notice of your actions, but would like one final confirmation. Defeat every trainer on the route to meet them!"))
 		}
 	}
     release

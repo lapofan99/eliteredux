@@ -47,7 +47,11 @@ script Route132_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("The Ultra Beasts are creatures coming from worlds outside our galaxy. They came to Earth not by choice,\p"
+		"but necessity: Necrozma's hunger didn't spare their planets, so they roamed until they found a hospitable place to live.\p"
+		"Those who didn't immediately flee were either consumed or turned into soldiers for Necrozma's galactic army. Many of these\p"
+		"Ultra Beasts perished in the war waged on them by the Tapus and King Calyrex, but it looks like some have survived by hiding in these small islands.\p"
+		"These creatures suffered a lot in their life, I think they deserve a guardian to take care of them. Your heart seems in the right place. Once you'll be worthy of them, return to me\p."))
 	}
 	else{
 		if(defeated(TRAINER_MAKAYLA)  &&
@@ -58,10 +62,10 @@ script Route132_EventScript_LegendaryNPC{
 		   defeated(TRAINER_RONALD)   &&
 		   defeated(TRAINER_DANA)     &&
 		   defeated(TRAINER_GILBERT)){
-			msgbox(format("You are now worthy to catch Buzzwole, Pheromosa and Kartana here. Just use your DexNav, they will now appear."))
+			msgbox(format("Your heart is in the right place, and your strenght is the one of a great trainer. I added the location of some of the Ultra Beasts in your DexNav. There might be more in other routes, too: try to catch them all!"))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Buzzwole, Pheromosa or Kartana. Beat all trainers here first."))
+			msgbox(format("You have demonstrated great strenght so far. But I want to see it with my eyes! Defeat these last few trainers, and I'll show you the place where the Ultra Beasts reside."))
 		}
 	}
     release
