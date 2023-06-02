@@ -151,7 +151,15 @@ static bool8 FieldCB_ReturnToFieldStartMenu(void);
 static void ShowGameVersionWindow(void);
 
 static const struct WindowTemplate sSafariBallsWindowTemplate = {0, 1, 1, 9, 4, 0xF, 8};
-static const struct WindowTemplate sExtraWindowTemplate = {0, 1, 1, 0xE, 4, 0xF, 8};
+static const struct WindowTemplate sExtraWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop  = 1,
+    .width  = 13,
+    .height = 5,
+    .paletteNum = 0xF,
+    .baseBlock = 8,
+};
 
 static const u8* const sPyramidFloorNames[] =
 {
@@ -1586,11 +1594,13 @@ static bool8 StartMenuDexNavCallback(void)
 
 static void ShowGameVersionWindow(void)
 {
-	static const u8 sText_Save[]        =  _("{COLOR GREEN}Press SELECT to save{COLOR DARK_GRAY}$");
 	static const u8 sText_cantSave[]    =  _("You can't save here$");
-	static const u8 sText_GameVersion[] =  _("{STR_VAR_1}\nGame Version {STR_VAR_2}$");
-	static const u8 sText_LevelCap[]    =  _("{STR_VAR_1}\nLevel Cap {STR_VAR_2}$");
-    u8 levelCap = GetLevelCap();
+	static const u8 sText_GameVersion[]     =  _("{STR_VAR_1}\nGame Version {STR_VAR_2}$");
+	static const u8 sText_Message_Save[]    =  _("{COLOR GREEN}Press SELECT to save{COLOR DARK_GRAY}\nLevel Cap: {STR_VAR_1}\nWins: {STR_VAR_2} Losses: {STR_VAR_3}$");
+    static const u8 sText_Message_No_Save[] =  _("You can't save here\nLevel Cap: {STR_VAR_1}\nWins: {STR_VAR_2} Losses: {STR_VAR_3}$");
+    u16 levelCap = GetLevelCap();
+    u16 wins   = getNumberOfUniqueDefeatedTrainers();
+    u16 losses = 0 + VarGet(VAR_TIMES_WHITED_OUT);
 	sSafariBallsWindowId = AddWindow(&sExtraWindowTemplate);
     PutWindowTilemap(sSafariBallsWindowId);
     DrawStdWindowFrame(sSafariBallsWindowId, FALSE);
@@ -1598,15 +1608,20 @@ static void ShowGameVersionWindow(void)
     if(levelCap > MAX_LEVEL)
         levelCap = MAX_LEVEL;
 
+    //Level Cap
+    ConvertIntToDecimalStringN(gStringVar1, levelCap, STR_CONV_MODE_RIGHT_ALIGN, 3);
+
+    //Number of trainers defeated
+    ConvertIntToDecimalStringN(gStringVar2, wins, STR_CONV_MODE_RIGHT_ALIGN, 3);
+
+    //Number of Losses
+    ConvertIntToDecimalStringN(gStringVar3, losses, STR_CONV_MODE_RIGHT_ALIGN, 3);
+
     if(canSave)
-        StringCopy(gStringVar1, sText_Save);
+        StringExpandPlaceholders(gStringVar4, sText_Message_Save);
     else
-        StringCopy(gStringVar1, sText_cantSave);
+        StringExpandPlaceholders(gStringVar4, sText_Message_No_Save);
 
-    //StringCopy(gStringVar2, gText_SavingVersionNum);
-    ConvertIntToDecimalStringN(gStringVar2, levelCap, STR_CONV_MODE_RIGHT_ALIGN, 3);
-
-	StringExpandPlaceholders(gStringVar4, sText_LevelCap);
-    AddTextPrinterParameterized(sSafariBallsWindowId, 1, gStringVar4, 0, 1, 0xFF, NULL);
+    AddTextPrinterParameterized(sSafariBallsWindowId, FONT_SMALL, gStringVar4, 0, 0, 0xFF, NULL);
     CopyWindowToVram(sSafariBallsWindowId, 2);
 }

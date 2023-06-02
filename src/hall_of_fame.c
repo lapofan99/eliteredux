@@ -1114,8 +1114,9 @@ static void Task_HofPC_ExitOnButtonPress(u8 taskId)
 
 static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 {
-    static const u8 gText_WelcomeToHOF[] 		= _("Elite Redux v1.0 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}Number of Losses: {STR_VAR_3}");
-	
+    static const u8 gText_WelcomeToHOF[] 		= _("Elite Redux v1.0 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
+    static const u8 sText_WinsLossesText[]      = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}");
+    
     static const u8 easyCapText[] 				= _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
 	static const u8 moreCapText[] 			    = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}More$");
 	static const u8 eliteCapText[] 				= _("{COLOR LIGHT_RED}{SHADOW RED}Elite$");
@@ -1123,7 +1124,15 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
     static const u8 easyModeText[] 				= _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
 	static const u8 eliteModeText[] 			= _("{COLOR LIGHT_BLUE}{SHADOW RED}Elite$");
 
-	u8 numWhiteOuts = 0 + VarGet(VAR_TIMES_WHITED_OUT);
+    u16 wins   = getNumberOfUniqueDefeatedTrainers();
+    u16 losses = 0 + VarGet(VAR_TIMES_WHITED_OUT);
+
+	//Number of Wins
+	ConvertIntToDecimalStringN(gStringVar1, wins, STR_CONV_MODE_RIGHT_ALIGN, 3);
+	//Number of Losses
+	ConvertIntToDecimalStringN(gStringVar2, losses, STR_CONV_MODE_RIGHT_ALIGN, 3);
+
+    StringExpandPlaceholders(gStringVar3, sText_WinsLossesText);
 	
 	//Difficulty
 	switch (gSaveBlock2Ptr->gameDifficulty)
@@ -1152,8 +1161,6 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
             break;
     }
 	
-	//Number of whiteouts
-	ConvertIntToDecimalStringN(gStringVar3, numWhiteOuts, STR_CONV_MODE_RIGHT_ALIGN, 2);
 	
 	StringExpandPlaceholders(gStringVar4, gText_WelcomeToHOF);
 	
