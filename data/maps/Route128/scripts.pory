@@ -312,7 +312,14 @@ script Route128_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("Once upon a time, in the frozen lands of Galar, lived a benevolent king named Calyrex\p"
+		"Calyrex was a beloved king: every day he would ride his magnificent steed, Glastrier, across the realm,\p"
+		"helping those in need, lifting everyone's spirits and being there when his presence was needed the most.\p"
+		"One day, two messengers from Alola came to Calyrex's castle: they were the island guardians Tapu Koko and Tapu Bulu.\p"
+		"They told Calyrex Alola was under attack from outer space: Necrozma, the cosmic devourer, had finally reached Alola,\p"
+		"and was about to wreck havoc on the region alongside his army of Ultra Beasts. The king, fearing for his people, rushed immediately to Alola to aid in the fight.\p"
+		"The battle was long and bloody. Miracolously, they managed to push back Necrozma, but it was already too late: the Ultra Beasts had reached Alola...\p"
+		"This is the part of the legend that was taught to me, I'm sure someone knows the rest. If you wanna catch this battling trio, come back once you become champion!"))
 	}
 	else{
 		if(defeated(TRAINER_CARLEE)    &&
@@ -322,10 +329,10 @@ script Route128_EventScript_LegendaryNPC{
 		   defeated(TRAINER_ALEXA)     &&
 		   defeated(TRAINER_KATELYN_1) &&
 		   defeated(TRAINER_ISAIAH_1)){
-			msgbox(format("You are now worthy to catch Tapu Koko, Tapu Bulu and Calyrex-Ice here. Just use your DexNav, they will now appear."))
+			msgbox(format("Tapu Koko, Tapu Bulu and Calyrex-Ice have deemed you worthy of meeting them. I marked their location on your DexNav: use it on this route to meet them!"))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Tapu Koko, Tapu Bulu or Calyrex-Ice. Beat all trainers here first."))
+			msgbox(format("The battling trio admires your dedication to becoming champion, but would like to see some more action from you! Defeat every trainer in this route and come back to me!"))
 		}
 	}
     release

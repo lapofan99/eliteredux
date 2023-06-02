@@ -113,7 +113,18 @@ script VictoryRoad_B2F_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("You might have heard the first part of the legend of King Calyrex. If you have, let me tell you the latter part of the story, one that many people don't know about.\p"
+		"After pushing back Necrozma to outer space, Alola was still invaded by the Ultra Beasts, which were far too many to deal with.\p"
+		"Calyrex knew that, if left unchecked, they would eventually consume the entire world and turn it into their personal wasteland.\p"
+		"He knew he needed more power to defeat them, but acquiring that power wouldn't come for cheap. This is because that power wouldn't\p"
+		"come from him, but rather, his steed. You see, most people only remember Glastrier, Calyrex's lawful companion during his daily strolls.\p"
+		"But Calyrex had an ace up his sleeve: a sinister and deadly steed, that he himself locked away in the castle dungeons fearing for what it could do if left unchecked\p"
+		"Spectrier was its name: a spectral stallion of pure power and evil. Calyrex, initially hesitant and unwilling, was forced to bring\p"
+		"Spectrier into the fray to save what remained of Alola. He succeded, thanks to Spectrier's almost unlimited powers, but ultimately paid the price: Spectrier turned the King from a\p"
+		"benevolent, wise leader to a hateful, cynical being hungry for power and blood. The Tapus, watching this sudden transformation, decided not to take any risks:\p"
+		"they tricked Calyrex into dismounting from Spectrier using deceit, and then trapped the once-King and the stallion in the deepest\p"
+		"pits of Earth. The King and his steed, livid from the trick pulled on them, are to this day plotting revenge on the ungrateful and cruel Tapus\p"
+		"I hope you liked this tale. If you want to meet the rest of the Tapus, the King and Spectrier, become champion and come back to me."))
 	}
 	else{
 		if(defeated(TRAINER_JULIE)    &&
@@ -122,10 +133,10 @@ script VictoryRoad_B2F_EventScript_LegendaryNPC{
 		   defeated(TRAINER_VITO)     &&
 		   defeated(TRAINER_FELIX)    &&
 		   defeated(TRAINER_DIANNE)){
-			msgbox(format("You are now worthy to catch Calyrex-Shadow, Tapu Fini and Tapu Lele here. Just use your DexNav, they will now appear."))
+			msgbox(format("It is done: I have severed the Tapu's incantation holding The King hostage. Use your DexNav to meet him. Good luck."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Calyrex-Shadow, Tapu Fini or Tapu Lele. Beat all trainers here first."))
+			msgbox(format("It is time for the King to come back to us. Defeat every trainer in this route and come back to me: that's when I know you'll be ready to withstand his power."))
 		}
 	}
     release
