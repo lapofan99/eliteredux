@@ -346,12 +346,12 @@ Route121_EventScript_LegendaryNPC_Text_1:
 	.string "Triumphant now, your quest complete,\p"
 	.string "your efforts rewarded, the Swords now\n"
 	.string "near.\p"
-	.string "Show yourself, give him a treat,\p"
+	.string "Show yourself, give them a treat,\p"
 	.string "Victory's embrace, your heart holds\n"
 	.string "dear.$"
 
 Route121_EventScript_LegendaryNPC_Text_2:
-	.string "You stands at the route's final bend,\p"
+	.string "You stand at the route's final bend,\p"
 	.string "For your journey is near completion,\n"
 	.string "victory in sight!\p"
 	.string "To catch the Swords of Justice, you\n"

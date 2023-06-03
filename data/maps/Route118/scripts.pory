@@ -295,7 +295,7 @@ Route118_EventScript_CheckParty::
 	msgbox Route118_Text_KarpFiteStart, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_MAGIKARP_GUY, Route118_Text_MagikarpDefeat
 	msgbox Route118_Text_TakeGyaradosite, MSGBOX_DEFAULT
-	giveitem ITEM_GYARADOSITE
+	givecustommon SPECIES_MAGIKARP, 60, ITEM_GYARADOSITE, ITEM_CHERISH_BALL, NATURE_NAIVE, 0, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_V_CREATE, MOVE_DRAGON_ASCENT, MOVE_WICKED_BLOW, MOVE_CORE_ENFORCER, TRUE
 	setflag FLAG_ROUTE118_GYARADOSITE
 	msgbox Route118_Text_KarpBetterThanGyara, MSGBOX_DEFAULT
 	release
@@ -321,7 +321,7 @@ Route118_Text_ILuurveKarp:
 	.string "majesty of Magikarp…\p"
 	.string "Oh, I know! If you can show me you\n"
 	.string "truly love Magikarp, I'll give you this\l"
-	.string "Gyaradosite I found!\p"
+	.string "special Pokémon I found!\p"
 	.string "Here's what I want you to do…\p"
 	.string "You must defeat my team of Magikarp\n"
 	.string "all stars…\p"
@@ -344,8 +344,8 @@ Route118_Text_MagikarpDefeat:
 	.string "Ah! Your love for Magikarp is clear!$"
 
 Route118_Text_TakeGyaradosite:
-	.string "Here, take this Gyaradosite - you\n"
-	.string "earned it!$"
+	.string "Here, take this special Magikarp.\n"
+	.string "You earned it!$"
 
 Route118_Text_KarpBetterThanGyara:
 	.string "Gyarados might not be Magikarp, but\n"

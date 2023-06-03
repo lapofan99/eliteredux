@@ -113,17 +113,22 @@ Route134_EventScript_LegendaryNPC_20:
 
 
 Route134_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "Like many others, this route houses\n"
+	.string "some of the Ultra Beasts from outer\l"
+	.string "space. I will reveal their location\p"
+	.string "to you, but only when you become\n"
+	.string "champion!$"
 
 Route134_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch Xurkitree,\n"
-	.string "Stakataka and Blacephalon here. Just\l"
-	.string "use your DexNav, they will now appear.$"
+	.string "You demonstrated great strenght and\n"
+	.string "resoluteness in your journey, I think\l"
+	.string "you're ready to meet the Ultra beasts.\l"
+	.string "Xurkitree, Stakataka and Blacephalon\l"
+	.string "are hiding here: use your DexNav to see\l"
+	.string "their location.$"
 
 Route134_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch\n"
-	.string "Xurkitree, Stakataka or Blacephalon.\l"
-	.string "Beat all trainers here first.$"
+	.string "Are you here looking for some of the\n"
+	.string "Ultra Beasts? I thought so. I'll tell\l"
+	.string "you where they hide, but first, defeat\l"
+	.string "all trainers in this route!$"

@@ -462,8 +462,8 @@ DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis: @ 81FD0A8
 	.string "Pokémon Flash to use it.\p"
 	.string "If your Pokémon can learn Flash, it\n"
 	.string "can always use it outside of battle.\p"
-	.string "If you'd like, use this Technical\n"
-	.string "Machine, too.$"
+	.string "If you'd like, you can have\n"
+	.string "my amazing Hitmonchan, too.$"
 
 DewfordTown_Gym_Text_RegisteredBrawly: @ 81FD1E0
 	.string "Registered Gym Leader Brawly\n"

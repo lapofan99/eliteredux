@@ -205,17 +205,30 @@ Route133_EventScript_LegendaryNPC_16:
 
 
 Route133_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "This archipelago is home to the Ultra\n"
+	.string "Beasts, creatures from outer space\l"
+	.string "that fled their home planets to escape\l"
+	.string "Necrozma's hunger.\p"
+	.string "Many perished during the trip, many\n"
+	.string "more from Calyrex's actions, but some,\l"
+	.string "despite all the hardships, survived.\l"
+	.string "These lone survivors now reside here.\p"
+	.string "These poor creatures are looking for a\n"
+	.string "valiant guide: I can tell you're the\l"
+	.string "right person for this. Come back once\l"
+	.string "you become champion, and I'll tell you\l"
+	.string "more about it.$"
 
 Route133_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch Celesteela,\n"
-	.string "Nihilego and Guzzlord here. Just use\l"
-	.string "your DexNav, they will now appear.$"
+	.string "Yes, I had no doubts: you are worthy of\n"
+	.string "meeting the Ultra Beasts. I marked\l"
+	.string "their location on your DexNav: use it\l"
+	.string "to meet them.$"
 
 Route133_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch\n"
-	.string "Celesteela, Nihilego or Guzzlord. Beat\l"
-	.string "all trainers here first.$"
+	.string "You remembered our little promise. Good.\n"
+	.string "Just one more thing before I show you\l"
+	.string "the Beasts' location: there's a couple\l"
+	.string "of trainers loose in this route. How\l"
+	.string "about you take them down and come\l"
+	.string "back to me, yeah?$"

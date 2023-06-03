@@ -2775,6 +2775,27 @@ bool8 CanFindHiddenPokemon(void)
                 #endif
                 */
             }
+            else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE111)){ // Route 111 (Desert)
+                if( HasTrainerBeenFought(TRAINER_DREW)      &&
+                    HasTrainerBeenFought(TRAINER_BEAU)   &&
+                    HasTrainerBeenFought(TRAINER_HEIDI)    &&
+                    HasTrainerBeenFought(TRAINER_BECKY)  &&
+                    HasTrainerBeenFought(TRAINER_DUSTY_1)    &&
+                    HasTrainerBeenFought(TRAINER_CELIA)    &&
+                    HasTrainerBeenFought(TRAINER_BRANDEN)    &&
+                    HasTrainerBeenFought(TRAINER_BRYAN))
+                    CanFindHiddenMon = TRUE;
+            }
+            else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE109)){ // Route 109 (Beach)
+                if( HasTrainerBeenFought(TRAINER_HUEY)      &&
+                    HasTrainerBeenFought(TRAINER_RICKY_1)   &&
+                    HasTrainerBeenFought(TRAINER_LOLA_1)    &&
+                    HasTrainerBeenFought(TRAINER_CHANDLER)  &&
+                    HasTrainerBeenFought(TRAINER_HAILEY)    &&
+                    HasTrainerBeenFought(TRAINER_EDMOND)    &&
+                    HasTrainerBeenFought(TRAINER_TIANA))
+                    CanFindHiddenMon = TRUE;
+            }
             else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE113)){ // Route 113
                 if( HasTrainerBeenFought(TRAINER_JAYLEN)        &&
                     HasTrainerBeenFought(TRAINER_DILLON)        &&

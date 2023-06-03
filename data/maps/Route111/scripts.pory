@@ -936,3 +936,28 @@ script Route111Desert_EventScript_Gen8_NPC{
     release
     end
 }
+
+script Route111Desert_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can catch Xerneas, Yveltal and Zygarde here, if you become the Champion and defeat all trainers here"))
+	}
+	else{
+	if(defeated(TRAINER_DREW) &&
+	   defeated(TRAINER_BEAU) &&
+	   defeated(TRAINER_HEIDI) &&
+	   defeated(TRAINER_BECKY) &&
+	   defeated(TRAINER_DUSTY_1) &&
+	   defeated(TRAINER_CELIA) &&
+	   defeated(TRAINER_BRANDEN) &&
+	   defeated(TRAINER_BRYAN)){
+			msgbox(format("You are now worthy of catching Xerneas, Yveltal and Zygarde. Just use your DexNav, they will now appear."))
+		}
+		else{
+			msgbox(format("You are the champion now, but you still need to beat all trainers on this beach before meeting Xerneas, Yveltal and Zygarde."))
+		}
+	}
+    release
+    end
+}

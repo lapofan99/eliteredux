@@ -355,11 +355,13 @@ Route117_EventScript_LegendaryNPC_Text_0:
 	.string "to me!$"
 
 Route117_EventScript_LegendaryNPC_Text_1:
-	.string "I have no doubts in my mind, you are now\n"
-	.string "worthy of meeting Darkrai, Cresselia\l"
-	.string "and Keldeo. Use your DexNav to\l"
-	.string "discover their precise location. Which\l"
-	.string "side of their conflict will you choose?$"
+	.string "The light that cures the wicked heart\n"
+	.string "shines brightly inside your soul. No one\l"
+	.string "is more worthy of meeting Darkrai,\l"
+	.string "Cresselia and Keldeo than you. Use your\l"
+	.string "DexNav to discover their precise\l"
+	.string "location. Which side of their conflict\l"
+	.string "will you choose?$"
 
 Route117_EventScript_LegendaryNPC_Text_2:
 	.string "I see a star on that trainer card... you\n"

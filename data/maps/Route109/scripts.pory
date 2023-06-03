@@ -622,3 +622,27 @@ script Route109_Beach_EventScript_Gen8_NPC{
     release
     end
 }
+
+script Route109_EventScript_LegendaryNPC{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("You can catch Hoopa here, if you become the Champion and defeat all trainers here on the beach."))
+	}
+	else{
+	if(defeated(TRAINER_HUEY) &&
+		defeated(TRAINER_RICKY_1) &&
+		defeated(TRAINER_LOLA_1) &&
+		defeated(TRAINER_CHANDLER) &&
+		defeated(TRAINER_HAILEY) &&
+		defeated(TRAINER_EDMOND) &&
+		defeated(TRAINER_TIANA)){
+			msgbox(format("You are now worthy of catching Hoopa. Just use your DexNav, it will now appear."))
+		}
+		else{
+			msgbox(format("You are the champion now, but you still need to beat all trainers on this beach before meeting Hoopa."))
+		}
+	}
+    release
+    end
+}

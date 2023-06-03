@@ -180,6 +180,6 @@ Route127_EventScript_LegendaryNPC_Text_1:
 Route127_EventScript_LegendaryNPC_Text_2:
 	.string "You have the curiosity of the\n"
 	.string "Mechanical Marvels on your side. Show\l"
-	.string "them your strenght on this route:\l"
+	.string "them your strength on this route:\l"
 	.string "defeat these last few trainers first,\l"
 	.string "and I'll show you their location.$"

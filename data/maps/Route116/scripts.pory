@@ -62,9 +62,7 @@ Route116_EventScript_DevonEmployee:: @ 81F2CA2
 
 Route116_EventScript_GiveAggronite:: @ 81F2CBB
 	setflag FLAG_MET_DEVON_EMPLOYEE
-	giveitem ITEM_AGGRONITE
-	compare VAR_RESULT, FALSE
-	goto_if_eq Route116_EventScript_NoRoomForAggronite
+	givecustommon SPECIES_AGGRON, 42, ITEM_AGGRONITE, ITEM_HEAVY_BALL, NATURE_ADAMANT, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_HEAVY_SLAM, MOVE_ICE_PUNCH, MOVE_SLACK_OFF, MOVE_HIGH_HORSEPOWER, TRUE
 	msgbox Route116_Text_AlsoNeedKeystone, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_FACING, DIR_NORTH
@@ -418,8 +416,8 @@ Route116_Text_ThankYouTokenOfAppreciation: @ 81F3317
 	.string "you as a hero!\p"
 	.string "For you, the most wonderful Trainer,\n"
 	.string "I bear a gift!\p"
-	.string "This stone will allow Aggron to\n"
-	.string "Mega Evolve in battle.\p"
+	.string "This is an Aggron, holding an\n"
+	.string "Aggronite to Mega Evolve in battle.\p"
 	.string "As a token of our appreciation, this\n"
 	.string "is our gift to our wonderful Trainer!$"
 

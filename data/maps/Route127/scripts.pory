@@ -112,7 +112,7 @@ script Route127_EventScript_LegendaryNPC{
 			"I updated your DexNav with their location. Go forth: they're waiting for you."))
 		}
 		else{
-			msgbox(format("You have the curiosity of the Mechanical Marvels on your side. Show them your strenght on this route: defeat these last few trainers first, and I'll show you their location."))
+			msgbox(format("You have the curiosity of the Mechanical Marvels on your side. Show them your strength on this route: defeat these last few trainers first, and I'll show you their location."))
 		}
 	}
     release

@@ -990,6 +990,62 @@ Route111Desert_EventScript_Gen8_NPC_16:
 	goto Route111Desert_EventScript_Gen8_NPC_3
 
 
+Route111Desert_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route111Desert_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_DREW
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_8
+Route111Desert_EventScript_LegendaryNPC_6:
+	msgbox Route111Desert_EventScript_LegendaryNPC_Text_2
+Route111Desert_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route111Desert_EventScript_LegendaryNPC_2:
+	msgbox Route111Desert_EventScript_LegendaryNPC_Text_0
+	goto Route111Desert_EventScript_LegendaryNPC_1
+
+Route111Desert_EventScript_LegendaryNPC_5:
+	msgbox Route111Desert_EventScript_LegendaryNPC_Text_1
+	goto Route111Desert_EventScript_LegendaryNPC_1
+
+Route111Desert_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_HEIDI
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_12
+	goto Route111Desert_EventScript_LegendaryNPC_6
+
+Route111Desert_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_BEAU
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_7
+	goto Route111Desert_EventScript_LegendaryNPC_6
+
+Route111Desert_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_DUSTY_1
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_16
+	goto Route111Desert_EventScript_LegendaryNPC_6
+
+Route111Desert_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_BECKY
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_11
+	goto Route111Desert_EventScript_LegendaryNPC_6
+
+Route111Desert_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_BRANDEN
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_19
+	goto Route111Desert_EventScript_LegendaryNPC_6
+
+Route111Desert_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_CELIA
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_15
+	goto Route111Desert_EventScript_LegendaryNPC_6
+
+Route111Desert_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_BRYAN
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_5
+	goto Route111Desert_EventScript_LegendaryNPC_6
+
+
 Route111South_EventScript_Gen8_NPC_Text_0:
 	.string "Well done indeed! Let us commence the\n"
 	.string "celebrations for your victory!$"
@@ -1037,3 +1093,19 @@ Route111Desert_EventScript_Gen8_NPC_Text_2:
 	.string "like you... whatever. You know the drill\l"
 	.string "by now, defeat everyone, return, yada\l"
 	.string "yada yada, good luck.$"
+
+Route111Desert_EventScript_LegendaryNPC_Text_0:
+	.string "You can catch Xerneas, Yveltal and\n"
+	.string "Zygarde here, if you become the\l"
+	.string "Champion and defeat all trainers here$"
+
+Route111Desert_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy of catching Xerneas,\n"
+	.string "Yveltal and Zygarde. Just use your\l"
+	.string "DexNav, they will now appear.$"
+
+Route111Desert_EventScript_LegendaryNPC_Text_2:
+	.string "You are the champion now, but you still\n"
+	.string "need to beat all trainers on this beach\l"
+	.string "before meeting Xerneas, Yveltal and\l"
+	.string "Zygarde.$"

@@ -647,6 +647,57 @@ Route109_Beach_EventScript_Gen8_NPC_13:
 	goto Route109_Beach_EventScript_Gen8_NPC_3
 
 
+Route109_EventScript_LegendaryNPC::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route109_EventScript_LegendaryNPC_2
+	checktrainerflag TRAINER_HUEY
+	goto_if 1, Route109_EventScript_LegendaryNPC_8
+Route109_EventScript_LegendaryNPC_6:
+	msgbox Route109_EventScript_LegendaryNPC_Text_2
+Route109_EventScript_LegendaryNPC_1:
+	release
+	end
+
+Route109_EventScript_LegendaryNPC_2:
+	msgbox Route109_EventScript_LegendaryNPC_Text_0
+	goto Route109_EventScript_LegendaryNPC_1
+
+Route109_EventScript_LegendaryNPC_5:
+	msgbox Route109_EventScript_LegendaryNPC_Text_1
+	goto Route109_EventScript_LegendaryNPC_1
+
+Route109_EventScript_LegendaryNPC_7:
+	checktrainerflag TRAINER_LOLA_1
+	goto_if 1, Route109_EventScript_LegendaryNPC_12
+	goto Route109_EventScript_LegendaryNPC_6
+
+Route109_EventScript_LegendaryNPC_8:
+	checktrainerflag TRAINER_RICKY_1
+	goto_if 1, Route109_EventScript_LegendaryNPC_7
+	goto Route109_EventScript_LegendaryNPC_6
+
+Route109_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_HAILEY
+	goto_if 1, Route109_EventScript_LegendaryNPC_16
+	goto Route109_EventScript_LegendaryNPC_6
+
+Route109_EventScript_LegendaryNPC_12:
+	checktrainerflag TRAINER_CHANDLER
+	goto_if 1, Route109_EventScript_LegendaryNPC_11
+	goto Route109_EventScript_LegendaryNPC_6
+
+Route109_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_TIANA
+	goto_if 1, Route109_EventScript_LegendaryNPC_5
+	goto Route109_EventScript_LegendaryNPC_6
+
+Route109_EventScript_LegendaryNPC_16:
+	checktrainerflag TRAINER_EDMOND
+	goto_if 1, Route109_EventScript_LegendaryNPC_15
+	goto Route109_EventScript_LegendaryNPC_6
+
+
 Route109_Beach_EventScript_Gen8_NPC_Text_0:
 	.string "Yes, you are the one...$"
 
@@ -659,3 +710,18 @@ Route109_Beach_EventScript_Gen8_NPC_Text_2:
 	.string "I'm seeking a soul hungry for battle and\n"
 	.string "wanderlust, but you don't seem ready\l"
 	.string "yet...$"
+
+Route109_EventScript_LegendaryNPC_Text_0:
+	.string "You can catch Hoopa here, if you become\n"
+	.string "the Champion and defeat all trainers\l"
+	.string "here on the beach.$"
+
+Route109_EventScript_LegendaryNPC_Text_1:
+	.string "You are now worthy of catching Hoopa.\n"
+	.string "Just use your DexNav, it will now\l"
+	.string "appear.$"
+
+Route109_EventScript_LegendaryNPC_Text_2:
+	.string "You are the champion now, but you still\n"
+	.string "need to beat all trainers on this beach\l"
+	.string "before meeting Hoopa.$"
