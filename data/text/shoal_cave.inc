@@ -28,9 +28,8 @@ ShoalCave_LowTideEntranceRoom_Text_MakeShellBellRightAway: @ 82A7FAC
 
 ShoalCave_LowTideEntranceRoom_Text_Slowbronite:
 	.string "And…\n"
-	.string "I'm not quite sure what this is,\l"
-	.string "but I got this recently.\p"
-	.string "If you like, please take this, too.$"
+	.string "You can have this lazy {COLOR BLUE}Slowbro{COLOR DARK_GRAY},\l"
+	.string "as I have no use for it.$"
 
 ShoalCave_LowTideEntranceRoom_Text_ExplainShellBell: @ 82A8012
 	.string "Have a Pokémon hold on to that.\n"

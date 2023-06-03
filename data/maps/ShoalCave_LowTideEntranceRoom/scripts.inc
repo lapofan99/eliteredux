@@ -48,7 +48,7 @@ ShoalCave_LowTideEntranceRoom_EventScript_ShellBellExpert:: @ 8236DD9
 
 ShoalCave_LowTideEntranceRoom_EventScript_Slowbronite::
 	msgbox ShoalCave_LowTideEntranceRoom_Text_Slowbronite, MSGBOX_DEFAULT
-	giveitem ITEM_SLOWBRONITE
+	givecustommon SPECIES_SLOWBRO, 70, ITEM_SLOWBRONITE, ITEM_POKE_BALL, NATURE_BOLD, 1, 252, 0, 252, 0, 0, 4, 0, 0, 0, 0, 0, 0, MOVE_HYDRO_PUMP, MOVE_PSYCHIC, MOVE_PROTECT, MOVE_CALM_MIND, FALSE
 	release
 	end
 

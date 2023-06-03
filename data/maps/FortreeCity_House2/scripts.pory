@@ -20,9 +20,6 @@ FortreeCity_House2_EventScript_HiddenPowerGiver:: @ 82177CB
 	switch VAR_RESULT
 	case 0, FortreeCity_House2_EventScript_WrongGuess
 	msgbox FortreeCity_House2_Text_YourHiddenPowerHasAwoken, MSGBOX_DEFAULT
-	giveitem ITEM_TM10_HIDDEN_POWER
-	compare VAR_RESULT, 0
-	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM10
 	msgbox FortreeCity_House2_Text_ExplainHiddenPower, MSGBOX_DEFAULT
 	release
@@ -120,14 +117,13 @@ FortreeCity_House2_Text_CorrectTryAgainWhichHand2: @ 82179C9
 	.string "The right or left?$"
 
 FortreeCity_House2_Text_YourHiddenPowerHasAwoken: @ 8217A28
-	.string "Oh! Splendid!\n"
-	.string "Your hidden power has awoken!\p"
-	.string "Here, take this and awaken the hidden\n"
-	.string "power of your Pokémon.$"
+	.string "Oh! Splendid!\p"
+	.string "I would give you Hidden Power now,\n"
+	.string "but you have all TMs already...$"
 
 FortreeCity_House2_Text_ExplainHiddenPower: @ 8217A91
 	.string "Hidden Power is a move that changes\n"
-	.string "with the Pokémon.$"
+	.string "with the Pokémon's IVs.$"
 
 FortreeCity_House2_Text_YouGuessedWrong: @ 8217AC7
 	.string "No, too bad.\n"

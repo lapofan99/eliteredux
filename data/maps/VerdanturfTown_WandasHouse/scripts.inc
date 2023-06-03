@@ -67,7 +67,7 @@ VerdanturfTown_WandasHouse_EventScript_WandaGardevoirite::
 	applymovement 5, Common_Movement_Delay48
 	waitmovement 0
 	msgbox VerdanturfTown_WandasHouse_Text_ReceiveGardevoirite, MSGBOX_DEFAULT
-	giveitem ITEM_GARDEVOIRITE
+	givecustommon SPECIES_GARDEVOIR, 40, ITEM_CHOICE_SCARF, ITEM_POKE_BALL, NATURE_TIMID, 1, 4, 0, 0, 252, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_DAZZLING_GLEAM, MOVE_MYSTICAL_FIRE, MOVE_THUNDERBOLT, MOVE_PSYCHIC, TRUE
 	setflag FLAG_WANDA_GARDEVOIRITE
 	msgbox VerdanturfTown_WandasHouse_Text_PrettyStone, MSGBOX_DEFAULT
 	release
@@ -157,12 +157,11 @@ VerdanturfTown_WandasHouse_Text_ReceiveGardevoirite:
 	.string "you helped smash those rocks in the\l"
 	.string "tunnel.\p"
 	.string "I was thinking that I wanted to give\n"
-	.string "this to you…$"
+	.string "this {COLOR BLUE}Gardevoir{COLOR DARK_GRAY}to you…$"
 
 VerdanturfTown_WandasHouse_Text_PrettyStone:
-	.string "It's a pretty stone, and I'm sure your\n"
-	.string "Pokémon would be delighted if you let\l"
-	.string "one of them hold it!$"
+	.string "It's a pretty Pokémon, I hope\n"
+	.string "you like it as much as I do.$"
 
 VerdanturfTown_WandasHouse_Text_DontWorryAboutWally: @ 8202D91
 	.string "Wanda: Don't worry about Wally.\n"

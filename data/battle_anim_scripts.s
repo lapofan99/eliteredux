@@ -13138,10 +13138,10 @@ PhotonGeyserBeam:
 	return
 
 Move_ZIPPY_ZAP::
-	end @to do:
+	goto Move_ZING_ZAP
 
 Move_SPLISHY_SPLASH::
-	end @to do:
+	goto Move_SURF
 
 Move_FLOATY_FALL::
 	end @to do:

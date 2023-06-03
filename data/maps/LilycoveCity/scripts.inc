@@ -430,23 +430,13 @@ LilycoveCity_EventScript_GiveAltarianite::
 	msgbox LilycoveCity_Text_CloudDragon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq LilycoveCity_EventScript_AltariaRefuse
-	special ChoosePartyMon
-	waitstate
-	lock
-	faceplayer
-	compare VAR_0x8004, 255
-	goto_if_eq LilycoveCity_EventScript_AltariaRefuse
-	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
-	compare VAR_RESULT, SPECIES_ALTARIA
-	goto_if_eq LilycoveCity_EventScript_YesAltaria
-LilycoveCity_EventScript_NotAltaria::
-	msgbox LilycoveCity_Text_NotAltaria, MSGBOX_DEFAULT
+	goto LilycoveCity_EventScript_YesAltaria
 	releaseall
 	end
 
 LilycoveCity_EventScript_YesAltaria::
 	msgbox LilycoveCity_Text_YesAltaria, MSGBOX_DEFAULT
-	giveitem ITEM_ALTARIANITE
+	givecustommon SPECIES_ALTARIA, 60, ITEM_LEFTOVERS, ITEM_POKE_BALL, NATURE_TIMID, 1, 76, 0, 0, 180, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_HURRICANE, MOVE_FIRE_BLAST, MOVE_QUIVER_DANCE, MOVE_ROOST, TRUE
 	setflag FLAG_ITEM_LILYCOVE_CITY_ALTARIANITE
 LilycoveCity_EventScript_ExplainAltarianite::
 	msgbox LilycoveCity_Text_ExplainAltarianite, MSGBOX_DEFAULT
@@ -806,14 +796,13 @@ LilycoveCity_Text_HoneymoonVowToSeeRarePokemon: @ 81E49F4
 	.string "I mean, we are totally happy!$"
 
 LilycoveCity_Text_CloudDragon:
-	.string "Can you show me a Dragon Pokémon\n"
-	.string "that looks like a cloud?$"
+	.string "Do you know which Dragon Pokémon\n"
+	.string "looks like a cloud?$"
 
 LilycoveCity_Text_YesAltaria:
 	.string "Yes! That's it! An Altaria,\n"
 	.string "just like Winona's!\p"
-	.string "You can have this, so your Altaria\n"
-	.string "can be as strong as hers!$"
+	.string "You can have this Altaria!$"
 
 LilycoveCity_Text_AltariaRefuse:
 	.string "That's a shame. I'll give you something\n"
@@ -823,7 +812,7 @@ LilycoveCity_Text_NotAltaria:
 	.string "Hmmm, no. Try again!$"
 
 LilycoveCity_Text_ExplainAltarianite:
-	.string "If you don't already know what that\n"
-	.string "stone does, Winona can show you.\p"
+	.string "If you don't already know how strong\n"
+	.string "Altaria is, Winona can show you.\p"
 	.string "Just challenge her to a battle\n"
 	.string "and see for yourself!$"

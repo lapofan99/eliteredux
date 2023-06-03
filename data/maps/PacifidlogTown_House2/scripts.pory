@@ -5,15 +5,8 @@ PacifidlogTown_House2_MapScripts::
 PacifidlogTown_House2_EventScript_FanClubYoungerBrother::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_DIANCITE, PacifidlogTown_House2_EventScript_HaveDiancite
-	call_if_set FLAG_MET_FANCLUB_YOUNGER_BROTHER, PacifidlogTown_House2_FanClubYoungerBrotherStrongBond
-	call_if_unset FLAG_MET_FANCLUB_YOUNGER_BROTHER, PacifidlogTown_House2_FanClubYoungerBrotherIntro
-	setflag FLAG_MET_FANCLUB_YOUNGER_BROTHER
-	specialvar VAR_RESULT, GetDiancieFriendshipScore
-	compare VAR_RESULT, TRUE	
-	goto_if_eq PacifidlogTown_House2_EventScript_GiveDiancite
-	msgbox PacifidlogTown_House2_Text_AlasNotYou, MSGBOX_DEFAULT
-	release
+	msgbox PacifidlogTown_House2_Text_ChairmansYoungerBrotherOnVacation, MSGBOX_DEFAULT
+	releaseall
 	end
 
 PacifidlogTown_House2_EventScript_GiveDiancite::
@@ -69,9 +62,7 @@ PacifidlogTown_House2_Text_ChairmansYoungerBrotherOnVacation:
 	.string "younger brother.\p"
 	.string "I'm here enjoying my vacation with\n"
 	.string "Pokémon, yes, indeed.\p"
-	.string "Also, I have here a very special stone\n"
-	.string "that I would like to give to a special\l"
-	.string "Trainer.$"
+	.string "Have a great day!$"
 
 PacifidlogTown_House2_Text_AlasNotYou:
 	.string "But alas, it seems you are not that\n"
