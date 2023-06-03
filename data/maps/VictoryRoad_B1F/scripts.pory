@@ -96,17 +96,21 @@ script VictoryRoad_B1F_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("This treacherous cave has drawn those with a fighting spirit that matches its own!\p"
+		"Whether born from nature or forged through life's trials, renegade spirits are naturally attracted to these dank corridors.\p"
+		"Take the story of Type:Null: once created to eliminate the Ultra Beasts, they went berserk and turned rogue against their creators.\p"
+		"They now reside here with Marshadow, a mysterious shadow brought to life thanks to their sheer willpower and indomitable spirit.\p"
+		"Meeting these two is not an affair to take lightly. First, beat the Pokémon League, then come back to me."))
 	}
 	else{
 		if(defeated(TRAINER_HALLE)    &&
 		   defeated(TRAINER_MITCHELL) &&
 		   defeated(TRAINER_SHANNON)  &&
 		   defeated(TRAINER_SAMUEL)){
-			msgbox(format("You are now worthy to catch Type:Null, Silvally and Marshadow here. Just use your DexNav, they will now appear."))
+			msgbox(format("Your spirit is aligned with the creatures residing in this place. They have allowed me to reveal their locations to you: I added their info to your DexNav. I can't wait to see your fight against them!"))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Type:Null, Silvally or Marshadow. Beat all trainers here first."))
+			msgbox(format("I commend your dedication, becoming champion must've been a difficult affair. But, if you managed to do that, I'm sure you'll also be able to beat the last few trainers in this cave. Defeat them and come back to me."))
 		}
 	}
     release

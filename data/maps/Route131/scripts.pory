@@ -62,11 +62,12 @@ script Route131_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("The influence of the Sky Pillar has attracted a peculiar visitor from outer space:\p"
+		msgbox(format("The influence of the Sky Pillar has attracted a nefarious invader from outer space:\p"
 		"Necrozma, an alien creature whose hunger for light consumes everything that crosses their path.\p"
 		"Hopping from planet to planet like a flock of hungry locusts, they only leave a trail of darkness and desolation behind.\p"
-		"Their insatiable void within knows no bounds, so one must a stop at this!\p"
-		"Me and my colleagues managed to temporarly stall him out here, but you must help us.\p"
+		"Their goal? Consuming the entire galaxy, turning those who inhabit subjugated planets into soldiers for his galactic army.\p"
+		"Many worlds have already been consumed by their hunger, but we must put a stop to this!\p"
+		"Me and my colleagues managed to temporarly stall him, but you must help us.\p"
 		"You're already destined to become champion. Once you do, come back here and help us stop this disgrace from happening!"))
 	}
 	else{

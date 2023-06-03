@@ -158,7 +158,9 @@ script Route133_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("This archipelago is home to the Ultra Beasts, creatures from outer space that fled their home planets to escape Necrozma's hunger.\p"
+		"Many perished during the trip, many more from Calyrex's actions, but some, despite all the hardships, survived. These lone survivors now reside here.\p"
+		"These poor creatures are looking for a valiant guide: I can tell you're the right person for this. Come back once you become champion, and I'll tell you more about it."))
 	}
 	else{
 		if(defeated(TRAINER_CONOR)  &&
@@ -168,10 +170,10 @@ script Route133_EventScript_LegendaryNPC{
 		   defeated(TRAINER_LINDA)  &&
 		   defeated(TRAINER_DEBRA)  &&
 		   defeated(TRAINER_FRANKLIN)){
-			msgbox(format("You are now worthy to catch Celesteela, Nihilego and Guzzlord here. Just use your DexNav, they will now appear."))
+			msgbox(format("Yes, I had no doubts: you are worthy of meeting the Ultra Beasts. I marked their location on your DexNav: use it to meet them."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Celesteela, Nihilego or Guzzlord. Beat all trainers here first."))
+			msgbox(format("You remembered our little promise. Good. Just one more thing before I show you the Beasts' location: there's a couple of trainers loose in this route. How about you take them down and come back to me, yeah?"))
 		}
 	}
     release

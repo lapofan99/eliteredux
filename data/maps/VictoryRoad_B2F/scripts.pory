@@ -118,12 +118,12 @@ script VictoryRoad_B2F_EventScript_LegendaryNPC{
 		"Calyrex knew that, if left unchecked, they would eventually consume the entire world and turn it into their personal wasteland.\p"
 		"He knew he needed more power to defeat them, but acquiring that power wouldn't come for cheap. This is because that power wouldn't\p"
 		"come from him, but rather, his steed. You see, most people only remember Glastrier, Calyrex's lawful companion during his daily strolls.\p"
-		"But Calyrex had an ace up his sleeve: a sinister and deadly steed, that he himself locked away in the castle dungeons fearing for what it could do if left unchecked\p"
+		"But Calyrex had an ace up his sleeve: a sinister and deadly steed, that he himself locked away in the castle dungeons fearing for what it could do if left unchecked.\p"
 		"Spectrier was its name: a spectral stallion of pure power and evil. Calyrex, initially hesitant and unwilling, was forced to bring\p"
-		"Spectrier into the fray to save what remained of Alola. He succeded, thanks to Spectrier's almost unlimited powers, but ultimately paid the price: Spectrier turned the King from a\p"
-		"benevolent, wise leader to a hateful, cynical being hungry for power and blood. The Tapus, watching this sudden transformation, decided not to take any risks:\p"
+		"Spectrier into the fray to save what remained of Alola. He succeded, thanks to the destructive powers of his companion, but paid a great price: Spectrier turned the King from a\p"
+		"benevolent, wise leader to a hateful, cynical, almost feral being, hungry for power, blood and death. The Tapus, watching this sudden transformation, decided not to take any risks:\p"
 		"they tricked Calyrex into dismounting from Spectrier using deceit, and then trapped the once-King and the stallion in the deepest\p"
-		"pits of Earth. The King and his steed, livid from the trick pulled on them, are to this day plotting revenge on the ungrateful and cruel Tapus\p"
+		"pits of Earth. The King and his steed, livid from the trick pulled on them, are to this day plotting revenge on the ungrateful and cruel Tapus.\p"
 		"I hope you liked this tale. If you want to meet the rest of the Tapus, the King and Spectrier, become champion and come back to me."))
 	}
 	else{

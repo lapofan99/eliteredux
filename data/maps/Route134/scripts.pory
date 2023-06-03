@@ -57,7 +57,8 @@ script Route134_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("Like many others, this route houses some of the Ultra Beasts from outer space. I will reveal their location\p"
+		"to you, but only when you become champion!"))
 	}
 	else{
 		if(defeated(TRAINER_KELVIN)  &&
@@ -69,10 +70,10 @@ script Route134_EventScript_LegendaryNPC{
 		   defeated(TRAINER_ALEX)    &&
 		   defeated(TRAINER_LAUREL)  &&
 		   defeated(TRAINER_JACK)){
-			msgbox(format("You are now worthy to catch Xurkitree, Stakataka and Blacephalon here. Just use your DexNav, they will now appear."))
+			msgbox(format("You demonstrated great strenght and resoluteness in your journey, I think you're ready to meet the Ultra beasts. Xurkitree, Stakataka and Blacephalon are hiding here: use your DexNav to see their location."))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Xurkitree, Stakataka or Blacephalon. Beat all trainers here first."))
+			msgbox(format("Are you here looking for some of the Ultra Beasts? I thought so. I'll tell you where they hide, but first, defeat all trainers in this route!"))
 		}
 	}
     release
