@@ -236,7 +236,7 @@ script Route117_EventScript_LegendaryNPC{
 		   defeated(TRAINER_MELINA)  &&
 		   defeated(TRAINER_BRANDI)  &&
 		   defeated(TRAINER_AISHA)){
-			msgbox(format("I have no doubts in my mind, you are now worthy of meeting Darkrai, Cresselia and Keldeo. Use your DexNav to discover their precise location. Which side of their conflict will you choose?"))
+			msgbox(format("The light that cures the wicked heart shines brightly inside your soul. No one is more worthy of meeting Darkrai, Cresselia and Keldeo than you. Use your DexNav to discover their precise location. Which side of their conflict will you choose?"))
 		}
 		else{
 			msgbox(format("I see a star on that trainer card... you have become champion, haven't you? Keldeo, Darkrai and Cresselia are almost among us. Just defeat these last few trainers and you'll be able to meet them."))
