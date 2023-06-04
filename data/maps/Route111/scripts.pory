@@ -632,8 +632,11 @@ Route111_EventScript_VialUpgradeNurse::
 
 Route111_EventScript_UpgradeVialHideNurse::
 	msgbox Route111_Text_ThanksPlayer, MSGBOX_AUTOCLOSE
-	setvar VAR_POKE_VIAL_MAX_CHARGES, 2
-	setvar VAR_POKE_VIAL_CHARGES, 2
+	givecustommon SPECIES_CHANSEY, 40, ITEM_EVIOLITE, ITEM_PREMIER_BALL, NATURE_BOLD, 0, 252, 0, 252, 0, 4, 0, 0, 0, 0, 0, 0, 0, MOVE_SOFT_BOILED, MOVE_TOXIC, MOVE_SEISMIC_TOSS, MOVE_STEALTH_ROCK, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route111North_Text_ObtainedChansey
+	waitfanfare
+	waitmessage
 	specialvar VAR_RESULT, GetPlayerFacingDirection
 	compare VAR_RESULT, DIR_NORTH
 	goto_if_eq Route111_EventScript_NurseLeaves2
@@ -870,6 +873,7 @@ Route111_Text_TrainerHillSign: @ 81F1D61
 	.string "“Scale the heights, you hot-blooded\n"
 	.string "Trainers!”$"
 
+
 `
 script Route111South_EventScript_Gen8_NPC{
     lock
@@ -891,6 +895,10 @@ script Route111South_EventScript_Gen8_NPC{
 	}
     release
     end
+}
+
+text Route111North_Text_ObtainedChansey{
+	format("{PLAYER} got a {COLOR BLUE}Chansey{COLOR DARK_GRAY}")
 }
 
 script Route111North_EventScript_Gen8_NPC{

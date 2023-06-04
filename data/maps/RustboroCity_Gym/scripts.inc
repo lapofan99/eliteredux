@@ -422,8 +422,8 @@ RustboroCity_Gym_Text_ExplainRockTomb: @ 82138B1
 
 RustboroCity_Gym_Text_RoxannePostBattle: @ 82139A7
 	.string "Since you are so strong, you should\n"
-	.string "challenge other Gym Leaders.\p"
-	.string "By battling many Trainers, you should\n"
+	.string "challenge the other Gym Leaders.\p"
+	.string "By battling many Trainers, you'll\n"
 	.string "learn many things.$"
 
 RustboroCity_Gym_Text_GymStatue: @ 8213A21
@@ -441,7 +441,7 @@ RustboroCity_Gym_Text_RoxanneRegisterCall: @ 8213A76
 	.string "This is Roxanne of Rustboro City.\p"
 	.string "I heard from Brawly that you're\n"
 	.string "moving up through the ranks of\l"
-	.string "Trainers at an incredible clip.\p"
+	.string "Trainers at an incredible pace.\p"
 	.string "Well, I'd rather not think that\n"
 	.string "I can't beat you.\p"
 	.string "I promise, I will shape up my Gym\n"
@@ -529,4 +529,4 @@ RustboroCity_Gym_EventScript_GiveRockTomb_Text_1:
 RustboroCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "Roxanne: Sorry, but you need to defeat\n"
 	.string "every trainer on this Gym before\l"
-	.string "battling me$"
+	.string "battling me.$"

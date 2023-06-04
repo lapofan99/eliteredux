@@ -631,8 +631,11 @@ Route111_EventScript_VialUpgradeNurse::
 
 Route111_EventScript_UpgradeVialHideNurse::
 	msgbox Route111_Text_ThanksPlayer, MSGBOX_AUTOCLOSE
-	setvar VAR_POKE_VIAL_MAX_CHARGES, 2
-	setvar VAR_POKE_VIAL_CHARGES, 2
+	givecustommon SPECIES_CHANSEY, 40, ITEM_EVIOLITE, ITEM_PREMIER_BALL, NATURE_BOLD, 0, 252, 0, 252, 0, 4, 0, 0, 0, 0, 0, 0, 0, MOVE_SOFT_BOILED, MOVE_TOXIC, MOVE_SEISMIC_TOSS, MOVE_STEALTH_ROCK, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route111North_Text_ObtainedChansey
+	waitfanfare
+	waitmessage
 	specialvar VAR_RESULT, GetPlayerFacingDirection
 	compare VAR_RESULT, DIR_NORTH
 	goto_if_eq Route111_EventScript_NurseLeaves2
@@ -704,8 +707,7 @@ Route111_Text_DidYouSeeThat:
 	.string "back!\p"
 	.string "I'll make it worth your while.\p"
 	.string "If you can bring Blob back to me, I'll\n"
-	.string "get all the nurses to give you an extra\l"
-	.string "dose when they refill your Poké Vial.\p"
+	.string "give you a nice reward.\p"
 	.string "Sounds good, right? Good!\p"
 	.string "Here, take Blob's Poké Ball.$"
 
@@ -720,10 +722,9 @@ Route111_Text_BringBlobBack:
 
 Route111_Text_ThanksPlayer:
 	.string "Thanks for catching Blob for me!\p"
-	.string "As promised, you'll get an extra dose\n"
-	.string "when you refill your Poké Vial from\l"
-	.string "now on.\p"
-	.string "See you around, {PLAYER}!$"
+	.string "As promised, here is your reward:\n"
+	.string "A shiny {COLOR BLUE}Chansey{COLOR DARK_GRAY}!\p"
+	.string "Check your party or PC, {PLAYER}!$"
 
 Route111_Text_BattleOurFamily: @ 81F1475
 	.string "Hello! I take it you're a traveler.\p"
@@ -1127,3 +1128,6 @@ Route111Desert_EventScript_LegendaryNPC_Text_2:
 	.string "Guardians of Harmony. Defeat all\l"
 	.string "trainers in this route, then come back\l"
 	.string "to me.$"
+
+Route111North_Text_ObtainedChansey::
+	.string "{PLAYER} got a {COLOR BLUE}Chansey{COLOR DARK_GRAY}$"
