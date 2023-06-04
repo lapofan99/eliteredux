@@ -2483,6 +2483,8 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_SPELL_TAG,        50},
     {ITEM_DRAGON_FANG,      50},
     {ITEM_MAGNET,           50},
+    {ITEM_BINDING_BAND,     50},
+    {ITEM_SAFETY_GOGGLES,   50},
     //Pokeballs
     {ITEM_POKE_BALL,         1},
     {ITEM_MASTER_BALL,       1},

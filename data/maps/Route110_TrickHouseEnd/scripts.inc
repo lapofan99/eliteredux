@@ -62,9 +62,11 @@ Route110_TrickHouseEnd_EventScript_CompletedPuzzle1:: @ 826AD84
 	msgbox Route110_TrickHouseEnd_Text_AllNightToPlantTrees, MSGBOX_DEFAULT
 	msgbox Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward, MSGBOX_DEFAULT
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	giveitem ITEM_TM12_TAUNT
-	compare VAR_RESULT, FALSE
-	call_if_eq Route110_TrickHouseEnd_EventScript_BagFull
+	givecustommon SPECIES_PIKACHU_ORIGINAL_CAP, 25, ITEM_LIGHT_BALL, ITEM_PREMIER_BALL, NATURE_NAIVE, 2, 0, 180, 0, 252, 76, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_EXTREME_SPEED, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_TrickHouseEnd_Text_ObtainedPikachu
+	waitfanfare
+	waitmessage
 	msgbox Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou, MSGBOX_DEFAULT
 	closemessage
 	call Route110_TrickHouseEnd_EventScript_TrickMasterExit
@@ -75,9 +77,11 @@ Route110_TrickHouseEnd_EventScript_CompletedPuzzle2:: @ 826ADC0
 	msgbox Route110_TrickHouseEnd_Text_AllNightToMakeMaze, MSGBOX_DEFAULT
 	msgbox Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward, MSGBOX_DEFAULT
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	giveitem ITEM_SMOKE_BALL
-	compare VAR_RESULT, FALSE
-	call_if_eq Route110_TrickHouseEnd_EventScript_BagFull
+	givecustommon SPECIES_PIKACHU_HOENN_CAP, 25, ITEM_LIGHT_BALL, ITEM_PREMIER_BALL, NATURE_NAIVE, 2, 0, 180, 0, 252, 76, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_EXTREME_SPEED, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_TrickHouseEnd_Text_ObtainedPikachu
+	waitfanfare
+	waitmessage
 	msgbox Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou, MSGBOX_DEFAULT
 	closemessage
 	call Route110_TrickHouseEnd_EventScript_TrickMasterExit
@@ -88,9 +92,11 @@ Route110_TrickHouseEnd_EventScript_CompletedPuzzle3:: @ 826ADFC
 	msgbox Route110_TrickHouseEnd_Text_AllNightToPreparePanels, MSGBOX_DEFAULT
 	msgbox Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward, MSGBOX_DEFAULT
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	giveitem ITEM_TM92_TRICK_ROOM
-	compare VAR_RESULT, FALSE
-	call_if_eq Route110_TrickHouseEnd_EventScript_BagFull
+	givecustommon SPECIES_PIKACHU_SINNOH_CAP, 25, ITEM_LIGHT_BALL, ITEM_PREMIER_BALL, NATURE_NAIVE, 2, 0, 180, 0, 252, 76, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_EXTREME_SPEED, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_TrickHouseEnd_Text_ObtainedPikachu
+	waitfanfare
+	waitmessage
 	msgbox Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou, MSGBOX_DEFAULT
 	closemessage
 	call Route110_TrickHouseEnd_EventScript_TrickMasterExit
@@ -101,9 +107,11 @@ Route110_TrickHouseEnd_EventScript_CompletedPuzzle4:: @ 826AE38
 	msgbox Route110_TrickHouseEnd_Text_AllNightToShoveBoulders, MSGBOX_DEFAULT
 	msgbox Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward, MSGBOX_DEFAULT
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	giveitem ITEM_ROCKY_HELMET
-	compare VAR_RESULT, FALSE
-	call_if_eq Route110_TrickHouseEnd_EventScript_BagFull
+	givecustommon SPECIES_PIKACHU_UNOVA_CAP, 25, ITEM_LIGHT_BALL, ITEM_PREMIER_BALL, NATURE_NAIVE, 2, 0, 180, 0, 252, 76, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_EXTREME_SPEED, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_TrickHouseEnd_Text_ObtainedPikachu
+	waitfanfare
+	waitmessage
 	msgbox Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou, MSGBOX_DEFAULT
 	closemessage
 	call Route110_TrickHouseEnd_EventScript_TrickMasterExit
@@ -114,9 +122,11 @@ Route110_TrickHouseEnd_EventScript_CompletedPuzzle5:: @ 826AE74
 	msgbox Route110_TrickHouseEnd_Text_AllNightToMakeMechadolls, MSGBOX_DEFAULT
 	msgbox Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward, MSGBOX_DEFAULT
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	giveitem ITEM_RARE_CANDY
-	compare VAR_RESULT, FALSE
-	call_if_eq Route110_TrickHouseEnd_EventScript_BagFull
+	givecustommon SPECIES_PIKACHU_KALOS_CAP, 25, ITEM_LIGHT_BALL, ITEM_PREMIER_BALL, NATURE_NAIVE, 2, 0, 180, 0, 252, 76, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_EXTREME_SPEED, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_TrickHouseEnd_Text_ObtainedPikachu
+	waitfanfare
+	waitmessage
 	msgbox Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou, MSGBOX_DEFAULT
 	closemessage
 	call Route110_TrickHouseEnd_EventScript_TrickMasterExit
@@ -127,9 +137,11 @@ Route110_TrickHouseEnd_EventScript_CompletedPuzzle6:: @ 826AEB0
 	msgbox Route110_TrickHouseEnd_Text_AllNightToInstallDoors, MSGBOX_DEFAULT
 	msgbox Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward, MSGBOX_DEFAULT
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	giveitem ITEM_MAGNET
-	compare VAR_RESULT, FALSE
-	call_if_eq Route110_TrickHouseEnd_EventScript_BagFull
+	givecustommon SPECIES_PIKACHU_ALOLA_CAP, 25, ITEM_LIGHT_BALL, ITEM_PREMIER_BALL, NATURE_NAIVE, 2, 0, 180, 0, 252, 76, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_EXTREME_SPEED, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_TrickHouseEnd_Text_ObtainedPikachu
+	waitfanfare
+	waitmessage
 	msgbox Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou, MSGBOX_DEFAULT
 	closemessage
 	call Route110_TrickHouseEnd_EventScript_TrickMasterExit
@@ -140,9 +152,11 @@ Route110_TrickHouseEnd_EventScript_CompletedPuzzle7:: @ 826AEEC
 	msgbox Route110_TrickHouseEnd_Text_AllNightSettingUpArrows, MSGBOX_DEFAULT
 	msgbox Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward, MSGBOX_DEFAULT
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	giveitem ITEM_PP_MAX
-	compare VAR_RESULT, FALSE
-	call_if_eq Route110_TrickHouseEnd_EventScript_BagFull
+	givecustommon SPECIES_PIKACHU_PARTNER_CAP, 25, ITEM_LIGHT_BALL, ITEM_PREMIER_BALL, NATURE_NAIVE, 2, 0, 180, 0, 252, 76, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_EXTREME_SPEED, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_TrickHouseEnd_Text_ObtainedPikachu
+	waitfanfare
+	waitmessage
 	msgbox Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou, MSGBOX_DEFAULT
 	closemessage
 	call Route110_TrickHouseEnd_EventScript_TrickMasterExit
@@ -166,11 +180,13 @@ Route110_TrickHouseEnd_EventScript_CompletedPuzzle8:: @ 826AF28
 	applymovement LOCALID_TRICK_MASTER, Common_Movement_FacePlayer
 	waitmovement 0
 	delay 30
-	msgbox Route110_TrickHouseEnd_Text_DefeatedMePreferWhichTent, MSGBOX_DEFAULT
+	msgbox Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward, MSGBOX_DEFAULT
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	call Route110_TrickHouseEnd_EventScript_ChooseTent
-	compare VAR_RESULT, FALSE
-	call_if_eq Route110_TrickHouseEnd_EventScript_NoRoomForTent
+	givecustommon SPECIES_PIKACHU_WORLD_CAP, 25, ITEM_LIGHT_BALL, ITEM_PREMIER_BALL, NATURE_NAIVE, 2, 0, 180, 0, 252, 76, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_EXTREME_SPEED, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_TrickHouseEnd_Text_ObtainedPikachu
+	waitfanfare
+	waitmessage
 	msgbox Route110_TrickHouseEnd_Text_LeavingOnJourney, MSGBOX_DEFAULT
 	call Route110_TrickHouseEnd_EventScript_TrickMasterExit
 	special ResetTrickHouseNuggetFlag
@@ -368,3 +384,6 @@ Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou: @ 826B7EF
 Route110_TrickHouseEnd_Text_YoureIgnoringMe: @ 826B8BD
 	.string "Now, now! You're ignoring me now?\n"
 	.string "Now that, I consider heartbreaking!$"
+
+Route110_TrickHouseEnd_Text_ObtainedPikachu::
+	.string "{PLAYER} got a {COLOR BLUE}Pikachu{COLOR DARK_GRAY}$"
