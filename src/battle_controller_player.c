@@ -2124,6 +2124,10 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     }
                 }
             break;
+            case TYPE_FLYING:
+                if(gBattleMons[targetId].ability == ABILITY_AERODYNAMICS || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_AERODYNAMICS))
+                    abilityNullifiesDamage = TRUE;
+            break;
         }
 
         if(gBattleMons[targetId].ability == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_WEATHER_CONTROL)){
