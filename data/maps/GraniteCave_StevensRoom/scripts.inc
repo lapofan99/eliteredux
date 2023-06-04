@@ -4,8 +4,6 @@ GraniteCave_StevensRoom_MapScripts:: @ 822DC7A
 	.byte 0
 
 GraniteCave_StevensRoom_EventScript_Steven:: @ 822DC7B
-	lock
-	faceplayer
 	msgbox GraniteCave_StevensRoom_Text_ImStevenLetterForMe, MSGBOX_DEFAULT
 	setvar VAR_0x8004, ITEM_LETTER
 	call Common_EventScript_PlayerHandedOverTheItem
@@ -121,3 +119,16 @@ GraniteCave_StevensRoom_Text_IveGotToHurryAlong: @ 822DF8C
 GraniteCave_StevensRoom_Text_OhBagIsFull: @ 822DFAA
 	.string "Oh, your Bag is full…\n"
 	.string "That's too bad, then.$"
+
+GraniteCave_StevensRoom_EventScript_Steven_Battle::
+	lock
+	faceplayer
+	trainerbattle_single TRAINER_STEVEN_GRANITE_CAVE, GraniteCave_StevensRoom_EventScript_Steven_Battle_Text_0, GraniteCave_StevensRoom_EventScript_Steven_Battle_Text_1, GraniteCave_StevensRoom_EventScript_Steven, NO_MUSIC
+	return
+
+
+GraniteCave_StevensRoom_EventScript_Steven_Battle_Text_0:
+	.string "Steven: Intro.$"
+
+GraniteCave_StevensRoom_EventScript_Steven_Battle_Text_1:
+	.string "Steven: Defeat.$"

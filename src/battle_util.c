@@ -4178,7 +4178,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     u32 pidAtk, pidDef;
     u32 moveType, move;
     u32 i, j;
-    u16 trainerNum = VarGet(VAR_LAST_TRAINER_BATTLED);
+    u16 trainerNum;
 
     if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
         return 0;
@@ -5718,19 +5718,57 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         //Held item Workaraound
         if(gBattleMons[battler].item == ITEM_NONE     && 
            GetBattlerSide(battler) == B_SIDE_OPPONENT && 
-           (gBattleTypeFlags & BATTLE_TYPE_TRAINER)   && 
-           !(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)){
-            const struct TrainerMonItemCustomMoves *partyData = gTrainers[trainerNum].party.ItemCustomMoves;
-            for(i = 0; i < gTrainers[trainerNum].partySize; i++){
-                if(gBattleMons[battler].item == ITEM_NONE && gBattleMons[battler].species == partyData[i].species && partyData[i].heldItem != ITEM_NONE){
-                    gBattleMons[battler].item = partyData[i].heldItem;
-                    #ifdef DEBUG_BUILD
-                    if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                        MgbaOpen();
-                        MgbaPrintf(MGBA_LOG_WARN, "USED THE WORKAROUND TO GIVE THE ITEM ID:%d TO THE POKEMON:%d", gBattleMons[battler].item, i);
-                        MgbaClose();
+           (gBattleTypeFlags & BATTLE_TYPE_TRAINER)){
+            if(!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)){
+                //One Opponent
+                const struct TrainerMonItemCustomMoves *partyData = gTrainers[VarGet(VAR_LAST_TRAINER_BATTLED)].party.ItemCustomMoves;
+                trainerNum = VarGet(VAR_LAST_TRAINER_BATTLED);
+                for(i = 0; i < gTrainers[trainerNum].partySize; i++){
+                    if(gBattleMons[battler].item == ITEM_NONE && gBattleMons[battler].species == partyData[i].species && partyData[i].heldItem != ITEM_NONE){
+                        gBattleMons[battler].item = partyData[i].heldItem;
+                        #ifdef DEBUG_BUILD
+                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                            MgbaOpen();
+                            MgbaPrintf(MGBA_LOG_WARN, "USED THE WORKAROUND TO GIVE THE ITEM ID:%d TO THE POKEMON:%d", gBattleMons[battler].item, i);
+                            MgbaClose();
+                        }
+                        #endif
                     }
-                    #endif
+                }
+            }
+            else{
+                //Two Opponents
+                //Tried to give the opponent the item from the first party
+                const struct TrainerMonItemCustomMoves *partyData = gTrainers[VarGet(VAR_LAST_TRAINER_BATTLED)].party.ItemCustomMoves;
+                trainerNum = VarGet(VAR_LAST_TRAINER_BATTLED);
+                for(i = 0; i < gTrainers[trainerNum].partySize; i++){
+                    if(gBattleMons[battler].item == ITEM_NONE && gBattleMons[battler].species == partyData[i].species && partyData[i].heldItem != ITEM_NONE){
+                        gBattleMons[battler].item = partyData[i].heldItem;
+                        #ifdef DEBUG_BUILD
+                        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                            MgbaOpen();
+                            MgbaPrintf(MGBA_LOG_WARN, "USED THE WORKAROUND TO GIVE THE ITEM ID:%d TO THE POKEMON:%d", gBattleMons[battler].item, i);
+                            MgbaClose();
+                        }
+                        #endif
+                    }
+                }
+                if(gBattleMons[battler].item == ITEM_NONE){
+                    //If the pokemon was not from the first party it tries to give it the second party item
+                    const struct TrainerMonItemCustomMoves *partyData2 = gTrainers[VarGet(VAR_LAST_TRAINER_BATTLED_2)].party.ItemCustomMoves;
+                    trainerNum = VarGet(VAR_LAST_TRAINER_BATTLED_2);
+                    for(i = 0; i < gTrainers[trainerNum].partySize; i++){
+                        if(gBattleMons[battler].item == ITEM_NONE && gBattleMons[battler].species == partyData2[i].species && partyData2[i].heldItem != ITEM_NONE){
+                            gBattleMons[battler].item = partyData2[i].heldItem;
+                            #ifdef DEBUG_BUILD
+                            if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                                MgbaOpen();
+                                MgbaPrintf(MGBA_LOG_WARN, "USED THE WORKAROUND TO GIVE THE ITEM ID:%d TO THE POKEMON:%d", gBattleMons[battler].item, i);
+                                MgbaClose();
+                            }
+                            #endif
+                        }
+                    }
                 }
             }
         }

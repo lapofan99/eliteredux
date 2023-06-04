@@ -38325,3 +38325,42 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Unused
     .species = SPECIES_PELIPPER,
     }
 };
+
+static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
+    {
+    .lvl = 3,
+    .species = SPECIES_CRADILY, // Steven (Friend), Lead, SpDef Wall, SR, Big Root
+    .heldItem = ITEM_BIG_ROOT,
+    .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_GIGA_DRAIN, MOVE_POWER_GEM, MOVE_STEALTH_ROCK, MOVE_RECOVER
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_AERODACTYL, // Steven (Friend), Doubles, Sash, Support
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 2, // ABILITY_SPEED_FORCE, ABILITY_PREDATOR, ABILITY_FATAL_PRECISION},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_HALF_DRAKE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {84, 252, 20, 0, 4, 148},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_ROCK_SLIDE, MOVE_DRAGON_RUSH, MOVE_TAILWIND, MOVE_WIDE_GUARD
+    },
+    {
+    .lvl = 5,
+    .species = SPECIES_METAGROSS, // Steven (Friend), Mega
+    .heldItem = ITEM_METAGROSSITE,
+    .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
+    // .innates = {ABILITY_PREDATOR, ABILITY_FULL_METAL_BODY, ABILITY_LEVITATE},
+    // Pre-Mega
+    // ABILITY_FATAL_PRECISION, ABILITY_PREDATOR, ABILITY_LEAD_COAT},
+    // .innates = {ABILITY_PRISM_ARMOR, ABILITY_FULL_METAL_BODY, ABILITY_DOWNLOAD},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_METEOR_MASH, MOVE_BULLET_PUNCH, MOVE_STOMPING_TANTRUM, MOVE_PROTECT
+    }
+};

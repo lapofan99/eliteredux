@@ -1918,8 +1918,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u16 move = 1;
     u16 species = 1;
 
-    if(!(gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS))
-        VarSet(VAR_LAST_TRAINER_BATTLED, trainerNum);
+    //Saves the last trainer you battled in case that you battle 2 different opponents at once
+    VarSet(VAR_LAST_TRAINER_BATTLED_2, VarGet(VAR_LAST_TRAINER_BATTLED));
+    //Then saves the current trainer to the last battled trainer
+    VarSet(VAR_LAST_TRAINER_BATTLED, trainerNum);
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
