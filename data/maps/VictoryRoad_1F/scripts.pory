@@ -228,7 +228,10 @@ script VictoryRoad_1F_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can find legendary Pokémon on this route. But you have to beat all trainers in this place and become the Champion first. Talk to me again then."))
+		msgbox(format("My colleagues might have bombarded you with information about their route's legendaries, but I'm different!\p"
+		"The Legendaries of this route are here for no apparent reason. I tried asking my colleagues, but they ignored my emails... shame on them!\p"
+		"Two are poisonous dragons, one's a football player, and they've got nothing to do with each other!\p"
+		"You seem like a smart fella, so no beating around the bush this time: become champion, beat every trainer, talk to me, use your DexNav, done!"))
 	}
 	else{
 		if(defeated(TRAINER_WALLY_VR_1) &&
@@ -237,10 +240,10 @@ script VictoryRoad_1F_EventScript_LegendaryNPC{
 		   defeated(TRAINER_HOPE)       &&
 		   defeated(TRAINER_QUINCY)     &&
 		   defeated(TRAINER_KATELYNN)){
-			msgbox(format("You are now worthy to catch Poipole, Naganadel and Zeraora here. Just use your DexNav, they will now appear."))
+			msgbox(format("Poipole, Naganadel and Zeraora... done, your DexNav should show their location now. Good luck champ, let's leave this place!"))
 		}
 		else{
-			msgbox(format("You are not worthy yet to catch Poipole, Naganadel or Zeraora. Beat all trainers here first."))
+			msgbox(format("Hey lad! Congrats on becoming champion, but as you might have guessed, your work's not done! It's not my fault tho! Rules say so (I despise them too!)! So beat every trainer, then come back here so we can leave this cave behind us, ok?"))
 		}
 	}
     release

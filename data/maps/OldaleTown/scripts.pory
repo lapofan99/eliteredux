@@ -408,3 +408,22 @@ OldaleTown_Text_CitySign: @ 81E94DA
 	.string "“Where things start off scarce.”$"
 
 `
+script OldaleTown_EventScript_Sageleader{
+    lock
+    faceplayer
+	if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("Ah, there you are, young trainer. It seems the winds of destiny have brought us together.\p"
+		"Me and my associates are known as the Legendary Sages, and have been entrusted with a crucial task: the guardianship of the legendary Pokémon that have started dwelling within the region.\p"
+		"We have been waiting for you, but it seems like the time has finally come. Your destiny is to become champion and guardian of the Legendaries. Still confused? Talk to my subordinates, they're scattered all across Hoenn: they'll tell you everything you'll need to know.\p"
+		"Embrace victory, and don't disappoint us."))
+	}
+	else{
+			msgbox(format("Just as predicted, you emerged victorious from the trials of the Pokémon League. I assume you want to start catching the Legendaries as I promised you a while back: I'm afraid you'll have to wait... a little longer.\p"
+			"You see, they're not creatures easily pleased. They only deal with the best of the best, like me... and soon, you. Maybe.\p"
+			"If you want to catch them, you'll have to give every trainer on a given route a sound beating, through your Pokémon of course.\p"
+			"Once you do, make sure to talk to one of my associates on the route: they'll update your DexNav with their location.\p"
+			"You have come so far since we first met, don't waste your potential just now! We have faith you'll emerge victorious from this endeavour!"))
+		}
+	release
+	end
+}

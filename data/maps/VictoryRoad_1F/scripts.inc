@@ -269,17 +269,32 @@ VictoryRoad_1F_EventScript_LegendaryNPC_15:
 
 
 VictoryRoad_1F_EventScript_LegendaryNPC_Text_0:
-	.string "You can find legendary Pokémon on this\n"
-	.string "route. But you have to beat all\l"
-	.string "trainers in this place and become the\l"
-	.string "Champion first. Talk to me again then.$"
+	.string "My colleagues might have bombarded you\n"
+	.string "with information about their route's\l"
+	.string "legendaries, but I'm different!\p"
+	.string "The Legendaries of this route are here\n"
+	.string "for no apparent reason. I tried asking\l"
+	.string "my colleagues, but they ignored my\l"
+	.string "emails... shame on them!\p"
+	.string "Two are poisonous dragons, one's a\n"
+	.string "football player, and they've got\l"
+	.string "nothing to do with each other!\p"
+	.string "You seem like a smart fella, so no\n"
+	.string "beating around the bush this time:\l"
+	.string "become champion, beat every trainer,\l"
+	.string "talk to me, use your DexNav, done!$"
 
 VictoryRoad_1F_EventScript_LegendaryNPC_Text_1:
-	.string "You are now worthy to catch Poipole,\n"
-	.string "Naganadel and Zeraora here. Just use\l"
-	.string "your DexNav, they will now appear.$"
+	.string "Poipole, Naganadel and Zeraora... done,\n"
+	.string "your DexNav should show their location\l"
+	.string "now. Good luck champ, let's leave this\l"
+	.string "place!$"
 
 VictoryRoad_1F_EventScript_LegendaryNPC_Text_2:
-	.string "You are not worthy yet to catch\n"
-	.string "Poipole, Naganadel or Zeraora. Beat all\l"
-	.string "trainers here first.$"
+	.string "Hey lad! Congrats on becoming champion,\n"
+	.string "but as you might have guessed, your\l"
+	.string "work's not done! It's not my fault tho!\l"
+	.string "Rules say so (I despise them too!)! So\l"
+	.string "beat every trainer, then come back\l"
+	.string "here so we can leave this cave behind\l"
+	.string "us, ok?$"

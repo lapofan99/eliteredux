@@ -627,7 +627,10 @@ script Route109_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("You can catch Hoopa here, if you become the Champion and defeat all trainers here on the beach."))
+		msgbox(format("This might look like an ordinary beach, with its golden sands and gentle waves lapping against the shore.\p"
+		"However, hidden within the depths of this seemingly tranquil landscape lies a Pokémon of immense power: the enigmatic Hoopa.\p"
+		"We don't yet know why they chose these golden dunes as their home. Perhaps he preferred being left alone rather than having company\p."
+		"Should you want to meet them, become champion, then come back to me."))
 	}
 	else{
 	if(defeated(TRAINER_HUEY) &&
@@ -637,10 +640,11 @@ script Route109_EventScript_LegendaryNPC{
 		defeated(TRAINER_HAILEY) &&
 		defeated(TRAINER_EDMOND) &&
 		defeated(TRAINER_TIANA)){
-			msgbox(format("You are now worthy of catching Hoopa. Just use your DexNav, it will now appear."))
+			msgbox(format("I hope you can excuse the strict conditions I imposed upon you, but one must not underestimate Hoopa, as their true form is one of immense power and destructive capabilities.\p"
+			"You are definitely worthy of managing such powers. I updated your DexNav to include Hoopa's location: may an unbreakable bond be forged between you two!"))
 		}
 		else{
-			msgbox(format("You are the champion now, but you still need to beat all trainers on this beach before meeting Hoopa."))
+			msgbox(format("Congratulations on becoming champion. If you want to meet Hoopa, I'd first advise you to finish your job and defeat every remaining trainer on this beach. We'll talk about Hoopa once you've done that."))
 		}
 	}
     release

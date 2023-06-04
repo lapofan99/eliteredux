@@ -405,3 +405,62 @@ OldaleTown_Text_BrendanLetsGoBack: @ 81E948A
 OldaleTown_Text_CitySign: @ 81E94DA
 	.string "Oldale Town\n"
 	.string "“Where things start off scarce.”$"
+
+OldaleTown_EventScript_Sageleader::
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, OldaleTown_EventScript_Sageleader_2
+	msgbox OldaleTown_EventScript_Sageleader_Text_1
+OldaleTown_EventScript_Sageleader_1:
+	release
+	end
+
+OldaleTown_EventScript_Sageleader_2:
+	msgbox OldaleTown_EventScript_Sageleader_Text_0
+	goto OldaleTown_EventScript_Sageleader_1
+
+
+OldaleTown_EventScript_Sageleader_Text_0:
+	.string "Ah, there you are, young trainer. It\n"
+	.string "seems the winds of destiny have\l"
+	.string "brought us together.\p"
+	.string "Me and my associates are known as the\n"
+	.string "Legendary Sages, and have been\l"
+	.string "entrusted with a crucial task: the\l"
+	.string "guardianship of the legendary Pokémon\l"
+	.string "that have started dwelling within the\l"
+	.string "region.\p"
+	.string "We have been waiting for you, but it\n"
+	.string "seems like the time has finally come.\l"
+	.string "Your destiny is to become champion and\l"
+	.string "guardian of the Legendaries. Still\l"
+	.string "confused? Talk to my subordinates,\l"
+	.string "they're scattered all across Hoenn:\l"
+	.string "they'll tell you everything you'll need\l"
+	.string "to know.\p"
+	.string "Embrace victory, and don't disappoint\n"
+	.string "us.$"
+
+OldaleTown_EventScript_Sageleader_Text_1:
+	.string "Just as predicted, you emerged\n"
+	.string "victorious from the trials of the\l"
+	.string "Pokémon League. I assume you want to\l"
+	.string "start catching the Legendaries as I\l"
+	.string "promised you a while back: I'm afraid\l"
+	.string "you'll have to wait... a little longer.\p"
+	.string "You see, they're not creatures easily\n"
+	.string "pleased. They only deal with the best\l"
+	.string "of the best, like me... and soon, you.\l"
+	.string "Maybe.\p"
+	.string "If you want to catch them, you'll have\n"
+	.string "to give every trainer on a given route\l"
+	.string "a sound beating, through your Pokémon\l"
+	.string "of course.\p"
+	.string "Once you do, make sure to talk to one of\n"
+	.string "my associates on the route: they'll\l"
+	.string "update your DexNav with their\l"
+	.string "location.\p"
+	.string "You have come so far since we first met,\n"
+	.string "don't waste your potential just now! We\l"
+	.string "have faith you'll emerge victorious\l"
+	.string "from this endeavour!$"

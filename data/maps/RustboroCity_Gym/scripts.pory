@@ -423,8 +423,8 @@ RustboroCity_Gym_Text_ExplainRockTomb: @ 82138B1
 
 RustboroCity_Gym_Text_RoxannePostBattle: @ 82139A7
 	.string "Since you are so strong, you should\n"
-	.string "challenge other Gym Leaders.\p"
-	.string "By battling many Trainers, you should\n"
+	.string "challenge the other Gym Leaders.\p"
+	.string "By battling many Trainers, you'll\n"
 	.string "learn many things.$"
 
 RustboroCity_Gym_Text_GymStatue: @ 8213A21
@@ -442,7 +442,7 @@ RustboroCity_Gym_Text_RoxanneRegisterCall: @ 8213A76
 	.string "This is Roxanne of Rustboro City.\p"
 	.string "I heard from Brawly that you're\n"
 	.string "moving up through the ranks of\l"
-	.string "Trainers at an incredible clip.\p"
+	.string "Trainers at an incredible pace.\p"
 	.string "Well, I'd rather not think that\n"
 	.string "I can't beat you.\p"
 	.string "I promise, I will shape up my Gym\n"
@@ -505,7 +505,7 @@ script RustboroCity_Gym_EventScript_CheckTrainers{
 	     !defeated(TRAINER_TOMMY) || 
 		 !defeated(TRAINER_MARC)) &&
 		 !flag(FLAG_BADGE01_GET))){
-		msgbox(format("Roxanne: Sorry, but you need to defeat every trainer on this Gym before battling me"), MSGBOX_NPC)
+		msgbox(format("Roxanne: Sorry, but you need to defeat every trainer on this Gym before battling me."), MSGBOX_NPC)
 		release
 		end
 	}
