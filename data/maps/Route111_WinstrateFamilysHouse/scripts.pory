@@ -74,7 +74,7 @@ Route111_WinstrateFamilysHouse_Text_LikeYouToHaveLifeOrb: @ 822A5F4
 	.string "my Pinsir in battle.\p"
 	.string "Since you've beaten all of us here,\n"
 	.string "I don't know if you need it, but I\l"
-	.string "would like you to have my Pinsir.$"
+	.string "would like you to have my {COLOR BLUE}Pinsir{COLOR DARK_GRAY}.$"
 
 Route111_WinstrateFamilysHouse_Text_PassionateAboutBattles: @ 822A6B4
 	.string "When it comes to Pokémon battles,\n"
