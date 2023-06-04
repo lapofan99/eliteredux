@@ -4845,8 +4845,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_HALF_DRAKE;
-				gLastUsedAbility = ABILITY_HALF_DRAKE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_HALF_DRAKE = ABILITY_HALF_DRAKE;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
@@ -5466,9 +5465,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_HALF_DRAKE)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_DRAGON))
 			{
+                gBattlerAttacker = battler;
 				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_HALF_DRAKE)] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_HALF_DRAKE;
-				gLastUsedAbility = ABILITY_HALF_DRAKE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HALF_DRAKE;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
