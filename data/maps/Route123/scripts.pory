@@ -198,12 +198,9 @@ script Route123_EventScript_LegendaryNPC{
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("The armonious imbalance of the Tao dragons can be felt all the way from here.\p"
-		"They embody the paradoxical nature of our world, one where\p"
-		"the fiery, flaming passion of Reshiram can coexist with the methodical,\p"
-		"unburdened rhythm of Zekrom. They dance in eternal opposition, and yet,\p"
-		"somehow they managed to find a point of equilibrium.\p"
-		"Kyurem, embodiment of all orderly things, is a testament to how\p"
-		"even the most disorderly of creatures can find harmony within themselves.\p"
+		"They embody the paradoxical nature of our world, one where the fiery, flaming passion of Reshiram can coexist with the methodical, unburdened rhythm of Zekrom.\p"
+		"They dance in eternal opposition, and yet, they somehow managed to find a point of equilibrium.\p"
+		"Kyurem, embodiment of all orderly things, is a testament to how even the most disorderly of creatures can find harmony within themselves.\p"
 		"Keep training your poise, and come back once you've become champion."))
 	}
 	else{
