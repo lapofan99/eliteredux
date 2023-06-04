@@ -2405,6 +2405,7 @@ static void Cmd_healthbarupdate(void)
                 !(gMoveResultFlags & MOVE_RESULT_FOE_ENDURED) &&
                 !(gMoveResultFlags & MOVE_RESULT_FAILED) &&
                 !(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) &&
+                !gProtectStructs[gBattlerAttacker].confusionSelfDmg &&
                 gDisableStructs[gActiveBattler].substituteHP == 0 &&
                 gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
                 gBattleMoves[gCurrentMove].power > 0 &&
