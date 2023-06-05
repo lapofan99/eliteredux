@@ -134,6 +134,7 @@ static void Task_StartSendOutAnim(u8 taskId);
 static void EndDrawPartyStatusSummary(void);
 static void ChangeMoveDisplayMode();
 static void MoveSelectionDisplaySplitIcon(void);
+static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId);
 
 static void (*const sPlayerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
 {
@@ -1866,7 +1867,9 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
     u16 tempMod;
     u8 moveType = GetTypeBeforeUsingMove(moveNum, userId);
 
-	if (gBattleMoves[moveNum].power == 0 || 
+    if(gBattleMoves[moveNum].split == SPLIT_STATUS)
+        return GetMoveTypeEffectivenessStatus(moveNum, targetId, userId);
+	else if (gBattleMoves[moveNum].power == 0 || 
         gBattleMoves[moveNum].effect == EFFECT_SONICBOOM ||
         gBattleMoves[moveNum].effect == EFFECT_LEVEL_DAMAGE ||
         gBattleMoves[moveNum].effect == EFFECT_DRAGON_RAGE)
@@ -2195,6 +2198,98 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 		else
 			return MOVE_EFFECTIVENESS_NORMAL;
 	}
+}
+
+static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
+{
+    bool8 moveNullified = FALSE;
+    u16 userSpecies = gBattleMons[userId].species;
+    u16 targetSpecies = gBattleMons[targetId].species;
+
+    //Specific Moves
+    switch(moveNum){
+        case MOVE_LEECH_SEED:
+            if(IS_BATTLER_OF_TYPE(targetId, TYPE_GRASS) || 
+               gBattleMons[targetId].ability == ABILITY_SAP_SIPPER || 
+               SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_SAP_SIPPER)){
+                moveNullified = TRUE;
+            }
+        break;
+    }
+
+    //Move Effects
+    switch(gBattleMoves[moveNum].effect){
+        case EFFECT_SLEEP:
+            if(!CanSleep(targetId))
+                moveNullified = TRUE;
+        break;
+        case EFFECT_TOXIC:
+        case EFFECT_POISON:
+            if(!CanBePoisoned(userId, targetId))
+                moveNullified = TRUE;
+        break;
+        case EFFECT_WILL_O_WISP:
+            if(!CanBeBurned(targetId))
+                moveNullified = TRUE;
+        break;
+        case EFFECT_PARALYZE:
+            if(!CanBeParalyzed(userId, targetId))
+                moveNullified = TRUE;
+        break;
+        case EFFECT_CONFUSE:
+            if(!CanBeConfused(targetId))
+                moveNullified = TRUE;
+        break;
+    }
+
+    //Powder moves don't work on grass types
+    if(IS_BATTLER_OF_TYPE(targetId, TYPE_GRASS)){
+        if(TestMoveFlags(moveNum, FLAG_POWDER)){
+            moveNullified = TRUE;
+        }
+    }
+
+    //Weather Control
+    if(gBattleMons[targetId].ability == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_WEATHER_CONTROL)){
+        if(TestMoveFlags(moveNum, FLAG_WEATHER_BASED)){
+            moveNullified = TRUE;
+        }
+    }
+            
+    //Bulletproof
+    if(gBattleMons[targetId].ability == ABILITY_BULLETPROOF || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_BULLETPROOF)){
+        if(TestMoveFlags(moveNum, FLAG_BALLISTIC)){
+            moveNullified = TRUE;
+        }
+    }
+
+    //Soundproof
+    if(gBattleMons[targetId].ability == ABILITY_SOUNDPROOF || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_SOUNDPROOF)){
+        if(TestMoveFlags(moveNum, FLAG_SOUND)){
+            moveNullified = TRUE;
+        }
+    }
+
+    //Queenly Majesty
+    if(gBattleMons[targetId].ability == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_QUEENLY_MAJESTY) ||
+    (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_QUEENLY_MAJESTY && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(targetId)].species, ABILITY_QUEENLY_MAJESTY) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+        if(GetMovePriority(userId, moveNum) > 0){
+            moveNullified = TRUE;
+        }
+    }
+
+    //Dazzling
+    if(gBattleMons[targetId].ability == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_DAZZLING) ||
+        (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(targetId)].species, ABILITY_DAZZLING) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+        if(GetMovePriority(userId, moveNum) > 0){
+            moveNullified = TRUE;
+        }
+    }
+
+    if(moveNullified)
+        return MOVE_EFFECTIVENESS_NONE;
+    else
+        return MOVE_EFFECTIVENESS_STATUS;
 }
 
 static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId)
