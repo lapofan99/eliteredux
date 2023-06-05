@@ -2166,7 +2166,10 @@ static void CreateCancelConfirmWindows(bool8 chooseHalf)
             AddTextPrinterParameterized4(confirmWindowId, 0, mainOffset, 1, 0, 0, sFontColorTable[0], -1, gMenuText_Confirm);
             PutWindowTilemap(confirmWindowId);
             CopyWindowToVram(confirmWindowId, 2);
-            cancelWindowId = AddWindow(&sMultiCancelButtonWindowTemplate);
+            if (gPartyMenu.layout == PARTY_LAYOUT_SINGLE)
+                cancelWindowId = AddWindow(&sMultiCancelButtonWindowTemplate_equal);
+            else
+                cancelWindowId = AddWindow(&sMultiCancelButtonWindowTemplate);
             offset = 0;
         }
         else if (gPartyMenu.layout == PARTY_LAYOUT_SINGLE)
