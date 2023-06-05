@@ -4969,9 +4969,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			break;
 		case ABILITY_NORTH_WIND:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_AURORA_VEIL))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_NORTH_WIND;
 				gLastUsedAbility = ABILITY_NORTH_WIND;
@@ -5598,7 +5599,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// North Wind
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NORTH_WIND)){
-            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NORTH_WIND)])
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NORTH_WIND)] &&
+                !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_AURORA_VEIL))
             {
                 gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NORTH_WIND)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_NORTH_WIND;
