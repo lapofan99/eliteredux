@@ -16038,6 +16038,17 @@ static const struct TrainerMonItemCustomMoves sParty_MayTreeckoMeteorFalls[] = {
 static const struct TrainerMonItemCustomMoves sParty_MayTorchicMeteorFalls[] = {
     {
     .lvl = 0,
+    .species = SPECIES_MIMIKYU,
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = 0, // ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_AVENGER, ABILITY_HAUNTED_SPIRIT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_SHADOW_SNEAK, MOVE_SHADOW_CLAW, MOVE_SWORDS_DANCE, MOVE_PLAY_ROUGH
+    },
+    {
+    .lvl = 0,
     .species = SPECIES_SWAMPERT, // Rival (Friend), Def Wall, Vest, Stamina
     .heldItem = ITEM_ASSAULT_VEST,
     .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_FIELD_EXPLORER, ABILITY_STAMINA},
@@ -16058,17 +16069,6 @@ static const struct TrainerMonItemCustomMoves sParty_MayTorchicMeteorFalls[] = {
 	.nature = NATURE_JOLLY,
     .moves = MOVE_BLAZE_KICK, MOVE_HIGH_JUMP_KICK, MOVE_WILD_CHARGE, MOVE_HIGH_HORSEPOWER
     },
-    {
-    .lvl = 0,
-    .species = SPECIES_MIMIKYU,
-    .heldItem = ITEM_LUM_BERRY,
-    .ability = 0, // ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
-    // .innates = {ABILITY_VENGEANCE, ABILITY_AVENGER, ABILITY_HAUNTED_SPIRIT},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_PLAY_ROUGH, MOVE_SHADOW_CLAW, MOVE_SWORDS_DANCE, MOVE_SHADOW_SNEAK
-    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_MayMudkipMeteorFalls[] = {

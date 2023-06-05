@@ -18,6 +18,8 @@
 #include "constants/hold_effects.h"
 #include "constants/moves.h"
 #include "constants/items.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 #define AI_ACTION_DONE          0x0001
 #define AI_ACTION_FLEE          0x0002
@@ -858,6 +860,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if(DefSpeciesHasInnate(ABILITY_SOUNDPROOF) && TestMoveFlags(move, FLAG_SOUND))
             RETURN_SCORE_MINUS(20);
 
+        //Queenly Majesty
+        if(DefSpeciesHasInnate(ABILITY_QUEENLY_MAJESTY) && atkPriority > 0)
+            RETURN_SCORE_MINUS(20);
+
         //Magic Guard
         if(DefSpeciesHasInnate(ABILITY_MAGIC_GUARD)){
             switch (moveEffect)
@@ -1006,6 +1012,52 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
           && !(moveTarget & (MOVE_TARGET_OPPONENTS_FIELD | MOVE_TARGET_USER)))
             RETURN_SCORE_MINUS(10);
         #endif
+
+        //Partner Innates
+    if(isDoubleBattle){
+        //Lighting Rod for the partner
+        if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_LIGHTNING_ROD)){
+            if(moveType == TYPE_ELECTRIC && !IsMoveRedirectionPrevented(move, AI_DATA->atkAbility)){
+                RETURN_SCORE_MINUS(20);
+            }
+        }
+
+        //Storm Drain for the partner
+        if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_STORM_DRAIN)){
+            if(moveType == TYPE_WATER && !IsMoveRedirectionPrevented(move, AI_DATA->atkAbility)){
+                RETURN_SCORE_MINUS(20);
+            }
+        }
+
+        //Magic Bounce for the partner
+        if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_MAGIC_BOUNCE)){
+            if(moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN){
+                RETURN_SCORE_MINUS(20);
+            }
+        }
+
+        //Sweet Veil
+        if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_SWEET_VEIL)){
+            if(TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED) && moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY | MOVE_TARGET_OPPONENTS_FIELD)){
+                RETURN_SCORE_MINUS(20);
+            }
+        }
+
+        //Flower Veil
+        if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_FLOWER_VEIL)){
+            if((IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringMoveEffect(moveEffect))){
+                RETURN_SCORE_MINUS(20);
+            }
+        }
+            
+        //Dazzling and Queenly Majesty for the partner
+        if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_DAZZLING) ||
+           BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_QUEENLY_MAJESTY)){
+            if(atkPriority > 0){
+                RETURN_SCORE_MINUS(20);
+            }
+        }
+    }
         
         // terrain & effect checks
         if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
@@ -5416,10 +5468,8 @@ bool8 DefSpeciesHasInnate(u16 ability){
 
 bool8 BattlerHasInnate(u8 battlerId, u16 ability){
 	u8 i;
-	//battlerId
-    //ABILITY_
 	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
-		if(gBaseStats[AI_DATA->defSpecies].innates[i] == ability){
+		if(gBaseStats[gBattleMons[battlerId].species].innates[i] == ability){
 			return TRUE;
         }
 	}
