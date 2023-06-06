@@ -375,7 +375,9 @@ SootopolisCity_Gym_1F_Text_JuanAllowLegends:
 SootopolisCity_Gym_1F_EventScript_GiveScald::
 	msgbox SootopolisCity_Gym_1F_EventScript_GiveScald_Text_0
 	givecustommon SPECIES_KINGDRA, 70, ITEM_KINGDRANITE, ITEM_CHERISH_BALL, NATURE_MODEST, 0, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_HYDRO_PUMP, MOVE_HURRICANE, MOVE_DRACO_METEOR, MOVE_FLASH_CANNON, FALSE
-	msgbox SootopolisCity_Gym_1F_EventScript_GiveScald_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message SootopolisCity_Gym_1F_EventScript_GiveScald_Text_1
+	waitfanfare
 	setflag FLAG_RECEIVED_TM03
 	msgbox SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT
 	release

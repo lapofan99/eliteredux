@@ -490,7 +490,9 @@ MauvilleCity_Gym_Text_WattsonAllowLegends:
 script MauvilleCity_Gym_EventScript_GiveVoltSwitch{
 	msgbox(format("Take this special Pokémon as a gift from me!"))
 	givecustommon(SPECIES_ROTOM_MOW, 30, ITEM_WHITE_HERB, ITEM_CHERISH_BALL, NATURE_TIMID, 0, 0, 0, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, MOVE_VOLT_SWITCH, MOVE_LEAF_STORM, MOVE_TOXIC, MOVE_HEX, TRUE)
+	playfanfare(MUS_OBTAIN_ITEM)
 	msgbox(format("{PLAYER} got Wattson's {COLOR BLUE}Rotom-Mow{COLOR DARK_GRAY} as a gift!"))
+	waitfanfare
 	setflag(FLAG_RECEIVED_TM72)
 	msgbox(MauvilleCity_Gym_Text_WattsonPostBattle, MSGBOX_DEFAULT)
 	release

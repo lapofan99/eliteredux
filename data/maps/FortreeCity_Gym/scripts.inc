@@ -367,7 +367,9 @@ FortreeCity_Gym_Text_WinonaAllowLegends:
 FortreeCity_Gym_EventScript_GiveRoost::
 	msgbox FortreeCity_Gym_EventScript_GiveRoost_Text_0
 	givecustommon SPECIES_DRAGONITE, 55, ITEM_ASSAULT_VEST, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_WINGBEAT, MOVE_DRAGON_RUSH, MOVE_FIRE_PUNCH, MOVE_EXTREME_SPEED, FALSE
-	msgbox FortreeCity_Gym_EventScript_GiveRoost_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message FortreeCity_Gym_EventScript_GiveRoost_Text_1
+	waitfanfare
 	setflag FLAG_RECEIVED_TM51
 	msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
 	release

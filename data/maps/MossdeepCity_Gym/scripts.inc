@@ -690,7 +690,9 @@ MossdeepCity_Gym_Text_TateAndLizaAllowLegends:
 MossdeepCity_Gym_EventScript_GiveCalmMind::
 	msgbox MossdeepCity_Gym_EventScript_GiveCalmMind_Text_0
 	givecustommon SPECIES_SLOWBRO, 60, ITEM_SLOWBRONITE, ITEM_CHERISH_BALL, NATURE_QUIET, 2, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_SCALD, MOVE_PSYCHIC, MOVE_SUBSTITUTE, MOVE_PROTECT, FALSE
+	playfanfare MUS_OBTAIN_ITEM
 	msgbox MossdeepCity_Gym_EventScript_GiveCalmMind_Text_1
+	waitfanfare
 	setflag FLAG_RECEIVED_TM04
 	msgbox MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT
 	release

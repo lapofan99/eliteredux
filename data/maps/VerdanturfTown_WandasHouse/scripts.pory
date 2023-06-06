@@ -69,6 +69,9 @@ VerdanturfTown_WandasHouse_EventScript_WandaGardevoirite::
 	waitmovement 0
 	msgbox VerdanturfTown_WandasHouse_Text_ReceiveGardevoirite, MSGBOX_DEFAULT
 	givecustommon SPECIES_GARDEVOIR, 40, ITEM_CHOICE_SCARF, ITEM_POKE_BALL, NATURE_TIMID, 1, 4, 0, 0, 252, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_DAZZLING_GLEAM, MOVE_MYSTICAL_FIRE, MOVE_THUNDERBOLT, MOVE_PSYCHIC, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message VerdanturfTown_WandasHouse_Text_Got_Gardevoir
+	waitfanfare
 	setflag FLAG_WANDA_GARDEVOIRITE
 	msgbox VerdanturfTown_WandasHouse_Text_PrettyStone, MSGBOX_DEFAULT
 	release
@@ -199,3 +202,6 @@ VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande: @ 8202FDB
 	.string "astonished to hear that!$"
 
 `
+text VerdanturfTown_WandasHouse_Text_Got_Gardevoir{
+	format("{PLAYER} got Juan's {COLOR BLUE}Kingdra{COLOR DARK_GRAY} as a gift!")
+}

@@ -63,6 +63,9 @@ Route116_EventScript_DevonEmployee:: @ 81F2CA2
 Route116_EventScript_GiveAggronite:: @ 81F2CBB
 	setflag FLAG_MET_DEVON_EMPLOYEE
 	givecustommon SPECIES_AGGRON, 42, ITEM_AGGRONITE, ITEM_HEAVY_BALL, NATURE_ADAMANT, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_HEAVY_SLAM, MOVE_ICE_PUNCH, MOVE_SLACK_OFF, MOVE_HIGH_HORSEPOWER, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route116_EventScript_Text_Got_Aggron
+	waitfanfare
 	msgbox Route116_Text_AlsoNeedKeystone, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_FACING, DIR_NORTH
@@ -542,4 +545,8 @@ script Route116_EventScript_Gen8_NPC{
 	}
     release
     end
+}
+
+text Route116_EventScript_Text_Got_Aggron{
+	format("{PLAYER} got an {COLOR BLUE}Aggron{COLOR DARK_GRAY} as a gift!")
 }

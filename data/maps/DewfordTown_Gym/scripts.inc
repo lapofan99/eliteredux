@@ -516,7 +516,9 @@ DewfordTown_Gym_Text_BrawlyAllowLegends:
 DewfordTown_Gym_EventScript_GiveBulkUp::
 	msgbox DewfordTown_Gym_EventScript_GiveBulkUp_Text_0
 	givecustommon SPECIES_HITMONCHAN, 20, ITEM_COBA_BERRY, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DRAIN_PUNCH, MOVE_RAPID_SPIN, MOVE_ICE_PUNCH, MOVE_THUNDER_PUNCH, FALSE
-	msgbox DewfordTown_Gym_EventScript_GiveBulkUp_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message DewfordTown_Gym_EventScript_GiveBulkUp_Text_1
+	waitfanfare
 	setflag FLAG_RECEIVED_TM08
 	msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
 	release

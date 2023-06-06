@@ -473,7 +473,9 @@ LavaridgeTown_Gym_1F_Text_FlanneryAllowLegends:
 LavaridgeTown_Gym_1F_EventScript_GiveOverheat::
 	msgbox LavaridgeTown_Gym_1F_EventScript_GiveOverheat_Text_0
 	givecustommon SPECIES_VOLCARONA, 40, ITEM_CHARTI_BERRY, ITEM_CHERISH_BALL, NATURE_TIMID, 2, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_FIERY_DANCE, MOVE_GIGA_DRAIN, MOVE_QUIVER_DANCE, MOVE_ROOST, TRUE
-	msgbox LavaridgeTown_Gym_1F_EventScript_GiveOverheat_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_Gym_1F_EventScript_GiveOverheat_Text_1
+	waitfanfare
 	setflag FLAG_RECEIVED_TM50
 	msgbox LavaridgeTown_Gym_1F_Text_FlanneryPostBattle, MSGBOX_DEFAULT
 	release

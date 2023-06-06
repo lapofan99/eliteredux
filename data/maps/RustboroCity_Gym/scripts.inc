@@ -491,7 +491,9 @@ RustboroCity_Gym_Text_RoxanneAllowLegends:
 RustboroCity_Gym_EventScript_GiveRockTomb::
 	msgbox RustboroCity_Gym_EventScript_GiveRockTomb_Text_0
 	givecustommon SPECIES_AMAURA, 14, ITEM_CHOPLE_BERRY, ITEM_CHERISH_BALL, NATURE_BOLD, 0, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_FREEZE_DRY, MOVE_THUNDER_WAVE, MOVE_ANCIENT_POWER, MOVE_HYPER_VOICE, TRUE
+	playfanfare MUS_OBTAIN_ITEM
 	msgbox RustboroCity_Gym_EventScript_GiveRockTomb_Text_1
+	waitfanfare
 	setflag FLAG_RECEIVED_TM39
 	msgbox RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT
 	release

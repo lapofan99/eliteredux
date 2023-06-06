@@ -489,7 +489,9 @@ MauvilleCity_Gym_Text_WattsonAllowLegends:
 MauvilleCity_Gym_EventScript_GiveVoltSwitch::
 	msgbox MauvilleCity_Gym_EventScript_GiveVoltSwitch_Text_0
 	givecustommon SPECIES_ROTOM_MOW, 30, ITEM_WHITE_HERB, ITEM_CHERISH_BALL, NATURE_TIMID, 0, 0, 0, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, MOVE_VOLT_SWITCH, MOVE_LEAF_STORM, MOVE_TOXIC, MOVE_HEX, TRUE
+	playfanfare MUS_OBTAIN_ITEM
 	msgbox MauvilleCity_Gym_EventScript_GiveVoltSwitch_Text_1
+	waitfanfare
 	setflag FLAG_RECEIVED_TM72
 	msgbox MauvilleCity_Gym_Text_WattsonPostBattle, MSGBOX_DEFAULT
 	release

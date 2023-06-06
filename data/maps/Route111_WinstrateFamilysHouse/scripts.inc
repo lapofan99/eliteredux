@@ -21,6 +21,9 @@ Route111_WinstrateFamilysHouse_EventScript_Victoria:: @ 822A4A2
 	goto_if_set FLAG_RECEIVED_LIFE_ORB, Route111_WinstrateFamilysHouse_EventScript_ReceivedLifeOrb
 	msgbox Route111_WinstrateFamilysHouse_Text_LikeYouToHaveLifeOrb, MSGBOX_DEFAULT
 	givecustommon SPECIES_PINSIR, 30, ITEM_FOCUS_SASH, ITEM_SAFARI_BALL, NATURE_JOLLY, 0, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_GUILLOTINE, MOVE_STONE_EDGE, MOVE_SUPERPOWER, MOVE_SWORDS_DANCE, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route111_WinstrateFamilysHouse_Text_Got_Pinsir
+	waitfanfare
 	setflag FLAG_RECEIVED_LIFE_ORB
 	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
 	end
@@ -73,7 +76,7 @@ Route111_WinstrateFamilysHouse_Text_LikeYouToHaveLifeOrb: @ 822A5F4
 	.string "my Pinsir in battle.\p"
 	.string "Since you've beaten all of us here,\n"
 	.string "I don't know if you need it, but I\l"
-	.string "would like you to have my {COLOR BLUE}Pinsir{COLOR DARK_GRAY}.$"
+	.string "would like you to have this!$"
 
 Route111_WinstrateFamilysHouse_Text_PassionateAboutBattles: @ 822A6B4
 	.string "When it comes to Pokémon battles,\n"
@@ -102,3 +105,6 @@ Route111_WinstrateFamilysHouse_Text_GrandsonStrongShort: @ 822A89B
 	.string "Pokémon League Champion by now.\p"
 	.string "Knowing my grandson, he could be the\n"
 	.string "Champion already!$"
+
+Route111_WinstrateFamilysHouse_Text_Got_Pinsir::
+	.string "{PLAYER} got a {COLOR BLUE}Pinsir{COLOR DARK_GRAY} as a gift!$"

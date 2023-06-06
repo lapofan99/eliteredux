@@ -464,6 +464,9 @@ MauvilleCity_EventScript_BegunNewMauville:: @ 81DF77A
 MauvilleCity_EventScript_CompletedNewMauville:: @ 81DF784
 	msgbox MauvilleCity_Text_WattsonThanksTakeTM, MSGBOX_DEFAULT
 	givecustommon SPECIES_LANTURN, 60, ITEM_AIR_BALLOON, ITEM_POKE_BALL, NATURE_MODEST, 1, 252, 0, 0, 4, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_VOLT_SWITCH, MOVE_HYDRO_PUMP, MOVE_BLIZZARD, MOVE_DAZZLING_GLEAM, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message MauvilleCity_Text_Got_Lanturn
+	waitfanfare
 	setflag FLAG_GOT_TM24_FROM_WATTSON
 	msgbox MauvilleCity_Text_WattsonYoungTakeCharge, MSGBOX_DEFAULT
 	release
@@ -631,7 +634,7 @@ MauvilleCity_Text_WattsonThanksTakeTM: @ 81E020E
 	.string "I knew it, {PLAYER}{KUN}! I knew I'd made\n"
 	.string "the right choice asking you!\p"
 	.string "This is my thanks - you can\n"
-	.string "have my {COLOR BLUE}Lanturn{COLOR DARK_GRAY}!\p"
+	.string "have this.\p"
 	.string "Go on, you've earned it!$"
 
 MauvilleCity_Text_WattsonYoungTakeCharge: @ 81E02AA
@@ -712,3 +715,7 @@ MauvilleCity_Text_HaveTM74:
 	.string "TM74 contains Gyro Ball, an attack\n"
 	.string "that does more damage the slower the\l"
 	.string "user is compared to the foe.$"
+
+MauvilleCity_Text_Got_Lanturn::
+	.string "{PLAYER} got Wattson's {COLOR BLUE}Lanturn{COLOR DARK_GRAY} as a\n"
+	.string "gift!$"

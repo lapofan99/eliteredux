@@ -49,6 +49,9 @@ ShoalCave_LowTideEntranceRoom_EventScript_ShellBellExpert:: @ 8236DD9
 ShoalCave_LowTideEntranceRoom_EventScript_Slowbronite::
 	msgbox ShoalCave_LowTideEntranceRoom_Text_Slowbronite, MSGBOX_DEFAULT
 	givecustommon SPECIES_SLOWBRO, 70, ITEM_SLOWBRONITE, ITEM_POKE_BALL, NATURE_BOLD, 1, 252, 0, 252, 0, 0, 4, 0, 0, 0, 0, 0, 0, MOVE_HYDRO_PUMP, MOVE_PSYCHIC, MOVE_PROTECT, MOVE_CALM_MIND, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message ShoalCave_LowTideEntranceRoom_Text_Got_Slowbro
+	waitfanfare
 	release
 	end
 
@@ -106,3 +109,6 @@ ShoalCave_LowTideEntranceRoom_EventScript_ResetShoalItems:: @ 8236ED9
 	clearflag FLAG_RECEIVED_SHOAL_SHELL_4
 	clearflag FLAG_SYS_SHOAL_ITEM
 	return
+
+ShoalCave_LowTideEntranceRoom_Text_Got_Slowbro::
+	.string "{PLAYER} got a {COLOR BLUE}Slowbro{COLOR DARK_GRAY} as a gift!$"

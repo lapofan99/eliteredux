@@ -23,6 +23,9 @@ FallarborTown_CozmosHouse_EventScript_PlayerHasMeteorite:: @ 8200F38
 	goto_if_eq FallarborTown_CozmosHouse_EventScript_DeclineGiveMeteorite
 	msgbox FallarborTown_CozmosHouse_Text_PleaseUseThisTM, MSGBOX_DEFAULT
 	givecustommon SPECIES_PIKACHU_PH_D, 45, ITEM_LIGHT_BALL, ITEM_PREMIER_BALL, NATURE_NAIVE, 2, 0, 180, 0, 252, 76, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_EXTREME_SPEED, FALSE
+	playfanfare(MUS_OBTAIN_ITEM)
+	message FallarborTown_CozmosHouse_Text_PlayerGotAPikachu
+	waitfanfare
 	setvar VAR_0x8004, ITEM_METEORITE
 	call Common_EventScript_PlayerHandedOverTheItem
 	msgbox FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch, MSGBOX_DEFAULT
@@ -176,6 +179,9 @@ FallarborTown_CozmosHouse_EventScript_CozmoIsSad:: @ 8200FDA
 FallarborTown_CozmosHouse_EventScript_GiveGalladite::
 	msgbox FallarborTown_CozmosHouse_Text_PleaseTakeThis, MSGBOX_DEFAULT
 	givecustommon SPECIES_GALLADE, 45, ITEM_ASSAULT_VEST, ITEM_POKE_BALL, NATURE_JOLLY, 2, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_SACRED_SWORD, MOVE_PSYCHO_CUT, MOVE_LEAF_BLADE, MOVE_EXCALIBUR, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message FallarborTown_CozmosHouse_Text_Got_Gallade
+	waitfanfare
 	setflag FLAG_RECEIVED_GALLADITE
 	releaseall
 	end
@@ -206,9 +212,7 @@ FallarborTown_CozmosHouse_Text_IsThatMeteoriteMayIHaveIt: @ 82010A2
 	.string "How about in exchange for this TM?$"
 
 FallarborTown_CozmosHouse_Text_PleaseUseThisTM: @ 8201159
-	.string "Prof. Cozmo: Please take this\n"
-	.string "special {COLOR BLUE}Pikachu{COLOR DARK_GRAY}.\l"
-	.string "Take care of it!$"
+	.string "Prof. Cozmo: Please take this$"
 
 FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch: @ 82011A5
 	.string "Prof. Cozmo: Oh, I can't believe it.\n"
@@ -290,3 +294,9 @@ FallarborTown_CozmosHouse_Text_DeoxysSanicStats:
 
 FallarborTown_CozmosHouse_Text_DeoxysAlreadyThatForme:
 	.string "{STR_VAR_1} is already in that Forme!$"
+
+FallarborTown_CozmosHouse_Text_PlayerGotAPikachu::
+	.string "{PLAYER} got a {COLOR BLUE}Pikachu{COLOR DARK_GRAY} as a gift!$"
+
+FallarborTown_CozmosHouse_Text_Got_Gallade::
+	.string "{PLAYER} got a {COLOR BLUE}Gallade{COLOR DARK_GRAY} as a gift!$"

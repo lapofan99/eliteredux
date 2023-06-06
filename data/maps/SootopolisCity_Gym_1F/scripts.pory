@@ -377,7 +377,9 @@ SootopolisCity_Gym_1F_Text_JuanAllowLegends:
 script SootopolisCity_Gym_1F_EventScript_GiveScald{
 	msgbox(format("Take this special Pokémon as a gift from me!"))
 	givecustommon(SPECIES_KINGDRA, 70, ITEM_KINGDRANITE, ITEM_CHERISH_BALL, NATURE_MODEST, 0, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_HYDRO_PUMP, MOVE_HURRICANE, MOVE_DRACO_METEOR, MOVE_FLASH_CANNON, FALSE)
-	msgbox(format("{PLAYER} got Juan's {COLOR BLUE}Kingdra{COLOR DARK_GRAY} as a gift!"))
+	playfanfare(MUS_OBTAIN_ITEM)
+	message(format("{PLAYER} got Juan's {COLOR BLUE}Kingdra{COLOR DARK_GRAY} as a gift!"))
+	waitfanfare
 	setflag(FLAG_RECEIVED_TM03)
 	msgbox(SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT)
 	release

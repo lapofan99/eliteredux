@@ -295,6 +295,9 @@ Route118_EventScript_CheckParty::
 	trainerbattle_no_intro TRAINER_MAGIKARP_GUY, Route118_Text_MagikarpDefeat
 	msgbox Route118_Text_TakeGyaradosite, MSGBOX_DEFAULT
 	givecustommon SPECIES_MAGIKARP, 60, ITEM_GYARADOSITE, ITEM_CHERISH_BALL, NATURE_NAIVE, 0, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_V_CREATE, MOVE_DRAGON_ASCENT, MOVE_WICKED_BLOW, MOVE_CORE_ENFORCER, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route118_EventScript_Text_Got_Magikarp
+	waitfanfare
 	setflag FLAG_ROUTE118_GYARADOSITE
 	msgbox Route118_Text_KarpBetterThanGyara, MSGBOX_DEFAULT
 	release
@@ -577,3 +580,6 @@ Route118East_EventScript_Gen8_NPC_Text_2:
 	.string "trainers at the east side of this\l"
 	.string "route, I will give you this fossil I\l"
 	.string "stole from school!$"
+
+Route118_EventScript_Text_Got_Magikarp::
+	.string "{PLAYER} got a {COLOR BLUE}Magikarp{COLOR DARK_GRAY} as a gift!$"

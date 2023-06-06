@@ -62,6 +62,9 @@ Route116_EventScript_DevonEmployee:: @ 81F2CA2
 Route116_EventScript_GiveAggronite:: @ 81F2CBB
 	setflag FLAG_MET_DEVON_EMPLOYEE
 	givecustommon SPECIES_AGGRON, 42, ITEM_AGGRONITE, ITEM_HEAVY_BALL, NATURE_ADAMANT, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_HEAVY_SLAM, MOVE_ICE_PUNCH, MOVE_SLACK_OFF, MOVE_HIGH_HORSEPOWER, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route116_EventScript_Text_Got_Aggron
+	waitfanfare
 	msgbox Route116_Text_AlsoNeedKeystone, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_FACING, DIR_NORTH
@@ -657,3 +660,6 @@ Route116_EventScript_Gen8_NPC_Text_2:
 	.string "give you an exotic Pokémon from the\l"
 	.string "Galar region: a valiant wielder of\l"
 	.string "longswords!$"
+
+Route116_EventScript_Text_Got_Aggron::
+	.string "{PLAYER} got an {COLOR BLUE}Aggron{COLOR DARK_GRAY} as a gift!$"
