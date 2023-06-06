@@ -145,6 +145,7 @@ DewfordTown_Gym_EventScript_StopCountingTrainers:: @ 81FC7C1
 	return
 
 DewfordTown_Gym_EventScript_Brawly:: @ 81FC7C2
+	call DewfordTown_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_BRAWLY, DewfordTown_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, DewfordTown_Gym_EventScript_BrawlyRematch
 	trainerbattle_single TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
@@ -524,4 +525,23 @@ script DewfordTown_Gym_EventScript_GiveBulkUp{
 	msgbox(DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT)
 	release
 	end
+}
+
+script DewfordTown_Gym_EventScript_CheckTrainers{
+	//Check that you have defeated every trainer in that Gym and that you don't have that badge yet
+	if(((!defeated(TRAINER_TAKAO)    || 
+	     !defeated(TRAINER_JOCELYN)  || 
+		 !defeated(TRAINER_LAURA)    || 
+	     !defeated(TRAINER_BRENDEN)  || 
+		 !defeated(TRAINER_CRISTIAN) || 
+		 !defeated(TRAINER_LILITH))  &&
+		 !flag(FLAG_BADGE02_GET))){
+		msgbox(format("Brawly: Sorry, but you need to defeat every trainer on this Gym before battling me."), MSGBOX_NPC)
+		release
+		end
+	}
+	else{
+		//If you have beaten every trainer or you have the badge just return to the previous script
+		return
+	}
 }

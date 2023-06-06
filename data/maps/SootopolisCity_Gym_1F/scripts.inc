@@ -83,6 +83,7 @@ SootopolisCity_Gym_1F_Movement_FallThroughIce: @ 8224F42
 	step_end
 
 SootopolisCity_Gym_1F_EventScript_Juan:: @ 8224F44
+	call SootopolisCity_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_JUAN, SootopolisCity_Gym_1F_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, SootopolisCity_Gym_1F_EventScript_JuanRematch
 	trainerbattle_single TRAINER_JUAN_1, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
@@ -384,9 +385,48 @@ SootopolisCity_Gym_1F_EventScript_GiveScald::
 	end
 
 
+SootopolisCity_Gym_EventScript_CheckTrainers::
+	checktrainerflag TRAINER_ANDREA
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_CRISSY
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_BRIANNA
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_CONNIE
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_BRIDGET
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_OLIVIA
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_TIFFANY
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_BETHANY
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_ANNIKA
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_DAPHNE
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+SootopolisCity_Gym_EventScript_CheckTrainers_2:
+	return
+
+SootopolisCity_Gym_EventScript_CheckTrainers_1:
+	msgbox SootopolisCity_Gym_EventScript_CheckTrainers_Text_0, MSGBOX_NPC
+	release
+	end
+
+SootopolisCity_Gym_EventScript_CheckTrainers_3:
+	goto_if_unset FLAG_BADGE08_GET, SootopolisCity_Gym_EventScript_CheckTrainers_1
+	goto SootopolisCity_Gym_EventScript_CheckTrainers_2
+
+
 SootopolisCity_Gym_1F_EventScript_GiveScald_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
 
 SootopolisCity_Gym_1F_EventScript_GiveScald_Text_1:
 	.string "{PLAYER} got Juan's {COLOR BLUE}Kingdra{COLOR DARK_GRAY} as a gift!$"
+
+SootopolisCity_Gym_EventScript_CheckTrainers_Text_0:
+	.string "Juan: Sorry, but you need to defeat\n"
+	.string "every trainer on this Gym before\l"
+	.string "battling me.$"

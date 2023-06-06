@@ -144,6 +144,7 @@ DewfordTown_Gym_EventScript_StopCountingTrainers:: @ 81FC7C1
 	return
 
 DewfordTown_Gym_EventScript_Brawly:: @ 81FC7C2
+	call DewfordTown_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_BRAWLY, DewfordTown_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, DewfordTown_Gym_EventScript_BrawlyRematch
 	trainerbattle_single TRAINER_BRAWLY_1, DewfordTown_Gym_Text_BrawlyIntro, DewfordTown_Gym_Text_BrawlyDefeat, DewfordTown_Gym_EventScript_BrawlyDefeated, NO_MUSIC
@@ -525,6 +526,32 @@ DewfordTown_Gym_EventScript_GiveBulkUp::
 	end
 
 
+DewfordTown_Gym_EventScript_CheckTrainers::
+	checktrainerflag TRAINER_TAKAO
+	goto_if 0, DewfordTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_JOCELYN
+	goto_if 0, DewfordTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_LAURA
+	goto_if 0, DewfordTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_BRENDEN
+	goto_if 0, DewfordTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_CRISTIAN
+	goto_if 0, DewfordTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_LILITH
+	goto_if 0, DewfordTown_Gym_EventScript_CheckTrainers_3
+DewfordTown_Gym_EventScript_CheckTrainers_2:
+	return
+
+DewfordTown_Gym_EventScript_CheckTrainers_1:
+	msgbox DewfordTown_Gym_EventScript_CheckTrainers_Text_0, MSGBOX_NPC
+	release
+	end
+
+DewfordTown_Gym_EventScript_CheckTrainers_3:
+	goto_if_unset FLAG_BADGE02_GET, DewfordTown_Gym_EventScript_CheckTrainers_1
+	goto DewfordTown_Gym_EventScript_CheckTrainers_2
+
+
 DewfordTown_Gym_EventScript_GiveBulkUp_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
@@ -532,3 +559,8 @@ DewfordTown_Gym_EventScript_GiveBulkUp_Text_0:
 DewfordTown_Gym_EventScript_GiveBulkUp_Text_1:
 	.string "{PLAYER} got Brawly's {COLOR BLUE}Hitmonchan{COLOR DARK_GRAY} as a\n"
 	.string "gift!$"
+
+DewfordTown_Gym_EventScript_CheckTrainers_Text_0:
+	.string "Brawly: Sorry, but you need to defeat\n"
+	.string "every trainer on this Gym before\l"
+	.string "battling me.$"

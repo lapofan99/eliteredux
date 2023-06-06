@@ -17,6 +17,7 @@ FortreeCity_Gym_EventScript_InitRotatingGates:: @ 82165C4
 	end
 
 FortreeCity_Gym_EventScript_Winona:: @ 82165C8
+	call FortreeCity_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_WINONA, FortreeCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, FortreeCity_Gym_EventScript_WinonaRematch
 	trainerbattle_single TRAINER_WINONA_1, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
@@ -375,4 +376,22 @@ script FortreeCity_Gym_EventScript_GiveRoost{
 	msgbox(FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT)
 	release
 	end
+}
+
+script FortreeCity_Gym_EventScript_CheckTrainers{
+	//Check that you have defeated every trainer in that Gym and that you don't have that badge yet
+	if((!defeated(TRAINER_JARED)    || 
+	    !defeated(TRAINER_FLINT)    || 
+	    !defeated(TRAINER_ASHLEY)   || 
+	    !defeated(TRAINER_EDWARDO)  || 
+		!defeated(TRAINER_HUMBERTO) || 
+		!defeated(TRAINER_DARIUS))){
+		msgbox(format("Winona: Sorry, but you need to defeat every trainer on this Gym before battling me."), MSGBOX_NPC)
+		release
+		end
+	}
+	else{
+		//If you have beaten every trainer or you have the badge just return to the previous script
+		return
+	}
 }

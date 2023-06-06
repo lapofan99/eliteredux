@@ -49,6 +49,7 @@ LavaridgeTown_Gym_1F_EventScript_EndCheckBuryTrainers:: @ 81FE78B
 	return
 
 LavaridgeTown_Gym_1F_EventScript_Flannery:: @ 81FE78C
+	call LavaridgeTown_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_FLANNERY, LavaridgeTown_Gym_1F_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
 	trainerbattle_single TRAINER_FLANNERY_1, LavaridgeTown_Gym_1F_Text_FlanneryIntro, LavaridgeTown_Gym_1F_Text_FlanneryDefeat, LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated, NO_MUSIC
@@ -482,6 +483,36 @@ LavaridgeTown_Gym_1F_EventScript_GiveOverheat::
 	end
 
 
+LavaridgeTown_Gym_EventScript_CheckTrainers::
+	checktrainerflag TRAINER_COLE
+	goto_if 0, LavaridgeTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_AXLE
+	goto_if 0, LavaridgeTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_KEEGAN
+	goto_if 0, LavaridgeTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_GERALD
+	goto_if 0, LavaridgeTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_JEFF
+	goto_if 0, LavaridgeTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_JACE
+	goto_if 0, LavaridgeTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_DANIELLE
+	goto_if 0, LavaridgeTown_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_ELI
+	goto_if 0, LavaridgeTown_Gym_EventScript_CheckTrainers_3
+LavaridgeTown_Gym_EventScript_CheckTrainers_2:
+	return
+
+LavaridgeTown_Gym_EventScript_CheckTrainers_1:
+	msgbox LavaridgeTown_Gym_EventScript_CheckTrainers_Text_0, MSGBOX_NPC
+	release
+	end
+
+LavaridgeTown_Gym_EventScript_CheckTrainers_3:
+	goto_if_unset FLAG_BADGE04_GET, LavaridgeTown_Gym_EventScript_CheckTrainers_1
+	goto LavaridgeTown_Gym_EventScript_CheckTrainers_2
+
+
 LavaridgeTown_Gym_1F_EventScript_GiveOverheat_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
@@ -489,3 +520,8 @@ LavaridgeTown_Gym_1F_EventScript_GiveOverheat_Text_0:
 LavaridgeTown_Gym_1F_EventScript_GiveOverheat_Text_1:
 	.string "{PLAYER} got Flannery's {COLOR BLUE}Volcarona{COLOR DARK_GRAY} as\n"
 	.string "a gift!$"
+
+LavaridgeTown_Gym_EventScript_CheckTrainers_Text_0:
+	.string "Flannery: Sorry, but you need to defeat\n"
+	.string "every trainer on this Gym before\l"
+	.string "battling me.$"

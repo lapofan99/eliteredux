@@ -452,6 +452,7 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry:: @ 8204E1D
 	end
 
 PetalburgCity_Gym_EventScript_NormanGiveKeystone::
+	call PetalburgCity_Gym_EventScript_CheckTrainers
 	goto_if_set FLAG_SYS_RECEIVED_KEYSTONE, PetalburgCity_Gym_EventScript_NormanBattle
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
 	giveitem ITEM_MEGA_BRACELET
@@ -1784,4 +1785,24 @@ script PetalburgCity_Gym_EventScript_GiveFacade{
 	waitfanfare
 	setflag(FLAG_RECEIVED_TM42)
 	return
+}
+
+script PetalburgCity_Gym_EventScript_CheckTrainers{
+	//Check that you have defeated every trainer in that Gym and that you don't have that badge yet
+	if((!defeated(TRAINER_RANDALL) || 
+		!defeated(TRAINER_PARKER)  || 
+		!defeated(TRAINER_GEORGE)  || 
+		!defeated(TRAINER_BERKE)   ||
+		!defeated(TRAINER_MARY)    || 
+		!defeated(TRAINER_ALEXIA)  || 
+		!defeated(TRAINER_JODY))   &&
+		!flag(FLAG_BADGE05_GET)){
+		msgbox(format("Dad: Sorry {PLAYER}, but you need to defeat every trainer on this Gym before battling your dad."), MSGBOX_NPC)
+		release
+		end
+	}
+	else{
+		//If you have beaten every trainer or you have the badge just return to the previous script
+		return
+	}
 }

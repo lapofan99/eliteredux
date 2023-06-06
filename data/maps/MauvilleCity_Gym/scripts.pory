@@ -75,6 +75,7 @@ MauvilleCity_Gym_EventScript_DeactivatePuzzle:: @ 820DEE7
 	end
 
 MauvilleCity_Gym_EventScript_Wattson:: @ 820DEEB
+	call MauvilleCity_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_WATTSON, MauvilleCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, MauvilleCity_Gym_EventScript_WattsonRematch
 	trainerbattle_single TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
@@ -497,4 +498,22 @@ script MauvilleCity_Gym_EventScript_GiveVoltSwitch{
 	msgbox(MauvilleCity_Gym_Text_WattsonPostBattle, MSGBOX_DEFAULT)
 	release
 	end
+}
+
+script MauvilleCity_Gym_EventScript_CheckTrainers{
+	//Check that you have defeated every trainer in that Gym and that you don't have that badge yet
+	if(((!defeated(TRAINER_KIRK)     || 
+	     !defeated(TRAINER_SHAWN)    || 
+		 !defeated(TRAINER_BEN)      || 
+	     !defeated(TRAINER_VIVIAN)   || 
+		 !defeated(TRAINER_ANGELO))  &&
+		 !flag(FLAG_BADGE03_GET))){
+		msgbox(format("Wattson: Sorry, but you need to defeat every trainer on this Gym before battling me."), MSGBOX_NPC)
+		release
+		end
+	}
+	else{
+		//If you have beaten every trainer or you have the badge just return to the previous script
+		return
+	}
 }

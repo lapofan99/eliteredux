@@ -16,6 +16,7 @@ FortreeCity_Gym_EventScript_InitRotatingGates:: @ 82165C4
 	end
 
 FortreeCity_Gym_EventScript_Winona:: @ 82165C8
+	call FortreeCity_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_WINONA, FortreeCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, FortreeCity_Gym_EventScript_WinonaRematch
 	trainerbattle_single TRAINER_WINONA_1, FortreeCity_Gym_Text_WinonaIntro, FortreeCity_Gym_Text_WinonaDefeat, FortreeCity_Gym_EventScript_WinonaDefeated, NO_MUSIC
@@ -376,6 +377,27 @@ FortreeCity_Gym_EventScript_GiveRoost::
 	end
 
 
+FortreeCity_Gym_EventScript_CheckTrainers::
+	checktrainerflag TRAINER_JARED
+	goto_if 0, FortreeCity_Gym_EventScript_CheckTrainers_1
+	checktrainerflag TRAINER_FLINT
+	goto_if 0, FortreeCity_Gym_EventScript_CheckTrainers_1
+	checktrainerflag TRAINER_ASHLEY
+	goto_if 0, FortreeCity_Gym_EventScript_CheckTrainers_1
+	checktrainerflag TRAINER_EDWARDO
+	goto_if 0, FortreeCity_Gym_EventScript_CheckTrainers_1
+	checktrainerflag TRAINER_HUMBERTO
+	goto_if 0, FortreeCity_Gym_EventScript_CheckTrainers_1
+	checktrainerflag TRAINER_DARIUS
+	goto_if 0, FortreeCity_Gym_EventScript_CheckTrainers_1
+	return
+
+FortreeCity_Gym_EventScript_CheckTrainers_1:
+	msgbox FortreeCity_Gym_EventScript_CheckTrainers_Text_0, MSGBOX_NPC
+	release
+	end
+
+
 FortreeCity_Gym_EventScript_GiveRoost_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
@@ -383,3 +405,8 @@ FortreeCity_Gym_EventScript_GiveRoost_Text_0:
 FortreeCity_Gym_EventScript_GiveRoost_Text_1:
 	.string "{PLAYER} got Winona's {COLOR BLUE}Dragonite{COLOR DARK_GRAY} as a\n"
 	.string "gift!$"
+
+FortreeCity_Gym_EventScript_CheckTrainers_Text_0:
+	.string "Winona: Sorry, but you need to defeat\n"
+	.string "every trainer on this Gym before\l"
+	.string "battling me.$"

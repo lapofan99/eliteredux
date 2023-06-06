@@ -451,6 +451,7 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry:: @ 8204E1D
 	end
 
 PetalburgCity_Gym_EventScript_NormanGiveKeystone::
+	call PetalburgCity_Gym_EventScript_CheckTrainers
 	goto_if_set FLAG_SYS_RECEIVED_KEYSTONE, PetalburgCity_Gym_EventScript_NormanBattle
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
 	giveitem ITEM_MEGA_BRACELET
@@ -1784,6 +1785,34 @@ PetalburgCity_Gym_EventScript_GiveFacade::
 	return
 
 
+PetalburgCity_Gym_EventScript_CheckTrainers::
+	checktrainerflag TRAINER_RANDALL
+	goto_if 0, PetalburgCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_PARKER
+	goto_if 0, PetalburgCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_GEORGE
+	goto_if 0, PetalburgCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_BERKE
+	goto_if 0, PetalburgCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_MARY
+	goto_if 0, PetalburgCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_ALEXIA
+	goto_if 0, PetalburgCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_JODY
+	goto_if 0, PetalburgCity_Gym_EventScript_CheckTrainers_3
+PetalburgCity_Gym_EventScript_CheckTrainers_2:
+	return
+
+PetalburgCity_Gym_EventScript_CheckTrainers_1:
+	msgbox PetalburgCity_Gym_EventScript_CheckTrainers_Text_0, MSGBOX_NPC
+	release
+	end
+
+PetalburgCity_Gym_EventScript_CheckTrainers_3:
+	goto_if_unset FLAG_BADGE05_GET, PetalburgCity_Gym_EventScript_CheckTrainers_1
+	goto PetalburgCity_Gym_EventScript_CheckTrainers_2
+
+
 PetalburgCity_Gym_EventScript_GiveFacade_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
@@ -1791,3 +1820,8 @@ PetalburgCity_Gym_EventScript_GiveFacade_Text_0:
 PetalburgCity_Gym_EventScript_GiveFacade_Text_1:
 	.string "{PLAYER} got Norman's {COLOR BLUE}Kangaskhan{COLOR DARK_GRAY} as\n"
 	.string "a gift!$"
+
+PetalburgCity_Gym_EventScript_CheckTrainers_Text_0:
+	.string "Dad: Sorry {PLAYER}, but you need to\n"
+	.string "defeat every trainer on this Gym\l"
+	.string "before battling your dad.$"

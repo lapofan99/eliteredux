@@ -74,6 +74,7 @@ MauvilleCity_Gym_EventScript_DeactivatePuzzle:: @ 820DEE7
 	end
 
 MauvilleCity_Gym_EventScript_Wattson:: @ 820DEEB
+	call MauvilleCity_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_WATTSON, MauvilleCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, MauvilleCity_Gym_EventScript_WattsonRematch
 	trainerbattle_single TRAINER_WATTSON_1, MauvilleCity_Gym_Text_WattsonIntro, MauvilleCity_Gym_Text_WattsonDefeat, MauvilleCity_Gym_EventScript_WattsonDefeated, NO_MUSIC
@@ -498,6 +499,30 @@ MauvilleCity_Gym_EventScript_GiveVoltSwitch::
 	end
 
 
+MauvilleCity_Gym_EventScript_CheckTrainers::
+	checktrainerflag TRAINER_KIRK
+	goto_if 0, MauvilleCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_SHAWN
+	goto_if 0, MauvilleCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_BEN
+	goto_if 0, MauvilleCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_VIVIAN
+	goto_if 0, MauvilleCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_ANGELO
+	goto_if 0, MauvilleCity_Gym_EventScript_CheckTrainers_3
+MauvilleCity_Gym_EventScript_CheckTrainers_2:
+	return
+
+MauvilleCity_Gym_EventScript_CheckTrainers_1:
+	msgbox MauvilleCity_Gym_EventScript_CheckTrainers_Text_0, MSGBOX_NPC
+	release
+	end
+
+MauvilleCity_Gym_EventScript_CheckTrainers_3:
+	goto_if_unset FLAG_BADGE03_GET, MauvilleCity_Gym_EventScript_CheckTrainers_1
+	goto MauvilleCity_Gym_EventScript_CheckTrainers_2
+
+
 MauvilleCity_Gym_EventScript_GiveVoltSwitch_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
@@ -505,3 +530,8 @@ MauvilleCity_Gym_EventScript_GiveVoltSwitch_Text_0:
 MauvilleCity_Gym_EventScript_GiveVoltSwitch_Text_1:
 	.string "{PLAYER} got Wattson's {COLOR BLUE}Rotom-Mow{COLOR DARK_GRAY} as\n"
 	.string "a gift!$"
+
+MauvilleCity_Gym_EventScript_CheckTrainers_Text_0:
+	.string "Wattson: Sorry, but you need to defeat\n"
+	.string "every trainer on this Gym before\l"
+	.string "battling me.$"

@@ -49,6 +49,7 @@ MossdeepCity_Gym_EventScript_SetSwitch4Metatiles:: @ 8220885
 	end
 
 MossdeepCity_Gym_EventScript_TateAndLiza:: @ 8220898
+	call MossdeepCity_Gym_EventScript_CheckTrainers
 	setflag FLAG_SYS_INVERSE_BATTLE
 	//goto_if_set FLAG_DAILY_REMATCH_TATE_AND_LIZA, MossdeepCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_Gym_EventScript_TateAndLizaRematch
@@ -699,6 +700,45 @@ MossdeepCity_Gym_EventScript_GiveCalmMind::
 	end
 
 
+MossdeepCity_Gym_EventScript_CheckTrainers::
+	checktrainerflag TRAINER_PRESTON
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_VIRGIL
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_BLAKE
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_HANNAH
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_SAMANTHA
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_MAURA
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_NICHOLAS
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_MACEY
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_CLIFFORD
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_KATHLEEN
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_NATE
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_SYLVIA
+	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
+MossdeepCity_Gym_EventScript_CheckTrainers_2:
+	return
+
+MossdeepCity_Gym_EventScript_CheckTrainers_1:
+	msgbox MossdeepCity_Gym_EventScript_CheckTrainers_Text_0, MSGBOX_NPC
+	msgbox MossdeepCity_Gym_EventScript_CheckTrainers_Text_1, MSGBOX_NPC
+	release
+	end
+
+MossdeepCity_Gym_EventScript_CheckTrainers_3:
+	goto_if_unset FLAG_BADGE07_GET, MossdeepCity_Gym_EventScript_CheckTrainers_1
+	goto MossdeepCity_Gym_EventScript_CheckTrainers_2
+
+
 MossdeepCity_Gym_EventScript_GiveCalmMind_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from us!$"
@@ -706,3 +746,11 @@ MossdeepCity_Gym_EventScript_GiveCalmMind_Text_0:
 MossdeepCity_Gym_EventScript_GiveCalmMind_Text_1:
 	.string "{PLAYER} got Tate & Liza's {COLOR BLUE}Slowbro{COLOR DARK_GRAY} as\n"
 	.string "a gift!$"
+
+MossdeepCity_Gym_EventScript_CheckTrainers_Text_0:
+	.string "Tate: Sorry, but you need to defeat\n"
+	.string "every$"
+
+MossdeepCity_Gym_EventScript_CheckTrainers_Text_1:
+	.string "Liza: trainer on this Gym before\n"
+	.string "battling us$"

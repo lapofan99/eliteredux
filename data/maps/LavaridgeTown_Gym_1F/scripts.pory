@@ -50,6 +50,7 @@ LavaridgeTown_Gym_1F_EventScript_EndCheckBuryTrainers:: @ 81FE78B
 	return
 
 LavaridgeTown_Gym_1F_EventScript_Flannery:: @ 81FE78C
+	call LavaridgeTown_Gym_EventScript_CheckTrainers
 	//goto_if_set FLAG_DAILY_REMATCH_FLANNERY, LavaridgeTown_Gym_1F_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
 	trainerbattle_single TRAINER_FLANNERY_1, LavaridgeTown_Gym_1F_Text_FlanneryIntro, LavaridgeTown_Gym_1F_Text_FlanneryDefeat, LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated, NO_MUSIC
@@ -481,4 +482,25 @@ script LavaridgeTown_Gym_1F_EventScript_GiveOverheat{
 	msgbox(LavaridgeTown_Gym_1F_Text_FlanneryPostBattle, MSGBOX_DEFAULT)
 	release
 	end
+}
+
+script LavaridgeTown_Gym_EventScript_CheckTrainers{
+	//Check that you have defeated every trainer in that Gym and that you don't have that badge yet
+	if(((!defeated(TRAINER_COLE)     || 
+	     !defeated(TRAINER_AXLE)     || 
+		 !defeated(TRAINER_KEEGAN)   || 
+		 !defeated(TRAINER_GERALD)   ||
+	     !defeated(TRAINER_JEFF)     ||
+		 !defeated(TRAINER_JACE)     ||
+		 !defeated(TRAINER_DANIELLE) ||
+		 !defeated(TRAINER_ELI)) &&
+		 !flag(FLAG_BADGE04_GET))){
+		msgbox(format("Flannery: Sorry, but you need to defeat every trainer on this Gym before battling me."), MSGBOX_NPC)
+		release
+		end
+	}
+	else{
+		//If you have beaten every trainer or you have the badge just return to the previous script
+		return
+	}
 }
