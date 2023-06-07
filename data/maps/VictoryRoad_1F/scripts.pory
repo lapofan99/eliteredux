@@ -229,9 +229,9 @@ script VictoryRoad_1F_EventScript_LegendaryNPC{
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("My colleagues might have bombarded you with information about their route's legendaries, but I'm different!\p"
-		"The Legendaries of this route are here for no apparent reason. I tried asking my colleagues, but they ignored my emails... shame on them!\p"
+		"Those residing in this dank cave... just happened to randomly like it, so they stayed. I tried asking my colleagues about it, but they ignored my emails... shame on them!\p"
 		"Two are poisonous dragons, one's a football player, and they've got nothing to do with each other!\p"
-		"You seem like a smart fella, so no beating around the bush this time: become champion, beat every trainer, talk to me, use your DexNav, done!"))
+		"You seem like a smart fella, so no beating around the bush this time: become champion, beat every trainer, talk to me, use your DexNav, and pronto! Three legendaries for you!"))
 	}
 	else{
 		if(defeated(TRAINER_WALLY_VR_1) &&
