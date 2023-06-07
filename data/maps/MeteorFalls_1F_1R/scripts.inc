@@ -3,6 +3,8 @@
 .set LOCALID_ARCHIE, 3
 .set LOCALID_AQUA_GRUNT_1, 4
 .set LOCALID_AQUA_GRUNT_2, 5
+.set LOCALID_PROF_COSMO, 6
+.set LOCALID_RIVAL, 7
 
 MeteorFalls_1F_1R_MapScripts:: @ 822BD2A
 	map_script MAP_SCRIPT_ON_LOAD, MeteorFalls_1F_1R_OnLoad
@@ -29,7 +31,7 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	special SpawnCameraObject
 	applymovement OBJ_EVENT_ID_CAMERA, MeteorFalls_1F_1R_Movement_WalkDown2
 	waitmovement 0
-	applymovement 11, Common_Movement_WalkInPlaceLeft
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
 	checkplayergender
 	compare VAR_RESULT, MALE
@@ -37,16 +39,16 @@ MeteorFalls_1F_1R_EventScript_MagmaStealsMeteoriteScene:: @ 822BD5F
 	compare VAR_RESULT, FEMALE
 	goto_if_eq MeteorFalls_1F_1R_EventScript_Brendan
 MeteorFalls_1F_1R_EventScript_MagmaAfterBattle::
-	applymovement 6, Common_Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_WithThisMeteorite, MSGBOX_DEFAULT
 	closemessage
 	msgbox MeteorFalls_1F_1R_Text_HoldItRightThereMagma, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
-	applymovement 11, Common_Movement_WalkInPlaceFastestLeft
-	applymovement 5, Common_Movement_WalkInPlaceFastestLeft
-	applymovement 6, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_MAGMA_GRUNT_1, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	addobject LOCALID_ARCHIE
 	addobject LOCALID_AQUA_GRUNT_1
@@ -56,21 +58,21 @@ MeteorFalls_1F_1R_EventScript_MagmaAfterBattle::
 	applymovement LOCALID_AQUA_GRUNT_1, MeteorFalls_1F_1R_Movement_AquaGrunt1Arrive
 	applymovement LOCALID_AQUA_GRUNT_2, MeteorFalls_1F_1R_Movement_AquaGrunt2Arrive
 	waitmovement 0
-	applymovement 6, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_BeSeeingYouTeamAqua, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay
-	applymovement 11, MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay
-	applymovement 5, MeteorFalls_1F_1R_Movement_MagmaGrunt1Exit
-	applymovement 6, MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit
+	applymovement LOCALID_RIVAL, MeteorFalls_1F_1R_Movement_PushPlayerOutOfWay
+	applymovement LOCALID_MAGMA_GRUNT_1, MeteorFalls_1F_1R_Movement_MagmaGrunt1Exit
+	applymovement LOCALID_MAGMA_GRUNT_2, MeteorFalls_1F_1R_Movement_MagmaGrunt2Exit
 	waitmovement 0
 	removeobject LOCALID_MAGMA_GRUNT_1
 	removeobject LOCALID_MAGMA_GRUNT_2
 	applymovement LOCALID_ARCHIE, MeteorFalls_1F_1R_Movement_ArchieApproachPlayer
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
-	applymovement 11, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_ArchieSeenYouBefore, MSGBOX_DEFAULT
 	closemessage
@@ -78,23 +80,23 @@ MeteorFalls_1F_1R_EventScript_MagmaAfterBattle::
 	applymovement LOCALID_AQUA_GRUNT_2, MeteorFalls_1F_1R_Movement_AquaGrunt2ApproachArchie
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_BossWeShouldChaseMagma, MSGBOX_DEFAULT
-	applymovement 7, Common_Movement_WalkInPlaceFastestLeft
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_ArchieYesNoTellingWhatMagmaWillDo, MSGBOX_DEFAULT
-	applymovement 7, Common_Movement_WalkInPlaceFastestRight
+	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_ArchieFarewell, MSGBOX_DEFAULT
 	closemessage
-	applymovement 7, MeteorFalls_1F_1R_Movement_ArchieExit
-	applymovement 8, MeteorFalls_1F_1R_Movement_AquaGrunt1Exit
-	applymovement 9, MeteorFalls_1F_1R_Movement_AquaGrunt2Exit
+	applymovement LOCALID_ARCHIE, MeteorFalls_1F_1R_Movement_ArchieExit
+	applymovement LOCALID_AQUA_GRUNT_1, MeteorFalls_1F_1R_Movement_AquaGrunt1Exit
+	applymovement LOCALID_AQUA_GRUNT_2, MeteorFalls_1F_1R_Movement_AquaGrunt2Exit
 	applymovement OBJ_EVENT_ID_PLAYER, MeteorFalls_1F_1R_Movement_WatchAquaLeave
-	applymovement 11, MeteorFalls_1F_1R_Movement_WatchAquaLeave
+	applymovement LOCALID_RIVAL, MeteorFalls_1F_1R_Movement_WatchAquaLeave
 	waitmovement 0
 	fadedefaultbgm
-	removeobject 7
-	removeobject 8
-	removeobject 9
+	removeobject LOCALID_ARCHIE
+	removeobject LOCALID_AQUA_GRUNT_1
+	removeobject LOCALID_AQUA_GRUNT_2
 	special RemoveCameraObject
 	setflag FLAG_HIDE_ROUTE_112_TEAM_MAGMA
 	setflag FLAG_MET_ARCHIE_METEOR_FALLS
@@ -106,15 +108,15 @@ MeteorFalls_1F_1R_EventScript_MagmaAfterBattle::
 MeteorFalls_1F_1R_EventScript_May::
 	msgbox MeteorFalls_1F_1R_Text_MayBozos, MSGBOX_DEFAULT
 	closemessage
-	applymovement 6, Common_Movement_WalkInPlaceRight
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_Brat, MSGBOX_DEFAULT
 	closemessage
 MeteorFalls_1F_1R_EventScript_MayAfterCancel::
-	applymovement 11, Common_Movement_WalkInPlaceUp
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	playse SE_PIN
-	applymovement 11, Common_Movement_ExclamationMark
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
 	applymovement OBJ_EVENT_ID_PLAYER, MeteorFalls_1F_1R_Movement_WalkDown2
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_MayPlayerHere, MSGBOX_YESNO
@@ -126,15 +128,15 @@ MeteorFalls_1F_1R_EventScript_MayAfterCancel::
 MeteorFalls_1F_1R_EventScript_Brendan::
 	msgbox MeteorFalls_1F_1R_Text_BrendanJerks, MSGBOX_DEFAULT
 	closemessage
-	applymovement 6, Common_Movement_WalkInPlaceRight
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_Brat, MSGBOX_DEFAULT
 	closemessage
 MeteorFalls_1F_1R_EventScript_BrendanAfterCancel::
-	applymovement 11, Common_Movement_WalkInPlaceUp
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceUp
 	waitmovement 0
 	playse SE_PIN
-	applymovement 11, Common_Movement_ExclamationMark
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
 	applymovement OBJ_EVENT_ID_PLAYER, MeteorFalls_1F_1R_Movement_WalkDown2
 	waitmovement 0
 	msgbox MeteorFalls_1F_1R_Text_BrendanPlayerHere, MSGBOX_YESNO
@@ -145,11 +147,11 @@ MeteorFalls_1F_1R_EventScript_BrendanAfterCancel::
 
 MeteorFalls_1F_1R_EventScript_MultiMay::
 	msgbox MeteorFalls_1F_1R_Text_MayLetsBattle, MSGBOX_DEFAULT
-	applymovement 5, MeteorFalls_1F_1R_Movement_WalkRight1
-	applymovement 11, Common_Movement_WalkInPlaceLeft
+	applymovement LOCALID_MAGMA_GRUNT_1, MeteorFalls_1F_1R_Movement_WalkRight1
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceLeft
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	applymovement 6, Common_Movement_WalkInPlaceRight
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	special HealPlayerParty
 	msgbox MeteorFalls_1F_1R_Text_CourtneyLetsBattle, MSGBOX_DEFAULT
@@ -164,11 +166,11 @@ MeteorFalls_1F_1R_EventScript_MultiMay::
 
 MeteorFalls_1F_1R_EventScript_MultiBrendan::
 	msgbox MeteorFalls_1F_1R_Text_BrendayLetsBattle, MSGBOX_DEFAULT
-	applymovement 5, MeteorFalls_1F_1R_Movement_WalkRight1
-	applymovement 11, Common_Movement_WalkInPlaceLeft
+	applymovement LOCALID_MAGMA_GRUNT_1, MeteorFalls_1F_1R_Movement_WalkRight1
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceLeft
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceLeft
 	waitmovement 0
-	applymovement 6, Common_Movement_WalkInPlaceRight
+	applymovement LOCALID_MAGMA_GRUNT_2, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	special HealPlayerParty
 	msgbox MeteorFalls_1F_1R_Text_CourtneyLetsBattle, MSGBOX_DEFAULT
