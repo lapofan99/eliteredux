@@ -151,6 +151,7 @@ MeteorFalls_1F_1R_EventScript_MultiMay::
 	waitmovement 0
 	applymovement 6, Common_Movement_WalkInPlaceRight
 	waitmovement 0
+	special HealPlayerParty
 	msgbox MeteorFalls_1F_1R_Text_CourtneyLetsBattle, MSGBOX_DEFAULT
 	choose_mons
     compare VAR_RESULT, 0
@@ -169,6 +170,7 @@ MeteorFalls_1F_1R_EventScript_MultiBrendan::
 	waitmovement 0
 	applymovement 6, Common_Movement_WalkInPlaceRight
 	waitmovement 0
+	special HealPlayerParty
 	msgbox MeteorFalls_1F_1R_Text_CourtneyLetsBattle, MSGBOX_DEFAULT
 	choose_mons
     compare VAR_RESULT, 0
