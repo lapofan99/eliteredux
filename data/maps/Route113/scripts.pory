@@ -216,7 +216,9 @@ script Route113_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Way to go champ! Here, take this little creature and nurture it, you'll reach the ends of the world if you stick with it enough!"))
 		givemon(SPECIES_DREEPY, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got a {COLOR BLUE}Dreepy{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got a {COLOR BLUE}Dreepy{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here

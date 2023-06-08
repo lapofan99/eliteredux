@@ -552,7 +552,9 @@ script RusturfTunnel_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like! No, really, take as many as you can! (please...)"))
 		givemon(SPECIES_IMPIDIMP, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got an {COLOR BLUE}Impidimp{COLOR DARK_GRAY} as a gift for defeating the hiker!"))
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got an {COLOR BLUE}Impidimp{COLOR DARK_GRAY} as a gift for defeating the hiker!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here

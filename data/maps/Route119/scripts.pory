@@ -676,7 +676,9 @@ script Route119_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Thank you so much, you're my saviour! I think this little guy got messed up on the way to Hoenn, but I like them regardless!"))
 		givemon(SPECIES_ARCTOVISH, 50, ITEM_NONE)
-		msgbox(format("{PLAYER} got an {COLOR BLUE}Arctovish{COLOR DARK_GRAY} as a gift for finding and defeating every trainer in the tall grass!"))
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got an {COLOR BLUE}Arctovish{COLOR DARK_GRAY} as a gift for finding and defeating every trainer in the tall grass!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here

@@ -537,7 +537,9 @@ script Route116_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Take this Pokémon from Galar. You can have as many of them as you like!"))
 		givemon(SPECIES_FARFETCHD_GALARIAN, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got a {COLOR BLUE}Galarian Farfetch'd{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got a {COLOR BLUE}Galarian Farfetch'd{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here

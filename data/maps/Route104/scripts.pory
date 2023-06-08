@@ -1195,7 +1195,9 @@ script Route104South_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Hehehe, I saw you smiling when you won those battles! Take this, you earned it"))
 		givemon(SPECIES_ZIGZAGOON_GALARIAN, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got a {COLOR BLUE}Galarian Zigzagoon{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got a {COLOR BLUE}Galarian Zigzagoon{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here
@@ -1215,7 +1217,9 @@ script Route104North_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Good job lad! This cat could really use the company of a true Hoennian geezer like ya!"))
 		givemon(SPECIES_MEOWTH_GALARIAN, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got a {COLOR BLUE}Galarian Meowth{COLOR DARK_GRAY} as a gift for defeating every trainer!"))
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got a {COLOR BLUE}Galarian Meowth{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here

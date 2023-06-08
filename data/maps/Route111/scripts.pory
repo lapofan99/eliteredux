@@ -887,7 +887,9 @@ script Route111South_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Well done indeed! Let us commence the celebrations for your victory!"))
 		givemon(SPECIES_SINISTEA, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got a {COLOR BLUE}Sinistea{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got a {COLOR BLUE}Sinistea{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here
@@ -909,7 +911,9 @@ script Route111North_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Your rad fighting gave me chills! You're a natural born ice-breaker!"))
 		givemon(SPECIES_DARUMAKA_GALARIAN, 10, ITEM_NONE)
-		msgbox(format("{PLAYER} got a {COLOR BLUE}Galarian Darumaka{COLOR DARK_GRAY} as a gift for defeating the two Ace trainers here!"))
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got a {COLOR BLUE}Galarian Darumaka{COLOR DARK_GRAY} as a gift for defeating the two Ace trainers here!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here
@@ -933,7 +937,9 @@ script Route111Desert_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Congrats... I guess... whatever, take this and leave me alone, I got better stuff to do than stay in this dried up wasteland."))
 		givemon(SPECIES_ARCTOZOLT, 50, ITEM_NONE)
-		msgbox(format("{PLAYER} got an {COLOR BLUE}Arctozolt{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got an {COLOR BLUE}Arctozolt{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here
