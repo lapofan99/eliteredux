@@ -886,7 +886,9 @@ Route111South_EventScript_Gen8_NPC_1:
 Route111South_EventScript_Gen8_NPC_2:
 	msgbox Route111South_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_SINISTEA, 10, ITEM_NONE
-	msgbox Route111South_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route111South_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route111South_EventScript_Gen8_NPC_1
 
 Route111South_EventScript_Gen8_NPC_4:
@@ -929,7 +931,9 @@ Route111North_EventScript_Gen8_NPC_1:
 Route111North_EventScript_Gen8_NPC_2:
 	msgbox Route111North_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_DARUMAKA_GALARIAN, 10, ITEM_NONE
-	msgbox Route111North_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route111North_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route111North_EventScript_Gen8_NPC_1
 
 Route111North_EventScript_Gen8_NPC_4:
@@ -952,7 +956,9 @@ Route111Desert_EventScript_Gen8_NPC_1:
 Route111Desert_EventScript_Gen8_NPC_2:
 	msgbox Route111Desert_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_ARCTOZOLT, 50, ITEM_NONE
-	msgbox Route111Desert_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route111Desert_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route111Desert_EventScript_Gen8_NPC_1
 
 Route111Desert_EventScript_Gen8_NPC_4:

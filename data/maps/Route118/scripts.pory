@@ -467,6 +467,9 @@ script Route118East_EventScript_Gen8_NPC{
 		// when you defeat every trainer
 		msgbox(format("Here, take it and don't tell anyone!"))
 		givemon(SPECIES_DRACOZOLT, 50, ITEM_NONE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} got a {COLOR BLUE}Dracozolt{COLOR DARK_GRAY} as a gift for defeating the three regular trainers here!"))
+		waitfanfare
 	}
 	else{
 		// before defeating every trainer here

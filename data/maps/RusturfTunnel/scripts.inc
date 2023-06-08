@@ -555,7 +555,9 @@ RusturfTunnel_EventScript_Gen8_NPC_1:
 RusturfTunnel_EventScript_Gen8_NPC_2:
 	msgbox RusturfTunnel_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_IMPIDIMP, 10, ITEM_NONE
-	msgbox RusturfTunnel_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message RusturfTunnel_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto RusturfTunnel_EventScript_Gen8_NPC_1
 
 

@@ -1055,7 +1055,9 @@ Route110_Walking_EventScript_Gen8_NPC_1:
 Route110_Walking_EventScript_Gen8_NPC_2:
 	msgbox Route110_Walking_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_TOXEL, 10, ITEM_NONE
-	msgbox Route110_Walking_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_Walking_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route110_Walking_EventScript_Gen8_NPC_1
 
 Route110_Walking_EventScript_Gen8_NPC_4:
@@ -1108,7 +1110,9 @@ Route110_CyclingRoad_EventScript_Gen8_NPC_1:
 Route110_CyclingRoad_EventScript_Gen8_NPC_2:
 	msgbox Route110_CyclingRoad_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_ROLYCOLY, 10, ITEM_NONE
-	msgbox Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_CyclingRoad_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route110_CyclingRoad_EventScript_Gen8_NPC_1
 
 Route110_CyclingRoad_EventScript_Gen8_NPC_4:

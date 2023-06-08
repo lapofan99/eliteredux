@@ -248,7 +248,9 @@ Route113_EventScript_Gen8_NPC_1:
 Route113_EventScript_Gen8_NPC_2:
 	msgbox Route113_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_DREEPY, 10, ITEM_NONE
-	msgbox Route113_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route113_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route113_EventScript_Gen8_NPC_1
 
 Route113_EventScript_Gen8_NPC_4:

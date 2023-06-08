@@ -1227,6 +1227,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_MINIOR_METEOR_BLUE] = sMiniorLevelUpLearnset,
     [SPECIES_MINIOR_METEOR_INDIGO] = sMiniorLevelUpLearnset,
     [SPECIES_MINIOR_METEOR_VIOLET] = sMiniorLevelUpLearnset,
+    //
     [SPECIES_MINIOR_CORE_RED] = sMiniorLevelUpLearnset,
     [SPECIES_MINIOR_CORE_ORANGE] = sMiniorLevelUpLearnset,
     [SPECIES_MINIOR_CORE_YELLOW] = sMiniorLevelUpLearnset,

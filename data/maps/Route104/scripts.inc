@@ -1199,7 +1199,9 @@ Route104South_EventScript_Gen8_NPC_1:
 Route104South_EventScript_Gen8_NPC_2:
 	msgbox Route104South_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_ZIGZAGOON_GALARIAN, 10, ITEM_NONE
-	msgbox Route104South_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route104South_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route104South_EventScript_Gen8_NPC_1
 
 Route104South_EventScript_Gen8_NPC_4:
@@ -1227,7 +1229,9 @@ Route104North_EventScript_Gen8_NPC_1:
 Route104North_EventScript_Gen8_NPC_2:
 	msgbox Route104North_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_MEOWTH_GALARIAN, 10, ITEM_NONE
-	msgbox Route104North_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route104North_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route104North_EventScript_Gen8_NPC_1
 
 Route104North_EventScript_Gen8_NPC_4:
@@ -1284,7 +1288,7 @@ Route104North_EventScript_Gen8_NPC_Text_0:
 
 Route104North_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Galarian Meowth{COLOR DARK_GRAY} as a\n"
-	.string "gift for defeating every trainer!$"
+	.string "gift for defeating every trainer here!$"
 
 Route104North_EventScript_Gen8_NPC_Text_2:
 	.string "I can reward you with a stalwart\n"

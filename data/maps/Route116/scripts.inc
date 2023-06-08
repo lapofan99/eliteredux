@@ -573,7 +573,9 @@ Route116_EventScript_Gen8_NPC_1:
 Route116_EventScript_Gen8_NPC_2:
 	msgbox Route116_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_FARFETCHD_GALARIAN, 10, ITEM_NONE
-	msgbox Route116_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route116_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route116_EventScript_Gen8_NPC_1
 
 Route116_EventScript_Gen8_NPC_4:

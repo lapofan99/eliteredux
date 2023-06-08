@@ -613,7 +613,9 @@ Route109_Beach_EventScript_Gen8_NPC_1:
 Route109_Beach_EventScript_Gen8_NPC_2:
 	msgbox Route109_Beach_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_YAMASK_GALARIAN, 10, ITEM_NONE
-	msgbox Route109_Beach_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route109_Beach_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route109_Beach_EventScript_Gen8_NPC_1
 
 Route109_Beach_EventScript_Gen8_NPC_4:

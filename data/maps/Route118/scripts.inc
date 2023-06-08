@@ -473,7 +473,9 @@ Route118West_EventScript_Gen8_NPC_1:
 Route118West_EventScript_Gen8_NPC_2:
 	msgbox Route118West_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_HATENNA, 10, ITEM_NONE
-	msgbox Route118West_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route118West_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route118West_EventScript_Gen8_NPC_1
 
 Route118West_EventScript_Gen8_NPC_4:
@@ -506,7 +508,9 @@ Route118East_EventScript_Gen8_NPC_1:
 Route118East_EventScript_Gen8_NPC_2:
 	msgbox Route118East_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_DRACOZOLT, 50, ITEM_NONE
-	msgbox Route118East_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route118East_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route118East_EventScript_Gen8_NPC_1
 
 Route118East_EventScript_Gen8_NPC_4:

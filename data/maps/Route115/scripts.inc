@@ -231,7 +231,9 @@ Route115_EventScript_Gen8_NPC_1:
 Route115_EventScript_Gen8_NPC_2:
 	msgbox Route115_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_DRACOVISH, 50, ITEM_NONE
-	msgbox Route115_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route115_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route115_EventScript_Gen8_NPC_1
 
 Route115_EventScript_Gen8_NPC_4:

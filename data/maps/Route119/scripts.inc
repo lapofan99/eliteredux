@@ -737,7 +737,9 @@ Route119_EventScript_Gen8_NPC_1:
 Route119_EventScript_Gen8_NPC_2:
 	msgbox Route119_EventScript_Gen8_NPC_Text_0
 	givemon SPECIES_ARCTOVISH, 50, ITEM_NONE
-	msgbox Route119_EventScript_Gen8_NPC_Text_1
+	playfanfare MUS_OBTAIN_ITEM
+	message Route119_EventScript_Gen8_NPC_Text_1
+	waitfanfare
 	goto Route119_EventScript_Gen8_NPC_1
 
 Route119_EventScript_Gen8_NPC_4:
