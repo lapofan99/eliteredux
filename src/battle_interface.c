@@ -3058,6 +3058,11 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
     if (gBattleScripting.abilityPopupOverwrite != 0)
         ability = gBattleScripting.abilityPopupOverwrite;
 
+    if(gBattleScripting.battlerPopupOverwrite != MAX_BATTLERS_COUNT){
+        battlerId = gBattleScripting.battlerPopupOverwrite;
+        gBattleScripting.battlerPopupOverwrite = MAX_BATTLERS_COUNT;
+    }
+
     if (!gBattleStruct->activeAbilityPopUps)
     {
         LoadSpriteSheet(&sSpriteSheet_AbilityPopUp);
