@@ -7783,10 +7783,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && IsMoveMakingContact(move, gBattlerAttacker)
              && !(gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
              && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && gBattlerAttacker != gBattlerTarget
              && (Random() % 3) == 0)
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_GRIP_PINCER;
-				gLastUsedAbility = ABILITY_GRIP_PINCER;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRIP_PINCER;
 
                 gBattleMons[gBattlerTarget].status2 |= STATUS2_WRAPPED;
                 if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_GRIP_CLAW)
@@ -8126,7 +8126,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STENCH)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !gProtectStructs[battler].confusionSelfDmg
              && (Random() % 10) == 0
              && !IS_MOVE_STATUS(move)
              && !sMovesNotAffectedByStench[gCurrentMove])
@@ -8144,23 +8144,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GRIP_PINCER)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && gBattleMons[gBattlerTarget].hp != 0
-                && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-                && IsMoveMakingContact(move, gBattlerAttacker)
+                && !gProtectStructs[battler].confusionSelfDmg
+                && IsMoveMakingContact(move, battler)
                 && !(gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
+                && battler != gBattlerTarget
                 && TARGET_TURN_DAMAGED // Need to actually hit the target
                 && (Random() % 3) == 0)
                 {
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_GRIP_PINCER;
-                    gLastUsedAbility = ABILITY_GRIP_PINCER;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRIP_PINCER;
 
                     gBattleMons[gBattlerTarget].status2 |= STATUS2_WRAPPED;
-                    if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_GRIP_CLAW)
+                    if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_GRIP_CLAW)
                             gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
                         else
                             gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
 
                     gBattleStruct->wrappedMove[gBattlerTarget] = gCurrentMove;
-                    gBattleStruct->wrappedBy[gBattlerTarget] = gBattlerAttacker;
+                    gBattleStruct->wrappedBy[gBattlerTarget] = battler;
                     BattleScriptPushCursorAndCallback(BattleScript_GripPincerActivated);
                     effect++;
                 }
