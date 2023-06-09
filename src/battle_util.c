@@ -6889,12 +6889,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && IS_MOVE_PHYSICAL(gCurrentMove)
              && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-                gBattlerAttacker = battler;
 				gBattleMons[battler].statStages[STAT_ATK]++;
                 gBattleScripting.animArg1 = 14 + STAT_ATK;
                 gBattleScripting.animArg2 = 0;
-                BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
-                gBattleScripting.battler = battler;
+                BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
                 effect++;
             }
             break;
@@ -7597,7 +7595,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && IS_MOVE_PHYSICAL(gCurrentMove)
              && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
 			{
-                gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_ANGER_POINT;
 				gLastUsedAbility = ABILITY_ANGER_POINT;
 				PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
@@ -7606,7 +7603,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.animArg1 = 14 + STAT_ATK;
 				gBattleScripting.animArg2 = 0;
 				BattleScriptPushCursorAndCallback(BattleScript_AngerPointsLightBoostActivates);
-				gBattleScripting.battler = battler;
 				effect++;
 			}
 		}

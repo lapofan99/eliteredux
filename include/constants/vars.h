@@ -118,7 +118,7 @@
 #define VAR_ROUTE104_STATE                   0x4063
 #define VAR_LAST_TRAINER_BATTLED_2           0x4064 //New Flag
 #define VAR_CANDY_BOX_NUM_LEVELS             0x4065 //New Flag
-#define VAR_ROUTE107_STATE                   0x4066 // Unused Var
+#define VAR_DAMAGE_DONE                      0x4066 //New Flag
 #define VAR_ROUTE108_STATE                   0x4067 // Unused Var
 #define VAR_ROUTE109_STATE                   0x4068 // Unused Var
 #define VAR_ROUTE110_STATE                   0x4069
