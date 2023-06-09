@@ -4955,13 +4955,6 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         break;
     }
     case MON_DATA_HELD_ITEM:
-        #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "SetMonData Held Item was called");
-            MgbaClose();
-        }
-        #endif
         SET16(substruct0->heldItem);
         break;
     case MON_DATA_EXP:
@@ -5826,11 +5819,17 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             // Candy Box
             if ((itemEffect[i] & ITEM3_LEVEL_UP) && GetMonData(mon, MON_DATA_LEVEL, NULL) != MAX_LEVEL && GetMonData(mon, MON_DATA_LEVEL, NULL) < GetLevelCap() && FlagGet(FLAG_USED_CANDY_BOX))
             {
-                //levelUp = GetLevelCap() - GetMonData(mon, MON_DATA_LEVEL, NULL);
-                levelUp = VarGet(VAR_CANDY_BOX_LEVEL);
+                if(VarGet(VAR_CANDY_BOX_LEVEL) == (VarGet(VAR_CANDY_BOX_NUM_LEVELS) - 1)){
+                    levelUp = GetLevelCap() - GetMonData(mon, MON_DATA_LEVEL, NULL);
+                }
+                else{
+                    levelUp = VarGet(VAR_CANDY_BOX_LEVEL);
+                    if(levelUp > CANDY_BOX_LEVELS)
+                        levelUp = CANDY_BOX_LEVELS;
+                }
 
-                if(levelUp > CANDY_BOX_LEVELS)
-                   levelUp = CANDY_BOX_LEVELS;
+                if((GetMonData(mon, MON_DATA_LEVEL, NULL) + levelUp) >= MAX_LEVEL)
+                    levelUp = MAX_LEVEL - GetMonData(mon, MON_DATA_LEVEL, NULL);
 
                 dataUnsigned = gExperienceTables[gBaseStats[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][GetMonData(mon, MON_DATA_LEVEL, NULL) + levelUp];
                 SetMonData(mon, MON_DATA_EXP, &dataUnsigned);

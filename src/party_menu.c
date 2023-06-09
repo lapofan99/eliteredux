@@ -5050,23 +5050,34 @@ static void ShowMoveSelectWindow(u8 slot)
 
 static void ShowLevelUpSelectWindow(u8 slot)
 {
-    u8 nextlevel, newlevels, i;
+    u8 nextlevel, numlevels, i;
     u8 levelCount = 0;
     u8 fontId = 1;
     u8 windowId = DisplaySelectionWindowNew(SELECTWINDOW_LEVEL_UP);
     u8 level = GetMonData(&gPlayerParty[slot], MON_DATA_LEVEL);
+    u8 levelcap = GetLevelCap();
+	static const u8 sText_levelCap[]    =  _("Level Cap$");
 
-    newlevels = GetLevelCap() - level;
+    if(levelcap >= MAX_LEVEL)
+        levelcap = MAX_LEVEL;
 
-    if(newlevels >= MAX_CANDY_BOX_LEVELS)
-        newlevels = MAX_CANDY_BOX_LEVELS;
+    numlevels = levelcap - level;
+
+    if(numlevels >= MAX_CANDY_BOX_LEVELS)
+        numlevels = MAX_CANDY_BOX_LEVELS;
 
     nextlevel = level;
+    VarSet(VAR_CANDY_BOX_NUM_LEVELS, numlevels);
 
-    for (i = 0; i < newlevels; i++)
+    for (i = 0; i < numlevels; i++)
     {
         nextlevel++;
-        ConvertIntToDecimalStringN(gStringVar1, nextlevel, STR_CONV_MODE_RIGHT_ALIGN, 3);
+        if(i == (numlevels - 1)){
+            StringCopy(gStringVar1, sText_levelCap);
+        }
+        else{
+            ConvertIntToDecimalStringN(gStringVar1, nextlevel, STR_CONV_MODE_RIGHT_ALIGN, 3);
+        }
         AddTextPrinterParameterized(windowId, fontId, gStringVar1, 8, (i * 16) + 1, TEXT_SPEED_FF, NULL);
         if(nextlevel <= GetLevelCap() && nextlevel <= MAX_LEVEL)
             levelCount++;
@@ -5524,6 +5535,7 @@ void ItemUseCB_CandyBox2(u8 taskId, TaskFunc task)
     }
     else if(level + 1 == levelCap){
         VarSet(VAR_CANDY_BOX_LEVEL, 0);
+        VarSet(VAR_CANDY_BOX_NUM_LEVELS, 1);
         ItemUseCB_CandyBox(taskId, task);
     }
     else{
@@ -5571,6 +5583,7 @@ void ItemUseCB_CandyBox(u8 taskId, TaskFunc task)
         ScheduleBgCopyTilemapToVram(2);
         FlagClear(FLAG_USED_CANDY_BOX);
         VarSet(VAR_CANDY_BOX_LEVEL, 0);
+        VarSet(VAR_CANDY_BOX_NUM_LEVELS, 0);
         gTasks[taskId].func = Task_TryLearnNewMoves;
     }
 }

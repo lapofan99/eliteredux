@@ -116,8 +116,8 @@
 #define VAR_CHANSEY_NURSE_STATE              0x4061
 #define VAR_TIMES_WHITED_OUT                 0x4062 //New Flag
 #define VAR_ROUTE104_STATE                   0x4063
-#define VAR_LAST_TRAINER_BATTLED_2           0x4064 // Unused Var
-#define VAR_ROUTE106_STATE                   0x4065 // Unused Var
+#define VAR_LAST_TRAINER_BATTLED_2           0x4064 //New Flag
+#define VAR_CANDY_BOX_NUM_LEVELS             0x4065 //New Flag
 #define VAR_ROUTE107_STATE                   0x4066 // Unused Var
 #define VAR_ROUTE108_STATE                   0x4067 // Unused Var
 #define VAR_ROUTE109_STATE                   0x4068 // Unused Var
