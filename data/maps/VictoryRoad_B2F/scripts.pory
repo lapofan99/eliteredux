@@ -115,16 +115,18 @@ script VictoryRoad_B2F_EventScript_LegendaryNPC{
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("You might have heard the first part of the legend of King Calyrex. If you have, let me tell you the latter part of the story, one that many people don't know about.\p"
 		"After pushing back Necrozma to outer space, Alola was still invaded by the Ultra Beasts, which were far too many to deal with.\p"
-		"Calyrex knew that, if left unchecked, they would eventually consume the entire world and turn it into their personal wasteland.\p"
-		"He knew he needed more power to defeat them, but acquiring that power wouldn't come for cheap. This is because that power wouldn't\p"
-		"come from him, but rather, his steed. You see, most people only remember Glastrier, Calyrex's lawful companion during his daily strolls.\p"
+		"Calyrex knew that, if left unchecked, they would eventually consume the entire world and turn it into a whitered wasteland.\p"
+		"He was powerful, but with only the Tapus by his side, he knew he had no chance of winning.\p"
+		"Dire situations call for methods that allow no half measures to be taken. This was one of those situations.\p"
+		"You see, the King had so far only rode on Glastrier, his lawful companion during his daily strolls.\p"
 		"But Calyrex had an ace up his sleeve: a sinister and deadly steed, that he himself locked away in the castle dungeons fearing for what it could do if left unchecked.\p"
 		"Spectrier was its name: a spectral stallion of pure power and evil. Calyrex, initially hesitant and unwilling, was forced to bring\p"
-		"Spectrier into the fray to save what remained of Alola. He succeded, thanks to the destructive powers of his companion, but paid a great price: Spectrier turned the King from a\p"
+		"Spectrier into the fray to save what remained of Alola. He succeded, thanks to the destructive powers of his companion, but paid an enormous price: Spectrier turned the King from a\p"
 		"benevolent, wise leader to a hateful, cynical, almost feral being, hungry for power, blood and death. The Tapus, watching this sudden transformation, decided not to take any risks:\p"
 		"they tricked Calyrex into dismounting from Spectrier using deceit, and then trapped the once-King and the stallion in the deepest\p"
-		"pits of Earth. The King and his steed, livid from the trick pulled on them, are to this day plotting revenge on the ungrateful and cruel Tapus.\p"
-		"I hope you liked this tale. If you want to meet the rest of the Tapus, the King and Spectrier, become champion and come back to me."))
+		"pits of Earth. Livid from the trick pulled on them, to this day it is said they're plotting revenge on the ungrateful and cruel Tapus.\p"
+		"The incantation holding the King hostage can be severed only once in a thousand years, but the fated day has finally arrived.\p"
+		"Should you want to free Calyrex and his steed, defeat the Pokémon league and come back to me."))
 	}
 	else{
 		if(defeated(TRAINER_JULIE)    &&

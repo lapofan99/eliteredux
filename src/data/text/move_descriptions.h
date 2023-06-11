@@ -1760,8 +1760,8 @@ static const u8 sDRACO_METEORDescription[] = _(
     "Harshly lowers the Sp. Atk.");
 
 static const u8 sDISCHARGEDescription[] = _(
-    "Zaps the foes with electri-\n"
-    "city. May paralyze them.");
+    "Zaps the field with electri-\n"
+    "city. May cause paralysis.");
 
 static const u8 sPOWER_WHIPDescription[] = _(
     "Violently lashes the foe\n"
@@ -3847,7 +3847,7 @@ static const u8 sMoveFourLineDescription_Strength[] = _("The foe is slugged\nat 
 static const u8 sMoveFourLineDescription_Absorb[] = _("An attack that\nabsorbs half the\ndamage it inflicted\nto restore HP.");
 static const u8 sMoveFourLineDescription_MegaDrain[] = _("A tough attack that\ndrains half the\ndamage it inflicted\nto restore HP.");
 static const u8 sMoveFourLineDescription_LeechSeed[] = _("A seed is planted\non the foe to steal\nsome HP for the \nuser on every turn.");
-static const u8 sMoveFourLineDescription_Growth[] = _("The user's body is\nforced to grow,\nraising the Sp.\nAtk stat.");
+static const u8 sMoveFourLineDescription_Growth[] = _("The user's body is\nforced to grow,\nraising its Atk.\nand Sp. Atk stat.");
 static const u8 sMoveFourLineDescription_RazorLeaf[] = _("The foe is hit with\na cutting leaf.\nHigh crit.\nKeen Edge boost."); // new
 static const u8 sMoveFourLineDescription_SolarBeam[] = _("Strong 2-turn move.\nWeather-based.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_PoisonPowder[] = _("A cloud of toxic\ndust is scattered.\nIt poisons the\nfoe."); // new
