@@ -312,14 +312,14 @@ script Route128_EventScript_LegendaryNPC{
     lock
     faceplayer
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("Once upon a time, in the frozen lands of Galar, lived a benevolent king named Calyrex.\p"
-		"Calyrex was a hard-working king: every day he would ride his magnificent steed, Glastrier, across his realm,\p"
+		msgbox(format("Once upon a time, in the frozen lands of Galar, lived a benevolent king named Calyrex\p"
+		"Calyrex was beloved by the people and feared by his enemies: every day he would ride his magnificent steed, Glastrier, across the realm,\p"
 		"helping those in need, lifting everyone's spirits and being there when his presence was needed the most.\p"
-		"One fateful day, two messengers from Alola came to his castle: they were the Island Guardians Tapu Koko and Tapu Bulu.\p"
-		"They told Calyrex that their region was under attack from outer space: Necrozma, the cosmic devourer, had reached Alola,\p"
-		"and was about to wreck havoc alongside his army of Ultra Beasts. The king, in a bid to stop the imminent disaster, rushed to Alola to aid in the fight.\p"
-		"To the astonishment of many, with great determination and unity, the combined power of the King and the Tapus managed to push back Necrozma, but it was already too late: the Ultra Beasts had reached Alola's shores...\p"
-		"This is the part of the legend that was taught to me, but I'm sure someone else can tell you the rest of it. If you wanna catch the King's steed and the two Tapus I mentioned, come back once you become champion!"))
+		"One day, two messengers from Alola came to Calyrex's castle: they were the island guardians Tapu Koko and Tapu Bulu.\p"
+		"They told Calyrex that Alola was under attack from outer space: Necrozma, the cosmic devourer, had finally reached the region,\p"
+		"and was about to wreck havoc alongside his army of Ultra Beasts. The king, fearing for his people, rushed immediately to Alola to aid in the fight.\p"
+		"The battle was long and bloody. Miracolously, they managed to push back Necrozma, but it was already too late: the Ultra Beasts had reached the surface, and it seemed like nothing could stop them...\p"
+		"This is the part of the legend that was taught to me, I'm sure someone knows the rest. If you wanna catch this battling trio, come back once you become champion!"))
 	}
 	else{
 		if(defeated(TRAINER_CARLEE)    &&
@@ -329,10 +329,10 @@ script Route128_EventScript_LegendaryNPC{
 		   defeated(TRAINER_ALEXA)     &&
 		   defeated(TRAINER_KATELYN_1) &&
 		   defeated(TRAINER_ISAIAH_1)){
-			msgbox(format("Tapu Koko, Tapu Bulu and Calyrex-Ice have deemed you worthy of meeting them. I marked their location on your DexNav: use it on this route to meet them!"))
+			msgbox(format("Tapu Koko, Tapu Bulu and Glastrier have deemed you worthy of meeting them. I marked their location on your DexNav: use it on this route to meet them!"))
 		}
 		else{
-			msgbox(format("The battling trio admires your dedication to becoming champion, but would like to see some more action from you! Defeat every trainer in this route and come back to me!"))
+			msgbox(format("The Tapus and the King's steed admire your dedication to becoming champion, but would like to see some more action from you! Defeat every trainer in this route and come back to me!"))
 		}
 	}
     release
