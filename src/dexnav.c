@@ -1267,10 +1267,10 @@ static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityN
 //if it was a hidden encounter, updates the environment it is to be found from the wildheader encounterRate
 static u8 DexNavTryGenerateMonLevel(u16 species, u8 environment)
 {
-    u8 levelBase = ChooseWildMonLevel();//GetEncounterLevelFromMapData(species, environment);//asdf
+    u8 levelBase = ChooseWildMonLevel();
     u8 levelBonus = gSaveBlock1Ptr->dexNavChain / 5;
 
-    if (levelBase == MON_LEVEL_NONEXISTENT)
+    if (GetEncounterLevelFromMapData(species, environment) == MON_LEVEL_NONEXISTENT)
         return MON_LEVEL_NONEXISTENT;   //species not found in the area
     
     if (Random() % 100 < 4)
