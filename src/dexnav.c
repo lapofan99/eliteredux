@@ -1271,7 +1271,7 @@ static u8 DexNavTryGenerateMonLevel(u16 species, u8 environment)
     u8 levelBonus = gSaveBlock1Ptr->dexNavChain / 5;
 
     if (GetEncounterLevelFromMapData(species, environment) == MON_LEVEL_NONEXISTENT)
-        return MON_LEVEL_NONEXISTENT;   //species not found in the area
+        return MON_LEVEL_NONEXISTENT; //species not found in the area
     
     if (Random() % 100 < 4)
         levelBonus += 10; //4% chance of having a +10 level
