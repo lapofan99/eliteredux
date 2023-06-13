@@ -17,11 +17,6 @@ RustboroCity_Mart_EventScript_BugCatcher:: @ 8214F86
 RustboroCity_Mart_EventScript_FalseSwipeTM::
 	lock
 	faceplayer
-	checkitem ITEM_TM98_FALSE_SWIPE, 1
-	compare VAR_RESULT, 1
-	goto_if_eq RustboroCity_Mart_EventScript_ReceivedTM98
-	msgbox RustboroCity_Mart_Text_ExcuseMeTrainer, MSGBOX_DEFAULT
-	giveitem ITEM_TM98_FALSE_SWIPE
 	msgbox RustboroCity_Mart_Text_HaveTM98, MSGBOX_DEFAULT
 	release
 	end
@@ -44,9 +39,7 @@ RustboroCity_Mart_Text_HaveTM98:
 	.string "False Swipe is a very handy move.\p"
 	.string "No matter how many times it's used on\n"
 	.string "the opposing Pokémon, it won't cause\l"
-	.string "the Pokémon to faint!\p"
-	.string "I'm offering it for free right now.\n"
-	.string "This is a limited-time promotion!$"
+	.string "the Pokémon to faint!$"
 
 RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish: @ 8214F8F
 	.string "I'm buying some Parlyz Heals and\n"

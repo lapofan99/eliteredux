@@ -18,14 +18,6 @@ LavaridgeTown_House_EventScript_Zigzagoon:: @ 81FF91B
 LavaridgeTown_House_EventScript_SuckerPunchTM::
 	lock
 	faceplayer
-	checkitem ITEM_TM94_SUCKER_PUNCH, 1
-	compare VAR_RESULT, 1
-	goto_if_eq LavaridgeTown_House_EventScript_ReceivedTM94
-	msgbox MoveTutor_MimicTeach, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq MoveTutor_EventScript_MimicDeclined
-	msgbox LavaridgeTown_House_Text_GiveTM94, MSGBOX_DEFAULT
-	giveitem ITEM_TM94_SUCKER_PUNCH
 	msgbox LavaridgeTown_House_Text_HaveTM94, MSGBOX_DEFAULT
 	release
 	end
@@ -41,7 +33,7 @@ LavaridgeTown_House_EventScript_ReceivedTM94::
 	end
 
 LavaridgeTown_House_Text_HaveTM94::
-	.string "TM94 teaches Sucker Punch.\p"
+	.string "My favorite Dark move is Sucker Punch.\p"
 	.string "It's a move that may go first if the\n"
 	.string "target Pokémon is about to attack.$"
 

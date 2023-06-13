@@ -337,19 +337,19 @@ Route110_EventScript_CyclingChallengeResults:: @ 81EF673
 
 Route110_EventScript_ChallengeReactionBest:: @ 81EF6FD
 	msgbox Route110_Text_ChallengeReactionBest, MSGBOX_DEFAULT
-	goto_if_set FLAG_TM93_WILD_CHARGE, Route110_EventScript_EndChallenge
-	msgbox Route110_Text_GiveTM93, MSGBOX_DEFAULT
-	giveitem ITEM_TM93_WILD_CHARGE
+	msgbox Route110_Text_GiveTM83, MSGBOX_DEFAULT
+	givecustommon SPECIES_HELIOLISK, 25, ITEM_CHOICE_SPECS, ITEM_PREMIER_BALL, NATURE_TIMID, 2, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_THUNDERBOLT, MOVE_VOLT_SWITCH, MOVE_GRASS_KNOT, MOVE_FOCUS_BLAST, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_Text_ObtainedShinyHeliolisk
 	goto Route110_EventScript_EndChallenge
 	end
 
 Route110_EventScript_ChallengeReactionGood:: @ 81EF70B
 	msgbox Route110_Text_ChallengeReactionGood, MSGBOX_DEFAULT
-	checkitem ITEM_TM83_FLAME_CHARGE, 1
-	compare VAR_RESULT, 1
-	goto_if_eq Route110_EventScript_EndChallenge
 	msgbox Route110_Text_GiveTM83, MSGBOX_DEFAULT
-	giveitem ITEM_TM83_FLAME_CHARGE
+	givecustommon SPECIES_HELIOLISK, 20, ITEM_LIFE_ORB, ITEM_PREMIER_BALL, NATURE_TIMID, 0, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_SURF, MOVE_THUNDER, MOVE_HYPER_VOICE, MOVE_DRAGON_PULSE, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route110_Text_ObtainedHeliolisk
 	goto Route110_EventScript_EndChallenge
 	end
 
@@ -921,8 +921,8 @@ Route110_Text_ChallengeReactionGood: @ 81F04A4
 	.string "still avoiding collisions.$"
 
 Route110_Text_GiveTM83:
-	.string "Here, take this TM to commemorate\n"
-	.string "your success.$"
+	.string "Here, take this Pokémon to\n"
+	.string "commemorate your success.$"
 
 Route110_Text_ChallengeReactionOk: @ 81F0500
 	.string "I would consider you a work in\n"
@@ -1165,3 +1165,9 @@ Route110_CyclingRoad_EventScript_Gen8_NPC_Text_2:
 	.string "but only after showing these\l"
 	.string "muscle-powered-bike-wielding\l"
 	.string "Hoennians a lesson!$"
+
+Route110_Text_ObtainedHeliolisk::
+	.string "{PLAYER} got a {COLOR BLUE}Heliolisk{COLOR DARK_GRAY}$"
+
+Route110_Text_ObtainedShinyHeliolisk::
+	.string "{PLAYER} got a Shiny{COLOR BLUE}Heliolisk{COLOR DARK_GRAY}$"

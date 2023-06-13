@@ -270,11 +270,6 @@ SlateportCity_PokemonFanClub_EventScript_Azumarill:: @ 820A220
 SlateportCity_PokemonFanClub_EventScript_EndureTM::
 	lock
 	faceplayer
-	checkitem ITEM_TM58_ENDURE, 1
-	compare VAR_RESULT, 1
-	goto_if_eq SlateportCity_PokemonFanClub_EventScript_ReceivedTM58
-	msgbox SlateportCity_PokemonFanClub_Text_GiveTM58, MSGBOX_DEFAULT
-	giveitem ITEM_TM58_ENDURE
 	msgbox SlateportCity_PokemonFanClub_Text_HaveTM58, MSGBOX_DEFAULT
 	release
 	end

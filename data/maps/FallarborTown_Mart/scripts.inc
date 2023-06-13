@@ -41,11 +41,6 @@ FallarborTown_Mart_EventScript_Skitty:: @ 81FFD06
 FallarborTown_Mart_EventScript_DrainPunchTM::
 	lock
 	faceplayer
-	checkitem ITEM_TM60_DRAIN_PUNCH, 1
-	compare VAR_RESULT, 1
-	goto_if_eq FallarborTown_Mart_EventScript_ReceivedTM60
-	msgbox FallarborTown_Mart_Text_FreeSample, MSGBOX_DEFAULT
-	giveitem ITEM_TM60_DRAIN_PUNCH
 	msgbox FallarborTown_Mart_Text_HaveTM60, MSGBOX_DEFAULT
 	release
 	end

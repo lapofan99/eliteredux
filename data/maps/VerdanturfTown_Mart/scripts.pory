@@ -40,11 +40,6 @@ VerdanturfTown_Mart_EventScript_Lass:: @ 82025CC
 VerdanturfTown_Mart_EventScript_PaybackTM::
 	lock
 	faceplayer
-	checkitem ITEM_TM66_PAYBACK, 1
-	compare VAR_RESULT, 1
-	goto_if_eq VerdanturfTown_Mart_EventScript_ReceivedTM66
-	msgbox VerdanturfTown_Mart_Text_SlowPokemon, MSGBOX_DEFAULT
-	giveitem ITEM_TM66_PAYBACK
 	msgbox VerdanturfTown_Mart_Text_HaveTM66, MSGBOX_DEFAULT
 	release
 	end
@@ -64,7 +59,7 @@ VerdanturfTown_Mart_Text_SlowPokemon:
 	.string "this TM a try.$"
 
 VerdanturfTown_Mart_Text_HaveTM66:
-	.string "TM66 contains Payback!\p"
+	.string "My favorite move is Payback!\p"
 	.string "It's an attack that doubles in power\n"
 	.string "if the user moves after its target.$"
 

@@ -1,15 +1,13 @@
 Route111_Text_MakingRoomUseTMToMakeYourOwn: @ 82762C9
 	.string "What's that?\n"
 	.string "What am I doing?\p"
-	.string "I'm thinking about making my own room\n"
-	.string "here using a Pokémon move.\p"
-	.string "I know! I'll give you this TM.\n"
-	.string "Will you use it to make your own room?$"
+	.string "I'm thinking about making my own room.\n"
+	.string "Would you like to make your own room?$"
 
 Route111_Text_ExplainSecretPower: @ 827636E
 	.string "Find a big tree that looks like it might\n"
 	.string "drop some vines.\p"
-	.string "Use Secret Power in front of the tree.\n"
+	.string "Talk to the tree.\n"
 	.string "Some vines should get free and drop\l"
 	.string "down, so you can climb the tree.\p"
 	.string "You'll find a lot of space for putting\n"
@@ -44,9 +42,6 @@ Route111_EventScript_SecretPowerMan:: @ 82765FF
 	end
 
 Route111_EventScript_GiveSecretPower:: @ 827661E
-	giveitem ITEM_TM43_SECRET_POWER
-	compare VAR_RESULT, FALSE
-	goto_if_eq Route111_EventScript_NoRoomForSecretPower
 	msgbox Route111_Text_ExplainSecretPower, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_RECEIVED_SECRET_POWER

@@ -26,11 +26,6 @@ MauvilleCity_EventScript_MoveWattsonBackToGym:: @ 81DF3A9
 MauvilleCity_EventScript_GyroBallTM::
 	lock
 	faceplayer
-	checkitem ITEM_TM74_GYRO_BALL, 1
-	compare VAR_RESULT, 1
-	goto_if_eq MauvilleCity_EventScript_ReceivedTM74
-	msgbox MauvilleCity_Text_GiveTM74, MSGBOX_DEFAULT
-	giveitem ITEM_TM74_GYRO_BALL
 	msgbox MauvilleCity_Text_HaveTM74, MSGBOX_DEFAULT
 	release
 	end
@@ -713,7 +708,7 @@ MauvilleCity_Text_GiveTM74:
 	.string "if you'd like.$"
 
 MauvilleCity_Text_HaveTM74:
-	.string "TM74 contains Gyro Ball, an attack\n"
+	.string "My slow mons love Gyro Ball, an attack\n"
 	.string "that does more damage the slower the\l"
 	.string "user is compared to the foe.$"
 `
