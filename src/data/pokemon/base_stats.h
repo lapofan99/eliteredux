@@ -6765,7 +6765,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_SNEASEL] =
     {
     .baseHP        = 55,
-    .baseAttack    = 95,
+    .baseAttack    = 75, // -20 nerf bc of crazy abilities
     .baseDefense   = 55,
     .baseSpeed     = 115,
     .baseSpAttack  = 35,

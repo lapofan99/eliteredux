@@ -3498,7 +3498,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_RETURN] =
     {
         .effect = EFFECT_HIT, // changed
-        .power = 100,
+        .power = 95,
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 20,
@@ -3526,8 +3526,8 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_FRUSTRATION] =
     {
         .effect = EFFECT_HIT, // changed
-        .power = 100,
-        .type = TYPE_NORMAL,
+        .power = 95,
+        .type = TYPE_DARK,
         .accuracy = 100,
         .pp = 20,
         .secondaryEffectChance = 0,
@@ -3883,7 +3883,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #else
             .effect = EFFECT_SPECIAL_DEFENSE_DOWN_HIT,
         #endif
-        .power = 85,
+        .power = 80,
         .type = TYPE_DARK,
         .accuracy = 100,
         .pp = 15,
@@ -4517,7 +4517,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_BRICK_BREAK] =
     {
         .effect = EFFECT_BRICK_BREAK,
-        .power = 85,
+        .power = 75,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
         .pp = 15,
@@ -10598,7 +10598,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_ZIPPY_ZAP] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_8
+        /*#if B_UPDATED_MOVE_DATA >= GEN_8
             .power = 80,
             .effect = EFFECT_EVASION_UP_HIT,
             .pp = 10,
@@ -10608,7 +10608,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
             .power = 50,
             .pp = 15,
             .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
-        #endif
+        #endif*/
+        .effect = EFFECT_ALWAYS_CRIT,
+        .power = 50,
+        .pp = 15,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
         .secondaryEffectChance = 100,

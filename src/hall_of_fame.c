@@ -1114,7 +1114,7 @@ static void Task_HofPC_ExitOnButtonPress(u8 taskId)
 
 static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 {
-    static const u8 gText_WelcomeToHOF[] 		= _("Elite Redux v1.0 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
+    static const u8 gText_WelcomeToHOF[] 		= _("Elite Redux v0.9.3 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
     static const u8 sText_WinsLossesText[]      = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}");
     
     static const u8 easyCapText[] 				= _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");

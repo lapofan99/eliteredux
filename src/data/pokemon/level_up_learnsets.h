@@ -1717,6 +1717,7 @@ static const struct LevelUpMove sMagnemiteLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_MAGNET_RISE),
     LEVEL_UP_MOVE(47, MOVE_GYRO_BALL),
     LEVEL_UP_MOVE(49, MOVE_ZAP_CANNON),
+	LEVEL_UP_MOVE(53, MOVE_STEEL_BEAM), // new
     LEVEL_UP_END
 };
 
@@ -10164,6 +10165,7 @@ static const struct LevelUpMove sMagnezoneLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(49, MOVE_LOCK_ON),
 	LEVEL_UP_MOVE(53, MOVE_MAGNET_RISE),
 	LEVEL_UP_MOVE(59, MOVE_GYRO_BALL),
+	LEVEL_UP_MOVE(65, MOVE_STEEL_BEAM), // new
 	LEVEL_UP_END
 };
 
@@ -14422,6 +14424,7 @@ static const struct LevelUpMove sGenesectLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(66, MOVE_ZAP_CANNON),
 	LEVEL_UP_MOVE(73, MOVE_HYPER_BEAM),
 	LEVEL_UP_MOVE(77, MOVE_SELF_DESTRUCT),
+	LEVEL_UP_MOVE(80, MOVE_STEEL_BEAM), // new
 	LEVEL_UP_END
 };
 

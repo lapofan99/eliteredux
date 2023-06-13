@@ -11951,6 +11951,17 @@ static const struct TrainerMonItemCustomMoves sParty_Victor[] = {
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_HYPER_FANG, MOVE_FIRE_FANG, MOVE_PSYCHIC_FANGS, MOVE_CRUNCH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_RATTATA, // Troll set
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_HUSTLE, ABILITY_NORMALIZE, ABILITY_LOOTER},
+    // .innates = {ABILITY_GUTS, ABILITY_RUN_AWAY, ABILITY_NONE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_ENDEAVOR, MOVE_QUICK_ATTACK, MOVE_NONE, MOVE_NONE
     }
 };
 
@@ -12017,7 +12028,7 @@ static const struct TrainerMonItemCustomMoves sParty_Vivi[] = {
 
 static const struct TrainerMonItemCustomMoves sParty_Vicky[] = {
     {
-    .lvl = 2,
+    .lvl = 3,
     .species = SPECIES_HERACROSS, // Winstrates, Orb, Moxie, Swords Dance
     .heldItem = ITEM_LIFE_ORB,
     .ability = 2, // ABILITY_SKILL_LINK, ABILITY_VIOLENT_RUSH, ABILITY_MOXIE},
@@ -12028,7 +12039,7 @@ static const struct TrainerMonItemCustomMoves sParty_Vicky[] = {
     .moves = MOVE_MEGAHORN, MOVE_CLOSE_COMBAT, MOVE_NIGHT_SLASH, MOVE_SWORDS_DANCE
     },
     {
-    .lvl = 2,
+    .lvl = 3,
     .species = SPECIES_PINSIR, // Winstrates, Sash, Anger Point, Swords Dance
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 0, // ABILITY_ANGER_POINT, ABILITY_VIOLENT_RUSH, ABILITY_MOXIE},
@@ -12037,6 +12048,17 @@ static const struct TrainerMonItemCustomMoves sParty_Vicky[] = {
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
     .moves = MOVE_GUILLOTINE, MOVE_STONE_EDGE, MOVE_SUPERPOWER, MOVE_SWORDS_DANCE
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_SCIZOR, // Vicky, Bulky Band, Technician
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 1, // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_LEVITATE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_BULLET_PUNCH, MOVE_U_TURN, MOVE_SUPERPOWER, MOVE_PURSUIT
     }
 };
 
@@ -38329,7 +38351,7 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Unused
 static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
     {
     .lvl = 3,
-    .species = SPECIES_CRADILY, // Steven (Friend), Lead, SpDef Wall, SR, Big Root
+    .species = SPECIES_CRADILY, // Steven, Lead, SpDef Wall, SR, Big Root
     .heldItem = ITEM_BIG_ROOT,
     .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
     // .innates = {ABILITY_FOSSILIZED, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
@@ -38340,17 +38362,28 @@ static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_AERODACTYL, // Steven (Friend), Doubles, Sash, Support
-    .heldItem = ITEM_FOCUS_SASH,
-    .ability = 2, // ABILITY_SPEED_FORCE, ABILITY_PREDATOR, ABILITY_FATAL_PRECISION},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_HALF_DRAKE},
+    .species = SPECIES_GENESECT, // Steven, Scarf, Download, Mixed
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_DOWNLOAD, ABILITY_FATAL_PRECISION, ABILITY_SIGHTING_SYSTEM},
+    // .innates = {ABILITY_FULL_METAL_BODY, ABILITY_PREDATOR, ABILITY_MEGA_LAUNCHER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {84, 252, 20, 0, 4, 148},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_ROCK_SLIDE, MOVE_DRAGON_RUSH, MOVE_TAILWIND, MOVE_WIDE_GUARD
+    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_HASTY,
+    .moves = MOVE_U_TURN, MOVE_STEEL_BEAM, MOVE_ICE_BEAM, MOVE_FLAMETHROWER
     },
     {
-    .lvl = 5,
+    .lvl = 3,
+    .species = SPECIES_HEATMOR, // Scarf
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 1, // ABILITY_BURNATE, ABILITY_WHITE_SMOKE, ABILITY_STEELWORKER},
+    // .innates = {ABILITY_UNAWARE, ABILITY_TOUGH_CLAWS, ABILITY_FATAL_PRECISION},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_FIRE_LASH, MOVE_IRON_TAIL, MOVE_THROAT_CHOP, MOVE_STOMPING_TANTRUM
+    },
+    {
+    .lvl = 3,
     .species = SPECIES_METAGROSS, // Steven (Friend), Mega
     .heldItem = ITEM_METAGROSSITE,
     .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
