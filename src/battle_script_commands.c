@@ -1389,7 +1389,7 @@ static bool32 NoTargetPresent(u32 move)
 static bool32 TryAegiFormChange(void)
 {
     // Only Aegislash with Stance Change can transform, transformed mons cannot.
-    if (GetBattlerAbility(gBattlerAttacker) != ABILITY_STANCE_CHANGE
+    if ((GetBattlerAbility(gBattlerAttacker) != ABILITY_STANCE_CHANGE && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_STANCE_CHANGE))
         || gBattleMons[gBattlerAttacker].status2 & STATUS2_TRANSFORMED)
         return FALSE;
 
@@ -1400,11 +1400,13 @@ static bool32 TryAegiFormChange(void)
     case SPECIES_AEGISLASH: // Shield -> Blade
         if (gBattleMoves[gCurrentMove].power == 0)
             return FALSE;
+        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STANCE_CHANGE;
         gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_BLADE;
         break;
     case SPECIES_AEGISLASH_BLADE: // Blade -> Shield
         if (gCurrentMove != MOVE_KINGS_SHIELD)
             return FALSE;
+        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STANCE_CHANGE;
         gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH;
         break;
     }

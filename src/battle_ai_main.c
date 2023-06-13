@@ -4030,7 +4030,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case MOVE_KINGS_SHIELD:
             #if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
-            if (AI_DATA->atkAbility == ABILITY_STANCE_CHANGE //Special logic for Aegislash
+            if ((AI_DATA->atkAbility == ABILITY_STANCE_CHANGE || SpeciesHasInnate(gBattleMons[AI_DATA->atkSpecies].species, ABILITY_STANCE_CHANGE))//Special logic for Aegislash
               && AI_DATA->atkSpecies == SPECIES_AEGISLASH_BLADE
               && !IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility))
             {
