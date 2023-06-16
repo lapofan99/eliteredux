@@ -11,6 +11,10 @@ GraniteCave_StevensRoom_EventScript_Steven:: @ 822DC7B
 	setflag FLAG_DELIVERED_STEVEN_LETTER
 	msgbox GraniteCave_StevensRoom_Text_ThankYouTakeThis, MSGBOX_DEFAULT
 	givemon SPECIES_HONEDGE, 20, ITEM_BERRY_JUICE
+	playfanfare MUS_OBTAIN_ITEM
+	message GraniteCave_StevensRoom_Text_ObtainedHonedge
+	waitfanfare
+	waitmessage
 	msgbox GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -34,6 +38,10 @@ GraniteCave_StevensRoom_EventScript_Steven:: @ 822DC7B
 	removeobject LOCALID_STEVEN
 	release
 	end
+
+
+GraniteCave_StevensRoom_Text_ObtainedHonedge::
+	.string "{PLAYER} got a {COLOR BLUE}Honedge{COLOR DARK_GRAY}$"
 
 GraniteCave_StevensRoom_EventScript_StevenExitNorth:: @ 822DD0D
 	applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit
