@@ -758,7 +758,7 @@ static const u8 sText_BattlerAbilitySetUpStickyWeb[] = _("{B_ACTIVE_NAME_WITH_PR
 static const u8 sText_BattlerAbilitySetUpTrickRoom[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Twisted Dimension\nset up Trick Room!");
 static const u8 sText_BattlerAbilitySetUpAuroraVeil[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s North Wind\nset up Aurora Veil!");
 static const u8 sText_BattlerGripPincerActivated[] = _("{B_DEF_NAME_WITH_PREFIX} was trapped by\n{B_ACTIVE_NAME_WITH_PREFIX}'s Grip Pincer!");
-static const u8 sText_PkmnDidAmmountDamage[] = _("{B_ACTIVE_NAME_WITH_PREFIX} did {B_BUFF3} Damage!");
+static const u8 sText_PkmnDidAmmountDamage[] = _("{B_ACTIVE_NAME_WITH_PREFIX} did {B_BUFF4} Damage!");
 static const u8 sText_HeatingUpBeak[] = _("{B_ATK_NAME_WITH_PREFIX} started\nheating up its beak!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
@@ -2682,6 +2682,7 @@ void BufferStringBattle(u16 stringID)
         gBattleTextBuff1[i] = gBattleMsgDataPtr->textBuffs[0][i];
         gBattleTextBuff2[i] = gBattleMsgDataPtr->textBuffs[1][i];
         gBattleTextBuff3[i] = gBattleMsgDataPtr->textBuffs[2][i];
+        gBattleTextBuff4[i] = gBattleMsgDataPtr->textBuffs[3][i];
     }
 
     switch (stringID)
@@ -2865,6 +2866,10 @@ void BufferStringBattle(u16 stringID)
         else
             StringCopy(gBattleTextBuff3, gMoveNamesLong[gBattleMsgDataPtr->currentMove]);
         stringPtr = sText_AttackerUsedX;
+        break;
+    case STRINGID_POKEMONDIDAMMOUNTDAMAGE: // pokemon did damage
+        ConvertIntToDecimalStringN(gBattleTextBuff4, VarGet(VAR_DAMAGE_DONE), STR_CONV_MODE_LEFT_ALIGN, 4);
+        stringPtr = sText_PkmnDidAmmountDamage;
         break;
     case STRINGID_BATTLEEND: // battle end
         if (gBattleTextBuff1[0] & B_OUTCOME_LINK_BATTLE_RAN)
@@ -3207,6 +3212,15 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 else
                     toCpy = gBattleTextBuff3;
+                break;
+            case B_TXT_BUFF4:
+                if (gBattleTextBuff4[0] == B_BUFF_PLACEHOLDER_BEGIN)
+                {
+                    ExpandBattleTextBuffPlaceholders(gBattleTextBuff4, gStringVar3);
+                    toCpy = gStringVar4;
+                }
+                else
+                    toCpy = gBattleTextBuff4;
                 break;
             case B_TXT_COPY_VAR_1:
                 toCpy = gStringVar1;

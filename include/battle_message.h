@@ -66,8 +66,9 @@
 #define B_TXT_DEF_TEAM2 0x3B // your/the opposing
 #define B_TXT_ACTIVE_NAME 0x3C
 #define B_TXT_ACTIVE_NAME2 0x3D // no Illusion check
+#define B_TXT_BUFF4 0x3E //For Damage Done so it does not get overwritten
 
-// for B_TXT_BUFF1, B_TXT_BUFF2 and B_TXT_BUFF3
+// for B_TXT_BUFF1, B_TXT_BUFF2, B_TXT_BUFF3 and B_TXT_BUFF4
 
 #define B_BUFF_STRING                   0
 #define B_BUFF_NUMBER                   1
@@ -212,12 +213,12 @@ struct BattleMsgData
     u16 lastItem;
     u16 lastAbility;
     u8 scrActive;
-    u8 unk1605E;
+    u8 unk1605E;//bakScriptPartyIdx
     u8 hpScale;
     u8 itemEffectBattler;
     u8 moveType;
     u16 abilities[MAX_BATTLERS_COUNT];
-    u8 textBuffs[3][TEXT_BUFF_ARRAY_COUNT];
+    u8 textBuffs[4][TEXT_BUFF_ARRAY_COUNT];
 };
 
 enum

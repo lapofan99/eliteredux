@@ -2413,7 +2413,7 @@ static void Cmd_healthbarupdate(void)
                 gBattleMoves[gCurrentMove].power > 0 &&
                 gBattleMoveDamage > 0 &&
                 gSaveBlock2Ptr->damageDone){
-                    PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 4, gBattleMoveDamage); 
+                    VarSet(VAR_DAMAGE_DONE, gBattleMoveDamage);
                     FlagClear(FLAG_SYS_DISABLE_DAMAGE_DONE);
                 }
 
@@ -2742,7 +2742,7 @@ static void Cmd_resultmessage(void)
         !FlagGet(FLAG_SYS_DISABLE_DAMAGE_DONE) &&
         gSaveBlock2Ptr->damageDone)
 	{
-        PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 4, VarGet(VAR_DAMAGE_DONE)); 
+        PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff4, 4, VarGet(VAR_DAMAGE_DONE)); 
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_PrintDamageDoneString;
 	}
@@ -4218,7 +4218,7 @@ static void Cmd_getexp(void)
 /*                     PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, gBattleStruct->expGetterBattlerId, gBattleStruct->expGetterMonId);
                     // buffer 'gained' or 'gained a boosted'
                     PREPARE_STRING_BUFFER(gBattleTextBuff2, i);
-                    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
+                    PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff4, 6, gBattleMoveDamage);
 
                     PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);  */
                     MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
