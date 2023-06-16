@@ -5189,17 +5189,17 @@ const struct MonCoords gMonFrontPicCoords[] =
     [SPECIES_CASTFORM_SUNNY] =
     {
         .size = 0x34,
-        .y_offset = 17,
+        .y_offset = 0,
     },
     [SPECIES_CASTFORM_RAINY] =
     {
         .size = 0x34,
-        .y_offset = 17,
+        .y_offset = 0,
     },
     [SPECIES_CASTFORM_SNOWY] =
     {
         .size = 0x34,
-        .y_offset = 17,
+        .y_offset = 0,
     },
     // Deoxys
     [SPECIES_DEOXYS_ATTACK] =

@@ -12204,9 +12204,6 @@ static const union AnimCmd *const sAnims_AGGRON[] ={
 
 static const union AnimCmd *const sAnims_CASTFORM[] ={
     sAnim_CASTFORM_0,
-    sAnim_CASTFORM_1,
-    sAnim_CASTFORM_2,
-    sAnim_CASTFORM_3,
 };
 
 static const union AnimCmd *const sAnims_VOLBEAT[] ={
