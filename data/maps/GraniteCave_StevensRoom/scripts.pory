@@ -133,6 +133,6 @@ GraniteCave_StevensRoom_Text_OhBagIsFull: @ 822DFAA
 script GraniteCave_StevensRoom_EventScript_Steven_Battle{
 	lock
 	faceplayer
-	trainerbattle_single(TRAINER_STEVEN_GRANITE_CAVE, format("Steven: Intro."), format("Steven: Defeat."), GraniteCave_StevensRoom_EventScript_Steven, NO_MUSIC)
+	trainerbattle_single(TRAINER_STEVEN_GRANITE_CAVE, format("Steven: Young trainer, show me what you've got, before we talk."), format("Steven: You have great potential."), GraniteCave_StevensRoom_EventScript_Steven, NO_MUSIC)
 	//goto(GraniteCave_StevensRoom_EventScript_Steven)
 }
