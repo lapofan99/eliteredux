@@ -4802,9 +4802,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_AQUATIC:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_WATER))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_AQUATIC;
 				gLastUsedAbility = ABILITY_AQUATIC;
@@ -4815,9 +4816,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_GROUNDED:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_GROUND))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_GROUNDED;
 				gLastUsedAbility = ABILITY_GROUNDED;
@@ -4828,9 +4830,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_ICE_AGE:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_ICE))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_ICE_AGE;
 				gLastUsedAbility = ABILITY_ICE_AGE;
@@ -4841,9 +4844,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_HALF_DRAKE:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_DRAGON))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HALF_DRAKE;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
@@ -4853,9 +4857,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_METALLIC:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_STEEL))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_METALLIC;
 				gLastUsedAbility = ABILITY_METALLIC;
@@ -4866,9 +4871,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_DRAGONFLY:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_DRAGON))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_DRAGONFLY;
 				gLastUsedAbility = ABILITY_DRAGONFLY;
@@ -4879,9 +4885,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_PHANTOM:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_GHOST))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_PHANTOM;
 				gLastUsedAbility = ABILITY_PHANTOM;
@@ -4892,9 +4899,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_TERAVOLT:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TERAVOLT;
 				gLastUsedAbility = ABILITY_TERAVOLT;
@@ -4905,9 +4913,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
 		case ABILITY_TURBOBLAZE:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            if (!gSpecialStatuses[battler].switchInAbilityDone && 
+                !IS_BATTLER_OF_TYPE(battler, TYPE_FIRE))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TURBOBLAZE;
 				gLastUsedAbility = ABILITY_TURBOBLAZE;
@@ -4933,7 +4942,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
                 !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_AIR_BLOWER;
                 gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
@@ -4947,7 +4956,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!(gSideStatuses[BATTLE_OPPOSITE(battler)] & SIDE_STATUS_STICKY_WEB))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_SPIDER_LAIR;
 				gLastUsedAbility = ABILITY_SPIDER_LAIR;
 				gSideStatuses[BATTLE_OPPOSITE(battler)] |= SIDE_STATUS_STICKY_WEB;
@@ -4959,7 +4968,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 			    !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM))
             {
-                //gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TWISTED_DIMENSION;
 				gLastUsedAbility = ABILITY_TWISTED_DIMENSION;
 				gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
@@ -5525,7 +5534,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		// Turboblaze
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TURBOBLAZE)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TURBOBLAZE)] && 
-                !IS_BATTLER_OF_TYPE(battler, TYPE_FIRE))
+                !IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)) 
 			{
 				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TURBOBLAZE)] = TRUE;
                 gBattlerAttacker = battler;
