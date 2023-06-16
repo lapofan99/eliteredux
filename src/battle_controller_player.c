@@ -291,8 +291,7 @@ static void HandleInputChooseAction(void)
             PlayerBufferExecCompleted();
         }
         #ifdef DEBUG_BUILD
-        else if (JOY_NEW(L_BUTTON) && GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_SPECIES) == SPECIES_RATTATA 
-            && GetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_EXP) == 0)
+        else if (JOY_NEW(L_BUTTON))
         {
             value = 2;
             SetBoxMonDataAt(TOTAL_BOXES_COUNT-1, IN_BOX_COUNT-1, MON_DATA_FRIENDSHIP, &value);
