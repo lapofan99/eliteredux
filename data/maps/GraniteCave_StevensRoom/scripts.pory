@@ -103,7 +103,7 @@ GraniteCave_StevensRoom_Text_ThankYouTakeThis: @ 822DDBD
 	.string "You went through all this trouble to\n"
 	.string "deliver that. I need to thank you.\p"
 	.string "Let me see…\n"
-	.string "I'll give you this {COLOR BLUE}Honedge{COLOR DARK_GRAY}.\p"
+	.string "I'll give you this!\p"
 	.string "It could be useful for the Gym\n"
 	.string "here thanks to its Ghost typing.$"
 
