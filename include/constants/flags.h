@@ -709,7 +709,7 @@
 #define FLAG_SYS_MGBA_PRINT          0x29D //DEBUG
 #define FLAG_SYS_DISABLE_AUTOHEAL    0x29E // Used in some battles
 #define FLAG_SYS_DISABLE_DAMAGE_DONE 0x29F
-#define FLAG_UNUSED_0x2A0  0x2A0 // Unused Flag
+#define FLAG_SYS_LOCKED_MODE         0x2A0 // Elite Four only
 #define FLAG_UNUSED_0x2A1  0x2A1 // Unused Flag
 #define FLAG_UNUSED_0x2A2  0x2A2 // Unused Flag
 #define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag

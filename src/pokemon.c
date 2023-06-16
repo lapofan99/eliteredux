@@ -56,7 +56,8 @@
 #include "data/trainer_spreads.h"
 #include "mgba_printf/mgba.h"
 #include "mgba_printf/mini_printf.h"
-
+#include "constants/map_groups.h"
+#include "constants/maps.h"
 
 struct SpeciesItem
 {
@@ -8952,4 +8953,56 @@ u16 getNumberOfUniqueDefeatedTrainers(void){
         }
     }
     return defeatedTrainers;
+}
+
+
+bool8 enablePokemonChanges(void){
+    bool8 enable = TRUE;
+
+    if(FlagGet(FLAG_SYS_LOCKED_MODE)){
+        switch(gSaveBlock1Ptr->location.mapNum){
+            case MAP_NUM(EVER_GRANDE_CITY_SIDNEYS_ROOM):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_SIDNEYS_ROOM))
+                    enable = FALSE;
+            break;
+            case MAP_NUM(EVER_GRANDE_CITY_PHOEBES_ROOM):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_PHOEBES_ROOM))
+                    enable = FALSE;
+            break;
+            case MAP_NUM(EVER_GRANDE_CITY_GLACIAS_ROOM):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_GLACIAS_ROOM))
+                    enable = FALSE;
+            break;
+            case MAP_NUM(EVER_GRANDE_CITY_DRAKES_ROOM):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_DRAKES_ROOM))
+                    enable = FALSE;
+            break;
+            case MAP_NUM(EVER_GRANDE_CITY_CHAMPIONS_ROOM):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_CHAMPIONS_ROOM))
+                    enable = FALSE;
+            break;
+            case MAP_NUM(EVER_GRANDE_CITY_HALL1):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL1))
+                    enable = FALSE;
+            break;
+            case MAP_NUM(EVER_GRANDE_CITY_HALL2):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL2))
+                    enable = FALSE;
+            break;
+            case MAP_NUM(EVER_GRANDE_CITY_HALL3):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL3))
+                    enable = FALSE;
+            break;
+            case MAP_NUM(EVER_GRANDE_CITY_HALL4):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL4))
+                    enable = FALSE;
+            break;
+            case MAP_NUM(EVER_GRANDE_CITY_HALL5):
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY_HALL5))
+                    enable = FALSE;
+            break;
+        }
+    }
+
+    return enable;
 }

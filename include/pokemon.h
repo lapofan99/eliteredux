@@ -476,5 +476,6 @@ bool8 SpeciesHasInnate(u16 species, u16 ability);
 u8 GetSpeciesInnateNum(u16 species, u16 ability);
 void CreateShinyMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 nature);
 u16 getNumberOfUniqueDefeatedTrainers(void);
+bool8 enablePokemonChanges(void);
 
 #endif // GUARD_POKEMON_H

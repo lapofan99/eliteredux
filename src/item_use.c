@@ -1008,7 +1008,11 @@ void ItemUseOutOfBattle_TmCase(u8 taskId)
     {
         DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }*/
-    if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    if (!enablePokemonChanges())
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+    else if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
     {
         gBagMenu->newScreenCallback = CB2_OpenTMCaseOnField;
         Task_FadeAndCloseBagMenu(taskId);

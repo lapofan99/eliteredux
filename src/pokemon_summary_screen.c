@@ -2045,7 +2045,8 @@ static void Task_HandleInput(u8 taskId)
             }
 			else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS &&
 			   !sMonSummaryScreen->isBoxMon &&
-			   !sMonSummaryScreen->lockMovesFlag)
+			   !sMonSummaryScreen->lockMovesFlag &&
+               enablePokemonChanges())
             {
                 // Start EVs Modifier
                 if(gSaveBlock2Ptr->enableEvs){
@@ -2060,7 +2061,8 @@ static void Task_HandleInput(u8 taskId)
             }
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_MEMO &&
 				!sMonSummaryScreen->isBoxMon &&
-				!sMonSummaryScreen->lockMovesFlag)
+				!sMonSummaryScreen->lockMovesFlag &&
+                enablePokemonChanges())
 			{
 				ModifyMode = !ModifyMode;
 				PrintMemoPage();
@@ -2069,7 +2071,8 @@ static void Task_HandleInput(u8 taskId)
 			
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY &&
 				!sMonSummaryScreen->isBoxMon &&
-				!sMonSummaryScreen->lockMovesFlag)
+				!sMonSummaryScreen->lockMovesFlag &&
+                enablePokemonChanges())
 			{
 				ModifyMode = !ModifyMode;
 				PrintAbilityAndInnates();
