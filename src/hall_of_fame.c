@@ -1168,6 +1168,7 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
     PutWindowTilemap(0);
     AddTextPrinterParameterized3(0, 1, GetStringCenterAlignXOffset(1, gStringVar4, 0xD0), 1, sMonInfoTextColors, 0, gStringVar4);
     CopyWindowToVram(0, 3);
+    FlagClear(FLAG_SYS_LOCKED_MODE);
 }
 
 static void HallOfFame_PrintMonInfo(struct HallofFameMon* currMon, u8 unused1, u8 unused2)

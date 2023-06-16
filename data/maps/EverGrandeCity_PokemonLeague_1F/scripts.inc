@@ -52,7 +52,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_DoorGuard:: @ 8229636
 	message EverGrandeCity_PokemonLeague_1F_Text_MustHaveAllGymBadges
 	waitmessage
 	delay 120
-	goto_if_unset FLAG_BADGE06_GET, EverGrandeCity_PokemonLeague_1F_EventScript_NotAllBadges
+	//goto_if_unset FLAG_BADGE06_GET, EverGrandeCity_PokemonLeague_1F_EventScript_NotAllBadges
 	closemessage
 	setvar VAR_TEMP_2, 1
 	applymovement LOCALID_GUARD_1, EverGrandeCity_PokemonLeague_1F_Movement_LeftGuardOutOfWay
@@ -228,3 +228,36 @@ EverGrandeCity_PokemonLeague_1F_Text_Legendaries:
 EverGrandeCity_PokemonLeague_1F_Text_GoForthChampion:
 	.string "Champion! Believe in yourself and your\n"
 	.string "Pokémon, and go forth!$"
+
+EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode::
+	lockall
+	applymovement LOCALID_GUARD_1, Common_Movement_FaceRight
+	applymovement LOCALID_GUARD_2, Common_Movement_FaceLeft
+	msgbox EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_2
+	msgbox EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_Text_2, MSGBOX_NPC
+	clearflag FLAG_SYS_LOCKED_MODE
+EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_1:
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp
+	waitmovement 0
+	warp MAP_EVER_GRANDE_CITY_HALL1, 255, 5, 12
+	delay 40
+	releaseall
+	end
+
+EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_2:
+	msgbox EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_Text_1, MSGBOX_NPC
+	setflag FLAG_SYS_LOCKED_MODE
+	goto EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_1
+
+
+EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_Text_0:
+	.string "Guard: Do you want to enable Locked\n"
+	.string "Mode before challenging the League?$"
+
+EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_Text_1:
+	.string "Guard: Locked Mode is now enabled.$"
+
+EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_Text_2:
+	.string "Guard: Locked Mode is now disabled.$"

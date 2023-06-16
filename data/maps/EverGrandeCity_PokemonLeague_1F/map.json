@@ -118,7 +118,24 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_UNUSED_0x8014",
+      "var_value": "0",
+      "script": "EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 2,
+      "elevation": 0,
+      "var": "VAR_UNUSED_0x8014",
+      "var_value": "0",
+      "script": "EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode"
+    }
   ],
   "bg_events": [
 
