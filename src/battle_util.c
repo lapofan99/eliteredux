@@ -5594,7 +5594,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
 		// Phantom
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PHANTOM)){
-			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PHANTOM)])
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PHANTOM)] &&
+                !IS_BATTLER_OF_TYPE(battler, TYPE_GHOST))
 			{
 				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PHANTOM)] = TRUE;
                 gActiveBattler = gBattlerAttacker = battler;
