@@ -2413,7 +2413,7 @@ static void Cmd_healthbarupdate(void)
                 gBattleMoves[gCurrentMove].power > 0 &&
                 gBattleMoveDamage > 0 &&
                 gSaveBlock2Ptr->damageDone){
-                    VarSet(VAR_DAMAGE_DONE, gBattleMoveDamage);
+                    PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 4, gBattleMoveDamage); 
                     FlagClear(FLAG_SYS_DISABLE_DAMAGE_DONE);
                 }
 
@@ -2742,7 +2742,7 @@ static void Cmd_resultmessage(void)
         !FlagGet(FLAG_SYS_DISABLE_DAMAGE_DONE) &&
         gSaveBlock2Ptr->damageDone)
 	{
-        PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 6, VarGet(VAR_DAMAGE_DONE));
+        PREPARE_HWORD_NUMBER_BUFFER(gBattleTextBuff3, 4, VarGet(VAR_DAMAGE_DONE)); 
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_PrintDamageDoneString;
 	}
