@@ -1555,9 +1555,6 @@ static void Cmd_attackcanceler(void)
         u32 bestType = gBattleMons[gBattlerTarget].type1;
         u16 bestModifier = GetTypeModifier(moveType, bestType);
 
-        gBattleScripting.abilityPopupOverwrite = ABILITY_COLOR_CHANGE;
-		gLastUsedAbility = ABILITY_COLOR_CHANGE;
-
         for (currentType = TYPE_NORMAL; currentType < NUMBER_OF_MON_TYPES; ++currentType) {
             u16 currentModifier = GetTypeModifier(moveType, currentType);
             if (currentModifier < bestModifier) {

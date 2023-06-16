@@ -8509,6 +8509,7 @@ BattleScript_StickyHoldActivates::
 	goto BattleScript_MoveEnd
 
 BattleScript_ColorChangeActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_COLOR_CHANGE
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNCHANGEDTYPEWITH
 	waitmessage B_WAIT_TIME_LONG
