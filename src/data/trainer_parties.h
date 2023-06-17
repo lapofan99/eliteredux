@@ -18507,14 +18507,14 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery1[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_CHARIZARD, // Flannery, Salac, Tough Claws, Belly Drum
-    .heldItem = ITEM_SALAC_BERRY,
-    .ability = 2, // ABILITY_BURNATE, ABILITY_AERILATE, ABILITY_TOUGH_CLAWS},
+    .species = SPECIES_CHARIZARD, // Flannery, White Herb, Burnate
+    .heldItem = ITEM_WHITE_HERB,
+    .ability = 0, // ABILITY_BURNATE, ABILITY_AERILATE, ABILITY_TOUGH_CLAWS},
     // .innates = {ABILITY_BLAZE, ABILITY_LEVITATE, ABILITY_SOLAR_POWER},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_ACROBATICS, MOVE_BELLY_DRUM, MOVE_DRAGON_CLAW, MOVE_BLAZE_KICK
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SOLAR_BEAM, MOVE_SCORCHING_SANDS, MOVE_DRACO_METEOR, MOVE_HYPER_VOICE
     },
     /*{
     .lvl = 3,
@@ -18536,7 +18536,7 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery1[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_BLAZE_KICK, MOVE_REVERSAL, MOVE_THUNDER_PUNCH, MOVE_ENDURE
+    .moves = MOVE_BLAZE_KICK, MOVE_HIGH_JUMP_KICK, MOVE_THUNDER_PUNCH, MOVE_PROTECT
     },
     {
     .lvl = 3,
