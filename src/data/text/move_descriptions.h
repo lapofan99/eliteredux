@@ -1809,7 +1809,7 @@ static const u8 sJUDGMENTDescription[] = _(
 
 static const u8 sCHARGE_BEAMDescription[] = _(
     "Fires a beam of electricity.\n"
-    "May raise Sp. Atk.");
+    "Raises Sp. Atk by one stage.");
 
 static const u8 sWOOD_HAMMERDescription[] = _(
     "Slams the body into a foe\n"

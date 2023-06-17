@@ -136,7 +136,8 @@ GraniteCave_StevensRoom_EventScript_Steven_Battle::
 
 
 GraniteCave_StevensRoom_EventScript_Steven_Battle_Text_0:
-	.string "Steven: Intro.$"
+	.string "Steven: Young trainer, show me what\n"
+	.string "you've got, before we talk.$"
 
 GraniteCave_StevensRoom_EventScript_Steven_Battle_Text_1:
-	.string "Steven: Defeat.$"
+	.string "Steven: You have great potential.$"

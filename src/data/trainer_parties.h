@@ -7490,7 +7490,7 @@ static const struct TrainerMonItemCustomMoves sParty_Dale[] = {
 static const struct TrainerMonItemCustomMoves sParty_Daisy[] = {
     {
     .lvl = 0,
-    .species = SPECIES_SUNFLORA,
+    .species = SPECIES_SUNFLORA, // Sun Setter, Salac, Fast
     .heldItem = ITEM_SALAC_BERRY,
     .ability = 2, // ABILITY_CHLOROPLAST, ABILITY_GRASSY_SURGE, ABILITY_DROUGHT},
     // .innates = {ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_EARLY_BIRD},
@@ -14617,7 +14617,7 @@ static const struct TrainerMonItemCustomMoves sParty_Bryant[] = { // potential d
 static const struct TrainerMonItemCustomMoves sParty_Shayla[] = { // potential double w/ Bryant
     {
     .lvl = 0,
-    .species = SPECIES_SUNFLORA,
+    .species = SPECIES_SUNFLORA, // Sun Setter, Salac, Bulky Fast
     .heldItem = ITEM_SALAC_BERRY,
     .ability = 2, // ABILITY_CHLOROPLAST, ABILITY_GRASSY_SURGE, ABILITY_DROUGHT},
     // .innates = {ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_EARLY_BIRD},
@@ -18435,7 +18435,7 @@ static const struct TrainerMonItemCustomMoves sParty_Axle[] = {
 static const struct TrainerMonItemCustomMoves sParty_Keegan[] = {
     {
     .lvl = 5,
-    .species = SPECIES_SUNFLORA,
+    .species = SPECIES_SUNFLORA, // Sun Setter, Salac, Fast
     .heldItem = ITEM_SALAC_BERRY,
     .ability = 2, // ABILITY_CHLOROPLAST, ABILITY_GRASSY_SURGE, ABILITY_DROUGHT},
     // .innates = {ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_EARLY_BIRD},
@@ -18485,19 +18485,19 @@ static const struct TrainerMonItemCustomMoves sParty_Danielle[] = {
 static const struct TrainerMonItemCustomMoves sParty_Flannery1[] = {
     {
     .lvl = 3,
-    .species = SPECIES_TORKOAL, // Flannery, Bulky Attacker, SR + Rapid Spin
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // ABILITY_STAMINA, ABILITY_IMPENETRABLE, ABILITY_DROUGHT},
-    // .innates = {ABILITY_SHELL_ARMOR, ABILITY_WHITE_SMOKE, ABILITY_MOUNTAINEER},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_LAVA_PLUME, MOVE_STEALTH_ROCK, MOVE_YAWN, MOVE_RAPID_SPIN
+    .species = SPECIES_SUNFLORA, // Flannery, Sun Setter, Orb, Fast
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_CHLOROPLAST, ABILITY_GRASSY_SURGE, ABILITY_DROUGHT},
+    // .innates = {ABILITY_CHLOROPHYLL, ABILITY_SOLAR_POWER, ABILITY_EARLY_BIRD},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_WEATHER_BALL, MOVE_SOLAR_BEAM, MOVE_EARTH_POWER, MOVE_GROWTH
     },
     {
     .lvl = 3,
-    .species = SPECIES_HOUNDOOM,
-    .heldItem = ITEM_FIRE_GEM,
+    .species = SPECIES_HOUNDOOM, // Flannery, Sash
+    .heldItem = ITEM_FOCUS_SASH,
     .ability = 2, // ABILITY_STRONG_JAW, ABILITY_MOLTEN_DOWN, ABILITY_SOLAR_POWER},
     // .innates = {ABILITY_NOCTURNAL, ABILITY_SOLENOGLYPHS, ABILITY_SOUL_EATER},
     .ivs = {31, 31, 31, 31, 31, 31},
@@ -18551,6 +18551,17 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery1[] = {
     },
     {
     .lvl = 3,
+    .species = SPECIES_LEAFEON, // Flannery, Orb, Grassy Surge, Mixed
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_KEEN_EDGE, ABILITY_AVENGER, ABILITY_GRASSY_SURGE},
+    // .innates = {ABILITY_BIG_LEAVES, ABILITY_FELINE_PROWESS, ABILITY_NATURAL_CURE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 128, 0, 128, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MILD,
+    .moves = MOVE_GRASSY_GLIDE, MOVE_SHEER_COLD, MOVE_SOLAR_BEAM, MOVE_BURN_UP
+    }
+    /*{
+    .lvl = 3,
     .species = SPECIES_CHANDELURE, // Flannery, Scarf
     .heldItem = ITEM_CHOICE_SCARF,
     .ability = 1, // ABILITY_FLAME_BODY, ABILITY_INFILTRATOR, ABILITY_HAUNTED_SPIRIT},
@@ -18559,7 +18570,7 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery1[] = {
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_FIRE_BLAST, MOVE_SHADOW_BALL, MOVE_ENERGY_BALL, MOVE_TRICK
-    }
+    }*/
     /*{
     .lvl = 3,
     .species = SPECIES_TALONFLAME, // Flannery, Band

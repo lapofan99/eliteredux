@@ -1810,6 +1810,18 @@ static bool32 AccuracyCalcHelper(u16 move)
         return TRUE;
     }
 
+    // Sheer Cold always hits in Hail
+    if ((WEATHER_HAS_EFFECT &&
+            ((IsBattlerWeatherAffected(gBattlerTarget, WEATHER_HAIL_ANY) && (gBattleMoves[move].effect == EFFECT_FREEZE_DRY))
+         || (((gBattleWeather & WEATHER_HAIL_ANY) && move == MOVE_SHEER_COLD))))
+     || (gBattleMoves[move].effect == EFFECT_VITAL_THROW)
+     || (gBattleMoves[move].accuracy == 0))
+    {
+        // thunder/hurricane ignore acc checks in rain unless target is holding utility umbrella
+        JumpIfMoveFailed(7, move);
+        return TRUE;
+    }
+
     return FALSE;
 }
 

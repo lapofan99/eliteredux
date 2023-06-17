@@ -10412,6 +10412,7 @@ static const struct LevelUpMove sGlaceonLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(55, MOVE_HYPER_VOICE),
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE(60, MOVE_ICICLE_CRASH),
+	    LEVEL_UP_MOVE(65, MOVE_SHEER_COLD), // new
     #endif
 	LEVEL_UP_END
 };
