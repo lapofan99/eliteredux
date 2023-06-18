@@ -179,7 +179,7 @@ FallarborTown_CozmosHouse_EventScript_CozmoIsSad:: @ 8200FDA
 
 FallarborTown_CozmosHouse_EventScript_GiveGalladite::
 	msgbox FallarborTown_CozmosHouse_Text_PleaseTakeThis, MSGBOX_DEFAULT
-	givecustommon SPECIES_GALLADE, 45, ITEM_ASSAULT_VEST, ITEM_POKE_BALL, NATURE_JOLLY, 2, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_SACRED_SWORD, MOVE_PSYCHO_CUT, MOVE_LEAF_BLADE, MOVE_EXCALIBUR, TRUE
+	givecustommon SPECIES_GALLADE, 40, ITEM_ASSAULT_VEST, ITEM_POKE_BALL, NATURE_JOLLY, 2, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_SACRED_SWORD, MOVE_PSYCHO_CUT, MOVE_LEAF_BLADE, MOVE_EXCALIBUR, TRUE
 	playfanfare MUS_OBTAIN_ITEM
 	message FallarborTown_CozmosHouse_Text_Got_Gallade
 	waitfanfare

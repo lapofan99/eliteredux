@@ -2062,6 +2062,9 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 
                 if(gBattleMons[targetId].ability == ABILITY_WATER_ABSORB || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_WATER_ABSORB))
                     abilityNullifiesDamage = TRUE;
+
+                if(gBattleMons[targetId].ability == ABILITY_DRY_SKIN || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_DRY_SKIN))
+                    abilityNullifiesDamage = TRUE;
             break;
             case TYPE_ROCK:
                 if(gBattleMons[targetId].ability == ABILITY_FOSSILIZED || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_FOSSILIZED)){

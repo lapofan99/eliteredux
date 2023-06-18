@@ -28342,7 +28342,7 @@ static const struct TrainerMonItemCustomMoves sParty_Matt[] = { // Aqua Admin
     {
     .lvl = 1,
     .species = SPECIES_HELIOLISK, // Orb Rain Sweeper, Backup for Sun
-    .heldItem = ITEM_LIFE_ORB,
+    .heldItem = ITEM_FOCUS_SASH,
     .ability = 2, // ABILITY_LIGHTNING_ROD, ABILITY_PLUS, ABILITY_SOLAR_POWER},
     // .innates = {ABILITY_DRY_SKIN, ABILITY_ELECTROCYTES, ABILITY_SAND_RUSH},
     .ivs = {31, 0, 31, 31, 31, 31},

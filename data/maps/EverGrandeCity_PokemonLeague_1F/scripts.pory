@@ -235,7 +235,7 @@ script EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode{
 	//faceplayer
 	applymovement(LOCALID_GUARD_1, Common_Movement_FaceRight)
 	applymovement(LOCALID_GUARD_2, Common_Movement_FaceLeft)
-	msgbox(format("Guard: Do you want to enable Locked Mode before challenging the League?"), MSGBOX_YESNO)
+	msgbox(format("Guard: Do you want to enable Locked Mode during the League? This prevents you from changing your Pokémon, except held items."), MSGBOX_YESNO)
 	if(var(VAR_RESULT) == 1){
 		msgbox(format("Guard: Locked Mode is now enabled."), MSGBOX_NPC)
         setflag(FLAG_SYS_LOCKED_MODE)
