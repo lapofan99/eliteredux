@@ -787,8 +787,10 @@
 // Darky's Custom Moves
 #define MOVE_DEATHROLL 755
 #define MOVE_EXCALIBUR 756
+#define MOVE_AQUA_FANG 757
+#define MOVE_WAVE_CRASH 758
 
-#define MOVES_COUNT_DARKY 757
+#define MOVES_COUNT_DARKY 759
 
 #define MOVES_COUNT MOVES_COUNT_DARKY // before Custom Moves >> #define MOVES_COUNT MOVES_COUNT_GEN8
 

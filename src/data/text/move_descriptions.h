@@ -2997,6 +2997,14 @@ static const u8 sEXCALIBURDescription[] = _(
 	"Super effective on Dragon-\n"
 	"types. High critical ratio.");
 
+static const u8 sAQUA_FANGDescription[] = _(
+    "Has 10% flinch chance.\n"
+    "Strong Jaw boost.");
+
+static const u8 sWAVE_CRASHDescription[] = _(
+    "A life-risking tackle that\n"
+    "with 33% recoil damage.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3763,6 +3771,8 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     // Darky's Custom Moves
     [MOVE_DEATHROLL - 1] = sDEATHROLLDescription,
     [MOVE_EXCALIBUR - 1] = sEXCALIBURDescription,
+    [MOVE_AQUA_FANG - 1] = sAQUA_FANGDescription,
+    [MOVE_WAVE_CRASH - 1] = sWAVE_CRASHDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4559,6 +4569,8 @@ static const u8 sMoveFourLineDescription_EerieSpell[] = _("Attacks with its\ntre
 // Darky's Custom Moves
 static const u8 sMoveFourLineDescription_Deathroll[] = _("20% confusion chance.\nStrong Jaw boost.\nIgnores target's\nstat changes."); // new
 static const u8 sMoveFourLineDescription_Excalibur[] = _("Hits hard. Super-\neffective on\nDragon-types.\nHigh critical ratio."); // new
+static const u8 sMoveFourLineDescription_AquaFang[] = _("Bites with aquatic\nfangs. Has 10%\nflinch chance.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_WaveCrash[] = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5321,4 +5333,6 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     //Darky's Custom Moves
     [MOVE_DEATHROLL    - 1] = sMoveFourLineDescription_Deathroll,
     [MOVE_EXCALIBUR    - 1] = sMoveFourLineDescription_Excalibur,
+    [MOVE_AQUA_FANG    - 1] = sMoveFourLineDescription_AquaFang,
+    [MOVE_WAVE_CRASH   - 1] = sMoveFourLineDescription_WaveCrash,
 };

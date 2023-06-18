@@ -781,6 +781,8 @@ gBattleAnims_Moves::
 @@@@@@@@@@@@ Custom Moves @@@@@@@@@@@@
 	.4byte Move_EXCALIBUR 
 	.4byte Move_DEATHROLL
+	.4byte Move_AQUA_FANG
+	.4byte Move_WAVE_CRASH
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
 
 	.align 2
@@ -19128,6 +19130,7 @@ Move_RAIN_DANCE:
 	waitforvisualfinish
 	end
 
+Move_AQUA_FANG:
 Move_BITE:
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
@@ -20131,6 +20134,7 @@ Move_CRABHAMMER:
 	blendoff
 	end
 
+Move_WAVE_CRASH:
 Move_SURF:
 	createvisualtask AnimTask_CreateSurfWave, 2, ANIM_SURF_PAL_SURF
 	delay 24
