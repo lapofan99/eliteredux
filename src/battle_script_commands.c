@@ -8204,6 +8204,7 @@ static void Cmd_various(void)
         break;
     case VARIOUS_RESET_INTIMIDATE_TRACE_BITS:
         gSpecialStatuses[gActiveBattler].intimidatedMon = FALSE;
+        gSpecialStatuses[gActiveBattler].scaredMon = FALSE;
         gSpecialStatuses[gActiveBattler].traced = FALSE;
         gSpecialStatuses[gActiveBattler].switchInAbilityDone = FALSE;
         break;

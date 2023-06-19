@@ -69,6 +69,7 @@ struct ResourceFlags
 #define RESOURCE_FLAG_TRACED            0x10
 #define RESOURCE_FLAG_EMERGENCY_EXIT    0x20
 #define RESOURCE_FLAG_NEUTRALIZING_GAS  0x40
+#define RESOURCE_FLAG_SCARED            0x50
 
 struct DisableStruct
 {
@@ -169,6 +170,7 @@ struct SpecialStatus
     u8 lightningRodRedirected:1;
     u8 restoredBattlerSprite: 1;
     u8 intimidatedMon:1;
+    u8 scaredMon:1;
     u8 traced:1;
     u8 ppNotAffectedByPressure:1;
     u8 flag40:1;

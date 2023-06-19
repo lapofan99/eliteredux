@@ -8103,6 +8103,7 @@ BattleScript_ScareActivatesEnd3::
 BattleScript_PauseScareActivates:
 	pause B_WAIT_TIME_SHORT
 BattleScript_ScareActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_SCARE
 	setbyte gBattlerTarget, 0
 	call BattleScript_AbilityPopUp
 BattleScript_ScareActivatesLoop:

@@ -4720,11 +4720,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_INTIMIDATE:
-        case ABILITY_SCARE:
             if (!(gSpecialStatuses[battler].intimidatedMon))
             {
                 gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
                 gSpecialStatuses[battler].intimidatedMon = TRUE;
+            }
+            break;
+        case ABILITY_SCARE:
+            if (!(gSpecialStatuses[battler].scaredMon))
+            {
+                gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_SCARED;
+                gSpecialStatuses[battler].scaredMon = TRUE;
             }
             break;
         case ABILITY_TRACE:
@@ -5378,11 +5384,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Intimidate
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE)){
-			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTIMIDATE)] &&!(gSpecialStatuses[battler].intimidatedMon) )
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTIMIDATE)] && !(gSpecialStatuses[battler].intimidatedMon) )
 			{
 				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTIMIDATE)] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_INTIMIDATE;
-				gLastUsedAbility = ABILITY_INTIMIDATE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INTIMIDATE;
 				gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
 				gSpecialStatuses[battler].intimidatedMon = TRUE;
 			}
@@ -5390,13 +5395,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         //Scare
 		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCARE)){
-			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCARE)] &&!(gSpecialStatuses[battler].intimidatedMon) )
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCARE)] && !(gSpecialStatuses[battler].scaredMon) )
 			{
 				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCARE)] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_SCARE;
-				gLastUsedAbility = ABILITY_SCARE;
-				gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
-				gSpecialStatuses[battler].intimidatedMon = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCARE;
+				gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_SCARED;
+				gSpecialStatuses[battler].scaredMon = TRUE;
 			}
 		}
 		
@@ -8515,11 +8519,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
                 break;
             }
-			else if ((GetBattlerAbility(i) == ABILITY_SCARE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_SCARE))
-				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
+            
+			if ((GetBattlerAbility(i) == ABILITY_SCARE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_SCARE))
+				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_SCARED)
             {
                 //gLastUsedAbility = ABILITY_SCARE;
-                gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
+                gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_SCARED);
                 if (caseID == ABILITYEFFECT_INTIMIDATE1)
                 {
                     BattleScriptPushCursorAndCallback(BattleScript_ScareActivatesEnd3);
