@@ -8521,6 +8521,7 @@ static void Cmd_various(void)
             && !NoAliveMonsForEitherParty()
             && CompareStat(gBattlerAttacker, i, MAX_STAT_STAGE, CMP_LESS_THAN))
         {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BEAST_BOOST;
             gBattleMons[gBattlerAttacker].statStages[i]++;
             SET_STATCHANGER(i, 1, FALSE);
             PREPARE_STAT_BUFFER(gBattleTextBuff1, i);

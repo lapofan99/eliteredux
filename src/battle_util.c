@@ -4863,10 +4863,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!gSpecialStatuses[battler].switchInAbilityDone && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_STEEL))
             {
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_METALLIC;
                 gBattlerAttacker = battler;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_METALLIC;
-				gLastUsedAbility = ABILITY_METALLIC;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
 				gBattleMons[battler].type3 = TYPE_STEEL;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
@@ -5494,8 +5493,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 !IS_BATTLER_OF_TYPE(battler, TYPE_STEEL))
 			{
 				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_METALLIC)] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_METALLIC;
-				gLastUsedAbility = ABILITY_METALLIC;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_METALLIC;
+                gBattlerAttacker = battler;
 				gBattleMons[battler].type3 = TYPE_STEEL;
 				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
 				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
@@ -6301,29 +6300,36 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
             effect = 1;
         }
-        //Partner
-        else if ((((gLastUsedAbility == ABILITY_DAZZLING || gLastUsedAbility == ABILITY_QUEENLY_MAJESTY
-                   || (IsBattlerAlive(battler ^= BIT_FLANK)
-                       && ((GetBattlerAbility(battler) == ABILITY_DAZZLING        || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAZZLING) ||
-					        GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_QUEENLY_MAJESTY)) ||
-                           (GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING        || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_DAZZLING) ||
-					        GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)))))
-                   ))
-                 && GetChosenMovePriority(gBattlerAttacker) > 0
-                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
+        //Queenly Majesty
+        else if(((GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_QUEENLY_MAJESTY)) ||
+           ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)) && IsBattlerAlive(BATTLE_PARTNER(battler))))
+            && GetChosenMovePriority(gBattlerAttacker) > 0
+            && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
+        {
+            if(GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_QUEENLY_MAJESTY)){
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
+            }
+            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)){
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
+                gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
+            }
+
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            gBattlescriptCurrInstr = BattleScript_DazzlingProtected;
+            effect = 1;
+        }
+        //Dazzling
+        else if(((GetBattlerAbility(battler) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAZZLING)) ||
+           ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)) && IsBattlerAlive(BATTLE_PARTNER(battler))))
+            && GetChosenMovePriority(gBattlerAttacker) > 0
+            && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
         {
             if(GetBattlerAbility(battler) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAZZLING)){
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAZZLING;
             }
-            else if(GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_QUEENLY_MAJESTY)){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
-            }
-            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_DAZZLING)){
+            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)){
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAZZLING;
-                gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
-            }
-            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
                 gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
             }
 
