@@ -1642,6 +1642,7 @@ static void Cmd_attackcanceler(void)
              && gBattleMoves[gCurrentMove].flags & FLAG_MAGIC_COAT_AFFECTED
              && !gProtectStructs[gBattlerAttacker].usesBouncedMove)
     {
+        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAGIC_BOUNCE;
         RecordAbilityBattle(gBattlerTarget, ABILITY_MAGIC_BOUNCE);
         gProtectStructs[gBattlerTarget].usesBouncedMove = TRUE;
         gBattleCommunication[MULTISTRING_CHOOSER] = 1;
