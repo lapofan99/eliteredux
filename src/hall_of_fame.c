@@ -1135,7 +1135,7 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 
     if(FlagGet(FLAG_SYS_LOCKED_MODE)){
         StringExpandPlaceholders(gStringVar3, sText_WinsLossesLockedText);
-        FlagClear(FLAG_SYS_LOCKED_MODE);
+        FlagClear(FLAG_SYS_LOCKED_MODE); //This seems to not be saved upon reloading the game, the game probably saves before calling this funcition and restarts without saving
     }
     else{
         StringExpandPlaceholders(gStringVar3, sText_WinsLossesText);
