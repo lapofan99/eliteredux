@@ -1114,8 +1114,9 @@ static void Task_HofPC_ExitOnButtonPress(u8 taskId)
 
 static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 {
-    static const u8 gText_WelcomeToHOF[] 		= _("Elite Redux v0.9.6-beta - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
-    static const u8 sText_WinsLossesText[]      = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}");
+    static const u8 gText_WelcomeToHOF[] 		  = _("Elite Redux v0.9.6-beta - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
+    static const u8 sText_WinsLossesText[]        = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}");
+    static const u8 sText_WinsLossesLockedText[]  = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}      {COLOR LIGHT_RED}{SHADOW RED}Locked Mode{COLOR WHITE}{SHADOW DARK_GRAY}");
     
     static const u8 easyCapText[] 				= _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
 	static const u8 moreCapText[] 			    = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}More$");
@@ -1132,7 +1133,13 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 	//Number of Losses
 	ConvertIntToDecimalStringN(gStringVar2, losses, STR_CONV_MODE_RIGHT_ALIGN, 3);
 
-    StringExpandPlaceholders(gStringVar3, sText_WinsLossesText);
+    if(FlagGet(FLAG_SYS_LOCKED_MODE)){
+        StringExpandPlaceholders(gStringVar3, sText_WinsLossesLockedText);
+        FlagClear(FLAG_SYS_LOCKED_MODE);
+    }
+    else{
+        StringExpandPlaceholders(gStringVar3, sText_WinsLossesText);
+    }
 	
 	//Difficulty
 	switch (gSaveBlock2Ptr->gameDifficulty)
@@ -1166,9 +1173,8 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 	
 	FillWindowPixelBuffer(0, PIXEL_FILL(0));
     PutWindowTilemap(0);
-    AddTextPrinterParameterized3(0, 1, GetStringCenterAlignXOffset(1, gStringVar4, 0xD0), 1, sMonInfoTextColors, 0, gStringVar4);
+    AddTextPrinterParameterized3(0, FONT_SMALL_NARROW, GetStringCenterAlignXOffset(1, gStringVar4, 0xD0), 1, sMonInfoTextColors, 0, gStringVar4);
     CopyWindowToVram(0, 3);
-    FlagClear(FLAG_SYS_LOCKED_MODE);
 }
 
 static void HallOfFame_PrintMonInfo(struct HallofFameMon* currMon, u8 unused1, u8 unused2)
