@@ -289,7 +289,6 @@ static void HandleInputChooseAction(void)
             }
             PlayerBufferExecCompleted();
         }
-        #ifdef DEBUG_BUILD
         else if (JOY_NEW(L_BUTTON))
         {
             value = 2;
@@ -298,7 +297,6 @@ static void HandleInputChooseAction(void)
             FreeAllWindowBuffers();
             ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, gBattlerPartyIndexes[1], CalculateEnemyPartyCount() - 1, CB2_SetUpReshowBattleScreenAfterMenu);
         }
-        #endif
         else if (JOY_NEW(DPAD_LEFT))
         {
             if (gActionSelectionCursor[gActiveBattler] & 1) // if is B_ACTION_USE_ITEM or B_ACTION_RUN
