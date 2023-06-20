@@ -58,6 +58,7 @@
 #include "mgba_printf/mini_printf.h"
 #include "constants/map_groups.h"
 #include "constants/maps.h"
+#include "script_pokemon_util.h"
 
 struct SpeciesItem
 {
