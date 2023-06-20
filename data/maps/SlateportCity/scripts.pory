@@ -19,7 +19,7 @@ raw `
 .set LOCALID_GRUNT_9, 31
 .set LOCALID_GRUNT_11, 33
 .set LOCALID_SCOTT, 35
-.set LOCALID_BRAWLY, 39
+.set LOCALID_BRAWLY, 38
 
 SlateportCity_MapScripts:: @ 81DCC61
 	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_OnTransition
