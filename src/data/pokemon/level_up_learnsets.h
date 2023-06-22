@@ -9452,7 +9452,6 @@ static const struct LevelUpMove sMismagiusLevelUpLearnset[] = {
 
 static const struct LevelUpMove sHonchkrowLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 0, MOVE_DRILL_PECK),
-    LEVEL_UP_MOVE( 1, MOVE_WICKED_BLOW), // new
     LEVEL_UP_MOVE( 1, MOVE_NIGHT_SLASH),
     LEVEL_UP_MOVE( 1, MOVE_WING_ATTACK),
 	LEVEL_UP_MOVE( 1, MOVE_SUCKER_PUNCH),
@@ -9463,7 +9462,7 @@ static const struct LevelUpMove sHonchkrowLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(25, MOVE_SWAGGER),
 	LEVEL_UP_MOVE(35, MOVE_NASTY_PLOT),
 	LEVEL_UP_MOVE(45, MOVE_FOUL_PLAY),
-	LEVEL_UP_MOVE(55, MOVE_NIGHT_SLASH),
+    LEVEL_UP_MOVE(55, MOVE_WICKED_BLOW),
 	LEVEL_UP_MOVE(65, MOVE_QUASH),
 	LEVEL_UP_MOVE(75, MOVE_DARK_PULSE),
 	LEVEL_UP_END
