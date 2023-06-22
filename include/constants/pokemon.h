@@ -403,6 +403,11 @@
 #define NUM_ABILITY_SLOTS 3
 #define NUM_INNATE_PER_SPECIES 3
 
+#define INNATE_1_LEVEL 1
+#define INNATE_2_LEVEL 14
+#define INNATE_3_LEVEL 24
+
+
 //Move Relearner
 #define MOVE_TUTOR_LEVEL_UP_MOVES 0
 #define MOVE_TUTOR_EGG_MOVES      1

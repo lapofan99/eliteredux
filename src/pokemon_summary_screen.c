@@ -1086,6 +1086,7 @@ const u8 sText_MainAbility[] = _("Ability");
 const u8 sText_Innate1[] = _("Innate");
 const u8 sText_Innate2[] = _("Innate 2");
 const u8 sText_Innate3[] = _("Innate 3");
+const u8 sText_InnateUnlock[] = _("Unlocks at level {STR_VAR_1}");
 
 #if CONFIG_PHYSICAL_SPECIAL_SPLIT || CONFIG_SHOW_ICONS_FOR_OLD_SPLIT
 static const u16 sSplitIcons_Pal[] = INCBIN_U16("graphics/summary_screen/split_icons.gbapal");
@@ -4120,6 +4121,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
 	u16 species = sum->species;
+	u8 level = sum->level;
     const u8 *text;
 	u8 x, y, i;
 
@@ -4143,22 +4145,77 @@ static void BufferMonPokemonAbilityAndInnates(void)
 	// Description ---------------------------------------------------------------------------------------------------
 	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
     PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
-	
+
 	// Innates
 	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
-		if(gBaseStats[species].innates[i] != ABILITY_NONE){
-			y += 32;
-
-			//Title
-			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
-            PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
-			// Name ---------------------------------------------------------------------------------------------------
-			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[gBaseStats[species].innates[i]]);
-            PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
-			// Description ---------------------------------------------------------------------------------------------------
-			DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[gBaseStats[species].innates[i]]);
-			PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
-		}
+        switch(i){
+            case 0:
+                if(gBaseStats[species].innates[i] != ABILITY_NONE){
+                    y += 32;
+                    if(level >= INNATE_1_LEVEL){
+                        //Title
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Name ---------------------------------------------------------------------------------------------------
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[gBaseStats[species].innates[i]]);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Description ---------------------------------------------------------------------------------------------------
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[gBaseStats[species].innates[i]]);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+                    }
+                    else{
+                        //Title
+                        ConvertIntToDecimalStringN(gStringVar1, INNATE_1_LEVEL, STR_CONV_MODE_LEFT_ALIGN, 3);
+                        StringExpandPlaceholders(gStringVar4, sText_InnateUnlock);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                    }
+                }
+            break;
+            case 1:
+                if(gBaseStats[species].innates[i] != ABILITY_NONE){
+                    y += 32;
+                    if(level >= INNATE_2_LEVEL){
+                        //Title
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Name ---------------------------------------------------------------------------------------------------
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[gBaseStats[species].innates[i]]);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Description ---------------------------------------------------------------------------------------------------
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[gBaseStats[species].innates[i]]);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+                    }
+                    else{
+                        //Title
+                        ConvertIntToDecimalStringN(gStringVar1, INNATE_2_LEVEL, STR_CONV_MODE_LEFT_ALIGN, 3);
+                        StringExpandPlaceholders(gStringVar4, sText_InnateUnlock);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                    }
+                }
+            break;
+            case 2:
+                if(gBaseStats[species].innates[i] != ABILITY_NONE){
+                    y += 32;
+                    if(level >= INNATE_3_LEVEL){
+                        //Title
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Name ---------------------------------------------------------------------------------------------------
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[gBaseStats[species].innates[i]]);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Description ---------------------------------------------------------------------------------------------------
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[gBaseStats[species].innates[i]]);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
+                    }
+                    else{
+                        //Title
+                        ConvertIntToDecimalStringN(gStringVar1, INNATE_3_LEVEL, STR_CONV_MODE_LEFT_ALIGN, 3);
+                        StringExpandPlaceholders(gStringVar4, sText_InnateUnlock);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                    }
+                }
+            break;
+        }
 	}
 }
 

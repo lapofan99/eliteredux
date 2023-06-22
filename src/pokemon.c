@@ -8905,10 +8905,6 @@ u16 getRandomSpecies(void)
 	return species;
 }
 
-#define INNATE_1_LEVEL 1
-#define INNATE_2_LEVEL 1
-#define INNATE_3_LEVEL 1
-
 bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level){
 	u8 i;
 	
