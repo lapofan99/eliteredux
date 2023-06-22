@@ -893,7 +893,7 @@ static const u8 sPresentDescription[] = _(
 
 static const u8 sFrustrationDescription[] = _(
     "A reliable and strong\n"
-    "Normal-type attack.");
+    "Dark-type attack.");
 
 static const u8 sSafeguardDescription[] = _(
     "A mystical force prevents\n"
@@ -4007,9 +4007,9 @@ static const u8 sMoveFourLineDescription_MeanLook[] = _("The foe is fixed\nwith 
 static const u8 sMoveFourLineDescription_Attract[] = _("If it is the other\ngender, the foe is\nmade infatuated and\nunlikely to attack.");
 static const u8 sMoveFourLineDescription_SleepTalk[] = _("While asleep, the\nuser randomly uses\none of the moves it\nknows.");
 static const u8 sMoveFourLineDescription_HealBell[] = _("A soothing bell\nchimes to heal the\nstatus problems of\nall allies.");
-static const u8 sMoveFourLineDescription_Return[] = _("Always has 100 BP.");
+static const u8 sMoveFourLineDescription_Return[] = _("A strong and reliable\nnormal type attack.");
 static const u8 sMoveFourLineDescription_Present[] = _("The foe is given a\nbooby-trapped gift.\nIt restores HP\nsometimes, however.");
-static const u8 sMoveFourLineDescription_Frustration[] = _("Always has 100 BP.");
+static const u8 sMoveFourLineDescription_Frustration[] = _("A strong and reliable\ndark type attack.");
 static const u8 sMoveFourLineDescription_Safeguard[] = _("It protects the\nuser's party from\nall status problems\nfor five turns.");
 static const u8 sMoveFourLineDescription_PainSplit[] = _("The user adds its\nHP to the foe's HP,\nthen equally shares\nthe total HP.");
 static const u8 sMoveFourLineDescription_SacredFire[] = _("A mystical and\npowerful fire\nattack that always\ninflicts a burn."); // new
