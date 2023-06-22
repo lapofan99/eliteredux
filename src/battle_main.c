@@ -4801,32 +4801,32 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     // weather abilities
     if (WEATHER_HAS_EFFECT)
     {
-        if ((ability == ABILITY_SWIFT_SWIM || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SWIFT_SWIM)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
+        if ((ability == ABILITY_SWIFT_SWIM || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SWIFT_SWIM, gBattleMons[battlerId].level)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
             speed *= 2;
-        else if ((ability == ABILITY_CHLOROPHYLL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_CHLOROPHYLL)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+        else if ((ability == ABILITY_CHLOROPHYLL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_CHLOROPHYLL, gBattleMons[battlerId].level)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed *= 2;
-        else if ((ability == ABILITY_BIG_LEAVES || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_BIG_LEAVES)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+        else if ((ability == ABILITY_BIG_LEAVES || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_BIG_LEAVES, gBattleMons[battlerId].level)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed *= 2;
-        else if ((ability == ABILITY_SAND_RUSH   || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SAND_RUSH)) && gBattleWeather & WEATHER_SANDSTORM_ANY)
+        else if ((ability == ABILITY_SAND_RUSH   || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SAND_RUSH, gBattleMons[battlerId].level)) && gBattleWeather & WEATHER_SANDSTORM_ANY)
             speed *= 2;
-        else if ((ability == ABILITY_SLUSH_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLUSH_RUSH)) && gBattleWeather & WEATHER_HAIL_ANY)
+        else if ((ability == ABILITY_SLUSH_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLUSH_RUSH, gBattleMons[battlerId].level)) && gBattleWeather & WEATHER_HAIL_ANY)
             speed *= 2;
-		else if ((ability == ABILITY_VIOLENT_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_VIOLENT_RUSH)) && gDisableStructs[battlerId].isFirstTurn)
+		else if ((ability == ABILITY_VIOLENT_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_VIOLENT_RUSH, gBattleMons[battlerId].level)) && gDisableStructs[battlerId].isFirstTurn)
             speed = (speed * 150) / 100;
     }
 
     // other abilities
-    if ((ability == ABILITY_QUICK_FEET  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_QUICK_FEET)) && gBattleMons[battlerId].status1 & STATUS1_ANY)
+    if ((ability == ABILITY_QUICK_FEET  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_QUICK_FEET, gBattleMons[battlerId].level)) && gBattleMons[battlerId].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
-    else if ((ability == ABILITY_SURGE_SURFER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SURGE_SURFER)) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+    else if ((ability == ABILITY_SURGE_SURFER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SURGE_SURFER, gBattleMons[battlerId].level)) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed *= 2;
-    else if ((ability == ABILITY_SLOW_START  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLOW_START)) && gDisableStructs[battlerId].slowStartTimer != 0)
+    else if ((ability == ABILITY_SLOW_START  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLOW_START, gBattleMons[battlerId].level)) && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
 	
-	if (ability == ABILITY_LEAD_COAT || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEAD_COAT))
+	if (ability == ABILITY_LEAD_COAT || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEAD_COAT, gBattleMons[battlerId].level))
         speed *= 0.9;
 	
-	/*if ((ability == ABILITY_NOCTURNAL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_NOCTURNAL)) && !IsCurrentlyDay())
+	/*if ((ability == ABILITY_NOCTURNAL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_NOCTURNAL, gBattleMons[battlerId].level)) && !IsCurrentlyDay())
         speed *= 1.1;
     */
 
@@ -4876,14 +4876,14 @@ s8 GetMovePriority(u32 battlerId, u16 move)
 
     priority = gBattleMoves[move].priority;
 	// Gale Wings
-    if ((GetBattlerAbility(battlerId) == ABILITY_GALE_WINGS  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GALE_WINGS))
+    if ((GetBattlerAbility(battlerId) == ABILITY_GALE_WINGS  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GALE_WINGS, gBattleMons[battlerId].level))
         && gBattleMoves[move].type == TYPE_FLYING
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
     }
 	// Flaming Soul
-	if ((GetBattlerAbility(battlerId) == ABILITY_FLAMING_SOUL  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_FLAMING_SOUL))
+	if ((GetBattlerAbility(battlerId) == ABILITY_FLAMING_SOUL  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_FLAMING_SOUL, gBattleMons[battlerId].level))
         && gBattleMoves[move].type == TYPE_FIRE
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
@@ -4891,7 +4891,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     }
 
 	// Frozen Soul
-	if ((GetBattlerAbility(battlerId) == ABILITY_FROZEN_SOUL  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_FROZEN_SOUL))
+	if ((GetBattlerAbility(battlerId) == ABILITY_FROZEN_SOUL  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_FROZEN_SOUL, gBattleMons[battlerId].level))
         && gBattleMoves[move].type == TYPE_ICE
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
@@ -4899,14 +4899,14 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     }
 
     // Prankster
-	if ((GetBattlerAbility(battlerId) == ABILITY_PRANKSTER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_PRANKSTER)) && IS_MOVE_STATUS(move))
+	if ((GetBattlerAbility(battlerId) == ABILITY_PRANKSTER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_PRANKSTER, gBattleMons[battlerId].level)) && IS_MOVE_STATUS(move))
     {
         gProtectStructs[battlerId].pranksterElevated = 1;
         priority++;
     }
 
     // Sighting System
-	if ((GetBattlerAbility(battlerId) == ABILITY_SIGHTING_SYSTEM  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SIGHTING_SYSTEM))
+	if ((GetBattlerAbility(battlerId) == ABILITY_SIGHTING_SYSTEM  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SIGHTING_SYSTEM, gBattleMons[battlerId].level))
         && gBattleMoves[move].accuracy <= 50)
     {
         priority = priority - 3;
@@ -4917,7 +4917,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
         priority++;
     }
     
-	if ((GetBattlerAbility(battlerId) == ABILITY_TRIAGE || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_TRIAGE)))
+	if ((GetBattlerAbility(battlerId) == ABILITY_TRIAGE || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_TRIAGE, gBattleMons[battlerId].level)))
     {
         switch (gBattleMoves[move].effect)
         {
@@ -4938,13 +4938,13 @@ s8 GetMovePriority(u32 battlerId, u16 move)
         }
     }
     
-	if ((GetBattlerAbility(battlerId) == ABILITY_BLITZ_BOXER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_BLITZ_BOXER))
+	if ((GetBattlerAbility(battlerId) == ABILITY_BLITZ_BOXER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_BLITZ_BOXER, gBattleMons[battlerId].level))
 		&& (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
     {
         priority++;
     }
 
-	if((GetBattlerAbility(battlerId) == ABILITY_PERFECTIONIST || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_PERFECTIONIST)) && gBattleMoves[move].power <= 25)
+	if((GetBattlerAbility(battlerId) == ABILITY_PERFECTIONIST || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_PERFECTIONIST, gBattleMons[battlerId].level)) && gBattleMoves[move].power <= 25)
 		priority++;
 
     if((gStatuses4[battlerId] & STATUS4_COILED) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)){
@@ -4968,7 +4968,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     if (!ignoreChosenMoves && GetBattlerAbility(battler1) == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && Random() % 100 < 30)
         gProtectStructs[battler1].quickDraw = TRUE;
     // Opportunist
-    if (!ignoreChosenMoves && (GetBattlerAbility(battler1) == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[battler1].species, ABILITY_OPPORTUNIST)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (!ignoreChosenMoves && (GetBattlerAbility(battler1) == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[battler1].species, ABILITY_OPPORTUNIST, gBattleMons[battler1].level)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         && gBattleMons[battler2].hp <= gBattleMons[battler2].maxHP / 2 && gBattleMoves[gBattleMons[battler1].moves[*(gBattleStruct->chosenMovePositions + battler1)]].target == MOVE_TARGET_SELECTED){
             gProtectStructs[battler1].quickDraw = TRUE;
     }
@@ -4987,7 +4987,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     if (!ignoreChosenMoves && GetBattlerAbility(battler2) == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && Random() % 100 < 30)
         gProtectStructs[battler2].quickDraw = TRUE;
     // Opportunist
-    if (!ignoreChosenMoves && (GetBattlerAbility(battler2) == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[battler2].species, ABILITY_OPPORTUNIST)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    if (!ignoreChosenMoves && (GetBattlerAbility(battler2) == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[battler2].species, ABILITY_OPPORTUNIST, gBattleMons[battler2].level)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         && gBattleMons[battler1].hp <= gBattleMons[battler1].maxHP / 2 && gBattleMoves[gBattleMons[battler2].moves[*(gBattleStruct->chosenMovePositions + battler2)]].target == MOVE_TARGET_SELECTED)
         gProtectStructs[battler2].quickDraw = TRUE;
     // Quick Claw and Custap Berry
@@ -5024,11 +5024,11 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
             strikesFirst = 1;
         else if (holdEffectBattler2 == HOLD_EFFECT_LAGGING_TAIL && holdEffectBattler1 != HOLD_EFFECT_LAGGING_TAIL)
             strikesFirst = 0;
-        else if ((GetBattlerAbility(battler1) == ABILITY_STALL || SpeciesHasInnate(gBattleMons[battler1].species, ABILITY_STALL)) && 
-		         (GetBattlerAbility(battler2) != ABILITY_STALL && !SpeciesHasInnate(gBattleMons[battler2].species, ABILITY_STALL)))
+        else if ((GetBattlerAbility(battler1) == ABILITY_STALL || SpeciesHasInnate(gBattleMons[battler1].species, ABILITY_STALL, gBattleMons[battler1].level)) && 
+		         (GetBattlerAbility(battler2) != ABILITY_STALL && !SpeciesHasInnate(gBattleMons[battler2].species, ABILITY_STALL, gBattleMons[battler2].level)))
             strikesFirst = 1;
-        else if ((GetBattlerAbility(battler2) == ABILITY_STALL || SpeciesHasInnate(gBattleMons[battler2].species, ABILITY_STALL))&& 
-		         (GetBattlerAbility(battler1) != ABILITY_STALL && !SpeciesHasInnate(gBattleMons[battler1].species, ABILITY_STALL)))
+        else if ((GetBattlerAbility(battler2) == ABILITY_STALL || SpeciesHasInnate(gBattleMons[battler2].species, ABILITY_STALL, gBattleMons[battler2].level))&& 
+		         (GetBattlerAbility(battler1) != ABILITY_STALL && !SpeciesHasInnate(gBattleMons[battler1].species, ABILITY_STALL, gBattleMons[battler2].level)))
             strikesFirst = 0;
         else
         {
@@ -5339,7 +5339,7 @@ static void CheckQuickClaw_CustapBerryActivation(void)
                 }
                 else if (gProtectStructs[gActiveBattler].quickDraw)
                 {
-                    if(gBattleMons[gActiveBattler].ability == ABILITY_QUICK_DRAW || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_QUICK_DRAW)){
+                    if(gBattleMons[gActiveBattler].ability == ABILITY_QUICK_DRAW || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_QUICK_DRAW, gBattleMons[gActiveBattler].level)){
                         gProtectStructs[gActiveBattler].quickDraw = FALSE;
                         gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_QUICK_DRAW;
                         PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
@@ -5347,7 +5347,7 @@ static void CheckQuickClaw_CustapBerryActivation(void)
                         RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
                         BattleScriptExecute(BattleScript_QuickDrawActivation);
                     }
-                    else if(gBattleMons[gActiveBattler].ability == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_OPPORTUNIST)){
+                    else if(gBattleMons[gActiveBattler].ability == ABILITY_OPPORTUNIST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_OPPORTUNIST, gBattleMons[gActiveBattler].level)){
                         gProtectStructs[gActiveBattler].quickDraw = FALSE;
                         gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_OPPORTUNIST;
                         PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
@@ -5830,15 +5830,15 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && (   ((attackerAbility == ABILITY_PIXILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PIXILATE))     && (ateType = TYPE_FAIRY))
-                 || ((attackerAbility == ABILITY_REFRIGERATE  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_REFRIGERATE))  && (ateType = TYPE_ICE))
-                 || ((attackerAbility == ABILITY_AERILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AERILATE))     && (ateType = TYPE_FLYING))
-				 || ((attackerAbility == ABILITY_BURNATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE))      && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_GROUNDATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUNDATE))    && (ateType = TYPE_GROUND))
-				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)) && (ateType = TYPE_FIGHTING))
-                 || ((attackerAbility == ABILITY_POISONATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POISONATE))    && (ateType = TYPE_POISON))
-                 || ((attackerAbility == ABILITY_HYDRATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYDRATE))      && (ateType = TYPE_WATER))
-                 || (((attackerAbility == ABILITY_GALVANIZE)  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GALVANIZE))    && (ateType = TYPE_ELECTRIC))
+             && (   ((attackerAbility == ABILITY_PIXILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PIXILATE, gBattleMons[battlerAtk].level))     && (ateType = TYPE_FAIRY))
+                 || ((attackerAbility == ABILITY_REFRIGERATE  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_REFRIGERATE, gBattleMons[battlerAtk].level))  && (ateType = TYPE_ICE))
+                 || ((attackerAbility == ABILITY_AERILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AERILATE, gBattleMons[battlerAtk].level))     && (ateType = TYPE_FLYING))
+				 || ((attackerAbility == ABILITY_BURNATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE, gBattleMons[battlerAtk].level))      && (ateType = TYPE_FIRE))
+				 || ((attackerAbility == ABILITY_GROUNDATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUNDATE, gBattleMons[battlerAtk].level))    && (ateType = TYPE_GROUND))
+				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT, gBattleMons[battlerAtk].level)) && (ateType = TYPE_FIGHTING))
+                 || ((attackerAbility == ABILITY_POISONATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POISONATE, gBattleMons[battlerAtk].level))    && (ateType = TYPE_POISON))
+                 || ((attackerAbility == ABILITY_HYDRATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYDRATE, gBattleMons[battlerAtk].level))      && (ateType = TYPE_WATER))
+                 || (((attackerAbility == ABILITY_GALVANIZE)  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GALVANIZE, gBattleMons[battlerAtk].level))    && (ateType = TYPE_ELECTRIC))
                 )
              )
         return ateType;
@@ -5850,10 +5850,10 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
              && attackerAbility == ABILITY_NORMALIZE)
         return TYPE_NORMAL;
     else if (gBattleMoves[move].flags & FLAG_SOUND &&
-             (attackerAbility == ABILITY_LIQUID_VOICE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LIQUID_VOICE)))
+             (attackerAbility == ABILITY_LIQUID_VOICE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LIQUID_VOICE, gBattleMons[battlerAtk].level)))
         return TYPE_WATER;
     else if (gBattleMoves[move].flags & FLAG_SOUND && 
-             (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
+             (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG, gBattleMons[battlerAtk].level)))
         return TYPE_GROUND;
     else if (gStatuses4[battlerAtk] & STATUS4_PLASMA_FISTS && moveType == TYPE_NORMAL)
         return TYPE_ELECTRIC;
@@ -5862,7 +5862,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
 	
 	//Inates
 	//Burnate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE, gBattleMons[battlerAtk].level)){
 		if(gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
@@ -5871,12 +5871,12 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
 				return TYPE_FIRE;
 	}
 	//Crystallize
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE, gBattleMons[battlerAtk].level)){
 		if(gBattleMoves[move].type == TYPE_ROCK)
 			return TYPE_ICE;
 	}
 	//Fight Spirit
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT, gBattleMons[battlerAtk].level)){
 		if(gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
@@ -5978,15 +5978,15 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
-             && (   ((attackerAbility == ABILITY_PIXILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PIXILATE))     && (ateType = TYPE_FAIRY))
-                 || ((attackerAbility == ABILITY_REFRIGERATE  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_REFRIGERATE))  && (ateType = TYPE_ICE))
-                 || ((attackerAbility == ABILITY_AERILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AERILATE))     && (ateType = TYPE_FLYING))
-				 || ((attackerAbility == ABILITY_BURNATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE))      && (ateType = TYPE_FIRE))
-				 || ((attackerAbility == ABILITY_GROUNDATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUNDATE))    && (ateType = TYPE_GROUND))
-				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)) && (ateType = TYPE_FIGHTING))
-                 || ((attackerAbility == ABILITY_POISONATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POISONATE))    && (ateType = TYPE_POISON))
-                 || ((attackerAbility == ABILITY_HYDRATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYDRATE))      && (ateType = TYPE_WATER))
-                 || (((attackerAbility == ABILITY_GALVANIZE)  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GALVANIZE))    && (ateType = TYPE_ELECTRIC))
+             && (   ((attackerAbility == ABILITY_PIXILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PIXILATE, gBattleMons[battlerAtk].level))     && (ateType = TYPE_FAIRY))
+                 || ((attackerAbility == ABILITY_REFRIGERATE  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_REFRIGERATE, gBattleMons[battlerAtk].level))  && (ateType = TYPE_ICE))
+                 || ((attackerAbility == ABILITY_AERILATE     || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AERILATE, gBattleMons[battlerAtk].level))     && (ateType = TYPE_FLYING))
+				 || ((attackerAbility == ABILITY_BURNATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE, gBattleMons[battlerAtk].level))      && (ateType = TYPE_FIRE))
+				 || ((attackerAbility == ABILITY_GROUNDATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUNDATE, gBattleMons[battlerAtk].level))    && (ateType = TYPE_GROUND))
+				 || ((attackerAbility == ABILITY_FIGHT_SPIRIT || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT, gBattleMons[battlerAtk].level)) && (ateType = TYPE_FIGHTING))
+                 || ((attackerAbility == ABILITY_POISONATE    || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POISONATE, gBattleMons[battlerAtk].level))    && (ateType = TYPE_POISON))
+                 || ((attackerAbility == ABILITY_HYDRATE      || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYDRATE, gBattleMons[battlerAtk].level))      && (ateType = TYPE_WATER))
+                 || (((attackerAbility == ABILITY_GALVANIZE)  || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GALVANIZE, gBattleMons[battlerAtk].level))    && (ateType = TYPE_ELECTRIC))
                 )
              )
     {
@@ -6007,12 +6007,12 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
         gBattleStruct->ateBoost[battlerAtk] = 1;
     }
     else if (gBattleMoves[move].flags & FLAG_SOUND &&
-            (attackerAbility == ABILITY_LIQUID_VOICE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LIQUID_VOICE)))
+            (attackerAbility == ABILITY_LIQUID_VOICE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LIQUID_VOICE, gBattleMons[battlerAtk].level)))
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_WATER;
     }
     else if (gBattleMoves[move].flags & FLAG_SOUND && 
-            (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
+            (attackerAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG, gBattleMons[battlerAtk].level)))
     {
         gBattleStruct->dynamicMoveType = 0x80 | TYPE_GROUND;
     }
@@ -6027,7 +6027,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
 	
 	//Inates
 	//Burnate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE, gBattleMons[battlerAtk].level)){
 		if(gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
@@ -6039,7 +6039,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
 			}
 	}
 	//Crystallize
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE, gBattleMons[battlerAtk].level)){
 		if(gBattleMoves[move].type == TYPE_ROCK){
 			ateType = TYPE_ICE;
 			gBattleStruct->dynamicMoveType = 0x80 | ateType;
@@ -6047,7 +6047,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
 		}
 	}
 	//Fight Spirit
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT, gBattleMons[battlerAtk].level)){
 		if(gBattleMoves[move].type == TYPE_NORMAL
              && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
              && gBattleMoves[move].effect != EFFECT_WEATHER_BALL

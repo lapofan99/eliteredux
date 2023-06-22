@@ -554,7 +554,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         // Immunity checks
         if (moveType == TYPE_GROUND
           && !IsBattlerGrounded(battlerDef)
-          && (((AI_DATA->defAbility == ABILITY_LEVITATE || DefSpeciesHasInnate(ABILITY_LEVITATE))
+          && (((AI_DATA->defAbility == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE))
           && DoesBattlerIgnoreAbilityChecks(battlerAtk, move))
           || AI_DATA->defHoldEffect == HOLD_EFFECT_AIR_BALLOON
           || (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
@@ -564,38 +564,38 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
 
         if (moveType == TYPE_FLYING
-          && (AI_DATA->defAbility == ABILITY_AERODYNAMICS || DefSpeciesHasInnate(ABILITY_AERODYNAMICS)))
+          && (AI_DATA->defAbility == ABILITY_AERODYNAMICS || BattlerHasInnate(battlerDef, ABILITY_AERODYNAMICS)))
         {
             RETURN_SCORE_MINUS(20);
         }
 
         if ((moveType == TYPE_FLYING || moveType == TYPE_FIRE)
-          && (AI_DATA->defAbility == ABILITY_INFLATABLE || DefSpeciesHasInnate(ABILITY_INFLATABLE)))
+          && (AI_DATA->defAbility == ABILITY_INFLATABLE || BattlerHasInnate(battlerDef, ABILITY_INFLATABLE)))
         {
             RETURN_SCORE_MINUS(20);
         }
 
-        if(gBattleMoves[move].flags & FLAG_SOUND && (AI_DATA->atkAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG)))
+        if(gBattleMoves[move].flags & FLAG_SOUND && (AI_DATA->atkAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG, gBattleMons[battlerAtk].level)))
         {
-            if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) || (AI_DATA->defAbility == ABILITY_LEVITATE || DefSpeciesHasInnate(ABILITY_LEVITATE)))
+            if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) || (AI_DATA->defAbility == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE)))
                 RETURN_SCORE_MINUS(20);
         }
 
 
         if (moveType == TYPE_ROCK
-          && (AI_DATA->defAbility == ABILITY_MOUNTAINEER || DefSpeciesHasInnate(ABILITY_MOUNTAINEER)))
+          && (AI_DATA->defAbility == ABILITY_MOUNTAINEER || BattlerHasInnate(battlerDef, ABILITY_MOUNTAINEER)))
         {
             RETURN_SCORE_MINUS(20);
         }
 
         if (moveType == TYPE_ICE
-          && (AI_DATA->defAbility == ABILITY_ICE_DEW || DefSpeciesHasInnate(ABILITY_ICE_DEW)))
+          && (AI_DATA->defAbility == ABILITY_ICE_DEW || BattlerHasInnate(battlerDef, ABILITY_ICE_DEW)))
         {
             RETURN_SCORE_MINUS(20);
         }
 
         if (moveType == TYPE_ROCK
-          && (AI_DATA->defAbility == ABILITY_MOMENTUM || DefSpeciesHasInnate(ABILITY_MOMENTUM)))
+          && (AI_DATA->defAbility == ABILITY_MOMENTUM || BattlerHasInnate(battlerDef, ABILITY_MOMENTUM)))
         {
             RETURN_SCORE_MINUS(20);
         }
@@ -609,18 +609,18 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
 
         if (moveType == TYPE_ELECTRIC
-          && (AI_DATA->defAbility == ABILITY_VOLT_ABSORB || DefSpeciesHasInnate(ABILITY_VOLT_ABSORB)))
+          && (AI_DATA->defAbility == ABILITY_VOLT_ABSORB || BattlerHasInnate(battlerDef, ABILITY_VOLT_ABSORB)))
         {
             RETURN_SCORE_MINUS(20);
         }
 
-        if (TestMoveFlags(move, FLAG_BONE_BASED) && (AI_DATA->defAbility == ABILITY_BONE_ZONE || DefSpeciesHasInnate(ABILITY_BONE_ZONE)))
+        if (TestMoveFlags(move, FLAG_BONE_BASED) && (AI_DATA->defAbility == ABILITY_BONE_ZONE || BattlerHasInnate(battlerDef, ABILITY_BONE_ZONE)))
         {
             RETURN_SCORE_MINUS(20);
         }
 
         if (move == MOVE_LEECH_SEED
-          && (AI_DATA->defAbility == ABILITY_IMPENETRABLE || DefSpeciesHasInnate(ABILITY_IMPENETRABLE)))
+          && (AI_DATA->defAbility == ABILITY_IMPENETRABLE || BattlerHasInnate(battlerDef, ABILITY_IMPENETRABLE)))
         {
             RETURN_SCORE_MINUS(20);
         }
@@ -635,35 +635,35 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         // Innates test
         if (moveType == TYPE_GRASS
           && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE)
-          && (AI_DATA->atkAbility == ABILITY_SEAWEED || AtkSpeciesHasInnate(ABILITY_SEAWEED)))
+          && (AI_DATA->atkAbility == ABILITY_SEAWEED || BattlerHasInnate(battlerAtk, ABILITY_SEAWEED)))
         {
             score += 2;
         }
 
         if (moveType == TYPE_ELECTRIC
           && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GROUND)
-          && (AI_DATA->atkAbility == ABILITY_GROUND_SHOCK || AtkSpeciesHasInnate(ABILITY_GROUND_SHOCK)))
+          && (AI_DATA->atkAbility == ABILITY_GROUND_SHOCK || BattlerHasInnate(battlerAtk, ABILITY_GROUND_SHOCK)))
         {
             score += 2;
         }
 
         if (moveType == TYPE_ELECTRIC
           && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ELECTRIC)
-          && (AI_DATA->atkAbility == ABILITY_OVERCHARGE || AtkSpeciesHasInnate(ABILITY_OVERCHARGE)))
+          && (AI_DATA->atkAbility == ABILITY_OVERCHARGE || BattlerHasInnate(battlerAtk, ABILITY_OVERCHARGE)))
         {
             score += 2;
         }
 
         if (moveType == TYPE_FIRE
           && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK)
-          && (AI_DATA->atkAbility == ABILITY_MOLTEN_DOWN || AtkSpeciesHasInnate(ABILITY_MOLTEN_DOWN)))
+          && (AI_DATA->atkAbility == ABILITY_MOLTEN_DOWN || BattlerHasInnate(battlerAtk, ABILITY_MOLTEN_DOWN)))
         {
             score += 2;
         }
 
         if (moveType == TYPE_DRAGON
           && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FAIRY)
-          && (AI_DATA->atkAbility == ABILITY_OVERWHELM || AtkSpeciesHasInnate(ABILITY_OVERWHELM)))
+          && (AI_DATA->atkAbility == ABILITY_OVERWHELM || BattlerHasInnate(battlerAtk, ABILITY_OVERWHELM)))
         {
             score += 2;
         }
@@ -857,15 +857,15 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
         //check for def innates
         //Soundproof
-        if(DefSpeciesHasInnate(ABILITY_SOUNDPROOF) && TestMoveFlags(move, FLAG_SOUND))
+        if(BattlerHasInnate(battlerDef, ABILITY_SOUNDPROOF) && TestMoveFlags(move, FLAG_SOUND))
             RETURN_SCORE_MINUS(20);
 
         //Queenly Majesty
-        if(DefSpeciesHasInnate(ABILITY_QUEENLY_MAJESTY) && atkPriority > 0)
+        if(BattlerHasInnate(battlerDef, ABILITY_QUEENLY_MAJESTY) && atkPriority > 0)
             RETURN_SCORE_MINUS(20);
 
         //Magic Guard
-        if(DefSpeciesHasInnate(ABILITY_MAGIC_GUARD)){
+        if(BattlerHasInnate(battlerDef, ABILITY_MAGIC_GUARD)){
             switch (moveEffect)
             {
             case EFFECT_POISON:
@@ -882,7 +882,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
 
         //Oblivious
-        if(DefSpeciesHasInnate(ABILITY_OBLIVIOUS)){
+        if(BattlerHasInnate(battlerDef, ABILITY_OBLIVIOUS)){
             switch (moveEffect)
             {
             case EFFECT_TAUNT:
@@ -892,115 +892,115 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
 
         //Volt Absorb, Motor Drive and Lighting Rod
-        if((DefSpeciesHasInnate(ABILITY_VOLT_ABSORB)  || 
-            DefSpeciesHasInnate(ABILITY_MOTOR_DRIVE)  || 
-            DefSpeciesHasInnate(ABILITY_LIGHTNING_ROD)) && 
+        if((BattlerHasInnate(battlerDef, ABILITY_VOLT_ABSORB)  || 
+            BattlerHasInnate(battlerDef, ABILITY_MOTOR_DRIVE)  || 
+            BattlerHasInnate(battlerDef, ABILITY_LIGHTNING_ROD)) && 
             moveType == TYPE_ELECTRIC)
             RETURN_SCORE_MINUS(20);
 
         //Water Absorb, Dry skin and Storm Drain
-        if((DefSpeciesHasInnate(ABILITY_WATER_ABSORB)  || 
-            DefSpeciesHasInnate(ABILITY_DRY_SKIN)  || 
-            DefSpeciesHasInnate(ABILITY_STORM_DRAIN)) && 
+        if((BattlerHasInnate(battlerDef, ABILITY_WATER_ABSORB)  || 
+            BattlerHasInnate(battlerDef, ABILITY_DRY_SKIN)  || 
+            BattlerHasInnate(battlerDef, ABILITY_STORM_DRAIN)) && 
             moveType == TYPE_WATER)
             RETURN_SCORE_MINUS(20);
 
         //Flash Fire
-        if(DefSpeciesHasInnate(ABILITY_FLASH_FIRE) && 
+        if(BattlerHasInnate(battlerDef, ABILITY_FLASH_FIRE) && 
             moveType == TYPE_FIRE)
             RETURN_SCORE_MINUS(20);
         
         //Wonder Guard
-        if(DefSpeciesHasInnate(ABILITY_WONDER_GUARD) && 
+        if(BattlerHasInnate(battlerDef, ABILITY_WONDER_GUARD) && 
            effectiveness != AI_EFFECTIVENESS_x2 && effectiveness != AI_EFFECTIVENESS_x4)
             RETURN_SCORE_MINUS(20);
 
         //Sap Sipper
-        if(DefSpeciesHasInnate(ABILITY_SAP_SIPPER) && 
+        if(BattlerHasInnate(battlerDef, ABILITY_SAP_SIPPER) && 
             moveType == TYPE_GRASS)
             RETURN_SCORE_MINUS(20);
 
         //Justified
-        if(DefSpeciesHasInnate(ABILITY_JUSTIFIED) && 
+        if(BattlerHasInnate(battlerDef, ABILITY_JUSTIFIED) && 
             moveType == TYPE_DARK && !IS_MOVE_STATUS(move))
             RETURN_SCORE_MINUS(10);
 
         //Rattled
-        if(DefSpeciesHasInnate(ABILITY_RATTLED) && !IS_MOVE_STATUS(move) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_RATTLED) && !IS_MOVE_STATUS(move) &&
             (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG))
             RETURN_SCORE_MINUS(10);
 
         //Bulletproof
-        if(DefSpeciesHasInnate(ABILITY_BULLETPROOF) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_BULLETPROOF) &&
            TestMoveFlags(move, FLAG_BALLISTIC))
             RETURN_SCORE_MINUS(20);
 
         //Dazzling and Queenly Majesty
-        if((DefSpeciesHasInnate(ABILITY_DAZZLING) || DefSpeciesHasInnate(ABILITY_QUEENLY_MAJESTY)) &&
+        if((BattlerHasInnate(battlerDef, ABILITY_DAZZLING) || BattlerHasInnate(battlerDef, ABILITY_QUEENLY_MAJESTY)) &&
            atkPriority > 0)
             RETURN_SCORE_MINUS(20);
 
         //Aroma Veil - Unused
-        if(DefSpeciesHasInnate(ABILITY_AROMA_VEIL) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_AROMA_VEIL) &&
            IsAromaVeilProtectedMove(move))
             RETURN_SCORE_MINUS(20);
 
         //Sweet Veil - Unused
-        if(DefSpeciesHasInnate(ABILITY_SWEET_VEIL) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_SWEET_VEIL) &&
            (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN))
             RETURN_SCORE_MINUS(10);
 
         //Magic Bounce
-        if(DefSpeciesHasInnate(ABILITY_MAGIC_BOUNCE) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_MAGIC_BOUNCE) &&
            TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED))
             RETURN_SCORE_MINUS(20);
 
         //Weather Control
-        if(DefSpeciesHasInnate(ABILITY_WEATHER_CONTROL) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_WEATHER_CONTROL) &&
            TestMoveFlags(move, FLAG_WEATHER_BASED))
             RETURN_SCORE_MINUS(20);
 
         //Contrary
-        if(DefSpeciesHasInnate(ABILITY_CONTRARY) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_CONTRARY) &&
            IsStatLoweringMoveEffect(moveEffect))
             RETURN_SCORE_MINUS(20);
 
         //Clear Body, Full Metal Body and White Smoke
-        if((DefSpeciesHasInnate(ABILITY_CLEAR_BODY) ||
-            DefSpeciesHasInnate(ABILITY_FULL_METAL_BODY) ||
-            DefSpeciesHasInnate(ABILITY_WHITE_SMOKE)) &&
+        if((BattlerHasInnate(battlerDef, ABILITY_CLEAR_BODY) ||
+            BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY) ||
+            BattlerHasInnate(battlerDef, ABILITY_WHITE_SMOKE)) &&
            IsStatLoweringMoveEffect(moveEffect))
             RETURN_SCORE_MINUS(10);
 
         //Hyper Cutter
-        if(DefSpeciesHasInnate(ABILITY_HYPER_CUTTER) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_HYPER_CUTTER) &&
            (moveEffect == EFFECT_ATTACK_DOWN ||  moveEffect == EFFECT_ATTACK_DOWN_2) &&
             move != MOVE_PLAY_NICE && move != MOVE_NOBLE_ROAR && move != MOVE_TEARFUL_LOOK && move != MOVE_VENOM_DRENCH)
             RETURN_SCORE_MINUS(10);
 
         //Keen Eye
-        if(DefSpeciesHasInnate(ABILITY_KEEN_EYE) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_KEEN_EYE) &&
           (moveEffect == EFFECT_ACCURACY_DOWN || moveEffect == EFFECT_ACCURACY_DOWN_2))
             RETURN_SCORE_MINUS(10);
 
         //Defiant and Competitive
-        if((DefSpeciesHasInnate(ABILITY_DEFIANT) ||
-            DefSpeciesHasInnate(ABILITY_COMPETITIVE)) &&
+        if((BattlerHasInnate(battlerDef, ABILITY_DEFIANT) ||
+            BattlerHasInnate(battlerDef, ABILITY_COMPETITIVE)) &&
             IsStatLoweringMoveEffect(moveEffect) && !IsTargetingPartner(battlerAtk, battlerDef))
             RETURN_SCORE_MINUS(8);
 
         //Comatose
-        if(DefSpeciesHasInnate(ABILITY_COMATOSE) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_COMATOSE) &&
            IsNonVolatileStatusMoveEffect(moveEffect))
             RETURN_SCORE_MINUS(10);
 
         //Wonder Skin
-        if(DefSpeciesHasInnate(ABILITY_WONDER_SKIN) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_WONDER_SKIN) &&
            IS_MOVE_STATUS(move))
             accuracy = 50;
 
         //Leaf Guard
-        if(DefSpeciesHasInnate(ABILITY_LEAF_GUARD) &&
+        if(BattlerHasInnate(battlerDef, ABILITY_LEAF_GUARD) &&
            AI_WeatherHasEffect() && (gBattleWeather & WEATHER_SUN_ANY)
            && AI_DATA->defHoldEffect != HOLD_EFFECT_UTILITY_UMBRELLA
            && IsNonVolatileStatusMoveEffect(moveEffect))
@@ -1750,7 +1750,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_MAGNITUDE:
-            if (AI_DATA->defAbility == ABILITY_LEVITATE || DefSpeciesHasInnate(ABILITY_LEVITATE))
+            if (AI_DATA->defAbility == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE))
                 score -= 10;
             break;
         case EFFECT_PARTING_SHOT:
@@ -1861,7 +1861,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_TRICK:
         case EFFECT_KNOCK_OFF:
-            if (AI_DATA->defAbility == ABILITY_STICKY_HOLD || DefSpeciesHasInnate(ABILITY_STICKY_HOLD))
+            if (AI_DATA->defAbility == ABILITY_STICKY_HOLD || BattlerHasInnate(battlerDef, ABILITY_STICKY_HOLD))
                 score -= 10;
             break;
         case EFFECT_INGRAIN:
@@ -3307,8 +3307,8 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         score += 8;
 
     if (HOLD_EFFECT_CHOICE(AI_DATA->atkHoldEffect)     || 
-        AI_DATA->atkAbility == ABILITY_GORILLA_TACTICS || AtkSpeciesHasInnate(ABILITY_GORILLA_TACTICS) ||
-        AI_DATA->atkAbility == ABILITY_SAGE_POWER      || AtkSpeciesHasInnate(ABILITY_SAGE_POWER))
+        AI_DATA->atkAbility == ABILITY_GORILLA_TACTICS || BattlerHasInnate(battlerAtk, ABILITY_GORILLA_TACTICS) ||
+        AI_DATA->atkAbility == ABILITY_SAGE_POWER      || BattlerHasInnate(battlerAtk, ABILITY_SAGE_POWER))
     {
         // If AI can't hit the foe with its current chosen move switch out
         if (CountUsablePartyMons(battlerAtk) > 1 && AI_CheckBadMove(battlerAtk, battlerDef, move, score) <= 80)
@@ -4030,7 +4030,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case MOVE_KINGS_SHIELD:
             #if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
-            if ((AI_DATA->atkAbility == ABILITY_STANCE_CHANGE || SpeciesHasInnate(gBattleMons[AI_DATA->atkSpecies].species, ABILITY_STANCE_CHANGE))//Special logic for Aegislash
+            if ((AI_DATA->atkAbility == ABILITY_STANCE_CHANGE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STANCE_CHANGE, gBattleMons[battlerAtk].level))//Special logic for Aegislash
               && AI_DATA->atkSpecies == SPECIES_AEGISLASH_BLADE
               && !IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility))
             {
@@ -4981,7 +4981,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         break;
     case EFFECT_RECHARGE:
-        if ((AI_DATA->atkAbility == ABILITY_RAMPAGE || AtkSpeciesHasInnate(ABILITY_RAMPAGE)) && CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
+        if ((AI_DATA->atkAbility == ABILITY_RAMPAGE || BattlerHasInnate(battlerAtk, ABILITY_RAMPAGE)) && CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
             score += 4; // No recharge if Rampage attacker KOs the target
         break;
     //case EFFECT_EXTREME_EVOBOOST: // TODO
@@ -5442,37 +5442,6 @@ static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     return score;
 }
 
-bool8 AtkSpeciesHasInnate(u16 ability){
-	u8 i;
-	
-	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
-		if(gBaseStats[AI_DATA->atkSpecies].innates[i] == ability){
-			return TRUE;
-        }
-	}
-	
-	return FALSE;
-}
-
-bool8 DefSpeciesHasInnate(u16 ability){
-	u8 i;
-	
-	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
-		if(gBaseStats[AI_DATA->defSpecies].innates[i] == ability){
-			return TRUE;
-        }
-	}
-	
-	return FALSE;
-}
-
 bool8 BattlerHasInnate(u8 battlerId, u16 ability){
-	u8 i;
-	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
-		if(gBaseStats[gBattleMons[battlerId].species].innates[i] == ability){
-			return TRUE;
-        }
-	}
-	
-	return FALSE;
+	return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level);
 }

@@ -472,7 +472,7 @@ u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg);
 u8 GetLevelCap(void);
 u16 getShinyOdds(void);
 u16 getRandomSpecies(void);
-bool8 SpeciesHasInnate(u16 species, u16 ability);
+bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level);
 u8 GetSpeciesInnateNum(u16 species, u16 ability);
 void CreateShinyMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 nature);
 u16 getNumberOfUniqueDefeatedTrainers(void);

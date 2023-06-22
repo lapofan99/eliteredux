@@ -8905,12 +8905,30 @@ u16 getRandomSpecies(void)
 	return species;
 }
 
-bool8 SpeciesHasInnate(u16 species, u16 ability){
+#define INNATE_1_LEVEL 1
+#define INNATE_2_LEVEL 1
+#define INNATE_3_LEVEL 1
+
+bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level){
 	u8 i;
 	
 	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
-		if(gBaseStats[species].innates[i] == ability){
-			return TRUE;
+        switch(i){
+            case 0:
+                if(gBaseStats[species].innates[i] == ability && level >= INNATE_1_LEVEL){
+                    return TRUE;
+                }
+            break;
+            case 1:
+                if(gBaseStats[species].innates[i] == ability && level >= INNATE_2_LEVEL){
+                    return TRUE;
+                }
+            break;
+            case 2:
+                if(gBaseStats[species].innates[i] == ability && level >= INNATE_3_LEVEL){
+                    return TRUE;
+                }
+            break;
         }
 	}
 	

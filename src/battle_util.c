@@ -270,11 +270,11 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
 // Returns the target field of a move, modified by ability
 u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
 {
-    if ((ability == ABILITY_ARTILLERY || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_ARTILLERY)) 
+    if ((ability == ABILITY_ARTILLERY || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_ARTILLERY, gBattleMons[gActiveBattler].level)) 
          && (gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if ((ability == ABILITY_AMPLIFIER || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_AMPLIFIER)) 
+    else if ((ability == ABILITY_AMPLIFIER || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_AMPLIFIER, gBattleMons[gActiveBattler].level)) 
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
@@ -366,16 +366,16 @@ void HandleAction_UseMove(void)
     else if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
            && gSideTimers[side].followmeTimer == 0
            && (gBattleMoves[gCurrentMove].power != 0 || GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) != MOVE_TARGET_USER)
-           && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && !SpeciesHasInnate(gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].species, ABILITY_LIGHTNING_ROD) && moveType == TYPE_ELECTRIC)
-            || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN   && !SpeciesHasInnate(gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].species, ABILITY_STORM_DRAIN) && moveType == TYPE_WATER)))
+           && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && !SpeciesHasInnate(gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].species, ABILITY_LIGHTNING_ROD, gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].level) && moveType == TYPE_ELECTRIC)
+            || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN   && !SpeciesHasInnate(gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].species, ABILITY_STORM_DRAIN, gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].level) && moveType == TYPE_WATER)))
     {
         side = GetBattlerSide(gBattlerAttacker);
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
         {
             if (side != GetBattlerSide(gActiveBattler)
                 && *(gBattleStruct->moveTarget + gBattlerAttacker) != gActiveBattler
-                && (((GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_LIGHTNING_ROD)) && moveType == TYPE_ELECTRIC)
-                 || ((GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_STORM_DRAIN)) && moveType == TYPE_WATER))
+                && (((GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_LIGHTNING_ROD, gBattleMons[gActiveBattler].level)) && moveType == TYPE_ELECTRIC)
+                 || ((GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_STORM_DRAIN, gBattleMons[gActiveBattler].level)) && moveType == TYPE_WATER))
                 && GetBattlerTurnOrderNum(gActiveBattler) < var
                 && gBattleMoves[gCurrentMove].effect != EFFECT_SNIPE_SHOT
                 && (GetBattlerAbility(gBattlerAttacker) != ABILITY_PROPELLER_TAIL
@@ -436,9 +436,9 @@ void HandleAction_UseMove(void)
         {
             gActiveBattler = gBattlerByTurnOrder[var];
             RecordAbilityBattle(gActiveBattler, gBattleMons[gActiveBattler].ability);
-            if (GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_LIGHTNING_ROD)) 
+            if (GetBattlerAbility(gActiveBattler) == ABILITY_LIGHTNING_ROD || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_LIGHTNING_ROD, gBattleMons[gActiveBattler].level)) 
                 gSpecialStatuses[gActiveBattler].lightningRodRedirected = TRUE;
-            else if (GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_STORM_DRAIN))
+            else if (GetBattlerAbility(gActiveBattler) == ABILITY_STORM_DRAIN || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_STORM_DRAIN, gBattleMons[gActiveBattler].level))
                 gSpecialStatuses[gActiveBattler].stormDrainRedirected = TRUE;
             gBattlerTarget = gActiveBattler;
         }
@@ -1341,7 +1341,7 @@ void PressurePPLose(u8 target, u8 attacker, u16 move)
 {
     int moveIndex;
 
-    if (GetBattlerAbility(target) != ABILITY_PRESSURE || !SpeciesHasInnate(gBattleMons[target].species, ABILITY_PRESSURE))
+    if (GetBattlerAbility(target) != ABILITY_PRESSURE || !SpeciesHasInnate(gBattleMons[target].species, ABILITY_PRESSURE, gBattleMons[target].level))
         return;
 
     for (moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
@@ -1373,7 +1373,7 @@ void PressurePPLoseOnUsingImprison(u8 attacker)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (atkSide != GetBattlerSide(i) && (GetBattlerAbility(i) == ABILITY_PRESSURE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_PRESSURE)))
+        if (atkSide != GetBattlerSide(i) && (GetBattlerAbility(i) == ABILITY_PRESSURE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_PRESSURE, gBattleMons[i].level)))
         {
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
@@ -1406,7 +1406,7 @@ void PressurePPLoseOnUsingPerishSong(u8 attacker)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if ((GetBattlerAbility(i) == ABILITY_PRESSURE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_PRESSURE)) && i != attacker)
+        if ((GetBattlerAbility(i) == ABILITY_PRESSURE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_PRESSURE, gBattleMons[i].level)) && i != attacker)
         {
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
@@ -1522,13 +1522,13 @@ void PrepareStringBattle(u16 stringId, u8 battler)
 
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
     else if ((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH)
-              && (((GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_DEFIANT))
+              && (((GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_DEFIANT, gBattleMons[gBattlerTarget].level))
 		           && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-                 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_COMPETITIVE))
+                 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_COMPETITIVE, gBattleMons[gBattlerTarget].level))
 				    && CompareStat(gBattlerTarget, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
-				 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_FORT_KNOX))
+				 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_FORT_KNOX, gBattleMons[gBattlerTarget].level))
 				     && CompareStat(gBattlerTarget, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
-				 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_RUN_AWAY || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_RUN_AWAY))
+				 || ((GetBattlerAbility(gBattlerTarget) == ABILITY_RUN_AWAY || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_RUN_AWAY, gBattleMons[gBattlerTarget].level))
 				     && CompareStat(gBattlerTarget, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)))
               && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget)
               && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget)
@@ -1536,22 +1536,22 @@ void PrepareStringBattle(u16 stringId, u8 battler)
         gBattlerAbility = gBattlerTarget;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_DefiantActivates;
-        if (GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_DEFIANT)){
+        if (GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_DEFIANT, gBattleMons[gBattlerTarget].level)){
 			gBattleScripting.abilityPopupOverwrite = ABILITY_DEFIANT;
 			gLastUsedAbility = ABILITY_DEFIANT;
             SET_STATCHANGER(STAT_ATK, 2, FALSE);
 		}
-		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_FORT_KNOX)){
+		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_FORT_KNOX || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_FORT_KNOX, gBattleMons[gBattlerTarget].level)){
 			gBattleScripting.abilityPopupOverwrite = ABILITY_FORT_KNOX;
 			gLastUsedAbility = ABILITY_FORT_KNOX;
             SET_STATCHANGER(STAT_DEF, 3, FALSE);
 		}
-		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_RUN_AWAY || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_RUN_AWAY)){
+		else if (GetBattlerAbility(gBattlerTarget) == ABILITY_RUN_AWAY || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_RUN_AWAY, gBattleMons[gBattlerTarget].level)){
 			gBattleScripting.abilityPopupOverwrite = ABILITY_RUN_AWAY;
 			gLastUsedAbility = ABILITY_RUN_AWAY;
             SET_STATCHANGER(STAT_SPEED, 2, FALSE);
 		}
-        else{ // if(GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_COMPETITIVE)) <- this is not necessary but just in case you want to see how it works
+        else{ // if(GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_COMPETITIVE, gBattleMons[gBattlerTarget].level)) <- this is not necessary but just in case you want to see how it works
             gBattleScripting.abilityPopupOverwrite = ABILITY_COMPETITIVE;
 			gLastUsedAbility = ABILITY_COMPETITIVE;
 			SET_STATCHANGER(STAT_SPATK, 2, FALSE);
@@ -1855,8 +1855,8 @@ u8 TrySetCantSelectMoveBattleScript(void)
     }
     if ((GetBattlerAbility(gActiveBattler) == ABILITY_GORILLA_TACTICS ||
 	     GetBattlerAbility(gActiveBattler) == ABILITY_SAGE_POWER ||
-	     SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_GORILLA_TACTICS) ||
-	     SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SAGE_POWER))
+	     SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_GORILLA_TACTICS, gBattleMons[gActiveBattler].level) ||
+	     SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SAGE_POWER, gBattleMons[gActiveBattler].level))
 		  && *choicedMove != 0 
               && *choicedMove != 0xFFFF && *choicedMove != move)
     {
@@ -1929,8 +1929,8 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u8 check)
             unusableMoves |= gBitTable[i];
         else if ((GetBattlerAbility(battlerId) == ABILITY_GORILLA_TACTICS || 
 		          GetBattlerAbility(battlerId) == ABILITY_SAGE_POWER || 
-		          SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GORILLA_TACTICS) ||
-				  SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SAGE_POWER))
+		          SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GORILLA_TACTICS, gBattleMons[battlerId].level) ||
+				  SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SAGE_POWER, gBattleMons[battlerId].level))
 			&& *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
             unusableMoves |= gBitTable[i];
     }
@@ -2562,7 +2562,7 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
 }
 
 #define MAGIC_GUARD_CHECK \
-if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_IMPENETRABLE || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MAGIC_GUARD) || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_IMPENETRABLE)) \
+if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_IMPENETRABLE || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MAGIC_GUARD, gBattleMons[gActiveBattler].level) || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_IMPENETRABLE, gBattleMons[gActiveBattler].level)) \
 {\
     RecordAbilityBattle(gActiveBattler, ability);\
     gBattleStruct->turnEffectsTracker++;\
@@ -2571,7 +2571,7 @@ if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_IMPENETRABLE || Species
 
 
 #define TOXIC_BOOST_CHECK \
-if (ability == ABILITY_TOXIC_BOOST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_TOXIC_BOOST)) \
+if (ability == ABILITY_TOXIC_BOOST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_TOXIC_BOOST, gBattleMons[gActiveBattler].level)) \
 {\
     RecordAbilityBattle(gActiveBattler, ability);\
     gBattleStruct->turnEffectsTracker++;\
@@ -2579,7 +2579,7 @@ if (ability == ABILITY_TOXIC_BOOST || SpeciesHasInnate(gBattleMons[gActiveBattle
 }
 
 #define FLARE_BOOST_CHECK \
-if (ability == ABILITY_FLARE_BOOST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_FLARE_BOOST)) \
+if (ability == ABILITY_FLARE_BOOST || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_FLARE_BOOST, gBattleMons[gActiveBattler].level)) \
 {\
     RecordAbilityBattle(gActiveBattler, ability);\
     gBattleStruct->turnEffectsTracker++;\
@@ -2672,10 +2672,10 @@ u8 DoBattlerEndTurnEffects(void)
                 && gBattleMons[gActiveBattler].hp != 0)
             {
                 MAGIC_GUARD_CHECK;
-                if(ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL))
+                if(ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL, gBattleMons[gActiveBattler].level))
 				    TOXIC_BOOST_CHECK;
 
-                if (ability == ABILITY_POISON_HEAL || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL))
+                if (ability == ABILITY_POISON_HEAL || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL, gBattleMons[gActiveBattler].level))
                 {
                     if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK))
                     {
@@ -2703,10 +2703,10 @@ u8 DoBattlerEndTurnEffects(void)
                 && gBattleMons[gActiveBattler].hp != 0)
             {
                 MAGIC_GUARD_CHECK;
-                if(ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL))
+                if(ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL, gBattleMons[gActiveBattler].level))
 				    TOXIC_BOOST_CHECK;
 
-                if (ability == ABILITY_POISON_HEAL || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL))
+                if (ability == ABILITY_POISON_HEAL || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_POISON_HEAL, gBattleMons[gActiveBattler].level))
                 {
                     if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK))
                     {
@@ -2740,7 +2740,7 @@ u8 DoBattlerEndTurnEffects(void)
 				FLARE_BOOST_CHECK;
 			
                 gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
-                if (ability == ABILITY_HEATPROOF || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HEATPROOF)) // ability + innate
+                if (ability == ABILITY_HEATPROOF || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HEATPROOF, gBattleMons[gActiveBattler].level)) // ability + innate
                 {
                     if (gBattleMoveDamage > (gBattleMoveDamage / 2) + 1) // Record ability if the burn takes less damage than it normally would.
                         RecordAbilityBattle(gActiveBattler, ABILITY_HEATPROOF);
@@ -2827,9 +2827,9 @@ u8 DoBattlerEndTurnEffects(void)
             break;
         case ENDTURN_OCTOLOCK:
             if (gDisableStructs[gActiveBattler].octolock 
-             && !(GetBattlerAbility(gActiveBattler)    == ABILITY_CLEAR_BODY       || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_CLEAR_BODY)
-                  || GetBattlerAbility(gActiveBattler) == ABILITY_FULL_METAL_BODY  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_FULL_METAL_BODY)
-                  || GetBattlerAbility(gActiveBattler) == ABILITY_WHITE_SMOKE      || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_WHITE_SMOKE)))
+             && !(GetBattlerAbility(gActiveBattler)    == ABILITY_CLEAR_BODY       || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_CLEAR_BODY, gBattleMons[gActiveBattler].level)
+                  || GetBattlerAbility(gActiveBattler) == ABILITY_FULL_METAL_BODY  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_FULL_METAL_BODY, gBattleMons[gActiveBattler].level)
+                  || GetBattlerAbility(gActiveBattler) == ABILITY_WHITE_SMOKE      || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_WHITE_SMOKE, gBattleMons[gActiveBattler].level)))
             {
                 gBattlerTarget = gActiveBattler;
                 BattleScriptExecute(BattleScript_OctolockEndTurn);
@@ -2844,7 +2844,7 @@ u8 DoBattlerEndTurnEffects(void)
                 {
                     if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
                      && GetBattlerAbility(gBattlerAttacker) != ABILITY_SOUNDPROOF
-				     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOUNDPROOF))
+				     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOUNDPROOF, gBattleMons[gBattlerAttacker].level))
                     {
                         gBattleMons[gBattlerAttacker].status1 &= ~(STATUS1_SLEEP);
                         gBattleMons[gBattlerAttacker].status2 &= ~(STATUS2_NIGHTMARE);
@@ -2984,9 +2984,9 @@ u8 DoBattlerEndTurnEffects(void)
                 gStatuses3[gActiveBattler] -= STATUS3_YAWN_TURN(1);
                 if (!(gStatuses3[gActiveBattler] & STATUS3_YAWN) && !(gBattleMons[gActiveBattler].status1 & STATUS1_ANY)
                  && GetBattlerAbility(gActiveBattler) != ABILITY_VITAL_SPIRIT
-			     && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_VITAL_SPIRIT)
+			     && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_VITAL_SPIRIT, gBattleMons[gActiveBattler].level)
                  && GetBattlerAbility(gActiveBattler) != ABILITY_INSOMNIA 
-				 && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_INSOMNIA)
+				 && !SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_INSOMNIA, gBattleMons[gActiveBattler].level)
 				 && !UproarWakeUpCheck(gActiveBattler)
                  && !IsLeafGuardProtected(gActiveBattler))
                 {
@@ -3098,7 +3098,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_SLOW_START:
             if (gDisableStructs[gActiveBattler].slowStartTimer
                 && --gDisableStructs[gActiveBattler].slowStartTimer == 0
-                && (ability == ABILITY_SLOW_START  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SLOW_START)))
+                && (ability == ABILITY_SLOW_START  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SLOW_START, gBattleMons[gActiveBattler].level)))
             {
                 BattleScriptExecute(BattleScript_SlowStartEnds);
                 effect++;
@@ -3390,7 +3390,7 @@ u8 AtkCanceller_UnableToUseMove(void)
                 else
                 {
                     u8 toSub;
-                    if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_EARLY_BIRD || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EARLY_BIRD)))
+                    if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_EARLY_BIRD || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EARLY_BIRD, gBattleMons[gBattlerAttacker].level)))
                         toSub = 2;
                     else
                         toSub = 1;
@@ -3643,7 +3643,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             {
                 if ((B_POWDER_GRASS >= GEN_6 && IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS))
                     || GetBattlerAbility(gBattlerTarget) == ABILITY_OVERCOAT
-					|| SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_OVERCOAT))
+					|| SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_OVERCOAT, gBattleMons[gBattlerTarget].level))
                 {
                     gBattlerAbility = gBattlerTarget;
                     effect = 1;
@@ -3692,7 +3692,7 @@ u8 AtkCanceller_UnableToUseMove(void)
             {
                 u16 ability = gBattleMons[gBattlerAttacker].ability;
 
-                if (ability == ABILITY_SKILL_LINK || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SKILL_LINK))
+                if (ability == ABILITY_SKILL_LINK || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SKILL_LINK, gBattleMons[gBattlerAttacker].level))
                 {
                     gMultiHitCounter = 5;
                 }
@@ -3977,11 +3977,11 @@ bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
 {
     if (gBattleWeather & WEATHER_PRIMAL_ANY
         && GetBattlerAbility(battler) != ABILITY_DESOLATE_LAND
-		&& !SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DESOLATE_LAND)
+		&& !SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DESOLATE_LAND, gBattleMons[battler].level)
         && GetBattlerAbility(battler) != ABILITY_PRIMORDIAL_SEA
-		&& !SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRIMORDIAL_SEA)
+		&& !SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRIMORDIAL_SEA, gBattleMons[battler].level)
         && (GetBattlerAbility(battler) != ABILITY_DELTA_STREAM
-		&& !SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DELTA_STREAM)))
+		&& !SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DELTA_STREAM, gBattleMons[battler].level)))
     {
         return FALSE;
     }
@@ -4046,7 +4046,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 
     for (i = 0; i < ARRAY_COUNT(forms); i++)
     {
-        if (GetBattlerAbility(battler) == forms[i][0] || SpeciesHasInnate(gBattleMons[battler].species, forms[i][0]))
+        if (GetBattlerAbility(battler) == forms[i][0] || SpeciesHasInnate(gBattleMons[battler].species, forms[i][0], gBattleMons[battler].level))
         {
             if (gBattleMons[battler].species == forms[i][2]
                 && gBattleMons[battler].hp > gBattleMons[battler].maxHP / forms[i][3])
@@ -5030,7 +5030,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Innates on Switch
 		// Screen Cleaner
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCREEN_CLEANER)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCREEN_CLEANER, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCREEN_CLEANER)] && TryRemoveScreens(battler))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_SCREEN_CLEANER;
@@ -5043,7 +5043,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
         
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_UNNERVE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_UNNERVE, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_UNNERVE)])
             {
                 gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_UNNERVE)] = TRUE;
@@ -5053,7 +5053,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Drizzle
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRIZZLE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRIZZLE, gBattleMons[battler].level)){
             gBattleScripting.abilityPopupOverwrite = ABILITY_DRIZZLE;
 			gLastUsedAbility = ABILITY_DRIZZLE;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
@@ -5070,7 +5070,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Sand Stream
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAND_STREAM)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAND_STREAM, gBattleMons[battler].level)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_SAND_STREAM;
@@ -5087,7 +5087,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
 		// Drought
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DROUGHT)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DROUGHT, gBattleMons[battler].level)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_DROUGHT;
@@ -5104,7 +5104,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
 		// Snow Warning
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SNOW_WARNING)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SNOW_WARNING, gBattleMons[battler].level)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_SNOW_WARNING;
@@ -5121,7 +5121,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
 		// Electric Surge
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ELECTRIC_SURGE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ELECTRIC_SURGE, gBattleMons[battler].level)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_ELECTRIC_SURGE;
@@ -5132,7 +5132,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
 		// Grassy Surge
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GRASSY_SURGE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GRASSY_SURGE, gBattleMons[battler].level)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_GRASSY_SURGE;
@@ -5143,7 +5143,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 			
 		// Misty Surge
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MISTY_SURGE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MISTY_SURGE, gBattleMons[battler].level)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_MISTY_SURGE;
@@ -5154,7 +5154,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 			
 		// Psychic Surge
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PSYCHIC_SURGE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PSYCHIC_SURGE, gBattleMons[battler].level)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_PSYCHIC_SURGE;
@@ -5165,7 +5165,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Desolate Land
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DESOLATE_LAND)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DESOLATE_LAND, gBattleMons[battler].level)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_DESOLATE_LAND;
@@ -5176,7 +5176,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Primordial Sea
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRIMORDIAL_SEA)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRIMORDIAL_SEA, gBattleMons[battler].level)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_PRIMORDIAL_SEA;
@@ -5187,7 +5187,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Delta Stream
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DELTA_STREAM)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DELTA_STREAM, gBattleMons[battler].level)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_STRONG_WINDS, TRUE))
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_DELTA_STREAM;
@@ -5198,7 +5198,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Download
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DOWNLOAD)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DOWNLOAD, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DOWNLOAD)])
             {
                 u32 statId, opposingBattler;
@@ -5240,7 +5240,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Lets Roll
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LETS_ROLL, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_LETS_ROLL)])
 			{
                 gBattlerAttacker = battler;
@@ -5255,7 +5255,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Slow Start
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SLOW_START)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SLOW_START, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SLOW_START)])
             {
                 gDisableStructs[battler].slowStartTimer = 5;
@@ -5267,7 +5267,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Majestic Moth
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAJESTIC_MOTH)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAJESTIC_MOTH, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_MAJESTIC_MOTH)])
             {
                 u32 statId = STAT_ATK;
@@ -5305,7 +5305,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Sea Guardian
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SEA_GUARDIAN)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SEA_GUARDIAN, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SEA_GUARDIAN)]
 			&& IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY))
             {
@@ -5344,7 +5344,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
         // Sun Worship
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SUN_WORSHIP)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SUN_WORSHIP, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SUN_WORSHIP)]
 			&& IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
             {
@@ -5383,7 +5383,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Intimidate
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTIMIDATE, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTIMIDATE)] && !(gSpecialStatuses[battler].intimidatedMon) )
 			{
 				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTIMIDATE)] = TRUE;
@@ -5394,7 +5394,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
         //Scare
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCARE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SCARE, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCARE)] && !(gSpecialStatuses[battler].scaredMon) )
 			{
 				gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SCARE)] = TRUE;
@@ -5405,7 +5405,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		/*Zen Mode // This ability is never an innnate
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ZEN_MODE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ZEN_MODE, gBattleMons[battler].level)){
             if (ShouldChangeFormHpBased(battler))
             {
 				gBattleScripting.abilityPopupOverwrite = ABILITY_ZEN_MODE;
@@ -5416,7 +5416,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}*/
 		
 		// Water Veil
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_WATER_VEIL)] &&
 				!(gStatuses3[battler] & STATUS3_AQUA_RING))
 			{
@@ -5431,7 +5431,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Aquatic
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AQUATIC)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AQUATIC, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AQUATIC)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_WATER))
 			{
@@ -5446,7 +5446,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Grounded
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GROUNDED)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GROUNDED, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_GROUNDED)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_GROUND))
 			{
@@ -5462,7 +5462,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Ice Age
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ICE_AGE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ICE_AGE, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_ICE_AGE)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_ICE))
 			{
@@ -5477,7 +5477,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Half Drake
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_HALF_DRAKE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_HALF_DRAKE, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_HALF_DRAKE)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_DRAGON))
 			{
@@ -5492,7 +5492,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Metallic
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_METALLIC)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_METALLIC, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_METALLIC)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_STEEL))
 			{
@@ -5507,7 +5507,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Dragonfly
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRAGONFLY)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRAGONFLY, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DRAGONFLY)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_DRAGON))
 			{
@@ -5522,7 +5522,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Teravolt
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TERAVOLT)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TERAVOLT, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TERAVOLT)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC))
 			{
@@ -5538,7 +5538,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Turboblaze
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TURBOBLAZE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TURBOBLAZE, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TURBOBLAZE)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)) 
 			{
@@ -5554,7 +5554,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Nocturnal old effect
-		/*if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NOCTURNAL)){
+		/*if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NOCTURNAL, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NOCTURNAL)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_DARK))
 			{
@@ -5570,7 +5570,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}*/
 		
 		// Coiled Up
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_COIL_UP)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_COIL_UP, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_COIL_UP)] &&
 				!(gStatuses4[battler] & STATUS4_COILED))
             {
@@ -5584,7 +5584,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Air Blower
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_BLOWER) &&
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_BLOWER, gBattleMons[battler].level) &&
          !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_BLOWER)])
             {
@@ -5599,7 +5599,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
 		// Phantom
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PHANTOM)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PHANTOM, gBattleMons[battler].level)){
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PHANTOM)] &&
                 !IS_BATTLER_OF_TYPE(battler, TYPE_GHOST))
 			{
@@ -5614,7 +5614,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// North Wind
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NORTH_WIND)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_NORTH_WIND, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_NORTH_WIND)] &&
                 !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_AURORA_VEIL))
             {
@@ -5629,7 +5629,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
 		// Spider Lair
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SPIDER_LAIR)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SPIDER_LAIR, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_SPIDER_LAIR)] &&
 				!(gSideStatuses[BATTLE_OPPOSITE(battler)] & SIDE_STATUS_STICKY_WEB))
             {
@@ -5643,7 +5643,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Intrepid Sword
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTREPID_SWORD)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INTREPID_SWORD, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_INTREPID_SWORD)])
             {
                 gBattlerAttacker = battler;
@@ -5657,7 +5657,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Dauntless Shield
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAUNTLESS_SHIELD)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAUNTLESS_SHIELD, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_DAUNTLESS_SHIELD)])
             {
                 gBattlerAttacker = battler;
@@ -5671,7 +5671,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Pressure
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRESSURE)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PRESSURE, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_PRESSURE)])
             {
 				gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_PRESSURE;
@@ -5683,7 +5683,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		//Air Lock
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_LOCK)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AIR_LOCK, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_LOCK)])
             {
                 gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_AIR_LOCK)] = TRUE;
@@ -5695,7 +5695,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
         //Cloud Nine
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_CLOUD_NINE)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_CLOUD_NINE, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_CLOUD_NINE)])
             {
 				gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_CLOUD_NINE;
@@ -5706,7 +5706,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		//Twisted Dimension
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TWISTED_DIMENSION)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TWISTED_DIMENSION, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_TWISTED_DIMENSION)] &&
 			    !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM))
             {
@@ -5721,7 +5721,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		//Mold Breaker
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MOLD_BREAKER)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MOLD_BREAKER, gBattleMons[battler].level)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetSpeciesInnateNum(gBattleMons[battler].species, ABILITY_MOLD_BREAKER)])
             {
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
@@ -6056,7 +6056,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			/***********************************/
 			
 			// Harvest
-			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HARVEST)){
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HARVEST, gBattleMons[gActiveBattler].level)){
                 if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
                  && gBattleMons[battler].item == ITEM_NONE
                  && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
@@ -6070,7 +6070,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 			
             // Big Leaves
-			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_BIG_LEAVES)){
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_BIG_LEAVES, gBattleMons[gActiveBattler].level)){
                 if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
                  && gBattleMons[battler].item == ITEM_NONE
                  && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
@@ -6082,7 +6082,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 			
 			// Dry Skin
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_DRY_SKIN)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_DRY_SKIN, gBattleMons[gActiveBattler].level)){
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRY_SKIN;
@@ -6107,7 +6107,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
 			// Hydration
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HYDRATION)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HYDRATION, gBattleMons[gActiveBattler].level)){
                 if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
                  && gBattleMons[battler].status1 & STATUS1_ANY)
                 {
@@ -6118,7 +6118,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 			
 			// Shed Skin
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHED_SKIN)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHED_SKIN, gBattleMons[gActiveBattler].level)){
                 if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
                 {
                 ABILITY_HEAL_MON_STATUS_INNATE:
@@ -6145,7 +6145,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Speed Boost
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SPEED_BOOST)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SPEED_BOOST, gBattleMons[gActiveBattler].level)){
                 if (CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN) && gDisableStructs[battler].isFirstTurn != 2)
                 {
                     gBattleScripting.abilityPopupOverwrite = ABILITY_SPEED_BOOST;
@@ -6161,7 +6161,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 			
 			// Moody
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MOODY)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MOODY, gBattleMons[gActiveBattler].level)){
                 if (gDisableStructs[battler].isFirstTurn != 2)
                 {
                     u32 validToRaise = 0, validToLower = 0;
@@ -6204,12 +6204,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 			
 			// Truant
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_TRUANT)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_TRUANT, gBattleMons[gActiveBattler].level)){
                 gDisableStructs[gBattlerAttacker].truantCounter ^= 1;
             }
 			
 			// Bad Dreams
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_BAD_DREAMS)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_BAD_DREAMS, gBattleMons[gActiveBattler].level)){
                 if (gBattleMons[battler].status1 & STATUS1_SLEEP
                     || gBattleMons[BATTLE_OPPOSITE(battler)].status1 & STATUS1_SLEEP
                     || GetBattlerAbility(battler) == ABILITY_COMATOSE
@@ -6221,7 +6221,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 			
 			// Sweet Dreams
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SWEET_DREAMS)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SWEET_DREAMS, gBattleMons[gActiveBattler].level)){
                 if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gBattleMons[battler].status1 & STATUS1_SLEEP)
                 {
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
@@ -6234,7 +6234,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Healer
-			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HEALER)){
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_HEALER, gBattleMons[gActiveBattler].level)){
                 gBattleScripting.battler = BATTLE_PARTNER(battler);
                 if (IsBattlerAlive(gBattleScripting.battler)
                     && gBattleMons[gBattleScripting.battler].status1 & STATUS1_ANY
@@ -6246,7 +6246,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Schooling
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SCHOOLING)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SCHOOLING, gBattleMons[gActiveBattler].level)){
                 if (gBattleMons[battler].level >= 20){
 					if ((effect = ShouldChangeFormHpBased(battler)))
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
@@ -6254,14 +6254,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		
 			// Zen Mode & Shields Down
-            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_ZEN_MODE) ||
-				SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELDS_DOWN)){
+            if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_ZEN_MODE, gBattleMons[gActiveBattler].level) ||
+				SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELDS_DOWN, gBattleMons[gActiveBattler].level)){
                 if ((effect = ShouldChangeFormHpBased(battler)))
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
 			}
 			
 			// Self Sufficient
-			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SELF_SUFFICIENT)){
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SELF_SUFFICIENT, gBattleMons[gActiveBattler].level)){
 				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
 				{
 					gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_SUFFICIENT;
@@ -6276,7 +6276,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Rain Dish
-			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_RAIN_DISH)){
+			if(SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_RAIN_DISH, gBattleMons[gActiveBattler].level)){
 				if (IsBattlerWeatherAffected(battler, WEATHER_RAIN_ANY)
                  && !BATTLER_MAX_HP(battler)
                  && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
@@ -6295,9 +6295,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         break;
     case ABILITYEFFECT_MOVES_BLOCK: // 2
         if ((gLastUsedAbility == ABILITY_SOUNDPROOF && gBattleMoves[move].flags & FLAG_SOUND && !(gBattleMoves[move].target & MOVE_TARGET_USER))
-			|| (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOUNDPROOF) && gBattleMoves[move].flags & FLAG_SOUND && !(gBattleMoves[move].target & MOVE_TARGET_USER))
+			|| (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOUNDPROOF, gBattleMons[battler].level) && gBattleMoves[move].flags & FLAG_SOUND && !(gBattleMoves[move].target & MOVE_TARGET_USER))
             || (gLastUsedAbility == ABILITY_BULLETPROOF && gBattleMoves[move].flags & FLAG_BALLISTIC)
-			|| (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_BULLETPROOF) && gBattleMoves[move].flags & FLAG_BALLISTIC))
+			|| (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_BULLETPROOF, gBattleMons[battler].level) && gBattleMoves[move].flags & FLAG_BALLISTIC))
         {
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                 gHitMarker |= HITMARKER_NO_PPDEDUCT;
@@ -6305,15 +6305,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect = 1;
         }
         //Queenly Majesty
-        else if(((GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_QUEENLY_MAJESTY)) ||
-           ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)) && IsBattlerAlive(BATTLE_PARTNER(battler))))
+        else if(((GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_QUEENLY_MAJESTY, gBattleMons[battler].level)) ||
+           ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY, gBattleMons[BATTLE_PARTNER(battler)].level)) && IsBattlerAlive(BATTLE_PARTNER(battler))))
             && GetChosenMovePriority(gBattlerAttacker) > 0
             && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
         {
-            if(GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_QUEENLY_MAJESTY)){
+            if(GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_QUEENLY_MAJESTY, gBattleMons[battler].level)){
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
             }
-            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)){
+            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY, gBattleMons[BATTLE_PARTNER(battler)].level)){
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENLY_MAJESTY;
                 gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
             }
@@ -6324,15 +6324,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect = 1;
         }
         //Dazzling
-        else if(((GetBattlerAbility(battler) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAZZLING)) ||
-           ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)) && IsBattlerAlive(BATTLE_PARTNER(battler))))
+        else if(((GetBattlerAbility(battler) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAZZLING, gBattleMons[battler].level)) ||
+           ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_DAZZLING, gBattleMons[BATTLE_PARTNER(battler)].level)) && IsBattlerAlive(BATTLE_PARTNER(battler))))
             && GetChosenMovePriority(gBattlerAttacker) > 0
             && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
         {
-            if(GetBattlerAbility(battler) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAZZLING)){
+            if(GetBattlerAbility(battler) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DAZZLING, gBattleMons[battler].level)){
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAZZLING;
             }
-            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_QUEENLY_MAJESTY)){
+            else if(GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battler)].species, ABILITY_DAZZLING, gBattleMons[BATTLE_PARTNER(battler)].level)){
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAZZLING;
                 gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(battler);
             }
@@ -6343,7 +6343,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             effect = 1;
         }
         else if (BlocksPrankster(move, gBattlerAttacker, gBattlerTarget, TRUE)
-          && !(IS_MOVE_STATUS(move) && (GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_MAGIC_BOUNCE))))
+          && !(IS_MOVE_STATUS(move) && (GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE || SpeciesHasInnate(gBattleMons[gBattlerTarget].species, ABILITY_MAGIC_BOUNCE, gBattleMons[gBattlerTarget].level))))
         {
             if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) || !(gBattleMoves[move].target & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY)))
                 CancelMultiTurnMoves(gBattlerAttacker); // Don't cancel moves that can hit two targets bc one target might not be protected
@@ -6470,7 +6470,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			
 			// Innates
 			// Aerodynamics
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AERODYNAMICS)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AERODYNAMICS, gBattleMons[battler].level)){
 				if (move != MOVE_NONE && moveType == TYPE_FLYING){
 					effect = 2;
 					statId = STAT_SPEED;
@@ -6480,7 +6480,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Volt Absorb
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_VOLT_ABSORB)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_VOLT_ABSORB, gBattleMons[battler].level)){
 				if (move != MOVE_NONE && moveType == TYPE_ELECTRIC){
                     effect = 1;
                     gBattleScripting.abilityPopupOverwrite = ABILITY_VOLT_ABSORB;
@@ -6489,7 +6489,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Water Absorb
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_ABSORB)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_ABSORB, gBattleMons[battler].level)){
 				if (move != MOVE_NONE && moveType == TYPE_WATER){
                     effect = 1;
                     gBattleScripting.abilityPopupOverwrite = ABILITY_WATER_ABSORB;
@@ -6498,7 +6498,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Dry Skin
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRY_SKIN)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_DRY_SKIN, gBattleMons[battler].level)){
 				if (move != MOVE_NONE && moveType == TYPE_WATER){
                     effect = 1;
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRY_SKIN;
@@ -6506,7 +6506,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Poison Absorb
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_ABSORB)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_ABSORB, gBattleMons[battler].level)){
 				if (move != MOVE_NONE && moveType == TYPE_POISON){
                     effect = 1;
                     gBattleScripting.abilityPopupOverwrite = ABILITY_POISON_ABSORB;
@@ -6515,7 +6515,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Lighting Rod
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LIGHTNING_ROD)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LIGHTNING_ROD, gBattleMons[battler].level)){
 				if (moveType == TYPE_ELECTRIC){
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
@@ -6534,7 +6534,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 
             // Storm Drain
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STORM_DRAIN)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STORM_DRAIN, gBattleMons[battler].level)){
 				if (moveType == TYPE_WATER){
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
@@ -6553,7 +6553,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Flash Fire
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_FLASH_FIRE)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_FLASH_FIRE, gBattleMons[battler].level)){
                 if (moveType == TYPE_FIRE && !((gBattleMons[battler].status1 & STATUS1_FREEZE) && B_FLASH_FIRE_FROZEN <= GEN_4))
                 {
                     gBattleScripting.abilityPopupOverwrite = ABILITY_FLASH_FIRE;
@@ -6584,7 +6584,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 
             // Sap Sipper
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAP_SIPPER)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAP_SIPPER, gBattleMons[battler].level)){
 				if (moveType == TYPE_GRASS){
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
@@ -6603,7 +6603,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 
             // Ice Dew
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ICE_DEW)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ICE_DEW, gBattleMons[battler].level)){
 				if (moveType == TYPE_ICE){
 					u16 userAttack = 0;					
 					u16 userSpAttack = 0;
@@ -6622,7 +6622,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			//Motor Drive
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MOTOR_DRIVE)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MOTOR_DRIVE, gBattleMons[battler].level)){
                 if (moveType == TYPE_ELECTRIC){
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MOTOR_DRIVE;
                     effect = 2, statId = STAT_SPEED;
@@ -6925,7 +6925,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerAttacker].hp != 0
              && (CompareStat(gBattlerAttacker, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN) || 
 			     GetBattlerAbility(gBattlerAttacker) == ABILITY_MIRROR_ARMOR || 
-				 SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MIRROR_ARMOR))
+				 SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MIRROR_ARMOR, gBattleMons[gBattlerAttacker].level))
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
@@ -7014,9 +7014,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_EFFECT_SPORE:
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OVERCOAT
-			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
+			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT, gBattleMons[gBattlerAttacker].level)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_EFFECT_SPORE
-             && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE)
+             && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE, gBattleMons[gBattlerAttacker].level)
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_EFFECT_SPORE;
@@ -7034,7 +7034,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && CanSleep(gBattlerAttacker)
                  && IsMoveMakingContact(move, gBattlerAttacker)
                  && GetBattlerAbility(gBattlerAttacker) != ABILITY_EFFECT_SPORE
-                 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE)
+                 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE, gBattleMons[gBattlerAttacker].level)
                  && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
                  && (Random() % 3) == 0)
                 {
@@ -7123,7 +7123,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerTarget].hp != 0
              && (Random() % 3) == 0
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OBLIVIOUS
-			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OBLIVIOUS)
+			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OBLIVIOUS, gBattleMons[gBattlerAttacker].level)
              && !IsAbilityOnSide(gBattlerAttacker, ABILITY_AROMA_VEIL)
              && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
              && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION)
@@ -7223,9 +7223,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD  &&
-				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD) &&
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD, gBattleMons[gBattlerAttacker].level) &&
 					     GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE && 
-				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE, gBattleMons[gBattlerAttacker].level))
                     {
                         gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
                         if (gBattleMoveDamage == 0)
@@ -7240,9 +7240,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     gBattleStruct->changedSpecies[gBattlerPartyIndexes[gBattlerTarget]] = gBattleMons[gBattlerTarget].species;
                     gBattleMons[gBattlerTarget].species = SPECIES_CRAMORANT;
                     if (GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD  &&
-				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD) &&
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD, gBattleMons[gBattlerAttacker].level) &&
 					     GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE && 
-				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
+				         !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE, gBattleMons[gBattlerAttacker].level))
                     {
                         gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 4;
                         if (gBattleMoveDamage == 0)
@@ -7260,7 +7260,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		// Innates
 
         // Justified
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_JUSTIFIED)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_JUSTIFIED, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
@@ -7274,15 +7274,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN) || 
-            SpeciesHasInnate(gBattleMons[battler].species, ABILITY_IRON_BARBS)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN, gBattleMons[battler].level) || 
+            SpeciesHasInnate(gBattleMons[battler].species, ABILITY_IRON_BARBS, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN)){
+                if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN, gBattleMons[battler].level)){
 					gBattleScripting.abilityPopupOverwrite = ABILITY_ROUGH_SKIN;
 					gLastUsedAbility = ABILITY_ROUGH_SKIN;
 				}
@@ -7306,7 +7306,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
 		// Rattled
-        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_RATTLED)){
+        if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_RATTLED, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
@@ -7321,7 +7321,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
         
         // Cursed Body
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_CURSED_BODY)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_CURSED_BODY, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
              && gDisableStructs[gBattlerAttacker].disabledMove == MOVE_NONE
@@ -7341,7 +7341,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Soul Linker
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOUL_LINKER)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOUL_LINKER, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7356,7 +7356,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Cotton Down
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_COTTON_DOWN)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_COTTON_DOWN, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7372,7 +7372,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 			
 		// Steam Engine
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STEAM_ENGINE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STEAM_ENGINE, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
@@ -7388,7 +7388,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Sand Spit
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAND_SPIT)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SAND_SPIT, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
@@ -7411,7 +7411,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Perish Body
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PERISH_BODY)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_PERISH_BODY, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
@@ -7435,7 +7435,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Aftermath
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AFTERMATH)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_AFTERMATH, gBattleMons[battler].level)){
             if (!IsAbilityOnField(ABILITY_DAMP)
              && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp == 0
@@ -7454,7 +7454,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Innards Out
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INNARDS_OUT)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INNARDS_OUT, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp == 0
              && IsBattlerAlive(gBattlerAttacker))
@@ -7467,12 +7467,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Effect Spore
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_EFFECT_SPORE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_EFFECT_SPORE, gBattleMons[battler].level)){
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OVERCOAT
-			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT)
+			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OVERCOAT, gBattleMons[battler].level)
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_EFFECT_SPORE
-             && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE)
+             && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE, gBattleMons[battler].level)
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_EFFECT_SPORE;
@@ -7491,7 +7491,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && CanSleep(gBattlerAttacker)
                  && IsMoveMakingContact(move, gBattlerAttacker)
                  && GetBattlerAbility(gBattlerAttacker) != ABILITY_EFFECT_SPORE
-                 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE)
+                 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_EFFECT_SPORE, gBattleMons[gBattlerAttacker].level)
                  && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GRASS)
                  && (Random() % 3) == 0)
                 {
@@ -7505,7 +7505,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }}
 		
 		// Inflatable
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INFLATABLE)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INFLATABLE, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 			 && TARGET_TURN_DAMAGED
 			 && IsBattlerAlive(battler)
@@ -7530,7 +7530,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		//Haunted Spirit
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_HAUNTED_SPIRIT)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_HAUNTED_SPIRIT, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp == 0
 		     && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST)
@@ -7549,7 +7549,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		//Magical Dust
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAGICAL_DUST)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAGICAL_DUST, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7568,7 +7568,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Stamina
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STAMINA)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STAMINA, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) // new effect
              && gIsCriticalHit
              && TARGET_TURN_DAMAGED
@@ -7598,7 +7598,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Anger Point
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ANGER_POINT)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ANGER_POINT, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gIsCriticalHit
              && TARGET_TURN_DAMAGED
@@ -7632,7 +7632,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Static (Defender)
         STATIC_INNATE:
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STATIC)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STATIC, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7652,7 +7652,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		// Flame Body (Defender)
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_FLAME_BODY)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_FLAME_BODY, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7673,7 +7673,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Poison Point
         POISON_POINT_INNATE:
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_POINT)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_POINT, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 				 && gBattleMons[gBattlerAttacker].hp != 0
 				 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7694,7 +7694,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		//Cute charm
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_CUTE_CHARM)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_CUTE_CHARM, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7703,7 +7703,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerTarget].hp != 0
              && (Random() % 3) == 0
              && GetBattlerAbility(gBattlerAttacker) != ABILITY_OBLIVIOUS
-			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OBLIVIOUS)
+			 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_OBLIVIOUS, gBattleMons[gBattlerAttacker].level)
              && !IsAbilityOnSide(gBattlerAttacker, ABILITY_AROMA_VEIL)
              && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
              && !(gBattleMons[gBattlerAttacker].status2 & STATUS2_INFATUATION)
@@ -7720,17 +7720,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		//Gooey & Tangling Hair
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GOOEY) || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TANGLING_HAIR)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GOOEY, gBattleMons[battler].level) || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_TANGLING_HAIR, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && (CompareStat(gBattlerAttacker, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN) || 
 			     GetBattlerAbility(gBattlerAttacker) == ABILITY_MIRROR_ARMOR ||
-				 SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MIRROR_ARMOR))
+				 SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MIRROR_ARMOR, gBattleMons[gBattlerAttacker].level))
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-				if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GOOEY)){
+				if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GOOEY, gBattleMons[battler].level)){
 					gBattleScripting.abilityPopupOverwrite = ABILITY_GOOEY;
 					gLastUsedAbility = ABILITY_GOOEY;
 				}
@@ -7750,7 +7750,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		//Weak Armor
-		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WEAK_ARMOR)){
+		if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WEAK_ARMOR, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
              && IsBattlerAlive(battler)
@@ -7975,7 +7975,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		// Innates
 		
 		// Soul Linker
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOUL_LINKER)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOUL_LINKER, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7988,7 +7988,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Growing Tooth
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GROWING_TOOTH)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GROWING_TOOTH, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 				 && TARGET_TURN_DAMAGED
 				 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8008,7 +8008,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				}
 		}
 		// Loud Bang
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LOUD_BANG)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LOUD_BANG, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 				 && gBattleMons[gBattlerTarget].hp != 0
 				 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8028,15 +8028,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				}
 		}
 		/*/Iron Barbs/ Rough Skin
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN) ||
-			SpeciesHasInnate(gBattleMons[battler].species, ABILITY_IRON_BARBS)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN, gBattleMons[battler].level) ||
+			SpeciesHasInnate(gBattleMons[battler].species, ABILITY_IRON_BARBS, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-				if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN)){
+				if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ROUGH_SKIN, gBattleMons[battler].level)){
 					gBattleScripting.abilityPopupOverwrite = ABILITY_ROUGH_SKIN;
 					gLastUsedAbility = ABILITY_ROUGH_SKIN;
 				}
@@ -8056,7 +8056,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}*/
 		
 		//Electric Burst
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ELECTRIC_BURST)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_ELECTRIC_BURST, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED // Need to actually hit the target
@@ -8074,7 +8074,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 		//Solenoglyphs
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOLENOGLYPHS)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_SOLENOGLYPHS, gBattleMons[battler].level)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8094,7 +8094,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 		// Poison Touch
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_TOUCH)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_POISON_TOUCH, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8114,7 +8114,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 		// Static (Attacker)
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STATIC)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STATIC, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8132,7 +8132,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 		// Flame Body (Attacker)
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_FLAME_BODY)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_FLAME_BODY, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8153,7 +8153,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 		
 		// Stench
-		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STENCH)){
+		if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_STENCH, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[battler].confusionSelfDmg
@@ -8171,7 +8171,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 
-        if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GRIP_PINCER)){
+        if (SpeciesHasInnate(gBattleMons[battler].species, ABILITY_GRIP_PINCER, gBattleMons[battler].level)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && gBattleMons[gBattlerTarget].hp != 0
                 && !gProtectStructs[battler].confusionSelfDmg
@@ -8286,7 +8286,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //Innates
             //Immunity
-            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_IMMUNITY)){
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_IMMUNITY, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status1 & (STATUS1_POISON | STATUS1_TOXIC_POISON | STATUS1_TOXIC_COUNTER))
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_IMMUNITY;
@@ -8296,7 +8296,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Own Tempo
-            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_OWN_TEMPO)){
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_OWN_TEMPO, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_OWN_TEMPO;
@@ -8306,7 +8306,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Limber
-            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LIMBER)){
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_LIMBER, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LIMBER;
@@ -8316,7 +8316,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Insomnia
-            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INSOMNIA)){
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INSOMNIA, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status1 & STATUS1_SLEEP)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INSOMNIA;
@@ -8327,7 +8327,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Vital Spirit
-            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_VITAL_SPIRIT)){
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_VITAL_SPIRIT, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status1 & STATUS1_SLEEP)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_VITAL_SPIRIT;
@@ -8338,7 +8338,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Water Veil
-            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL)){
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status1 & STATUS1_BURN)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WATER_VEIL;
@@ -8348,7 +8348,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Water Bubble
-            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_BUBBLE)){
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_BUBBLE, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status1 & STATUS1_BURN)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WATER_BUBBLE;
@@ -8358,7 +8358,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Magma Armor
-            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAGMA_ARMOR)){
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_MAGMA_ARMOR, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status1 & STATUS1_FREEZE)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAGMA_ARMOR;
@@ -8368,7 +8368,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 
             //Oblivious
-            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_OBLIVIOUS)){
+            if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_OBLIVIOUS, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status2 & STATUS2_INFATUATION){
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_OBLIVIOUS;
                     effect = 3;
@@ -8412,7 +8412,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 			
 			//Vital Spirit & Insomnia
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INSOMNIA) || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_VITAL_SPIRIT)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_INSOMNIA, gBattleMons[battler].level) || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_VITAL_SPIRIT, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status1 & STATUS1_SLEEP)
                 {
                     gBattleMons[battler].status2 &= ~(STATUS2_NIGHTMARE);
@@ -8422,7 +8422,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			//Oblivious
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_OBLIVIOUS)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_OBLIVIOUS, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status2 & STATUS2_INFATUATION)
                     effect = 3;
                 else if (gDisableStructs[battler].tauntTimer != 0)
@@ -8430,7 +8430,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			
 			// Water Veil & Water Bubble
-			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL) || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_BUBBLE)){
+			if(SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_VEIL, gBattleMons[battler].level) || SpeciesHasInnate(gBattleMons[battler].species, ABILITY_WATER_BUBBLE, gBattleMons[battler].level)){
                 if (gBattleMons[battler].status1 & STATUS1_BURN)
                 {
                     StringCopy(gBattleTextBuff1, gStatusConditionString_BurnJpn);
@@ -8501,7 +8501,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_INTIMIDATE2:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if ((GetBattlerAbility(i) == ABILITY_INTIMIDATE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_INTIMIDATE))
+            if ((GetBattlerAbility(i) == ABILITY_INTIMIDATE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_INTIMIDATE, gBattleMons[i].level))
 				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
             {
                 //gLastUsedAbility = ABILITY_INTIMIDATE;
@@ -8520,7 +8520,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
             }
             
-			if ((GetBattlerAbility(i) == ABILITY_SCARE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_SCARE))
+			if ((GetBattlerAbility(i) == ABILITY_SCARE || SpeciesHasInnate(gBattleMons[i].species, ABILITY_SCARE, gBattleMons[i].level))
 				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_SCARED)
             {
                 //gLastUsedAbility = ABILITY_SCARE;
@@ -8660,7 +8660,7 @@ u32 GetBattlerAbility(u8 battlerId)
         return ABILITY_NONE;
     
     if ((((gBattleMons[gBattlerAttacker].ability == ABILITY_MOLD_BREAKER
-	        || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MOLD_BREAKER)
+	        || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MOLD_BREAKER, gBattleMons[gBattlerAttacker].level)
             || gBattleMons[gBattlerAttacker].ability == ABILITY_TERAVOLT
             || gBattleMons[gBattlerAttacker].ability == ABILITY_TURBOBLAZE)
             && !(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID))
@@ -8678,11 +8678,11 @@ u32 IsAbilityOnSide(u32 battlerId, u32 ability)
 {
     if (IsBattlerAlive(battlerId) && GetBattlerAbility(battlerId) == ability)
         return battlerId + 1;
-	else if (IsBattlerAlive(battlerId) && SpeciesHasInnate(gBattleMons[battlerId].species, ability))
+	else if (IsBattlerAlive(battlerId) && SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level))
         return battlerId + 1;
     else if (IsBattlerAlive(BATTLE_PARTNER(battlerId)) && GetBattlerAbility(BATTLE_PARTNER(battlerId)) == ability)
         return BATTLE_PARTNER(battlerId) + 1;
-	else if (IsBattlerAlive(BATTLE_PARTNER(battlerId)) && SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerId)].species, ability))
+	else if (IsBattlerAlive(BATTLE_PARTNER(battlerId)) && SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerId)].species, ability, gBattleMons[BATTLE_PARTNER(battlerId)].level))
         return BATTLE_PARTNER(battlerId) + 1;
     else
         return 0;
@@ -8699,7 +8699,7 @@ u32 IsAbilityOnField(u32 ability)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (IsBattlerAlive(i) && (GetBattlerAbility(i) == ability || SpeciesHasInnate(gBattleMons[i].species, ability)))
+        if (IsBattlerAlive(i) && (GetBattlerAbility(i) == ability || SpeciesHasInnate(gBattleMons[i].species, ability, gBattleMons[i].level)))
             return i + 1;
     }
 
@@ -8712,7 +8712,7 @@ u32 IsAbilityOnFieldExcept(u32 battlerId, u32 ability)
 
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (i != battlerId && IsBattlerAlive(i) && (GetBattlerAbility(i) == ability || SpeciesHasInnate(gBattleMons[i].species, ability)))
+        if (i != battlerId && IsBattlerAlive(i) && (GetBattlerAbility(i) == ability || SpeciesHasInnate(gBattleMons[i].species, ability, gBattleMons[i].level)))
             return i + 1;
     }
 
@@ -8796,11 +8796,11 @@ bool32 CanSleep(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
     if (ability == ABILITY_INSOMNIA
-	  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_INSOMNIA)
+	  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_INSOMNIA, gBattleMons[gActiveBattler].level)
       || ability == ABILITY_VITAL_SPIRIT
-	  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_VITAL_SPIRIT)
+	  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_VITAL_SPIRIT, gBattleMons[gActiveBattler].level)
       || ability == ABILITY_COMATOSE
-	  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_COMATOSE)
+	  || SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_COMATOSE, gBattleMons[gActiveBattler].level)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityOnSide(battlerId, ABILITY_SWEET_VEIL)
@@ -8818,8 +8818,9 @@ bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget)
      || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
      || ability == ABILITY_IMMUNITY
-	 || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_IMMUNITY)
+	 || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_IMMUNITY, gBattleMons[battlerTarget].level)
      || ability == ABILITY_COMATOSE
+	 || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_COMATOSE, gBattleMons[battlerTarget].level)
      || IsAbilityOnSide(battlerTarget, ABILITY_PASTEL_VEIL)
      || gBattleMons[battlerTarget].status1 & STATUS1_ANY
      || IsAbilityStatusProtected(battlerTarget)
@@ -8835,11 +8836,11 @@ bool32 CanBeBurned(u8 battlerId)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || ability == ABILITY_WATER_VEIL
-	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_VEIL)
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_VEIL, gBattleMons[battlerId].level)
       || ability == ABILITY_WATER_BUBBLE
-	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_BUBBLE)
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_BUBBLE, gBattleMons[battlerId].level)
       || ability == ABILITY_COMATOSE
-	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE)
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE, gBattleMons[battlerId].level)
       || IsAbilityStatusProtected(battlerId)
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -8852,11 +8853,11 @@ bool32 CanBeParalyzed(u8 battlerTarget, u8 battlerAttacker)
     if ((!CanParalyzeType(battlerAttacker, battlerTarget))
       || gSideStatuses[GetBattlerSide(battlerTarget)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_LIMBER
-	  || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_LIMBER)
+	  || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_LIMBER, gBattleMons[battlerTarget].level)
       || ability == ABILITY_JUGGERNAUT
-	  || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_JUGGERNAUT)
+	  || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_JUGGERNAUT, gBattleMons[battlerTarget].level)
       || ability == ABILITY_COMATOSE
-	  || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_COMATOSE)
+	  || SpeciesHasInnate(gBattleMons[battlerTarget].species, ABILITY_COMATOSE, gBattleMons[battlerTarget].level)
       || gBattleMons[battlerTarget].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerTarget)
       || IsBattlerTerrainAffected(battlerTarget, STATUS_FIELD_MISTY_TERRAIN))
@@ -8871,9 +8872,9 @@ bool32 CanBeFrozen(u8 battlerId)
       || IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY)
       || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_SAFEGUARD
       || ability == ABILITY_MAGMA_ARMOR
-	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGMA_ARMOR)
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGMA_ARMOR, gBattleMons[battlerId].level)
       || ability == ABILITY_COMATOSE
-	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE)
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE, gBattleMons[battlerId].level)
       || gBattleMons[battlerId].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battlerId)
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
@@ -8884,7 +8885,7 @@ bool32 CanBeFrozen(u8 battlerId)
 bool32 CanBeConfused(u8 battlerId)
 {
     if (GetBattlerAbility(gEffectBattler) == ABILITY_OWN_TEMPO
-	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_OWN_TEMPO)
+	  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_OWN_TEMPO, gBattleMons[battlerId].level)
       || gBattleMons[gEffectBattler].status2 & STATUS2_CONFUSION
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -8906,7 +8907,7 @@ bool32 HasEnoughHpToEatBerry(u32 battlerId, u32 hpFraction, u32 itemId)
     if (gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / hpFraction)
         return TRUE;
 
-    if (hpFraction <= 4 && (GetBattlerAbility(battlerId) == ABILITY_GLUTTONY || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GLUTTONY)) && isBerry
+    if (hpFraction <= 4 && (GetBattlerAbility(battlerId) == ABILITY_GLUTTONY || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_GLUTTONY, gBattleMons[battlerId].level)) && isBerry
          && gBattleMons[battlerId].hp <= gBattleMons[battlerId].maxHP / 2)
     {
         RecordAbilityBattle(battlerId, ABILITY_GLUTTONY);
@@ -9530,9 +9531,9 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
                     goto LEFTOVERS;
                 }
                 else if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD  &&
-				         !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGIC_GUARD) &&
+				         !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGIC_GUARD, gBattleMons[battlerId].level) &&
 					     GetBattlerAbility(battlerId) != ABILITY_IMPENETRABLE && 
-				         !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_IMPENETRABLE) &&
+				         !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_IMPENETRABLE, gBattleMons[battlerId].level) &&
 						 !moveTurn)
                 {
                     gBattleMoveDamage = gBattleMons[battlerId].maxHP / 8;
@@ -9940,7 +9941,7 @@ case ITEMEFFECT_KINGSROCK:
         {
         case HOLD_EFFECT_FLINCH:
             #if B_SERENE_GRACE_BOOST >= GEN_5
-                if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SERENE_GRACE))
+                if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SERENE_GRACE, gBattleMons[gBattlerAttacker].level))
                     atkHoldEffectParam *= 2;
             #endif
             if (gBattleMoveDamage != 0  // Need to have done damage
@@ -9999,8 +10000,8 @@ case ITEMEFFECT_KINGSROCK:
                 && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
-				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
-				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE)
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD, gBattleMons[gBattlerAttacker].level)
+				&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE, gBattleMons[gBattlerAttacker].level)
                 && gBattlerAttacker != gBattlerTarget
                 && gBattleMons[gBattlerAttacker].hp != 0)
             {
@@ -10050,8 +10051,8 @@ case ITEMEFFECT_KINGSROCK:
                     && IsBattlerAlive(gBattlerAttacker)
 					&& GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
                     && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
-					&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
-					&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
+					&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD, gBattleMons[gBattlerAttacker].level)
+					&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE, gBattleMons[gBattlerAttacker].level))
                 {
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 6;
                     if (gBattleMoveDamage == 0)
@@ -10124,8 +10125,8 @@ case ITEMEFFECT_KINGSROCK:
                  && IS_MOVE_PHYSICAL(gCurrentMove)
                  && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
                  && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
-			     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
-				 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
+			     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD, gBattleMons[gBattlerAttacker].level)
+				 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE, gBattleMons[gBattlerAttacker].level))
                 {
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -10147,8 +10148,8 @@ case ITEMEFFECT_KINGSROCK:
                  && IS_MOVE_SPECIAL(gCurrentMove)
                  && GetBattlerAbility(gBattlerAttacker) != ABILITY_MAGIC_GUARD
                  && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
-			     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD)
-				 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE))
+			     && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MAGIC_GUARD, gBattleMons[gBattlerAttacker].level)
+				 && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_IMPENETRABLE, gBattleMons[gBattlerAttacker].level))
                 {
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -10209,11 +10210,11 @@ case ITEMEFFECT_KINGSROCK:
             if (!gBattleMons[battlerId].status1
                 && !IS_BATTLER_OF_TYPE(battlerId, TYPE_FIRE)
                 && GetBattlerAbility(battlerId) != ABILITY_WATER_VEIL
-				&& !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_VEIL)
+				&& !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_VEIL, gBattleMons[battlerId].level)
                 && GetBattlerAbility(battlerId) != ABILITY_WATER_BUBBLE
-				&& !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_BUBBLE)
+				&& !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_WATER_BUBBLE, gBattleMons[battlerId].level)
                 && GetBattlerAbility(battlerId) != ABILITY_COMATOSE
-				&& !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE)
+				&& !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_COMATOSE, gBattleMons[battlerId].level)
                 && IsBattlerAlive(battlerId))
             {
                 effect = ITEM_STATUS_CHANGE;
@@ -10225,8 +10226,8 @@ case ITEMEFFECT_KINGSROCK:
         case HOLD_EFFECT_STICKY_BARB:   // Not an orb per se, but similar effect, and needs to NOT activate with pickpocket
             if (GetBattlerAbility(battlerId) != ABILITY_MAGIC_GUARD
                  && GetBattlerAbility(battlerId) != ABILITY_IMPENETRABLE
-			     && !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGIC_GUARD)
-				 && !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_IMPENETRABLE))
+			     && !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_MAGIC_GUARD, gBattleMons[battlerId].level)
+				 && !SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_IMPENETRABLE, gBattleMons[battlerId].level))
             {
                 gBattleMoveDamage = gBattleMons[battlerId].maxHP / 8;
                 if (gBattleMoveDamage == 0)
@@ -10319,7 +10320,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             if (gBattleMoves[move].type == TYPE_ELECTRIC
                 && IsAbilityOnOpposingSide(gBattlerAttacker, ABILITY_LIGHTNING_ROD)
                 && GetBattlerAbility(targetBattler) != ABILITY_LIGHTNING_ROD
-                && !SpeciesHasInnate(gBattleMons[targetBattler].species, ABILITY_LIGHTNING_ROD))
+                && !SpeciesHasInnate(gBattleMons[targetBattler].species, ABILITY_LIGHTNING_ROD, gBattleMons[targetBattler].level))
             {
                 targetBattler ^= BIT_FLANK;
                 RecordAbilityBattle(targetBattler, gBattleMons[targetBattler].ability);
@@ -10327,7 +10328,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
             }
             else if (gBattleMoves[move].type == TYPE_WATER
                 && IsAbilityOnOpposingSide(gBattlerAttacker, ABILITY_STORM_DRAIN)
-                && !SpeciesHasInnate(gBattleMons[targetBattler].species, ABILITY_STORM_DRAIN)
+                && !SpeciesHasInnate(gBattleMons[targetBattler].species, ABILITY_STORM_DRAIN, gBattleMons[targetBattler].level)
                 && GetBattlerAbility(targetBattler) != ABILITY_STORM_DRAIN)
             {
                 targetBattler ^= BIT_FLANK;
@@ -10543,7 +10544,7 @@ bool32 IsMoveMakingContact(u16 move, u8 battlerAtk)
         else
             return FALSE;
     }
-    else if (GetBattlerAbility(battlerAtk) == ABILITY_LONG_REACH || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH))
+    else if (GetBattlerAbility(battlerAtk) == ABILITY_LONG_REACH || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH, gBattleMons[battlerAtk].level))
     {
         return FALSE;
     }
@@ -10623,11 +10624,11 @@ bool32 IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
         return FALSE;
-	else if (SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEVITATE))//Levitate Innate Effect
+	else if (SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEVITATE, gBattleMons[battlerId].level))//Levitate Innate Effect
         return FALSE;
 	else if (GetBattlerAbility(battlerId) == ABILITY_DRAGONFLY)//Dragonfly
         return FALSE;
-	else if (SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_DRAGONFLY))//Dragonfly Innate Effect
+	else if (SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_DRAGONFLY, gBattleMons[battlerId].level))//Dragonfly Innate Effect
         return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
@@ -10667,13 +10668,13 @@ u32 GetBattlerWeight(u8 battlerId)
     u32 ability = GetBattlerAbility(battlerId);
     u32 holdEffect = GetBattlerHoldEffect(battlerId, TRUE);
 
-    if (ability == ABILITY_HEAVY_METAL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_HEAVY_METAL))
+    if (ability == ABILITY_HEAVY_METAL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_HEAVY_METAL, gBattleMons[battlerId].level))
         weight *= 2;
 	
-    if (ability == ABILITY_LIGHT_METAL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LIGHT_METAL))
+    if (ability == ABILITY_LIGHT_METAL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LIGHT_METAL, gBattleMons[battlerId].level))
         weight /= 2;
 	
-	if (ability == ABILITY_LEAD_COAT || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEAD_COAT))
+	if (ability == ABILITY_LEAD_COAT || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEAD_COAT, gBattleMons[battlerId].level))
         weight *= 3;
 
     if (holdEffect == HOLD_EFFECT_FLOAT_STONE)
@@ -11292,201 +11293,201 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Attacker Innates
 	
 	// Reckless
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_RECKLESS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_RECKLESS, gBattleMons[battlerAtk].level)){
 		if (gBattleMoves[move].flags & FLAG_RECKLESS_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
     }
 	
 	// Iron Fist / Power Fists
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_IRON_FIST) || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POWER_FISTS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_IRON_FIST, gBattleMons[battlerAtk].level) || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POWER_FISTS, gBattleMons[battlerAtk].level)){
 		if (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Striker
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STRIKER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STRIKER, gBattleMons[battlerAtk].level)){
 		if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Field Explorer
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIELD_EXPLORER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIELD_EXPLORER, gBattleMons[battlerAtk].level)){
 		if (gBattleMoves[move].flags & FLAG_FIELD_BASED)
            MulModifier(&modifier, UQ_4_12(1.25));
     }
 
     // Giant Wings
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GIANT_WINGS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GIANT_WINGS, gBattleMons[battlerAtk].level)){
         if (gBattleMoves[move].flags2 & FLAG_AIR_BASED)
            MulModifier(&modifier, UQ_4_12(1.25));
     }
 	
 	// Sheer Force
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SHEER_FORCE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SHEER_FORCE, gBattleMons[battlerAtk].level)){
 		if (gBattleMoves[move].flags & FLAG_SHEER_FORCE_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Sand Force
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_FORCE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_FORCE, gBattleMons[battlerAtk].level)){
 		if ((moveType == TYPE_STEEL || moveType == TYPE_ROCK || moveType == TYPE_GROUND)
             && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Analytic
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANALYTIC)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANALYTIC, gBattleMons[battlerAtk].level)){
 		if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Strong Jaw
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STRONG_JAW)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STRONG_JAW, gBattleMons[battlerAtk].level)){
 		if (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
            MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	// Pixilate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PIXILATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PIXILATE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
     }
 	
 	// Galvanize
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GALVANIZE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GALVANIZE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_ELECTRIC && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
     }
 	
 	// Refrigerate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_REFRIGERATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_REFRIGERATE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
     }
 	
 	// Aerilate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AERILATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AERILATE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_FLYING && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
     }
 	
 	// Normalize
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NORMALIZE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NORMALIZE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_NORMAL && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
     }
 	
 	// Punk Rock
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PUNK_ROCK)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PUNK_ROCK, gBattleMons[battlerAtk].level)){
 		if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
 	// Steely Spirit
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STEELY_SPIRIT)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STEELY_SPIRIT, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_STEEL)
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	// Transistor
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TRANSISTOR)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TRANSISTOR, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_ELECTRIC)
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	// Dragon's Maw
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DRAGONS_MAW)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DRAGONS_MAW, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_DRAGON)
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	// Liquid Voice
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LIQUID_VOICE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LIQUID_VOICE, gBattleMons[battlerAtk].level)){
 		if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(1.2));
     }
 	
 	// Gorilla Tactics
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GORILLA_TACTICS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GORILLA_TACTICS, gBattleMons[battlerAtk].level)){
 		if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	// Sage Power
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAGE_POWER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAGE_POWER, gBattleMons[battlerAtk].level)){
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	// Exploit Weakness
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_EXPLOIT_WEAKNESS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_EXPLOIT_WEAKNESS, gBattleMons[battlerAtk].level)){
 		if (gBattleMons[battlerDef].status1 & STATUS1_ANY){
             MulModifier(&modifier, UQ_4_12(1.25));
 		}
     }
 
 	// Avenger
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AVENGER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AVENGER, gBattleMons[battlerAtk].level)){
 		if (gSideTimers[atkSide].retaliateTimer == 1)
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	//Nocturnal old effect
-	/*if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NOCTURNAL)){
+	/*if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NOCTURNAL, gBattleMons[battlerAtk].level)){
 		if (!IsCurrentlyDay())
             MulModifier(&modifier, UQ_4_12(1.1));
 	}*/
 
 	// Burnate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BURNATE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 
 	// Crystallize
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CRYSTALLIZE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 
 	// Fight Spirit
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FIGHT_SPIRIT, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
 	// Groundate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUNDATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUNDATE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
 	// Hydrate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYDRATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HYDRATE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
 	// Poisonate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POISONATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POISONATE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
 	// Long Reach
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LONG_REACH, gBattleMons[battlerAtk].level)){
 		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
             MulModifier(&modifier, UQ_4_12(1.2));
 	}
 	
 	// Tough Claws & Big Pecks
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TOUGH_CLAWS) || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BIG_PECKS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TOUGH_CLAWS, gBattleMons[battlerAtk].level) || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BIG_PECKS, gBattleMons[battlerAtk].level)){
         if (IsMoveMakingContact(move, battlerAtk))
            MulModifier(&modifier, UQ_4_12(1.3));
 	}
 	
 	//DreamCatcher
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DREAMCATCHER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DREAMCATCHER, gBattleMons[battlerAtk].level)){
 		switch(numsleepmons){
 			case 1:
 				MulModifier(&modifier, UQ_4_12(1.2));
@@ -11504,7 +11505,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	}
 	
 	// Rivalry
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_RIVALRY)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_RIVALRY, gBattleMons[battlerAtk].level)){
 	if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality) != MON_GENDERLESS
             && GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality) != MON_GENDERLESS)
         {
@@ -11517,73 +11518,73 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	}
 	
 	// Dragonslayer
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DRAGONSLAYER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DRAGONSLAYER, gBattleMons[battlerAtk].level)){
 	if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
             MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Huge Power
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUGE_POWER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUGE_POWER, gBattleMons[battlerAtk].level)){
         if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(2.0));
     }
 	
 	// Pure Power
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PURE_POWER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PURE_POWER, gBattleMons[battlerAtk].level)){
         if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(2.0));
     }
 	
 	// Feline Prowess
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FELINE_PROWESS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FELINE_PROWESS, gBattleMons[battlerAtk].level)){
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(2.0));
 	}
 	
 	// Majestic Bird
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MAJESTIC_BIRD)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MAJESTIC_BIRD, gBattleMons[battlerAtk].level)){
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	//Toxic Boost
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TOXIC_BOOST)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TOXIC_BOOST, gBattleMons[battlerAtk].level)){
 		if (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY && IS_MOVE_PHYSICAL(move))
            MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	//Flare Boost
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FLARE_BOOST)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FLARE_BOOST, gBattleMons[battlerAtk].level)){
 		if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_SPECIAL(move))
            MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Mega Launcher
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MEGA_LAUNCHER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MEGA_LAUNCHER, gBattleMons[battlerAtk].level)){
 		if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Hustle
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE, gBattleMons[battlerAtk].level)){
 		if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Technician
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TECHNICIAN)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TECHNICIAN, gBattleMons[battlerAtk].level)){
         if (basePower <= 60)
            MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Water Bubble
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_WATER_BUBBLE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_WATER_BUBBLE, gBattleMons[battlerAtk].level)){
         if (moveType == TYPE_WATER)
            MulModifier(&modifier, UQ_4_12(2.0));
 	}
 	
 	// Violent Rush
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_VIOLENT_RUSH)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_VIOLENT_RUSH, gBattleMons[battlerAtk].level)){
         if (gDisableStructs[battlerAtk].isFirstTurn)
            MulModifier(&modifier, UQ_4_12(1.2));
 	}
@@ -11619,18 +11620,18 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		// Attacker Partner's Innates
 		
 		// Battery
-		if(SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_BATTERY)){
+		if(SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_BATTERY, gBattleMons[BATTLE_PARTNER(battlerAtk)].level)){
 			if (IS_MOVE_SPECIAL(move))
                 MulModifier(&modifier, UQ_4_12(1.3));
 		}
 		
 		// Power Spot
-		if(SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_POWER_SPOT)){
+		if(SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_POWER_SPOT, gBattleMons[BATTLE_PARTNER(battlerAtk)].level)){
 			MulModifier(&modifier, UQ_4_12(1.3));
 		}
 		
 		// Steely Spirit
-		if(SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_STEELY_SPIRIT)){
+		if(SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_STEELY_SPIRIT, gBattleMons[BATTLE_PARTNER(battlerAtk)].level)){
 			if (moveType == TYPE_STEEL)
                 MulModifier(&modifier, UQ_4_12(1.5));
 		}
@@ -11714,7 +11715,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Target's Innates
 	
 	// Heatproof & Water Bubble
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_HEATPROOF) || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WATER_BUBBLE)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_HEATPROOF, gBattleMons[battlerDef].level) || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WATER_BUBBLE, gBattleMons[battlerDef].level)){
         if (moveType == TYPE_FIRE)
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -11724,13 +11725,13 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	}
 	
     // Dry Skin
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_DRY_SKIN)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_DRY_SKIN, gBattleMons[battlerDef].level)){
 		if (moveType == TYPE_FIRE)
             MulModifier(&modifier, UQ_4_12(1.25));
 	}
 	
 	// Fluffy
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FLUFFY)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FLUFFY, gBattleMons[battlerDef].level)){
 		if (IsMoveMakingContact(move, battlerAtk))
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -11742,7 +11743,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	}
 	
 	// Liquified
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LIQUIFIED)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LIQUIFIED, gBattleMons[battlerDef].level)){
 		if (IsMoveMakingContact(move, battlerAtk))
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -11753,28 +11754,28 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(2.0));
 	}
 	// Christmas Spirit
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_CHRISTMAS_SPIRIT)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_CHRISTMAS_SPIRIT, gBattleMons[battlerDef].level)){
 		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY){
 			MulModifier(&modifier, UQ_4_12(0.5));
 		}
     }
 	// Battle Armor
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR) ||
-	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHELL_ARMOR)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_BATTLE_ARMOR, gBattleMons[battlerDef].level) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHELL_ARMOR, gBattleMons[battlerDef].level)){
 		MulModifier(&modifier, UQ_4_12(0.9));
     }
 	// Lead Coat
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LEAD_COAT)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_LEAD_COAT, gBattleMons[battlerDef].level)){
 		MulModifier(&modifier, UQ_4_12(0.7));
     }
 	// Fossilized
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FOSSILIZED)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FOSSILIZED, gBattleMons[battlerDef].level)){
 		if (moveType == TYPE_ROCK)
             MulModifier(&modifier, UQ_4_12(0.5));
     }
 
 	// Immunity
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_IMMUNITY)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_IMMUNITY, gBattleMons[battlerDef].level)){
 		if (moveType == TYPE_POISON)
             MulModifier(&modifier, UQ_4_12(0.8));
     }
@@ -11876,11 +11877,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case EFFECT_SOLARBEAM:
         if (IsBattlerWeatherAffected(battlerAtk, (WEATHER_HAIL_ANY | WEATHER_SANDSTORM_ANY | WEATHER_RAIN_ANY))
-            && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOLAR_FLARE)
+            && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_SOLAR_FLARE, gBattleMons[gBattlerAttacker].level)
             && GetBattlerAbility(gBattlerAttacker) != ABILITY_SOLAR_FLARE
-            && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_BIG_LEAVES)
+            && !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_BIG_LEAVES, gBattleMons[gBattlerAttacker].level)
             && GetBattlerAbility(gBattlerAttacker) != ABILITY_BIG_LEAVES
-			&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST)
+			&& !SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_CHLOROPLAST, gBattleMons[gBattlerAttacker].level)
             && GetBattlerAbility(gBattlerAttacker) != ABILITY_CHLOROPLAST)
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
@@ -11947,7 +11948,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         atkStage = gBattleMons[battlerAtk].statStages[STAT_DEF];
     }
 	// Ancient Idol
-	else if (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANCIENT_IDOL)|| GetBattlerAbility(battlerAtk) == ABILITY_ANCIENT_IDOL)
+	else if (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANCIENT_IDOL, gBattleMons[battlerAtk].level)|| GetBattlerAbility(battlerAtk) == ABILITY_ANCIENT_IDOL)
     {
 		//Has Innate functionality
 		if (IS_MOVE_PHYSICAL(move))
@@ -11962,25 +11963,25 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         }
     }
 	// Speed Force
-	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SPEED_FORCE)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE) && 
+	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SPEED_FORCE, gBattleMons[battlerAtk].level)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE) && 
 			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
 		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].speed * 0.2);
         atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
     }
     // Momentum
-	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MOMENTUM)|| GetBattlerAbility(battlerAtk) == ABILITY_MOMENTUM) && 
+	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MOMENTUM, gBattleMons[battlerAtk].level)|| GetBattlerAbility(battlerAtk) == ABILITY_MOMENTUM) && 
 			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
 		atkStat = gBattleMons[battlerAtk].speed;
         atkStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
     }
 	// Juggernaut
-	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_JUGGERNAUT)|| GetBattlerAbility(battlerAtk) == ABILITY_JUGGERNAUT) && 
+	else if ((SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_JUGGERNAUT, gBattleMons[battlerAtk].level)|| GetBattlerAbility(battlerAtk) == ABILITY_JUGGERNAUT) && 
 			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
 		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].defense * 0.2);
         atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
     }
     // Power Core
-	else if (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POWER_CORE)|| GetBattlerAbility(battlerAtk) == ABILITY_POWER_CORE){
+	else if (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POWER_CORE, gBattleMons[battlerAtk].level)|| GetBattlerAbility(battlerAtk) == ABILITY_POWER_CORE){
 		if (IS_MOVE_PHYSICAL(move))
         {
             atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].defense * 0.2);
@@ -12011,7 +12012,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     if (isCrit && atkStage < DEFAULT_STAT_STAGE)
         atkStage = DEFAULT_STAT_STAGE;
     // pokemon with unaware ignore attack stat changes while taking damage
-    if (GetBattlerAbility(battlerDef) == ABILITY_UNAWARE || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_UNAWARE))
+    if (GetBattlerAbility(battlerDef) == ABILITY_UNAWARE || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_UNAWARE, gBattleMons[battlerDef].level))
         atkStage = DEFAULT_STAT_STAGE;
 
     atkStat *= gStatStageRatios[atkStage][0];
@@ -12212,57 +12213,57 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	//Innates
 	
     // Deafitist
-    if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DEFEATIST)){
+    if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_DEFEATIST, gBattleMons[battlerAtk].level)){
         if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
             MulModifier(&modifier, UQ_4_12(0.5));
     }
 
 	// Slow Start
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SLOW_START)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SLOW_START, gBattleMons[battlerAtk].level)){
         if (gDisableStructs[battlerAtk].slowStartTimer != 0)
             MulModifier(&modifier, UQ_4_12(0.5));
     }
 	
 	// Plus & Minus
-	if(SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_PLUS)
-	|| SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_MINUS)){
+	if(SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_PLUS, gBattleMons[battlerAtk].level)
+	|| SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_MINUS, gBattleMons[battlerAtk].level)){
         {
             u32 partnerAbility = GetBattlerAbility(BATTLE_PARTNER(battlerAtk));
             if (partnerAbility == ABILITY_PLUS 
 			|| partnerAbility == ABILITY_MINUS 
-			|| SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_PLUS)
-			|| SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_MINUS)
+			|| SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_PLUS, gBattleMons[BATTLE_PARTNER(battlerAtk)].level)
+			|| SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(battlerAtk)].species, ABILITY_MINUS, gBattleMons[BATTLE_PARTNER(battlerAtk)].level)
 			)
                 MulModifier(&modifier, UQ_4_12(1.5));
         }
 	}
 
 	// Hustle
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_HUSTLE, gBattleMons[battlerAtk].level)){
 	if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Stakeout
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STAKEOUT)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STAKEOUT, gBattleMons[battlerAtk].level)){
         if (gDisableStructs[battlerDef].isFirstTurn == 2) // just switched in
             MulModifier(&modifier, UQ_4_12(2.0));
     }
 	
 	// Whiteout
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_WHITEOUT)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_WHITEOUT, gBattleMons[battlerAtk].level)){
         if (moveType == TYPE_ICE && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	// Guts
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GUTS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GUTS, gBattleMons[battlerAtk].level)){
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY && IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
     }
 	
 	//Illusion
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ILLUSION)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ILLUSION, gBattleMons[battlerAtk].level)){
 		if (gBattleStruct->illusion[battlerAtk].on && !gBattleStruct->illusion[battlerAtk].broken)
         {
             MulModifier(&modifier, UQ_4_12(1.3));
@@ -12270,7 +12271,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	}
 	
 	//Seaweed
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SEAWEED)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SEAWEED, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_GRASS && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE))
         {
             MulModifier(&modifier, UQ_4_12(2.0));
@@ -12280,13 +12281,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	}
 	
 	//Solar Power
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SOLAR_POWER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SOLAR_POWER, gBattleMons[battlerAtk].level)){
 		if (IS_MOVE_SPECIAL(move) && IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_ANY))
 				MulModifier(&modifier, UQ_4_12(1.5));
 	}
 
     //Big Leaves
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BIG_LEAVES)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BIG_LEAVES, gBattleMons[battlerAtk].level)){
 		if (IS_MOVE_SPECIAL(move) && IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_ANY))
 				MulModifier(&modifier, UQ_4_12(1.5));
 	}
@@ -12354,7 +12355,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	
 	// Target's Innates
 	// Thick Fat
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_THICK_FAT)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_THICK_FAT, gBattleMons[battlerDef].level)){
         if (moveType == TYPE_FIRE || moveType == TYPE_ICE)
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -12364,7 +12365,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
 
     // Nocturnal
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_NOCTURNAL)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_NOCTURNAL, gBattleMons[battlerDef].level)){
         if (moveType == TYPE_DARK || moveType == TYPE_FAIRY)
         {
             MulModifier(&modifier, UQ_4_12(0.75));
@@ -12374,7 +12375,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
 	
 	//Magma Armor
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MAGMA_ARMOR)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MAGMA_ARMOR, gBattleMons[battlerDef].level)){
 		if (moveType == TYPE_WATER || moveType == TYPE_ICE)
         {
             MulModifier(&modifier, UQ_4_12(0.7));
@@ -12384,7 +12385,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	}
 	
 	//Raw Wood
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_RAW_WOOD)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_RAW_WOOD, gBattleMons[battlerDef].level)){
         if (moveType == TYPE_GRASS)
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -12394,7 +12395,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
 	
 	//Seaweed
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SEAWEED)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SEAWEED, gBattleMons[battlerDef].level)){
         if (moveType == TYPE_FIRE && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS))
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -12404,13 +12405,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
 	
 	//Overcoat
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_OVERCOAT)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_OVERCOAT, gBattleMons[battlerDef].level)){
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(0.9));
 	}
 	
 	//Water Compaction
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WATER_COMPACTION)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WATER_COMPACTION, gBattleMons[battlerDef].level)){
         if (moveType == TYPE_WATER)
         {
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -12462,63 +12463,63 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	
 	// Innates
 	// Antarctic Bird
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANTARCTIC_BIRD)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ANTARCTIC_BIRD, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
         }
 	}
 	// Amphibious
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AMPHIBIOUS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AMPHIBIOUS, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_WATER)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
         }
 	}
 	// Steelworker
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STEELWORKER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STEELWORKER, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_STEEL)
         {
             MulModifier(&modifier, UQ_4_12(1.3));
         }
 	}
 	// Electrocytes
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ELECTROCYTES)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ELECTROCYTES, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_ELECTRIC)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
         }
 	}
     // Nocturnal
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NOCTURNAL)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NOCTURNAL, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_DARK)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
         }
 	}
 	// Earthbound
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_EARTHBOUND)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_EARTHBOUND, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_GROUND)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
         }
 	}
 	// Levitate
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LEVITATE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LEVITATE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_FLYING)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
         }
 	}
 	// Psychic Mind
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PSYCHIC_MIND)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_PSYCHIC_MIND, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_PSYCHIC)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
         }
 	}
 	// Swarm
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SWARM)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SWARM, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_BUG)
         {
             if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
@@ -12529,13 +12530,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	}
 	
 	// Flash Fire
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FLASH_FIRE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FLASH_FIRE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_FIRE && gBattleResources->flags->flags[battlerAtk] & RESOURCE_FLAG_FLASH_FIRE)
             MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Torrent
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TORRENT)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TORRENT, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_WATER)
         {
             if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
@@ -12545,7 +12546,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         }
 	}
 	// Blaze
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BLAZE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BLAZE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_FIRE)
         {
             if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
@@ -12555,7 +12556,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         }
 	}
 	// Overgrow
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERGROW)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERGROW, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_GRASS)
         {
             if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
@@ -12565,7 +12566,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         }
 	}
 	// Vengeance
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_VENGEANCE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_VENGEANCE, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_GHOST)
         {
             if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
@@ -12575,7 +12576,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         }
 	}
 	// Short Circuit
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SHORT_CIRCUIT)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SHORT_CIRCUIT, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_ELECTRIC)
         {
             if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
@@ -12585,7 +12586,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         }
 	}
 	// Flock
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FLOCK)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FLOCK, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_FLYING)
         {
             if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
@@ -12595,7 +12596,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		}
 	}
 	// Electric Burst
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ELECTRIC_BURST)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ELECTRIC_BURST, gBattleMons[battlerAtk].level)){
 		if (moveType == TYPE_ELECTRIC)
         {
             MulModifier(&modifier, UQ_4_12(1.35));
@@ -12645,7 +12646,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         usesDefStat = TRUE;
     }
     // Power Fists makes punching moves do special damage
-    else if ((gBattleMons[battlerAtk].ability == ABILITY_POWER_FISTS || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POWER_FISTS)) && gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST) 
+    else if ((gBattleMons[battlerAtk].ability == ABILITY_POWER_FISTS || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_POWER_FISTS, gBattleMons[battlerAtk].level)) && gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST) 
     {
         defStat = gBattleMons[battlerDef].spDefense;
         defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
@@ -12662,9 +12663,9 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     if (isCrit && defStage > DEFAULT_STAT_STAGE)
         defStage = DEFAULT_STAT_STAGE;
     // pokemon with unaware ignore defense stat changes while dealing damage
-    if (GetBattlerAbility(battlerAtk) == ABILITY_UNAWARE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_UNAWARE))
+    if (GetBattlerAbility(battlerAtk) == ABILITY_UNAWARE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_UNAWARE, gBattleMons[battlerAtk].level))
         defStage = DEFAULT_STAT_STAGE;
-    if ((gBattleMons[battlerDef].status2 & STATUS2_WRAPPED) && (GetBattlerAbility(battlerAtk) == ABILITY_GRIP_PINCER || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GRIP_PINCER)))
+    if ((gBattleMons[battlerDef].status2 & STATUS2_WRAPPED) && (GetBattlerAbility(battlerAtk) == ABILITY_GRIP_PINCER || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GRIP_PINCER, gBattleMons[battlerAtk].level)))
         defStage = DEFAULT_STAT_STAGE;
     // certain moves also ignore stat changes
     if (gBattleMoves[move].flags & FLAG_STAT_STAGES_IGNORED)
@@ -12717,7 +12718,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 	// Target's Innates (for function usesDefStat)
 	
 	// Fur Coat
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FUR_COAT)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FUR_COAT, gBattleMons[battlerDef].level)){
 		if (usesDefStat)
         {
             MulModifier(&modifier, UQ_4_12(2.0));
@@ -12727,7 +12728,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 	}
 	
 	// Marvel Scale
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MARVEL_SCALE)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MARVEL_SCALE, gBattleMons[battlerDef].level)){
 		if (gBattleMons[battlerDef].status1 & STATUS1_ANY && usesDefStat)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
@@ -12737,7 +12738,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 	}
 	
 	// Grass Pelt
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_GRASS_PELT)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_GRASS_PELT, gBattleMons[battlerDef].level)){
         if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
@@ -12747,13 +12748,13 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 	}
 	
 	// FLower Gift
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FLOWER_GIFT)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FLOWER_GIFT, gBattleMons[battlerDef].level)){
         if (gBattleMons[battlerDef].species == SPECIES_CHERRIM && IsBattlerWeatherAffected(battlerDef, WEATHER_SUN_ANY) && !usesDefStat)
             MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Punk Rock
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PUNK_ROCK)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PUNK_ROCK, gBattleMons[battlerDef].level)){
         if (gBattleMoves[move].flags & FLAG_SOUND)
             MulModifier(&modifier, UQ_4_12(2.0));
     }
@@ -12833,7 +12834,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 
     // check burn
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_PHYSICAL(move)
-        && gBattleMoves[move].effect != EFFECT_FACADE && (abilityAtk != ABILITY_GUTS || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GUTS)))
+        && gBattleMoves[move].effect != EFFECT_FACADE && (abilityAtk != ABILITY_GUTS || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GUTS, gBattleMons[battlerAtk].level)))
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
 
     // check sunny/rain weather
@@ -12868,12 +12869,12 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 
     // check stab
     if ((IS_BATTLER_OF_TYPE(battlerAtk, moveType) && move != MOVE_STRUGGLE) || 
-	     abilityAtk == ABILITY_MYSTIC_POWER || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MYSTIC_POWER)||
-         (abilityAtk == ABILITY_LUNAR_ECLIPSE && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LUNAR_ECLIPSE) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
-         (abilityAtk == ABILITY_SOLAR_FLARE && moveType == TYPE_FIRE) || (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SOLAR_FLARE) && moveType == TYPE_FIRE) ||
-		 (abilityAtk == ABILITY_AURORA_BOREALIS && moveType == TYPE_ICE) || (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AURORA_BOREALIS) && moveType == TYPE_ICE))
+	     abilityAtk == ABILITY_MYSTIC_POWER || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MYSTIC_POWER, gBattleMons[battlerAtk].level)||
+         (abilityAtk == ABILITY_LUNAR_ECLIPSE && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) || (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_LUNAR_ECLIPSE, gBattleMons[battlerAtk].level) && (moveType == TYPE_FAIRY || moveType == TYPE_DARK)) ||
+         (abilityAtk == ABILITY_SOLAR_FLARE && moveType == TYPE_FIRE) || (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SOLAR_FLARE, gBattleMons[battlerAtk].level) && moveType == TYPE_FIRE) ||
+		 (abilityAtk == ABILITY_AURORA_BOREALIS && moveType == TYPE_ICE) || (SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_AURORA_BOREALIS, gBattleMons[battlerAtk].level) && moveType == TYPE_ICE))
     {
-        if (abilityAtk == ABILITY_ADAPTABILITY || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ADAPTABILITY))
+        if (abilityAtk == ABILITY_ADAPTABILITY || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_ADAPTABILITY, gBattleMons[battlerAtk].level))
             MulModifier(&finalModifier, UQ_4_12(2.0));
         else
             MulModifier(&finalModifier, UQ_4_12(1.5));
@@ -12884,7 +12885,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
             || (gSideStatuses[defSide] & SIDE_STATUS_LIGHTSCREEN && IS_MOVE_SPECIAL(move))
             || (gSideStatuses[defSide] & SIDE_STATUS_AURORA_VEIL))
         && abilityAtk != ABILITY_INFILTRATOR
-		&& !SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_INFILTRATOR)
+		&& !SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_INFILTRATOR, gBattleMons[battlerAtk].level)
         && !(isCrit)
         && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
     {
@@ -12895,7 +12896,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     }
 
     // Parental Bond Second Strike
-	if(abilityAtk == ABILITY_PARENTAL_BOND || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PARENTAL_BOND)){
+	if(abilityAtk == ABILITY_PARENTAL_BOND || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_PARENTAL_BOND, gBattleMons[gBattlerAttacker].level)){
 		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
 		{
 			if (B_PARENTAL_BOND_DAMAGE < GEN_7)
@@ -12906,7 +12907,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	}
 	
 	// Raging Boxer
-	if(abilityAtk == ABILITY_RAGING_BOXER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_RAGING_BOXER)){
+	if(abilityAtk == ABILITY_RAGING_BOXER || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_RAGING_BOXER, gBattleMons[gBattlerAttacker].level)){
 		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
 		{
 			MulModifier(&finalModifier, UQ_4_12(0.5));
@@ -12914,7 +12915,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	}
 	
 	// Multi Headed
-	if(abilityAtk == ABILITY_MULTI_HEADED || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MULTI_HEADED)){
+	if(abilityAtk == ABILITY_MULTI_HEADED || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_MULTI_HEADED, gBattleMons[gBattlerAttacker].level)){
         if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED){
             if(gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1){
 			MulModifier(&finalModifier, UQ_4_12(0.2));
@@ -12931,7 +12932,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	}
 	
 	// Hyper Aggressive
-	if(abilityAtk == ABILITY_HYPER_AGGRESSIVE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_HYPER_AGGRESSIVE)){
+	if(abilityAtk == ABILITY_HYPER_AGGRESSIVE || SpeciesHasInnate(gBattleMons[gBattlerAttacker].species, ABILITY_HYPER_AGGRESSIVE, gBattleMons[gBattlerAttacker].level)){
 		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
 		{
 			MulModifier(&finalModifier, UQ_4_12(0.25));
@@ -12966,30 +12967,30 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	
 	// Innates
 	// Sniper
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SNIPER)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SNIPER, gBattleMons[battlerAtk].level)){
         if (isCrit)
             MulModifier(&finalModifier, UQ_4_12(1.5));
     }
     
 	// Neuroforce
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NEUROFORCE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_NEUROFORCE, gBattleMons[battlerAtk].level)){
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(1.25));
 	}
 	
 	// Fatal Precision
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FATAL_PRECISION)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_FATAL_PRECISION, gBattleMons[battlerAtk].level)){
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(1.2));
     }
 	// Tinted Lens
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TINTED_LENS)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_TINTED_LENS, gBattleMons[battlerAtk].level)){
 		if (typeEffectivenessModifier <= UQ_4_12(0.5))
             MulModifier(&finalModifier, UQ_4_12(2.0));
     }
 	
 	// Bone Zone
-	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BONE_ZONE)){
+	if(SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BONE_ZONE, gBattleMons[battlerAtk].level)){
         if (typeEffectivenessModifier <= UQ_4_12(0.5) && (gBattleMoves[move].flags & FLAG_BONE_BASED))
             MulModifier(&finalModifier, UQ_4_12(2.0));
 	}
@@ -13027,35 +13028,35 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	// Innates
 	
 	// Permafrost
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PERMAFROST)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PERMAFROST, gBattleMons[battlerDef].level)){
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(0.75));
     }
 	// Prism Scales
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_SCALES)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_SCALES, gBattleMons[battlerDef].level)){
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&finalModifier, UQ_4_12(0.70));
     }
 	// Multiscale and Shadow Shield
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MULTISCALE) || 
-	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHADOW_SHIELD)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MULTISCALE, gBattleMons[battlerDef].level) || 
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SHADOW_SHIELD, gBattleMons[battlerDef].level)){
 		if (BATTLER_MAX_HP(battlerDef))
             MulModifier(&finalModifier, UQ_4_12(0.5));
     }
 	// Filter, Solid Rock and Prism Armor
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FILTER) ||
-	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SOLID_ROCK) ||
-	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_ARMOR)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_FILTER, gBattleMons[battlerDef].level) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_SOLID_ROCK, gBattleMons[battlerDef].level) ||
+	SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRISM_ARMOR, gBattleMons[battlerDef].level)){
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(0.75));
     }
 	// Primal Armor
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRIMAL_ARMOR)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_PRIMAL_ARMOR, gBattleMons[battlerDef].level)){
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))
             MulModifier(&finalModifier, UQ_4_12(0.5));
     }
 	// Ice Scales
-	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_ICE_SCALES)){
+	if(SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_ICE_SCALES, gBattleMons[battlerDef].level)){
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&finalModifier, UQ_4_12(0.50));
     }
@@ -13173,20 +13174,20 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
     {
         mod = UQ_4_12(1.0);
     }
-    else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST && (GetBattlerAbility(battlerAtk) == ABILITY_SCRAPPY || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SCRAPPY)) && mod == UQ_4_12(0.0))
+    else if ((moveType == TYPE_FIGHTING || moveType == TYPE_NORMAL) && defType == TYPE_GHOST && (GetBattlerAbility(battlerAtk) == ABILITY_SCRAPPY || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SCRAPPY, gBattleMons[battlerAtk].level)) && mod == UQ_4_12(0.0))
     {
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_SCRAPPY);
     }
-	else if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && (GetBattlerAbility(battlerAtk) == ABILITY_GROUND_SHOCK || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUND_SHOCK)) && mod == UQ_4_12(0.0))
+	else if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && (GetBattlerAbility(battlerAtk) == ABILITY_GROUND_SHOCK || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_GROUND_SHOCK, gBattleMons[battlerAtk].level)) && mod == UQ_4_12(0.0))
     {
 		//Has Innate Effect here too
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_GROUND_SHOCK);
     }
-	else if (moveType == TYPE_ELECTRIC && defType == TYPE_ELECTRIC && (GetBattlerAbility(battlerAtk) == ABILITY_OVERCHARGE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERCHARGE)) && mod == UQ_4_12(0.0))
+	else if (moveType == TYPE_ELECTRIC && defType == TYPE_ELECTRIC && (GetBattlerAbility(battlerAtk) == ABILITY_OVERCHARGE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERCHARGE, gBattleMons[battlerAtk].level)))
     {
 		//Has Innate Effect here too
         mod = UQ_4_12(2.0); // super-effective
@@ -13194,29 +13195,29 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
             RecordAbilityBattle(battlerAtk, ABILITY_OVERCHARGE);
     }
 	// Molten Down
-	else if (moveType == TYPE_FIRE && defType == TYPE_ROCK && (GetBattlerAbility(battlerAtk) == ABILITY_MOLTEN_DOWN || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MOLTEN_DOWN)) && mod == UQ_4_12(0.0))
+	else if (moveType == TYPE_FIRE && defType == TYPE_ROCK && (GetBattlerAbility(battlerAtk) == ABILITY_MOLTEN_DOWN || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_MOLTEN_DOWN, gBattleMons[battlerAtk].level)) && mod == UQ_4_12(0.0))
     {
 		//Has Innate Effect here too
         mod = UQ_4_12(2.0); // super-effective
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_MOLTEN_DOWN);
     }
-	else if (moveType == TYPE_POISON && defType == TYPE_STEEL && (GetBattlerAbility(battlerAtk) == ABILITY_CORROSION || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CORROSION)) && mod == UQ_4_12(0.0))
+	else if (moveType == TYPE_POISON && defType == TYPE_STEEL && (GetBattlerAbility(battlerAtk) == ABILITY_CORROSION || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_CORROSION, gBattleMons[battlerAtk].level)) && mod == UQ_4_12(0.0))
     {
 		//Has Innate Effect here too
         mod = UQ_4_12(2.0); // super-effective
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_CORROSION);
     }
-	else if (moveType == TYPE_DRAGON && defType == TYPE_FAIRY && (GetBattlerAbility(battlerAtk) == ABILITY_OVERWHELM || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERWHELM)) && mod == UQ_4_12(0.0))
+	else if (moveType == TYPE_DRAGON && defType == TYPE_FAIRY && (GetBattlerAbility(battlerAtk) == ABILITY_OVERWHELM || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_OVERWHELM, gBattleMons[battlerAtk].level)) && mod == UQ_4_12(0.0))
     {
 		//Has Innate Effect here too
         mod = UQ_4_12(1.0);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_OVERWHELM);
     }
-	else if ((gBattleMoves[move].flags & FLAG_BONE_BASED) && (GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BONE_ZONE)) && mod == UQ_4_12(0.0))
-    {
+	else if ((gBattleMoves[move].flags & FLAG_BONE_BASED) && (GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_BONE_ZONE, gBattleMons[battlerAtk].level)) && mod == UQ_4_12(0.0))
+    {//Check later
 		//Has Innate Effect here too
         mod = UQ_4_12(1.0);
         if (recordAbilities)
@@ -13312,7 +13313,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         modifier = UQ_4_12(1.0);
     }
 	
-	if ((GetBattlerAbility(battlerDef) == ABILITY_MOUNTAINEER || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MOUNTAINEER)) && moveType == TYPE_ROCK)
+	if ((GetBattlerAbility(battlerDef) == ABILITY_MOUNTAINEER || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_MOUNTAINEER, gBattleMons[battlerDef].level)) && moveType == TYPE_ROCK)
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -13325,7 +13326,7 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         }
     }
 	
-	if ((GetBattlerAbility(battlerDef) == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WEATHER_CONTROL)) && (gBattleMoves[move].flags & FLAG_WEATHER_BASED))
+	if ((GetBattlerAbility(battlerDef) == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(gBattleMons[battlerDef].species, ABILITY_WEATHER_CONTROL, gBattleMons[battlerDef].level)) && (gBattleMoves[move].flags & FLAG_WEATHER_BASED))
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
@@ -13372,7 +13373,7 @@ u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 bat
     return modifier;
 }
 
-u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef)
+u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef, u8 leveldef)
 {
     u16 modifier = UQ_4_12(1.0);
     u8 moveType = gBattleMoves[move].type;
@@ -13383,13 +13384,13 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
         if (gBaseStats[speciesDef].type2 != gBaseStats[speciesDef].type1)
             MulByTypeEffectiveness(&modifier, move, moveType, 0, gBaseStats[speciesDef].type2, 0, FALSE);
 
-        if (moveType == TYPE_GROUND && (abilityDef == ABILITY_LEVITATE || SpeciesHasInnate(speciesDef, ABILITY_LEVITATE)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
+        if (moveType == TYPE_GROUND && (abilityDef == ABILITY_LEVITATE || SpeciesHasInnate(speciesDef, ABILITY_LEVITATE, leveldef)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
             modifier = UQ_4_12(0.0);
-		if (moveType == TYPE_ROCK && (abilityDef == ABILITY_MOUNTAINEER || SpeciesHasInnate(speciesDef, ABILITY_MOUNTAINEER))) 
+		if (moveType == TYPE_ROCK && (abilityDef == ABILITY_MOUNTAINEER || SpeciesHasInnate(speciesDef, ABILITY_MOUNTAINEER, leveldef))) 
             modifier = UQ_4_12(0.0);
         if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gBattleMoves[move].power)
             modifier = UQ_4_12(0.0);
-		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (abilityDef == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(speciesDef, ABILITY_WEATHER_CONTROL))) 
+		if ((gBattleMoves[move].flags & FLAG_WEATHER_BASED) && (abilityDef == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(speciesDef, ABILITY_WEATHER_CONTROL, leveldef))) 
             modifier = UQ_4_12(0.0);
     }
 
@@ -14119,12 +14120,12 @@ bool32 IsBattlerAffectedByHazards(u8 battlerId, bool32 toxicSpikes)
         RecordItemEffectBattle(battlerId, holdEffect);
     }
 	else if (GetBattlerAbility(gActiveBattler) == ABILITY_SHIELD_DUST ||
-		SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELD_DUST))
+		SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_SHIELD_DUST, gBattleMons[gActiveBattler].level))
     {
         ret = FALSE;
     }
 	else if ((GetBattlerAbility(gActiveBattler) == ABILITY_MOUNTAINEER ||
-		SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MOUNTAINEER)) && !toxicSpikes)
+		SpeciesHasInnate(gBattleMons[gActiveBattler].species, ABILITY_MOUNTAINEER, gBattleMons[gActiveBattler].level)) && !toxicSpikes)
     {
         ret = FALSE;
     }
