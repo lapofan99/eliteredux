@@ -3266,6 +3266,7 @@ static void BattleStartClearSetData(void)
         gStatuses3[i] = 0;
         gStatuses4[i] = 0;
         gDisableStructs[i].isFirstTurn = 2;
+        gDisableStructs[i].hasBeenOnBattle = FALSE;
         gLastMoves[i] = 0;
         gLastLandedMoves[i] = 0;
         gLastHitByType[i] = 0;
@@ -3531,6 +3532,7 @@ void FaintClearSetData(void)
     gProtectStructs[gActiveBattler].statRaised = FALSE;
     gProtectStructs[gActiveBattler].statFell = FALSE;
     gProtectStructs[gActiveBattler].pranksterElevated = FALSE;
+    gDisableStructs[gActiveBattler].hasBeenOnBattle = FALSE;
 
     gDisableStructs[gActiveBattler].isFirstTurn = 2;
 

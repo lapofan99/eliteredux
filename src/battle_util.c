@@ -5742,7 +5742,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 const struct TrainerMonItemCustomMoves *partyData = gTrainers[VarGet(VAR_LAST_TRAINER_BATTLED)].party.ItemCustomMoves;
                 trainerNum = VarGet(VAR_LAST_TRAINER_BATTLED);
                 for(i = 0; i < gTrainers[trainerNum].partySize; i++){
-                    if(gBattleMons[battler].item == ITEM_NONE && gBattleMons[battler].species == partyData[i].species && partyData[i].heldItem != ITEM_NONE){
+                    if(gBattleMons[battler].item == ITEM_NONE && 
+                       gBattleMons[battler].species == partyData[i].species && 
+                       partyData[i].heldItem != ITEM_NONE &&
+                       gBattleMons[battler].hp == gBattleMons[battler].maxHP && 
+                       GetUsedHeldItem(battler) == ITEM_NONE){
                         gBattleMons[battler].item = partyData[i].heldItem;
                         #ifdef DEBUG_BUILD
                         if(FlagGet(FLAG_SYS_MGBA_PRINT)){
@@ -5760,7 +5764,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 const struct TrainerMonItemCustomMoves *partyData = gTrainers[VarGet(VAR_LAST_TRAINER_BATTLED)].party.ItemCustomMoves;
                 trainerNum = VarGet(VAR_LAST_TRAINER_BATTLED);
                 for(i = 0; i < gTrainers[trainerNum].partySize; i++){
-                    if(gBattleMons[battler].item == ITEM_NONE && gBattleMons[battler].species == partyData[i].species && partyData[i].heldItem != ITEM_NONE){
+                    if(gBattleMons[battler].item == ITEM_NONE && 
+                       gBattleMons[battler].species == partyData[i].species && 
+                       partyData[i].heldItem != ITEM_NONE &&
+                       gBattleMons[battler].hp == gBattleMons[battler].maxHP && 
+                       GetUsedHeldItem(battler) == ITEM_NONE){
                         gBattleMons[battler].item = partyData[i].heldItem;
                         #ifdef DEBUG_BUILD
                         if(FlagGet(FLAG_SYS_MGBA_PRINT)){
@@ -5771,12 +5779,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         #endif
                     }
                 }
+
                 if(gBattleMons[battler].item == ITEM_NONE){
                     //If the pokemon was not from the first party it tries to give it the second party item
                     const struct TrainerMonItemCustomMoves *partyData2 = gTrainers[VarGet(VAR_LAST_TRAINER_BATTLED_2)].party.ItemCustomMoves;
                     trainerNum = VarGet(VAR_LAST_TRAINER_BATTLED_2);
                     for(i = 0; i < gTrainers[trainerNum].partySize; i++){
-                        if(gBattleMons[battler].item == ITEM_NONE && gBattleMons[battler].species == partyData2[i].species && partyData2[i].heldItem != ITEM_NONE){
+                        if(gBattleMons[battler].item == ITEM_NONE && 
+                           gBattleMons[battler].species == partyData2[i].species && 
+                           partyData2[i].heldItem != ITEM_NONE &&
+                           gBattleMons[battler].hp == gBattleMons[battler].maxHP && 
+                           GetUsedHeldItem(battler) == ITEM_NONE){
                             gBattleMons[battler].item = partyData2[i].heldItem;
                             #ifdef DEBUG_BUILD
                             if(FlagGet(FLAG_SYS_MGBA_PRINT)){
