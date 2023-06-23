@@ -1491,10 +1491,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;            
             break;
         case EFFECT_FOCUS_PUNCH:
-            if (gBattleMons[battlerAtk].status2 &= ~(STATUS2_SUBSTITUTE))
+            if (!(gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE))
                 score += 5;    
             else
-                score -= 10;    
+                score -= 10;
             break;
         case EFFECT_COUNTER:
             if (IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility) || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
@@ -1566,7 +1566,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_SUBSTITUTE:
             if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE || AI_DATA->defAbility == ABILITY_INFILTRATOR)
-                score -= 8;
+                score -= 10;
             else if (GetHealthPercentage(battlerAtk) <= 25)
                 score -= 10;
             else if (B_SOUND_SUBSTITUTE >= GEN_6 && TestMoveFlagsInMoveset(battlerDef, FLAG_SOUND))
@@ -3774,6 +3774,8 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         break;
     case EFFECT_SUBSTITUTE:
+        if(gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE)
+            score -= 10;
         if (gStatuses3[battlerDef] & STATUS3_PERISH_SONG)
             score += 3;
         if (gBattleMons[battlerDef].status1 & (STATUS1_BURN | STATUS1_PSN_ANY))

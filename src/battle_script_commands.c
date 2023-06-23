@@ -3665,7 +3665,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 }
                 break;
             case MOVE_EFFECT_RELIC_SONG:
-                if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SHEER_FORCE)
+                if (GetBattlerAbility(gBattlerAttacker) != ABILITY_SHEER_FORCE || BattlerHasInnate(gBattlerAttacker, ABILITY_SHEER_FORCE))
                 {
                     if (gBattleMons[gBattlerAttacker].species == SPECIES_MELOETTA)
                     {
