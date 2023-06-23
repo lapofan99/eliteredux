@@ -4805,25 +4805,32 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     {
         if ((ability == ABILITY_SWIFT_SWIM || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SWIFT_SWIM, gBattleMons[battlerId].level)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
             speed *= 2;
-        else if ((ability == ABILITY_CHLOROPHYLL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_CHLOROPHYLL, gBattleMons[battlerId].level)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+
+        if ((ability == ABILITY_CHLOROPHYLL || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_CHLOROPHYLL, gBattleMons[battlerId].level)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed *= 2;
-        else if ((ability == ABILITY_BIG_LEAVES || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_BIG_LEAVES, gBattleMons[battlerId].level)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
+
+        if ((ability == ABILITY_BIG_LEAVES || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_BIG_LEAVES, gBattleMons[battlerId].level)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
             speed *= 2;
-        else if ((ability == ABILITY_SAND_RUSH   || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SAND_RUSH, gBattleMons[battlerId].level)) && gBattleWeather & WEATHER_SANDSTORM_ANY)
+
+        if ((ability == ABILITY_SAND_RUSH   || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SAND_RUSH, gBattleMons[battlerId].level)) && gBattleWeather & WEATHER_SANDSTORM_ANY)
             speed *= 2;
-        else if ((ability == ABILITY_SLUSH_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLUSH_RUSH, gBattleMons[battlerId].level)) && gBattleWeather & WEATHER_HAIL_ANY)
+
+        if ((ability == ABILITY_SLUSH_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLUSH_RUSH, gBattleMons[battlerId].level)) && gBattleWeather & WEATHER_HAIL_ANY)
             speed *= 2;
-		else if ((ability == ABILITY_VIOLENT_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_VIOLENT_RUSH, gBattleMons[battlerId].level)) && gDisableStructs[battlerId].isFirstTurn)
-            speed = (speed * 150) / 100;
     }
 
     // other abilities
     if ((ability == ABILITY_QUICK_FEET  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_QUICK_FEET, gBattleMons[battlerId].level)) && gBattleMons[battlerId].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
-    else if ((ability == ABILITY_SURGE_SURFER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SURGE_SURFER, gBattleMons[battlerId].level)) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+
+    if ((ability == ABILITY_SURGE_SURFER || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SURGE_SURFER, gBattleMons[battlerId].level)) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
         speed *= 2;
-    else if ((ability == ABILITY_SLOW_START  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLOW_START, gBattleMons[battlerId].level)) && gDisableStructs[battlerId].slowStartTimer != 0)
+
+    if ((ability == ABILITY_SLOW_START  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_SLOW_START, gBattleMons[battlerId].level)) && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
+
+    if ((ability == ABILITY_VIOLENT_RUSH  || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_VIOLENT_RUSH, gBattleMons[battlerId].level)) && gDisableStructs[battlerId].isFirstTurn)
+            speed = (speed * 150) / 100;
 	
 	if (ability == ABILITY_LEAD_COAT || SpeciesHasInnate(gBattleMons[battlerId].species, ABILITY_LEAD_COAT, gBattleMons[battlerId].level))
         speed *= 0.9;
