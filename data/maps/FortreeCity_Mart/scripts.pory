@@ -1,5 +1,5 @@
 raw `
-.set LOCALID_SPENSER, 6
+.set LOCALID_SPENSER, 5
 
 FortreeCity_Mart_MapScripts:: @ 8217665
 	.byte 0
@@ -49,8 +49,10 @@ FortreeCity_Mart_EventScript_SpenserBattle::
 	msgbox FortreeCity_Mart_Text_SpenserBeforeBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_SPENSER_FORTREE, FortreeCity_Mart_Text_SpenserDefeat
 	msgbox FortreeCity_Mart_Text_SpenserGiveChoiceScarf, MSGBOX_DEFAULT
-	giveitem ITEM_CHOICE_SCARF
-	giveitem ITEM_BOTTLE_CAP, 3
+	givecustommon SPECIES_LAPRAS, 55, ITEM_ASSAULT_VEST, ITEM_PARK_BALL, NATURE_MODEST, 2, 252, 0, 0, 4, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_FREEZE_DRY, MOVE_SPARKLING_ARIA, MOVE_THUNDER, MOVE_PSYCHIC, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message FortreeCity_Mart_Text_Got_Lapras
+	waitfanfare
 	msgbox FortreeCity_Mart_Text_SpenserFarewell, MSGBOX_AUTOCLOSE
 	switch VAR_FACING
 	case DIR_NORTH, FortreeCity_Mart_EventScript_SpenserExitNorth
@@ -99,7 +101,7 @@ FortreeCity_Mart_Text_SpenserDefeat:
 FortreeCity_Mart_Text_SpenserGiveChoiceScarf:
 	.string "Hahahaha! Saw right through my\n"
 	.string "bluster, did you?\p"
-	.string "Here, take these things!$"
+	.string "Here, take one of my Pokémon!$"
 
 FortreeCity_Mart_Text_SpenserFarewell:
 	.string "I look forward to our next battle.\n"
@@ -140,3 +142,6 @@ FortreeCity_Mart_Movement_SpenserExitDown:
 	delay_8
 	step_end
 `
+text FortreeCity_Mart_Text_Got_Lapras{
+	format("{PLAYER} got a {COLOR BLUE}Lapras{COLOR DARK_GRAY} as a gift!")
+}

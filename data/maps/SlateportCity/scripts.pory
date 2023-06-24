@@ -706,8 +706,10 @@ SlateportCity_EventScript_Greta::
 	msgbox SlateportCity_Text_GretaLetsBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_GRETA_SLATEPORT, SlateportCity_Text_GretaDefeat
 	msgbox SlateportCity_Text_GretaHereHaveStuff, MSGBOX_AUTOCLOSE
-	giveitem ITEM_CHOICE_SPECS
-	giveitem ITEM_BOTTLE_CAP, 6
+	givecustommon SPECIES_GENGAR, 55, ITEM_GENGARITE, ITEM_PARK_BALL, NATURE_TIMID, 1, 0, 0, 0, 252, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_SHADOW_BALL, MOVE_SLUDGE_WAVE, MOVE_SUBSTITUTE, MOVE_ENCORE, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message SlateportCity_Text_Got_Gengar
+	waitfanfare
 	setflag FLAG_DEFEATED_SLATEPORT_GRETA
 SlateportCity_EventScript_GretaDefeated::
 	msgbox SlateportCity_Text_GretaDefeated, MSGBOX_AUTOCLOSE
@@ -1552,7 +1554,7 @@ SlateportCity_Text_GretaDefeat:
 SlateportCity_Text_GretaHereHaveStuff:
 	.string "Hey, not bad! {PLAYER}, was it?\n"
 	.string "I'll remember that.\p"
-	.string "Here, take these with you!$"
+	.string "Here, take my Pokémon!$"
 
 SlateportCity_Text_GretaDefeated:
 	.string "Next time we battle will be a lot more\n"
@@ -1560,3 +1562,6 @@ SlateportCity_Text_GretaDefeated:
 	.string "You'd better do some serious training;\n"
 	.string "no halfhearted rematch allowed!$"
 `
+text SlateportCity_Text_Got_Gengar{
+	format("{PLAYER} got a {COLOR BLUE}Gengar{COLOR DARK_GRAY} as a gift!")
+}

@@ -114,8 +114,10 @@ LavaridgeTown_PokemonCenter_1F_EventScript_LucyBattle::
 	trainerbattle_no_intro TRAINER_LUCY_LAVARIDGE, LavaridgeTown_PokemonCenter_1F_Text_LucyDefeat
 	setvar VAR_LAVARIDGE_LUCY_STATE, 2
 	msgbox LavaridgeTown_PokemonCenter_1F_Text_LucyGiveChoiceBand, MSGBOX_DEFAULT
-	giveitem ITEM_CHOICE_BAND
-	giveitem ITEM_BOTTLE_CAP, 3
+	givecustommon SPECIES_MILOTIC, 40, ITEM_LEFTOVERS, ITEM_PARK_BALL, NATURE_CAREFUL, 2, 252, 0, 4, 0, 0, 252, 0, 0, 0, 0, 0, 0, MOVE_SCALD, MOVE_ICE_BEAM, MOVE_ATTRACT, MOVE_RECOVER, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_PokemonCenter_1F_Text_Got_Milotic
+	waitfanfare
 	msgbox LavaridgeTown_PokemonCenter_1F_Text_LucyGoodbye, MSGBOX_AUTOCLOSE
 	waitmessage
 	getplayerxy VAR_0x8004, VAR_0x8005
@@ -188,7 +190,7 @@ LavaridgeTown_PokemonCenter_1F_Text_LucyBattle:
 
 LavaridgeTown_PokemonCenter_1F_Text_LucyGiveChoiceBand:
 	.string "Lucy: You were lucky, this time…\n"
-	.string "Here. Take these…$"
+	.string "Here. Take one of my Pokémon…$"
 
 LavaridgeTown_PokemonCenter_1F_Text_LucyGoodbye:
 	.string "Lucy: Perhaps we'll meet again…\n"
@@ -286,3 +288,6 @@ LavaridgeTown_PokemonCenter_1F_Movement_LucyExitEast:
 	walk_down
 	delay_8
 	step_end
+
+LavaridgeTown_PokemonCenter_1F_Text_Got_Milotic::
+	.string "{PLAYER} got a {COLOR BLUE}Milotic{COLOR DARK_GRAY} as a gift!$"
