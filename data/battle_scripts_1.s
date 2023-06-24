@@ -8704,6 +8704,7 @@ BattleScript_ActivateUnnerve::
 	end3
 
 BattleScript_ActivateAsOne::
+	sethword sABILITY_OVERWRITE, ABILITY_AS_ONE_SHADOW_RIDER
 	call BattleScript_AbilityPopUp
 	printfromtable gSwitchInAbilityStringIds
 	waitmessage B_WAIT_TIME_LONG
