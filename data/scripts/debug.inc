@@ -67,7 +67,8 @@ Debug_Script_4::
 	end
 
 Debug_Script_5::
-	warp MAP_MAGMA_HIDEOUT_4F, 255, 7, 8
+	setflag FLAG_SYS_GAME_CLEAR
+	//warp MAP_MAGMA_HIDEOUT_4F, 255, 7, 8
 	end
 
 Debug_Script_6::
