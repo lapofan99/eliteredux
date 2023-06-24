@@ -241,7 +241,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode::
 EverGrandeCity_PokemonLeague_1F_EventScript_LockedMode_1:
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp
 	waitmovement 0
-	warp MAP_EVER_GRANDE_CITY_HALL1, 255, 5, 12
+	warp MAP_EVER_GRANDE_CITY_HALL5, 255, 5, 12
 	delay 40
 	releaseall
 	end
