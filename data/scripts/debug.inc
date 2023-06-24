@@ -67,7 +67,7 @@ Debug_Script_4::
 	end
 
 Debug_Script_5::
-	setflag FLAG_SYS_GAME_CLEAR
+	call MossdeepCity_Gym_EventScript_TateAndLizaDefeated
 	//warp MAP_MAGMA_HIDEOUT_4F, 255, 7, 8
 	end
 
