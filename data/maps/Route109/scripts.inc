@@ -652,52 +652,59 @@ Route109_Beach_EventScript_Gen8_NPC_13:
 Route109_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route109_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_HUEY
-	goto_if 1, Route109_EventScript_LegendaryNPC_8
-Route109_EventScript_LegendaryNPC_6:
-	msgbox Route109_EventScript_LegendaryNPC_Text_2
+	msgbox Route109_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route109_EventScript_LegendaryNPC_2
+	msgbox Route109_EventScript_LegendaryNPC_Text_4, MSGBOX_NPC
 Route109_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route109_EventScript_LegendaryNPC_2:
-	msgbox Route109_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route109_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_HUEY
+	goto_if 1, Route109_EventScript_LegendaryNPC_11
+Route109_EventScript_LegendaryNPC_9:
+	msgbox Route109_EventScript_LegendaryNPC_Text_3
 	goto Route109_EventScript_LegendaryNPC_1
 
 Route109_EventScript_LegendaryNPC_5:
 	msgbox Route109_EventScript_LegendaryNPC_Text_1
 	goto Route109_EventScript_LegendaryNPC_1
 
-Route109_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_LOLA_1
-	goto_if 1, Route109_EventScript_LegendaryNPC_12
-	goto Route109_EventScript_LegendaryNPC_6
-
 Route109_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_RICKY_1
-	goto_if 1, Route109_EventScript_LegendaryNPC_7
-	goto Route109_EventScript_LegendaryNPC_6
+	msgbox Route109_EventScript_LegendaryNPC_Text_2
+	goto Route109_EventScript_LegendaryNPC_1
+
+Route109_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_LOLA_1
+	goto_if 1, Route109_EventScript_LegendaryNPC_15
+	goto Route109_EventScript_LegendaryNPC_9
 
 Route109_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_HAILEY
-	goto_if 1, Route109_EventScript_LegendaryNPC_16
-	goto Route109_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_RICKY_1
+	goto_if 1, Route109_EventScript_LegendaryNPC_10
+	goto Route109_EventScript_LegendaryNPC_9
 
-Route109_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_CHANDLER
-	goto_if 1, Route109_EventScript_LegendaryNPC_11
-	goto Route109_EventScript_LegendaryNPC_6
+Route109_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_HAILEY
+	goto_if 1, Route109_EventScript_LegendaryNPC_19
+	goto Route109_EventScript_LegendaryNPC_9
 
 Route109_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_TIANA
-	goto_if 1, Route109_EventScript_LegendaryNPC_5
-	goto Route109_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_CHANDLER
+	goto_if 1, Route109_EventScript_LegendaryNPC_14
+	goto Route109_EventScript_LegendaryNPC_9
 
-Route109_EventScript_LegendaryNPC_16:
+Route109_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_TIANA
+	goto_if 1, Route109_EventScript_LegendaryNPC_8
+	goto Route109_EventScript_LegendaryNPC_9
+
+Route109_EventScript_LegendaryNPC_19:
 	checktrainerflag TRAINER_EDMOND
-	goto_if 1, Route109_EventScript_LegendaryNPC_15
-	goto Route109_EventScript_LegendaryNPC_6
+	goto_if 1, Route109_EventScript_LegendaryNPC_18
+	goto Route109_EventScript_LegendaryNPC_9
 
 
 Route109_Beach_EventScript_Gen8_NPC_Text_0:
@@ -714,6 +721,12 @@ Route109_Beach_EventScript_Gen8_NPC_Text_2:
 	.string "yet...$"
 
 Route109_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: Are you one of those trainers\n"
+	.string "looking for legendary Pokémon?\p"
+	.string "I possess some intel you might find\n"
+	.string "useful.$"
+
+Route109_EventScript_LegendaryNPC_Text_1:
 	.string "This might look like an ordinary beach,\n"
 	.string "with its golden sands and gentle waves\l"
 	.string "lapping against the shore.\p"
@@ -724,26 +737,30 @@ Route109_EventScript_LegendaryNPC_Text_0:
 	.string "We don't yet know why they chose these\n"
 	.string "golden dunes as their home. Perhaps he\l"
 	.string "preferred being left alone rather than\l"
-	.string "having company\p"
-	.string ". Should you want to meet them, become\n"
+	.string "having company.\p"
+	.string "Should you want to meet them, become\n"
 	.string "champion, then come back to me.$"
 
-Route109_EventScript_LegendaryNPC_Text_1:
+Route109_EventScript_LegendaryNPC_Text_2:
 	.string "I hope you can excuse the strict\n"
 	.string "conditions I imposed upon you, but one\l"
 	.string "must not underestimate Hoopa, as their\l"
 	.string "true form is one of immense power and\l"
-	.string "destructive capabilities.\p"
-	.string "You are definitely worthy of managing\n"
-	.string "such powers. I updated your DexNav to\l"
+	.string "destructive capabilities. You are\l"
+	.string "definitely worthy of managing such\l"
+	.string "powers. I updated your DexNav to\l"
 	.string "include Hoopa's location: may an\l"
 	.string "unbreakable bond be forged between\l"
 	.string "you two!$"
 
-Route109_EventScript_LegendaryNPC_Text_2:
+Route109_EventScript_LegendaryNPC_Text_3:
 	.string "Congratulations on becoming champion.\n"
 	.string "If you want to meet Hoopa, I'd first\l"
 	.string "advise you to finish your job and\l"
 	.string "defeat every remaining trainer on this\l"
 	.string "beach. We'll talk about Hoopa once\l"
 	.string "you've done that.$"
+
+Route109_EventScript_LegendaryNPC_Text_4:
+	.string "I'll be sticking here if you ever change\n"
+	.string "your mind.$"
