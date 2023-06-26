@@ -33119,6 +33119,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM66_PAYBACK)
                                         | TMHM2(TM68_GIGA_IMPACT)
                                         | TMHM2(TM71_STONE_EDGE)
+                                        | TMHM2(TM72_VOLT_SWITCH) // new
                                         | TMHM2(TM79_FREEZE_DRY)
                                         | TMHM2(TM82_DRAGON_TAIL)
                                         | TMHM2(TM89_U_TURN) // new
