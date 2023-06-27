@@ -388,23 +388,15 @@ SootopolisCity_Gym_1F_EventScript_GiveScald::
 SootopolisCity_Gym_EventScript_CheckTrainers::
 	checktrainerflag TRAINER_ANDREA
 	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
-	checktrainerflag TRAINER_CRISSY
-	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
-	checktrainerflag TRAINER_BRIANNA
-	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
 	checktrainerflag TRAINER_CONNIE
-	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
-	checktrainerflag TRAINER_BRIDGET
-	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
-	checktrainerflag TRAINER_OLIVIA
-	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
-	checktrainerflag TRAINER_TIFFANY
-	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
-	checktrainerflag TRAINER_BETHANY
 	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
 	checktrainerflag TRAINER_ANNIKA
 	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
 	checktrainerflag TRAINER_DAPHNE
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_BRIDGET
+	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
+	checktrainerflag TRAINER_TIFFANY
 	goto_if 0, SootopolisCity_Gym_EventScript_CheckTrainers_3
 SootopolisCity_Gym_EventScript_CheckTrainers_2:
 	return
