@@ -628,26 +628,32 @@ script Route109_Beach_EventScript_Gen8_NPC{
 script Route109_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
+	msgbox(format("Sage: Are you one of those trainers looking for legendary Pokémon?\p"
+	"I possess some intel you might find useful."), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("This might look like an ordinary beach, with its golden sands and gentle waves lapping against the shore.\p"
 		"However, hidden within the depths of this seemingly tranquil landscape lies a Pokémon of immense power: the enigmatic Hoopa.\p"
-		"We don't yet know why they chose these golden dunes as their home. Perhaps he preferred being left alone rather than having company\p."
+		"We don't yet know why they chose these golden dunes as their home. Perhaps he preferred being left alone rather than having company.\p"
 		"Should you want to meet them, become champion, then come back to me."))
-	}
-	else{
-	if(defeated(TRAINER_HUEY) &&
-		defeated(TRAINER_RICKY_1) &&
-		defeated(TRAINER_LOLA_1) &&
-		defeated(TRAINER_CHANDLER) &&
-		defeated(TRAINER_HAILEY) &&
-		defeated(TRAINER_EDMOND) &&
-		defeated(TRAINER_TIANA)){
-			msgbox(format("I hope you can excuse the strict conditions I imposed upon you, but one must not underestimate Hoopa, as their true form is one of immense power and destructive capabilities.\p"
-			"You are definitely worthy of managing such powers. I updated your DexNav to include Hoopa's location: may an unbreakable bond be forged between you two!"))
 		}
 		else{
-			msgbox(format("Congratulations on becoming champion. If you want to meet Hoopa, I'd first advise you to finish your job and defeat every remaining trainer on this beach. We'll talk about Hoopa once you've done that."))
+			if(defeated(TRAINER_HUEY) &&
+			    defeated(TRAINER_RICKY_1) &&
+			    defeated(TRAINER_LOLA_1) &&
+			    defeated(TRAINER_CHANDLER) &&
+			    defeated(TRAINER_HAILEY) &&
+			    defeated(TRAINER_EDMOND) &&
+			    defeated(TRAINER_TIANA)){
+					msgbox(format("I hope you can excuse the strict conditions I imposed upon you, but one must not underestimate Hoopa, as their true form is one of immense power and destructive capabilities. You are definitely worthy of managing such powers. I updated your DexNav to include Hoopa's location: may an unbreakable bond be forged between you two!"))
+			}
+			else{
+				msgbox(format("Congratulations on becoming champion. If you want to meet Hoopa, I'd first advise you to finish your job and defeat every remaining trainer on this beach. We'll talk about Hoopa once you've done that."))
+				}
+			}
 		}
+	else{
+		msgbox(format("I'll be sticking here if you ever change your mind."), MSGBOX_NPC)
 	}
     release
     end

@@ -952,27 +952,34 @@ script Route111Desert_EventScript_Gen8_NPC{
 script Route111Desert_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("At last, our paths converge in this parched land, young trainer. The Guardians of Harmony rest in this place, awaiting for your arrival:\p"
-		"Xerneas, the burn that cures, harbinger of life and renewal. Yveltal, the wicked heart, embodiment of darkness and rebirth.\p"
-		"And finally, Zygarde, the guardian of balance and harmony, watchful sentry over the fragile equilibrium of nature.\p"
-		"There's no doubt in my mind, you'll be their trainer once you'll reach your full potential. Defeat the Pokémon League, become champion, and come back to me.\p"))
-	}
-	else{
-	if(defeated(TRAINER_DREW) &&
-	   defeated(TRAINER_BEAU) &&
-	   defeated(TRAINER_HEIDI) &&
-	   defeated(TRAINER_BECKY) &&
-	   defeated(TRAINER_DUSTY_1) &&
-	   defeated(TRAINER_CELIA) &&
-	   defeated(TRAINER_BRANDEN) &&
-	   defeated(TRAINER_BRYAN)){
-			msgbox(format("You are now worthy of catching Xerneas, Yveltal and Zygarde. I added their resting locations to your DexNav. It's been a thousand years... but a wait worth the while. Good luck, champion."))
+	msgbox(format("Sage: I tell the story of Life, Death and Harmony.\p"
+	"Do you have the patience to hear it?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+			msgbox(format("At last, our paths converge in this parched land, young trainer. The Guardians of Harmony rest in this place, awaiting for your arrival:\p"
+			"Xerneas, The Burn that Cures, harbinger of life and renewal. Yveltal, The Wicked Heart, embodiment of darkness and rebirth.\p"
+			"And finally, Zygarde, the Guardian of Balance and Harmony, watchful sentry over the fragile equilibrium of nature.\p"
+			"There's no doubt in my mind, you'll be their trainer once you'll reach your full potential. Defeat the Pokémon League, become champion, and come back to me.\p"))
 		}
 		else{
-			msgbox(format("Congratulations on becoming the champion, but I'm afraid there's still a little work before meeting the Guardians of Harmony. Defeat all trainers in this route, then come back to me."))
+		if(defeated(TRAINER_DREW) &&
+	   	defeated(TRAINER_BEAU) &&
+	   	defeated(TRAINER_HEIDI) &&
+	   	defeated(TRAINER_BECKY) &&
+	   	defeated(TRAINER_DUSTY_1) &&
+	   	defeated(TRAINER_CELIA) &&
+	   	defeated(TRAINER_BRANDEN) &&
+	   	defeated(TRAINER_BRYAN)){
+				msgbox(format("You are now worthy of catching Xerneas, Yveltal and Zygarde. I added their resting locations to your DexNav. It's been a thousand years... but a wait worth the while. Good luck, champion."))
+			}
+			else{
+				msgbox(format("Congratulations on becoming the champion, but I'm afraid there's still a little work before meeting the Guardians of Harmony. Defeat all trainers in this route, then come back to me."))
+			}
 		}
 	}
-    release
+	else{
+		msgbox(format("Shame..."), MSGBOX_NPC)
+	}
+	release
     end
 }

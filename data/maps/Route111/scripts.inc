@@ -1000,57 +1000,64 @@ Route111Desert_EventScript_Gen8_NPC_16:
 Route111Desert_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route111Desert_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_DREW
-	goto_if 1, Route111Desert_EventScript_LegendaryNPC_8
-Route111Desert_EventScript_LegendaryNPC_6:
-	msgbox Route111Desert_EventScript_LegendaryNPC_Text_2
+	msgbox Route111Desert_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route111Desert_EventScript_LegendaryNPC_2
+	msgbox Route111Desert_EventScript_LegendaryNPC_Text_4, MSGBOX_NPC
 Route111Desert_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route111Desert_EventScript_LegendaryNPC_2:
-	msgbox Route111Desert_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route111Desert_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_DREW
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_11
+Route111Desert_EventScript_LegendaryNPC_9:
+	msgbox Route111Desert_EventScript_LegendaryNPC_Text_3
 	goto Route111Desert_EventScript_LegendaryNPC_1
 
 Route111Desert_EventScript_LegendaryNPC_5:
 	msgbox Route111Desert_EventScript_LegendaryNPC_Text_1
 	goto Route111Desert_EventScript_LegendaryNPC_1
 
-Route111Desert_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_HEIDI
-	goto_if 1, Route111Desert_EventScript_LegendaryNPC_12
-	goto Route111Desert_EventScript_LegendaryNPC_6
-
 Route111Desert_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_BEAU
-	goto_if 1, Route111Desert_EventScript_LegendaryNPC_7
-	goto Route111Desert_EventScript_LegendaryNPC_6
+	msgbox Route111Desert_EventScript_LegendaryNPC_Text_2
+	goto Route111Desert_EventScript_LegendaryNPC_1
+
+Route111Desert_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_HEIDI
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_15
+	goto Route111Desert_EventScript_LegendaryNPC_9
 
 Route111Desert_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_DUSTY_1
-	goto_if 1, Route111Desert_EventScript_LegendaryNPC_16
-	goto Route111Desert_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_BEAU
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_10
+	goto Route111Desert_EventScript_LegendaryNPC_9
 
-Route111Desert_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_BECKY
-	goto_if 1, Route111Desert_EventScript_LegendaryNPC_11
-	goto Route111Desert_EventScript_LegendaryNPC_6
+Route111Desert_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_DUSTY_1
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_19
+	goto Route111Desert_EventScript_LegendaryNPC_9
 
 Route111Desert_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_BRANDEN
-	goto_if 1, Route111Desert_EventScript_LegendaryNPC_19
-	goto Route111Desert_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_BECKY
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_14
+	goto Route111Desert_EventScript_LegendaryNPC_9
 
-Route111Desert_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_CELIA
-	goto_if 1, Route111Desert_EventScript_LegendaryNPC_15
-	goto Route111Desert_EventScript_LegendaryNPC_6
+Route111Desert_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_BRANDEN
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_22
+	goto Route111Desert_EventScript_LegendaryNPC_9
 
 Route111Desert_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_CELIA
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_18
+	goto Route111Desert_EventScript_LegendaryNPC_9
+
+Route111Desert_EventScript_LegendaryNPC_22:
 	checktrainerflag TRAINER_BRYAN
-	goto_if 1, Route111Desert_EventScript_LegendaryNPC_5
-	goto Route111Desert_EventScript_LegendaryNPC_6
+	goto_if 1, Route111Desert_EventScript_LegendaryNPC_8
+	goto Route111Desert_EventScript_LegendaryNPC_9
 
 
 Route111South_EventScript_Gen8_NPC_Text_0:
@@ -1102,16 +1109,21 @@ Route111Desert_EventScript_Gen8_NPC_Text_2:
 	.string "yada yada, good luck.$"
 
 Route111Desert_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: I tell the story of Life, Death\n"
+	.string "and Harmony.\p"
+	.string "Do you have the patience to hear it?$"
+
+Route111Desert_EventScript_LegendaryNPC_Text_1:
 	.string "At last, our paths converge in this\n"
 	.string "parched land, young trainer. The\l"
 	.string "Guardians of Harmony rest in this\l"
 	.string "place, awaiting for your arrival:\p"
-	.string "Xerneas, the burn that cures, harbinger\n"
-	.string "of life and renewal. Yveltal, the wicked\l"
-	.string "heart, embodiment of darkness and\l"
+	.string "Xerneas, The Burn that Cures, harbinger\n"
+	.string "of life and renewal. Yveltal, The Wicked\l"
+	.string "Heart, embodiment of darkness and\l"
 	.string "rebirth.\p"
-	.string "And finally, Zygarde, the guardian of\n"
-	.string "balance and harmony, watchful sentry\l"
+	.string "And finally, Zygarde, the Guardian of\n"
+	.string "Balance and Harmony, watchful sentry\l"
 	.string "over the fragile equilibrium of nature.\p"
 	.string "There's no doubt in my mind, you'll be\n"
 	.string "their trainer once you'll reach your\l"
@@ -1120,20 +1132,23 @@ Route111Desert_EventScript_LegendaryNPC_Text_0:
 	.string "to me.\p"
 	.string "$"
 
-Route111Desert_EventScript_LegendaryNPC_Text_1:
+Route111Desert_EventScript_LegendaryNPC_Text_2:
 	.string "You are now worthy of catching Xerneas,\n"
 	.string "Yveltal and Zygarde. I added their\l"
 	.string "resting locations to your DexNav. It's\l"
 	.string "been a thousand years... but a wait\l"
 	.string "worth the while. Good luck, champion.$"
 
-Route111Desert_EventScript_LegendaryNPC_Text_2:
+Route111Desert_EventScript_LegendaryNPC_Text_3:
 	.string "Congratulations on becoming the\n"
 	.string "champion, but I'm afraid there's still a\l"
 	.string "little work before meeting the\l"
 	.string "Guardians of Harmony. Defeat all\l"
 	.string "trainers in this route, then come back\l"
 	.string "to me.$"
+
+Route111Desert_EventScript_LegendaryNPC_Text_4:
+	.string "Shame...$"
 
 Route111North_Text_ObtainedChansey::
 	.string "{PLAYER} got a {COLOR BLUE}Chansey{COLOR DARK_GRAY}$"

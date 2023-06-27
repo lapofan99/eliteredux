@@ -215,63 +215,69 @@ Route117_Text_DayCareSign: @ 81F3D8E
 Route117_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route117_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_ISAAC_1
-	goto_if 1, Route117_EventScript_LegendaryNPC_8
-Route117_EventScript_LegendaryNPC_6:
-	msgbox Route117_EventScript_LegendaryNPC_Text_2
+	msgbox Route117_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route117_EventScript_LegendaryNPC_2
+	msgbox Route117_EventScript_LegendaryNPC_Text_4
 Route117_EventScript_LegendaryNPC_1:
-	face_down
 	release
 	end
 
 Route117_EventScript_LegendaryNPC_2:
-	msgbox Route117_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route117_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_ISAAC_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_11
+Route117_EventScript_LegendaryNPC_9:
+	msgbox Route117_EventScript_LegendaryNPC_Text_3
 	goto Route117_EventScript_LegendaryNPC_1
 
 Route117_EventScript_LegendaryNPC_5:
 	msgbox Route117_EventScript_LegendaryNPC_Text_1
 	goto Route117_EventScript_LegendaryNPC_1
 
-Route117_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_DYLAN_1
-	goto_if 1, Route117_EventScript_LegendaryNPC_12
-	goto Route117_EventScript_LegendaryNPC_6
-
 Route117_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_LYDIA_1
-	goto_if 1, Route117_EventScript_LegendaryNPC_7
-	goto Route117_EventScript_LegendaryNPC_6
+	msgbox Route117_EventScript_LegendaryNPC_Text_2
+	goto Route117_EventScript_LegendaryNPC_1
+
+Route117_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_DYLAN_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_15
+	goto Route117_EventScript_LegendaryNPC_9
 
 Route117_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_DEREK
-	goto_if 1, Route117_EventScript_LegendaryNPC_16
-	goto Route117_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_LYDIA_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_10
+	goto Route117_EventScript_LegendaryNPC_9
 
-Route117_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_MARIA_1
-	goto_if 1, Route117_EventScript_LegendaryNPC_11
-	goto Route117_EventScript_LegendaryNPC_6
+Route117_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_DEREK
+	goto_if 1, Route117_EventScript_LegendaryNPC_19
+	goto Route117_EventScript_LegendaryNPC_9
 
 Route117_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_MELINA
-	goto_if 1, Route117_EventScript_LegendaryNPC_20
-	goto Route117_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_MARIA_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_14
+	goto Route117_EventScript_LegendaryNPC_9
 
-Route117_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_ANNA_AND_MEG_1
-	goto_if 1, Route117_EventScript_LegendaryNPC_15
-	goto Route117_EventScript_LegendaryNPC_6
+Route117_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_MELINA
+	goto_if 1, Route117_EventScript_LegendaryNPC_23
+	goto Route117_EventScript_LegendaryNPC_9
 
 Route117_EventScript_LegendaryNPC_19:
-	checktrainerflag TRAINER_AISHA
-	goto_if 1, Route117_EventScript_LegendaryNPC_5
-	goto Route117_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_ANNA_AND_MEG_1
+	goto_if 1, Route117_EventScript_LegendaryNPC_18
+	goto Route117_EventScript_LegendaryNPC_9
 
-Route117_EventScript_LegendaryNPC_20:
+Route117_EventScript_LegendaryNPC_22:
+	checktrainerflag TRAINER_AISHA
+	goto_if 1, Route117_EventScript_LegendaryNPC_8
+	goto Route117_EventScript_LegendaryNPC_9
+
+Route117_EventScript_LegendaryNPC_23:
 	checktrainerflag TRAINER_BRANDI
-	goto_if 1, Route117_EventScript_LegendaryNPC_19
-	goto Route117_EventScript_LegendaryNPC_6
+	goto_if 1, Route117_EventScript_LegendaryNPC_22
+	goto Route117_EventScript_LegendaryNPC_9
 
 
 Route117_EventScript_Gen8_NPC::
@@ -335,29 +341,48 @@ Route117_EventScript_Gen8_NPC_17:
 
 
 Route117_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: I chant the legend of Light,\n"
+	.string "Darkness and Justice, also known as\l"
+	.string "the Legend of the hundred-year\l"
+	.string "struggle. Will you listen to it?$"
+
+Route117_EventScript_LegendaryNPC_Text_1:
 	.string "Once upon a time, a legend was\n"
-	.string "whispered among the lands.\p"
+	.string "whispered among the lands. It was a\l"
+	.string "legend of Light. It was a legend of\l"
+	.string "Darkness.\p"
 	.string "Cresselia, soother of troubled souls,\n"
 	.string "was challenged by Darkrai, the essence\l"
 	.string "of the Moon's darkest allure.\p"
 	.string "What Darkrai anticipated as a swift\n"
-	.string "engagement transformed into a\l"
+	.string "engagement instead transformed into a\l"
 	.string "struggle lasting a hundred years. Their\l"
 	.string "battle ravaged the whole world.\p"
 	.string "Skies cloaked under eternal darkness.\n"
-	.string "Life whitered. Seas surged in turmoil.\p"
+	.string "Life whitered. Cities crumbled. Seas\l"
+	.string "surged in turmoil.\p"
 	.string "But, when all hope was lost, Keldeo, a\n"
 	.string "valiant warrior of unyielding spirit,\l"
 	.string "swung his sword at the prince of\l"
-	.string "darkness, tearing him apart.\p"
+	.string "darkness, tearing apart his plans for\l"
+	.string "domination and ending the\l"
+	.string "century-long conflict.\p"
 	.string "And so, the order once lost was finally\n"
-	.string "restored.\p"
+	.string "restored. With Darkrai defeated and\l"
+	.string "his malevolent influence banished,\l"
+	.string "Cresselia's soothing aura spread\l"
+	.string "across the world, mending the scars\l"
+	.string "left by the long-standing battle.\p"
+	.string "And so, the lands thrived once again, a\n"
+	.string "testament to the resilience of the\l"
+	.string "human spirit and the everlasting hope\l"
+	.string "that resides in the hearts of all.\p"
 	.string "If you want to meet these creatures of\n"
 	.string "legend, become champion and come back\l"
 	.string "to me!$"
 
-Route117_EventScript_LegendaryNPC_Text_1:
-	.string "The light that cures the wicked heart\n"
+Route117_EventScript_LegendaryNPC_Text_2:
+	.string "The might of Justice and purpouse\n"
 	.string "shines brightly inside your soul. No one\l"
 	.string "is more worthy of meeting Darkrai,\l"
 	.string "Cresselia and Keldeo than you. Use your\l"
@@ -365,13 +390,18 @@ Route117_EventScript_LegendaryNPC_Text_1:
 	.string "location. Which side of their conflict\l"
 	.string "will you choose?$"
 
-Route117_EventScript_LegendaryNPC_Text_2:
+Route117_EventScript_LegendaryNPC_Text_3:
 	.string "I see a star on that trainer card... you\n"
 	.string "have become champion, haven't you?\l"
 	.string "Keldeo, Darkrai and Cresselia are\l"
 	.string "almost among us. Just defeat these\l"
 	.string "last few trainers and you'll be able to\l"
 	.string "meet them.$"
+
+Route117_EventScript_LegendaryNPC_Text_4:
+	.string "Ah, a wicked heart that shies away from\n"
+	.string "the enchantment of a story. May your\l"
+	.string "path find its own light.$"
 
 Route117_EventScript_Gen8_NPC_Text_0:
 	.string "Tasteful battles you provided indeed! I\n"

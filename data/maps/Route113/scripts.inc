@@ -171,67 +171,74 @@ Route113_Text_GlassWorkshopSign: @ 81F24F8
 Route113_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route113_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_JAYLEN
-	goto_if 1, Route113_EventScript_LegendaryNPC_8
-Route113_EventScript_LegendaryNPC_6:
-	msgbox Route113_EventScript_LegendaryNPC_Text_2
+	msgbox Route113_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route113_EventScript_LegendaryNPC_2
+	msgbox Route113_EventScript_LegendaryNPC_Text_4, MSGBOX_NPC
 Route113_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route113_EventScript_LegendaryNPC_2:
-	msgbox Route113_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route113_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_JAYLEN
+	goto_if 1, Route113_EventScript_LegendaryNPC_11
+Route113_EventScript_LegendaryNPC_9:
+	msgbox Route113_EventScript_LegendaryNPC_Text_3
 	goto Route113_EventScript_LegendaryNPC_1
 
 Route113_EventScript_LegendaryNPC_5:
 	msgbox Route113_EventScript_LegendaryNPC_Text_1
 	goto Route113_EventScript_LegendaryNPC_1
 
-Route113_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_MADELINE_1
-	goto_if 1, Route113_EventScript_LegendaryNPC_12
-	goto Route113_EventScript_LegendaryNPC_6
-
 Route113_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_DILLON
-	goto_if 1, Route113_EventScript_LegendaryNPC_7
-	goto Route113_EventScript_LegendaryNPC_6
+	msgbox Route113_EventScript_LegendaryNPC_Text_2
+	goto Route113_EventScript_LegendaryNPC_1
+
+Route113_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_MADELINE_1
+	goto_if 1, Route113_EventScript_LegendaryNPC_15
+	goto Route113_EventScript_LegendaryNPC_9
 
 Route113_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_LUNG
-	goto_if 1, Route113_EventScript_LegendaryNPC_16
-	goto Route113_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_DILLON
+	goto_if 1, Route113_EventScript_LegendaryNPC_10
+	goto Route113_EventScript_LegendaryNPC_9
 
-Route113_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_LAO_1
-	goto_if 1, Route113_EventScript_LegendaryNPC_11
-	goto Route113_EventScript_LegendaryNPC_6
+Route113_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_LUNG
+	goto_if 1, Route113_EventScript_LegendaryNPC_19
+	goto Route113_EventScript_LegendaryNPC_9
 
 Route113_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_SOPHIE
-	goto_if 1, Route113_EventScript_LegendaryNPC_20
-	goto Route113_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_LAO_1
+	goto_if 1, Route113_EventScript_LegendaryNPC_14
+	goto Route113_EventScript_LegendaryNPC_9
 
-Route113_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_TORI_AND_TIA
-	goto_if 1, Route113_EventScript_LegendaryNPC_15
-	goto Route113_EventScript_LegendaryNPC_6
+Route113_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_SOPHIE
+	goto_if 1, Route113_EventScript_LegendaryNPC_23
+	goto Route113_EventScript_LegendaryNPC_9
 
 Route113_EventScript_LegendaryNPC_19:
-	checktrainerflag TRAINER_LAWRENCE
-	goto_if 1, Route113_EventScript_LegendaryNPC_23
-	goto Route113_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_TORI_AND_TIA
+	goto_if 1, Route113_EventScript_LegendaryNPC_18
+	goto Route113_EventScript_LegendaryNPC_9
 
-Route113_EventScript_LegendaryNPC_20:
-	checktrainerflag TRAINER_COBY
-	goto_if 1, Route113_EventScript_LegendaryNPC_19
-	goto Route113_EventScript_LegendaryNPC_6
+Route113_EventScript_LegendaryNPC_22:
+	checktrainerflag TRAINER_LAWRENCE
+	goto_if 1, Route113_EventScript_LegendaryNPC_26
+	goto Route113_EventScript_LegendaryNPC_9
 
 Route113_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_COBY
+	goto_if 1, Route113_EventScript_LegendaryNPC_22
+	goto Route113_EventScript_LegendaryNPC_9
+
+Route113_EventScript_LegendaryNPC_26:
 	checktrainerflag TRAINER_WYATT
-	goto_if 1, Route113_EventScript_LegendaryNPC_5
-	goto Route113_EventScript_LegendaryNPC_6
+	goto_if 1, Route113_EventScript_LegendaryNPC_8
+	goto Route113_EventScript_LegendaryNPC_9
 
 
 Route113_EventScript_Gen8_NPC::
@@ -300,6 +307,12 @@ Route113_EventScript_Gen8_NPC_20:
 
 
 Route113_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: I know the fate of some\n"
+	.string "legendary birds you might have heard\l"
+	.string "about. Want to find out more?\p"
+	.string "$"
+
+Route113_EventScript_LegendaryNPC_Text_1:
 	.string "These ashes seem to have affected\n"
 	.string "even the most noble of bird lineages:\p"
 	.string "that of Articuno, Zapdos and Moltres.\p"
@@ -307,19 +320,23 @@ Route113_EventScript_LegendaryNPC_Text_0:
 	.string "smoke-filled land, looking for a valiant\l"
 	.string "aid...\p"
 	.string "Could you be the one they're looking\n"
-	.string "for?$"
+	.string "for? Come back after becoming\l"
+	.string "champion to meet them.$"
 
-Route113_EventScript_LegendaryNPC_Text_1:
+Route113_EventScript_LegendaryNPC_Text_2:
 	.string "You are now worthy of catching the\n"
 	.string "legendary birds trio. Just use your\l"
 	.string "DexNav, they will now appear. Their\l"
 	.string "appearance might even surprise you...$"
 
-Route113_EventScript_LegendaryNPC_Text_2:
+Route113_EventScript_LegendaryNPC_Text_3:
 	.string "I heard of your accomplishments, and\n"
 	.string "the birds must have sensed that too.\l"
 	.string "Show these last few trainers what\l"
 	.string "you're capable of to finally meet them.$"
+
+Route113_EventScript_LegendaryNPC_Text_4:
+	.string "Clearly you must be very uninformed...$"
 
 Route113_EventScript_Gen8_NPC_Text_0:
 	.string "Way to go champ! Here, take this little\n"

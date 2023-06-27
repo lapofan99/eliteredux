@@ -173,28 +173,34 @@ Route113_Text_GlassWorkshopSign: @ 81F24F8
 script Route113_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
+	msgbox(format("Sage: I know the fate of some legendary birds you might have heard about. Want to find out more?\p"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("These ashes seem to have affected even the most noble of bird lineages:\p"
 		"that of Articuno, Zapdos and Moltres.\p"
 		"Their kin has been spotted roaming this smoke-filled land, looking for a valiant aid...\p"
-		"Could you be the one they're looking for?"))
+		"Could you be the one they're looking for? Come back after becoming champion to meet them."))
+	}
+		else{
+			if(defeated(TRAINER_JAYLEN) &&
+		   	defeated(TRAINER_DILLON) &&
+		   	defeated(TRAINER_MADELINE_1)  &&
+		   	defeated(TRAINER_LAO_1)  &&
+		   	defeated(TRAINER_LUNG)  &&
+		   	defeated(TRAINER_TORI_AND_TIA)  &&
+		   	defeated(TRAINER_SOPHIE)  &&
+		   	defeated(TRAINER_COBY)  &&
+		   	defeated(TRAINER_LAWRENCE)  &&
+		   	defeated(TRAINER_WYATT)){
+				msgbox(format("You are now worthy of catching the legendary birds trio. Just use your DexNav, they will now appear. Their appearance might even surprise you..."))
+			}
+			else{
+				msgbox(format("I heard of your accomplishments, and the birds must have sensed that too. Show these last few trainers what you're capable of to finally meet them."))
+			}
+		}
 	}
 	else{
-		if(defeated(TRAINER_JAYLEN) &&
-		   defeated(TRAINER_DILLON) &&
-		   defeated(TRAINER_MADELINE_1)  &&
-		   defeated(TRAINER_LAO_1)  &&
-		   defeated(TRAINER_LUNG)  &&
-		   defeated(TRAINER_TORI_AND_TIA)  &&
-		   defeated(TRAINER_SOPHIE)  &&
-		   defeated(TRAINER_COBY)  &&
-		   defeated(TRAINER_LAWRENCE)  &&
-		   defeated(TRAINER_WYATT)){
-			msgbox(format("You are now worthy of catching the legendary birds trio. Just use your DexNav, they will now appear. Their appearance might even surprise you..."))
-		}
-		else{
-			msgbox(format("I heard of your accomplishments, and the birds must have sensed that too. Show these last few trainers what you're capable of to finally meet them."))
-		}
+		msgbox(format("Clearly you must be very uninformed..."), MSGBOX_NPC)
 	}
     release
     end

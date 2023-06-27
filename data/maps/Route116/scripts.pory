@@ -497,8 +497,10 @@ Route116_Text_TrainerTipsBagHasPockets: @ 81F38D4
 script Route116_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("Ah, young trainer, I sense your curiosity has brought you here. But beware, for you tread on sacred grounds. The presence of the legendary Creation Trio looms over this place. They seek a guardian who can commune with their power, but you don't seem ready yet. Come back once you've accomplished an exceptional feat in the Pokémon League."))
+	msgbox(format("Sage: Despite your young age, you appear to be someone who seeks a profound significance in everyday matters... Am I right?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("Of course... young trainer, I sense your curiosity for the extraordinary. But beware, for you tread on sacred grounds. The presence of the legendary Creation Trio looms over this place. They seek a guardian who can commune with their power, but you don't seem ready yet. Come back once you've accomplished an exceptional feat in the Pokémon League."))
 	}
 	else{
 		if(defeated(TRAINER_JOEY)  &&
@@ -516,6 +518,10 @@ script Route116_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("You are almost worthy. Defeat all remaining trainers to prove your might once and for all!"))
 		}
+	}
+	}
+	else{
+		msgbox(format("You had so much potential... how disappointing."))
 	}
     release
     end

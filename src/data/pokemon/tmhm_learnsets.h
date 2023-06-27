@@ -30332,20 +30332,26 @@ const u32 gTMHMLearnsets[][4] =
     [SPECIES_RAPIDASH_GALARIAN]=TMHM_LEARNSET (TMHM1(TM04_CALM_MIND)
                                         | TMHM1(TM06_TOXIC)
                                         | TMHM1(TM10_HIDDEN_POWER)
+                                        | TMHM1(TM11_SUNNY_DAY) // new
                                         | TMHM1(TM15_HYPER_BEAM)
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM21_FRUSTRATION)
                                         | TMHM1(TM23_IRON_TAIL)
                                         | TMHM1(TM27_RETURN)
                                         | TMHM1(TM29_PSYCHIC)
+                                        | TMHM1(TM35_FLAMETHROWER) // new
+                                        | TMHM1(TM38_FIRE_BLAST) // new
                                         | TMHM1(TM42_FACADE)
                                         | TMHM1(TM43_SECRET_POWER)
                                         | TMHM1(TM44_REST)
                                         | TMHM1(TM45_ATTRACT)
                                         | TMHM1(TM49_SLEEP_TALK)
-                                        | TMHM1(TM58_ENDURE),
+                                        | TMHM1(TM50_OVERHEAT) // new
+                                        | TMHM1(TM58_ENDURE)
+                                        | TMHM1(TM61_WILL_O_WISP), // new
                                           TMHM2(TM68_GIGA_IMPACT)
                                         | TMHM2(TM75_SWORDS_DANCE)
+                                        | TMHM2(TM83_FLAME_CHARGE) // new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM92_TRICK_ROOM)
                                         | TMHM2(TM93_WILD_CHARGE)
@@ -33119,6 +33125,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM66_PAYBACK)
                                         | TMHM2(TM68_GIGA_IMPACT)
                                         | TMHM2(TM71_STONE_EDGE)
+                                        | TMHM2(TM72_VOLT_SWITCH) // new
                                         | TMHM2(TM79_FREEZE_DRY)
                                         | TMHM2(TM82_DRAGON_TAIL)
                                         | TMHM2(TM89_U_TURN) // new

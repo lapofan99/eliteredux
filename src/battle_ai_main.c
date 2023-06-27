@@ -5020,7 +5020,7 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_STEALTH_ROCK:
     case EFFECT_TOXIC_SPIKES:
     case EFFECT_SPIKES:
-        score += 20;
+        score += 10; // was +20
         break;
     case EFFECT_ATTACK_UP:
     case EFFECT_DEFENSE_UP:
@@ -5099,7 +5099,7 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_SANDSTORM:
     case EFFECT_HAIL:
     case EFFECT_GEOMANCY:
-        score += 2;
+        score += 10; // was +2
         break;
     default:
         break;

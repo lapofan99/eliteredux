@@ -204,83 +204,94 @@ Route114_Text_LanettesHouse: @ 81F2910
 Route114_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route114_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_LENNY
-	goto_if 1, Route114_EventScript_LegendaryNPC_8
-Route114_EventScript_LegendaryNPC_6:
-	msgbox Route114_EventScript_LegendaryNPC_Text_2
+	msgbox Route114_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route114_EventScript_LegendaryNPC_2
+	msgbox Route114_EventScript_LegendaryNPC_Text_4, MSGBOX_NPC
 Route114_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route114_EventScript_LegendaryNPC_2:
-	msgbox Route114_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route114_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_LENNY
+	goto_if 1, Route114_EventScript_LegendaryNPC_11
+Route114_EventScript_LegendaryNPC_9:
+	msgbox Route114_EventScript_LegendaryNPC_Text_3
 	goto Route114_EventScript_LegendaryNPC_1
 
 Route114_EventScript_LegendaryNPC_5:
 	msgbox Route114_EventScript_LegendaryNPC_Text_1
 	goto Route114_EventScript_LegendaryNPC_1
 
-Route114_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_SHANE
-	goto_if 1, Route114_EventScript_LegendaryNPC_12
-	goto Route114_EventScript_LegendaryNPC_6
-
 Route114_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_LUCAS_1
-	goto_if 1, Route114_EventScript_LegendaryNPC_7
-	goto Route114_EventScript_LegendaryNPC_6
+	msgbox Route114_EventScript_LegendaryNPC_Text_2
+	goto Route114_EventScript_LegendaryNPC_1
+
+Route114_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_SHANE
+	goto_if 1, Route114_EventScript_LegendaryNPC_15
+	goto Route114_EventScript_LegendaryNPC_9
 
 Route114_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_STEVE_1
-	goto_if 1, Route114_EventScript_LegendaryNPC_16
-	goto Route114_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_LUCAS_1
+	goto_if 1, Route114_EventScript_LegendaryNPC_10
+	goto Route114_EventScript_LegendaryNPC_9
 
-Route114_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_NANCY
-	goto_if 1, Route114_EventScript_LegendaryNPC_11
-	goto Route114_EventScript_LegendaryNPC_6
+Route114_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_STEVE_1
+	goto_if 1, Route114_EventScript_LegendaryNPC_19
+	goto Route114_EventScript_LegendaryNPC_9
 
 Route114_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_CLAUDE
-	goto_if 1, Route114_EventScript_LegendaryNPC_20
-	goto Route114_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_NANCY
+	goto_if 1, Route114_EventScript_LegendaryNPC_14
+	goto Route114_EventScript_LegendaryNPC_9
 
-Route114_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_BERNIE_1
-	goto_if 1, Route114_EventScript_LegendaryNPC_15
-	goto Route114_EventScript_LegendaryNPC_6
+Route114_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_CLAUDE
+	goto_if 1, Route114_EventScript_LegendaryNPC_23
+	goto Route114_EventScript_LegendaryNPC_9
 
 Route114_EventScript_LegendaryNPC_19:
-	checktrainerflag TRAINER_TYRA_AND_IVY
-	goto_if 1, Route114_EventScript_LegendaryNPC_24
-	goto Route114_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_BERNIE_1
+	goto_if 1, Route114_EventScript_LegendaryNPC_18
+	goto Route114_EventScript_LegendaryNPC_9
 
-Route114_EventScript_LegendaryNPC_20:
-	checktrainerflag TRAINER_NOLAN
-	goto_if 1, Route114_EventScript_LegendaryNPC_19
-	goto Route114_EventScript_LegendaryNPC_6
+Route114_EventScript_LegendaryNPC_22:
+	checktrainerflag TRAINER_TYRA_AND_IVY
+	goto_if 1, Route114_EventScript_LegendaryNPC_27
+	goto Route114_EventScript_LegendaryNPC_9
 
 Route114_EventScript_LegendaryNPC_23:
-	checktrainerflag TRAINER_CHARLOTTE
-	goto_if 1, Route114_EventScript_LegendaryNPC_27
-	goto Route114_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_NOLAN
+	goto_if 1, Route114_EventScript_LegendaryNPC_22
+	goto Route114_EventScript_LegendaryNPC_9
 
-Route114_EventScript_LegendaryNPC_24:
-	checktrainerflag TRAINER_ANGELINA
-	goto_if 1, Route114_EventScript_LegendaryNPC_23
-	goto Route114_EventScript_LegendaryNPC_6
+Route114_EventScript_LegendaryNPC_26:
+	checktrainerflag TRAINER_CHARLOTTE
+	goto_if 1, Route114_EventScript_LegendaryNPC_30
+	goto Route114_EventScript_LegendaryNPC_9
 
 Route114_EventScript_LegendaryNPC_27:
+	checktrainerflag TRAINER_ANGELINA
+	goto_if 1, Route114_EventScript_LegendaryNPC_26
+	goto Route114_EventScript_LegendaryNPC_9
+
+Route114_EventScript_LegendaryNPC_30:
 	checktrainerflag TRAINER_KAI
-	goto_if 1, Route114_EventScript_LegendaryNPC_5
-	goto Route114_EventScript_LegendaryNPC_6
+	goto_if 1, Route114_EventScript_LegendaryNPC_8
+	goto Route114_EventScript_LegendaryNPC_9
 
 
 Route114_EventScript_LegendaryNPC_Text_0:
-	.string "By talking to me, I assume you want\n"
-	.string "confirmation on the fact that\l"
-	.string "legendary Pokémon roam this route.\p"
+	.string "Sage: Are you one of those trainers\n"
+	.string "trying to become champion?$"
+
+Route114_EventScript_LegendaryNPC_Text_1:
+	.string "I assume you want confirmation on the\n"
+	.string "fact that legendary Pokémon roam this\l"
+	.string "route.\p"
 	.string "Rest assured: they do. The Legendary\n"
 	.string "beastly trio of Raikou, Suicune and\l"
 	.string "Entei\p"
@@ -294,14 +305,14 @@ Route114_EventScript_LegendaryNPC_Text_0:
 	.string "it may lead you to an extraordinary\l"
 	.string "fate.$"
 
-Route114_EventScript_LegendaryNPC_Text_1:
-	.string "Ah, at last, we meet again. Your prowess\n"
-	.string "in battle has been recognized by many,\l"
+Route114_EventScript_LegendaryNPC_Text_2:
+	.string "At last, we meet again. Your prowess in\n"
+	.string "battle has been recognized by many,\l"
 	.string "including the Beasts. Walk this path\l"
 	.string "with your DexNav, and their greatness\l"
 	.string "shall be revealed to you.$"
 
-Route114_EventScript_LegendaryNPC_Text_2:
+Route114_EventScript_LegendaryNPC_Text_3:
 	.string "Ah, an interesting development indeed.\n"
 	.string "Your capabilities have surpassed my\l"
 	.string "initial expectations. While your\l"
@@ -310,3 +321,6 @@ Route114_EventScript_LegendaryNPC_Text_2:
 	.string "Your destiny is calling: finish these\l"
 	.string "last few battles to finally greet the\l"
 	.string "Beasts.$"
+
+Route114_EventScript_LegendaryNPC_Text_4:
+	.string "Then why are we even talking?$"
