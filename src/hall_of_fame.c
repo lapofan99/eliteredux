@@ -1123,6 +1123,7 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 	static const u8 eliteCapText[] 				= _("{COLOR LIGHT_RED}{SHADOW RED}Elite$");
 
     static const u8 easyModeText[] 				= _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
+	static const u8 aceModeText[] 			    = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}Ace$");
 	static const u8 eliteModeText[] 			= _("{COLOR LIGHT_BLUE}{SHADOW RED}Elite$");
 
     u16 wins   = getNumberOfUniqueDefeatedTrainers();
@@ -1147,6 +1148,9 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
         default:
         case DIFFICULTY_EASY:
             StringCopy(gStringVar1, easyModeText);
+            break;
+        case DIFFICULTY_ACE:
+            StringCopy(gStringVar1, aceModeText);
             break;
         case DIFFICULTY_ELITE:
             StringCopy(gStringVar1, eliteModeText);

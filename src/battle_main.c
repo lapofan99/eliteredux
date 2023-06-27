@@ -2183,7 +2183,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
             {
                 const struct TrainerMonItemCustomMoves *partyData;
-                if(difficultySetting == DIFFICULTY_INSANITY && gTrainers[trainerNum].partyInsane.ItemCustomMoves != 0)
+                if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != 0)
                     partyData = gTrainers[trainerNum].partyInsane.ItemCustomMoves;
                 else
                     partyData = gTrainers[trainerNum].party.ItemCustomMoves;
@@ -4324,8 +4324,9 @@ static void HandleTurnActionSelectionState(void)
                                             | BATTLE_TYPE_FRONTIER_NO_PYRAMID
                                             | BATTLE_TYPE_EREADER_TRAINER
                                             | BATTLE_TYPE_RECORDED_LINK)
-                        || (gSaveBlock2Ptr->gameDifficulty == DIFFICULTY_EASY && (gBattleTypeFlags & BATTLE_TYPE_TRAINER))
-                        || (gSaveBlock2Ptr->gameDifficulty == DIFFICULTY_ELITE && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
+                        || (gSaveBlock2Ptr->gameDifficulty == DIFFICULTY_EASY  && (gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+                        || (gSaveBlock2Ptr->gameDifficulty == DIFFICULTY_ELITE && (gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+                        || (gSaveBlock2Ptr->gameDifficulty == DIFFICULTY_ACE   && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
                     {
                         RecordedBattle_ClearBattlerAction(gActiveBattler, 1);
                         gSelectionBattleScripts[gActiveBattler] = BattleScript_ActionSelectionItemsCantBeUsed;

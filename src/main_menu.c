@@ -501,8 +501,9 @@ static const struct MenuAction sMenuActions_Gender[] = {
 };
 
 static const struct MenuAction sMenuActions_Difficulty[] = {
-    {gText_BirchNormalMode, NULL},
-    {gText_BirchChallengeMode, NULL},
+    {gText_BirchEasyMode,  NULL},
+    {gText_BirchAceMode,   NULL},
+    {gText_BirchEliteMode, NULL},
 };
 
 static const struct MenuAction sMenuActions_LevelCaps[] = {
@@ -1838,21 +1839,27 @@ static void Task_NewGameBirchSpeech_ChooseDifficulty(u8 taskId)
 
     switch (difficulty)
     {
-        case 0:
+        case DIFFICULTY_EASY:
             PlaySE(SE_SELECT);
             gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_EASY;
             gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
-            NewGameBirchSpeech_ClearGenderWindow(4, 1);
+            NewGameBirchSpeech_ClearGenderWindow(5, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_DifficultyDesc;
             break;
-        case 1:
+        case DIFFICULTY_ACE:
+            PlaySE(SE_SELECT);
+            gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_ACE;
+            gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
+            NewGameBirchSpeech_ClearGenderWindow(5, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_DifficultyDesc;
+            break;
+        case DIFFICULTY_ELITE:
             PlaySE(SE_SELECT);
             gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_ELITE;
             gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
-            NewGameBirchSpeech_ClearGenderWindow(4, 1);
+            NewGameBirchSpeech_ClearGenderWindow(5, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_DifficultyDesc;
             break;
-        case 2:
     }
 }
 
@@ -1866,8 +1873,11 @@ static void Task_NewGameBirchSpeech_DifficultyDesc(u8 taskId)
         case DIFFICULTY_EASY:
             str = gText_Pie_NormalMode;
             break;
-        case DIFFICULTY_ELITE:
+        case DIFFICULTY_ACE:
             str = gText_Pie_ChallengeMode;
+            break;
+        case DIFFICULTY_ELITE:
+            str = gText_Pie_EliteMode;
             break;
     }
 
@@ -2334,12 +2344,12 @@ static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void)
 
 static void NewGameBirchSpeech_ShowDifficultyMenu(void)
 {
-    DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[1], 0xF3);
-    FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    PrintMenuTable(1, ARRAY_COUNT(sMenuActions_Difficulty), sMenuActions_Difficulty);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0);
-    PutWindowTilemap(1);
-    CopyWindowToVram(1, 3);
+    DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[5], 0xF3);
+    FillWindowPixelBuffer(5, PIXEL_FILL(1));
+    PrintMenuTable(5, ARRAY_COUNT(sMenuActions_Difficulty), sMenuActions_Difficulty);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(5, 3, 0);
+    PutWindowTilemap(5);
+    CopyWindowToVram(5, 3);
 }
 
 static void NewGameBirchSpeech_ShowLevelCapMenu(void)

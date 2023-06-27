@@ -112,6 +112,22 @@ gText_Pie_HardMode::
 	.string "Normal Mode?$"
 
 gText_Pie_ChallengeMode::
+	.string "Ace Mode is the intended difficulty.\n"
+	.string "Every single Trainer has custom EVs.\p"
+	.string "It also has these restrictions:\p"
+	.string "You can't access the bag in Trainer\n"
+	.string "Battles, and the Shift battle style is\l"
+	.string "disabled.\p"
+	.string "That means you'll follow the same rules\n"
+	.string "as your opponents, so good strategy\l"
+	.string "and a balanced team are more important\l"
+	.string "in this mode.\p"
+	.string "This difficulty is only recommended if\n"
+	.string "it sounds appealing to you!\p"
+	.string "So, would you like to play on\n"
+	.string "Ace Mode?$"
+
+gText_Pie_EliteMode::
 	.string "Elite Mode is the intended difficulty.\n"
 	.string "Every single Trainer has custom EVs.\p"
 	.string "It also has these restrictions:\p"
