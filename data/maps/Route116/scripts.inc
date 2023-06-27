@@ -496,67 +496,74 @@ Route116_Text_TrainerTipsBagHasPockets: @ 81F38D4
 Route116_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route116_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_JOEY
-	goto_if 1, Route116_EventScript_LegendaryNPC_8
-Route116_EventScript_LegendaryNPC_6:
-	msgbox Route116_EventScript_LegendaryNPC_Text_2
+	msgbox Route116_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route116_EventScript_LegendaryNPC_2
+	msgbox Route116_EventScript_LegendaryNPC_Text_4
 Route116_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route116_EventScript_LegendaryNPC_2:
-	msgbox Route116_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route116_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_JOEY
+	goto_if 1, Route116_EventScript_LegendaryNPC_11
+Route116_EventScript_LegendaryNPC_9:
+	msgbox Route116_EventScript_LegendaryNPC_Text_3
 	goto Route116_EventScript_LegendaryNPC_1
 
 Route116_EventScript_LegendaryNPC_5:
 	msgbox Route116_EventScript_LegendaryNPC_Text_1
 	goto Route116_EventScript_LegendaryNPC_1
 
-Route116_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_JERRY_1
-	goto_if 1, Route116_EventScript_LegendaryNPC_12
-	goto Route116_EventScript_LegendaryNPC_6
-
 Route116_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_JOSE
-	goto_if 1, Route116_EventScript_LegendaryNPC_7
-	goto Route116_EventScript_LegendaryNPC_6
+	msgbox Route116_EventScript_LegendaryNPC_Text_2
+	goto Route116_EventScript_LegendaryNPC_1
+
+Route116_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_JERRY_1
+	goto_if 1, Route116_EventScript_LegendaryNPC_15
+	goto Route116_EventScript_LegendaryNPC_9
 
 Route116_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_JANICE
-	goto_if 1, Route116_EventScript_LegendaryNPC_16
-	goto Route116_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_JOSE
+	goto_if 1, Route116_EventScript_LegendaryNPC_10
+	goto Route116_EventScript_LegendaryNPC_9
 
-Route116_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_CLARK
-	goto_if 1, Route116_EventScript_LegendaryNPC_11
-	goto Route116_EventScript_LegendaryNPC_6
+Route116_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_JANICE
+	goto_if 1, Route116_EventScript_LegendaryNPC_19
+	goto Route116_EventScript_LegendaryNPC_9
 
 Route116_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_SARAH
-	goto_if 1, Route116_EventScript_LegendaryNPC_20
-	goto Route116_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_CLARK
+	goto_if 1, Route116_EventScript_LegendaryNPC_14
+	goto Route116_EventScript_LegendaryNPC_9
 
-Route116_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_KAREN_1
-	goto_if 1, Route116_EventScript_LegendaryNPC_15
-	goto Route116_EventScript_LegendaryNPC_6
+Route116_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_SARAH
+	goto_if 1, Route116_EventScript_LegendaryNPC_23
+	goto Route116_EventScript_LegendaryNPC_9
 
 Route116_EventScript_LegendaryNPC_19:
-	checktrainerflag TRAINER_DEVAN
-	goto_if 1, Route116_EventScript_LegendaryNPC_23
-	goto Route116_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_KAREN_1
+	goto_if 1, Route116_EventScript_LegendaryNPC_18
+	goto Route116_EventScript_LegendaryNPC_9
 
-Route116_EventScript_LegendaryNPC_20:
-	checktrainerflag TRAINER_DAWSON
-	goto_if 1, Route116_EventScript_LegendaryNPC_19
-	goto Route116_EventScript_LegendaryNPC_6
+Route116_EventScript_LegendaryNPC_22:
+	checktrainerflag TRAINER_DEVAN
+	goto_if 1, Route116_EventScript_LegendaryNPC_26
+	goto Route116_EventScript_LegendaryNPC_9
 
 Route116_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_DAWSON
+	goto_if 1, Route116_EventScript_LegendaryNPC_22
+	goto Route116_EventScript_LegendaryNPC_9
+
+Route116_EventScript_LegendaryNPC_26:
 	checktrainerflag TRAINER_JOHNSON
-	goto_if 1, Route116_EventScript_LegendaryNPC_5
-	goto Route116_EventScript_LegendaryNPC_6
+	goto_if 1, Route116_EventScript_LegendaryNPC_8
+	goto Route116_EventScript_LegendaryNPC_9
 
 
 Route116_EventScript_Gen8_NPC::
@@ -625,8 +632,14 @@ Route116_EventScript_Gen8_NPC_20:
 
 
 Route116_EventScript_LegendaryNPC_Text_0:
-	.string "Ah, young trainer, I sense your\n"
-	.string "curiosity has brought you here. But\l"
+	.string "Sage: Despite your young age, you\n"
+	.string "appear to be someone who seeks a\l"
+	.string "profound significance in everyday\l"
+	.string "matters... Am I right?$"
+
+Route116_EventScript_LegendaryNPC_Text_1:
+	.string "Of course... young trainer, I sense your\n"
+	.string "curiosity for the extraordinary. But\l"
 	.string "beware, for you tread on sacred\l"
 	.string "grounds. The presence of the legendary\l"
 	.string "Creation Trio looms over this place.\l"
@@ -636,17 +649,21 @@ Route116_EventScript_LegendaryNPC_Text_0:
 	.string "accomplished an exceptional feat in\l"
 	.string "the Pokémon League.$"
 
-Route116_EventScript_LegendaryNPC_Text_1:
+Route116_EventScript_LegendaryNPC_Text_2:
 	.string "Ah, young trainer, your potential shines\n"
 	.string "through the shadows like a glimmering\l"
 	.string "light. I can sense it: the Creation Trio\l"
 	.string "has deemed you worthy of their time.\l"
 	.string "Use your DexNav to meet them.$"
 
-Route116_EventScript_LegendaryNPC_Text_2:
+Route116_EventScript_LegendaryNPC_Text_3:
 	.string "You are almost worthy. Defeat all\n"
 	.string "remaining trainers to prove your might\l"
 	.string "once and for all!$"
+
+Route116_EventScript_LegendaryNPC_Text_4:
+	.string "You had so much potential... how\n"
+	.string "disappointing.$"
 
 Route116_EventScript_Gen8_NPC_Text_0:
 	.string "Take this Pokémon from Galar. You can\n"

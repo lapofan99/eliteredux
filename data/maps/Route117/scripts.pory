@@ -217,13 +217,15 @@ Route117_Text_DayCareSign: @ 81F3D8E
 script Route117_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("Once upon a time, a legend was whispered among the lands.\p"
-		"Cresselia, soother of troubled souls, was challenged by Darkrai, the essence of the Moon's darkest allure.\p"
-		"What Darkrai anticipated as a swift engagement transformed into a struggle lasting a hundred years. Their battle ravaged the whole world.\p"
-		"Skies cloaked under eternal darkness. Life whitered. Seas surged in turmoil.\p"
-		"But, when all hope was lost, Keldeo, a valiant warrior of unyielding spirit, swung his sword at the prince of darkness, tearing him apart.\p"
-		"And so, the order once lost was finally restored.\p"
+	msgbox(format("Sage: I chant the legend of Light, Darkness and Justice, also known as the Legend of the hundred-year struggle. Will you listen to it?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("Once upon a time, Cresselia, soother of troubled souls, was challenged by Darkrai, the essence of the Moon's darkest allure.\p"
+		"What Darkrai anticipated as a swift engagement instead transformed into a struggle lasting a hundred years. Their battle ravaged the whole world.\p"
+		"Skies cloaked under eternal darkness. Life whitered. Cities crumbled. Seas surged in turmoil.\p"
+		"But, when all hope was lost, Keldeo, a valiant warrior of unyielding spirit, swung his sword at the prince of darkness, tearing apart his plans for domination and ending the century long conflict.\p"
+		"And so, the order once lost was finally restored. With Darkrai defeated and his malevolent influence banished, Cresselia's soothing aura spread across the world, mending the scars left by the long-standing battle.\p"
+		"And so, the lands thrived once again, a testament to the resilience of the human spirit and the everlasting hope that resides in the hearts of all.\p"
 		"If you want to meet these creatures of legend, become champion and come back to me!"))
 	}
 	else{
@@ -236,13 +238,16 @@ script Route117_EventScript_LegendaryNPC{
 		   defeated(TRAINER_MELINA)  &&
 		   defeated(TRAINER_BRANDI)  &&
 		   defeated(TRAINER_AISHA)){
-			msgbox(format("The light that cures the wicked heart shines brightly inside your soul. No one is more worthy of meeting Darkrai, Cresselia and Keldeo than you. Use your DexNav to discover their precise location. Which side of their conflict will you choose?"))
+			msgbox(format("The might of Justice and purpouse shines brightly inside your soul. No one is more worthy of meeting Darkrai, Cresselia and Keldeo than you. Use your DexNav to discover their precise location. Which side of their conflict will you choose?"))
 		}
 		else{
 			msgbox(format("I see a star on that trainer card... you have become champion, haven't you? Keldeo, Darkrai and Cresselia are almost among us. Just defeat these last few trainers and you'll be able to meet them."))
 		}
 	}
-	face_down
+	}
+	else{
+		msgbox(format("Ah, a wicked heart that shies away from the enchantment of a story. May your path find its own light."))
+	}
     release
     end
 }
