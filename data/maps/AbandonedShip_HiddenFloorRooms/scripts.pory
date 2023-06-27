@@ -1,5 +1,5 @@
 raw `
-.set LOCALID_OLD_SEA_MAP, 5
+.set LOCALID_OLD_SEA_MAP, 2
 
 AbandonedShip_HiddenFloorRooms_MapScripts:: @ 8238C49
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, AbandonedShip_HiddenFloorRooms_OnFrame

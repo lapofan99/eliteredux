@@ -320,7 +320,7 @@ const struct BaseStats gBaseStats[] =
     .baseSpAttack  = 135,
     .baseSpDefense = 115,
     .type1 = TYPE_WATER,
-    .type2 = TYPE_WATER,
+    .type2 = TYPE_STEEL, // new
     .catchRate = 255,
     .expYield = 284,
     .evYield_SpDefense = 3,
@@ -10191,7 +10191,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_BUG,
     .eggGroup2 = EGG_GROUP_DRAGON,
     .abilities = {ABILITY_TINTED_LENS, ABILITY_TINTED_LENS, ABILITY_TINTED_LENS},
-    .innates = {ABILITY_DRAGONFLY, ABILITY_SAND_SONG, ABILITY_SAND_FORCE},
+    .innates = {ABILITY_DRAGONFLY, ABILITY_SAND_SONG, ABILITY_SAND_RUSH},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },

@@ -2155,7 +2155,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt14[] = { // Slateport 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_HEAD_SMASH, MOVE_LIQUIDATION, MOVE_SUPERPOWER, MOVE_AQUA_JET
+    .moves = MOVE_HEAD_SMASH, MOVE_WAVE_CRASH, MOVE_SUPERPOWER, MOVE_AQUA_JET
     }
 };
 
@@ -3836,7 +3836,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt8[] = { // Aqua
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_WATERFALL, MOVE_CRUNCH, MOVE_PSYCHIC_FANGS, MOVE_PROTECT
+    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_PSYCHIC_FANGS, MOVE_PROTECT
     },
     {
     .lvl = 0,
@@ -4726,7 +4726,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt10[] = { // Aqua
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_WATERFALL, MOVE_CRUNCH, MOVE_PSYCHIC_FANGS, MOVE_AQUA_JET
+    .moves = MOVE_WAVE_CRASH, MOVE_CRUNCH, MOVE_PSYCHIC_FANGS, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
@@ -6340,7 +6340,7 @@ static const struct TrainerMonItemCustomMoves sParty_Hailey[] = { // potential d
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-	.moves = MOVE_HYPER_FANG, MOVE_WATERFALL, MOVE_SUBSTITUTE, MOVE_AQUA_JET
+	.moves = MOVE_HYPER_FANG, MOVE_AQUA_FANG, MOVE_SUBSTITUTE, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
@@ -19856,7 +19856,7 @@ static const struct TrainerMonItemCustomMoves sParty_Dominik[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_LIQUIDATION, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_PSYCHIC_FANGS
+    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_PSYCHIC_FANGS
     }
 };
 
@@ -19939,7 +19939,7 @@ static const struct TrainerMonItemCustomMoves sParty_Luis[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_POISON_FANG, MOVE_CRUNCH, MOVE_AQUA_JET, MOVE_ICE_FANG
+    .moves = MOVE_POISON_FANG, MOVE_CRUNCH, MOVE_WAVE_CRASH, MOVE_ICE_FANG
     },
     {
     .lvl = 0,
@@ -20404,7 +20404,7 @@ static const struct TrainerMonItemCustomMoves sParty_LisaAndRay[] = { // Double
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_HEAD_SMASH, MOVE_LIQUIDATION, MOVE_DOUBLE_EDGE, MOVE_AQUA_JET
+    .moves = MOVE_HEAD_SMASH, MOVE_WAVE_CRASH, MOVE_DOUBLE_EDGE, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
@@ -21997,7 +21997,7 @@ static const struct TrainerMonItemCustomMoves sParty_Chris[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_CRUNCH, MOVE_AQUA_TAIL, MOVE_SUPERPOWER, MOVE_AQUA_JET
+    .moves = MOVE_CRUNCH, MOVE_AQUA_FANG, MOVE_SUPERPOWER, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
@@ -26244,7 +26244,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt18[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_LIQUIDATION, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_PSYCHIC_FANGS
+    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_PSYCHIC_FANGS
     },
     {
     .lvl = 0,
@@ -26316,7 +26316,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt29[] = { // with Grunt
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_LIQUIDATION, MOVE_ROCK_SLIDE, MOVE_SHELL_SMASH, MOVE_PROTECT
+    .moves = MOVE_AQUA_FANG, MOVE_ROCK_SLIDE, MOVE_SHELL_SMASH, MOVE_PROTECT
     },
     {
     .lvl = 0,
@@ -28229,7 +28229,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt3[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_AQUA_JET, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_AQUA_TAIL
+    .moves = MOVE_AQUA_JET, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_WAVE_CRASH
     },
     {
     .lvl = 0,
@@ -29992,7 +29992,7 @@ static const struct TrainerMonItemCustomMoves sParty_Alexa[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_WATERFALL, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_DRAGON_DANCE
+    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_DRAGON_DANCE
     },
     {
     .lvl = 0,
@@ -30976,7 +30976,7 @@ static const struct TrainerMonItemCustomMoves sParty_Gilbert[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_PSYCHIC_FANGS, MOVE_CRUNCH, MOVE_WATERFALL, MOVE_ICE_FANG
+    .moves = MOVE_PSYCHIC_FANGS, MOVE_CRUNCH, MOVE_AQUA_FANG, MOVE_ICE_FANG
     }
 };
 
@@ -32079,7 +32079,7 @@ static const struct TrainerMonItemCustomMoves sParty_Hannah[] = { // with Sylvia
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_LIQUIDATION, MOVE_PSYCHIC_FANGS, MOVE_POISON_FANG, MOVE_ICE_FANG
+    .moves = MOVE_AQUA_FANG, MOVE_PSYCHIC_FANGS, MOVE_POISON_FANG, MOVE_ICE_FANG
     },
     {
     .lvl = 0,
@@ -32868,7 +32868,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt6[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_CRUNCH, MOVE_AQUA_TAIL, MOVE_ICE_FANG, MOVE_SHELL_SMASH
+    .moves = MOVE_CRUNCH, MOVE_AQUA_FANG, MOVE_ICE_FANG, MOVE_SHELL_SMASH
     },
     {
     .lvl = 0,
@@ -33143,7 +33143,7 @@ static const struct TrainerMonItemCustomMoves sParty_Archie[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_LIQUIDATION, MOVE_CRUNCH, MOVE_PSYCHIC_FANGS, MOVE_CLOSE_COMBAT
+    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_PSYCHIC_FANGS, MOVE_CLOSE_COMBAT
     }
 };
 
@@ -33419,7 +33419,7 @@ static const struct TrainerMonItemCustomMoves sParty_Olivia[] = { // with Bethan
     .ivs = {31, 31, 31, 31, 31, 0},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BRAVE,
-    .moves = MOVE_STRENGTH, MOVE_LIQUIDATION, MOVE_CRUNCH, MOVE_AQUA_JET
+    .moves = MOVE_STRENGTH, MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_AQUA_JET
     },
     {
     .lvl = 0,
@@ -35056,7 +35056,7 @@ static const struct TrainerMonItemCustomMoves sParty_Vito[] = {
     .species = SPECIES_FLYGON, // Mega, Sand Setter & Sweeper, Q-Dance
     .heldItem = ITEM_FLYGONITE,
     .ability = 2, // ABILITY_TINTED_LENS, ABILITY_TINTED_LENS, ABILITY_TINTED_LENS},
-    // .innates = {ABILITY_DRAGONFLY, ABILITY_SAND_SONG, ABILITY_SAND_FORCE},
+    // .innates = {ABILITY_DRAGONFLY, ABILITY_SAND_SONG, ABILITY_SAND_RUSH},
     // Pre-Mega
     // ABILITY_SAND_RUSH, ABILITY_SAND_FORCE, ABILITY_SAND_STREAM},
     // .innates = {ABILITY_DRAGONFLY, ABILITY_SAND_SONG, ABILITY_EARTHBOUND},
@@ -35633,7 +35633,7 @@ static const struct TrainerMonItemCustomMoves sParty_Phillip[] = { // with Leona
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_LIQUIDATION, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_PSYCHIC_FANGS
+    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_ICE_FANG, MOVE_PSYCHIC_FANGS
     }
 };
 
@@ -35648,7 +35648,7 @@ static const struct TrainerMonItemCustomMoves sParty_Leonard[] = { // with Phill
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_LIQUIDATION, MOVE_ROCK_SLIDE, MOVE_SHELL_SMASH, MOVE_PROTECT
+    .moves = MOVE_AQUA_FANG, MOVE_ROCK_SLIDE, MOVE_SHELL_SMASH, MOVE_PROTECT
     },
     {
     .lvl = 0,
