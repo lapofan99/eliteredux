@@ -160,6 +160,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet::
 	case 4, LittlerootTown_BrendansHouse_2F_EventScript_Unova
 	case 5, LittlerootTown_BrendansHouse_2F_EventScript_Kalos
 	case 6, LittlerootTown_BrendansHouse_2F_EventScript_Alola
+	case 7, LittlerootTown_BrendansHouse_2F_EventScript_Galar
 	goto LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	end
 
@@ -217,6 +218,14 @@ LittlerootTown_BrendansHouse_2F_EventScript_Alola:
 	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 7
 	bufferstring 1, StarterRegionStringAlola
+	return
+
+LittlerootTown_BrendansHouse_2F_EventScript_Galar:
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_BrendansHouse_2F_EventScript_ChooseStarterSet
+	setvar VAR_STARTER_GEN, 8
+	bufferstring 1, StarterRegionStringGalar
 	return
 
 LittlerootTown_BrendansHouse_2F_Movement_BrendanEnters: @ 81F85BC

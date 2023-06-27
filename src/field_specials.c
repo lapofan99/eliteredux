@@ -2492,7 +2492,7 @@ void ShowScrollableMultichoice(void)
             break;
         case SCROLL_MULTI_REGION_NAMES:
             task->tMaxItemsOnScreen = MAX_SCROLL_MULTI_ON_SCREEN;
-            task->tNumItems = 7;
+            task->tNumItems = 8;
             task->tLeft = 22;
             task->tTop = 1;
             task->tWidth = 12;
@@ -2916,7 +2916,7 @@ static const u8 *const sScrollableMultichoiceOptions[][MAX_SCROLL_MULTI_LENGTH] 
         gText_Unova,
         gText_Kalos,
         gText_Alola,
-        // gText_Galar,
+        gText_Galar,
     },
     [SCROLL_MULTI_FURFROU_TRIMS] = 
     {

@@ -235,6 +235,7 @@ LittlerootTown_MaysHouse_1F_EventScript_ChooseStarterSet::
 	case 4, LittlerootTown_MaysHouse_1F_EventScript_Unova
 	case 5, LittlerootTown_MaysHouse_1F_EventScript_Kalos
 	case 6, LittlerootTown_MaysHouse_1F_EventScript_Alola
+	case 7, LittlerootTown_MaysHouse_1F_EventScript_Galar
 	goto LittlerootTown_MaysHouse_1F_EventScript_ChooseStarterSet
 	end
 
@@ -292,6 +293,14 @@ LittlerootTown_MaysHouse_1F_EventScript_Alola::
 	goto_if_eq LittlerootTown_MaysHouse_1F_EventScript_ChooseStarterSet
 	setvar VAR_STARTER_GEN, 7
 	bufferstring 1, StarterRegionStringAlola
+	return
+
+LittlerootTown_MaysHouse_1F_EventScript_Galar::
+	msgbox RivalsHouse_1F_Text_SureAboutRegion, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LittlerootTown_MaysHouse_1F_EventScript_ChooseStarterSet
+	setvar VAR_STARTER_GEN, 8
+	bufferstring 1, StarterRegionStringGalar
 	return
 
 LittlerootTown_MaysHouse_1F_EventScript_PlayerFaceMay:: @ 81F8B2A
@@ -499,8 +508,7 @@ RivalsHouse_1F_Text_BrendanWhoAreYou: @ 81F90B4
 	.string "Oh, you should go check out the three\n"
 	.string "new Pokémon my dad just got.\p"
 	.string "They're very rare, and they're all\n"
-	.string "from the, uh…\p"
-	.string "Hmm. Which region was it again?$"
+	.string "from the, uh…$"
 
 RivalsHouse_1F_Text_BrendanSomeOtherTime:
 	.string "The {STR_VAR_2} region?\n"
@@ -532,6 +540,9 @@ StarterRegionStringKalos:
 
 StarterRegionStringAlola:
 	.string "Alola$"
+
+StarterRegionStringGalar:
+	.string "Galar$"
 
 RivalsHouse_1F_Text_SureAboutRegion::
 	.string "Are you sure about the region?$"
