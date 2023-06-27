@@ -267,7 +267,18 @@ static void HandleInputChooseAction(void)
         else
             gPlayerDpadHoldFrames = 0;
 
-        if (JOY_NEW(A_BUTTON))
+        
+        if (JOY_NEW(A_BUTTON) && 
+            gActionSelectionCursor[gActiveBattler] == 1 &&
+            gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        {
+            value = 2;
+            VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+            FreeAllWindowBuffers();
+            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, gBattlerPartyIndexes[1], CalculateEnemyPartyCount() - 1, CB2_SetUpReshowBattleScreenAfterMenu);
+        }
+        else if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
             TryHideLastUsedBall();
@@ -289,7 +300,7 @@ static void HandleInputChooseAction(void)
             }
             PlayerBufferExecCompleted();
         }
-        else if (JOY_NEW(L_BUTTON))
+        else if (JOY_NEW(L_BUTTON) && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
         {
             value = 2;
             VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
@@ -3492,6 +3503,7 @@ static void PlayerHandleChooseAction(void)
         ActionSelectionDestroyCursorAt(i);
 
     TryRestoreLastUsedBall();
+    //TryToAddEnemyInfoWindow();
     ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
     BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
     BattlePutTextOnWindow(gDisplayedStringBattle, 1);
