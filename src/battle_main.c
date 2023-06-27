@@ -2213,27 +2213,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 // Sets Pokemon Nature
                 SetMonData(&party[i], MON_DATA_NATURE, &partyData[i].nature);
 
-                #ifdef DEBUG_BUILD
-                if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                    MgbaOpen();
-
-                    if(GetMonData(&party[i], MON_DATA_HELD_ITEM, 0) != ITEM_NONE)
-                        MgbaPrintf(MGBA_LOG_WARN, "WARNING THE POKEMON %d HAS AN ITEM BEFORE WE GAVE IT ONE!, it has the item ID:%d", i, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
-                }
-                #endif
-
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
                 #ifdef DEBUG_BUILD
-                if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                    if(GetMonData(&party[i], MON_DATA_HELD_ITEM, 0) == ITEM_NONE)
-                        MgbaPrintf(MGBA_LOG_WARN, "WARNING THE POKEMON %d HAS NO ITEM!, it should have the item with the ID:%d", i, partyData[i].heldItem);
-                    else if(GetMonData(&party[i], MON_DATA_HELD_ITEM, 0) != partyData[i].heldItem)
-                        MgbaPrintf(MGBA_LOG_WARN, "WARNING THE POKEMON %d HAS A DIFFERENT ITEM!, it should have the item with the ID:%d but has the item with the ID: %d instead", i, partyData[i].heldItem, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
-                    else
-                        MgbaPrintf(MGBA_LOG_WARN, "Pokemon %d Item has the ID:%d", i, GetMonData(&party[i], MON_DATA_HELD_ITEM, 0));
-                }
-                
                 if(FlagGet(FLAG_SYS_AUTOWIN))
                     SetTrainerFlag(trainerNum);
                 #endif
