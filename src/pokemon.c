@@ -8912,17 +8912,17 @@ bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level){
 	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
         switch(i){
             case 0:
-                if(gBaseStats[species].innates[i] == ability && level >= INNATE_1_LEVEL){
+                if(gBaseStats[species].innates[i] == ability && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE)){
                     return TRUE;
                 }
             break;
             case 1:
-                if(gBaseStats[species].innates[i] == ability && level >= INNATE_2_LEVEL){
+                if(gBaseStats[species].innates[i] == ability && (level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE)){
                     return TRUE;
                 }
             break;
             case 2:
-                if(gBaseStats[species].innates[i] == ability && level >= INNATE_3_LEVEL){
+                if(gBaseStats[species].innates[i] == ability && (level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE)){
                     return TRUE;
                 }
             break;
