@@ -6895,6 +6895,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+              && move != MOVE_PAIN_SPLIT
               && TARGET_TURN_DAMAGED)
             {
                 BattleScriptPushCursor();
@@ -7276,6 +7277,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+              && move != MOVE_PAIN_SPLIT
               && TARGET_TURN_DAMAGED)
             {
                 gBattleScripting.abilityPopupOverwrite = ABILITY_SOUL_LINKER;
