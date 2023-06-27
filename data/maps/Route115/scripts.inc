@@ -154,67 +154,74 @@ Route115_Text_MeteorFallsSign: @ 81F2BE3
 Route115_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route115_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_TIMOTHY_1
-	goto_if 1, Route115_EventScript_LegendaryNPC_8
-Route115_EventScript_LegendaryNPC_6:
-	msgbox Route115_EventScript_LegendaryNPC_Text_2
+	msgbox Route115_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route115_EventScript_LegendaryNPC_2
+	msgbox Route115_EventScript_LegendaryNPC_Text_4, MSGBOX_NPC
 Route115_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route115_EventScript_LegendaryNPC_2:
-	msgbox Route115_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route115_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_TIMOTHY_1
+	goto_if 1, Route115_EventScript_LegendaryNPC_11
+Route115_EventScript_LegendaryNPC_9:
+	msgbox Route115_EventScript_LegendaryNPC_Text_3
 	goto Route115_EventScript_LegendaryNPC_1
 
 Route115_EventScript_LegendaryNPC_5:
 	msgbox Route115_EventScript_LegendaryNPC_Text_1
 	goto Route115_EventScript_LegendaryNPC_1
 
-Route115_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_NOB_1
-	goto_if 1, Route115_EventScript_LegendaryNPC_12
-	goto Route115_EventScript_LegendaryNPC_6
-
 Route115_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_KOICHI
-	goto_if 1, Route115_EventScript_LegendaryNPC_7
-	goto Route115_EventScript_LegendaryNPC_6
+	msgbox Route115_EventScript_LegendaryNPC_Text_2
+	goto Route115_EventScript_LegendaryNPC_1
+
+Route115_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_NOB_1
+	goto_if 1, Route115_EventScript_LegendaryNPC_15
+	goto Route115_EventScript_LegendaryNPC_9
 
 Route115_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_HECTOR
-	goto_if 1, Route115_EventScript_LegendaryNPC_16
-	goto Route115_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_KOICHI
+	goto_if 1, Route115_EventScript_LegendaryNPC_10
+	goto Route115_EventScript_LegendaryNPC_9
 
-Route115_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_CYNDY_1
-	goto_if 1, Route115_EventScript_LegendaryNPC_11
-	goto Route115_EventScript_LegendaryNPC_6
+Route115_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_HECTOR
+	goto_if 1, Route115_EventScript_LegendaryNPC_19
+	goto Route115_EventScript_LegendaryNPC_9
 
 Route115_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_JAIDEN
-	goto_if 1, Route115_EventScript_LegendaryNPC_20
-	goto Route115_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_CYNDY_1
+	goto_if 1, Route115_EventScript_LegendaryNPC_14
+	goto Route115_EventScript_LegendaryNPC_9
 
-Route115_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_KYRA
-	goto_if 1, Route115_EventScript_LegendaryNPC_15
-	goto Route115_EventScript_LegendaryNPC_6
+Route115_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_JAIDEN
+	goto_if 1, Route115_EventScript_LegendaryNPC_23
+	goto Route115_EventScript_LegendaryNPC_9
 
 Route115_EventScript_LegendaryNPC_19:
-	checktrainerflag TRAINER_HELENE
-	goto_if 1, Route115_EventScript_LegendaryNPC_23
-	goto Route115_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_KYRA
+	goto_if 1, Route115_EventScript_LegendaryNPC_18
+	goto Route115_EventScript_LegendaryNPC_9
 
-Route115_EventScript_LegendaryNPC_20:
-	checktrainerflag TRAINER_ALIX
-	goto_if 1, Route115_EventScript_LegendaryNPC_19
-	goto Route115_EventScript_LegendaryNPC_6
+Route115_EventScript_LegendaryNPC_22:
+	checktrainerflag TRAINER_HELENE
+	goto_if 1, Route115_EventScript_LegendaryNPC_26
+	goto Route115_EventScript_LegendaryNPC_9
 
 Route115_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_ALIX
+	goto_if 1, Route115_EventScript_LegendaryNPC_22
+	goto Route115_EventScript_LegendaryNPC_9
+
+Route115_EventScript_LegendaryNPC_26:
 	checktrainerflag TRAINER_MARLENE
-	goto_if 1, Route115_EventScript_LegendaryNPC_5
-	goto Route115_EventScript_LegendaryNPC_6
+	goto_if 1, Route115_EventScript_LegendaryNPC_8
+	goto Route115_EventScript_LegendaryNPC_9
 
 
 Route115_EventScript_Gen8_NPC::
@@ -283,6 +290,13 @@ Route115_EventScript_Gen8_NPC_20:
 
 
 Route115_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: Understanding. Sentiment.\n"
+	.string "Resolve. I sing about the blessings\l"
+	.string "bestowed upon us by the Lake\l"
+	.string "Guardians for those who are interested\l"
+	.string "in listening.$"
+
+Route115_EventScript_LegendaryNPC_Text_1:
 	.string "Knowledge. Emotion. Willpower. The\n"
 	.string "slumbering Lake Guardians await a\l"
 	.string "chosen one who can fathom their\l"
@@ -292,13 +306,13 @@ Route115_EventScript_LegendaryNPC_Text_0:
 	.string "their call, young trainer, and return to\l"
 	.string "me.$"
 
-Route115_EventScript_LegendaryNPC_Text_1:
+Route115_EventScript_LegendaryNPC_Text_2:
 	.string "Insight. Zeal. Perseverance. These\n"
 	.string "virtues burn within you. The Guardians\l"
 	.string "are ready to meet you: use your DexNav\l"
 	.string "to discover their location.$"
 
-Route115_EventScript_LegendaryNPC_Text_2:
+Route115_EventScript_LegendaryNPC_Text_3:
 	.string "Wisdom. Passion. Determination. Your\n"
 	.string "control over the crevaces of our\l"
 	.string "psyche is exceptional, but not\l"
@@ -306,9 +320,13 @@ Route115_EventScript_LegendaryNPC_Text_2:
 	.string "opposition, and the Guardian trio will\l"
 	.string "rise again.$"
 
+Route115_EventScript_LegendaryNPC_Text_4:
+	.string "Malevolence. Desolation. Betrayal.\n"
+	.string "Shame on you for refusing the\l"
+	.string "Guardian's gifts!$"
+
 Route115_EventScript_Gen8_NPC_Text_0:
-	.string "IT IS FINALLY DONE. THANKS BITER\n"
-	.string "FRIEND!$"
+	.string "IT IS FINALLY DONE. THANKS FRIEND!$"
 
 Route115_EventScript_Gen8_NPC_Text_1:
 	.string "{PLAYER} got a {COLOR BLUE}Dracovish{COLOR DARK_GRAY} as a gift\n"

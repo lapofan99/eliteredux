@@ -156,8 +156,10 @@ Route115_Text_MeteorFallsSign: @ 81F2BE3
 script Route115_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("Knowledge. Emotion. Willpower. The slumbering Lake Guardians await a chosen one who can fathom their depths. It is through understanding their purpose that you shall become the conduit of their might. Embrace their call, young trainer, and return to me."))
+	msgbox(format("Sage: Understanding. Sentiment. Resolve. I sing about the blessings bestowed upon us by the Lake Guardians for those who are interested in listening."), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+			msgbox(format("Knowledge. Emotion. Willpower. The slumbering Lake Guardians await a chosen one who can fathom their depths. It is through understanding their purpose that you shall become the conduit of their might. Embrace their call, young trainer, and return to me."))
 	}
 	else{
 		if(defeated(TRAINER_TIMOTHY_1) &&
@@ -170,11 +172,15 @@ script Route115_EventScript_LegendaryNPC{
 		   defeated(TRAINER_ALIX)  &&
 		   defeated(TRAINER_HELENE)  &&
 		   defeated(TRAINER_MARLENE)){
-			msgbox(format("Insight. Zeal. Perseverance. These virtues burn within you. The Guardians are ready to meet you: use your DexNav to discover their location."))
-		}
+				msgbox(format("Insight. Zeal. Perseverance. These virtues burn within you. The Guardians are ready to meet you: use your DexNav to discover their location."))
+			}
 		else{
 			msgbox(format("Wisdom. Passion. Determination. Your control over the crevaces of our psyche is exceptional, but not universal. Clean this route from any opposition, and the Guardian trio will rise again."))
 		}
+	}
+	}
+	else{
+		msgbox(format("Malevolence. Desolation. Betrayal. Shame on you for refusing the Guardian's gifts!"), MSGBOX_NPC)
 	}
     release
     end
@@ -194,7 +200,7 @@ script Route115_EventScript_Gen8_NPC{
 		   defeated(TRAINER_HELENE)  &&
 		   defeated(TRAINER_MARLENE)){
 		// when you defeat every trainer
-		msgbox(format("IT IS FINALLY DONE. THANKS BITER FRIEND!"))
+		msgbox(format("IT IS FINALLY DONE. THANKS FRIEND!"))
 		givemon(SPECIES_DRACOVISH, 50, ITEM_NONE)
 		playfanfare(MUS_OBTAIN_ITEM)
 		message(format("{PLAYER} got a {COLOR BLUE}Dracovish{COLOR DARK_GRAY} as a gift for defeating every trainer here!"))

@@ -206,8 +206,10 @@ Route114_Text_LanettesHouse: @ 81F2910
 script Route114_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("By talking to me, I assume you want confirmation on the fact that legendary Pokémon roam this route.\p"
+	msgbox(format("Sage: Are you one of those trainers trying to become champion?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("I assume you want confirmation on the fact that legendary Pokémon roam this route.\p"
 		"Rest assured: they do. The Legendary beastly trio of Raikou, Suicune and Entei\p"
 		"have chosen these wind-swept lands as their lair.\p"
 		"Should you continue to display such promise, the privilege of capturing these majestic creatures may fall upon you.\p"
@@ -226,11 +228,15 @@ script Route114_EventScript_LegendaryNPC{
 		   defeated(TRAINER_ANGELINA)  &&
 		   defeated(TRAINER_CHARLOTTE)  &&
 		   defeated(TRAINER_KAI)){
-			msgbox(format("Ah, at last, we meet again. Your prowess in battle has been recognized by many, including the Beasts. Walk this path with your DexNav, and their greatness shall be revealed to you."))
-		}
+				msgbox(format("At last, we meet again. Your prowess in battle has been recognized by many, including the Beasts. Walk this path with your DexNav, and their greatness shall be revealed to you."))
+			}
 		else{
 			msgbox(format("Ah, an interesting development indeed. Your capabilities have surpassed my initial expectations. While your journey has not yet reached its climax, you have shown remarkable potential. Your destiny is calling: finish these last few battles to finally greet the Beasts."))
+			}
 		}
+	}
+	else{
+		msgbox(format("Then why are we even talking?"), MSGBOX_NPC)
 	}
     release
     end
