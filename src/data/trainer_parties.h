@@ -35759,6 +35759,78 @@ static const struct TrainerMonItemCustomMoves sParty_Sidney[] = { // Marriland P
     }
 };
 
+static const struct TrainerMonItemCustomMoves sParty_SidneyInsane[] = { // Marriland P1qygbqksxC3zhg3TC2Wm
+    {
+    .lvl = 3,
+    .species = SPECIES_MANDIBUZZ, // Sidney, Lead, Def Wall, Air Blower
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_BIG_PECKS, ABILITY_GIANT_WINGS, ABILITY_AIR_BLOWER},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_SCAVENGER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_FOUL_PLAY, MOVE_TAUNT, MOVE_ROOST, MOVE_U_TURN
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_DARKRAI, // Sidney, Sash, Dark Aura, Nasty Plot
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 2, // ABILITY_SOUL_EATER, ABILITY_BAD_DREAMS, ABILITY_DARK_AURA},
+    // .innates = {ABILITY_LEVITATE, ABILITY_PHANTOM, ABILITY_DREAMCATCHER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_DARK_VOID, MOVE_DARK_PULSE, MOVE_MOONGEIST_BEAM, MOVE_NASTY_PLOT
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_YVELTAL, // Sidney
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_OPPORTUNIST, ABILITY_BAD_LUCK, ABILITY_SCARE},
+    // .innates = {ABILITY_DARK_AURA, ABILITY_AIR_BLOWER, ABILITY_GIANT_WINGS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_HASTY,
+    .moves = MOVE_SUCKER_PUNCH, MOVE_OBLIVION_WING, MOVE_DARK_PULSE, MOVE_ROOST
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_SABLEYE, // Sash, Soul Linker, SpDef Wall
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_HYPNOTIST, ABILITY_SOUL_LINKER, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_ANALYTIC, ABILITY_WONDER_SKIN, ABILITY_NOCTURNAL},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_CONFUSE_RAY, MOVE_RECOVER, MOVE_WILL_O_WISP, MOVE_TAUNT
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_GRENINJA_BATTLE_BOND, // Sidney, Ash, Orb
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_BATTLE_BOND, ABILITY_BATTLE_BOND, ABILITY_BATTLE_BOND},
+    // .innates = {ABILITY_TORRENT, ABILITY_SKILL_LINK, ABILITY_FATAL_PRECISION},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_WATER_SHURIKEN, MOVE_DARK_PULSE, MOVE_GRASS_KNOT, MOVE_ICE_BEAM
+    },
+    {
+    .lvl = 5,
+    .species = SPECIES_GYARADOS, // Mega, Sidney, DD
+    .heldItem = ITEM_GYARADOSITE,
+    .ability = 0, // ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE},
+    // .innates = {ABILITY_MOLD_BREAKER, ABILITY_MOXIE, ABILITY_LEVITATE},
+    // Pre-Mega
+    // ABILITY_INTIMIDATE, ABILITY_AERILATE, ABILITY_OVERWHELM},
+    // .innates = {ABILITY_SEA_GUARDIAN, ABILITY_BEAST_BOOST, ABILITY_LEVITATE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_AQUA_TAIL, MOVE_WICKED_BLOW, MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE
+    }
+};
+
 static const struct TrainerMonItemCustomMoves sParty_Phoebe[] = {
     {
     .lvl = 3,
