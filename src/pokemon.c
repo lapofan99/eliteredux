@@ -8906,30 +8906,47 @@ u16 getRandomSpecies(void)
 	return species;
 }
 
-bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level){
+bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality){
 	u8 i;
+    u16 innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
+    u16 innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
+    u16 innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
 	
-	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
-        switch(i){
-            case 0:
-                if(gBaseStats[species].innates[i] == ability && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE)){
-                    return TRUE;
-                }
-            break;
-            case 1:
-                if(gBaseStats[species].innates[i] == ability && (level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE)){
-                    return TRUE;
-                }
-            break;
-            case 2:
-                if(gBaseStats[species].innates[i] == ability && (level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE)){
-                    return TRUE;
-                }
-            break;
-        }
-	}
-	
-	return FALSE;
+    if(innate1 == ability && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+        return TRUE;
+    else if(innate2 == ability && (level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+        return TRUE;
+    else if(innate3 == ability && (level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+        return TRUE;
+	else
+	    return FALSE;
+}
+
+u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
+    if(FlagGet(FLAG_SYS_INNATE_RANDOMIZED_MODE) && innate != ABILITY_NONE){ 
+        //Only Randomize if you have the Randomized Mode Enabled
+        u16 randomizedInnate = (innate + species + personality) % ABILITIES_COUNT;
+        return randomizedInnate;
+    }
+    else
+        return innate;
+    
+}
+
+bool8 MonHasInnate(struct Pokemon *mon, u16 ability){
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+    u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+
+    return SpeciesHasInnate(species, ability, level, personality);
+}
+
+bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability){
+    u16 species = GetBoxMonData(boxmon, MON_DATA_SPECIES, NULL);
+    u32 personality = GetBoxMonData(boxmon, MON_DATA_PERSONALITY, NULL);
+    u8 level = GetBoxMonData(boxmon, MON_DATA_LEVEL, NULL);
+
+    return SpeciesHasInnate(species, ability, level, personality);
 }
 
 u8 GetSpeciesInnateNum(u16 species, u16 ability){

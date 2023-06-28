@@ -575,7 +575,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
 
-        if(gBattleMoves[move].flags & FLAG_SOUND && (AI_DATA->atkAbility == ABILITY_SAND_SONG || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_SAND_SONG, gBattleMons[battlerAtk].level)))
+        if(gBattleMoves[move].flags & FLAG_SOUND && (AI_DATA->atkAbility == ABILITY_SAND_SONG || BattlerHasInnate(battlerAtk, ABILITY_SAND_SONG)))
         {
             if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) || (AI_DATA->defAbility == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE)))
                 RETURN_SCORE_MINUS(20);
@@ -4032,7 +4032,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case MOVE_KINGS_SHIELD:
             #if (defined SPECIES_AEGISLASH && defined SPECIES_AEGISLASH_BLADE)
-            if ((AI_DATA->atkAbility == ABILITY_STANCE_CHANGE || SpeciesHasInnate(gBattleMons[battlerAtk].species, ABILITY_STANCE_CHANGE, gBattleMons[battlerAtk].level))//Special logic for Aegislash
+            if ((AI_DATA->atkAbility == ABILITY_STANCE_CHANGE || BattlerHasInnate(battlerAtk, ABILITY_STANCE_CHANGE))//Special logic for Aegislash
               && AI_DATA->atkSpecies == SPECIES_AEGISLASH_BLADE
               && !IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility))
             {
@@ -5445,5 +5445,5 @@ static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 }
 
 bool8 BattlerHasInnate(u8 battlerId, u16 ability){
-	return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level);
+	return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality);
 }

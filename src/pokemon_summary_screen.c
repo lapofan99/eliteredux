@@ -4121,9 +4121,13 @@ static void BufferMonPokemonAbilityAndInnates(void)
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
 	u16 species = sum->species;
+    u32 personality = sum->pid;
 	u8 level = sum->level;
     const u8 *text;
 	u8 x, y, i;
+    u16 innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
+    u16 innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
+    u16 innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
 
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sMemoNatureTextColor);
@@ -4150,17 +4154,17 @@ static void BufferMonPokemonAbilityAndInnates(void)
 	for(i = 0; i < NUM_INNATE_PER_SPECIES; i++){
         switch(i){
             case 0:
-                if(gBaseStats[species].innates[i] != ABILITY_NONE){
+                if(innate1 != ABILITY_NONE){
                     y += 32;
                     if(level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
                         // Name ---------------------------------------------------------------------------------------------------
-                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[gBaseStats[species].innates[i]]);
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[innate1]);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
                         // Description ---------------------------------------------------------------------------------------------------
-                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[gBaseStats[species].innates[i]]);
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[innate1]);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
                     }
                     else{
@@ -4172,17 +4176,17 @@ static void BufferMonPokemonAbilityAndInnates(void)
                 }
             break;
             case 1:
-                if(gBaseStats[species].innates[i] != ABILITY_NONE){
+                if(innate2 != ABILITY_NONE){
                     y += 32;
                     if(level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
                         // Name ---------------------------------------------------------------------------------------------------
-                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[gBaseStats[species].innates[i]]);
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[innate2]);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
                         // Description ---------------------------------------------------------------------------------------------------
-                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[gBaseStats[species].innates[i]]);
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[innate2]);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
                     }
                     else{
@@ -4194,17 +4198,17 @@ static void BufferMonPokemonAbilityAndInnates(void)
                 }
             break;
             case 2:
-                if(gBaseStats[species].innates[i] != ABILITY_NONE){
+                if(innate3 != ABILITY_NONE){
                     y += 32;
                     if(level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
                         // Name ---------------------------------------------------------------------------------------------------
-                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[gBaseStats[species].innates[i]]);
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[innate3]);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
                         // Description ---------------------------------------------------------------------------------------------------
-                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[gBaseStats[species].innates[i]]);
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[innate3]);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
                     }
                     else{

@@ -337,7 +337,7 @@
 #define FLAG_RECEIVED_MYSTIC_TICKET          0x13B
 #define FLAG_RECEIVED_OLD_SEA_MAP            0x13C 
 #define FLAG_RECEIVED_ASH_GRENINJA           0x13D
-#define FLAG_RECEIVED_ZYGARDE_10               0x13E
+#define FLAG_RECEIVED_ZYGARDE_10             0x13E
 #define FLAG_UNUSED_MYSTERY_GIFT_0x13F       0x13F
 #define FLAG_UNUSED_MYSTERY_GIFT_0x140       0x140
 #define FLAG_UNUSED_MYSTERY_GIFT_0x141       0x141
@@ -703,14 +703,14 @@
 #define FLAG_SYS_NO_CATCHING         0x298 //DEBUG
 #define FLAG_SYS_PC_FROM_DEBUG_MENU  0x299 //DEBUG
 
-#define FLAG_SYS_MOVE_INFO           0x29A // Battle Interface
-#define FLAG_IS_DAYNIGHT_INVERTED    0x29B // Ported from ROWE
-#define FLAG_SYS_AUTOWIN             0x29C //DEBUG
-#define FLAG_SYS_MGBA_PRINT          0x29D //DEBUG
-#define FLAG_SYS_DISABLE_AUTOHEAL    0x29E // Used in some battles
-#define FLAG_SYS_DISABLE_DAMAGE_DONE 0x29F
-#define FLAG_SYS_LOCKED_MODE         0x2A0 // Elite Four only
-#define FLAG_UNUSED_0x2A1  0x2A1 // Unused Flag
+#define FLAG_SYS_MOVE_INFO              0x29A // Battle Interface
+#define FLAG_IS_DAYNIGHT_INVERTED       0x29B // Ported from ROWE
+#define FLAG_SYS_AUTOWIN                0x29C //DEBUG
+#define FLAG_SYS_MGBA_PRINT             0x29D //DEBUG
+#define FLAG_SYS_DISABLE_AUTOHEAL       0x29E // Used in some battles
+#define FLAG_SYS_DISABLE_DAMAGE_DONE    0x29F
+#define FLAG_SYS_LOCKED_MODE            0x2A0 // Elite Four only
+#define FLAG_SYS_INNATE_RANDOMIZED_MODE 0x2A1
 #define FLAG_UNUSED_0x2A2  0x2A2 // Unused Flag
 #define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag
 #define FLAG_UNUSED_0x2A4  0x2A4 // Unused Flag
