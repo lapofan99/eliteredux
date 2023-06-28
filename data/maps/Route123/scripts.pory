@@ -196,7 +196,9 @@ Route123_Text_BerryMastersHouse: @ 81F6557
 script Route123_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
+	msgbox(format("Sage: three Dragons of legend tread carefully around us. Want to learn more about who they are?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("The armonious imbalance of the Tao dragons can be felt all the way from here.\p"
 		"They embody the paradoxical nature of our world, one where the fiery, flaming passion of Reshiram can coexist with the methodical, unburdened rhythm of Zekrom.\p"
 		"They dance in eternal opposition, and yet, they somehow managed to find a point of equilibrium.\p"
@@ -224,6 +226,10 @@ script Route123_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("Seeker of balance, your efforts have been noticed. The Tao dragons have taken notice of your actions, but would like one final confirmation. Defeat every trainer on the route to meet them!"))
 		}
+	}
+	}
+	else{
+		msgbox(format("Well then, I suppose we won't get along."))
 	}
     release
     end

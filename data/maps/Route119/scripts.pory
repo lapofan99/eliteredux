@@ -626,14 +626,19 @@ Route119_Text_TrainerTipsDecoration: @ 81F5339
 script Route119_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
+	msgbox(format("Sage: I know a story... the story of how we, as humans, became humane. Interested in hearing it?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("It is said that, when Arceus created mankind, the result was initally less than desirable.\p"
-		"The humans were just hollow husks, bodies without mind and soul. They needed a vital spirit:\p"
-		"so Arceus brought forth Azelf, Mesprit and Uxie. The three gifted them with conscience, intelligence and emotion. But that wasn't enough.\p"
-		"Humans lacked what made them, well, humans: empathy and willpower. So, he created Victini and Shaymin. Victini, envoy of success,\p"
-		"embued humans with an indomitable spirit. Shaymin, envoy of gratitude, made them look after one another.\p"
+		"The humans were just hollow husks, bodies without mind and soul. They needed vigor and spirit.\p"
+		"Arceus brought forth Azelf, Mesprit and Uxie for this task. The three gifted these husks with conscience, intelligence and emotion. But that wasn't enough.\p"
+		"The newly improved humans only looked after themselves, and were content with surviving, rather than living. This wouldn't have lasted for long.\p"
+		"They lacked humanity, empathy and willpower. And so, Arceus made a decision: he called Victini and Shaymin to impart a profound transformation upon humanity.\p"
+		"They were still young Pokémon, but he trusted them with this task. And so, they got to work.\p"
+		"Victini, envoy of success, embued humans with an indomitable spirit. Shaymin, envoy of gratitude, made them look after one another.\p"
 		"Together, they gave us the tools to work toward common goals and objectives, allowing civilization to finally prosper.\p"
-		"I now look forward to you: embrace Victini and Shaymin's call! Rekindle your love for victory, be grateful towards your traveling companions, and return when you're finally champion!"))
+		"And so, the legacy of Victini and Shaymin endured, forever etched in the hearts of humanity. Their benevolent presence ensured that the spark of compassion continued to shine brightly, lighting the way for future generations.\p"
+		"I now look forward to you: rekindle your love for victory, be grateful towards your traveling companions, and return when you're finally champion!"))
 	}
 	else{
 		if(defeated(TRAINER_BRENT)  &&
@@ -660,6 +665,10 @@ script Route119_EventScript_LegendaryNPC{
 			"However, it won't be easy convincing him. There's a lot of trainers around here, but if you best them... he might give you a chance."))
 		}
 	}
+	}
+	else{
+		msgbox(format("Fair enough."))
+	}
     release
     end
 }
@@ -682,7 +691,7 @@ script Route119_EventScript_Gen8_NPC{
 	}
 	else{
 		// before defeating every trainer here
-		msgbox(format("So I was just hiking here, but some guys came up to me and asked to play hide and seek. I was like 'man, I really wanna go on with my hike, I don't have time for this' but he insisted! And now they're all gone. Can you help me find them? I'll give you something special in return!"))
+		msgbox(format("So I was just hiking here, but some guys came up to me and asked to play hide and seek. I was like 'man, I really wanna go on with my hike, I don't have time for this' but they insisted, so I accepted aaaand... now I gotta find them. Please, can you help me find them? I'll give you something special in return!"))
 	}
     release
     end

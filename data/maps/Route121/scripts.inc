@@ -245,70 +245,83 @@ Route121_Nurse_Text_GoodLuck:
 Route121_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route121_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_VANESSA
-	goto_if 1, Route121_EventScript_LegendaryNPC_8
-Route121_EventScript_LegendaryNPC_6:
-	msgbox Route121_EventScript_LegendaryNPC_Text_2
+	msgbox Route121_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route121_EventScript_LegendaryNPC_2
+	msgbox Route121_EventScript_LegendaryNPC_Text_4
 Route121_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route121_EventScript_LegendaryNPC_2:
-	msgbox Route121_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route121_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_VANESSA
+	goto_if 1, Route121_EventScript_LegendaryNPC_11
+Route121_EventScript_LegendaryNPC_9:
+	msgbox Route121_EventScript_LegendaryNPC_Text_3
 	goto Route121_EventScript_LegendaryNPC_1
 
 Route121_EventScript_LegendaryNPC_5:
 	msgbox Route121_EventScript_LegendaryNPC_Text_1
 	goto Route121_EventScript_LegendaryNPC_1
 
-Route121_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_TAMMY
-	goto_if 1, Route121_EventScript_LegendaryNPC_12
-	goto Route121_EventScript_LegendaryNPC_6
-
 Route121_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_WALTER_1
-	goto_if 1, Route121_EventScript_LegendaryNPC_7
-	goto Route121_EventScript_LegendaryNPC_6
+	msgbox Route121_EventScript_LegendaryNPC_Text_2
+	goto Route121_EventScript_LegendaryNPC_1
+
+Route121_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_TAMMY
+	goto_if 1, Route121_EventScript_LegendaryNPC_15
+	goto Route121_EventScript_LegendaryNPC_9
 
 Route121_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_JESSICA_1
-	goto_if 1, Route121_EventScript_LegendaryNPC_16
-	goto Route121_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_WALTER_1
+	goto_if 1, Route121_EventScript_LegendaryNPC_10
+	goto Route121_EventScript_LegendaryNPC_9
 
-Route121_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_KATE_AND_JOY
-	goto_if 1, Route121_EventScript_LegendaryNPC_11
-	goto Route121_EventScript_LegendaryNPC_6
+Route121_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_JESSICA_1
+	goto_if 1, Route121_EventScript_LegendaryNPC_19
+	goto Route121_EventScript_LegendaryNPC_9
 
 Route121_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_MYLES
-	goto_if 1, Route121_EventScript_LegendaryNPC_20
-	goto Route121_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_KATE_AND_JOY
+	goto_if 1, Route121_EventScript_LegendaryNPC_14
+	goto Route121_EventScript_LegendaryNPC_9
 
-Route121_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_CALE
-	goto_if 1, Route121_EventScript_LegendaryNPC_15
-	goto Route121_EventScript_LegendaryNPC_6
+Route121_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_MYLES
+	goto_if 1, Route121_EventScript_LegendaryNPC_23
+	goto Route121_EventScript_LegendaryNPC_9
 
 Route121_EventScript_LegendaryNPC_19:
-	checktrainerflag TRAINER_MARCEL
-	goto_if 1, Route121_EventScript_LegendaryNPC_23
-	goto Route121_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_CALE
+	goto_if 1, Route121_EventScript_LegendaryNPC_18
+	goto Route121_EventScript_LegendaryNPC_9
 
-Route121_EventScript_LegendaryNPC_20:
-	checktrainerflag TRAINER_PAT
-	goto_if 1, Route121_EventScript_LegendaryNPC_19
-	goto Route121_EventScript_LegendaryNPC_6
+Route121_EventScript_LegendaryNPC_22:
+	checktrainerflag TRAINER_MARCEL
+	goto_if 1, Route121_EventScript_LegendaryNPC_26
+	goto Route121_EventScript_LegendaryNPC_9
 
 Route121_EventScript_LegendaryNPC_23:
+	checktrainerflag TRAINER_PAT
+	goto_if 1, Route121_EventScript_LegendaryNPC_22
+	goto Route121_EventScript_LegendaryNPC_9
+
+Route121_EventScript_LegendaryNPC_26:
 	checktrainerflag TRAINER_CRISTIN_1
-	goto_if 1, Route121_EventScript_LegendaryNPC_5
-	goto Route121_EventScript_LegendaryNPC_6
+	goto_if 1, Route121_EventScript_LegendaryNPC_8
+	goto Route121_EventScript_LegendaryNPC_9
 
 
 Route121_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: Hear me now, fair wanderer, for I\n"
+	.string "bring forth a tale of valor and might,\p"
+	.string "Of three noble swords that shimmer in\n"
+	.string "justice's light.$"
+
+Route121_EventScript_LegendaryNPC_Text_1:
 	.string "In the realm where justice's light doth\n"
 	.string "shine,\p"
 	.string "Three swords emerged with valor strong\n"
@@ -342,7 +355,7 @@ Route121_EventScript_LegendaryNPC_Text_0:
 	.string "To seize the Swords of Justice, a quest\n"
 	.string "expressed.$"
 
-Route121_EventScript_LegendaryNPC_Text_1:
+Route121_EventScript_LegendaryNPC_Text_2:
 	.string "Triumphant now, your quest complete,\p"
 	.string "your efforts rewarded, the Swords now\n"
 	.string "near.\p"
@@ -350,10 +363,16 @@ Route121_EventScript_LegendaryNPC_Text_1:
 	.string "Victory's embrace, your heart holds\n"
 	.string "dear.$"
 
-Route121_EventScript_LegendaryNPC_Text_2:
+Route121_EventScript_LegendaryNPC_Text_3:
 	.string "You stand at the route's final bend,\p"
 	.string "For your journey is near completion,\n"
 	.string "victory in sight!\p"
 	.string "To catch the Swords of Justice, you\n"
 	.string "must transcend,\p"
 	.string "by triumphing over others with might!$"
+
+Route121_EventScript_LegendaryNPC_Text_4:
+	.string "Fair traveler, I see your heart seeks a\n"
+	.string "different path,\p"
+	.string "Yet do reconsider, this tale may kindle\n"
+	.string "a lasting aftermath.$"

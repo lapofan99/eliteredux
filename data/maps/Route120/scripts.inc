@@ -461,85 +461,97 @@ Route120_Text_RouteSign121: @ 81F5DE4
 Route120_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route120_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_COLIN
-	goto_if 1, Route120_EventScript_LegendaryNPC_8
-Route120_EventScript_LegendaryNPC_6:
-	msgbox Route120_EventScript_LegendaryNPC_Text_2
+	msgbox Route120_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route120_EventScript_LegendaryNPC_2
+	msgbox Route120_EventScript_LegendaryNPC_Text_4
 Route120_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route120_EventScript_LegendaryNPC_2:
-	msgbox Route120_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route120_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_COLIN
+	goto_if 1, Route120_EventScript_LegendaryNPC_11
+Route120_EventScript_LegendaryNPC_9:
+	msgbox Route120_EventScript_LegendaryNPC_Text_3
 	goto Route120_EventScript_LegendaryNPC_1
 
 Route120_EventScript_LegendaryNPC_5:
 	msgbox Route120_EventScript_LegendaryNPC_Text_1
 	goto Route120_EventScript_LegendaryNPC_1
 
-Route120_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_LORENZO
-	goto_if 1, Route120_EventScript_LegendaryNPC_12
-	goto Route120_EventScript_LegendaryNPC_6
-
 Route120_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_ROBERT_1
-	goto_if 1, Route120_EventScript_LegendaryNPC_7
-	goto Route120_EventScript_LegendaryNPC_6
+	msgbox Route120_EventScript_LegendaryNPC_Text_2
+	goto Route120_EventScript_LegendaryNPC_1
+
+Route120_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_LORENZO
+	goto_if 1, Route120_EventScript_LegendaryNPC_15
+	goto Route120_EventScript_LegendaryNPC_9
 
 Route120_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_JEFFREY_1
-	goto_if 1, Route120_EventScript_LegendaryNPC_16
-	goto Route120_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_ROBERT_1
+	goto_if 1, Route120_EventScript_LegendaryNPC_10
+	goto Route120_EventScript_LegendaryNPC_9
 
-Route120_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_JENNA
-	goto_if 1, Route120_EventScript_LegendaryNPC_11
-	goto Route120_EventScript_LegendaryNPC_6
+Route120_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_JEFFREY_1
+	goto_if 1, Route120_EventScript_LegendaryNPC_19
+	goto Route120_EventScript_LegendaryNPC_9
 
 Route120_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_CHIP
-	goto_if 1, Route120_EventScript_LegendaryNPC_20
-	goto Route120_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_JENNA
+	goto_if 1, Route120_EventScript_LegendaryNPC_14
+	goto Route120_EventScript_LegendaryNPC_9
 
-Route120_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_JENNIFER
-	goto_if 1, Route120_EventScript_LegendaryNPC_15
-	goto Route120_EventScript_LegendaryNPC_6
+Route120_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_CHIP
+	goto_if 1, Route120_EventScript_LegendaryNPC_23
+	goto Route120_EventScript_LegendaryNPC_9
 
 Route120_EventScript_LegendaryNPC_19:
-	checktrainerflag TRAINER_ANGELICA
-	goto_if 1, Route120_EventScript_LegendaryNPC_24
-	goto Route120_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_JENNIFER
+	goto_if 1, Route120_EventScript_LegendaryNPC_18
+	goto Route120_EventScript_LegendaryNPC_9
 
-Route120_EventScript_LegendaryNPC_20:
-	checktrainerflag TRAINER_CLARISSA
-	goto_if 1, Route120_EventScript_LegendaryNPC_19
-	goto Route120_EventScript_LegendaryNPC_6
+Route120_EventScript_LegendaryNPC_22:
+	checktrainerflag TRAINER_ANGELICA
+	goto_if 1, Route120_EventScript_LegendaryNPC_27
+	goto Route120_EventScript_LegendaryNPC_9
 
 Route120_EventScript_LegendaryNPC_23:
-	checktrainerflag TRAINER_RILEY
-	goto_if 1, Route120_EventScript_LegendaryNPC_28
-	goto Route120_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_CLARISSA
+	goto_if 1, Route120_EventScript_LegendaryNPC_22
+	goto Route120_EventScript_LegendaryNPC_9
 
-Route120_EventScript_LegendaryNPC_24:
-	checktrainerflag TRAINER_KEIGO
-	goto_if 1, Route120_EventScript_LegendaryNPC_23
-	goto Route120_EventScript_LegendaryNPC_6
+Route120_EventScript_LegendaryNPC_26:
+	checktrainerflag TRAINER_RILEY
+	goto_if 1, Route120_EventScript_LegendaryNPC_31
+	goto Route120_EventScript_LegendaryNPC_9
 
 Route120_EventScript_LegendaryNPC_27:
-	checktrainerflag TRAINER_CALLIE
-	goto_if 1, Route120_EventScript_LegendaryNPC_5
-	goto Route120_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_KEIGO
+	goto_if 1, Route120_EventScript_LegendaryNPC_26
+	goto Route120_EventScript_LegendaryNPC_9
 
-Route120_EventScript_LegendaryNPC_28:
+Route120_EventScript_LegendaryNPC_30:
+	checktrainerflag TRAINER_CALLIE
+	goto_if 1, Route120_EventScript_LegendaryNPC_8
+	goto Route120_EventScript_LegendaryNPC_9
+
+Route120_EventScript_LegendaryNPC_31:
 	checktrainerflag TRAINER_LEONEL
-	goto_if 1, Route120_EventScript_LegendaryNPC_27
-	goto Route120_EventScript_LegendaryNPC_6
+	goto_if 1, Route120_EventScript_LegendaryNPC_30
+	goto Route120_EventScript_LegendaryNPC_9
 
 
 Route120_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: I know a lot about this place,\n"
+	.string "more than you could imagine. Wanna hear\l"
+	.string "me talk about it?$"
+
+Route120_EventScript_LegendaryNPC_Text_1:
 	.string "It might not seem like it at first, but\n"
 	.string "you have entered the domain of the\l"
 	.string "Forces of Nature.\p"
@@ -559,16 +571,19 @@ Route120_EventScript_LegendaryNPC_Text_0:
 	.string "must first prove your worth by\l"
 	.string "becoming champion!$"
 
-Route120_EventScript_LegendaryNPC_Text_1:
+Route120_EventScript_LegendaryNPC_Text_2:
 	.string "Seek after the eye of the storm: the\n"
 	.string "Forces of Nature have deemed you\l"
 	.string "worthy of meeting them. Use your\l"
 	.string "DexNav to discover their location, and\l"
 	.string "get ready to face nature's wrath!$"
 
-Route120_EventScript_LegendaryNPC_Text_2:
+Route120_EventScript_LegendaryNPC_Text_3:
 	.string "I can sense it: the Forces of Nature\n"
 	.string "are awake and vigilant. They're almost\l"
 	.string "ready to come out and meet you. Defeat\l"
 	.string "the remaining trainers on this route to\l"
 	.string "meet them!$"
+
+Route120_EventScript_LegendaryNPC_Text_4:
+	.string "Oh...$"

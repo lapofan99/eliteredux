@@ -625,102 +625,109 @@ Route119_Text_TrainerTipsDecoration: @ 81F5339
 Route119_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route119_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_BRENT
-	goto_if 1, Route119_EventScript_LegendaryNPC_8
-Route119_EventScript_LegendaryNPC_6:
-	msgbox Route119_EventScript_LegendaryNPC_Text_2
+	msgbox Route119_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route119_EventScript_LegendaryNPC_2
+	msgbox Route119_EventScript_LegendaryNPC_Text_4
 Route119_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route119_EventScript_LegendaryNPC_2:
-	msgbox Route119_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route119_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_BRENT
+	goto_if 1, Route119_EventScript_LegendaryNPC_11
+Route119_EventScript_LegendaryNPC_9:
+	msgbox Route119_EventScript_LegendaryNPC_Text_3
 	goto Route119_EventScript_LegendaryNPC_1
 
 Route119_EventScript_LegendaryNPC_5:
 	msgbox Route119_EventScript_LegendaryNPC_Text_1
 	goto Route119_EventScript_LegendaryNPC_1
 
-Route119_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_TAYLOR
-	goto_if 1, Route119_EventScript_LegendaryNPC_12
-	goto Route119_EventScript_LegendaryNPC_6
-
 Route119_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_DONALD
-	goto_if 1, Route119_EventScript_LegendaryNPC_7
-	goto Route119_EventScript_LegendaryNPC_6
+	msgbox Route119_EventScript_LegendaryNPC_Text_2
+	goto Route119_EventScript_LegendaryNPC_1
+
+Route119_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_TAYLOR
+	goto_if 1, Route119_EventScript_LegendaryNPC_15
+	goto Route119_EventScript_LegendaryNPC_9
 
 Route119_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_GREG
-	goto_if 1, Route119_EventScript_LegendaryNPC_16
-	goto Route119_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_DONALD
+	goto_if 1, Route119_EventScript_LegendaryNPC_10
+	goto Route119_EventScript_LegendaryNPC_9
 
-Route119_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_DOUG
-	goto_if 1, Route119_EventScript_LegendaryNPC_11
-	goto Route119_EventScript_LegendaryNPC_6
+Route119_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_GREG
+	goto_if 1, Route119_EventScript_LegendaryNPC_19
+	goto Route119_EventScript_LegendaryNPC_9
 
 Route119_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_JACKSON_1
-	goto_if 1, Route119_EventScript_LegendaryNPC_20
-	goto Route119_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_DOUG
+	goto_if 1, Route119_EventScript_LegendaryNPC_14
+	goto Route119_EventScript_LegendaryNPC_9
 
-Route119_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_KENT
-	goto_if 1, Route119_EventScript_LegendaryNPC_15
-	goto Route119_EventScript_LegendaryNPC_6
+Route119_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_JACKSON_1
+	goto_if 1, Route119_EventScript_LegendaryNPC_23
+	goto Route119_EventScript_LegendaryNPC_9
 
 Route119_EventScript_LegendaryNPC_19:
-	checktrainerflag TRAINER_HUGH
-	goto_if 1, Route119_EventScript_LegendaryNPC_24
-	goto Route119_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_KENT
+	goto_if 1, Route119_EventScript_LegendaryNPC_18
+	goto Route119_EventScript_LegendaryNPC_9
 
-Route119_EventScript_LegendaryNPC_20:
-	checktrainerflag TRAINER_CATHERINE_1
-	goto_if 1, Route119_EventScript_LegendaryNPC_19
-	goto Route119_EventScript_LegendaryNPC_6
+Route119_EventScript_LegendaryNPC_22:
+	checktrainerflag TRAINER_HUGH
+	goto_if 1, Route119_EventScript_LegendaryNPC_27
+	goto Route119_EventScript_LegendaryNPC_9
 
 Route119_EventScript_LegendaryNPC_23:
-	checktrainerflag TRAINER_YASU
-	goto_if 1, Route119_EventScript_LegendaryNPC_28
-	goto Route119_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_CATHERINE_1
+	goto_if 1, Route119_EventScript_LegendaryNPC_22
+	goto Route119_EventScript_LegendaryNPC_9
 
-Route119_EventScript_LegendaryNPC_24:
-	checktrainerflag TRAINER_PHIL
-	goto_if 1, Route119_EventScript_LegendaryNPC_23
-	goto Route119_EventScript_LegendaryNPC_6
+Route119_EventScript_LegendaryNPC_26:
+	checktrainerflag TRAINER_YASU
+	goto_if 1, Route119_EventScript_LegendaryNPC_31
+	goto Route119_EventScript_LegendaryNPC_9
 
 Route119_EventScript_LegendaryNPC_27:
-	checktrainerflag TRAINER_HIDEO
-	goto_if 1, Route119_EventScript_LegendaryNPC_32
-	goto Route119_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_PHIL
+	goto_if 1, Route119_EventScript_LegendaryNPC_26
+	goto Route119_EventScript_LegendaryNPC_9
 
-Route119_EventScript_LegendaryNPC_28:
-	checktrainerflag TRAINER_TAKASHI
-	goto_if 1, Route119_EventScript_LegendaryNPC_27
-	goto Route119_EventScript_LegendaryNPC_6
+Route119_EventScript_LegendaryNPC_30:
+	checktrainerflag TRAINER_HIDEO
+	goto_if 1, Route119_EventScript_LegendaryNPC_35
+	goto Route119_EventScript_LegendaryNPC_9
 
 Route119_EventScript_LegendaryNPC_31:
-	checktrainerflag TRAINER_FABIAN
-	goto_if 1, Route119_EventScript_LegendaryNPC_36
-	goto Route119_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_TAKASHI
+	goto_if 1, Route119_EventScript_LegendaryNPC_30
+	goto Route119_EventScript_LegendaryNPC_9
 
-Route119_EventScript_LegendaryNPC_32:
-	checktrainerflag TRAINER_CHRIS
-	goto_if 1, Route119_EventScript_LegendaryNPC_31
-	goto Route119_EventScript_LegendaryNPC_6
+Route119_EventScript_LegendaryNPC_34:
+	checktrainerflag TRAINER_FABIAN
+	goto_if 1, Route119_EventScript_LegendaryNPC_39
+	goto Route119_EventScript_LegendaryNPC_9
 
 Route119_EventScript_LegendaryNPC_35:
-	checktrainerflag TRAINER_RACHEL
-	goto_if 1, Route119_EventScript_LegendaryNPC_5
-	goto Route119_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_CHRIS
+	goto_if 1, Route119_EventScript_LegendaryNPC_34
+	goto Route119_EventScript_LegendaryNPC_9
 
-Route119_EventScript_LegendaryNPC_36:
+Route119_EventScript_LegendaryNPC_38:
+	checktrainerflag TRAINER_RACHEL
+	goto_if 1, Route119_EventScript_LegendaryNPC_8
+	goto Route119_EventScript_LegendaryNPC_9
+
+Route119_EventScript_LegendaryNPC_39:
 	checktrainerflag TRAINER_DAYTON
-	goto_if 1, Route119_EventScript_LegendaryNPC_35
-	goto Route119_EventScript_LegendaryNPC_6
+	goto_if 1, Route119_EventScript_LegendaryNPC_38
+	goto Route119_EventScript_LegendaryNPC_9
 
 
 Route119_EventScript_Gen8_NPC::
@@ -769,34 +776,55 @@ Route119_EventScript_Gen8_NPC_12:
 
 
 Route119_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: I know a story... the story of how\n"
+	.string "we, as humans, became humane.\l"
+	.string "Interested in hearing it?$"
+
+Route119_EventScript_LegendaryNPC_Text_1:
 	.string "It is said that, when Arceus created\n"
 	.string "mankind, the result was initally less\l"
 	.string "than desirable.\p"
 	.string "The humans were just hollow husks,\n"
 	.string "bodies without mind and soul. They\l"
-	.string "needed a vital spirit:\p"
-	.string "so Arceus brought forth Azelf, Mesprit\n"
-	.string "and Uxie. The three gifted them with\l"
-	.string "conscience, intelligence and emotion.\l"
-	.string "But that wasn't enough.\p"
-	.string "Humans lacked what made them, well,\n"
-	.string "humans: empathy and willpower. So, he\l"
-	.string "created Victini and Shaymin. Victini,\l"
-	.string "envoy of success,\p"
-	.string "embued humans with an indomitable\n"
-	.string "spirit. Shaymin, envoy of gratitude,\l"
-	.string "made them look after one another.\p"
+	.string "needed vigor and spirit.\p"
+	.string "Arceus brought forth Azelf, Mesprit and\n"
+	.string "Uxie for this task. The three gifted\l"
+	.string "these husks with conscience,\l"
+	.string "intelligence and emotion. But that\l"
+	.string "wasn't enough.\p"
+	.string "The newly improved humans only looked\n"
+	.string "after themselves, and were content\l"
+	.string "with surviving, rather than living. This\l"
+	.string "wouldn't have lasted for long.\p"
+	.string "They lacked humanity, empathy and\n"
+	.string "willpower. And so, Arceus made a\l"
+	.string "decision: he called Victini and Shaymin\l"
+	.string "to impart a profound transformation\l"
+	.string "upon humanity.\p"
+	.string "They were still young Pokémon, but he\n"
+	.string "trusted them with this task. And so,\l"
+	.string "they got to work.\p"
+	.string "Victini, envoy of success, embued\n"
+	.string "humans with an indomitable spirit.\l"
+	.string "Shaymin, envoy of gratitude, made them\l"
+	.string "look after one another.\p"
 	.string "Together, they gave us the tools to\n"
 	.string "work toward common goals and\l"
 	.string "objectives, allowing civilization to\l"
 	.string "finally prosper.\p"
-	.string "I now look forward to you: embrace\n"
-	.string "Victini and Shaymin's call! Rekindle\l"
-	.string "your love for victory, be grateful\l"
-	.string "towards your traveling companions, and\l"
-	.string "return when you're finally champion!$"
+	.string "And so, the legacy of Victini and\n"
+	.string "Shaymin endured, forever etched in the\l"
+	.string "hearts of humanity. Their benevolent\l"
+	.string "presence ensured that the spark of\l"
+	.string "compassion continued to shine\l"
+	.string "brightly, lighting the way for future\l"
+	.string "generations.\p"
+	.string "I now look forward to you: rekindle your\n"
+	.string "love for victory, be grateful towards\l"
+	.string "your traveling companions, and return\l"
+	.string "when you're finally champion!$"
 
-Route119_EventScript_LegendaryNPC_Text_1:
+Route119_EventScript_LegendaryNPC_Text_2:
 	.string "I have no doubts in my mind... you are\n"
 	.string "now worthy of meeting Arceus, Shaymin\l"
 	.string "and Victini; you are truly blessed with\l"
@@ -805,7 +833,7 @@ Route119_EventScript_LegendaryNPC_Text_1:
 	.string "your DexNav, so make sure you're\l"
 	.string "prepared. Good luck...$"
 
-Route119_EventScript_LegendaryNPC_Text_2:
+Route119_EventScript_LegendaryNPC_Text_3:
 	.string "You truly are one special human. While\n"
 	.string "initially it seemed like only Shaymin\l"
 	.string "and Victini would be willing to meet\l"
@@ -815,6 +843,9 @@ Route119_EventScript_LegendaryNPC_Text_2:
 	.string "him. There's a lot of trainers around\l"
 	.string "here, but if you best them... he might\l"
 	.string "give you a chance.$"
+
+Route119_EventScript_LegendaryNPC_Text_4:
+	.string "Fair enough.$"
 
 Route119_EventScript_Gen8_NPC_Text_0:
 	.string "Thank you so much, you're my saviour! I\n"
@@ -832,7 +863,8 @@ Route119_EventScript_Gen8_NPC_Text_2:
 	.string "came up to me and asked to play hide\l"
 	.string "and seek. I was like 'man, I really wanna\l"
 	.string "go on with my hike, I don't have time\l"
-	.string "for this' but he insisted! And now\l"
-	.string "they're all gone. Can you help me find\l"
+	.string "for this' but they insisted, so I\l"
+	.string "accepted aaaand... now I gotta find\l"
+	.string "them. Please, can you help me find\l"
 	.string "them? I'll give you something special in\l"
 	.string "return!$"

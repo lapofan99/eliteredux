@@ -194,95 +194,107 @@ Route123_Text_BerryMastersHouse: @ 81F6557
 Route123_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route123_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_WENDY
-	goto_if 1, Route123_EventScript_LegendaryNPC_8
-Route123_EventScript_LegendaryNPC_6:
-	msgbox Route123_EventScript_LegendaryNPC_Text_2
+	msgbox Route123_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route123_EventScript_LegendaryNPC_2
+	msgbox Route123_EventScript_LegendaryNPC_Text_4
 Route123_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route123_EventScript_LegendaryNPC_2:
-	msgbox Route123_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route123_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_WENDY
+	goto_if 1, Route123_EventScript_LegendaryNPC_11
+Route123_EventScript_LegendaryNPC_9:
+	msgbox Route123_EventScript_LegendaryNPC_Text_3
 	goto Route123_EventScript_LegendaryNPC_1
 
 Route123_EventScript_LegendaryNPC_5:
 	msgbox Route123_EventScript_LegendaryNPC_Text_1
 	goto Route123_EventScript_LegendaryNPC_1
 
-Route123_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_VIOLET
-	goto_if 1, Route123_EventScript_LegendaryNPC_12
-	goto Route123_EventScript_LegendaryNPC_6
-
 Route123_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_BRAXTON
-	goto_if 1, Route123_EventScript_LegendaryNPC_7
-	goto Route123_EventScript_LegendaryNPC_6
+	msgbox Route123_EventScript_LegendaryNPC_Text_2
+	goto Route123_EventScript_LegendaryNPC_1
+
+Route123_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_VIOLET
+	goto_if 1, Route123_EventScript_LegendaryNPC_15
+	goto Route123_EventScript_LegendaryNPC_9
 
 Route123_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_JACKI_1
-	goto_if 1, Route123_EventScript_LegendaryNPC_16
-	goto Route123_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_BRAXTON
+	goto_if 1, Route123_EventScript_LegendaryNPC_10
+	goto Route123_EventScript_LegendaryNPC_9
 
-Route123_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_CAMERON_1
-	goto_if 1, Route123_EventScript_LegendaryNPC_11
-	goto Route123_EventScript_LegendaryNPC_6
+Route123_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_JACKI_1
+	goto_if 1, Route123_EventScript_LegendaryNPC_19
+	goto Route123_EventScript_LegendaryNPC_9
 
 Route123_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_KINDRA
-	goto_if 1, Route123_EventScript_LegendaryNPC_20
-	goto Route123_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_CAMERON_1
+	goto_if 1, Route123_EventScript_LegendaryNPC_14
+	goto Route123_EventScript_LegendaryNPC_9
 
-Route123_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_MIU_AND_YUKI
-	goto_if 1, Route123_EventScript_LegendaryNPC_15
-	goto Route123_EventScript_LegendaryNPC_6
+Route123_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_KINDRA
+	goto_if 1, Route123_EventScript_LegendaryNPC_23
+	goto Route123_EventScript_LegendaryNPC_9
 
 Route123_EventScript_LegendaryNPC_19:
-	checktrainerflag TRAINER_ALBERTO
-	goto_if 1, Route123_EventScript_LegendaryNPC_24
-	goto Route123_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_MIU_AND_YUKI
+	goto_if 1, Route123_EventScript_LegendaryNPC_18
+	goto Route123_EventScript_LegendaryNPC_9
 
-Route123_EventScript_LegendaryNPC_20:
-	checktrainerflag TRAINER_FREDRICK
-	goto_if 1, Route123_EventScript_LegendaryNPC_19
-	goto Route123_EventScript_LegendaryNPC_6
+Route123_EventScript_LegendaryNPC_22:
+	checktrainerflag TRAINER_ALBERTO
+	goto_if 1, Route123_EventScript_LegendaryNPC_27
+	goto Route123_EventScript_LegendaryNPC_9
 
 Route123_EventScript_LegendaryNPC_23:
-	checktrainerflag TRAINER_KAYLEY
-	goto_if 1, Route123_EventScript_LegendaryNPC_28
-	goto Route123_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_FREDRICK
+	goto_if 1, Route123_EventScript_LegendaryNPC_22
+	goto Route123_EventScript_LegendaryNPC_9
 
-Route123_EventScript_LegendaryNPC_24:
-	checktrainerflag TRAINER_ED
-	goto_if 1, Route123_EventScript_LegendaryNPC_23
-	goto Route123_EventScript_LegendaryNPC_6
+Route123_EventScript_LegendaryNPC_26:
+	checktrainerflag TRAINER_KAYLEY
+	goto_if 1, Route123_EventScript_LegendaryNPC_31
+	goto Route123_EventScript_LegendaryNPC_9
 
 Route123_EventScript_LegendaryNPC_27:
-	checktrainerflag TRAINER_JAZMYN
-	goto_if 1, Route123_EventScript_LegendaryNPC_32
-	goto Route123_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_ED
+	goto_if 1, Route123_EventScript_LegendaryNPC_26
+	goto Route123_EventScript_LegendaryNPC_9
 
-Route123_EventScript_LegendaryNPC_28:
-	checktrainerflag TRAINER_JONAS
-	goto_if 1, Route123_EventScript_LegendaryNPC_27
-	goto Route123_EventScript_LegendaryNPC_6
+Route123_EventScript_LegendaryNPC_30:
+	checktrainerflag TRAINER_JAZMYN
+	goto_if 1, Route123_EventScript_LegendaryNPC_35
+	goto Route123_EventScript_LegendaryNPC_9
 
 Route123_EventScript_LegendaryNPC_31:
-	checktrainerflag TRAINER_FERNANDO_1
-	goto_if 1, Route123_EventScript_LegendaryNPC_5
-	goto Route123_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_JONAS
+	goto_if 1, Route123_EventScript_LegendaryNPC_30
+	goto Route123_EventScript_LegendaryNPC_9
 
-Route123_EventScript_LegendaryNPC_32:
+Route123_EventScript_LegendaryNPC_34:
+	checktrainerflag TRAINER_FERNANDO_1
+	goto_if 1, Route123_EventScript_LegendaryNPC_8
+	goto Route123_EventScript_LegendaryNPC_9
+
+Route123_EventScript_LegendaryNPC_35:
 	checktrainerflag TRAINER_DAVIS
-	goto_if 1, Route123_EventScript_LegendaryNPC_31
-	goto Route123_EventScript_LegendaryNPC_6
+	goto_if 1, Route123_EventScript_LegendaryNPC_34
+	goto Route123_EventScript_LegendaryNPC_9
 
 
 Route123_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: three Dragons of legend tread\n"
+	.string "carefully around us. Want to learn more\l"
+	.string "about who they are?$"
+
+Route123_EventScript_LegendaryNPC_Text_1:
 	.string "The armonious imbalance of the Tao\n"
 	.string "dragons can be felt all the way from\l"
 	.string "here.\p"
@@ -301,16 +313,19 @@ Route123_EventScript_LegendaryNPC_Text_0:
 	.string "Keep training your poise, and come back\n"
 	.string "once you've become champion.$"
 
-Route123_EventScript_LegendaryNPC_Text_1:
+Route123_EventScript_LegendaryNPC_Text_2:
 	.string "Your Chi is harmonious, and your soul is\n"
 	.string "in accord with itself. I grant you the\l"
 	.string "privilege of meeting the Tao trio. Use\l"
 	.string "your Dexnav, they will now appear.$"
 
-Route123_EventScript_LegendaryNPC_Text_2:
+Route123_EventScript_LegendaryNPC_Text_3:
 	.string "Seeker of balance, your efforts have\n"
 	.string "been noticed. The Tao dragons have\l"
 	.string "taken notice of your actions, but\l"
 	.string "would like one final confirmation.\l"
 	.string "Defeat every trainer on the route to\l"
 	.string "meet them!$"
+
+Route123_EventScript_LegendaryNPC_Text_4:
+	.string "Well then, I suppose we won't get along.$"

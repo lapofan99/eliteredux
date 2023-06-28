@@ -246,7 +246,10 @@ Route121_Nurse_Text_GoodLuck:
 script Route121_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
+	msgbox(format("Sage: Hear me now, fair wanderer, for I bring forth a tale of valor and might,\p"
+	"Of three noble swords that shimmer in justice's light."), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("In the realm where justice's light doth shine,\p"
 		"Three swords emerged with valor strong and true.\p"
 		"Virizion, Cobalion, Terrakion,\p"
@@ -291,6 +294,10 @@ script Route121_EventScript_LegendaryNPC{
 			"by triumphing over others with might!"))
 		}
 	}
+	}
+	else{
+		msgbox(format("Fair traveler, I see your heart seeks a different path,\p"
+		"Yet do reconsider, this tale may kindle a lasting aftermath."))}
     release
     end
 }

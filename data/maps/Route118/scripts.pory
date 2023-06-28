@@ -413,10 +413,12 @@ Route118_Text_RouteSign119: @ 81F440E
 script Route118_EventScript_LegendaryNPC{
     lock
     faceplayer
+	msgbox(format("Sage: The world we live truly is a thing of beauty. Do you agree?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("This land we stand on is blessed by the presence of the stewards of nature: Manaphy, the sea guardian, Phione, their offspring, and Celebi, the time travelling wild spirit.\p"
+		msgbox(format("How could you not? But I'll tell you more. This land we stand on is blessed by the presence of the Stewards of nature: Manaphy, the sea guardian, Phione, their offspring, and Celebi, the time travelling wild spirit.\p"
 		"Remember, as you explore, to remain in harmony with nature, treating every blade of grass, every little crevace, every grain of sand as if it was your dearest treasure.\p"
-		"If you want to meet these angelic guardians of nature, become Champion and come back to this sacred place."))
+		"If you want to meet these angelic guardians, become Champion and come back to this sacred place."))
 	}
 	else{
 		if(defeated(TRAINER_ROSE_1)  &&
@@ -431,6 +433,10 @@ script Route118_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("You have defeated the Pokémon League... and the champion too? I'm impressed, and the guardians of this place are, too. Once you'll have defeated these last few trainers, nothing will stand between you and them!"))
 		}
+	}
+	}
+	else{
+		msgbox(format("Your opinion disgusts me. Go away, you've made a fool out of yourself."))
 	}
     release
     end

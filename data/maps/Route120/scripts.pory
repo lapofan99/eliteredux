@@ -462,7 +462,9 @@ Route120_Text_RouteSign121: @ 81F5DE4
 script Route120_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
+	msgbox(format("Sage: I know a lot about this place, more than you could imagine. Wanna hear me talk about it?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("It might not seem like it at first, but you have entered the domain of the Forces of Nature.\p"
 		"They strayed all the way from Unima to here, looking for wild lands to unleash their powers onto.\p"
 		"But, despite what we initially feared, it seems like Hoenn has rather soothed their spirits.\p"
@@ -490,6 +492,9 @@ script Route120_EventScript_LegendaryNPC{
 			msgbox(format("I can sense it: the Forces of Nature are awake and vigilant. They're almost ready to come out and meet you. Defeat the remaining trainers on this route to meet them!"))
 		}
 	}
+	}
+	else{
+		msgbox(format("Oh..."))}
     release
     end
 }

@@ -411,52 +411,59 @@ Route118_Text_RouteSign119: @ 81F440E
 Route118_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route118_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_ROSE_1
-	goto_if 1, Route118_EventScript_LegendaryNPC_8
-Route118_EventScript_LegendaryNPC_6:
-	msgbox Route118_EventScript_LegendaryNPC_Text_2
+	msgbox Route118_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route118_EventScript_LegendaryNPC_2
+	msgbox Route118_EventScript_LegendaryNPC_Text_4
 Route118_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route118_EventScript_LegendaryNPC_2:
-	msgbox Route118_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route118_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_ROSE_1
+	goto_if 1, Route118_EventScript_LegendaryNPC_11
+Route118_EventScript_LegendaryNPC_9:
+	msgbox Route118_EventScript_LegendaryNPC_Text_3
 	goto Route118_EventScript_LegendaryNPC_1
 
 Route118_EventScript_LegendaryNPC_5:
 	msgbox Route118_EventScript_LegendaryNPC_Text_1
 	goto Route118_EventScript_LegendaryNPC_1
 
-Route118_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_WADE
-	goto_if 1, Route118_EventScript_LegendaryNPC_12
-	goto Route118_EventScript_LegendaryNPC_6
-
 Route118_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_BARNY
-	goto_if 1, Route118_EventScript_LegendaryNPC_7
-	goto Route118_EventScript_LegendaryNPC_6
+	msgbox Route118_EventScript_LegendaryNPC_Text_2
+	goto Route118_EventScript_LegendaryNPC_1
+
+Route118_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_WADE
+	goto_if 1, Route118_EventScript_LegendaryNPC_15
+	goto Route118_EventScript_LegendaryNPC_9
 
 Route118_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_PERRY
-	goto_if 1, Route118_EventScript_LegendaryNPC_16
-	goto Route118_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_BARNY
+	goto_if 1, Route118_EventScript_LegendaryNPC_10
+	goto Route118_EventScript_LegendaryNPC_9
 
-Route118_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_DALTON_1
-	goto_if 1, Route118_EventScript_LegendaryNPC_11
-	goto Route118_EventScript_LegendaryNPC_6
+Route118_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_PERRY
+	goto_if 1, Route118_EventScript_LegendaryNPC_19
+	goto Route118_EventScript_LegendaryNPC_9
 
 Route118_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_DEANDRE
-	goto_if 1, Route118_EventScript_LegendaryNPC_5
-	goto Route118_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_DALTON_1
+	goto_if 1, Route118_EventScript_LegendaryNPC_14
+	goto Route118_EventScript_LegendaryNPC_9
 
-Route118_EventScript_LegendaryNPC_16:
+Route118_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_DEANDRE
+	goto_if 1, Route118_EventScript_LegendaryNPC_8
+	goto Route118_EventScript_LegendaryNPC_9
+
+Route118_EventScript_LegendaryNPC_19:
 	checktrainerflag TRAINER_CHESTER
-	goto_if 1, Route118_EventScript_LegendaryNPC_15
-	goto Route118_EventScript_LegendaryNPC_6
+	goto_if 1, Route118_EventScript_LegendaryNPC_18
+	goto Route118_EventScript_LegendaryNPC_9
 
 
 Route118West_EventScript_Gen8_NPC::
@@ -525,28 +532,33 @@ Route118East_EventScript_Gen8_NPC_5:
 
 
 Route118_EventScript_LegendaryNPC_Text_0:
-	.string "This land we stand on is blessed by the\n"
-	.string "presence of the stewards of nature:\l"
-	.string "Manaphy, the sea guardian, Phione,\l"
-	.string "their offspring, and Celebi, the time\l"
-	.string "travelling wild spirit.\p"
+	.string "Sage: The world we live truly is a thing\n"
+	.string "of beauty. Do you agree?$"
+
+Route118_EventScript_LegendaryNPC_Text_1:
+	.string "How could you not? But I'll tell you\n"
+	.string "more. This land we stand on is blessed\l"
+	.string "by the presence of the Stewards of\l"
+	.string "nature: Manaphy, the sea guardian,\l"
+	.string "Phione, their offspring, and Celebi, the\l"
+	.string "time travelling wild spirit.\p"
 	.string "Remember, as you explore, to remain in\n"
 	.string "harmony with nature, treating every\l"
 	.string "blade of grass, every little crevace,\l"
 	.string "every grain of sand as if it was your\l"
 	.string "dearest treasure.\p"
 	.string "If you want to meet these angelic\n"
-	.string "guardians of nature, become Champion\l"
-	.string "and come back to this sacred place.$"
+	.string "guardians, become Champion and come\l"
+	.string "back to this sacred place.$"
 
-Route118_EventScript_LegendaryNPC_Text_1:
+Route118_EventScript_LegendaryNPC_Text_2:
 	.string "Your skills in battle have been tested,\n"
 	.string "and you have succeded against all\l"
 	.string "odds. Congratulations. Use your DexNav\l"
 	.string "to finally meet these extraordinary\l"
 	.string "protectors.$"
 
-Route118_EventScript_LegendaryNPC_Text_2:
+Route118_EventScript_LegendaryNPC_Text_3:
 	.string "You have defeated the Pokémon\n"
 	.string "League... and the champion too? I'm\l"
 	.string "impressed, and the guardians of this\l"
@@ -554,6 +566,10 @@ Route118_EventScript_LegendaryNPC_Text_2:
 	.string "defeated these last few trainers,\l"
 	.string "nothing will stand between you and\l"
 	.string "them!$"
+
+Route118_EventScript_LegendaryNPC_Text_4:
+	.string "Your opinion disgusts me. Go away,\n"
+	.string "you've made a fool out of yourself.$"
 
 Route118West_EventScript_Gen8_NPC_Text_0:
 	.string "Cute might not be the word that best\n"
