@@ -8923,14 +8923,13 @@ bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality){
 }
 
 u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
-    if(FlagGet(FLAG_SYS_INNATE_RANDOMIZED_MODE) && innate != ABILITY_NONE){ 
+    if(gSaveBlock2Ptr->randomizedMode == 1 && innate != ABILITY_NONE){ 
         //Only Randomize if you have the Randomized Mode Enabled
         u16 randomizedInnate = (innate + species + personality) % ABILITIES_COUNT;
         return randomizedInnate;
     }
     else
         return innate;
-    
 }
 
 bool8 MonHasInnate(struct Pokemon *mon, u16 ability){

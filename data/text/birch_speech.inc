@@ -148,8 +148,6 @@ gText_Pie_WhichDifficulty::
 	.string "play on?$"
 
 gText_Pie_LevelCaps::
-    .string "Great! Now, there's one last thing\n"
-    .string "to decide.\p"
     .string "This hack has built-in level caps\n"
     .string "based on which badges you have.\p"
     .string "If a Pokémon reaches the level cap,\n"
@@ -197,6 +195,23 @@ gText_Pie_StrictCaps::
 gText_Pie_WhichLevelCapSetting::
 	.string "Which level cap setting would you\n"
 	.string "like play on?$"
+
+gText_Pie_Randomizer::
+    .string "Great! Now, there's one last thing\n"
+    .string "to decide\l"
+    .string "Randomizer Description$"
+
+gText_Pie_WhichRandomizerSetting::
+	.string "Do you want to enable Innate\n"
+	.string "Randomizer?$"
+
+gText_Pie_Randomizer_Enabled::
+    .string "Do you want to start the game\n"
+    .string "with the Innate Randomizer Enabled$"
+
+gText_Pie_Randomizer_Disabled::
+    .string "Do you want to start the game\n"
+    .string "with the Innate Randomizer Disabled$"
 
 gText_Pie_Documents::
 	.string "Great! If you want more information,\n"

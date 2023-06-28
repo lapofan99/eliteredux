@@ -1112,7 +1112,7 @@ static u8 Debug_CheckToggleFlags(u8 id)
             result = FlagGet(FLAG_SYS_MGBA_PRINT);
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOMIZED_MODE:
-            result = FlagGet(FLAG_SYS_INNATE_RANDOMIZED_MODE);
+            result = gSaveBlock2Ptr->randomizedMode;
             break;
         default:
             result = 0xFF;
@@ -2502,11 +2502,14 @@ static void DebugAction_FlagsVars_MgbaPrintOnOff(u8 taskId)
 }
 static void DebugAction_FlagsVars_RandomOnOff(u8 taskId)
 {
-    if (FlagGet(FLAG_SYS_INNATE_RANDOMIZED_MODE))
+    if (gSaveBlock2Ptr->randomizedMode == 1){
+        gSaveBlock2Ptr->randomizedMode == 0;
         PlaySE(SE_PC_OFF);
-    else
+    }
+    else{
+        gSaveBlock2Ptr->randomizedMode == 1;
         PlaySE(SE_PC_LOGIN);
-    FlagToggle(FLAG_SYS_INNATE_RANDOMIZED_MODE);
+    }
 }
 static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId)
 {
