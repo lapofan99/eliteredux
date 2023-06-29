@@ -70,7 +70,7 @@ gText_Pie_Welcome::
 	.string "changes, and massive Pokémon variety!\p"
 	.string "You can build your team using almost\n"
 	.string "any Pokémon from the first seven\l"
-	.string "generations, and even some gen eight\l"
+	.string "generations, and even many gen eight\l"
 	.string "Pokémon are catchable!\p"
 	.string "Every Pokémon now has up to four\n"
 	.string "abilities at the same time.\p"
@@ -81,7 +81,7 @@ gText_Pie_Welcome::
 	.string "Before you get started, you'll need\n"
 	.string "to choose a difficulty setting.\p"
 	.string "Currently you can choose between\n"
-	.string "Easy or Elite Mode.\p"
+	.string "Easy, Ace or Elite Mode.\p"
 	.string "Please select a mode to learn more\n"
 	.string "about it.$"
 
@@ -97,7 +97,7 @@ gText_Pie_NormalMode::
 	.string "Battles, and the Shift battle style is\l"
 	.string "disabled.\p"
 	.string "So, would you like to play on\n"
-	.string "Easy Mode?$"
+	.string "{COLOR GREEN}Easy Mode{COLOR DARK_GRAY}?$"
 
 gText_Pie_HardMode::
 	.string "In Normal Mode, Trainers will have EV-\n"
@@ -112,7 +112,7 @@ gText_Pie_HardMode::
 	.string "Normal Mode?$"
 
 gText_Pie_ChallengeMode::
-	.string "Ace Mode is the intended difficulty.\n"
+	.string "Ace Mode is the normal difficulty.\n"
 	.string "Every single Trainer has custom EVs.\p"
 	.string "It also has these restrictions:\p"
 	.string "You can't access the bag in Trainer\n"
@@ -122,26 +122,23 @@ gText_Pie_ChallengeMode::
 	.string "as your opponents, so good strategy\l"
 	.string "and a balanced team are more important\l"
 	.string "in this mode.\p"
-	.string "This difficulty is only recommended if\n"
-	.string "it sounds appealing to you!\p"
 	.string "So, would you like to play on\n"
-	.string "Ace Mode?$"
+	.string "{COLOR BLUE}Ace Mode{COLOR DARK_GRAY}?$"
 
 gText_Pie_EliteMode::
-	.string "Elite Mode is the intended difficulty.\n"
+	.string "Elite Mode is the hardest difficulty.\n"
 	.string "Every single Trainer has custom EVs.\p"
-	.string "It also has these restrictions:\p"
+	.string "It also has more restrictions:\p"
+	.string "You have to unlock innates at\n"
+	.string "certain levels to use them.\p"
 	.string "You can't access the bag in Trainer\n"
 	.string "Battles, and the Shift battle style is\l"
 	.string "disabled.\p"
-	.string "That means you'll follow the same rules\n"
-	.string "as your opponents, so good strategy\l"
-	.string "and a balanced team are more important\l"
-	.string "in this mode.\p"
+	.string "You will experience a world of pain.\p"
 	.string "This difficulty is only recommended if\n"
 	.string "it sounds appealing to you!\p"
 	.string "So, would you like to play on\n"
-	.string "Elite Mode?$"
+	.string "{COLOR RED}Elite Mode{COLOR DARK_GRAY}?$"
 
 gText_Pie_WhichDifficulty::
 	.string "Which difficulty would you like to\n"
@@ -162,7 +159,7 @@ gText_Pie_StandardCaps::
 	.string "The Easy Caps setting is NOT what\n"
 	.string "the game is designed around.\p"
 	.string "With this option, level caps are only\n"
-	.string "present for the first four badges.\p"
+	.string "present for the first six badges.\p"
 	.string "After that, there is no cap, and you\n"
 	.string "can train all the way to level 100.\p"
 	.string "So, would you like to play with\n"
@@ -198,20 +195,20 @@ gText_Pie_WhichLevelCapSetting::
 
 gText_Pie_Randomizer::
     .string "Great! Now, there's one last thing\n"
-    .string "to decide\l"
+    .string "to decide.\l"
     .string "Randomizer Description$"
 
 gText_Pie_WhichRandomizerSetting::
-	.string "Do you want to enable Innate\n"
-	.string "Randomizer?$"
+	.string "Do you want to enable the\n"
+	.string "Innate Randomizer?$"
 
 gText_Pie_Randomizer_Enabled::
     .string "Do you want to start the game\n"
-    .string "with the Innate Randomizer Enabled$"
+    .string "with the Innate Randomizer enabled?$"
 
 gText_Pie_Randomizer_Disabled::
     .string "Do you want to start the game\n"
-    .string "with the Innate Randomizer Disabled$"
+    .string "with the Innate Randomizer disabled?$"
 
 gText_Pie_Documents::
 	.string "Great! If you want more information,\n"
