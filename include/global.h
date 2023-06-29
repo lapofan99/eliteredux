@@ -503,7 +503,7 @@ struct SaveBlock2
              u16 regionMapZoom:1; // whether the map is zoomed in
              u16 gameDifficulty:4; // Which difficulty the player chose (Normal/Hard/Challenge/Insanity, with Normal being 0)
     /*0x18*/ struct Pokedex pokedex;
-    /*0x90*/ u8 filler_90[0x6];
+    /*0x90*/ u8 filler_90[0x6]; //To Delete
              u8 levelCaps; // Various options for level caps
              u16 autoRun:1;
              u16 permanentRepel:1;
@@ -527,6 +527,8 @@ struct SaveBlock2
     /*0x57C*/ struct RankingHall2P hallRecords2P[2][3]; // From record mixing.
     /*0x624*/ u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
     /*0x64C*/ struct BattleFrontier frontier;
+              u8 randomizedMode:1;
+              u8 filler:7;
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;

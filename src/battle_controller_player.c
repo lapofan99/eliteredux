@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_ai_main.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
 #include "battle_controllers.h"
@@ -267,7 +268,18 @@ static void HandleInputChooseAction(void)
         else
             gPlayerDpadHoldFrames = 0;
 
-        if (JOY_NEW(A_BUTTON))
+        
+        if (JOY_NEW(A_BUTTON) && 
+            gActionSelectionCursor[gActiveBattler] == 1 &&
+            gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        {
+            value = 2;
+            VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+            FreeAllWindowBuffers();
+            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, gBattlerPartyIndexes[1], CalculateEnemyPartyCount() - 1, CB2_SetUpReshowBattleScreenAfterMenu);
+        }
+        else if (JOY_NEW(A_BUTTON))
         {
             PlaySE(SE_SELECT);
             TryHideLastUsedBall();
@@ -289,7 +301,7 @@ static void HandleInputChooseAction(void)
             }
             PlayerBufferExecCompleted();
         }
-        else if (JOY_NEW(L_BUTTON))
+        else if (JOY_NEW(L_BUTTON) && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
         {
             value = 2;
             VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
@@ -1892,7 +1904,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 			}
 		}
 
-        if(gBattleMons[userId].ability == ABILITY_TINTED_LENS|| SpeciesHasInnate(gBattleMons[userId].species, ABILITY_TINTED_LENS, gBattleMons[userId].level)){
+        if(gBattleMons[userId].ability == ABILITY_TINTED_LENS|| BattlerHasInnate(userId, ABILITY_TINTED_LENS)){
             if(mod <= UQ_4_12(0.5)){
                 tempMod = UQ_4_12(2.0);
                 MulModifier(&mod, tempMod);
@@ -1908,17 +1920,17 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 
         switch(moveType){
             case TYPE_GROUND:
-                if(gBattleMons[targetId].ability == ABILITY_LEVITATE || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_LEVITATE, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_LEVITATE || BattlerHasInnate(targetId, ABILITY_LEVITATE))
                     abilityNullifiesDamage = TRUE;
 
-                if(gBattleMons[targetId].ability == ABILITY_DRAGONFLY || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_DRAGONFLY, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_DRAGONFLY || BattlerHasInnate(targetId, ABILITY_DRAGONFLY))
                     abilityNullifiesDamage = TRUE;
 
                 if(gBattleMons[targetId].item == ITEM_AIR_BALLOON)
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_ELECTRIC:
-                if(gBattleMons[userId].ability == ABILITY_GROUND_SHOCK || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_GROUND_SHOCK, gBattleMons[userId].level)){
+                if(gBattleMons[userId].ability == ABILITY_GROUND_SHOCK || BattlerHasInnate(userId, ABILITY_GROUND_SHOCK)){
                     if(gBattleMons[targetId].type1 == TYPE_GROUND  || gBattleMons[targetId].type2 == TYPE_GROUND){
                         if(gBattleMons[targetId].type1 == TYPE_GROUND && gBattleMons[targetId].type2 != TYPE_GROUND){
                             //Removes First Type Effectiveness and recalculates it
@@ -1937,17 +1949,17 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     }
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_VOLT_ABSORB || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_VOLT_ABSORB, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_VOLT_ABSORB || BattlerHasInnate(targetId, ABILITY_VOLT_ABSORB))
                     abilityNullifiesDamage = TRUE;
 
-                if(gBattleMons[targetId].ability == ABILITY_LIGHTNING_ROD || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_LIGHTNING_ROD, gBattleMons[targetId].level) ||
-                  (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_LIGHTNING_ROD && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(targetId)].species, ABILITY_LIGHTNING_ROD, gBattleMons[BATTLE_PARTNER(targetId)].level) && IsBattlerAlive(BATTLE_PARTNER(targetId))))
+                if(gBattleMons[targetId].ability == ABILITY_LIGHTNING_ROD || BattlerHasInnate(targetId, ABILITY_LIGHTNING_ROD) ||
+                  (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_LIGHTNING_ROD && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_LIGHTNING_ROD) && IsBattlerAlive(BATTLE_PARTNER(targetId))))
                   abilityNullifiesDamage = TRUE;
 
-                if(gBattleMons[targetId].ability == ABILITY_MOTOR_DRIVE || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_MOTOR_DRIVE, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_MOTOR_DRIVE || BattlerHasInnate(targetId, ABILITY_MOTOR_DRIVE))
                     abilityNullifiesDamage = TRUE;
 
-                if(gBattleMons[userId].ability == ABILITY_OVERCHARGE|| SpeciesHasInnate(gBattleMons[userId].species, ABILITY_OVERCHARGE, gBattleMons[userId].level)){
+                if(gBattleMons[userId].ability == ABILITY_OVERCHARGE|| BattlerHasInnate(userId, ABILITY_OVERCHARGE)){
                     if(gBattleMons[targetId].type1 == TYPE_ELECTRIC  || gBattleMons[targetId].type2 == TYPE_ELECTRIC){
                         tempMod = UQ_4_12(2.0);
                         MulModifier(&mod, tempMod);
@@ -1955,14 +1967,14 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 }
             break;
             case TYPE_ICE:
-                if(gBattleMons[targetId].ability == ABILITY_ICE_DEW || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_ICE_DEW, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_ICE_DEW || BattlerHasInnate(targetId, ABILITY_ICE_DEW))
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_GRASS:
-                if(gBattleMons[targetId].ability == ABILITY_SAP_SIPPER || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_SAP_SIPPER, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_SAP_SIPPER || BattlerHasInnate(targetId, ABILITY_SAP_SIPPER))
                     abilityNullifiesDamage = TRUE;
 
-                if(gBattleMons[userId].ability == ABILITY_SEAWEED || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_SEAWEED, gBattleMons[userId].level)){
+                if(gBattleMons[userId].ability == ABILITY_SEAWEED || BattlerHasInnate(userId, ABILITY_SEAWEED)){
                     if(gBattleMons[targetId].type1 == TYPE_FIRE  || gBattleMons[targetId].type2 == TYPE_FIRE){
                         tempMod = UQ_4_12(2.0);
                         MulModifier(&mod, tempMod);
@@ -1970,7 +1982,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 }
             break;
             case TYPE_POISON:
-                if(gBattleMons[userId].ability == ABILITY_CORROSION || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_CORROSION, gBattleMons[userId].level)){
+                if(gBattleMons[userId].ability == ABILITY_CORROSION || BattlerHasInnate(userId, ABILITY_CORROSION)){
                     if(gBattleMons[targetId].type1 == TYPE_STEEL  || gBattleMons[targetId].type2 == TYPE_STEEL){
                         if(gBattleMons[targetId].type1 == TYPE_STEEL && gBattleMons[targetId].type2 != TYPE_STEEL){
                             //Removes First Type Effectiveness and recalculates it
@@ -1990,43 +2002,43 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     }
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_POISON_ABSORB || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_POISON_ABSORB, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_POISON_ABSORB || BattlerHasInnate(targetId, ABILITY_POISON_ABSORB))
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_FIRE:
-                if(gBattleMons[targetId].ability == ABILITY_FLASH_FIRE || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_FLASH_FIRE, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_FLASH_FIRE || BattlerHasInnate(targetId, ABILITY_FLASH_FIRE))
                     abilityNullifiesDamage = TRUE;
 
-                if(gBattleMons[targetId].ability == ABILITY_DRY_SKIN || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_DRY_SKIN, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_DRY_SKIN || BattlerHasInnate(targetId, ABILITY_DRY_SKIN)){
                     tempMod = UQ_4_12(2.0);
                     MulModifier(&mod, tempMod);
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_FLUFFY || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_FLUFFY, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_FLUFFY || BattlerHasInnate(targetId, ABILITY_FLUFFY)){
                     tempMod = UQ_4_12(2.0);
                     MulModifier(&mod, tempMod);
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_HEATPROOF || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_HEATPROOF, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_HEATPROOF || BattlerHasInnate(targetId, ABILITY_HEATPROOF)){
                     tempMod = UQ_4_12(0.5);
                     MulModifier(&mod, tempMod);
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_SEAWEED || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_SEAWEED, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_SEAWEED || BattlerHasInnate(targetId, ABILITY_SEAWEED)){
                     if(gBattleMons[targetId].type1 == TYPE_GRASS  || gBattleMons[targetId].type2 == TYPE_GRASS){
                         tempMod = UQ_4_12(0.5);
                         MulModifier(&mod, tempMod);
                     }
                 }
 
-                if(gBattleMons[userId].ability == ABILITY_MOLTEN_DOWN|| SpeciesHasInnate(gBattleMons[userId].species, ABILITY_MOLTEN_DOWN, gBattleMons[userId].level)){
+                if(gBattleMons[userId].ability == ABILITY_MOLTEN_DOWN|| BattlerHasInnate(userId, ABILITY_MOLTEN_DOWN)){
                     if(gBattleMons[targetId].type1 == TYPE_ROCK  || gBattleMons[targetId].type2 == TYPE_ROCK){
                         tempMod = UQ_4_12(2.0);
                         MulModifier(&mod, tempMod);
                     }
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_WATER_BUBBLE || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_WATER_BUBBLE, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_WATER_BUBBLE || BattlerHasInnate(targetId, ABILITY_WATER_BUBBLE)){
                     tempMod = UQ_4_12(0.5);
                     MulModifier(&mod, tempMod);
                 }
@@ -2036,17 +2048,17 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 }
             break;
             case TYPE_WATER:
-                if(gBattleMons[targetId].ability == ABILITY_LIQUIFIED || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_LIQUIFIED, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_LIQUIFIED || BattlerHasInnate(targetId, ABILITY_LIQUIFIED)){
                     tempMod = UQ_4_12(2.0);
                     MulModifier(&mod, tempMod);
                 }
 
-                /*if(gBattleMons[userId].ability == ABILITY_WATER_BUBBLE || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_WATER_BUBBLE, gBattleMons[userId].level)){
+                /*if(gBattleMons[userId].ability == ABILITY_WATER_BUBBLE || BattlerHasInnate(userId, ABILITY_WATER_BUBBLE)){
                     tempMod = UQ_4_12(2.0);
                     MulModifier(&mod, tempMod);
                 }*/
 
-                if(gBattleMons[targetId].ability == ABILITY_WATER_COMPACTION || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_WATER_COMPACTION, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_WATER_COMPACTION || BattlerHasInnate(targetId, ABILITY_WATER_COMPACTION)){
                     tempMod = UQ_4_12(0.5);
                     MulModifier(&mod, tempMod);
                 }
@@ -2055,26 +2067,26 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     abilityNullifiesDamage = TRUE;
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_STORM_DRAIN || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_STORM_DRAIN, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_STORM_DRAIN || BattlerHasInnate(targetId, ABILITY_STORM_DRAIN))
                     abilityNullifiesDamage = TRUE;
 
-                if(gBattleMons[targetId].ability == ABILITY_WATER_ABSORB || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_WATER_ABSORB, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_WATER_ABSORB || BattlerHasInnate(targetId, ABILITY_WATER_ABSORB))
                     abilityNullifiesDamage = TRUE;
 
-                if(gBattleMons[targetId].ability == ABILITY_DRY_SKIN || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_DRY_SKIN, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_DRY_SKIN || BattlerHasInnate(targetId, ABILITY_DRY_SKIN))
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_ROCK:
-                if(gBattleMons[targetId].ability == ABILITY_FOSSILIZED || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_FOSSILIZED, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_FOSSILIZED || BattlerHasInnate(targetId, ABILITY_FOSSILIZED)){
                     tempMod = UQ_4_12(0.5);
                     MulModifier(&mod, tempMod);
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_MOUNTAINEER || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_MOUNTAINEER, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_MOUNTAINEER || BattlerHasInnate(targetId, ABILITY_MOUNTAINEER))
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_NORMAL:
-                if(gBattleMons[userId].ability == ABILITY_SCRAPPY || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_SCRAPPY, gBattleMons[userId].level)){
+                if(gBattleMons[userId].ability == ABILITY_SCRAPPY || BattlerHasInnate(userId, ABILITY_SCRAPPY)){
                     if(gBattleMons[targetId].type1 == TYPE_GHOST  || gBattleMons[targetId].type2 == TYPE_GHOST){
                         if(gBattleMons[targetId].type1 == TYPE_GHOST && gBattleMons[targetId].type2 != TYPE_GHOST){
                             //Removes First Type Effectiveness and recalculates it
@@ -2092,7 +2104,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 }
             break;
             case TYPE_FIGHTING:
-                if(gBattleMons[userId].ability == ABILITY_SCRAPPY || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_SCRAPPY, gBattleMons[userId].level)){
+                if(gBattleMons[userId].ability == ABILITY_SCRAPPY || BattlerHasInnate(userId, ABILITY_SCRAPPY)){
                     if(gBattleMons[targetId].type1 == TYPE_GHOST  || gBattleMons[targetId].type2 == TYPE_GHOST){
                         if(gBattleMons[targetId].type1 == TYPE_GHOST && gBattleMons[targetId].type2 != TYPE_GHOST){
                             //Removes First Type Effectiveness and recalculates it
@@ -2110,7 +2122,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 }
             break;
             case TYPE_DRAGON:
-                if(gBattleMons[userId].ability == ABILITY_OVERWHELM || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_OVERWHELM, gBattleMons[userId].level)){
+                if(gBattleMons[userId].ability == ABILITY_OVERWHELM || BattlerHasInnate(userId, ABILITY_OVERWHELM)){
                     if(gBattleMons[targetId].type1 == TYPE_FAIRY  || gBattleMons[targetId].type2 == TYPE_FAIRY){
                         if(gBattleMons[targetId].type1 == TYPE_FAIRY && gBattleMons[targetId].type2 != TYPE_FAIRY){
                             //Removes First Type Effectiveness and recalculates it
@@ -2127,44 +2139,44 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 }
             break;
             case TYPE_FLYING:
-                if(gBattleMons[targetId].ability == ABILITY_AERODYNAMICS || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_AERODYNAMICS, gBattleMons[targetId].level))
+                if(gBattleMons[targetId].ability == ABILITY_AERODYNAMICS || BattlerHasInnate(targetId, ABILITY_AERODYNAMICS))
                     abilityNullifiesDamage = TRUE;
             break;
         }
 
-        if(gBattleMons[targetId].ability == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_WEATHER_CONTROL, gBattleMons[targetId].level)){
+        if(gBattleMons[targetId].ability == ABILITY_WEATHER_CONTROL || BattlerHasInnate(targetId, ABILITY_WEATHER_CONTROL)){
             if(TestMoveFlags(moveNum, FLAG_WEATHER_BASED)){
                 abilityNullifiesDamage = TRUE;
             }
         }
 
-        if(gBattleMons[targetId].ability == ABILITY_BULLETPROOF || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_BULLETPROOF, gBattleMons[targetId].level)){
+        if(gBattleMons[targetId].ability == ABILITY_BULLETPROOF || BattlerHasInnate(targetId, ABILITY_BULLETPROOF)){
             if(TestMoveFlags(moveNum, FLAG_BALLISTIC)){
                 abilityNullifiesDamage = TRUE;
             }
         }
 
-        if(gBattleMons[targetId].ability == ABILITY_SOUNDPROOF || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_SOUNDPROOF, gBattleMons[targetId].level)){
+        if(gBattleMons[targetId].ability == ABILITY_SOUNDPROOF || BattlerHasInnate(targetId, ABILITY_SOUNDPROOF)){
             if(TestMoveFlags(moveNum, FLAG_SOUND)){
                 abilityNullifiesDamage = TRUE;
             }
         }
 
-        if(gBattleMons[targetId].ability == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_QUEENLY_MAJESTY, gBattleMons[targetId].level) ||
-          (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_QUEENLY_MAJESTY && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(targetId)].species, ABILITY_QUEENLY_MAJESTY, gBattleMons[BATTLE_PARTNER(targetId)].level) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+        if(gBattleMons[targetId].ability == ABILITY_QUEENLY_MAJESTY || BattlerHasInnate(targetId, ABILITY_QUEENLY_MAJESTY) ||
+          (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_QUEENLY_MAJESTY && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_QUEENLY_MAJESTY) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
             if(GetMovePriority(userId, moveNum) > 0){
                 abilityNullifiesDamage = TRUE;
             }
         }
 
-        if(gBattleMons[targetId].ability == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_DAZZLING, gBattleMons[targetId].level) ||
-          (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(targetId)].species, ABILITY_DAZZLING, gBattleMons[BATTLE_PARTNER(targetId)].level) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+        if(gBattleMons[targetId].ability == ABILITY_DAZZLING || BattlerHasInnate(targetId, ABILITY_DAZZLING) ||
+          (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_DAZZLING) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
             if(GetMovePriority(userId, moveNum) > 0){
                 abilityNullifiesDamage = TRUE;
             }
         }
 
-        if(gBattleMons[userId].ability == ABILITY_BONE_ZONE || SpeciesHasInnate(gBattleMons[userId].species, ABILITY_BONE_ZONE, gBattleMons[userId].level)){
+        if(gBattleMons[userId].ability == ABILITY_BONE_ZONE || BattlerHasInnate(userId, ABILITY_BONE_ZONE)){
             if(TestMoveFlags(moveNum, FLAG_BONE_BASED)){
                 tempMod = UQ_4_12(2.0);
                 MulModifier(&mod, tempMod);
@@ -2173,12 +2185,12 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 
         /*switch(gBattleMoves[moveNum].split){
             case SPLIT_PHYSICAL:
-                if(gBattleMons[targetId].ability == ABILITY_LIQUIFIED || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_LIQUIFIED, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_LIQUIFIED || BattlerHasInnate(targetIds, ABILITY_LIQUIFIED)){
                     tempMod = UQ_4_12(0.5);
                     MulModifier(&mod, tempMod);
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_FLUFFY || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_FLUFFY, gBattleMons[targetId].level)){
+                if(gBattleMons[targetId].ability == ABILITY_FLUFFY || BattlerHasInnate(targetId, ABILITY_FLUFFY)){
                     tempMod = UQ_4_12(0.5);
                     MulModifier(&mod, tempMod);
                 }
@@ -2210,7 +2222,7 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
         case MOVE_LEECH_SEED:
             if(IS_BATTLER_OF_TYPE(targetId, TYPE_GRASS) || 
                gBattleMons[targetId].ability == ABILITY_SAP_SIPPER || 
-               SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_SAP_SIPPER, gBattleMons[targetId].level)){
+               BattlerHasInnate(targetId, ABILITY_SAP_SIPPER)){
                 moveNullified = TRUE;
             }
         break;
@@ -2249,37 +2261,37 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
     }
 
     //Weather Control
-    if(gBattleMons[targetId].ability == ABILITY_WEATHER_CONTROL || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_WEATHER_CONTROL, gBattleMons[targetId].level)){
+    if(gBattleMons[targetId].ability == ABILITY_WEATHER_CONTROL || BattlerHasInnate(targetId, ABILITY_WEATHER_CONTROL)){
         if(TestMoveFlags(moveNum, FLAG_WEATHER_BASED)){
             moveNullified = TRUE;
         }
     }
             
     //Bulletproof
-    if(gBattleMons[targetId].ability == ABILITY_BULLETPROOF || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_BULLETPROOF, gBattleMons[targetId].level)){
+    if(gBattleMons[targetId].ability == ABILITY_BULLETPROOF || BattlerHasInnate(targetId, ABILITY_BULLETPROOF)){
         if(TestMoveFlags(moveNum, FLAG_BALLISTIC)){
             moveNullified = TRUE;
         }
     }
 
     //Soundproof
-    if(gBattleMons[targetId].ability == ABILITY_SOUNDPROOF || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_SOUNDPROOF, gBattleMons[targetId].level)){
+    if(gBattleMons[targetId].ability == ABILITY_SOUNDPROOF || BattlerHasInnate(targetId, ABILITY_SOUNDPROOF)){
         if(TestMoveFlags(moveNum, FLAG_SOUND)){
             moveNullified = TRUE;
         }
     }
 
     //Queenly Majesty
-    if(gBattleMons[targetId].ability == ABILITY_QUEENLY_MAJESTY || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_QUEENLY_MAJESTY, gBattleMons[targetId].level) ||
-    (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_QUEENLY_MAJESTY && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(targetId)].species, ABILITY_QUEENLY_MAJESTY, gBattleMons[BATTLE_PARTNER(targetId)].level) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+    if(gBattleMons[targetId].ability == ABILITY_QUEENLY_MAJESTY || BattlerHasInnate(targetId, ABILITY_QUEENLY_MAJESTY) ||
+    (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_QUEENLY_MAJESTY && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_QUEENLY_MAJESTY) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
         if(GetMovePriority(userId, moveNum) > 0){
             moveNullified = TRUE;
         }
     }
 
     //Dazzling
-    if(gBattleMons[targetId].ability == ABILITY_DAZZLING || SpeciesHasInnate(gBattleMons[targetId].species, ABILITY_DAZZLING, gBattleMons[targetId].level) ||
-        (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (SpeciesHasInnate(gBattleMons[BATTLE_PARTNER(targetId)].species, ABILITY_DAZZLING, gBattleMons[BATTLE_PARTNER(targetId)].level) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
+    if(gBattleMons[targetId].ability == ABILITY_DAZZLING || BattlerHasInnate(targetId, ABILITY_DAZZLING) ||
+        (gBattleMons[BATTLE_PARTNER(targetId)].ability == ABILITY_DAZZLING && IsBattlerAlive(BATTLE_PARTNER(targetId))) || (BattlerHasInnate(BATTLE_PARTNER(targetId), ABILITY_DAZZLING) && IsBattlerAlive(BATTLE_PARTNER(targetId)))){
         if(GetMovePriority(userId, moveNum) > 0){
             moveNullified = TRUE;
         }
@@ -3492,6 +3504,7 @@ static void PlayerHandleChooseAction(void)
         ActionSelectionDestroyCursorAt(i);
 
     TryRestoreLastUsedBall();
+    //TryToAddEnemyInfoWindow();
     ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
     BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
     BattlePutTextOnWindow(gDisplayedStringBattle, 1);

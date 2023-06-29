@@ -390,15 +390,16 @@ script SootopolisCity_Gym_1F_EventScript_GiveScald{
 script SootopolisCity_Gym_EventScript_CheckTrainers{
 	//Check that you have defeated every trainer in that Gym and that you don't have that badge yet
 	if(((!defeated(TRAINER_ANDREA)  || 
-	     !defeated(TRAINER_CRISSY)  || 
-		 !defeated(TRAINER_BRIANNA) || 
 		 !defeated(TRAINER_CONNIE)  || 
-		 !defeated(TRAINER_BRIDGET) ||
-	     !defeated(TRAINER_OLIVIA)  || 
-		 !defeated(TRAINER_TIFFANY) || 
-		 !defeated(TRAINER_BETHANY) || 
 		 !defeated(TRAINER_ANNIKA)  || 
-		 !defeated(TRAINER_DAPHNE)) &&
+		 !defeated(TRAINER_DAPHNE)  || 
+		 !defeated(TRAINER_BRIDGET) ||
+		 !defeated(TRAINER_TIFFANY) //||
+	     //!defeated(TRAINER_CRISSY)  || 
+		 //!defeated(TRAINER_BRIANNA) || 
+	     //!defeated(TRAINER_OLIVIA)  || 
+		 //!defeated(TRAINER_BETHANY) || 
+		 ) &&
 		 !flag(FLAG_BADGE08_GET))){
 		msgbox(format("Juan: Sorry, but you need to defeat every trainer on this Gym before battling me."), MSGBOX_NPC)
 		release

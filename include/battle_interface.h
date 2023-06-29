@@ -106,4 +106,7 @@ void UpdateAbilityPopup(u8 battlerId);
 void TryToAddMoveInfoWindow(void);
 void TryToHideMoveInfoWindow(void);
 
+void TryToAddEnemyInfoWindow(void);
+void TryToHideEnemyInfoWindow(void);
+
 #endif // GUARD_BATTLE_INTERFACE_H

@@ -112,6 +112,22 @@ gText_Pie_HardMode::
 	.string "Normal Mode?$"
 
 gText_Pie_ChallengeMode::
+	.string "Ace Mode is the intended difficulty.\n"
+	.string "Every single Trainer has custom EVs.\p"
+	.string "It also has these restrictions:\p"
+	.string "You can't access the bag in Trainer\n"
+	.string "Battles, and the Shift battle style is\l"
+	.string "disabled.\p"
+	.string "That means you'll follow the same rules\n"
+	.string "as your opponents, so good strategy\l"
+	.string "and a balanced team are more important\l"
+	.string "in this mode.\p"
+	.string "This difficulty is only recommended if\n"
+	.string "it sounds appealing to you!\p"
+	.string "So, would you like to play on\n"
+	.string "Ace Mode?$"
+
+gText_Pie_EliteMode::
 	.string "Elite Mode is the intended difficulty.\n"
 	.string "Every single Trainer has custom EVs.\p"
 	.string "It also has these restrictions:\p"
@@ -132,8 +148,6 @@ gText_Pie_WhichDifficulty::
 	.string "play on?$"
 
 gText_Pie_LevelCaps::
-    .string "Great! Now, there's one last thing\n"
-    .string "to decide.\p"
     .string "This hack has built-in level caps\n"
     .string "based on which badges you have.\p"
     .string "If a Pokémon reaches the level cap,\n"
@@ -181,6 +195,23 @@ gText_Pie_StrictCaps::
 gText_Pie_WhichLevelCapSetting::
 	.string "Which level cap setting would you\n"
 	.string "like play on?$"
+
+gText_Pie_Randomizer::
+    .string "Great! Now, there's one last thing\n"
+    .string "to decide\l"
+    .string "Randomizer Description$"
+
+gText_Pie_WhichRandomizerSetting::
+	.string "Do you want to enable Innate\n"
+	.string "Randomizer?$"
+
+gText_Pie_Randomizer_Enabled::
+    .string "Do you want to start the game\n"
+    .string "with the Innate Randomizer Enabled$"
+
+gText_Pie_Randomizer_Disabled::
+    .string "Do you want to start the game\n"
+    .string "with the Innate Randomizer Disabled$"
 
 gText_Pie_Documents::
 	.string "Great! If you want more information,\n"

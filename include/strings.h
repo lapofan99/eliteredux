@@ -292,10 +292,10 @@ extern const u8 gText_SavingPlayer[];
 extern const u8 gText_SavingBadges[];
 extern const u8 gText_SavingPokedex[];
 extern const u8 gText_SavingTime[];
+extern const u8 gText_SavingEasyMode[];
 extern const u8 gText_SavingNormalMode[];
-extern const u8 gText_SavingHardMode[];
-extern const u8 gText_SavingChallengeMode[];
-extern const u8 gText_SavingInsanityMode[];
+extern const u8 gText_SavingAceMode[];
+extern const u8 gText_SavingEliteMode[];
 extern const u8 gText_SavingVersionNum[];
 
 // Battle pyramid menu texts
@@ -349,15 +349,24 @@ extern const u8 gText_WirelessNotConnected[];
 extern const u8 gText_MysteryGiftCantUse[];
 extern const u8 gText_MysteryEventsCantUse[];
 extern const u8 gText_Pie_Welcome[];
+
 extern const u8 gText_Pie_WhichDifficulty[];
 extern const u8 gText_Pie_NormalMode[];
 extern const u8 gText_Pie_HardMode[];
 extern const u8 gText_Pie_ChallengeMode[];
+extern const u8 gText_Pie_EliteMode[];
+
 extern const u8 gText_Pie_LevelCaps[];
 extern const u8 gText_Pie_StandardCaps[];
 extern const u8 gText_Pie_MoreCaps[];
 extern const u8 gText_Pie_StrictCaps[];
 extern const u8 gText_Pie_WhichLevelCapSetting[];
+
+extern const u8 gText_Pie_WhichRandomizerSetting[];
+extern const u8 gText_Pie_Randomizer[];
+extern const u8 gText_Pie_Randomizer_Enabled[];
+extern const u8 gText_Pie_Randomizer_Disabled[];
+
 extern const u8 gText_Pie_Documents[];
 extern const u8 gText_Birch_Welcome[];
 extern const u8 gText_ThisIsAPokemon[];
@@ -374,9 +383,9 @@ extern const u8 gText_ContinueMenuPokedex[];
 extern const u8 gText_ContinueMenuBadges[];
 extern const u8 gText_BirchBoy[];
 extern const u8 gText_BirchGirl[];
-extern const u8 gText_BirchNormalMode[];
-extern const u8 gText_BirchHardMode[];
-extern const u8 gText_BirchChallengeMode[];
+extern const u8 gText_BirchEasyMode[];
+extern const u8 gText_BirchAceMode[];
+extern const u8 gText_BirchEliteMode[];
 extern const u8 gText_BirchInsanityMode[];
 extern const u8 gText_BirchDefaultCaps[];
 extern const u8 gText_BirchMoreCaps[];

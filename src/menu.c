@@ -2208,13 +2208,13 @@ void BufferSaveMenuText(u8 textId, u8 *dest, u8 color)
             switch (difficultySetting)
             {
                 case DIFFICULTY_EASY:
-                    StringCopy(string, gText_SavingNormalMode);
+                    StringCopy(string, gText_SavingEasyMode);
+                    break;
+                case DIFFICULTY_ACE:
+                    StringCopy(string, gText_SavingAceMode);
                     break;
                 case DIFFICULTY_ELITE:
-                    StringCopy(string, gText_SavingChallengeMode);
-                    break;
-                case DIFFICULTY_INSANITY:
-                    StringCopy(string, gText_SavingInsanityMode);
+                    StringCopy(string, gText_SavingEliteMode);
                     break;
             }
             break;

@@ -244,6 +244,13 @@ static void Task_NewGameBirchSpeech_WaitToShowLevelCapMenu(u8 taskId);
 static void Task_NewGameBirchSpeech_ChooseLevelCaps(u8 taskId);
 static void Task_NewGameBirchSpeech_LevelCapsDesc(u8 taskId);
 static void NewGameBirchSpeech_ShowLevelCapMenu(void);
+
+static void Task_NewGameBirchSpeech_RandomizerSelect(u8 taskId);
+static void Task_NewGameBirchSpeech_WaitToShowRandomizerMenu(u8 taskId);
+static void Task_NewGameBirchSpeech_ChooseRandomizer(u8 taskId);
+static void Task_NewGameBirchSpeech_RandomizerDesc(u8 taskId);
+static void NewGameBirchSpeech_ShowRandomizerMenu(void);
+
 static void Task_NewGameBirchSpeech_ReadTheDocs(u8);
 static void Task_NewGameBirchSpeech_ShrinkPlayer(u8);
 static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite*);
@@ -501,14 +508,20 @@ static const struct MenuAction sMenuActions_Gender[] = {
 };
 
 static const struct MenuAction sMenuActions_Difficulty[] = {
-    {gText_BirchNormalMode, NULL},
-    {gText_BirchChallengeMode, NULL},
+    {gText_BirchEasyMode,  NULL},
+    {gText_BirchAceMode,   NULL},
+    {gText_BirchEliteMode, NULL},
 };
 
 static const struct MenuAction sMenuActions_LevelCaps[] = {
     {gText_BirchDefaultCaps, NULL},
     {gText_BirchMoreCaps, NULL},
     {gText_BirchStrictCaps, NULL},
+};
+
+static const struct MenuAction sMenuActions_Randomizer[] = {
+    {gText_No, NULL},
+    {gText_Yes, NULL},
 };
 
 static const u8 *const gMalePresetNames[] = {
@@ -1695,8 +1708,14 @@ static void Task_NewGameBirchSpeech_ProcessYesNoMenu(u8 taskId)
                 NewGameBirchSpeech_ClearWindow(0);
                 gTasks[taskId].func = Task_NewGameBirchSpeech_LevelCapSelect;
             }
-            else // Confirm level caps
+            else if (gTasks[taskId].tYesNoType == 3) // Confirm level caps
             {
+                NewGameBirchSpeech_ClearWindow(0);
+                gTasks[taskId].func = Task_NewGameBirchSpeech_RandomizerSelect;
+            }
+            else // Confirm Randomizer
+            {
+                NewGameBirchSpeech_ClearWindow(0);
                 gTasks[taskId].func = Task_NewGameBirchSpeech_ReadTheDocs;
             }
             break;
@@ -1715,12 +1734,19 @@ static void Task_NewGameBirchSpeech_ProcessYesNoMenu(u8 taskId)
                 AddTextPrinterForMessage(1);
                 gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowDifficultyMenu;
             }
-            else
+            else if (gTasks[taskId].tYesNoType == 3)
             {
                 NewGameBirchSpeech_ClearWindow(0);
                 StringExpandPlaceholders(gStringVar4, gText_Pie_WhichLevelCapSetting);
                 AddTextPrinterForMessage(1);
                 gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowLevelCapMenu;
+            }
+            else
+            {
+                NewGameBirchSpeech_ClearWindow(0);
+                StringExpandPlaceholders(gStringVar4, gText_Pie_WhichRandomizerSetting);
+                AddTextPrinterForMessage(1);
+                gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowRandomizerMenu;
             }
     }
 }
@@ -1838,21 +1864,27 @@ static void Task_NewGameBirchSpeech_ChooseDifficulty(u8 taskId)
 
     switch (difficulty)
     {
-        case 0:
+        case DIFFICULTY_EASY:
             PlaySE(SE_SELECT);
             gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_EASY;
             gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
-            NewGameBirchSpeech_ClearGenderWindow(4, 1);
+            NewGameBirchSpeech_ClearGenderWindow(5, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_DifficultyDesc;
             break;
-        case 1:
+        case DIFFICULTY_ACE:
+            PlaySE(SE_SELECT);
+            gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_ACE;
+            gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
+            NewGameBirchSpeech_ClearGenderWindow(5, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_DifficultyDesc;
+            break;
+        case DIFFICULTY_ELITE:
             PlaySE(SE_SELECT);
             gSaveBlock2Ptr->gameDifficulty = DIFFICULTY_ELITE;
             gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SET;
-            NewGameBirchSpeech_ClearGenderWindow(4, 1);
+            NewGameBirchSpeech_ClearGenderWindow(5, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_DifficultyDesc;
             break;
-        case 2:
     }
 }
 
@@ -1866,8 +1898,11 @@ static void Task_NewGameBirchSpeech_DifficultyDesc(u8 taskId)
         case DIFFICULTY_EASY:
             str = gText_Pie_NormalMode;
             break;
-        case DIFFICULTY_ELITE:
+        case DIFFICULTY_ACE:
             str = gText_Pie_ChallengeMode;
+            break;
+        case DIFFICULTY_ELITE:
+            str = gText_Pie_EliteMode;
             break;
     }
 
@@ -1877,7 +1912,7 @@ static void Task_NewGameBirchSpeech_DifficultyDesc(u8 taskId)
     AddTextPrinterForMessage(1);
     gTasks[taskId].func = Task_NewGameBirchSpeech_CreateYesNo;
 }
-
+//Level Caps
 static void Task_NewGameBirchSpeech_LevelCapSelect(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
@@ -1948,7 +1983,62 @@ static void Task_NewGameBirchSpeech_LevelCapsDesc(u8 taskId)
     AddTextPrinterForMessage(1);
     gTasks[taskId].func = Task_NewGameBirchSpeech_CreateYesNo;
 }
+// Randomizer
+static void Task_NewGameBirchSpeech_RandomizerSelect(u8 taskId)
+{
+    if (!RunTextPrintersAndIsPrinter0Active())
+    {
+        StringExpandPlaceholders(gStringVar4, gText_Pie_Randomizer);
+        AddTextPrinterForMessage(1);
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowRandomizerMenu;
+    }
+}
 
+static void Task_NewGameBirchSpeech_WaitToShowRandomizerMenu(u8 taskId)
+{
+    if (!RunTextPrintersAndIsPrinter0Active())
+    {
+        NewGameBirchSpeech_ShowRandomizerMenu();
+        gTasks[taskId].func = Task_NewGameBirchSpeech_ChooseRandomizer;
+    }
+}
+
+static void Task_NewGameBirchSpeech_ChooseRandomizer(u8 taskId)
+{
+    int difficulty = NewGameBirchSpeech_ProcessDifficultyMenuInput();
+
+    switch (difficulty)
+    {
+        case 0://No
+            PlaySE(SE_SELECT);
+            gSaveBlock2Ptr->randomizedMode = 0;
+            NewGameBirchSpeech_ClearGenderWindow(4, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_RandomizerDesc;
+            break;
+        case 1://Yes
+            PlaySE(SE_SELECT);
+            gSaveBlock2Ptr->randomizedMode = 1;
+            NewGameBirchSpeech_ClearGenderWindow(4, 1);
+            gTasks[taskId].func = Task_NewGameBirchSpeech_RandomizerDesc;
+            break;
+    }
+}
+
+static void Task_NewGameBirchSpeech_RandomizerDesc(u8 taskId)
+{
+    const u8 *str;
+    if(gSaveBlock2Ptr->randomizedMode == 1)
+        str = gText_Pie_Randomizer_Enabled;
+    else
+        str = gText_Pie_Randomizer_Disabled;
+
+    gTasks[taskId].tYesNoType = 4;
+    NewGameBirchSpeech_ClearWindow(0);
+    StringExpandPlaceholders(gStringVar4, str);
+    AddTextPrinterForMessage(1);
+    gTasks[taskId].func = Task_NewGameBirchSpeech_CreateYesNo;
+}
+//
 static void Task_NewGameBirchSpeech_ReadTheDocs(u8 taskId)
 {
     NewGameBirchSpeech_ClearWindow(0);
@@ -2334,12 +2424,12 @@ static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void)
 
 static void NewGameBirchSpeech_ShowDifficultyMenu(void)
 {
-    DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[1], 0xF3);
-    FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    PrintMenuTable(1, ARRAY_COUNT(sMenuActions_Difficulty), sMenuActions_Difficulty);
-    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0);
-    PutWindowTilemap(1);
-    CopyWindowToVram(1, 3);
+    DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[5], 0xF3);
+    FillWindowPixelBuffer(5, PIXEL_FILL(1));
+    PrintMenuTable(5, ARRAY_COUNT(sMenuActions_Difficulty), sMenuActions_Difficulty);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(5, 3, 0);
+    PutWindowTilemap(5);
+    CopyWindowToVram(5, 3);
 }
 
 static void NewGameBirchSpeech_ShowLevelCapMenu(void)
@@ -2350,6 +2440,16 @@ static void NewGameBirchSpeech_ShowLevelCapMenu(void)
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(5, 3, 0);
     PutWindowTilemap(5);
     CopyWindowToVram(5, 3);
+}
+
+static void NewGameBirchSpeech_ShowRandomizerMenu(void)
+{
+    DrawMainMenuWindowBorder(&gNewGameBirchSpeechTextWindows[1], 0xF3);
+    FillWindowPixelBuffer(1, PIXEL_FILL(1));
+    PrintMenuTable(1, ARRAY_COUNT(sMenuActions_Randomizer), sMenuActions_Randomizer);
+    InitMenuInUpperLeftCornerPlaySoundWhenAPressed(1, 2, 0);
+    PutWindowTilemap(1);
+    CopyWindowToVram(1, 3);
 }
 
 static s8 NewGameBirchSpeech_ProcessDifficultyMenuInput(void)

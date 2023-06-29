@@ -165,6 +165,13 @@ static const u16 sStarterMonAlola[STARTER_MON_COUNT] =
     SPECIES_POPPLIO,
 };
 
+static const u16 sStarterMonGalar[STARTER_MON_COUNT] =
+{
+    SPECIES_GROOKEY,
+    SPECIES_SCORBUNNY,
+    SPECIES_SOBBLE,
+};
+
 static const struct BgTemplate sBgTemplates[3] =
 {
     {
@@ -420,6 +427,8 @@ u16 GetStarterPokemon(u16 chosenStarterId)
             return sStarterMonKalos[chosenStarterId];
         case 7:
             return sStarterMonAlola[chosenStarterId];
+        case 8:
+            return sStarterMonGalar[chosenStarterId];
         default:
             return sStarterMonHoenn[chosenStarterId];
         }

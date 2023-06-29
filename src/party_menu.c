@@ -7930,13 +7930,13 @@ void SetArceusForm(struct Pokemon *mon)
     u16 ability = GetAbilityBySpecies(species, abilityNum);
     u8 level = GetMonData(mon, MON_DATA_LEVEL);
 
-    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS   && (ability == ABILITY_MULTITYPE  || SpeciesHasInnate(GET_BASE_SPECIES_ID(species), ABILITY_MULTITYPE, level)))
+    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS   && (ability == ABILITY_MULTITYPE  || MonHasInnate(mon, ABILITY_MULTITYPE)))
     {
         forme = GetArceusForm(mon);
         SetMonData(mon, MON_DATA_SPECIES, &forme);
         CalculateMonStats(mon);
     }
-    else if(GET_BASE_SPECIES_ID(species) == SPECIES_SILVALLY && (ability == ABILITY_RKS_SYSTEM || SpeciesHasInnate(GET_BASE_SPECIES_ID(species), ABILITY_RKS_SYSTEM, level)))
+    else if(GET_BASE_SPECIES_ID(species) == SPECIES_SILVALLY && (ability == ABILITY_RKS_SYSTEM || MonHasInnate(mon, ABILITY_RKS_SYSTEM)))
     {
         forme = GetSilvallyForm(mon);
         SetMonData(mon, MON_DATA_SPECIES, &forme);

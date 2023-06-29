@@ -467,7 +467,7 @@ static bool8 FindMonWithFlagsAndSuperEffective(u16 flags, u8 moduloPercent)
         // Updated to handle hidden abilities
         monAbility = gBaseStats[species].abilities[GetMonData(&party[i], MON_DATA_ABILITY_NUM)];
         
-        CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[gActiveBattler], species, monAbility, level);
+        CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[gActiveBattler], species, monAbility, level);//ToDo
         if (gMoveResultFlags & flags)
         {
             battlerIn1 = gLastHitBy[gActiveBattler];
