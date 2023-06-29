@@ -44,60 +44,77 @@ Route132_EventScript_Makayla:: @ 81F758B
 Route132_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route132_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_MAKAYLA
-	goto_if 1, Route132_EventScript_LegendaryNPC_8
-Route132_EventScript_LegendaryNPC_6:
-	msgbox Route132_EventScript_LegendaryNPC_Text_2
+	msgbox Route132_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route132_EventScript_LegendaryNPC_2
+	msgbox Route132_EventScript_LegendaryNPC_Text_4
 Route132_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route132_EventScript_LegendaryNPC_2:
-	msgbox Route132_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route132_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_MAKAYLA
+	goto_if 1, Route132_EventScript_LegendaryNPC_11
+Route132_EventScript_LegendaryNPC_9:
+	msgbox Route132_EventScript_LegendaryNPC_Text_3
 	goto Route132_EventScript_LegendaryNPC_1
 
 Route132_EventScript_LegendaryNPC_5:
 	msgbox Route132_EventScript_LegendaryNPC_Text_1
 	goto Route132_EventScript_LegendaryNPC_1
 
-Route132_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_DARCY
-	goto_if 1, Route132_EventScript_LegendaryNPC_12
-	goto Route132_EventScript_LegendaryNPC_6
-
 Route132_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_JONATHAN
-	goto_if 1, Route132_EventScript_LegendaryNPC_7
-	goto Route132_EventScript_LegendaryNPC_6
+	msgbox Route132_EventScript_LegendaryNPC_Text_2
+	goto Route132_EventScript_LegendaryNPC_1
+
+Route132_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_DARCY
+	goto_if 1, Route132_EventScript_LegendaryNPC_15
+	goto Route132_EventScript_LegendaryNPC_9
 
 Route132_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_KIYO
-	goto_if 1, Route132_EventScript_LegendaryNPC_16
-	goto Route132_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_JONATHAN
+	goto_if 1, Route132_EventScript_LegendaryNPC_10
+	goto Route132_EventScript_LegendaryNPC_9
 
-Route132_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_PAXTON
-	goto_if 1, Route132_EventScript_LegendaryNPC_11
-	goto Route132_EventScript_LegendaryNPC_6
+Route132_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_KIYO
+	goto_if 1, Route132_EventScript_LegendaryNPC_19
+	goto Route132_EventScript_LegendaryNPC_9
 
 Route132_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_DANA
-	goto_if 1, Route132_EventScript_LegendaryNPC_19
-	goto Route132_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_PAXTON
+	goto_if 1, Route132_EventScript_LegendaryNPC_14
+	goto Route132_EventScript_LegendaryNPC_9
 
-Route132_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_RONALD
-	goto_if 1, Route132_EventScript_LegendaryNPC_15
-	goto Route132_EventScript_LegendaryNPC_6
+Route132_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_DANA
+	goto_if 1, Route132_EventScript_LegendaryNPC_22
+	goto Route132_EventScript_LegendaryNPC_9
 
 Route132_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_RONALD
+	goto_if 1, Route132_EventScript_LegendaryNPC_18
+	goto Route132_EventScript_LegendaryNPC_9
+
+Route132_EventScript_LegendaryNPC_22:
 	checktrainerflag TRAINER_GILBERT
-	goto_if 1, Route132_EventScript_LegendaryNPC_5
-	goto Route132_EventScript_LegendaryNPC_6
+	goto_if 1, Route132_EventScript_LegendaryNPC_8
+	goto Route132_EventScript_LegendaryNPC_9
 
 
 Route132_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: I stand as the gatekeeper to the\n"
+	.string "resting place of the Ultra Beasts. Make\l"
+	.string "no mistake: despite still wearing the\l"
+	.string "battle scars inflicted upon them by\l"
+	.string "King Calyrex and the Tapus, they\l"
+	.string "possess an immense power, so tread\l"
+	.string "with caution in their presence.\p"
+	.string "Do you want to know how they got here?$"
+
+Route132_EventScript_LegendaryNPC_Text_1:
 	.string "The Ultra Beasts are creatures coming\n"
 	.string "from worlds outside our galaxy. They\l"
 	.string "came to Earth not by choice,\p"
@@ -120,7 +137,7 @@ Route132_EventScript_LegendaryNPC_Text_0:
 	.string "worthy of them, return to me\p"
 	.string ".$"
 
-Route132_EventScript_LegendaryNPC_Text_1:
+Route132_EventScript_LegendaryNPC_Text_2:
 	.string "Your heart is in the right place, and\n"
 	.string "your strenght is the one of a great\l"
 	.string "trainer. I added the location of some\l"
@@ -128,9 +145,12 @@ Route132_EventScript_LegendaryNPC_Text_1:
 	.string "There might be more in other routes,\l"
 	.string "too: try to catch them all!$"
 
-Route132_EventScript_LegendaryNPC_Text_2:
+Route132_EventScript_LegendaryNPC_Text_3:
 	.string "You have demonstrated great strenght\n"
 	.string "so far. But I want to see it with my\l"
 	.string "eyes! Defeat these last few trainers,\l"
 	.string "and I'll show you the place where the\l"
 	.string "Ultra Beasts reside.$"
+
+Route132_EventScript_LegendaryNPC_Text_4:
+	.string "Stay safe out there.$"

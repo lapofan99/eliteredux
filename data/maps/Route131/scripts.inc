@@ -59,55 +59,66 @@ Route131_EventScript_Kevin:: @ 81F74D2
 Route131_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route131_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_RICHARD
-	goto_if 1, Route131_EventScript_LegendaryNPC_8
-Route131_EventScript_LegendaryNPC_6:
-	msgbox Route131_EventScript_LegendaryNPC_Text_2
+	msgbox Route131_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route131_EventScript_LegendaryNPC_2
+	msgbox Route131_EventScript_LegendaryNPC_Text_4
 Route131_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route131_EventScript_LegendaryNPC_2:
-	msgbox Route131_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route131_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_RICHARD
+	goto_if 1, Route131_EventScript_LegendaryNPC_11
+Route131_EventScript_LegendaryNPC_9:
+	msgbox Route131_EventScript_LegendaryNPC_Text_3
 	goto Route131_EventScript_LegendaryNPC_1
 
 Route131_EventScript_LegendaryNPC_5:
 	msgbox Route131_EventScript_LegendaryNPC_Text_1
 	goto Route131_EventScript_LegendaryNPC_1
 
-Route131_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_SUSIE
-	goto_if 1, Route131_EventScript_LegendaryNPC_12
-	goto Route131_EventScript_LegendaryNPC_6
-
 Route131_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_HERMAN
-	goto_if 1, Route131_EventScript_LegendaryNPC_7
-	goto Route131_EventScript_LegendaryNPC_6
+	msgbox Route131_EventScript_LegendaryNPC_Text_2
+	goto Route131_EventScript_LegendaryNPC_1
+
+Route131_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_SUSIE
+	goto_if 1, Route131_EventScript_LegendaryNPC_15
+	goto Route131_EventScript_LegendaryNPC_9
 
 Route131_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_RELI_AND_IAN
-	goto_if 1, Route131_EventScript_LegendaryNPC_16
-	goto Route131_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_HERMAN
+	goto_if 1, Route131_EventScript_LegendaryNPC_10
+	goto Route131_EventScript_LegendaryNPC_9
 
-Route131_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_KARA
-	goto_if 1, Route131_EventScript_LegendaryNPC_11
-	goto Route131_EventScript_LegendaryNPC_6
+Route131_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_RELI_AND_IAN
+	goto_if 1, Route131_EventScript_LegendaryNPC_19
+	goto Route131_EventScript_LegendaryNPC_9
 
 Route131_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_KEVIN
-	goto_if 1, Route131_EventScript_LegendaryNPC_5
-	goto Route131_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_KARA
+	goto_if 1, Route131_EventScript_LegendaryNPC_14
+	goto Route131_EventScript_LegendaryNPC_9
 
-Route131_EventScript_LegendaryNPC_16:
+Route131_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_KEVIN
+	goto_if 1, Route131_EventScript_LegendaryNPC_8
+	goto Route131_EventScript_LegendaryNPC_9
+
+Route131_EventScript_LegendaryNPC_19:
 	checktrainerflag TRAINER_TALIA
-	goto_if 1, Route131_EventScript_LegendaryNPC_15
-	goto Route131_EventScript_LegendaryNPC_6
+	goto_if 1, Route131_EventScript_LegendaryNPC_18
+	goto Route131_EventScript_LegendaryNPC_9
 
 
 Route131_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: There's no time to explain, will\n"
+	.string "you help us?$"
+
+Route131_EventScript_LegendaryNPC_Text_1:
 	.string "The influence of the Sky Pillar has\n"
 	.string "attracted a nefarious invader from\l"
 	.string "outer space:\p"
@@ -133,7 +144,7 @@ Route131_EventScript_LegendaryNPC_Text_0:
 	.string "and help us stop this disgrace from\l"
 	.string "happening!$"
 
-Route131_EventScript_LegendaryNPC_Text_1:
+Route131_EventScript_LegendaryNPC_Text_2:
 	.string "Great job with those trainers! Finally,\n"
 	.string "we're ready to proceed: I marked\l"
 	.string "Necrozma's location on your DexNav.\p"
@@ -141,8 +152,11 @@ Route131_EventScript_LegendaryNPC_Text_1:
 	.string "sure you'll succeed in bringing this\l"
 	.string "monster down!$"
 
-Route131_EventScript_LegendaryNPC_Text_2:
+Route131_EventScript_LegendaryNPC_Text_3:
 	.string "Finally you came back! Before\n"
 	.string "proceeding, make sure no one's getting\l"
 	.string "caught in the crossfire: defeat all\l"
 	.string "trainers in this route first!$"
+
+Route131_EventScript_LegendaryNPC_Text_4:
+	.string "No time to explain!$"

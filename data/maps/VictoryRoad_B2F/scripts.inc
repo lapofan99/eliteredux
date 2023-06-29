@@ -109,50 +109,66 @@ VictoryRoad_B2F_Text_DiannePostBattle: @ 8236D8C
 VictoryRoad_B2F_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, VictoryRoad_B2F_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_JULIE
-	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_8
-VictoryRoad_B2F_EventScript_LegendaryNPC_6:
-	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_2
+	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq VictoryRoad_B2F_EventScript_LegendaryNPC_2
+	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_4
 VictoryRoad_B2F_EventScript_LegendaryNPC_1:
 	release
 	end
 
 VictoryRoad_B2F_EventScript_LegendaryNPC_2:
-	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, VictoryRoad_B2F_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_JULIE
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_11
+VictoryRoad_B2F_EventScript_LegendaryNPC_9:
+	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_3
 	goto VictoryRoad_B2F_EventScript_LegendaryNPC_1
 
 VictoryRoad_B2F_EventScript_LegendaryNPC_5:
 	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_1
 	goto VictoryRoad_B2F_EventScript_LegendaryNPC_1
 
-VictoryRoad_B2F_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_OWEN
-	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_12
-	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
-
 VictoryRoad_B2F_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_CAROLINE
-	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_7
-	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
+	msgbox VictoryRoad_B2F_EventScript_LegendaryNPC_Text_2
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_1
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_OWEN
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_15
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_9
 
 VictoryRoad_B2F_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_FELIX
-	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_15
-	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_CAROLINE
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_10
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_9
 
-VictoryRoad_B2F_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_VITO
-	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_11
-	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
+VictoryRoad_B2F_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_FELIX
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_18
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_9
 
 VictoryRoad_B2F_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_VITO
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_14
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_9
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_18:
 	checktrainerflag TRAINER_DIANNE
-	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_5
-	goto VictoryRoad_B2F_EventScript_LegendaryNPC_6
+	goto_if 1, VictoryRoad_B2F_EventScript_LegendaryNPC_8
+	goto VictoryRoad_B2F_EventScript_LegendaryNPC_9
 
 
 VictoryRoad_B2F_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: Once upon a time, I was a bard and\n"
+	.string "lorekeeper of these lands. I'm now\l"
+	.string "retired, like another colleague of mine,\l"
+	.string "but together we told the story of King\l"
+	.string "Calyrex. I happen to know the SECOND\l"
+	.string "part of the story, an infamous one. Do\l"
+	.string "you want to hear it?$"
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_Text_1:
 	.string "You might have heard the first part of\n"
 	.string "the legend of King Calyrex. If you\l"
 	.string "have, let me tell you the latter part of\l"
@@ -210,14 +226,21 @@ VictoryRoad_B2F_EventScript_LegendaryNPC_Text_0:
 	.string "steed, defeat the Pokémon league and\l"
 	.string "come back to me.$"
 
-VictoryRoad_B2F_EventScript_LegendaryNPC_Text_1:
+VictoryRoad_B2F_EventScript_LegendaryNPC_Text_2:
 	.string "It is done: I have severed the Tapu's\n"
 	.string "incantation holding The King hostage.\l"
 	.string "Use your DexNav to meet him. Good luck.$"
 
-VictoryRoad_B2F_EventScript_LegendaryNPC_Text_2:
+VictoryRoad_B2F_EventScript_LegendaryNPC_Text_3:
 	.string "It is time for the King to come back to\n"
 	.string "us. Defeat every trainer in this route\l"
 	.string "and come back to me: that's when I\l"
 	.string "know you'll be ready to withstand his\l"
 	.string "power.$"
+
+VictoryRoad_B2F_EventScript_LegendaryNPC_Text_4:
+	.string "Not today, not today, not today, not\n"
+	.string "today, not today, not today, not today,\l"
+	.string "not today... Nobody wants to hear the\l"
+	.string "misfortunes that could befall them.\l"
+	.string "Fools.$"

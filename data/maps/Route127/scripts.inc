@@ -85,63 +85,77 @@ Route127_EventScript_RematchKoji:: @ 81F6B21
 Route127_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route127_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_KOJI_1
-	goto_if 1, Route127_EventScript_LegendaryNPC_8
-Route127_EventScript_LegendaryNPC_6:
-	msgbox Route127_EventScript_LegendaryNPC_Text_2
+	msgbox Route127_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route127_EventScript_LegendaryNPC_2
+	msgbox Route127_EventScript_LegendaryNPC_Text_4
 Route127_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route127_EventScript_LegendaryNPC_2:
-	msgbox Route127_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route127_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_KOJI_1
+	goto_if 1, Route127_EventScript_LegendaryNPC_11
+Route127_EventScript_LegendaryNPC_9:
+	msgbox Route127_EventScript_LegendaryNPC_Text_3
 	goto Route127_EventScript_LegendaryNPC_1
 
 Route127_EventScript_LegendaryNPC_5:
 	msgbox Route127_EventScript_LegendaryNPC_Text_1
 	goto Route127_EventScript_LegendaryNPC_1
 
-Route127_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_AIDAN
-	goto_if 1, Route127_EventScript_LegendaryNPC_12
-	goto Route127_EventScript_LegendaryNPC_6
-
 Route127_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_ATHENA
-	goto_if 1, Route127_EventScript_LegendaryNPC_7
-	goto Route127_EventScript_LegendaryNPC_6
+	msgbox Route127_EventScript_LegendaryNPC_Text_2
+	goto Route127_EventScript_LegendaryNPC_1
+
+Route127_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_AIDAN
+	goto_if 1, Route127_EventScript_LegendaryNPC_15
+	goto Route127_EventScript_LegendaryNPC_9
 
 Route127_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_HENRY
-	goto_if 1, Route127_EventScript_LegendaryNPC_16
-	goto Route127_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_ATHENA
+	goto_if 1, Route127_EventScript_LegendaryNPC_10
+	goto Route127_EventScript_LegendaryNPC_9
 
-Route127_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_ROGER
-	goto_if 1, Route127_EventScript_LegendaryNPC_11
-	goto Route127_EventScript_LegendaryNPC_6
+Route127_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_HENRY
+	goto_if 1, Route127_EventScript_LegendaryNPC_19
+	goto Route127_EventScript_LegendaryNPC_9
 
 Route127_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_DONNY
-	goto_if 1, Route127_EventScript_LegendaryNPC_19
-	goto Route127_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_ROGER
+	goto_if 1, Route127_EventScript_LegendaryNPC_14
+	goto Route127_EventScript_LegendaryNPC_9
 
-Route127_EventScript_LegendaryNPC_16:
-	checktrainerflag TRAINER_JONAH
-	goto_if 1, Route127_EventScript_LegendaryNPC_15
-	goto Route127_EventScript_LegendaryNPC_6
+Route127_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_DONNY
+	goto_if 1, Route127_EventScript_LegendaryNPC_22
+	goto Route127_EventScript_LegendaryNPC_9
 
 Route127_EventScript_LegendaryNPC_19:
+	checktrainerflag TRAINER_JONAH
+	goto_if 1, Route127_EventScript_LegendaryNPC_18
+	goto Route127_EventScript_LegendaryNPC_9
+
+Route127_EventScript_LegendaryNPC_22:
 	checktrainerflag TRAINER_CAMDEN
-	goto_if 1, Route127_EventScript_LegendaryNPC_5
-	goto Route127_EventScript_LegendaryNPC_6
+	goto_if 1, Route127_EventScript_LegendaryNPC_8
+	goto Route127_EventScript_LegendaryNPC_9
 
 
 Route127_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: This is a resting place for some\n"
+	.string "very unfortunate souls, those being\l"
+	.string "the Mechanical Wonders. Please don't\l"
+	.string "desecrate it. I can tell you how they\l"
+	.string "got here, if you're interested.$"
+
+Route127_EventScript_LegendaryNPC_Text_1:
 	.string "In the pursuit of power, mankind has\n"
-	.string "often strayed from what we would call\l"
-	.string "'ethical experimentation'.\p"
+	.string "often strayed into morally wrong\l"
+	.string "choices.\p"
 	.string "The only law? The one of the strongest.\n"
 	.string "For some people, anything goes, as long\l"
 	.string "as it's for their gain.\p"
@@ -160,7 +174,7 @@ Route127_EventScript_LegendaryNPC_Text_0:
 	.string "captivity, and escaped to\p"
 	.string "this peaceful place, in search for\n"
 	.string "peace and tranquility, repenting over\l"
-	.string "their past deeds.\p"
+	.string "their terrible actions.\p"
 	.string "And now, in the pursuit of redemption,\n"
 	.string "they strive to protect this haven,\l"
 	.string "ensuring that no other creature\l"
@@ -168,7 +182,7 @@ Route127_EventScript_LegendaryNPC_Text_0:
 	.string "Only a true champion can earn their\n"
 	.string "trust. Come back when you're ready.$"
 
-Route127_EventScript_LegendaryNPC_Text_1:
+Route127_EventScript_LegendaryNPC_Text_2:
 	.string "You have demonstrated the strength\n"
 	.string "and compassion necessary to form an\l"
 	.string "unbreakable bond with these\l"
@@ -177,9 +191,12 @@ Route127_EventScript_LegendaryNPC_Text_1:
 	.string "location. Go forth: they're waiting for\l"
 	.string "you.$"
 
-Route127_EventScript_LegendaryNPC_Text_2:
+Route127_EventScript_LegendaryNPC_Text_3:
 	.string "You have the curiosity of the\n"
 	.string "Mechanical Marvels on your side. Show\l"
 	.string "them your strength on this route:\l"
 	.string "defeat these last few trainers first,\l"
 	.string "and I'll show you their location.$"
+
+Route127_EventScript_LegendaryNPC_Text_4:
+	.string "Tread carefully.$"

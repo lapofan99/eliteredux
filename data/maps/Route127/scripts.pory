@@ -88,14 +88,16 @@ Route127_EventScript_RematchKoji:: @ 81F6B21
 script Route127_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
-		msgbox(format("In the pursuit of power, mankind has often strayed from what we would call 'ethical experimentation'.\p"
+	msgbox(format("Sage: This is a resting place for some very unfortunate souls, those being the Mechanical Wonders. Please don't desecrate it. I can tell you how they got here, if you're interested."), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
+		msgbox(format("In the pursuit of power, mankind has often strayed into morally wrong choices.\p"
 		"The only law? The one of the strongest. For some people, anything goes, as long as it's for their gain.\p"
 		"That has been the case for the Mechanical Marvels that rest in these shores.\p"
 		"Genesect, Volcanion, Magearna. Creatures so powerful, their makers feared their possible retaliation.\p"
 		"They were used as weapons of mass destruction against their will, tarnishing them in body and spirit.\p"
 		"Nothing could stand their power, so they ended up outliving their usefulness. They broke free from captivity, and escaped to\p"
-		"this peaceful place, in search for peace and tranquility, repenting over their past deeds.\p"
+		"this peaceful place, in search for peace and tranquility, repenting over their terrible actions.\p"
 		"And now, in the pursuit of redemption, they strive to protect this haven, ensuring that no other creature suffers the same fate.\p"
 		"Only a true champion can earn their trust. Come back when you're ready."))
 	}
@@ -114,6 +116,10 @@ script Route127_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("You have the curiosity of the Mechanical Marvels on your side. Show them your strength on this route: defeat these last few trainers first, and I'll show you their location."))
 		}
+	}
+	}
+	else{
+		msgbox(format("Tread carefully."))
 	}
     release
     end

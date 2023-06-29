@@ -309,55 +309,71 @@ Route128_Text_StevenImGoingToSootopolis: @ 81F721B
 Route128_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route128_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_CARLEE
-	goto_if 1, Route128_EventScript_LegendaryNPC_8
-Route128_EventScript_LegendaryNPC_6:
-	msgbox Route128_EventScript_LegendaryNPC_Text_2
+	msgbox Route128_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route128_EventScript_LegendaryNPC_2
+	msgbox Route128_EventScript_LegendaryNPC_Text_4
 Route128_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route128_EventScript_LegendaryNPC_2:
-	msgbox Route128_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route128_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_CARLEE
+	goto_if 1, Route128_EventScript_LegendaryNPC_11
+Route128_EventScript_LegendaryNPC_9:
+	msgbox Route128_EventScript_LegendaryNPC_Text_3
 	goto Route128_EventScript_LegendaryNPC_1
 
 Route128_EventScript_LegendaryNPC_5:
 	msgbox Route128_EventScript_LegendaryNPC_Text_1
 	goto Route128_EventScript_LegendaryNPC_1
 
-Route128_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_WAYNE
-	goto_if 1, Route128_EventScript_LegendaryNPC_12
-	goto Route128_EventScript_LegendaryNPC_6
-
 Route128_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_HARRISON
-	goto_if 1, Route128_EventScript_LegendaryNPC_7
-	goto Route128_EventScript_LegendaryNPC_6
+	msgbox Route128_EventScript_LegendaryNPC_Text_2
+	goto Route128_EventScript_LegendaryNPC_1
+
+Route128_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_WAYNE
+	goto_if 1, Route128_EventScript_LegendaryNPC_15
+	goto Route128_EventScript_LegendaryNPC_9
 
 Route128_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_ALEXA
-	goto_if 1, Route128_EventScript_LegendaryNPC_16
-	goto Route128_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_HARRISON
+	goto_if 1, Route128_EventScript_LegendaryNPC_10
+	goto Route128_EventScript_LegendaryNPC_9
 
-Route128_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_RUBEN
-	goto_if 1, Route128_EventScript_LegendaryNPC_11
-	goto Route128_EventScript_LegendaryNPC_6
+Route128_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_ALEXA
+	goto_if 1, Route128_EventScript_LegendaryNPC_19
+	goto Route128_EventScript_LegendaryNPC_9
 
 Route128_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_ISAIAH_1
-	goto_if 1, Route128_EventScript_LegendaryNPC_5
-	goto Route128_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_RUBEN
+	goto_if 1, Route128_EventScript_LegendaryNPC_14
+	goto Route128_EventScript_LegendaryNPC_9
 
-Route128_EventScript_LegendaryNPC_16:
+Route128_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_ISAIAH_1
+	goto_if 1, Route128_EventScript_LegendaryNPC_8
+	goto Route128_EventScript_LegendaryNPC_9
+
+Route128_EventScript_LegendaryNPC_19:
 	checktrainerflag TRAINER_KATELYN_1
-	goto_if 1, Route128_EventScript_LegendaryNPC_15
-	goto Route128_EventScript_LegendaryNPC_6
+	goto_if 1, Route128_EventScript_LegendaryNPC_18
+	goto Route128_EventScript_LegendaryNPC_9
 
 
 Route128_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: Not only am I a sage, but once\n"
+	.string "upon a time I was a bard, too. A good\l"
+	.string "one at that... but a long time has\l"
+	.string "passed. I used to sing the legend of\l"
+	.string "King Calyrex, the righteous king turned\l"
+	.string "mad by power. Do you want to hear me\l"
+	.string "sing one last time?$"
+
+Route128_EventScript_LegendaryNPC_Text_1:
 	.string "Once upon a time, in the frozen lands of\n"
 	.string "Galar, lived a benevolent king named\l"
 	.string "Calyrex\p"
@@ -393,15 +409,19 @@ Route128_EventScript_LegendaryNPC_Text_0:
 	.string "battling trio, come back once you\l"
 	.string "become champion!$"
 
-Route128_EventScript_LegendaryNPC_Text_1:
+Route128_EventScript_LegendaryNPC_Text_2:
 	.string "Tapu Koko, Tapu Bulu and Glastrier have\n"
 	.string "deemed you worthy of meeting them. I\l"
 	.string "marked their location on your DexNav:\l"
 	.string "use it on this route to meet them!$"
 
-Route128_EventScript_LegendaryNPC_Text_2:
+Route128_EventScript_LegendaryNPC_Text_3:
 	.string "The Tapus and the King's steed admire\n"
 	.string "your dedication to becoming champion,\l"
 	.string "but would like to see some more action\l"
 	.string "from you! Defeat every trainer in this\l"
 	.string "route and come back to me!$"
+
+Route128_EventScript_LegendaryNPC_Text_4:
+	.string "You know there's nothing left of me...\n"
+	.string "Let me sing... please...$"

@@ -227,7 +227,10 @@ VictoryRoad_1F_Text_KatelynnPostBattle: @ 82364BB
 script VictoryRoad_1F_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
+	msgbox(format("Sage intern: Why did I choose to get an internship at the Academy of Pokémon sages? I could've become an investment banker like my brother, or an insurance lawyer like my sister... but no! I chose an academic profession, and now I'm stuck here for FREE all day long!\p"
+	"Oh, sorry I didn't notice you... wait, I forgot my script... did I have any? Whatever. Just choose yes in the message box. Please. They didn't code a response for 'no' and the game's gonna crash."), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("My colleagues might have bombarded you with information about their route's legendaries, but I'm different!\p"
 		"Those residing in this dank cave... just happened to randomly like it, so they stayed. I tried asking my colleagues about it, but they ignored my emails... shame on them!\p"
 		"Two are poisonous dragons, one's a football player, and they've got nothing to do with each other!\p"
@@ -245,6 +248,25 @@ script VictoryRoad_1F_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("Hey lad! Congrats on becoming champion, but as you might have guessed, your work's not done! It's not my fault tho! Rules say so (I despise them too!)! So beat every trainer, then come back here so we can leave this cave behind us, ok?"))
 		}
+	}
+	}
+	else{
+		msgbox(format("ERROR AT ADDRESS 0X0009B1F\p"
+		"CORRUPTION WARNING ADDRESS 0X0009DA32\p"
+		"SAV\lING DAT\pA DO N     OT TURN Y\po\pu\pr\p"
+		"\pSAVE DATA S++++++UC"
+		"\p 0x000E34F          ESFULLY DEL"
+		"\pETED"
+		"\p"
+		"Come on. Did I really fool you. Admit it. I did, if only for a split second. You're lucky I can't change music through Poryscript... that would've been funny."
+		"Jokes aside, you have to explain to me why you clicked 'no' when I EXPLICITLY told you it would crash the game. Come on. You're an adult! Why would you crash the game and make all the NPC's here suffer? That's sick of you!\p"
+		"Imagine if I came into your house and broke all the windows because you put up a sing saying 'please don't break my windows!'. I imagine you'd be pissed off. I would be too! But you did anyway.\p"
+		"Imagine if you were a streamer playing the hack and this message stalled out your 'ultra hardcore no restarts no breathing blind deaf colourblind no hands no setup no terrain no weather bridge-wed-egg-soul locke run.\p"
+		"Would you keep mashing A hoping this dialogue ends? Or would you rather reload the save and just answer 'YES' to my question?\p"
+		"There's a concept in economics called 'sunk cost'. Yes, it's releveant. Basically, sunk costs are those which have already been incurred and which are unrecoverable. The time you spent reading this is a sunk cost, for example.\p"
+		"Now, would it make sense for you to end this dialogue now by reloading your save, and stop incurring sunk costs, or would it be better to keep on reading?\p"
+		"That's an interesting question, and it all depends on when you last saved, if you're enjoying this dialogue, your attention level, the amount of speedup your emulator is playing at, et cetera.\p"
+		"(un)fortunately for you, my heated SPA has reached 37 degrees Celsius, so it's time for me to take a hot bath. I would keep on talking otherwise.. Consider yourself lucky, kid! - Luca"))
 	}
     release
     end

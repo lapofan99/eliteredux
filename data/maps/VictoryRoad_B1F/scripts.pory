@@ -95,6 +95,8 @@ VictoryRoad_B1F_Text_HallePostBattle: @ 823684C
 script VictoryRoad_B1F_EventScript_LegendaryNPC{
     lock
     faceplayer
+	msgbox(format("Sage: The hostile nature of these crevaces turn away most without a fighting spirit... but not you. Am I right?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("This treacherous cave has drawn those with a fighting spirit that matches its own!\p"
 		"Whether born from nature or forged through life's trials, renegade spirits are naturally attracted to these dank corridors.\p"
@@ -112,6 +114,10 @@ script VictoryRoad_B1F_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("I commend your dedication, becoming champion must've been a difficult affair. But, if you managed to do that, I'm sure you'll also be able to beat the last few trainers in this cave. Defeat them and come back to me."))
 		}
+	}
+	}
+	else{
+		msgbox(format("...but you're at Victory Road? Why would you NOT have a fighting spirit?"))
 	}
     release
     end

@@ -225,50 +225,73 @@ VictoryRoad_1F_Text_KatelynnPostBattle: @ 82364BB
 VictoryRoad_1F_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, VictoryRoad_1F_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_WALLY_VR_1
-	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_8
-VictoryRoad_1F_EventScript_LegendaryNPC_6:
-	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_2
+	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq VictoryRoad_1F_EventScript_LegendaryNPC_2
+	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_4
 VictoryRoad_1F_EventScript_LegendaryNPC_1:
 	release
 	end
 
 VictoryRoad_1F_EventScript_LegendaryNPC_2:
-	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, VictoryRoad_1F_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_WALLY_VR_1
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_11
+VictoryRoad_1F_EventScript_LegendaryNPC_9:
+	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_3
 	goto VictoryRoad_1F_EventScript_LegendaryNPC_1
 
 VictoryRoad_1F_EventScript_LegendaryNPC_5:
 	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_1
 	goto VictoryRoad_1F_EventScript_LegendaryNPC_1
 
-VictoryRoad_1F_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_ALBERT
-	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_12
-	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
-
 VictoryRoad_1F_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_EDGAR
-	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_7
-	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
+	msgbox VictoryRoad_1F_EventScript_LegendaryNPC_Text_2
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_1
+
+VictoryRoad_1F_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_ALBERT
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_15
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_9
 
 VictoryRoad_1F_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_QUINCY
-	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_15
-	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_EDGAR
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_10
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_9
 
-VictoryRoad_1F_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_HOPE
-	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_11
-	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
+VictoryRoad_1F_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_QUINCY
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_18
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_9
 
 VictoryRoad_1F_EventScript_LegendaryNPC_15:
+	checktrainerflag TRAINER_HOPE
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_14
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_9
+
+VictoryRoad_1F_EventScript_LegendaryNPC_18:
 	checktrainerflag TRAINER_KATELYNN
-	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_5
-	goto VictoryRoad_1F_EventScript_LegendaryNPC_6
+	goto_if 1, VictoryRoad_1F_EventScript_LegendaryNPC_8
+	goto VictoryRoad_1F_EventScript_LegendaryNPC_9
 
 
 VictoryRoad_1F_EventScript_LegendaryNPC_Text_0:
+	.string "Sage intern: Why did I choose to get an\n"
+	.string "internship at the Academy of Pokémon\l"
+	.string "sages? I could've become an\l"
+	.string "investment banker like my brother, or\l"
+	.string "an insurance lawyer like my sister...\l"
+	.string "but no! I chose an academic\l"
+	.string "profession, and now I'm stuck here for\l"
+	.string "FREE all day long!\p"
+	.string "Oh, sorry I didn't notice you... wait, I\n"
+	.string "forgot my script... did I have any?\l"
+	.string "Whatever. Just choose yes in the\l"
+	.string "message box. Please. They didn't code a\l"
+	.string "response for 'no' and the game's gonna\l"
+	.string "crash.$"
+
+VictoryRoad_1F_EventScript_LegendaryNPC_Text_1:
 	.string "My colleagues might have bombarded you\n"
 	.string "with information about their route's\l"
 	.string "legendaries, but I'm different!\p"
@@ -286,13 +309,13 @@ VictoryRoad_1F_EventScript_LegendaryNPC_Text_0:
 	.string "talk to me, use your DexNav, and\l"
 	.string "pronto! Three legendaries for you!$"
 
-VictoryRoad_1F_EventScript_LegendaryNPC_Text_1:
+VictoryRoad_1F_EventScript_LegendaryNPC_Text_2:
 	.string "Poipole, Naganadel and Zeraora... done,\n"
 	.string "your DexNav should show their location\l"
 	.string "now. Good luck champ, let's leave this\l"
 	.string "place!$"
 
-VictoryRoad_1F_EventScript_LegendaryNPC_Text_2:
+VictoryRoad_1F_EventScript_LegendaryNPC_Text_3:
 	.string "Hey lad! Congrats on becoming champion,\n"
 	.string "but as you might have guessed, your\l"
 	.string "work's not done! It's not my fault tho!\l"
@@ -300,3 +323,64 @@ VictoryRoad_1F_EventScript_LegendaryNPC_Text_2:
 	.string "beat every trainer, then come back\l"
 	.string "here so we can leave this cave behind\l"
 	.string "us, ok?$"
+
+VictoryRoad_1F_EventScript_LegendaryNPC_Text_4:
+	.string "ERROR AT ADDRESS 0X0009B1F\p"
+	.string "CORRUPTION WARNING ADDRESS\n"
+	.string "0X0009DA32\p"
+	.string "SAV\l"
+	.string "ING DAT\p"
+	.string "A DO N OT TURN Y\p"
+	.string "o\p"
+	.string "u\p"
+	.string "r\p"
+	.string "\p"
+	.string "SAVE DATA S++++++UC\p"
+	.string "0x000E34F ESFULLY DEL\p"
+	.string "ETED\p"
+	.string "Come on. Did I really fool you. Admit it.\n"
+	.string "I did, if only for a split second. You're\l"
+	.string "lucky I can't change music through\l"
+	.string "Poryscript... that would've been funny.\l"
+	.string "Jokes aside, you have to explain to me\l"
+	.string "why you clicked 'no' when I EXPLICITLY\l"
+	.string "told you it would crash the game. Come\l"
+	.string "on. You're an adult! Why would you crash\l"
+	.string "the game and make all the NPC's here\l"
+	.string "suffer? That's sick of you!\p"
+	.string "Imagine if I came into your house and\n"
+	.string "broke all the windows because you put\l"
+	.string "up a sing saying 'please don't break my\l"
+	.string "windows!'. I imagine you'd be pissed\l"
+	.string "off. I would be too! But you did anyway.\p"
+	.string "Imagine if you were a streamer playing\n"
+	.string "the hack and this message stalled out\l"
+	.string "your 'ultra hardcore no restarts no\l"
+	.string "breathing blind deaf colourblind no\l"
+	.string "hands no setup no terrain no weather\l"
+	.string "bridge-wed-egg-soul locke run.\p"
+	.string "Would you keep mashing A hoping this\n"
+	.string "dialogue ends? Or would you rather\l"
+	.string "reload the save and just answer 'YES'\l"
+	.string "to my question?\p"
+	.string "There's a concept in economics called\n"
+	.string "'sunk cost'. Yes, it's releveant.\l"
+	.string "Basically, sunk costs are those which\l"
+	.string "have already been incurred and which\l"
+	.string "are unrecoverable. The time you spent\l"
+	.string "reading this is a sunk cost, for\l"
+	.string "example.\p"
+	.string "Now, would it make sense for you to end\n"
+	.string "this dialogue now by reloading your\l"
+	.string "save, and stop incurring sunk costs, or\l"
+	.string "would it be better to keep on reading?\p"
+	.string "That's an interesting question, and it\n"
+	.string "all depends on when you last saved, if\l"
+	.string "you're enjoying this dialogue, your\l"
+	.string "attention level, the amount of speedup\l"
+	.string "your emulator is playing at, et cetera.\p"
+	.string "(un)fortunately for you, my heated SPA\n"
+	.string "has reached 37 degrees Celsius, so it's\l"
+	.string "time for me to take a hot bath. I would\l"
+	.string "keep on talking otherwise.. Consider\l"
+	.string "yourself lucky, kid! - Luca$"

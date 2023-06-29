@@ -92,40 +92,53 @@ VictoryRoad_B1F_Text_HallePostBattle: @ 823684C
 VictoryRoad_B1F_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, VictoryRoad_B1F_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_HALLE
-	goto_if 1, VictoryRoad_B1F_EventScript_LegendaryNPC_8
-VictoryRoad_B1F_EventScript_LegendaryNPC_6:
-	msgbox VictoryRoad_B1F_EventScript_LegendaryNPC_Text_2
+	msgbox VictoryRoad_B1F_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq VictoryRoad_B1F_EventScript_LegendaryNPC_2
+	msgbox VictoryRoad_B1F_EventScript_LegendaryNPC_Text_4
 VictoryRoad_B1F_EventScript_LegendaryNPC_1:
 	release
 	end
 
 VictoryRoad_B1F_EventScript_LegendaryNPC_2:
-	msgbox VictoryRoad_B1F_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, VictoryRoad_B1F_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_HALLE
+	goto_if 1, VictoryRoad_B1F_EventScript_LegendaryNPC_11
+VictoryRoad_B1F_EventScript_LegendaryNPC_9:
+	msgbox VictoryRoad_B1F_EventScript_LegendaryNPC_Text_3
 	goto VictoryRoad_B1F_EventScript_LegendaryNPC_1
 
 VictoryRoad_B1F_EventScript_LegendaryNPC_5:
 	msgbox VictoryRoad_B1F_EventScript_LegendaryNPC_Text_1
 	goto VictoryRoad_B1F_EventScript_LegendaryNPC_1
 
-VictoryRoad_B1F_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_SHANNON
-	goto_if 1, VictoryRoad_B1F_EventScript_LegendaryNPC_11
-	goto VictoryRoad_B1F_EventScript_LegendaryNPC_6
-
 VictoryRoad_B1F_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_MITCHELL
-	goto_if 1, VictoryRoad_B1F_EventScript_LegendaryNPC_7
-	goto VictoryRoad_B1F_EventScript_LegendaryNPC_6
+	msgbox VictoryRoad_B1F_EventScript_LegendaryNPC_Text_2
+	goto VictoryRoad_B1F_EventScript_LegendaryNPC_1
+
+VictoryRoad_B1F_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_SHANNON
+	goto_if 1, VictoryRoad_B1F_EventScript_LegendaryNPC_14
+	goto VictoryRoad_B1F_EventScript_LegendaryNPC_9
 
 VictoryRoad_B1F_EventScript_LegendaryNPC_11:
+	checktrainerflag TRAINER_MITCHELL
+	goto_if 1, VictoryRoad_B1F_EventScript_LegendaryNPC_10
+	goto VictoryRoad_B1F_EventScript_LegendaryNPC_9
+
+VictoryRoad_B1F_EventScript_LegendaryNPC_14:
 	checktrainerflag TRAINER_SAMUEL
-	goto_if 1, VictoryRoad_B1F_EventScript_LegendaryNPC_5
-	goto VictoryRoad_B1F_EventScript_LegendaryNPC_6
+	goto_if 1, VictoryRoad_B1F_EventScript_LegendaryNPC_8
+	goto VictoryRoad_B1F_EventScript_LegendaryNPC_9
 
 
 VictoryRoad_B1F_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: The hostile nature of these\n"
+	.string "crevaces turn away most without a\l"
+	.string "fighting spirit... but not you. Am I\l"
+	.string "right?$"
+
+VictoryRoad_B1F_EventScript_LegendaryNPC_Text_1:
 	.string "This treacherous cave has drawn those\n"
 	.string "with a fighting spirit that matches its\l"
 	.string "own!\p"
@@ -145,7 +158,7 @@ VictoryRoad_B1F_EventScript_LegendaryNPC_Text_0:
 	.string "take lightly. First, beat the Pokémon\l"
 	.string "League, then come back to me.$"
 
-VictoryRoad_B1F_EventScript_LegendaryNPC_Text_1:
+VictoryRoad_B1F_EventScript_LegendaryNPC_Text_2:
 	.string "Your spirit is aligned with the\n"
 	.string "creatures residing in this place. They\l"
 	.string "have allowed me to reveal their\l"
@@ -153,10 +166,14 @@ VictoryRoad_B1F_EventScript_LegendaryNPC_Text_1:
 	.string "your DexNav. I can't wait to see your\l"
 	.string "fight against them!$"
 
-VictoryRoad_B1F_EventScript_LegendaryNPC_Text_2:
+VictoryRoad_B1F_EventScript_LegendaryNPC_Text_3:
 	.string "I commend your dedication, becoming\n"
 	.string "champion must've been a difficult\l"
 	.string "affair. But, if you managed to do that,\l"
 	.string "I'm sure you'll also be able to beat the\l"
 	.string "last few trainers in this cave. Defeat\l"
 	.string "them and come back to me.$"
+
+VictoryRoad_B1F_EventScript_LegendaryNPC_Text_4:
+	.string "...but you're at Victory Road? Why would\n"
+	.string "you NOT have a fighting spirit?$"

@@ -56,6 +56,8 @@ Route134_EventScript_Kelvin:: @ 81F770B
 script Route134_EventScript_LegendaryNPC{
     lock
     faceplayer
+	msgbox(format("Sage: The last of the Ultra Beasts reside here. You know the drill: want to know more about them?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("Like many others, this route houses some of the Ultra Beasts from outer space. I will reveal their location\p"
 		"to you, but only when you become champion!"))
@@ -75,6 +77,10 @@ script Route134_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("Are you here looking for some of the Ultra Beasts? I thought so. I'll tell you where they hide, but first, defeat all trainers in this route!"))
 		}
+	}
+	}
+	else{
+		msgbox(format("While I can forget everything I wanna be, I can't forget what I don't wanna become: you!"))
 	}
     release
     end

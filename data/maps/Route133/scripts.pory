@@ -157,7 +157,9 @@ Route133_Text_NurseDoneHaveVialUpgrade:
 script Route133_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
+	msgbox(format("Sage: Some more Ultra Beasts reside here. Want to know more about them?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("This archipelago is home to the Ultra Beasts, creatures from outer space that fled their home planets to escape Necrozma's hunger.\p"
 		"Many perished during the trip, many more from Calyrex's actions, but some, despite all the hardships, survived. These lone survivors now reside here.\p"
 		"These poor creatures are looking for a valiant guide: I can tell you're the right person for this. Come back once you become champion, and I'll tell you more about it."))
@@ -175,6 +177,10 @@ script Route133_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("You remembered our little promise. Good. Just one more thing before I show you the Beasts' location: there's a couple of trainers loose in this route. How about you take them down and come back to me, yeah?"))
 		}
+	}
+	}
+	else{
+		msgbox(format("Don't lean into calamity."))
 	}
     release
     end

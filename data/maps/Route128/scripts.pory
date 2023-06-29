@@ -311,7 +311,9 @@ Route128_Text_StevenImGoingToSootopolis: @ 81F721B
 script Route128_EventScript_LegendaryNPC{
     lock
     faceplayer
-	if (!flag(FLAG_SYS_GAME_CLEAR)){
+	msgbox(format("Sage: Not only am I a sage, but once upon a time I was a bard, too. A good one at that... but a long time has passed. I used to sing the legend of King Calyrex, the righteous king turned mad by power. Do you want to hear me sing one last time?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("Once upon a time, in the frozen lands of Galar, lived a benevolent king named Calyrex\p"
 		"Calyrex was beloved by the people and feared by his enemies: every day he would ride his magnificent steed, Glastrier, across the realm,\p"
 		"helping those in need, lifting everyone's spirits and being there when his presence was needed the most.\p"
@@ -334,6 +336,10 @@ script Route128_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("The Tapus and the King's steed admire your dedication to becoming champion, but would like to see some more action from you! Defeat every trainer in this route and come back to me!"))
 		}
+	}
+	}
+	else{
+		msgbox(format("You know there's nothing left of me... Let me sing... please..."))
 	}
     release
     end

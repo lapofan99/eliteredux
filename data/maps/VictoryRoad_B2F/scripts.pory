@@ -112,6 +112,8 @@ VictoryRoad_B2F_Text_DiannePostBattle: @ 8236D8C
 script VictoryRoad_B2F_EventScript_LegendaryNPC{
     lock
     faceplayer
+	msgbox(format("Sage: Once upon a time, I was a bard and lorekeeper of these lands. I'm now retired, like another colleague of mine, but together we told the story of King Calyrex. I happen to know the SECOND part of the story, an infamous one. Do you want to hear it?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("You might have heard the first part of the legend of King Calyrex. If you have, let me tell you the latter part of the story, one that many people don't know about.\p"
 		"After pushing back Necrozma to outer space, Alola was still invaded by the Ultra Beasts, which were far too many to deal with.\p"
@@ -140,6 +142,10 @@ script VictoryRoad_B2F_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("It is time for the King to come back to us. Defeat every trainer in this route and come back to me: that's when I know you'll be ready to withstand his power."))
 		}
+	}
+	}
+	else{
+		msgbox(format("Not today, not today, not today, not today, not today, not today, not today, not today... Nobody wants to hear the misfortunes that could befall them. Fools."))
 	}
     release
     end

@@ -46,6 +46,9 @@ Route132_EventScript_Makayla:: @ 81F758B
 script Route132_EventScript_LegendaryNPC{
     lock
     faceplayer
+	msgbox(format("Sage: I stand as the gatekeeper to the resting place of the Ultra Beasts. Make no mistake: despite still wearing the battle scars inflicted upon them by King Calyrex and the Tapus, they possess an immense power, so tread with caution in their presence.\p"
+	"Do you want to know how they got here?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
 	if (!flag(FLAG_SYS_GAME_CLEAR)){
 		msgbox(format("The Ultra Beasts are creatures coming from worlds outside our galaxy. They came to Earth not by choice,\p"
 		"but necessity: Necrozma's hunger didn't spare their planets, so they roamed until they found a hospitable place to live.\p"
@@ -67,6 +70,10 @@ script Route132_EventScript_LegendaryNPC{
 		else{
 			msgbox(format("You have demonstrated great strenght so far. But I want to see it with my eyes! Defeat these last few trainers, and I'll show you the place where the Ultra Beasts reside."))
 		}
+	}
+	}
+	else{
+		msgbox(format("Stay safe out there."))
 	}
     release
     end

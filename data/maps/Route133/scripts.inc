@@ -156,55 +156,66 @@ Route133_Text_NurseDoneHaveVialUpgrade:
 Route133_EventScript_LegendaryNPC::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, Route133_EventScript_LegendaryNPC_2
-	checktrainerflag TRAINER_CONOR
-	goto_if 1, Route133_EventScript_LegendaryNPC_8
-Route133_EventScript_LegendaryNPC_6:
-	msgbox Route133_EventScript_LegendaryNPC_Text_2
+	msgbox Route133_EventScript_LegendaryNPC_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route133_EventScript_LegendaryNPC_2
+	msgbox Route133_EventScript_LegendaryNPC_Text_4
 Route133_EventScript_LegendaryNPC_1:
 	release
 	end
 
 Route133_EventScript_LegendaryNPC_2:
-	msgbox Route133_EventScript_LegendaryNPC_Text_0
+	goto_if_unset FLAG_SYS_GAME_CLEAR, Route133_EventScript_LegendaryNPC_5
+	checktrainerflag TRAINER_CONOR
+	goto_if 1, Route133_EventScript_LegendaryNPC_11
+Route133_EventScript_LegendaryNPC_9:
+	msgbox Route133_EventScript_LegendaryNPC_Text_3
 	goto Route133_EventScript_LegendaryNPC_1
 
 Route133_EventScript_LegendaryNPC_5:
 	msgbox Route133_EventScript_LegendaryNPC_Text_1
 	goto Route133_EventScript_LegendaryNPC_1
 
-Route133_EventScript_LegendaryNPC_7:
-	checktrainerflag TRAINER_BECK
-	goto_if 1, Route133_EventScript_LegendaryNPC_12
-	goto Route133_EventScript_LegendaryNPC_6
-
 Route133_EventScript_LegendaryNPC_8:
-	checktrainerflag TRAINER_MOLLIE
-	goto_if 1, Route133_EventScript_LegendaryNPC_7
-	goto Route133_EventScript_LegendaryNPC_6
+	msgbox Route133_EventScript_LegendaryNPC_Text_2
+	goto Route133_EventScript_LegendaryNPC_1
+
+Route133_EventScript_LegendaryNPC_10:
+	checktrainerflag TRAINER_BECK
+	goto_if 1, Route133_EventScript_LegendaryNPC_15
+	goto Route133_EventScript_LegendaryNPC_9
 
 Route133_EventScript_LegendaryNPC_11:
-	checktrainerflag TRAINER_LINDA
-	goto_if 1, Route133_EventScript_LegendaryNPC_16
-	goto Route133_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_MOLLIE
+	goto_if 1, Route133_EventScript_LegendaryNPC_10
+	goto Route133_EventScript_LegendaryNPC_9
 
-Route133_EventScript_LegendaryNPC_12:
-	checktrainerflag TRAINER_WARREN
-	goto_if 1, Route133_EventScript_LegendaryNPC_11
-	goto Route133_EventScript_LegendaryNPC_6
+Route133_EventScript_LegendaryNPC_14:
+	checktrainerflag TRAINER_LINDA
+	goto_if 1, Route133_EventScript_LegendaryNPC_19
+	goto Route133_EventScript_LegendaryNPC_9
 
 Route133_EventScript_LegendaryNPC_15:
-	checktrainerflag TRAINER_FRANKLIN
-	goto_if 1, Route133_EventScript_LegendaryNPC_5
-	goto Route133_EventScript_LegendaryNPC_6
+	checktrainerflag TRAINER_WARREN
+	goto_if 1, Route133_EventScript_LegendaryNPC_14
+	goto Route133_EventScript_LegendaryNPC_9
 
-Route133_EventScript_LegendaryNPC_16:
+Route133_EventScript_LegendaryNPC_18:
+	checktrainerflag TRAINER_FRANKLIN
+	goto_if 1, Route133_EventScript_LegendaryNPC_8
+	goto Route133_EventScript_LegendaryNPC_9
+
+Route133_EventScript_LegendaryNPC_19:
 	checktrainerflag TRAINER_DEBRA
-	goto_if 1, Route133_EventScript_LegendaryNPC_15
-	goto Route133_EventScript_LegendaryNPC_6
+	goto_if 1, Route133_EventScript_LegendaryNPC_18
+	goto Route133_EventScript_LegendaryNPC_9
 
 
 Route133_EventScript_LegendaryNPC_Text_0:
+	.string "Sage: Some more Ultra Beasts reside\n"
+	.string "here. Want to know more about them?$"
+
+Route133_EventScript_LegendaryNPC_Text_1:
 	.string "This archipelago is home to the Ultra\n"
 	.string "Beasts, creatures from outer space\l"
 	.string "that fled their home planets to escape\l"
@@ -219,16 +230,19 @@ Route133_EventScript_LegendaryNPC_Text_0:
 	.string "you become champion, and I'll tell you\l"
 	.string "more about it.$"
 
-Route133_EventScript_LegendaryNPC_Text_1:
+Route133_EventScript_LegendaryNPC_Text_2:
 	.string "Yes, I had no doubts: you are worthy of\n"
 	.string "meeting the Ultra Beasts. I marked\l"
 	.string "their location on your DexNav: use it\l"
 	.string "to meet them.$"
 
-Route133_EventScript_LegendaryNPC_Text_2:
+Route133_EventScript_LegendaryNPC_Text_3:
 	.string "You remembered our little promise. Good.\n"
 	.string "Just one more thing before I show you\l"
 	.string "the Beasts' location: there's a couple\l"
 	.string "of trainers loose in this route. How\l"
 	.string "about you take them down and come\l"
 	.string "back to me, yeah?$"
+
+Route133_EventScript_LegendaryNPC_Text_4:
+	.string "Don't lean into calamity.$"
