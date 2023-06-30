@@ -9079,3 +9079,20 @@ bool8 enablePokemonChanges(void){
 
     return enable;
 }
+
+u16 GetRandomPokemonFromSpecies(u16 basespecies){
+	u16 species = basespecies;
+
+    if(gSaveBlock2Ptr->encounterRandomizedMode == 1 && basespecies != SPECIES_NONE){
+	    u16 rndSeed = VarGet(VAR_RANDOMIZED_SEED);
+        if(rndSeed == 0){
+            u16 newseed = Random() % 9999;
+            VarSet(VAR_RANDOMIZED_SEED, newseed);
+            rndSeed = VarGet(VAR_RANDOMIZED_SEED);
+        }
+
+        species = (basespecies * rndSeed) % SPECIES_CALYREX;
+    }
+    
+	return species;
+}

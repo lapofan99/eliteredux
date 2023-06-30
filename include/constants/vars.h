@@ -120,7 +120,7 @@
 #define VAR_CANDY_BOX_NUM_LEVELS             0x4065 // New Var
 #define VAR_DAMAGE_DONE                      0x4066 // New Var
 #define VAR_BATTLE_CONTROLLER_PLAYER_F       0x4067 // New Var
-#define VAR_ROUTE109_STATE                   0x4068 // Unused Var
+#define VAR_RANDOMIZED_SEED                  0x4068 //Randomizer
 #define VAR_ROUTE110_STATE                   0x4069
 #define VAR_ROUTE111_STATE                   0x406A // Unused Var
 #define VAR_ROUTE112_STATE                   0x406B // Unused Var

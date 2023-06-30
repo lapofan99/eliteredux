@@ -8,6 +8,7 @@
 #include "event_data.h"
 #include "safari_zone.h"
 #include "overworld.h"
+#include "pokemon.h"
 #include "pokeblock.h"
 #include "battle_setup.h"
 #include "roamer.h"
@@ -353,6 +354,8 @@ void CreateWildMon(u16 species, u8 level)
 
     ZeroEnemyPartyMons();
     checkCuteCharm = TRUE;
+
+    species = GetRandomPokemonFromSpecies(species);
 
     switch (gBaseStats[species].genderRatio)
     {

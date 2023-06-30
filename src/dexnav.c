@@ -956,7 +956,7 @@ static void DexNavUpdateDirectionArrow(void)
 static void DexNavDrawIcons(void)
 {
     u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
-    u16 species = sDexNavSearchDataPtr->species;
+    u16 species = GetRandomPokemonFromSpecies(sDexNavSearchDataPtr->species);
     
     // init sprite ids
     /*sDexNavSearchDataPtr->iconSpriteId = 0xFF;
@@ -1021,7 +1021,7 @@ static u8 GetMovementProximityBySearchLevel(void)
 static void Task_RevealHiddenMon(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
-    u16 species = sDexNavSearchDataPtr->species;
+    u16 species = GetRandomPokemonFromSpecies(sDexNavSearchDataPtr->species);
     
     // remove owned icon if it exists
     if (sDexNavSearchDataPtr->ownedIconSpriteId != MAX_SPRITES)
@@ -1176,12 +1176,13 @@ static void Task_DexNavSearch(u8 taskId)
 static void DexNavUpdateSearchWindow(u8 proximity, u8 searchLevel)
 {
     bool8 hideName = FALSE;
+    u16 species = GetRandomPokemonFromSpecies(sDexNavSearchDataPtr->species);
 
-    if (sDexNavSearchDataPtr->species == SPECIES_NONE)
+    if (species == SPECIES_NONE)
         hideName = TRUE;    //if a detector mode hidden search and player hasn't seen the mon, hide info
     
     FillWindowPixelBuffer(sDexNavSearchDataPtr->windowId, PIXEL_FILL(1));   //clear window
-    AddSearchWindowText(sDexNavSearchDataPtr->species, proximity, searchLevel, hideName);
+    AddSearchWindowText(species, proximity, searchLevel, hideName);
     
     DexNavUpdateDirectionArrow();
     
@@ -2026,7 +2027,7 @@ static void DrawSpeciesIcons(void)
     LoadCompressedSpriteSheetUsingHeap(&sNoDataIconSpriteSheet);
     for (i = 0; i < LAND_WILD_COUNT; i++)
     {
-        species = sDexNavUiDataPtr->landSpecies[i];
+        species = GetRandomPokemonFromSpecies(sDexNavUiDataPtr->landSpecies[i]);
         x = 20 + (24 * (i % 6));
         y = ROW_LAND_TOP_ICON_Y + (i > 5 ? 28 : 0);
         TryDrawIconInSlot(species, x, y);
@@ -2034,7 +2035,7 @@ static void DrawSpeciesIcons(void)
     
     for (i = 0; i < WATER_WILD_COUNT; i++)
     {
-        species = sDexNavUiDataPtr->waterSpecies[i];
+        species = GetRandomPokemonFromSpecies(sDexNavUiDataPtr->waterSpecies[i]);
         x = 30 + 24 * i;
         y = ROW_WATER_ICON_Y;
         TryDrawIconInSlot(species, x, y);
@@ -2042,7 +2043,7 @@ static void DrawSpeciesIcons(void)
     
     for (i = 0; i < HIDDEN_WILD_COUNT; i++)
     {
-        species = sDexNavUiDataPtr->hiddenSpecies[i];
+        species = GetRandomPokemonFromSpecies(sDexNavUiDataPtr->hiddenSpecies[i]);
         x = ROW_HIDDEN_ICON_X + 24 * i;
         y = ROW_HIDDEN_ICON_Y;
         if (CanFindHiddenPokemon())
@@ -2133,7 +2134,7 @@ static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 static void PrintCurrentSpeciesInfo(void)
 {
     u8 searchLevelBonus = 0;
-    u16 species = DexNavGetSpecies();
+    u16 species = GetRandomPokemonFromSpecies(DexNavGetSpecies());
     u32 i;
     u16 dexNum = SpeciesToNationalPokedexNum(species);
     u8 type1, type2;
@@ -2218,6 +2219,7 @@ static void PrintMapName(void)
 
 static void PrintSearchableSpecies(u16 species)
 {
+    species = GetRandomPokemonFromSpecies(species);
     FillWindowPixelBuffer(WINDOW_REGISTERED, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
     PutWindowTilemap(WINDOW_REGISTERED);
     if (species == SPECIES_NONE)
@@ -2481,7 +2483,7 @@ static void Task_DexNavMain(u8 taskId)
     else if (JOY_NEW(R_BUTTON))
     {
         // check selection is valid. Play sound if invalid
-        species = DexNavGetSpecies();
+        species = GetRandomPokemonFromSpecies(DexNavGetSpecies());
         
         if (species != SPECIES_NONE)
         {            
