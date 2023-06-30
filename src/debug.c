@@ -2503,11 +2503,11 @@ static void DebugAction_FlagsVars_MgbaPrintOnOff(u8 taskId)
 static void DebugAction_FlagsVars_RandomOnOff(u8 taskId)
 {
     if (gSaveBlock2Ptr->randomizedMode == 1){
-        gSaveBlock2Ptr->randomizedMode == 0;
+        gSaveBlock2Ptr->randomizedMode = 0;
         PlaySE(SE_PC_OFF);
     }
     else{
-        gSaveBlock2Ptr->randomizedMode == 1;
+        gSaveBlock2Ptr->randomizedMode = 1;
         PlaySE(SE_PC_LOGIN);
     }
 }

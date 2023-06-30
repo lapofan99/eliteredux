@@ -8912,7 +8912,7 @@ bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality){
     u16 innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
     u16 innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
 	
-    if(innate1 == ability && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    if(innate1 == ability      && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
         return TRUE;
     else if(innate2 == ability && (level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
         return TRUE;
@@ -8923,9 +8923,48 @@ bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality){
 }
 
 u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
-    if(gSaveBlock2Ptr->randomizedMode == 1 && innate != ABILITY_NONE){ 
+    if(gSaveBlock2Ptr->randomizedMode == 1 && 
+       innate != ABILITY_NONE              &&
+       innate != ABILITY_ZEN_MODE          &&
+       innate != ABILITY_WONDER_GUARD      &&
+       innate != ABILITY_POWER_CONSTRUCT   &&
+       innate != ABILITY_SCHOOLING         &&
+       innate != ABILITY_MULTITYPE         &&
+       innate != ABILITY_FORECAST          &&
+       innate != ABILITY_STANCE_CHANGE     &&
+       innate != ABILITY_RKS_SYSTEM        &&
+       innate != ABILITY_BATTLE_BOND       &&
+       innate != ABILITY_POWER_CONSTRUCT   &&
+       innate != ABILITY_ICE_FACE          &&
+       innate != ABILITY_GULP_MISSILE      &&
+       innate != ABILITY_DISGUISE          &&
+       innate != ABILITY_FLOWER_GIFT       &&
+       innate != ABILITY_HUNGER_SWITCH){ 
         //Only Randomize if you have the Randomized Mode Enabled
+        //Exclude form change abilities from being randomized and other mons can't get them either
         u16 randomizedInnate = (innate + species + personality) % ABILITIES_COUNT;
+        do{
+            randomizedInnate++;
+            randomizedInnate = randomizedInnate % ABILITIES_COUNT;
+        }
+        while(randomizedInnate == ABILITY_HUNGER_SWITCH   ||
+              randomizedInnate == ABILITY_ZEN_MODE        ||
+              randomizedInnate == ABILITY_WONDER_GUARD    ||
+              randomizedInnate == ABILITY_POWER_CONSTRUCT ||
+              randomizedInnate == ABILITY_SCHOOLING       ||
+              randomizedInnate == ABILITY_TRACE           ||
+              randomizedInnate == ABILITY_TRUANT          ||
+              randomizedInnate == ABILITY_MULTITYPE       ||
+              randomizedInnate == ABILITY_FORECAST        ||
+              randomizedInnate == ABILITY_DISGUISE        ||
+              randomizedInnate == ABILITY_STANCE_CHANGE   ||
+              randomizedInnate == ABILITY_COMATOSE        ||
+              randomizedInnate == ABILITY_RKS_SYSTEM      ||
+              randomizedInnate == ABILITY_BATTLE_BOND     ||
+              randomizedInnate == ABILITY_POWER_CONSTRUCT ||
+              randomizedInnate == ABILITY_FLOWER_GIFT     ||
+              randomizedInnate == ABILITY_ICE_FACE        ||
+              randomizedInnate == ABILITY_GULP_MISSILE);
         return randomizedInnate;
     }
     else

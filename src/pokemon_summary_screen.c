@@ -4128,6 +4128,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
     u16 innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
     u16 innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
     u16 innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
+    u16 ability = RandomizeInnate(GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM)), sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.pid);
 
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sMemoNatureTextColor);
@@ -4144,10 +4145,10 @@ static void BufferMonPokemonAbilityAndInnates(void)
 	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_MainAbility);
     PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
 	// Name ---------------------------------------------------------------------------------------------------
-    DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
+    DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[ability]);
     PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
 	// Description ---------------------------------------------------------------------------------------------------
-	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM))]);
+	DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityDescriptionPointers[ability]);
     PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
 
 	// Innates
