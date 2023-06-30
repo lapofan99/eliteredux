@@ -374,7 +374,7 @@
 #define ABILITY_POISON_ABSORB    (ABILITIES_COUNT_LATEST_GEN + 76) // Restore 1/4 HP when hit by Poison-type moves.
 #define ABILITY_SCAVENGER        (ABILITIES_COUNT_LATEST_GEN + 77) // Heals 1/4 HP when defeating an enemy.
 #define ABILITY_TWISTED_DIMENSION (ABILITIES_COUNT_LATEST_GEN + 78) // Summons Trick Room on entry.
-#define ABILITY_MULTI_HEADED     (ABILITIES_COUNT_LATEST_GEN + 79) // Hit two or three times depending on the number of heads with single target moves, dealing 25% or 33% more damage. (Doesn't work with multi-hit moves like Comet Punch, Flinch effect is not applied).
+#define ABILITY_MULTI_HEADED     (ABILITIES_COUNT_LATEST_GEN + 79) // Hit two or three times depending on the number of heads with single target moves, dealing 25% or 33% more damage. (Doesn't work with multi-hit moves like Comet Punch).
 #define ABILITY_NORTH_WIND       (ABILITIES_COUNT_LATEST_GEN + 80) // Sets Aurora Veil on entry. Immune to Hail damage.
 #define ABILITY_OVERCHARGE       (ABILITIES_COUNT_LATEST_GEN + 81) // Electric does 2x damage against Electric. Can paralyze Electric-types.
 #define ABILITY_VIOLENT_RUSH     (ABILITIES_COUNT_LATEST_GEN + 82) // Boosts Speed by 1.5x, Attack by 1.2x on first turn (same activation requirements as Fake Out)

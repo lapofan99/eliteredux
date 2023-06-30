@@ -404,8 +404,8 @@
 #define NUM_INNATE_PER_SPECIES 3
 
 #define INNATE_1_LEVEL 1
-#define INNATE_2_LEVEL 1 // eg. 15
-#define INNATE_3_LEVEL 1 // eg 21
+#define INNATE_2_LEVEL 15 // eg. 15
+#define INNATE_3_LEVEL 21 // eg 21
 
 
 //Move Relearner

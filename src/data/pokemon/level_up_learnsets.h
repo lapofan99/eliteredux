@@ -10284,6 +10284,7 @@ static const struct LevelUpMove sRhyperiorLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(61, MOVE_MEGAHORN),
 	LEVEL_UP_MOVE(68, MOVE_HORN_DRILL),
 	LEVEL_UP_MOVE(75, MOVE_ROCK_WRECKER),
+    LEVEL_UP_MOVE(82, MOVE_HEAD_SMASH), // new
 	LEVEL_UP_END
 };
 

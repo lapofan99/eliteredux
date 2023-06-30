@@ -40,7 +40,7 @@ GraniteCave_StevensRoom_EventScript_Steven:: @ 822DC7B
 
 
 GraniteCave_StevensRoom_Text_ObtainedHonedge::
-	.string "{PLAYER} got a {COLOR BLUE}Honedge{COLOR DARK_GRAY}$"
+	.string "{PLAYER} got a {COLOR BLUE}Honedge{COLOR DARK_GRAY} as a gift!$"
 
 GraniteCave_StevensRoom_EventScript_StevenExitNorth:: @ 822DD0D
 	applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit
