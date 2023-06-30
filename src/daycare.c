@@ -1120,9 +1120,22 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
     {
         eggSpecies = SPECIES_NIDORAN_M;
     }
-    if (eggSpecies == SPECIES_ILLUMISE && daycare->offspringPersonality & EGG_GENDER_MALE)
+    else if (eggSpecies == SPECIES_ILLUMISE && daycare->offspringPersonality & EGG_GENDER_MALE)
     {
         eggSpecies = SPECIES_VOLBEAT;
+    }
+    else if (eggSpecies == SPECIES_GRENINJA_BATTLE_BOND || 
+             eggSpecies == SPECIES_GRENINJA_ASH)
+    {
+        eggSpecies = SPECIES_FROAKIE;
+    }
+    else if (eggSpecies == SPECIES_VIVILLON_POKE_BALL)
+    {
+        eggSpecies = SPECIES_SCATTERBUG;
+    }
+    else if (eggSpecies == SPECIES_FLOETTE_ETERNAL_FLOWER)
+    {
+        eggSpecies = SPECIES_FLABEBE;
     }
 
     // Make Ditto the "mother" slot if the other daycare mon is male.
