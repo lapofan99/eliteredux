@@ -1892,6 +1892,15 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 			MulModifier(&mod, mod2);
 		}
 
+        //Third Type
+        if (gBattleMons[targetId].type3 != gBattleMons[targetId].type1 &&
+            gBattleMons[targetId].type3 != gBattleMons[targetId].type2 &&
+            gBattleMons[targetId].type3 != TYPE_MYSTERY)
+		{
+			u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type3];
+			MulModifier(&mod, mod2);
+		}
+
 		if (gBattleMoves[moveNum].effect == EFFECT_TWO_TYPED_MOVE)
 		{
 			u16 mod3 = sTypeEffectivenessTable[gBattleMoves[moveNum].argument][gBattleMons[targetId].type1];
