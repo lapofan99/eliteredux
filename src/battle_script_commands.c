@@ -2100,6 +2100,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     {
         critChance = -1;
     }
+    //Never Critical
     else if (abilityDef        == ABILITY_BAD_LUCK              || 
              abilityDefPartner == ABILITY_BAD_LUCK              || 
              abilityDef        == ABILITY_BATTLE_ARMOR          || 
@@ -2112,26 +2113,26 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
             RecordAbilityBattle(battlerDef, abilityDef);
         critChance = -1;
     }
+    //Always Critical
     else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
              || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
-             || ((abilityAtk == ABILITY_MERCILESS    || BattlerHasInnate(battlerAtk, ABILITY_MERCILESS))    && ((gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY) || gBattleMons[battlerDef].statStages[STAT_ATK] < DEFAULT_STAT_STAGE))
-			 || ((abilityAtk == ABILITY_HYPER_CUTTER || BattlerHasInnate(battlerAtk, ABILITY_HYPER_CUTTER)) && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
-			 || ((abilityAtk == ABILITY_PRECISE_FIST || BattlerHasInnate(battlerAtk, ABILITY_PRECISE_FIST)) && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
+             || ((abilityAtk == ABILITY_MERCILESS || BattlerHasInnate(battlerAtk, ABILITY_MERCILESS)) && ((gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY) || gBattleMons[battlerDef].statStages[STAT_ATK] < DEFAULT_STAT_STAGE))
              || move == MOVE_SURGING_STRIKES
-            #if B_LEEK_ALWAYS_CRIT >= GEN_6
              || ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk))
-            #endif
              )
     {
         critChance = -2;
     }
     else
     {
+        //Boost Critical Chance
         critChance  = 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
                     + ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) != 0)
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
                     + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
                     + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
+                    + 2 * ((abilityAtk == ABILITY_HYPER_CUTTER || BattlerHasInnate(battlerAtk, ABILITY_HYPER_CUTTER)) && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
+			        + 2 * ((abilityAtk == ABILITY_PRECISE_FIST || BattlerHasInnate(battlerAtk, ABILITY_PRECISE_FIST)) && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
 					+ ((abilityAtk == ABILITY_PERFECTIONIST || BattlerHasInnate(gBattlerAttacker, ABILITY_PERFECTIONIST)) && gBattleMoves[move].power <= 50)
                     + ((abilityAtk == ABILITY_SUPER_LUCK    || BattlerHasInnate(gBattlerAttacker, ABILITY_SUPER_LUCK)));
 
