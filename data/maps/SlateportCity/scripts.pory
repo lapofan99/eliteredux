@@ -18,7 +18,7 @@ raw `
 .set LOCALID_GRUNT_8, 30
 .set LOCALID_GRUNT_9, 31
 .set LOCALID_GRUNT_11, 33
-.set LOCALID_SCOTT, 35
+.set LOCALID_SCOTT, 34
 .set LOCALID_BRAWLY, 38
 
 SlateportCity_MapScripts:: @ 81DCC61
