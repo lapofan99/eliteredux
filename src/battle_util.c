@@ -6440,9 +6440,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			// Volt Absorb
 			if(BattlerHasInnate(battler, ABILITY_VOLT_ABSORB)){
 				if (move != MOVE_NONE && moveType == TYPE_ELECTRIC){
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_VOLT_ABSORB;
                     effect = 1;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_VOLT_ABSORB;
-				    gLastUsedAbility = ABILITY_VOLT_ABSORB;
 				}
 			}
 			
@@ -6450,8 +6449,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if(BattlerHasInnate(battler, ABILITY_WATER_ABSORB)){
 				if (move != MOVE_NONE && moveType == TYPE_WATER){
                     effect = 1;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_WATER_ABSORB;
-				    gLastUsedAbility = ABILITY_WATER_ABSORB;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WATER_ABSORB;
 				}
 			}
 			
