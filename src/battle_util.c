@@ -4031,18 +4031,16 @@ bool32 ShouldChangeFormHpBased(u32 battler)
     // Ability,     form >, form <=, hp divided
     static const u16 forms[][4] =
     {
-        {ABILITY_ZEN_MODE, SPECIES_DARMANITAN, SPECIES_DARMANITAN_ZEN_MODE, 1},
-        {ABILITY_ZEN_MODE, SPECIES_DARMANITAN_GALARIAN, SPECIES_DARMANITAN_ZEN_MODE_GALARIAN, 1},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR, SPECIES_MINIOR_CORE_RED, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_BLUE, SPECIES_MINIOR_CORE_BLUE, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_GREEN, SPECIES_MINIOR_CORE_GREEN, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_INDIGO, SPECIES_MINIOR_CORE_INDIGO, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_ORANGE, SPECIES_MINIOR_CORE_ORANGE, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_CORE_VIOLET, 2},
-        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_YELLOW, SPECIES_MINIOR_CORE_YELLOW, 2},
-        {ABILITY_SCHOOLING, SPECIES_WISHIWASHI_SCHOOL, SPECIES_WISHIWASHI, 4},
-        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT, SPECIES_CRAMORANT_GORGING, 2},
-        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT, SPECIES_CRAMORANT_GULPING, 1},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR,               SPECIES_MINIOR_CORE_RED,              2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_BLUE,   SPECIES_MINIOR_CORE_BLUE,             2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_GREEN,  SPECIES_MINIOR_CORE_GREEN,            2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_INDIGO, SPECIES_MINIOR_CORE_INDIGO,           2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_ORANGE, SPECIES_MINIOR_CORE_ORANGE,           2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_CORE_VIOLET,           2},
+        {ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_YELLOW, SPECIES_MINIOR_CORE_YELLOW,           2},
+        {ABILITY_SCHOOLING,    SPECIES_WISHIWASHI_SCHOOL,    SPECIES_WISHIWASHI,                   4},
+        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,            SPECIES_CRAMORANT_GORGING,            2},
+        {ABILITY_GULP_MISSILE, SPECIES_CRAMORANT,            SPECIES_CRAMORANT_GULPING,            1},
     };
     u32 i;
 
@@ -4064,6 +4062,26 @@ bool32 ShouldChangeFormHpBased(u32 battler)
             }
         }
     }
+
+    //Darmanitan
+    if (gBattleMons[battler].species == SPECIES_DARMANITAN && 
+	    (gBattleMons[battler].ability == ABILITY_ZEN_MODE || BattlerHasInnate(battler, ABILITY_ZEN_MODE)) &&
+		gBattleMons[battler].hp != 0){
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZEN_MODE;
+            gBattlerAttacker = battler;
+            gBattleMons[battler].species = SPECIES_DARMANITAN_ZEN_MODE;
+			return TRUE;
+	}
+
+    //Darmanitan Galarian
+    if (gBattleMons[battler].species == SPECIES_DARMANITAN_GALARIAN && 
+	    (gBattleMons[battler].ability == ABILITY_ZEN_MODE || BattlerHasInnate(battler, ABILITY_ZEN_MODE)) &&
+		gBattleMons[battler].hp != 0){
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZEN_MODE;
+            gBattlerAttacker = battler;
+            gBattleMons[battler].species = SPECIES_DARMANITAN_ZEN_MODE_GALARIAN;
+			return TRUE;
+	}
 
     //Castform
     if ((gBattleMons[battler].species == SPECIES_CASTFORM       ||
@@ -4751,10 +4769,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+		case ABILITY_ZEN_MODE:
+            if (ShouldChangeFormHpBased(battler))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
+                effect++;
+            }
+            break;
         case ABILITY_SCHOOLING:
             if (gBattleMons[battler].level < 20)
                 break;
-		case ABILITY_ZEN_MODE:
         case ABILITY_SHIELDS_DOWN:
         case ABILITY_FORECAST:
         case ABILITY_FLOWER_GIFT:
@@ -5921,7 +5945,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_SCHOOLING:
                 if (gBattleMons[battler].level < 20)
                     break;
-            case ABILITY_ZEN_MODE:
             case ABILITY_SHIELDS_DOWN:
             case ABILITY_FORECAST:
             case ABILITY_FLOWER_GIFT:
@@ -6186,9 +6209,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				}
             }
 		
-			// Zen Mode & Shields Down
-            if(BattlerHasInnate(gActiveBattler, ABILITY_ZEN_MODE) ||
-			   BattlerHasInnate(gActiveBattler, ABILITY_SHIELDS_DOWN)){
+			// Shields Down
+            if(BattlerHasInnate(gActiveBattler, ABILITY_SHIELDS_DOWN)){
                 if ((effect = ShouldChangeFormHpBased(battler)))
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
 			}
