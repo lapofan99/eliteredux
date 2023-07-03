@@ -3478,7 +3478,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_HELIOLISK] =
     {
         .size = 0x78,
-        .y_offset = 2,
+        .y_offset = 4,
     },
     [SPECIES_TYRUNT] =
     {
