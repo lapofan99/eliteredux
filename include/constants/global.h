@@ -133,4 +133,9 @@
 #define LEVEL_CAPS_ELITE       2
 #define LEVEL_CAPS_OFF         3
 
+//Saveblock Toggle Stuff
+#define SAVEBLOCK_RANDOMIZER        0
+#define SAVEBLOCK_INNATE_RANDOMIZER 1
+#define SAVEBLOCK_DIFFICULTY        2
+
 #endif // GUARD_CONSTANTS_GLOBAL_H

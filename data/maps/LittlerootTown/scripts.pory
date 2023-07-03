@@ -2121,19 +2121,23 @@ script PKMN_Center_Move_Tutor{
 		break
 		case 1:
 			closemessage
-			goto(PKMN_Center_NameRater_EventScript)
+			goto(PKMN_Center_EventScript_RandomizerToggle)
 		break
 		case 2:
 			closemessage
-			goto(PKMN_Center_EventScript_Mystery_Gift)
+			goto(PKMN_Center_NameRater_EventScript)
 		break
 		case 3:
+			closemessage
+			goto(PKMN_Center_EventScript_Mystery_Gift)
+		break
+		case 4:
 			closemessage
 			goto(PKMN_Center_EventScript_Event_Reset)
 		break
 		case MULTI_B_PRESSED:
 		default:
-		case 4:
+		case 5:
 			closemessage
 			goto(PKMN_Center_Move_Tutor_General_Exit)
 		break
@@ -2166,8 +2170,37 @@ script PKMN_Center_EventScript_DayNightToggle{
     end
 }
 
+script PKMN_Center_EventScript_RandomizerToggle{
+	msgbox(format("Do you want to enable/disable the Randomizer for wild encounters?"), MSGBOX_YESNO)
+	switch(var(VAR_RESULT)){
+		case YES:
+			checkSaveblockValue(0)
+			if(var(VAR_RESULT) == 1){
+				toggleSaveblock(SAVEBLOCK_RANDOMIZER, FALSE)
+				playfanfare(MUS_OBTAIN_ITEM)
+				message(format("The randomizer was disabled."))
+			}
+			else{
+				toggleSaveblock(SAVEBLOCK_RANDOMIZER, TRUE)
+				playfanfare(MUS_OBTAIN_ITEM)
+				message(format("The randomizer was enabled."))
+			}
+			waitmessage
+			waitfanfare
+		break
+		case NO:
+		case MULTI_B_PRESSED:
+		default:
+			goto(PKMN_Center_Move_Tutor)
+		break
+	}
+    release
+    end
+}
+
 text MultiChoice_Move_Tutor_NPC{
     "Invert Day and Night$"
+    "Enable/Disable Randomizer$"
     "Rate a nickname$"
     "Mystery Gift$"
     "Reset Events$"

@@ -1765,6 +1765,17 @@
     customgivemon \species, \level, 0, 0, NUM_NATURES, 0xFF, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, \move1, \move2, \move3, \move4, 0
     .endm
 
+	.macro toggleSaveblock flag:req, value:req
+	.byte 0xe8
+	.2byte \flag
+	.2byte \value
+	.endm
+
+	.macro checkSaveblockValue flag:req
+	.byte 0xe9
+	.2byte \flag
+	.endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req

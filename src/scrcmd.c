@@ -2675,3 +2675,38 @@ bool8 ScrCmd_givecustommon(struct ScriptContext *ctx)
     gSpecialVar_Result = ScriptGiveCustomMon(species, level, item, ball, nature, abilityNum, evs, ivs, moves, isShiny);
     return FALSE;
 }
+
+bool8 ScrCmd_toggleSaveblock(struct ScriptContext *ctx)
+{
+    u16 flag  = ScriptReadHalfword(ctx);
+    u16 value = ScriptReadHalfword(ctx);
+    switch(flag){
+        case SAVEBLOCK_RANDOMIZER:
+            gSaveBlock2Ptr->encounterRandomizedMode = value;
+        break;
+        case SAVEBLOCK_INNATE_RANDOMIZER:
+            gSaveBlock2Ptr->randomizedMode = value;
+        break;
+        case SAVEBLOCK_DIFFICULTY:
+            gSaveBlock2Ptr->gameDifficulty = value;
+        break;
+    }
+    return TRUE;
+}
+
+bool8 ScrCmd_checkSaveblockValue(struct ScriptContext *ctx)
+{
+    u16 flag  = ScriptReadHalfword(ctx);
+    switch(flag){
+        case SAVEBLOCK_RANDOMIZER:
+            gSpecialVar_Result = gSaveBlock2Ptr->encounterRandomizedMode;
+        break;
+        case SAVEBLOCK_INNATE_RANDOMIZER:
+            gSpecialVar_Result = gSaveBlock2Ptr->randomizedMode;
+        break;
+        case SAVEBLOCK_DIFFICULTY:
+            gSpecialVar_Result = gSaveBlock2Ptr->gameDifficulty;
+        break;
+    }
+    return FALSE;
+}

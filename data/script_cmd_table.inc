@@ -232,6 +232,8 @@ gScriptCmdTable::
 	.4byte ScrCmd_multichoice2              @ 0xe5
 	.4byte ScrCmd_giveBattleItems           @ 0xe6
 	.4byte ScrCmd_givecustommon             @ 0xe7
+	.4byte ScrCmd_toggleSaveblock           @ 0xe8
+	.4byte ScrCmd_checkSaveblockValue       @ 0xe9
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

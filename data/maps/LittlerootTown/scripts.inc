@@ -2125,9 +2125,10 @@ PKMN_Center_Move_Tutor::
 	case 1, PKMN_Center_Move_Tutor_3
 	case 2, PKMN_Center_Move_Tutor_4
 	case 3, PKMN_Center_Move_Tutor_5
-	case MULTI_B_PRESSED, PKMN_Center_Move_Tutor_6
 	case 4, PKMN_Center_Move_Tutor_6
-PKMN_Center_Move_Tutor_6:
+	case MULTI_B_PRESSED, PKMN_Center_Move_Tutor_7
+	case 5, PKMN_Center_Move_Tutor_7
+PKMN_Center_Move_Tutor_7:
 	closemessage
 	goto PKMN_Center_Move_Tutor_General_Exit
 	return
@@ -2139,15 +2140,20 @@ PKMN_Center_Move_Tutor_2:
 
 PKMN_Center_Move_Tutor_3:
 	closemessage
-	goto PKMN_Center_NameRater_EventScript
+	goto PKMN_Center_EventScript_RandomizerToggle
 	return
 
 PKMN_Center_Move_Tutor_4:
 	closemessage
-	goto PKMN_Center_EventScript_Mystery_Gift
+	goto PKMN_Center_NameRater_EventScript
 	return
 
 PKMN_Center_Move_Tutor_5:
+	closemessage
+	goto PKMN_Center_EventScript_Mystery_Gift
+	return
+
+PKMN_Center_Move_Tutor_6:
 	closemessage
 	goto PKMN_Center_EventScript_Event_Reset
 	return
@@ -2178,6 +2184,37 @@ PKMN_Center_EventScript_DayNightToggle_5:
 PKMN_Center_EventScript_DayNightToggle_6:
 	clearflag FLAG_IS_DAYNIGHT_INVERTED
 	goto PKMN_Center_EventScript_DayNightToggle_5
+
+
+PKMN_Center_EventScript_RandomizerToggle::
+	msgbox PKMN_Center_EventScript_RandomizerToggle_Text_0, MSGBOX_YESNO
+	switch VAR_RESULT
+	case YES, PKMN_Center_EventScript_RandomizerToggle_3
+	case NO, PKMN_Center_EventScript_RandomizerToggle_4
+	case MULTI_B_PRESSED, PKMN_Center_EventScript_RandomizerToggle_4
+PKMN_Center_EventScript_RandomizerToggle_4:
+	goto PKMN_Center_Move_Tutor
+PKMN_Center_EventScript_RandomizerToggle_1:
+	release
+	end
+
+PKMN_Center_EventScript_RandomizerToggle_3:
+	checkSaveblockValue 0
+	compare VAR_RESULT, 1
+	goto_if_eq PKMN_Center_EventScript_RandomizerToggle_6
+	toggleSaveblock SAVEBLOCK_RANDOMIZER, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message PKMN_Center_EventScript_RandomizerToggle_Text_2
+PKMN_Center_EventScript_RandomizerToggle_5:
+	waitmessage
+	waitfanfare
+	goto PKMN_Center_EventScript_RandomizerToggle_1
+
+PKMN_Center_EventScript_RandomizerToggle_6:
+	toggleSaveblock SAVEBLOCK_RANDOMIZER, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message PKMN_Center_EventScript_RandomizerToggle_Text_1
+	goto PKMN_Center_EventScript_RandomizerToggle_5
 
 
 LittlerootTown_EventScript_LegendaryNPC_Text_0:
@@ -2388,6 +2425,16 @@ PKMN_Center_EventScript_DayNightToggle_Text_0:
 PKMN_Center_EventScript_DayNightToggle_Text_1:
 	.string "The Day and Night time was inverted.$"
 
+PKMN_Center_EventScript_RandomizerToggle_Text_0:
+	.string "Do you want to enable/disable the\n"
+	.string "Randomizer for wild encounters?$"
+
+PKMN_Center_EventScript_RandomizerToggle_Text_1:
+	.string "The randomizer was disabled.$"
+
+PKMN_Center_EventScript_RandomizerToggle_Text_2:
+	.string "The randomizer was enabled.$"
+
 LittlerootTown_EventScript_LegendaryNPC_Options::
 	.string "Please explain things to me again$"
 	.string "Nevermind$"
@@ -2395,6 +2442,7 @@ LittlerootTown_EventScript_LegendaryNPC_Options::
 
 MultiChoice_Move_Tutor_NPC::
 	.string "Invert Day and Night$"
+	.string "Enable/Disable Randomizer$"
 	.string "Rate a nickname$"
 	.string "Mystery Gift$"
 	.string "Reset Events$"
