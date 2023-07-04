@@ -45,6 +45,7 @@
 #include "text_window.h"
 #include "trainer_card.h"
 #include "window.h"
+#include "ui_intro_options.h"
 #include "constants/songs.h"
 #include "constants/map_groups.h"
 #include "constants/maps.h"
@@ -70,6 +71,7 @@ enum
 	MENU_ACTION_DEXNAV,
     MENU_ACTION_ACCESS_PC,
 	MENU_ACTION_DEBUG,
+	MENU_ACTION_UI_TEST,
 };
 
 // Save status
@@ -114,6 +116,8 @@ static bool8 StartMenuBattlePyramidBagCallback(void);
 static bool8 StartMenuStorageCallback(void);
 static bool8 StartMenuDexNavCallback(void);
 static bool8 StartMenuDebugCallback(void);
+static bool8 StartMenuIntroOptionMenuCallback(void);
+static bool8 StartMenuUiTestMenuCallback(void);
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -178,6 +182,7 @@ static const struct WindowTemplate sPyramidFloorWindowTemplate_1 = {0, 1, 1, 0xC
 
 
 static const u8 gText_MenuDebug[] = _("DEBUG");
+static const u8 gText_UiTestMenu[] = _("Test Menu");
 
 static const struct MenuAction sStartMenuItems[] =
 {
@@ -197,6 +202,7 @@ static const struct MenuAction sStartMenuItems[] =
 	{gText_MenuDexNav, {.u8_void = StartMenuDexNavCallback}},
 	{gText_AccessPC, {.u8_void = StartMenuStorageCallback}},
 	{gText_MenuDebug, {.u8_void = StartMenuDebugCallback}},
+	{gText_UiTestMenu, {.u8_void = StartMenuIntroOptionMenuCallback}},
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -396,6 +402,10 @@ static void BuildNormalStartMenu(void)
 	    AddStartMenuAction(MENU_ACTION_ACCESS_PC);
     else
         AddStartMenuAction(MENU_ACTION_EXIT);
+
+    #ifdef DEBUG_BUILD
+        AddStartMenuAction(MENU_ACTION_UI_TEST);
+    #endif
 }
 
 static void BuildDebugStartMenu(void)
@@ -872,6 +882,12 @@ static bool8 StartMenuDebugCallback(void)
 		Debug_ShowMainMenu();
 	#endif
 
+    return TRUE;
+}
+
+static bool8 StartMenuIntroOptionMenuCallback(void)
+{
+    CreateTask(Task_OpenIntroOptionMenuFromStartMenu, 0);
     return TRUE;
 }
 
