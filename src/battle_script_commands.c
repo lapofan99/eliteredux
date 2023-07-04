@@ -1704,6 +1704,7 @@ static bool32 JumpIfMoveFailed(u8 adder, u16 move)
 {
     if (gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
     {
+        gMultiHitCounter = 0;
         gLastLandedMoves[gBattlerTarget] = 0;
         gLastHitByType[gBattlerTarget] = 0;
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
