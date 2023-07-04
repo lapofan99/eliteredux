@@ -3445,8 +3445,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     else if (gBattleMons[gBattlerTarget].item
                         && (GetBattlerAbility(gBattlerTarget) == ABILITY_STICKY_HOLD  || BattlerHasInnate(gBattlerTarget, ABILITY_STICKY_HOLD)))
                     {
-                        gBattleScripting.abilityPopupOverwrite = ABILITY_STICKY_HOLD;
-				        gLastUsedAbility = ABILITY_STICKY_HOLD;
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_STICKY_HOLD;
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_NoItemSteal;
 
@@ -5110,6 +5109,7 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
 {
     if (gBattleMons[battlerDef].item != 0
         && CanBattlerGetOrLoseItem(battlerDef, gBattleMons[battlerDef].item)
+        && !(gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE)
         && !NoAliveMonsForEitherParty())
     {
         if ((GetBattlerAbility(battlerDef) == ABILITY_STICKY_HOLD || BattlerHasInnate(battlerDef, ABILITY_STICKY_HOLD)) && IsBattlerAlive(battlerDef))
@@ -5123,15 +5123,22 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
         else
         {
             u32 side = GetBattlerSide(battlerDef);
+            gActiveBattler = battlerDef;
 
-            gLastUsedItem = gBattleMons[battlerDef].item;
-            gBattleMons[battlerDef].item = 0;
-            gBattleStruct->choicedMove[battlerDef] = 0;
-            gWishFutureKnock.knockedOffMons[side] |= gBitTable[gBattlerPartyIndexes[battlerDef]];
-            CheckSetUnburden(battlerDef);
+            // Wild Pokemon cannot remove player items.
+            if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER || side == B_SIDE_OPPONENT)
+                && gBattleMons[gBattlerAttacker].hp != 0
+                && !(gBattleMons[gActiveBattler].status2 & STATUS2_SUBSTITUTE))
+            {
+                gLastUsedItem = gBattleMons[battlerDef].item;
+                gBattleMons[battlerDef].item = 0;
+                gBattleStruct->choicedMove[battlerDef] = 0;
+                gWishFutureKnock.knockedOffMons[side] |= gBitTable[gBattlerPartyIndexes[battlerDef]];
+                CheckSetUnburden(battlerDef);
 
-            BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_KnockedOff;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_KnockedOff;
+            }
         }
         return TRUE;
     }
