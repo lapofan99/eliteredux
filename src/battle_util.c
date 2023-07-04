@@ -4011,7 +4011,7 @@ static bool32 TryChangeBattleTerrain(u32 battler, u32 statusFlag, u8 *timer)
 {
     if (!(gFieldStatuses & statusFlag))
     {
-        gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | EFFECT_ELECTRIC_TERRAIN | EFFECT_PSYCHIC_TERRAIN);
+        gFieldStatuses &= ~(STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_GRASSY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN | STATUS_FIELD_PSYCHIC_TERRAIN);
         gFieldStatuses |= statusFlag;
 
         if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_TERRAIN_EXTENDER)
@@ -4113,13 +4113,6 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 		      gBattleMons[battler].hp != 0){
 			if (gBattleWeather & (WEATHER_SUN_ANY))
         {
-            #ifdef DEBUG_BUILD
-            if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                MgbaOpen();
-                MgbaPrintf(MGBA_LOG_WARN, "Cherrim Transformation Battler ID:%d", battler);
-                MgbaClose();
-            }
-            #endif
             gBattleMons[battler].species = SPECIES_CHERRIM_SUNSHINE;
 			return TRUE;
 		}
@@ -5003,8 +4996,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			    !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM))
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_TWISTED_DIMENSION;
-				gLastUsedAbility = ABILITY_TWISTED_DIMENSION;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TWISTED_DIMENSION;
 				gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
 				gFieldTimers.trickRoomTimer = 5;
 				BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionActivated);
@@ -14209,14 +14201,6 @@ void BufferStatChange(u8 battlerId, u8 statId, u8 stringId)
     
     if(GetBattlerAbility(battlerId) == ABILITY_CONTRARY || BattlerHasInnate(battlerId, ABILITY_CONTRARY))
         hasContrary = TRUE;
-
-    #ifdef DEBUG_BUILD
-    if(FlagGet(FLAG_SYS_MGBA_PRINT) && hasContrary){
-        MgbaOpen();
-        MgbaPrintf(MGBA_LOG_WARN, "Contrary Detected %d", battlerId);
-        MgbaClose();
-    }
-    #endif
 
     PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
     if (stringId == STRINGID_STATFELL)
