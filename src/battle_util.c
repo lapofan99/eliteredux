@@ -10599,15 +10599,14 @@ bool32 IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
         return FALSE;
-	else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE))//Levitate Innate Effect
+	else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE))     //Levitate Innate Effect
         return FALSE;
-	else if (GetBattlerAbility(battlerId) == ABILITY_DRAGONFLY)//Dragonfly
+	else if (GetBattlerAbility(battlerId) == ABILITY_DRAGONFLY) //Dragonfly
         return FALSE;
-	else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY))//Dragonfly Innate Effect
+	else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY))    //Dragonfly Innate Effect
         return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
-
     else
         return TRUE;
 }
@@ -13198,13 +13197,6 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_OVERWHELM);
     }
-	else if ((gBattleMoves[move].flags & FLAG_BONE_BASED) && (GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE || BattlerHasInnate(battlerAtk, ABILITY_BONE_ZONE)) && mod == UQ_4_12(0.0))
-    {//Check later
-		//Has Innate Effect here too
-        mod = UQ_4_12(1.0);
-        if (recordAbilities)
-            RecordAbilityBattle(battlerAtk, ABILITY_BONE_ZONE);
-    }
 
     if (moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
@@ -13275,7 +13267,8 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
-    if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) && !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
+    if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) && 
+       !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)) // Moves that ignore ground immunity
     {
         modifier = UQ_4_12(0.0);
         if (recordAbilities && GetBattlerAbility(battlerDef) == ABILITY_LEVITATE)
@@ -13285,6 +13278,37 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             gLastLandedMoves[battlerDef] = 0;
             gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
             RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
+        }
+    }
+    
+    if (!IsBattlerGrounded(battlerDef) && 
+       (gBattleMoves[move].flags & FLAG_BONE_BASED) && 
+       (GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE || BattlerHasInnate(battlerAtk, ABILITY_BONE_ZONE)) &&
+       moveType == TYPE_GROUND){
+        if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 != TYPE_FLYING){
+            //Removes First Type Effectiveness and recalculates it
+            modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type2];
+        }
+        else if(gBattleMons[battlerDef].type2 == TYPE_FLYING && gBattleMons[battlerDef].type1 != TYPE_FLYING){
+            //Removes Second Type Effectiveness and recalculates it
+            modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type1];
+        }
+        else if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 == TYPE_FLYING){
+            //Has the same type twice
+            modifier = UQ_4_12(1.0);
+        }
+        else{
+            //Everything else
+            if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_ELECTRIC) ||
+               IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE)     ||
+               IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON)   ||
+               IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK)     ||
+               IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL)){
+                modifier = UQ_4_12(2.0);
+            }
+            else{
+                modifier = UQ_4_12(1.0);
+            }
         }
     }
 

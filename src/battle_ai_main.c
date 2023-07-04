@@ -614,11 +614,6 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
 
-        if (TestMoveFlags(move, FLAG_BONE_BASED) && (AI_DATA->defAbility == ABILITY_BONE_ZONE || BattlerHasInnate(battlerDef, ABILITY_BONE_ZONE)))
-        {
-            RETURN_SCORE_MINUS(20);
-        }
-
         if (move == MOVE_LEECH_SEED
           && (AI_DATA->defAbility == ABILITY_IMPENETRABLE || BattlerHasInnate(battlerDef, ABILITY_IMPENETRABLE)))
         {
@@ -628,6 +623,12 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (moveType == TYPE_FIRE
           && IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)
           && (AI_DATA->defAbility == ABILITY_SEAWEED || BattlerHasInnate(battlerDef, ABILITY_SEAWEED)))
+        {
+            score += 2;
+        }
+
+        //Bone Zone
+        if (TestMoveFlags(move, FLAG_BONE_BASED) && (AI_DATA->defAbility == ABILITY_BONE_ZONE || BattlerHasInnate(battlerDef, ABILITY_BONE_ZONE)))
         {
             score += 2;
         }

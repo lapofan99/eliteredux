@@ -2185,8 +2185,28 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             }
         }
 
-        if(gBattleMons[userId].ability == ABILITY_BONE_ZONE || BattlerHasInnate(userId, ABILITY_BONE_ZONE)){
-            if(TestMoveFlags(moveNum, FLAG_BONE_BASED)){
+        if((gBattleMons[userId].ability == ABILITY_BONE_ZONE || BattlerHasInnate(userId, ABILITY_BONE_ZONE)) &&
+            TestMoveFlags(moveNum, FLAG_BONE_BASED) && gBattleMoves[moveNum].type == TYPE_GROUND){
+            if(!IsBattlerGrounded(targetId)){
+                if(gBattleMons[targetId].type1 == TYPE_FLYING && gBattleMons[targetId].type2 != TYPE_FLYING){
+                    //Removes First Type Effectiveness and recalculates it
+                    mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                }
+                else if(gBattleMons[targetId].type2 == TYPE_FLYING && gBattleMons[targetId].type1 != TYPE_FLYING){
+                    //Removes Second Type Effectiveness and recalculates it
+                    mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+                }
+                else if(gBattleMons[targetId].type1 == TYPE_FLYING && gBattleMons[targetId].type2 == TYPE_FLYING){
+                    //Has the same type twice
+                    mod = UQ_4_12(1.0);
+                }
+                else if(gBattleMons[targetId].ability == ABILITY_LEVITATE || BattlerHasInnate(targetId, ABILITY_LEVITATE)){
+                    //Has levitate
+                    abilityNullifiesDamage = FALSE;
+                }
+            }
+
+            if(TestMoveFlags(moveNum, FLAG_BONE_BASED) && mod <= UQ_4_12(0.5) && mod != UQ_4_12(0.0)){
                 tempMod = UQ_4_12(2.0);
                 MulModifier(&mod, tempMod);
             }
