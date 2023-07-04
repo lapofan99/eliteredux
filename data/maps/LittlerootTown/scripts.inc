@@ -2199,8 +2199,8 @@ PKMN_Center_EventScript_RandomizerToggle_1:
 	end
 
 PKMN_Center_EventScript_RandomizerToggle_3:
-	checkSaveblockValue 0
-	compare VAR_RESULT, 1
+	checkSaveblockValue SAVEBLOCK_RANDOMIZER
+	compare VAR_RESULT, TRUE
 	goto_if_eq PKMN_Center_EventScript_RandomizerToggle_6
 	toggleSaveblock SAVEBLOCK_RANDOMIZER, TRUE
 	playfanfare MUS_OBTAIN_ITEM

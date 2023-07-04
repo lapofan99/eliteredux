@@ -2174,8 +2174,8 @@ script PKMN_Center_EventScript_RandomizerToggle{
 	msgbox(format("Do you want to enable/disable the Randomizer for wild encounters?"), MSGBOX_YESNO)
 	switch(var(VAR_RESULT)){
 		case YES:
-			checkSaveblockValue(0)
-			if(var(VAR_RESULT) == 1){
+			checkSaveblockValue(SAVEBLOCK_RANDOMIZER)
+			if(var(VAR_RESULT) == TRUE){
 				toggleSaveblock(SAVEBLOCK_RANDOMIZER, FALSE)
 				playfanfare(MUS_OBTAIN_ITEM)
 				message(format("The randomizer was disabled."))
