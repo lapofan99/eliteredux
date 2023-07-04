@@ -604,10 +604,6 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_SCIZORITE)
                 return SPECIES_SCIZOR_MEGA;
         break;
-        case SPECIES_SCIZOR:
-            if(item == ITEM_SCIZORITE)
-                return SPECIES_SCIZOR_MEGA;
-        break;
         case SPECIES_SHARPEDO:
             if(item == ITEM_SHARPEDONITE)
                 return SPECIES_SHARPEDO_MEGA;
