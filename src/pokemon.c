@@ -8923,7 +8923,7 @@ bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality){
 }
 
 u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
-    if(gSaveBlock2Ptr->randomizedMode == 1 && 
+    if(gSaveBlock2Ptr->innaterandomizedMode == 1 && 
        innate != ABILITY_NONE              &&
        innate != ABILITY_ZEN_MODE          &&
        innate != ABILITY_WONDER_GUARD      &&
@@ -8940,14 +8940,15 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
        innate != ABILITY_DISGUISE          &&
        innate != ABILITY_FLOWER_GIFT       &&
        innate != ABILITY_HUNGER_SWITCH){ 
-        //Only Randomize if you have the Randomized Mode Enabled
+        //Only Randomize if you have the Innate Randomized Mode Enabled
         //Exclude form change abilities from being randomized and other mons can't get them either
         u16 randomizedInnate = (innate + species + personality) % ABILITIES_COUNT;
         do{
             randomizedInnate++;
             randomizedInnate = randomizedInnate % ABILITIES_COUNT;
         }
-        while(randomizedInnate == ABILITY_HUNGER_SWITCH   ||
+        while(randomizedInnate == ABILITY_NONE            ||
+              randomizedInnate == ABILITY_HUNGER_SWITCH   ||
               randomizedInnate == ABILITY_ZEN_MODE        ||
               randomizedInnate == ABILITY_WONDER_GUARD    ||
               randomizedInnate == ABILITY_POWER_CONSTRUCT ||
@@ -8969,6 +8970,78 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
     }
     else
         return innate;
+}
+
+
+u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
+    if(gSaveBlock2Ptr->abilityRandomizedMode == 1 && 
+       ability != ABILITY_NONE              &&
+       ability != ABILITY_ZEN_MODE          &&
+       ability != ABILITY_WONDER_GUARD      &&
+       ability != ABILITY_POWER_CONSTRUCT   &&
+       ability != ABILITY_SCHOOLING         &&
+       ability != ABILITY_MULTITYPE         &&
+       ability != ABILITY_FORECAST          &&
+       ability != ABILITY_STANCE_CHANGE     &&
+       ability != ABILITY_RKS_SYSTEM        &&
+       ability != ABILITY_BATTLE_BOND       &&
+       ability != ABILITY_POWER_CONSTRUCT   &&
+       ability != ABILITY_ICE_FACE          &&
+       ability != ABILITY_GULP_MISSILE      &&
+       ability != ABILITY_DISGUISE          &&
+       ability != ABILITY_FLOWER_GIFT       &&
+       ability != ABILITY_HUNGER_SWITCH){ 
+        //Only Randomize if you have the Ability Randomized Mode Enabled
+        //Exclude form change abilities from being randomized and other mons can't get them either
+        u16 randomizedAbility = (ability + species + personality) % ABILITIES_COUNT;
+        do{
+            randomizedAbility++;
+            randomizedAbility = randomizedAbility % ABILITIES_COUNT;
+        }
+        while(randomizedAbility == ABILITY_NONE            ||
+              randomizedAbility == ABILITY_HUNGER_SWITCH   ||
+              randomizedAbility == ABILITY_ZEN_MODE        ||
+              randomizedAbility == ABILITY_WONDER_GUARD    ||
+              randomizedAbility == ABILITY_POWER_CONSTRUCT ||
+              randomizedAbility == ABILITY_SCHOOLING       ||
+              randomizedAbility == ABILITY_TRACE           ||
+              randomizedAbility == ABILITY_TRUANT          ||
+              randomizedAbility == ABILITY_MULTITYPE       ||
+              randomizedAbility == ABILITY_FORECAST        ||
+              randomizedAbility == ABILITY_DISGUISE        ||
+              randomizedAbility == ABILITY_STANCE_CHANGE   ||
+              randomizedAbility == ABILITY_COMATOSE        ||
+              randomizedAbility == ABILITY_RKS_SYSTEM      ||
+              randomizedAbility == ABILITY_BATTLE_BOND     ||
+              randomizedAbility == ABILITY_POWER_CONSTRUCT ||
+              randomizedAbility == ABILITY_FLOWER_GIFT     ||
+              randomizedAbility == ABILITY_ICE_FACE        ||
+              randomizedAbility == ABILITY_GULP_MISSILE);
+        return randomizedAbility;
+    }
+    else
+        return ability;
+}
+
+u8 RandomizeType(u8 type, u16 species, u32 personality, bool8 isFirstType){
+    if(gSaveBlock2Ptr->typeRandomizedMode == 1 && type != TYPE_MYSTERY){ 
+        //Only Randomize if you have the Type Randomized Mode Enabled
+        //Exclude form change abilities from being randomized and other mons can't get them either
+        u8 randomizedType = TYPE_MYSTERY;
+        if(isFirstType)
+            randomizedType = (type + species + personality) % NUMBER_OF_MON_TYPES;
+        else
+            randomizedType = (personality - type - species) % NUMBER_OF_MON_TYPES;
+
+        do{
+            randomizedType++;
+            randomizedType = randomizedType % NUMBER_OF_MON_TYPES;
+        }
+        while(randomizedType == TYPE_MYSTERY || randomizedType == type);
+        return randomizedType;
+    }
+    else
+        return type;
 }
 
 bool8 MonHasInnate(struct Pokemon *mon, u16 ability){

@@ -4128,7 +4128,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
     u16 innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
     u16 innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
     u16 innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
-    u16 ability = RandomizeInnate(GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM)), sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.pid);
+    u16 ability = RandomizeAbility(GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM)), sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.pid);
 
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sMemoNatureTextColor);
@@ -4259,6 +4259,8 @@ static void PrintMoveDetails(u16 move)
 	u8 PosX;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
+    u8 type1 = RandomizeType(gBaseStats[summary->species].type1, summary->species, summary->pid, TRUE);
+    u8 type2 = RandomizeType(gBaseStats[summary->species].type2, summary->species, summary->pid, FALSE);
 
     SetSpriteInvisibility(SPRITE_ARR_ID_MON, TRUE);
     SetSpriteInvisibility(SPRITE_ARR_ID_ITEM, TRUE);
@@ -4270,9 +4272,9 @@ static void PrintMoveDetails(u16 move)
     SetSpriteInvisibility(SPRITE_ARR_ID_MON_ICON, FALSE);
     SetTypeSpritePosAndPal(gBaseStats[summary->species].type1, 41, 45, SPRITE_ARR_ID_TYPE);
 
-    if (gBaseStats[summary->species].type1 != gBaseStats[summary->species].type2)
+    if (type1 != type2)
     {
-        SetTypeSpritePosAndPal(gBaseStats[summary->species].type2, 75, 45, SPRITE_ARR_ID_TYPE + 1);
+        SetTypeSpritePosAndPal(type2, 75, 45, SPRITE_ARR_ID_TYPE + 1);
         SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, FALSE);
     }
     else
@@ -4663,16 +4665,18 @@ static void CreateMoveTypeIcons(void)
 static void SetMonTypeIcons(void)
 {
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
+    u8 type1 = RandomizeType(gBaseStats[summary->species].type1, summary->species, summary->pid, TRUE);
+    u8 type2 = RandomizeType(gBaseStats[summary->species].type2, summary->species, summary->pid, FALSE);
 
-    if (gBaseStats[summary->species].type1 != gBaseStats[summary->species].type2)
+    if (type1 != type2)
     {
-        SetTypeSpritePosAndPal(gBaseStats[summary->species].type1, 167, 65, SPRITE_ARR_ID_TYPE);
-        SetTypeSpritePosAndPal(gBaseStats[summary->species].type2, 201, 65, SPRITE_ARR_ID_TYPE + 1);
+        SetTypeSpritePosAndPal(type1, 167, 65, SPRITE_ARR_ID_TYPE);
+        SetTypeSpritePosAndPal(type2, 201, 65, SPRITE_ARR_ID_TYPE + 1);
         SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, FALSE);
     }
     else
     {
-        SetTypeSpritePosAndPal(gBaseStats[summary->species].type1, 184, 65, SPRITE_ARR_ID_TYPE);
+        SetTypeSpritePosAndPal(type1, 184, 65, SPRITE_ARR_ID_TYPE);
         SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, TRUE);
     }
 }

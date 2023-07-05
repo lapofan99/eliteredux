@@ -2011,13 +2011,13 @@ static void Task_NewGameBirchSpeech_ChooseRandomizer(u8 taskId)
     {
         case 0://No
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->randomizedMode = 0;
+            gSaveBlock2Ptr->innaterandomizedMode = 0;
             NewGameBirchSpeech_ClearGenderWindow(4, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_RandomizerDesc;
             break;
         case 1://Yes
             PlaySE(SE_SELECT);
-            gSaveBlock2Ptr->randomizedMode = 1;
+            gSaveBlock2Ptr->innaterandomizedMode = 1;
             NewGameBirchSpeech_ClearGenderWindow(4, 1);
             gTasks[taskId].func = Task_NewGameBirchSpeech_RandomizerDesc;
             break;
@@ -2027,7 +2027,7 @@ static void Task_NewGameBirchSpeech_ChooseRandomizer(u8 taskId)
 static void Task_NewGameBirchSpeech_RandomizerDesc(u8 taskId)
 {
     const u8 *str;
-    if(gSaveBlock2Ptr->randomizedMode == 1)
+    if(gSaveBlock2Ptr->innaterandomizedMode == 1)
         str = gText_Pie_Randomizer_Enabled;
     else
         str = gText_Pie_Randomizer_Disabled;

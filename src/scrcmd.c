@@ -2686,7 +2686,7 @@ bool8 ScrCmd_toggleSaveblock(struct ScriptContext *ctx)
             gSaveBlock2Ptr->encounterRandomizedMode = value;
         break;
         case SAVEBLOCK_INNATE_RANDOMIZER:
-            gSaveBlock2Ptr->randomizedMode = value;
+            gSaveBlock2Ptr->innaterandomizedMode = value;
         break;
         case SAVEBLOCK_DIFFICULTY:
             gSaveBlock2Ptr->gameDifficulty = value;
@@ -2703,7 +2703,7 @@ bool8 ScrCmd_checkSaveblockValue(struct ScriptContext *ctx)
             gSpecialVar_Result = gSaveBlock2Ptr->encounterRandomizedMode;
         break;
         case SAVEBLOCK_INNATE_RANDOMIZER:
-            gSpecialVar_Result = gSaveBlock2Ptr->randomizedMode;
+            gSpecialVar_Result = gSaveBlock2Ptr->innaterandomizedMode;
         break;
         case SAVEBLOCK_DIFFICULTY:
             gSpecialVar_Result = gSaveBlock2Ptr->gameDifficulty;

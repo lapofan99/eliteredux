@@ -476,6 +476,8 @@ bool8 MonHasInnate(struct Pokemon *mon, u16 ability);
 bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability);
 bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality);
 u16 RandomizeInnate(u16 innate, u16 species, u32 personality);
+u16 RandomizeAbility(u16 ability, u16 species, u32 personality);
+u8 RandomizeType(u8 type, u16 species, u32 personality, bool8 isFirstType);
 u8 GetSpeciesInnateNum(u16 species, u16 ability);
 void CreateShinyMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 nature);
 u16 getNumberOfUniqueDefeatedTrainers(void);

@@ -34,6 +34,8 @@
 #include "constants/field_weather.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 /*
  * 
@@ -44,9 +46,18 @@
 #define OPTION_NAME_LENGTH 100
 #define MAX_OPTIONS_PER_SETTING 5
 #define MAX_OPTION_DESCRIPTION_LENGTH 50
-#define NUM_OPTIONS 4
+#define NUM_OPTIONS_ON_SCREEN 5 
 
-#define NUM_OF_OPTIONS 20
+enum{
+    SETTING_DIFFICULTY,
+    SETTING_LEVEL_CAP,
+    SETTING_RANDOMIZER_MODE,
+    SETTING_RANDOMIZER_ABILITY_MODE,
+    SETTING_RANDOMIZER_INNATE_MODE,
+    SETTING_RANDOMIZER_MOVE_MODE,
+    SETTING_RANDOMIZER_TYPE_MODE,
+    NUM_INTRO_OPTIONS,
+};
 
 struct MenuResources
 {
@@ -54,7 +65,7 @@ struct MenuResources
     u8 gfxLoadState;
     u8 currentOptionId;
     u8 currentFirstOption;
-    u8 temporal_settings[NUM_OF_OPTIONS];
+    u8 temporal_settings[NUM_INTRO_OPTIONS];
 };
 
 enum WindowIds
@@ -147,6 +158,29 @@ void Task_OpenIntroOptionMenuFromStartMenu(u8 taskId)
     }
 }
 
+
+static void SaveOptionsData()
+{
+    gSaveBlock2Ptr->gameDifficulty          = sMenuDataPtr->temporal_settings[SETTING_DIFFICULTY];
+    gSaveBlock2Ptr->levelCaps               = sMenuDataPtr->temporal_settings[SETTING_LEVEL_CAP];
+    gSaveBlock2Ptr->encounterRandomizedMode = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE];
+    gSaveBlock2Ptr->innaterandomizedMode    = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE];
+    gSaveBlock2Ptr->abilityRandomizedMode   = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_ABILITY_MODE];
+    gSaveBlock2Ptr->moveRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE];
+    gSaveBlock2Ptr->typeRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE];
+}
+
+static void LoadOptionsData()
+{
+    sMenuDataPtr->temporal_settings[SETTING_DIFFICULTY] = gSaveBlock2Ptr->gameDifficulty;
+    sMenuDataPtr->temporal_settings[SETTING_LEVEL_CAP] = gSaveBlock2Ptr->levelCaps;
+    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE] = gSaveBlock2Ptr->encounterRandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE] = gSaveBlock2Ptr->innaterandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_ABILITY_MODE] = gSaveBlock2Ptr->abilityRandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE] = gSaveBlock2Ptr->moveRandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE] = gSaveBlock2Ptr->typeRandomizedMode;
+}
+
 // This is our main initialization function if you want to call the menu from elsewhere
 void Menu_Init(MainCallback callback)
 {
@@ -162,9 +196,11 @@ void Menu_Init(MainCallback callback)
     sMenuDataPtr->currentOptionId = 0;
     sMenuDataPtr->currentFirstOption = 0;
 
-    for(i = 0; i < NUM_OPTIONS; i++){
+    for(i = 0; i < NUM_INTRO_OPTIONS; i++){
         sMenuDataPtr->temporal_settings[i] = 0; 
     }
+
+    LoadOptionsData();
     
     sMenuDataPtr->savedCallback = callback;
     
@@ -347,12 +383,50 @@ static void Menu_InitWindows(void)
     ScheduleBgCopyTilemapToVram(2);
 }
 
-enum{
-    SETTING_RANDOMIZER_MODE,
-    SETTING_RANDOMIZER_INNATE_MODE,
-    SETTING_LEVEL_CAP,
-    SETTING_DIFFICULTY,
-};
+
+static void PressedDownButton(){
+    u8 halfScreen      = (NUM_OPTIONS_ON_SCREEN) / 2;    //When it starts scrolling the options
+    u8 finalhalfScreen = NUM_INTRO_OPTIONS - halfScreen; //When it stops 5
+
+    if(sMenuDataPtr->currentOptionId < halfScreen){
+        //If you are below the option where it starts scrolling
+        sMenuDataPtr->currentOptionId++;
+    }
+	else if(sMenuDataPtr->currentOptionId >= (NUM_INTRO_OPTIONS - 1)){ 
+        //If you are in the last option go to the first one
+		sMenuDataPtr->currentOptionId    = 0;
+		sMenuDataPtr->currentFirstOption = 0;
+    }
+    else if(sMenuDataPtr->currentOptionId >= (finalhalfScreen - 1)){
+        //If you are near the end of the options
+        sMenuDataPtr->currentOptionId++;
+    }
+	else{
+        //Start Scrolling
+        sMenuDataPtr->currentOptionId++;
+        sMenuDataPtr->currentFirstOption++;
+    }
+}
+
+static void PressedUpButton(){
+    u8 halfScreen      = (NUM_OPTIONS_ON_SCREEN) / 2;    //When it starts scrolling the options
+    u8 finalhalfScreen = NUM_INTRO_OPTIONS - halfScreen; //When it stops 5
+
+    if(sMenuDataPtr->currentOptionId > halfScreen &&            //You are after it starts scrolling
+       sMenuDataPtr->currentOptionId <= (finalhalfScreen - 1)){ //You are below it stops scrolling
+        //Scrolls
+        sMenuDataPtr->currentOptionId--;
+        sMenuDataPtr->currentFirstOption--;
+    }
+	else if(sMenuDataPtr->currentOptionId == 0){ 
+        //If you are in the first option go to the last one
+		sMenuDataPtr->currentOptionId    = NUM_INTRO_OPTIONS - 1;
+		sMenuDataPtr->currentFirstOption = NUM_INTRO_OPTIONS - NUM_OPTIONS_ON_SCREEN;
+    }
+    else{
+        sMenuDataPtr->currentOptionId--;
+    }
+}
 
 struct OptionData
 {
@@ -362,46 +436,8 @@ struct OptionData
     u8 numOptions;
 };
 
-struct OptionData Intro_Options[NUM_OF_OPTIONS] = {
-    [SETTING_RANDOMIZER_MODE] =
-    {
-        .title = _("Encounter Randomizer"),
-        .options = { 
-            _("Disabled"),
-            _("Enabled"),
-            },
-        .optionDescription = { 
-            _("Encounter Randomizer Description"),
-            _("Enabled Description"),
-            },
-        .numOptions = 2,
-    },
-    [SETTING_RANDOMIZER_INNATE_MODE] =
-    {
-        .title = _("Ability Randomizer"),
-        .options = { 
-            _("Disabled"),
-            _("Enabled"),
-            },
-        .optionDescription = { 
-            _("Ability Randomizer Description"),
-            _("Enabled Description"),
-            },
-        .numOptions = 2,
-    },
-    [SETTING_LEVEL_CAP] =
-    {
-        .title = _("Level Cap"),
-        .options = { 
-            _("Disabled"),
-            _("Enabled"),
-            },
-        .optionDescription = { 
-            _("Level Cap Description"),
-            _("Enabled Description"),
-            },
-        .numOptions = 2,
-    },
+struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
+    
     [SETTING_DIFFICULTY] =
     {
         .title = _("Difficulty"),
@@ -411,10 +447,93 @@ struct OptionData Intro_Options[NUM_OF_OPTIONS] = {
             _("Elite"),
             },
         .optionDescription = { 
-            _("Difficulty Description"),
-            _("Enabled Description"),
+            _("Easy Difficulty Description"),
+            _("Ace Difficulty Description"),
+            _("Elite Difficulty Description"),
             },
         .numOptions = 3,
+    },
+    [SETTING_LEVEL_CAP] =
+    {
+        .title = _("Level Cap"),
+        .options = { 
+            _("Easy"),
+            _("More"),
+            _("Elite"),
+            _("Off"),
+            },
+        .optionDescription = { 
+            _("Easy Level Cap Description"),
+            _("More Level Cap Description"),
+            _("Elite Level Cap Description"),
+            _("No Level Cap Description"),
+            },
+        .numOptions = 4,
+    },
+    [SETTING_RANDOMIZER_MODE] =
+    {
+        .title = _("Encounter Randomizer"),
+        .options = { 
+            _("Disabled"),
+            _("Enabled"),
+            },
+        .optionDescription = { 
+            _("Encounter Randomizer Disabled Description"),
+            _("Encounter Randomizer Enabled Description"),
+            },
+        .numOptions = 2,
+    },
+    [SETTING_RANDOMIZER_ABILITY_MODE] =
+    {
+        .title = _("Ability Randomizer"),
+        .options = { 
+            _("Disabled"),
+            _("Enabled"),
+            },
+        .optionDescription = { 
+            _("Ability Randomizer Disabled Description"),
+            _("Ability Randomizer Enabled Description"),
+            },
+        .numOptions = 2,
+    },
+    [SETTING_RANDOMIZER_INNATE_MODE] =
+    {
+        .title = _("Innate Randomizer"),
+        .options = { 
+            _("Disabled"),
+            _("Enabled"),
+            },
+        .optionDescription = { 
+            _("Innate Randomizer Disabled Description"),
+            _("Innate Randomizer Enabled Description"),
+            },
+        .numOptions = 2,
+    },
+    [SETTING_RANDOMIZER_MOVE_MODE] =
+    {
+        .title = _("Move Randomizer"),
+        .options = { 
+            _("Disabled"),
+            _("Enabled"),
+            },
+        .optionDescription = { 
+            _("Move Randomizer Disabled Description"),
+            _("Move Randomizer Enabled Description"),
+            },
+        .numOptions = 2,
+    },
+    [SETTING_RANDOMIZER_TYPE_MODE] =
+    {
+        .title = _("Type Randomizer"),
+        .options = { 
+            _("Disabled"),
+            _("Enabled"),
+            },
+        .optionDescription = { 
+            _("Type Randomizer Disabled Description"),
+            _("Type Randomizer Enabled Description"),
+            },
+        .numOptions = 2,
     },
 };
 
@@ -422,30 +541,39 @@ static const u8 sText_MyMenu[] = _("My Menu");
 static void PrintToWindow(u8 windowId, u8 colorIdx)
 {
     u8 i;
+    u8 currentOption      = sMenuDataPtr->currentOptionId;
+    u8 currentFirstOption = sMenuDataPtr->currentFirstOption;
+    u8 cursorHeight       = (sMenuDataPtr->currentOptionId - sMenuDataPtr->currentFirstOption) * 2;
     const u8 *str = sText_MyMenu;
     u8 x = 3;
     u8 y = 3;
+    u8 x2 = 0;
+    u8 y2 = 0;
     
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
-    for(i = 0; i < NUM_OPTIONS; i++){
+    for(i = 0; i < NUM_OPTIONS_ON_SCREEN; i++){
         //Title
-        AddTextPrinterParameterized4(windowId, FONT_NORMAL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF,  Intro_Options[i].title);
+        AddTextPrinterParameterized4(windowId, FONT_NORMAL, (x * 8) + x2, (y * 8), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF,  Intro_Options[currentFirstOption + i].title);
         //Current Option
-        AddTextPrinterParameterized4(windowId, FONT_NORMAL, (x * 8) + 140, (y * 8), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF,  Intro_Options[i].options[0]);
+        x2 = 140;
+        AddTextPrinterParameterized4(windowId, FONT_NORMAL, (x * 8) + x2, (y * 8), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF,  Intro_Options[currentFirstOption + i].options[sMenuDataPtr->temporal_settings[currentFirstOption + i]]);
         y = y + 2;
+        x2 = 0;
     }
 
     //Description
     x = 3;
     y = 15;
-    AddTextPrinterParameterized4(windowId, FONT_NORMAL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF,  Intro_Options[sMenuDataPtr->currentOptionId].optionDescription[0]);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8) + x2, (y * 8), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF,  Intro_Options[sMenuDataPtr->currentOptionId].optionDescription[sMenuDataPtr->temporal_settings[currentOption]]);
 
     //Cursor
     x = 2;
-    y = 3;
-    BlitBitmapToWindow(windowId, sOptionMenuSelector, (x * 8) + 140, (y * 8) + (sMenuDataPtr->currentOptionId * 16), 8, 16);
-    BlitBitmapToWindow(windowId, sOptionMenuSelector2, (x * 8) + 140 + (7 * 8), (y * 8) + (sMenuDataPtr->currentOptionId * 16), 8, 16);
+    y = 3 + cursorHeight;
+    x2 = 140;
+    BlitBitmapToWindow(windowId, sOptionMenuSelector,  (x * 8) + x2, (y * 8), 8, 16);
+    x = 9;
+    BlitBitmapToWindow(windowId, sOptionMenuSelector2, (x * 8) + x2, (y * 8), 8, 16);
 
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
@@ -472,36 +600,50 @@ static void Task_MenuTurnOff(u8 taskId)
 /* This is the meat of the UI. This is where you wait for player inputs and can branch to other tasks accordingly */
 static void Task_MenuMain(u8 taskId)
 {
-    if (JOY_NEW(B_BUTTON))
+    if (JOY_NEW(START_BUTTON))
     {
+        SaveOptionsData();
         PlaySE(SE_PC_OFF);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_MenuTurnOff;
     }
 
-    if (JOY_NEW(DPAD_UP))
+    
+    if (JOY_NEW(DPAD_LEFT))
     {
-        if(sMenuDataPtr->currentOptionId == 0){
-            sMenuDataPtr->currentOptionId = NUM_OPTIONS - 1;
+        if(sMenuDataPtr->temporal_settings[sMenuDataPtr->currentOptionId] == 0){
+            sMenuDataPtr->temporal_settings[sMenuDataPtr->currentOptionId] = Intro_Options[sMenuDataPtr->currentOptionId].numOptions - 1;
         }
         else{
-            sMenuDataPtr->currentOptionId--;
+            sMenuDataPtr->temporal_settings[sMenuDataPtr->currentOptionId]--;
         }
+        PlaySE(SE_SELECT);
+        PrintToWindow(WINDOW_1, FONT_BLACK);
+    }
+
+    if (JOY_NEW(DPAD_RIGHT))
+    {
+        if(sMenuDataPtr->temporal_settings[sMenuDataPtr->currentOptionId] == Intro_Options[sMenuDataPtr->currentOptionId].numOptions - 1){
+            sMenuDataPtr->temporal_settings[sMenuDataPtr->currentOptionId] = 0;
+        }
+        else{
+            sMenuDataPtr->temporal_settings[sMenuDataPtr->currentOptionId]++;
+        }
+        PlaySE(SE_SELECT);
+        PrintToWindow(WINDOW_1, FONT_BLACK);
+    }
+
+    if (JOY_NEW(DPAD_UP))
+    {
+        PressedUpButton();
         PlaySE(SE_SELECT);
         PrintToWindow(WINDOW_1, FONT_BLACK);
     }
 
     if (JOY_NEW(DPAD_DOWN))
     {
-        if(sMenuDataPtr->currentOptionId == NUM_OPTIONS - 1){
-            sMenuDataPtr->currentOptionId = 0;
-        }
-        else{
-            sMenuDataPtr->currentOptionId++;
-        }
+        PressedDownButton();
         PlaySE(SE_SELECT);
         PrintToWindow(WINDOW_1, FONT_BLACK);
     }
-
-    //
 }

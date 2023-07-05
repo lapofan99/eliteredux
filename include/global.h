@@ -527,9 +527,12 @@ struct SaveBlock2
     /*0x57C*/ struct RankingHall2P hallRecords2P[2][3]; // From record mixing.
     /*0x624*/ u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
     /*0x64C*/ struct BattleFrontier frontier;
-              u8 randomizedMode:1;
+              u8 innaterandomizedMode:1;
               u8 encounterRandomizedMode:1;
-              u8 filler:6;
+              u8 abilityRandomizedMode:1;
+              u8 moveRandomizedMode:1;
+              u8 typeRandomizedMode:1;
+              u8 filler:3;
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
