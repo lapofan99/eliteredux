@@ -451,7 +451,6 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry:: @ 8204E1D
 	end
 
 PetalburgCity_Gym_EventScript_NormanGiveKeystone::
-	call PetalburgCity_Gym_EventScript_CheckTrainers
 	goto_if_set FLAG_SYS_RECEIVED_KEYSTONE, PetalburgCity_Gym_EventScript_NormanBattle
 	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
 	giveitem ITEM_MEGA_BRACELET
