@@ -131,6 +131,8 @@ gText_Pie_EliteMode::
 	.string "It also has more restrictions:\p"
 	.string "You have to unlock innates at\n"
 	.string "certain levels to use them.\p"
+	.string "The good thing about it:\n"
+	.string "The AI also has it locked.\p"
 	.string "You can't access the bag in Trainer\n"
 	.string "Battles, and the Shift battle style is\l"
 	.string "disabled.\p"
@@ -163,7 +165,7 @@ gText_Pie_StandardCaps::
 	.string "After that, there is no cap, and you\n"
 	.string "can train all the way to level 100.\p"
 	.string "So, would you like to play with\n"
-	.string "Easy level caps?$"
+	.string "{COLOR GREEN}Easy{COLOR DARK_GRAY} level caps?$"
 
 gText_Pie_MoreCaps::
 	.string "The More Caps setting is a good\n"
@@ -176,7 +178,7 @@ gText_Pie_MoreCaps::
 	.string "leveled pokémon compared to yours,\l"
 	.string "so expect to get challenged.\p"
 	.string "So, would you like to play with\n"
-	.string "more level caps?$"
+	.string "{COLOR BLUE}More{COLOR DARK_GRAY} level caps?$"
 
 gText_Pie_StrictCaps::
 	.string "The Elite Caps setting is the\n"
@@ -187,7 +189,7 @@ gText_Pie_StrictCaps::
 	.string "You may have to invent new strategies\n"
 	.string "for each fight, so tread with caution.\p"
 	.string "So, would you like to play with\n"
-	.string "elite level caps?$"
+	.string "{COLOR RED}Elite{COLOR DARK_GRAY} level caps?$"
 
 gText_Pie_WhichLevelCapSetting::
 	.string "Which level cap setting would you\n"
