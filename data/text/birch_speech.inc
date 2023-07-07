@@ -37,10 +37,10 @@ gText_Birch_BoyOrGirl:: @ 82C8BDD
 
 gText_Birch_WhatsYourName:: @ 82C8BFF
 	.string "All right.\n"
-	.string "What's your name?$"
+	.string "Please configure your playthrought$"
 
 gText_Birch_SoItsPlayer:: @ 82C8C1C
-	.string "So it's {PLAYER}{KUN}?$"
+	.string "Are you sure about that configuration?$"
 
 gText_Birch_YourePlayer:: @ 82C8C2A
 	.string "Ah, okay!\p"

@@ -5,6 +5,7 @@
 #include "data.h"
 #include "decompress.h"
 #include "event_data.h"
+#include "naming_screen.h"
 #include "field_weather.h"
 #include "gpu_regs.h"
 #include "graphics.h"
@@ -54,8 +55,9 @@ enum{
     SETTING_RANDOMIZER_MODE,
     SETTING_RANDOMIZER_ABILITY_MODE,
     SETTING_RANDOMIZER_INNATE_MODE,
-    SETTING_RANDOMIZER_MOVE_MODE,
+    //SETTING_RANDOMIZER_MOVE_MODE,
     SETTING_RANDOMIZER_TYPE_MODE,
+    SETTING_INDIVIDUAL_COLORS,
     NUM_INTRO_OPTIONS,
 };
 
@@ -125,11 +127,12 @@ static const struct WindowTemplate sMenuWindowTemplates[] =
     },
 };
 
-static const u32 sMenuTiles[]         = INCBIN_U32("graphics/ui_menus/intro_options/tiles.4bpp.lz");
-static const u32 sMenuTilemap[]       = INCBIN_U32("graphics/ui_menus/intro_options/tilemap.bin.lz");
-static const u16 sMenuPalette[]       = INCBIN_U16("graphics/ui_menus/intro_options/palette.gbapal");
-static const u8 sOptionMenuSelector[] = INCBIN_U8("graphics/ui_menus/intro_options/selector.4bpp");
+static const u32 sMenuTiles[]          = INCBIN_U32("graphics/ui_menus/intro_options/tiles.4bpp.lz");
+static const u32 sMenuTilemap[]        = INCBIN_U32("graphics/ui_menus/intro_options/tilemap.bin.lz");
+static const u16 sMenuPalette[]        = INCBIN_U16("graphics/ui_menus/intro_options/palette.gbapal");
+static const u8 sOptionMenuSelector[]  = INCBIN_U8("graphics/ui_menus/intro_options/selector.4bpp");
 static const u8 sOptionMenuSelector2[] = INCBIN_U8("graphics/ui_menus/intro_options/selector2.4bpp");
+
 enum Colors
 {
     FONT_BLACK,
@@ -137,10 +140,11 @@ enum Colors
     FONT_RED,
     FONT_BLUE,
 };
+
 static const u8 sMenuWindowFontColors[][3] = 
 {
     [FONT_BLACK]  = {TEXT_COLOR_TRANSPARENT,  2,  1},
-    [FONT_WHITE]  = {TEXT_COLOR_TRANSPARENT,  TEXT_COLOR_WHITE,      TEXT_COLOR_DARK_GRAY},
+    [FONT_WHITE]  = {TEXT_COLOR_TRANSPARENT,  15, TEXT_COLOR_TRANSPARENT},
     [FONT_RED]    = {TEXT_COLOR_TRANSPARENT,  TEXT_COLOR_RED,        TEXT_COLOR_LIGHT_GRAY},
     [FONT_BLUE]   = {TEXT_COLOR_TRANSPARENT,  TEXT_COLOR_BLUE,       TEXT_COLOR_LIGHT_GRAY},
 };
@@ -153,7 +157,7 @@ void Task_OpenIntroOptionMenuFromStartMenu(u8 taskId)
     if (!gPaletteFade.active)
     {
         CleanupOverworldWindowsAndTilemaps();
-        Menu_Init(CB2_ReturnToFieldWithOpenMenu);
+        Intro_Options_Menu_Init(CB2_ReturnToFieldWithOpenMenu);
         DestroyTask(taskId);
     }
 }
@@ -166,7 +170,8 @@ static void SaveOptionsData()
     gSaveBlock2Ptr->encounterRandomizedMode = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE];
     gSaveBlock2Ptr->innaterandomizedMode    = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE];
     gSaveBlock2Ptr->abilityRandomizedMode   = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_ABILITY_MODE];
-    gSaveBlock2Ptr->moveRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE];
+    gSaveBlock2Ptr->individualColors        = sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS];
+    //gSaveBlock2Ptr->moveRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE];
     gSaveBlock2Ptr->typeRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE];
 }
 
@@ -177,12 +182,13 @@ static void LoadOptionsData()
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE] = gSaveBlock2Ptr->encounterRandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE] = gSaveBlock2Ptr->innaterandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_ABILITY_MODE] = gSaveBlock2Ptr->abilityRandomizedMode;
-    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE] = gSaveBlock2Ptr->moveRandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS] = gSaveBlock2Ptr->individualColors;
+    //sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE] = gSaveBlock2Ptr->moveRandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE] = gSaveBlock2Ptr->typeRandomizedMode;
 }
 
 // This is our main initialization function if you want to call the menu from elsewhere
-void Menu_Init(MainCallback callback)
+void Intro_Options_Menu_Init(MainCallback callback)
 {
     u8 i;
     if ((sMenuDataPtr = AllocZeroed(sizeof(struct MenuResources))) == NULL)
@@ -460,15 +466,16 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Easy"),
             _("More"),
             _("Elite"),
-            _("Off"),
+            //_("Off"),
             },
         .optionDescription = { 
             _("Easy Level Cap Description"),
             _("More Level Cap Description"),
             _("Elite Level Cap Description"),
-            _("No Level Cap Description"),
+            //_("No Level Cap Description"),
             },
-        .numOptions = 4,
+        //.numOptions = 4,
+        .numOptions = 3,
     },
     [SETTING_RANDOMIZER_MODE] =
     {
@@ -509,7 +516,20 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             },
         .numOptions = 2,
     },
-    [SETTING_RANDOMIZER_MOVE_MODE] =
+    [SETTING_INDIVIDUAL_COLORS] =
+    {
+        .title = _("Individual Colors"),
+        .options = { 
+            _("Disabled"),
+            _("Enabled"),
+            },
+        .optionDescription = { 
+            _("Every species has the same Color"),
+            _("Each individual Pokémon has a different\npalette"),
+            },
+        .numOptions = 2,
+    },
+    /*[SETTING_RANDOMIZER_MOVE_MODE] =
     {
         .title = _("Move Randomizer"),
         .options = { 
@@ -521,7 +541,7 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Move Randomizer Enabled Description"),
             },
         .numOptions = 2,
-    },
+    },*/
     [SETTING_RANDOMIZER_TYPE_MODE] =
     {
         .title = _("Type Randomizer"),
@@ -537,21 +557,26 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
     },
 };
 
-static const u8 sText_MyMenu[] = _("My Menu");
+static const u8 sText_Menu_Title[] = _("Configuration - Press the Start button to save");
 static void PrintToWindow(u8 windowId, u8 colorIdx)
 {
     u8 i;
     u8 currentOption      = sMenuDataPtr->currentOptionId;
     u8 currentFirstOption = sMenuDataPtr->currentFirstOption;
     u8 cursorHeight       = (sMenuDataPtr->currentOptionId - sMenuDataPtr->currentFirstOption) * 2;
-    const u8 *str = sText_MyMenu;
-    u8 x = 3;
-    u8 y = 3;
+    const u8 *str = sText_Menu_Title;
+    u8 x = 2;
+    u8 y = 0;
     u8 x2 = 0;
     u8 y2 = 0;
     
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
+    //Title
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF,  sText_Menu_Title);
+
+    x = 3;
+    y = 3;
     for(i = 0; i < NUM_OPTIONS_ON_SCREEN; i++){
         //Title
         AddTextPrinterParameterized4(windowId, FONT_NORMAL, (x * 8) + x2, (y * 8), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF,  Intro_Options[currentFirstOption + i].title);
@@ -591,7 +616,8 @@ static void Task_MenuTurnOff(u8 taskId)
 
     if (!gPaletteFade.active)
     {
-        SetMainCallback2(sMenuDataPtr->savedCallback);
+        //SetMainCallback2(sMenuDataPtr->savedCallback);
+        DoNamingScreen(0, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, sMenuDataPtr->savedCallback);
         Menu_FreeResources();
         DestroyTask(taskId);
     }

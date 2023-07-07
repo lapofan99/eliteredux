@@ -1,5 +1,6 @@
 #include "global.h"
 #include "trainer_pokemon_sprites.h"
+#include "ui_intro_options.h"
 #include "bg.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -1667,7 +1668,8 @@ static void Task_NewGameBirchSpeech_StartNamingScreen(u8 taskId)
         FreeAndDestroyMonPicSprite(gTasks[taskId].tLotadSpriteId);
         NewGameBirchSpeech_SetDefaultPlayerName(Random() % 20);
         DestroyTask(taskId);
-        DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
+        Intro_Options_Menu_Init(CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
+        //DoNamingScreen(NAMING_SCREEN_PLAYER, gSaveBlock2Ptr->playerName, gSaveBlock2Ptr->playerGender, 0, 0, CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
     }
 }
 
@@ -1835,7 +1837,8 @@ static void Task_NewGameBirchSpeech_AreYouReady(u8 taskId)
         NewGameBirchSpeech_StartFadePlatformOut(taskId, 1);
         StringExpandPlaceholders(gStringVar4, gText_Birch_AreYouReady);
         AddTextPrinterForMessage(1);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_HackIntro;
+        gTasks[taskId].func = Task_NewGameBirchSpeech_ShrinkPlayer;
+        //gTasks[taskId].func = Task_NewGameBirchSpeech_HackIntro;
     }
 }
 
