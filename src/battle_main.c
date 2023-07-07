@@ -5837,6 +5837,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
                  || ((attackerAbility == ABILITY_POISONATE    || BattlerHasInnate(battlerAtk, ABILITY_POISONATE))    && (ateType = TYPE_POISON))
                  || ((attackerAbility == ABILITY_HYDRATE      || BattlerHasInnate(battlerAtk, ABILITY_HYDRATE))      && (ateType = TYPE_WATER))
                  || (((attackerAbility == ABILITY_GALVANIZE)  || BattlerHasInnate(battlerAtk, ABILITY_GALVANIZE))    && (ateType = TYPE_ELECTRIC))
+                 || (((attackerAbility == ABILITY_BUGINIZE)  || BattlerHasInnate(battlerAtk, ABILITY_BUGINIZE))    && (ateType = TYPE_BUG))
                 )
              )
         return ateType;
@@ -5985,6 +5986,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
                  || ((attackerAbility == ABILITY_POISONATE    || BattlerHasInnate(battlerAtk, ABILITY_POISONATE))    && (ateType = TYPE_POISON))
                  || ((attackerAbility == ABILITY_HYDRATE      || BattlerHasInnate(battlerAtk, ABILITY_HYDRATE))      && (ateType = TYPE_WATER))
                  || (((attackerAbility == ABILITY_GALVANIZE)  || BattlerHasInnate(battlerAtk, ABILITY_GALVANIZE))    && (ateType = TYPE_ELECTRIC))
+                 || (((attackerAbility == ABILITY_BUGINIZE)   || BattlerHasInnate(battlerAtk, ABILITY_BUGINIZE))     && (ateType = TYPE_BUG))
                 )
              )
     {

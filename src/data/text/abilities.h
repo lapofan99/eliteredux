@@ -371,6 +371,7 @@ static const u8 sArtilleryDescription[] =  _("Mega Launcher moves always hit.\nS
 static const u8 sAmplifierDescription[] =  _("Sound based single-target now\nhits both foes.");
 static const u8 sIceDewDescription[] = _("Ice ups Atk\nor SpAtk by +1.");
 static const u8 sSunWorshipDescription[] = _("Ups highest stat by +1\non entry when sunny.");
+static const u8 sBuginizeDescription[] = _("Normal moves become Bug\nand get a 20% boost.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
@@ -755,6 +756,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_AMPLIFIER] = _("Amplifier"),
     [ABILITY_ICE_DEW] = _("Ice Dew"),
 	[ABILITY_SUN_WORSHIP] = _("Sun Worship"),
+    [ABILITY_BUGINIZE] = _("Buginize"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1140,4 +1142,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_AMPLIFIER] = sAmplifierDescription,
     [ABILITY_ICE_DEW] = sIceDewDescription,
 	[ABILITY_SUN_WORSHIP] = sSunWorshipDescription,
+    [ABILITY_BUGINIZE] = sBuginizeDescription,
 };

@@ -408,8 +408,9 @@
 #define ABILITY_AMPLIFIER        (ABILITIES_COUNT_LATEST_GEN + 110) // Sound-based moves now target all foes [Affected moves: Hyper Voice, Boomburst, Bug Buzz, Chatter, Confide, Disarming Voice, Echoed Voice, Eerie Spell, Grass Whistle, Metal Sound, Noble Roar, Parting Shot, Roar, Round, Screech, Sing, Snore, Supersonic, Uproar etc.].
 #define ABILITY_ICE_DEW          (ABILITIES_COUNT_LATEST_GEN + 111) // Immune to Ice-type moves. Instead of being hit by Ice-type moves, it boosts its Attack or Sp. Attack stat (which is higher).
 #define ABILITY_SUN_WORSHIP      (ABILITIES_COUNT_LATEST_GEN + 112) // Ups highest stat on entry when it's sunny.
+#define ABILITY_BUGINIZE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon to become Bug-type and receive a 20% power boost.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SUN_WORSHIP + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_BUGINIZE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

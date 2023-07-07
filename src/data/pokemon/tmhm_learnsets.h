@@ -9946,6 +9946,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM06_TOXIC)
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM11_SUNNY_DAY)
+                                        | TMHM1(TM12_TAUNT) // new
                                         | TMHM1(TM13_ICE_BEAM)
                                         | TMHM1(TM14_BLIZZARD)
                                         | TMHM1(TM15_HYPER_BEAM)
@@ -9974,6 +9975,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM93_WILD_CHARGE)
                                         | TMHM2(TM94_SUCKER_PUNCH)
+                                        | TMHM2(TM95_SNARL) // new
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM04_STRENGTH)
                                         | TMHM2(HM05_FLASH)
@@ -12304,7 +12306,8 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM49_SLEEP_TALK)
                                         | TMHM1(TM55_SCALD)
                                         | TMHM1(TM58_ENDURE),
-                                          TMHM2(TM90_SUBSTITUTE)
+                                          TMHM2(TM79_FREEZE_DRY) // new
+                                        | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM03_SURF)
                                         | TMHM2(HM07_WATERFALL)
@@ -25679,6 +25682,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM11_SUNNY_DAY)
                                         | TMHM1(TM12_TAUNT)
+                                        | TMHM1(TM15_HYPER_BEAM) // new
                                         | TMHM1(TM16_LIGHT_SCREEN)
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM18_RAIN_DANCE)

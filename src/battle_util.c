@@ -11157,6 +11157,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
+    case ABILITY_BUGINIZE:
+        if (moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
 	case ABILITY_BURNATE:
         if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -11317,6 +11321,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Pixilate
 	if(BattlerHasInnate(battlerAtk, ABILITY_PIXILATE)){
 		if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+    }
+
+    // Buginize
+	if(BattlerHasInnate(battlerAtk, ABILITY_BUGINIZE)){
+		if (moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
     }
 	

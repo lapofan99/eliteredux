@@ -2423,8 +2423,10 @@ const u16 gEggMoves[] = {
         MOVE_ZEN_HEADBUTT),
 
     egg_moves(LUVDISC,
-        MOVE_SPLASH,
+        MOVE_SNORE, // new
         MOVE_SUPERSONIC,
+        MOVE_TWISTER, // new
+        MOVE_ANCIENT_POWER, // new
         MOVE_WATER_SPORT,
         MOVE_MUD_SPORT,
         MOVE_CAPTIVATE,
