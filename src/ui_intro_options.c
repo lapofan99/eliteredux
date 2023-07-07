@@ -44,7 +44,7 @@
  
 //==========DEFINES==========//
 
-#define OPTION_NAME_LENGTH 100
+#define OPTION_NAME_LENGTH 150
 #define MAX_OPTIONS_PER_SETTING 5
 #define MAX_OPTION_DESCRIPTION_LENGTH 50
 #define NUM_OPTIONS_ON_SCREEN 5 
@@ -453,9 +453,9 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Elite"),
             },
         .optionDescription = { 
-            _("Easy Difficulty Description"),
-            _("Ace Difficulty Description"),
-            _("Elite Difficulty Description"),
+            _("Trainers have no EVs, but you can have them.\nBag use in battles is disabled.\nThe Shift battle style is enforced."),
+            _("Same teams as Easy Mode, but additionally:\nEvery single Trainer has custom EVs.\nThis is the normal difficulty."),
+            _("In addition to Ace Mode: Innates have\nto be unlocked for you and the AI.\nMuch harder teams. Only for Pros!"),
             },
         .numOptions = 3,
     },
@@ -469,9 +469,9 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             //_("Off"),
             },
         .optionDescription = { 
-            _("Easy Level Cap Description"),
-            _("More Level Cap Description"),
-            _("Elite Level Cap Description"),
+            _("If you want to take it easy.\nLevel Caps for the first six badges.\nYou get to level 100 before the League."),
+            _("Good introduction to difficulty hacks.\nEach badge unlocks a new Level Cap.\nYou can't reach level 100 before Champion."),
+            _("This is the intended difficulty. You\nmay have to invent new strategies often.\nAre you ready for a world of pain?"),
             //_("No Level Cap Description"),
             },
         //.numOptions = 4,
@@ -485,8 +485,8 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Enabled"),
             },
         .optionDescription = { 
-            _("Encounter Randomizer Disabled Description"),
-            _("Encounter Randomizer Enabled Description"),
+            _("No changes to the encounters."),
+            _("Wild Encounters will be fully randomized.\nThis doesn't affect static encounters,\nlike Gift or Legendary Pokémon."),
             },
         .numOptions = 2,
     },
@@ -498,8 +498,8 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Enabled"),
             },
         .optionDescription = { 
-            _("Ability Randomizer Disabled Description"),
-            _("Ability Randomizer Enabled Description"),
+            _("No changes to the abilities."),
+            _("Abilities will be fully randomized.\nE.g. one Rattata has Huge Power,\nanother one has Drizzle."),
             },
         .numOptions = 2,
     },
@@ -511,8 +511,8 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Enabled"),
             },
         .optionDescription = { 
-            _("Innate Randomizer Disabled Description"),
-            _("Innate Randomizer Enabled Description"),
+            _("No changes to the innates."),
+            _("Innates will be fully randomized.\nE.g. one Swampert has Speed Boost,\nanother one has Sap Sipper."),
             },
         .numOptions = 2,
     },
@@ -524,8 +524,8 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Enabled"),
             },
         .optionDescription = { 
-            _("Every species has the same Color"),
-            _("Each individual Pokémon has a different\npalette"),
+            _("Normal colors, as you know it."),
+            _("Each individual Pokémon has a different\ncolor palette. You can toggle this anytime."),
             },
         .numOptions = 2,
     },
@@ -550,14 +550,14 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Enabled"),
             },
         .optionDescription = { 
-            _("Type Randomizer Disabled Description"),
-            _("Type Randomizer Enabled Description"),
+            _("No changes for the types."),
+            _("Pokémon types will be truly random.\nE.g. Bulbasaur could have Fire/Ghost.\nBattle UI helps you with changes."),
             },
         .numOptions = 2,
     },
 };
 
-static const u8 sText_Menu_Title[] = _("Configuration - Press the Start button to save");
+static const u8 sText_Menu_Title[] = _("Elite Redux Setup - press START to save");
 static void PrintToWindow(u8 windowId, u8 colorIdx)
 {
     u8 i;
@@ -589,8 +589,8 @@ static void PrintToWindow(u8 windowId, u8 colorIdx)
 
     //Description
     x = 3;
-    y = 15;
-    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8) + x2, (y * 8), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF,  Intro_Options[sMenuDataPtr->currentOptionId].optionDescription[sMenuDataPtr->temporal_settings[currentOption]]);
+    y = 14;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8) + x2, (y * 8) +4, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF,  Intro_Options[sMenuDataPtr->currentOptionId].optionDescription[sMenuDataPtr->temporal_settings[currentOption]]);
 
     //Cursor
     x = 2;
