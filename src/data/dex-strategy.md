@@ -1,6 +1,6 @@
 SPECIES_VENUSAUR
-**Assault Vest Physical Tank**
 {
+    **Assault Vest Physical Tank**
     .lvl = 0,
     .species = SPECIES_VENUSAUR, // Assault Vest Tank
     .heldItem = ITEM_LEFTOVERS,
@@ -12,8 +12,8 @@ SPECIES_VENUSAUR
     .moves = MOVE_SOLAR_BEAM, MOVE_SLUDGE_BOMB, MOVE_LEECH_SEED, MOVE_SLEEP_POWDER
     }
 \\n
-**Wide Lens, Chloroplast**
 {
+    **Wide Lens, Chloroplast**
     .lvl = 0,
     .species = SPECIES_VENUSAUR, // Wide Lens, Chloroplast
     .heldItem = ITEM_WIDE_LENS,
@@ -25,8 +25,8 @@ SPECIES_VENUSAUR
     .moves = MOVE_SOLAR_BEAM, MOVE_SLUDGE_BOMB, MOVE_EARTH_POWER, MOVE_SLEEP_POWDER
     }
 SPECIES_CHARIZARD
-**Offensive, White Herb, Burnate**
 {
+    **Offensive, White Herb, Burnate**
     .lvl = 3,
     .species = SPECIES_CHARIZARD, // Flannery, White Herb, Burnate
     .heldItem = ITEM_WHITE_HERB,
