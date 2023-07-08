@@ -6222,8 +6222,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_INSOMNIA, ABILITY_SAGE_POWER, ABILITY_PSYCHIC_SURGE},
-    .innates = {ABILITY_MAGIC_BOUNCE, ABILITY_HYPNOTIST, ABILITY_PSYCHIC_MIND},
+    .abilities = {ABILITY_SOUL_HEART, ABILITY_SAGE_POWER, ABILITY_PSYCHIC_SURGE},
+    .innates = {ABILITY_MAGIC_BOUNCE, ABILITY_AVENGER, ABILITY_PSYCHIC_MIND},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },
@@ -12508,7 +12508,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_BUG,
     .eggGroup2 = EGG_GROUP_BUG,
     .abilities = {ABILITY_SCRAPPY, ABILITY_PERFECTIONIST, ABILITY_DRIZZLE},
-    .innates = {ABILITY_MOUNTAINEER, ABILITY_TECHNICIAN, ABILITY_SOUNDPROOF},
+    .innates = {ABILITY_MOUNTAINEER, ABILITY_TECHNICIAN, ABILITY_BUGINIZE},
     .bodyColor = BODY_COLOR_RED,
     .noFlip = FALSE,
     },
@@ -21963,9 +21963,9 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_DRAGALGE] =
     {
     .baseHP        = 65,
-    .baseAttack    = 75,
+    .baseAttack    = 97, // 75 vanilla
     .baseDefense   = 90,
-    .baseSpeed     = 44,
+    .baseSpeed     = 64, // 44 vanilla
     .baseSpAttack  = 97,
     .baseSpDefense = 123,
     .type1 = TYPE_POISON,
@@ -21979,7 +21979,7 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_DRAGON,
-    .abilities = {ABILITY_SWIFT_SWIM, ABILITY_CORROSION, ABILITY_PROPELLER_TAIL},
+    .abilities = {ABILITY_SWIFT_SWIM, ABILITY_CORROSION, ABILITY_CONTRARY},
     .innates = {ABILITY_ADAPTABILITY, ABILITY_POISON_TOUCH, ABILITY_AQUATIC},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
@@ -22012,10 +22012,10 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_CLAWITZER] =
     {
-    .baseHP        = 71,
-    .baseAttack    = 58, // nerf bc of Huge Power
-    .baseDefense   = 108,
-    .baseSpeed     = 59,
+    .baseHP        = 90, // 70 vanilla
+    .baseAttack    = 73,
+    .baseDefense   = 108, // 88 vanilla
+    .baseSpeed     = 50, // 50 vanilla
     .baseSpAttack  = 120,
     .baseSpDefense = 89,
     .type1 = TYPE_WATER,
@@ -22029,8 +22029,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_WATER_3,
-    .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_GRIP_PINCER},
-    .innates = {ABILITY_HUGE_POWER, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    .abilities = {ABILITY_SWIFT_SWIM, ABILITY_RAMPAGE, ABILITY_ARTILLERY},
+    .innates = {ABILITY_HYDRATE, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = TRUE,
     },
