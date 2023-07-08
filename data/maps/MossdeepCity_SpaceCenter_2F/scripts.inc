@@ -260,6 +260,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_ReadyForBattlePrompt:: @ 8223FDA
 	end
 
 MossdeepCity_SpaceCenter_2F_EventScript_ChoosePartyForMultiBattle:: @ 822400C
+	special HealPlayerParty
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
     msgbox MossdeepCity_SpaceCenter_Text_ChooseMons, MSGBOX_DEFAULT
