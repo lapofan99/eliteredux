@@ -5913,7 +5913,13 @@ static void Cmd_sethealblock(void)
 
 static void Cmd_returnatktoball(void)
 {
+    if(gBattleScripting.switchInBattlerOverwrite != MAX_BATTLERS_COUNT){ //Handles Neutralizing Gas
+        gBattlerAttacker = gBattleScripting.switchInBattlerOverwrite;
+        gBattleScripting.switchInBattlerOverwrite = MAX_BATTLERS_COUNT;
+    }
+
     gActiveBattler = gBattlerAttacker;
+
     if (!(gHitMarker & HITMARKER_FAINTED(gActiveBattler)))
     {
         BtlController_EmitReturnMonToBall(0, 0);
@@ -13303,6 +13309,8 @@ static void Cmd_switchoutabilities(void)
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS)
     {
+        gBattleScripting.switchInBattlerOverwrite = gActiveBattler;
+
         gBattleMons[gActiveBattler].ability = ABILITY_NONE;
         BattleScriptPush(gBattlescriptCurrInstr);
         gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;

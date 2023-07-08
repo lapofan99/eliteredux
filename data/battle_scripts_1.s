@@ -8178,6 +8178,7 @@ BattleScript_ScarePrevented_Scrappy:
 	goto BattleScript_ScarePrevented
 
 BattleScript_DroughtActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_DROUGHT
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNSXINTENSIFIEDSUN

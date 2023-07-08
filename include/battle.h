@@ -713,6 +713,7 @@ struct BattleScripting
     bool8 fixedPopup;   // Force ability popup to stick until manually called back
     u16 abilityPopupOverwrite;
     u8 battlerPopupOverwrite;
+    u8 switchInBattlerOverwrite;
     u8 switchCase;  // Special switching conditions, eg. red card
     u8 overrideBerryRequirements;
 };
