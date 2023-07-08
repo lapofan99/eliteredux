@@ -32884,7 +32884,7 @@ static const struct TrainerMonItemCustomMoves sParty_ShellySeafloorCavern[] = {
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Archie[] = {
+static const struct TrainerMonItemCustomMoves sParty_Archie[] = { // Seafloor
     {
     .lvl = 5,
     .species = SPECIES_KYOGRE, // Archie, Bulky, Rain Setter + Swift Swim, Calm Mind
@@ -37895,7 +37895,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cynthia1[] = {
 };
 
 // Post Game
-static const struct TrainerMonItemCustomMoves sParty_Cynthia2[] = {
+static const struct TrainerMonItemCustomMoves sParty_Cynthia2[] = { // unused?
     {
     .lvl = 5,
     .species = SPECIES_TOGEKISS,
