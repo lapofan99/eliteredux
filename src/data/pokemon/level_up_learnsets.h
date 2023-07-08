@@ -17937,6 +17937,7 @@ static const struct LevelUpMove sBlacephalonLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(37, MOVE_FIRE_BLAST),
 	LEVEL_UP_MOVE(41, MOVE_SHADOW_BALL),
 	LEVEL_UP_MOVE(47, MOVE_TRICK),
+	LEVEL_UP_MOVE(53, MOVE_MIND_BLOWN), // new
 	LEVEL_UP_END
 };
 
@@ -17957,6 +17958,7 @@ static const struct LevelUpMove sZeraoraLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(40, MOVE_QUICK_GUARD),
 	LEVEL_UP_MOVE(47, MOVE_CLOSE_COMBAT),
 	LEVEL_UP_MOVE(50, MOVE_DISCHARGE),
+	LEVEL_UP_MOVE(53, MOVE_PLASMA_FISTS), // new
 	LEVEL_UP_END
 };
 
