@@ -4092,19 +4092,33 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 		gBattleMons[battler].hp != 0){
 		if (gBattleWeather & (WEATHER_RAIN_ANY) && gBattleMons[battler].species != SPECIES_CASTFORM_RAINY)
         {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
+            gBattlerAttacker = battler;
             gBattleMons[battler].species = SPECIES_CASTFORM_RAINY;
 			return TRUE;
-        }else if (gBattleWeather & (WEATHER_SUN_ANY) && gBattleMons[battler].species != SPECIES_CASTFORM_SUNNY)
+        }
+        else if (gBattleWeather & (WEATHER_SUN_ANY) && gBattleMons[battler].species != SPECIES_CASTFORM_SUNNY)
         {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
+            gBattlerAttacker = battler;
             gBattleMons[battler].species = SPECIES_CASTFORM_SUNNY;
 			return TRUE;
         }
 		else if (gBattleWeather & (WEATHER_HAIL_ANY) && gBattleMons[battler].species != SPECIES_CASTFORM_SNOWY)
         {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
+            gBattlerAttacker = battler;
             gBattleMons[battler].species = SPECIES_CASTFORM_SNOWY;
 			return TRUE;
-        }else
+        }else if(!(gBattleWeather & (WEATHER_HAIL_ANY)) && gBattleMons[battler].species != SPECIES_CASTFORM){
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
+            gBattlerAttacker = battler;
+            gBattleMons[battler].species = SPECIES_CASTFORM;
+			return TRUE;
+        }
+        else{
 			return FALSE;
+        }
 	}
 
     //Cherrim
@@ -4113,6 +4127,8 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 		      gBattleMons[battler].hp != 0){
 			if (gBattleWeather & (WEATHER_SUN_ANY))
         {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
+            gBattlerAttacker = battler;
             gBattleMons[battler].species = SPECIES_CHERRIM_SUNSHINE;
 			return TRUE;
 		}
@@ -4122,6 +4138,8 @@ bool32 ShouldChangeFormHpBased(u32 battler)
 		      gBattleMons[battler].hp != 0){
 			if (!(gBattleWeather & (WEATHER_SUN_ANY)))
         {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
+            gBattlerAttacker = battler;
             gBattleMons[battler].species = SPECIES_CHERRIM;
 			return TRUE;
 		}
