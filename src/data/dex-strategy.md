@@ -11,6 +11,7 @@ SPECIES_VENUSAUR
 	.nature = NATURE_BOLD,
     .moves = MOVE_SOLAR_BEAM, MOVE_SLUDGE_BOMB, MOVE_LEECH_SEED, MOVE_SLEEP_POWDER
     }
+venusaur
 {
     .name = Wide Lens, Chloroplast
     .lvl = 0,
