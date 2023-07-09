@@ -59,3 +59,35 @@ escavalier
     moves = megahorn, iron head / close combat / drill run, protect, swords dance
    comment = Use protect to get more speed boost and leftovers recovery at the same time. 
 }
+golurk
+{
+    name = Rock Polish WP Sweeper
+    item = weakness policy
+    ability = no guard
+    evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = jolly
+    moves = fissure, shadow punch / poltergeist, dynamic punch / ice punch, rock polish
+   comment = Shadow Shield makes sure that Golurk can always setup safely, activating Weakness Policy then sweep. The moves take advantage of Golurk's ability Iron Fist and No Guard. 
+}
+alakazam
+{
+    name = Singles Calm Mind + Substitute Sleep Chains
+    item = Leftovers
+    ability = Exploit Weakness
+    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Timid
+    moves = Hypnosis, Substitute, Calm Mind, Dream Eater / Stored Power / Psychic
+   comment = Thanks to Hypnosist, Alakazam can inflict sleep on the opponent 90% of the time. All it needs to do is to set up a Substitute in case the enemy wakes up early and set up some Calm Minds before attacking with a Psychic-type move. However, you should immediately switch out if you face a Dark-type Pokémon.
+}
+kecleon
+{
+    .lvl = 0,
+    .species = SPECIES_KECLEON, // Troll set
+    .heldItem = ITEM_MENTAL_HERB,
+    .ability = 0, // ABILITY_LIMBER, ABILITY_NONE, ABILITY_NONE},
+    // .innates = {ABILITY_COLOR_CHANGE, ABILITY_PROTEAN, ABILITY_NONE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_PROTECT, MOVE_TOXIC, MOVE_RECOVER, MOVE_DIZZY_PUNCH
+    }
