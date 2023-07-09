@@ -25187,7 +25187,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cristin4[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_VENUSAUR, // Assault Vest Tank
+    .species = SPECIES_VENUSAUR, // Physical Tank
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // ABILITY_CHLOROPLAST, ABILITY_EFFECT_SPORE, ABILITY_CHLOROPHYLL},
     // .innates = {ABILITY_OVERGROW, ABILITY_THICK_FAT, ABILITY_POISON_TOUCH},

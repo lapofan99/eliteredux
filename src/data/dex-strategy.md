@@ -1,6 +1,6 @@
 SPECIES_VENUSAUR
 {
-    .name = Assault Vest Physical Tank
+    .name = Physical Tank
     .lvl = 0,
     .species = SPECIES_VENUSAUR, // Assault Vest Tank
     .heldItem = ITEM_LEFTOVERS,
