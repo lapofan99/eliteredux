@@ -90,3 +90,13 @@ kecleon
 	.nature = NATURE_IMPISH,
     .moves = MOVE_PROTECT, MOVE_TOXIC, MOVE_RECOVER, MOVE_DIZZY_PUNCH
     }
+WARTORTLE
+{
+    name = Turtle Power
+    item = Eviolite
+    ability = Stamina
+    evs = 252, 0, 20, 216, 22, 0 
+    nature = Modest
+    moves = Blizzard, Hydro pump, Aura Sphere, Rapid Spin
+   comment = Aura Sphere can be replaced with Protect if you don't see much use for it because of the team being used. Shell Smash isn't here because you eat damage to win. You won't one-shot after mid-game, but you still win. If you see that you got space to do anything, spin like a turtle, show that turtle power.
+}
