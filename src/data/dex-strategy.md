@@ -186,3 +186,13 @@ Feraligatr
     moves =  fishious Rend, psychic fang, Ice fang, crunch
    comment = Works better with Sticky Web; heals itself with Predator and if outspeed something, you can KO a lot with Fishious Rend.
 }
+Porygon-Z
+{
+    name = Reverse Trick Room Analytic Nuke
+    item = choice specs
+    ability = twisted dimension
+    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = timid
+    moves = techno blast, thunderbolt, ice beam, dark pulse / bug buzz / coverage 
+   comment = Analytic, Adaptability, and Choice Specs each boost Techno Blast by an extra 50% damage. Outspeed, go last, and blow up whatever you hit. Coverage there if you really need it but you'll mostly be using Techno Blast.
+}
