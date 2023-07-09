@@ -51,13 +51,12 @@ SPECIES_BLASTOISE_MEGA
 escavalier
 {
     name = Speed Boost Sweeper
-    species = 
     item = leftovers
     ability = no guard
     evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     nature = jolly
     moves = megahorn, iron head / close combat / drill run, protect, swords dance
-   comment = Use protect to get more speed boost and leftovers recovery at the same time. 
+   comment = Use Protect to gain Speed Boost and Leftovers recovery at the same time. Ideally Protect -> Swords Dance -> Protect. Megahorn is usually strong enough, and the 2nd move depends on your opponent. 
 }
 golurk
 {
