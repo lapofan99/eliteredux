@@ -129,3 +129,19 @@ SPECIES_AERODACTYL
 	.nature = NATURE_JOLLY,
     .moves = MOVE_BRAVE_BIRD, MOVE_HEAD_SMASH, MOVE_EARTHQUAKE, MOVE_DRAGON_RUSH
     }
+SPECIES_POLIWRATH
+{
+    name = MAX POWER
+    item = Life Orb
+    ability = Power Fists
+    evs = 252, 252, 0, 0, 6, 0 
+    nature = Adamant
+    moves = Close Combat, Frustration, Belly Drum, Hypnosis
+   comment = Poliwrath here is a very flexible mon that goes all in and doesn't care about nobody except proper support to enable it to go first and destroy. 
+   
+   Change nature to Brave if you need it in a slow team with trick room (you may need Curse for this instead of Belly Drum to get the best of it) or add Rain Dance/Drizzle support if you need speed (this also means that replacing 252 evs in HP for Speed may be a thing needed in some cases). 
+   
+   Change Power Fists to Iron Fist against high spdef mons. Believe in Hypnosis to enable you to Belly Drum safe and Close Combat everything (your main move boosted by Power Fists/Iron Fists that will one-shot a lot of mons after Belly Drum).
+   
+   Substitute can be used instead of Hypnosis if you want something a bit more safe (hp lost hurts tho). Frustration is the cover move against most Psychic mons. Wave Crash/Waterfall/Ice Punch are good alternatives to Frustration in case you need more options.
+}
