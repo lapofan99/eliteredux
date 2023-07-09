@@ -35532,14 +35532,14 @@ static const struct TrainerMonItemCustomMoves sParty_Sidney[] = { // Marriland P
     },
     {
     .lvl = 3,
-    .species = SPECIES_MUK_ALOLAN, // Sidney, Bulky Attacker, Vest, Regenerator
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_REGENERATOR, ABILITY_STICKY_HOLD, ABILITY_SELF_SUFFICIENT},
-    // .innates = {ABILITY_POISON_TOUCH, ABILITY_LIQUIFIED, ABILITY_GLUTTONY},
+    .species = SPECIES_LYCANROC_MIDNIGHT, // Sidney, Rock Gem, Tough Claws
+    .heldItem = ITEM_ROCK_GEM,
+    .ability = 0, // ABILITY_TOUGH_CLAWS, ABILITY_LUNAR_ECLIPSE, ABILITY_PREDATOR},
+    // .innates = {ABILITY_NO_GUARD, ABILITY_NOCTURNAL, ABILITY_HYPER_AGGRESSIVE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_GUNK_SHOT, MOVE_KNOCK_OFF, MOVE_FIRE_PUNCH, MOVE_SHADOW_SNEAK
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_STONE_EDGE, MOVE_CRUNCH, MOVE_DYNAMIC_PUNCH, MOVE_ACCELEROCK
     },
     {
     .lvl = 3,
@@ -35553,15 +35553,15 @@ static const struct TrainerMonItemCustomMoves sParty_Sidney[] = { // Marriland P
     .moves = MOVE_CONFUSE_RAY, MOVE_RECOVER, MOVE_WILL_O_WISP, MOVE_TAUNT
     },
     {
-    .lvl = 3,
-    .species = SPECIES_GRENINJA_BATTLE_BOND, // Sidney, Ash, Orb
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // ABILITY_BATTLE_BOND, ABILITY_BATTLE_BOND, ABILITY_BATTLE_BOND},
-    // .innates = {ABILITY_TORRENT, ABILITY_SKILL_LINK, ABILITY_FATAL_PRECISION},
+    .lvl = 1,
+    .species = SPECIES_HYDREIGON, // Sidney, Beast Boost, Fast Vest
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_SCARE, ABILITY_VIOLENT_RUSH, ABILITY_BEAST_BOOST},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_LEVITATE, ABILITY_PREDATOR},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_WATER_SHURIKEN, MOVE_DARK_PULSE, MOVE_GRASS_KNOT, MOVE_ICE_BEAM
+    .moves = MOVE_DARK_PULSE, MOVE_FLASH_CANNON, MOVE_DRAGON_PULSE, MOVE_FIRE_BLAST
     },
     {
     .lvl = 5,

@@ -20877,7 +20877,8 @@ static const struct LevelUpMove sHoopaUnboundLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sLycanrocMidnightLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_COUNTER),
+    LEVEL_UP_MOVE( 0, MOVE_ACCELEROCK), // new
+    LEVEL_UP_MOVE( 1, MOVE_COUNTER),
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE( 1, MOVE_CROSS_CHOP),
     #endif
@@ -20900,6 +20901,7 @@ static const struct LevelUpMove sLycanrocMidnightLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_STONE_EDGE),
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE(53, MOVE_HEAD_SMASH),
+        LEVEL_UP_MOVE(58, MOVE_WICKED_BLOW), // new
     #endif
     LEVEL_UP_END
 };

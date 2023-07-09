@@ -178,7 +178,7 @@ Gallade Mega
     evs = 4, 252, 0, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     nature = Jolly / Adamant 
     moves =  shadow sneak, Excalibur, psycho cut, sacred sword
-   comment = You can hit other Pokémon in the semi invincible turn of Fly with Fatal Precission, if it's super effective. 
+   comment = You can hit other Pokémon in the semi invincible turn of Fly with Fatal Precission, if it's super-effective. 
 }
 Feraligatr
 {
