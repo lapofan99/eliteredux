@@ -102,6 +102,7 @@ WARTORTLE
 }
 SPECIES_AERODACTYL_MEGA
 {
+    .name = Speed Force, 3 Moves + Roost
     .lvl = 3,
     .species = SPECIES_AERODACTYL, // Mega, Speed Force, Roost
     .heldItem = ITEM_AERODACTYLITE,
@@ -117,6 +118,7 @@ SPECIES_AERODACTYL_MEGA
     }
 SPECIES_AERODACTYL
 {
+    .name = Choice Band + Predator
     .lvl = 3,
     .species = SPECIES_AERODACTYL, // Band, Predator
     .heldItem = ITEM_CHOICE_BAND,
