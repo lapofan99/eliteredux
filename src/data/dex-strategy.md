@@ -36,3 +36,14 @@ SPECIES_CHARIZARD
 	.nature = NATURE_TIMID,
     .moves = MOVE_SOLAR_BEAM, MOVE_SCORCHING_SANDS, MOVE_DRACO_METEOR, MOVE_HYPER_VOICE
     }
+SPECIES_BLASTOISE_MEGA
+{
+    .name = Singles Shell Smash
+    .species = BLASTOISE_MEGA SPECIES_BLASTOISE_MEGA,
+    .heldItem = ITEM_BLASTOISINITE,
+    .ability = 0, // ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    .evs = {0, 0, 6, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_SHELL_SMASH, MOVE_HYDRO PUMP, MOVE_FOCUS_BLAST, MOVE_FLASH_CANNON
+    .comment = Inaccurate moves cannot miss thanks to Artillery. With the added Steel type upon Mega Evolution, Blastoise gains STAB on Flash Cannon and additional resistances, so you can time the Mega Evolution well and get rewarded for it.
+    }
