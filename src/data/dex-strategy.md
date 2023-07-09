@@ -155,3 +155,33 @@ Heliolisk
     moves = Electrify, Parabolic Charge, Surf / Protect / Weather Ball, Earth Power / Aurasphere / Hyper Voice
    comment = Thanks to its three immunities due to its Normal typing, Dry Skin innate and Lightning Rod ability, Heliolisk can either come in after a KO or switch into certain attacks and start spamming Electrify to boost its Sp.Atk until it decides to stop. Sandstorm is also a possibility and makes it completely impossible for other Pokémon to outspeed Heliolisk. Even though this Pokémon is basically invincible, be aware of priority moves and Pokémon that ignore abilities. Stealth Rock support is also highly  appreciated in order to break Focus Sashes. Moveset can be changed depending on your preferences and the support tools that you bring.
 }
+Ferrothorn
+{
+    name = Rocky Helmet Physical Tank
+    item = rocky helmet
+    ability = bulletproof
+    evs = 252, 0, 252, 0, 4, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = bold
+    moves = ingrain, curse, gyro ball, power whip
+   comment = Switch in on contact attackers, set up to sweep with Power Whip and Gyro Ball
+}
+Gallade Mega
+{
+    name = Sir Galahad
+    item = Galladite
+    ability = Intrepid Sword
+    evs = 4, 252, 0, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Jolly / Adamant 
+    moves =  shadow sneak, Excalibur, psycho cut, sacred sword
+   comment = You can hit other Pokémon in the semi invincible turn of Fly with Fatal Precission, if it's super effective. 
+}
+Feraligatr
+{
+    name = Dundee All Bites
+    item = Assault Vest
+    ability = Predator
+    evs = 252, 252, 0, 0, 0, 4 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Jolly / Adamant
+    moves =  fishious Rend, psychic fang, Ice fang, crunch
+   comment = Works better with Sticky Web; heals itself with Predator and if outspeed something, you can KO a lot with Fishious Rend.
+}
