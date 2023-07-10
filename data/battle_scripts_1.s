@@ -8302,7 +8302,7 @@ BattleScript_BadDreamsActivates::
 	call BattleScript_AbilityPopUp
 BattleScript_BadDreamsLoop:
 	trygetbaddreamstarget BattleScript_BadDreamsEnd, BattleScript_BadDreamsPrevented
-	dmg_1_8_targethp
+	dmg_1_4_targethp
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
 	printstring STRINGID_BADDREAMSDMG
 	waitmessage B_WAIT_TIME_LONG
