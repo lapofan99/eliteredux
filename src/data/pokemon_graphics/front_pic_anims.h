@@ -8333,18 +8333,18 @@ static const union AnimCmd sAnim_NOIVERN_1[] =
 
 static const union AnimCmd sAnim_XERNEAS_1[] =
 {
-    //ANIMCMD_FRAME(0, 12),
-    //ANIMCMD_FRAME(1, 45),
-    //ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(0, 12),
+    ANIMCMD_FRAME(1, 45),
+    ANIMCMD_FRAME(0, 15),
     ANIMCMD_END,
 };
 
 static const union AnimCmd sAnim_YVELTAL_1[] =
 {
-    //ANIMCMD_FRAME(1, 20),
-    //ANIMCMD_FRAME(0, 10),
-    //ANIMCMD_FRAME(1, 15),
-    //ANIMCMD_FRAME(0, 1),
+    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(1, 15),
+    ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
 };
 

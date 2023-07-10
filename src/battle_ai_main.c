@@ -4601,8 +4601,8 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPDEF, &score);
         break;
     case EFFECT_GEOMANCY:
-        if (AI_DATA->atkHoldEffect == HOLD_EFFECT_POWER_HERB)
-            score += 3;
+        if (AI_DATA->atkHoldEffect == HOLD_EFFECT_POWER_HERB && !CanTargetFaintAi(battlerDef, battlerAtk))
+            score += 10;
         //fallthrough
     case EFFECT_QUIVER_DANCE:
         IncreaseStatUpScore(battlerAtk, battlerDef, STAT_SPEED, &score);
@@ -5110,8 +5110,13 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_SUNNY_DAY:
     case EFFECT_SANDSTORM:
     case EFFECT_HAIL:
-    case EFFECT_GEOMANCY:
         score += 10; // was +2
+        break;
+    case EFFECT_GEOMANCY:
+        if (gBattleMons[battlerAtk].item == ITEM_POWER_HERB && !CanTargetFaintAi(battlerDef, battlerAtk))
+            score += 20;
+        else
+            score += 10; // was +2
         break;
     default:
         break;
