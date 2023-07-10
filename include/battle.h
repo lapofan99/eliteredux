@@ -118,6 +118,7 @@ struct DisableStruct
     u8 tarShot:1;
     u8 octolock:1;
     u8 hasBeenOnBattle:1;
+    u8 substituteDestroyedThisTurn:1;
 };
 
 struct ProtectStruct

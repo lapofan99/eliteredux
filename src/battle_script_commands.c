@@ -5110,6 +5110,7 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
     if (gBattleMons[battlerDef].item != 0
         && CanBattlerGetOrLoseItem(battlerDef, gBattleMons[battlerDef].item)
         && !(gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE)
+        && !(gDisableStructs[battlerDef].substituteDestroyedThisTurn)
         && !NoAliveMonsForEitherParty())
     {
         if ((GetBattlerAbility(battlerDef) == ABILITY_STICKY_HOLD || BattlerHasInnate(battlerDef, ABILITY_STICKY_HOLD)) && IsBattlerAlive(battlerDef))
@@ -5478,8 +5479,10 @@ static void Cmd_moveend(void)
         case MOVEEND_SUBSTITUTE: // update substitute
             for (i = 0; i < gBattlersCount; i++)
             {
-                if (gDisableStructs[i].substituteHP == 0)
+                if (gDisableStructs[i].substituteHP == 0 && (gBattleMons[i].status2 & STATUS2_SUBSTITUTE)){
                     gBattleMons[i].status2 &= ~(STATUS2_SUBSTITUTE);
+                    gDisableStructs[i].substituteDestroyedThisTurn = TRUE;
+                }
             }
             gBattleScripting.moveendState++;
             break;

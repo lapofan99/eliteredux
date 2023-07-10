@@ -3034,6 +3034,9 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
+
+            gDisableStructs[gActiveBattler].substituteDestroyedThisTurn = FALSE;
+
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_MAGNET_RISE:
@@ -6786,6 +6789,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED
              && gDisableStructs[gBattlerAttacker].disabledMove == MOVE_NONE
              && IsBattlerAlive(gBattlerAttacker)
+             && gBattlerAttacker != gBattlerTarget
              && !IsAbilityOnSide(gBattlerAttacker, ABILITY_AROMA_VEIL)
              && gBattleMons[gBattlerAttacker].pp[gChosenMovePos] != 0
              && (Random() % 3) == 0)
@@ -11978,7 +11982,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     }
     // Momentum + Speed Force
 	else if ((BattlerHasInnate(battlerAtk, ABILITY_MOMENTUM)|| GetBattlerAbility(battlerAtk) == ABILITY_MOMENTUM) && 
-             (BattlerHasInnate(battlerAtk, ABILITY_SPEED_FORCE)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE)
+             (BattlerHasInnate(battlerAtk, ABILITY_SPEED_FORCE)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE) &&
 			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
 		atkStat = gBattleMons[battlerAtk].speed + (gBattleMons[battlerAtk].speed * 0.2);
         atkStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
