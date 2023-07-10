@@ -186,7 +186,7 @@ Feraligatr
     item = Assault Vest
     ability = Predator
     evs = 252, 252, 0, 0, 0, 4 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-    nature = Jolly / Adamant
+    nature = Jolly or Adamant
     moves =  fishious Rend, psychic fang, Ice fang, crunch
    comment = Works better with Sticky Web; heals itself with Predator and if you outspeed something, you can KO a lot with Fishious Rend.
 }
@@ -197,6 +197,15 @@ Porygon-Z
     ability = twisted dimension
     evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     nature = timid
-    moves = techno blast, thunderbolt, ice beam, dark pulse / bug buzz / coverage 
+    moves = techno blast, thunderbolt, ice beam, Dark Pulse / Bug Buzz
    comment = Analytic, Adaptability, and Choice Specs each boost Techno Blast by an extra 50% damage. Outspeed, go last, and blow up whatever you hit. Coverage there if you really need it but you'll mostly be using Techno Blast.
 }
+primeape
+Name = Nuke Ape
+Item = Choice Scarf
+Ability = Gorilla Tactics
+EVs = 6, 252, 0, 0, 0, 252
+Nature = Adamant
+Moves = Close Combat, Earthquake, Gunk Shot, Seed Bomb
+comment = Thanks to the buffs received, Primeape can now be an absolute nuke with Gorilla Tactics and Hyper Agressive.
+tags = Singles, Offensive
