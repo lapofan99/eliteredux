@@ -1887,7 +1887,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if ((defAbility == ABILITY_WONDER_SKIN || BattlerHasInnate(battlerDef, ABILITY_WONDER_SKIN)) && gBattleMoves[move].power == 0)
         moveAcc = 50;
 
-    if ((atkAbility == ABILITY_SIGHTING_SYSTEM || BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM)) && gBattleMoves[move].accuracy <= 50)
+    if ((atkAbility == ABILITY_SIGHTING_SYSTEM || BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM)))
         moveAcc = 100;
 
     if ((atkAbility == ABILITY_ARTILLERY || BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY)) && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
@@ -9140,7 +9140,8 @@ static void Cmd_various(void)
         }
         else if (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
         {
-            if (GetBattlerAbility(gBattlerTarget) == ABILITY_INSOMNIA || GetBattlerAbility(gBattlerTarget) == ABILITY_VITAL_SPIRIT)
+            if (GetBattlerAbility(gBattlerTarget) == ABILITY_INSOMNIA || 
+                GetBattlerAbility(gBattlerTarget) == ABILITY_VITAL_SPIRIT)
             {
                 gBattlerAbility = gBattlerTarget;
                 // BattleScriptPush(T1_READ_PTR(gBattlescriptCurrInstr + 3));

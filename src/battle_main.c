@@ -4904,8 +4904,8 @@ s8 GetMovePriority(u32 battlerId, u16 move)
 
     // Sighting System
 	if ((GetBattlerAbility(battlerId) == ABILITY_SIGHTING_SYSTEM  || BattlerHasInnate(battlerId, ABILITY_SIGHTING_SYSTEM))
-        && gBattleMoves[move].accuracy <= 50)
-    {
+        && gBattleMoves[move].accuracy <= 75)
+    { 
         priority = priority - 3;
     }
     

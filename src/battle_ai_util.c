@@ -1474,7 +1474,7 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
     if ((defAbility == ABILITY_WONDER_SKIN || BattlerHasInnate(battlerDef, ABILITY_WONDER_SKIN)) && gBattleMoves[move].power == 0)
         moveAcc = 50;
 
-    if ((atkAbility == ABILITY_SIGHTING_SYSTEM || BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM)) && gBattleMoves[move].accuracy <= 50)
+    if (atkAbility == ABILITY_SIGHTING_SYSTEM || BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM))
         moveAcc = 100;
 
     if ((atkAbility == ABILITY_ARTILLERY || BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY)) && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
@@ -1557,7 +1557,7 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
     if ((BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY) || AI_GetAbility(battlerAtk) == ABILITY_ARTILLERY) && gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
         return TRUE;
 
-    if((BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM) || AI_GetAbility(battlerAtk) == ABILITY_SIGHTING_SYSTEM) && gBattleMoves[move].accuracy <= 50)
+    if((BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM) || AI_GetAbility(battlerAtk) == ABILITY_SIGHTING_SYSTEM))
         return TRUE;   
     
     //TODO - anticipate protect move?
@@ -2883,6 +2883,7 @@ bool32 AI_CanSleep(u8 battler, u16 ability)
       || BattlerHasInnate(battler, ABILITY_INSOMNIA)
       || ability == ABILITY_VITAL_SPIRIT
       || BattlerHasInnate(battler, ABILITY_VITAL_SPIRIT)
+      || IsSleepDisabled(battler, 1)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || (gFieldStatuses & (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN))

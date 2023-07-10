@@ -2988,6 +2988,7 @@ u8 DoBattlerEndTurnEffects(void)
 			     && !BattlerHasInnate(gActiveBattler, ABILITY_VITAL_SPIRIT)
                  && GetBattlerAbility(gActiveBattler) != ABILITY_INSOMNIA 
 				 && !BattlerHasInnate(gActiveBattler, ABILITY_INSOMNIA)
+                 && !IsSleepDisabled(gActiveBattler, 0)
 				 && !UproarWakeUpCheck(gActiveBattler)
                  && !IsLeafGuardProtected(gActiveBattler))
                 {
@@ -3395,10 +3396,13 @@ u8 AtkCanceller_UnableToUseMove(void)
                         toSub = 2;
                     else
                         toSub = 1;
-                    if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP) < toSub)
+
+                    if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP) < toSub || 
+                        IsSleepDisabled(gBattlerAttacker, 0))//Sleep Clause
                         gBattleMons[gBattlerAttacker].status1 &= ~(STATUS1_SLEEP);
                     else
                         gBattleMons[gBattlerAttacker].status1 -= toSub;
+
                     if (gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
                     {
                         if (gChosenMove != MOVE_SNORE && gChosenMove != MOVE_SLEEP_TALK)
@@ -8760,9 +8764,52 @@ bool32 IsBattlerTerrainAffected(u8 battlerId, u32 terrainFlag)
     return IsBattlerGrounded(battlerId);
 }
 
+bool8 IsSleepDisabled(u8 battlerId, u8 sleepmons){
+    //Sleep Clause
+    struct Pokemon *party;
+    u8 difficultySetting = gSaveBlock2Ptr->gameDifficulty;
+    u8 i;
+    u8 asleepmons = sleepmons;
+
+    if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
+        party = gPlayerParty;
+    else
+        party = gEnemyParty;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if ((GetMonData(&party[i], MON_DATA_STATUS) & (STATUS1_SLEEP)) &&
+            (difficultySetting == DIFFICULTY_ELITE || difficultySetting == DIFFICULTY_ACE) &&
+            GetMonData(&party[i], MON_DATA_SPECIES2) != SPECIES_EGG)
+            asleepmons++;
+    }
+
+    #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "Sleep Clause check %d", asleepmons);
+            MgbaClose();
+        }
+    #endif
+
+    if(asleepmons > 1){
+        #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "Sleep Clause activated %d", asleepmons);
+            MgbaClose();
+        }
+        #endif
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 bool32 CanSleep(u8 battlerId)
 {
     u16 ability = GetBattlerAbility(battlerId);
+
     if (ability == ABILITY_INSOMNIA
 	  || BattlerHasInnate(gActiveBattler, ABILITY_INSOMNIA)
       || ability == ABILITY_VITAL_SPIRIT

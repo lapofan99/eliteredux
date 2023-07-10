@@ -67,6 +67,7 @@ void HandleAction_TryFinish(void);
 void HandleAction_NothingIsFainted(void);
 void HandleAction_ActionFinished(void);
 u8 GetBattlerForBattleScript(u8 caseId);
+bool8 IsSleepDisabled(u8 battlerId, u8 sleepmons);
 void PressurePPLose(u8 target, u8 attacker, u16 move);
 void PressurePPLoseOnUsingPerishSong(u8 attacker);
 void PressurePPLoseOnUsingImprison(u8 attacker);
