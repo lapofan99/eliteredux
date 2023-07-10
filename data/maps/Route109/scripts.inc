@@ -630,7 +630,7 @@ Route109_Beach_EventScript_Gen8_NPC_5:
 
 Route109_Beach_EventScript_Gen8_NPC_8:
 	checktrainerflag TRAINER_HAILEY
-	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_13
+	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_12
 	goto Route109_Beach_EventScript_Gen8_NPC_3
 
 Route109_Beach_EventScript_Gen8_NPC_9:
@@ -639,13 +639,8 @@ Route109_Beach_EventScript_Gen8_NPC_9:
 	goto Route109_Beach_EventScript_Gen8_NPC_3
 
 Route109_Beach_EventScript_Gen8_NPC_12:
-	checktrainerflag TRAINER_TIANA
-	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_2
-	goto Route109_Beach_EventScript_Gen8_NPC_3
-
-Route109_Beach_EventScript_Gen8_NPC_13:
 	checktrainerflag TRAINER_EDMOND
-	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_12
+	goto_if 1, Route109_Beach_EventScript_Gen8_NPC_2
 	goto Route109_Beach_EventScript_Gen8_NPC_3
 
 
