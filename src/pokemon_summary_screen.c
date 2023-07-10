@@ -1340,7 +1340,7 @@ static bool8 LoadGraphics(void)
         gMain.state++;
         break;
     case 18:
-        LoadMonIconPalette(sMonSummaryScreen->summary.species2);
+        LoadGenderedMonIconPalette(sMonSummaryScreen->summary.species2, sMonSummaryScreen->summary.pid); 
         sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON_ICON] = CreateMonIcon(sMonSummaryScreen->summary.species2, SpriteCB_MonIcon, 20, 47, 1, sMonSummaryScreen->summary.pid);
         gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_MON_ICON]].hFlip = !IsMonSpriteNotFlipped(sMonSummaryScreen->summary.species2);
         SetSpriteInvisibility(SPRITE_ARR_ID_MON_ICON, TRUE);
