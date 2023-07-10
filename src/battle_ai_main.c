@@ -4930,6 +4930,15 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score += 3;
         }
         break;
+    case EFFECT_METAL_BURST:
+        if (!IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility) && predictedMove != MOVE_NONE)
+        {
+            if (gDisableStructs[battlerDef].tauntTimer != 0)
+                score++;    // target must use damaging move
+            if (GetMoveDamageResult(predictedMove) >= MOVE_POWER_GOOD && GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) != 0)
+                score += 3;
+        }
+        break;
     case EFFECT_FLAIL:
         if (GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 0)  // Ai goes first
         {

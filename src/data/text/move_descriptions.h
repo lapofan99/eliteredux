@@ -1667,6 +1667,10 @@ static const u8 sPOWER_GEMDescription[] = _(
     "Attacks with rays of light\n"
     "that sparkle like diamonds.");
 
+static const u8 sDRAIN_PUNCHDescription[] = _(
+    "A punch that absorbs over\n"
+    "30% of damage inflictedd.");
+
 static const u8 sVACUUM_WAVEDescription[] = _(
     "Whirls its fists to send\n"
     "a wave that strikes first.");
@@ -3419,7 +3423,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_DRAGON_PULSE - 1] = sDRAGON_PULSEDescription,
     [MOVE_DRAGON_RUSH - 1] = sDRAGON_RUSHDescription,
     [MOVE_POWER_GEM - 1] = sPOWER_GEMDescription,
-    [MOVE_DRAIN_PUNCH - 1] = sDRAINING_KISSDescription,
+    [MOVE_DRAIN_PUNCH - 1] = sDRAIN_PUNCHDescription,
     [MOVE_VACUUM_WAVE - 1] = sVACUUM_WAVEDescription,
     [MOVE_FOCUS_BLAST - 1] = sFOCUS_BLASTDescription,
     [MOVE_ENERGY_BALL - 1] = sENERGY_BALLDescription,
@@ -4981,7 +4985,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_DRAGON_PULSE      - 1] = sMoveFourLineDescription_DragonPulse,
     [MOVE_DRAGON_RUSH       - 1] = sMoveFourLineDescription_DragonRush,
     [MOVE_POWER_GEM         - 1] = sMoveFourLineDescription_PowerGem,
-    [MOVE_DRAIN_PUNCH       - 1] = sMoveFourLineDescription_DrainingKiss,
+    [MOVE_DRAIN_PUNCH       - 1] = sMoveFourLineDescription_DrainPunch,
     [MOVE_VACUUM_WAVE       - 1] = sMoveFourLineDescription_VacuumWave,
     [MOVE_FOCUS_BLAST       - 1] = sMoveFourLineDescription_FocusBlast,
     [MOVE_ENERGY_BALL       - 1] = sMoveFourLineDescription_EnergyBall,
