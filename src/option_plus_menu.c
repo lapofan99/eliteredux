@@ -1190,9 +1190,9 @@ static void DrawChoices_PlayerAI(int selection, int y)
     DrawOptionMenuChoice(gText_AutoRunEnabled, GetStringRightAlignXOffset(FONT_NORMAL, gText_AutoRunEnabled, 198), y, styles[1], active);
 }
 
-static const u8 sText_Shiny_Rate_Normal[]    = _("Normal");
-static const u8 sText_Shiny_Rate_Boosted[]   = _("x4");
-static const u8 sText_Shiny_Rate_5_Percent[] = _("x200");
+static const u8 sText_Shiny_Rate_Normal[]    = _("1/1024");
+static const u8 sText_Shiny_Rate_Boosted[]   = _("1/128");
+static const u8 sText_Shiny_Rate_5_Percent[] = _("1/5");
 
 static void DrawChoices_ShinyRate(int selection, int y)
 {
