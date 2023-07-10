@@ -201,6 +201,7 @@ Porygon-Z
    comment = Analytic, Adaptability, and Choice Specs each boost Techno Blast by an extra 50% damage. Outspeed, go last, and blow up whatever you hit. Coverage there if you really need it but you'll mostly be using Techno Blast.
 }
 primeape
+{
 Name = Nuke Ape
 Item = Choice Scarf
 Ability = Gorilla Tactics
@@ -209,3 +210,4 @@ Nature = Adamant
 Moves = Close Combat, Earthquake, Gunk Shot, Seed Bomb
 comment = Thanks to the buffs received, Primeape can now be an absolute nuke with Gorilla Tactics and Hyper Agressive.
 tags = Singles, Offensive
+}
