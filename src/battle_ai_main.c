@@ -4937,6 +4937,8 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score++;    // target must use damaging move
             if (GetMoveDamageResult(predictedMove) >= MOVE_POWER_GOOD && GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) != 0)
                 score += 3;
+            else
+                score -= 10;
         }
         break;
     case EFFECT_FLAIL:
