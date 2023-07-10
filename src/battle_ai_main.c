@@ -594,12 +594,6 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
         }
 
-        if (moveType == TYPE_ROCK
-          && (AI_DATA->defAbility == ABILITY_MOMENTUM || BattlerHasInnate(battlerDef, ABILITY_MOMENTUM)))
-        {
-            RETURN_SCORE_MINUS(20);
-        }
-
         if (moveType == TYPE_ELECTRIC
           && (AI_DATA->defAbility == ABILITY_LIGHTNING_ROD || BattlerHasInnate(battlerDef, ABILITY_LIGHTNING_ROD) || 
              (gBattleMons[BATTLE_PARTNER(battlerDef)].ability == ABILITY_LIGHTNING_ROD && IsBattlerAlive(BATTLE_PARTNER(battlerDef))) || 

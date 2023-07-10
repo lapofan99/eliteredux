@@ -8784,22 +8784,7 @@ bool8 IsSleepDisabled(u8 battlerId, u8 sleepmons){
             asleepmons++;
     }
 
-    #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "Sleep Clause check %d", asleepmons);
-            MgbaClose();
-        }
-    #endif
-
     if(asleepmons > 1){
-        #ifdef DEBUG_BUILD
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "Sleep Clause activated %d", asleepmons);
-            MgbaClose();
-        }
-        #endif
         return TRUE;
     }
 
@@ -11991,17 +11976,24 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             atkStage = gBattleMons[battlerAtk].statStages[STAT_SPDEF];
         }
     }
-	// Speed Force
-	else if ((BattlerHasInnate(battlerAtk, ABILITY_SPEED_FORCE)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE) && 
+    // Momentum + Speed Force
+	else if ((BattlerHasInnate(battlerAtk, ABILITY_MOMENTUM)|| GetBattlerAbility(battlerAtk) == ABILITY_MOMENTUM) && 
+             (BattlerHasInnate(battlerAtk, ABILITY_SPEED_FORCE)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE)
 			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
-		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].speed * 0.2);
-        atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
+		atkStat = gBattleMons[battlerAtk].speed + (gBattleMons[battlerAtk].speed * 0.2);
+        atkStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
     }
     // Momentum
 	else if ((BattlerHasInnate(battlerAtk, ABILITY_MOMENTUM)|| GetBattlerAbility(battlerAtk) == ABILITY_MOMENTUM) && 
 			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
 		atkStat = gBattleMons[battlerAtk].speed;
         atkStage = gBattleMons[battlerAtk].statStages[STAT_SPEED];
+    }
+	// Speed Force
+	else if ((BattlerHasInnate(battlerAtk, ABILITY_SPEED_FORCE)|| GetBattlerAbility(battlerAtk) == ABILITY_SPEED_FORCE) && 
+			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
+		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].speed * 0.2);
+        atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
     }
 	// Juggernaut
 	else if ((BattlerHasInnate(battlerAtk, ABILITY_JUGGERNAUT)|| GetBattlerAbility(battlerAtk) == ABILITY_JUGGERNAUT) && 
