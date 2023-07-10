@@ -10017,6 +10017,8 @@ case ITEMEFFECT_KINGSROCK:
                 && GetBattlerAbility(gBattlerAttacker) != ABILITY_IMPENETRABLE
 				&& !BattlerHasInnate(gBattlerAttacker, ABILITY_MAGIC_GUARD)
 				&& !BattlerHasInnate(gBattlerAttacker, ABILITY_IMPENETRABLE)
+				&& !(BattlerHasInnate(gBattlerAttacker, ABILITY_SHEER_FORCE)    && (gBattleMoves[gCurrentMove].flags & FLAG_SHEER_FORCE_BOOST))
+                && !(GetBattlerAbility(gBattlerAttacker) == ABILITY_SHEER_FORCE && (gBattleMoves[gCurrentMove].flags & FLAG_SHEER_FORCE_BOOST))
                 && gBattlerAttacker != gBattlerTarget
                 && gBattleMons[gBattlerAttacker].hp != 0)
             {
