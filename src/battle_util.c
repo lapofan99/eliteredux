@@ -3814,6 +3814,7 @@ u8 AtkCanceller_UnableToUseMove2(void)
             if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN
                 && IsBattlerGrounded(gBattlerTarget)
                 && GetChosenMovePriority(gBattlerAttacker) > 0
+                && gBattleMoves[gCurrentMove].target == MOVE_TARGET_SELECTED
                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
             {
                 CancelMultiTurnMoves(gBattlerAttacker);
