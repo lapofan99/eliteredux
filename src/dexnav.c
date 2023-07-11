@@ -2483,7 +2483,7 @@ static void Task_DexNavMain(u8 taskId)
     else if (JOY_NEW(R_BUTTON))
     {
         // check selection is valid. Play sound if invalid
-        species = GetRandomPokemonFromSpecies(DexNavGetSpecies());
+        species = DexNavGetSpecies();
         
         if (species != SPECIES_NONE)
         {            

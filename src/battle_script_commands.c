@@ -5973,7 +5973,6 @@ static void Cmd_switchindataupdate(void)
     else
         gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);
                 
-
     // check knocked off item
     i = GetBattlerSide(gActiveBattler);
     if (gWishFutureKnock.knockedOffMons[i] & gBitTable[gBattlerPartyIndexes[gActiveBattler]])
