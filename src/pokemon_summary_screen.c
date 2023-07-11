@@ -1927,7 +1927,10 @@ static void Task_HandleInput(u8 taskId)
 		{
 			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
 				ChangePage(taskId, 1);
-			else if((CurrentEv != MAX_PER_STAT_EVS && TotalEvs < MAX_TOTAL_EVS && gSaveBlock2Ptr->enableEvs)){
+			else if((CurrentEv != MAX_PER_STAT_EVS && 
+                     TotalEvs < MAX_TOTAL_EVS && 
+                     gSaveBlock2Ptr->enableEvs && 
+                     sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS)){//Ev modifier
                 RemainingEvs = CurrentEv;
 				CurrentEv = CurrentEv + LR_EV_AMOUNT_CHANGE;
 
@@ -1987,7 +1990,9 @@ static void Task_HandleInput(u8 taskId)
 		{
 			if(!ModifyMode || sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
 				ChangePage(taskId, -1);
-			else if(CurrentEv != 0 && gSaveBlock2Ptr->enableEvs){
+			else if(CurrentEv != 0 && 
+                    gSaveBlock2Ptr->enableEvs && 
+                    sMonSummaryScreen->currPageIndex == PSS_PAGE_SKILLS){ //Ev modifier
                 if(CurrentEv >= LR_EV_AMOUNT_CHANGE)
 					CurrentEv = CurrentEv - LR_EV_AMOUNT_CHANGE;
                 else
