@@ -211,3 +211,25 @@ Moves = Close Combat, Earthquake, Gunk Shot, Seed Bomb
 comment = Thanks to the buffs received, Primeape can now be an absolute nuke with Gorilla Tactics and Hyper Agressive.
 tags = Singles, Offensive
 }
+greninja
+{
+    name = Fatal and Precise
+    item = choice specs
+    ability = fatal precision
+    evs = 0, 0, 0, 252, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = timid
+    moves = water shuriken / Hydro Pump, Dark Pulse, blizzard, u-turn
+   comment = Fatal Precision works really well with lower accuracy moves like Hydro Pump or Blizzard, although Water Shuriken is still nice as it's also priority. Choice Specs allow Gren to dish out heavy hits with high base power moves, while U-Turn can be used to predict the opponent's check to Gren switching in. 
+   tags = singles, offensive
+}
+greninja
+{
+    name = Hit the Other Side
+    item = life orb
+    ability = protean
+    evs = 0, 80, 0, 172, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = naive
+    moves = water shuriken, ice beam, Power whip / Gunk Shot / Strength, u-turn
+   comment = This set allows you to hit on the physical side but mainly still focused on the special side, Life Orb helps with boosting the power. The third move is the most flexible one and for physical moves, you can choose depends on the matchup. Could also swap them on the second move slot but I like using the slot for other special moves. Now you can screw those Ground / Water or Fairy and Bug types. 
+   tags = singles, offensive, mixed
+}
