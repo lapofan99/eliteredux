@@ -2219,6 +2219,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
 
+                SetMonData(&party[i], MON_DATA_SPEED_DOWN, &partyData[i].zeroSpeedIvs);
+
                 #ifdef DEBUG_BUILD
                 if(FlagGet(FLAG_SYS_AUTOWIN))
                     SetTrainerFlag(trainerNum);

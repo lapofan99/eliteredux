@@ -57,7 +57,6 @@
 #include "menu_specialized.h"
 #include "constants/rgb.h"
 #include "data.h"
-#include "constants/battle.h"
 #include "constants/party_menu.h"
 #include "battle_util.h"
 #include "mgba_printf/mgba.h"

@@ -62,6 +62,7 @@ struct TrainerMonItemCustomMoves
     u8 ivs[NUM_STATS];
     u8 evs[NUM_STATS];
     u8 nature;
+    bool8 zeroSpeedIvs;
 };
 
 union TrainerMonPtr
