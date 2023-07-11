@@ -18223,7 +18223,7 @@ static const struct LevelUpMove sCorviknightLevelUpLearnset[] = {
     LEVEL_UP_MOVE(34, MOVE_DRILL_PECK),
     LEVEL_UP_MOVE(42, MOVE_SWAGGER),
     LEVEL_UP_MOVE(50, MOVE_BRAVE_BIRD),
-    LEVEL_UP_MOVE(54, MOVE_BRAVE_BIRD), // new
+    LEVEL_UP_MOVE(54, MOVE_BODY_PRESS), // new
     LEVEL_UP_MOVE(58, MOVE_STEEL_BEAM), // new
     LEVEL_UP_END
 };
