@@ -1991,7 +1991,7 @@ static void Cmd_accuracycheck(void)
                 gBattleStruct->blunderPolicy = TRUE;    // Only activates from missing through acc/evasion checks
             
             if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE &&
-                (GetBattleMoveTargetFlags(move, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_BOTH || GetBattleMoveTargetFlags(move, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_FOES_AND_ALLY))
+                (GetBattlerBattleMoveTargetFlags(move, gBattlerAttacker) == MOVE_TARGET_BOTH || GetBattlerBattleMoveTargetFlags(move, gBattlerAttacker) == MOVE_TARGET_FOES_AND_ALLY))
                 gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_ATK;
             else
                 gBattleCommunication[MISS_TYPE] = B_MSG_MISSED;
@@ -2025,7 +2025,7 @@ static void Cmd_ppreduce(void)
 
     if (!gSpecialStatuses[gBattlerAttacker].ppNotAffectedByPressure)
     {
-        switch (GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability))
+        switch (GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker))
         {
         case MOVE_TARGET_FOES_AND_ALLY:
             for (i = 0; i < gBattlersCount; i++)
@@ -2359,9 +2359,9 @@ static void Cmd_attackanimation(void)
 			return;
         }
 
-        if ((GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_BOTH
-             || GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_FOES_AND_ALLY
-             || GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_DEPENDS)
+        if ((GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) & MOVE_TARGET_BOTH
+             || GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) & MOVE_TARGET_FOES_AND_ALLY
+             || GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) & MOVE_TARGET_DEPENDS)
             && gBattleScripting.animTargetsHit)
         {
             gBattlescriptCurrInstr++;
@@ -5574,12 +5574,12 @@ static void Cmd_moveend(void)
             if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 && gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                 && !gProtectStructs[gBattlerAttacker].chargingTurn
-                && (GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_BOTH || GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_FOES_AND_ALLY)
+                && (GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) == MOVE_TARGET_BOTH || GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) == MOVE_TARGET_FOES_AND_ALLY)
                 && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
             {
                 u8 battlerId;
 
-                if (GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_FOES_AND_ALLY)
+                if (GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) == MOVE_TARGET_FOES_AND_ALLY)
                 {
                     gHitMarker |= HITMARKER_NO_PPDEDUCT;
                     for (battlerId = gBattlerTarget + 1; battlerId < gBattlersCount; battlerId++)
@@ -9974,7 +9974,7 @@ static void Cmd_jumpifnexttargetvalid(void)
 
     for (gBattlerTarget++; gBattlerTarget < gBattlersCount; gBattlerTarget++)
     {
-        if (gBattlerTarget == gBattlerAttacker && !(GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_USER))
+        if (gBattlerTarget == gBattlerAttacker && !(GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) & MOVE_TARGET_USER))
             continue;
         if (IsBattlerAlive(gBattlerTarget))
             break;
@@ -12572,7 +12572,7 @@ static void Cmd_selectfirstvalidtarget(void)
 {
     for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
     {
-        if (gBattlerTarget == gBattlerAttacker && !(GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_USER))
+        if (gBattlerTarget == gBattlerAttacker && !(GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) & MOVE_TARGET_USER))
             continue;
         if (IsBattlerAlive(gBattlerTarget))
             break;

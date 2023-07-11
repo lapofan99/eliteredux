@@ -253,7 +253,7 @@ u16 ChooseMoveAndTargetInBattlePalace(void)
     }
     else
     {
-        moveTarget = GetBattleMoveTargetFlags(moveInfo->moves[gMoveSelectionCursor[gActiveBattler]], gBattleMons[gActiveBattler].ability);
+        moveTarget = GetBattlerBattleMoveTargetFlags(moveInfo->moves[gMoveSelectionCursor[gActiveBattler]], gActiveBattler);
     }
 
     if (moveTarget & MOVE_TARGET_USER)
@@ -277,7 +277,7 @@ u16 ChooseMoveAndTargetInBattlePalace(void)
 
 static u8 GetBattlePalaceMoveGroup(u16 move)
 {
-    switch (GetBattleMoveTargetFlags(move, ABILITY_NONE))
+    switch (GetBattleMoveTargetFlags(move, ABILITY_NONE))//todo
     {
     case MOVE_TARGET_SELECTED:
     case MOVE_TARGET_USER_OR_SELECTED:

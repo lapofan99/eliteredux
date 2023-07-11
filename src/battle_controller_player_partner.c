@@ -1535,9 +1535,9 @@ static void PlayerPartnerHandleChooseMove(void)
     BattleAI_SetupAIData(0xF);
     chosenMoveId = BattleAI_ChooseMoveOrAction();
 
-    if (GetBattleMoveTargetFlags(moveInfo->moves[chosenMoveId], gBattleMons[gActiveBattler].ability) & (MOVE_TARGET_USER | MOVE_TARGET_USER_OR_SELECTED))
+    if (GetBattlerBattleMoveTargetFlags(moveInfo->moves[chosenMoveId], gActiveBattler) & (MOVE_TARGET_USER | MOVE_TARGET_USER_OR_SELECTED))
         gBattlerTarget = gActiveBattler;
-    if (GetBattleMoveTargetFlags(moveInfo->moves[chosenMoveId], gBattleMons[gActiveBattler].ability) & MOVE_TARGET_BOTH)
+    if (GetBattlerBattleMoveTargetFlags(moveInfo->moves[chosenMoveId], gActiveBattler) & MOVE_TARGET_BOTH)
     {
         gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         if (gAbsentBattlerFlags & gBitTable[gBattlerTarget])

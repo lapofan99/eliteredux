@@ -281,6 +281,20 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
     return gBattleMoves[moveId].target;
 }
 
+u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
+{
+    u16 ability = gBattleMons[battler].ability;
+    if ((ability == ABILITY_ARTILLERY || BattlerHasInnate(battler, ABILITY_ARTILLERY)) 
+         && (gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
+         && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
+        return MOVE_TARGET_BOTH;
+    else if ((ability == ABILITY_AMPLIFIER || BattlerHasInnate(battler, ABILITY_AMPLIFIER)) 
+         && (gBattleMoves[moveId].flags & FLAG_SOUND)
+         && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
+        return MOVE_TARGET_BOTH;
+    return gBattleMoves[moveId].target;
+}
+
 // Functions
 void HandleAction_UseMove(void)
 {
@@ -358,14 +372,14 @@ void HandleAction_UseMove(void)
     // choose target
     side = GetBattlerSide(gBattlerAttacker) ^ BIT_SIDE;
     if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove)
-        && GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_SELECTED
+        && GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) == MOVE_TARGET_SELECTED
         && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gSideTimers[side].followmeTarget))
     {
         gBattlerTarget = gSideTimers[side].followmeTarget;
     }
     else if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
            && gSideTimers[side].followmeTimer == 0
-           && (gBattleMoves[gCurrentMove].power != 0 || GetBattleMoveTargetFlags(gCurrentMove, gBattleMons[gBattlerAttacker].ability) != MOVE_TARGET_USER)
+           && (gBattleMoves[gCurrentMove].power != 0 || GetBattlerBattleMoveTargetFlags(gCurrentMove, gBattlerAttacker) != MOVE_TARGET_USER)
            && ((GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_LIGHTNING_ROD && !BattlerHasInnate(*(gBattleStruct->moveTarget + gBattlerAttacker), ABILITY_LIGHTNING_ROD) && moveType == TYPE_ELECTRIC)
             || (GetBattlerAbility(*(gBattleStruct->moveTarget + gBattlerAttacker)) != ABILITY_STORM_DRAIN   && !BattlerHasInnate(*(gBattleStruct->moveTarget + gBattlerAttacker), ABILITY_STORM_DRAIN) && moveType == TYPE_WATER)))
     {
@@ -386,7 +400,7 @@ void HandleAction_UseMove(void)
         }
         if (var == 4)
         {
-            if (GetBattleMoveTargetFlags(gChosenMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_RANDOM)
+            if (GetBattlerBattleMoveTargetFlags(gChosenMove, gBattlerAttacker) & MOVE_TARGET_RANDOM)
             {
                 if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
                 {
@@ -403,7 +417,7 @@ void HandleAction_UseMove(void)
                         gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
                 }
             }
-            else if (GetBattleMoveTargetFlags(gChosenMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_FOES_AND_ALLY)
+            else if (GetBattlerBattleMoveTargetFlags(gChosenMove, gBattlerAttacker) & MOVE_TARGET_FOES_AND_ALLY)
             {
                 for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
                 {
@@ -444,7 +458,7 @@ void HandleAction_UseMove(void)
         }
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-          && GetBattleMoveTargetFlags(gChosenMove, gBattleMons[gBattlerAttacker].ability) & MOVE_TARGET_RANDOM)
+          && GetBattlerBattleMoveTargetFlags(gChosenMove, gBattlerAttacker) & MOVE_TARGET_RANDOM)
     {
         if (GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER)
         {
@@ -467,7 +481,7 @@ void HandleAction_UseMove(void)
             gBattlerTarget = GetBattlerAtPosition(GetBattlerPosition(gBattlerTarget) ^ BIT_FLANK);
         }
     }
-    else if (GetBattleMoveTargetFlags(gChosenMove, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_ALLY)
+    else if (GetBattlerBattleMoveTargetFlags(gChosenMove, gBattlerAttacker) == MOVE_TARGET_ALLY)
     {
         if (IsBattlerAlive(BATTLE_PARTNER(gBattlerAttacker)))
             gBattlerTarget = BATTLE_PARTNER(gBattlerAttacker);
@@ -475,7 +489,7 @@ void HandleAction_UseMove(void)
             gBattlerTarget = gBattlerAttacker;
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE
-          && GetBattleMoveTargetFlags(gChosenMove, gBattleMons[gBattlerAttacker].ability) == MOVE_TARGET_FOES_AND_ALLY)
+          && GetBattlerBattleMoveTargetFlags(gChosenMove, gBattlerAttacker) == MOVE_TARGET_FOES_AND_ALLY)
     {
         for (gBattlerTarget = 0; gBattlerTarget < gBattlersCount; gBattlerTarget++)
         {
@@ -10297,7 +10311,7 @@ u32 GetMoveTarget(u16 move, u8 setTarget)
     if (setTarget)
         moveTarget = setTarget - 1;
     else
-        moveTarget = GetBattleMoveTargetFlags(move, gBattleMons[gBattlerAttacker].ability);
+        moveTarget = GetBattlerBattleMoveTargetFlags(move, gBattlerAttacker);
     
     // Special cases
     if (move == MOVE_CURSE && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST))
@@ -10578,7 +10592,7 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
     else if (gProtectStructs[battlerId].protected)
         return TRUE;
     else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD
-             && GetBattleMoveTargetFlags(move, gBattleMons[battlerId].ability) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
+             && GetBattlerBattleMoveTargetFlags(move, battlerId) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
         return TRUE;
     else if (gProtectStructs[battlerId].banefulBunkered)
         return TRUE;
@@ -10713,7 +10727,7 @@ u32 CountBattlerStatIncreases(u8 battlerId, bool32 countEvasionAcc)
 
 u32 GetMoveTargetCount(u16 move, u8 battlerAtk, u8 battlerDef)
 {
-    switch (GetBattleMoveTargetFlags(move, gBattleMons[battlerAtk].ability))
+    switch (GetBattlerBattleMoveTargetFlags(move, battlerAtk))
     {
     case MOVE_TARGET_BOTH:
         return IsBattlerAlive(battlerDef)

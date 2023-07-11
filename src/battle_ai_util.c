@@ -2525,8 +2525,8 @@ static bool32 BattlerAffectedBySandstorm(u8 battlerId, u16 ability)
       && !BattlerHasInnate(battlerId, ABILITY_SAND_FORCE)
       && ability != ABILITY_SAND_RUSH
       && !BattlerHasInnate(battlerId, ABILITY_SAND_RUSH)
-      && ability != ABILITY_OVERCOAT)
-      && !BattlerHasInnate(battlerId, ABILITY_OVERCOAT)
+      && ability != ABILITY_OVERCOAT
+      && !BattlerHasInnate(battlerId, ABILITY_OVERCOAT))
         return TRUE;
     return FALSE;
 }
