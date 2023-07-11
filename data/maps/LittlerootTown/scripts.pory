@@ -2229,7 +2229,6 @@ script PKMN_Center_EventScript_Lower_Difficulty{
 		msgbox(format("You are already in the lowest difficulty, git gud!"))
 		goto(PKMN_Center_Move_Tutor)
 	}
-	
     release
     end
 }

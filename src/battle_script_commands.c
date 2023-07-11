@@ -57,6 +57,7 @@
 #include "menu_specialized.h"
 #include "constants/rgb.h"
 #include "data.h"
+#include "constants/battle.h"
 #include "constants/party_menu.h"
 #include "battle_util.h"
 #include "mgba_printf/mgba.h"
@@ -5967,7 +5968,11 @@ static void Cmd_switchindataupdate(void)
     gBattleMons[gActiveBattler].type1 = RandomizeType(gBaseStats[gBattleMons[gActiveBattler].species].type1, gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].personality, TRUE);
     gBattleMons[gActiveBattler].type2 = RandomizeType(gBaseStats[gBattleMons[gActiveBattler].species].type2, gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].personality, FALSE);
     gBattleMons[gActiveBattler].type3 = TYPE_MYSTERY;
-    gBattleMons[gActiveBattler].ability = RandomizeAbility(GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum), gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].personality);
+    if(GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER) //Only the player has a randomized ability
+        gBattleMons[gActiveBattler].ability = RandomizeAbility(GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum), gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].personality);
+    else
+        gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);
+                
 
     // check knocked off item
     i = GetBattlerSide(gActiveBattler);

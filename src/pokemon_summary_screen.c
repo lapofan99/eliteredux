@@ -4125,10 +4125,11 @@ static void BufferMonPokemonAbilityAndInnates(void)
 	u8 level = sum->level;
     const u8 *text;
 	u8 x, y, i;
-    u16 innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
-    u16 innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
-    u16 innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
-    u16 ability = RandomizeAbility(GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM)), sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.pid);
+    bool8 isEnemyMon = VarGet(VAR_BATTLE_CONTROLLER_PLAYER_F) == 2; //checks if you are looking into the summary screen for the enemy
+    u16 innate1 = gBaseStats[species].innates[0];
+    u16 innate2 = gBaseStats[species].innates[1];
+    u16 innate3 = gBaseStats[species].innates[2];
+    u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM));
 
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sMemoNatureTextColor);
@@ -4137,6 +4138,13 @@ static void BufferMonPokemonAbilityAndInnates(void)
 	
 	x = 60;
 	y = 4;
+
+    if(!isEnemyMon){//Enemy Mons have disabled randomized innates/abilies
+        innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
+        innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
+        innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
+        ability = RandomizeAbility(GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM)), sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.pid);
+    }
 	
 	if(ModifyMode)
 		BlitBitmapToWindow(PSS_LABEL_PANE_RIGHT, sSummaryAbilitySlider, (x-8), 8, 96, 8);

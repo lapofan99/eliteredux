@@ -26,6 +26,7 @@ void BattleAI_SetupAIData(u8 defaultScoreMoves);
 u8 BattleAI_ChooseMoveOrAction(void);
 
 bool8 BattlerHasInnate(u8 battlerId, u16 ability);
+bool8 GetBattlerInnateNum(u8 battlerId, u16 ability);
 
 extern u8 sBattler_AI;
 
