@@ -2133,7 +2133,7 @@ script PKMN_Center_Move_Tutor{
 		break
 		case 4:
 			closemessage
-			goto(PKMN_Center_EventScript_Event_Reset)
+			goto(PKMN_Center_EventScript_Lower_Difficulty)
 		break
 		case MULTI_B_PRESSED:
 		default:
@@ -2198,12 +2198,48 @@ script PKMN_Center_EventScript_RandomizerToggle{
     end
 }
 
+script PKMN_Center_EventScript_Lower_Difficulty{
+	checkSaveblockValue(SAVEBLOCK_DIFFICULTY)
+	if(var(VAR_RESULT) != DIFFICULTY_EASY){
+		msgbox(format("Do you want to lower the difficulty? THIS CAN NOT BE UNDONE LATER!"), MSGBOX_YESNO)
+		switch(var(VAR_RESULT)){
+			case YES:
+				checkSaveblockValue(SAVEBLOCK_DIFFICULTY)
+				if(var(VAR_RESULT) == DIFFICULTY_ELITE){
+					toggleSaveblock(SAVEBLOCK_DIFFICULTY, DIFFICULTY_ACE)
+					playfanfare(MUS_OBTAIN_ITEM)
+					message(format("The difficulty became Ace."))
+				}
+				else{
+					toggleSaveblock(SAVEBLOCK_DIFFICULTY, DIFFICULTY_EASY)
+					playfanfare(MUS_OBTAIN_ITEM)
+					message(format("The difficulty became Easy."))
+				}
+				waitmessage
+				waitfanfare
+			break
+			case NO:
+			case MULTI_B_PRESSED:
+			default:
+				goto(PKMN_Center_Move_Tutor)
+			break
+		}
+	}
+	else{
+		msgbox(format("You are already in the lowest difficulty, git gud!"))
+		goto(PKMN_Center_Move_Tutor)
+	}
+	
+    release
+    end
+}
+
 text MultiChoice_Move_Tutor_NPC{
     "Invert Day and Night$"
     "Enable/Disable Randomizer$"
     "Rate a nickname$"
     "Mystery Gift$"
-    "Reset Events$"
+    "Lower Difficulty$"
     "Exit$"
     "$"
 }

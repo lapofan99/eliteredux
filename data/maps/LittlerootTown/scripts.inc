@@ -2155,7 +2155,7 @@ PKMN_Center_Move_Tutor_5:
 
 PKMN_Center_Move_Tutor_6:
 	closemessage
-	goto PKMN_Center_EventScript_Event_Reset
+	goto PKMN_Center_EventScript_Lower_Difficulty
 	return
 
 
@@ -2215,6 +2215,45 @@ PKMN_Center_EventScript_RandomizerToggle_6:
 	playfanfare MUS_OBTAIN_ITEM
 	message PKMN_Center_EventScript_RandomizerToggle_Text_1
 	goto PKMN_Center_EventScript_RandomizerToggle_5
+
+
+PKMN_Center_EventScript_Lower_Difficulty::
+	checkSaveblockValue SAVEBLOCK_DIFFICULTY
+	compare VAR_RESULT, DIFFICULTY_EASY
+	goto_if_ne PKMN_Center_EventScript_Lower_Difficulty_2
+	msgbox PKMN_Center_EventScript_Lower_Difficulty_Text_3
+	goto PKMN_Center_Move_Tutor
+PKMN_Center_EventScript_Lower_Difficulty_1:
+	release
+	end
+
+PKMN_Center_EventScript_Lower_Difficulty_2:
+	msgbox PKMN_Center_EventScript_Lower_Difficulty_Text_0, MSGBOX_YESNO
+	switch VAR_RESULT
+	case YES, PKMN_Center_EventScript_Lower_Difficulty_6
+	case NO, PKMN_Center_EventScript_Lower_Difficulty_7
+	case MULTI_B_PRESSED, PKMN_Center_EventScript_Lower_Difficulty_7
+PKMN_Center_EventScript_Lower_Difficulty_7:
+	goto PKMN_Center_Move_Tutor
+	goto PKMN_Center_EventScript_Lower_Difficulty_1
+
+PKMN_Center_EventScript_Lower_Difficulty_6:
+	checkSaveblockValue SAVEBLOCK_DIFFICULTY
+	compare VAR_RESULT, DIFFICULTY_ELITE
+	goto_if_eq PKMN_Center_EventScript_Lower_Difficulty_9
+	toggleSaveblock SAVEBLOCK_DIFFICULTY, DIFFICULTY_EASY
+	playfanfare MUS_OBTAIN_ITEM
+	message PKMN_Center_EventScript_Lower_Difficulty_Text_2
+PKMN_Center_EventScript_Lower_Difficulty_8:
+	waitmessage
+	waitfanfare
+	goto PKMN_Center_EventScript_Lower_Difficulty_1
+
+PKMN_Center_EventScript_Lower_Difficulty_9:
+	toggleSaveblock SAVEBLOCK_DIFFICULTY, DIFFICULTY_ACE
+	playfanfare MUS_OBTAIN_ITEM
+	message PKMN_Center_EventScript_Lower_Difficulty_Text_1
+	goto PKMN_Center_EventScript_Lower_Difficulty_8
 
 
 LittlerootTown_EventScript_LegendaryNPC_Text_0:
@@ -2435,6 +2474,20 @@ PKMN_Center_EventScript_RandomizerToggle_Text_1:
 PKMN_Center_EventScript_RandomizerToggle_Text_2:
 	.string "The randomizer was enabled.$"
 
+PKMN_Center_EventScript_Lower_Difficulty_Text_0:
+	.string "Do you want to lower the difficulty?\n"
+	.string "THIS CAN NOT BE UNDONE LATER!$"
+
+PKMN_Center_EventScript_Lower_Difficulty_Text_1:
+	.string "The difficulty became Ace.$"
+
+PKMN_Center_EventScript_Lower_Difficulty_Text_2:
+	.string "The difficulty became Easy.$"
+
+PKMN_Center_EventScript_Lower_Difficulty_Text_3:
+	.string "You are already in the lowest\n"
+	.string "difficulty, git gud!$"
+
 LittlerootTown_EventScript_LegendaryNPC_Options::
 	.string "Please explain things to me again$"
 	.string "Nevermind$"
@@ -2445,6 +2498,6 @@ MultiChoice_Move_Tutor_NPC::
 	.string "Enable/Disable Randomizer$"
 	.string "Rate a nickname$"
 	.string "Mystery Gift$"
-	.string "Reset Events$"
+	.string "Lower Difficulty$"
 	.string "Exit$"
 	.string "$"
