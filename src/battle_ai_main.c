@@ -4353,7 +4353,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_TAUNT:
         if (IS_MOVE_STATUS(predictedMove))
-            score += 3;
+            score += 10; // was 3
         else if (HasMoveWithSplit(battlerDef, SPLIT_STATUS))
             score += 2;
         break;
