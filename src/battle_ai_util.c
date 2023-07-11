@@ -706,7 +706,7 @@ bool32 IsTruantMonVulnerable(u32 battlerAI, u32 opposingBattler)
 bool32 IsAffectedByPowder(u8 battler, u16 ability, u16 holdEffect)
 {
     if ((B_POWDER_GRASS >= GEN_6 && IS_BATTLER_OF_TYPE(battler, TYPE_GRASS))
-      || ability == ABILITY_OVERCOAT
+      || ability == ABILITY_OVERCOAT || BattlerHasInnate(battler, ABILITY_OVERCOAT)
       || GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_SAFETY_GOGGLES)
         return FALSE;
     return TRUE;
@@ -2520,9 +2520,13 @@ static bool32 BattlerAffectedBySandstorm(u8 battlerId, u16 ability)
       && !IS_BATTLER_OF_TYPE(battlerId, TYPE_GROUND)
       && !IS_BATTLER_OF_TYPE(battlerId, TYPE_STEEL)
       && ability != ABILITY_SAND_VEIL
+      && !BattlerHasInnate(battlerId, ABILITY_SAND_VEIL)
       && ability != ABILITY_SAND_FORCE
+      && !BattlerHasInnate(battlerId, ABILITY_SAND_FORCE)
       && ability != ABILITY_SAND_RUSH
+      && !BattlerHasInnate(battlerId, ABILITY_SAND_RUSH)
       && ability != ABILITY_OVERCOAT)
+      && !BattlerHasInnate(battlerId, ABILITY_OVERCOAT)
         return TRUE;
     return FALSE;
 }
@@ -2531,8 +2535,11 @@ static bool32 BattlerAffectedByHail(u8 battlerId, u16 ability)
 {
     if (!IS_BATTLER_OF_TYPE(battlerId, TYPE_ICE)
       && ability != ABILITY_SNOW_CLOAK
+      && !BattlerHasInnate(battlerId, ABILITY_SNOW_CLOAK)
       && ability != ABILITY_OVERCOAT
-      && ability != ABILITY_ICE_BODY)
+      && !BattlerHasInnate(battlerId, ABILITY_OVERCOAT)
+      && ability != ABILITY_ICE_BODY
+      && !BattlerHasInnate(battlerId, ABILITY_ICE_BODY))
         return TRUE;
     return FALSE;
 }
