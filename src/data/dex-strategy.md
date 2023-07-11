@@ -200,6 +200,7 @@ Porygon-Z
     moves = techno blast, thunderbolt, ice beam, dark pulse / bug buzz / coverage 
    comment = Analytic, Adaptability, and Choice Specs each boost Techno Blast by an extra 50% damage. Outspeed, go last, and blow up whatever you hit. Coverage there if you really need it but you'll mostly be using Techno Blast.
 }
+primeape
 Name = Nuke Ape
 Item = Choice Scarf
 Ability = Gorilla Tactics
