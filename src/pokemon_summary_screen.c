@@ -470,7 +470,7 @@ enum
     PSS_COLOR_SHINY_STARS,
     PSS_COLOR_POKERUS_CURED,
     PSS_COLOR_FATEFUL_TRIANGLE,
-    PP_UNK_1,
+    PSS_COLOR_BLUE,
     PP_UNK_2,
     PP_UNK_3,
     PP_UNK_4,
@@ -482,17 +482,17 @@ enum
 
 static const u8 sTextColors[][3] =
 {
-    [PSS_COLOR_BLACK_GRAY_SHADOW]       = {0, 7, 8},
-    [PSS_COLOR_WHITE_BLACK_SHADOW]      = {0, 1, 2},
-    [PSS_COLOR_MALE_GENDER_SYMBOL]      = {0, 3, 4},
-    [PSS_COLOR_FEMALE_GENDER_SYMBOL]    = {0, 5, 6},
-    [PSS_COLOR_SHINY_STARS]             = {0, 5, 5},
-    [PSS_COLOR_POKERUS_CURED]           = {0, 9, 9},
+    [PSS_COLOR_BLACK_GRAY_SHADOW]       = {0, 7,  8},
+    [PSS_COLOR_WHITE_BLACK_SHADOW]      = {0, 1,  2},
+    [PSS_COLOR_MALE_GENDER_SYMBOL]      = {0, 3,  4},
+    [PSS_COLOR_FEMALE_GENDER_SYMBOL]    = {0, 5,  6},
+    [PSS_COLOR_SHINY_STARS]             = {0, 5,  5},
+    [PSS_COLOR_POKERUS_CURED]           = {0, 9,  9},
     [PSS_COLOR_FATEFUL_TRIANGLE]        = {0, 10, 10},
+    [PSS_COLOR_BLUE]                    = {0, 4,  3},
     /* Probably left from Pokémon Polar,
     check if they are actually needed so
     we can remove them if unused */
-    [PP_UNK_1]                          = {0, 10, 9},
     [PP_UNK_2]                          = {13, 15, 14},
     [PP_UNK_3]                          = {0, 6, 5},
     [PP_UNK_4]                          = {0, 6, 2},
@@ -2051,7 +2051,17 @@ static void Task_HandleInput(u8 taskId)
             {
                 // Start EVs Modifier
                 if(gSaveBlock2Ptr->enableEvs){
-                    ModifyMode = !ModifyMode;
+                    if(gCurrentModifyIndex == 5){
+                        //Speed 0 Ivs
+                        bool8 isSpeedDown = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_DOWN, NULL);
+                        isSpeedDown = !isSpeedDown;
+                        
+                        SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_DOWN, &isSpeedDown);
+                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_DOWN, &isSpeedDown);
+                    }
+                    else{
+                        ModifyMode = !ModifyMode;
+                    }
                     CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
                     CalculateMonStats(&sMonSummaryScreen->currentMon);
                     
@@ -3930,7 +3940,11 @@ static void PrintSkillsPage(void)
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_NatureUp, 0, y, 0, COLOR_STAT_ARROWS);
     else if (natureMod[STAT_SPEED - 1] < 0)
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_NatureDown, 0, y, 0, COLOR_STAT_ARROWS);
-    PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Speed, 12, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+
+    if(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_DOWN))
+        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Speed, 12, y, 0, PSS_COLOR_BLUE);
+    else
+        PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, sText_Speed, 12, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
 	
 	for(i = 0; i < NUM_STAT_TYPES; i++){
 		switch(i){

@@ -3900,11 +3900,13 @@ void CalculateMonStats(struct Pokemon *mon)
     s32 spDefenseEV = GetMonData(mon, MON_DATA_SPDEF_EV, NULL);
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     s32 level = GetLevelFromMonExp(mon);
+    bool8 speedDown = GetMonData(mon, MON_DATA_SPEED_DOWN, NULL);
     s32 newMaxHP;
 
     SetMonData(mon, MON_DATA_LEVEL, &level);
 	
 	if(B_PERFECT_IVS == TRUE){
+        //Ivs are Disabled
         hpIV 		= 31;
 		attackIV 	= 31;
 		defenseIV 	= 31;
@@ -3913,7 +3915,11 @@ void CalculateMonStats(struct Pokemon *mon)
 		speedIV 	= 31;
     }
 
-    if (!gSaveBlock2Ptr->enableEvs){//Evs are Disabled
+    if(speedDown)
+        speedIV = 0;
+
+    if (!gSaveBlock2Ptr->enableEvs){
+        //Evs are Disabled
         hpEV 		= 0;
 		attackEV 	= 0;
 		defenseEV 	= 0;
@@ -4718,6 +4724,9 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_IS_EGG:
         retVal = substruct3->isEgg;
         break;
+    case MON_DATA_SPEED_DOWN:
+        retVal = substruct3->UnusedBit;
+        break;
     case MON_DATA_ABILITY_NUM:
         retVal = substruct3->abilityNum;
         break;
@@ -5064,6 +5073,9 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             boxMon->isEgg = 1;
         else
             boxMon->isEgg = 0;
+        break;
+    case MON_DATA_SPEED_DOWN:
+        SET8(substruct3->UnusedBit);
         break;
     case MON_DATA_ABILITY_NUM:
         SET8(substruct3->abilityNum);

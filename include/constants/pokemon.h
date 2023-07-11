@@ -178,6 +178,8 @@
 #define MON_DATA_SPATK2            82
 #define MON_DATA_SPDEF2            83
 #define MON_DATA_NATURE            84 // New
+#define MON_DATA_SPEED_DOWN        85 // New
+#define MON_DATA_EXIOLITE          86 // New
 
 // Ribbon IDs used by TV and Pokénav
 #define CHAMPION_RIBBON       0

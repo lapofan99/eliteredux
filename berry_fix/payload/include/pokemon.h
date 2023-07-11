@@ -49,7 +49,7 @@ struct PokemonSubstruct3
  /* 0x05 */ u32 spAttackIV:5;
  /* 0x06 */ u32 spDefenseIV:5;
  /* 0x07 */ u32 isEgg:1;
- /* 0x07 */ u32 UnusedBit:1; 
+ /* 0x07 */ u32 speedDown:1; //New
 
  /* 0x08 */	u32 pokeball:5;
  /* 0x08 */	u32 abilityNum:2;
