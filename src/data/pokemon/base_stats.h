@@ -14917,7 +14917,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_UNDISCOVERED,
     .eggGroup2 = EGG_GROUP_UNDISCOVERED,
     .abilities = {ABILITY_BULLETPROOF, ABILITY_STAMINA, ABILITY_LEAD_COAT},
-    .innates = {ABILITY_PRIMAL_ARMOR, ABILITY_PRESSURE, ABILITY_POWER_CORE},
+    .innates = {ABILITY_PRIMAL_ARMOR, ABILITY_IMPENETRABLE, ABILITY_POWER_CORE},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
     },
@@ -17391,7 +17391,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
     .abilities = {ABILITY_GORILLA_TACTICS, ABILITY_SHEER_FORCE, ABILITY_ZEN_MODE},
-    .innates = {ABILITY_MOLD_BREAKER, ABILITY_ANGER_POINT, ABILITY_HEATPROOF},
+    .innates = {ABILITY_MOLD_BREAKER, ABILITY_POWER_FISTS, ABILITY_HEATPROOF},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
     .flags = F_GALARIAN_FORM,
@@ -21962,10 +21962,10 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_DRAGALGE] =
     {
-    .baseHP        = 65,
+    .baseHP        = 85, // 65 vanilla
     .baseAttack    = 97, // 75 vanilla
     .baseDefense   = 90,
-    .baseSpeed     = 64, // 44 vanilla
+    .baseSpeed     = 44,
     .baseSpAttack  = 97,
     .baseSpDefense = 123,
     .type1 = TYPE_POISON,
@@ -21979,8 +21979,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_DRAGON,
-    .abilities = {ABILITY_SWIFT_SWIM, ABILITY_CORROSION, ABILITY_CONTRARY},
-    .innates = {ABILITY_ADAPTABILITY, ABILITY_POISON_TOUCH, ABILITY_AQUATIC},
+    .abilities = {ABILITY_SWIFT_SWIM, ABILITY_OVERWHELM, ABILITY_CONTRARY},
+    .innates = {ABILITY_ADAPTABILITY, ABILITY_CORROSION, ABILITY_AQUATIC},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },

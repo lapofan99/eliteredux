@@ -3711,7 +3711,7 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_Drake),
         .party = {.ItemCustomMoves = sParty_Drake},
-        //.partyInsane = {.ItemCustomMoves = sParty_DrakeInsane},
+        .partyInsane = {.ItemCustomMoves = sParty_DrakeInsane},
     },
 
     [TRAINER_ROXANNE_1] =

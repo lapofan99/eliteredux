@@ -16096,7 +16096,7 @@ static const struct LevelUpMove sHoopaLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_DESTINY_BOND),
 	LEVEL_UP_MOVE( 1, MOVE_ALLY_SWITCH),
 	LEVEL_UP_MOVE( 1, MOVE_CONFUSION),
-	LEVEL_UP_MOVE( 1, MOVE_CONFUSION), // new
+	LEVEL_UP_MOVE( 1, MOVE_HYPNOSIS), // new
 	LEVEL_UP_MOVE( 6, MOVE_ASTONISH),
 	LEVEL_UP_MOVE(10, MOVE_MAGIC_COAT),
 	LEVEL_UP_MOVE(15, MOVE_LIGHT_SCREEN),
@@ -19313,6 +19313,7 @@ static const struct LevelUpMove sDrakloakLevelUpLearnset[] = {
 
 static const struct LevelUpMove sDragapultLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_DRAGON_DARTS),
+    LEVEL_UP_MOVE( 1, MOVE_LAST_RESORT),
     LEVEL_UP_MOVE( 1, MOVE_DRAGON_BREATH),
     LEVEL_UP_MOVE( 1, MOVE_SUCKER_PUNCH),
     LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
@@ -19330,7 +19331,7 @@ static const struct LevelUpMove sDragapultLevelUpLearnset[] = {
     LEVEL_UP_MOVE(54, MOVE_TAKE_DOWN),
     LEVEL_UP_MOVE(63, MOVE_DRAGON_RUSH),
     LEVEL_UP_MOVE(70, MOVE_DOUBLE_EDGE),
-    LEVEL_UP_MOVE(78, MOVE_LAST_RESORT),
+    LEVEL_UP_MOVE(78, MOVE_POLTERGEIST), // new
     LEVEL_UP_END
 };
 
