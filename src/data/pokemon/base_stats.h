@@ -19370,7 +19370,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
     .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
     .abilities = {ABILITY_DEFIANT, ABILITY_HYPER_CUTTER, ABILITY_OPPORTUNIST},
-    .innates = {ABILITY_INNER_FOCUS, ABILITY_KEEN_EDGE, ABILITY_BATTLE_ARMOR},
+    .innates = {ABILITY_NO_GUARD, ABILITY_KEEN_EDGE, ABILITY_BATTLE_ARMOR},
     .bodyColor = BODY_COLOR_RED,
     .noFlip = FALSE,
     },
