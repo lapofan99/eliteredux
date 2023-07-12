@@ -9409,13 +9409,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_HYPERSPACE_HOLE] =
     {
         .effect = EFFECT_FEINT,
-        .power = 80,
+        .power = 100,
         .type = TYPE_GHOST,
         .accuracy = 0,
         .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
-        .priority = 0,
+        .priority = 1,
         .flags = FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
     },

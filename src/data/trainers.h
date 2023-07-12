@@ -3681,7 +3681,7 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_Phoebe),
         .party = {.ItemCustomMoves = sParty_Phoebe},
-        //.partyInsane = {.ItemCustomMoves = sParty_PhoebeInsane},
+        .partyInsane = {.ItemCustomMoves = sParty_PhoebeInsane},
     },
 
     [TRAINER_GLACIA] =
@@ -3696,7 +3696,7 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_Glacia),
         .party = {.ItemCustomMoves = sParty_Glacia},
-        //.partyInsane = {.ItemCustomMoves = sParty_GlaciaInsane},
+        .partyInsane = {.ItemCustomMoves = sParty_GlaciaInsane},
     },
 
     [TRAINER_DRAKE] =

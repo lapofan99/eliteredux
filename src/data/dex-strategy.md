@@ -248,3 +248,18 @@ With its Multiscale ability, Dragonite possesses a unique advantage in enduring 
 This combination of abilities and items greatly enhances Dragonite's overall effectiveness in battle, making it a potent choice for any trainer seeking a powerhouse on their team.
     tags = Singles, Offensive
 }
+roserade
+{
+    .name = Rocky Helmet Defensive Wall
+    .lvl = 3,
+    .species = SPECIES_ROSERADE,
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 1, // ABILITY_TECHNICIAN, ABILITY_MERCILESS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_CHLOROPHYLL, ABILITY_POISON_POINT},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 240, 0, 0, 16},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_TOXIC_SPIKES, MOVE_GRASS_KNOT, MOVE_SYNTHESIS, MOVE_SLUDGE_BOMB
+    .tags = singles, defensive
+    .comment = This Roselia moveset is designed to function as a defensive wall, capable of wearing down opposing Pokémon with entry hazards and Toxic Spikes while maintaining its own longevity. With its ability Poison Point, Roselia can be a reliable nuisance on the battlefield.
+    }
