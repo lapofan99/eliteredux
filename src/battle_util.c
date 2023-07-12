@@ -4227,6 +4227,30 @@ static u8 ForewarnChooseMove(u32 battler)
     free(data);
 }
 
+bool8 BattlerCanBeIntimidated(u8 battler){
+    if(IsBattlerAlive(gBattlerAttacker) //Battler is Alive
+    && gBattleMons[gBattlerAttacker].ability != ABILITY_SCRAPPY           //Abilities that prevent it
+    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_SCRAPPY)          //Abilities that prevent it
+    && gBattleMons[gBattlerAttacker].ability != ABILITY_OBLIVIOUS         //Abilities that prevent it
+    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_OBLIVIOUS)        //Abilities that prevent it
+    && gBattleMons[gBattlerAttacker].ability != ABILITY_VITAL_SPIRIT      //Abilities that prevent it
+    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_VITAL_SPIRIT)     //Abilities that prevent it
+    && gBattleMons[gBattlerAttacker].ability != ABILITY_INNER_FOCUS       //Abilities that prevent it
+    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_INNER_FOCUS)      //Abilities that prevent it
+    && gBattleMons[gBattlerAttacker].ability != ABILITY_FULL_METAL_BODY   //Abilities that prevent it
+    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_FULL_METAL_BODY)  //Abilities that prevent it
+    && gBattleMons[gBattlerAttacker].ability != ABILITY_CLEAR_BODY        //Abilities that prevent it
+    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_CLEAR_BODY)       //Abilities that prevent it
+    && gBattleMons[gBattlerAttacker].ability != ABILITY_HYPER_CUTTER      //Abilities that prevent it
+    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_HYPER_CUTTER)     //Abilities that prevent it
+    && gBattleMons[gBattlerAttacker].ability != ABILITY_WHITE_SMOKE       //Abilities that prevent it
+    && !BattlerHasInnate(gBattlerAttacker,      ABILITY_WHITE_SMOKE)      //Abilities that prevent it
+    && !(gSpecialStatuses[gBattlerAttacker].intimidatedMon))
+        return TRUE;
+    else
+        return FALSE;
+}
+
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
 {
     u8 effect = 0;
@@ -4773,6 +4797,74 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_INTIMIDATE:
+            /*if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                if(gBattleTypeFlags & BATTLE_TYPE_DOUBLE){
+                    //Double Battle
+                    if(GetBattlerSide(battler) == B_SIDE_PLAYER){
+                        //Enemy Team
+                        //Opponent 1
+                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
+                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
+                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
+                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
+                            effect++;
+                        }
+                        //Opponent 2
+                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_RIGHT);
+                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
+                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
+                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
+                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
+                            effect++;
+                        }
+                    }
+                    else{
+                        //Player Team
+                        //Player Mon 1
+                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
+                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
+                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
+                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
+                            effect++;
+                        }
+                        //Player Mon 2
+                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
+                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
+                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
+                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
+                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
+                            effect++;
+                        }
+                    }
+                }
+                else{
+                    //Single Battle
+                    if(GetBattlerSide(battler) == B_SIDE_PLAYER){
+                        //Enemy Team
+                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
+                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
+                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
+                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
+                            effect++;
+                        }
+                    }
+                    else{
+                        //Player Team
+                        gBattlerAttacker = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+                        if(BattlerCanBeIntimidated(gBattlerAttacker)){
+                            //gSpecialStatuses[gBattlerAttacker].intimidatedMon = TRUE;
+                            SET_STATCHANGER(STAT_ATK, 1, TRUE);
+                            BattleScriptPushCursorAndCallback(BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn);
+                            effect++;
+                        }
+                    }
+                }
+            }*/
             if (!(gSpecialStatuses[battler].intimidatedMon))
             {
                 gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;

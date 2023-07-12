@@ -8665,6 +8665,18 @@ BattleScript_AttackerAbilityStatRaise::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_BattlerAbilityStatDownForTargetOnSwitchIn::
+	copybyte gBattlerAbility, sBATTLER
+	copybyte gBattlerAttacker, sBATTLER
+	call BattleScript_AbilityPopUp
+	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printstring STRINGID_BATTLERABILITYLOWEREDTARGETSTAT
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 BattleScript_FellStingerRaisesStat::
 	statbuffchange MOVE_EFFECT_AFFECTS_USER | STAT_BUFF_ALLOW_PTR, BattleScript_FellStingerRaisesAtkEnd
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, B_MSG_DEFENDER_STAT_ROSE, BattleScript_FellStingerRaisesAtkEnd

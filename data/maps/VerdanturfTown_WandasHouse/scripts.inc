@@ -201,4 +201,4 @@ VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande: @ 8202FDB
 	.string "astonished to hear that!$"
 
 VerdanturfTown_WandasHouse_Text_Got_Gardevoir::
-	.string "{PLAYER} got Juan's {COLOR BLUE}Kingdra{COLOR DARK_GRAY} as a gift!$"
+	.string "{PLAYER} got a {COLOR BLUE}Gardevoir{COLOR DARK_GRAY} as a gift!$"
