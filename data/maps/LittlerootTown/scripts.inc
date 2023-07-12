@@ -171,7 +171,6 @@ LittlerootTown_EventScript_GoInsideWithMom:: @ 81E7F17
 	delay 10
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachPlayerAtTruck
 	waitmovement 0
-	givemon SPECIES_RATTATA, 0, ITEM_NONE
 	msgbox LittlerootTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_MOM, LittlerootTown_Movement_MomApproachDoor
@@ -1217,7 +1216,6 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab: @ 81E8DA2
 LittlerootTown_EventScript_PatchSettings_PerfectIV::
 	faceplayer
 	lockall
-	givemon SPECIES_RATTATA, 0, ITEM_NONE
 	compare VAR_RESULT, 1
 	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
 	setvar VAR_0x8006, 0
@@ -1232,7 +1230,6 @@ LittlerootTown_EventScript_PatchSettings_PerfectIV::
 LittlerootTown_EventScript_PatchSettings_DisableEV::
 	faceplayer
 	lockall
-	givemon SPECIES_RATTATA, 0, ITEM_NONE
 	compare VAR_RESULT, 1
 	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
 	setvar VAR_0x8006, 1
@@ -1247,7 +1244,6 @@ LittlerootTown_EventScript_PatchSettings_DisableEV::
 LittlerootTown_EventScript_PatchSettings_UniqueColor::
 	faceplayer
 	lockall
-	givemon SPECIES_RATTATA, 0, ITEM_NONE
 	compare VAR_RESULT, 1
 	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
 	call LittlerootTown_EventScript_UniqueColor
@@ -1258,7 +1254,6 @@ LittlerootTown_EventScript_PatchSettings_UniqueColor::
 LittlerootTown_EventScript_PatchSettings_AIcontrolled::
 	faceplayer
 	lockall
-	givemon SPECIES_RATTATA, 0, ITEM_NONE
 	compare VAR_RESULT, 1
 	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
 	call LittlerootTown_EventScript_AIcontrolled
@@ -1272,7 +1267,6 @@ LittlerootTown_EventScript_NoPlaceForSettingsMon::
 LittlerootTown_EventScript_PatchSettings_Others::
 	faceplayer
 	lockall
-	givemon SPECIES_RATTATA, 0, ITEM_NONE
 	compare VAR_RESULT, 1
 	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
 	call LittlerootTown_EventScript_PatchSettings_Berries
@@ -1658,7 +1652,6 @@ LittlerootTown_EventScript_EnableShinyRate_2::
 LittlerootTown_EventScript_PatchSettings_Random::
 	faceplayer
 	lockall
-	givemon SPECIES_RATTATA, 0, ITEM_NONE
 	compare VAR_RESULT, 1
 	goto_if_ne LittlerootTown_EventScript_NoPlaceForSettingsMon
 	call LittlerootTown_EventScript_PatchSettings_Starters

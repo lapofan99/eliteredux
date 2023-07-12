@@ -5150,35 +5150,9 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
 {
     s32 i;
 
-
     SetMonData(mon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
     SetMonData(mon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);
     SetMonData(mon, MON_DATA_OT_ID, gSaveBlock2Ptr->playerTrainerId);
-
-
-    if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_RATTATA
-        && GetMonData(mon, MON_DATA_EXP, NULL) == 0)
-    {
-	u8 nickname[POKEMON_NAME_LENGTH + 1] = _("DontMoveMe");
-	SetMonData(mon, MON_DATA_NICKNAME, nickname);
-	i = 0;
-	SetMonData(mon, MON_DATA_HP_IV, &i);
-	SetMonData(mon, MON_DATA_ATK_IV, &i);
-	SetMonData(mon, MON_DATA_DEF_IV, &i);
-	SetMonData(mon, MON_DATA_SPEED_IV, &i);
-	SetMonData(mon, MON_DATA_SPATK_IV, &i);
-	SetMonData(mon, MON_DATA_SPDEF_IV, &i);
-	SetMonData(mon, MON_DATA_ABILITY_NUM, &i);
-	SetMonData(mon, MON_DATA_FRIENDSHIP, &i);
-	SetMonData(mon, MON_DATA_COOL, &i);
-	SetMonData(mon, MON_DATA_BEAUTY, &i);
-	SetMonData(mon, MON_DATA_CUTE, &i);
-	SetMonData(mon, MON_DATA_SMART, &i);
-	SetMonData(mon, MON_DATA_TOUGH, &i);
-	SetMonData(mon, MON_DATA_SHEEN, &i);
-	return SendSettingsMonToPC(mon);
-    }
-
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
