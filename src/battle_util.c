@@ -7038,10 +7038,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
               && gBattleMons[gBattlerTarget].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
               && move != MOVE_PAIN_SPLIT
-              && gBattleMons[gBattlerTarget].ability != ABILITY_SOUL_LINKER
-              && !BattlerHasInnate(gBattlerTarget, ABILITY_SOUL_LINKER)
+              && gBattleMons[gBattlerAttacker].ability != ABILITY_SOUL_LINKER
+              && !BattlerHasInnate(gBattlerAttacker, ABILITY_SOUL_LINKER)
               && TARGET_TURN_DAMAGED)
             {
+                //Defender
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AttackerSoulLinker;
                 effect++;
@@ -7382,14 +7383,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 		
-		// Soul Linker
+		// Soul Linker Defender
 		if(BattlerHasInnate(battler, ABILITY_SOUL_LINKER)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
               && move != MOVE_PAIN_SPLIT
-              && gBattleMons[gBattlerTarget].ability != ABILITY_SOUL_LINKER
-              && !BattlerHasInnate(gBattlerTarget, ABILITY_SOUL_LINKER)
+              && gBattleMons[gBattlerAttacker].ability != ABILITY_SOUL_LINKER
+              && !BattlerHasInnate(gBattlerAttacker, ABILITY_SOUL_LINKER)
               && TARGET_TURN_DAMAGED)
             {
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SOUL_LINKER;
@@ -7992,6 +7993,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
               && move != MOVE_PAIN_SPLIT
               && TARGET_TURN_DAMAGED)
             {
+                //Attacker
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AttackerSoulLinker;
                 effect++;
@@ -8058,7 +8060,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Innates
 		
-		// Soul Linker
+		// Soul Linker Attacker
 		if (BattlerHasInnate(battler, ABILITY_SOUL_LINKER)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
