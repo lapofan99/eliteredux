@@ -9395,7 +9395,7 @@ BattleScript_QuickClawActivation::
 	waitmessage 1
 	playanimation BS_ATTACKER, B_ANIM_HELD_ITEM_EFFECT, NULL
 	waitanimation
-	printstring STRINGID_CANACTFASTERTHANKSTO
+	printstring STRINGID_CANACTFASTERTHANKSTOITEM
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
@@ -9412,7 +9412,7 @@ BattleScript_CustapBerryActivation::
 	waitmessage 1
 	playanimation BS_ATTACKER, B_ANIM_HELD_ITEM_EFFECT, NULL
 	waitanimation
-	printstring STRINGID_CANACTFASTERTHANKSTO
+	printstring STRINGID_CANACTFASTERTHANKSTOITEM
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_ATTACKER
 	end2

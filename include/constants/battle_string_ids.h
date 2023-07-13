@@ -633,8 +633,9 @@
 #define STRINGID_POKEMONDIDAMMOUNTDAMAGE		      631
 #define STRINGID_HEATUPBEAK                           632
 #define STRINGID_BATTLERABILITYLOWEREDTARGETSTAT      664
+#define STRINGID_CANACTFASTERTHANKSTOITEM             665
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_BATTLERABILITYLOWEREDTARGETSTAT + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_CANACTFASTERTHANKSTOITEM + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
