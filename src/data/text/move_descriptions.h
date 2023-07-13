@@ -936,8 +936,8 @@ static const u8 sPursuitDescription[] = _(
     "on a foe switching out.");
 
 static const u8 sRapidSpinDescription[] = _(
-    "Spins the body at high\n"
-    "speed to strike the foe.");
+    "Clears some hazards.\n"
+    "Ups speed by +1.");
 
 static const u8 sSweetScentDescription[] = _(
     "Allures the foe to harshly\n"
@@ -4024,7 +4024,7 @@ static const u8 sMoveFourLineDescription_DragonBreath[] = _("The foe is hit with
 static const u8 sMoveFourLineDescription_BatonPass[] = _("The user switches\nout, passing along\nany stat changes\nto the new battler.");
 static const u8 sMoveFourLineDescription_Encore[] = _("Makes the foe use\nthe move it last\nused repeatedly for\ntwo to six turns.");
 static const u8 sMoveFourLineDescription_Pursuit[] = _("An attack move that\nworks especially\nwell on a foe that\nis switching out.");
-static const u8 sMoveFourLineDescription_RapidSpin[] = _("An attack that\nfrees the user from\nBind, Wrap, Leech\nSeed, and Spikes.");
+static const u8 sMoveFourLineDescription_RapidSpin[] = _("Frees the user from Bind,\nLeech Seed, Spikes etc.\nUps Speed by +1."); // new
 static const u8 sMoveFourLineDescription_SweetScent[] = _("Allures the foe to\nreduce evasiveness.\nIt also attracts\nwild Pokémon.");
 static const u8 sMoveFourLineDescription_IronTail[] = _("An attack with a\nsteel-hard tail.\n30% chance to\nlower foe's Defense."); // new
 static const u8 sMoveFourLineDescription_MetalClaw[] = _("The foe is attacked\nwith steel claws.\n20% chance to raise\nthe user's Attack."); // new

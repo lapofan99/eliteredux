@@ -4834,7 +4834,7 @@ static const struct TrainerMonItemCustomMoves sParty_Mike2[] = { // Actually the
     .lvl = 0,
     .species = SPECIES_QUAGSIRE, // SpDef Wall, Groundate + Body Slam
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_OBLIVIOUS},
+    .ability = 1, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_WATER_VEIL},
     // .innates = {ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_REGENERATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -20914,7 +20914,7 @@ static const struct TrainerMonItemCustomMoves sParty_Gwen[] = {
     .lvl = 0,
     .species = SPECIES_QUAGSIRE, // Def Wall, Dry Skin, Toxic
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_OBLIVIOUS},
+    .ability = 0, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_WATER_VEIL},
     // .innates = {ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_REGENERATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -29188,7 +29188,7 @@ static const struct TrainerMonItemCustomMoves sParty_Dean[] = {
     .lvl = 0,
     .species = SPECIES_QUAGSIRE, // SpDef Wall, Hydrate + Body Slam
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 0, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_OBLIVIOUS},
+    .ability = 0, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_WATER_VEIL},
     // .innates = {ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_REGENERATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -30548,7 +30548,7 @@ static const struct TrainerMonItemCustomMoves sParty_Kevin[] = { // with Talia
     .lvl = 0,
     .species = SPECIES_QUAGSIRE, // Mixed Wall, Sitrus, Oblivious, Stockpile
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_OBLIVIOUS},
+    .ability = 2, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_WATER_VEIL},
     // .innates = {ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_REGENERATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -33163,7 +33163,7 @@ static const struct TrainerMonItemCustomMoves sParty_Tiffany[] = { // with Bridg
     .lvl = 0,
     .species = SPECIES_QUAGSIRE, // Doubles, Def Wall RH, Groundate + Body Slam
     .heldItem = ITEM_ROCKY_HELMET,
-    .ability = 1, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_OBLIVIOUS},
+    .ability = 1, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_WATER_VEIL},
     // .innates = {ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_REGENERATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -33386,7 +33386,7 @@ static const struct TrainerMonItemCustomMoves sParty_Brianna[] = { // double
     .lvl = 0,
     .species = SPECIES_QUAGSIRE, // Doubles, Def Wall RH, Groundate + Body Slam
     .heldItem = ITEM_ROCKY_HELMET,
-    .ability = 1, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_OBLIVIOUS},
+    .ability = 1, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_WATER_VEIL},
     // .innates = {ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_REGENERATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -34863,7 +34863,7 @@ static const struct TrainerMonItemCustomMoves sParty_Caroline[] = {
     .lvl = 0,
     .species = SPECIES_QUAGSIRE, // SpDef Wall, Groundate + Body Slam
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_OBLIVIOUS},
+    .ability = 1, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_WATER_VEIL},
     // .innates = {ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_REGENERATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -36145,25 +36145,26 @@ static const struct TrainerMonItemCustomMoves sParty_Wallace[] = {
     },
     {
     .lvl = 4,
-    .species = SPECIES_LATIOS, // Wallace, Soul Dew, Speed Boost + Protect
-    .heldItem = ITEM_SOUL_DEW,
-    .ability = 2, // ABILITY_AVENGER, ABILITY_NEUROFORCE, ABILITY_SPEED_BOOST},
-    // .innates = {ABILITY_LEVITATE, ABILITY_VIOLENT_RUSH, ABILITY_MYSTIC_POWER},
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_PSYSHOCK, MOVE_DRACO_METEOR, MOVE_THUNDER, MOVE_PROTECT
+    .species = SPECIES_AZUMARILL, // Wallace, Fast Vest, Rain Sweeper
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // ABILITY_SAP_SIPPER, ABILITY_SWIFT_SWIM, ABILITY_WATER_VEIL},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_HYDRATION, ABILITY_HUGE_POWER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_WAVE_CRASH, MOVE_PLAY_ROUGH, MOVE_KNOCK_OFF, MOVE_AQUA_JET
     },
     {
     .lvl = 4,
-    .species = SPECIES_LUDICOLO, // Wallace, Shell Bell, Rain Sweeper, Q-Dance
-    .heldItem = ITEM_SHELL_BELL,
-    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_CHLOROPHYLL, ABILITY_OWN_TEMPO},
-    // .innates = {ABILITY_SEAWEED, ABILITY_RAIN_DISH, ABILITY_HYDRATION},
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_SCALD, MOVE_GIGA_DRAIN, MOVE_ICE_BEAM, MOVE_QUIVER_DANCE
+    .species = SPECIES_FERROTHORN, // Wallace, SpDef Wall, Leftovers, Bulletproof
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_IMPENETRABLE, ABILITY_BULLETPROOF, ABILITY_FORT_KNOX},
+    // .innates = {ABILITY_IRON_BARBS, ABILITY_LETS_ROLL, ABILITY_BATTLE_ARMOR},
+    .ivs = {31, 31, 31, 31, 31, 0},
+    .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
+	.nature = NATURE_SASSY,
+    .moves = MOVE_CURSE, MOVE_LEECH_SEED, MOVE_BODY_PRESS, MOVE_GYRO_BALL
     },
     {
     .lvl = 4,
@@ -36178,7 +36179,80 @@ static const struct TrainerMonItemCustomMoves sParty_Wallace[] = {
     },
     {
     .lvl = 4,
-    .species = SPECIES_MILOTIC, // Cynthia, Fast Def Wall, Self Sufficient
+    .species = SPECIES_QUAGSIRE, // Wallace, Def Wall, Water Veil
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_HYDRATE, ABILITY_GROUNDATE, ABILITY_WATER_VEIL},
+    // .innates = {ABILITY_UNAWARE, ABILITY_WATER_ABSORB, ABILITY_REGENERATOR},
+    .ivs = {31, 31, 31, 31, 31, 0},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
+	.nature = NATURE_RELAXED,
+    .moves = MOVE_SCALD, MOVE_EARTHQUAKE, MOVE_AURORA_BEAM, MOVE_RECOVER
+    },
+    {
+    .lvl = 6,
+    .species = SPECIES_MILOTIC, // Wallace, Mega, Def Wall, CM
+    .heldItem = ITEM_MILOTICITE,
+    .ability = 1, // ABILITY_SELF_SUFFICIENT, ABILITY_SELF_SUFFICIENT, ABILITY_SELF_SUFFICIENT},
+    // .innates = {ABILITY_PRISM_SCALES, ABILITY_ADAPTABILITY, ABILITY_SEA_GUARDIAN},
+    // Pre-Mega
+    // ABILITY_SELF_SUFFICIENT, ABILITY_COMPETITIVE, ABILITY_MARVEL_SCALE},
+    // .innates = {ABILITY_PRISM_SCALES, ABILITY_ADAPTABILITY, ABILITY_SEA_GUARDIAN},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SCALD, MOVE_MOONBLAST, MOVE_CALM_MIND, MOVE_RECOVER
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_WallaceInsane[] = {
+    {
+    .lvl = 4,
+    .species = SPECIES_SUICUNE, // Wallace-E, Def Wall, Lum, Rain Setter, CM + Sub
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = 2, // ABILITY_NORTH_WIND, ABILITY_PRISM_SCALES, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_AURORA_BOREALIS, ABILITY_WATER_VEIL, ABILITY_SEA_GUARDIAN},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SCALD, MOVE_SHEER_COLD, MOVE_RECOVER, MOVE_CALM_MIND
+    },
+    {
+    .lvl = 4,
+    .species = SPECIES_LATIOS, // Wallace-E, Soul Dew, Speed Boost + Protect
+    .heldItem = ITEM_SOUL_DEW,
+    .ability = 2, // ABILITY_AVENGER, ABILITY_NEUROFORCE, ABILITY_SPEED_BOOST},
+    // .innates = {ABILITY_LEVITATE, ABILITY_VIOLENT_RUSH, ABILITY_MYSTIC_POWER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_PSYSHOCK, MOVE_DRACO_METEOR, MOVE_THUNDER, MOVE_PROTECT
+    },
+    {
+    .lvl = 4,
+    .species = SPECIES_LUDICOLO, // Wallace-E, Shell Bell, Rain Sweeper, Q-Dance
+    .heldItem = ITEM_SHELL_BELL,
+    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_CHLOROPHYLL, ABILITY_OWN_TEMPO},
+    // .innates = {ABILITY_SEAWEED, ABILITY_RAIN_DISH, ABILITY_HYDRATION},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_SCALD, MOVE_GIGA_DRAIN, MOVE_ICE_BEAM, MOVE_QUIVER_DANCE
+    },
+    {
+    .lvl = 4,
+    .species = SPECIES_NECROZMA_DUSK_MANE, // Wallace-E, Weakness Policy, Bulky Special, Prism. Laser, SR
+    .heldItem = ITEM_WEAKNESS_POLICY,
+    .ability = 1, // ABILITY_NEUROFORCE, ABILITY_RAMPAGE, ABILITY_MEGA_LAUNCHER},
+    // .innates = {ABILITY_SOLAR_FLARE, ABILITY_IMPENETRABLE, ABILITY_PRISM_ARMOR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_STEALTH_ROCK, MOVE_MORNING_SUN, MOVE_STEEL_BEAM, MOVE_PRISMATIC_LASER
+    },
+    {
+    .lvl = 4,
+    .species = SPECIES_MILOTIC, // Wallace-E, Fast Def Wall, Self Sufficient
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // ABILITY_SELF_SUFFICIENT, ABILITY_COMPETITIVE, ABILITY_MARVEL_SCALE},
     // .innates = {ABILITY_PRISM_SCALES, ABILITY_ADAPTABILITY, ABILITY_SEA_GUARDIAN},
@@ -36189,7 +36263,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wallace[] = {
     },
     {
     .lvl = 6,
-    .species = SPECIES_MEWTWO, // Wallace, Mega, Mystic Power, Nasty Plot
+    .species = SPECIES_MEWTWO, // Wallace-E, Mega, Mystic Power, Nasty Plot
     .heldItem = ITEM_MEWTWONITE_Y,
     .ability = 1, // ABILITY_MYSTIC_POWER, ABILITY_MYSTIC_POWER, ABILITY_MYSTIC_POWER},
     // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_LEVITATE, ABILITY_FATAL_PRECISION},
