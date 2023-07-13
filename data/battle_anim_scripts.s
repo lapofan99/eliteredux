@@ -13987,7 +13987,6 @@ Move_STEEL_BEAM::
 	playsewithpan SE_M_CHARGE, SOUND_PAN_ATTACKER
 	delay 20
 	loadspritegfx ANIM_TAG_STEEL_BEAM
-	call SetSteelBeamBackground
 	panse_1B SE_M_SOLAR_BEAM, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +2, 0
 	createvisualtask AnimTask_CreateSmallSteelBeamOrbs, 5
 	createsprite gSteelBeamBigOrbSpriteTemplate, ANIM_TARGET, 3, 15, 0, 20, 0
