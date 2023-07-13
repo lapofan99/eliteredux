@@ -1258,6 +1258,9 @@ const u32 gItemIconPalette_CoverFossil[] = INCBIN_U32("graphics/items/icon_palet
 const u32 gItemIcon_PlumeFossil[] = INCBIN_U32("graphics/items/icons/plume_fossil.4bpp.lz");
 const u32 gItemIconPalette_PlumeFossil[] = INCBIN_U32("graphics/items/icon_palettes/plume_fossil.gbapal.lz");
 
+const u32 gItemIcon_IronPill[] = INCBIN_U32("graphics/items/icons/iron_pill.4bpp.lz");
+const u32 gItemIconPalette_IronPill[] = INCBIN_U32("graphics/items/icon_palettes/iron_pill.gbapal.lz");
+
 const u32 gItemIcon_HealthFeather[] = INCBIN_U32("graphics/items/icons/health_feather.4bpp.lz");
 const u32 gItemIconPalette_HealthFeather[] = INCBIN_U32("graphics/items/icon_palettes/health_feather.gbapal.lz");
 

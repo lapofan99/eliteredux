@@ -527,7 +527,6 @@ const u8 *const gItemEffectTable[] =
     [ITEM_CANDY_BOX - ITEM_POTION]      = gItemEffect_RareCandy,
     [ITEM_PP_UP - ITEM_POTION]          = gItemEffect_PPUp,
     [ITEM_ZINC - ITEM_POTION]           = gItemEffect_Zinc,
-    [ITEM_HEALTH_FEATHER - ITEM_POTION] = gItemEffect_HpFeather,
     [ITEM_MUSCLE_FEATHER - ITEM_POTION] = gItemEffect_AtkFeather,
     [ITEM_RESIST_FEATHER - ITEM_POTION] = gItemEffect_DefFeather,
     [ITEM_GENIUS_FEATHER - ITEM_POTION] = gItemEffect_SpatkFeather,

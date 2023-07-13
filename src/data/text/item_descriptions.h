@@ -3156,10 +3156,10 @@ static const u8 sHoneyDesc[] = _(
     "attracts wild\n"
     "Pokémon when used.");
 
-static const u8 sHealthFeatherDesc[] = _(
-    "An item that raises\n"
-    "the base HP of\n"
-    "a Pokémon.");
+static const u8 sIronPillDesc[] = _(
+    "Slows down the\n"
+    "Pokémon that\n"
+	"consumes it");
 
 static const u8 sMuscleFeatherDesc[] = _(
     "An item that raises\n"

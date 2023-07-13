@@ -110,6 +110,9 @@ void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 void CB2_ShowPartyMenuForItemUseTMCase(void);
 u16 GetTutorMove(u8 tutor);
 
+void Task_IronPill(u8 taskId);
+void ItemUseCB_IronPill(u8 taskId, TaskFunc task);
+
 bool32 CanLearnTutorMove(u16, u8);
 
 extern const struct SpriteSheet sSpriteSheet_HeldItem;

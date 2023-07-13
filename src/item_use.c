@@ -1220,6 +1220,13 @@ static void ItemUseOnFieldCB_Honey(u8 taskId)
     DestroyTask(taskId);
 }
 
+
+void ItemUseOutOfBattle_IronPill(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_IronPill;
+    SetUpItemUseCallback(taskId);
+}
+
 static void ItemUseOnFieldCB_HoneyFail(u8 taskId)
 {
     RemoveBagItem(gSpecialVar_ItemId, 1);

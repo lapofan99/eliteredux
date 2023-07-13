@@ -7956,6 +7956,8 @@ extern const u32 gItemIcon_PlumeFossil[];
 extern const u32 gItemIconPalette_PlumeFossil[];
 extern const u32 gItemIcon_HealthFeather[];
 extern const u32 gItemIconPalette_HealthFeather[];
+extern const u32 gItemIcon_IronPill[];
+extern const u32 gItemIconPalette_IronPill[];
 extern const u32 gItemIcon_MuscleFeather[];
 extern const u32 gItemIconPalette_MuscleFeather[];
 extern const u32 gItemIcon_ResistFeather[];

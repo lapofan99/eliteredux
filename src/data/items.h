@@ -7949,15 +7949,15 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_Honey,
     },
 
-    [ITEM_HEALTH_FEATHER] =
+    [ITEM_IRON_PILL] =
     {
-        .name = _("Health Feather"),
-        .itemId = ITEM_HEALTH_FEATHER,
+        .name = _("Iron Pill"),
+        .itemId = ITEM_IRON_PILL,
         .price = 300,
-        .description = sHealthFeatherDesc,
+        .description = sIronPillDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
+        .fieldUseFunc = ItemUseOutOfBattle_IronPill,
     },
 
     [ITEM_MUSCLE_FEATHER] =

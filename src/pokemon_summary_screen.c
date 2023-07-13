@@ -2056,21 +2056,10 @@ static void Task_HandleInput(u8 taskId)
             {
                 // Start EVs Modifier
                 if(gSaveBlock2Ptr->enableEvs){
-                    if(gCurrentModifyIndex == 5){
-                        //Speed 0 Ivs
-                        bool8 isSpeedDown = GetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_DOWN, NULL);
-                        isSpeedDown = !isSpeedDown;
-                        
-                        SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_SPEED_DOWN, &isSpeedDown);
-                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED_DOWN, &isSpeedDown);
-                    }
-                    else{
-                        ModifyMode = !ModifyMode;
-                    }
+                    ModifyMode = !ModifyMode;
                     CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
                     CalculateMonStats(&sMonSummaryScreen->currentMon);
                     
-                    //SetTaskFuncWithFollowupFunc(taskId, ChangeStatTask, gTasks[taskId].func); //Refreshes the Icon
                     RefreshPageAfterChange(0);
                     PlaySE(SE_SELECT);
                 }
