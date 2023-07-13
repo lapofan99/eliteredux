@@ -780,7 +780,7 @@ Give_Thief_Items_After_Winoma:
 	return
 
 ADDITEM_POKEBLOCK_CASE:
-	additem ITEM_POKEBLOCK_CASE, 1
+	additem ITEM_EGG_INCUBATOR, 1
 	return
 
 ADDITEM_RARE_CANDY:

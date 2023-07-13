@@ -3829,17 +3829,16 @@ const struct Item gItems[] =
         .secondaryId = ACRO_BIKE,
     },
 
-    [ITEM_POKEBLOCK_CASE] =
+    [ITEM_EGG_INCUBATOR] =
     {
         .name = _("Egg Incubator"),
-        .itemId = ITEM_POKEBLOCK_CASE,
+        .itemId = ITEM_EGG_INCUBATOR,
         .price = 0,
-        .description = sPokeblockCaseDesc,
+        .description = sEgg_IncubatorDesc,
         .importance = 1,
-        //.unk19 = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,
-        .fieldUseFunc = ItemUseOutOfBattle_PokeblockCase,
+        .fieldUseFunc = ItemUseOutOfBattle_EggIncubator,
     },
 
     [ITEM_LETTER] =

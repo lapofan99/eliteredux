@@ -116,13 +116,6 @@ Movement_PkmnCenterNurse_Bow:
     delay_4
     step_end
 
-
-Give_Pokeblock_Case:
-	//checkitem ITEM_POKEBLOCK_CASE, 1
-	//compare VAR_RESULT, TRUE
-	//call_if_ne ADDITEM_POKEBLOCK_CASE
-	return
-
 Give_all_TMHMs:
 	checkitem ITEM_TM01_FOCUS_PUNCH, 1
 	compare VAR_RESULT, TRUE
@@ -551,10 +544,6 @@ Give_all_TMHMs:
 	checkitem ITEM_HM08_DIVE, 1
 	compare VAR_RESULT, TRUE
 	call_if_ne ADDITEM_ITEM_HM08_DIVE
-	return
-
-ADDITEM_POKEBLOCK_CASE:
-	additem ITEM_POKEBLOCK_CASE, 1
 	return
 
 ADDITEM_RARE_CANDY:

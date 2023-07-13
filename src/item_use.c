@@ -619,7 +619,7 @@ static void Task_StandingOnHiddenItem(u8 taskId)
 #undef tItemfinderBeeps
 #undef tFacingDir
 
-void ItemUseOutOfBattle_PokeblockCase(u8 taskId)
+void ItemUseOutOfBattle_EggIncubator(u8 taskId)
 {
     if (gPlayerPartyCount < PARTY_SIZE)
     {

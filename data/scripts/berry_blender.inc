@@ -296,9 +296,7 @@ BerryBlender_EventScript_ExplainBlending1: @ 8293CE0
 	end
 
 BerryBlender_EventScript_TryUseBerryBlender1: @ 8293CEE
-	checkitem ITEM_POKEBLOCK_CASE, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq BerryBlender_EventScript_Blender1NoCase
+	goto_if_unset FLAG_RECEIVED_POKEBLOCK_CASE, BerryBlender_EventScript_Blender1NoCase
 	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
 	compare VAR_RESULT, 65535
 	goto_if_eq BerryBlender_EventScript_Blender1CaseFull
@@ -370,9 +368,7 @@ BerryBlender_EventScript_TryUseBerryBlender2: @ 8293DC6
 	specialvar VAR_RESULT, PlayerHasBerries
 	compare VAR_RESULT, FALSE
 	goto_if_eq BerryBlender_EventScript_Blender2NoBerries
-	checkitem ITEM_POKEBLOCK_CASE, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq BerryBlender_EventScript_Blender2NoCase
+	goto_if_unset FLAG_RECEIVED_POKEBLOCK_CASE, BerryBlender_EventScript_Blender2NoCase
 	msgbox BerryBlender_Text_Okay, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
 	compare VAR_RESULT, 65535
@@ -436,9 +432,7 @@ BerryBlender_EventScript_TryUseBlender3: @ 8293EA3
 	specialvar VAR_RESULT, PlayerHasBerries
 	compare VAR_RESULT, FALSE
 	goto_if_eq BerryBlender_EventScript_Blender3NoBerries
-	checkitem ITEM_POKEBLOCK_CASE, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq BerryBlender_EventScript_Blender3NoCase
+	goto_if_unset FLAG_RECEIVED_POKEBLOCK_CASE, BerryBlender_EventScript_Blender3NoCase
 	msgbox BerryBlender_Text_OhDear, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
 	compare VAR_RESULT, 65535
@@ -473,9 +467,7 @@ BerryBlender_EventScript_BlendMasterNoBerries: @ 8293F1E
 	end
 
 BerryBlender_EventScript_TryBlendWithBlendMaster: @ 8293F28
-	checkitem ITEM_POKEBLOCK_CASE, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq BerryBlender_EventScript_BlendMasterNoCase
+	goto_if_unset FLAG_RECEIVED_POKEBLOCK_CASE, BerryBlender_EventScript_BlendMasterNoCase
 	specialvar VAR_RESULT, PlayerHasBerries
 	compare VAR_RESULT, FALSE
 	goto_if_eq BerryBlender_EventScript_BlendMasterNoBerries
@@ -542,9 +534,7 @@ BerryBlender_EventScript_ExpertMPlayerHasBerries: @ 8293FEE
 	end
 
 BerryBlender_EventScript_ExpertMNoBerries: @ 8293FF8
-	checkitem ITEM_POKEBLOCK_CASE, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq BerryBlender_EventScript_ExpertMNoSpareBerries
+	goto_if_unset FLAG_RECEIVED_POKEBLOCK_CASE, BerryBlender_EventScript_ExpertMNoSpareBerries
 	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
 	compare VAR_RESULT, 65535
 	goto_if_eq BerryBlender_EventScript_ExpertMNoSpareBerries
@@ -575,9 +565,7 @@ BerryBlender_EventScript_BerryBlenderLink:: @ 8294055
 	specialvar VAR_RESULT, PlayerHasBerries
 	compare VAR_RESULT, FALSE
 	goto_if_eq BerryBlender_EventScript_LinkBlenderNoBerries
-	checkitem ITEM_POKEBLOCK_CASE, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq BerryBlender_EventScript_LinkBlenderNoCase
+	goto_if_unset FLAG_RECEIVED_POKEBLOCK_CASE, BerryBlender_EventScript_LinkBlenderNoCase
 	specialvar VAR_RESULT, GetFirstFreePokeblockSlot
 	compare VAR_RESULT, 65535
 	goto_if_ne BerryBlender_EventScript_LinkBlenderSaveGame

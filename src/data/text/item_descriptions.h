@@ -1533,7 +1533,7 @@ static const u8 sAcroBikeDesc[] = _(
     "capable of jumps\n"
     "and wheelies.");
 
-static const u8 sPokeblockCaseDesc[] = _(
+static const u8 sEgg_IncubatorDesc[] = _(
     "Is that a Pokémon\n"
     "egg on the floor?\n"
     "Better pick it up!");
