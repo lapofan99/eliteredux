@@ -1859,6 +1859,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             if (AI_DATA->defAbility == ABILITY_STICKY_HOLD || BattlerHasInnate(battlerDef, ABILITY_STICKY_HOLD))
                 score -= 10;
             break;
+        case EFFECT_POLTERGEIST:
+            if (AI_DATA->defItem == ITEM_NONE)
+                score -= 20;
+        break;
         case EFFECT_INGRAIN:
             if (gStatuses3[battlerAtk] & STATUS3_ROOTED)
                 score -= 10;
