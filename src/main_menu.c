@@ -38,6 +38,17 @@
 #include "title_screen.h"
 #include "window.h"
 #include "mystery_gift.h"
+#include "constants/abilities.h"
+#include "constants/battle_anim.h"
+#include "constants/battle_config.h"
+#include "constants/battle_move_effects.h"
+#include "constants/items.h"
+#include "constants/moves.h"
+#include "constants/party_menu.h"
+#include "constants/songs.h"
+#include "constants/trainers.h"
+#include "constants/rgb.h"
+#include "constants/vars.h"
 
 /*
  * Main menu state machine
@@ -687,9 +698,11 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
 
 #define tArrowTaskIsScrolled data[15]   // For scroll indicator arrow task
 
+const u8 gText_FutureSave[] = _("The save file cannot be loaded since\nits from a future version of this game.");
 static void Task_MainMenuCheckSaveFile(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
+	u16 timesUpdated = 0 + VarGet(VAR_UPDATED_TIMES);
 
     if (!gPaletteFade.active)
     {
@@ -706,10 +719,25 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
         switch (gSaveFileStatus)
         {
             case SAVE_STATUS_OK:
+            if(VarGet(VAR_SAVE_VERSION) <= CURRENT_GAME_VERSION){
+                //No problems
+                if(VarGet(VAR_SAVE_VERSION) < CURRENT_GAME_VERSION){
+                    //Updating Version
+					timesUpdated++;
+					VarSet(VAR_UPDATED_TIMES, timesUpdated);
+					VarSet(VAR_SAVE_VERSION, CURRENT_GAME_VERSION);
+				}
                 tMenuType = HAS_SAVED_GAME;
                 if (IsMysteryGiftEnabled())
                     tMenuType++;
                 gTasks[taskId].func = Task_MainMenuCheckBattery;
+            }
+            else{
+                //People trying to downgrade their game
+				CreateMainMenuErrorWindow(gText_FutureSave);
+				tMenuType = HAS_NO_SAVED_GAME;
+				gTasks[taskId].func = Task_WaitForSaveFileErrorWindow;	
+            }
                 break;
             case SAVE_STATUS_CORRUPT:
                 CreateMainMenuErrorWindow(gText_SaveFileErased);
