@@ -1355,6 +1355,7 @@ static void Task_HofPC_ExitOnButtonPress(u8 taskId)
 
 static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 {
+    u8 numModes = 0;
     static const u8 gText_WelcomeToHOF[] 		  = _("Elite Redux v0.9.7 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
     static const u8 sText_WinsLossesText[]        = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}");
     static const u8 sText_WinsLossesLockedText[]  = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}      {COLOR LIGHT_RED}{SHADOW RED}Locked Mode{COLOR WHITE}{SHADOW DARK_GRAY}");
@@ -1366,15 +1367,16 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
     static const u8 easyModeText[] 				  = _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
 	static const u8 aceModeText[] 			      = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}Ace");
 	static const u8 eliteModeText[] 			  = _("{COLOR LIGHT_BLUE}{SHADOW RED}Elite");
-
     
-	static const u8 RandomizerModeText[]              = _("Random Modes: {STR_VAR_1}{STR_VAR_2}{STR_VAR_3}$");
-	static const u8 FullRandomizerModeText[]          = _("Random Modes: Full Randomizer");
-	static const u8 encounterRandomizerModeText[]     = _("Encounter ");
-	static const u8 innateRandomizerModeText[]        = _("Innate ");
-	static const u8 abilityRandomizerModeText[]       = _("Ability ");
-	static const u8 innateabilityRandomizerModeText[] = _("Ability Innate ");
-	static const u8 typeRandomizerModeText[]          = _("Type ");
+	static const u8 RandomizerModeText[]               = _("Random Modes: {STR_VAR_1}{STR_VAR_2}{STR_VAR_3}$");
+	static const u8 FullRandomizerModeText[]           = _("Random Modes: Full Randomizer");
+	static const u8 encounterRandomizerModeText[]      = _("Encounter, ");
+	static const u8 typeRandomizerModeText[]           = _("Type, ");
+	static const u8 innateRandomizerModeText[]         = _("Innate"); //Last
+	static const u8 abilityRandomizerModeText[]        = _("Ability"); //Last
+	static const u8 innateabilityRandomizerModeText[]  = _("Ability, Innate"); //Last
+	static const u8 encounterRandomizerModeTextNo[]    = _("Encounter");
+	static const u8 typeRandomizerModeTextNo[]         = _("Type");
     
 	static const u8 noText[]   = _("");
 
@@ -1437,26 +1439,55 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
        gSaveBlock2Ptr->innaterandomizedMode){
 
         //Encounter Randomizer
-        if(gSaveBlock2Ptr->encounterRandomizedMode)
+        if(gSaveBlock2Ptr->encounterRandomizedMode){
             StringCopy(gStringVar1, encounterRandomizerModeText);
-        else
+            numModes++;
+        }
+        else{
             StringCopy(gStringVar1, noText);
-        
+        }
+
         //Type Randomizer
-        if(gSaveBlock2Ptr->typeRandomizedMode)
+        if(gSaveBlock2Ptr->typeRandomizedMode){
             StringCopy(gStringVar2, typeRandomizerModeText);
-        else
+            numModes++;
+        }
+        else{
             StringCopy(gStringVar2, noText);
+        }
 
-        if(gSaveBlock2Ptr->abilityRandomizedMode && !gSaveBlock2Ptr->innaterandomizedMode)      //Only ability randomizer
+        if(gSaveBlock2Ptr->abilityRandomizedMode && !gSaveBlock2Ptr->innaterandomizedMode){
+            //Only ability randomizer
             StringCopy(gStringVar3, abilityRandomizerModeText);
-        else if(!gSaveBlock2Ptr->abilityRandomizedMode && gSaveBlock2Ptr->innaterandomizedMode) //Only innate randomizer
+            numModes++;
+        }      
+        else if(!gSaveBlock2Ptr->abilityRandomizedMode && gSaveBlock2Ptr->innaterandomizedMode){
+            //Only innate randomizer
             StringCopy(gStringVar3, innateRandomizerModeText);
-        else if(gSaveBlock2Ptr->abilityRandomizedMode && gSaveBlock2Ptr->innaterandomizedMode)  //Both
+            numModes++;
+        } 
+        else if(gSaveBlock2Ptr->abilityRandomizedMode && gSaveBlock2Ptr->innaterandomizedMode){
+            //Both
             StringCopy(gStringVar3, innateabilityRandomizerModeText);
-        else                                                                                    //Neither
+            numModes = numModes + 2;
+        }  
+        else{
+            //Neither
             StringCopy(gStringVar3, noText);
+        }                
 
+        if(numModes == 1){
+            if(gSaveBlock2Ptr->encounterRandomizedMode){
+                StringCopy(gStringVar1, encounterRandomizerModeTextNo);
+            }
+            else if(gSaveBlock2Ptr->typeRandomizedMode){
+                StringCopy(gStringVar2, typeRandomizerModeTextNo);
+            }
+        }
+        else if(numModes == 2 && gSaveBlock2Ptr->encounterRandomizedMode && gSaveBlock2Ptr->typeRandomizedMode){
+            StringCopy(gStringVar2, typeRandomizerModeTextNo);
+        }
+            
         if(gSaveBlock2Ptr->encounterRandomizedMode &&
            gSaveBlock2Ptr->typeRandomizedMode      &&
            gSaveBlock2Ptr->abilityRandomizedMode   &&
@@ -1465,7 +1496,7 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
         else
             StringExpandPlaceholders(gStringVar4, RandomizerModeText);
             
-        AddTextPrinterParameterized3(0, FONT_SMALL_NARROW, GetStringCenterAlignXOffset(1, gStringVar4, 0xD0), 16, sMonInfoTextColors, 0, gStringVar4);
+        AddTextPrinterParameterized3(0, FONT_SMALL_NARROW, 0, 16, sMonInfoTextColors, 0, gStringVar4);
     }
     CopyWindowToVram(0, 3);
 }
