@@ -1501,13 +1501,13 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
     if (atkAbility == ABILITY_KEEN_EYE || BattlerHasInnate(battlerAtk, ABILITY_KEEN_EYE))
         calc = (calc * 110) / 100; // 1.1 keen eye boost
 
-    if ((defAbility == ABILITY_SAND_VEIL || BattlerHasInnate(battlerAtk, ABILITY_SAND_VEIL)) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
+    if ((defAbility == ABILITY_SAND_VEIL || BattlerHasInnate(battlerDef, ABILITY_SAND_VEIL)) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
         calc = (calc * 80) / 100; // 1.2 sand veil loss
     
-	if ((defAbility == ABILITY_SNOW_CLOAK || BattlerHasInnate(battlerAtk, ABILITY_SNOW_CLOAK)) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
+	if ((defAbility == ABILITY_SNOW_CLOAK || BattlerHasInnate(battlerDef, ABILITY_SNOW_CLOAK)) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
         calc = (calc * 80) / 100; // 1.2 snow cloak loss
 
-    if ((defAbility == ABILITY_TANGLED_FEET || BattlerHasInnate(battlerAtk, ABILITY_TANGLED_FEET)) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
+    if ((defAbility == ABILITY_TANGLED_FEET || BattlerHasInnate(battlerDef, ABILITY_TANGLED_FEET)) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
         calc = (calc * 50) / 100; // 1.5 tangled feet loss
 
     if ((atkAbility == ABILITY_HUSTLE || BattlerHasInnate(battlerAtk, ABILITY_HUSTLE)) && IS_MOVE_PHYSICAL(move))
