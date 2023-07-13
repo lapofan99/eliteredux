@@ -1874,6 +1874,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
     bool8 abilityNullifiesDamage = FALSE;
     u16 tempMod;
     u8 moveType = GetTypeBeforeUsingMove(moveNum, userId);
+    u16 illusionSpecies = GetIllusionMonSpecies(targetId);
 
     if(gBattleMoves[moveNum].split == SPLIT_STATUS)
         return GetMoveTypeEffectivenessStatus(moveNum, targetId, userId);
@@ -1884,22 +1885,43 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 		return MOVE_EFFECTIVENESS_STATUS;
 	else
 	{
-		u16 mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+        u16 mod;
+        if (illusionSpecies != SPECIES_NONE){
+            mod = sTypeEffectivenessTable[moveType][gBaseStats[illusionSpecies].type1];
 
-		if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
-		{
-			u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
-			MulModifier(&mod, mod2);
-		}
+            if (gBaseStats[illusionSpecies].type2 != gBaseStats[illusionSpecies].type1)
+            {
+                u16 mod2 = sTypeEffectivenessTable[moveType][gBaseStats[illusionSpecies].type2];
+                MulModifier(&mod, mod2);
+            }
 
-        //Third Type
-        if (gBattleMons[targetId].type3 != gBattleMons[targetId].type1 &&
-            gBattleMons[targetId].type3 != gBattleMons[targetId].type2 &&
-            gBattleMons[targetId].type3 != TYPE_MYSTERY)
-		{
-			u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type3];
-			MulModifier(&mod, mod2);
-		}
+            //Third Type
+            if (gBattleMons[targetId].type3 != gBaseStats[illusionSpecies].type1 &&
+                gBattleMons[targetId].type3 != gBaseStats[illusionSpecies].type2 &&
+                gBattleMons[targetId].type3 != TYPE_MYSTERY)
+            {
+                u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type3];
+                MulModifier(&mod, mod2);
+            }
+        }
+        else{
+            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+
+            if (gBattleMons[targetId].type2 != gBattleMons[targetId].type1)
+            {
+                u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                MulModifier(&mod, mod2);
+            }
+
+            //Third Type
+            if (gBattleMons[targetId].type3 != gBattleMons[targetId].type1 &&
+                gBattleMons[targetId].type3 != gBattleMons[targetId].type2 &&
+                gBattleMons[targetId].type3 != TYPE_MYSTERY)
+            {
+                u16 mod2 = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type3];
+                MulModifier(&mod, mod2);
+            }
+        }
 
 		if (gBattleMoves[moveNum].effect == EFFECT_TWO_TYPED_MOVE)
 		{
