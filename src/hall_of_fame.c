@@ -1359,13 +1359,24 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
     static const u8 sText_WinsLossesText[]        = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}");
     static const u8 sText_WinsLossesLockedText[]  = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}      {COLOR LIGHT_RED}{SHADOW RED}Locked Mode{COLOR WHITE}{SHADOW DARK_GRAY}");
     
-    static const u8 easyCapText[] 				= _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
-	static const u8 moreCapText[] 			    = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}More$");
-	static const u8 eliteCapText[] 				= _("{COLOR LIGHT_RED}{SHADOW RED}Elite$");
+    static const u8 easyCapText[] 				  = _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
+	static const u8 moreCapText[] 			      = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}More");
+	static const u8 eliteCapText[] 				  = _("{COLOR LIGHT_RED}{SHADOW RED}Elite");
 
-    static const u8 easyModeText[] 				= _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
-	static const u8 aceModeText[] 			    = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}Ace$");
-	static const u8 eliteModeText[] 			= _("{COLOR LIGHT_BLUE}{SHADOW RED}Elite$");
+    static const u8 easyModeText[] 				  = _("{COLOR LIGHT_GREEN}{SHADOW GREEN}Easy");
+	static const u8 aceModeText[] 			      = _("{COLOR LIGHT_BLUE}{SHADOW BLUE}Ace");
+	static const u8 eliteModeText[] 			  = _("{COLOR LIGHT_BLUE}{SHADOW RED}Elite");
+
+    
+	static const u8 RandomizerModeText[]              = _("Random Modes: {STR_VAR_1}{STR_VAR_2}{STR_VAR_3}$");
+	static const u8 FullRandomizerModeText[]          = _("Random Modes: Full Randomizer");
+	static const u8 encounterRandomizerModeText[]     = _("Encounter ");
+	static const u8 innateRandomizerModeText[]        = _("Innate ");
+	static const u8 abilityRandomizerModeText[]       = _("Ability ");
+	static const u8 innateabilityRandomizerModeText[] = _("Ability Innate ");
+	static const u8 typeRandomizerModeText[]          = _("Type ");
+    
+	static const u8 noText[]   = _("");
 
     u16 wins   = getNumberOfUniqueDefeatedTrainers();
     u16 losses = 0 + VarGet(VAR_TIMES_WHITED_OUT);
@@ -1418,7 +1429,44 @@ static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 	
 	FillWindowPixelBuffer(0, PIXEL_FILL(0));
     PutWindowTilemap(0);
-    AddTextPrinterParameterized3(0, FONT_SMALL_NARROW, GetStringCenterAlignXOffset(1, gStringVar4, 0xD0), 1, sMonInfoTextColors, 0, gStringVar4);
+    AddTextPrinterParameterized3(0, FONT_SMALL_NARROW, GetStringCenterAlignXOffset(1, gStringVar4, 0xD0), 0, sMonInfoTextColors, 0, gStringVar4);
+    
+    if(gSaveBlock2Ptr->encounterRandomizedMode ||
+       gSaveBlock2Ptr->typeRandomizedMode      ||
+       gSaveBlock2Ptr->abilityRandomizedMode   ||
+       gSaveBlock2Ptr->innaterandomizedMode){
+
+        //Encounter Randomizer
+        if(gSaveBlock2Ptr->encounterRandomizedMode)
+            StringCopy(gStringVar1, encounterRandomizerModeText);
+        else
+            StringCopy(gStringVar1, noText);
+        
+        //Type Randomizer
+        if(gSaveBlock2Ptr->typeRandomizedMode)
+            StringCopy(gStringVar2, typeRandomizerModeText);
+        else
+            StringCopy(gStringVar2, noText);
+
+        if(gSaveBlock2Ptr->abilityRandomizedMode && !gSaveBlock2Ptr->innaterandomizedMode)      //Only ability randomizer
+            StringCopy(gStringVar3, abilityRandomizerModeText);
+        else if(!gSaveBlock2Ptr->abilityRandomizedMode && gSaveBlock2Ptr->innaterandomizedMode) //Only innate randomizer
+            StringCopy(gStringVar3, innateRandomizerModeText);
+        else if(gSaveBlock2Ptr->abilityRandomizedMode && gSaveBlock2Ptr->innaterandomizedMode)  //Both
+            StringCopy(gStringVar3, innateabilityRandomizerModeText);
+        else                                                                                    //Neither
+            StringCopy(gStringVar3, noText);
+
+        if(gSaveBlock2Ptr->encounterRandomizedMode &&
+           gSaveBlock2Ptr->typeRandomizedMode      &&
+           gSaveBlock2Ptr->abilityRandomizedMode   &&
+           gSaveBlock2Ptr->innaterandomizedMode)
+            StringExpandPlaceholders(gStringVar4, FullRandomizerModeText);
+        else
+            StringExpandPlaceholders(gStringVar4, RandomizerModeText);
+            
+        AddTextPrinterParameterized3(0, FONT_SMALL_NARROW, GetStringCenterAlignXOffset(1, gStringVar4, 0xD0), 16, sMonInfoTextColors, 0, gStringVar4);
+    }
     CopyWindowToVram(0, 3);
 }
 
