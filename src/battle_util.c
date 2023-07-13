@@ -5141,10 +5141,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 gBattlerAttacker = battler;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_NORTH_WIND;
-				gLastUsedAbility = ABILITY_NORTH_WIND;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_NORTH_WIND;
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_AURORA_VEIL;
-				gSideTimers[GetBattlerSide(battler)].auroraVeilTimer = 5;
+                if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
+                    gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 8;
+                else
+                    gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 5;
 				BattleScriptPushCursorAndCallback(BattleScript_NorthWindActivated);
 				effect++;
 			}
@@ -5758,10 +5760,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_AURORA_VEIL))
             {
                 gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_NORTH_WIND)] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_NORTH_WIND;
-				gLastUsedAbility = ABILITY_NORTH_WIND;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_NORTH_WIND;
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_AURORA_VEIL;
-				gSideTimers[GetBattlerSide(battler)].auroraVeilTimer = 5;
+                if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
+                    gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 8;
+                else
+                    gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 5;
 				BattleScriptPushCursorAndCallback(BattleScript_NorthWindActivated);
 				effect++;
 			}
