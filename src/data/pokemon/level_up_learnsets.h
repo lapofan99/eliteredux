@@ -5218,6 +5218,7 @@ static const struct LevelUpMove sDonphanLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_GIGA_IMPACT),
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE(57, MOVE_SLACK_OFF),
+        LEVEL_UP_MOVE(57, MOVE_SHORE_UP), // new
     #endif
     LEVEL_UP_END
 };
