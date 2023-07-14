@@ -6527,6 +6527,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                         gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_FLASH_FIRE;
                         effect = 3;
+                        gMultiHitCounter = 0;
                     }
                     else
                     {
@@ -6537,6 +6538,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
 
                         effect = 3;
+                        gMultiHitCounter = 0;
                     }
                 }
                 break;
@@ -6641,6 +6643,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                         gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_FLASH_FIRE;
                         effect = 3;
+                        gMultiHitCounter = 0;
                     }
                     else
                     {
@@ -6651,6 +6654,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                             gBattlescriptCurrInstr = BattleScript_FlashFireBoost_PPLoss;
 
                         effect = 3;
+                        gMultiHitCounter = 0;
                     }
                 }
 			}
