@@ -2658,8 +2658,9 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
     if (flags == 0)
         return FALSE;
     
-    if (ability == ABILITY_MAGIC_GUARD || ability == ABILITY_LEVITATE || MonHasInnate(mon, ABILITY_LEVITATE)
-      || holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
+    if (ability == ABILITY_MAGIC_GUARD || MonHasInnate(mon, ABILITY_MAGIC_GUARD) ||
+        ability == ABILITY_LEVITATE    || MonHasInnate(mon, ABILITY_LEVITATE)    ||
+        holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
         return FALSE;
     
     if (flags & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK) && GetMonData(mon, MON_DATA_HP) < (GetMonData(mon, MON_DATA_MAX_HP) / 8))
@@ -2935,11 +2936,15 @@ bool32 ShouldPoisonSelf(u8 battler, u16 ability)
 {
     if (AI_CanBePoisoned(battler, battler) && (
      ability == ABILITY_MARVEL_SCALE
+      || BattlerHasInnate(battler, ABILITY_MARVEL_SCALE)
       || ability == ABILITY_POISON_HEAL
+      || BattlerHasInnate(battler, ABILITY_POISON_HEAL)
       || ability == ABILITY_QUICK_FEET
+      || BattlerHasInnate(battler, ABILITY_QUICK_FEET)
       || ability == ABILITY_MAGIC_GUARD
-      || ((ability == ABILITY_TOXIC_BOOST || BattlerHasInnate(battler, ABILITY_TOXIC_BOOST))&& HasMoveWithSplit(battler, SPLIT_PHYSICAL))
-      || ((ability == ABILITY_GUTS || BattlerHasInnate(battler, ABILITY_GUTS))&& HasMoveWithSplit(battler, SPLIT_PHYSICAL))
+      || BattlerHasInnate(battler, ABILITY_MAGIC_GUARD)
+      || ((ability == ABILITY_TOXIC_BOOST || BattlerHasInnate(battler, ABILITY_TOXIC_BOOST)) && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
+      || ((ability == ABILITY_GUTS        || BattlerHasInnate(battler, ABILITY_GUTS))        && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
       || HasMoveEffect(battler, EFFECT_FACADE)
       || HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)))
         return TRUE;    // battler can be poisoned and has move/ability that synergizes with being poisoned

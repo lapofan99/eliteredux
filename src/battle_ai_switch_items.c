@@ -515,7 +515,9 @@ static u32 CalculateHazardDamage(void)
     u32 spikesDmg = 0;
     u32 holdEffect = GetBattlerHoldEffect(gActiveBattler, TRUE);
 
-    if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD || holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
+    if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD || 
+        BattlerHasInnate(gActiveBattler, ABILITY_MAGIC_GUARD) || 
+        holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
         return totalHazardDmg;
 
     if ((gSideTimers[GetBattlerSide(gActiveBattler)].spikesAmount > 0) 

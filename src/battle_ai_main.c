@@ -1984,11 +1984,14 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 4;
             break;
         case EFFECT_RECOIL_IF_MISS:
-            if (AI_DATA->atkAbility != ABILITY_MAGIC_GUARD && accuracy < 75)
+            if (AI_DATA->atkAbility != ABILITY_MAGIC_GUARD && 
+                !BattlerHasInnate(battlerAtk, ABILITY_MAGIC_GUARD) && 
+                accuracy < 75)
                 score -= 6;
             break;
         case EFFECT_RECOIL_25:
-            if (AI_DATA->atkAbility != ABILITY_MAGIC_GUARD && AI_DATA->atkAbility != ABILITY_ROCK_HEAD)
+            if (AI_DATA->atkAbility != ABILITY_MAGIC_GUARD && !BattlerHasInnate(battlerAtk, ABILITY_MAGIC_GUARD) && 
+                AI_DATA->atkAbility != ABILITY_ROCK_HEAD   && !BattlerHasInnate(battlerAtk, ABILITY_ROCK_HEAD))
             {
                 u32 recoilDmg = max(1, AI_THINKING_STRUCT->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 4);
                 if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
@@ -1998,7 +2001,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_RECOIL_33:
         case EFFECT_RECOIL_33_STATUS:
-            if (AI_DATA->atkAbility != ABILITY_MAGIC_GUARD && AI_DATA->atkAbility != ABILITY_ROCK_HEAD)
+            if (AI_DATA->atkAbility != ABILITY_MAGIC_GUARD && !BattlerHasInnate(battlerAtk, ABILITY_MAGIC_GUARD) &&
+                AI_DATA->atkAbility != ABILITY_ROCK_HEAD && !BattlerHasInnate(battlerAtk, ABILITY_ROCK_HEAD))
             {
                 u32 recoilDmg = max(1, AI_THINKING_STRUCT->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 3);
                 if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
@@ -2007,7 +2011,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_RECOIL_50:
-            if (AI_DATA->atkAbility != ABILITY_MAGIC_GUARD && AI_DATA->atkAbility != ABILITY_ROCK_HEAD)
+            if (AI_DATA->atkAbility != ABILITY_MAGIC_GUARD && !BattlerHasInnate(battlerAtk, ABILITY_MAGIC_GUARD)
+                AI_DATA->atkAbility != ABILITY_ROCK_HEAD && !BattlerHasInnate(battlerAtk, ABILITY_ROCK_HEAD))
             {
                 u32 recoilDmg = max(1, AI_THINKING_STRUCT->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 2);
                 if (!ShouldUseRecoilMove(battlerAtk, battlerDef, recoilDmg, AI_THINKING_STRUCT->movesetIndex))
