@@ -3157,9 +3157,9 @@ static const u8 sHoneyDesc[] = _(
     "Pokémon when used.");
 
 static const u8 sIronPillDesc[] = _(
-    "Slows down the\n"
-    "Pokémon that\n"
-	"consumes it");
+    "Sets Speed IVs\n"
+    "to 0. Use again to\n"
+	"set back to 31.");
 
 static const u8 sMuscleFeatherDesc[] = _(
     "An item that raises\n"

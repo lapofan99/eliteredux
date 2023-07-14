@@ -35941,8 +35941,8 @@ static const struct TrainerMonItemCustomMoves sParty_GlaciaInsane[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_DEWGONG, // Glacia-E, Mixed Wall, Leftovers, Fur Coat, North Wind
-    .heldItem = ITEM_LEFTOVERS,
+    .species = SPECIES_DEWGONG, // Glacia-E, Mixed Wall, Light Clay, Fur Coat, North Wind
+    .heldItem = ITEM_LIGHT_CLAY,
     .ability = 0, // ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_PERMAFROST},
     // .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
     .ivs = {31, 0, 31, 31, 31, 31},
