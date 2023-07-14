@@ -2938,8 +2938,8 @@ bool32 ShouldPoisonSelf(u8 battler, u16 ability)
       || ability == ABILITY_POISON_HEAL
       || ability == ABILITY_QUICK_FEET
       || ability == ABILITY_MAGIC_GUARD
-      || (ability == ABILITY_TOXIC_BOOST && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
-      || (ability == ABILITY_GUTS && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
+      || ((ability == ABILITY_TOXIC_BOOST || BattlerHasInnate(battler, ABILITY_TOXIC_BOOST))&& HasMoveWithSplit(battler, SPLIT_PHYSICAL))
+      || ((ability == ABILITY_GUTS || BattlerHasInnate(battler, ABILITY_GUTS))&& HasMoveWithSplit(battler, SPLIT_PHYSICAL))
       || HasMoveEffect(battler, EFFECT_FACADE)
       || HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)))
         return TRUE;    // battler can be poisoned and has move/ability that synergizes with being poisoned
@@ -3026,8 +3026,8 @@ bool32 ShouldBurnSelf(u8 battler, u16 ability)
      ability == ABILITY_QUICK_FEET
       || ability == ABILITY_HEATPROOF
       || ability == ABILITY_MAGIC_GUARD
-      || (ability == ABILITY_FLARE_BOOST && HasMoveWithSplit(battler, SPLIT_SPECIAL))
-      || (ability == ABILITY_GUTS && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
+      || ((ability == ABILITY_FLARE_BOOST || BattlerHasInnate(battler, ABILITY_FLARE_BOOST)) && HasMoveWithSplit(battler, SPLIT_SPECIAL))
+      || ((ability == ABILITY_GUTS || BattlerHasInnate(battler, ABILITY_GUTS)) && HasMoveWithSplit(battler, SPLIT_PHYSICAL))
       || HasMoveEffect(battler, EFFECT_FACADE)
       || HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT)))
         return TRUE;
