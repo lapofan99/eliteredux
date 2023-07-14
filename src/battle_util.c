@@ -7022,6 +7022,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
+              && gBattleMons[gBattlerAttacker].ability != ABILITY_MAGIC_GUARD
+              && !BattlerHasInnate(gBattlerAttacker, ABILITY_MAGIC_GUARD)
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
                 #if B_ROUGH_SKIN_DMG >= GEN_4
@@ -7327,6 +7329,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
+             && gBattleMons[gBattlerAttacker].ability != ABILITY_MAGIC_GUARD
+             && !BattlerHasInnate(gBattlerAttacker, ABILITY_MAGIC_GUARD)
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
                 if(BattlerHasInnate(battler, ABILITY_ROUGH_SKIN)){
