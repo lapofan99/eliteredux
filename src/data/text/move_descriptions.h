@@ -31,7 +31,11 @@ static const u8 sFirePunchDescription[] = _(
 
 static const u8 sIcePunchDescription[] = _(
     "An icy punch that may\n"
-    "freeze the foe.");
+    #if B_USE_FROSTBITE == TRUE
+    "leave the foe with frostbite.");
+    #else
+        "freeze the foe.");
+    #endif
 
 static const u8 sThunderPunchDescription[] = _(
     "An electrified punch that\n"
@@ -231,11 +235,27 @@ static const u8 sSurfDescription[] = _(
 
 static const u8 sIceBeamDescription[] = _(
     "Blasts the foe with an icy\n"
-    "beam that may freeze it.");
+    #if B_USE_FROSTBITE == TRUE
+    "beam. May cause frostbite.");
+    #else
+        "beam that may freeze it.");
+    #endif
 
 static const u8 sBlizzardDescription[] = _(
     "Hits the foe with an icy\n"
-    "storm that may freeze it.");
+    #if B_USE_FROSTBITE == TRUE
+        "storm. May cause frostbite.");
+    #else
+        "storm that may freeze it.");
+    #endif
+
+static const u8 sFreezingGlareDescription[] = _(
+    "Shoots psychic power from\n"
+#if B_USE_FROSTBITE == TRUE
+    "the eyes. May frostbite.");
+#else
+    "the eyes. May freeze the foe.");
+#endif
 
 static const u8 sPsybeamDescription[] = _(
     "Fires a peculiar ray that\n"
@@ -3786,7 +3806,11 @@ static const u8 sMoveFourLineDescription_CometPunch[] = _("Hits 2 to 5 times.\nH
 static const u8 sMoveFourLineDescription_MegaPunch[] = _("The foe is slugged\nby a punch with\ngreat power\nIron Fist boost."); // new
 static const u8 sMoveFourLineDescription_PayDay[] = _("Numerous coins are\nhurled at the foe.\nMoney is earned\nafter battle.");
 static const u8 sMoveFourLineDescription_FirePunch[] = _("The foe is punched\nwith a fiery fist.\n10% burn chance.\nIron Fist boost."); // new
-static const u8 sMoveFourLineDescription_IcePunch[] = _("The foe is punched\nwith an icy fist.\n10% freeze chance.\nIron Fist boost."); // new
+#if B_USE_FROSTBITE == TRUE
+    static const u8 sMoveFourLineDescription_IcePunch[] = _("The foe is punched\nwith an icy fist.\n10% frostbite chance.\nIron Fist boost."); // new
+#else
+    static const u8 sMoveFourLineDescription_IcePunch[] = _("The foe is punched\nwith an icy fist.\n10% freeze chance.\nIron Fist boost."); // new
+#endif
 static const u8 sMoveFourLineDescription_ThunderPunch[] = _("A punch with an\nelectrified fist.\n10% paralyze chance.\nIron Fist boost."); // new
 static const u8 sMoveFourLineDescription_Scratch[] = _("Hard, pointed, and\nsharp claws rake\nthe foe.");
 static const u8 sMoveFourLineDescription_ViseGrip[] = _("Huge, impressive\npincers grip and\nsqueeze the foe.\nHigh crit ratio."); // new
@@ -3844,8 +3868,13 @@ static const u8 sMoveFourLineDescription_Mist[] = _("The ally party is\nprotecte
 static const u8 sMoveFourLineDescription_WaterGun[] = _("The foe is struck\nwith a lot of water\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_HydroPump[] = _("A high volume of\nwater is blasted at\nwith high pressure.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_Surf[] = _("A big wave crashes\ndown on the foe.\nField-based."); // new
-static const u8 sMoveFourLineDescription_IceBeam[] = _("The foe is struck\nwith an icy beam.\n10% freeze chance.\nMega Launcher boost"); // new
-static const u8 sMoveFourLineDescription_Blizzard[] = _("The foe is blasted\nwith a blizzard.\n10% freeze chance.\nWeather-based."); // new
+#if B_USE_FROSTBITE == TRUE
+    static const u8 sMoveFourLineDescription_Blizzard[] = _("The foe is blasted\nwith a blizzard.\n10% frostbite chance.\nWeather-based."); // new
+    static const u8 sMoveFourLineDescription_IceBeam[] = _("The foe is struck\nwith an icy beam.\n10% frostbite chance.\nMega Launcher boost"); // new
+#else
+    static const u8 sMoveFourLineDescription_IceBeam[] = _("The foe is struck\nwith an icy beam.\n10% freeze chance.\nMega Launcher boost"); // new
+    static const u8 sMoveFourLineDescription_Blizzard[] = _("The foe is blasted\nwith a blizzard.\n10% freeze chance.\nWeather-based."); // new
+#endif
 static const u8 sMoveFourLineDescription_Psybeam[] = _("A peculiar ray is\nshot at the foe.\n30% confusion.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_BubbleBeam[] = _("A spray of bubbles\nstrikes the foe.\n10% speed drop.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_AuroraBeam[] = _("A rainbow-colored\nattack beam.\n100% attack drop.\nMega Launcher boost"); // new
@@ -4563,7 +4592,11 @@ static const u8 sMoveFourLineDescription_ThunderCage[] = _("The user traps the\n
 static const u8 sMoveFourLineDescription_ThunderCage[] = _("The user traps the\nfoe in a cage of\nelectricity for\ntwo to five turns.");
 #endif
 static const u8 sMoveFourLineDescription_DragonEnergy[] = _("The higher the\nuser's HP, the more\npowerful it is.\nMega Launcher boost"); // new
-static const u8 sMoveFourLineDescription_FreezingGlare[] = _("The user shoots\npsychic power from\nits eyes to attack.\n10% freeze chance."); // new
+#if B_USE_FROSTBITE == TRUE
+    static const u8 sMoveFourLineDescription_FreezingGlare[] = _("The user shoots\npsychic power from\nits eyes to attack.\n10% frostbite chance."); // new
+#else
+    static const u8 sMoveFourLineDescription_FreezingGlare[] = _("The user shoots\npsychic power from\nits eyes to attack.\n10% freeze chance."); // new
+#endif
 static const u8 sMoveFourLineDescription_FieryWrath[] = _("It uses its wrath to\nfuel a fire-like aura\nattack. Has 20%\nflinch chance."); // new
 static const u8 sMoveFourLineDescription_ThunderousKick[] = _("Fast lightning\nkick. It lowers\nthe foe's Defense.\nStriker boost."); // new
 static const u8 sMoveFourLineDescription_GlacialLance[] = _("Strikes by hurling\na blizzard-cloaked\nicicle lance at\nopposing Pokémon.");

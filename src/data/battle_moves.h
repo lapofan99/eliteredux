@@ -119,7 +119,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_ICE_PUNCH] =
     {
-        .effect = EFFECT_FREEZE_HIT,
+         #if B_USE_FROSTBITE == TRUE
+            .effect = EFFECT_FROSTBITE_HIT,
+        #else
+            .effect = EFFECT_FREEZE_HIT,
+        #endif
         .power = 75,
         .type = TYPE_ICE,
         .accuracy = 100,
@@ -951,7 +955,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #else
             .power = 95,
         #endif
-        .effect = EFFECT_FREEZE_HIT,
+         #if B_USE_FROSTBITE == TRUE
+            .effect = EFFECT_FROSTBITE_HIT,
+        #else
+            .effect = EFFECT_FREEZE_HIT,
+        #endif
         .type = TYPE_ICE,
         .accuracy = 100,
         .pp = 10,
@@ -969,7 +977,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #else
             .power = 120,
         #endif
-        .effect = EFFECT_FREEZE_HIT,
+         #if B_USE_FROSTBITE == TRUE
+            .effect = EFFECT_FROSTBITE_HIT,
+        #else
+            .effect = EFFECT_FREEZE_HIT,
+        #endif
         .type = TYPE_ICE,
         .accuracy = 80,
         .pp = 5,
@@ -2908,7 +2920,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_POWDER_SNOW] =
     {
-        .effect = EFFECT_FREEZE_HIT,
+         #if B_USE_FROSTBITE == TRUE
+            .effect = EFFECT_FROSTBITE_HIT,
+        #else
+            .effect = EFFECT_FREEZE_HIT,
+        #endif
         .power = 40,
         .type = TYPE_ICE,
         .accuracy = 100,
@@ -11705,7 +11721,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_FREEZING_GLARE] =
     {
         .power = 90,
-        .effect = EFFECT_FREEZE_HIT,
+         #if B_USE_FROSTBITE == TRUE
+            .effect = EFFECT_FROSTBITE_HIT,
+        #else
+            .effect = EFFECT_FREEZE_HIT,
+        #endif
         .type = TYPE_PSYCHIC,
         .accuracy = 100,
         .pp = 10,

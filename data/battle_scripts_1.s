@@ -286,7 +286,11 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHealPulse               @ EFFECT_HEAL_PULSE
 	.4byte BattleScript_EffectQuash                   @ EFFECT_QUASH
 	.4byte BattleScript_EffectIonDeluge               @ EFFECT_ION_DELUGE
-	.4byte BattleScript_EffectFreezeHit               @ EFFECT_FREEZE_DRY
+	#if B_USE_FROSTBITE == TRUE
+		.4byte BattleScript_EffectFrostbiteHit            @ EFFECT_FREEZE_DRY
+	#else
+		.4byte BattleScript_EffectFreezeHit               @ EFFECT_FREEZE_DRY
+	#endif
 	.4byte BattleScript_EffectTopsyTurvy              @ EFFECT_TOPSY_TURVY
 	.4byte BattleScript_EffectMistyTerrain            @ EFFECT_MISTY_TERRAIN
 	.4byte BattleScript_EffectGrassyTerrain           @ EFFECT_GRASSY_TERRAIN
@@ -406,6 +410,47 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectRisingVoltage			  @ EFFECT_RISING_VOLTAGE
 	.4byte BattleScript_EffectScaleShot			  	  @ EFFECT_SCALE_SHOT
 	.4byte BattleScript_EffectBeakBlast				  @ EFFECT_BEAK_BLAST
+	.4byte BattleScript_EffectHit                     @ EFFECT_EXCALIBUR
+	.4byte BattleScript_EffectFrostbiteHit            @ EFFECT_FROSTBITE_HIT
+
+BattleScript_EffectFrostbiteHit::
+	setmoveeffect MOVE_EFFECT_FROSTBITE
+	goto BattleScript_EffectHit
+
+BattleScript_FrostbiteTurnDmg::
+	printstring STRINGID_PKMNHURTBYFROSTBITE
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_DoStatusTurnDmg
+
+BattleScript_MoveUsedUnfrostbite::
+	printfromtable gFrostbiteHealedStringIds
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_ATTACKER
+	return
+
+BattleScript_FrostbiteHealedViaFireMove::
+	printstring STRINGID_PKMNFROSTBITEHEALED
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_TARGET
+	return
+
+BattleScript_MoveEffectFrostbite::
+	statusanimation BS_EFFECT_BATTLER
+	printfromtable gGotFrostbiteStringIds
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_UpdateEffectStatusIconRet
+
+BattleScript_BerryCureFsbEnd2::
+	call BattleScript_BerryCureFrzRet
+	end2
+
+BattleScript_BerryCureFsbRet::
+	playanimation BS_SCRIPTING, B_ANIM_HELD_ITEM_EFFECT, NULL
+	printstring STRINGID_PKMNSITEMHEALEDFROSTBITE
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_SCRIPTING
+	removeitem BS_SCRIPTING
+	return
 
 BattleScript_EffectBeakBlast::
 	attackcanceler

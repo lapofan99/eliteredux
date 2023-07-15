@@ -634,8 +634,15 @@
 #define STRINGID_HEATUPBEAK                           632
 #define STRINGID_BATTLERABILITYLOWEREDTARGETSTAT      664
 #define STRINGID_CANACTFASTERTHANKSTOITEM             665
+#define STRINGID_PKMNHURTBYFROSTBITE                  666
+#define STRINGID_PKMNGOTFROSTBITE                     667
+#define STRINGID_PKMNSITEMHEALEDFROSTBITE             668
+#define STRINGID_ATTACKERHEALEDITSFROSTBITE           669
+#define STRINGID_PKMNFROSTBITEHEALED                  670
+#define STRINGID_PKMNFROSTBITEHEALED2                 671
+#define STRINGID_PKMNFROSTBITEHEALEDBY                672
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_CANACTFASTERTHANKSTOITEM + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNFROSTBITEHEALEDBY + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -836,6 +843,10 @@
 // gGotDefrostedStringIds
 #define B_MSG_DEFROSTED         0
 #define B_MSG_DEFROSTED_BY_MOVE 1
+
+// gFrostbiteHealedStringIds
+#define B_MSG_FROSTBITE_HEALED         0
+#define B_MSG_FROSTBITE_HEALED_BY_MOVE 1
 
 // gBattlePalaceFlavorTextTable
 #define B_MSG_GLINT_IN_EYE   0

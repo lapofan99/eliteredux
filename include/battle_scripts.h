@@ -450,4 +450,11 @@ extern const u8 BattleScript_PrintDamageDoneString[];
 extern const u8 BattleScript_BeakBlastSetUp[];
 extern const u8 BattleScript_BeakBlastBurn[];
 
+extern const u8 BattleScript_FrostbiteTurnDmg[];
+extern const u8 BattleScript_MoveUsedUnfrostbite[];
+extern const u8 BattleScript_FrostbiteHealedViaFireMove[];
+extern const u8 BattleScript_MoveEffectFrostbite[];
+extern const u8 BattleScript_BerryCureFsbEnd2[];
+extern const u8 BattleScript_BerryCureFsbRet[];
+
 #endif // GUARD_BATTLE_SCRIPTS_H

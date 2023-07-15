@@ -389,9 +389,10 @@
 #define EFFECT_RISING_VOLTAGE 383
 #define EFFECT_SCALE_SHOT 384
 #define EFFECT_BEAK_BLAST 385
-// Darky's Custom Effects (Moves)
-#define EFFECT_EXCALIBUR 386
 
-#define NUM_BATTLE_MOVE_EFFECTS 387 // always needs to be +1 from last effect
+#define EFFECT_EXCALIBUR     386        // Custom Effect
+#define EFFECT_FROSTBITE_HIT 387
+
+#define NUM_BATTLE_MOVE_EFFECTS 388 // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

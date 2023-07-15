@@ -125,6 +125,8 @@ bool32 IsSemiInvulnerable(u8 battlerDef, u16 move);
 
 // status checks
 bool32 AI_CanBeBurned(u8 battler, u16 ability);
+bool32 AI_CanGetFrostbite(u8 battler, u16 ability);
+bool32 AI_CanGiveFrostbite(u8 battlerAtk, u8 battlerDef, u16 defAbility, u8 battlerAtkPartner, u16 move, u16 partnerMove);
 bool32 AI_CanBeConfused(u8 battler, u16 ability);
 bool32 AI_CanSleep(u8 battler, u16 ability);
 bool32 IsBattlerIncapacitated(u8 battler, u16 ability);
@@ -169,5 +171,8 @@ void IncreaseBurnScore(u8 battlerAtk, u8 battlerdef, u16 move, s16 *score);
 void IncreaseParalyzeScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 void IncreaseSleepScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 void IncreaseConfusionScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
+void IncreasePoisonScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
+void IncreaseBurnScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
+void IncreaseFrostbiteScore(u8 battlerAtk, u8 battlerDef, u16 move, s16 *score);
 
 #endif //GUARD_BATTLE_AI_UTIL_H
