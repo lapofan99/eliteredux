@@ -878,7 +878,6 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->permanentRepel               = sOptions->sel_custom[MENUITEM_CUSTOM_PERMANENT_REPEL];
     gSaveBlock2Ptr->damageDone                   = sOptions->sel_custom[MENUITEM_CUSTOM_DISPLAY_DAMAGE];
     gSaveBlock2Ptr->askForNickname               = sOptions->sel_custom[MENUITEM_CUSTOM_ASK_FOR_NICKNAME];
-
     
     gSaveBlock2Ptr->enableEvs                      = sOptions->sel_custom[MENUITEM_CUSTOM_ENABLE_EVS];
     gSaveBlock2Ptr->playerAI                       = sOptions->sel_custom[MENUITEM_CUSTOM_PLAYER_AI];
