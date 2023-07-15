@@ -4967,14 +4967,17 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     // Battler 1
     speedBattler1 = GetBattlerTotalSpeedStat(battler1);
     holdEffectBattler1 = GetBattlerHoldEffect(battler1, TRUE);
+
     // Quick Draw
     if (!ignoreChosenMoves && GetBattlerAbility(battler1) == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && Random() % 100 < 30)
         gProtectStructs[battler1].quickDraw = TRUE;
+
     // Opportunist
     if (!ignoreChosenMoves && (GetBattlerAbility(battler1) == ABILITY_OPPORTUNIST || BattlerHasInnate(battler1, ABILITY_OPPORTUNIST)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
         && gBattleMons[battler2].hp <= gBattleMons[battler2].maxHP / 2 && gBattleMoves[gBattleMons[battler1].moves[*(gBattleStruct->chosenMovePositions + battler1)]].target == MOVE_TARGET_SELECTED){
             gProtectStructs[battler1].quickDraw = TRUE;
     }
+    
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler1].quickDraw
      && ((holdEffectBattler1 == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * GetBattlerHoldEffectParam(battler1)) / 100)

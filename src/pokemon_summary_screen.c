@@ -4147,7 +4147,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
 	x = 60;
 	y = 4;
 
-    if(!isEnemyMon){//Enemy Mons have disabled randomized innates/abilies
+    if(!isEnemyMon){ //Enemy Mons have disabled randomized innates/abilies 
         innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
         innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
         innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);

@@ -7946,8 +7946,14 @@ static void RecalcBattlerStats(u32 battler, struct Pokemon *mon)
     gBattleMons[battler].spAttack = GetMonData(mon, MON_DATA_SPATK);
     gBattleMons[battler].spDefense = GetMonData(mon, MON_DATA_SPDEF);
     gBattleMons[battler].ability = GetMonAbility(mon);
-    gBattleMons[battler].type1 = gBaseStats[gBattleMons[battler].species].type1;
-    gBattleMons[battler].type2 = gBaseStats[gBattleMons[battler].species].type2;
+
+    if(GetBattlerSide(battler) == B_SIDE_PLAYER) //Only the player has a randomized ability
+        gBattleMons[battler].ability = RandomizeAbility(GetAbilityBySpecies(gBattleMons[battler].species, gBattleMons[battler].abilityNum), gBattleMons[battler].species, gBattleMons[battler].personality);
+    else
+        gBattleMons[battler].ability = GetAbilityBySpecies(gBattleMons[battler].species, gBattleMons[battler].abilityNum);
+                
+    gBattleMons[battler].type1 = RandomizeType(gBaseStats[gBattleMons[battler].species].type1, gBattleMons[battler].species, gBattleMons[battler].personality, TRUE);
+    gBattleMons[battler].type2 = RandomizeType(gBaseStats[gBattleMons[battler].species].type2, gBattleMons[battler].species, gBattleMons[battler].personality, FALSE);
 }
 
 static u32 GetHighestStatId(u32 battlerId)
