@@ -566,7 +566,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if (moveType == TYPE_FLYING
           && (AI_DATA->defAbility == ABILITY_AERODYNAMICS || BattlerHasInnate(battlerDef, ABILITY_AERODYNAMICS)))
         {
-            RETURN_SCORE_MINUS(20);
+            RETURN_SCORE_MINUS(30);
         }
 
         if ((moveType == TYPE_FLYING || moveType == TYPE_FIRE)
