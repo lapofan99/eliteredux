@@ -1271,7 +1271,7 @@ static u8 DexNavTryGenerateMonLevel(u16 species, u8 environment)
     u8 levelBase = ChooseWildMonLevel();
     u8 levelBonus = gSaveBlock1Ptr->dexNavChain / 5;
 
-    if (GetEncounterLevelFromMapData(species, environment) == MON_LEVEL_NONEXISTENT)
+    if (GetEncounterLevelFromMapData(species, environment) == MON_LEVEL_NONEXISTENT || gMapHeader.mapType == MAP_TYPE_UNDERWATER)
         return MON_LEVEL_NONEXISTENT; //species not found in the area
     
     if (Random() % 100 < 4)
