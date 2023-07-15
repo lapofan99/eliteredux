@@ -1999,7 +1999,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .type = TYPE_FIRE,
         .accuracy = 85,
         .pp = 5,
-        .secondaryEffectChance = 10,
+        .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST,
@@ -2517,7 +2517,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_ROCK_SLIDE] =
     {
         .effect = EFFECT_FLINCH_HIT,
-        .power = 80,
+        .power = 75,
         .type = TYPE_ROCK,
         .accuracy = 100,
         .pp = 10,
