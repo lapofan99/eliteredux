@@ -13253,9 +13253,9 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_LOPUNNY_MEGA] =
     {
     .baseHP        = 65,
-    .baseAttack    = 136,
+    .baseAttack    = 146,
     .baseDefense   = 94,
-    .baseSpeed     = 135,
+    .baseSpeed     = 145,
     .baseSpAttack  = 74,
     .baseSpDefense = 96,
     .type1 = TYPE_NORMAL,
