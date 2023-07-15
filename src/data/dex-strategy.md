@@ -38,6 +38,17 @@ SPECIES_CHARIZARD
 	.nature = NATURE_TIMID,
     .moves = MOVE_SOLAR_BEAM, MOVE_SCORCHING_SANDS, MOVE_DRACO_METEOR, MOVE_HYPER_VOICE
     }
+charizard mega x
+{
+    name = Physical Setup Sweeper
+    item = charizardite x
+    ability = Tough Claws
+    evs = 0, 252, 4, 0, 0, 252
+    nature = Jolly
+    moves = Dragon dance, Flare blitz, Dragon Rush / Dragon Claw, Dual Wingbeat
+   comment = Switch in on a Pokémon incapable of effectively attacking you, then Mega Evolve and set up as much as you can, and then sweep with your STAB moves or Dual Wingbeat, which is boosted by Levitate.
+    .tags = Singles, Offensive
+}
 SPECIES_BLASTOISE_MEGA
 {
     .name = Singles Shell Smash
