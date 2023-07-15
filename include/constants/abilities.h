@@ -332,7 +332,7 @@
 #define ABILITY_COIL_UP          (ABILITIES_COUNT_LATEST_GEN + 34) // The Pokémon enters the battlefield coiled up. Coil: The next time the Pokémon uses a biting move, its priority is increased 1.
 #define ABILITY_FOSSILIZED       (ABILITIES_COUNT_LATEST_GEN + 35) // Only takes half damage from Rock-type moves
 #define ABILITY_MAGICAL_DUST     (ABILITIES_COUNT_LATEST_GEN + 36) // When is hit by contact move, it leaves a Magic Powder that adds Psychic-type to the target.
-#define ABILITY_DREAMCATCHER     (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 20% for each Pokemon asleep on the field.
+#define ABILITY_DREAMCATCHER     (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 50% if a Pokemon is asleep on the field.
 #define ABILITY_NOCTURNAL        (ABILITIES_COUNT_LATEST_GEN + 38) // Boosts Dark-type moves by 25%, takes 25% less from Dark and Fairy
 #define ABILITY_SELF_SUFFICIENT  (ABILITIES_COUNT_LATEST_GEN + 39) // Heals 1/16 at the end of every turn.
 #define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Ground-type and receive a 20% power boost.
