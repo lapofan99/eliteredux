@@ -7017,7 +7017,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_ROUGH_SKIN:
-        case ABILITY_IRON_BARBS:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7038,6 +7037,30 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
+                effect++;
+            }
+            break;
+        case ABILITY_IRON_BARBS:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && gBattleMons[gBattlerAttacker].ability != ABILITY_MAGIC_GUARD
+             && !BattlerHasInnate(gBattlerAttacker, ABILITY_MAGIC_GUARD)
+             && gBattleMons[gBattlerAttacker].ability != ABILITY_IMPENETRABLE
+             && !BattlerHasInnate(gBattlerAttacker, ABILITY_IMPENETRABLE)
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+                #if B_ROUGH_SKIN_DMG >= GEN_4
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
+                #else
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
+                #endif
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_IronBarbsActivates;
                 effect++;
             }
             break;
@@ -7325,8 +7348,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        if(BattlerHasInnate(battler, ABILITY_ROUGH_SKIN) || 
-            BattlerHasInnate(battler, ABILITY_IRON_BARBS)){
+        //Rough Skin
+        if(BattlerHasInnate(battler, ABILITY_ROUGH_SKIN)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -7337,14 +7360,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !BattlerHasInnate(gBattlerAttacker, ABILITY_IMPENETRABLE)
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                if(BattlerHasInnate(battler, ABILITY_ROUGH_SKIN)){
-					gBattleScripting.abilityPopupOverwrite = ABILITY_ROUGH_SKIN;
-					gLastUsedAbility = ABILITY_ROUGH_SKIN;
-				}
-				else{
-					gBattleScripting.abilityPopupOverwrite = ABILITY_IRON_BARBS;
-					gLastUsedAbility = ABILITY_IRON_BARBS;
-				}
+                gBattleScripting.abilityPopupOverwrite = ABILITY_ROUGH_SKIN;
+				gLastUsedAbility = ABILITY_ROUGH_SKIN;
 
                 #if B_ROUGH_SKIN_DMG >= GEN_4
                     gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
@@ -7356,6 +7373,35 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
+                effect++;
+            }
+        }
+
+        //Iron Barbs
+        if(BattlerHasInnate(battler, ABILITY_IRON_BARBS)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && gBattleMons[gBattlerAttacker].ability != ABILITY_MAGIC_GUARD
+             && !BattlerHasInnate(gBattlerAttacker, ABILITY_MAGIC_GUARD)
+             && gBattleMons[gBattlerAttacker].ability != ABILITY_IMPENETRABLE
+             && !BattlerHasInnate(gBattlerAttacker, ABILITY_IMPENETRABLE)
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_IRON_BARBS;
+				gLastUsedAbility = ABILITY_IRON_BARBS;
+
+                #if B_ROUGH_SKIN_DMG >= GEN_4
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 8;
+                #else
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 16;
+                #endif
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_IronBarbsActivates;
                 effect++;
             }
         }

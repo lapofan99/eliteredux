@@ -8760,6 +8760,13 @@ BattleScript_HurtAttacker:
 	return
 
 BattleScript_RoughSkinActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_ROUGH_SKIN
+	call BattleScript_AbilityPopUp
+	call BattleScript_HurtAttacker
+	return
+
+BattleScript_IronBarbsActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_IRON_BARBS
 	call BattleScript_AbilityPopUp
 	call BattleScript_HurtAttacker
 	return
