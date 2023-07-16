@@ -3741,7 +3741,7 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SETUP_FIRST_TURN | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_Brawly1),
         .party = {.ItemCustomMoves = sParty_Brawly1},
-        //.partyInsane = {.ItemCustomMoves = sParty_Brawly1Insane},
+        .partyInsane = {.ItemCustomMoves = sParty_Brawly1Insane},
     },
 
     [TRAINER_WATTSON_1] =
@@ -3756,7 +3756,7 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SETUP_FIRST_TURN | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_Wattson1),
         .party = {.ItemCustomMoves = sParty_Wattson1},
-        //.partyInsane = {.ItemCustomMoves = sParty_Wattson1Insane},
+        .partyInsane = {.ItemCustomMoves = sParty_Wattson1Insane},
     },
 
     [TRAINER_FLANNERY_1] =
@@ -3771,7 +3771,7 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SETUP_FIRST_TURN | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_Flannery1),
         .party = {.ItemCustomMoves = sParty_Flannery1},
-        //.partyInsane = {.ItemCustomMoves = sParty_Flannery1Insane},
+        .partyInsane = {.ItemCustomMoves = sParty_Flannery1Insane},
     },
 
     [TRAINER_NORMAN_1] =

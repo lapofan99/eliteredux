@@ -224,7 +224,7 @@
 #define ABILITY_LIQUID_VOICE 204 // All sound-based moves become Water-type moves and boosts them by 20%.
 #define ABILITY_TRIAGE 205 // Gives priority to healing moves.
 #define ABILITY_GALVANIZE 206 // All Normal-type moves become Electric-type moves and boosts them by 20%.
-#define ABILITY_SURGE_SURFER 207 // Doubles the Pokémon's Speed stat on Electric Terrain.
+#define ABILITY_SURGE_SURFER 207 // Doubles the Pokémon's Speed stat on Electric Terrain. Works while levitating.
 #define ABILITY_SCHOOLING 208 // Changes the Pokémon's form when it is Level 20 and has more than 25% Hit Points. When Hit Points drop below 25%, it changes back to Solo Form
 #define ABILITY_DISGUISE 209 // *No innate* Once per battle, the Pokémon can withstand one damaging attack without receiving any damage. Damage inflicted through entry hazards, weather or status conditions will not break the disguise. Damage from Confusion will break the Disguise. It causes 1/8th of max Hit Point damage when it breaks
 #define ABILITY_BATTLE_BOND 210 // *No innate* Defeating an opposing Pokémon strengthens the Pokémon's bond with its Trainer, and it becomes Ash-Greninja. Water Shuriken gets more powerful.

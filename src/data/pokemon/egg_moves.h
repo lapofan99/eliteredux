@@ -4304,6 +4304,7 @@ const u16 gEggMoves[] = {
         MOVE_POWER_UP_PUNCH),
 
     egg_moves(HATENNA,
+        MOVE_HYPER_VOICE, // new
         MOVE_AROMATIC_MIST,
         MOVE_NUZZLE,
         MOVE_AFTER_YOU,

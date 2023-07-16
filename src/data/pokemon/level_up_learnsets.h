@@ -13428,7 +13428,8 @@ static const struct LevelUpMove sKlangLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sKlinklangLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_MAGNETIC_FLUX),
+	LEVEL_UP_MOVE( 0, MOVE_EARTH_POWER), // new
+    LEVEL_UP_MOVE( 1, MOVE_MAGNETIC_FLUX),
 	LEVEL_UP_MOVE( 1, MOVE_RISING_VOLTAGE), // new
 	LEVEL_UP_MOVE( 1, MOVE_BIND),
 	LEVEL_UP_MOVE( 1, MOVE_CHARGE),
@@ -15092,6 +15093,7 @@ static const struct LevelUpMove sPanchamLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sPangoroLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_WICKED_BLOW), // new
     LEVEL_UP_MOVE( 0, MOVE_BULLET_PUNCH),
 	LEVEL_UP_MOVE( 1, MOVE_HAMMER_ARM),
 	LEVEL_UP_MOVE( 1, MOVE_LOW_SWEEP),
@@ -15106,6 +15108,7 @@ static const struct LevelUpMove sPangoroLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(25, MOVE_CIRCLE_THROW),
 	LEVEL_UP_MOVE(27, MOVE_VITAL_THROW),
 	LEVEL_UP_MOVE(35, MOVE_BODY_SLAM),
+    LEVEL_UP_MOVE(38, MOVE_MACH_PUNCH), // new
 	LEVEL_UP_MOVE(42, MOVE_CRUNCH),
 	LEVEL_UP_MOVE(45, MOVE_ENTRAINMENT),
 	LEVEL_UP_MOVE(48, MOVE_PARTING_SHOT),

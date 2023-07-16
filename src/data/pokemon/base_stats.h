@@ -5271,10 +5271,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_FERALIGATR] =
     {
     .baseHP        = 85,
-    .baseAttack    = 105,
+    .baseAttack    = 125, // 105 vanilla
     .baseDefense   = 100,
     .baseSpeed     = 88,
-    .baseSpAttack  = 69,
+    .baseSpAttack  = 49, // 79 vanilla
     .baseSpDefense = 83,
     .type1 = TYPE_WATER,
     .type2 = TYPE_DARK,
@@ -12892,7 +12892,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FAIRY,
     .abilities = {ABILITY_GLUTTONY, ABILITY_QUICK_FEET, ABILITY_ELECTRIC_SURGE},
-    .innates = {ABILITY_FUR_COAT, ABILITY_PLUS, ABILITY_VOLT_ABSORB},
+    .innates = {ABILITY_FUR_COAT, ABILITY_REGENERATOR, ABILITY_VOLT_ABSORB},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
     },
@@ -18715,9 +18715,10 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_MINERAL,
     .eggGroup2 = EGG_GROUP_MINERAL,
     .abilities = {ABILITY_STEELWORKER, ABILITY_NONE, ABILITY_NONE},
-    .innates = {ABILITY_PLUS, ABILITY_VOLT_ABSORB, ABILITY_FULL_METAL_BODY},
+    .innates = {ABILITY_PLUS, ABILITY_MULTI_HEADED, ABILITY_FULL_METAL_BODY},
     .bodyColor = BODY_COLOR_GRAY,
     .noFlip = TRUE,
+    .flags = F_THREE_HEADED,
     },
 
 [SPECIES_KLANG] =
@@ -18740,9 +18741,10 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_MINERAL,
     .eggGroup2 = EGG_GROUP_MINERAL,
     .abilities = {ABILITY_STEELWORKER, ABILITY_NONE, ABILITY_GALVANIZE},
-    .innates = {ABILITY_PLUS, ABILITY_VOLT_ABSORB, ABILITY_FULL_METAL_BODY},
+    .innates = {ABILITY_PLUS, ABILITY_MULTI_HEADED, ABILITY_FULL_METAL_BODY},
     .bodyColor = BODY_COLOR_GRAY,
     .noFlip = TRUE,
+    .flags = F_THREE_HEADED,
     },
 
 [SPECIES_KLINKLANG] =
@@ -18751,7 +18753,7 @@ const struct BaseStats gBaseStats[] =
     .baseAttack    = 100,
     .baseDefense   = 115,
     .baseSpeed     = 90,
-    .baseSpAttack  = 70,
+    .baseSpAttack  = 100, // 70 vanilla
     .baseSpDefense = 85,
     .type1 = TYPE_STEEL,
     .type2 = TYPE_STEEL,
@@ -18765,9 +18767,10 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_MINERAL,
     .eggGroup2 = EGG_GROUP_MINERAL,
     .abilities = {ABILITY_STEELWORKER, ABILITY_ELECTRIC_SURGE, ABILITY_GALVANIZE},
-    .innates = {ABILITY_IRON_BARBS, ABILITY_VOLT_ABSORB, ABILITY_FULL_METAL_BODY},
+    .innates = {ABILITY_IRON_BARBS, ABILITY_MULTI_HEADED, ABILITY_IMPENETRABLE},
     .bodyColor = BODY_COLOR_GRAY,
     .noFlip = TRUE,
+    .flags = F_THREE_HEADED,
     },
 
 [SPECIES_TYNAMO] =
