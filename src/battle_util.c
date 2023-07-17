@@ -4161,7 +4161,7 @@ bool32 ShouldChangeFormHpBased(u32 battler)
             gBattlerAttacker = battler;
             gBattleMons[battler].species = SPECIES_CASTFORM_SNOWY;
 			return TRUE;
-        }else if(!(gBattleWeather & (WEATHER_HAIL_ANY)) && gBattleMons[battler].species != SPECIES_CASTFORM){
+        }else if(!(gBattleWeather & (WEATHER_ANY)) && gBattleMons[battler].species != SPECIES_CASTFORM){
             gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FORECAST;
             gBattlerAttacker = battler;
             gBattleMons[battler].species = SPECIES_CASTFORM;
