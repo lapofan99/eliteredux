@@ -2697,8 +2697,8 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_RAPIDASH_GALARIAN] =
     {
-    .baseHP        = 65,
-    .baseAttack    = 100,
+    .baseHP        = 85, // 65 vanilla
+    .baseAttack    = 110, // 100 vanilla
     .baseDefense   = 70,
     .baseSpeed     = 105,
     .baseSpAttack  = 80,
@@ -2715,7 +2715,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
     .abilities = {ABILITY_DAZZLING, ABILITY_PASTEL_VEIL, ABILITY_KEEN_EDGE},
-    .innates = {ABILITY_PIXILATE, ABILITY_PSYCHIC_MIND, ABILITY_NATURAL_CURE},
+    .innates = {ABILITY_PIXILATE, ABILITY_PSYCHIC_MIND, ABILITY_STRIKER},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
     .flags = F_GALARIAN_FORM,

@@ -4540,6 +4540,7 @@ static const struct LevelUpMove sGirafarigLevelUpLearnset[] = {
     LEVEL_UP_MOVE(19, MOVE_PSYBEAM),
     LEVEL_UP_MOVE(23, MOVE_AGILITY),
     LEVEL_UP_MOVE(28, MOVE_DOUBLE_HIT),
+    LEVEL_UP_MOVE(30, MOVE_PSYCHO_BOOST), // new
     LEVEL_UP_MOVE(32, MOVE_ZEN_HEADBUTT),
     LEVEL_UP_MOVE(37, MOVE_CRUNCH),
     #ifdef REBALANCED_VERSION
@@ -4549,9 +4550,6 @@ static const struct LevelUpMove sGirafarigLevelUpLearnset[] = {
     LEVEL_UP_MOVE(41, MOVE_BATON_PASS),
 	LEVEL_UP_MOVE(43, MOVE_PSYCHIC),
     LEVEL_UP_MOVE(46, MOVE_NASTY_PLOT),
-    #ifdef REBALANCED_VERSION
-        LEVEL_UP_MOVE(50, MOVE_PSYCHO_BOOST),
-    #endif
     LEVEL_UP_END
 };
 
@@ -10320,6 +10318,7 @@ static const struct LevelUpMove sRhyperiorLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sTangrowthLevelUpLearnset[] = {
+	LEVEL_UP_MOVE( 0, MOVE_HIGH_HORSEPOWER), // new
 	LEVEL_UP_MOVE( 1, MOVE_BLOCK),
 	LEVEL_UP_MOVE( 1, MOVE_INGRAIN),
 	LEVEL_UP_MOVE( 1, MOVE_CONSTRICT),
@@ -12406,6 +12405,7 @@ static const struct LevelUpMove sDarmanitanLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(32, MOVE_UPROAR),
 	LEVEL_UP_MOVE(38, MOVE_BELLY_DRUM),
 	LEVEL_UP_MOVE(44, MOVE_FLARE_BLITZ),
+	LEVEL_UP_MOVE(47, MOVE_HIGH_HORSEPOWER), // new
 	LEVEL_UP_MOVE(50, MOVE_THRASH),
 	LEVEL_UP_MOVE(54, MOVE_OVERHEAT),
 	LEVEL_UP_MOVE(56, MOVE_SUPERPOWER),
@@ -20386,6 +20386,7 @@ static const struct LevelUpMove sDarmanitanGalarianLevelUpLearnset[] = {
     LEVEL_UP_MOVE(32, MOVE_UPROAR),
     LEVEL_UP_MOVE(38, MOVE_BELLY_DRUM),
     LEVEL_UP_MOVE(44, MOVE_BLIZZARD),
+	LEVEL_UP_MOVE(47, MOVE_HIGH_HORSEPOWER), // new
     LEVEL_UP_MOVE(50, MOVE_THRASH),
     LEVEL_UP_MOVE(56, MOVE_SUPERPOWER),
     LEVEL_UP_END
