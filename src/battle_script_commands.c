@@ -3729,21 +3729,31 @@ void SetMoveEffect(bool32 primary, u32 certain)
 
 static void Cmd_seteffectwithchance(void)
 {
-    u32 percentChance;
+    u32 percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
     u8 moveType = gBattleMoves[gCurrentMove].type;
     u8 moveEffect = gBattleMoves[gCurrentMove].effect;
 
+    //Serene Grace boost
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || BattlerHasInnate(gBattlerAttacker, ABILITY_SERENE_GRACE))
-        percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
-    else if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PYROMANCY || BattlerHasInnate(gBattlerAttacker, ABILITY_PYROMANCY))
+        percentChance = percentChance * 2;
+
+    //Pyromancy boost
+    if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PYROMANCY || BattlerHasInnate(gBattlerAttacker, ABILITY_PYROMANCY))
              && moveType == TYPE_FIRE
              && moveEffect == EFFECT_BURN_HIT)
-        percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 5;
-    else if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PRECISE_FIST || BattlerHasInnate(gBattlerAttacker, ABILITY_PRECISE_FIST))
+        percentChance = percentChance * 5;
+
+    //Precise fist boosts
+    if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PRECISE_FIST || BattlerHasInnate(gBattlerAttacker, ABILITY_PRECISE_FIST))
              && (gBattleMoves[gCurrentMove].flags & FLAG_IRON_FIST_BOOST))
-        percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance * 2;
-    else
-        percentChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
+        percentChance = percentChance * 2;
+    
+    //Frostbite are more likely to occour during Hail
+    if (moveEffect == EFFECT_FROSTBITE_HIT && IsBattlerWeatherAffected(gBattlerTarget, WEATHER_HAIL_ANY))
+        percentChance = percentChance * 3;
+
+    if(percentChance > 100)
+        percentChance = 100;
 
     if (gBattleScripting.moveEffect & MOVE_EFFECT_CERTAIN
         && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
