@@ -8787,6 +8787,7 @@ BattleScript_FriskActivates::
 	end3
 
 BattleScript_ImposterActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_IMPOSTER
 	transformdataexecution
 	call BattleScript_AbilityPopUp
 	playmoveanimation BS_ATTACKER, MOVE_TRANSFORM
