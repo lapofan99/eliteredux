@@ -1126,3 +1126,53 @@ LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily: @ 821B3FC
 	.string "{POKEBLOCK}s if you have more people.$"
 
 `
+script LilycoveCity_ContestLobby_EventScript_BrokenMachine{
+	lockall
+	msgbox(format("It looks like the machine is broken, it's probably better to leave it as is."), MSGBOX_DEFAULT)
+	releaseall
+	end
+}
+
+script LilycoveCity_ContestLobby_EventScript_PokeblockManiac{
+	faceplayer
+	lockall
+	msgbox(format("I played a lot with this {POKEBLOCK} machine and I broke it so nobody can play, but now I have a lot of {POKEBLOCK}s, do you want some?."), MSGBOX_YESNO)
+	switch(var(VAR_RESULT)){
+		case NO:
+			msgbox(format("More for me I guess."), MSGBOX_NPC)
+		break
+		case YES:
+			msgbox(format("Take them all!"), MSGBOX_NPC)
+			playfanfare(MUS_OBTAIN_ITEM)
+			msgbox(format("{PLAYER} obtained a lot of {POKEBLOCK}s."), MSGBOX_NPC)
+			waitfanfare
+			msgbox(format("If you need more of them please tell me."), MSGBOX_DEFAULT)
+		break
+	}
+	releaseall
+	end
+}
+
+script LilycoveCity_ContestLobby_EventScript_PokeblockManiac2{
+	faceplayer
+	lockall
+	msgbox(format("I played a lot with this {POKEBLOCK} machine and I broke it so nobody can play now..."), MSGBOX_NPC)
+	releaseall
+	end
+}
+
+script LilycoveCity_ContestLobby_EventScript_Pokeblock_Machine_Broken_Girl{
+	faceplayer
+	lockall
+	msgbox(format("My dumb brother broke every machine here and now I can't play."), MSGBOX_NPC)
+	releaseall
+	end
+}
+
+script LilycoveCity_ContestLobby_EventScript_Pokeblock_Machine_Broken_Scientist{
+	faceplayer
+	lockall
+	msgbox(format("We are trying to fix these broken machines."), MSGBOX_NPC)
+	releaseall
+	end
+}

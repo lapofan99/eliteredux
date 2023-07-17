@@ -1123,3 +1123,92 @@ LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily: @ 821B3FC
 	.string "Big Sister. They turned out great!\p"
 	.string "I bet you can make smoother, better\n"
 	.string "{POKEBLOCK}s if you have more people.$"
+
+LilycoveCity_ContestLobby_EventScript_BrokenMachine::
+	lockall
+	msgbox LilycoveCity_ContestLobby_EventScript_BrokenMachine_Text_0, MSGBOX_DEFAULT
+	releaseall
+	end
+
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac::
+	faceplayer
+	lockall
+	msgbox LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_0, MSGBOX_YESNO
+	switch VAR_RESULT
+	case NO, LilycoveCity_ContestLobby_EventScript_PokeblockManiac_3
+	case YES, LilycoveCity_ContestLobby_EventScript_PokeblockManiac_4
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac_1:
+	releaseall
+	end
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac_3:
+	msgbox LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_1, MSGBOX_NPC
+	goto LilycoveCity_ContestLobby_EventScript_PokeblockManiac_1
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac_4:
+	msgbox LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_2, MSGBOX_NPC
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_3, MSGBOX_NPC
+	waitfanfare
+	msgbox LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_4, MSGBOX_DEFAULT
+	goto LilycoveCity_ContestLobby_EventScript_PokeblockManiac_1
+
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac2::
+	faceplayer
+	lockall
+	msgbox LilycoveCity_ContestLobby_EventScript_PokeblockManiac2_Text_0, MSGBOX_NPC
+	releaseall
+	end
+
+
+LilycoveCity_ContestLobby_EventScript_Pokeblock_Machine_Broken_Girl::
+	faceplayer
+	lockall
+	msgbox LilycoveCity_ContestLobby_EventScript_Pokeblock_Machine_Broken_Girl_Text_0, MSGBOX_NPC
+	releaseall
+	end
+
+
+LilycoveCity_ContestLobby_EventScript_Pokeblock_Machine_Broken_Scientist::
+	faceplayer
+	lockall
+	msgbox LilycoveCity_ContestLobby_EventScript_Pokeblock_Machine_Broken_Scientist_Text_0, MSGBOX_NPC
+	releaseall
+	end
+
+
+LilycoveCity_ContestLobby_EventScript_BrokenMachine_Text_0:
+	.string "It looks like the machine is broken, it's\n"
+	.string "probably better to leave it as is.$"
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_0:
+	.string "I played a lot with this {POKEBLOCK} machine\n"
+	.string "and I broke it so nobody can play, but\l"
+	.string "now I have a lot of {POKEBLOCK}s, do you\l"
+	.string "want some?.$"
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_1:
+	.string "More for me I guess.$"
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_2:
+	.string "Take them all!$"
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_3:
+	.string "{PLAYER} obtained a lot of {POKEBLOCK}s.$"
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac_Text_4:
+	.string "If you need more of them please tell me.$"
+
+LilycoveCity_ContestLobby_EventScript_PokeblockManiac2_Text_0:
+	.string "I played a lot with this {POKEBLOCK} machine\n"
+	.string "and I broke it so nobody can play now...$"
+
+LilycoveCity_ContestLobby_EventScript_Pokeblock_Machine_Broken_Girl_Text_0:
+	.string "My dumb brother broke every machine\n"
+	.string "here and now I can't play.$"
+
+LilycoveCity_ContestLobby_EventScript_Pokeblock_Machine_Broken_Scientist_Text_0:
+	.string "We are trying to fix these broken\n"
+	.string "machines.$"
