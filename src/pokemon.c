@@ -4073,14 +4073,16 @@ void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon)
 {
     u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
     s32 level = GetLevelFromBoxMonExp(boxMon);
+    u32 personality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY, NULL);
     s32 i;
 
     for (i = 0; gLevelUpLearnsets[species][i].move != LEVEL_UP_END; i++)
     {
         if (gLevelUpLearnsets[species][i].level > level)
             break;
-        if (GiveMoveToBoxMon(boxMon, gLevelUpLearnsets[species][i].move) == MON_HAS_MAX_MOVES)
-            DeleteFirstMoveAndGiveMoveToBoxMon(boxMon, gLevelUpLearnsets[species][i].move);
+
+        if (GiveMoveToBoxMon(boxMon, RandomizeMoves(gLevelUpLearnsets[species][i].move, species, personality)) == MON_HAS_MAX_MOVES)
+            DeleteFirstMoveAndGiveMoveToBoxMon(boxMon, RandomizeMoves(gLevelUpLearnsets[species][i].move, species, personality));
     }
 }
 
@@ -4089,6 +4091,7 @@ u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove)
     u32 retVal = MOVE_NONE;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
 
     // since you can learn more than one move per level
     // the game needs to know whether you decided to
@@ -4108,7 +4111,7 @@ u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove)
 
     if (gLevelUpLearnsets[species][sLearningMoveTableID].level == level)
     {
-        gMoveToLearn = gLevelUpLearnsets[species][sLearningMoveTableID].move;
+        gMoveToLearn = RandomizeMoves(gLevelUpLearnsets[species][sLearningMoveTableID].move, species, personality);
         sLearningMoveTableID++;
         retVal = GiveMoveToMon(mon, gMoveToLearn);
     }
@@ -7356,6 +7359,7 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
     u8 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
     int i, j, k;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -7381,7 +7385,7 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
                     ;
 
                 if (k == numMoves)
-                    moves[numMoves++] = gLevelUpLearnsets[species][i].move;
+                    moves[numMoves++] = RandomizeMoves(gLevelUpLearnsets[species][i].move, species, personality);
             }
         }
     }
@@ -7484,6 +7488,7 @@ u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
     u8 numMoves = 0;
     u16 eggMoveBuffer[EGG_MOVES_ARRAY_COUNT];
     u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
     u16 firsStage = GetEggSpecies(species);
     u16 numEggMoves = GetEggMovesSpecies(firsStage, eggMoveBuffer);
     int i, j, k;
@@ -7498,12 +7503,12 @@ u8 GetEggMoveTutorMoves(struct Pokemon *mon, u16 *moves)
         hasMonMove = FALSE;
         
         for (j = 0; j < MAX_MON_MOVES; j++){
-            if(learnedMoves[j] == eggMoveBuffer[i])
+            if(learnedMoves[j] == RandomizeMoves(eggMoveBuffer[i], firsStage, personality))
                 hasMonMove = TRUE;
         }
                 
         if(!hasMonMove)
-            moves[numMoves++] = eggMoveBuffer[i];
+            moves[numMoves++] = RandomizeMoves(eggMoveBuffer[i], firsStage, personality);
     }
             
     return numMoves;
@@ -7530,12 +7535,13 @@ u8 GetTMMoveTutorMoves(struct Pokemon *mon, u16 *moves)
     u16 i;
 	u16 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
 
     for (i = 0; i < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES; i++)
     {
         if(CanSpeciesLearnTMHM(species, i) && !MonKnowsMove(mon, ItemIdToBattleMoveId(i + ITEM_TM01_FOCUS_PUNCH)))
         {
-            moves[numMoves] = ItemIdToBattleMoveId(ITEM_TM01_FOCUS_PUNCH + i);
+            moves[numMoves] = RandomizeMoves(ItemIdToBattleMoveId(ITEM_TM01_FOCUS_PUNCH + i), species, personality);
             numMoves++;
         }
     }
@@ -7564,6 +7570,7 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 {
     u8 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, 0);
     int i;
 
     if (species == SPECIES_EGG)
@@ -7571,9 +7578,11 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves)
 	
 	for (i = 0; i< TUTOR_MOVE_COUNT; i++)
     {
-        if (CanLearnTutorMove(species, i) && !MonKnowsMove(mon, GetTutorMove(i)) && gBattleMoves[GetTutorMove(i)].effect != EFFECT_PLACEHOLDER)
+        if (CanLearnTutorMove(species, i) && 
+            !MonKnowsMove(mon, RandomizeMoves(GetTutorMove(i), species, personality)) && 
+            gBattleMoves[GetTutorMove(i)].effect != EFFECT_PLACEHOLDER)
         {
-            moves[numMoves] = GetTutorMove(i);
+            moves[numMoves] = RandomizeMoves(GetTutorMove(i), species, personality);
             numMoves++;
         }
     }
@@ -8914,6 +8923,24 @@ bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality, bool
         return TRUE;
 	else
 	    return FALSE;
+}
+
+u16 RandomizeMoves(u16 moves, u16 species, u32 personality){
+    u16 randomizedMove = (moves + species + personality) % MOVES_COUNT;
+    if(gSaveBlock2Ptr->moveRandomizedMode == 1 && 
+        moves != MOVE_NONE){
+            do{
+                randomizedMove++;
+                randomizedMove = randomizedMove % MOVES_COUNT;
+            }
+            while(gBattleMoves[randomizedMove].effect == EFFECT_PLACEHOLDER || 
+                  randomizedMove == MOVE_DARK_VOID ||
+                  randomizedMove == MOVE_NONE);
+            
+            return randomizedMove;
+    }
+    else
+        return moves;
 }
 
 u16 RandomizeInnate(u16 innate, u16 species, u32 personality){

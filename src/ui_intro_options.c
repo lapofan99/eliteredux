@@ -55,7 +55,7 @@ enum{
     SETTING_RANDOMIZER_MODE,
     SETTING_RANDOMIZER_ABILITY_MODE,
     SETTING_RANDOMIZER_INNATE_MODE,
-    //SETTING_RANDOMIZER_MOVE_MODE,
+    SETTING_RANDOMIZER_MOVE_MODE,
     SETTING_RANDOMIZER_TYPE_MODE,
     SETTING_INDIVIDUAL_COLORS,
     NUM_INTRO_OPTIONS,
@@ -171,7 +171,7 @@ static void SaveOptionsData()
     gSaveBlock2Ptr->innaterandomizedMode    = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE];
     gSaveBlock2Ptr->abilityRandomizedMode   = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_ABILITY_MODE];
     gSaveBlock2Ptr->individualColors        = sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS];
-    //gSaveBlock2Ptr->moveRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE];
+    gSaveBlock2Ptr->moveRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE];
     gSaveBlock2Ptr->typeRandomizedMode      = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE];
 }
 
@@ -183,7 +183,7 @@ static void LoadOptionsData()
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE] = gSaveBlock2Ptr->innaterandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_ABILITY_MODE] = gSaveBlock2Ptr->abilityRandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS] = gSaveBlock2Ptr->individualColors;
-    //sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE] = gSaveBlock2Ptr->moveRandomizedMode;
+    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MOVE_MODE] = gSaveBlock2Ptr->moveRandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_TYPE_MODE] = gSaveBlock2Ptr->typeRandomizedMode;
 }
 
@@ -529,7 +529,7 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             },
         .numOptions = 2,
     },
-    /*[SETTING_RANDOMIZER_MOVE_MODE] =
+    [SETTING_RANDOMIZER_MOVE_MODE] =
     {
         .title = _("Move Randomizer"),
         .options = { 
@@ -541,7 +541,7 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Move Randomizer Enabled Description"),
             },
         .numOptions = 2,
-    },*/
+    },
     [SETTING_RANDOMIZER_TYPE_MODE] =
     {
         .title = _("Type Randomizer"),
