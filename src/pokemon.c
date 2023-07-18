@@ -9193,171 +9193,255 @@ u16 GetRandomPokemonFromSpecies(u16 basespecies){
         VarSet(VAR_RANDOMIZED_SEED, newseed);
         rndSeed = VarGet(VAR_RANDOMIZED_SEED);
     }
+    /*encounterRandomizedLegendaryMode*/
 
-    if(gSaveBlock2Ptr->encounterRandomizedMode == 1 && basespecies != SPECIES_NONE){
-        do{
-            rndSeed = rndSeed + i;
-            species = (basespecies * rndSeed) % SPECIES_CALYREX;
-            i++;
+    if(gSaveBlock2Ptr->encounterRandomizedMode == TRUE && basespecies != SPECIES_NONE){
+        if(gSaveBlock2Ptr->encounterRandomizedLegendaryMode == FALSE){
+            //Legendary Mons Enabled
+            do{
+                rndSeed = rndSeed + i;
+                species = (basespecies * rndSeed) % SPECIES_CALYREX;
+                i++;
+            }
+            while(species == SPECIES_NONE                     ||
+                //Sub-Legendary
+                species == SPECIES_ARTICUNO                   || 
+                species == SPECIES_ZAPDOS                     || 
+                species == SPECIES_MOLTRES                    || 
+                species == SPECIES_RAIKOU                     || 
+                species == SPECIES_ENTEI                      || 
+                species == SPECIES_SUICUNE                    || 
+                species == SPECIES_REGIROCK                   || 
+                species == SPECIES_REGISTEEL                  || 
+                species == SPECIES_LATIAS                     || 
+                species == SPECIES_LATIOS                     ||
+                species == SPECIES_UXIE                       ||
+                species == SPECIES_MESPRIT                    ||
+                species == SPECIES_AZELF                      ||
+                species == SPECIES_HEATRAN                    ||
+                species == SPECIES_REGIGIGAS                  ||
+                species == SPECIES_CRESSELIA                  ||
+                species == SPECIES_COBALION                   ||
+                species == SPECIES_TERRAKION                  ||
+                species == SPECIES_VIRIZION                   ||
+                species == SPECIES_TORNADUS                   ||
+                species == SPECIES_THUNDURUS                  ||
+                species == SPECIES_TYPE_NULL                  ||
+                species == SPECIES_SILVALLY                   ||
+                species == SPECIES_TAPU_KOKO                  ||
+                species == SPECIES_TAPU_LELE                  ||
+                species == SPECIES_TAPU_BULU                  ||
+                species == SPECIES_TAPU_FINI                  ||
+                species == SPECIES_NIHILEGO                   ||
+                species == SPECIES_BUZZWOLE                   ||
+                species == SPECIES_PHEROMOSA                  ||
+                species == SPECIES_XURKITREE                  ||
+                species == SPECIES_CELESTEELA                 ||
+                species == SPECIES_KARTANA                    ||
+                species == SPECIES_GUZZLORD                   ||
+                species == SPECIES_POIPOLE                    ||
+                species == SPECIES_NAGANADEL                  ||
+                species == SPECIES_STAKATAKA                  ||
+                species == SPECIES_BLACEPHALON                ||
+                //Legendary
+                species == SPECIES_MEWTWO                     ||
+                species == SPECIES_LUGIA                      || 
+                species == SPECIES_HO_OH                      || 
+                species == SPECIES_KYOGRE                     || 
+                species == SPECIES_GROUDON                    || 
+                species == SPECIES_RAYQUAZA                   || 
+                species == SPECIES_DIALGA                     || 
+                species == SPECIES_PALKIA                     || 
+                species == SPECIES_GIRATINA                   || 
+                species == SPECIES_RESHIRAM                   || 
+                species == SPECIES_ZEKROM                     || 
+                species == SPECIES_KYUREM                     || 
+                species == SPECIES_XERNEAS                    || 
+                species == SPECIES_YVELTAL                    || 
+                species == SPECIES_ZYGARDE                    || 
+                species == SPECIES_COSMOG                     || 
+                species == SPECIES_COSMOEM                    || 
+                species == SPECIES_SOLGALEO                   || 
+                species == SPECIES_LUNALA                     || 
+                species == SPECIES_NECROZMA                   || 
+                //Mythical
+                species == SPECIES_MEW                        || 
+                species == SPECIES_CELEBI                     || 
+                species == SPECIES_JIRACHI                    || 
+                species == SPECIES_DEOXYS                     || 
+                species == SPECIES_PHIONE                     || 
+                species == SPECIES_MANAPHY                    || 
+                species == SPECIES_DARKRAI                    || 
+                species == SPECIES_SHAYMIN                    || 
+                species == SPECIES_ARCEUS                     || 
+                species == SPECIES_VICTINI                    || 
+                species == SPECIES_KELDEO                     || 
+                species == SPECIES_MELOETTA                   || 
+                species == SPECIES_GENESECT                   || 
+                species == SPECIES_DIANCIE                    || 
+                species == SPECIES_HOOPA                      || 
+                species == SPECIES_VOLCANION                  || 
+                species == SPECIES_MAGEARNA                   || 
+                species == SPECIES_MARSHADOW                  || 
+                species == SPECIES_ZERAORA                    || 
+                species == SPECIES_MELTAN                     || 
+                species == SPECIES_MELMETAL                   ||
+                species == SPECIES_ZACIAN                     || //Unfinished
+                species == SPECIES_ZAMAZENTA                  || //Unfinished
+                species == SPECIES_ETERNATUS                  || //Unfinished
+                species == SPECIES_KUBFU                      || //Unfinished
+                species == SPECIES_URSHIFU                    || //Unfinished
+                species == SPECIES_ZARUDE                     || //Unfinished
+                species == SPECIES_REGIELEKI                  || //Unfinished
+                species == SPECIES_REGIDRAGO                  || //Unfinished
+                species == SPECIES_GLASTRIER                  || //Unfinished
+                species == SPECIES_SPECTRIER                  || //Unfinished
+                species == SPECIES_CALYREX                    || //Unfinished
+                species == SPECIES_ZACIAN_CROWNED_SWORD       || //Unfinished
+                species == SPECIES_ZAMAZENTA_CROWNED_SHIELD   || //Unfinished
+                species == SPECIES_ETERNATUS_ETERNAMAX        || //Unfinished
+                species == SPECIES_URSHIFU_RAPID_STRIKE_STYLE || //Unfinished
+                species == SPECIES_ZARUDE_DADA                || //Unfinished
+                //Unfinished Mons
+                species == SPECIES_SKWOVET                    ||
+                species == SPECIES_GREEDENT                   ||
+                species == SPECIES_BLIPBUG                    ||
+                species == SPECIES_DOTTLER                    ||
+                species == SPECIES_ORBEETLE                   ||
+                species == SPECIES_NICKIT                     ||
+                species == SPECIES_THIEVUL                    ||
+                species == SPECIES_GOSSIFLEUR                 ||
+                species == SPECIES_ELDEGOSS                   ||
+                species == SPECIES_WOOLOO                     ||
+                species == SPECIES_DUBWOOL                    ||
+                species == SPECIES_CHEWTLE                    ||
+                species == SPECIES_DREDNAW                    ||
+                species == SPECIES_SILICOBRA                  ||
+                species == SPECIES_SANDACONDA                 ||
+                species == SPECIES_CRAMORANT                  ||
+                species == SPECIES_ARROKUDA                   ||
+                species == SPECIES_BARRASKEWDA                ||
+                species == SPECIES_CLOBBOPUS                  ||
+                species == SPECIES_GRAPPLOCT                  ||
+                species == SPECIES_CURSOLA                    ||
+                species == SPECIES_MR_RIME                    ||
+                species == SPECIES_MILCERY                    ||
+                species == SPECIES_ALCREMIE                   ||
+                species == SPECIES_FALINKS                    ||
+                species == SPECIES_PINCURCHIN                 ||
+                species == SPECIES_SNOM                       ||
+                species == SPECIES_FROSMOTH                   ||
+                species == SPECIES_STONJOURNER                ||
+                species == SPECIES_EISCUE                     ||
+                species == SPECIES_INDEEDEE                   ||
+                species == SPECIES_MORPEKO                    ||
+                species == SPECIES_CUFANT                     ||
+                species == SPECIES_COPPERAJAH                 ||
+                species == SPECIES_DURALUDON                  ||
+                species == SPECIES_SLOWPOKE_GALARIAN          ||
+                species == SPECIES_WEEZING_GALARIAN           ||
+                species == SPECIES_MR_MIME_GALARIAN           ||
+                species == SPECIES_SLOWKING_GALARIAN          ||
+                species == SPECIES_CORSOLA_GALARIAN           ||
+                species == SPECIES_STUNFISK_GALARIAN          ||
+                species == SPECIES_CRAMORANT_GULPING          ||
+                species == SPECIES_CRAMORANT_GORGING          ||
+                species == SPECIES_SINISTEA_ANTIQUE           ||
+                species == SPECIES_POLTEAGEIST_ANTIQUE        ||
+                species == SPECIES_ALCREMIE_RUBY_CREAM        ||
+                species == SPECIES_ALCREMIE_MATCHA_CREAM      ||
+                species == SPECIES_ALCREMIE_MINT_CREAM        ||
+                species == SPECIES_ALCREMIE_LEMON_CREAM       ||
+                species == SPECIES_ALCREMIE_SALTED_CREAM      ||
+                species == SPECIES_ALCREMIE_RUBY_SWIRL        ||
+                species == SPECIES_ALCREMIE_CARAMEL_SWIRL     ||
+                species == SPECIES_ALCREMIE_RAINBOW_SWIRL     ||
+                species == SPECIES_EISCUE_NOICE_FACE          ||
+                species == SPECIES_INDEEDEE_FEMALE            ||
+                species == SPECIES_MORPEKO_HANGRY);
         }
-        while(species == SPECIES_NONE                       ||
-              #if B_DISABLE_LEGENDARY_FROM_RANDOMIZER == TRUE
-              //Sub-Legendary
-              species == SPECIES_ARTICUNO                   || 
-              species == SPECIES_ZAPDOS                     || 
-              species == SPECIES_MOLTRES                    || 
-              species == SPECIES_RAIKOU                     || 
-              species == SPECIES_ENTEI                      || 
-              species == SPECIES_SUICUNE                    || 
-              species == SPECIES_REGIROCK                   || 
-              species == SPECIES_REGISTEEL                  || 
-              species == SPECIES_LATIAS                     || 
-              species == SPECIES_LATIOS                     ||
-              species == SPECIES_UXIE                       ||
-              species == SPECIES_MESPRIT                    ||
-              species == SPECIES_AZELF                      ||
-              species == SPECIES_HEATRAN                    ||
-              species == SPECIES_REGIGIGAS                  ||
-              species == SPECIES_CRESSELIA                  ||
-              species == SPECIES_COBALION                   ||
-              species == SPECIES_TERRAKION                  ||
-              species == SPECIES_VIRIZION                   ||
-              species == SPECIES_TORNADUS                   ||
-              species == SPECIES_THUNDURUS                  ||
-              species == SPECIES_TYPE_NULL                  ||
-              species == SPECIES_SILVALLY                   ||
-              species == SPECIES_TAPU_KOKO                  ||
-              species == SPECIES_TAPU_LELE                  ||
-              species == SPECIES_TAPU_BULU                  ||
-              species == SPECIES_TAPU_FINI                  ||
-              species == SPECIES_NIHILEGO                   ||
-              species == SPECIES_BUZZWOLE                   ||
-              species == SPECIES_PHEROMOSA                  ||
-              species == SPECIES_XURKITREE                  ||
-              species == SPECIES_CELESTEELA                 ||
-              species == SPECIES_KARTANA                    ||
-              species == SPECIES_GUZZLORD                   ||
-              species == SPECIES_POIPOLE                    ||
-              species == SPECIES_NAGANADEL                  ||
-              species == SPECIES_STAKATAKA                  ||
-              species == SPECIES_BLACEPHALON                ||
-              //Legendary
-              species == SPECIES_MEWTWO                     ||
-              species == SPECIES_LUGIA                      || 
-              species == SPECIES_HO_OH                      || 
-              species == SPECIES_KYOGRE                     || 
-              species == SPECIES_GROUDON                    || 
-              species == SPECIES_RAYQUAZA                   || 
-              species == SPECIES_DIALGA                     || 
-              species == SPECIES_PALKIA                     || 
-              species == SPECIES_GIRATINA                   || 
-              species == SPECIES_RESHIRAM                   || 
-              species == SPECIES_ZEKROM                     || 
-              species == SPECIES_KYUREM                     || 
-              species == SPECIES_XERNEAS                    || 
-              species == SPECIES_YVELTAL                    || 
-              species == SPECIES_ZYGARDE                    || 
-              species == SPECIES_COSMOG                     || 
-              species == SPECIES_COSMOEM                    || 
-              species == SPECIES_SOLGALEO                   || 
-              species == SPECIES_LUNALA                     || 
-              species == SPECIES_NECROZMA                   || 
-              //Mythical
-              species == SPECIES_MEW                        || 
-              species == SPECIES_CELEBI                     || 
-              species == SPECIES_JIRACHI                    || 
-              species == SPECIES_DEOXYS                     || 
-              species == SPECIES_PHIONE                     || 
-              species == SPECIES_MANAPHY                    || 
-              species == SPECIES_DARKRAI                    || 
-              species == SPECIES_SHAYMIN                    || 
-              species == SPECIES_ARCEUS                     || 
-              species == SPECIES_VICTINI                    || 
-              species == SPECIES_KELDEO                     || 
-              species == SPECIES_MELOETTA                   || 
-              species == SPECIES_GENESECT                   || 
-              species == SPECIES_DIANCIE                    || 
-              species == SPECIES_HOOPA                      || 
-              species == SPECIES_VOLCANION                  || 
-              species == SPECIES_MAGEARNA                   || 
-              species == SPECIES_MARSHADOW                  || 
-              species == SPECIES_ZERAORA                    || 
-              species == SPECIES_MELTAN                     || 
-              species == SPECIES_MELMETAL                   || 
-              #endif
-              //Unfinished Mons
-              species == SPECIES_SKWOVET                    ||
-              species == SPECIES_GREEDENT                   ||
-              species == SPECIES_BLIPBUG                    ||
-              species == SPECIES_DOTTLER                    ||
-              species == SPECIES_ORBEETLE                   ||
-              species == SPECIES_NICKIT                     ||
-              species == SPECIES_THIEVUL                    ||
-              species == SPECIES_GOSSIFLEUR                 ||
-              species == SPECIES_ELDEGOSS                   ||
-              species == SPECIES_WOOLOO                     ||
-              species == SPECIES_DUBWOOL                    ||
-              species == SPECIES_CHEWTLE                    ||
-              species == SPECIES_DREDNAW                    ||
-              species == SPECIES_SILICOBRA                  ||
-              species == SPECIES_SANDACONDA                 ||
-              species == SPECIES_CRAMORANT                  ||
-              species == SPECIES_ARROKUDA                   ||
-              species == SPECIES_BARRASKEWDA                ||
-              species == SPECIES_CLOBBOPUS                  ||
-              species == SPECIES_GRAPPLOCT                  ||
-              species == SPECIES_CURSOLA                    ||
-              species == SPECIES_MR_RIME                    ||
-              species == SPECIES_MILCERY                    ||
-              species == SPECIES_ALCREMIE                   ||
-              species == SPECIES_FALINKS                    ||
-              species == SPECIES_PINCURCHIN                 ||
-              species == SPECIES_SNOM                       ||
-              species == SPECIES_FROSMOTH                   ||
-              species == SPECIES_STONJOURNER                ||
-              species == SPECIES_EISCUE                     ||
-              species == SPECIES_INDEEDEE                   ||
-              species == SPECIES_MORPEKO                    ||
-              species == SPECIES_CUFANT                     ||
-              species == SPECIES_COPPERAJAH                 ||
-              species == SPECIES_DURALUDON                  ||
-              species == SPECIES_ZACIAN                     ||
-              species == SPECIES_ZAMAZENTA                  ||
-              species == SPECIES_ETERNATUS                  ||
-              species == SPECIES_KUBFU                      ||
-              species == SPECIES_URSHIFU                    ||
-              species == SPECIES_ZARUDE                     ||
-              species == SPECIES_REGIELEKI                  ||
-              species == SPECIES_REGIDRAGO                  ||
-              species == SPECIES_GLASTRIER                  ||
-              species == SPECIES_SPECTRIER                  ||
-              species == SPECIES_CALYREX                    ||
-              species == SPECIES_SLOWPOKE_GALARIAN          ||
-              species == SPECIES_WEEZING_GALARIAN           ||
-              species == SPECIES_MR_MIME_GALARIAN           ||
-              species == SPECIES_SLOWKING_GALARIAN          ||
-              species == SPECIES_CORSOLA_GALARIAN           ||
-              species == SPECIES_STUNFISK_GALARIAN          ||
-              species == SPECIES_CRAMORANT_GULPING          ||
-              species == SPECIES_CRAMORANT_GORGING          ||
-              species == SPECIES_SINISTEA_ANTIQUE           ||
-              species == SPECIES_POLTEAGEIST_ANTIQUE        ||
-              species == SPECIES_ALCREMIE_RUBY_CREAM        ||
-              species == SPECIES_ALCREMIE_MATCHA_CREAM      ||
-              species == SPECIES_ALCREMIE_MINT_CREAM        ||
-              species == SPECIES_ALCREMIE_LEMON_CREAM       ||
-              species == SPECIES_ALCREMIE_SALTED_CREAM      ||
-              species == SPECIES_ALCREMIE_RUBY_SWIRL        ||
-              species == SPECIES_ALCREMIE_CARAMEL_SWIRL     ||
-              species == SPECIES_ALCREMIE_RAINBOW_SWIRL     ||
-              species == SPECIES_EISCUE_NOICE_FACE          ||
-              species == SPECIES_INDEEDEE_FEMALE            ||
-              species == SPECIES_MORPEKO_HANGRY             ||
-              species == SPECIES_ZACIAN_CROWNED_SWORD       ||
-              species == SPECIES_ZAMAZENTA_CROWNED_SHIELD   ||
-              species == SPECIES_ETERNATUS_ETERNAMAX        ||
-              species == SPECIES_URSHIFU_RAPID_STRIKE_STYLE ||
-              species == SPECIES_ZARUDE_DADA);
+        else{
+            //Legendary Mons Disabled
+            do{
+                rndSeed = rndSeed + i;
+                species = (basespecies * rndSeed) % SPECIES_CALYREX;
+                i++;
+            }
+            while(species == SPECIES_NONE                     ||
+                species == SPECIES_ZACIAN                     || //Legendary
+                species == SPECIES_ZAMAZENTA                  || //Legendary
+                species == SPECIES_ETERNATUS                  || //Legendary
+                species == SPECIES_KUBFU                      || //Legendary
+                species == SPECIES_URSHIFU                    || //Legendary
+                species == SPECIES_ZARUDE                     || //Legendary
+                species == SPECIES_REGIELEKI                  || //Legendary
+                species == SPECIES_REGIDRAGO                  || //Legendary
+                species == SPECIES_GLASTRIER                  || //Legendary
+                species == SPECIES_SPECTRIER                  || //Legendary
+                species == SPECIES_CALYREX                    || //Legendary
+                species == SPECIES_ZACIAN_CROWNED_SWORD       || //Legendary
+                species == SPECIES_ZAMAZENTA_CROWNED_SHIELD   || //Legendary
+                species == SPECIES_ETERNATUS_ETERNAMAX        || //Legendary
+                species == SPECIES_URSHIFU_RAPID_STRIKE_STYLE || //Legendary
+                species == SPECIES_ZARUDE_DADA                || //Legendary
+                //Unfinished Mons
+                species == SPECIES_SKWOVET                    ||
+                species == SPECIES_GREEDENT                   ||
+                species == SPECIES_BLIPBUG                    ||
+                species == SPECIES_DOTTLER                    ||
+                species == SPECIES_ORBEETLE                   ||
+                species == SPECIES_NICKIT                     ||
+                species == SPECIES_THIEVUL                    ||
+                species == SPECIES_GOSSIFLEUR                 ||
+                species == SPECIES_ELDEGOSS                   ||
+                species == SPECIES_WOOLOO                     ||
+                species == SPECIES_DUBWOOL                    ||
+                species == SPECIES_CHEWTLE                    ||
+                species == SPECIES_DREDNAW                    ||
+                species == SPECIES_SILICOBRA                  ||
+                species == SPECIES_SANDACONDA                 ||
+                species == SPECIES_CRAMORANT                  ||
+                species == SPECIES_ARROKUDA                   ||
+                species == SPECIES_BARRASKEWDA                ||
+                species == SPECIES_CLOBBOPUS                  ||
+                species == SPECIES_GRAPPLOCT                  ||
+                species == SPECIES_CURSOLA                    ||
+                species == SPECIES_MR_RIME                    ||
+                species == SPECIES_MILCERY                    ||
+                species == SPECIES_ALCREMIE                   ||
+                species == SPECIES_FALINKS                    ||
+                species == SPECIES_PINCURCHIN                 ||
+                species == SPECIES_SNOM                       ||
+                species == SPECIES_FROSMOTH                   ||
+                species == SPECIES_STONJOURNER                ||
+                species == SPECIES_EISCUE                     ||
+                species == SPECIES_INDEEDEE                   ||
+                species == SPECIES_MORPEKO                    ||
+                species == SPECIES_CUFANT                     ||
+                species == SPECIES_COPPERAJAH                 ||
+                species == SPECIES_DURALUDON                  ||
+                species == SPECIES_SLOWPOKE_GALARIAN          ||
+                species == SPECIES_WEEZING_GALARIAN           ||
+                species == SPECIES_MR_MIME_GALARIAN           ||
+                species == SPECIES_SLOWKING_GALARIAN          ||
+                species == SPECIES_CORSOLA_GALARIAN           ||
+                species == SPECIES_STUNFISK_GALARIAN          ||
+                species == SPECIES_CRAMORANT_GULPING          ||
+                species == SPECIES_CRAMORANT_GORGING          ||
+                species == SPECIES_SINISTEA_ANTIQUE           ||
+                species == SPECIES_POLTEAGEIST_ANTIQUE        ||
+                species == SPECIES_ALCREMIE_RUBY_CREAM        ||
+                species == SPECIES_ALCREMIE_MATCHA_CREAM      ||
+                species == SPECIES_ALCREMIE_MINT_CREAM        ||
+                species == SPECIES_ALCREMIE_LEMON_CREAM       ||
+                species == SPECIES_ALCREMIE_SALTED_CREAM      ||
+                species == SPECIES_ALCREMIE_RUBY_SWIRL        ||
+                species == SPECIES_ALCREMIE_CARAMEL_SWIRL     ||
+                species == SPECIES_ALCREMIE_RAINBOW_SWIRL     ||
+                species == SPECIES_EISCUE_NOICE_FACE          ||
+                species == SPECIES_INDEEDEE_FEMALE            ||
+                species == SPECIES_MORPEKO_HANGRY);
+        }
     }
     
 	return species;

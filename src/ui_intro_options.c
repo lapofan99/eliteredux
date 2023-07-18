@@ -167,7 +167,14 @@ static void SaveOptionsData()
 {
     gSaveBlock2Ptr->gameDifficulty          = sMenuDataPtr->temporal_settings[SETTING_DIFFICULTY];
     gSaveBlock2Ptr->levelCaps               = sMenuDataPtr->temporal_settings[SETTING_LEVEL_CAP];
-    gSaveBlock2Ptr->encounterRandomizedMode = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE];
+    if(sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE] < 2){
+        gSaveBlock2Ptr->encounterRandomizedMode = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE];
+        gSaveBlock2Ptr->encounterRandomizedLegendaryMode = FALSE;
+    }
+    else{
+        gSaveBlock2Ptr->encounterRandomizedMode = TRUE;
+        gSaveBlock2Ptr->encounterRandomizedLegendaryMode = TRUE;
+    }
     gSaveBlock2Ptr->innaterandomizedMode    = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE];
     gSaveBlock2Ptr->abilityRandomizedMode   = sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_ABILITY_MODE];
     gSaveBlock2Ptr->individualColors        = sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS];
@@ -179,7 +186,12 @@ static void LoadOptionsData()
 {
     sMenuDataPtr->temporal_settings[SETTING_DIFFICULTY] = gSaveBlock2Ptr->gameDifficulty;
     sMenuDataPtr->temporal_settings[SETTING_LEVEL_CAP] = gSaveBlock2Ptr->levelCaps;
-    sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE] = gSaveBlock2Ptr->encounterRandomizedMode;
+    if(gSaveBlock2Ptr->encounterRandomizedLegendaryMode == FALSE){
+        sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE] = gSaveBlock2Ptr->encounterRandomizedMode;
+    }
+    else{
+        sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_MODE] = 2;
+    }
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_INNATE_MODE] = gSaveBlock2Ptr->innaterandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_RANDOMIZER_ABILITY_MODE] = gSaveBlock2Ptr->abilityRandomizedMode;
     sMenuDataPtr->temporal_settings[SETTING_INDIVIDUAL_COLORS] = gSaveBlock2Ptr->individualColors;
@@ -482,13 +494,15 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
         .title = _("Encounter Randomizer"),
         .options = { 
             _("Disabled"),
-            _("Enabled"),
+            _("Normal"),
+            _("Legendary"),
             },
         .optionDescription = { 
             _("No changes to the encounters."),
             _("Wild Encounters will be fully randomized.\nThis doesn't affect static encounters,\nlike Gift or Legendary Pokémon."),
+            _("Wild Encounters will be fully randomized.\nYou may encounter legendary Pokémon here,\nIt only affects normal encounters."),
             },
-        .numOptions = 2,
+        .numOptions = 3,
     },
     [SETTING_RANDOMIZER_ABILITY_MODE] =
     {
