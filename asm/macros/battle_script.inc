@@ -1937,6 +1937,14 @@
 	.macro setbeakblast battler:req
 	various \battler, VARIOUS_SET_BEAK_BLAST
 	.endm
+	
+	.macro canteleport battler:req
+	various \battler, VARIOUS_CAN_TELEPORT
+	.endm
+
+	.macro getbattlerside battler:req
+	various \battler, VARIOUS_GET_BATTLER_SIDE
+	.endm
 
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req

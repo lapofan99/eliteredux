@@ -211,6 +211,8 @@
 #define VARIOUS_TRY_ACTIVATE_RAMPAGE            138
 #define VARIOUS_TRY_ACTIVATE_SOUL_EATER         139
 #define VARIOUS_SET_BEAK_BLAST                  140
+#define VARIOUS_CAN_TELEPORT                    141
+#define VARIOUS_GET_BATTLER_SIDE                142
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
