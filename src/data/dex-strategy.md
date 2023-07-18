@@ -289,7 +289,7 @@ SPECIES_PERSIAN_ALOLAN
    Snarl is there in case you need to deal a good chunk of damage and can't do a bet on a critical hit since there aren't many good options in that department.
    tags = singles, doubles, offensive, troll
 }
-Incinieroar
+Incineroar
 {
     name = Offensive Bulkiroar
     item = Assault Vest
