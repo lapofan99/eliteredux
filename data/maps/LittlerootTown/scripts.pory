@@ -2164,28 +2164,31 @@ script PKMN_Center_EventScript_DayNightToggle{
 }
 
 script PKMN_Center_EventScript_RandomizerToggle{
-	msgbox(format("Do you want to enable/disable the Randomizer for wild encounters?"), MSGBOX_YESNO)
-	switch(var(VAR_RESULT)){
-		case YES:
-			checkSaveblockValue(SAVEBLOCK_RANDOMIZER)
-			if(var(VAR_RESULT) == TRUE){
-				toggleSaveblock(SAVEBLOCK_RANDOMIZER, FALSE)
-				playfanfare(MUS_OBTAIN_ITEM)
-				message(format("The randomizer was disabled."))
-			}
-			else{
-				toggleSaveblock(SAVEBLOCK_RANDOMIZER, TRUE)
-				playfanfare(MUS_OBTAIN_ITEM)
-				message(format("The randomizer was enabled."))
-			}
-			waitmessage
-			waitfanfare
-		break
-		case NO:
-		case MULTI_B_PRESSED:
-		default:
-			goto(PKMN_Center_Move_Tutor)
-		break
+	checkSaveblockValue(SAVEBLOCK_RANDOMIZER)
+	if(var(VAR_RESULT) == TRUE){
+		msgbox(format("Do you want to disable the Randomizer for wild encounters?"), MSGBOX_YESNO)
+		switch(var(VAR_RESULT)){
+			case YES:
+				checkSaveblockValue(SAVEBLOCK_RANDOMIZER)
+				if(var(VAR_RESULT) == TRUE){
+					toggleSaveblock(SAVEBLOCK_RANDOMIZER, FALSE)
+					playfanfare(MUS_OBTAIN_ITEM)
+					message(format("The randomizer was disabled."))
+				}
+				waitmessage
+				waitfanfare
+			break
+			case NO:
+			case MULTI_B_PRESSED:
+			default:
+				goto(PKMN_Center_Move_Tutor)
+			break
+		}
+	}
+	else{
+		msgbox(format("You already have the Randomizer Disabled.$"), MSGBOX_NPC)
+		waitmessage
+		goto(PKMN_Center_Move_Tutor)
 	}
     release
     end
@@ -2228,7 +2231,7 @@ script PKMN_Center_EventScript_Lower_Difficulty{
 
 text MultiChoice_Move_Tutor_NPC{
     "Invert Day and Night$"
-    "Enable/Disable Randomizer$"
+    "Disable Randomizer$"
     "Rate a nickname$"
     "Mystery Gift$"
     "Lower Difficulty$"

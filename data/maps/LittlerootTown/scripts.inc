@@ -2180,34 +2180,40 @@ PKMN_Center_EventScript_DayNightToggle_6:
 
 
 PKMN_Center_EventScript_RandomizerToggle::
-	msgbox PKMN_Center_EventScript_RandomizerToggle_Text_0, MSGBOX_YESNO
-	switch VAR_RESULT
-	case YES, PKMN_Center_EventScript_RandomizerToggle_3
-	case NO, PKMN_Center_EventScript_RandomizerToggle_4
-	case MULTI_B_PRESSED, PKMN_Center_EventScript_RandomizerToggle_4
-PKMN_Center_EventScript_RandomizerToggle_4:
+	checkSaveblockValue SAVEBLOCK_RANDOMIZER
+	compare VAR_RESULT, TRUE
+	goto_if_eq PKMN_Center_EventScript_RandomizerToggle_2
+	msgbox PKMN_Center_EventScript_RandomizerToggle_Text_2, MSGBOX_NPC
+	waitmessage
 	goto PKMN_Center_Move_Tutor
 PKMN_Center_EventScript_RandomizerToggle_1:
 	release
 	end
 
-PKMN_Center_EventScript_RandomizerToggle_3:
+PKMN_Center_EventScript_RandomizerToggle_2:
+	msgbox PKMN_Center_EventScript_RandomizerToggle_Text_0, MSGBOX_YESNO
+	switch VAR_RESULT
+	case YES, PKMN_Center_EventScript_RandomizerToggle_6
+	case NO, PKMN_Center_EventScript_RandomizerToggle_7
+	case MULTI_B_PRESSED, PKMN_Center_EventScript_RandomizerToggle_7
+PKMN_Center_EventScript_RandomizerToggle_7:
+	goto PKMN_Center_Move_Tutor
+	goto PKMN_Center_EventScript_RandomizerToggle_1
+
+PKMN_Center_EventScript_RandomizerToggle_6:
 	checkSaveblockValue SAVEBLOCK_RANDOMIZER
 	compare VAR_RESULT, TRUE
-	goto_if_eq PKMN_Center_EventScript_RandomizerToggle_6
-	toggleSaveblock SAVEBLOCK_RANDOMIZER, TRUE
-	playfanfare MUS_OBTAIN_ITEM
-	message PKMN_Center_EventScript_RandomizerToggle_Text_2
-PKMN_Center_EventScript_RandomizerToggle_5:
+	goto_if_eq PKMN_Center_EventScript_RandomizerToggle_9
+PKMN_Center_EventScript_RandomizerToggle_8:
 	waitmessage
 	waitfanfare
 	goto PKMN_Center_EventScript_RandomizerToggle_1
 
-PKMN_Center_EventScript_RandomizerToggle_6:
+PKMN_Center_EventScript_RandomizerToggle_9:
 	toggleSaveblock SAVEBLOCK_RANDOMIZER, FALSE
 	playfanfare MUS_OBTAIN_ITEM
 	message PKMN_Center_EventScript_RandomizerToggle_Text_1
-	goto PKMN_Center_EventScript_RandomizerToggle_5
+	goto PKMN_Center_EventScript_RandomizerToggle_8
 
 
 PKMN_Center_EventScript_Lower_Difficulty::
@@ -2458,14 +2464,15 @@ PKMN_Center_EventScript_DayNightToggle_Text_1:
 	.string "The Day and Night time was inverted.$"
 
 PKMN_Center_EventScript_RandomizerToggle_Text_0:
-	.string "Do you want to enable/disable the\n"
-	.string "Randomizer for wild encounters?$"
+	.string "Do you want to disable the Randomizer\n"
+	.string "for wild encounters?$"
 
 PKMN_Center_EventScript_RandomizerToggle_Text_1:
 	.string "The randomizer was disabled.$"
 
 PKMN_Center_EventScript_RandomizerToggle_Text_2:
-	.string "The randomizer was enabled.$"
+	.string "You already have the Randomizer\n"
+	.string "Disabled.$"
 
 PKMN_Center_EventScript_Lower_Difficulty_Text_0:
 	.string "Do you want to lower the difficulty?\n"
@@ -2488,7 +2495,7 @@ LittlerootTown_EventScript_LegendaryNPC_Options::
 
 MultiChoice_Move_Tutor_NPC::
 	.string "Invert Day and Night$"
-	.string "Enable/Disable Randomizer$"
+	.string "Disable Randomizer$"
 	.string "Rate a nickname$"
 	.string "Mystery Gift$"
 	.string "Lower Difficulty$"
