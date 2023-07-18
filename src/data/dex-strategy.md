@@ -307,7 +307,20 @@ Lopunny
     ability = Fighting Spirit
     evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     nature = Jolly / Adamant
-    moves = Quick Attack/Fake Out, Mega Kick, Triple Axel, Play Rough
+    moves = Quick Attack / Fake Out, Mega Kick, Triple Axel, Play Rough
    comment = Fighting Spirit boosts all Normal moves by 20% and turns them into Fighting-type. Mega Kick and Triple Axel are boosted 30% by Striker.
     .tags = Singles, Offensive 
+}
+Ariados
+{
+    name = Critical Point
+    item = Bug Gem / Focus Sash / Life Orb
+    ability = sniper
+    evs = 0, 252, 6, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = jolly
+    moves = fell stinger, sucker punch, cross poison, psycho cut
+   comment = Use this pokemon if the enemy has less than half hitpoints (yellow). Opportunitist helps you strike first. Use Fell Stinger if possible to raise attack drasticlly. Use Sucker punch / Psycho Cut for coverage, and Cross Poison for STAB + Crit.
+
+As for the abilities / innates, Sniper helps for extra crit damage, Spider Lair for slowing down enemies, Merciless for doing more crits, Opportunist for +1 priority if enemy health is low.
+    .tags = Singles, Offensive
 }
