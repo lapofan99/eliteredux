@@ -5917,6 +5917,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
                  && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
                 {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HARVEST;
                     BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
                     effect++;
                 }
@@ -5927,6 +5928,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
                  && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
                 {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BIG_LEAVES;
                     BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
                     effect++;
                 }
@@ -6163,8 +6165,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
                  && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
                 {
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_HARVEST;
-			        gLastUsedAbility = ABILITY_HARVEST;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HARVEST;
                     BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
                     effect++;
                 }
@@ -6177,6 +6178,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                  && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
                  && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
                 {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BIG_LEAVES;
                     BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
                     effect++;
                 }
@@ -6394,11 +6396,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
         break;
     case ABILITYEFFECT_MOVES_BLOCK: // 2
-        if ((gLastUsedAbility == ABILITY_SOUNDPROOF            && gBattleMoves[move].flags & FLAG_SOUND && !(gBattleMoves[move].target & MOVE_TARGET_USER))
-			|| (BattlerHasInnate(battler, ABILITY_SOUNDPROOF)  && gBattleMoves[move].flags & FLAG_SOUND && !(gBattleMoves[move].target & MOVE_TARGET_USER))
-            || (gLastUsedAbility == ABILITY_BULLETPROOF        && gBattleMoves[move].flags & FLAG_BALLISTIC)
-			|| (BattlerHasInnate(battler, ABILITY_BULLETPROOF) && gBattleMoves[move].flags & FLAG_BALLISTIC))
+        if ((GetBattlerAbility(battler) == ABILITY_SOUNDPROOF || BattlerHasInnate(battler, ABILITY_SOUNDPROOF))
+            && !(gBattleMoves[move].target & MOVE_TARGET_USER)
+			&& gBattleMoves[move].flags & FLAG_SOUND)
         {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SOUNDPROOF;
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
+            effect = 1;
+        }
+        else if ((GetBattlerAbility(battler) == ABILITY_BULLETPROOF || BattlerHasInnate(battler, ABILITY_BULLETPROOF))
+			&& gBattleMoves[move].flags & FLAG_BALLISTIC)
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BULLETPROOF;
             if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
                 gHitMarker |= HITMARKER_NO_PPDEDUCT;
             gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
