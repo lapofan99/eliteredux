@@ -11308,6 +11308,10 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             && gBattleMons[battlerDef].item != ITEM_AIR_BALLOON && gBattleMons[battlerDef].ability != ABILITY_LEVITATE)
         basePower *= 2;
         break;
+    case EFFECT_EXPANDING_FORCE:
+        if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+            basePower = 120;
+        break;
     }
 
     // move-specific base power changes

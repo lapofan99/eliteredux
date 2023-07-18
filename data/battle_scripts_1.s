@@ -412,6 +412,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectBeakBlast				  @ EFFECT_BEAK_BLAST
 	.4byte BattleScript_EffectHit                     @ EFFECT_EXCALIBUR
 	.4byte BattleScript_EffectFrostbiteHit            @ EFFECT_FROSTBITE_HIT
+	.4byte BattleScript_EffectHit                     @ EFFECT_EXPANDING_FORCE
 
 BattleScript_EffectFrostbiteHit::
 	setmoveeffect MOVE_EFFECT_FROSTBITE

@@ -14036,7 +14036,7 @@ SetSteelBeamBgPlayer:
 	fadetobg BG_STEEL_BEAM_PLAYER
 
 Move_EXPANDING_FORCE::
-	end @to do:
+	goto Move_DAZZLING_GLEAM
 
 Move_STEEL_ROLLER::
 	goto Move_GYRO_BALL
