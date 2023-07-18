@@ -298,5 +298,16 @@ Incineroar
     nature = Adamant 
     moves = Blaze Kick, Darkest Lariat, Fake Out, Drain Punch / Parting Shot
    comment = A fully offensive and tanky Incineroar set. Nature can be changed to Impish for physical bulk. Blaze Kick with Striker does a LOT of damage. Same with Drain Punch with Iron Fist. If the enemy lands a critical attack on you, you can basically sweep them thanks to Anger Point.
-    .tags = Singles, Offensive
+    tags = Singles, Offensive
+}
+Lopunny
+{
+    name = Offensive Fighting Spirit
+    item = Life Orb
+    ability = Fighting Spirit
+    evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Jolly / Adamant
+    moves = Quick Attack/Fake Out, Mega Kick, Triple Axel, Play Rough
+   comment = Fighting Spirit boosts all Normal moves by 20% and turns them into Fighting-type. Mega Kick and Triple Axel are boosted 30% by Striker.
+    .tags = Singles, Offensive 
 }
