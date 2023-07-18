@@ -3960,8 +3960,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_MONSTER,
     .eggGroup2 = EGG_GROUP_MONSTER,
-    .abilities = {ABILITY_IRON_FIST, ABILITY_SCRAPPY, ABILITY_GUTS},
-    .innates = {ABILITY_PARENTAL_BOND, ABILITY_EARLY_BIRD, ABILITY_AVENGER},
+    .abilities = {ABILITY_IRON_FIST, ABILITY_TECHNICIAN, ABILITY_GUTS},
+    .innates = {ABILITY_PARENTAL_BOND, ABILITY_SCRAPPY, ABILITY_AVENGER},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },
@@ -6386,7 +6386,7 @@ const struct BaseStats gBaseStats[] =
     .baseAttack    = 100,
     .baseDefense   = 65,
     .baseSpeed     = 105,
-    .baseSpAttack  = 100,
+    .baseSpAttack  = 90,
     .baseSpDefense = 65,
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_PSYCHIC,
@@ -8914,10 +8914,10 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 130, // -20 nerf
     .baseAttack    = 150, // -10 nerf
-    .baseDefense   = 90, // -10 nerf
+    .baseDefense   = 100,
     .baseSpeed     = 100,
     .baseSpAttack  = 75, // -20 nerf
-    .baseSpDefense = 65,
+    .baseSpDefense = 95, // +30
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_NORMAL,
     .catchRate = 255,
@@ -10921,7 +10921,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_BANETTE] =
     {
-    .baseHP        = 89, // 64 vanilla
+    .baseHP        = 84, // 64 vanilla
     .baseAttack    = 125,
     .baseDefense   = 85,
     .baseSpeed     = 93, // 83 vanilla
@@ -10939,18 +10939,18 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_FAST,
     .eggGroup1 = EGG_GROUP_AMORPHOUS,
     .eggGroup2 = EGG_GROUP_AMORPHOUS,
-    .abilities = {ABILITY_CURSED_BODY, ABILITY_SCARE, ABILITY_INSOMNIA},
-    .innates = {ABILITY_VENGEANCE, ABILITY_HAUNTED_SPIRIT, ABILITY_SOUL_EATER},
+    .abilities = {ABILITY_CURSED_BODY, ABILITY_VENGEANCE, ABILITY_INSOMNIA},
+    .innates = {ABILITY_SCARE, ABILITY_HAUNTED_SPIRIT, ABILITY_SOUL_EATER},
     .bodyColor = BODY_COLOR_BLACK,
     .noFlip = FALSE,
     },
 
 [SPECIES_BANETTE_MEGA] =
     {
-    .baseHP        = 89, // 64 vanilla
+    .baseHP        = 84, // 64 vanilla
     .baseAttack    = 165,
-    .baseDefense   = 95,
-    .baseSpeed     = 113, // 103 vanilla
+    .baseDefense   = 105, // 95 vanilla
+    .baseSpeed     = 103,
     .baseSpAttack  = 75,
     .baseSpDefense = 103, // 83 vanilla
     .type1 = TYPE_GHOST,
@@ -10966,7 +10966,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_AMORPHOUS,
     .eggGroup2 = EGG_GROUP_AMORPHOUS,
     .abilities = {ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_PRANKSTER},
-    .innates = {ABILITY_VENGEANCE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_EATER},
+    .innates = {ABILITY_INTIMIDATE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_EATER},
     .bodyColor = BODY_COLOR_BLACK,
     .noFlip = FALSE,
     },

@@ -2696,6 +2696,7 @@ const u16 gEggMoves[] = {
         MOVE_TAILWIND),
 
     egg_moves(BUNEARY,
+        MOVE_MEGA_KICK, // new
         MOVE_FAKE_TEARS,
         MOVE_FAKE_OUT,
         MOVE_ENCORE,
