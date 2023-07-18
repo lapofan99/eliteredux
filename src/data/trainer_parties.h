@@ -19798,6 +19798,78 @@ static const struct TrainerMonItemCustomMoves sParty_Norman1[] = {
     }
 };
 
+static const struct TrainerMonItemCustomMoves sParty_Norman1Insane[] = {
+    {
+    .lvl = 3,
+    .species = SPECIES_SWELLOW, // Norman-E, Specs, Air Blower
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 1, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_U_TURN, MOVE_HEAT_WAVE, MOVE_AIR_SLASH
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_TAUROS, // Norman-E, Orb, Rock Head
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_VIOLENT_RUSH, ABILITY_ROCK_HEAD, ABILITY_RAMPAGE},
+    // .innates = {ABILITY_HYPER_AGGRESSIVE, ABILITY_ANGER_POINT, ABILITY_SCRAPPY},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_HEAD_CHARGE, MOVE_EARTHQUAKE, MOVE_HEAD_SMASH, MOVE_CLOSE_COMBAT
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_BLISSEY, // Norman-E
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_SERENE_GRACE, ABILITY_SELF_SUFFICIENT},
+    // .innates = {ABILITY_NATURAL_CURE, ABILITY_HEALER, ABILITY_SUPER_LUCK},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SEISMIC_TOSS, MOVE_TOXIC, MOVE_SOFT_BOILED, MOVE_HEAL_BELL
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_BANETTE, // Norman-E, Sash, Scare
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_CURSED_BODY, ABILITY_SCARE, ABILITY_INSOMNIA},
+    // .innates = {ABILITY_VENGEANCE, ABILITY_HAUNTED_SPIRIT, ABILITY_SOUL_EATER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_CRUSH_CLAW, MOVE_SHADOW_CLAW, MOVE_WILL_O_WISP, MOVE_SHADOW_SNEAK
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_SLAKING, // Norman-E, Stall, Bulky
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_TRUANT, ABILITY_NONE, ABILITY_STALL},
+    // .innates = {ABILITY_COMATOSE, ABILITY_UNAWARE, ABILITY_MOLD_BREAKER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_FACADE, MOVE_SLACK_OFF, MOVE_PUNISHMENT, MOVE_EARTHQUAKE
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_KANGASKHAN, // Mega, Norman-E
+    .heldItem = ITEM_KANGASKHANITE,
+    .ability = 0, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_SCRAPPY, ABILITY_AVENGER},
+    // Pre-Mega
+    // ABILITY_IRON_FIST, ABILITY_SCRAPPY, ABILITY_GUTS},
+    // .innates = {ABILITY_PARENTAL_BOND, ABILITY_EARLY_BIRD, ABILITY_AVENGER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_FACADE, MOVE_POWER_UP_PUNCH, MOVE_FAKE_OUT, MOVE_EARTHQUAKE
+    }
+};
+
 static const struct TrainerMonItemCustomMoves sParty_Norman2[] = { // singles
     {
     .lvl = 3,

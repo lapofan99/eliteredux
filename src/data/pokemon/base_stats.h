@@ -1847,7 +1847,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_PERSIAN] =
     {
     .baseHP        = 65,
-    .baseAttack    = 70,
+    .baseAttack    = 85, // 70 vanilla
     .baseDefense   = 60,
     .baseSpeed     = 115,
     .baseSpAttack  = 105,
@@ -1874,7 +1874,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_PERSIAN_ALOLAN] =
     {
     .baseHP        = 65,
-    .baseAttack    = 60,
+    .baseAttack    = 75, // 60 vanilla
     .baseDefense   = 70,
     .baseSpeed     = 115,
     .baseSpAttack  = 105,
@@ -10874,7 +10874,7 @@ const struct BaseStats gBaseStats[] =
     .baseAttack    = 90,
     .baseDefense   = 70,
     .baseSpeed     = 40,
-    .baseSpAttack  = 60,
+    .baseSpAttack  = 90, // 60 vanilla
     .baseSpDefense = 120,
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_NORMAL,
@@ -10921,12 +10921,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_BANETTE] =
     {
-    .baseHP        = 64,
+    .baseHP        = 89, // 64 vanilla
     .baseAttack    = 125,
     .baseDefense   = 85,
-    .baseSpeed     = 83,
+    .baseSpeed     = 93, // 83 vanilla
     .baseSpAttack  = 65,
-    .baseSpDefense = 63,
+    .baseSpDefense = 83, // 63 vanilla
     .type1 = TYPE_GHOST,
     .type2 = TYPE_NORMAL,
     .catchRate = 255,
@@ -10947,12 +10947,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_BANETTE_MEGA] =
     {
-    .baseHP        = 64,
+    .baseHP        = 89, // 64 vanilla
     .baseAttack    = 165,
     .baseDefense   = 95,
-    .baseSpeed     = 103,
+    .baseSpeed     = 113, // 103 vanilla
     .baseSpAttack  = 75,
-    .baseSpDefense = 83,
+    .baseSpDefense = 103, // 83 vanilla
     .type1 = TYPE_GHOST,
     .type2 = TYPE_NORMAL,
     .catchRate = 255,

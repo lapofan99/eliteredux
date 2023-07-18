@@ -296,7 +296,7 @@ Incineroar
     ability = Anger Point
     evs = 92, 198, 110, 0, 110, 0
     nature = Adamant 
-    moves = Blaze Kick, Darkest Lariat, Fake Out, Drain Punch / Parting Shot
+    moves = Blaze Kick, Darkest Lariat, Fake Out, Drain Punch
    comment = A fully offensive and tanky Incineroar set. Nature can be changed to Impish for physical bulk. Blaze Kick with Striker does a LOT of damage. Same with Drain Punch with Iron Fist. If the enemy lands a critical attack on you, you can basically sweep them thanks to Anger Point.
     tags = Singles, Offensive
 }
