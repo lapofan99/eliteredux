@@ -11518,13 +11518,13 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		break;*/
 	case ABILITY_DREAMCATCHER:
 		if (numsleepmons == 1)
-            MulModifier(&modifier, UQ_4_12(1.5)); // buffed bc of Sleep Clause
+            MulModifier(&modifier, UQ_4_12(2.0)); // buffed bc of Sleep Clause
 		else if (numsleepmons == 2)
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(2.0));
 		else if (numsleepmons == 3)
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(2.0));
 		else if (numsleepmons == 4)
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(2.0));
 		break;
 	case ABILITY_LONG_REACH:
 		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
@@ -11744,16 +11744,16 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	if(BattlerHasInnate(battlerAtk, ABILITY_DREAMCATCHER)){
 		switch(numsleepmons){
 			case 1:
-				MulModifier(&modifier, UQ_4_12(1.5)); // buffed bc of Sleep Clause
+				MulModifier(&modifier, UQ_4_12(2.0)); // buffed bc of Sleep Clause
 			break;
 			case 2:
-				MulModifier(&modifier, UQ_4_12(1.5));
+				MulModifier(&modifier, UQ_4_12(2.0));
 			break;
 			case 3:
-				MulModifier(&modifier, UQ_4_12(1.5));
+				MulModifier(&modifier, UQ_4_12(2.0));
 			break;
 			case 4:
-				MulModifier(&modifier, UQ_4_12(1.5));
+				MulModifier(&modifier, UQ_4_12(2.0));
 			break;
 		}
 	}
