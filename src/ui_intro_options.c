@@ -551,8 +551,8 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
             _("Enabled"),
             },
         .optionDescription = { 
-            _("Move Randomizer Disabled Description"),
-            _("Move Randomizer Enabled Description"),
+            _("No changes to the learned moves."),
+            _("Moves will be fully randomized.\nLearnsets, TMs, Tutor and Egg Moves."),
             },
         .numOptions = 2,
     },
