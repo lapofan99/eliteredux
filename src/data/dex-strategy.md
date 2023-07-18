@@ -289,3 +289,14 @@ SPECIES_PERSIAN_ALOLAN
    Snarl is there in case you need to deal a good chunk of damage and can't do a bet on a critical hit since there aren't many good options in that department.
    tags = singles, doubles, offensive, troll
 }
+Incinieroar
+{
+    name = Offensive Bulkiroar
+    item = Assault Vest
+    ability = Anger Point
+    evs = 92, 198, 110, 0, 110, 0
+    nature = Adamant 
+    moves = Blaze Kick, Darkest Lariat, Fake Out, Drain Punch / Parting Shot
+   comment = A fully offensive and tanky Incineroar set. Nature can be changed to Impish for physical bulk. Blaze Kick with Striker does a LOT of damage. Same with Drain Punch with Iron Fist. If the enemy lands a critical attack on you, you can basically sweep them thanks to Anger Point.
+    .tags = Singles, Offensive
+}
