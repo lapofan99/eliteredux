@@ -5135,7 +5135,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_AIR_BLOWER;
                 gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
                 gSideTimers[GetBattlerSide(battler)].tailwindBattlerId = gBattlerAttacker;
-                gSideTimers[GetBattlerSide(battler)].tailwindTimer = (B_TAILWIND_TURNS >= GEN_5) ? 4 : 3;
+                gSideTimers[GetBattlerSide(battler)].tailwindTimer = 3;
 				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
 				effect++;
 			}
@@ -5159,7 +5159,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TWISTED_DIMENSION;
 				gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
-				gFieldTimers.trickRoomTimer = 5;
+				gFieldTimers.trickRoomTimer = 3;
 				BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionActivated);
 				effect++;
 			}
@@ -5173,9 +5173,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_NORTH_WIND;
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_AURORA_VEIL;
                 if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
-                    gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 8;
-                else
                     gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 5;
+                else
+                    gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 3;
 				BattleScriptPushCursorAndCallback(BattleScript_NorthWindActivated);
 				effect++;
 			}
@@ -5762,7 +5762,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gActiveBattler = gBattlerAttacker = battler;
                 gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_TAILWIND;
                 gSideTimers[GetBattlerSide(battler)].tailwindBattlerId = gBattlerAttacker;
-                gSideTimers[GetBattlerSide(battler)].tailwindTimer = (B_TAILWIND_TURNS >= GEN_5) ? 4 : 3;
+                gSideTimers[GetBattlerSide(battler)].tailwindTimer = 3;
 				BattleScriptPushCursorAndCallback(BattleScript_AirBlowerActivated);
 				effect++;
 			}
@@ -5792,9 +5792,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_NORTH_WIND;
 				gSideStatuses[GetBattlerSide(battler)] |= SIDE_STATUS_AURORA_VEIL;
                 if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_LIGHT_CLAY)
-                    gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 8;
-                else
                     gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 5;
+                else
+                    gSideTimers[GET_BATTLER_SIDE(battler)].auroraVeilTimer = 3;
 				BattleScriptPushCursorAndCallback(BattleScript_NorthWindActivated);
 				effect++;
 			}
@@ -5886,7 +5886,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_TWISTED_DIMENSION;
 				gLastUsedAbility = ABILITY_TWISTED_DIMENSION;
 				gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
-				gFieldTimers.trickRoomTimer = 5;
+				gFieldTimers.trickRoomTimer = 3;
 				BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionActivated);
 				effect++;
 			}
