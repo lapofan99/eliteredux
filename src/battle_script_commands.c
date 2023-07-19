@@ -2434,6 +2434,7 @@ static void Cmd_healthbarupdate(void)
                 !(gMoveResultFlags & MOVE_RESULT_FAILED) &&
                 !(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) &&
                 !gProtectStructs[gBattlerAttacker].confusionSelfDmg &&
+                !IS_BATTLER_PROTECTED(gActiveBattler) &&
                 gDisableStructs[gActiveBattler].substituteHP == 0 &&
                 gBattleMoves[gCurrentMove].split != SPLIT_STATUS &&
                 gBattleMoves[gCurrentMove].power > 0 &&
@@ -9855,6 +9856,7 @@ static void Cmd_various(void)
     case VARIOUS_CHECK_POLTERGEIST:
         if (gBattleMons[gActiveBattler].item == ITEM_NONE
            || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
+           || IS_BATTLER_PROTECTED(gActiveBattler)
            || GetBattlerAbility(gActiveBattler) == ABILITY_KLUTZ)
         {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
