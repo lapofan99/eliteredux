@@ -644,12 +644,12 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
             else if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_DASH))
                 tileBuffer = SNEAKING_PROXIMITY + 1;
             
-            if (GetPlayerDistance(topX, topY) <= tileBuffer)
+            /*if (GetPlayerDistance(topX, topY) <= tileBuffer)
             {
                 // tile too close to player
                 topX++;
                 continue;
-            }
+            }*/
             
             for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
             {
