@@ -1977,9 +1977,9 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_PRIMEAPE] =
     {
     .baseHP        = 65,
-    .baseAttack    = 115,
+    .baseAttack    = 105,
     .baseDefense   = 60,
-    .baseSpeed     = 115,
+    .baseSpeed     = 95,
     .baseSpAttack  = 60,
     .baseSpDefense = 70,
     .type1 = TYPE_FIGHTING,
@@ -3012,12 +3012,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_DODRIO] =
     {
-    .baseHP        = 80,
+    .baseHP        = 90, // 80 vanilla
     .baseAttack    = 110,
     .baseDefense   = 70,
     .baseSpAttack  = 60,
     .baseSpDefense = 60,
-    .baseSpeed     = 110,
+    .baseSpeed     = 120, // 110 vanilla
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_FLYING,
     .catchRate = 255,
@@ -24580,8 +24580,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_SLOW,
     .eggGroup1 = EGG_GROUP_UNDISCOVERED,
     .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-    .abilities = {ABILITY_RKS_SYSTEM, ABILITY_RKS_SYSTEM, ABILITY_RKS_SYSTEM},
-    .innates = {ABILITY_ADAPTABILITY, ABILITY_AVENGER, ABILITY_BATTLE_ARMOR},
+    .abilities = {ABILITY_RKS_SYSTEM, ABILITY_PROTEAN, ABILITY_UNAWARE},
+    .innates = {ABILITY_ADAPTABILITY, ABILITY_MYSTIC_POWER, ABILITY_PRIMAL_ARMOR},
     .bodyColor = BODY_COLOR_GRAY,
     .noFlip = FALSE,
     },
