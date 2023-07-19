@@ -2167,6 +2167,7 @@ u8 DoFieldEndTurnEffects(void)
             {
                 side = gBattleStruct->turnSideTracker;
                 gActiveBattler = gBattlerAttacker = side;
+                //Aurora Veil
                 if (gSideStatuses[side] & SIDE_STATUS_AURORA_VEIL)
                 {
                     if (--gSideTimers[side].auroraVeilTimer == 0)
@@ -2175,6 +2176,18 @@ u8 DoFieldEndTurnEffects(void)
                         BattleScriptExecute(BattleScript_SideStatusWoreOff);
                         gBattleCommunication[MULTISTRING_CHOOSER] = side;
                         PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_AURORA_VEIL);
+                        effect++;
+                    }
+                }
+                //Spider Web
+                if (gSideStatuses[side] & SIDE_STATUS_STICKY_WEB)
+                {
+                    if (--gSideTimers[side].spiderWebTimer == 1)
+                    {
+                        gSideStatuses[side] &= ~SIDE_STATUS_STICKY_WEB;
+                        BattleScriptExecute(BattleScript_SideStatusWoreOff);
+                        gBattleCommunication[MULTISTRING_CHOOSER] = side;
+                        PREPARE_MOVE_BUFFER(gBattleTextBuff1, MOVE_SPIDER_WEB);
                         effect++;
                     }
                 }
@@ -5148,6 +5161,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_SPIDER_LAIR;
 				gLastUsedAbility = ABILITY_SPIDER_LAIR;
 				gSideStatuses[BATTLE_OPPOSITE(battler)] |= SIDE_STATUS_STICKY_WEB;
+                gSideTimers[BATTLE_OPPOSITE(battler)].spiderWebTimer = 6;// 5 - 1 for the ability
 				BattleScriptPushCursorAndCallback(BattleScript_SpiderLairActivated);
 				effect++;
 			}
@@ -5809,6 +5823,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = ABILITY_SPIDER_LAIR;
 				gLastUsedAbility = ABILITY_SPIDER_LAIR;
 				gSideStatuses[BATTLE_OPPOSITE(battler)] |= SIDE_STATUS_STICKY_WEB;
+                gSideTimers[BATTLE_OPPOSITE(battler)].spiderWebTimer = 6;// 5 - 1 for the ability
 				BattleScriptPushCursorAndCallback(BattleScript_SpiderLairActivated);
 				effect++;
 			}
