@@ -355,6 +355,7 @@ Gardevoir Mega
 Pinsir Mega
 {
     .lvl = 3,
+    .name = Deathly Mega Attacker
     .species = SPECIES_PINSIR, // Mega, Winona, Doubles, Horn Drill
     .heldItem = ITEM_PINSIRITE,
     .ability = 1, // ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE},
