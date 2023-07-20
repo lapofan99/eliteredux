@@ -324,3 +324,20 @@ Ariados
 As for the abilities / innates, Sniper helps for extra crit damage, Spider Lair for slowing down enemies, Merciless for doing more crits, Opportunist for +1 priority if enemy health is low.
     .tags = Singles, Offensive
 }
+SPECIES_ZEBSTRIKA
+{
+   .name = Gotta Go Fast!
+   .item = Choice Band / Choice Scarf / Fire Gem / Focus Sash
+   .ability = Momentum
+   .evs = 252, 0, 6, 0, 0, 252
+   .nature = Jolly
+   .moves = Flame Charge, High Jump Kick, Play Rough, Volt Tackle
+   .comment = Why Momentum? It's slightly better than Speed Force, without switching in into a grass moves, allowing full HP EVs. Zebstrika is frail and relies on going first or surviving hits.
+
+In terms of items, Choice Band is the best damage booster and Choice Scarf is an option against fast mons. Focus Sash is useful against priority moves.
+
+Consider Fire Gem for flexibility and boosting Flame Charge to provide damage and speed boosts.
+
+You can replace Play Rough or Flame Charge with Flare Blitz for more damage, or Play Rough with Quick Attack for priority.
+   .tags = Singles, Offensive
+}

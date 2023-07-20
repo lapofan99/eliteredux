@@ -24309,8 +24309,80 @@ static const struct TrainerMonItemCustomMoves sParty_Darius[] = {
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Winona1[] = {
-{
+static const struct TrainerMonItemCustomMoves sParty_Winona1[] = { // Doubles
+    {
+    .lvl = 3,
+    .species = SPECIES_SWELLOW, // Winona, Doubles, Sash
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 2, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
+    .ivs = {31, 0, 31, 30, 30, 31}, // Ground
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_HIDDEN_POWER, MOVE_HEAT_WAVE, MOVE_HURRICANE
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_CORVIKNIGHT, // Winona, Doubles, Occa
+    .heldItem = ITEM_OCCA_BERRY,
+    .ability = 0, // ABILITY_STAKEOUT, ABILITY_RECKLESS, ABILITY_FIELD_EXPLORER},
+    // .innates = {ABILITY_INTIMIDATE, ABILITY_UNNERVE, ABILITY_MIRROR_ARMOR},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 120, 0, 156, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_BODY_PRESS, MOVE_IRON_DEFENSE, MOVE_STEEL_WING, MOVE_ROOST
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_DRAGONITE, // Winona, Fast Prism Scales, Vest
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_DRAGONS_MAW, ABILITY_AERILATE, ABILITY_PRISM_SCALES},
+    // .innates = {ABILITY_MULTISCALE, ABILITY_OVERWHELM, ABILITY_RAMPAGE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_DUAL_WINGBEAT, MOVE_DRAGON_RUSH, MOVE_FIRE_PUNCH, MOVE_EXTREME_SPEED
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_AERODACTYL, // Winona, Doubles, Sash, Support
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_SPEED_FORCE, ABILITY_PREDATOR, ABILITY_FATAL_PRECISION},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_HALF_DRAKE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {84, 252, 20, 0, 4, 148},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_ROCK_SLIDE, MOVE_IRON_HEAD, MOVE_TAILWIND, MOVE_WIDE_GUARD
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_SKARMORY, // Winona, Mixed Wall RH, Lead Coat, Toxic
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 2, // ABILITY_MIRROR_ARMOR, ABILITY_STURDY, ABILITY_LEAD_COAT},
+    // .innates = {ABILITY_GIANT_WINGS, ABILITY_FULL_METAL_BODY, ABILITY_BATTLE_ARMOR},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_SPIKES, MOVE_WHIRLWIND, MOVE_TOXIC, MOVE_ROOST
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_PINSIR, // Mega, Doubles, Feint + Protect
+    .heldItem = ITEM_PINSIRITE,
+    .ability = 1, // ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE},
+    // .innates = {ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER, ABILITY_AERILATE},
+    // Pre-Mega
+    // ABILITY_ANGER_POINT, ABILITY_VIOLENT_RUSH, ABILITY_MOXIE},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_THRASH, MOVE_FEINT, MOVE_CLOSE_COMBAT, MOVE_PROTECT
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Winona1Insane[] = { // Doubles
+    {
     .lvl = 3,
     .species = SPECIES_GYARADOS, // Winona, Doubles, Intimidate, Lum, DD
     .heldItem = ITEM_LUM_BERRY,
@@ -36183,7 +36255,7 @@ static const struct TrainerMonItemCustomMoves sParty_Glacia[] = {
     .heldItem = ITEM_LIGHT_CLAY,
     .ability = 2, // ABILITY_FROZEN_SOUL, ABILITY_NORTH_WIND, ABILITY_SNOW_WARNING},
     // .innates = {ABILITY_QUEENLY_MAJESTY, ABILITY_REFRIGERATE, ABILITY_ICE_DEW},
-    .ivs = {31, 0, 31, 31, 31, 31}, // Ground
+    .ivs = {31, 0, 31, 30, 30, 31}, // Ground
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
     .moves = MOVE_SHEER_COLD, MOVE_MOONBLAST, MOVE_AURORA_VEIL, MOVE_HIDDEN_POWER
