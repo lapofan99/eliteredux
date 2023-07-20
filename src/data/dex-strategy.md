@@ -345,7 +345,7 @@ Gardevoir Mega
 {
     name = Fast Sweeper
     item = Gardevoirite
-    ability = Pixilate (Psychic Surge pre-mega)
+    ability = Pixilate and Psychic Surge pre-mega
     evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     nature = Timid 
     moves = Hyper Voice, Expanding Force, Thunderbolt, Mystic Fire
