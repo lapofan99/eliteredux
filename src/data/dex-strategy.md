@@ -341,3 +341,14 @@ Consider Fire Gem for flexibility and boosting Flame Charge to provide damage an
 You can replace Play Rough or Flame Charge with Flare Blitz for more damage, or Play Rough with Quick Attack for priority.
    .tags = Singles, Offensive
 }
+Gardevoir Mega
+{
+    name = Fast Sweeper
+    item = Gardevoirite
+    ability = Pixilate (Psychic Surge pre-mega)
+    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Timid 
+    moves = Hyper Voice, Expanding Force, Thunderbolt, Mystic Fire
+   comment = Before being a Mega, Gardevoir needs to have Psychic Surge as ability, which prevents priority moves.
+    .tags = Doubles, Offensive
+}
