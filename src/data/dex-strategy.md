@@ -366,4 +366,12 @@ Pinsir Mega
     .evs = {52, 188, 28, 0, 4, 236},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
     .moves = MOVE_HORN_DRILL, MOVE_QUICK_ATTACK, MOVE_CLOSE_COMBAT, MOVE_PROTECT
+    .comment = Choose Violent Rush as pre-mega ability to profit from the first turn boosts.
+
+    Horn Drill and Quick Attack turn into Flying-type moves thanks to Aerilate and get boosted further by 20%. Horn Drill now has 120 BP along 90% accuracy and ignores the target's stat stages and ability. Additionally, it has a high crit chance, which pairs well with Hyper Cutter's increased crit rate.
+
+    Close Combat for strong coverage and Protect to safely Mega Evolve and useful for Doubles.
+
+    Grip Pincer (innate) makes Horn Drill more likely to hit.
+    .tags = Doubles, Offensive
     }
