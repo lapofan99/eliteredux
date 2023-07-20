@@ -332,7 +332,7 @@ SPECIES_ZEBSTRIKA
    .evs = 252, 0, 6, 0, 0, 252
    .nature = Jolly
    .moves = Flame Charge, High Jump Kick, Play Rough, Volt Tackle
-   .comment = Why Momentum? It's slightly better than Speed Force, without switching in into a grass moves, allowing full HP EVs. Zebstrika is frail and relies on going first or surviving hits.
+   .comment = Why Momentum? It's slightly better than Speed Force, without switching in into a Grass-type move, allowing full HP EVs. Zebstrika is frail and relies on going first or surviving hits.
 
 In terms of items, Choice Band is the best damage booster and Choice Scarf is an option against fast mons. Focus Sash is useful against priority moves.
 
@@ -345,7 +345,7 @@ Gardevoir Mega
 {
     name = Fast Sweeper
     item = Gardevoirite
-    ability = Pixilate and Psychic Surge pre-mega
+    ability = Pixilate (Psychic Surge pre-mega)
     evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     nature = Timid 
     moves = Hyper Voice, Expanding Force, Thunderbolt, Mystic Fire
