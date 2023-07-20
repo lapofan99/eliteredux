@@ -13741,14 +13741,16 @@ bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
 
 bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
 {
-    if (GetBattlerAbility(battlerDef) != ABILITY_DISGUISE
-        || gBattleMons[battlerDef].species != SPECIES_MIMIKYU
+    if (gBattleMons[battlerDef].species != SPECIES_MIMIKYU
         || gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED
-        || gBattleMoves[move].power == 0
-        || gHitMarker & HITMARKER_IGNORE_DISGUISE)
-        return FALSE;
-    else
+        || IS_MOVE_STATUS(move)
+        || ((gHitMarker & HITMARKER_IGNORE_DISGUISE) && move != MOVE_SUCKER_PUNCH)
+        || GetBattlerAbility(battlerDef) != ABILITY_DISGUISE){
+            return FALSE;
+        }
+    else{
         return TRUE;
+    }
 }
 
 static void Cmd_jumpifsubstituteblocks(void)
