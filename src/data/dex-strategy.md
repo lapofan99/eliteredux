@@ -352,3 +352,18 @@ Gardevoir Mega
    comment = Before being a Mega, Gardevoir needs to have Psychic Surge as ability, which prevents priority moves.
     .tags = Doubles, Offensive
 }
+Pinsir Mega
+{
+    .lvl = 3,
+    .species = SPECIES_PINSIR, // Mega, Winona, Doubles, Horn Drill
+    .heldItem = ITEM_PINSIRITE,
+    .ability = 1, // ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE},
+    // .innates = {ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER, ABILITY_AERILATE},
+    // Pre-Mega
+    // ABILITY_ANGER_POINT, ABILITY_VIOLENT_RUSH, ABILITY_MOXIE},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {52, 188, 28, 0, 4, 236},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_HORN_DRILL, MOVE_QUICK_ATTACK, MOVE_CLOSE_COMBAT, MOVE_PROTECT
+    }

@@ -2808,6 +2808,7 @@ static const struct LevelUpMove sPinsirLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_DOUBLE_EDGE), // new
     LEVEL_UP_MOVE(47, MOVE_SUPERPOWER),
     LEVEL_UP_MOVE(50, MOVE_GUILLOTINE),
+    LEVEL_UP_MOVE(53, MOVE_HORN_DRILL), // new
     LEVEL_UP_END
 };
 

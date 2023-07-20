@@ -8933,7 +8933,7 @@ static const struct TrainerMonItemCustomMoves sParty_Benjamin1[] = {
     .species = SPECIES_ORICORIO_POM_POM,
     .heldItem = ITEM_FLYING_GEM,
     .ability = 0, // ABILITY_DANCER, ABILITY_DANCER, ABILITY_DANCER},
-    // .innates = {ABILITY_KEEN_EYE, ABILITY_VOLT_ABSORB, ABILITY_PLUS},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_LIGHTNING_ROD, ABILITY_FLOCK},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {248, 0, 8, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -9005,7 +9005,7 @@ static const struct TrainerMonItemCustomMoves sParty_Benjamin2[] = {
     .species = SPECIES_ORICORIO_POM_POM,
     .heldItem = ITEM_FLYING_GEM,
     .ability = 0, // ABILITY_DANCER, ABILITY_DANCER, ABILITY_DANCER},
-    // .innates = {ABILITY_KEEN_EYE, ABILITY_VOLT_ABSORB, ABILITY_PLUS},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_LIGHTNING_ROD, ABILITY_FLOCK},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {248, 0, 8, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -9074,7 +9074,7 @@ static const struct TrainerMonItemCustomMoves sParty_Benjamin3[] = {
     .species = SPECIES_ORICORIO_POM_POM,
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // ABILITY_DANCER, ABILITY_DANCER, ABILITY_DANCER},
-    // .innates = {ABILITY_KEEN_EYE, ABILITY_VOLT_ABSORB, ABILITY_PLUS},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_LIGHTNING_ROD, ABILITY_FLOCK},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -9146,7 +9146,7 @@ static const struct TrainerMonItemCustomMoves sParty_Benjamin4[] = {
     .species = SPECIES_ORICORIO_POM_POM,
     .heldItem = ITEM_CHOICE_SPECS,
     .ability = 0, // ABILITY_DANCER, ABILITY_DANCER, ABILITY_DANCER},
-    // .innates = {ABILITY_KEEN_EYE, ABILITY_VOLT_ABSORB, ABILITY_PLUS},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_LIGHTNING_ROD, ABILITY_FLOCK},
     .ivs = {31, 31, 31, 30, 30, 30}, // Fighting
     .evs = {252, 0, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -9679,7 +9679,7 @@ static const struct TrainerMonItemCustomMoves sParty_Sophia[] = {
     .species = SPECIES_ORICORIO_POM_POM,
     .heldItem = ITEM_ELECTRIC_GEM,
     .ability = 0, // ABILITY_DANCER, ABILITY_DANCER, ABILITY_DANCER},
-    // .innates = {ABILITY_KEEN_EYE, ABILITY_VOLT_ABSORB, ABILITY_PLUS},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_LIGHTNING_ROD, ABILITY_FLOCK},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -24319,11 +24319,11 @@ static const struct TrainerMonItemCustomMoves sParty_Winona1[] = { // Doubles
     .ivs = {31, 0, 31, 30, 30, 31}, // Ground
     .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_BOOMBURST, MOVE_HIDDEN_POWER, MOVE_HEAT_WAVE, MOVE_HURRICANE
+    .moves = MOVE_BOOMBURST, MOVE_PROTECT, MOVE_HEAT_WAVE, MOVE_HURRICANE
     },
     {
     .lvl = 3,
-    .species = SPECIES_CORVIKNIGHT, // Winona, Doubles, Occa
+    .species = SPECIES_CORVIKNIGHT, // Winona, Occa
     .heldItem = ITEM_OCCA_BERRY,
     .ability = 0, // ABILITY_STAKEOUT, ABILITY_RECKLESS, ABILITY_FIELD_EXPLORER},
     // .innates = {ABILITY_INTIMIDATE, ABILITY_UNNERVE, ABILITY_MIRROR_ARMOR},
@@ -24345,29 +24345,29 @@ static const struct TrainerMonItemCustomMoves sParty_Winona1[] = { // Doubles
     },
     {
     .lvl = 3,
-    .species = SPECIES_AERODACTYL, // Winona, Doubles, Sash, Support
+    .species = SPECIES_HONCHKROW, // Winona, Doubles, Dark Gem, Scare, Mixed
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_SUPER_LUCK, ABILITY_SCARE, ABILITY_MOXIE},
+    // .innates = {ABILITY_BIG_PECKS, ABILITY_NOCTURNAL, ABILITY_BAD_LUCK},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 4, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_HASTY,
+    .moves = MOVE_BRAVE_BIRD, MOVE_SUCKER_PUNCH, MOVE_ICY_WIND, MOVE_HEAT_WAVE
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_ORICORIO_POM_POM, // Winona, Sash, Q-Dance
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1, // ABILITY_SPEED_FORCE, ABILITY_PREDATOR, ABILITY_FATAL_PRECISION},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_HALF_DRAKE},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {84, 252, 20, 0, 4, 148},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_ROCK_SLIDE, MOVE_IRON_HEAD, MOVE_TAILWIND, MOVE_WIDE_GUARD
+    .ability = 0, // ABILITY_DANCER, ABILITY_DANCER, ABILITY_DANCER},
+    // .innates = {ABILITY_KEEN_EYE, ABILITY_LIGHTNING_ROD, ABILITY_FLOCK},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_REVELATION_DANCE, MOVE_HURRICANE, MOVE_HEAT_WAVE, MOVE_QUIVER_DANCE
     },
     {
     .lvl = 3,
-    .species = SPECIES_SKARMORY, // Winona, Mixed Wall RH, Lead Coat, Toxic
-    .heldItem = ITEM_ROCKY_HELMET,
-    .ability = 2, // ABILITY_MIRROR_ARMOR, ABILITY_STURDY, ABILITY_LEAD_COAT},
-    // .innates = {ABILITY_GIANT_WINGS, ABILITY_FULL_METAL_BODY, ABILITY_BATTLE_ARMOR},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_IMPISH,
-    .moves = MOVE_SPIKES, MOVE_WHIRLWIND, MOVE_TOXIC, MOVE_ROOST
-    },
-    {
-    .lvl = 3,
-    .species = SPECIES_PINSIR, // Mega, Doubles, Feint + Protect
+    .species = SPECIES_PINSIR, // Mega, Winona, Doubles, Horn Drill
     .heldItem = ITEM_PINSIRITE,
     .ability = 1, // ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE},
     // .innates = {ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER, ABILITY_AERILATE},
@@ -24375,9 +24375,9 @@ static const struct TrainerMonItemCustomMoves sParty_Winona1[] = { // Doubles
     // ABILITY_ANGER_POINT, ABILITY_VIOLENT_RUSH, ABILITY_MOXIE},
     // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {52, 188, 28, 0, 4, 236},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_THRASH, MOVE_FEINT, MOVE_CLOSE_COMBAT, MOVE_PROTECT
+    .moves = MOVE_HORN_DRILL, MOVE_QUICK_ATTACK, MOVE_CLOSE_COMBAT, MOVE_PROTECT
     }
 };
 
