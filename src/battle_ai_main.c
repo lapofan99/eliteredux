@@ -1836,7 +1836,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_WILL_O_WISP:
             if (!AI_CanBurn(battlerAtk, battlerDef, AI_DATA->defAbility, AI_DATA->battlerAtkPartner, move, AI_DATA->partnerMove)
-                 || (AI_DATA->defAbility == ABILITY_FLASH_FIRE))
+                 || (AI_DATA->defAbility == ABILITY_FLASH_FIRE || BattlerHasInnate(battlerDef, ABILITY_FLASH_FIRE)))
                 score -= 10;
             break;
         case EFFECT_MEMENTO:
