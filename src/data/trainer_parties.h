@@ -22209,12 +22209,12 @@ static const struct TrainerMonItemCustomMoves sParty_Greg[] = {
     .lvl = 0,
     .species = SPECIES_LEDIAN,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // ABILITY_AERILATE, ABILITY_TECHNICIAN, ABILITY_IRON_FIST},
-    // .innates = {ABILITY_SWARM, ABILITY_EARLY_BIRD, ABILITY_LEVITATE},
+    .ability = 1, // ABILITY_AERILATE, ABILITY_BUGINIZE, ABILITY_AERODYNAMICS},
+    // .innates = {ABILITY_RAGING_BOXER, ABILITY_IRON_FIST, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_DOUBLE_EDGE, MOVE_LEECH_LIFE, MOVE_CLOSE_COMBAT, MOVE_ICE_PUNCH
+    .moves = MOVE_MEGA_PUNCH, MOVE_DUAL_WINGBEAT, MOVE_CLOSE_COMBAT, MOVE_ICE_PUNCH
     },
     {
     .lvl = 0,
