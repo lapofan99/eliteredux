@@ -416,3 +416,18 @@ Ledian
     .tags = Singles, Offensive
     .comment = Mega Punch turns into Bug-type thanks to Buginize -> also gets STAB + an additional 20% boost, which is further boosted 30% by Iron Fist. Raging Boxer makes sure it hits twice (2nd hit does 0.5x damage), which is useful to break Focus Sashes. Dual Wingbeat gets 25% boost from Levitate. Close Combat abuses Iron Fist + Raging Boxer. Ice Punch for coverage.
     }
+Granbull
+{
+    .name = Hitting hard
+    .lvl = 0,
+    .species = SPECIES_GRANBULL,
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_GUTS, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_FIGHT_SPIRIT, ABILITY_STRONG_JAW, ABILITY_QUICK_FEET},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_PLAY_ROUGH, MOVE_EARTHQUAKE, MOVE_FIRE_FANG, MOVE_HYPER_FANG
+    .tags = Singles, Offensive
+    .comment = Fighting Spirit turns Hyper Fang into a Fighting-type move (gets STAB + 20% boost). If you get statused, Quick Feet activates and gives you 50% more speed.
+    }

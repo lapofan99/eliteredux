@@ -3803,7 +3803,7 @@ static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndeliver
 static const u8 sMoveFourLineDescription_KarateChop[] = _("The foe is attacked\nwith a sharp chop.\nIt has a high\ncritical-hit ratio.");
 static const u8 sMoveFourLineDescription_DoubleSlap[] = _("The foe is slapped\nrepeatedly, back\nand forth, two to\nfive times.");
 static const u8 sMoveFourLineDescription_CometPunch[] = _("Hits 2 to 5 times.\nHas +1 priority.\nIron Fist boost."); // new
-static const u8 sMoveFourLineDescription_MegaPunch[] = _("The foe is slugged\nby a punch with\ngreat power\nIron Fist boost."); // new
+static const u8 sMoveFourLineDescription_MegaPunch[] = _("The foe is slugged\nby a punch with\ngreat power.\nIron Fist boost."); // new
 static const u8 sMoveFourLineDescription_PayDay[] = _("Numerous coins are\nhurled at the foe.\nMoney is earned\nafter battle.");
 static const u8 sMoveFourLineDescription_FirePunch[] = _("The foe is punched\nwith a fiery fist.\n10% burn chance.\nIron Fist boost."); // new
 #if B_USE_FROSTBITE == TRUE
