@@ -390,3 +390,14 @@ Dragapult
     .moves = MOVE_POLTERGEIST, MOVE_DRAGON_DARTS, MOVE_U_TURN, MOVE_WILL_O_WISP
     .tags = Singles, Offensive
     }
+Umbreon
+{ 
+    name = SpDef Stall Wall
+    item = Leftovers / Bright Dust
+    ability = bad luck
+    evs = 252, 0, 4, 0, 252, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Calm
+    moves = foul play, protect, Moonlight / Strength Sap, toxic
+   comment = A basic Toxic/Protect stall with Moonlight over Wish for instant healing (Strength Sap comes at level 60 once you can learn it off Leafeon and do the devolve/re-evolve). Foul Play does really well vs any Pokémon with more Atk than you have, which is why you pick -Atk +SpDef nature and later have Strength Sap.
+    .tags = Singles, Doubles, Defensive, Mixed
+}
