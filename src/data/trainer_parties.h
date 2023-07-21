@@ -24384,72 +24384,72 @@ static const struct TrainerMonItemCustomMoves sParty_Winona1[] = { // Doubles
 static const struct TrainerMonItemCustomMoves sParty_Winona1Insane[] = { // Doubles
     {
     .lvl = 3,
-    .species = SPECIES_GYARADOS, // Winona, Doubles, Intimidate, Lum, DD
-    .heldItem = ITEM_LUM_BERRY,
-    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_AERILATE, ABILITY_OVERWHELM},
-    // .innates = {ABILITY_SEA_GUARDIAN, ABILITY_MOXIE, ABILITY_LEVITATE},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_DRAGON_DANCE, MOVE_PROTECT
+    .species = SPECIES_MOLTRES_GALARIAN, // Winona-E, WP 
+    .heldItem = ITEM_WEAKNESS_POLICY,
+    .ability = 0, // ABILITY_BERSERK, ABILITY_SOUL_EATER, ABILITY_GIANT_WINGS},
+    // .innates = {ABILITY_DARK_AURA, ABILITY_SHADOW_SHIELD, ABILITY_BURNATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_FIERY_WRATH, MOVE_OBLIVION_WING, MOVE_HYPER_VOICE, MOVE_SCORCHING_SANDS
     },
     {
     .lvl = 3,
-    .species = SPECIES_HAWLUCHA, // Winona, Doubles, Flying Gem + Unburden, Encore
-    .heldItem = ITEM_FLYING_GEM,
-    .ability = 0, // ABILITY_UNBURDEN, ABILITY_AERILATE, ABILITY_MOLD_BREAKER},
-    // .innates = {ABILITY_LIMBER, ABILITY_NO_GUARD, ABILITY_AERODYNAMICS},
+    .species = SPECIES_ARTICUNO_GALARIAN, // Winona-E, Yache, Intimidate
+    .heldItem = ITEM_YACHE_BERRY,
+    .ability = 1, // ABILITY_COMPETITIVE, ABILITY_INTIMIDATE, ABILITY_SCARE},
+    // .innates = {ABILITY_AURORA_BOREALIS, ABILITY_PERMAFROST, ABILITY_REFRIGERATE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_FREEZING_GLARE, MOVE_HYPER_VOICE, MOVE_AEROBLAST, MOVE_ROOST
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_ZAPDOS_GALARIAN, // Winona-E, Orb, Scrappy
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_DEFIANT, ABILITY_AERODYNAMICS, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_STRIKER, ABILITY_LIGHTNING_ROD, ABILITY_GALVANIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_CLOSE_COMBAT, MOVE_BRAVE_BIRD, MOVE_ROCK_SLIDE, MOVE_ENCORE
+    .moves = MOVE_THUNDEROUS_KICK, MOVE_MEGA_KICK, MOVE_BRAVE_BIRD, MOVE_BLAZE_KICK
     },
     {
     .lvl = 3,
-    .species = SPECIES_DRAGONITE, // Winona, Fast Prism Scales, Vest
+    .species = SPECIES_DRAGONITE, // Winona-E, Fast Prism Scales, Vest
     .heldItem = ITEM_ASSAULT_VEST,
     .ability = 2, // ABILITY_DRAGONS_MAW, ABILITY_AERILATE, ABILITY_PRISM_SCALES},
     // .innates = {ABILITY_MULTISCALE, ABILITY_OVERWHELM, ABILITY_RAMPAGE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
+	.nature = NATURE_JOLLY,
     .moves = MOVE_DUAL_WINGBEAT, MOVE_DRAGON_RUSH, MOVE_FIRE_PUNCH, MOVE_EXTREME_SPEED
     },
     {
     .lvl = 3,
-    .species = SPECIES_AERODACTYL, // Winona, Doubles, Sash, Support
-    .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1, // ABILITY_SPEED_FORCE, ABILITY_PREDATOR, ABILITY_FATAL_PRECISION},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_HALF_DRAKE},
+    .species = SPECIES_CORVIKNIGHT, // Winona, Occa
+    .heldItem = ITEM_OCCA_BERRY,
+    .ability = 0, // ABILITY_STAKEOUT, ABILITY_RECKLESS, ABILITY_FIELD_EXPLORER},
+    // .innates = {ABILITY_INTIMIDATE, ABILITY_UNNERVE, ABILITY_MIRROR_ARMOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {84, 252, 20, 0, 4, 148},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_ROCK_SLIDE, MOVE_IRON_HEAD, MOVE_TAILWIND, MOVE_WIDE_GUARD
+    .evs = {252, 0, 120, 0, 156, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_BODY_PRESS, MOVE_IRON_DEFENSE, MOVE_STEEL_WING, MOVE_ROOST
     },
     {
     .lvl = 3,
-    .species = SPECIES_SKARMORY, // Winona, Mixed Wall RH, Lead Coat, Toxic
-    .heldItem = ITEM_ROCKY_HELMET,
-    .ability = 2, // ABILITY_MIRROR_ARMOR, ABILITY_STURDY, ABILITY_LEAD_COAT},
-    // .innates = {ABILITY_GIANT_WINGS, ABILITY_FULL_METAL_BODY, ABILITY_BATTLE_ARMOR},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_IMPISH,
-    .moves = MOVE_SPIKES, MOVE_WHIRLWIND, MOVE_TOXIC, MOVE_ROOST
-    },
-    {
-    .lvl = 3,
-    .species = SPECIES_ALTARIA, // Mega, Winona, Standard
-    .heldItem = ITEM_ALTARIANITE,
-    .ability = 2, // ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
-    // .innates = {ABILITY_NATURAL_CURE, ABILITY_FLUFFY, ABILITY_LEVITATE},
+    .species = SPECIES_PINSIR, // Mega, Winona-E, Doubles, Horn Drill
+    .heldItem = ITEM_PINSIRITE,
+    .ability = 1, // ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE, ABILITY_HYPER_AGGRESSIVE},
+    // .innates = {ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER, ABILITY_AERILATE},
     // Pre-Mega
-    // ABILITY_COTTON_DOWN, ABILITY_SERENE_GRACE, ABILITY_CLOUD_NINE},
-    // .innates = {ABILITY_NATURAL_CURE, ABILITY_FLUFFY, ABILITY_SWEET_DREAMS},
+    // ABILITY_ANGER_POINT, ABILITY_VIOLENT_RUSH, ABILITY_MOXIE},
+    // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {52, 188, 28, 0, 4, 236},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_RETURN, MOVE_EARTHQUAKE, MOVE_ROOST, MOVE_DRAGON_DANCE
+    .moves = MOVE_HORN_DRILL, MOVE_QUICK_ATTACK, MOVE_CLOSE_COMBAT, MOVE_PROTECT
     }
 };
 
@@ -38208,7 +38208,7 @@ static const struct TrainerMonItemCustomMoves sParty_Drake2[] = { // Doubles
     },
     {
     .lvl = 5,
-    .species = SPECIES_SALAMENCE, // Drake, Doubles, Mega, Special
+    .species = SPECIES_SALAMENCE, // Drake2, Doubles, Mega, Special
     .heldItem = ITEM_SALAMENCITE,
     .ability = 0, // ABILITY_BEAST_BOOST, ABILITY_BEAST_BOOST, ABILITY_BEAST_BOOST},
     // .innates = {ABILITY_OVERWHELM, ABILITY_AERILATE, ABILITY_PREDATOR},

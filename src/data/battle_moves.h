@@ -11720,7 +11720,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_FREEZING_GLARE] =
     {
-        .power = 90,
+        .power = 95,
          #if B_USE_FROSTBITE == TRUE
             .effect = EFFECT_FROSTBITE_HIT,
         #else
@@ -11729,7 +11729,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .type = TYPE_PSYCHIC,
         .accuracy = 100,
         .pp = 10,
-        .secondaryEffectChance = 10,
+        .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST,
@@ -11739,7 +11739,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_FIERY_WRATH] =
     {
         .effect = EFFECT_FLINCH_HIT,
-        .power = 90,
+        .power = 95,
         .type = TYPE_DARK,
         .accuracy = 100,
         .pp = 10,
@@ -11753,7 +11753,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_THUNDEROUS_KICK] =
     {
         .effect = EFFECT_DEFENSE_DOWN_HIT,
-        .power = 90,
+        .power = 95,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
         .pp = 10,
