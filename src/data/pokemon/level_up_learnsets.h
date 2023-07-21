@@ -3679,6 +3679,7 @@ static const struct LevelUpMove sNoctowlLevelUpLearnset[] = {
     LEVEL_UP_MOVE(47, MOVE_MOONBLAST),
     LEVEL_UP_MOVE(51, MOVE_SYNCHRONOISE),
     LEVEL_UP_MOVE(55, MOVE_DREAM_EATER),
+    LEVEL_UP_MOVE(57, MOVE_EXPANDING_FORCE), // new
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE(59, MOVE_BOOMBURST),
     #endif

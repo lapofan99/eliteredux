@@ -429,5 +429,5 @@ Granbull
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_PLAY_ROUGH, MOVE_EARTHQUAKE, MOVE_FIRE_FANG, MOVE_HYPER_FANG
     .tags = Singles, Offensive
-    .comment = Fighting Spirit turns Hyper Fang into a Fighting-type move (gets STAB + 20% boost). If you get statused, Quick Feet activates and gives you 50% more speed.
+    .comment = Fighting Spirit turns Hyper Fang into a Fighting-type move (gets 20% boost). If you get statused, Quick Feet activates and gives you 50% more speed.
     }

@@ -10407,7 +10407,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_SOLROCK] =
 	{
     .baseHP        = 90,
-    .baseAttack    = 95,
+    .baseAttack    = 125, // 105 vanilla
     .baseDefense   = 115,
     .baseSpeed     = 70,
     .baseSpAttack  = 55,
@@ -11817,7 +11817,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_UNDISCOVERED,
     .eggGroup2 = EGG_GROUP_UNDISCOVERED,
     .abilities = {ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
-    .innates = {ABILITY_LEVITATE, ABILITY_VIOLENT_RUSH, ABILITY_MYSTIC_POWER},
+    .innates = {ABILITY_LEVITATE, ABILITY_MULTISCALE, ABILITY_MYSTIC_POWER},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },
@@ -22446,8 +22446,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_PUMPKABOO] =
     {
     .baseHP        = 49,
+    .baseAttack    = 44,
     .baseDefense   = 70,
     .baseSpeed     = 51,
+    .baseSpAttack  = 66,
     .baseSpDefense = 55,
     .type1 = TYPE_GHOST,
     .type2 = TYPE_GRASS,
