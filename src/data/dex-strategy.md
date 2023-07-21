@@ -376,3 +376,17 @@ Pinsir Mega
     Grip Pincer (innate) makes Horn Drill more likely to hit.
     .tags = Doubles, Offensive
     }
+Dragapult
+{
+    .lvl = 3,
+    .name = Physical Parental Bond
+    .species = SPECIES_DRAGAPULT, // Drake, Colbur, Parental Bond, Physical
+    .heldItem = ITEM_COLBUR_BERRY,
+    .ability = 2, // ABILITY_ARTILLERY, ABILITY_SPEED_BOOST, ABILITY_PARENTAL_BOND},
+    // .innates = {ABILITY_LEVITATE, ABILITY_CLEAR_BODY, ABILITY_HAUNTED_SPIRIT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_POLTERGEIST, MOVE_DRAGON_DARTS, MOVE_U_TURN, MOVE_WILL_O_WISP
+    .tags = Singles, Offensive
+    }
