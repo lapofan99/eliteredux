@@ -9917,8 +9917,9 @@ static const struct TrainerMonItemCustomMoves sParty_Everett[] = { // with Marie
     .heldItem = ITEM_PSYCHIC_GEM,
     .ability = 2, // ABILITY_BATTLE_ARMOR, ABILITY_LEAD_COAT, ABILITY_TWISTED_DIMENSION},
     // .innates = {ABILITY_STEELY_SPIRIT, ABILITY_HEATPROOF, ABILITY_BULLETPROOF},
-    .ivs = {31, 31, 31, 31, 31, 31},
+    .ivs = {31, 31, 31, 31, 31, 0},
     .evs = {252, 0, 96, 0, 160, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
 	.nature = NATURE_RELAXED,
     .moves = MOVE_GYRO_BALL, MOVE_PSYCHIC, MOVE_PROTECT, MOVE_RECOVER
     }
@@ -19159,8 +19160,9 @@ static const struct TrainerMonItemCustomMoves sParty_Roman[] = {
     .heldItem = ITEM_LEFTOVERS,
     .ability = 1, // ABILITY_BATTLE_ARMOR, ABILITY_LEAD_COAT, ABILITY_TWISTED_DIMENSION},
     // .innates = {ABILITY_STEELY_SPIRIT, ABILITY_HEATPROOF, ABILITY_BULLETPROOF},
-    .ivs = {31, 31, 31, 31, 31, 31},
+    .ivs = {31, 31, 31, 31, 31, 0},
     .evs = {252, 0, 96, 0, 160, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
 	.nature = NATURE_RELAXED,
     .moves = MOVE_GYRO_BALL, MOVE_EXTRASENSORY, MOVE_HYPNOSIS, MOVE_RECOVER
     },
@@ -26404,6 +26406,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cedric[] = { // with Valeri
     // .innates = {ABILITY_STEELY_SPIRIT, ABILITY_HEATPROOF, ABILITY_BULLETPROOF},
     .ivs = {31, 0, 31, 31, 31, 0},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
 	.nature = NATURE_RELAXED,
     .moves = MOVE_FLASH_CANNON, MOVE_PSYCHIC, MOVE_RECOVER, MOVE_CALM_MIND
     },
@@ -32339,8 +32342,82 @@ static const struct TrainerMonItemCustomMoves sParty_Hannah[] = { // with Sylvia
 
 static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inverse Battle!
     {
+    .lvl = 0,
+    .species = SPECIES_BRONZONG, // T&L, Def Wall, Leftovers, TR Setter, Calm Mind
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // ABILITY_BATTLE_ARMOR, ABILITY_LEAD_COAT, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_STEELY_SPIRIT, ABILITY_HEATPROOF, ABILITY_BULLETPROOF},
+    .ivs = {31, 31, 31, 31, 31, 0},
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
+	.nature = NATURE_RELAXED,
+    .moves = MOVE_GYRO_BALL, MOVE_EXPANDING_FORCE, MOVE_RECOVER, MOVE_BODY_PRESS
+    },
+    {
     .lvl = 3,
-    .species = SPECIES_SLOWBRO, // Mega
+    .species = SPECIES_GARDEVOIR, // Mega, Doubles, Surge, CM
+    .heldItem = ITEM_GARDEVOIRITE,
+    .ability = 2, // ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE},
+    //.innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_SOUL_HEART},
+    // Pre-Mega
+    // ABILITY_QUEENLY_MAJESTY, ABILITY_SOUL_HEART, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_SERENE_GRACE, ABILITY_MAGIC_GUARD, ABILITY_DREAMCATCHER},
+    .ivs = {31, 0, 31, 31, 31, 0},
+    .evs = {248, 0, 0, 252, 8, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
+	.nature = NATURE_QUIET,
+    .moves = MOVE_HYPER_VOICE, MOVE_EXPANDING_FORCE, MOVE_MYSTICAL_FIRE, MOVE_PROTECT
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_EXEGGUTOR, // SubSeed, T&L
+    .heldItem = ITEM_FIGY_BERRY,
+    .ability = 1, // ABILITY_MAGIC_BOUNCE, ABILITY_CHLOROPLAST, ABILITY_SOLAR_POWER},
+    // .innates = {ABILITY_HARVEST, ABILITY_MULTI_HEADED, ABILITY_CHLOROPHYLL},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 196, 0, 60, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_PROTECT, MOVE_SUBSTITUTE, MOVE_LEECH_SEED, MOVE_GIGA_DRAIN
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_REUNICLUS, // Bulky Sweeper, T&L
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_OVERCOAT, ABILITY_NEUROFORCE, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_REGENERATOR, ABILITY_LIQUIFIED, ABILITY_MAGIC_GUARD},
+    .ivs = {31, 0, 31, 31, 31, 0},
+    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_QUIET,
+    .moves = MOVE_PSYCHIC, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_PROTECT
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_LUNATONE, // Scarf Magic Room, T&L
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 0, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_DREAMCATCHER},
+    // .innates = {ABILITY_LEVITATE, ABILITY_NOCTURNAL, ABILITY_LUNAR_ECLIPSE},
+    .ivs = {31, 0, 31, 31, 31, 0},
+    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_POWER_GEM, MOVE_PSYCHIC, MOVE_EARTH_POWER, MOVE_MAGIC_ROOM
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_SOLROCK, // Bulky Offense, T&L
+    .heldItem = ITEM_SITRUS_BERRY,
+    .ability = 2, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_VICTORY_STAR},
+    // .innates = {ABILITY_LEVITATE, ABILITY_ILLUMINATE, ABILITY_SOLAR_FLARE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_PROTECT, MOVE_ROCK_SLIDE, MOVE_ZEN_HEADBUTT, MOVE_ROCK_POLISH
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { // Inverse Battle!
+    {
+    .lvl = 3,
+    .species = SPECIES_SLOWBRO, // Mega, T&L-E
     .heldItem = ITEM_SLOWBRONITE,
     .ability = 2, // ABILITY_UNAWARE, ABILITY_UNAWARE, ABILITY_UNAWARE},
     // .innates = {ABILITY_REGENERATOR, ABILITY_FORT_KNOX, ABILITY_SHELL_ARMOR},
@@ -32354,7 +32431,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inver
     },
     {
     .lvl = 3,
-    .species = SPECIES_CLAYDOL, // Boomer
+    .species = SPECIES_CLAYDOL, // Boomer, T&L-E
     .heldItem = ITEM_NORMAL_GEM,
     .ability = 0, // ABILITY_MYSTIC_POWER, ABILITY_SOUL_LINKER, ABILITY_TWISTED_DIMENSION},
     // .innates = {ABILITY_LEVITATE, ABILITY_ANCIENT_IDOL, ABILITY_SAND_FORCE},
@@ -32365,7 +32442,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inver
     },
     {
     .lvl = 3,
-    .species = SPECIES_EXEGGUTOR, // SubSeed
+    .species = SPECIES_EXEGGUTOR, // SubSeed, T&L-E
     .heldItem = ITEM_FIGY_BERRY,
     .ability = 1, // ABILITY_MAGIC_BOUNCE, ABILITY_CHLOROPLAST, ABILITY_SOLAR_POWER},
     // .innates = {ABILITY_HARVEST, ABILITY_MULTI_HEADED, ABILITY_CHLOROPHYLL},
@@ -32376,7 +32453,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inver
     },
     {
     .lvl = 3,
-    .species = SPECIES_REUNICLUS, // Bulky Sweeper
+    .species = SPECIES_REUNICLUS, // Bulky Sweeper, T&L-E
     .heldItem = ITEM_LIFE_ORB,
     .ability = 2, // ABILITY_OVERCOAT, ABILITY_NEUROFORCE, ABILITY_TWISTED_DIMENSION},
     // .innates = {ABILITY_REGENERATOR, ABILITY_LIQUIFIED, ABILITY_MAGIC_GUARD},
@@ -32387,7 +32464,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inver
     },
     {
     .lvl = 3,
-    .species = SPECIES_LUNATONE, // Scarf Magic Room
+    .species = SPECIES_LUNATONE, // Scarf Magic Room, T&L-E
     .heldItem = ITEM_CHOICE_SCARF,
     .ability = 0, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_DREAMCATCHER},
     // .innates = {ABILITY_LEVITATE, ABILITY_NOCTURNAL, ABILITY_LUNAR_ECLIPSE},
@@ -32398,7 +32475,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inver
     },
     {
     .lvl = 3,
-    .species = SPECIES_SOLROCK, // Bulky Offense
+    .species = SPECIES_SOLROCK, // Bulky Offense, T&L-E
     .heldItem = ITEM_SITRUS_BERRY,
     .ability = 2, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_VICTORY_STAR},
     // .innates = {ABILITY_LEVITATE, ABILITY_ILLUMINATE, ABILITY_SOLAR_FLARE},
@@ -34605,6 +34682,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven[] = { // Postgame
     // .innates = {ABILITY_STEELY_SPIRIT, ABILITY_HEATPROOF, ABILITY_BULLETPROOF},
     .ivs = {31, 0, 31, 31, 31, 0},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
 	.nature = NATURE_RELAXED,
     .moves = MOVE_FLASH_CANNON, MOVE_PSYCHIC, MOVE_RECOVER, MOVE_CALM_MIND
     },
