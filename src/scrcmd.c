@@ -2631,9 +2631,18 @@ bool8 ScrCmd_giveBattleItems(struct ScriptContext *ctx)
     u8 i;
     //Battle Items
     for(i = 0; i < NURSE_BATTLE_ITEM_COUNT; i++){
-        if (!CheckBagHasItem(sBattleItemList[i][0], sBattleItemList[i][1])){
-            AddBagItem(sBattleItemList[i][0], sBattleItemList[i][1]);
-        } 
+        if(CheckBagHasItem(ITEM_MEGA_BRACELET, 1) && FlagGet(FLAG_SYS_RECEIVED_KEYSTONE)){
+            //With Mega Stones
+            if (!CheckBagHasItem(sBattleItemList[i][0], sBattleItemList[i][1])){
+                AddBagItem(sBattleItemList[i][0], sBattleItemList[i][1]);
+            } 
+        }
+        else{
+            //Without Mega stones
+            if (!CheckBagHasItem(sBattleItemList[i][0], sBattleItemList[i][1]) && ItemId_GetPocket(sBattleItemList[i][0]) != POCKET_MEGA_STONES){
+                AddBagItem(sBattleItemList[i][0], sBattleItemList[i][1]);
+            } 
+        }
     }
 
     for(i = 0; i < NUM_TECHNICAL_MACHINES; i++){

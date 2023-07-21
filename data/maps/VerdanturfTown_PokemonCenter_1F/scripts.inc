@@ -131,7 +131,6 @@ Common_EventScript_PkmnCenterNurse_GiveItems_First_Time::
 	giveBattleItems
 	return
 
-
 Common_EventScript_PkmnCenterNurse_Text_0:
 	.string "Hello, and welcome to the Pokémon\n"
 	.string "Center.\p"

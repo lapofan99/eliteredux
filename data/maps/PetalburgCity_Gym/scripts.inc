@@ -456,6 +456,12 @@ PetalburgCity_Gym_EventScript_NormanGiveKeystone::
 	giveitem ITEM_MEGA_BRACELET
 	setflag FLAG_SYS_RECEIVED_KEYSTONE
 	msgbox PetalburgCity_Gym_Text_NormanMegaBracelet, MSGBOX_DEFAULT
+	giveBattleItems
+	playfanfare MUS_OBTAIN_ITEM
+	message PetalburgCity_Gym_Text_PlayerGotMegaStones
+	waitfanfare
+	closemessage
+	delay 30
 	msgbox PetalburgCity_Gym_Text_NormanWheneverReady, MSGBOX_DEFAULT
 	closemessage
 	end
@@ -1824,3 +1830,6 @@ PetalburgCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "Dad: Sorry {PLAYER}, but you need to\n"
 	.string "defeat every trainer on this Gym\l"
 	.string "before battling your dad.$"
+
+PetalburgCity_Gym_Text_PlayerGotMegaStones::
+	.string "{PLAYER} got all the Mega Stones!$"

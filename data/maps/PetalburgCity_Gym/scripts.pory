@@ -457,6 +457,12 @@ PetalburgCity_Gym_EventScript_NormanGiveKeystone::
 	giveitem ITEM_MEGA_BRACELET
 	setflag FLAG_SYS_RECEIVED_KEYSTONE
 	msgbox PetalburgCity_Gym_Text_NormanMegaBracelet, MSGBOX_DEFAULT
+	giveBattleItems
+	playfanfare MUS_OBTAIN_ITEM
+	message PetalburgCity_Gym_Text_PlayerGotMegaStones
+	waitfanfare
+	closemessage
+	delay 30
 	msgbox PetalburgCity_Gym_Text_NormanWheneverReady, MSGBOX_DEFAULT
 	closemessage
 	end
@@ -1806,3 +1812,8 @@ script PetalburgCity_Gym_EventScript_CheckTrainers{
 		return
 	}
 }
+
+text PetalburgCity_Gym_Text_PlayerGotMegaStones{
+	format("{PLAYER} got all the Mega Stones!")
+}
+
