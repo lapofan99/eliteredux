@@ -12160,11 +12160,11 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_TORTERRA] =
     {
     .baseHP        = 95,
-    .baseAttack    = 109,
-    .baseDefense   = 114,
-    .baseSpeed     = 56,
-    .baseSpAttack  = 75,
-    .baseSpDefense = 85,
+    .baseAttack    = 119, // 109 vanilla
+    .baseDefense   = 134, // 114 vanilla
+    .baseSpeed     = 36, // 56 vanilla
+    .baseSpAttack  = 55, // 75 vanilla
+    .baseSpDefense = 95, // 85 vanilla
     .type1 = TYPE_GRASS,
     .type2 = TYPE_GROUND,
     .catchRate = 255,
@@ -12178,7 +12178,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_MONSTER,
     .eggGroup2 = EGG_GROUP_GRASS,
     .abilities = {ABILITY_ROUGH_SKIN, ABILITY_STAMINA, ABILITY_SHEER_FORCE},
-    .innates = {ABILITY_OVERGROW, ABILITY_SHELL_ARMOR, ABILITY_BIG_LEAVES},
+    .innates = {ABILITY_OVERGROW, ABILITY_IMPENETRABLE, ABILITY_BIG_LEAVES},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = TRUE,
     },
@@ -21603,7 +21603,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
     .abilities = {ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
-    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
+    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PSYCHIC_SURGE, ABILITY_PRANKSTER},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = FALSE,
     },
@@ -21628,7 +21628,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
     .abilities = {ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
-    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
+    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PSYCHIC_SURGE, ABILITY_PRANKSTER},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
     },
