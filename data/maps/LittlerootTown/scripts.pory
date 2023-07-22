@@ -2048,6 +2048,7 @@ script LittlerootTown_EventScript_TutorialNPC2{
                           "Ice-types now get a 50% defense boost in hail. Sandstorm still gives the same 50% SpDef boost.\p"
 						  "When the weather is induced by moves such as Sunny Day or Rain Dance, it still lasts 5 rounds, but has 50% power boost for the respective types.\p"
                           "Every Pokémon has 31 IVs by default, but you can change them in Slateport or Fallarbor.\p"
+						  "For Ace and Elite Mode, there is a Sleep Clause, which prevents putting more than one enemy Pokémon to sleep.\p"
 						  "Every move is already PP maxed. All held items stay on your Pokémon after battling."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 6:// Battle UI changes
@@ -2059,8 +2060,8 @@ script LittlerootTown_EventScript_TutorialNPC2{
 		case 7:// Catching Pokémon
 			msgbox(format("You'll get one of each Pokéball from Nurse Joy. Every ball has 100% catch rate.\p"
                           "Nurse Joy gives you an upgraded DexNav: you can directly search the Pokémon you want. No need to walk slow when approaching.\p"
-						  "The Shiny rate can be massively boosted, up to 1/20.\p"
-						  "You can catch every Pokémon from Gen 1 to 7 + many from Gen 8."))
+						  "The Shiny rate can be massively boosted, up to 1/5.\p"
+						  "You can catch almost every Pokémon from Gen 1 to 8."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 8:// Switch abilities 
 			msgbox(format("You can directly switch the ability in the Pokémon Summary Screen.\p"

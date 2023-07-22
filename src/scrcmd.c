@@ -2448,6 +2448,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_SCOPE_LENS,       50},
     {ITEM_PROTECTIVE_PADS,  50},
     {ITEM_LIGHT_BALL,       50},
+    {ITEM_SHELL_BELL,       50},
     {ITEM_SHED_SHELL,       50},
     {ITEM_TERRAIN_EXTENDER, 50},
     {ITEM_THROAT_SPRAY,     50},
@@ -2486,6 +2487,10 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_MAGNET,           50},
     {ITEM_BINDING_BAND,     50},
     {ITEM_SAFETY_GOGGLES,   50},
+    {ITEM_EJECT_BUTTON,     50},
+    {ITEM_EJECT_PACK,       50},
+    {ITEM_RED_CARD,         50},
+    {ITEM_IRON_BALL,        50},
     {ITEM_IRON_PILL,        50},
     //Pokeballs
     {ITEM_POKE_BALL,         1},

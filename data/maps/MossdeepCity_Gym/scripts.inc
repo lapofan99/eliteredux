@@ -690,7 +690,7 @@ MossdeepCity_Gym_Text_TateAndLizaAllowLegends:
 
 MossdeepCity_Gym_EventScript_GiveCalmMind::
 	msgbox MossdeepCity_Gym_EventScript_GiveCalmMind_Text_0
-	givecustommon SPECIES_SLOWBRO, 60, ITEM_SLOWBRONITE, ITEM_CHERISH_BALL, NATURE_QUIET, 2, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_SCALD, MOVE_PSYCHIC, MOVE_SUBSTITUTE, MOVE_PROTECT, FALSE
+	givecustommon SPECIES_REUNICLUS, 60, ITEM_LIFE_ORB, ITEM_CHERISH_BALL, NATURE_QUIET, 2, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_PSYSHOCK, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_PROTECT, TRUE
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox MossdeepCity_Gym_EventScript_GiveCalmMind_Text_1
 	waitfanfare
@@ -744,8 +744,8 @@ MossdeepCity_Gym_EventScript_GiveCalmMind_Text_0:
 	.string "from us!$"
 
 MossdeepCity_Gym_EventScript_GiveCalmMind_Text_1:
-	.string "{PLAYER} got Tate & Liza's {COLOR BLUE}Slowbro{COLOR DARK_GRAY} as\n"
-	.string "a gift!$"
+	.string "{PLAYER} got Tate & Liza's {COLOR BLUE}Reuniclus{COLOR DARK_GRAY}\n"
+	.string "as a gift!$"
 
 MossdeepCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "Tate: Sorry, but you need to defeat\n"

@@ -3,8 +3,8 @@ raw `
 .set LOCALID_GRUNT_2, 10
 .set LOCALID_GRUNT_3, 11
 .set LOCALID_GRUNT_4, 12
-.set LOCALID_MAXIE, 14
-.set LOCALID_SCOTT, 16
+.set LOCALID_MAXIE, 13
+.set LOCALID_SCOTT, 15
 
 MossdeepCity_MapScripts:: @ 81E4A96
 	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_OnTransition

@@ -39709,7 +39709,7 @@ static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
+static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCaveInsane[] = {
     {
     .lvl = 0,
     .species = SPECIES_CRADILY, // Steven, Lead, Mixed Wall, SR, Big Root

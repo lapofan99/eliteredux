@@ -1782,7 +1782,7 @@ PetalburgCity_Gym_Text_NormanAllowLegends:
 
 PetalburgCity_Gym_EventScript_GiveFacade::
 	msgbox PetalburgCity_Gym_EventScript_GiveFacade_Text_0
-	givecustommon SPECIES_KANGASKHAN, 45, ITEM_KANGASKHANITE, ITEM_CHERISH_BALL, NATURE_JOLLY, 0, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_FACADE, MOVE_POWER_UP_PUNCH, MOVE_FAKE_OUT, MOVE_EARTHQUAKE, FALSE
+	givecustommon SPECIES_KANGASKHAN, 45, ITEM_FLAME_ORB, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_DRAIN_PUNCH, MOVE_FACADE, MOVE_COMET_PUNCH, FALSE
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox PetalburgCity_Gym_EventScript_GiveFacade_Text_1
 	waitfanfare
