@@ -9428,7 +9428,7 @@ static const struct TrainerMonItemCustomMoves sParty_Martha[] = {
     .species = SPECIES_MEOWSTIC_FEMALE,
     .heldItem = ITEM_EXPERT_BELT,
     .ability = 0, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
-    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PSYCHIC_SURGE, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -11726,7 +11726,7 @@ static const struct TrainerMonItemCustomMoves sParty_Brandi[] = { // potential d
     .species = SPECIES_MEOWSTIC_FEMALE,
     .heldItem = ITEM_LIGHT_CLAY,
     .ability = 0, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
-    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PSYCHIC_SURGE, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BOLD,
@@ -14335,7 +14335,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson3[] = { // Legendari
     },
     {
     .lvl = 3,
-    .species = SPECIES_ZAPDOS,
+    .species = SPECIES_ZAPDOS, // Wattson3
     .heldItem = ITEM_LEFTOVERS,
     .ability = 1, // ABILITY_OVERCHARGE, ABILITY_GALE_WINGS, ABILITY_DRIZZLE},
     // .innates = {ABILITY_VOLT_ABSORB, ABILITY_GROUND_SHOCK, ABILITY_STATIC},
@@ -14480,7 +14480,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson5[] = { // Doubles w
     },
     {
     .lvl = 3,
-    .species = SPECIES_RAIKOU, // Wattson, Sash, Rain Setter
+    .species = SPECIES_RAIKOU, // Wattson5, Sash, Rain Setter
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 2, // ABILITY_TRANSISTOR, ABILITY_GROUND_SHOCK, ABILITY_DRIZZLE},
     // .innates = {ABILITY_OVERCHARGE, ABILITY_BEAST_BOOST, ABILITY_ELECTRIC_SURGE},
@@ -15729,7 +15729,7 @@ static const struct TrainerMonItemCustomMoves sParty_Nancy[] = {
     .species = SPECIES_TORTERRA, // Leftovers, Rough Skin, Def Wall, Curse
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // ABILITY_ROUGH_SKIN, ABILITY_STAMINA, ABILITY_SHEER_FORCE},
-    // .innates = {ABILITY_OVERGROW, ABILITY_SHELL_ARMOR, ABILITY_BIG_LEAVES},
+    // .innates = {ABILITY_OVERGROW, ABILITY_IMPENETRABLE, ABILITY_BIG_LEAVES},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {248, 0, 252, 0, 8, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
@@ -23586,7 +23586,7 @@ static const struct TrainerMonItemCustomMoves sParty_Angelica[] = { // with Leon
     .species = SPECIES_MEOWSTIC,
     .heldItem = ITEM_LIGHT_CLAY,
     .ability = 1, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
-    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PSYCHIC_SURGE, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_BOLD,
@@ -24635,7 +24635,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winona4[] = { // Legendarie
     },
     {
     .lvl = 3,
-    .species = SPECIES_ZAPDOS, // Winona
+    .species = SPECIES_ZAPDOS, // Winona4
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // ABILITY_OVERCHARGE, ABILITY_GALE_WINGS, ABILITY_DRIZZLE},
     // .innates = {ABILITY_VOLT_ABSORB, ABILITY_GROUND_SHOCK, ABILITY_STATIC},
@@ -26426,7 +26426,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cedric[] = { // with Valeri
     .species = SPECIES_MEOWSTIC_FEMALE,
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 1, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
-    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PSYCHIC_SURGE, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -27241,7 +27241,7 @@ static const struct TrainerMonItemCustomMoves sParty_Jacki4[] = {
     .species = SPECIES_MEOWSTIC_FEMALE,
     .heldItem = ITEM_CHOICE_SPECS,
     .ability = 2, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
-    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PSYCHIC_SURGE, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -28416,9 +28416,9 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt4[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_CLAWITZER, // Physical Huge Power, Orb
+    .species = SPECIES_CLAWITZER, // Physical, Orb
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // ABILITY_SWIFT_SWIM, ABILITY_RAMPAGE, ABILITY_ARTILLERY},
+    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_RAMPAGE, ABILITY_ARTILLERY},
     // .innates = {ABILITY_HYDRATE, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -31677,7 +31677,7 @@ static const struct TrainerMonItemCustomMoves sParty_Warren[] = {
     .species = SPECIES_TORTERRA, // Bulky Vest Attacker, Stamina, Low Speed
     .heldItem = ITEM_ASSAULT_VEST,
     .ability = 1, // ABILITY_ROUGH_SKIN, ABILITY_STAMINA, ABILITY_SHEER_FORCE},
-    // .innates = {ABILITY_OVERGROW, ABILITY_SHELL_ARMOR, ABILITY_BIG_LEAVES},
+    // .innates = {ABILITY_OVERGROW, ABILITY_IMPENETRABLE, ABILITY_BIG_LEAVES},
     .ivs = {31, 31, 31, 31, 31, 0},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .zeroSpeedIvs = TRUE,
@@ -32130,7 +32130,7 @@ static const struct TrainerMonItemCustomMoves sParty_Blake[] = { // with Samanth
     .species = SPECIES_MEOWSTIC_FEMALE, // Support
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 0, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
-    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_OWN_TEMPO, ABILITY_PRANKSTER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PSYCHIC_SURGE, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
@@ -32382,8 +32382,8 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inver
     },
     {
     .lvl = 3,
-    .species = SPECIES_REUNICLUS, // T&L, TR Setter, Bulky Sweeper, Chople, low speed
-    .heldItem = ITEM_CHOPLE_BERRY,
+    .species = SPECIES_REUNICLUS, // T&L, TR Setter, Bulky Sweeper, Orb, low speed
+    .heldItem = ITEM_LIFE_ORB,
     .ability = 2, // ABILITY_OVERCOAT, ABILITY_NEUROFORCE, ABILITY_TWISTED_DIMENSION},
     // .innates = {ABILITY_REGENERATOR, ABILITY_LIQUIFIED, ABILITY_MAGIC_GUARD},
     .ivs = {31, 0, 31, 31, 31, 0},
@@ -32394,14 +32394,14 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inver
     },
     {
     .lvl = 3,
-    .species = SPECIES_MELOETTA, // T&L, Sash, Q-Dance
+    .species = SPECIES_MELOETTA, // T&L, Sash
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 0, // ABILITY_QUEENLY_MAJESTY, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
     // .innates = {ABILITY_SERENE_GRACE, ABILITY_INNER_FOCUS, ABILITY_PRANKSTER},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_TIMID,
-    .moves = MOVE_HYPER_VOICE, MOVE_EXPANDING_FORCE, MOVE_FOCUS_BLAST, MOVE_QUIVER_DANCE
+    .moves = MOVE_HYPER_VOICE, MOVE_EXPANDING_FORCE, MOVE_FOCUS_BLAST, MOVE_RECOVER
     },
     {
     .lvl = 3,
@@ -32420,72 +32420,73 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = { // Inver
 static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { // Inverse Battle!
     {
     .lvl = 3,
-    .species = SPECIES_LATIOS, // Mega, T&L-E, Speed Boost + Protect
+    .species = SPECIES_LATIOS, // Mega, T&L-E, Bulky Speed Boost + Protect
     .heldItem = ITEM_LATIOSITE,
     .ability = 2, // ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST, ABILITY_SPEED_BOOST},
-    // .innates = {ABILITY_LEVITATE, ABILITY_VIOLENT_RUSH, ABILITY_MYSTIC_POWER},
+    // .innates = {ABILITY_LEVITATE, ABILITY_MULTISCALE, ABILITY_MYSTIC_POWER},
     // Pre-Mega
     // ABILITY_AVENGER, ABILITY_NEUROFORCE, ABILITY_SPEED_BOOST},
     // .innates = {ABILITY_LEVITATE, ABILITY_VIOLENT_RUSH, ABILITY_MYSTIC_POWER},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_TIMID,
-    .moves = MOVE_PSYSHOCK, MOVE_DRAGON_PULSE, MOVE_THUNDER, MOVE_PROTECT
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_PSYSHOCK, MOVE_DRAGON_PULSE, MOVE_THUNDERBOLT, MOVE_PROTECT
     },
     {
     .lvl = 3,
-    .species = SPECIES_NOCTOWL, // T&L-E, Bulky Attacker, Air Blower, Hypnosis
+    .species = SPECIES_NOCTOWL, // T&L-E, Bulky Attacker, Air Blower
     .heldItem = ITEM_CHOPLE_BERRY,
     .ability = 2, // ABILITY_TINTED_LENS, ABILITY_AERILATE, ABILITY_AIR_BLOWER},
     // .innates = {ABILITY_NOCTURNAL, ABILITY_INSOMNIA, ABILITY_MAJESTIC_BIRD},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_BOLD,
-    .moves = MOVE_BOOMBURST, MOVE_AIR_SLASH, MOVE_HYPNOSIS, MOVE_ROOST
+	.nature = NATURE_MODEST,
+    .moves = MOVE_BOOMBURST, MOVE_AIR_SLASH, MOVE_EXTRASENSORY, MOVE_ROOST
     },
     {
     .lvl = 3,
-    .species = SPECIES_EXEGGUTOR, // SubSeed, T&L-E
-    .heldItem = ITEM_FIGY_BERRY,
-    .ability = 1, // ABILITY_MAGIC_BOUNCE, ABILITY_CHLOROPLAST, ABILITY_SOLAR_POWER},
-    // .innates = {ABILITY_HARVEST, ABILITY_MULTI_HEADED, ABILITY_CHLOROPHYLL},
+    .species = SPECIES_ESPEON, // T&L-E, Fast Vest, Surge
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_SOUL_HEART, ABILITY_SAGE_POWER, ABILITY_PSYCHIC_SURGE},
+    // .innates = {ABILITY_MAGIC_BOUNCE, ABILITY_AVENGER, ABILITY_PSYCHIC_MIND},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 196, 0, 60, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_BOLD,
-    .moves = MOVE_PROTECT, MOVE_SUBSTITUTE, MOVE_LEECH_SEED, MOVE_GIGA_DRAIN
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_EXPANDING_FORCE, MOVE_SHADOW_BALL, MOVE_FREEZE_DRY, MOVE_DAZZLING_GLEAM
     },
     {
     .lvl = 3,
-    .species = SPECIES_REUNICLUS, // Bulky Sweeper, T&L-E
+    .species = SPECIES_REUNICLUS, // T&L-E, Overcoat, Bulky Sweeper, Orb, low speed
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // ABILITY_OVERCOAT, ABILITY_NEUROFORCE, ABILITY_TWISTED_DIMENSION},
+    .ability = 0, // ABILITY_OVERCOAT, ABILITY_NEUROFORCE, ABILITY_TWISTED_DIMENSION},
     // .innates = {ABILITY_REGENERATOR, ABILITY_LIQUIFIED, ABILITY_MAGIC_GUARD},
     .ivs = {31, 0, 31, 31, 31, 0},
     .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
 	.nature = NATURE_QUIET,
-    .moves = MOVE_PSYCHIC, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_PROTECT
+    .moves = MOVE_PSYSHOCK, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_PROTECT
     },
     {
     .lvl = 3,
-    .species = SPECIES_LUNATONE, // Scarf Magic Room, T&L-E
-    .heldItem = ITEM_CHOICE_SCARF,
-    .ability = 0, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_DREAMCATCHER},
-    // .innates = {ABILITY_LEVITATE, ABILITY_NOCTURNAL, ABILITY_LUNAR_ECLIPSE},
-    .ivs = {31, 0, 31, 31, 31, 0},
-    .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_MODEST,
-    .moves = MOVE_POWER_GEM, MOVE_PSYCHIC, MOVE_EARTH_POWER, MOVE_MAGIC_ROOM
+    .species = SPECIES_MELOETTA, // T&L-E, Sash, Q-Dance
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_QUEENLY_MAJESTY, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
+    // .innates = {ABILITY_SERENE_GRACE, ABILITY_INNER_FOCUS, ABILITY_PRANKSTER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_HYPER_VOICE, MOVE_EXPANDING_FORCE, MOVE_FOCUS_BLAST, MOVE_QUIVER_DANCE
     },
     {
     .lvl = 3,
-    .species = SPECIES_SOLROCK, // Bulky Offense, T&L-E
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // ABILITY_STURDY, ABILITY_SAGE_POWER, ABILITY_VICTORY_STAR},
-    // .innates = {ABILITY_LEVITATE, ABILITY_ILLUMINATE, ABILITY_SOLAR_FLARE},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_PROTECT, MOVE_ROCK_SLIDE, MOVE_ZEN_HEADBUTT, MOVE_ROCK_POLISH
+    .species = SPECIES_MEOWSTIC, // T&L-E, Dual Screens
+    .heldItem = ITEM_LIGHT_CLAY,
+    .ability = 1, // ABILITY_INFILTRATOR, ABILITY_COMPETITIVE, ABILITY_SAGE_POWER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PSYCHIC_SURGE, ABILITY_PRANKSTER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_REFLECT, MOVE_LIGHT_SCREEN, MOVE_THUNDER_WAVE, MOVE_EXPANDING_FORCE
     }
 };
 
@@ -33890,9 +33891,9 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1[] = {
     .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_SAGE_POWER, ABILITY_DRIZZLE},
     // .innates = {ABILITY_WEATHER_CONTROL, ABILITY_PSYCHIC_MIND, ABILITY_SWIFT_SWIM},
     .ivs = {30, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 4, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
-    .moves = MOVE_SURF, MOVE_FLIP_TURN, MOVE_PSYCHIC, MOVE_ICE_BEAM 
+    .moves = MOVE_SURF, MOVE_FLIP_TURN, MOVE_PSYSHOCK, MOVE_ICE_BEAM 
     },
     {
     .lvl = 3,
@@ -33907,20 +33908,20 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_KABUTOPS, // Juan, Sash, Rain Sweeper
-    .heldItem = ITEM_FOCUS_SASH,
-    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_HYPER_CUTTER, ABILITY_PERFECTIONIST},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_BATTLE_ARMOR, ABILITY_KEEN_EDGE},
+    .species = SPECIES_ARAQUANID, // Juan, Vest, Water Veil, Standard
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_WATER_VEIL, ABILITY_OPPORTUNIST, ABILITY_WATER_ABSORB},
+    // .innates = {ABILITY_WATER_BUBBLE, ABILITY_SPIDER_LAIR, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {184, 252, 4, 0, 0, 68},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_RAZOR_SHELL, MOVE_STONE_EDGE, MOVE_SACRED_SWORD, MOVE_EXCALIBUR
+    .moves = MOVE_LIQUIDATION, MOVE_SCALD, MOVE_LEECH_LIFE, MOVE_ICE_FANG
     },
     {
     .lvl = 3,
-    .species = SPECIES_LAPRAS, // Juan, Bulky Vest Mixed, Regenerator + Flip Turn
+    .species = SPECIES_LAPRAS, // Juan, Bulky Vest Mixed, Permafrost
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_REGENERATOR, ABILITY_SNOW_WARNING, ABILITY_PERMAFROST},
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_SNOW_WARNING, ABILITY_PERMAFROST},
     // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -33929,29 +33930,113 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1[] = {
     },
     {
     .lvl = 3,
-    .species = SPECIES_SWAMPERT, // Juan, Orb, Rain Sweeper, Flip Turn
-    .heldItem = ITEM_LIFE_ORB,
-    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_FIELD_EXPLORER, ABILITY_STAMINA},
-    // .innates = {ABILITY_TORRENT, ABILITY_DRY_SKIN, ABILITY_REGENERATOR},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_AQUA_TAIL, MOVE_EARTHQUAKE, MOVE_ICE_PUNCH, MOVE_FLIP_TURN
+    .species = SPECIES_ZAPDOS, // Juan, Fast Vest, Rain Setter
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_OVERCHARGE, ABILITY_GALE_WINGS, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_VOLT_ABSORB, ABILITY_GROUND_SHOCK, ABILITY_STATIC},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_THUNDER, MOVE_HURRICANE, MOVE_WEATHER_BALL, MOVE_VOLT_SWITCH
     },
     {
     .lvl = 5,
-    .species = SPECIES_KINGDRA, // Mega, Juan, Rain Sweeper
-    .heldItem = ITEM_KINGDRANITE,
-    .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM},
-    // .innates = {ABILITY_SEA_GUARDIAN, ABILITY_MEGA_LAUNCHER, ABILITY_MARVEL_SCALE},
+    .species = SPECIES_KINGLER, // Mega, Juan, Rain Sweeper, Swords Dance
+    .heldItem = ITEM_KINGLERITE,
+    .ability = 2, // ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER},
     // Pre-Mega
-    // ABILITY_SWIFT_SWIM, ABILITY_SNIPER, ABILITY_TORRENT},
-    // .innates = {ABILITY_PRISM_SCALES, ABILITY_MEGA_LAUNCHER, ABILITY_MARVEL_SCALE},
+    // ABILITY_SWIFT_SWIM, ABILITY_TECHNICIAN, ABILITY_SELF_SUFFICIENT},
+    // .innates = {ABILITY_SHELL_ARMOR, ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_CRABHAMMER, MOVE_GUILLOTINE, MOVE_AQUA_JET, MOVE_SWORDS_DANCE
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
+    {
+    .lvl = 3,
+    .species = SPECIES_RAIKOU, // Juan-E, Sash, Rain Setter
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 2, // ABILITY_TRANSISTOR, ABILITY_GROUND_SHOCK, ABILITY_DRIZZLE},
+    // .innates = {ABILITY_OVERCHARGE, ABILITY_BEAST_BOOST, ABILITY_ELECTRIC_SURGE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_RISING_VOLTAGE, MOVE_SCALD, MOVE_VOLT_SWITCH, MOVE_AURORA_BEAM
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_MILOTIC, // Juan-E, Fast Def Wall, Self Suff
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_SELF_SUFFICIENT, ABILITY_COMPETITIVE, ABILITY_MARVEL_SCALE},
+    // .innates = {ABILITY_PRISM_SCALES, ABILITY_ADAPTABILITY, ABILITY_SEA_GUARDIAN},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 168, 0, 4, 88},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SCALD, MOVE_ICE_BEAM, MOVE_MOONBLAST, MOVE_RECOVER
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_ARAQUANID, // Juan-E, Vest, Water Veil, Standard
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_WATER_VEIL, ABILITY_OPPORTUNIST, ABILITY_WATER_ABSORB},
+    // .innates = {ABILITY_WATER_BUBBLE, ABILITY_SPIDER_LAIR, ABILITY_PREDATOR},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {184, 252, 4, 0, 0, 68},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_LIQUIDATION, MOVE_SCALD, MOVE_LEECH_LIFE, MOVE_ICE_FANG
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_LAPRAS, // Juan-E, Bulky Vest Mixed, Permafrost
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_SNOW_WARNING, ABILITY_PERMAFROST},
+    // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
-    .moves = MOVE_HYDRO_PUMP, MOVE_HURRICANE, MOVE_DRACO_METEOR, MOVE_FLASH_CANNON
+    .moves = MOVE_SPARKLING_ARIA, MOVE_SHEER_COLD, MOVE_DRACO_METEOR, MOVE_FLIP_TURN
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_TORTERRA, // Juan-E, Orb, Stamina, Def Wall
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_ROUGH_SKIN, ABILITY_STAMINA, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_OVERGROW, ABILITY_IMPENETRABLE, ABILITY_BIG_LEAVES},
+    .ivs = {31, 31, 31, 31, 31, 0},
+    .evs = {248, 0, 252, 0, 8, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_EARTHQUAKE, MOVE_WOOD_HAMMER, MOVE_BODY_PRESS, MOVE_SYNTHESIS
+    },
+    {
+    .lvl = 5,
+    .species = SPECIES_BLASTOISE, // Mega, Juan-E, Special, Shell Smash
+    .heldItem = ITEM_BLASTOISINITE,
+    .ability = 0, // ABILITY_ARTILLERY, ABILITY_ARTILLERY, ABILITY_ARTILLERY},
+    // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    // Pre-Mega
+    // ABILITY_STAMINA, ABILITY_REGENERATOR, ABILITY_BULLETPROOF},
+    // .innates = {ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SHELL_SMASH, MOVE_DARK_PULSE, MOVE_AURA_SPHERE, MOVE_ICE_BEAM
     }
+    /*{
+    .lvl = 3,
+    .species = SPECIES_CLAWITZER, // Juan-E, Orb, Rampage + Hydrate + Hyper Beam
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_SWIFT_SWIM, ABILITY_RAMPAGE, ABILITY_ARTILLERY},
+    // .innates = {ABILITY_HYDRATE, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_HYPER_BEAM, MOVE_ICE_BEAM, MOVE_DARK_PULSE, MOVE_AURA_SPHERE
+    }*/
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Juan2[] = { // singles w/ legends1
@@ -35151,7 +35236,7 @@ static const struct TrainerMonItemCustomMoves sParty_Owen[] = {
     .species = SPECIES_TORTERRA, // Def Wall RH, Stamina, SR + Roar
     .heldItem = ITEM_ROCKY_HELMET,
     .ability = 1, // ABILITY_ROUGH_SKIN, ABILITY_STAMINA, ABILITY_SHEER_FORCE},
-    // .innates = {ABILITY_OVERGROW, ABILITY_SHELL_ARMOR, ABILITY_BIG_LEAVES},
+    // .innates = {ABILITY_OVERGROW, ABILITY_IMPENETRABLE, ABILITY_BIG_LEAVES},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
@@ -39558,6 +39643,75 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Unused
 static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
     {
     .lvl = 3,
+    .species = SPECIES_METANG, // Steven
+    .heldItem = ITEM_EVIOLITE,
+    .ability = 2, // ABILITY_FATAL_PRECISION, ABILITY_PREDATOR, ABILITY_LEAD_COAT},
+    // .innates = {ABILITY_LEVITATE, ABILITY_FULL_METAL_BODY, ABILITY_DOWNLOAD},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 176, 0, 0, 80, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_BULLET_PUNCH, MOVE_METEOR_MASH, MOVE_EARTHQUAKE, MOVE_STEALTH_ROCK
+    },
+    {
+    .lvl = 3,
+    .species = SPECIES_LYCANROC, // Steven, Rock Gem, Violent Rush
+    .heldItem = ITEM_ROCK_GEM,
+    .ability = 2, // ABILITY_SPEED_FORCE, ABILITY_FATAL_PRECISION, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SAND_RUSH, ABILITY_ROCK_HEAD},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {192, 252, 0, 0, 0, 64},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_HEAD_SMASH, MOVE_EARTHQUAKE, MOVE_PSYCHIC_FANGS, MOVE_ACCELEROCK
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_HEATMOR, // Steven, Fast Vest
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // ABILITY_BURNATE, ABILITY_WHITE_SMOKE, ABILITY_STEELWORKER},
+    // .innates = {ABILITY_UNAWARE, ABILITY_TOUGH_CLAWS, ABILITY_FATAL_PRECISION},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_FIRE_LASH, MOVE_IRON_TAIL, MOVE_THROAT_CHOP, MOVE_STOMPING_TANTRUM
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_CRADILY, // Steven, Lead, Mixed Wall, Big Root
+    .heldItem = ITEM_BIG_ROOT,
+    .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CALM,
+    .moves = MOVE_GIGA_DRAIN, MOVE_POWER_GEM, MOVE_SCALD, MOVE_RECOVER
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DUGTRIO_ALOLAN, // Steven, Sash, Trapper
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_SAND_RUSH, ABILITY_ARENA_TRAP, ABILITY_STEELWORKER},
+    // .innates = {ABILITY_MULTI_HEADED, ABILITY_SAND_FORCE, ABILITY_SPEED_FORCE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_IRON_HEAD, MOVE_SUCKER_PUNCH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DHELMISE, // Steven, Water Absobrb, Bulky Occa
+    .heldItem = ITEM_OCCA_BERRY,
+    .ability = 0, // ABILITY_WATER_ABSORB, ABILITY_SOUL_EATER, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_METALLIC, ABILITY_SEAWEED, ABILITY_STEELWORKER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 12, 0, 0, 136, 108},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_ANCHOR_SHOT, MOVE_POLTERGEIST, MOVE_POWER_WHIP, MOVE_SYNTHESIS
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
+    {
+    .lvl = 0,
     .species = SPECIES_CRADILY, // Steven, Lead, Mixed Wall, SR, Big Root
     .heldItem = ITEM_BIG_ROOT,
     .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
@@ -39579,7 +39733,7 @@ static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
     .moves = MOVE_U_TURN, MOVE_STEEL_BEAM, MOVE_ICE_BEAM, MOVE_FLAMETHROWER
     },
     {
-    .lvl = 3,
+    .lvl = 0,
     .species = SPECIES_HEATMOR, // Steven, Scarf
     .heldItem = ITEM_CHOICE_SCARF,
     .ability = 1, // ABILITY_BURNATE, ABILITY_WHITE_SMOKE, ABILITY_STEELWORKER},
@@ -39601,7 +39755,7 @@ static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
     .moves = MOVE_BULLET_PUNCH, MOVE_HIDDEN_POWER, MOVE_GRASS_KNOT, MOVE_PSYCHIC
     },
     {
-    .lvl = 3,
+    .lvl = 0,
     .species = SPECIES_DUGTRIO_ALOLAN, // Steven, Sash, Trapper
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 1, // ABILITY_SAND_RUSH, ABILITY_ARENA_TRAP, ABILITY_STEELWORKER},
@@ -39612,7 +39766,7 @@ static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
     .moves = MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_IRON_HEAD, MOVE_SUCKER_PUNCH
     },
     {
-    .lvl = 3,
+    .lvl = 0,
     .species = SPECIES_DHELMISE, // Steven, Water Absobrb, Bulky Occa
     .heldItem = ITEM_OCCA_BERRY,
     .ability = 0, // ABILITY_WATER_ABSORB, ABILITY_SOUL_EATER, ABILITY_SHEER_FORCE},
@@ -39623,3 +39777,4 @@ static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {
     .moves = MOVE_ANCHOR_SHOT, MOVE_POLTERGEIST, MOVE_POWER_WHIP, MOVE_SYNTHESIS
     }
 };
+
