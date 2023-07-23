@@ -151,6 +151,7 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_Grunt8),
         .party = {.ItemCustomMoves = sParty_Grunt8},
+        .partyInsane = {.ItemCustomMoves = sParty_Grunt8Insane},
     },
 
     [TRAINER_MARCEL] =
@@ -235,6 +236,7 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_Grunt10),
         .party = {.ItemCustomMoves = sParty_Grunt10},
+        .partyInsane = {.ItemCustomMoves = sParty_Grunt10Insane},
     },
 
     [TRAINER_GRUNT_WEATHER_INST_1] =
