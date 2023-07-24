@@ -2017,7 +2017,7 @@ script LittlerootTown_EventScript_TutorialNPC2{
 	switch (var(VAR_RESULT)) {
 		case 0:// Nurse Joy
 			msgbox(format("Talk to Nurse Joy in any Pokémon Center, she will give you the following:\p"
-                          "Candy Box, DexNav, TM Case, all TMs & HMs, Battle items, all Pokéballs, all Mega Stones, all Berries, all Type Gems etc.\p"
+                          "Candy Box, DexNav, TM Case, all TMs & HMs, Battle items, all Pokéballs, all Berries, all Type Gems etc.\p"
                           "Every time you speak to her, all items get refilled."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 1:// Pokémon changes

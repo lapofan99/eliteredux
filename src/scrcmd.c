@@ -2452,6 +2452,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_SHED_SHELL,       50},
     {ITEM_TERRAIN_EXTENDER, 50},
     {ITEM_THROAT_SPRAY,     50},
+    {ITEM_THICK_CLUB,       50},
     {ITEM_ADAMANT_ORB,       5},
     {ITEM_LUSTROUS_ORB,      5},
     {ITEM_GRISEOUS_ORB,      5},

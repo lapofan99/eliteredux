@@ -4026,6 +4026,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM24_THUNDERBOLT)
                                         | TMHM1(TM25_THUNDER)
                                         | TMHM1(TM27_RETURN)
+                                        | TMHM1(TM29_PSYCHIC)
                                         | TMHM1(TM30_SHADOW_BALL)
                                         | TMHM1(TM31_BRICK_BREAK)
                                         | TMHM1(TM33_REFLECT)
@@ -25789,6 +25790,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM18_RAIN_DANCE)
                                         | TMHM1(TM21_FRUSTRATION)
+                                        | TMHM1(TM26_EARTHQUAKE) // new
                                         | TMHM1(TM27_RETURN)
                                         | TMHM1(TM28_DIG)
                                         | TMHM1(TM31_BRICK_BREAK)

@@ -2297,8 +2297,7 @@ LittlerootTown_EventScript_TutorialNPC2_Text_1:
 	.string "Center, she will give you the following:\p"
 	.string "Candy Box, DexNav, TM Case, all TMs &\n"
 	.string "HMs, Battle items, all Pokéballs, all\l"
-	.string "Mega Stones, all Berries, all Type Gems\l"
-	.string "etc.\p"
+	.string "Berries, all Type Gems etc.\p"
 	.string "Every time you speak to her, all items\n"
 	.string "get refilled.$"
 

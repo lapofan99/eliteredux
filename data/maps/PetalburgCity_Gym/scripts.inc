@@ -1832,4 +1832,4 @@ PetalburgCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "before battling your dad.$"
 
 PetalburgCity_Gym_Text_PlayerGotMegaStones::
-	.string "{PLAYER} got all the Mega Stones!$"
+	.string "{PLAYER} got all the {COLOR LIGHT_GREEN}Mega Stones{COLOR DARK_GRAY}!$"

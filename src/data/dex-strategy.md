@@ -67,7 +67,7 @@ escavalier
     ability = no guard
     evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     nature = jolly
-    moves = megahorn, iron head / close combat / drill run, protect, swords dance
+    moves = megahorn, Iron Head / Close Combat / Drill Run, protect, swords dance
    comment = Use Protect to gain Speed Boost and Leftovers recovery at the same time. Ideally Protect -> Swords Dance -> Protect. Megahorn is usually strong enough, and the 2nd move depends on your opponent. 
 }
 golurk

@@ -1814,6 +1814,6 @@ script PetalburgCity_Gym_EventScript_CheckTrainers{
 }
 
 text PetalburgCity_Gym_Text_PlayerGotMegaStones{
-	format("{PLAYER} got all the Mega Stones!")
+	format("{PLAYER} got all the {COLOR LIGHT_GREEN}Mega Stones{COLOR DARK_GRAY}!")
 }
 
