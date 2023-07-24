@@ -37,6 +37,7 @@
 #include "constants/abilities.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_config.h"
+#include "constants/battle_frontier.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_script_commands.h"
 #include "constants/battle_string_ids.h"
@@ -13929,11 +13930,16 @@ bool32 CanMegaEvolve(u8 battlerId)
 void UndoMegaEvolution(u32 monId)
 {
     u16 baseSpecies = GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES));
+    bool8 multibattle = VarGet(VAR_0x8004) == SPECIAL_BATTLE_MULTI;
 
     if (gBattleStruct->mega.evolvedPartyIds[B_SIDE_PLAYER] & gBitTable[monId])
     {
         gBattleStruct->mega.evolvedPartyIds[B_SIDE_PLAYER] &= ~(gBitTable[monId]);
-        SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &gBattleStruct->mega.playerEvolvedSpecies);
+        if(multibattle && gBattleStruct->mega.playerEvolvedSpecies == SPECIES_NONE) //This fixes a problem with multis and mega evolutions
+            SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &baseSpecies);
+        else
+            SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &gBattleStruct->mega.playerEvolvedSpecies);
+        
         CalculateMonStats(&gPlayerParty[monId]);
     }
     else if (gBattleStruct->mega.primalRevertedPartyIds[B_SIDE_PLAYER] & gBitTable[monId])
