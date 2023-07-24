@@ -8922,7 +8922,7 @@ static void Cmd_various(void)
         else if (gBattlescriptCurrInstr[3] == 1)
         {
             RecalcBattlerStats(gActiveBattler, mon);
-            if(ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item != HOLD_EFFECT_PRIMAL_ORB)){
+            if(ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) != HOLD_EFFECT_PRIMAL_ORB){
                 gBattleStruct->mega.alreadyEvolved[GetBattlerPosition(gActiveBattler)] = TRUE;
                 gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(gActiveBattler)] |= gBitTable[gBattlerPartyIndexes[gActiveBattler]];
             }

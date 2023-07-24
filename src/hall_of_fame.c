@@ -560,19 +560,19 @@ u16 getHallofFameSpecies(u8 num){
         break;
         case SPECIES_MANECTRIC:
             if(item == ITEM_MANECTITE)
-                return SPECIES_MANECTRIC;
+                return SPECIES_MANECTRIC_MEGA;
         break;
         case SPECIES_MAWILE:
             if(item == ITEM_MAWILITE)
-                return SPECIES_MAWILE;
+                return SPECIES_MAWILE_MEGA;
         break;
         case SPECIES_MEDICHAM:
             if(item == ITEM_MEDICHAMITE)
-                return SPECIES_MEDICHAM;
+                return SPECIES_MEDICHAM_MEGA;
         break;
         case SPECIES_METAGROSS:
             if(item == ITEM_METAGROSSITE)
-                return SPECIES_METAGROSS;
+                return SPECIES_METAGROSS_MEGA;
         break;
         case SPECIES_MEWTWO:
             if(item == ITEM_MEWTWONITE_X)
