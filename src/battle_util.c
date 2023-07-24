@@ -10692,7 +10692,7 @@ u8 IsMonDisobedient(void)
             obedienceLevel = 90;
     }
 
-    if (gBattleMons[gBattlerAttacker].level <= obedienceLevel)
+    //if (gBattleMons[gBattlerAttacker].level <= obedienceLevel)
         return 0;
     rnd = (Random() & 255);
     calc = (gBattleMons[gBattlerAttacker].level + obedienceLevel) * rnd >> 8;
