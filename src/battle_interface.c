@@ -2123,19 +2123,34 @@ static void SpriteCB_StatusSummaryBallsOnSwitchout(struct Sprite *sprite)
 
 static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
 {
-    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    const u8 gText_ShinySymbol[] = _("{HIGHLIGHT RED}{SUM_SHINY}");
+    u8 nickname[POKEMON_SPECIES_NAME_LENGTH + 1];
     void *ptr;
-    u32 windowId, spriteTileNum, species;
+    u32 windowId, spriteTileNum;
     u8 *windowTileData;
     u8 gender;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
     struct Pokemon *illusionMon = GetIllusionMonPtr(gSprites[healthboxSpriteId].hMain_Battler);
+    bool8 nicknamed = TRUE;
     if (illusionMon != NULL)
         mon = illusionMon;
 
-    StringCopy(gDisplayedStringBattle, gText_HighlightDarkGray);
-    GetMonData(mon, MON_DATA_NICKNAME, nickname);
-    StringGetEnd10(nickname);
-    ptr = StringAppend(gDisplayedStringBattle, nickname);
+    nicknamed = isMonNicknamed(mon);
+    /*if(IsMonShiny(mon))
+		StringCopy(gDisplayedStringBattle, gText_ShinySymbol);
+	else*/
+        StringCopy(gDisplayedStringBattle, gText_HighlightDarkGray);
+    
+    if(nicknamed){
+        GetMonData(mon, MON_DATA_NICKNAME, nickname);
+        StringGetEnd10(nickname);
+        ptr = StringAppend(gDisplayedStringBattle, nickname);
+    }
+    else{
+        StringCopy(nickname, gSpeciesNames[species]);
+        StringGetEnd12(nickname);
+        ptr = StringAppend(gDisplayedStringBattle, nickname);
+    }
 
     gender = GetMonGender(mon);
     species = GetMonData(mon, MON_DATA_SPECIES);
@@ -2143,24 +2158,28 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     if ((species == SPECIES_NIDORAN_F || species == SPECIES_NIDORAN_M) && StringCompare(nickname, gSpeciesNames[species]) == 0)
         gender = 100;
 
+    //This mon name has over 10 characters
+    if((species == SPECIES_FLETCHINDER || species == SPECIES_STONJOURNER || species == SPECIES_BLACEPHALON ||
+        species == SPECIES_CORVIKNIGHT || species == SPECIES_BARRASKEWDA || species == SPECIES_CENTISKORCH ||
+        species == SPECIES_POLTEAGEIST || species == SPECIES_CRABOMINABLE) && !nicknamed)
+        gender = 100;
+
     // AddTextPrinterAndCreateWindowOnHealthbox's arguments are the same in all 3 cases.
     // It's possible they may have been different in early development phases.
     switch (gender)
     {
-    default:
-        StringCopy(ptr, gText_DynColor2);
-        windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(gDisplayedStringBattle, 0, 3, 2, &windowId);
-        break;
-    case MON_MALE:
-        StringCopy(ptr, gText_DynColor2Male);
-        windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(gDisplayedStringBattle, 0, 3, 2, &windowId);
-        break;
-    case MON_FEMALE:
-        StringCopy(ptr, gText_DynColor1Female);
-        windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(gDisplayedStringBattle, 0, 3, 2, &windowId);
-        break;
+        default:
+            StringCopy(ptr, gText_DynColor2);
+            break;
+        case MON_MALE:
+            StringCopy(ptr, gText_DynColor2Male);
+            break;
+        case MON_FEMALE:
+            StringCopy(ptr, gText_DynColor1Female);
+            break;
     }
 
+    windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(gDisplayedStringBattle, 0, 3, 2, &windowId);
     spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
 
     if (GetBattlerSide(gSprites[healthboxSpriteId].data[6]) == B_SIDE_PLAYER)
@@ -2755,7 +2774,7 @@ static u8* AddTextPrinterAndCreateWindowOnHealthbox(const u8 *str, u32 x, u32 y,
     color[1] = 1;
     color[2] = 3;
 
-    AddTextPrinterParameterized4(winId, 0, x, y, 0, 0, color, -1, str);
+    AddTextPrinterParameterized4(winId, FONT_SMALL_NARROW, x, y, 0, 0, color, -1, str);
 
     *windowId = winId;
     return (u8*)(GetWindowAttribute(winId, WINDOW_TILE_DATA));

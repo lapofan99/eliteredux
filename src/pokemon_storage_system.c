@@ -501,7 +501,7 @@ struct PokemonStorageSystemData
     u8 displayMonMarkings;
     u8 displayMonLevel;
     bool8 displayMonIsEgg;
-    u8 displayMonName[POKEMON_NAME_LENGTH + 1];
+    u8 displayMonName[POKEMON_SPECIES_NAME_LENGTH + 1];
     u8 displayMonNameText[36];
     u8 displayMonSpeciesName[36];
     u8 displayMonGenderLvlText[36];
@@ -4027,15 +4027,15 @@ static void PrintDisplayMonInfo(void)
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     if (sStorage->boxOption != OPTION_MOVE_ITEMS)
     {
-        AddTextPrinterParameterized(0, 1, sStorage->displayMonNameText, 6, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(0, 2, sStorage->displayMonSpeciesName, 6, 15, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(0, FONT_NARROW, sStorage->displayMonNameText, 6, 0, TEXT_SPEED_FF, NULL);//asdf
+        AddTextPrinterParameterized(0, FONT_NARROW, sStorage->displayMonSpeciesName, 6, 15, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(0, 2, sStorage->displayMonGenderLvlText, 10, 29, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(0, 0, sStorage->displayMonItemName, 6, 43, TEXT_SPEED_FF, NULL);
     }
     else
     {
-        AddTextPrinterParameterized(0, 0, sStorage->displayMonItemName, 6, 0, TEXT_SPEED_FF, NULL);
-        AddTextPrinterParameterized(0, 1, sStorage->displayMonNameText, 6, 13, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(0, FONT_NARROW, sStorage->displayMonItemName, 6, 0, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(0, FONT_NARROW, sStorage->displayMonNameText, 6, 13, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(0, 2, sStorage->displayMonSpeciesName, 6, 28, TEXT_SPEED_FF, NULL);
         AddTextPrinterParameterized(0, 2, sStorage->displayMonGenderLvlText, 10, 42, TEXT_SPEED_FF, NULL);
     }
@@ -7063,8 +7063,14 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             else
                 sStorage->displayMonIsEgg = GetMonData(mon, MON_DATA_IS_EGG);
 
-            GetMonData(mon, MON_DATA_NICKNAME, sStorage->displayMonName);
-            StringGetEnd10(sStorage->displayMonName);
+            if(isMonNicknamed(mon)){
+                GetMonData(mon, MON_DATA_NICKNAME, sStorage->displayMonName);
+                StringGetEnd10(sStorage->displayMonName);
+            }
+            else{
+                StringCopy(sStorage->displayMonName, gSpeciesNames[sStorage->displayMonSpecies]);
+                StringGetEnd12(sStorage->displayMonName);
+            }
             sStorage->displayMonLevel = GetMonData(mon, MON_DATA_LEVEL);
             sStorage->displayMonMarkings = GetMonData(mon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetMonData(mon, MON_DATA_PERSONALITY);
@@ -7087,9 +7093,14 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             else
                 sStorage->displayMonIsEgg = GetBoxMonData(boxMon, MON_DATA_IS_EGG);
 
-
-            GetBoxMonData(boxMon, MON_DATA_NICKNAME, sStorage->displayMonName);
-            StringGetEnd10(sStorage->displayMonName);
+            if(isBoxMonNicknamed(boxMon)){
+                GetBoxMonData(boxMon, MON_DATA_NICKNAME, sStorage->displayMonName);
+                StringGetEnd10(sStorage->displayMonName);
+            }
+            else{
+                StringCopy(sStorage->displayMonName, gSpeciesNames[sStorage->displayMonSpecies]);
+                StringGetEnd12(sStorage->displayMonName);
+            }
             sStorage->displayMonLevel = GetLevelFromBoxMonExp(boxMon);
             sStorage->displayMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
             sStorage->displayMonPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);

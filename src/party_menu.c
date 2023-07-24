@@ -1713,8 +1713,17 @@ static s8 GetNewSlotDoubleLayout(s8 slotId, s8 movementDir)
 
 u8* GetMonNickname(struct Pokemon *mon, u8 *dest)
 {
-    GetMonData(mon, MON_DATA_NICKNAME, dest);
-    return StringGetEnd10(dest);
+    bool8 nicknamed = isMonNicknamed(mon);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+
+    if(nicknamed){
+        GetMonData(mon, MON_DATA_NICKNAME, dest);
+        return StringGetEnd10(dest);
+    }
+    else{
+        StringCopy(dest, gSpeciesNames[species]);
+        return StringGetEnd12(dest);
+    }
 }
 
 #define tKeepOpen  data[0]
@@ -2368,7 +2377,7 @@ static void DisplayPartyPokemonBarDetail(u8 windowId, const u8 *str, u8 color, c
 
 static void DisplayPartyPokemonNickname(struct Pokemon *mon, struct PartyMenuBox *menuBox, u8 c)
 {
-    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    u8 nickname[POKEMON_SPECIES_NAME_LENGTH + 1];
 
     if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE)
     {
@@ -2400,7 +2409,7 @@ static void DisplayPartyPokemonLevel(u8 level, struct PartyMenuBox *menuBox)
 
 static void DisplayPartyPokemonGenderNidoranCheck(struct Pokemon *mon, struct PartyMenuBox *menuBox, u8 c)
 {
-    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    u8 nickname[POKEMON_SPECIES_NAME_LENGTH + 1];
 
     if (c == 1)
         menuBox->infoRects->blitFunc(menuBox->windowId, menuBox->infoRects->dimensions[8] >> 3, (menuBox->infoRects->dimensions[9] >> 3) + 1, menuBox->infoRects->dimensions[10] >> 3, menuBox->infoRects->dimensions[11] >> 3, FALSE);
