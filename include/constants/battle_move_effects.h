@@ -393,7 +393,8 @@
 #define EFFECT_EXCALIBUR     386        // Custom Effect
 #define EFFECT_FROSTBITE_HIT 387
 #define EFFECT_EXPANDING_FORCE 388
+#define EFFECT_STEEL_BEAM 389
 
-#define NUM_BATTLE_MOVE_EFFECTS 389 // always needs to be +1 from last effect
+#define NUM_BATTLE_MOVE_EFFECTS 390 // always needs to be +1 from last effect
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H

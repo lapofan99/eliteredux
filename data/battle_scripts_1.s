@@ -413,6 +413,53 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_EXCALIBUR
 	.4byte BattleScript_EffectFrostbiteHit            @ EFFECT_FROSTBITE_HIT
 	.4byte BattleScript_EffectHit                     @ EFFECT_EXPANDING_FORCE
+	.4byte BattleScript_EffectSteelBeam               @ EFFECT_STEEL_BEAM
+
+BattleScript_EffectSteelBeam::
+	attackcanceler
+	attackstring
+	ppreduce
+	accuracycheck BattleScript_SteelBeamMiss, ACC_CURR_MOVE
+	critcalc
+	damagecalc
+	adjustdamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
+	jumpifability BS_ATTACKER, ABILITY_IMPENETRABLE, BattleScript_SteelBeamAfterSelfDamage
+	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD,  BattleScript_SteelBeamAfterSelfDamage
+	call BattleScript_SteelBeamSelfDamage
+BattleScript_SteelBeamAfterSelfDamage::
+	waitstate
+	tryfaintmon BS_ATTACKER, FALSE, NULL
+	tryfaintmon BS_TARGET, FALSE, NULL
+	goto BattleScript_MoveEnd
+BattleScript_SteelBeamMiss::
+	pause B_WAIT_TIME_SHORT
+	effectivenesssound
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	jumpifability BS_ATTACKER, ABILITY_IMPENETRABLE, BattleScript_MoveEnd
+	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD,  BattleScript_MoveEnd
+	bichalfword gMoveResultFlags, MOVE_RESULT_MISSED
+	call BattleScript_SteelBeamSelfDamage
+	orhalfword gMoveResultFlags, MOVE_RESULT_MISSED
+	goto BattleScript_SteelBeamAfterSelfDamage
+
+BattleScript_SteelBeamSelfDamage::
+	dmg_1_2_attackerhp
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	return
 
 BattleScript_EffectFrostbiteHit::
 	setmoveeffect MOVE_EFFECT_FROSTBITE
