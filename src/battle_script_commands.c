@@ -8548,8 +8548,8 @@ static void Cmd_various(void)
             if (!HasAttackerFaintedTarget() && NoAliveMonsForEitherParty())
                 break;
             
-            // Only run script if there is something to do
-            if (BATTLER_MAX_HP(gBattlerAttacker))
+            // Only run script if there is something to do and the attacker is alive
+            if (BATTLER_MAX_HP(gBattlerAttacker) || !IsBattlerAlive(gBattlerAttacker))
                 break;
 
             if (GetBattlerAbility(gActiveBattler) == ABILITY_SOUL_EATER || 
@@ -8575,7 +8575,6 @@ static void Cmd_various(void)
 
             // Let the battle script handler decide the stat changes
             BattleScriptPush(gBattlescriptCurrInstr + 3);
-            gLastUsedAbility = GetBattlerAbility(gActiveBattler);
             gBattlescriptCurrInstr = BattleScript_HandleSoulEaterEffect;
             return;
         }
