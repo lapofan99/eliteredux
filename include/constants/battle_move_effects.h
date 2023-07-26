@@ -390,10 +390,10 @@
 #define EFFECT_SCALE_SHOT 384
 #define EFFECT_BEAK_BLAST 385
 
-#define EFFECT_EXCALIBUR     386        // Custom Effect
-#define EFFECT_FROSTBITE_HIT 387
+#define EFFECT_EXCALIBUR       386        // Custom Effect
+#define EFFECT_FROSTBITE_HIT   387
 #define EFFECT_EXPANDING_FORCE 388
-#define EFFECT_STEEL_BEAM 389
+#define EFFECT_STEEL_BEAM      389
 
 #define NUM_BATTLE_MOVE_EFFECTS 390 // always needs to be +1 from last effect
 
