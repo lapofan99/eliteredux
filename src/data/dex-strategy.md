@@ -444,7 +444,7 @@ Talonflame
    Heavy-Duty Boots can be exchanged for Choice Band if you feel confident that residual damage won't be a problem.
     .tags = Singles, Offensive
 }
-Foretress
+Forretress
 {
     name = Steel Sentry
     item = leftovers
