@@ -444,3 +444,16 @@ Talonflame
    Heavy-Duty Boots can be exchanged for Choice Band if you feel confident that residual damage won't be a problem.
     .tags = Singles, Offensive
 }
+Foretress
+{
+    name = Steel Sentry
+    item = leftovers
+    ability = stamina
+    evs = 252, 0, 252, 0, 4, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = relaxed
+    moves = body press, gyro ball, protect, toxic
+   comment = Foretress embraces a Relaxed nature to excel in defensive capabilities. Its moveset further reinforces its defensive prowess, including Body Press and Gyro Ball, which take advantage of its impressive Defense stat to deal damage based on its defense and low speed stat, respectively. 
+   
+   Protect ensures added protection, allowing Foretress to stall for Leftovers recovery. Meanwhile, Toxic can cripple foes over time, making it an excellent choice for a defensive Pokémon that can withstand attacks and gradually wear down adversaries. 
+    .tags = Singles, Defensive
+}
