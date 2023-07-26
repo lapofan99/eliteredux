@@ -431,3 +431,16 @@ Granbull
     .tags = Singles, Offensive
     .comment = Fighting Spirit turns Hyper Fang into a Fighting-type move (gets 20% boost). If you get statused, Quick Feet activates and gives you 50% more speed.
     }
+Talonflame
+{
+    name = Nuke Pivot
+    item = Heavy-Duty Boots / Choice Band
+    ability = Big Pecks
+    evs = 4, 252, 0, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Adamant
+    moves = Flare Blitz, Brave Bird, U-Turn, Roost 
+   comment = This set’s main purpose is to hit the field quick, deal a lot of damage, and leave the field just as fast. High BP contact moves to take advantage of Big Pecks, Flock and Violent Rush, U-turn for pivoting and Roost to stay healthy. 
+   
+   Heavy-Duty Boots can be exchanged for Choice Band if you feel confident that residual damage won't be a problem.
+    .tags = Singles, Offensive
+}
