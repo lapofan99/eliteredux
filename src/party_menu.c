@@ -8140,7 +8140,8 @@ void Task_IronPill(u8 taskId)
         break;
     case 5:
         SetMonData(mon, MON_DATA_SPEED_DOWN, &newSpeedDownState);
-		UpdateMonDisplayInfoAfterRareCandy(tMonId, mon);
+        CalculateMonStats(mon);
+        UpdateMonDisplayInfoAfterRareCandy(tMonId, mon);
         RemoveBagItem(gSpecialVar_ItemId, 1);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
