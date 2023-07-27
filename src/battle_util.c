@@ -279,6 +279,8 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
+    else if (gBattleMoves[moveId].effect == EFFECT_EXPANDING_FORCE && (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
+        return MOVE_TARGET_BOTH;
     return gBattleMoves[moveId].target;
 }
 
@@ -292,6 +294,8 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
     else if ((ability == ABILITY_AMPLIFIER || BattlerHasInnate(battler, ABILITY_AMPLIFIER)) 
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
+        return MOVE_TARGET_BOTH;
+    else if (gBattleMoves[moveId].effect == EFFECT_EXPANDING_FORCE && (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
         return MOVE_TARGET_BOTH;
     return gBattleMoves[moveId].target;
 }
