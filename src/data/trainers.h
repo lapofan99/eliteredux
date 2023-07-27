@@ -6491,7 +6491,7 @@ const struct Trainer gTrainers[] = {
         .party = {.ItemCustomMoves = sParty_Linda},
     },
 
-    [TRAINER_KAYLEE] =
+    [TRAINER_KAYLEE] = //Debug Trainer, do not use
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = TRAINER_CLASS_SWIMMER_F,
