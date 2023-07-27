@@ -2493,6 +2493,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_RED_CARD,         50},
     {ITEM_IRON_BALL,        50},
     {ITEM_IRON_PILL,        50},
+    {ITEM_QUICK_CLAW,       50},
     //Pokeballs
     {ITEM_POKE_BALL,         1},
     {ITEM_MASTER_BALL,       1},
