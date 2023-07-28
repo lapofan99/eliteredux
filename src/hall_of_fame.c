@@ -560,19 +560,19 @@ u16 getHallofFameSpecies(u8 num){
         break;
         case SPECIES_MANECTRIC:
             if(item == ITEM_MANECTITE)
-                return SPECIES_MANECTRIC;
+                return SPECIES_MANECTRIC_MEGA;
         break;
         case SPECIES_MAWILE:
             if(item == ITEM_MAWILITE)
-                return SPECIES_MAWILE;
+                return SPECIES_MAWILE_MEGA;
         break;
         case SPECIES_MEDICHAM:
             if(item == ITEM_MEDICHAMITE)
-                return SPECIES_MEDICHAM;
+                return SPECIES_MEDICHAM_MEGA;
         break;
         case SPECIES_METAGROSS:
             if(item == ITEM_METAGROSSITE)
-                return SPECIES_METAGROSS;
+                return SPECIES_METAGROSS_MEGA;
         break;
         case SPECIES_MEWTWO:
             if(item == ITEM_MEWTWONITE_X)
@@ -1356,7 +1356,7 @@ static void Task_HofPC_ExitOnButtonPress(u8 taskId)
 static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 {
     u8 numModes = 0;
-    static const u8 gText_WelcomeToHOF[] 		  = _("Elite Redux v1.0-b2 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
+    static const u8 gText_WelcomeToHOF[] 		  = _("Elite Redux v1.0 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
     static const u8 sText_WinsLossesText[]        = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}");
     static const u8 sText_WinsLossesLockedText[]  = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}      {COLOR LIGHT_RED}{SHADOW RED}Locked Mode{COLOR WHITE}{SHADOW DARK_GRAY}");
     

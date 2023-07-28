@@ -121,7 +121,7 @@ script Common_EventScript_PkmnCenterNurse{
 		setflag(FLAG_SYS_DEXNAV_GET)
 		waitfanfare
 		//Give the other items
-		msgbox(format("I'll give you a Candy Box, TM Case, all Battle items, all Pokéballs, all TMs & HMs, all Mega Stones, all Berries, all Type Gems and some more stuff.\p"
+		msgbox(format("I'll give you a Candy Box, TM Case, all Battle items, all Pokéballs, all TMs & HMs, all Berries, all Type Gems and some more stuff.\p"
 		"Every time you speak to me, I'll fill all your items up again."), MSGBOX_DEFAULT)
 		playfanfare(MUS_OBTAIN_ITEM)
 		message("{PLAYER} received a LOT of items!")

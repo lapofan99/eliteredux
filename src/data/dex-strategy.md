@@ -67,7 +67,7 @@ escavalier
     ability = no guard
     evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     nature = jolly
-    moves = megahorn, iron head / close combat / drill run, protect, swords dance
+    moves = megahorn, Iron Head / Close Combat / Drill Run, protect, swords dance
    comment = Use Protect to gain Speed Boost and Leftovers recovery at the same time. Ideally Protect -> Swords Dance -> Protect. Megahorn is usually strong enough, and the 2nd move depends on your opponent. 
 }
 golurk
@@ -429,5 +429,31 @@ Granbull
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_PLAY_ROUGH, MOVE_EARTHQUAKE, MOVE_FIRE_FANG, MOVE_HYPER_FANG
     .tags = Singles, Offensive
-    .comment = Fighting Spirit turns Hyper Fang into a Fighting-type move (gets STAB + 20% boost). If you get statused, Quick Feet activates and gives you 50% more speed.
+    .comment = Fighting Spirit turns Hyper Fang into a Fighting-type move (gets 20% boost). If you get statused, Quick Feet activates and gives you 50% more speed.
     }
+Talonflame
+{
+    name = Nuke Pivot
+    item = Heavy-Duty Boots / Choice Band
+    ability = Big Pecks
+    evs = 4, 252, 0, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Adamant
+    moves = Flare Blitz, Brave Bird, U-turn, Roost 
+   comment = This set’s main purpose is to hit the field quick, deal a lot of damage, and leave the field just as fast. High BP contact moves to take advantage of Big Pecks, Flock and Violent Rush, U-turn for pivoting and Roost to stay healthy. 
+   
+   Heavy-Duty Boots can be exchanged for Choice Band if you feel confident that residual damage won't be a problem.
+    .tags = Singles, Offensive
+}
+Forretress
+{
+    name = Steel Sentry
+    item = leftovers
+    ability = stamina
+    evs = 252, 0, 252, 0, 4, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = relaxed
+    moves = body press, gyro ball, protect, toxic
+   comment = Foretress embraces a Relaxed nature to excel in defensive capabilities. Its moveset further reinforces its defensive prowess, including Body Press and Gyro Ball, which take advantage of its impressive Defense stat to deal damage based on its defense and low speed stat, respectively. 
+   
+   Protect ensures added protection, allowing Foretress to stall for Leftovers recovery. Meanwhile, Toxic can cripple foes over time, making it an excellent choice for a defensive Pokémon that can withstand attacks and gradually wear down adversaries. 
+    .tags = Singles, Defensive
+}

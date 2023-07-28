@@ -3712,7 +3712,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_BothCanNoLongerEscape;
                 }
-                if (!gBattleMons[gBattlerTarget].status2 & STATUS2_ESCAPE_PREVENTION)
+                if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_ESCAPE_PREVENTION))
                     gDisableStructs[gBattlerTarget].battlerPreventingEscape = gBattlerAttacker;
 
                 if (!(gBattleMons[gBattlerAttacker].status2 & STATUS2_ESCAPE_PREVENTION))
@@ -8548,8 +8548,8 @@ static void Cmd_various(void)
             if (!HasAttackerFaintedTarget() && NoAliveMonsForEitherParty())
                 break;
             
-            // Only run script if there is something to do
-            if (BATTLER_MAX_HP(gBattlerAttacker))
+            // Only run script if there is something to do and the attacker is alive
+            if (BATTLER_MAX_HP(gBattlerAttacker) || !IsBattlerAlive(gBattlerAttacker))
                 break;
 
             if (GetBattlerAbility(gActiveBattler) == ABILITY_SOUL_EATER || 
@@ -8575,7 +8575,6 @@ static void Cmd_various(void)
 
             // Let the battle script handler decide the stat changes
             BattleScriptPush(gBattlescriptCurrInstr + 3);
-            gLastUsedAbility = GetBattlerAbility(gActiveBattler);
             gBattlescriptCurrInstr = BattleScript_HandleSoulEaterEffect;
             return;
         }
@@ -8923,8 +8922,10 @@ static void Cmd_various(void)
         else if (gBattlescriptCurrInstr[3] == 1)
         {
             RecalcBattlerStats(gActiveBattler, mon);
-            gBattleStruct->mega.alreadyEvolved[GetBattlerPosition(gActiveBattler)] = TRUE;
-            gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(gActiveBattler)] |= gBitTable[gBattlerPartyIndexes[gActiveBattler]];
+            if(ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) != HOLD_EFFECT_PRIMAL_ORB){
+                gBattleStruct->mega.alreadyEvolved[GetBattlerPosition(gActiveBattler)] = TRUE;
+                gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(gActiveBattler)] |= gBitTable[gBattlerPartyIndexes[gActiveBattler]];
+            }
         }
         // Update healthbox and elevation.
         else
@@ -9856,6 +9857,7 @@ static void Cmd_various(void)
     case VARIOUS_CHECK_POLTERGEIST:
         if (gBattleMons[gActiveBattler].item == ITEM_NONE
            || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
+           || (gStatuses3[gActiveBattler] & STATUS3_SEMI_INVULNERABLE)
            || IS_BATTLER_PROTECTED(gActiveBattler)
            || GetBattlerAbility(gActiveBattler) == ABILITY_KLUTZ)
         {

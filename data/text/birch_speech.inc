@@ -127,7 +127,7 @@ gText_Pie_ChallengeMode::
 
 gText_Pie_EliteMode::
 	.string "Elite Mode is the hardest difficulty.\n"
-	.string "Every single Trainer has custom EVs.\p"
+	.string "You will face much harder teams.\p"
 	.string "It also has more restrictions:\p"
 	.string "You have to unlock innates at\n"
 	.string "certain levels to use them.\p"

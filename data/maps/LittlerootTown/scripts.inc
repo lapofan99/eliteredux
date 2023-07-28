@@ -2297,8 +2297,7 @@ LittlerootTown_EventScript_TutorialNPC2_Text_1:
 	.string "Center, she will give you the following:\p"
 	.string "Candy Box, DexNav, TM Case, all TMs &\n"
 	.string "HMs, Battle items, all Pokéballs, all\l"
-	.string "Mega Stones, all Berries, all Type Gems\l"
-	.string "etc.\p"
+	.string "Berries, all Type Gems etc.\p"
 	.string "Every time you speak to her, all items\n"
 	.string "get refilled.$"
 
@@ -2367,6 +2366,9 @@ LittlerootTown_EventScript_TutorialNPC2_Text_6:
 	.string "Every Pokémon has 31 IVs by default,\n"
 	.string "but you can change them in Slateport\l"
 	.string "or Fallarbor.\p"
+	.string "For Ace and Elite Mode, there is a Sleep\n"
+	.string "Clause, which prevents putting more\l"
+	.string "than one enemy Pokémon to sleep.\p"
 	.string "Every move is already PP maxed. All held\n"
 	.string "items stay on your Pokémon after\l"
 	.string "battling.$"
@@ -2394,9 +2396,9 @@ LittlerootTown_EventScript_TutorialNPC2_Text_8:
 	.string "Pokémon you want. No need to walk slow\l"
 	.string "when approaching.\p"
 	.string "The Shiny rate can be massively\n"
-	.string "boosted, up to 1/20.\p"
-	.string "You can catch every Pokémon from Gen 1\n"
-	.string "to 7 + many from Gen 8.$"
+	.string "boosted, up to 1/5.\p"
+	.string "You can catch almost every Pokémon\n"
+	.string "from Gen 1 to 8.$"
 
 LittlerootTown_EventScript_TutorialNPC2_Text_9:
 	.string "You can directly switch the ability in\n"

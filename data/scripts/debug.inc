@@ -43,8 +43,8 @@ Debug_CheatStart::
 	end
 
 Debug_Script_1::
-	cleartrainerflag TRAINER_CELINA
-	trainerbattle_single TRAINER_CELINA, Route102_Text_RickIntro, Route102_Text_RickDefeated
+	cleartrainerflag TRAINER_KAYLEE
+	trainerbattle_single TRAINER_KAYLEE, Route102_Text_RickIntro, Route102_Text_RickDefeated
 	end
 
 Debug_Script_2::

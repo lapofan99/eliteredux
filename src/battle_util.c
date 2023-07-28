@@ -37,6 +37,7 @@
 #include "constants/abilities.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_config.h"
+#include "constants/battle_frontier.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_script_commands.h"
 #include "constants/battle_string_ids.h"
@@ -278,6 +279,8 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
+    else if (gBattleMoves[moveId].effect == EFFECT_EXPANDING_FORCE && (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
+        return MOVE_TARGET_BOTH;
     return gBattleMoves[moveId].target;
 }
 
@@ -291,6 +294,8 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
     else if ((ability == ABILITY_AMPLIFIER || BattlerHasInnate(battler, ABILITY_AMPLIFIER)) 
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
+        return MOVE_TARGET_BOTH;
+    else if (gBattleMoves[moveId].effect == EFFECT_EXPANDING_FORCE && (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
         return MOVE_TARGET_BOTH;
     return gBattleMoves[moveId].target;
 }
@@ -1535,7 +1540,7 @@ void PrepareStringBattle(u16 stringId, u8 battler)
         stringId = STRINGID_STATSWONTDECREASE2;
 
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
-    else if ((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH)
+    else if ((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH || stringId == STRINGID_PKMNCUTSSPATTACKWITH)
               && (((GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT       || BattlerHasInnate(gBattlerTarget, ABILITY_DEFIANT))
 		           && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
                  || ((GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || BattlerHasInnate(gBattlerTarget, ABILITY_COMPETITIVE))
@@ -10691,7 +10696,7 @@ u8 IsMonDisobedient(void)
             obedienceLevel = 90;
     }
 
-    if (gBattleMons[gBattlerAttacker].level <= obedienceLevel)
+    //if (gBattleMons[gBattlerAttacker].level <= obedienceLevel)
         return 0;
     rnd = (Random() & 255);
     calc = (gBattleMons[gBattlerAttacker].level + obedienceLevel) * rnd >> 8;
@@ -13928,12 +13933,80 @@ bool32 CanMegaEvolve(u8 battlerId)
 
 void UndoMegaEvolution(u32 monId)
 {
+    u16 species = GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES);
     u16 baseSpecies = GET_BASE_SPECIES_ID(GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES));
+    bool8 multibattle = VarGet(VAR_0x8004) == SPECIAL_BATTLE_MULTI;
+
+    switch(species){
+        case SPECIES_ABOMASNOW_MEGA:
+        case SPECIES_ABSOL_MEGA:
+        case SPECIES_AERODACTYL_MEGA:
+        case SPECIES_AGGRON_MEGA:
+        case SPECIES_ALAKAZAM_MEGA:
+        case SPECIES_ALTARIA_MEGA:
+        case SPECIES_AMPHAROS_MEGA:
+        case SPECIES_AUDINO_MEGA:
+        case SPECIES_BANETTE_MEGA:
+        case SPECIES_BEEDRILL_MEGA:
+        case SPECIES_BLASTOISE_MEGA:
+        case SPECIES_BLAZIKEN_MEGA:
+        case SPECIES_CAMERUPT_MEGA:
+        case SPECIES_CHARIZARD_MEGA_X:
+        case SPECIES_CHARIZARD_MEGA_Y:
+        case SPECIES_DIANCIE_MEGA:
+        case SPECIES_GALLADE_MEGA:
+        case SPECIES_GARCHOMP_MEGA:
+        case SPECIES_GARDEVOIR_MEGA:
+        case SPECIES_GENGAR_MEGA:
+        case SPECIES_GLALIE_MEGA:
+        case SPECIES_GYARADOS_MEGA:
+        case SPECIES_HERACROSS_MEGA:
+        case SPECIES_HOUNDOOM_MEGA:
+        case SPECIES_KANGASKHAN_MEGA:
+        case SPECIES_LATIAS_MEGA:
+        case SPECIES_LATIOS_MEGA:
+        case SPECIES_LOPUNNY_MEGA:
+        case SPECIES_LUCARIO_MEGA:
+        case SPECIES_MANECTRIC:
+        case SPECIES_MAWILE:
+        case SPECIES_MEDICHAM_MEGA:
+        case SPECIES_METAGROSS_MEGA:
+        case SPECIES_MEWTWO_MEGA_X:
+        case SPECIES_MEWTWO_MEGA_Y:
+        case SPECIES_PIDGEOT_MEGA:
+        case SPECIES_PINSIR_MEGA:
+        case SPECIES_SABLEYE_MEGA:
+        case SPECIES_SALAMENCE_MEGA:
+        case SPECIES_SCEPTILE_MEGA:
+        case SPECIES_SCIZOR_MEGA:
+        case SPECIES_SHARPEDO_MEGA:
+        case SPECIES_SLOWBRO_MEGA:
+        case SPECIES_STEELIX_MEGA:
+        case SPECIES_SWAMPERT_MEGA:
+        case SPECIES_TYRANITAR_MEGA:
+        case SPECIES_VENUSAUR_MEGA:
+        case SPECIES_MILOTIC_MEGA:
+        case SPECIES_GROUDON_PRIMAL:
+        case SPECIES_KYOGRE_PRIMAL:
+        case SPECIES_FLYGON_MEGA:
+        case SPECIES_BUTTERFREE_MEGA:
+        case SPECIES_LAPRAS_MEGA:
+        case SPECIES_MACHAMP_MEGA:
+        case SPECIES_KINGLER_MEGA:
+        case SPECIES_KINGDRA_MEGA:
+        case SPECIES_RAYQUAZA_MEGA:
+            SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &baseSpecies);
+        break;
+    }
 
     if (gBattleStruct->mega.evolvedPartyIds[B_SIDE_PLAYER] & gBitTable[monId])
     {
         gBattleStruct->mega.evolvedPartyIds[B_SIDE_PLAYER] &= ~(gBitTable[monId]);
-        SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &gBattleStruct->mega.playerEvolvedSpecies);
+        if(multibattle && gBattleStruct->mega.playerEvolvedSpecies == SPECIES_NONE) //This fixes a problem with multis and mega evolutions
+            SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &baseSpecies);
+        else
+            SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &gBattleStruct->mega.playerEvolvedSpecies);
+        
         CalculateMonStats(&gPlayerParty[monId]);
     }
     else if (gBattleStruct->mega.primalRevertedPartyIds[B_SIDE_PLAYER] & gBitTable[monId])

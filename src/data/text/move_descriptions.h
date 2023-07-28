@@ -1689,7 +1689,7 @@ static const u8 sPOWER_GEMDescription[] = _(
 
 static const u8 sDRAIN_PUNCHDescription[] = _(
     "A punch that absorbs over\n"
-    "30% of damage inflictedd.");
+    "30% of damage inflicted.");
 
 static const u8 sVACUUM_WAVEDescription[] = _(
     "Whirls its fists to send\n"
@@ -2300,7 +2300,7 @@ static const u8 sTOPSY_TURVYDescription[] = _(
 #ifdef REBALANCED_VERSION
     static const u8 sDRAINING_KISSDescription[] = _(
         "An attack that absorbs over\n"
-        "30% of damage inflictedd.");
+        "30% of damage inflicted.");
 #else
     static const u8 sDRAINING_KISSDescription[] = _(
         "An attack that absorbs over\n"
@@ -4053,7 +4053,7 @@ static const u8 sMoveFourLineDescription_DragonBreath[] = _("The foe is hit with
 static const u8 sMoveFourLineDescription_BatonPass[] = _("The user switches\nout, passing along\nany stat changes\nto the new battler.");
 static const u8 sMoveFourLineDescription_Encore[] = _("Makes the foe use\nthe move it last\nused repeatedly for\ntwo to six turns.");
 static const u8 sMoveFourLineDescription_Pursuit[] = _("An attack move that\nworks especially\nwell on a foe that\nis switching out.");
-static const u8 sMoveFourLineDescription_RapidSpin[] = _("Frees the user from Bind,\nLeech Seed, Spikes etc.\nUps Speed by +1."); // new
+static const u8 sMoveFourLineDescription_RapidSpin[] = _("Frees the user from\nBind, Leech Seed,\nSpikes etc.\nUps Speed by +1."); // new
 static const u8 sMoveFourLineDescription_SweetScent[] = _("Allures the foe to\nreduce evasiveness.\nIt also attracts\nwild Pokémon.");
 static const u8 sMoveFourLineDescription_IronTail[] = _("An attack with a\nsteel-hard tail.\n30% chance to\nlower foe's Defense."); // new
 static const u8 sMoveFourLineDescription_MetalClaw[] = _("The foe is attacked\nwith steel claws.\n20% chance to raise\nthe user's Attack."); // new
@@ -5229,7 +5229,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_LIGHT_OF_RUIN     - 1] = sMoveFourLineDescription_LightOfRuin,
     [MOVE_ORIGIN_PULSE      - 1] = sMoveFourLineDescription_OriginPulse,
     [MOVE_PRECIPICE_BLADES  - 1] = sMoveFourLineDescription_PrecipiceBlades,
-    [MOVE_DRAGON_ASCENT     - 1] = sMoveFourLineDescription_CloseCombat,
+    [MOVE_DRAGON_ASCENT     - 1] = sMoveFourLineDescription_DragonAscent,
     [MOVE_HYPERSPACE_FURY   - 1] = sMoveFourLineDescription_HyperspaceHole,
     [MOVE_SHORE_UP          - 1] = sMoveFourLineDescription_ShoreUp,
     [MOVE_FIRST_IMPRESSION  - 1] = sMoveFourLineDescription_FirstImpression,
