@@ -3037,8 +3037,16 @@ static void GetBattlerNick(u32 battlerId, u8 *dst)
     illusionMon = GetIllusionMonPtr(battlerId);
     if (illusionMon != NULL)
         mon = illusionMon;
-    GetMonData(mon, MON_DATA_NICKNAME, dst);
-    StringGetEnd10(dst);
+
+    if(isMonNicknamed(mon)){
+        GetMonData(mon, MON_DATA_NICKNAME, dst);
+        StringGetEnd10(dst);
+    }
+    else{
+        u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+        StringCopy(dst, gSpeciesNames[species]);
+        StringGetEnd12(dst);
+    }   
 }
 
 #define HANDLE_NICKNAME_STRING_CASE(battlerId)                          \
@@ -3315,11 +3323,28 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 toCpy = text;
                 break;
             case B_TXT_ACTIVE_NAME2: // active battlerId name with prefix, no illusion
-                if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
-                    GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_NICKNAME, text);
-                else
-                    GetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_NICKNAME, text);
-                StringGetEnd10(text);
+                if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER){
+                    if(isMonNicknamed(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]])){
+                        GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_NICKNAME, text);
+                        StringGetEnd10(text);
+                    }
+                    else{
+                        u16 species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPECIES, NULL);
+                        StringCopy(text, gSpeciesNames[species]);
+                        StringGetEnd12(text);
+                    }
+                }
+                else{
+                    if(isMonNicknamed(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]])){
+                        GetMonData(&gEnemyParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_NICKNAME, text);
+                        StringGetEnd10(text);
+                    }
+                    else{
+                        u16 species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPECIES, NULL);
+                        StringCopy(text, gSpeciesNames[species]);
+                        StringGetEnd12(text);
+                    }
+                }
                 toCpy = text;
                 break;
             case B_TXT_EFF_NAME_WITH_PREFIX: // effect battlerId name with prefix
