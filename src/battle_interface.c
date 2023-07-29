@@ -1130,11 +1130,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     if (gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]
      || gBattleStruct->mega.primalRevertedPartyIds[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]])
     {
-        /*const u8 gText_ShinySymbol[] = _("{SUM_SHINY}");
-        if(IsMonShiny(mon)) 
-            objVram = StringCopy(text, gText_ShinySymbol);
-        else*/
-		    objVram = ConvertIntToDecimalStringN(text, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
+		objVram = ConvertIntToDecimalStringN(text, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
         xPos = 5 * (3 - (objVram - (text + 2))) - 1;
     }
     else
@@ -2206,10 +2202,7 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     }
     else
     {
-        windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(gDisplayedStringBattle, 0, 3, 2, &windowId);
-        spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
         TextIntoHealthboxObject((void*)(OBJ_VRAM0 + 0x20 + spriteTileNum), windowTileData, 7);
-        
     }
     RemoveWindowOnHealthbox(windowId); // Removes Temporary Window
 }
