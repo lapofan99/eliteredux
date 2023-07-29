@@ -31,6 +31,8 @@
 #include "item_use.h"
 #include "item.h"
 #include "constants/items.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 enum
 {   // Corresponds to gHealthboxElementsGfxTable (and the tables after it) in graphics.c
@@ -616,7 +618,16 @@ static const u16 sStatusIconColors[] =
     [PAL_STATUS_FRB] = RGB(17, 22, 28),
 };
 
-static const struct WindowTemplate sHealthboxWindowTemplate = {0, 0, 0, 8, 2, 0, 0}; // width = 8, height = 2
+static const struct WindowTemplate sHealthboxWindowTemplate = {
+    .bg = 0,
+    .tilemapLeft = 0,
+    .tilemapTop = 0,
+    .width = 8,
+    .height = 2,
+    .paletteNum = 0,
+    .baseBlock = 0
+}; // width = 8, height = 2
+
 
 static const u8 sMegaTriggerGfx[] = INCBIN_U8("graphics/battle_interface/mega_trigger.4bpp");
 static const u16 sMegaTriggerPal[] = INCBIN_U16("graphics/battle_interface/mega_trigger.gbapal");
@@ -1119,7 +1130,11 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     if (gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]
      || gBattleStruct->mega.primalRevertedPartyIds[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]])
     {
-        objVram = ConvertIntToDecimalStringN(text, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
+        /*const u8 gText_ShinySymbol[] = _("{SUM_SHINY}");
+        if(IsMonShiny(mon)) 
+            objVram = StringCopy(text, gText_ShinySymbol);
+        else*/
+		    objVram = ConvertIntToDecimalStringN(text, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
         xPos = 5 * (3 - (objVram - (text + 2))) - 1;
     }
     else
@@ -2123,7 +2138,7 @@ static void SpriteCB_StatusSummaryBallsOnSwitchout(struct Sprite *sprite)
 
 static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
 {
-    const u8 gText_ShinySymbol[] = _("{HIGHLIGHT RED}{SUM_SHINY}");
+    //const u8 gText_ShinySymbol[] = _("{HIGHLIGHT DARK_GRAY}{SUM_SHINY}");
     u8 nickname[POKEMON_SPECIES_NAME_LENGTH + 1];
     void *ptr;
     u32 windowId, spriteTileNum;
@@ -2158,12 +2173,6 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     if ((species == SPECIES_NIDORAN_F || species == SPECIES_NIDORAN_M) && StringCompare(nickname, gSpeciesNames[species]) == 0)
         gender = 100;
 
-    //This mon name has over 10 characters
-    if((species == SPECIES_FLETCHINDER || species == SPECIES_STONJOURNER || species == SPECIES_BLACEPHALON ||
-        species == SPECIES_CORVIKNIGHT || species == SPECIES_BARRASKEWDA || species == SPECIES_CENTISKORCH ||
-        species == SPECIES_POLTEAGEIST || species == SPECIES_CRABOMINABLE) && !nicknamed)
-        gender = 100;
-
     // AddTextPrinterAndCreateWindowOnHealthbox's arguments are the same in all 3 cases.
     // It's possible they may have been different in early development phases.
     switch (gender)
@@ -2178,26 +2187,31 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
             StringCopy(ptr, gText_DynColor1Female);
             break;
     }
-
-    windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(gDisplayedStringBattle, 0, 3, 2, &windowId);
-    spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
+        
+    windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(gDisplayedStringBattle, 0, 3, 2, &windowId); // Creates Text + Temporary Window
+    spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP; // Checks where is going to put it
 
     if (GetBattlerSide(gSprites[healthboxSpriteId].data[6]) == B_SIDE_PLAYER)
     {
-        TextIntoHealthboxObject((void*)(OBJ_VRAM0 + 0x40 + spriteTileNum), windowTileData, 6);
+        //First Window
+        TextIntoHealthboxObject((void*)(OBJ_VRAM0 + spriteTileNum + 0x20), windowTileData, 7); // Puts the text                                              
+        //Second Window
         ptr = (void*)(OBJ_VRAM0);
         if (!IsDoubleBattle())
             ptr += spriteTileNum + 0x800;
         else
             ptr += spriteTileNum + 0x400;
-        TextIntoHealthboxObject(ptr, windowTileData + 0xC0, 1);
+        //(7 * 32) this 7 is the same as the 7 in TextIntoHealthboxObject for window width, it was 0xC0 before
+        TextIntoHealthboxObject(ptr, windowTileData + (7 * 32), 1);                                    
     }
     else
     {
+        windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(gDisplayedStringBattle, 0, 3, 2, &windowId);
+        spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
         TextIntoHealthboxObject((void*)(OBJ_VRAM0 + 0x20 + spriteTileNum), windowTileData, 7);
+        
     }
-
-    RemoveWindowOnHealthbox(windowId);
+    RemoveWindowOnHealthbox(windowId); // Removes Temporary Window
 }
 
 static void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
