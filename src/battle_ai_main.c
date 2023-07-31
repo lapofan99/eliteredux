@@ -3336,7 +3336,9 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
              && HasOnlyMovesWithSplit(battlerAtk, SPLIT_PHYSICAL, TRUE))
                 score = 90; // Force switch if all your attacking moves are special and you have Natural Cure.
         }
-        else if(!BattlerHasInnate(battlerAtk, ABILITY_GUTS) && AI_DATA->atkAbility != ABILITY_GUTS){
+        else if(!BattlerHasInnate(battlerAtk, ABILITY_GUTS)        && AI_DATA->atkAbility != ABILITY_GUTS &&
+                !BattlerHasInnate(battlerAtk, ABILITY_HEATPROOF)   && AI_DATA->atkAbility != ABILITY_HEATPROOF && 
+                !BattlerHasInnate(battlerAtk, ABILITY_FLARE_BOOST) && AI_DATA->atkAbility != ABILITY_FLARE_BOOST){
             if (IS_MOVE_SPECIAL(move) && gBattleMoves[move].effect != EFFECT_FACADE)
                 score -= 2;
         }
