@@ -6829,7 +6829,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .split = SPLIT_PHYSICAL,
-        .argument = STATUS1_FREEZE,
+        .argument = STATUS1_FROSTBITE,
     },
 
     [MOVE_FIRE_FANG] =
