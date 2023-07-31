@@ -3328,41 +3328,31 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if ((gBattleMons[battlerAtk].status1 & (STATUS1_FREEZE | STATUS1_FROSTBITE)) && TestMoveFlags(move, FLAG_THAW_USER))
         score += (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) ? 20 : 10;
     
-    // check burn //To Check innates
+    // check burn
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN)
     {
-        switch (AI_DATA->atkAbility)
-        {
-        case ABILITY_GUTS:
-            break;
-        case ABILITY_NATURAL_CURE:
+        if(BattlerHasInnate(battlerAtk, ABILITY_NATURAL_CURE) || AI_DATA->atkAbility == ABILITY_NATURAL_CURE){
             if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING
              && HasOnlyMovesWithSplit(battlerAtk, SPLIT_PHYSICAL, TRUE))
-                score = 90; // Force switch if all your attacking moves are physical and you have Natural Cure.
-            break;
-        default:
-            if (IS_MOVE_PHYSICAL(move) && gBattleMoves[move].effect != EFFECT_FACADE)
+                score = 90; // Force switch if all your attacking moves are special and you have Natural Cure.
+        }
+        else if(!BattlerHasInnate(battlerAtk, ABILITY_GUTS) && AI_DATA->atkAbility != ABILITY_GUTS){
+            if (IS_MOVE_SPECIAL(move) && gBattleMoves[move].effect != EFFECT_FACADE)
                 score -= 2;
-            break;
         }
     }
 
-    // check frostbite //To Check innates
+    // Checks frostbite
     if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE)
     {
-        switch (AI_DATA->atkAbility)
-        {
-        case ABILITY_GUTS:
-            break;
-        case ABILITY_NATURAL_CURE:
+        if(BattlerHasInnate(battlerAtk, ABILITY_NATURAL_CURE) || AI_DATA->atkAbility == ABILITY_NATURAL_CURE){
             if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING
              && HasOnlyMovesWithSplit(battlerAtk, SPLIT_SPECIAL, TRUE))
                 score = 90; // Force switch if all your attacking moves are special and you have Natural Cure.
-            break;
-        default:
+        }
+        else if(!BattlerHasInnate(battlerAtk, ABILITY_GUTS) && AI_DATA->atkAbility != ABILITY_GUTS){
             if (IS_MOVE_SPECIAL(move) && gBattleMoves[move].effect != EFFECT_FACADE)
                 score -= 2;
-            break;
         }
     }
 

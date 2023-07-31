@@ -2766,19 +2766,14 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_BURN:  // burn
-            if ((gBattleMons[gActiveBattler].status1 & STATUS1_BURN)
-                && gBattleMons[gActiveBattler].hp != 0)
+            if ((gBattleMons[gActiveBattler].status1 & STATUS1_BURN) && gBattleMons[gActiveBattler].hp != 0 &&
+               ability != ABILITY_HEATPROOF &&
+               !BattlerHasInnate(gActiveBattler, ABILITY_HEATPROOF))
             {
                 MAGIC_GUARD_CHECK;
 				FLARE_BOOST_CHECK;
 			
                 gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / (B_BURN_DAMAGE >= GEN_7 ? 16 : 8);
-                if (ability == ABILITY_HEATPROOF || BattlerHasInnate(gActiveBattler, ABILITY_HEATPROOF)) // ability + innate
-                {
-                    if (gBattleMoveDamage > (gBattleMoveDamage / 2) + 1) // Record ability if the burn takes less damage than it normally would.
-                        RecordAbilityBattle(gActiveBattler, ABILITY_HEATPROOF);
-                    gBattleMoveDamage /= 2;
-                }
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
                 BattleScriptExecute(BattleScript_BurnTurnDmg);
@@ -13161,16 +13156,21 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         dmg = ApplyModifier((B_CRIT_MULTIPLIER >= GEN_6 ? UQ_4_12(1.5) : UQ_4_12(2.0)), dmg);
 
     // check burn
-    if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_PHYSICAL(move)
-        && gBattleMoves[move].effect != EFFECT_FACADE && (abilityAtk != ABILITY_GUTS || !BattlerHasInnate(battlerAtk, ABILITY_GUTS)))
+    if ((gBattleMons[battlerAtk].status1 & STATUS1_BURN) && IS_MOVE_PHYSICAL(move) &&
+        gBattleMoves[move].effect != EFFECT_FACADE         && 
+        abilityAtk != ABILITY_FLARE_BOOST                  && 
+        !BattlerHasInnate(battlerAtk, ABILITY_FLARE_BOOST) &&
+        abilityAtk != ABILITY_HEATPROOF                    && 
+        !BattlerHasInnate(battlerAtk, ABILITY_HEATPROOF)   &&
+        abilityAtk != ABILITY_GUTS                         && 
+        !BattlerHasInnate(battlerAtk, ABILITY_GUTS))
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
 
     // check frostbite
-    if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && !IS_MOVE_PHYSICAL(move)
-    #if B_BURN_FACADE_DMG >= GEN_6
-        && gBattleMoves[move].effect != EFFECT_FACADE
-    #endif
-        && abilityAtk != ABILITY_GUTS)
+    if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE && !IS_MOVE_PHYSICAL(move) &&
+        gBattleMoves[move].effect != EFFECT_FACADE  &&
+        abilityAtk != ABILITY_GUTS                  && 
+        !BattlerHasInnate(battlerAtk, ABILITY_GUTS))
         dmg = ApplyModifier(UQ_4_12(0.5), dmg);
 
     // check sunny/rain weather
