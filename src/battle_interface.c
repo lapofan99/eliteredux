@@ -196,6 +196,7 @@ static void sub_8073E64(u8 taskId);
 
 static void SpriteCB_HealthBoxOther(struct Sprite *sprite);
 static void SpriteCB_HealthBar(struct Sprite *sprite);
+static void SpriteCB_HealthBarOpponent(struct Sprite *sprite);
 static void sub_8074158(struct Sprite *sprite);
 static void sub_8074090(struct Sprite *sprite);
 static void SpriteCB_StatusSummaryBar(struct Sprite *sprite);
@@ -327,7 +328,7 @@ static const struct SpriteTemplate sHealthbarSpriteTemplates[MAX_BATTLERS_COUNT]
         .anims = gDummySpriteAnimTable,
         .images = NULL,
         .affineAnims = gDummySpriteAffineAnimTable,
-        .callback = SpriteCB_HealthBar
+        .callback = SpriteCB_HealthBarOpponent
     },
     {
         .tileTag = TAG_HEALTHBAR_PLAYER2_TILE,
@@ -345,7 +346,7 @@ static const struct SpriteTemplate sHealthbarSpriteTemplates[MAX_BATTLERS_COUNT]
         .anims = gDummySpriteAnimTable,
         .images = NULL,
         .affineAnims = gDummySpriteAffineAnimTable,
-        .callback = SpriteCB_HealthBar
+        .callback = SpriteCB_HealthBarOpponent
     }
 };
 
@@ -388,7 +389,8 @@ static const struct Subsprite sUnknown_0832C260[] =
         .priority = 1
     },
     {
-        .x = DISPLAY_WIDTH - 16,
+        //Pokeball Icon
+        .x = DISPLAY_WIDTH - 24,
         .y = 0,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
@@ -803,9 +805,9 @@ u8 GetMegaIndicatorSpriteId(u32 healthboxSpriteId)
 
 static void InitLastUsedBallAssets(void)
 {
-    gBattleStruct->ballSpriteIds[0] = MAX_SPRITES;
-    gBattleStruct->ballSpriteIds[1] = MAX_SPRITES;
-    gBattleStruct->moveInfoSpriteId = MAX_SPRITES;
+    gBattleStruct->ballSpriteIds[0]  = MAX_SPRITES;
+    gBattleStruct->ballSpriteIds[1]  = MAX_SPRITES;
+    gBattleStruct->moveInfoSpriteId  = MAX_SPRITES;
     gBattleStruct->enemyInfoSpriteId = MAX_SPRITES;
 }
 
@@ -952,6 +954,32 @@ static void SpriteCB_HealthBar(struct Sprite *sprite)
     case 2:
     default:
         sprite->x = gSprites[healthboxSpriteId].x + 8;
+        sprite->y = gSprites[healthboxSpriteId].y;
+        break;
+    }
+
+    sprite->x2 = gSprites[healthboxSpriteId].x2;
+    sprite->y2 = gSprites[healthboxSpriteId].y2;
+}
+
+// Syncs the position of healthbar accordingly with the healthbox.
+static void SpriteCB_HealthBarOpponent(struct Sprite *sprite)
+{
+    u8 healthboxSpriteId = sprite->hBar_HealthBoxSpriteId;
+
+    switch (sprite->hBar_Data6)
+    {
+    case 0:
+        sprite->x = gSprites[healthboxSpriteId].x + 16;
+        sprite->y = gSprites[healthboxSpriteId].y;
+        break;
+    case 1:
+        sprite->x = gSprites[healthboxSpriteId].x + 16;
+        sprite->y = gSprites[healthboxSpriteId].y;
+        break;
+    case 2:
+    default:
+        sprite->x = gSprites[healthboxSpriteId].x + 16;
         sprite->y = gSprites[healthboxSpriteId].y;
         break;
     }
@@ -1142,24 +1170,31 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
         xPos = 5 * (3 - (objVram - (text + 2)));
     }
 
-    xPos = 5 * (3 - (objVram - (text + 2)));
-    windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, xPos, 3, 2, &windowId);
-    spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
-
     if (GetBattlerSide(battler) == B_SIDE_PLAYER)
     {
+        xPos = 5 * (3 - (objVram - (text + 2)));
+        windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, xPos, 3, 2, &windowId);
+        spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
+
         objVram = (void*)(OBJ_VRAM0);
         if (!IsDoubleBattle())
             objVram += spriteTileNum + 0x820;
         else
             objVram += spriteTileNum + 0x420;
+
+        TextIntoHealthboxObject(objVram, windowTileData, 3);
     }
     else
     {
+        xPos = 5 * (3 - (objVram - (text + 2))) + 2;
+        windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, xPos, 3, 2, &windowId);
+        spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
+
         objVram = (void*)(OBJ_VRAM0);
-        objVram += spriteTileNum + 0x400;
+        objVram += spriteTileNum + 0x400 + 32; 
+        
+        TextIntoHealthboxObject(objVram, windowTileData, 3);
     }
-    TextIntoHealthboxObject(objVram, windowTileData, 3);
     RemoveWindowOnHealthbox(windowId);
 }
 
@@ -2202,7 +2237,12 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     }
     else
     {
+        //First Window
         TextIntoHealthboxObject((void*)(OBJ_VRAM0 + 0x20 + spriteTileNum), windowTileData, 7);
+        //Second Window
+        ptr = (void*)(OBJ_VRAM0) + spriteTileNum + 0x400;
+        
+        TextIntoHealthboxObject(ptr, windowTileData + (7 * 32), 1);                                    
     }
     RemoveWindowOnHealthbox(windowId); // Removes Temporary Window
 }
@@ -2245,7 +2285,7 @@ static void UpdateStatusIconInHealthbox(u8 healthboxSpriteId)
     {
         status = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_STATUS);
         if (!IsDoubleBattle())
-            tileNumAdder = 0x1A;
+            tileNumAdder = 0x11;
         else
             tileNumAdder = 0x12;
     }
