@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle.h"
 #include "battle_ai_main.h"
+#include "battle_ai_util.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
 #include "battle_controllers.h"
@@ -1951,10 +1952,10 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 
         switch(moveType){
             case TYPE_GROUND:
-                if(gBattleMons[targetId].ability == ABILITY_LEVITATE || BattlerHasInnate(targetId, ABILITY_LEVITATE))
+                if((gBattleMons[targetId].ability == ABILITY_LEVITATE || BattlerHasInnate(targetId, ABILITY_LEVITATE)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum))
                     abilityNullifiesDamage = TRUE;
 
-                if(gBattleMons[targetId].ability == ABILITY_DRAGONFLY || BattlerHasInnate(targetId, ABILITY_DRAGONFLY))
+                if((gBattleMons[targetId].ability == ABILITY_DRAGONFLY || BattlerHasInnate(targetId, ABILITY_DRAGONFLY)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum))
                     abilityNullifiesDamage = TRUE;
 
                 if(gBattleMons[targetId].item == ITEM_AIR_BALLOON)
@@ -2224,8 +2225,12 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     //Has the same type twice
                     mod = UQ_4_12(1.0);
                 }
-                else if(gBattleMons[targetId].ability == ABILITY_LEVITATE || BattlerHasInnate(targetId, ABILITY_LEVITATE)){
+                else if((gBattleMons[targetId].ability == ABILITY_LEVITATE || BattlerHasInnate(targetId, ABILITY_LEVITATE)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum)){
                     //Has levitate
+                    abilityNullifiesDamage = FALSE;
+                }
+                else if((gBattleMons[targetId].ability == ABILITY_DRAGONFLY || BattlerHasInnate(targetId, ABILITY_DRAGONFLY)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum)){
+                    //Has Dragonfly
                     abilityNullifiesDamage = FALSE;
                 }
             }

@@ -1187,6 +1187,9 @@ bool32 AI_IsAbilityOnSide(u32 battlerId, u32 ability)
 s32 AI_GetAbility(u32 battlerId)
 {
     u32 knownAbility = GetBattlerAbility(battlerId);
+
+    if(gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_EASY) //AI knows your ability if difficulty its not easy
+        return knownAbility;
     
     // The AI knows its own ability, and "Smart" AI knows the player's ability too. This prevents it from
     // getting cheesed due to the fact that it forgets the player's ability on switching out.
@@ -1269,9 +1272,13 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (holdEffect == HOLD_EFFECT_AIR_BALLOON)
         return FALSE;
-    else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE))
+    else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE) && !DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, MOVE_NONE))
         return FALSE;
     else if (AI_GetAbility(battlerId) == ABILITY_LEVITATE)
+        return FALSE;
+    else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY) && !DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, MOVE_NONE))
+        return FALSE;
+    else if (AI_GetAbility(battlerId) == ABILITY_DRAGONFLY)
         return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
@@ -1284,8 +1291,8 @@ bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u16 move)
     u32 i;
     u16 atkAbility = gBattleMons[gActiveBattler].ability;
     
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
-        return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
+    //if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
+    //    return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
     
     for (i = 0; i < ARRAY_COUNT(sIgnoreMoldBreakerMoves); i++)
     {

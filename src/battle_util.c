@@ -10898,11 +10898,11 @@ bool32 IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
         return FALSE;
-	else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE))     //Levitate Innate Effect
+	else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE) && !DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, MOVE_NONE))     //Levitate Innate Effect
         return FALSE;
 	else if (GetBattlerAbility(battlerId) == ABILITY_DRAGONFLY) //Dragonfly
         return FALSE;
-	else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY))    //Dragonfly Innate Effect
+	else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY) && !DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, MOVE_NONE))    //Dragonfly Innate Effect
         return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
@@ -13623,16 +13623,47 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
     if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) && 
-       !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)) // Moves that ignore ground immunity
+       !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)) // Moves that ignore ground immunity 
     {
-        modifier = UQ_4_12(0.0);
-        if (recordAbilities && GetBattlerAbility(battlerDef) == ABILITY_LEVITATE)
-        {
+        if(GetBattlerAbility(battlerDef) == ABILITY_LEVITATE){ //Defender has Levitate as Ability
+            modifier = UQ_4_12(0.0);
             gLastUsedAbility = ABILITY_LEVITATE;
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
             gLastLandedMoves[battlerDef] = 0;
             gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
             RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
+        }
+        else if(BattlerHasInnate(battlerDef, ABILITY_LEVITATE)){ //Defender has Levitate as Innate
+            if(DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, move)){ //Mold Breaker Check
+                modifier = UQ_4_12(0.0);
+                gLastUsedAbility = ABILITY_LEVITATE;
+                gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+                gLastLandedMoves[battlerDef] = 0;
+                gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
+                RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
+            }
+        }
+        else if(GetBattlerAbility(battlerDef) == ABILITY_DRAGONFLY){ //Defender has Dragonfly as Ability
+            modifier = UQ_4_12(0.0);
+            gLastUsedAbility = ABILITY_DRAGONFLY;
+            gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+            gLastLandedMoves[battlerDef] = 0;
+            gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
+            RecordAbilityBattle(battlerDef, ABILITY_DRAGONFLY);
+        }
+        else if(BattlerHasInnate(battlerDef, ABILITY_DRAGONFLY)){ //Defender has Dragonfly as Innate
+            if(DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, move)){ //Mold Breaker Check
+                modifier = UQ_4_12(0.0);
+                gLastUsedAbility = ABILITY_DRAGONFLY;
+                gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+                gLastLandedMoves[battlerDef] = 0;
+                gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
+                RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
+            }
+        }
+        else // Everything Else
+        {
+            modifier = UQ_4_12(0.0);
         }
     }
 

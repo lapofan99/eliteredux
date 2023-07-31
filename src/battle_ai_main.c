@@ -552,14 +552,55 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         }
         
         // Immunity checks
-        if (moveType == TYPE_GROUND
-          && !IsBattlerGrounded(battlerDef)
-          && (((AI_DATA->defAbility == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE))
-          && DoesBattlerIgnoreAbilityChecks(battlerAtk, move))
-          || AI_DATA->defHoldEffect == HOLD_EFFECT_AIR_BALLOON
-          || (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)))
-          && !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING))
-        {
+        //Levitate
+        if (moveType == TYPE_GROUND && 
+           (AI_DATA->defAbility == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE)) && 
+           //Ability Check
+           !DoesBattlerIgnoreAbilityChecks(battlerAtk, move) &&
+           //Other Checks
+           !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL &&
+           !(gFieldStatuses & STATUS_FIELD_GRAVITY) &&
+           !(gStatuses3[battlerDef] & STATUS3_ROOTED) && 
+           !(gStatuses3[battlerDef] & STATUS3_SMACKED_DOWN) &&
+           !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)){
+            RETURN_SCORE_MINUS(20);
+        }
+
+        //Dragonfly
+        if (moveType == TYPE_GROUND && 
+           (AI_DATA->defAbility == ABILITY_DRAGONFLY || BattlerHasInnate(battlerDef, ABILITY_DRAGONFLY)) && 
+           //Ability Check
+           !DoesBattlerIgnoreAbilityChecks(battlerAtk, move) &&
+           //Other Checks
+           !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL &&
+           !(gFieldStatuses & STATUS_FIELD_GRAVITY) &&
+           !(gStatuses3[battlerDef] & STATUS3_ROOTED) && 
+           !(gStatuses3[battlerDef] & STATUS3_SMACKED_DOWN) &&
+           !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)){
+            RETURN_SCORE_MINUS(20);
+        }
+
+        //Air Balloon
+        if (moveType == TYPE_GROUND && 
+           AI_DATA->defHoldEffect == HOLD_EFFECT_AIR_BALLOON && 
+           //Other Checks
+           !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL && // This is not needed but still
+           !(gFieldStatuses & STATUS_FIELD_GRAVITY) &&
+           !(gStatuses3[battlerDef] & STATUS3_ROOTED) && 
+           !(gStatuses3[battlerDef] & STATUS3_SMACKED_DOWN) &&
+           !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)){
+            RETURN_SCORE_MINUS(20);
+        }
+
+        //Magnet Rise
+        if (moveType == TYPE_GROUND && 
+           (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)) && 
+           //Other Checks
+           !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL &&
+           !(gFieldStatuses & STATUS_FIELD_GRAVITY) &&
+           !(gStatuses3[battlerDef] & STATUS3_ROOTED) && 
+           !(gStatuses3[battlerDef] & STATUS3_SMACKED_DOWN) &&
+           !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)){
             RETURN_SCORE_MINUS(20);
         }
 
