@@ -8969,6 +8969,8 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
             randomizedInnate = randomizedInnate % ABILITIES_COUNT;
         }
         while(randomizedInnate == ABILITY_NONE            ||
+              randomizedInnate == ABILITY_HUGE_POWER      ||
+              randomizedInnate == ABILITY_PURE_POWER      ||
               randomizedInnate == ABILITY_HUNGER_SWITCH   ||
               randomizedInnate == ABILITY_ZEN_MODE        ||
               randomizedInnate == ABILITY_WONDER_GUARD    ||
@@ -9019,6 +9021,8 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
             randomizedAbility = randomizedAbility % ABILITIES_COUNT;
         }
         while(randomizedAbility == ABILITY_NONE            ||
+              randomizedAbility == ABILITY_HUGE_POWER      ||
+              randomizedAbility == ABILITY_PURE_POWER      ||
               randomizedAbility == ABILITY_HUNGER_SWITCH   ||
               randomizedAbility == ABILITY_ZEN_MODE        ||
               randomizedAbility == ABILITY_WONDER_GUARD    ||
