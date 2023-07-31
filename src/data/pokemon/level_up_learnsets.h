@@ -16415,13 +16415,14 @@ static const struct LevelUpMove sTrumbeakLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sToucannonLevelUpLearnset[] = {
-    //LEVEL_UP_MOVE( 0, MOVE_BEAK_BLAST), Does nothing, removed until it works
+    LEVEL_UP_MOVE( 0, MOVE_BEAK_BLAST),
     LEVEL_UP_MOVE( 0, MOVE_FLY),
 	LEVEL_UP_MOVE( 1, MOVE_ROCK_BLAST),
 	LEVEL_UP_MOVE( 1, MOVE_PECK),
 	LEVEL_UP_MOVE( 1, MOVE_GROWL),
 	LEVEL_UP_MOVE( 1, MOVE_ECHOED_VOICE),
 	LEVEL_UP_MOVE( 1, MOVE_ROCK_SMASH),
+    LEVEL_UP_MOVE( 1, MOVE_BEAK_BLAST),
 	LEVEL_UP_MOVE(13, MOVE_SUPERSONIC),
 	LEVEL_UP_MOVE(16, MOVE_PLUCK),
 	LEVEL_UP_MOVE(21, MOVE_ROOST),
