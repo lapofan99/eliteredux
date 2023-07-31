@@ -2208,8 +2208,10 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
         }
 
         if((gBattleMons[userId].ability == ABILITY_BONE_ZONE || BattlerHasInnate(userId, ABILITY_BONE_ZONE)) &&
-            TestMoveFlags(moveNum, FLAG_BONE_BASED) && gBattleMoves[moveNum].type == TYPE_GROUND){
-            if(!IsBattlerGrounded(targetId)){
+            TestMoveFlags(moveNum, FLAG_BONE_BASED)){
+
+            //Ground Type Move
+            if(!IsBattlerGrounded(targetId) && gBattleMoves[moveNum].type == TYPE_GROUND){
                 if(gBattleMons[targetId].type1 == TYPE_FLYING && gBattleMons[targetId].type2 != TYPE_FLYING){
                     //Removes First Type Effectiveness and recalculates it
                     mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
@@ -2225,6 +2227,22 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 else if(gBattleMons[targetId].ability == ABILITY_LEVITATE || BattlerHasInnate(targetId, ABILITY_LEVITATE)){
                     //Has levitate
                     abilityNullifiesDamage = FALSE;
+                }
+            }
+
+            //Ghost Type Move
+            if(gBattleMoves[moveNum].type == TYPE_GHOST){
+                if(gBattleMons[targetId].type1 == TYPE_NORMAL && gBattleMons[targetId].type2 != TYPE_NORMAL){
+                    //Removes First Type Effectiveness and recalculates it
+                    mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                }
+                else if(gBattleMons[targetId].type2 == TYPE_NORMAL && gBattleMons[targetId].type1 != TYPE_NORMAL){
+                    //Removes Second Type Effectiveness and recalculates it
+                    mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+                }
+                else if(gBattleMons[targetId].type1 == TYPE_NORMAL && gBattleMons[targetId].type2 == TYPE_NORMAL){
+                    //Has the same type twice
+                    mod = UQ_4_12(1.0);
                 }
             }
 

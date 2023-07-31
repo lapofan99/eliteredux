@@ -40722,7 +40722,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy6[] = { // Unused
 static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Trainer, do not move or use
     {
     .lvl = 0,
-    .species = SPECIES_CORVIKNIGHT,
+    .species = SPECIES_BANETTE,
     .heldItem = ITEM_POKE_BALL,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
@@ -40732,7 +40732,17 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Train
     },
     {
     .lvl = 0,
-    .species = SPECIES_CORVIKNIGHT,
+    .species = SPECIES_GIRAFARIG,
+    .heldItem = ITEM_POKE_BALL,
+    .ability = 0, // 
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_ADAMANT,
+	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_OBSTAGOON,
     .heldItem = ITEM_POKE_BALL,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},

@@ -13635,34 +13635,47 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
         }
     }
-    
-    if (!IsBattlerGrounded(battlerDef) && 
-       (gBattleMoves[move].flags & FLAG_BONE_BASED) && 
-       (GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE || BattlerHasInnate(battlerAtk, ABILITY_BONE_ZONE)) &&
-       moveType == TYPE_GROUND){
-        if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 != TYPE_FLYING){
-            //Removes First Type Effectiveness and recalculates it
-            modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type2];
-        }
-        else if(gBattleMons[battlerDef].type2 == TYPE_FLYING && gBattleMons[battlerDef].type1 != TYPE_FLYING){
-            //Removes Second Type Effectiveness and recalculates it
-            modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type1];
-        }
-        else if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 == TYPE_FLYING){
-            //Has the same type twice
-            modifier = UQ_4_12(1.0);
-        }
-        else{
-            //Everything else
-            if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_ELECTRIC) ||
-               IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE)     ||
-               IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON)   ||
-               IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK)     ||
-               IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL)){
-                modifier = UQ_4_12(2.0);
+
+    if((GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE || BattlerHasInnate(battlerAtk, ABILITY_BONE_ZONE)) && (gBattleMoves[move].flags & FLAG_BONE_BASED)){
+        if(moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef)){
+            if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 != TYPE_FLYING){
+                //Removes First Type Effectiveness and recalculates it
+                modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type2];
+            }
+            else if(gBattleMons[battlerDef].type2 == TYPE_FLYING && gBattleMons[battlerDef].type1 != TYPE_FLYING){
+                //Removes Second Type Effectiveness and recalculates it
+                modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type1];
+            }
+            else if(gBattleMons[battlerDef].type1 == TYPE_FLYING && gBattleMons[battlerDef].type2 == TYPE_FLYING){
+                //Has the same type twice
+                modifier = UQ_4_12(1.0);
             }
             else{
-                modifier = UQ_4_12(1.0);
+                //Does not have the Flying type
+                if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_ELECTRIC) ||
+                   IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE)     ||
+                   IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON)   ||
+                   IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK)     ||
+                   IS_BATTLER_OF_TYPE(battlerDef, TYPE_STEEL)){
+                    modifier = UQ_4_12(2.0);
+                }
+                else{
+                    modifier = UQ_4_12(1.0);
+                }
+            }
+        }
+        else if(moveType == TYPE_GHOST && IS_BATTLER_OF_TYPE(battlerDef, TYPE_NORMAL)){
+            if(gBattleMons[battlerDef].type1 == TYPE_NORMAL && gBattleMons[battlerDef].type2 != TYPE_NORMAL){
+                //Removes First Type Effectiveness and recalculates it
+                modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type2];
+            }
+            else if(gBattleMons[battlerDef].type2 == TYPE_NORMAL && gBattleMons[battlerDef].type1 != TYPE_NORMAL){
+                //Removes Second Type Effectiveness and recalculates it
+                modifier = sTypeEffectivenessTable[moveType][gBattleMons[battlerDef].type1];
+            }
+            else{ //if(gBattleMons[battlerDef].type1 == TYPE_NORMAL && gBattleMons[battlerDef].type2 == TYPE_NORMAL){
+                //Has the same type twice
+                modifier = UQ_4_12(1.0); 
             }
         }
     }
