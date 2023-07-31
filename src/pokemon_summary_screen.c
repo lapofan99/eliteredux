@@ -4518,7 +4518,7 @@ static void PrintMoveDetails(u16 move)
     FillWindowPixelBuffer(PSS_LABEL_PANE_LEFT_MOVE, PIXEL_FILL(0));
 
     SetSpriteInvisibility(SPRITE_ARR_ID_MON_ICON, FALSE);
-    SetTypeSpritePosAndPal(gBaseStats[summary->species].type1, 41, 45, SPRITE_ARR_ID_TYPE);
+    SetTypeSpritePosAndPal(type1, 41, 45, SPRITE_ARR_ID_TYPE);
 
     if (type1 != type2)
     {
