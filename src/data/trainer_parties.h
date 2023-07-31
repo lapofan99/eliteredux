@@ -24498,6 +24498,7 @@ static const struct TrainerMonItemCustomMoves sParty_Keigo[] = {
     },
     {
     .lvl = 0,
+    .species = SPECIES_WEEZING, // Protean, Physical
     .heldItem = ITEM_BLACK_SLUDGE,
     .ability = 0, // ABILITY_POISON_ABSORB, ABILITY_NEUTRALIZING_GAS, ABILITY_STENCH},
     // .innates = {ABILITY_LEVITATE, ABILITY_MULTI_HEADED, ABILITY_INFLATABLE},
