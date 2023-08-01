@@ -6333,6 +6333,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     || GetBattlerAbility(battler) == ABILITY_COMATOSE
                     || GetBattlerAbility(BATTLE_OPPOSITE(battler)) == ABILITY_COMATOSE)
                 {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BAD_DREAMS;
                     BattleScriptPushCursorAndCallback(BattleScript_BadDreamsActivates);
                     effect++;
                 }
