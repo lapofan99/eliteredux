@@ -1074,8 +1074,8 @@ static const u8 sForbiddenMoves[MOVES_COUNT] =
     [MOVE_SNARL] = FORBIDDEN_METRONOME,
     [MOVE_SNATCH] = FORBIDDEN_METRONOME | FORBIDDEN_ASSIST | FORBIDDEN_COPYCAT,
     [MOVE_SNORE] = FORBIDDEN_METRONOME,
-    [MOVE_SOLAR_BEAM] = FORBIDDEN_SLEEP_TALK | FORBIDDEN_PARENTAL_BOND,
-    [MOVE_SOLAR_BLADE] = FORBIDDEN_SLEEP_TALK | FORBIDDEN_PARENTAL_BOND,
+    [MOVE_SOLAR_BEAM] = FORBIDDEN_SLEEP_TALK,
+    [MOVE_SOLAR_BLADE] = FORBIDDEN_SLEEP_TALK,
     [MOVE_SPARKLY_SWIRL] = FORBIDDEN_METRONOME,
     [MOVE_SPECTRAL_THIEF] = FORBIDDEN_METRONOME,
     [MOVE_SPIKE_CANNON] = FORBIDDEN_PARENTAL_BOND,
@@ -14736,8 +14736,20 @@ static bool32 CriticalCapture(u32 odds)
 
 bool8 IsMoveAffectedByParentalBond(u16 move, u8 battlerId)
 {
-    if (gBattleMoves[move].split != SPLIT_STATUS && !(sForbiddenMoves[move] & FORBIDDEN_PARENTAL_BOND))
+    if (gBattleMoves[move].split != SPLIT_STATUS && !(sForbiddenMoves[move] & FORBIDDEN_PARENTAL_BOND)) 
 	{
+        //Solar Beam workaround
+        if (gBattleMoves[move].effect == EFFECT_SOLARBEAM
+        && !IsBattlerWeatherAffected(battlerId, WEATHER_SUN_ANY)
+        && !BattlerHasInnate(battlerId, ABILITY_SOLAR_FLARE)
+        && !BattlerHasInnate(battlerId, ABILITY_CHLOROPLAST)
+        && !BattlerHasInnate(battlerId, ABILITY_BIG_LEAVES)
+        && GetBattlerAbility(battlerId) != ABILITY_SOLAR_FLARE
+        && GetBattlerAbility(battlerId) != ABILITY_CHLOROPLAST
+        && GetBattlerAbility(battlerId) != ABILITY_BIG_LEAVES){
+            return FALSE;
+        }
+
 		if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
 		{
 			switch (gBattleMoves[move].target)
