@@ -1144,7 +1144,7 @@ static u8 SaveConfirmSaveCallback(void)
     }
     else
     {
-        ShowSaveMessage(gText_ConfirmSave, SaveYesNoCallback);
+        sSaveDialogCallback = SaveSavingMessageCallback;
     }
 
     return SAVE_IN_PROGRESS;
@@ -1175,7 +1175,7 @@ static u8 SaveConfirmInputCallback(void)
             sSaveDialogCallback = SaveSavingMessageCallback;
             return SAVE_IN_PROGRESS;
         default:
-            sSaveDialogCallback = SaveFileExistsCallback;
+            sSaveDialogCallback = SaveFileExistsCallback;//
             return SAVE_IN_PROGRESS;
         }
     case -1: // B Button
