@@ -28,6 +28,7 @@
 #include "pokemon_summary_screen.h"
 #include "pokemon_storage_system.h"
 #include "script.h"
+#include "script_pokemon_util.h"
 #include "sound.h"
 #include "string_util.h"
 #include "strings.h"
@@ -6841,6 +6842,7 @@ static bool8 IsRemovingLastPartyMon(void)
 
 static bool8 CanShiftMon(void)
 {
+    HealPlayerParty();
     if (sIsMonBeingMoved)
     {
         if (sCursorArea == CURSOR_AREA_IN_PARTY && CountPartyAliveNonEggMonsExcept(sCursorPosition) == 0)
