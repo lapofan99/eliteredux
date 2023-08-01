@@ -5698,6 +5698,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_DRAGONFLY)] && 
                 !IS_BATTLER_OF_TYPE(battler, TYPE_DRAGON))
 			{
+                gBattlerAttacker = battler;
 				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_DRAGONFLY)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRAGONFLY;
 				gBattleMons[battler].type3 = TYPE_DRAGON;
@@ -8708,11 +8709,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_INTIMIDATE2:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if ((GetBattlerAbility(i) == ABILITY_INTIMIDATE || 
-                BattlerHasInnate(i, ABILITY_INTIMIDATE))
-				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED)
+            if ((GetBattlerAbility(i) == ABILITY_INTIMIDATE || BattlerHasInnate(i, ABILITY_INTIMIDATE)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED
+                && (IsBattlerAlive(BATTLE_OPPOSITE(i)) || IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(i))))) // At least one opposing mon has to be alive.
             {
-                //gLastUsedAbility = ABILITY_INTIMIDATE;
+                gLastUsedAbility = ABILITY_INTIMIDATE;
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
                 if (caseID == ABILITYEFFECT_INTIMIDATE1)
                 {
@@ -8728,11 +8728,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
             }
             
-			if ((GetBattlerAbility(i) == ABILITY_SCARE || 
-                BattlerHasInnate(i, ABILITY_SCARE))
-				&& gBattleResources->flags->flags[i] & RESOURCE_FLAG_SCARED)
+            if ((GetBattlerAbility(i) == ABILITY_SCARE || BattlerHasInnate(i, ABILITY_SCARE)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_SCARED
+                && (IsBattlerAlive(BATTLE_OPPOSITE(i)) || IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(i))))) // At least one opposing mon has to be alive.
             {
-                //gLastUsedAbility = ABILITY_SCARE;
+                gLastUsedAbility = ABILITY_SCARE;
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_SCARED);
                 if (caseID == ABILITYEFFECT_INTIMIDATE1)
                 {
