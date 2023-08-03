@@ -11371,7 +11371,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	
 	for (i = 0; i < gBattlersCount; i++)
     {
-        if (gBattleMons[i].status1 & STATUS1_SLEEP)
+        if ((gBattleMons[i].status1 & STATUS1_SLEEP || GetBattlerAbility(i) == ABILITY_COMATOSE || BattlerHasInnate(i, ABILITY_COMATOSE)) && IsBattlerAlive(i))
             numsleepmons++;
     }
 
