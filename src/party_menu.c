@@ -2085,6 +2085,11 @@ u16 GetTutorMove(u8 tutor)
     return gTutorMoves[tutor];
 }
 
+u16 GetNewTutorMove(u16 species, u8 num)
+{
+    return gNewTutorLearnsets[species][num];
+}
+
 bool32 CanLearnTutorMove(u16 species, u8 tutor) // note the change to bool32
 {
     if (tutor < 32)

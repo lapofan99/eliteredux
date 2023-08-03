@@ -7562,6 +7562,17 @@ u8 GetNumberOfTutorMoves(struct Pokemon *mon)
         if (CanLearnTutorMove(species, i) && !MonKnowsMove(mon, GetTutorMove(i)) && gBattleMoves[GetTutorMove(i)].effect != EFFECT_PLACEHOLDER)
             numMoves++;
     }
+
+    //New Tutor Moves
+    for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    {
+        if (!MonKnowsMove(mon, GetNewTutorMove(species, i)) && 
+            gBattleMoves[GetNewTutorMove(species, i)].effect != EFFECT_PLACEHOLDER && 
+            GetNewTutorMove(species, i) != MOVE_NONE)
+        {
+            numMoves++;
+        }
+    }
 	
     return numMoves;
 }
@@ -7583,6 +7594,17 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves)
             gBattleMoves[GetTutorMove(i)].effect != EFFECT_PLACEHOLDER)
         {
             moves[numMoves] = RandomizeMoves(GetTutorMove(i), species, personality);
+            numMoves++;
+        }
+    }
+
+    //New Tutor Moves
+    for (i = 0; i< TUTOR_MOVE_COUNT; i++)
+    {
+        if (!MonKnowsMove(mon, RandomizeMoves(GetNewTutorMove(species, i), species, personality)) && 
+            gBattleMoves[GetNewTutorMove(species, i)].effect != EFFECT_PLACEHOLDER && GetNewTutorMove(species, i) != MOVE_NONE)
+        {
+            moves[numMoves] = RandomizeMoves(GetNewTutorMove(species, i), species, personality);
             numMoves++;
         }
     }

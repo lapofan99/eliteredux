@@ -109,6 +109,7 @@ void DoItemFormChange (u16 newSpecies);
 void CB2_ReturnToPartyMenuFromSummaryScreen(void);
 void CB2_ShowPartyMenuForItemUseTMCase(void);
 u16 GetTutorMove(u8 tutor);
+u16 GetNewTutorMove(u16 species, u8 num);
 
 void Task_IronPill(u8 taskId);
 void ItemUseCB_IronPill(u8 taskId, TaskFunc task);

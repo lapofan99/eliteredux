@@ -1989,6 +1989,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM52_FOCUS_BLAST)
                                         | TMHM1(TM55_SCALD)
                                         | TMHM1(TM58_ENDURE)
+                                        | TMHM1(TM60_DRAIN_PUNCH)
                                         | TMHM1(TM63_ROCK_SLIDE),
                                           TMHM2(TM66_PAYBACK)
                                         | TMHM2(TM68_GIGA_IMPACT)
