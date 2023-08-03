@@ -24090,7 +24090,7 @@ static const struct TrainerMonItemCustomMoves sParty_Angelica[] = { // with Leon
     .ability = 0, // ABILITY_FORECAST, ABILITY_FORECAST, ABILITY_FORECAST},
     // .innates = {ABILITY_LEVITATE, ABILITY_WEATHER_CONTROL, ABILITY_LIMBER},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 252, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
     .moves = MOVE_THUNDER, MOVE_HURRICANE, MOVE_WEATHER_BALL, MOVE_ICE_BEAM
     },
