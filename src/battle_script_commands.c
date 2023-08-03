@@ -14637,7 +14637,7 @@ static void Cmd_trygetbaddreamstarget(void)
     {
         if (GetBattlerSide(gBattlerTarget) == badDreamsMonSide)
             continue;
-        if ((gBattleMons[gBattlerTarget].status1 & STATUS1_SLEEP || GetBattlerAbility(gBattlerTarget) == ABILITY_COMATOSE)
+        if ((gBattleMons[gBattlerTarget].status1 & STATUS1_SLEEP || GetBattlerAbility(gBattlerTarget) == ABILITY_COMATOSE || BattlerHasInnate(gBattlerTarget, ABILITY_COMATOSE))
             && IsBattlerAlive(gBattlerTarget))
             break;
     }

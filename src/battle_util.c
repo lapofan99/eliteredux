@@ -6085,7 +6085,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             case ABILITY_SWEET_DREAMS:
-                if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gBattleMons[battler].status1 & STATUS1_SLEEP)
+                if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && ((gBattleMons[battler].status1 & STATUS1_SLEEP) || BattlerHasInnate(battler, ABILITY_COMATOSE)  || GetBattlerAbility(battler) == ABILITY_COMATOSE))
                 {
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
                     if (gBattleMoveDamage == 0)
@@ -6342,7 +6342,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			
 			// Sweet Dreams
             if(BattlerHasInnate(gActiveBattler, ABILITY_SWEET_DREAMS)){
-                if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gBattleMons[battler].status1 & STATUS1_SLEEP)
+                if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && ((gBattleMons[battler].status1 & STATUS1_SLEEP) || BattlerHasInnate(battler, ABILITY_COMATOSE)  || GetBattlerAbility(battler) == ABILITY_COMATOSE))
                 {
                     gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
                     if (gBattleMoveDamage == 0)
