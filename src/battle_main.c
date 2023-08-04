@@ -4880,14 +4880,14 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     priority = gBattleMoves[move].priority;
 	// Gale Wings
     if ((GetBattlerAbility(battlerId) == ABILITY_GALE_WINGS  || BattlerHasInnate(battlerId, ABILITY_GALE_WINGS))
-        && gBattleMoves[move].type == TYPE_FLYING
+        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_FLYING
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
     }
 	// Flaming Soul
 	if ((GetBattlerAbility(battlerId) == ABILITY_FLAMING_SOUL  || BattlerHasInnate(battlerId, ABILITY_FLAMING_SOUL))
-        && gBattleMoves[move].type == TYPE_FIRE
+        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_FIRE
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
@@ -4895,7 +4895,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
 
 	// Frozen Soul
 	if ((GetBattlerAbility(battlerId) == ABILITY_FROZEN_SOUL  || BattlerHasInnate(battlerId, ABILITY_FROZEN_SOUL))
-        && gBattleMoves[move].type == TYPE_ICE
+        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_ICE
         && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
