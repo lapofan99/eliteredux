@@ -7130,6 +7130,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
               && move != MOVE_PAIN_SPLIT
               && gBattleMons[gBattlerAttacker].ability != ABILITY_SOUL_LINKER
               && !BattlerHasInnate(gBattlerAttacker, ABILITY_SOUL_LINKER)
+              && gBattlerAttacker != gBattlerTarget
+              //&& gBattleMoves[move].effect != EFFECT_ABSORB 
               && TARGET_TURN_DAMAGED)
             {
                 //Defender
@@ -7512,6 +7514,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
               && move != MOVE_PAIN_SPLIT
               && gBattleMons[gBattlerAttacker].ability != ABILITY_SOUL_LINKER
               && !BattlerHasInnate(gBattlerAttacker, ABILITY_SOUL_LINKER)
+              && gBattlerAttacker != gBattlerTarget
+              //&& gBattleMoves[move].effect != EFFECT_ABSORB 
               && TARGET_TURN_DAMAGED)
             {
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SOUL_LINKER;
@@ -8113,6 +8117,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
               && gBattleMons[gBattlerTarget].ability != ABILITY_SOUL_LINKER
               && !BattlerHasInnate(gBattlerTarget, ABILITY_SOUL_LINKER)
               && move != MOVE_PAIN_SPLIT
+              && gBattlerAttacker != gBattlerTarget
+              //&& gBattleMoves[move].effect != EFFECT_ABSORB 
               && TARGET_TURN_DAMAGED)
             {
                 //Attacker
@@ -8181,7 +8187,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		
 		// Innates
-		
 		// Soul Linker Attacker
 		if (BattlerHasInnate(battler, ABILITY_SOUL_LINKER)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -8190,6 +8195,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
               && gBattleMons[gBattlerTarget].ability != ABILITY_SOUL_LINKER
               && !BattlerHasInnate(gBattlerTarget, ABILITY_SOUL_LINKER)
               && move != MOVE_PAIN_SPLIT
+              && gBattlerAttacker != gBattlerTarget
+              //&& gBattleMoves[move].effect != EFFECT_ABSORB 
               && TARGET_TURN_DAMAGED)
             {
                 BattleScriptPushCursor();

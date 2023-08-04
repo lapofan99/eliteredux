@@ -2484,8 +2484,8 @@ static void MoveSelectionDisplayMoveType(void)
         break;
     }
     BattlePutTextOnWindow(gStringVar4, WindowID);
-    PutWindowTilemap(WindowID );
-	CopyWindowToVram(WindowID , 3);
+    PutWindowTilemap(WindowID);
+	CopyWindowToVram(WindowID ,3);
 
     //BattlePutTextOnWindow(gDisplayedStringBattle, TypeEffectiveness(moveInfo, 1));
     MoveSelectionDisplaySplitIcon();

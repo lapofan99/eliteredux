@@ -3043,7 +3043,17 @@ BattleScript_EffectAbsorb::
 	manipulatedamage DMG_BIG_ROOT
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE
 	jumpifability BS_TARGET, ABILITY_LIQUID_OOZE, BattleScript_AbsorbLiquidOoze
+	jumpifability BS_ATTACKER, ABILITY_SOUL_LINKER, BattleScript_AbsorbSoulLinker
+	jumpifability BS_TARGET, ABILITY_SOUL_LINKER, BattleScript_AbsorbSoulLinker
 	setbyte cMULTISTRING_CHOOSER, B_MSG_ABSORB
+	goto BattleScript_AbsorbUpdateHp
+BattleScript_AbsorbSoulLinker::
+	sethword sABILITY_OVERWRITE, ABILITY_SOUL_LINKER
+	call BattleScript_AbilityPopUp
+    orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	tryfaintmon BS_TARGET, FALSE, NULL
 	goto BattleScript_AbsorbUpdateHp
 BattleScript_AbsorbLiquidOoze::
 	copybyte gBattlerAbility, gBattlerTarget
@@ -3059,6 +3069,11 @@ BattleScript_AbsorbUpdateHp::
 BattleScript_AbsorbTryFainting::
 	tryfaintmon BS_ATTACKER, FALSE, NULL
 	tryfaintmon BS_TARGET, FALSE, NULL
+	jumpifability BS_ATTACKER, ABILITY_SOUL_LINKER, BattleScript_AbsorbSoulLinkerChangeSign
+	jumpifability BS_TARGET, ABILITY_SOUL_LINKER, BattleScript_AbsorbSoulLinkerChangeSign
+	goto BattleScript_MoveEnd
+BattleScript_AbsorbSoulLinkerChangeSign::
+	manipulatedamage DMG_CHANGE_SIGN
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectBurnHit::
