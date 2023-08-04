@@ -2386,8 +2386,9 @@ static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId)
 {
 	u8 WindowID;
     u16 move;
+    u8 moveType;
 
-    static const u16 gType_Text_Pal[]         = INCBIN_U16("graphics/battle_interface/text_se.gbapal");
+    static const u16 gType_Text_Pal[] = INCBIN_U16("graphics/battle_interface/text_se.gbapal");
     static const u8 gEffectivenessUp[]           =  _("{COLOR 12}{SHADOW 11}{STR_VAR_1} {COLOR 5}{UP_ARROW_2} {COLOR 12}{STR_VAR_2}");
     static const u8 gEffectivenessDown[]         =  _("{COLOR 12}{SHADOW 11}{STR_VAR_1} {COLOR 6}{DOWN_ARROW_2} {COLOR 12}{STR_VAR_2}");
     static const u8 gEffectivenessNoDamage[]     =  _("{COLOR 12}{SHADOW 11}{STR_VAR_1} {COLOR 7}{BIG_MULT_X} {COLOR 12}{STR_VAR_2}");
@@ -2399,8 +2400,9 @@ static void MoveSelectionDisplayMoveTypeDoubles(u8 targetId)
     //Move Name
     LoadPalette(gType_Text_Pal, 5 * 0x10, 0x20);
     move = moveInfo->moves[gMoveSelectionCursor[gActiveBattler]];
-	StringCopy(gStringVar1, gTypeNames[gBattleMoves[move].type]);
-    if(IS_BATTLER_OF_TYPE(gActiveBattler, gBattleMoves[move].type))
+    moveType = GetTypeBeforeUsingMove(move, gActiveBattler);
+	StringCopy(gStringVar1, gTypeNames[moveType]);
+    if(IS_BATTLER_OF_TYPE(gActiveBattler, moveType))
 	    StringCopy(gStringVar2, gStabIcon);
     else
 	    StringCopy(gStringVar2, gNoStabIcon);
@@ -2439,6 +2441,7 @@ static void MoveSelectionDisplayMoveType(void)
     u8 WindowID;
     u16 move;
     u8 targetId = B_POSITION_OPPONENT_LEFT;
+    u8 moveType;
 
     static const u16 gType_Text_Pal[]         = INCBIN_U16("graphics/battle_interface/text_se.gbapal");
     static const u8 gEffectivenessUp[]           =  _("{COLOR 12}{SHADOW 11}{STR_VAR_1} {COLOR 5}{UP_ARROW_2} {COLOR 12}{STR_VAR_2}");
@@ -2452,8 +2455,9 @@ static void MoveSelectionDisplayMoveType(void)
     //Move Name
     LoadPalette(gType_Text_Pal, 5 * 0x10, 0x20);
     move = moveInfo->moves[gMoveSelectionCursor[gActiveBattler]];
-	StringCopy(gStringVar1, gTypeNames[gBattleMoves[move].type]);
-    if(IS_BATTLER_OF_TYPE(gActiveBattler, gBattleMoves[move].type))
+    moveType = GetTypeBeforeUsingMove(move, gActiveBattler);
+	StringCopy(gStringVar1, gTypeNames[moveType]);
+    if(IS_BATTLER_OF_TYPE(gActiveBattler, moveType))
 	    StringCopy(gStringVar2, gStabIcon);
     else
 	    StringCopy(gStringVar2, gNoStabIcon);

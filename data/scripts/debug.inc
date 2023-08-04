@@ -52,13 +52,8 @@ Debug_Script_2::
 	end
 
 Debug_Script_3::
-	setflag FLAG_SYS_GAME_CLEAR
-	settrainerflag TRAINER_JULIE
-	settrainerflag TRAINER_CAROLINE
-	settrainerflag TRAINER_OWEN
-	settrainerflag TRAINER_VITO
-	settrainerflag TRAINER_FELIX
-	settrainerflag TRAINER_DIANNE
+	cleartrainerflag TRAINER_JUAN_1
+	trainerbattle_single TRAINER_JUAN_1, Route102_Text_RickIntro, Route102_Text_RickDefeated
 	end
 
 Debug_Script_4::
