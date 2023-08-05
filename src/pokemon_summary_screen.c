@@ -4811,7 +4811,7 @@ static void PrintNewMoveDetailsOrCancelText(void)
 {
     u32 pp, x;
 
-    if (sMonSummaryScreen->newMove != MOVE_NONE)//asdf
+    if (sMonSummaryScreen->newMove != MOVE_NONE)
     {
         pp = gBattleMoves[sMonSummaryScreen->newMove].pp;
         PrintTextOnWindow(PSS_LABEL_PANE_RIGHT, gMoveNames[sMonSummaryScreen->newMove], 64, 116, 0, 1);
@@ -4935,29 +4935,13 @@ static void SetMoveTypeIcons(void)
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
+
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (summary->moves[i] != MOVE_NONE)
         {
-            if (summary->moves[i] == MOVE_HIDDEN_POWER && CONFIG_SHOW_HIDDEN_POWER_STATS)
-            {
-                u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
-                    | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
-                    | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
-                    | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
-                    | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
-                    | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
-
-                u8 type = (15 * typeBits) / 63 + 1;
-                if (type >= TYPE_MYSTERY)
-                    type++;
-                type |= 0xC0;
-                SetTypeSpritePosAndPal(type & 0x3F, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
-            }
-            else
-            {
-                SetTypeSpritePosAndPal(gBattleMoves[summary->moves[i]].type, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
-            }
+            u8 movetype = GetMonMoveType(summary->moves[i], mon);
+            SetTypeSpritePosAndPal(movetype, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
         }
         else
         {
@@ -4992,25 +4976,8 @@ static void SetNewMoveTypeIcon(void)
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
-            if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER && CONFIG_SHOW_HIDDEN_POWER_STATS)
-            {
-                u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
-                    | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
-                    | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
-                    | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
-                    | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
-                    | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
-
-                u8 type = (15 * typeBits) / 63 + 1;
-                if (type >= TYPE_MYSTERY)
-                    type++;
-                type |= 0xC0;
-                SetTypeSpritePosAndPal(type & 0x3F, 116, 136, SPRITE_ARR_ID_TYPE + 6);
-            }
-            else
-            {
-                SetTypeSpritePosAndPal(gBattleMoves[sMonSummaryScreen->newMove].type, 116, 136, SPRITE_ARR_ID_TYPE + 6);
-            }
+            u8 movetype = GetMonMoveType(sMonSummaryScreen->newMove, mon);
+            SetTypeSpritePosAndPal(movetype, 116, 136, SPRITE_ARR_ID_TYPE + 6);
         }
         else
         {

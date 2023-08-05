@@ -5755,6 +5755,114 @@ void RunBattleScriptCommands(void)
         gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
 }
 
+
+u8 GetMonMoveType(u16 move, struct Pokemon *mon){
+    u32 moveType, ateType, attackerAbility, tempstuff;
+    u16 item = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
+    u16 holdEffect = ItemId_GetHoldEffect(item);
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+    u8  abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
+    u16 ability =  RandomizeAbility(GetAbilityBySpecies(species, abilityNum), species, personality);
+    u8 type1 = RandomizeType(gBaseStats[species].type1, species, personality, TRUE);
+    u8 type2 = RandomizeType(gBaseStats[species].type2, species, personality, FALSE);
+
+    GET_MOVE_TYPE(move, moveType);
+
+    if (move == MOVE_STRUGGLE)
+        return TYPE_NORMAL;
+
+    if (gBattleMoves[move].effect == EFFECT_HIDDEN_POWER)
+    {
+        u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV, NULL) & 1) << 0)
+                     | ((GetMonData(mon, MON_DATA_ATK_IV, NULL) & 1) << 1)
+                     | ((GetMonData(mon, MON_DATA_DEF_IV, NULL) & 1) << 2)
+                     | ((GetMonData(mon, MON_DATA_SPEED_IV, NULL) & 1) << 3)
+                     | ((GetMonData(mon, MON_DATA_SPATK_IV, NULL) & 1) << 4)
+                     | ((GetMonData(mon, MON_DATA_SPDEF_IV, NULL) & 1) << 5);
+
+        ateType = (15 * typeBits) / 63 + 1;
+        if (ateType >= TYPE_MYSTERY)
+            ateType++;
+
+        return ateType;
+    }
+    else if (gBattleMoves[move].effect == EFFECT_CHANGE_TYPE_ON_ITEM)
+    {
+        if (holdEffect == gBattleMoves[move].argument)
+            return ItemId_GetSecondaryId(item);
+    }
+    else if (gBattleMoves[move].effect == EFFECT_REVELATION_DANCE)
+    {
+        if (type1 != TYPE_MYSTERY)
+            return type1;
+        else if (type2 != TYPE_MYSTERY)
+            return type2;
+    }
+    else if (gBattleMoves[move].effect == EFFECT_NATURAL_GIFT)
+    {
+        if (ItemId_GetPocket(item) == POCKET_BERRIES)
+            return gNaturalGiftTable[ITEM_TO_BERRY(item)].type;
+    }
+
+   if (gBattleMoves[move].type == TYPE_NORMAL
+             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
+             && (   ((ability == ABILITY_PIXILATE     || MonHasInnate(mon, ABILITY_PIXILATE))     && (ateType = TYPE_FAIRY))
+                 || ((ability == ABILITY_REFRIGERATE  || MonHasInnate(mon, ABILITY_REFRIGERATE))  && (ateType = TYPE_ICE))
+                 || ((ability == ABILITY_AERILATE     || MonHasInnate(mon, ABILITY_AERILATE))     && (ateType = TYPE_FLYING))
+				 || ((ability == ABILITY_BURNATE      || MonHasInnate(mon, ABILITY_BURNATE))      && (ateType = TYPE_FIRE))
+				 || ((ability == ABILITY_GROUNDATE    || MonHasInnate(mon, ABILITY_GROUNDATE))    && (ateType = TYPE_GROUND))
+				 || ((ability == ABILITY_FIGHT_SPIRIT || MonHasInnate(mon, ABILITY_FIGHT_SPIRIT)) && (ateType = TYPE_FIGHTING))
+                 || ((ability == ABILITY_POISONATE    || MonHasInnate(mon, ABILITY_POISONATE))    && (ateType = TYPE_POISON))
+                 || ((ability == ABILITY_HYDRATE      || MonHasInnate(mon, ABILITY_HYDRATE))      && (ateType = TYPE_WATER))
+                 || (((ability == ABILITY_GALVANIZE)  || MonHasInnate(mon, ABILITY_GALVANIZE))    && (ateType = TYPE_ELECTRIC))
+                 || (((ability == ABILITY_BUGINIZE)   || MonHasInnate(mon, ABILITY_BUGINIZE))    && (ateType = TYPE_BUG))
+                )
+             ){
+        return ateType;
+    }
+
+    else if (move == MOVE_AURA_WHEEL && species == SPECIES_MORPEKO_HANGRY)
+        return TYPE_DARK;
+	
+	//Crystallize
+	if(MonHasInnate(mon, ABILITY_CRYSTALLIZE) || ability == ABILITY_CRYSTALLIZE){
+		if(gBattleMoves[move].type == TYPE_ROCK)
+			return TYPE_ICE;
+	}
+    //Sand Song
+    if(MonHasInnate(mon, ABILITY_SAND_SONG) || ability == ABILITY_SAND_SONG){
+        if (gBattleMoves[move].flags & FLAG_SOUND)
+            return TYPE_GROUND;
+    }
+    //Normalize
+    if(MonHasInnate(mon, ABILITY_NORMALIZE) || ability == ABILITY_NORMALIZE){
+        if (gBattleMoves[move].type != TYPE_NORMAL
+             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL)
+        return TYPE_NORMAL;
+    }
+    //Liquid Voice
+    if(MonHasInnate(mon, ABILITY_LIQUID_VOICE) || ability == ABILITY_LIQUID_VOICE){
+        if (gBattleMoves[move].flags & FLAG_SOUND)
+            return TYPE_WATER;
+    }
+	//Fight Spirit
+	if(MonHasInnate(mon, ABILITY_FIGHT_SPIRIT)){
+		if(gBattleMoves[move].type == TYPE_NORMAL
+             && gBattleMoves[move].effect != EFFECT_HIDDEN_POWER
+             && gBattleMoves[move].effect != EFFECT_WEATHER_BALL
+             && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
+             && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT)
+				return TYPE_FIGHTING;
+	}
+
+    return gBattleMoves[move].type;
+}
+
 u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     u32 moveType, ateType, attackerAbility, tempstuff;
     u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
@@ -5902,8 +6010,6 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     u32 moveType, ateType, attackerAbility;
     u16 holdEffect = GetBattlerHoldEffect(battlerAtk, TRUE);
 
-    if (move == MOVE_STRUGGLE)
-        return;
 
     gBattleStruct->dynamicMoveType = 0;
     gBattleStruct->ateBoost[battlerAtk] = 0;
