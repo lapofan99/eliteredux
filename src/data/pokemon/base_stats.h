@@ -13322,7 +13322,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FLYING,
     .eggGroup2 = EGG_GROUP_FLYING,
     .abilities = {ABILITY_SUPER_LUCK, ABILITY_SCARE, ABILITY_MOXIE},
-    .innates = {ABILITY_BIG_PECKS, ABILITY_NOCTURNAL, ABILITY_BAD_LUCK},
+    .innates = {ABILITY_BIG_PECKS, ABILITY_OVERCOAT, ABILITY_BAD_LUCK},
     .bodyColor = BODY_COLOR_BLACK,
     .noFlip = FALSE,
     },

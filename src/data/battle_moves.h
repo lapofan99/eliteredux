@@ -3204,7 +3204,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_BONE_RUSH] =
     {
         #ifdef REBALANCED_VERSION
-            .power = 25,
+            .power = 15, // was 25
             .priority = 1,
         #else
             .power = 25,
@@ -9444,7 +9444,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
             .split = SPLIT_PHYSICAL,
         #endif
         .effect = EFFECT_MULTI_HIT,
-        .power = 20,
+        .power = 15,
         .type = TYPE_WATER,
         .accuracy = 100,
         .pp = 20,
