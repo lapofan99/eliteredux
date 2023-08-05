@@ -84,7 +84,7 @@
 #define B_TELEPORT_BEHAVIOR         GEN_8 // In Gen7+, starting with Pokémon LGPE, Teleport allows the user to swap out with another party member.
 
 // Ability settings
-#define B_ABILITY_WEATHER           GEN_3 // In Gen6+, ability-induced weather lasts 5 turns. Before, it lasted until the battle ended or until it was changed by a move.
+#define B_ABILITY_WEATHER           GEN_8 // In Gen6+, ability-induced weather lasts 5 turns. Before, it lasted until the battle ended or until it was changed by a move.
 #define B_GALE_WINGS                GEN_8 // In Gen7+ requires full HP to trigger.
 #define B_STANCE_CHANGE_FAIL        GEN_7 // In Gen7+, Stance Change fails if the Pokémon is unable to use a move because of confusion, paralysis, etc. In Gen6, it doesn't.
 #define B_SHADOW_TAG_ESCAPE         GEN_7 // In Gen4+, if both sides have a Pokémon with Shadow Tag, all battlers can escape. Before, neither side could escape this situation.

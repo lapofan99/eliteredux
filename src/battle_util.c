@@ -4061,9 +4061,9 @@ bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility)
     {
         gBattleWeather = (sWeatherFlagsInfo[weatherEnumId][0]);
         if (GetBattlerHoldEffect(battler, TRUE) == sWeatherFlagsInfo[weatherEnumId][2])
-            gWishFutureKnock.weatherDuration = 8;
+            gWishFutureKnock.weatherDuration = 12;
         else
-            gWishFutureKnock.weatherDuration = 5;
+            gWishFutureKnock.weatherDuration = 8;
 
         return TRUE;
     }
@@ -6481,7 +6481,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             if (gStatuses3[gBattlerAttacker] & STATUS3_SEMI_INVULNERABLE)
                 gStatuses3[gBattlerAttacker] &= ~(STATUS3_SEMI_INVULNERABLE);
-                
+
             gBattlescriptCurrInstr = BattleScript_DazzlingProtected;
             effect = 1;
         }
