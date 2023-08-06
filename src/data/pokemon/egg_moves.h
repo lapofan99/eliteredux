@@ -921,6 +921,7 @@ const u16 gEggMoves[] = {
         MOVE_FLATTER),
 
     egg_moves(SENTRET,
+        MOVE_BELLY_DRUM, // new
         MOVE_DOUBLE_EDGE,
         MOVE_PURSUIT,
         MOVE_SLASH,
@@ -1667,6 +1668,7 @@ const u16 gEggMoves[] = {
         MOVE_BARRIER),
 
     egg_moves(POOCHYENA,
+        MOVE_PSYCHIC_FANGS, // new
         MOVE_ASTONISH,
         MOVE_POISON_FANG,
         MOVE_COVET,
@@ -1965,6 +1967,9 @@ const u16 gEggMoves[] = {
         MOVE_EERIE_IMPULSE),
 
     egg_moves(PLUSLE,
+        MOVE_ZING_ZAP, // new
+        MOVE_WILD_CHARGE, // new
+        MOVE_VOLT_TACKLE, // new
         MOVE_WISH,
         MOVE_SING,
         MOVE_SWEET_KISS,
@@ -1975,6 +1980,9 @@ const u16 gEggMoves[] = {
         MOVE_TEARFUL_LOOK),
 
     egg_moves(MINUN,
+        MOVE_ZING_ZAP, // new
+        MOVE_WILD_CHARGE, // new
+        MOVE_VOLT_TACKLE, // new
         MOVE_WISH,
         MOVE_SING,
         MOVE_SWEET_KISS,
@@ -2337,6 +2345,9 @@ const u16 gEggMoves[] = {
         MOVE_DRAGON_HAMMER),
 
     egg_moves(CHIMECHO,
+        MOVE_MIRROR_SHOT, // new
+        MOVE_MISTY_EXPLOSION, // new
+        MOVE_MOONBLAST, // new
         MOVE_DISABLE,
         MOVE_CURSE,
         MOVE_HYPNOSIS,
@@ -2918,6 +2929,9 @@ const u16 gEggMoves[] = {
         MOVE_QUICK_GUARD),
 
     egg_moves(CARNIVINE,
+        MOVE_FIRE_FANG, // new
+        MOVE_THUNDER_FANG, // new
+        MOVE_ICE_FANG, // new
         MOVE_SLEEP_POWDER,
         MOVE_STUN_SPORE,
         MOVE_RAZOR_LEAF,
@@ -4090,6 +4104,7 @@ const u16 gEggMoves[] = {
         MOVE_ACUPRESSURE),
 
     egg_moves(COMFEY,
+        MOVE_STRENGTH_SAP, // new
         MOVE_GRASSY_GLIDE, // new
         MOVE_ENDURE,
         MOVE_AMNESIA,
@@ -4126,6 +4141,7 @@ const u16 gEggMoves[] = {
         MOVE_CURSE),
 
     egg_moves(PYUKUMUKU,
+        MOVE_HEAL_PULSE, // new
         MOVE_ENDURE,
         MOVE_VENOM_DRENCH,
         MOVE_BESTOW,

@@ -11966,6 +11966,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM85_DREAM_EATER)
                                         | TMHM2(TM86_GRASS_KNOT)
                                         | TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM91_FLASH_CANNON) // new
                                         | TMHM2(TM92_TRICK_ROOM)
                                         | TMHM2(TM99_DAZZLING_GLEAM)
                                         | TMHM2(TM100_CURSE)

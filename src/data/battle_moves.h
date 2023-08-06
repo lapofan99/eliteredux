@@ -10908,7 +10908,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_SNIPE_SHOT] =
     {
         .effect = EFFECT_SNIPE_SHOT,
-        .power = 80,
+        .power = 90, // 80
         .type = TYPE_WATER,
         .accuracy = 100,
         .pp = 15,
@@ -10923,7 +10923,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .effect = EFFECT_JAW_LOCK,
         .power = 90,
-        .type = TYPE_FIGHTING, // was Rock, need to test
+        .type = TYPE_FIGHTING, // was Rock
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
