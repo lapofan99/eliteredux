@@ -2044,16 +2044,16 @@ script LittlerootTown_EventScript_TutorialNPC2{
 						  "You can register items in a new list menu (press L to access list)."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 5:// Battle changes
-			msgbox(format("Weather induced by abilities is permament now, but the damage boost for Fire and Water moves in permanent sun and rain has been reduced from 50% to 20%. Sandstream and Snow Warning have no penalties.\p"
-                          "Ice-types now get a 50% defense boost in hail. Sandstorm still gives the same 50% SpDef boost.\p"
+			msgbox(format("Weather induced by abilities is 8 turns now (12 turns with Weather Rocks), but the damage boost for Fire and Water moves in Sun and Rain has been reduced from 50% to 20%. Sandstream and Snow Warning have no penalties.\p"
+                          "Ice-types now get a 50% defense boost in Hail. Sandstorm still gives the same 50% SpDef boost.\p"
 						  "When the weather is induced by moves such as Sunny Day or Rain Dance, it still lasts 5 rounds, but has 50% power boost for the respective types.\p"
-                          "Every Pokémon has 31 IVs by default, but you can change them in Slateport or Fallarbor.\p"
+                          "Every Pokémon has 31 IVs by default, but you can use the Iron Pill to set Speed to 0.\p"
 						  "For Ace and Elite Mode, there is a Sleep Clause, which prevents putting more than one enemy Pokémon to sleep.\p"
 						  "Every move is already PP maxed. All held items stay on your Pokémon after battling."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 6:// Battle UI changes
 			msgbox(format("Press L in battle to check move power, accuracy and if the move makes contact.\p"
-                          "Now you also see if a move's effectiveness before attacking. This even considers some abilities like Levitate or Sap Sipper!\p"
+                          "Now you also see a move's effectiveness before attacking. This even considers some abilities like Levitate or Sap Sipper!\p"
                           "STAB (50% Same Type Attack Bonus) is noted with a Plus Icon.\p"
 						  "You can forfeit trainer battles now. You will get sent to the last Pokémon Center."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
@@ -2088,7 +2088,7 @@ script LittlerootTown_EventScript_TutorialNPC2{
                           "This is also to prevent you from pre-burning/poisoning ;-)"))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 14:// Leveling
-			msgbox(format("There is a new key item - the Candy Box. You can easily level up this way (up to 5 levels at once).\p"
+			msgbox(format("There is a new key item - the Candy Box. You can easily level up this way.\p"
                           "As there are level caps and auto-scaling levels (wild + trainer battles), you don't have to worry about overleveling."))
 			goto(LittlerootTown_EventScript_TutorialNPC2)
 		case 15:// Evolutions

@@ -160,7 +160,7 @@ VerdanturfTown_WandasHouse_Text_ReceiveGardevoirite:
 	.string "you helped smash those rocks in the\l"
 	.string "tunnel.\p"
 	.string "I was thinking that I wanted to give\n"
-	.string "this {COLOR BLUE}Gardevoir{COLOR DARK_GRAY}to you…$"
+	.string "this {COLOR BLUE}Gardevoir{COLOR DARK_GRAY} to you…$"
 
 VerdanturfTown_WandasHouse_Text_PrettyStone:
 	.string "It's a pretty Pokémon, I hope\n"

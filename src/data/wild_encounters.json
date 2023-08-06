@@ -2985,22 +2985,22 @@
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_LARVITAR"
+                "species": "SPECIES_ROCKRUFF"
               },
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_ROGGENROLA"
+                "species": "SPECIES_NOSEPASS"
               },
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_LARVITAR"
+                "species": "SPECIES_ROCKRUFF"
               },
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_ROGGENROLA"
+                "species": "SPECIES_NOSEPASS"
               }
             ]
           }
@@ -3434,7 +3434,7 @@
               {
                 "min_level": 29,
                 "max_level": 29,
-                "species": "SPECIES_GOLISOPOD"
+                "species": "SPECIES_DHELMISE"
               }
             ]
           }
@@ -10928,7 +10928,7 @@
               {
                 "min_level": 29,
                 "max_level": 29,
-                "species": "SPECIES_GOLISOPOD"
+                "species": "SPECIES_DHELMISE"
               }
             ]
           }

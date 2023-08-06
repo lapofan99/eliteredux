@@ -128,7 +128,7 @@
 #define ABILITY_RECKLESS 120 // Powers up moves that have recoil and crash damage by 20%.
 #define ABILITY_MULTITYPE 121 // *No innate* Changes the Pokémon's type to match the Plate or Z-Crystal it holds.
 #define ABILITY_FLOWER_GIFT 122 // *No innate* Ally’s Attack and Special Defence are multiplied by 1.5 during strong sunlight.
-#define ABILITY_BAD_DREAMS 123 // Reduces 1/8 HP of sleeping opposing Pokémon every turn.
+#define ABILITY_BAD_DREAMS 123 // Reduces 1/4 HP of sleeping opposing Pokémon every turn.
 
 #define ABILITIES_COUNT_GEN4 124
 
@@ -265,7 +265,7 @@
 #define ABILITY_GULP_MISSILE 241 // *No innate* When using Surf or Dive, it will change into Gulping Form if it has over 50% max HP or Gorging Form if it has less than 50% max HP. If hit afterwards, form reverts and it shoots out its prey to attack, doing 1/4th of opponent's maximum HP in damage. If the Cramorant was in Gulping Form, the opponent's Defense is lowered 1 stage. If the Cramorant was in Gorging Form, the opponent is paralyzed.
 #define ABILITY_STALWART 242 // *No innate* Ignores the effects of opposing Pokémon's Abilities and moves that draw in moves.
 #define ABILITY_STEAM_ENGINE 243 // Boosts the Pokémon's Speed stat drastically each time it is hit by a Fire- or Water-type move.
-#define ABILITY_PUNK_ROCK 244 // Boosts the power of sound-based moves. The Pokémon also takes half the damage from these kinds of moves.
+#define ABILITY_PUNK_ROCK 244 // Boosts the power of sound-based moves by 30%. The Pokémon also takes half the damage from these kinds of moves.
 #define ABILITY_SAND_SPIT 245 // The Pokémon creates a sandstorm when it's hit by an attack.
 #define ABILITY_ICE_SCALES 246 // The Pokémon is protected by ice scales, which halve the damage taken from special moves.
 #define ABILITY_RIPEN 247 // *No innate* Ripens Berries and doubles their effect.
@@ -322,7 +322,7 @@
 #define ABILITY_AVENGER          (ABILITIES_COUNT_LATEST_GEN + 24) // Boosts the power of the move by 50% if a Pokémon from the user's party has fainted in the previous turn.
 #define ABILITY_LETS_ROLL        (ABILITIES_COUNT_LATEST_GEN + 25) // Pokémon starts in Defense Curl, boosting the Defense stage by +1.
 #define ABILITY_AQUATIC          (ABILITIES_COUNT_LATEST_GEN + 26) // Adds the Water-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_LOUD_BANG        (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 20% chance that the enemy will become confused when affected by the Pokémon's sound-based damaging moves.
+#define ABILITY_LOUD_BANG        (ABILITIES_COUNT_LATEST_GEN + 27) // There is a 50% chance that the enemy will become confused when affected by the Pokémon's sound-based damaging moves.
 #define ABILITY_LEAD_COAT        (ABILITIES_COUNT_LATEST_GEN + 28) // Triples the Pokémon's weight. Increases the Defense stat by 30%, but decreases Speed stat by 10%.
 #define ABILITY_AMPHIBIOUS       (ABILITIES_COUNT_LATEST_GEN + 29) // Water-type moves gain 1.5x power.
 #define ABILITY_GROUNDED         (ABILITIES_COUNT_LATEST_GEN + 30) // Adds the Ground-type to the Pokémon, in addition to the Pokémon's original type(s).
@@ -405,7 +405,7 @@
 #define ABILITY_PRECISE_FIST     (ABILITIES_COUNT_LATEST_GEN + 107) // Punching moves have critical rate increased by +1 and have double the chance of secondary effects.
 #define ABILITY_DEADEYE          (ABILITIES_COUNT_LATEST_GEN + 108) // Never misses.
 #define ABILITY_ARTILLERY        (ABILITIES_COUNT_LATEST_GEN + 109) // Beam, pump, cannon, zooka, shot, aura and pulse moves cannot miss and single-target moves hit both foes.
-#define ABILITY_AMPLIFIER        (ABILITIES_COUNT_LATEST_GEN + 110) // Sound-based moves now target all foes [Affected moves: Hyper Voice, Boomburst, Bug Buzz, Chatter, Confide, Disarming Voice, Echoed Voice, Eerie Spell, Grass Whistle, Metal Sound, Noble Roar, Parting Shot, Roar, Round, Screech, Sing, Snore, Supersonic, Uproar etc.].
+#define ABILITY_AMPLIFIER        (ABILITIES_COUNT_LATEST_GEN + 110) // Sound-based moves now target all foes [Affected moves: Hyper Voice, Boomburst, Bug Buzz, Chatter, Confide, Disarming Voice, Echoed Voice, Eerie Spell, Grass Whistle, Metal Sound, Noble Roar, Parting Shot, Roar, Round, Screech, Sing, Snore, Supersonic, Uproar etc.]. Also boosts power by 20%.
 #define ABILITY_ICE_DEW          (ABILITIES_COUNT_LATEST_GEN + 111) // Immune to Ice-type moves. Instead of being hit by Ice-type moves, it boosts its Attack or Sp. Attack stat (which is higher).
 #define ABILITY_SUN_WORSHIP      (ABILITIES_COUNT_LATEST_GEN + 112) // Ups highest stat on entry when it's sunny.
 #define ABILITY_BUGINIZE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon to become Bug-type and receive a 20% power boost.

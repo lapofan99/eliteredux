@@ -2684,6 +2684,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(DRIFLOON,
         MOVE_DARK_PULSE, // new
+        MOVE_AIR_SLASH, // new
         MOVE_MEMENTO,
         MOVE_BODY_SLAM,
         MOVE_DESTINY_BOND,
