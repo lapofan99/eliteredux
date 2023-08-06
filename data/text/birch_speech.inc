@@ -182,7 +182,7 @@ gText_Pie_MoreCaps::
 
 gText_Pie_StrictCaps::
 	.string "The Elite Caps setting is the\n"
-	.string "intended difficulty for this game.\p"
+	.string "highest difficulty for this game.\p"
 	.string "With this option, there will be a\n"
 	.string "level cap tied to each badge, and\l"
 	.string "enemy trainers will show no mercy.\p"

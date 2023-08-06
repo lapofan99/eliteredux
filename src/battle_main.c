@@ -4798,19 +4798,19 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     if (WEATHER_HAS_EFFECT)
     {
         if ((ability == ABILITY_SWIFT_SWIM || BattlerHasInnate(battlerId, ABILITY_SWIFT_SWIM)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_RAIN_ANY)
-            speed *= 2;
+            speed = (speed * 150) / 100;
 
         if ((ability == ABILITY_CHLOROPHYLL || BattlerHasInnate(battlerId, ABILITY_CHLOROPHYLL)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
-            speed *= 2;
+            speed = (speed * 150) / 100;
 
         if ((ability == ABILITY_BIG_LEAVES || BattlerHasInnate(battlerId, ABILITY_BIG_LEAVES)) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA && gBattleWeather & WEATHER_SUN_ANY)
-            speed *= 2;
+            speed = (speed * 150) / 100;
 
         if ((ability == ABILITY_SAND_RUSH   || BattlerHasInnate(battlerId, ABILITY_SAND_RUSH)) && gBattleWeather & WEATHER_SANDSTORM_ANY)
-            speed *= 2;
+            speed = (speed * 150) / 100;
 
         if ((ability == ABILITY_SLUSH_RUSH  || BattlerHasInnate(battlerId, ABILITY_SLUSH_RUSH)) && gBattleWeather & WEATHER_HAIL_ANY)
-            speed *= 2;
+            speed = (speed * 150) / 100;
     }
 
     // other abilities
@@ -4818,7 +4818,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
         speed = (speed * 150) / 100;
 
     if ((ability == ABILITY_SURGE_SURFER || BattlerHasInnate(battlerId, ABILITY_SURGE_SURFER)) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
-        speed *= 2;
+        speed = (speed * 150) / 100;
 
     if ((ability == ABILITY_SLOW_START  || BattlerHasInnate(battlerId, ABILITY_SLOW_START)) && gDisableStructs[battlerId].slowStartTimer != 0)
         speed /= 2;
