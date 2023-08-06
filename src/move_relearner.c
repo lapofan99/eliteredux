@@ -17,6 +17,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "pokemon_summary_screen.h"
+#include "pokemon.h"
 #include "script.h"
 #include "sound.h"
 #include "sprite.h"
@@ -526,7 +527,7 @@ static void DoMoveRelearnerMain(void)
                 }
                 else
                 {
-                    sMoveRelearnerStruct->state = MENU_STATE_PRINT_TRYING_TO_LEARN_PROMPT;
+                    sMoveRelearnerStruct->state = MENU_STATE_PRINT_WHICH_MOVE_PROMPT;
                 }
             }
             else if (selection == MENU_B_PRESSED || selection == 1)
@@ -713,12 +714,13 @@ static void DoMoveRelearnerMain(void)
             {
                 u16 moveId = GetMonData(&gPlayerParty[sMoveRelearnerStruct->partyMon], MON_DATA_MOVE1 + sMoveRelearnerStruct->moveSlot);
 
-                StringCopy(gStringVar3, gMoveNamesLong[moveId]);
+                StringCopy(gStringVar3, gMoveNames[moveId]);
                 RemoveMonPPBonus(&gPlayerParty[sMoveRelearnerStruct->partyMon], sMoveRelearnerStruct->moveSlot);
                 SetMonMoveSlot(&gPlayerParty[sMoveRelearnerStruct->partyMon], GetCurrentSelectedMove(), sMoveRelearnerStruct->moveSlot);
-                StringCopy(gStringVar2, gMoveNamesLong[GetCurrentSelectedMove()]);
-                FormatAndPrintText(gText_MoveRelearnerAndPoof);
-                sMoveRelearnerStruct->state = MENU_STATE_DOUBLE_FANFARE_FORGOT_MOVE;
+                StringCopy(gStringVar2, gMoveNames[GetCurrentSelectedMove()]);
+                FormatAndPrintText(gText_MoveRelearnerPkmnForgotMoveAndLearnedNew);
+                sMoveRelearnerStruct->state = MENU_STATE_PRINT_TEXT_THEN_FANFARE;
+                PlayFanfare(MUS_LEVEL_UP);
                 if(FlagGet(FLAG_MOVE_RELEARNER) == TRUE)
                     gSpecialVar_0x8004 = TRUE;
             }
@@ -942,8 +944,14 @@ static void CreateLearnableMovesList(void)
         sMoveRelearnerStruct->menuItems[i].id = sMoveRelearnerStruct->movesToLearn[i];
     }
 
-    GetMonData(&gPlayerParty[sMoveRelearnerStruct->partyMon], MON_DATA_NICKNAME, nickname);
-    StringCopy10(gStringVar1, nickname);
+    if(isMonNicknamed(&gPlayerParty[sMoveRelearnerStruct->partyMon])){
+        GetMonData(&gPlayerParty[sMoveRelearnerStruct->partyMon], MON_DATA_NICKNAME, nickname); 
+        StringCopy10(gStringVar1, nickname);
+    }
+    else{
+        u16 species = GetMonData(&gPlayerParty[sMoveRelearnerStruct->partyMon], MON_DATA_SPECIES, NULL);
+        StringCopy(gStringVar1, gSpeciesNames[species]);
+    }
     sMoveRelearnerStruct->menuItems[sMoveRelearnerStruct->numMenuChoices].name = gText_Cancel;
     sMoveRelearnerStruct->menuItems[sMoveRelearnerStruct->numMenuChoices].id = LIST_CANCEL;
     sMoveRelearnerStruct->numMenuChoices++;

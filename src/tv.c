@@ -3293,8 +3293,18 @@ static void ChangeBoxPokemonNickname_CB(void)
 
 void BufferMonNickname(void)
 {
-    GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar1);
-    StringGetEnd10(gStringVar1);
+    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
+    bool8 nicknamed = isMonNicknamed(mon);
+    u16 species = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL);
+    
+    if(nicknamed){
+        GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar1);
+        StringGetEnd10(gStringVar1);
+    }
+    else{
+        StringCopy(gStringVar1, gSpeciesNames[species]);
+        StringGetEnd12(gStringVar1);
+    }
 }
 
 void IsMonOTIDNotPlayers(void)

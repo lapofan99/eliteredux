@@ -484,5 +484,7 @@ void CreateShinyMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 nat
 u16 getNumberOfUniqueDefeatedTrainers(void);
 bool8 enablePokemonChanges(void);
 u16 GetRandomPokemonFromSpecies(u16 basespecies);
+bool8 isMonNicknamed(struct Pokemon *mon);
+bool8 isBoxMonNicknamed(struct BoxPokemon *boxMon);
 
 #endif // GUARD_POKEMON_H

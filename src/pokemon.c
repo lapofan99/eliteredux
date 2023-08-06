@@ -4584,7 +4584,7 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
         else
         {
             for (retVal = 0;
-                retVal < POKEMON_NAME_LENGTH;
+                retVal < POKEMON_NAME_LENGTH; 
                 data[retVal] = boxMon->nickname[retVal], retVal++){}
 
             data[retVal] = EOS;
@@ -9207,6 +9207,44 @@ bool8 enablePokemonChanges(void){
     }
 
     return enable;
+}
+
+bool8 isMonNicknamed(struct Pokemon *mon){
+    u8 i;
+    bool8 nicknamed = FALSE;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+	u8 strArray[POKEMON_SPECIES_NAME_LENGTH + 1];
+	u8 strNickname[POKEMON_NAME_LENGTH + 1];
+
+    StringCopy(strArray, gSpeciesNames[species]);
+    GetMonData(mon, MON_DATA_NICKNAME, strNickname);
+
+    for(i = 0; i < POKEMON_NAME_LENGTH; i++){
+        if(strNickname[i] != strArray[i]){
+            nicknamed = TRUE;
+        }
+    }
+    
+    return nicknamed;
+}
+
+bool8 isBoxMonNicknamed(struct BoxPokemon *boxMon){
+    u8 i;
+    bool8 nicknamed = FALSE;
+    u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
+	u8 strArray[POKEMON_SPECIES_NAME_LENGTH + 1];
+	u8 strNickname[POKEMON_NAME_LENGTH + 1];
+
+    StringCopy(strArray, gSpeciesNames[species]);
+    GetBoxMonData(boxMon, MON_DATA_NICKNAME, strNickname);
+
+    for(i = 0; i < POKEMON_NAME_LENGTH; i++){
+        if(strNickname[i] != strArray[i]){
+            nicknamed = TRUE;
+        }
+    }
+    
+    return nicknamed;
 }
 
 u16 GetRandomPokemonFromSpecies(u16 basespecies){
