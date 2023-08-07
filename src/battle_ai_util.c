@@ -1272,11 +1272,11 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (holdEffect == HOLD_EFFECT_AIR_BALLOON)
         return FALSE;
-    else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE) && !DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, MOVE_NONE))
+    else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE) && !DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker))
         return FALSE;
     else if (AI_GetAbility(battlerId) == ABILITY_LEVITATE)
         return FALSE;
-    else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY) && !DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, MOVE_NONE))
+    else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY) && !DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker))
         return FALSE;
     else if (AI_GetAbility(battlerId) == ABILITY_DRAGONFLY)
         return FALSE;
@@ -1289,7 +1289,7 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
 bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u16 move)
 {
     u32 i;
-    u16 atkAbility = gBattleMons[gActiveBattler].ability;
+    u16 atkAbility = gBattleMons[battler].ability;
     
     //if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
     //    return FALSE;   // AI handicap flag: doesn't understand ability suppression concept

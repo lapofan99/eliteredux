@@ -168,6 +168,7 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability);
 u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler);
 bool32 ShouldChangeFormHpBased(u32 battler);
 u32 CountBattlerStatIncreases(u8 battlerId, bool32 countEvasionAcc);
+bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

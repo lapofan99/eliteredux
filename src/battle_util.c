@@ -10917,11 +10917,11 @@ bool32 IsBattlerGrounded(u8 battlerId)
         return FALSE;
     else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
         return FALSE;
-	else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE) && !DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, MOVE_NONE))     //Levitate Innate Effect
+	else if (BattlerHasInnate(battlerId, ABILITY_LEVITATE) && !DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker)) //Levitate Innate Effect
         return FALSE;
 	else if (GetBattlerAbility(battlerId) == ABILITY_DRAGONFLY) //Dragonfly
         return FALSE;
-	else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY) && !DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, MOVE_NONE))    //Dragonfly Innate Effect
+	else if (BattlerHasInnate(battlerId, ABILITY_DRAGONFLY) && !DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker))    //Dragonfly Innate Effect
         return FALSE;
     else if (IS_BATTLER_OF_TYPE(battlerId, TYPE_FLYING))
         return FALSE;
@@ -13668,9 +13668,9 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
         }
         else if(BattlerHasInnate(battlerDef, ABILITY_LEVITATE)){ //Defender has Levitate as Innate
-            if(DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, move)){ //Mold Breaker Check
+            if(!DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker)){ //Mold Breaker Check
                 modifier = UQ_4_12(0.0);
-                gLastUsedAbility = ABILITY_LEVITATE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LEVITATE;
                 gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
                 gLastLandedMoves[battlerDef] = 0;
                 gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
@@ -13686,9 +13686,9 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
             RecordAbilityBattle(battlerDef, ABILITY_DRAGONFLY);
         }
         else if(BattlerHasInnate(battlerDef, ABILITY_DRAGONFLY)){ //Defender has Dragonfly as Innate
-            if(DoesBattlerIgnoreAbilityChecks(gBattlerAttacker, move)){ //Mold Breaker Check
+            if(!DoesBattlerIgnoreAbilityorInnateChecks(gBattlerAttacker)){ //Mold Breaker Check
                 modifier = UQ_4_12(0.0);
-                gLastUsedAbility = ABILITY_DRAGONFLY;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRAGONFLY;
                 gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
                 gLastLandedMoves[battlerDef] = 0;
                 gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
@@ -14800,5 +14800,20 @@ bool32 IsBattlerWeatherAffected(u8 battlerId, u32 weatherFlags)
     
         return TRUE;
     }
+    return FALSE;
+}
+
+bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler)
+{
+    u16 ability = gBattleMons[battler].ability;
+
+    if( ability == ABILITY_MOLD_BREAKER                 ||
+        ability == ABILITY_TERAVOLT                     ||
+        ability == ABILITY_TURBOBLAZE                   ||
+        BattlerHasInnate(battler, ABILITY_MOLD_BREAKER) || 
+        BattlerHasInnate(battler, ABILITY_TERAVOLT)     || 
+        BattlerHasInnate(battler, ABILITY_TURBOBLAZE))
+        return TRUE;
+
     return FALSE;
 }
