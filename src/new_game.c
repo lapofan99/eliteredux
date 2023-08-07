@@ -94,7 +94,7 @@ static void InitPlayerTrainerId(void)
 // L=A isnt set here for some reason.
 static void SetDefaultOptions(void)
 {
-    gSaveBlock2Ptr->optionsTextSpeed = OPTIONS_TEXT_SPEED_FAST;
+    gSaveBlock2Ptr->optionsTextSpeed = OPTIONS_TEXT_SPEED_INSTANT;
     gSaveBlock2Ptr->enableEvs = TRUE;
     gSaveBlock2Ptr->askForNickname = TRUE;
     gSaveBlock2Ptr->individualColors = FALSE;
