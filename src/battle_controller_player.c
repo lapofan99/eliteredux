@@ -2065,7 +2065,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 
                 if(gBattleMons[userId].ability == ABILITY_MOLTEN_DOWN|| BattlerHasInnate(userId, ABILITY_MOLTEN_DOWN)){
                     if(gBattleMons[targetId].type1 == TYPE_ROCK  || gBattleMons[targetId].type2 == TYPE_ROCK){
-                        tempMod = UQ_4_12(2.0);
+                        tempMod = UQ_4_12(4.0);
                         MulModifier(&mod, tempMod);
                     }
                 }

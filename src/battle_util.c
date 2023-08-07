@@ -13565,7 +13565,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
             RecordAbilityBattle(battlerAtk, ABILITY_OVERCHARGE);
     }
 	// Molten Down
-	else if (moveType == TYPE_FIRE && defType == TYPE_ROCK && (GetBattlerAbility(battlerAtk) == ABILITY_MOLTEN_DOWN || BattlerHasInnate(battlerAtk, ABILITY_MOLTEN_DOWN)) && mod == UQ_4_12(0.0))
+	else if (moveType == TYPE_FIRE && defType == TYPE_ROCK && (GetBattlerAbility(battlerAtk) == ABILITY_MOLTEN_DOWN || BattlerHasInnate(battlerAtk, ABILITY_MOLTEN_DOWN)))
     {
 		//Has Innate Effect here too
         mod = UQ_4_12(2.0); // super-effective
