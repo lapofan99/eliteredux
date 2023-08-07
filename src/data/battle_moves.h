@@ -7610,7 +7610,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_VENOSHOCK] =
     {
-        .effect = EFFECT_VENOSHOCK,
+        .effect = EFFECT_HEX,
         .power = 65,
         .type = TYPE_POISON,
         .accuracy = 100,
