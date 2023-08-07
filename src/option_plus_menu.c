@@ -209,7 +209,7 @@ struct // MENU_MAIN
     int (*processInput)(int selection);
 } static const sItemFunctionsMain[MENUITEM_MAIN_COUNT] =
 {
-    [MENUITEM_MAIN_TEXTSPEED]    = {DrawChoices_TextSpeed,   ProcessInput_Options_Three},
+    [MENUITEM_MAIN_TEXTSPEED]    = {DrawChoices_TextSpeed,   ProcessInput_Options_Four},
     [MENUITEM_MAIN_BATTLESCENE]  = {DrawChoices_BattleScene, ProcessInput_Options_Two},
     [MENUITEM_MAIN_SOUND]        = {DrawChoices_Sound,       ProcessInput_Options_Two},
     [MENUITEM_MAIN_BUTTONMODE]   = {DrawChoices_ButtonMode,  ProcessInput_Options_Three},
@@ -1111,19 +1111,14 @@ static void ReDrawAll(void)
 }
 
 // Process Input functions ****SPECIFIC****
-static const u8 sText_Faster[] = _("FASTER");
-static const u8 sText_Instant[] = _("INSTANT");
-static const u8 *const sTextSpeedStrings[] = {gText_TextSpeedSlow, gText_TextSpeedMid, gText_TextSpeedFast};
+static const u8 sText_Faster[] = _("Fast");
+static const u8 sText_Instant[] = _("Instant");
+static const u8 *const sTextSpeedStrings[] = {gText_TextSpeedSlow, gText_TextSpeedMid, gText_TextSpeedFast, sText_Instant};
+
 static void DrawChoices_TextSpeed(int selection, int y)
 {
     bool8 active = CheckConditions(MENUITEM_MAIN_TEXTSPEED);
-    u8 styles[3] = {0};
-    int xMid = GetMiddleX(gText_TextSpeedSlow, gText_TextSpeedMid, gText_TextSpeedFast);
-    styles[selection] = 1;
-
-    DrawOptionMenuChoice(gText_TextSpeedSlow, 104, y, styles[0], active);
-    DrawOptionMenuChoice(gText_TextSpeedMid, xMid, y, styles[1], active);
-    DrawOptionMenuChoice(gText_TextSpeedFast, GetStringRightAlignXOffset(1, gText_TextSpeedFast, 198), y, styles[2], active);
+    DrawChoices_Options_Four(sTextSpeedStrings, selection, y, active);
 }
 
 static void DrawChoices_BattleScene(int selection, int y)

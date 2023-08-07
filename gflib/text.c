@@ -50,7 +50,13 @@ const u8 gDarkDownArrowTiles[] = INCBIN_U8("graphics/fonts/down_arrow_RS.4bpp");
 const u8 gUnusedFRLGBlankedDownArrow[] = INCBIN_U8("graphics/fonts/unused_frlg_blanked_down_arrow.4bpp");
 const u8 gUnusedFRLGDownArrow[] = INCBIN_U8("graphics/fonts/unused_frlg_down_arrow.4bpp");
 const u8 gDownArrowYCoords[] = { 0x0, 0x1, 0x2, 0x1 };
-const u8 gWindowVerticalScrollSpeeds[] = { 0x1, 0x2, 0x4, 0x0 };
+
+const u8 gWindowVerticalScrollSpeeds[] = {
+    [OPTIONS_TEXT_SPEED_SLOW] = 1,
+    [OPTIONS_TEXT_SPEED_MID] = 2,
+    [OPTIONS_TEXT_SPEED_FAST] = 4,
+    [OPTIONS_TEXT_SPEED_INSTANT] = 4,
+};
 
 const struct GlyphWidthFunc gGlyphWidthFuncs[] =
 {
@@ -211,29 +217,39 @@ bool16 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
 void RunTextPrinters(void)
 {
     int i;
+    u16 temp;
 
-    if (gDisableTextPrinters == 0)
+    do
     {
-        for (i = 0; i < NUM_TEXT_PRINTERS; ++i)
+        int numEmpty = 0;
+        for (i = 0; i < 0x20; ++i)
         {
-            if (gTextPrinters[i].active)
+            if (gTextPrinters[i].active != 0)
             {
-                u16 temp = RenderFont(&gTextPrinters[i]);
-                switch (temp)
-                {
-                case 0:
-                    CopyWindowToVram(gTextPrinters[i].printerTemplate.windowId, 2);
-                case 3:
-                    if (gTextPrinters[i].callback != 0)
-                        gTextPrinters[i].callback(&gTextPrinters[i].printerTemplate, temp);
-                    break;
-                case 1:
-                    gTextPrinters[i].active = 0;
-                    break;
+                temp = RenderFont(&gTextPrinters[i]);
+                switch (temp) {
+                    case 0:
+                        CopyWindowToVram(gTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
+                        if (gTextPrinters[i].callback != 0)
+                            gTextPrinters[i].callback(&gTextPrinters[i].printerTemplate, temp);
+                        break;
+                    case 3:
+                        if (gTextPrinters[i].callback != 0)
+                            gTextPrinters[i].callback(&gTextPrinters[i].printerTemplate, temp);
+                        return;
+                    case 1:
+                        gTextPrinters[i].active = 0;
+                        break;
                 }
             }
+            else
+            {
+                numEmpty++;
+            }
         }
-    }
+        if(numEmpty == 0x20)
+            return;
+    } while(gSaveBlock2Ptr->optionsTextSpeed == OPTIONS_TEXT_SPEED_INSTANT);
 }
 
 bool16 IsTextPrinterActive(u8 id)
@@ -842,20 +858,21 @@ void DrawDownArrow(u8 windowId, u16 x, u16 y, u8 bgColor, bool8 drawArrow, u8 *c
 u16 RenderText(struct TextPrinter *textPrinter)
 {
     struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
-    u16 currChar;
+    u16 currChar, nextChar;
     s32 width;
     s32 widthHelper;
+    u8 repeats;
 
     switch (textPrinter->state)
     {
-    case 0:
+    case 0: //RENDER_STATE_HANDLE_CHAR
         if ((JOY_HELD(A_BUTTON | B_BUTTON)) && subStruct->hasPrintBeenSpedUp)
             textPrinter->delayCounter = 0;
 
         if (textPrinter->delayCounter && textPrinter->textSpeed)
         {
             textPrinter->delayCounter--;
-            if (gTextFlags.canABSpeedUpPrint && (JOY_NEW(A_BUTTON | B_BUTTON)))
+            if ((gTextFlags.canABSpeedUpPrint && (JOY_NEW(A_BUTTON | B_BUTTON))))
             {
                 subStruct->hasPrintBeenSpedUp = TRUE;
                 textPrinter->delayCounter = 0;
@@ -868,8 +885,26 @@ u16 RenderText(struct TextPrinter *textPrinter)
         else
             textPrinter->delayCounter = textPrinter->textSpeed;
 
+        switch (GetPlayerTextSpeed())
+        {
+            case OPTIONS_TEXT_SPEED_SLOW:
+                repeats = 1;
+                break;
+            case OPTIONS_TEXT_SPEED_MID:
+                repeats = 1;
+                break;
+            case OPTIONS_TEXT_SPEED_FAST:
+                repeats = 1;
+                break;
+            case OPTIONS_TEXT_SPEED_INSTANT:
+                repeats = 2;
+                break;
+        }
+    
+        do {
         currChar = *textPrinter->printerTemplate.currentChar;
         textPrinter->printerTemplate.currentChar++;
+        nextChar = *textPrinter->printerTemplate.currentChar;
 
         switch (currChar)
         {
@@ -1071,6 +1106,25 @@ u16 RenderText(struct TextPrinter *textPrinter)
             else
                 textPrinter->printerTemplate.currentX += gCurGlyph.width;
         }
+
+        if (repeats == 2)
+        {
+            switch (nextChar)
+            {
+                case CHAR_NEWLINE:
+                case PLACEHOLDER_BEGIN:
+                case EXT_CTRL_CODE_BEGIN:
+                case CHAR_PROMPT_CLEAR:
+                case CHAR_PROMPT_SCROLL:
+                case CHAR_KEYPAD_ICON:
+                case EOS:
+                    repeats--;
+                    break;
+            }
+        }
+        repeats--;
+        } while (repeats > 0);
+
         return 0;
     case 1:
         if (TextPrinterWait(textPrinter))
