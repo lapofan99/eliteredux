@@ -1186,7 +1186,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     }
     else
     {
-        xPos = 5 * (3 - (objVram - (text + 2))) + 2;
+        xPos = 5 * (3 - (objVram - (text + 2)));
         windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, xPos, 3, 2, &windowId);
         spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
 
@@ -1624,10 +1624,10 @@ void DestroyMegaTriggerSprite(void)
 
 static const s8 sIndicatorPositions[][2] =
 {
-    [B_POSITION_PLAYER_LEFT] = {52, -9},
-    [B_POSITION_OPPONENT_LEFT] = {44, -9},
-    [B_POSITION_PLAYER_RIGHT] = {52, -9},
-    [B_POSITION_OPPONENT_RIGHT] = {44, -9},
+    [B_POSITION_PLAYER_LEFT]    = {52, -9},
+    [B_POSITION_OPPONENT_LEFT]  = {44 + 8, -9},
+    [B_POSITION_PLAYER_RIGHT]   = {52, -9},
+    [B_POSITION_OPPONENT_RIGHT] = {44 + 8, -9},
 };
 
 u32 CreateMegaIndicatorSprite(u32 battlerId, u32 which)
