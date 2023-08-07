@@ -12999,16 +12999,16 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         defStage = gBattleMons[battlerDef].statStages[STAT_DEF];
         usesDefStat = TRUE;
     }
-    // Power Fists makes punching moves do special damage
-    else if ((gBattleMons[battlerAtk].ability == ABILITY_POWER_FISTS || 
-              BattlerHasInnate(battlerAtk, ABILITY_POWER_FISTS)) && 
-              gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST) 
+    else // is special
     {
-        defStat = gBattleMons[battlerDef].spDefense;
+        defStat = spDef;
         defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
         usesDefStat = FALSE;
     }
-    else // is special
+
+    if ((gBattleMons[battlerAtk].ability == ABILITY_POWER_FISTS || 
+              BattlerHasInnate(battlerAtk, ABILITY_POWER_FISTS)) && 
+              gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST) 
     {
         defStat = spDef;
         defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
