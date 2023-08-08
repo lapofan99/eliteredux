@@ -9999,6 +9999,7 @@ extern const u32 gSummaryScreenPageContestMoveDetailsTilemap[];
 extern const u32 gSummaryScreenPageContestNewMoveTilemap[];
 extern const u32 gSummaryScreenPageConditionTilemap[];
 extern const u32 gSummaryScreenPageAbilityTilemap[];
+extern const u32 gSummaryScreenPageEvolutionTilemap[];
 extern const u32 gPPTextPalette[];
 
 // frlg_tm_case_port
