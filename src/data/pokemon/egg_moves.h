@@ -4196,6 +4196,7 @@ const u16 gEggMoves[] = {
         MOVE_DRAGON_BREATH),
 
     egg_moves(GROOKEY,
+        MOVE_DRAIN_PUNCH, // new
         MOVE_GROWTH,
         MOVE_HAMMER_ARM,
         MOVE_FAKE_OUT,
