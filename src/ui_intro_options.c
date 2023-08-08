@@ -483,7 +483,7 @@ struct OptionData Intro_Options[NUM_INTRO_OPTIONS] = {
         .optionDescription = { 
             _("If you want to take it easy.\nLevel Caps for the first six badges.\nYou get to level 100 before the League."),
             _("Good introduction to difficulty hacks.\nEach badge unlocks a new Level Cap.\nYou can't reach level 100 before Champion."),
-            _("This is the intended difficulty. You\nmay have to invent new strategies often.\nAre you ready for a world of pain?"),
+            _("Highest difficulty. A real challenge. You\nmay have to invent new strategies often.\nAre you ready for a world of pain?"),
             //_("No Level Cap Description"),
             },
         //.numOptions = 4,
