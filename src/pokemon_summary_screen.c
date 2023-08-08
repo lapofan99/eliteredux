@@ -26,6 +26,7 @@
 #include "menu.h"
 #include "menu_helpers.h"
 #include "mon_markings.h"
+#include "overworld.h"
 #include "party_menu.h"
 #include "palette.h"
 #include "pokeball.h"
@@ -78,6 +79,7 @@ enum {
     PSS_PAGE_BATTLE_MOVES,
     //PSS_PAGE_CONDITION,       moved temporarily
     PSS_PAGE_CONTEST_MOVES,
+    PSS_PAGE_EVOLUTION,
     PSS_PAGE_CONDITION,
     PSS_PAGE_COUNT,
 };
@@ -304,6 +306,8 @@ static void PrintMoveNameAndPP(u8 a);
 static void PrintContestMoves(void);
 static void PrintAbilityAndInnates(void);
 static void BufferMonPokemonAbilityAndInnates(void);
+static void PrintEvolutionData(void);
+static void BufferMonPokemonEvolutionData(void);
 static void PrintMoveDetails(u16 a);
 static void PrintNewMoveDetailsOrCancelText(void);
 static void SwapMovesNamesPP(u8 moveIndex1, u8 moveIndex2);
@@ -514,7 +518,8 @@ static void (*const sTextPrinterFunctions[])(void) =
     [PSS_PAGE_SKILLS] = PrintSkillsPage,
     [PSS_PAGE_BATTLE_MOVES] = PrintBattleMoves,
     [PSS_PAGE_CONDITION] = PrintConditionPage,
-    [PSS_PAGE_CONTEST_MOVES] = PrintContestMoves
+    [PSS_PAGE_CONTEST_MOVES] = PrintContestMoves,
+    [PSS_PAGE_EVOLUTION] = PrintEvolutionData
 };
 
 static const u8 sMemoNatureTextColor[] = _("{COLOR LIGHT_RED}{SHADOW GREEN}");
@@ -986,6 +991,7 @@ static const u32 * const sPageTilemaps[] =
     gSummaryScreenPageMovesTilemap,
     //gSummaryScreenPageConditionTilemap,
     gSummaryScreenPageContestMovesTilemap,
+    gSummaryScreenPageEvolutionTilemap,
     gSummaryScreenPageConditionTilemap
 };
 
@@ -1017,6 +1023,7 @@ const u8 sText_TitlePageIVs[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Modify");
 const u8 sText_TitlePageEVs[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}EVs");
 const u8 sText_TitlePageStats[] = _("{DPAD_LEFTRIGHT}Page {A_BUTTON}Stats");
 const u8 sText_TitlePageModify[] = _("{A_BUTTON}Modify");
+const u8 sText_TitleEvolutionData[] = _("Evolution Data");
 #else
 const u8 sText_TitleInfo[] = _("POKéMON INFO");
 const u8 sText_TitleMemo[] = _("TRAINER MEMO");
@@ -1191,7 +1198,7 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
     case SUMMARY_MODE_NORMAL:
     case SUMMARY_MODE_BOX:
         sMonSummaryScreen->trueMinPageIndex = PSS_PAGE_INFO;
-        sMonSummaryScreen->trueMaxPageIndex = PSS_PAGE_CONTEST_MOVES;
+        sMonSummaryScreen->trueMaxPageIndex = PSS_PAGE_EVOLUTION;
         break;
     case SUMMARY_MODE_LOCK_MOVES:
         sMonSummaryScreen->trueMinPageIndex = PSS_PAGE_INFO;
@@ -1201,7 +1208,7 @@ void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, 
     case SUMMARY_MODE_SELECT_MOVE:    // Index limiters aren't actually used in this case, but we'll keep them for clarity
         sMonSummaryScreen->trueMinPageIndex = PSS_PAGE_BATTLE_MOVES;
         if (CONFIG_CAN_SWITCH_PAGES_WHILE_DETAILS_ARE_UP)
-            sMonSummaryScreen->trueMaxPageIndex = PSS_PAGE_CONTEST_MOVES;
+            sMonSummaryScreen->trueMaxPageIndex = PSS_PAGE_EVOLUTION;
         else
             sMonSummaryScreen->trueMaxPageIndex = PSS_PAGE_BATTLE_MOVES;
         sMonSummaryScreen->lockMonFlag = TRUE;
@@ -4472,6 +4479,558 @@ static void BufferMonPokemonAbilityAndInnates(void)
 	}
 }
 
+
+static void PrintEvolutionData(void)
+{
+    FillWindowPixelBuffer(PSS_LABEL_PANE_RIGHT, PIXEL_FILL(0));
+
+    if (sMonSummaryScreen->summary.isEgg)
+        BufferEggMemo();
+    else
+        BufferMonPokemonEvolutionData();
+
+    ScheduleBgCopyTilemapToVram(0);
+    PutWindowTilemap(PSS_LABEL_PANE_RIGHT);
+}
+
+#define EVOLUTION_METHOD_X 0
+#define EVOLUTION_METHOD_Y 8
+#define EVOLUTION_METHOD_LINE_SPACING 0
+#define EVO_SCREEN_LVL_DIGITS 2
+
+const u8 gText_EVO_MEGA_EVOLUTION[] = _("Mega Evolve holding a\n{STR_VAR_2}");
+const u8 gText_EVO_PRIMAL_REVERSION[] = _("Primal Reversion holding a\n{STR_VAR_2}");
+const u8 gText_EVO_MOVE_MEGA_EVOLUTION[] = _("Mega Evolve knowing\n{STR_VAR_2}");
+
+const u8 gText_Subname[] = _("{STR_VAR_1} {STR_VAR_2}");
+const u8 gText_Subname2[] = _("{STR_VAR_1} {STR_VAR_2} {STR_VAR_3}");
+const u8 gText_Mega[] = _("Mega");
+const u8 gText_Primal[] = _("Primal");
+const u8 gText_Ultra[] = _("Ultra");
+const u8 gText_Alolan[] = _("Alolan");
+const u8 gText_Galarian[] = _("Galarian");
+const u8 gText_Midday[] = _("(Midday Form)");
+const u8 gText_Midnight[] = _("(Midnight Form)");
+const u8 gText_Dusk[] = _("(Dusk Form)");
+const u8 gText_X[] = _("X");
+const u8 gText_Y[] = _("Y");
+
+static void SaveSpeciesWithSurname(u16 species){
+    if(species == SPECIES_CHARIZARD_MEGA_X || species == SPECIES_MEWTWO_MEGA_X){ //Mega X
+        StringCopy(gStringVar1, gText_Mega);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringCopy(gStringVar3, gText_X);
+        StringExpandPlaceholders(gStringVar4, gText_Subname2);
+    }
+    else if(species == SPECIES_CHARIZARD_MEGA_Y || species == SPECIES_MEWTWO_MEGA_Y){ //Mega Y
+        StringCopy(gStringVar1, gText_Mega);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringCopy(gStringVar3, gText_Y);
+        StringExpandPlaceholders(gStringVar4, gText_Subname2);
+    }
+    else if(species >= SPECIES_VENUSAUR_MEGA && species <= SPECIES_RAYQUAZA_MEGA){ //Megas
+        StringCopy(gStringVar1, gText_Mega);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species >= SPECIES_MILOTIC_MEGA && species <= SPECIES_KINGDRA_MEGA){ //Custom Mega
+        StringCopy(gStringVar1, gText_Mega);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species == SPECIES_KYOGRE_PRIMAL || species == SPECIES_GROUDON_PRIMAL){ //Primals
+        StringCopy(gStringVar1, gText_Primal);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species == SPECIES_NECROZMA_ULTRA){ //Ultra Necrozma
+        StringCopy(gStringVar1, gText_Ultra);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species >= SPECIES_RATTATA_ALOLAN && species <= SPECIES_MAROWAK_ALOLAN){ //Alolan
+        StringCopy(gStringVar1, gText_Alolan);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species >= SPECIES_MEOWTH_GALARIAN && species <= SPECIES_STUNFISK_GALARIAN){ //Galarian
+        StringCopy(gStringVar1, gText_Galarian);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species == SPECIES_LYCANROC){ //Midday Lycanroc
+        StringCopy(gStringVar1, gSpeciesNames[species]);
+        StringCopy(gStringVar2, gText_Midday);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species == SPECIES_LYCANROC_MIDNIGHT){ //Midnight Lycanroc
+        StringCopy(gStringVar1, gSpeciesNames[species]);
+        StringCopy(gStringVar2, gText_Midnight);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species == SPECIES_LYCANROC_DUSK){ //Dusk Lycanroc
+        StringCopy(gStringVar1, gSpeciesNames[species]);
+        StringCopy(gStringVar2, gText_Dusk);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else{//Normal
+        StringCopy(gStringVar4, gSpeciesNames[species]);
+    }
+}
+
+static void BufferMonPokemonEvolutionData(void)
+{
+    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+	u16 species = sum->species;
+    u32 personality = sum->pid;
+	u8 level = sum->level;
+    u8 gender = GetMonGender(mon);
+    u16 upperPersonality = personality >> 16;
+    const u8 *text;
+	u8 x, y, i;
+    bool8 isEnemyMon = VarGet(VAR_BATTLE_CONTROLLER_PLAYER_F) == 2; //checks if you are looking into the summary screen for the enemy
+    bool8 skipPrintingEvo = FALSE;
+    u16 targetSpecies = 0;
+    u8 times = 0;
+    u16 item;
+    const struct MapHeader *mapHeader;
+	x = 60;
+	y = 4;
+
+    //Calculate number of possible direct evolutions (e.g. Eevee has 8 but torchic has 1)
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        if(gEvolutionTable[species][i].method != 0){
+            times++;
+        } 
+    }
+
+    //If there are no evolutions print text
+    if (times == 0)// || isEnemyMon
+    {
+        StringCopy(gStringVar1, gSpeciesNames[species]); //mon name
+        StringExpandPlaceholders(gStringVar4, gText_EVO_NONE); 
+        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+    }
+    else{
+        for (i = 0; i < times; i++)
+        {
+            skipPrintingEvo = FALSE;
+            switch (gEvolutionTable[species][i].method)
+            {
+            case EVO_LEVEL:
+            case EVO_LEVEL_NINJASK:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_FRIENDSHIP:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringExpandPlaceholders(gStringVar4, gText_EVO_FRIENDSHIP );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_FRIENDSHIP_DAY:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringExpandPlaceholders(gStringVar4, gText_EVO_FRIENDSHIP_DAY );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_FRIENDSHIP_NIGHT:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringExpandPlaceholders(gStringVar4, gText_EVO_FRIENDSHIP_NIGHT );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_TRADE:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringExpandPlaceholders(gStringVar4, gText_EVO_TRADE );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_TRADE_ITEM:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                item = gEvolutionTable[species][i].param; //item
+                CopyItemName(item, gStringVar2); //item
+                StringExpandPlaceholders(gStringVar4, gText_EVO_TRADE_ITEM );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_ITEM:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                item = gEvolutionTable[species][i].param; //item
+                CopyItemName(item, gStringVar2); //item
+                StringExpandPlaceholders(gStringVar4, gText_EVO_ITEM );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_LEVEL_ATK_GT_DEF:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_ATK_GT_DEF );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_LEVEL_ATK_EQ_DEF:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_ATK_EQ_DEF );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_LEVEL_ATK_LT_DEF:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_ATK_LT_DEF );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_LEVEL_SILCOON:
+                if((upperPersonality % 10) <= 4){
+                    //Target Species
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                    //Evolution Method
+                    ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                    StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_SILCOON );
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                }
+                else{
+                    skipPrintingEvo = TRUE;
+                }
+                break;
+            case EVO_LEVEL_CASCOON:
+                if((upperPersonality % 10) > 4){
+                    //Target Species
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                    //Evolution Method
+                    ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                    StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_CASCOON );
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                }
+                else{
+                    skipPrintingEvo = TRUE;
+                }
+                break;
+            case EVO_LEVEL_SHEDINJA:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_SHEDINJA );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_BEAUTY:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringExpandPlaceholders(gStringVar4, gText_EVO_BEAUTY );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_LEVEL_FEMALE:
+                if(gender == MON_FEMALE){
+                    //Target Species
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                    //Evolution Method
+                    ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                    StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_FEMALE );
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                }
+                else{
+                    skipPrintingEvo = TRUE;
+                }
+                break;
+            case EVO_LEVEL_MALE:
+                if(gender == MON_MALE){
+                    //Target Species
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                    //Evolution Method
+                    ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                    StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_MALE );
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                }
+                else{
+                    skipPrintingEvo = TRUE;
+                }
+                break;
+            case EVO_LEVEL_NIGHT:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_NIGHT );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_LEVEL_DAY:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_DAY );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_LEVEL_DUSK:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_DUSK );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_ITEM_HOLD_DAY:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                item = gEvolutionTable[species][i].param; //item
+                CopyItemName(item, gStringVar2); //item
+                StringExpandPlaceholders(gStringVar4, gText_EVO_ITEM_HOLD_DAY );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_ITEM_HOLD_NIGHT:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                item = gEvolutionTable[species][i].param; //item
+                CopyItemName(item, gStringVar2); //item
+                StringExpandPlaceholders(gStringVar4, gText_EVO_ITEM_HOLD_NIGHT );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_ITEM_HOLD:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                item = gEvolutionTable[species][i].param; //item
+                CopyItemName(item, gStringVar2); //item
+                StringExpandPlaceholders(gStringVar4, gText_EVO_ITEM_HOLD );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_MOVE:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringCopy(gStringVar2, gMoveNames[gEvolutionTable[species][i].param]);
+                StringExpandPlaceholders(gStringVar4, gText_EVO_MOVE );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_MOVE_TYPE:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringCopy(gStringVar2, gTypeNames[gEvolutionTable[species][i].param]);
+                StringExpandPlaceholders(gStringVar4, gText_EVO_MOVE_TYPE );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_SPECIFIC_MAPSEC:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringCopy(gStringVar2, gRegionMapEntries[gEvolutionTable[species][i].param].name);
+                StringExpandPlaceholders(gStringVar4, gText_EVO_SPECIFIC_MAPSEC );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_ITEM_MALE:
+                if(gender == MON_MALE){
+                    //Target Species
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                    //Evolution Method
+                    item = gEvolutionTable[species][i].param; //item
+                    CopyItemName(item, gStringVar2); //item
+                    StringExpandPlaceholders(gStringVar4, gText_EVO_ITEM_MALE );
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                }
+                else{
+                    skipPrintingEvo = TRUE;
+                }
+                break;
+            case EVO_ITEM_FEMALE:
+                if(gender == MON_FEMALE){
+                    //Target Species
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                    //Evolution Method
+                    item = gEvolutionTable[species][i].param; //item
+                    CopyItemName(item, gStringVar2); //item
+                    StringExpandPlaceholders(gStringVar4, gText_EVO_ITEM_FEMALE );
+                    PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                }
+                else{
+                    skipPrintingEvo = TRUE;
+                }
+                break;
+            case EVO_LEVEL_RAIN:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_RAIN );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_SPECIFIC_MON_IN_PARTY:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringCopy(gStringVar2, gSpeciesNames[gEvolutionTable[species][i].param]); //mon name
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_SPECIFIC_MON_IN_PARTY );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_LEVEL_DARK_TYPE_MON_IN_PARTY:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_LEVEL_DARK_TYPE_MON_IN_PARTY);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_TRADE_SPECIFIC_MON:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringCopy(gStringVar2, gSpeciesNames[gEvolutionTable[species][i].param]); //mon name
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_TRADE_SPECIFIC_MON );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_SPECIFIC_MAP:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                mapHeader = Overworld_GetMapHeaderByGroupAndId(gEvolutionTable[species][i].param >> 8, gEvolutionTable[species][i].param & 0xFF);
+                GetMapName(gStringVar2, mapHeader->regionMapSectionId, 0);
+                ConvertIntToDecimalStringN(gStringVar2, gEvolutionTable[species][i].param, STR_CONV_MODE_LEADING_ZEROS, EVO_SCREEN_LVL_DIGITS); //level
+                StringExpandPlaceholders(gStringVar4, gText_EVO_SPECIFIC_MAP );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_MEGA_EVOLUTION:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                item = gEvolutionTable[species][i].param; //item
+                CopyItemName(item, gStringVar2); //item
+                StringExpandPlaceholders(gStringVar4, gText_EVO_MEGA_EVOLUTION );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_MOVE_MEGA_EVOLUTION:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                //Evolution Method
+                StringCopy(gStringVar2, gMoveNames[gEvolutionTable[species][i].param]);
+                StringExpandPlaceholders(gStringVar4, gText_EVO_MOVE_MEGA_EVOLUTION );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            case EVO_PRIMAL_REVERSION:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);//Evolution Method
+                item = gEvolutionTable[species][i].param; //item
+                CopyItemName(item, gStringVar2); //item
+                StringExpandPlaceholders(gStringVar4, gText_EVO_PRIMAL_REVERSION );
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, EVOLUTION_METHOD_X, y + EVOLUTION_METHOD_Y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);
+                break;
+            default:
+                //Target Species
+                targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                SaveSpeciesWithSurname(targetSpecies);
+                PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, EVOLUTION_METHOD_LINE_SPACING, PSS_COLOR_WHITE_BLACK_SHADOW);//Evolution Method
+                //Failsafe
+            break;
+            }
+
+            if(!skipPrintingEvo){
+                if(species == SPECIES_EEVEE){
+                    y +=16;
+                }
+                else if(species == SPECIES_CHARIZARD || species == SPECIES_MEWTWO){
+                    y +=32;
+                }
+                else{
+                    y +=24;
+                }
+            }
+        }
+    }
+}
+
 static u8 GetBattleMoveCategory(u16 move)
 {
     if (gBattleMoves[move].power == 0)
@@ -5624,6 +6183,10 @@ static void PrintInfoBar(u8 pageIndex, bool8 detailsShown)
             break;
         case PSS_PAGE_CONDITION:
             StringCopy(gStringVar1, sText_TitleCondition);
+            StringCopy(gStringVar2, sText_TitlePage);
+            break;
+        case PSS_PAGE_EVOLUTION:
+            StringCopy(gStringVar1, sText_TitleEvolutionData);
             StringCopy(gStringVar2, sText_TitlePage);
             break;
         case PSS_PAGE_CONTEST_MOVES:
