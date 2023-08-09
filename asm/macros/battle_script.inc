@@ -1835,6 +1835,11 @@
 	.4byte \ptr
 	.endm
 	
+	.macro tryhealthirdhealth battler:req, ptr:req
+	various \battler, VARIOUS_TRY_HEAL_THIRD_HP
+	.4byte \ptr
+	.endm
+
 	.macro removeterrain
 	various BS_ATTACKER, VARIOUS_REMOVE_TERRAIN
 	.endm

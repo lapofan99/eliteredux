@@ -9572,6 +9572,17 @@ static void Cmd_various(void)
         else
             gBattlescriptCurrInstr += 7;   // can heal
         return;
+    case VARIOUS_TRY_HEAL_THIRD_HP:
+        gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 3;
+        if (gBattleMoveDamage == 0)
+            gBattleMoveDamage = 1;
+        gBattleMoveDamage *= -1;
+
+        if (gBattleMons[gActiveBattler].hp == gBattleMons[gActiveBattler].maxHP)
+            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);    // fail
+        else
+            gBattlescriptCurrInstr += 7;   // can heal
+        return;
     case VARIOUS_REMOVE_TERRAIN:
         gFieldTimers.terrainTimer = 0;
         switch (gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)

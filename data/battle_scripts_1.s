@@ -376,6 +376,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_BODY_PRESS
 	.4byte BattleScript_EffectEerieSpell              @ EFFECT_EERIE_SPELL
 	.4byte BattleScript_EffectJungleHealing           @ EFFECT_JUNGLE_HEALING
+	.4byte BattleScript_EffectLifeDew		          @ EFFECT_LIFE_DEW
 	.4byte BattleScript_EffectCoaching                @ EFFECT_COACHING
 	.4byte BattleScript_EffectHit                     @ EFFECT_LASH_OUT
 	.4byte BattleScript_EffectHit             		  @ EFFECT_GRASSY_GLIDE
@@ -1064,6 +1065,30 @@ BattleScript_JungleHealingTryRestoreAlly:
 	addbyte gBattleCommunication, 1
 	jumpifnoally BS_TARGET, BattleScript_MoveEnd
 	setallytonexttarget JungleHealing_RestoreTargetHealth
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectLifeDew:
+	attackcanceler
+	attackstring
+	ppreduce
+	jumpifteamhealthy BS_ATTACKER, BattleScript_ButItFailed
+	attackanimation
+	waitanimation
+	copybyte gBattlerTarget, gBattlerAttacker
+	setbyte gBattleCommunication, 0
+LifeDew_RestoreTargetHealth:
+	copybyte gBattlerAttacker, gBattlerTarget
+	tryhealthirdhealth BS_TARGET,
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	printstring STRINGID_PKMNREGAINEDHEALTH
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_LifeDewTryRestoreAlly:
+	jumpifbyte CMP_NOT_EQUAL, gBattleCommunication, 0x0, BattleScript_MoveEnd
+	addbyte gBattleCommunication, 1
+	jumpifnoally BS_TARGET, BattleScript_MoveEnd
+	setallytonexttarget LifeDew_RestoreTargetHealth
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackerDefenseDownHit:
