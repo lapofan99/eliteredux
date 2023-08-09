@@ -10763,6 +10763,7 @@ static const struct LevelUpMove sGalladeLevelUpLearnset[] = {
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE(38, MOVE_TRIPLE_AXEL), // new
         LEVEL_UP_MOVE(42, MOVE_SACRED_SWORD),
+        LEVEL_UP_MOVE(45, MOVE_TRIPLE_KICK), // new
     #endif
 	LEVEL_UP_MOVE(49, MOVE_THROAT_CHOP),
 	LEVEL_UP_MOVE(56, MOVE_QUICK_GUARD),
