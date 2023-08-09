@@ -5171,6 +5171,7 @@ static void PrintMoveDetails(u16 move)
 					case EFFECT_ATTACK_UP_HIT:
 					case EFFECT_ATTACK_UP:
 					case EFFECT_ATTACK_UP_2:
+                    case EFFECT_HOWL:
 						StringCopy(gStringVar1, gText_Effect_Attack_Up);
 					break;
 					case EFFECT_ATTACK_DOWN_HIT:

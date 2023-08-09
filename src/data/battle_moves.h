@@ -5432,7 +5432,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #else
             .flags = FLAG_SNATCH_AFFECTED,
         #endif
-        .effect = EFFECT_ATTACK_UP,
+        .effect = EFFECT_HOWL,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,

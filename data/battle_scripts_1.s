@@ -415,6 +415,36 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectFrostbiteHit            @ EFFECT_FROSTBITE_HIT
 	.4byte BattleScript_EffectHit                     @ EFFECT_EXPANDING_FORCE
 	.4byte BattleScript_EffectSteelBeam               @ EFFECT_STEEL_BEAM
+	.4byte BattleScript_EffectHowl		              @ EFFECT_HOWL
+
+BattleScript_EffectHowl::
+    attackcanceler
+    attackstring
+    ppreduce
+    setbyte gBattleCommunication, 0
+BattleScript_EffectHowlStart:
+        goto BattleScript_EffectHowlLoop
+BattleScript_EffectHowlCheckStats:
+        jumpifstat BS_TARGET, CMP_LESS_THAN, STAT_ATK, MAX_STAT_STAGE, BattleScript_EffectHowlTryAtk
+BattleScript_EffectHowlTryAtk:
+        jumpifbyte CMP_NOT_EQUAL, gBattleCommunication, 0, BattleScript_EffectHowlSkipAnim
+        attackanimation
+        waitanimation
+BattleScript_EffectHowlSkipAnim:
+        setbyte sSTAT_ANIM_PLAYED, FALSE
+        playstatchangeanimation BS_TARGET, BIT_ATK, 0
+        setstatchanger STAT_ATK, 1, FALSE
+        statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_EffectHowlLoop
+        jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_EffectHowlLoop
+        addbyte gBattleCommunication, 1
+        printfromtable gStatUpStringIds
+        waitmessage B_WAIT_TIME_LONG
+BattleScript_EffectHowlLoop:
+        jumpifbytenotequal gBattlerTarget, gBattlerAttacker, BattleScript_EffectHowlEnd
+        setallytonexttarget BattleScript_EffectHowlStart
+BattleScript_EffectHowlEnd:
+        jumpifbyte CMP_NOT_EQUAL, gBattleCommunication, 0, BattleScript_MoveEnd
+        goto BattleScript_ButItFailed
 
 BattleScript_EffectSteelBeam::
 	attackcanceler
