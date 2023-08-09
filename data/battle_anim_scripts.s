@@ -779,8 +779,8 @@ gBattleAnims_Moves::
 	.4byte Move_ASTRAL_BARRAGE
 	.4byte Move_EERIE_SPELL 
 @@@@@@@@@@@@ Custom Moves @@@@@@@@@@@@
-	.4byte Move_EXCALIBUR 
 	.4byte Move_DEATHROLL
+	.4byte Move_EXCALIBUR 
 	.4byte Move_AQUA_FANG
 	.4byte Move_WAVE_CRASH
 	.4byte Move_COUNT @ cannot be reached, because last move is Eerie Spell
