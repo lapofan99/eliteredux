@@ -2305,6 +2305,12 @@ static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
                 moveNullified = TRUE;
             }
         break;
+        case MOVE_STRENGTH_SAP:
+            if(gBattleMons[targetId].ability == ABILITY_SAP_SIPPER || 
+               BattlerHasInnate(targetId, ABILITY_SAP_SIPPER)){
+                moveNullified = TRUE;
+            }
+        break;
     }
 
     //Move Effects
