@@ -1072,9 +1072,6 @@ BattleScript_EffectJungleHealing:
 	waitanimation
 	copybyte gBattlerTarget, gBattlerAttacker
 	setbyte gBattleCommunication, 0
-	jumpifability BS_ATTACKER, ABILITY_CHLOROPLAST, JungleHealing_RestoreTargetHealth2
-	jumpifability BS_ATTACKER, ABILITY_BIG_LEAVES, JungleHealing_RestoreTargetHealth2
-	jumpifweatheraffected BS_ATTACKER, WEATHER_SUN_ANY, JungleHealing_RestoreTargetHealth2
 JungleHealing_RestoreTargetHealth:
 	copybyte gBattlerAttacker, gBattlerTarget
 	tryhealquarterhealth BS_TARGET, BattleScript_JungleHealing_TryCureStatus
@@ -1083,19 +1080,9 @@ JungleHealing_RestoreTargetHealth:
 	datahpupdate BS_TARGET
 	printstring STRINGID_PKMNREGAINEDHEALTH
 	waitmessage B_WAIT_TIME_LONG
-JungleHealing_RestoreTargetHealth2:
-	copybyte gBattlerAttacker, gBattlerTarget
-	tryhealthirdhealth BS_TARGET, BattleScript_JungleHealing_TryCureStatus
-	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
-	healthbarupdate BS_TARGET
-	datahpupdate BS_TARGET
-	printstring STRINGID_PKMNREGAINEDHEALTH
-	waitmessage B_WAIT_TIME_LONG
 BattleScript_JungleHealing_TryCureStatus:
+	jumpifmove MOVE_LIFE_DEW, BattleScript_JungleHealingTryRestoreAlly	@ life dew only heals
 	jumpifstatus BS_TARGET, STATUS1_ANY, BattleScript_JungleHealingCureStatus
-	jumpifability BS_ATTACKER, ABILITY_CHLOROPLAST, BattleScript_JungleHealingTryRestoreAlly2
-	jumpifability BS_ATTACKER, ABILITY_BIG_LEAVES, BattleScript_JungleHealingTryRestoreAlly2
-	jumpifweatheraffected BS_ATTACKER, WEATHER_SUN_ANY, BattleScript_JungleHealingTryRestoreAlly2
 	goto BattleScript_JungleHealingTryRestoreAlly
 BattleScript_JungleHealingCureStatus:
 	curestatus BS_TARGET
@@ -1106,19 +1093,7 @@ BattleScript_JungleHealingTryRestoreAlly:
 	jumpifbyte CMP_NOT_EQUAL, gBattleCommunication, 0x0, BattleScript_MoveEnd
 	addbyte gBattleCommunication, 1
 	jumpifnoally BS_TARGET, BattleScript_MoveEnd
-	jumpifability BS_ATTACKER, ABILITY_CHLOROPLAST, BattleScript_RestoreTargetHealth2
-	jumpifability BS_ATTACKER, ABILITY_BIG_LEAVES, BattleScript_RestoreTargetHealth2
-	jumpifweatheraffected BS_ATTACKER, WEATHER_SUN_ANY, BattleScript_RestoreTargetHealth2
 	setallytonexttarget JungleHealing_RestoreTargetHealth
-	goto BattleScript_MoveEnd
-BattleScript_JungleHealingTryRestoreAlly2:
-jumpifbyte CMP_NOT_EQUAL, gBattleCommunication, 0x0, BattleScript_MoveEnd
-	addbyte gBattleCommunication, 1
-	jumpifnoally BS_TARGET, BattleScript_MoveEnd
-	jumpifability BS_ATTACKER, ABILITY_CHLOROPLAST, BattleScript_RestoreTargetHealth2
-	jumpifability BS_ATTACKER, ABILITY_BIG_LEAVES, BattleScript_RestoreTargetHealth2
-	jumpifweatheraffected BS_ATTACKER, WEATHER_SUN_ANY, BattleScript_RestoreTargetHealth2
-	setallytonexttarget JungleHealing_RestoreTargetHealth2
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackerDefenseDownHit:
