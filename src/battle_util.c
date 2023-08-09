@@ -11602,6 +11602,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (gBattleMoves[move].flags & FLAG_RECKLESS_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
     }
+
+    // Keen Edge
+	if(BattlerHasInnate(battlerAtk, ABILITY_KEEN_EDGE)){
+		if (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.3));
+    }
 	
 	// Iron Fist / Power Fists
 	if(BattlerHasInnate(battlerAtk, ABILITY_IRON_FIST) || 
