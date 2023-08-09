@@ -5246,7 +5246,6 @@ static void PrintMoveDetails(u16 move)
 					break;
 					case EFFECT_RESTORE_HP:
 					case EFFECT_JUNGLE_HEALING:
-					case EFFECT_LIFE_DEW:
 					case EFFECT_SHORE_UP:
 						StringCopy(gStringVar1, gText_Effect_Heal_HP);
 					break;

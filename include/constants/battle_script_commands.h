@@ -213,7 +213,6 @@
 #define VARIOUS_SET_BEAK_BLAST                  140
 #define VARIOUS_CAN_TELEPORT                    141
 #define VARIOUS_GET_BATTLER_SIDE                142
-#define VARIOUS_TRY_HEAL_THIRD_HP               143
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

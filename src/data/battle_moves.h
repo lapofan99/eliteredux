@@ -11300,7 +11300,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_LIFE_DEW] =
     {
-        .effect = EFFECT_LIFE_DEW,
+        .effect = EFFECT_JUNGLE_HEALING,
         .power = 0,
         .type = TYPE_WATER,
         .accuracy = 0,
