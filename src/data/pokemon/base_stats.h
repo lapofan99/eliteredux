@@ -10426,7 +10426,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_MINERAL,
     .eggGroup2 = EGG_GROUP_MINERAL,
     .abilities = {ABILITY_SOLAR_FLARE, ABILITY_DROUGHT, ABILITY_SUN_WORSHIP},
-    .innates = {ABILITY_LEVITATE, ABILITY_STURDY, ABILITY_BURNATE},
+    .innates = {ABILITY_LEVITATE, ABILITY_STURDY, ABILITY_SOLAR_FLARE},
     .bodyColor = BODY_COLOR_RED,
     .noFlip = FALSE,
     },
