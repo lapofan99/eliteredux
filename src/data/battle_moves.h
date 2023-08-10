@@ -5314,7 +5314,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_SHEER_COLD] =
     {
         .effect = EFFECT_FREEZE_DRY,
-        .power = 120,
+        .power = 100,
         .type = TYPE_ICE,
         .accuracy = 80,
         .pp = 5,
@@ -5432,7 +5432,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         #else
             .flags = FLAG_SNATCH_AFFECTED,
         #endif
-        .effect = EFFECT_ATTACK_UP,
+        .effect = EFFECT_HOWL,
         .power = 0,
         .type = TYPE_NORMAL,
         .accuracy = 0,
@@ -9119,7 +9119,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_FREEZE_DRY] =
     {
         #ifdef REBALANCED_VERSION
-            .power = 90,
+            .power = 70,
             .pp = 15,
         #else
             .power = 70,
@@ -9328,7 +9328,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_BOTH, // was MOVE_TARGET_FOES_AND_ALLY
+        .target = MOVE_TARGET_FOES_AND_ALLY, // was MOVE_TARGET_BOTH
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SOUND,
         .split = SPLIT_SPECIAL,
@@ -9787,7 +9787,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .effect = EFFECT_HIT,
         .power = 110,
         .type = TYPE_WATER,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_BOTH,
@@ -9799,9 +9799,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_PRECIPICE_BLADES] =
     {
         .effect = EFFECT_HIT,
-        .power = 120,
+        .power = 130,
         .type = TYPE_GROUND,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_BOTH,

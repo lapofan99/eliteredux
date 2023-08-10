@@ -2374,13 +2374,13 @@ static const struct TrainerMonItemCustomMoves sParty_Archie1[] = { // Slateport 
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_SASSY,
     .moves = MOVE_DISCHARGE, MOVE_U_TURN, MOVE_GIGA_DRAIN, MOVE_SUPER_FANG
-    },
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Archie1Insane[] = { // Slateport Museum
     {
     .lvl = 0,
-    .species = SPECIES_LIEPARD, // Sitrus + Unburden
+    .species = SPECIES_LIEPARD, // Archie-E, Sitrus + Unburden
     .heldItem = ITEM_SITRUS_BERRY,
     .ability = 0, // ABILITY_UNBURDEN, ABILITY_SNIPER, ABILITY_MOODY},
     // .innates = {ABILITY_LIMBER, ABILITY_PRANKSTER, ABILITY_OPPORTUNIST},
@@ -2391,7 +2391,7 @@ static const struct TrainerMonItemCustomMoves sParty_Archie1Insane[] = { // Slat
     },
     {
     .lvl = 0,
-    .species = SPECIES_CROBAT, // Archie, Sash, Tinted Lens
+    .species = SPECIES_CROBAT, // Archie-E, Sash, Tinted Lens
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 2, // ABILITY_MOUNTAINEER, ABILITY_SCAVENGER, ABILITY_TINTED_LENS},
     //.innates = {ABILITY_INFILTRATOR, ABILITY_SOUNDPROOF, ABILITY_NOCTURNAL},
@@ -2402,7 +2402,7 @@ static const struct TrainerMonItemCustomMoves sParty_Archie1Insane[] = { // Slat
     },
     {
     .lvl = 0,
-    .species = SPECIES_SHARPEDO, // Archie, Sitrus, Triple Fangs
+    .species = SPECIES_SHARPEDO, // Archie-E, Sitrus, Triple Fangs
     .heldItem = ITEM_COLBUR_BERRY,
     .ability = 1, // ABILITY_SPEED_FORCE, ABILITY_HYPER_AGGRESSIVE, ABILITY_SPEED_BOOST},
     // .innates = {ABILITY_STRONG_JAW, ABILITY_SWIFT_SWIM, ABILITY_PREDATOR},
@@ -2413,7 +2413,18 @@ static const struct TrainerMonItemCustomMoves sParty_Archie1Insane[] = { // Slat
     },
     {
     .lvl = 0,
-    .species = SPECIES_EELEKTRIK, // Archie, Eviolite
+    .species = SPECIES_SLIGGOO, // Archie-E, Eviolite
+    .heldItem = ITEM_EVIOLITE,
+    .ability = 0, // ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_CORROSION},
+    // .innates = {ABILITY_AMPHIBIOUS, ABILITY_POISON_HEAL, ABILITY_STICKY_HOLD},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 168, 0, 88, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_CAREFUL,
+	.moves = MOVE_CURSE, MOVE_OUTRAGE, MOVE_REST, MOVE_SLEEP_TALK
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_EELEKTRIK, // Archie-E, Eviolite
     .heldItem = ITEM_EVIOLITE,
     .ability = 1, // ABILITY_ELECTROCYTES, ABILITY_HYDRATE, ABILITY_SWIFT_SWIM},
     // .innates = {ABILITY_PLUS, ABILITY_LEVITATE, ABILITY_AQUATIC},
@@ -2422,17 +2433,6 @@ static const struct TrainerMonItemCustomMoves sParty_Archie1Insane[] = { // Slat
 	.nature = NATURE_SASSY,
     .moves = MOVE_DISCHARGE, MOVE_U_TURN, MOVE_GIGA_DRAIN, MOVE_SUPER_FANG
     },
-    {
-    .lvl = 0,
-    .species = SPECIES_SLIGGOO, // Archie, Eviolite
-    .heldItem = ITEM_EVIOLITE,
-    .ability = 0, // ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_CORROSION},
-    // .innates = {ABILITY_AMPHIBIOUS, ABILITY_POISON_HEAL, ABILITY_STICKY_HOLD},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 168, 0, 88, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_CAREFUL,
-	.moves = MOVE_CURSE, MOVE_OUTRAGE, MOVE_REST, MOVE_SLEEP_TALK
-    }
 };
 
 // Route 102 Trainers

@@ -1410,6 +1410,7 @@ const u16 gEggMoves[] = {
         MOVE_FREEZE_DRY),
 
     egg_moves(CORSOLA,
+        MOVE_FLIP_TURN, // new
         MOVE_SCREECH,
         MOVE_MIST,
         MOVE_AMNESIA,

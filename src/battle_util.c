@@ -11496,6 +11496,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
+    case ABILITY_SOLAR_FLARE:
+        if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
 	case ABILITY_CRYSTALLIZE:
         if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -11764,6 +11768,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 
 	// Burnate
 	if(BattlerHasInnate(battlerAtk, ABILITY_BURNATE)){
+		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
+
+    // Solar Flare
+	if(BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE)){
 		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
@@ -12473,7 +12483,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	case ABILITY_ANTARCTIC_BIRD:
         if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(1.3));
         }
         break;
 	case ABILITY_AMPHIBIOUS:
@@ -12827,7 +12837,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	if(BattlerHasInnate(battlerAtk, ABILITY_ANTARCTIC_BIRD)){
 		if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(1.3));
         }
 	}
 	// Amphibious
