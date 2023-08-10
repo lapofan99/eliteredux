@@ -13663,8 +13663,9 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
     if (recordAbilities && (illusionSpecies = GetIllusionMonSpecies(battlerDef)))
         TryNoticeIllusionInTypeEffectiveness(move, moveType, battlerAtk, battlerDef, modifier, illusionSpecies);
 
-    if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) && 
-       !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)) // Moves that ignore ground immunity 
+    if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef) &&
+       !(gBattleMoves[move].flags & FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING) && // Moves that ignore ground immunity 
+       !((gBattleMoves[move].flags & FLAG_BONE_BASED) && (BattlerHasInnate(battlerAtk, ABILITY_BONE_ZONE) || GetBattlerAbility(battlerAtk) == ABILITY_BONE_ZONE))) //Bone Zone Check
     {
         if(GetBattlerAbility(battlerDef) == ABILITY_LEVITATE){ //Defender has Levitate as Ability
             modifier = UQ_4_12(0.0);
