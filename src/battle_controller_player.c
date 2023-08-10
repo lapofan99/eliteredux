@@ -1943,8 +1943,14 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
             }
         }
 
-        if(gBattleMons[targetId].type1 == TYPE_FLYING  || gBattleMons[targetId].type2 == TYPE_FLYING){
-            if((gBattleWeather & WEATHER_STRONG_WINDS) && sTypeEffectivenessTable[moveType][TYPE_FLYING]){
+        if ((gBattleWeather & WEATHER_STRONG_WINDS) && WEATHER_HAS_EFFECT)
+        {
+            if ((gBattleMons[targetId].type1 == TYPE_FLYING
+            && GetTypeModifier(moveType, gBattleMons[targetId].type1) >= UQ_4_12(2.0))
+            || (gBattleMons[targetId].type2 == TYPE_FLYING
+            && GetTypeModifier(moveType, gBattleMons[targetId].type2) >= UQ_4_12(2.0))
+            || (gBattleMons[targetId].type3 == TYPE_FLYING
+            && GetTypeModifier(moveType, gBattleMons[targetId].type3) >= UQ_4_12(2.0))){
                 tempMod = UQ_4_12(0.5);
                 MulModifier(&mod, tempMod);
             }
