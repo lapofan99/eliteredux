@@ -12473,7 +12473,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	case ABILITY_ANTARCTIC_BIRD:
         if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(1.3));
         }
         break;
 	case ABILITY_AMPHIBIOUS:
@@ -12827,7 +12827,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	if(BattlerHasInnate(battlerAtk, ABILITY_ANTARCTIC_BIRD)){
 		if (moveType == TYPE_FLYING || moveType == TYPE_ICE)
         {
-            MulModifier(&modifier, UQ_4_12(1.5));
+            MulModifier(&modifier, UQ_4_12(1.3));
         }
 	}
 	// Amphibious

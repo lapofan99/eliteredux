@@ -305,7 +305,7 @@
 #define ABILITY_BLITZ_BOXER      (ABILITIES_COUNT_LATEST_GEN + 9)  // Punching moves go first.
 
 // Darky's Custom Abilities / Innates
-#define ABILITY_ANTARCTIC_BIRD   (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain 1.5x power.
+#define ABILITY_ANTARCTIC_BIRD   (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain 1.3x power.
 #define ABILITY_BURNATE          (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon become Fire-type and receive a 20% power boost.
 #define ABILITY_CRYSTALLIZE      (ABILITIES_COUNT_LATEST_GEN + 12) // All Rock-type moves used by the Pokémon become Ice-type and receive a 20% power boost.
 #define ABILITY_ELECTROCYTES     (ABILITIES_COUNT_LATEST_GEN + 13) // Increases the power of Electric-type moves by 25%.

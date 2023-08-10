@@ -267,7 +267,7 @@ static const u8 sRampageDescription[] = _("No recharge after a KO.");
 static const u8 sVengeanceDescription[] = _("Ups Ghost moves by 20%,\n50% when at 1/3 HP.");
 static const u8 sBlitzBoxerDescription[] = _("Punching moves have\n+1 priority.");
 // Darky's Custom Abilities
-static const u8 sAntarcticBirdDescription[] = _("Ice and Flying-type moves\ngain 50% more power.");
+static const u8 sAntarcticBirdDescription[] = _("Ice and Flying-type moves\ngain 30% more power.");
 static const u8 sBurnateDescription[] = _("Normal moves become Fire\nand get a 20% boost.");
 static const u8 sCrystallizeDescription[] = _("Rock moves become Ice\nand get a 20% boost.");
 static const u8 sElectrocytesDescription[] = _("Increases Electric-type\nmoves by 25%.");

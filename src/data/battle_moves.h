@@ -5314,7 +5314,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_SHEER_COLD] =
     {
         .effect = EFFECT_FREEZE_DRY,
-        .power = 120,
+        .power = 100,
         .type = TYPE_ICE,
         .accuracy = 80,
         .pp = 5,
@@ -9119,7 +9119,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_FREEZE_DRY] =
     {
         #ifdef REBALANCED_VERSION
-            .power = 90,
+            .power = 70,
             .pp = 15,
         #else
             .power = 70,
@@ -9787,7 +9787,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .effect = EFFECT_HIT,
         .power = 110,
         .type = TYPE_WATER,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_BOTH,
@@ -9799,9 +9799,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_PRECIPICE_BLADES] =
     {
         .effect = EFFECT_HIT,
-        .power = 120,
+        .power = 130,
         .type = TYPE_GROUND,
-        .accuracy = 85,
+        .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_BOTH,

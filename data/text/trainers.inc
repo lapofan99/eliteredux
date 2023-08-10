@@ -1,7 +1,7 @@
 Route102_Text_CalvinIntro: @ 8294513
-	.string "If you have Pokémon with you, then\n"
-	.string "you're an official Pokémon Trainer!\l"
-	.string "You can't say no to my challenge!$"
+	.string "{COLOR RED}Listen, I'm a bit different than\n"
+	.string "you're used to. I'll not hold\l"
+	.string "myself back! Prepare for trouble!{COLOR DARK_GRAY}$"
 
 Route102_Text_CalvinDefeated: @ 829457C
 	.string "Arrgh, I lost…\n"
