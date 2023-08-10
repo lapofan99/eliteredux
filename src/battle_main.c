@@ -1915,9 +1915,19 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 pp;
     u8 friendship;
     u8 difficultySetting = gSaveBlock2Ptr->gameDifficulty;
+    u8 isDoubleBattle = gTrainers[trainerNum].doubleBattle;
+	u8 DoubleReady = GetMonsStateToDoubles() == PLAYER_HAS_TWO_USABLE_MONS;
         
     u16 move = 1;
     u16 species = 1;
+
+    //Double Battle Mode
+    if(DoubleReady && gTrainers[trainerNum].partySize >= 2 && gSaveBlock2Ptr->doubleBattleMode == TRUE)
+		isDoubleBattle = TRUE;
+	else if(DoubleReady && gTrainers[trainerNum].partySize >= 2 && gTrainers[trainerNum].doubleBattle)
+		isDoubleBattle = TRUE;
+	else
+		isDoubleBattle = FALSE;
 
     //Saves the last trainer you battled in case that you battle 2 different opponents at once
     VarSet(VAR_LAST_TRAINER_BATTLED_2, VarGet(VAR_LAST_TRAINER_BATTLED));
@@ -1949,7 +1959,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         for (i = 0; i < monsCount; i++)
         {
 
-            if (gTrainers[trainerNum].doubleBattle == TRUE)
+            if (isDoubleBattle == TRUE)
                 personalityValue = 0x80;
             else if (gTrainers[trainerNum].encounterMusic_gender & F_TRAINER_FEMALE)
                 personalityValue = 0x78; // Use personality more likely to result in a female Pokémon
@@ -2183,10 +2193,26 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
             {
                 const struct TrainerMonItemCustomMoves *partyData;
-                if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != 0)
-                    partyData = gTrainers[trainerNum].partyInsane.ItemCustomMoves;
-                else
-                    partyData = gTrainers[trainerNum].party.ItemCustomMoves;
+                if(isDoubleBattle && gSaveBlock2Ptr->doubleBattleMode == TRUE){
+                    // In doubles if you are on elite mode the game will try to use a Double Elite Party if there is no exclusive party it uses the 
+                    // Elite Single Party if there is Elite Single Party it will try to use Double Normal Party if there is no Normal Double Party it will try to
+                    // use the Signle Normal Party
+                    if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsaneDouble.ItemCustomMoves != 0)
+                        partyData = gTrainers[trainerNum].partyInsaneDouble.ItemCustomMoves;
+                    else if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != 0)
+                        partyData = gTrainers[trainerNum].partyInsane.ItemCustomMoves;
+                    else if(gTrainers[trainerNum].partyDouble.ItemCustomMoves != 0)
+                        partyData = gTrainers[trainerNum].partyDouble.ItemCustomMoves;
+                    else
+                        partyData = gTrainers[trainerNum].party.ItemCustomMoves;
+                }
+                else{
+                    // In singles if you are on elite mode the game will try to use an Elite Party if there is no exclusive party it uses the normal one
+                    if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != 0)
+                        partyData = gTrainers[trainerNum].partyInsane.ItemCustomMoves;
+                    else
+                        partyData = gTrainers[trainerNum].party.ItemCustomMoves;
+                }
 
                 for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; j++)
                     nameHash += gSpeciesNames[partyData[i].species][j];
@@ -2318,7 +2344,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             SetMonData(&party[i], MON_DATA_POKEBALL, &gTrainerBallTable[j].Ball);
         }
 
-        gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
+        if(isDoubleBattle)
+			gBattleTypeFlags |= BATTLE_TYPE_DOUBLE;
+        else
+            gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
     }
 
     return gTrainers[trainerNum].partySize;
