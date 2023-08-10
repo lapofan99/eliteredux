@@ -1338,9 +1338,9 @@ static const u8 sUpGradeDesc[] = _(
 
 #ifdef REBALANCED_VERSION
     static const u8 sShellBellDesc[] = _(
-        "Hold item. Striking\n"
-        "the foe restores\n"
-        "1/3 of lost HP.");
+        "Hold item. Restores\n"
+        "1/3 of damage done\n"
+        "to the foe.");
 #else
     static const u8 sShellBellDesc[] = _(
         "A hold item that\n"

@@ -117,7 +117,7 @@
               {
                 "min_level": 3,
                 "max_level": 3,
-                "species": "SPECIES_WURMPLE"
+                "species": "SPECIES_PONYTA"
               },
               {
                 "min_level": 3,
@@ -15645,7 +15645,7 @@
               {
                 "min_level": 5,
                 "max_level": 5,
-                "species": "SPECIES_SHELMET"
+                "species": "SPECIES_ZORUA"
               },
               {
                 "min_level": 5,

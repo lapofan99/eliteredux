@@ -7395,6 +7395,7 @@ static const struct LevelUpMove sSolrockLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_SWORDS_DANCE),
     LEVEL_UP_MOVE(45, MOVE_EXPLOSION),
     LEVEL_UP_MOVE(49, MOVE_WONDER_ROOM),
+    LEVEL_UP_MOVE(53, MOVE_V_CREATE), // new
     LEVEL_UP_END
 };
 

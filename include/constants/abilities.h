@@ -109,7 +109,7 @@
 #define ABILITY_TECHNICIAN 101 // Powers up the Pokémon's weaker moves with BP 60 or less.
 #define ABILITY_LEAF_GUARD 102 // Prevents status conditions in harsh sunlight.
 #define ABILITY_KLUTZ 103 // *No innate* Can't use items.
-#define ABILITY_MOLD_BREAKER 104 // Moves can be used on the target regardless of its Abilities.
+#define ABILITY_MOLD_BREAKER 104 // Moves can be used on the target regardless of its Abilities. Hits Levitate with Ground moves.
 #define ABILITY_SUPER_LUCK 105 // Raises the critical-hit ratio of moves by one level.
 #define ABILITY_AFTERMATH 106 // The foe that dealt the final hit loses 1/4 of its maximum HP if the move made physical contact.
 #define ABILITY_ANTICIPATION 107 // *No innate* Warns when the foe knows 1-hit KO or super-effective moves.
