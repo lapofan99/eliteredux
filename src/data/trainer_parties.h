@@ -2175,7 +2175,7 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt15[] = { // Slateport 
     .lvl = 0,
     .species = SPECIES_GOREBYSS, // Aqua, Sitrus, Color Change
     .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 0, // ABILITY_WATER_VEIL, ABILITY_HYDRATION, ABILITY_COLOR_CHANGE},
+    .ability = 2, // ABILITY_WATER_VEIL, ABILITY_HYDRATION, ABILITY_COLOR_CHANGE},
     // .innates = {ABILITY_SWIFT_SWIM, ABILITY_ADAPTABILITY, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -12392,14 +12392,14 @@ static const struct TrainerMonItemCustomMoves sParty_Vicky[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_SCIZOR, // Vicky, Bulky Band, Technician
-    .heldItem = ITEM_CHOICE_BAND,
-    .ability = 1, // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    .species = SPECIES_SCIZOR, // Vicky, Bulky Orb, Intimidate
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
     // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_BULLET_PUNCH, MOVE_U_TURN, MOVE_SUPERPOWER, MOVE_PURSUIT
+    .moves = MOVE_BULLET_PUNCH, MOVE_EXTREME_SPEED, MOVE_SUPERPOWER, MOVE_PURSUIT
     }
 };
 
