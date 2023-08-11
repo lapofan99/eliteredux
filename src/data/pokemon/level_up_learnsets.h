@@ -3083,6 +3083,7 @@ static const struct LevelUpMove sPorygonLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 1, MOVE_CONVERSION),
     LEVEL_UP_MOVE( 1, MOVE_SHARPEN),
+    LEVEL_UP_MOVE( 1, MOVE_TELEPORT), // new
     LEVEL_UP_MOVE( 4, MOVE_THUNDER_SHOCK),
     LEVEL_UP_MOVE( 7, MOVE_PSYBEAM),
     LEVEL_UP_MOVE(12, MOVE_AGILITY),
@@ -5312,6 +5313,7 @@ static const struct LevelUpMove sPorygon2LevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TACKLE),
     LEVEL_UP_MOVE( 1, MOVE_CONVERSION),
     LEVEL_UP_MOVE( 1, MOVE_DEFENSE_CURL),
+    LEVEL_UP_MOVE( 1, MOVE_TELEPORT), // new
     LEVEL_UP_MOVE( 4, MOVE_THUNDER_SHOCK),
     LEVEL_UP_MOVE( 7, MOVE_PSYBEAM),
     LEVEL_UP_MOVE(12, MOVE_AGILITY),
@@ -10722,6 +10724,7 @@ static const struct LevelUpMove sPorygonZLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_CONVERSION_2),
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE),
 	LEVEL_UP_MOVE( 1, MOVE_CONVERSION),
+    LEVEL_UP_MOVE( 1, MOVE_TELEPORT), // new
     LEVEL_UP_MOVE( 4, MOVE_THUNDER_SHOCK),
 	LEVEL_UP_MOVE( 7, MOVE_PSYBEAM),
 	LEVEL_UP_MOVE(12, MOVE_AGILITY),
@@ -15202,6 +15205,7 @@ static const struct LevelUpMove sFloetteLevelUpLearnset[] = {
 
 static const struct LevelUpMove sFlorgesLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 0, MOVE_MISTY_TERRAIN),
+    LEVEL_UP_MOVE( 1, MOVE_TELEPORT), // new
 	LEVEL_UP_MOVE( 1, MOVE_GRASSY_TERRAIN),
     LEVEL_UP_MOVE( 1, MOVE_DRAINING_KISS),
     #ifdef REBALANCED_VERSION
@@ -15681,8 +15685,8 @@ static const struct LevelUpMove sClauncherLevelUpLearnset[] = {
 
 static const struct LevelUpMove sClawitzerLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_AURA_SPHERE),
-	LEVEL_UP_MOVE( 0, MOVE_AQUA_FANG), // new
-	LEVEL_UP_MOVE( 0, MOVE_CRUNCH), // new
+	LEVEL_UP_MOVE( 1, MOVE_AQUA_FANG), // new
+	LEVEL_UP_MOVE( 1, MOVE_CRUNCH), // new
 	LEVEL_UP_MOVE( 1, MOVE_BITE), // new
 	LEVEL_UP_MOVE( 1, MOVE_DARK_PULSE),
 	LEVEL_UP_MOVE( 1, MOVE_DRAGON_PULSE),

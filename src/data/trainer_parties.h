@@ -3029,7 +3029,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy2[] = {
     .lvl = 0,
     .species = SPECIES_LOPUNNY, // Orb, Healing Wish
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -3065,7 +3065,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy3[] = {
     .lvl = 0,
     .species = SPECIES_LOPUNNY, // Orb, Healing Wish
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -3115,7 +3115,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy4[] = {
     .ability = 0, // ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     // Pre-Mega
-    // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -11291,7 +11291,7 @@ static const struct TrainerMonItemCustomMoves sParty_AnnaAndMeg1[] = {
     .lvl = 0,
     .species = SPECIES_LOPUNNY, // Doubles, Orb, After You
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -11363,7 +11363,7 @@ static const struct TrainerMonItemCustomMoves sParty_AnnaAndMeg2[] = {
     .ability = 2, // ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     // Pre-Mega
-    // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -11435,7 +11435,7 @@ static const struct TrainerMonItemCustomMoves sParty_AnnaAndMeg3[] = {
     .ability = 2, // ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     // Pre-Mega
-    // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -19084,7 +19084,7 @@ static const struct TrainerMonItemCustomMoves sParty_Danielle[] = {
     .lvl = 0,
     .species = SPECIES_LOPUNNY, // Orb
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -19722,7 +19722,7 @@ static const struct TrainerMonItemCustomMoves sParty_Randall[] = { // Speed Room
     .lvl = 0,
     .species = SPECIES_LOPUNNY, // Salac
     .heldItem = ITEM_SALAC_BERRY,
-    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -24150,7 +24150,7 @@ static const struct TrainerMonItemCustomMoves sParty_Callie[] = { // with Riley
     .lvl = 0,
     .species = SPECIES_LOPUNNY, // Vest
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    .ability = 2, // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
@@ -31115,7 +31115,7 @@ static const struct TrainerMonItemCustomMoves sParty_Ruben[] = {
     .ability = 2, // ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     // Pre-Mega
-    // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    // ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     // .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed

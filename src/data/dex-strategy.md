@@ -457,3 +457,18 @@ Forretress
    Protect ensures added protection, allowing Foretress to stall for Leftovers recovery. Meanwhile, Toxic can cripple foes over time, making it an excellent choice for a defensive Pokémon that can withstand attacks and gradually wear down adversaries. 
     .tags = Singles, Defensive
 }
+Audino
+{
+   .name = Infinite HP
+   .item = Audinite
+   .ability = Cute Charm
+   .evs = 252, 0, 128, 10, 128, 0
+   .nature = Bold
+   .moves = Draining Kiss, Calm Mind, Wish, Soft-Boiled / Recover
+   .comment = Enter battle, use Audinite to go Mega and get ready to something really simple.
+
+You have 2 main heals (Wish and Soft-Boiled) and a 3rd one that is also an offensive move (Draining Kiss). They all work in different ways so you can stack both for 100% in a single turn or 50%+dmg+some extra heal while you always live dangerously until you reach SpAtk levels high enough, thanks to Calm Mind, to become a real menace.
+
+Mega Audino here is quite tanky and has a good SpAtk base so find a Pokémon that can't kill you (and those exists a lot; Mega Audino can tank a bunch of physical mons while burned and cursed(!)), and heal here and there while you use Calm Mind in the middle of those. Since you can heal for 100% after 2 turns whenever you need, you just need to make sure that you can survive the hit.
+   .tags = Singles, Doubles, Troll
+}
