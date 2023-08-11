@@ -7264,6 +7264,7 @@ extern const u32 gItemIconPalette_FluffyTail[];
 extern const u32 gItemIcon_Repel[];
 extern const u32 gItemIconPalette_SuperRepel[];
 extern const u32 gItemIconPalette_MaxRepel[];
+extern const u32 gItemIconPalette_InfiniteRepel[];
 extern const u32 gItemIcon_EscapeRope[];
 extern const u32 gItemIconPalette_EscapeRope[];
 extern const u32 gItemIcon_Repel[];

@@ -1091,6 +1091,9 @@ extern const u8 gText_UsedVar2WildLured[];
 extern const u8 gText_UsedVar2WildRepelled[];
 extern const u8 gText_BoxFull[];
 
+extern const u8 gOtherText_InfiniteRepelOn[];
+extern const u8 gOtherText_InfiniteRepelOff[];
+
 extern const u8 gText_LevelSymbol[];
 extern const u8 gText_PkmnInfo[];
 extern const u8 gText_PkmnSkills[];

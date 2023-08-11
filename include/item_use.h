@@ -39,6 +39,7 @@ void ItemUseInBattle_Escape(u8);
 void ItemUseInBattle_EnigmaBerry(u8);
 void Task_UseDigEscapeRopeOnField(u8 taskId);
 void ItemUseOutOfBattle_CandyBox(u8 taskId);
+void ItemUseOutOfBattle_InfiniteRepel(u8 taskId);
 void ItemUseOutOfBattle_RevealGlass(u8 taskId);
 void ItemUseOutOfBattle_DNASplicers(u8 taskId);
 void ItemUseOutOfBattle_Gracidea(u8 taskId);

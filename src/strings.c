@@ -266,6 +266,9 @@ const u8 gText_ThePokemonList[] = _("the Pokémon List");
 const u8 gText_TheShop[] = _("the shop");
 const u8 gText_ThePC[] = _("the PC");
 
+const u8 gOtherText_InfiniteRepelOn[] = _("The Infinite Repel was enabled!{PAUSE_UNTIL_PRESS}");
+const u8 gOtherText_InfiniteRepelOff[] = _("The Infinite Repel was disabled!{PAUSE_UNTIL_PRESS}");
+
 const u8 *const gBagMenu_ReturnToStrings[] =
 {
     [ITEMMENULOCATION_FIELD]               = gText_TheField,

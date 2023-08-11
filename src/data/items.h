@@ -8914,6 +8914,18 @@ const struct Item gItems[] =
         .importance = 1,
     },
 
+    [ITEM_INFINITE_REPEL] =
+    {
+        .name = _("Infinite Repel"),
+        .itemId = ITEM_INFINITE_REPEL,
+        .price = 0,
+        .description = sInfiniteRepelDesc,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_InfiniteRepel,
+        .importance = 1,
+    },
+
     [ITEM_REVEAL_GLASS] =
     {
         .name = _("Reveal Glass"),

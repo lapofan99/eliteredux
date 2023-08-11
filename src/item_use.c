@@ -865,6 +865,35 @@ void ItemUseOutOfBattle_CandyBox(u8 taskId)
     }
 }
 
+void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
+{
+    if (!gSaveBlock2Ptr->permanentRepel)
+	{
+		PlaySE(SE_REPEL);
+		if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+		{
+			DisplayItemMessageOnField(taskId, gOtherText_InfiniteRepelOn, Task_CloseCantUseKeyItemMessage);
+		}
+		else
+		{
+			DisplayItemMessage(taskId, 1, gOtherText_InfiniteRepelOn, CloseItemMessage);
+		}
+	}
+	else
+	{
+		PlaySE(SE_PC_OFF);
+		if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+		{
+			DisplayItemMessageOnField(taskId, gOtherText_InfiniteRepelOff, Task_CloseCantUseKeyItemMessage);
+		}
+		else
+		{
+			DisplayItemMessage(taskId, 1, gOtherText_InfiniteRepelOff, CloseItemMessage);
+		}
+	}
+	gSaveBlock2Ptr->permanentRepel = !gSaveBlock2Ptr->permanentRepel;
+}
+
 void ItemUseOutOfBattle_RevealGlass(u8 taskId)
 {
     if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)

@@ -370,6 +370,11 @@ static const u8 sRareCandyDesc[] = _(
     "of a Pokémon by\n"
     "one.");
 
+static const u8 sInfiniteRepelDesc[] = _(
+    "Repels weak wild\n"
+    "Pokémon until you\n"
+    "turn it off.");
+
 static const u8 sPPUpDesc[] = _(
     "Raises the maximum\n"
     "PP of a selected\n"

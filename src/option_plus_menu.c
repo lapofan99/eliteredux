@@ -41,7 +41,7 @@ enum
 enum
 {
     MENUITEM_CUSTOM_AUTO_RUN,
-    MENUITEM_CUSTOM_PERMANENT_REPEL,
+    //MENUITEM_CUSTOM_PERMANENT_REPEL,
     MENUITEM_CUSTOM_DISPLAY_DAMAGE,
     MENUITEM_CUSTOM_ASK_FOR_NICKNAME,
     MENUITEM_CUSTOM_ENABLE_EVS,
@@ -226,7 +226,7 @@ struct // MENU_CUSTOM
 } static const sItemFunctionsCustom[MENUITEM_CUSTOM_COUNT] =
 {
     [MENUITEM_CUSTOM_AUTO_RUN]           = {DrawChoices_AutoRun,          ProcessInput_Options_Two},
-    [MENUITEM_CUSTOM_PERMANENT_REPEL]    = {DrawChoices_PermanentRepel,   ProcessInput_Options_Two},
+    //[MENUITEM_CUSTOM_PERMANENT_REPEL]    = {DrawChoices_PermanentRepel,   ProcessInput_Options_Two},
     [MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = {DrawChoices_DamageDone,       ProcessInput_Options_Two},
     [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = {DrawChoices_AskForNickname,   ProcessInput_Options_Two},
     [MENUITEM_CUSTOM_ENABLE_EVS]         = {DrawChoices_AskForNickname,   ProcessInput_Options_Two},
@@ -273,7 +273,7 @@ static const u8 *const sOptionMenuItemsNamesMain[MENUITEM_MAIN_COUNT] =
 static const u8 *const sOptionMenuItemsNamesCustom[MENUITEM_CUSTOM_COUNT] =
 {
     [MENUITEM_CUSTOM_AUTO_RUN]           = sText_AutoRun,
-    [MENUITEM_CUSTOM_PERMANENT_REPEL]    = sText_PermanentRepel,
+    //[MENUITEM_CUSTOM_PERMANENT_REPEL]    = sText_PermanentRepel,
     [MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = sText_DamageDone,
     [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = sText_AskForNickname,
     [MENUITEM_CUSTOM_ENABLE_EVS]         = sText_EnableEvs,
@@ -318,7 +318,7 @@ static bool8 CheckConditions(int selection)
         switch(selection)
         {
         case MENUITEM_CUSTOM_AUTO_RUN:           return TRUE;
-        case MENUITEM_CUSTOM_PERMANENT_REPEL:    return TRUE;
+        //case MENUITEM_CUSTOM_PERMANENT_REPEL:    return TRUE;
         case MENUITEM_CUSTOM_DISPLAY_DAMAGE:     return TRUE;
         case MENUITEM_CUSTOM_ASK_FOR_NICKNAME:   return TRUE;
         case MENUITEM_CUSTOM_ENABLE_EVS:         return TRUE;
@@ -405,7 +405,7 @@ static const u8 sText_Desc_DoubleBattleMode_Off[]  = _("Disable Double Battle Mo
 static const u8 *const sOptionMenuItemDescriptionsCustom[MENUITEM_CUSTOM_COUNT][2] =
 {
     [MENUITEM_CUSTOM_AUTO_RUN]           = {sText_Desc_AutoRun_Off,           sText_Desc_AutoRun_On},
-    [MENUITEM_CUSTOM_PERMANENT_REPEL]    = {sText_Desc_Permanent_Repel_Off,   sText_Desc_Permanent_Repel_On},
+    //[MENUITEM_CUSTOM_PERMANENT_REPEL]    = {sText_Desc_Permanent_Repel_Off,   sText_Desc_Permanent_Repel_On},
     [MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = {sText_Desc_Display_Damage_Off,    sText_Desc_Display_Damage_On},
     [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = {sText_Desc_Ask_For_Nickname_Off,  sText_Desc_Ask_For_Nickname_On},
     [MENUITEM_CUSTOM_ENABLE_EVS]         = {sText_Desc_Disable_Evs,           sText_Desc_Enable_Evs},
@@ -438,7 +438,7 @@ static const u8 sText_Desc_Disabled_BattleHPBar[]   = _("Only active if xyz.");
 static const u8 *const sOptionMenuItemDescriptionsDisabledCustom[MENUITEM_CUSTOM_COUNT] =
 {
     [MENUITEM_CUSTOM_AUTO_RUN]           = sText_Empty,
-    [MENUITEM_CUSTOM_PERMANENT_REPEL]    = sText_Empty,
+    //[MENUITEM_CUSTOM_PERMANENT_REPEL]    = sText_Empty,
     [MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = sText_Empty,
     [MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = sText_Empty,
     [MENUITEM_CUSTOM_ENABLE_EVS]         = sText_Empty,
@@ -691,7 +691,7 @@ void CB2_InitOptionPlusMenu(void)
         sOptions->sel[MENUITEM_MAIN_FRAMETYPE]   = gSaveBlock2Ptr->optionsWindowFrameType;
         
         sOptions->sel_custom[MENUITEM_CUSTOM_AUTO_RUN]           = gSaveBlock2Ptr->autoRun;
-        sOptions->sel_custom[MENUITEM_CUSTOM_PERMANENT_REPEL]    = gSaveBlock2Ptr->permanentRepel;
+        //sOptions->sel_custom[MENUITEM_CUSTOM_PERMANENT_REPEL]    = gSaveBlock2Ptr->permanentRepel;
         sOptions->sel_custom[MENUITEM_CUSTOM_DISPLAY_DAMAGE]     = gSaveBlock2Ptr->damageDone;
         sOptions->sel_custom[MENUITEM_CUSTOM_ASK_FOR_NICKNAME]   = gSaveBlock2Ptr->askForNickname;
         sOptions->sel_custom[MENUITEM_CUSTOM_ENABLE_EVS]         = gSaveBlock2Ptr->enableEvs;
@@ -889,7 +889,7 @@ static void Task_OptionMenuSave(u8 taskId)
     gSaveBlock2Ptr->optionsWindowFrameType  = sOptions->sel[MENUITEM_MAIN_FRAMETYPE];
 
     gSaveBlock2Ptr->autoRun                      = sOptions->sel_custom[MENUITEM_CUSTOM_AUTO_RUN];
-    gSaveBlock2Ptr->permanentRepel               = sOptions->sel_custom[MENUITEM_CUSTOM_PERMANENT_REPEL];
+    //gSaveBlock2Ptr->permanentRepel               = sOptions->sel_custom[MENUITEM_CUSTOM_PERMANENT_REPEL];
     gSaveBlock2Ptr->damageDone                   = sOptions->sel_custom[MENUITEM_CUSTOM_DISPLAY_DAMAGE];
     gSaveBlock2Ptr->askForNickname               = sOptions->sel_custom[MENUITEM_CUSTOM_ASK_FOR_NICKNAME];
     
@@ -1151,7 +1151,8 @@ const u8 gText_AutoRunDisabled[]  = _("Disabled");    //tx_optionsPlus
 
 static void DrawChoices_PermanentRepel(int selection, int y)
 {
-    bool8 active = CheckConditions(MENUITEM_CUSTOM_PERMANENT_REPEL);
+    //bool8 active = CheckConditions(MENUITEM_CUSTOM_PERMANENT_REPEL);
+    bool8 active = 0;
     u8 styles[2] = {0};
     styles[selection] = 1;
 
