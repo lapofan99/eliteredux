@@ -2239,3 +2239,7 @@ text MultiChoice_Move_Tutor_NPC{
     "Exit$"
     "$"
 }
+
+text Text_Pokemart_Script_No_Badges{
+    format("Sorry but I can't sell you any item yet, you need atleast one badge.")
+}

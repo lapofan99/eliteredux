@@ -2502,3 +2502,7 @@ MultiChoice_Move_Tutor_NPC::
 	.string "Lower Difficulty$"
 	.string "Exit$"
 	.string "$"
+
+Text_Pokemart_Script_No_Badges::
+	.string "Sorry but I can't sell you any item yet,\n"
+	.string "you need atleast one badge.$"
