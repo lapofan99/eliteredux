@@ -2959,12 +2959,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_SIRFETCHD] =
     {
-    .baseHP        = 62,
-    .baseAttack    = 135,
+    .baseHP        = 92, // 62
+    .baseAttack    = 125, // 135
     .baseDefense   = 95,
     .baseSpeed     = 65,
     .baseSpAttack  = 68,
-    .baseSpDefense = 82,
+    .baseSpDefense = 92, // 82
     .type1 = TYPE_FIGHTING,
     .type2 = TYPE_FIGHTING,
     .catchRate = 255,
@@ -2977,8 +2977,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_FAST,
     .eggGroup1 = EGG_GROUP_FLYING,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_HYPER_CUTTER, ABILITY_LEAF_GUARD, ABILITY_CHLOROPHYLL},
-    .innates = {ABILITY_SCRAPPY, ABILITY_KEEN_EDGE, ABILITY_DAUNTLESS_SHIELD},
+    .abilities = {ABILITY_HYPER_CUTTER, ABILITY_DAUNTLESS_SHIELD, ABILITY_CHLOROPHYLL},
+    .innates = {ABILITY_SCRAPPY, ABILITY_KEEN_EDGE, ABILITY_RAMPAGE},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
     },
@@ -13297,7 +13297,7 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
-    .abilities = {ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_CUTE_CHARM},
+    .abilities = {ABILITY_NORMALIZE, ABILITY_FIGHT_SPIRIT, ABILITY_TECHNICIAN},
     .innates = {ABILITY_LIMBER, ABILITY_FUR_COAT, ABILITY_STRIKER},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
@@ -21134,10 +21134,10 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_FLORGES] =
     {
-    .baseHP        = 78,
-    .baseAttack    = 65,
-    .baseDefense   = 68,
-    .baseSpeed     = 75,
+    .baseHP        = 88, // 78
+    .baseAttack    = 55, // 65
+    .baseDefense   = 88, // 68
+    .baseSpeed     = 55, // 75
     .baseSpAttack  = 112,
     .baseSpDefense = 154,
     .type1 = TYPE_FAIRY,
@@ -22070,9 +22070,9 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 90, // 70 vanilla
     .baseAttack    = 73,
-    .baseDefense   = 108, // 88 vanilla
+    .baseDefense   = 98, // 88 vanilla
     .baseSpeed     = 50, // 50 vanilla
-    .baseSpAttack  = 120,
+    .baseSpAttack  = 130, // 120
     .baseSpDefense = 89,
     .type1 = TYPE_WATER,
     .type2 = TYPE_WATER,
@@ -22752,12 +22752,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_NOIBAT] =
     {
-    .baseHP        = 40,
+    .baseHP        = 50, // 40
     .baseAttack    = 30,
-    .baseDefense   = 35,
-    .baseSpeed     = 55,
-    .baseSpAttack  = 45,
-    .baseSpDefense = 40,
+    .baseDefense   = 45, // 35
+    .baseSpeed     = 95, // 55
+    .baseSpAttack  = 75, // 45
+    .baseSpDefense = 50, // 40
     .type1 = TYPE_FLYING,
     .type2 = TYPE_DRAGON,
     .catchRate = 190,
@@ -22769,8 +22769,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_FLYING,
     .eggGroup2 = EGG_GROUP_DRAGON,
-    .abilities = {ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_NONE},
-    .innates = {ABILITY_LOUD_BANG, ABILITY_NOCTURNAL, ABILITY_NONE},
+    .abilities = {ABILITY_MOUNTAINEER, ABILITY_INFILTRATOR, ABILITY_NONE},
+    .innates = {ABILITY_LOUD_BANG, ABILITY_HYPER_AGGRESSIVE, ABILITY_NOCTURNAL},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },
