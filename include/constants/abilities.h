@@ -400,7 +400,7 @@
 #define ABILITY_OPPORTUNIST      (ABILITIES_COUNT_LATEST_GEN + 102) // If target's HP is 50% or below, your single-target damaging moves get priority +1.
 #define ABILITY_GIANT_WINGS      (ABILITIES_COUNT_LATEST_GEN + 103) // Boosts all air, wing and wind moves by 25%, including Twister, Hurricane and Heat Wave.
 #define ABILITY_MOMENTUM         (ABILITIES_COUNT_LATEST_GEN + 104) // Contact moves use Speed stat instead for the damage calculation (counts Speed stage-modifiers).
-#define ABILITY_GRIP_PINCER      (ABILITIES_COUNT_LATEST_GEN + 105) // Contact moves have 30% chance to trap the foe for two to three turns. If the target is trapped, contact moves bypass target's Defense and accuracy check.
+#define ABILITY_GRIP_PINCER      (ABILITIES_COUNT_LATEST_GEN + 105) // Contact moves have 50% chance to trap the foe for two to three turns. If the target is trapped, contact moves bypass target's Defense and accuracy check.
 #define ABILITY_BIG_LEAVES       (ABILITIES_COUNT_LATEST_GEN + 106) // Solar Beam/Blade doesn't need to charge; Synthesis recovers twice as much HP; Growth doubles stat changes; Chlorophyll, Harvest, Leaf Guard and Solar Power are activated.
 #define ABILITY_PRECISE_FIST     (ABILITIES_COUNT_LATEST_GEN + 107) // Punching moves have critical rate increased by +1 and have double the chance of secondary effects.
 #define ABILITY_DEADEYE          (ABILITIES_COUNT_LATEST_GEN + 108) // Never misses.

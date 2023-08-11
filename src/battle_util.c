@@ -8035,7 +8035,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !(gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
              && TARGET_TURN_DAMAGED // Need to actually hit the target
              && gBattlerAttacker != gBattlerTarget
-             && (Random() % 3) == 0)
+             && (Random() % 2) == 0)
             {
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRIP_PINCER;
 
@@ -8410,7 +8410,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 && !(gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
                 && battler != gBattlerTarget
                 && TARGET_TURN_DAMAGED // Need to actually hit the target
-                && (Random() % 3) == 0)
+                && (Random() % 2) == 0)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRIP_PINCER;
 

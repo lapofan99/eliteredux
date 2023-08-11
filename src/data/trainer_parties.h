@@ -9829,10 +9829,10 @@ static const struct TrainerMonItemCustomMoves sParty_Sebastian[] = {
     .species = SPECIES_SCIZOR, // Mega, SpDef Wall, Setup
     .heldItem = ITEM_SCIZORITE,
     .ability = 2, // ABILITY_TECHNICIAN, ABILITY_TECHNICIAN, ABILITY_TECHNICIAN},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_TOUGH_CLAWS, ABILITY_LEVITATE},
+    // .innates = {ABILITY_BUGINIZE, ABILITY_TOUGH_CLAWS, ABILITY_LEVITATE},
     // Pre-Mega
-    // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {248, 0, 16, 0, 244, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
@@ -12394,8 +12394,8 @@ static const struct TrainerMonItemCustomMoves sParty_Vicky[] = {
     .lvl = 0,
     .species = SPECIES_SCIZOR, // Vicky, Bulky Band, Technician
     .heldItem = ITEM_CHOICE_BAND,
-    .ability = 1, // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    .ability = 1, // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -13271,8 +13271,8 @@ static const struct TrainerMonItemCustomMoves sParty_Brooke1[] = {
     .lvl = 0,
     .species = SPECIES_SCIZOR, // Bulky Band
     .heldItem = ITEM_CHOICE_BAND,
-    .ability = 1, // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    .ability = 1, // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -13341,10 +13341,10 @@ static const struct TrainerMonItemCustomMoves sParty_Brooke2[] = {
     .species = SPECIES_SCIZOR, // Mega, SpDef Wall, Setup
     .heldItem = ITEM_SCIZORITE,
     .ability = 2, // ABILITY_TECHNICIAN, ABILITY_TECHNICIAN, ABILITY_TECHNICIAN},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_TOUGH_CLAWS, ABILITY_LEVITATE},
+    // .innates = {ABILITY_BUGINIZE, ABILITY_TOUGH_CLAWS, ABILITY_LEVITATE},
     // Pre-Mega
-    // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {248, 0, 16, 0, 244, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
@@ -13413,10 +13413,10 @@ static const struct TrainerMonItemCustomMoves sParty_Brooke3[] = {
     .species = SPECIES_SCIZOR, // Mega, SpDef Wall, Setup
     .heldItem = ITEM_SCIZORITE,
     .ability = 2, // ABILITY_TECHNICIAN, ABILITY_TECHNICIAN, ABILITY_TECHNICIAN},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_TOUGH_CLAWS, ABILITY_LEVITATE},
+    // .innates = {ABILITY_BUGINIZE, ABILITY_TOUGH_CLAWS, ABILITY_LEVITATE},
     // Pre-Mega
-    // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {248, 0, 16, 0, 244, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
@@ -13495,10 +13495,10 @@ static const struct TrainerMonItemCustomMoves sParty_Brooke4[] = {
     .species = SPECIES_SCIZOR, // Mega, Fast Setup
     .heldItem = ITEM_SCIZORITE,
     .ability = 2, // ABILITY_TECHNICIAN, ABILITY_TECHNICIAN, ABILITY_TECHNICIAN},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_TOUGH_CLAWS, ABILITY_LEVITATE},
+    // .innates = {ABILITY_BUGINIZE, ABILITY_TOUGH_CLAWS, ABILITY_LEVITATE},
     // Pre-Mega
-    // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
@@ -22487,8 +22487,8 @@ static const struct TrainerMonItemCustomMoves sParty_Jazmyn[] = { // potential d
     .lvl = 0,
     .species = SPECIES_SCIZOR, // SpDef Wall, Curse
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    .ability = 1, // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_CAREFUL,
@@ -31039,8 +31039,8 @@ static const struct TrainerMonItemCustomMoves sParty_Alexa[] = {
     .lvl = 0,
     .species = SPECIES_SCIZOR, // Bulky Intimidate + U-turn
     .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -33798,12 +33798,12 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMossdeep[] = {
     .lvl = 0,
     .species = SPECIES_SCIZOR, // Tabitha, Bulky Vest, Intimidate
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_BULLET_PUNCH, MOVE_SUPERPOWER, MOVE_U_TURN, MOVE_KNOCK_OFF
+    .moves = MOVE_BULLET_PUNCH, MOVE_SUPERPOWER, MOVE_EXTREME_SPEED, MOVE_KNOCK_OFF
     },
     {
     .lvl = 0,
@@ -33871,12 +33871,12 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMossdeepInsane[] = {
     .lvl = 0,
     .species = SPECIES_SCIZOR, // Tabitha-E, Bulky Vest, Intimidate
     .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    .ability = 2, // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_BULLET_PUNCH, MOVE_SUPERPOWER, MOVE_U_TURN, MOVE_KNOCK_OFF
+    .moves = MOVE_BULLET_PUNCH, MOVE_SUPERPOWER, MOVE_EXTREME_SPEED, MOVE_KNOCK_OFF
     },
     {
     .lvl = 0,
@@ -38654,8 +38654,8 @@ static const struct TrainerMonItemCustomMoves sParty_Buffel[] = { // Postgame
     .lvl = 0,
     .species = SPECIES_SCIZOR, // Buffel
     .heldItem = ITEM_CHOICE_BAND,
-    .ability = 0, // ABILITY_REGENERATOR, ABILITY_TECHNICIAN, ABILITY_INTIMIDATE},
-    // .innates = {ABILITY_GRIP_PINCER, ABILITY_HYPER_CUTTER, ABILITY_FULL_METAL_BODY},
+    .ability = 0, // ABILITY_REGENERATOR, ABILITY_GRIP_PINCER, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_TECHNICIAN, ABILITY_HYPER_CUTTER, ABILITY_BUGINIZE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
