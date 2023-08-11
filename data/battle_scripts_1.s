@@ -8759,6 +8759,16 @@ BattleScript_BattlerAbilityStatRaiseOnSwitchIn::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_WaterCompactionActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_WATER_COMPACTION
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_TargetAbilityStatRaiseOnMoveEnd2
+	goto BattleScript_TargetAbilityStatRaiseOnMoveEnd
+
+BattleScript_StaminaActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_STAMINA
+	jumpifstat BS_TARGET, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_TargetAbilityStatRaiseOnMoveEnd2
+	goto BattleScript_TargetAbilityStatRaiseOnMoveEnd
+
 BattleScript_TargetAbilityStatRaiseOnMoveEnd::
 	call BattleScript_AbilityPopUp
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | MOVE_EFFECT_CERTAIN, NULL
@@ -8767,6 +8777,7 @@ BattleScript_TargetAbilityStatRaiseOnMoveEnd::
 	waitanimation
 	printstring STRINGID_ABILITYRAISEDSTAT
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_TargetAbilityStatRaiseOnMoveEnd2::
 	return
 	
 BattleScript_ScriptingAbilityStatRaise::
