@@ -13423,15 +13423,36 @@ static void Cmd_switchoutabilities(void)
         BattleScriptPush(gBattlescriptCurrInstr);
         gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;
     }
-    else
-    {
+    else if(((BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) || 
+            (gBattleMons[gActiveBattler].ability == ABILITY_NATURAL_CURE && 
+            !gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_NATURAL_CURE)]))
+            && gBattleMons[gActiveBattler].status1 != 0) && 
+            (BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR) || 
+            (gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR && 
+            !gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_REGENERATOR)]))
+            && !BATTLER_MAX_HP(gActiveBattler)){
+            gBattleScripting.switchInBattlerOverwrite = gActiveBattler;
+
+            if(gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR || gBattleMons[gActiveBattler].ability == ABILITY_NATURAL_CURE)
+                gBattleMons[gActiveBattler].ability = ABILITY_NONE;
+
+            if(BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE))
+                gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_NATURAL_CURE)] = TRUE;
+
+            if(BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR))
+                gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_REGENERATOR)] = TRUE;
+
+            BattleScriptPush(gBattlescriptCurrInstr);
+            gBattlescriptCurrInstr = BattleScript_RegeneratorExits;
+    }
+    else{
         if((BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) || GetBattlerAbility(gActiveBattler) == ABILITY_NATURAL_CURE) && 
             gBattleMons[gActiveBattler].status1 != 0){
             gBattleMons[gActiveBattler].status1 = 0;
             BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 4, &gBattleMons[gActiveBattler].status1);
             MarkBattlerForControllerExec(gActiveBattler);
 		}
-        else if(BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR) || GetBattlerAbility(gActiveBattler) == ABILITY_REGENERATOR){
+        else if(BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR) || GetBattlerAbility(gActiveBattler) == ABILITY_REGENERATOR){ 
             gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 3;
             gBattleMoveDamage += gBattleMons[gActiveBattler].hp;
             if (gBattleMoveDamage > gBattleMons[gActiveBattler].maxHP)
@@ -13439,7 +13460,7 @@ static void Cmd_switchoutabilities(void)
             BtlController_EmitSetMonData(0, REQUEST_HP_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 2, &gBattleMoveDamage);
             MarkBattlerForControllerExec(gActiveBattler);
 		}
-		
+
         gBattlescriptCurrInstr += 2;
     }
 }

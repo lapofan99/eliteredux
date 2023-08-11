@@ -423,6 +423,8 @@ extern const u8 BattleScript_AttackerFormChangeMoveEffect[];
 extern const u8 BattleScript_BothCanNoLongerEscape[];
 extern const u8 BattleScript_OctolockEndTurn[];
 extern const u8 BattleScript_NeutralizingGasExits[];
+extern const u8 BattleScript_NaturalCureExits[];
+extern const u8 BattleScript_RegeneratorExits[];
 extern const u8 BattleScript_MultiHitPrintStrings[];
 extern const u8 BattleScript_BurnUpRemoveType[];
 extern const u8 BattleScript_AttackBoostActivates[];
