@@ -3396,6 +3396,7 @@ static const struct LevelUpMove sDragoniteLevelUpLearnset[] = {
 
 static const struct LevelUpMove sMewtwoLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SCORCHING_SANDS), // new
+    LEVEL_UP_MOVE( 1, MOVE_EXPANDING_FORCE), // new
     LEVEL_UP_MOVE( 1, MOVE_LASER_FOCUS),
     LEVEL_UP_MOVE( 1, MOVE_PSYWAVE),
     LEVEL_UP_MOVE( 1, MOVE_CONFUSION),
@@ -4090,6 +4091,7 @@ static const struct LevelUpMove sFlaaffyLevelUpLearnset[] = {
 static const struct LevelUpMove sAmpharosLevelUpLearnset[] = {
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE( 0, MOVE_DRAGON_BREATH),
+        LEVEL_UP_MOVE( 0, MOVE_SLACK_OFF), // new
     #endif
     LEVEL_UP_MOVE( 1, MOVE_ZAP_CANNON),
     LEVEL_UP_MOVE( 1, MOVE_MAGNETIC_FLUX),
@@ -5524,9 +5526,14 @@ static const struct LevelUpMove sRaikouLevelUpLearnset[] = {
 
 static const struct LevelUpMove sEnteiLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SCORCHING_SANDS), // new
+    LEVEL_UP_MOVE( 1, MOVE_HIGH_HORSEPOWER), // new
+    LEVEL_UP_MOVE( 1, MOVE_ICE_FANG), // new
+    LEVEL_UP_MOVE( 1, MOVE_THUNDER_FANG), // new
+    LEVEL_UP_MOVE( 1, MOVE_PSYCHIC_FANGS), // new
     LEVEL_UP_MOVE( 1, MOVE_EXTREME_SPEED),
     LEVEL_UP_MOVE( 1, MOVE_SACRED_FIRE),
     LEVEL_UP_MOVE( 1, MOVE_BITE),
+    LEVEL_UP_MOVE( 1, MOVE_CRUNCH), // new
     LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 8, MOVE_EMBER),
     LEVEL_UP_MOVE(15, MOVE_ROAR),
@@ -17714,11 +17721,14 @@ static const struct LevelUpMove sTapuKokoLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_FALSE_SWIPE),
 	LEVEL_UP_MOVE( 1, MOVE_WITHDRAW),
 	LEVEL_UP_MOVE( 1, MOVE_THUNDER_SHOCK),
+	LEVEL_UP_MOVE( 1, MOVE_MOONBLAST), // new
+	LEVEL_UP_MOVE( 1, MOVE_WEATHER_BALL), // new
 	LEVEL_UP_MOVE( 8, MOVE_SPARK),
 	LEVEL_UP_MOVE(14, MOVE_SHOCK_WAVE),
 	LEVEL_UP_MOVE(20, MOVE_SCREECH),
 	LEVEL_UP_MOVE(26, MOVE_CHARGE),
 	LEVEL_UP_MOVE(32, MOVE_WILD_CHARGE),
+	LEVEL_UP_MOVE(35, MOVE_HURRICANE), // new
 	LEVEL_UP_MOVE(38, MOVE_MIRROR_MOVE),
 	LEVEL_UP_MOVE(43, MOVE_NATURES_MADNESS),
 	LEVEL_UP_MOVE(48, MOVE_DISCHARGE),

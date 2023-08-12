@@ -5802,7 +5802,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_AMPHAROS] =
     {
-    .baseHP        = 90,
+    .baseHP        = 110,
     .baseAttack    = 75,
     .baseDefense   = 85,
     .baseSpeed     = 55,
@@ -5819,15 +5819,15 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_MONSTER,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_STATIC, ABILITY_LIGHTNING_ROD, ABILITY_ELECTRIC_SURGE},
-    .innates = {ABILITY_MINUS, ABILITY_ILLUMINATE, ABILITY_OVERWHELM},
+    .abilities = {ABILITY_SHORT_CIRCUIT, ABILITY_LIGHTNING_ROD, ABILITY_ELECTRIC_SURGE},
+    .innates = {ABILITY_DAZZLING, ABILITY_ILLUMINATE, ABILITY_OVERWHELM},
     .bodyColor = BODY_COLOR_YELLOW,
     .noFlip = FALSE,
     },
 
 [SPECIES_AMPHAROS_MEGA] =
     {
-    .baseHP        = 90,
+    .baseHP        = 110,
     .baseAttack    = 95,
     .baseDefense   = 105,
     .baseSpeed     = 45,
@@ -5844,8 +5844,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_MONSTER,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER},
-    .innates = {ABILITY_MINUS, ABILITY_ILLUMINATE, ABILITY_OVERWHELM},
+    .abilities = {ABILITY_TRANSISTOR, ABILITY_TRANSISTOR, ABILITY_TRANSISTOR},
+    .innates = {ABILITY_FLUFFY, ABILITY_ILLUMINATE, ABILITY_OVERWHELM},
     .bodyColor = BODY_COLOR_YELLOW,
     .noFlip = FALSE,
     },
@@ -14994,8 +14994,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_SLOW,
     .eggGroup1 = EGG_GROUP_UNDISCOVERED,
     .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-    .abilities = {ABILITY_DRAGONSLAYER, ABILITY_SWIFT_SWIM, ABILITY_TWISTED_DIMENSION},
-    .innates = {ABILITY_PRIMAL_ARMOR, ABILITY_PRESSURE, ABILITY_POWER_CORE},
+    .abilities = {ABILITY_RAMPAGE, ABILITY_SWIFT_SWIM, ABILITY_DRIZZLE},
+    .innates = {ABILITY_PRIMAL_ARMOR, ABILITY_SEA_GUARDIAN, ABILITY_POWER_CORE},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },
@@ -24178,7 +24178,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_SHIINOTIC] =
     {
-    .baseHP        = 60,
+    .baseHP        = 80, // 60
     .baseAttack    = 45,
     .baseDefense   = 80,
     .baseSpeed     = 30,
@@ -25750,8 +25750,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_SLOW,
     .eggGroup1 = EGG_GROUP_UNDISCOVERED,
     .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-    .abilities = {ABILITY_SPEED_FORCE, ABILITY_ELECTRIC_BURST, ABILITY_OVERCHARGE},
-    .innates = {ABILITY_NATURAL_CURE, ABILITY_ELECTRIC_SURGE, ABILITY_DRIZZLE},
+    .abilities = {ABILITY_SPEED_BOOST, ABILITY_ELECTRIC_BURST, ABILITY_OVERCHARGE},
+    .innates = {ABILITY_LEVITATE, ABILITY_ELECTRIC_SURGE, ABILITY_DRIZZLE},
     .bodyColor = BODY_COLOR_YELLOW,
     .noFlip = FALSE,
     },
@@ -27258,12 +27258,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_FLAPPLE] =
     {
-    .baseHP        = 70,
-    .baseAttack    = 110,
-    .baseDefense   = 80,
-    .baseSpeed     = 70,
-    .baseSpAttack  = 95,
-    .baseSpDefense = 60,
+    .baseHP        = 70, // 70
+    .baseAttack    = 120, // 110
+    .baseDefense   = 90, // 80
+    .baseSpeed     = 95, // 70
+    .baseSpAttack  = 105, // 95
+    .baseSpDefense = 60, // 60
     .type1 = TYPE_GRASS,
     .type2 = TYPE_DRAGON,
     .catchRate = 255,
@@ -27283,12 +27283,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_APPLETUN] =
     {
-    .baseHP        = 110,
-    .baseAttack    = 85,
-    .baseDefense   = 80,
+    .baseHP        = 110, // 110
+    .baseAttack    = 100, // 85
+    .baseDefense   = 110, // 80
     .baseSpeed     = 30,
-    .baseSpAttack  = 100,
-    .baseSpDefense = 80,
+    .baseSpAttack  = 100, // 100
+    .baseSpDefense = 90, // 80
     .type1 = TYPE_GRASS,
     .type2 = TYPE_DRAGON,
     .catchRate = 255,

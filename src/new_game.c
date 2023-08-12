@@ -98,7 +98,7 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->enableEvs = TRUE;
     gSaveBlock2Ptr->askForNickname = TRUE;
     gSaveBlock2Ptr->individualColors = FALSE;
-    gSaveBlock2Ptr->autoRun = TRUE;
+    gSaveBlock2Ptr->autoRun = FALSE;
     gSaveBlock2Ptr->damageDone = TRUE;
     gSaveBlock2Ptr->shinyrate = 0; //Normal Shiny Rate
     gSaveBlock2Ptr->optionsWindowFrameType = 0;
