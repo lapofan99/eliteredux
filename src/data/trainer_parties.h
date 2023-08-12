@@ -13916,7 +13916,7 @@ static const struct TrainerMonItemCustomMoves sParty_Dusty2[] = {
     .species = SPECIES_STEELIX, // Bulky Attacker + Dragon Tail
     .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -13974,7 +13974,7 @@ static const struct TrainerMonItemCustomMoves sParty_Dusty3[] = {
     .species = SPECIES_STEELIX, // Bulky Vest Attacker
     .heldItem = ITEM_ASSAULT_VEST,
     .ability = 2, // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -14035,7 +14035,7 @@ static const struct TrainerMonItemCustomMoves sParty_Dusty4[] = {
     // .innates = {ABILITY_LEAD_COAT, ABILITY_IMPENETRABLE, ABILITY_STRONG_JAW},
     // Pre-Mega
     // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 0},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .zeroSpeedIvs = TRUE,
@@ -16343,7 +16343,7 @@ static const struct TrainerMonItemCustomMoves sParty_Lenny[] = {
     .species = SPECIES_STEELIX, // Orb, Gyro Ball + Coil
     .heldItem = ITEM_LIFE_ORB,
     .ability = 1, // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 0},
     .evs = {252, 0, 208, 0, 48, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .zeroSpeedIvs = TRUE,
@@ -17455,11 +17455,11 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMtChimney[] = {
     .species = SPECIES_STEELIX, // SpDef Wall, Orb, Coil
     .heldItem = ITEM_LIFE_ORB,
     .ability = 1, // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_CAREFUL,
-    .moves = MOVE_IRON_TAIL, MOVE_EARTHQUAKE, MOVE_SHORE_UP, MOVE_COIL
+    .moves = MOVE_IRON_TAIL, MOVE_DOUBLE_EDGE, MOVE_SHORE_UP, MOVE_COIL
     },
     {
     .lvl = 0,
@@ -17524,11 +17524,11 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMtChimneyInsane[] = 
     .species = SPECIES_STEELIX, // SpDef Wall, Orb, Coil
     .heldItem = ITEM_LIFE_ORB,
     .ability = 1, // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_CAREFUL,
-    .moves = MOVE_IRON_TAIL, MOVE_EARTHQUAKE, MOVE_SHORE_UP, MOVE_COIL
+    .moves = MOVE_IRON_TAIL, MOVE_DOUBLE_EDGE, MOVE_SHORE_UP, MOVE_COIL
     },
     {
     .lvl = 0,
@@ -22118,7 +22118,7 @@ static const struct TrainerMonItemCustomMoves sParty_Garrison[] = { // potential
     .species = SPECIES_STEELIX, // Bulky Orb Attacker
     .heldItem = ITEM_LIFE_ORB,
     .ability = 0, // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -26270,7 +26270,7 @@ static const struct TrainerMonItemCustomMoves sParty_DezAndLuke[] = { // Double
     .species = SPECIES_STEELIX, // Doubles, Coil Up + Fire Fang
     .heldItem = ITEM_SITRUS_BERRY,
     .ability = 2, // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
@@ -28701,7 +28701,7 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMagmaHideout[] = { /
     // .innates = {ABILITY_LEAD_COAT, ABILITY_IMPENETRABLE, ABILITY_STRONG_JAW},
     // Pre-Mega
     // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
@@ -28740,7 +28740,7 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMagmaHideoutInsane[]
     // .innates = {ABILITY_LEAD_COAT, ABILITY_IMPENETRABLE, ABILITY_STRONG_JAW},
     // Pre-Mega
     // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
@@ -33776,7 +33776,7 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMossdeep[] = {
     // .innates = {ABILITY_LEAD_COAT, ABILITY_IMPENETRABLE, ABILITY_STRONG_JAW},
     // Pre-Mega
     // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 0},
     .evs = {252, 208, 0, 0, 48, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .zeroSpeedIvs = TRUE,
@@ -33849,7 +33849,7 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMossdeepInsane[] = {
     // .innates = {ABILITY_LEAD_COAT, ABILITY_IMPENETRABLE, ABILITY_STRONG_JAW},
     // Pre-Mega
     // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 0},
     .evs = {252, 208, 0, 0, 48, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .zeroSpeedIvs = TRUE,
@@ -38442,7 +38442,7 @@ static const struct TrainerMonItemCustomMoves sParty_LucyLavaridge[] = {
     // .innates = {ABILITY_LEAD_COAT, ABILITY_IMPENETRABLE, ABILITY_STRONG_JAW},
     // Pre-Mega
     // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_STRONG_JAW},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_GROUNDATE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
