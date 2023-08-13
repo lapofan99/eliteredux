@@ -5294,7 +5294,8 @@ u8 GetMonsStateToDoubles(void)
     if (gPlayerPartyCount == 1)
         return gPlayerPartyCount; // PLAYER_HAS_ONE_MON
 
-    HealPlayerParty();
+    if(!FlagGet(FLAG_SYS_DISABLE_AUTOHEAL))
+        HealPlayerParty();
 
     for (i = 0; i < gPlayerPartyCount; i++)
     {
