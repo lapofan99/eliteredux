@@ -2420,10 +2420,10 @@ bool8 ScrCmd_multichoice2(struct ScriptContext *ctx){
 
 static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
 {
-    {ITEM_ESCAPE_ROPE,       1},
     {ITEM_CANDY_BOX,         1},
     {ITEM_INFINITE_REPEL,    1},
     {ITEM_HONEY,            50},
+    {ITEM_ESCAPE_ROPE,       1},
     {ITEM_EVIOLITE,         50},
     {ITEM_LEFTOVERS,        50},
     {ITEM_BLACK_SLUDGE,     50},

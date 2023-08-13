@@ -296,12 +296,12 @@
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_CORPHISH"
+                "species": "SPECIES_TENTACOOL"
               },
               {
                 "min_level": 5,
                 "max_level": 10,
-                "species": "SPECIES_GOLDEEN"
+                "species": "SPECIES_SKRELP"
               },
               {
                 "min_level": 10,
@@ -351,7 +351,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_AUDINO"
+                "species": "SPECIES_MISDREAVUS"
               },
               {
                 "min_level": 2,
@@ -634,7 +634,7 @@
               {
                 "min_level": 5,
                 "max_level": 7,
-                "species": "SPECIES_PIDOVE"
+                "species": "SPECIES_NUMEL"
               },
               {
                 "min_level": 5,
@@ -764,7 +764,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_AUDINO"
+                "species": "SPECIES_SHELMET"
               },
               {
                 "min_level": 2,
@@ -2483,12 +2483,12 @@
               {
                 "min_level": 6,
                 "max_level": 8,
-                "species": "SPECIES_SLAKOTH"
+                "species": "SPECIES_PHANTUMP"
               },
               {
                 "min_level": 6,
                 "max_level": 8,
-                "species": "SPECIES_PHANTUMP"
+                "species": "SPECIES_PIDOVE"
               },
               {
                 "min_level": 6,
@@ -2513,7 +2513,7 @@
               {
                 "min_level": 6,
                 "max_level": 8,
-                "species": "SPECIES_PICHU"
+                "species": "SPECIES_CROAGUNK"
               },
               {
                 "min_level": 6,
@@ -2568,12 +2568,12 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_AUDINO"
+                "species": "SPECIES_PIKACHU"
               },
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_PIKACHU"
+                "species": "SPECIES_SLAKOTH"
               },
               {
                 "min_level": 2,
@@ -10783,6 +10783,71 @@
         {
           "map": "MAP_PETALBURG_CITY",
           "base_label": "gPetalburgCity",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_MAREEP"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_ODDISH"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_EKANS"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_STUNKY"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_VULPIX"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_FLETCHLING"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_SALANDIT"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_ARON"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_DEINO"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_ARON"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_DEINO"
+              }
+            ]
+          },
           "water_mons": {
             "encounter_rate": 1,
             "mons": [

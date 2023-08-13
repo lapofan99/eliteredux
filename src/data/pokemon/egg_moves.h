@@ -3466,6 +3466,7 @@ const u16 gEggMoves[] = {
         MOVE_AQUA_JET),
 
     egg_moves(VANILLITE,
+        MOVE_AURORA_VEIL, // new
         MOVE_WATER_PULSE,
         MOVE_NATURAL_GIFT,
         MOVE_IMPRISON,
