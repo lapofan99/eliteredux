@@ -539,3 +539,24 @@ nature = Timid
 moves = Psyshock, Calm Mind, Shadow Ball, Focus Blast 
 comment = He will always have STAB thanks to Mystic Power. Inner Focus will boost Focus Blast's accuracy to 90% instead of 70% making him an absolutely busted Glass Cannon.
 }
+Torterra
+{
+    Name = Shell Smash in the Sun
+    Item = Sitrus Berry
+    Ability = Stamina
+    EVs = 130, 252, 0, 0, 0, 124
+    Nature = Adamant
+    Moves = Shell Smash, Solar Blade, Earthquake / High Horsepower, Stone Edge
+    Comment = Sun is mandatory for this set to work, as otherwise, Torterra is too slow to outspeed the threats it needs to surpass. Stamina is here to make its setup easier against physical attackers and can counteract the defense drop from Shell Smash.
+
+    Sitrus Berry is included to heal Torterra during its setup and take advantage of its innate Big Leaves ability to restore the berry. The EVs are tailored to ensure that Torterra has enough speed to outpace Chlorophyll-boosted threats and enough bulk to execute its setup.
+
+    If Mimikyu, Focus Sash, Sturdy, or Multiscale/Shadow Shield users are a concern, Bullet Seed can replace Solar Blade. If you're playing on Grassy Terrain alongside the sun or in Doubles, High Horsepower is recommended instead of Earthquake.
+
+    Strength is chosen for more accuracy and PP than Stone Edge, but be cautious of defense drops, which can leave you vulnerable to priority moves. Rock Slide is a safer option than Strength and Stone Edge, and it also has a chance to flinch opponents, which is advantageous. However, it's weaker unless you're using Sheer Force, in which case your setup becomes more challenging without Stamina.
+
+    While Rough Skin can inflict chip damage on opponents, Stamina is preferred since it boosts your defense when you take hits. Sheer Force is a viable choice if you have Rock Slide; otherwise, it's not as effective.
+
+    Regarding Berries, while Sitrus is the best option in my opinion, you can experiment with riskier yet more rewarding berries like Salac or Liechi.
+    Tags = Singles, Doubles, Offensive
+}
