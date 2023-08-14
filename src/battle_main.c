@@ -1917,14 +1917,36 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 difficultySetting = gSaveBlock2Ptr->gameDifficulty;
     u8 isDoubleBattle = gTrainers[trainerNum].doubleBattle;
 	u8 DoubleReady = GetMonsStateToDoubles() == PLAYER_HAS_TWO_USABLE_MONS;
+    u8 enemyPartySize = gTrainers[trainerNum].partySize;
         
     u16 move = 1;
     u16 species = 1;
 
+    if(DoubleReady && (gSaveBlock2Ptr->doubleBattleMode == TRUE || gTrainers[trainerNum].doubleBattle)){//This is a copy from the code below to calculate the number of Pokemon per trainer
+        // In doubles if you are on elite mode the game will try to use a Double Elite Party if there is no exclusive party it uses the 
+        // Elite Single Party if there is Elite Single Party it will try to use Double Normal Party if there is no Normal Double Party it will try to
+        // use the Signle Normal Party
+        if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsaneDouble.ItemCustomMoves != NULL)
+            enemyPartySize = gTrainers[trainerNum].partySizeInsaneDouble;
+        else if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != NULL)
+            enemyPartySize = gTrainers[trainerNum].partySizeDouble;
+        else if(gTrainers[trainerNum].partyDouble.ItemCustomMoves != NULL)
+            enemyPartySize = gTrainers[trainerNum].partySizeInsane;
+        else
+            enemyPartySize = gTrainers[trainerNum].partySize;
+        }
+    else{
+        // In singles if you are on elite mode the game will try to use an Elite Party if there is no exclusive party it uses the normal one
+        if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != NULL)
+            enemyPartySize = gTrainers[trainerNum].partySizeInsane;
+        else
+            enemyPartySize = gTrainers[trainerNum].partySize;
+    }
+
     //Double Battle Mode
-    if(DoubleReady && gTrainers[trainerNum].partySize >= 2 && gSaveBlock2Ptr->doubleBattleMode == TRUE)
+    if(DoubleReady && enemyPartySize >= 2 && gSaveBlock2Ptr->doubleBattleMode == TRUE)
 		isDoubleBattle = TRUE;
-	else if(DoubleReady && gTrainers[trainerNum].partySize >= 2 && gTrainers[trainerNum].doubleBattle)
+	else if(DoubleReady && enemyPartySize >= 2 && gTrainers[trainerNum].doubleBattle)
 		isDoubleBattle = TRUE;
 	else
 		isDoubleBattle = FALSE;
@@ -1946,14 +1968,14 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
         {
-            if (gTrainers[trainerNum].partySize > 3)
+            if (enemyPartySize > 3)
                 monsCount = 3;
             else
-                monsCount = gTrainers[trainerNum].partySize;
+                monsCount = enemyPartySize;
         }
         else
         {
-            monsCount = gTrainers[trainerNum].partySize;
+            monsCount = enemyPartySize;
         }
 
         for (i = 0; i < monsCount; i++)
@@ -2197,18 +2219,18 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     // In doubles if you are on elite mode the game will try to use a Double Elite Party if there is no exclusive party it uses the 
                     // Elite Single Party if there is Elite Single Party it will try to use Double Normal Party if there is no Normal Double Party it will try to
                     // use the Signle Normal Party
-                    if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsaneDouble.ItemCustomMoves != 0)
+                    if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsaneDouble.ItemCustomMoves != NULL)
                         partyData = gTrainers[trainerNum].partyInsaneDouble.ItemCustomMoves;
-                    else if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != 0)
+                    else if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != NULL)
                         partyData = gTrainers[trainerNum].partyInsane.ItemCustomMoves;
-                    else if(gTrainers[trainerNum].partyDouble.ItemCustomMoves != 0)
+                    else if(gTrainers[trainerNum].partyDouble.ItemCustomMoves != NULL)
                         partyData = gTrainers[trainerNum].partyDouble.ItemCustomMoves;
                     else
                         partyData = gTrainers[trainerNum].party.ItemCustomMoves;
                 }
                 else{
                     // In singles if you are on elite mode the game will try to use an Elite Party if there is no exclusive party it uses the normal one
-                    if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != 0)
+                    if(difficultySetting == DIFFICULTY_ELITE && gTrainers[trainerNum].partyInsane.ItemCustomMoves != NULL)
                         partyData = gTrainers[trainerNum].partyInsane.ItemCustomMoves;
                     else
                         partyData = gTrainers[trainerNum].party.ItemCustomMoves;
@@ -2350,7 +2372,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
     }
 
-    return gTrainers[trainerNum].partySize;
+    return enemyPartySize;
 }
 
 void VBlankCB_Battle(void)
