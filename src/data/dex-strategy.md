@@ -560,3 +560,201 @@ Torterra
     Regarding Berries, while Sitrus is the best option in my opinion, you can experiment with riskier yet more rewarding berries like Salac or Liechi.
     Tags = Singles, Doubles, Offensive
 }
+Honchkrow
+{
+    Name = No brain needed
+    Item = Choice Band
+    Ability = Moxie
+    EVs = 252, 252, 0, 0, 6, 0
+    Nature = Adamant
+    Moves = Wicked Blow, Dual Wingbeat, Superpower, Sucker Punch
+    Comment = Sucker Punch for quick knockouts, Moxie for sweeping.
+    Tags = Singles, Doubles, Offensive
+}
+Mismagius
+{
+    name = Go to Therapy
+    item = choice scarf
+    ability = bad luck
+    evs = 0, 0, 0, 252, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = modest
+    moves = Hyper Voice, shadow ball, dark pulse, mystical fire
+   comment = A potent nuker with fairly broad coverage. Often utilizes Pixilate-boosted Hyper Voice to secure victories.
+}
+Trevenant
+{
+    Name = Please don't disturb the Tree
+    Item = Aguav Berry
+    Ability = Grassy Surge
+    EVs = 252, 0, 0, 0, 252, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    Nature = Careful
+    Moves = Substitute, Leech Seed, Curse, Protect
+    Comment = Watch opposing trainers become bewildered by this formidable wooden wall. Determining the optimal move sequence can be challenging, as it depends on the opposing Pokémon.
+
+With Substitute you'll lose some HP but you'll regain them with Leech Seed in one or two turn using Protect and Grassy Surge. At this point you should be in range of using Curse, this will cost half of your HP. Since Trevenant is pretty slow you'll be able to figure out which move to use so that Trevenant doesn't get knocked out and the stall strategy continues. Once he reaches around 1/4 of his total HP Trevenant will eat his berry gaining a lot of HP (even right after he used Substitute or Curse), but thanks to Harvest among his innates, he will be able to recycle his berry with a 50% chance (100% chance under the sun, which is recommended). 
+}
+araquanid
+{
+    name = Special Attacker be-gone
+    item = leftovers
+    ability = Water Veil
+    evs = 252, 4, 0, 0, 252, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = adamant
+    moves = liquidation, leech life, protect, curse
+   comment = Can go in on any neutral special hit and set up with Curse to tank physical hits. Water Veil for recovery, then hit very hard with Water Bubble Liquidation with the added bonus of burn immunity.
+    .tags = Singles, Mixed
+}
+Leafeon
+{
+    name = Leafeon is special!
+    item = Life Orb
+    ability = Avenger
+    evs = 0, 0, 6, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Modest
+    moves = Solar Beam, Flamethrower, Giga Drain, Power Gem
+   comment = Use it in a Sunny Day/Drought team. Set the weather with your lead and play cool, when your Pokémon goes down it'll be Leafeon's moment. Avenger in combination with Big Leaves and Feline Prowess will ensure a devastating first special move. Leafeon can learn Solar Beam & Giga Drain but you have to transform it into Flareon and Espeon in order to learn Flamethrower and Power Gem for a good coverage against Bug, Steel and Flying Pokémon. 
+   
+   Leafeon is a nice Grass cannon... get it?
+}
+Sunflora 
+{ 
+    name = Radical Red Sunflora but better 
+    item = Choice Specs
+    ability = Drought
+    evs = 0, 0, 0, 252, 4, 252// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = timid
+    moves = solar beam, sludge bomb, mystical fire, earth power
+   comment = Thanks to having permanent Drought, Chlorophyll and Solar Power all at once, it allows instant charging Solar Power, and hitting hard with the other moves with Choice Specs + Solar Power while outspeeding some threats thanks to Chlorophyll. 
+
+Alternatively, Choice Scarf can be used instead of Choice Specs to increase the Speed even further in exchange of its power.
+
+It's also a very important core to Sun Teams because of Drought, so that Pokémon without Chloroplast that have abilities like Solar Power, Chlorophyll or Harvest can be used to their full potential.
+    .tags = Singles, Troll, Offensive
+}
+accelgor
+{ 
+    name = Mixed Momentum Attacker
+    item = life orb
+    ability = momentum
+    evs = 252, 0, 0, 4, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = timid
+    moves = leech life, frustration, sucker punch, water shuriken
+    comment = Momentum coupled with it's honestly absurd Speed makes it both hit super hard and be super fast while still being able to invest in bulk to take a hit or two. Water Shuriken is there to activate Protean and take a Fire-type move you would never be able to take even when neutral.
+    .tags = Singles, Offensive
+}
+Starmie
+{
+    name = Bulky Superstar
+    item = Expert Belt / Choice Specs
+    ability = Mystic Power
+    evs = 252, 0, 0, 252, 6, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = quiet
+    moves = psychic, ice beam, thunderbolt, hydro pump
+    comment = With Mystic Power giving BoltBeam STAB (though it can be changed to Thunder and Blizzard for more power and better accuracy because of Victory Star), 0 IVs and Quiet Nature to make the most off Analytic, this Starmie will always deal a lot of damage. Item of choice can differ between Expert Belt to deal more damage on super-effective moves, or Choice Specs to lock to one move. This is not ideal as a main Trick Room sweeper, as it is still fast enough to possibly outspeed slower threats.
+    .tags = Singles, Offensive
+}
+Galvantula
+{
+    .name = Spider Lair Lead
+    .lvl = 0,
+    .species = SPECIES_GALVANTULA, // Wattson, Sash, Spider Lair
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 2, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
+    // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_TIMID,
+    .moves = MOVE_THUNDERBOLT, MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL
+    .comment = A true classic for Galvantula - sets up Sticky Web on entry, then decide if you want to attack normally or Volt Switch out into a better Pokémon.
+    .tags = Singles, Offensive
+    }
+galvantula
+{ 
+    name = Kamikaze Spider
+    item = focus sash
+    ability = compound eyes
+    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = modest
+    moves = thunder, bug buzz, protect, sticky web
+    comment = Will take a hit from anything without any multi-hit abilities, moves, or Fake Out, hit something, possibly set up Sticky Webs, then die to get a safe switch into something else. Best used for Weather setters when your Weather setter is too fast to lead with. Can be Timid when opposing lead is faster than it when Modest. Protect is there to stall out Air Blower or Twist. Dimension.
+    .tags = Singles, Offensive
+}
+lurantis
+{
+    name = Budget Serperior
+    item = life orb
+    ability = contrary
+    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = modest
+    moves = leaf storm, hidden power ground, weather ball, air slash
+   comment = What it says on the tin. Requires sun to function due to it's low base speed and reliance on Weather Ball. Has slightly more power and no quad weakness to Ice Shard but has much less bulk compared to Serperior.
+    .tags = Singles, Offensive
+}
+seviper
+{
+    name = Priority Attacker
+    item = dark gem 
+    ability = Hyper Aggressive 
+    evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = adamant
+    moves = Crunch, Poison Fang, Sucker Punch / Dragon Dance, Fire Fang / Ice Fang / Thunder Fang / Psychic Fangs
+   comment = Seviper puts its massive fangs to use in Elite Redux. It is one of two Pokemon, alongside Steelix, with the combination of Strong Jaw and Coil Up. With Strong Jaw, Crunch becomes a one-turn 120 BP priority STAB move, boosted further by Hyper Aggressive and Dark Gem. Solenoglyphs means Seviper will usually add poison to what it doesn't OHKO. Sucker Punch and Dragon Dance both give Seviper additional Speed control outside of Coil Up. The last slot is customizable based on what team you'll be facing; use it to exploit 4x weaknesses!
+
+Seviper relies heavily on Coil Up, so it needs to weave in and out of battle. Pair it with slow pivots or Eject Button Pokemon to create opportunities to bring it in safely. Seviper uses all of its ability options well. If you have Toxic Spikes or Sticky Web support, Merciless will out-damage Hyper Aggressive. Opportunist provides the least immediate damage, but Seviper can consistently put all but the bulkiest threats in range with the first Coil Up hit, securing a second turn of priority. Seviper can also forsake the Speed EVs for HP as needed, especially on sets with Opportunist.
+
+Watch out for Pokemon with Dazzling or Queenly Majesty. Also be wary of faster priority users, Steel-types that resist Dark like Bisharp, and other Dark/Poison-types, which may require slotting in Earthquake into the moveset.
+}
+Runerigus
+{
+    name = Your Idol sign is B
+    item = leftovers
+    ability = Ancient Idol
+    evs = 252, 0, 252, 0, 4, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Impish
+    moves = earthquake, poltergeist, Will-O-Wisp, body press
+   comment = With the Ancient Idol ability, Runerigus gains a significant advantage in its offensive potential, utilizing its Defense stat as its main attack stat. Runerigus can really be a great physical tank with Will-O-Wisp and Leftovers. 
+}
+Swellow
+{ 
+    name = Air Blower Sweeper
+    item = choice specs
+    ability = air blower
+    evs = 0, 6, 0, 252, 0 , 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = timid
+    moves = Boomburst, Hurricane, Heat Wave, U-turn
+   comment = Can destroy almost any non-resistant Pokémon with Boomburst. Heat Wave is a good coverage against Steel (resists both Boomburst and Hurricane), U-turn to outspeed anything and switch out to a Pokémon that can resist/be immune to the opponent's upcoming move while doing chip damage.
+    .tags = Singles, Doubles, Offensive
+}
+Centiskorch
+{
+    name = First Impression but better
+    item = choice band
+    ability = coil up
+    evs = 252, 252, 4, 0, 0, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = adamant
+    moves = bug bite, fire fang, thunder fang, crunch
+   comment = Coil Up in combination with Choice Band allows it to near guarantee a kill on anything that isn't a physical wall. 
+    .tags = Singles, Offensive
+}
+Marowak
+{
+    name = Bonebreaker
+    item = thick club
+    ability = skill link
+    evs = 252, 252, 0, 0, 0, 4// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = adamant
+    moves = bone rush, head smash, knock off, swords dance
+   comment =Marowak's moveset includes Bone Rush which benefits from its ability to ignore immunities and deal double damage even on targets that resist bone-type moves. Bone Rush is also a +1 priority move in Elite Redux. Knock Off is a useful utility move to remove opponents' items, and Swords Dance boosts Marowak's Attack to absurdly high levels.
+    .tags =Singles, Offensive
+}
+chansey
+{
+    name = Wish Pivot
+    item = eviolite
+    ability = regenerator
+    evs = 252, 0, 252, 0, 4, 0
+    nature = relaxed
+    moves = wish, teleport, seismic toss, protect
+   comment = With Generation 8 Teleport, Chansey makes an incredibly potent pivot. A previous upside to its main competitor, Blissey, was Blissey's ability to use Heavy Duty Boots to avoid getting chipped by Stealth Rocks. Now, due to Regenerator, Chansey has little to fear from entry hazards, resolving one of the major downsides to its use. Wish + Teleport are the core moves of the build, allowing Chansey to pass a slow Wish to a weathered teammate, giving it another chance to sweep or maximizing its defensive utility. Seismic Toss makes Chansey slightly less passive against Taunt. Protect allows Chansey to reap the benefits of Wish without taking another attack. However, since Chansey has Regenerator and infamously massive bulk and is still passive despite Seismic Toss, there are many other options to replace Protect or Seismic Toss that can be useful depending on its teammates. Stealth Rock allows Chansey's teammates to bypass Focus Sash and Sturdy, Thunder Wave or Toxic can neuter opposing offensive or defensive threats, Heal Bell provides its teammates valuable status removal, Light Screen or Reflect alongside a Wish can provide a teammate an important setup opportunity, and situationally against weather teams, Chansey can even use Sunny Day or Rain Dance to change the weather. The final two move slots are highly malleable, and although Seismic Toss and Protect are the default moves given, the user can and should adapt Chansey to their playstyle, team, and opponents to maximize its effectiveness in every battle.
+    .tags = Singles, Defensive
+}
