@@ -493,3 +493,13 @@ SPECIES_SIRFETCHD
     comment = Firstly, use a Pokemon with Drought (or manually setup Sun) to activate Sirfetchds Chlorophyll, allowing it to outspeed most Pokemon. Meteor Assault as STAB. Thanks to Rampage, it has no recharge after a KO. Solar Blade, along with Dual Wingbeat / Brave Bird for coverage, and First Impression as priority move and Revenge-Killer for Psychic Types.
     tags = Singles, Offensive
 }
+Hydreigon
+{
+    name = Three Strikes, You're Out!
+    item = Choice Scarf
+    ability = Mega Launcher
+    evs = 0, 0, 0, 252, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Timid / Modest
+    moves = Dark Pulse, Dragon Pulse, Flash Cannon / Focus Blast, U Turn
+   comment = All moves are boosted by Mega Launcher, except U-turn. Dragon Pulse hits slightly harder than Draco Meteor (5 BP difference) without the drawback of an SpAtk drop after use. For coverage, Flash Cannon is preferable for Fairies, but if for some reason you wanted to nuke anything weak to Fighting (or just any non-Fighting resist in general), there's a 180 BP Focus Blast. ¯\_(ツ)_/¯
+}
