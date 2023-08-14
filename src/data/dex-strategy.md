@@ -472,3 +472,13 @@ You have 2 main heals (Wish and Soft-Boiled) and a 3rd one that is also an offen
 Mega Audino here is quite tanky and has a good SpAtk base so find a Pokémon that can't kill you (and those exists a lot; Mega Audino can tank a bunch of physical mons while burned and cursed(!)), and heal here and there while you use Calm Mind in the middle of those. Since you can heal for 100% after 2 turns whenever you need, you just need to make sure that you can survive the hit.
    .tags = Singles, Doubles, Troll
 }
+Nidoking 
+{
+name = Giga Sweeper
+item = Focus Sash
+ability = Poisonate
+evs = 6, 252, 0, 0, 0, 252  // HP, Atk, Def, Sp.Atk, Sp. Def, Speed
+nature = Jolly
+moves = Giga Impact, High Horsepower, Dragon Dance, Wicked Blow
+comment = With Giga Impact boosted by Poisonate & Rampage preventing a recharge if you get a KO.
+}
