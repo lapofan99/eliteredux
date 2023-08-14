@@ -503,3 +503,16 @@ Hydreigon
     moves = Dark Pulse, Dragon Pulse, Flash Cannon / Focus Blast, U Turn
    comment = All moves are boosted by Mega Launcher, except U-turn. Dragon Pulse hits slightly harder than Draco Meteor (5 BP difference) without the drawback of an SpAtk drop after use. For coverage, Flash Cannon is preferable for Fairies, but if for some reason you wanted to nuke anything weak to Fighting (or just any non-Fighting resist in general), there's a 180 BP Focus Blast. ¯\_(ツ)_/¯
 }
+Meganium
+{
+    name = Nature's Medic
+    item = kebia berry
+    ability = triage
+    evs = 252, 0, 252, 6, 0, 0// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = modest
+    moves = giga drain, draining kiss, synthesis, heal pulse
+   comment = Meganium's moveset includes Giga Drain and Draining Kiss, which not only deals damage but also provides valuable sustain, making it a reliable healer. Synthesis grants it further recovery, while Heal Pulse lets it support its allies when needed. The Kebia berry helps to reduce Poison-Type moves.
+
+Meganium is best suited with a Sun team to activate one of its innates: Big Leaves to power up SpAtk and keep harvesting Kebia berry.
+    .tags =Doubles, Defensive, Mixed
+}
