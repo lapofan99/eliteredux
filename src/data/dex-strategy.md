@@ -462,7 +462,7 @@ Audino
    .name = Infinite HP
    .item = Audinite
    .ability = Cute Charm
-   .evs = 252, 0, 128, 10, 128, 0
+   .evs = 252, 0, 124, 10, 124, 0
    .nature = Bold
    .moves = Draining Kiss, Calm Mind, Wish, Soft-Boiled / Recover
    .comment = Enter battle, use Audinite to go Mega and get ready to something really simple.
