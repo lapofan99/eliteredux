@@ -2470,7 +2470,7 @@ static const struct TrainerMonItemCustomMoves sParty_Calvin1[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_RETURN, MOVE_EARTHQUAKE, MOVE_U_TURN, MOVE_PURSUIT
+    .moves = MOVE_HYPER_FANG, MOVE_DIG, MOVE_U_TURN, MOVE_PURSUIT
     },
     /*
     {
@@ -37660,7 +37660,7 @@ static const struct TrainerMonItemCustomMoves sParty_GlaciaInsane[] = {
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_MODEST,
-    .moves = MOVE_FREEZE_DRY, MOVE_HURRICANE, MOVE_HYDRO_PUMP, MOVE_ROOST
+    .moves = MOVE_FREEZE_DRY, MOVE_AEROBLAST, MOVE_HYDRO_PUMP, MOVE_ROOST
     }
 };
 
