@@ -482,3 +482,14 @@ nature = Jolly
 moves = Giga Impact, High Horsepower, Dragon Dance, Wicked Blow
 comment = With Giga Impact boosted by Poisonate & Rampage preventing a recharge if you get a KO.
 }
+SPECIES_SIRFETCHD
+{
+    name = Leek Hero
+    item = leek
+    ability = chlorophyll
+    evs = 252, 252, 4, 0, 0, 0// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = adamant
+    moves = meteor assault, solar blade, Dual Wingbeat / Bave Bird, first impression
+    comment = Firstly, use a Pokemon with Drought (or manually setup Sun) to activate Sirfetchds Chlorophyll, allowing it to outspeed most Pokemon. Meteor Assault as STAB. Thanks to Rampage, it has no recharge after a KO. Solar Blade, along with Dual Wingbeat / Brave Bird for coverage, and First Impression as priority move and Revenge-Killer for Psychic Types.
+    tags = Singles, Offensive
+}
