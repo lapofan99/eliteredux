@@ -610,6 +610,12 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(30);
         }
 
+        if (moveType == TYPE_POISON
+          && (AI_DATA->defAbility == ABILITY_POISON_ABSORB || BattlerHasInnate(battlerDef, ABILITY_POISON_ABSORB)))
+        {
+            RETURN_SCORE_MINUS(30);
+        }
+
         if ((moveType == TYPE_FLYING || moveType == TYPE_FIRE)
           && (AI_DATA->defAbility == ABILITY_INFLATABLE || BattlerHasInnate(battlerDef, ABILITY_INFLATABLE)))
         {
