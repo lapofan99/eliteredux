@@ -462,7 +462,7 @@ Audino
    .name = Infinite HP
    .item = Audinite
    .ability = Cute Charm
-   .evs = 252, 0, 128, 10, 128, 0
+   .evs = 252, 0, 124, 10, 124, 0
    .nature = Bold
    .moves = Draining Kiss, Calm Mind, Wish, Soft-Boiled / Recover
    .comment = Enter battle, use Audinite to go Mega and get ready to something really simple.
@@ -471,4 +471,48 @@ You have 2 main heals (Wish and Soft-Boiled) and a 3rd one that is also an offen
 
 Mega Audino here is quite tanky and has a good SpAtk base so find a Pokémon that can't kill you (and those exists a lot; Mega Audino can tank a bunch of physical mons while burned and cursed(!)), and heal here and there while you use Calm Mind in the middle of those. Since you can heal for 100% after 2 turns whenever you need, you just need to make sure that you can survive the hit.
    .tags = Singles, Doubles, Troll
+}
+Nidoking 
+{
+name = Giga Sweeper
+item = Focus Sash
+ability = Poisonate
+evs = 6, 252, 0, 0, 0, 252  // HP, Atk, Def, Sp.Atk, Sp. Def, Speed
+nature = Jolly
+moves = Giga Impact, High Horsepower, Dragon Dance, Wicked Blow
+comment = With Giga Impact boosted by Poisonate & Rampage preventing a recharge if you get a KO.
+}
+SPECIES_SIRFETCHD
+{
+    name = Leek Hero
+    item = leek
+    ability = chlorophyll
+    evs = 252, 252, 4, 0, 0, 0// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = adamant
+    moves = meteor assault, solar blade, Dual Wingbeat / Bave Bird, first impression
+    comment = Firstly, use a Pokemon with Drought (or manually setup Sun) to activate Sirfetchds Chlorophyll, allowing it to outspeed most Pokemon. Meteor Assault as STAB. Thanks to Rampage, it has no recharge after a KO. Solar Blade, along with Dual Wingbeat / Brave Bird for coverage, and First Impression as priority move and Revenge-Killer for Psychic Types.
+    tags = Singles, Offensive
+}
+Hydreigon
+{
+    name = Three Strikes, You're Out!
+    item = Choice Scarf
+    ability = Mega Launcher
+    evs = 0, 0, 0, 252, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Timid / Modest
+    moves = Dark Pulse, Dragon Pulse, Flash Cannon / Focus Blast, U Turn
+   comment = All moves are boosted by Mega Launcher, except U-turn. Dragon Pulse hits slightly harder than Draco Meteor (5 BP difference) without the drawback of an SpAtk drop after use. For coverage, Flash Cannon is preferable for Fairies, but if for some reason you wanted to nuke anything weak to Fighting (or just any non-Fighting resist in general), there's a 180 BP Focus Blast. ¯\_(ツ)_/¯
+}
+Meganium
+{
+    name = Nature's Medic
+    item = kebia berry
+    ability = triage
+    evs = 252, 0, 252, 6, 0, 0// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = modest
+    moves = giga drain, draining kiss, synthesis, heal pulse
+   comment = Meganium's moveset includes Giga Drain and Draining Kiss, which not only deals damage but also provides valuable sustain, making it a reliable healer. Synthesis grants it further recovery, while Heal Pulse lets it support its allies when needed. The Kebia berry helps to reduce Poison-Type moves.
+
+Meganium is best suited with a Sun team to activate one of its innates: Big Leaves to power up SpAtk and keep harvesting Kebia berry.
+    .tags =Doubles, Defensive, Mixed
 }
