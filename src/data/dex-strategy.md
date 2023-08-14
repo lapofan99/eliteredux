@@ -516,3 +516,26 @@ Meganium
 Meganium is best suited with a Sun team to activate one of its innates: Big Leaves to power up SpAtk and keep harvesting Kebia berry.
     .tags =Doubles, Defensive, Mixed
 }
+cacturne
+{ 
+    name = One Punch Plant
+    item = life orb 
+    ability = sand rush
+    evs = 0, 252, 0, 0, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = adamant
+    moves = wicked blow, sucker punch, needle arm, Destiny Bond / Swords Dance
+   comment = Boasting one of the strongest Wicked Blows in the game while still having great speed in sandstorm, it needs no boosts outside of STAB, Nocturnal and Life Orb to one-shot anything not resisted or very defensive, but if you need that extra bit of damage you can use swords dance over destiny bond.
+   
+   Sucker punch is in case you can't outspeed or sandstorm is gone, and Needle Arm is for STAB Grass and flinches. Destiny bond is in case you know you can't kill with Wicked Blow and will go down that turn.
+    .tags = Singles, Offensive
+}
+Mega Alakazam
+{
+name = Almighty STAB
+item = Alakazite
+ability = Mystic Power
+evs = 0, 0, 0, 252, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+nature = Timid
+moves = Psyshock, Calm Mind, Shadow Ball, Focus Blast 
+comment = He will always have STAB thanks to Mystic Power. Inner Focus will boost Focus Blast's accuracy to 90% instead of 70% making him an absolutely busted Glass Cannon.
+}
