@@ -529,7 +529,7 @@ cacturne
    Sucker punch is in case you can't outspeed or sandstorm is gone, and Needle Arm is for STAB Grass and flinches. Destiny bond is in case you know you can't kill with Wicked Blow and will go down that turn.
     .tags = Singles, Offensive
 }
-Mega Alakazam
+Alakazam Mega
 {
 name = Almighty STAB
 item = Alakazite
