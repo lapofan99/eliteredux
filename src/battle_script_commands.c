@@ -4928,6 +4928,11 @@ static void Cmd_playanimation(void)
     {
         gBattlescriptCurrInstr += 7;
     }
+    else if (animId == B_ANIM_RESTORE_BG)
+    {
+        DrawTerrainTypeBattleBackground();
+        gBattlescriptCurrInstr += 7;
+    }
     else
     {
         BtlController_EmitBattleAnimation(0, animId, *argumentPtr);
