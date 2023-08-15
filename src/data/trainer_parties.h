@@ -17580,7 +17580,7 @@ static const struct TrainerMonItemCustomMoves sParty_MaxieMtChimney[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {108, 148, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_POISON_FANG, MOVE_TAUNT, MOVE_U_TURN
+    .moves = MOVE_BRAVE_BIRD, MOVE_POISON_FANG, MOVE_SUPER_FANG, MOVE_U_TURN
     },
     {
     .lvl = 0,
@@ -17672,7 +17672,7 @@ static const struct TrainerMonItemCustomMoves sParty_MaxieMtChimneyInsane[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {108, 148, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_BRAVE_BIRD, MOVE_POISON_FANG, MOVE_TAUNT, MOVE_U_TURN
+    .moves = MOVE_BRAVE_BIRD, MOVE_POISON_FANG, MOVE_SUPER_FANG, MOVE_U_TURN
     },
     {
     .lvl = 0,
