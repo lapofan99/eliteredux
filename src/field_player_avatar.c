@@ -1782,28 +1782,20 @@ static bool8 Fishing_WaitBeforeDots(struct Task *task)
 {
     AlignFishingAnimationFrames();
 
-    // Wait one second
+    // Wait half a second
     task->tFrameCounter++;
-    if (task->tFrameCounter >= 60)
+    if (task->tFrameCounter >= 30)
         task->tStep++;
     return FALSE;
 }
 
 static bool8 Fishing_InitDots(struct Task *task)
 {
-    u32 randVal;
-
     sub_819786C(0, TRUE);
     task->tStep++;
     task->tFrameCounter = 0;
     task->tNumDots = 0;
-    randVal = Random();
-    randVal %= 10;
-    task->tDotsRequired = randVal + 1;
-    if (task->tRoundsPlayed == 0)
-        task->tDotsRequired = randVal + 4;
-    if (task->tDotsRequired >= 10)
-        task->tDotsRequired = 10;
+    task->tDotsRequired = 5;
     return TRUE;
 }
 
