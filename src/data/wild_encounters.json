@@ -351,7 +351,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_MISDREAVUS"
+                "species": "SPECIES_SCATTERBUG"
               },
               {
                 "min_level": 2,
@@ -2106,7 +2106,7 @@
               {
                 "min_level": 2,
                 "max_level": 2,
-                "species": "SPECIES_AUDINO"
+                "species": "SPECIES_DUNSPARCE"
               },
               {
                 "min_level": 2,
@@ -2955,7 +2955,7 @@
               {
                 "min_level": 8,
                 "max_level": 10,
-                "species": "SPECIES_DUNSPARCE"
+                "species": "SPECIES_RHYHORN"
               },
               {
                 "min_level": 8,
@@ -13775,7 +13775,7 @@
               {
                 "min_level": 12,
                 "max_level": 14,
-                "species": "SPECIES_LITWICK"
+                "species": "SPECIES_MISDREAVUS"
               },
               {
                 "min_level": 12,

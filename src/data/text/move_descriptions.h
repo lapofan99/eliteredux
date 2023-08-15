@@ -2307,6 +2307,10 @@ static const u8 sTOPSY_TURVYDescription[] = _(
         "30% of damage inflicted.");
 #endif
 
+static const u8 sOBLIVION_WINGDescription[] = _(
+        "An attack that absorbs over\n"
+        "75% of damage inflicted.");
+
 static const u8 sCRAFTY_SHIELDDescription[] = _(
     "Evades status moves for\n"
     "one turn.");
@@ -3647,7 +3651,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_HOLD_BACK - 1] = sFalseSwipeDescription,
     [MOVE_INFESTATION - 1] = sINFESTATIONDescription,
     [MOVE_POWER_UP_PUNCH - 1] = sPOWER_UP_PUNCHDescription,
-    [MOVE_OBLIVION_WING - 1] = sDRAINING_KISSDescription,
+    [MOVE_OBLIVION_WING - 1] = sOBLIVION_WINGDescription,
     [MOVE_THOUSAND_ARROWS - 1] = sTHOUSAND_ARROWSDescription,
     [MOVE_THOUSAND_WAVES - 1] = sTHOUSAND_WAVESDescription,
     [MOVE_LANDS_WRATH - 1] = sLANDS_WRATHDescription,
@@ -3868,13 +3872,8 @@ static const u8 sMoveFourLineDescription_Mist[] = _("The ally party is\nprotecte
 static const u8 sMoveFourLineDescription_WaterGun[] = _("The foe is struck\nwith a lot of water\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_HydroPump[] = _("A high volume of\nwater is blasted at\nwith high pressure.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_Surf[] = _("A big wave crashes\ndown on the foe.\nField-based."); // new
-#if B_USE_FROSTBITE == TRUE
-    static const u8 sMoveFourLineDescription_Blizzard[] = _("The foe is blasted\nwith a blizzard.\n10% frostbite chance.\nWeather-based."); // new
-    static const u8 sMoveFourLineDescription_IceBeam[] = _("The foe is struck\nwith an icy beam.\n10% frostbite chance.\nMega Launcher boost"); // new
-#else
-    static const u8 sMoveFourLineDescription_IceBeam[] = _("The foe is struck\nwith an icy beam.\n10% freeze chance.\nMega Launcher boost"); // new
-    static const u8 sMoveFourLineDescription_Blizzard[] = _("The foe is blasted\nwith a blizzard.\n10% freeze chance.\nWeather-based."); // new
-#endif
+static const u8 sMoveFourLineDescription_Blizzard[] = _("The foe is blasted\nwith a blizzard.\n10% frostbite chance.\nWeather-based."); // new
+static const u8 sMoveFourLineDescription_IceBeam[] = _("The foe is struck\nwith an icy beam.\n10% frostbite chance.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_Psybeam[] = _("A peculiar ray is\nshot at the foe.\n30% confusion.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_BubbleBeam[] = _("A spray of bubbles\nstrikes the foe.\n10% speed drop.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_AuroraBeam[] = _("A rainbow-colored\nattack beam.\n100% attack drop.\nMega Launcher boost"); // new
@@ -5222,7 +5221,7 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_HOLD_BACK         - 1] = sMoveFourLineDescription_FalseSwipe,
     [MOVE_INFESTATION       - 1] = sMoveFourLineDescription_Infestation,
     [MOVE_POWER_UP_PUNCH    - 1] = sMoveFourLineDescription_PowerUpPunch,
-    [MOVE_OBLIVION_WING     - 1] = sMoveFourLineDescription_DrainingKiss,
+    [MOVE_OBLIVION_WING     - 1] = sMoveFourLineDescription_OblivionWing,
     [MOVE_THOUSAND_ARROWS   - 1] = sMoveFourLineDescription_ThousandArrows,
     [MOVE_THOUSAND_WAVES    - 1] = sMoveFourLineDescription_ThousandWaves,
     [MOVE_LANDS_WRATH       - 1] = sMoveFourLineDescription_LandsWrath,
