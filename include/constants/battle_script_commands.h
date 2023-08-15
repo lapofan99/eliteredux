@@ -39,6 +39,8 @@
 #define sABILITY_OVERWRITE gBattleScripting + 0x34
 #define sSWITCH_CASE gBattleScripting + 0x36
 #define sBERRY_OVERRIDE gBattleScripting + 0x37
+#define sBATTLER_OVERRIDE gBattleScripting + 0x38
+#define sEXTRA_MOVE gBattleScripting + 0x39
 
 #define cMULTISTRING_CHOOSER gBattleCommunication + 5
 #define cMISS_TYPE gBattleCommunication + 6

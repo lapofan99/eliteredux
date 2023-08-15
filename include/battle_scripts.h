@@ -453,6 +453,7 @@ extern const u8 BattleScript_GripPincerActivated[];
 extern const u8 BattleScript_PrintDamageDoneString[];
 extern const u8 BattleScript_BeakBlastSetUp[];
 extern const u8 BattleScript_BeakBlastBurn[];
+extern const u8 BattleScript_AttackerUsedAnExtraMove[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

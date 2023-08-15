@@ -643,8 +643,9 @@
 #define STRINGID_PKMNFROSTBITEHEALEDBY                672
 #define STRINGID_REGENERATOR_EXITS                    673
 #define STRINGID_NATURAL_CURE_EXITS                   674
+#define STRINGID_ABILITYLETITUSEMOVE                  675
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_NATURAL_CURE_EXITS + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_ABILITYLETITUSEMOVE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

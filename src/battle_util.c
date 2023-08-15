@@ -8285,6 +8285,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}*/
+
+		/*if (BattlerHasInnate(battler, ABILITY_VENGEANCE)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
+            {
+                gBattleScripting.abilityPopupOverwrite = ABILITY_VENGEANCE;
+                gBattleScripting.extraMove = gCurrentMove = MOVE_ERUPTION;
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                effect++;
+            }
+		}*/
 		
 		//Electric Burst
 		if (BattlerHasInnate(battler, ABILITY_ELECTRIC_BURST)){

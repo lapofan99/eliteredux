@@ -7992,6 +7992,39 @@ BattleScript_HurtTarget:
 	tryfaintmon BS_TARGET, FALSE, NULL
 	return
 
+BattleScript_AttackerUsedAnExtraMove::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ABILITYLETITUSEMOVE
+BattleScript_EffectExtraHit::
+BattleScript_ExtraHitFromAtkCanceler::
+	attackcanceler
+BattleScript_ExtraHitFromAccCheck::
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+BattleScript_ExtraHitFromAtkString::
+	attackstring
+	ppreduce
+BattleScript_ExtraHitFromCritCalc::
+	critcalc
+	damagecalc
+	adjustdamage
+BattleScript_ExtraHitFromAtkAnimation::
+	playmoveanimation BS_ATTACKER, MOVE_ERUPTION
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+BattleScript_ExtraExtraMoveEnd::
+	moveendall
+	end
+
 BattleScript_AttackerRoughSkinActivates::
 	call BattleScript_AbilityPopUp
 	call BattleScript_HurtTarget
