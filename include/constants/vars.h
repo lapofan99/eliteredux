@@ -124,7 +124,7 @@
 #define VAR_ROUTE110_STATE                   0x4069
 #define VAR_SAVE_VERSION                     0x406A // New Var
 #define VAR_UPDATED_TIMES                    0x406B // New Var
-#define VAR_ROUTE113_STATE                   0x406C // Unused Var
+#define VAR_EXTRA_MOVE_DAMAGE                0x406C // Extra Move
 #define VAR_ROUTE114_STATE                   0x406D // Unused Var
 #define VAR_ROUTE115_STATE                   0x406E // Unused Var
 #define VAR_ROUTE116_STATE                   0x406F

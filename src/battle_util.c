@@ -962,6 +962,7 @@ void HandleAction_ActionFinished(void)
     gBattleScripting.animTargetsHit = 0;
     gLastLandedMoves[gBattlerAttacker] = 0;
     gLastHitByType[gBattlerAttacker] = 0;
+    gProtectStructs[gBattlerAttacker].extraMoveUsed = 0;
     gBattleStruct->dynamicMoveType = 0;
     gBattleScripting.moveendState = 0;
     gBattleScripting.moveendState = 0;
@@ -8187,6 +8188,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_VOLCANO_RAGE:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
+            {
+                u16 extraMove = MOVE_ERUPTION;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 0;              //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_VOLCANO_RAGE;
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                effect++;
+            }
         case ABILITY_GULP_MISSILE:
             if (((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED) || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER)
              && (effect = ShouldChangeFormHpBased(gBattlerAttacker)))
@@ -8286,17 +8302,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}*/
 
-		/*if (BattlerHasInnate(battler, ABILITY_VENGEANCE)){
+		if (BattlerHasInnate(battler, ABILITY_VOLCANO_RAGE)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_VENGEANCE;
-                gBattleScripting.extraMove = gCurrentMove = MOVE_ERUPTION;
+                u16 extraMove = MOVE_ERUPTION;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 0;              //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_VOLCANO_RAGE;
                 gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                 effect++;
             }
-		}*/
+		}
 		
 		//Electric Burst
 		if (BattlerHasInnate(battler, ABILITY_ELECTRIC_BURST)){

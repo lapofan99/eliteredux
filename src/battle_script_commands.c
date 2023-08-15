@@ -2182,9 +2182,16 @@ static void Cmd_critcalc(void)
 static void Cmd_damagecalc(void)
 {
     u8 moveType;
+    u8 extraMovePower = VarGet(VAR_EXTRA_MOVE_DAMAGE);
 
     GET_MOVE_TYPE(gCurrentMove, moveType);
-    gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
+    if(extraMovePower != 0){
+        gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, extraMovePower, gIsCriticalHit, TRUE, TRUE);
+        VarSet(VAR_EXTRA_MOVE_DAMAGE, 0);
+    }
+    else{
+        gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
+    }
     gBattlescriptCurrInstr++;
 }
 

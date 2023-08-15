@@ -8002,13 +8002,12 @@ BattleScript_ExtraHitFromAccCheck::
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 BattleScript_ExtraHitFromAtkString::
 	attackstring
-	ppreduce
 BattleScript_ExtraHitFromCritCalc::
 	critcalc
 	damagecalc
 	adjustdamage
 BattleScript_ExtraHitFromAtkAnimation::
-	playmoveanimation BS_ATTACKER, MOVE_ERUPTION
+	playmoveanimation BS_ATTACKER, MOVE_NONE
 	waitanimation
 	effectivenesssound
 	hitanimation BS_TARGET

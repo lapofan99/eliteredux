@@ -16,6 +16,7 @@
 #include "task.h"
 #include "util.h"
 #include "constants/abilities.h"
+#include "constants/moves.h"
 
 static EWRAM_DATA u8 sLinkSendTaskId = 0;
 static EWRAM_DATA u8 sLinkReceiveTaskId = 0;
@@ -1071,6 +1072,9 @@ void BtlController_EmitPause(u8 bufferId, u8 toWait, void *data)
 
 void BtlController_EmitMoveAnimation(u8 bufferId, u16 move, u8 turnOfMove, u16 movePower, s32 dmg, u8 friendship, struct DisableStruct *disableStructPtr, u8 multihit)
 {
+    if(move == MOVE_NONE)
+        move = gCurrentMove;
+
     sBattleBuffersTransferData[0] = CONTROLLER_MOVEANIMATION;
     sBattleBuffersTransferData[1] = move;
     sBattleBuffersTransferData[2] = (move & 0xFF00) >> 8;

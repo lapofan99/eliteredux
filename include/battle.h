@@ -164,6 +164,7 @@ struct ProtectStruct
     u8 physicalBattlerId;
     u8 specialBattlerId;
     u32 beakBlastCharge:1;
+    u32 extraMoveUsed:1;
 };
 
 struct SpecialStatus
@@ -717,8 +718,7 @@ struct BattleScripting
     u8 switchInBattlerOverwrite;
     u8 switchCase;  // Special switching conditions, eg. red card
     u8 overrideBerryRequirements;
-    u8 battlerPopupOverwrite; //sBATTLER_OVERRIDE
-    u16 extraMove; //sEXTRA_MOVE
+    u8 battlerPopupOverwrite;       //sBATTLER_OVERRIDE
 };
 
 // rom_80A5C6C

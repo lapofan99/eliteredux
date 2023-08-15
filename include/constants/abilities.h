@@ -409,8 +409,9 @@
 #define ABILITY_ICE_DEW          (ABILITIES_COUNT_LATEST_GEN + 111) // Immune to Ice-type moves. Instead of being hit by Ice-type moves, it boosts its Attack or Sp. Attack stat (which is higher).
 #define ABILITY_SUN_WORSHIP      (ABILITIES_COUNT_LATEST_GEN + 112) // Ups highest stat on entry when it's sunny.
 #define ABILITY_BUGINIZE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon to become Bug-type and receive a 20% power boost.
+#define ABILITY_VOLCANO_RAGE     (ABILITIES_COUNT_LATEST_GEN + 114) // 
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_BUGINIZE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_VOLCANO_RAGE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -3349,7 +3349,6 @@ static void BattleStartClearSetData(void)
 
     gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
     gBattleScripting.battlerPopupOverwrite = MAX_BATTLERS_COUNT;
-    gBattleScripting.extraMove = MOVES_COUNT;
     gBattleScripting.switchInBattlerOverwrite = MAX_BATTLERS_COUNT;
     gBattleScripting.expOnCatch = (B_EXP_CATCH >= GEN_6);
     gBattleScripting.monCaught = FALSE;
@@ -3557,6 +3556,7 @@ void FaintClearSetData(void)
     gProtectStructs[gActiveBattler].stealMove = FALSE;
     gProtectStructs[gActiveBattler].prlzImmobility = FALSE;
     gProtectStructs[gActiveBattler].confusionSelfDmg = FALSE;
+    gProtectStructs[gActiveBattler].extraMoveUsed = FALSE;
     gProtectStructs[gActiveBattler].targetAffected = FALSE;
     gProtectStructs[gActiveBattler].chargingTurn = FALSE;
     gProtectStructs[gActiveBattler].fleeFlag = 0;
