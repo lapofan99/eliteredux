@@ -3138,7 +3138,8 @@ static void FillPartnerParty(u16 trainerId)
 
                 CreateMon(&gPlayerParty[i + 3], partyData[i].species, level, 31, TRUE, j, TRUE, otID);
 
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_NATURE, &gSets[partyData[i].spread].nature);
+                // Sets Pokemon Nature
+                SetMonData(&gPlayerParty[i + 3], MON_DATA_NATURE, &partyData[i].nature);
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_ABILITY_NUM, &partyData[i].ability);
 
