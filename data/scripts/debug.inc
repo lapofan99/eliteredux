@@ -62,8 +62,7 @@ Debug_Script_4::
 	end
 
 Debug_Script_5::
-	call MossdeepCity_Gym_EventScript_TateAndLizaDefeated
-	//warp MAP_MAGMA_HIDEOUT_4F, 255, 7, 8
+	call MeteorFalls_1F_1R_EventScript_MultiCancelled
 	end
 
 Debug_Script_6::
