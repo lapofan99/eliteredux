@@ -34,6 +34,7 @@
 #include "task.h"
 #include "text.h"
 #include "util.h"
+#include "ui_battle_menu.h"
 #include "window.h"
 #include "constants/abilities.h"
 #include "constants/battle_anim.h"
@@ -278,7 +279,8 @@ static void HandleInputChooseAction(void)
             VarSet(VAR_BATTLE_CONTROLLER_PLAYER_F, value);
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
             FreeAllWindowBuffers();
-            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, gBattlerPartyIndexes[1], CalculateEnemyPartyCount() - 1, CB2_SetUpReshowBattleScreenAfterMenu);
+            UI_Battle_Menu_Init(CB2_SetUpReshowBattleScreenAfterMenu);
+            //ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, gBattlerPartyIndexes[1], CalculateEnemyPartyCount() - 1, CB2_SetUpReshowBattleScreenAfterMenu);
         }
         else if (JOY_NEW(A_BUTTON))
         {

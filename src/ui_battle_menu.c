@@ -1,0 +1,804 @@
+#include "global.h"
+#include "ui_battle_menu.h"
+#include "strings.h"
+#include "bg.h"
+#include "battle.h"
+#include "battle_main.h"
+#include "battle_anim.h"
+#include "data.h"
+#include "decompress.h"
+#include "event_data.h"
+#include "field_weather.h"
+#include "gpu_regs.h"
+#include "graphics.h"
+#include "item.h"
+#include "item_menu.h"
+#include "item_menu_icons.h"
+#include "list_menu.h"
+#include "item_icon.h"
+#include "item_use.h"
+#include "international_string_util.h"
+#include "main.h"
+#include "malloc.h"
+#include "menu.h"
+#include "menu_helpers.h"
+#include "palette.h"
+#include "party_menu.h"
+#include "pokemon_icon.h"
+#include "scanline_effect.h"
+#include "script.h"
+#include "sound.h"
+#include "string_util.h"
+#include "strings.h"
+#include "task.h"
+#include "text_window.h"
+#include "overworld.h"
+#include "event_data.h"
+#include "constants/abilities.h"
+#include "constants/species.h"
+#include "constants/items.h"
+#include "constants/field_weather.h"
+#include "constants/songs.h"
+#include "constants/rgb.h"
+
+/*
+ * 
+ */
+
+//==========DEFINES==========//
+enum
+{
+    SPRITE_ARR_ID_MON_ICON,
+    SPRITE_ARR_ID_STATUS,
+    SPRITE_ARR_ID_ITEM,
+    SPRITE_ARR_ID_TYPE_1,
+    SPRITE_ARR_ID_TYPE_2,
+    SPRITE_ARR_ID_TYPE_3,
+    NUM_SPRITES,
+};
+
+
+struct MenuResources
+{
+    MainCallback savedCallback;     // determines callback to run when we exit. e.g. where do we want to go after closing the menu
+    u8 gfxLoadState;
+    u8 battlerId;
+    u8 spriteIds[NUM_SPRITES];
+};
+
+enum WindowIds
+{
+    WINDOW_1,
+};
+
+//==========EWRAM==========//
+static EWRAM_DATA struct MenuResources *sMenuDataPtr = NULL;
+static EWRAM_DATA u8 *sBg1TilemapBuffer = NULL;
+
+//==========STATIC=DEFINES==========//
+static void Battle_Menu_RunSetup(void);
+static bool8 Menu_DoGfxSetup(void);
+static bool8 Menu_InitBgs(void);
+static void Menu_FadeAndBail(void);
+static bool8 Menu_LoadGraphics(void);
+static void Menu_InitWindows(void);
+static void PrintToWindow(u8 windowId, u8 colorIdx);
+static void Task_MenuWaitFadeIn(u8 taskId);
+static void Task_MenuMain(u8 taskId);
+
+static u8 ShowSpeciesIcon(void);
+static void SetSpriteInvisibility(u8 spriteArrayId, bool8 invisible);
+static void SetMonTypeIcons(void);
+static void SetTypeIconSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId);
+static void CreateSetStatusSprite(void);
+static u8 DestroyBattleMenuSprite(u8 spriteArrayId);
+
+//==========CONST=DATA==========//
+static const struct BgTemplate sMenuBgTemplates[] =
+{
+    {
+        .bg = 0,    // windows, etc
+        .charBaseIndex = 0,
+        .mapBaseIndex = 31,
+        .priority = 1
+    }, 
+    {
+        .bg = 1,    // this bg loads the UI tilemap
+        .charBaseIndex = 3,
+        .mapBaseIndex = 30,
+        .priority = 2
+    },
+    {
+        .bg = 2,    // this bg loads the UI tilemap
+        .charBaseIndex = 0,
+        .mapBaseIndex = 28,
+        .priority = 0
+    }
+};
+
+static const struct WindowTemplate sMenuWindowTemplates[] = 
+{
+    [WINDOW_1] = 
+    {
+        .bg = 0,            // which bg to print text on
+        .tilemapLeft = 0,   // position from left (per 8 pixels)
+        .tilemapTop = 0,    // position from top (per 8 pixels)
+        .width = 30,        // width (per 8 pixels)
+        .height = 20,       // height (per 8 pixels)
+        .paletteNum = 0,    // palette index to use for text
+        .baseBlock = 1,     // tile start in VRAM
+    },
+};
+
+static const u32 sMenuTiles[]    = INCBIN_U32("graphics/ui_menus/battle_menu/tiles.4bpp.lz");
+static const u32 sMenuTilemap[]  = INCBIN_U32("graphics/ui_menus/battle_menu/tilemap.bin.lz");
+static const u16 sMenuPalette[]  = INCBIN_U16("graphics/ui_menus/battle_menu/palette.gbapal");
+static const u8 sStatDownArrow[] = INCBIN_U8("graphics/ui_menus/battle_menu/stat_down_arrow.4bpp");
+static const u8 sStatUpArrow[]   = INCBIN_U8("graphics/ui_menus/battle_menu/stat_up_arrow.4bpp");
+
+enum Colors
+{
+    FONT_BLACK,
+    FONT_WHITE,
+    FONT_RED,
+    FONT_BLUE,
+};
+static const u8 sMenuWindowFontColors[][3] = 
+{
+    [FONT_BLACK]  = {TEXT_COLOR_TRANSPARENT,  7,  3},
+    [FONT_WHITE]  = {TEXT_COLOR_TRANSPARENT,  1,  3},
+    [FONT_RED]    = {TEXT_COLOR_TRANSPARENT,  13, 3},
+    [FONT_BLUE]   = {TEXT_COLOR_TRANSPARENT,  11, 3},
+};
+
+//==========FUNCTIONS==========//
+// UI loader template
+void Task_OpenBattleMenuFromStartMenu(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        UI_Battle_Menu_Init(CB2_ReturnToFieldWithOpenMenu);
+        DestroyTask(taskId);
+    }
+}
+
+// This is our main initialization function if you want to call the menu from elsewhere
+void UI_Battle_Menu_Init(MainCallback callback)
+{
+    u8 i;
+    if ((sMenuDataPtr = AllocZeroed(sizeof(struct MenuResources))) == NULL)
+    {
+        SetMainCallback2(callback);
+        return;
+    }
+
+    // initialize stuff
+    sMenuDataPtr->gfxLoadState = 0;
+    for(i = 0; i < NUM_SPRITES; i++)
+        sMenuDataPtr->spriteIds[i] = SPRITE_NONE;
+    sMenuDataPtr->battlerId = 0;
+    sMenuDataPtr->savedCallback = callback;
+
+    SetMainCallback2(Battle_Menu_RunSetup);
+}
+
+static void Battle_Menu_RunSetup(void)
+{
+    while (1)
+    {
+        if (Menu_DoGfxSetup() == TRUE)
+            break;
+    }
+}
+
+static void Menu_MainCB(void)
+{
+    RunTasks();
+    AnimateSprites();
+    BuildOamBuffer();
+    DoScheduledBgTilemapCopiesToVram();
+    UpdatePaletteFade();
+}
+
+static void Menu_VBlankCB(void)
+{
+    LoadOam();
+    ProcessSpriteCopyRequests();
+    TransferPlttBuffer();
+}
+
+#define POKEMON_ICON_X (4 * 8)
+#define POKEMON_ICON_Y (4 * 8)
+
+static bool8 Menu_DoGfxSetup(void)
+{
+    u8 taskId;
+    switch (gMain.state)
+    {
+    case 0:
+        DmaClearLarge16(3, (void *)VRAM, VRAM_SIZE, 0x1000)
+        SetVBlankHBlankCallbacksToNull();
+        ClearScheduledBgCopiesToVram();
+        gMain.state++;
+        break;
+    case 1:
+        ScanlineEffect_Stop();
+        FreeAllSpritePalettes();
+        ResetPaletteFade();
+        ResetSpriteData();
+        ResetTasks();
+        gMain.state++;
+        break;
+    case 2:
+        if (Menu_InitBgs())
+        {
+            sMenuDataPtr->gfxLoadState = 0;
+            gMain.state++;
+        }
+        else
+        {
+            Menu_FadeAndBail();
+            return TRUE;
+        }
+        break;
+    case 3:
+        if (Menu_LoadGraphics() == TRUE)
+            gMain.state++;
+        break;
+    case 4:
+        LoadMessageBoxAndBorderGfx();
+        Menu_InitWindows();
+        gMain.state++;
+        break;
+    case 5:
+        //CreateSetStatusSprite();
+        ShowSpeciesIcon();
+        //SetMonTypeIcons();
+        PrintToWindow(WINDOW_1, FONT_BLACK);
+        taskId = CreateTask(Task_MenuWaitFadeIn, 0);
+        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
+        gMain.state++;
+        break;
+    case 6:
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        gMain.state++;
+        break;
+    default:
+        SetVBlankCallback(Menu_VBlankCB);
+        SetMainCallback2(Menu_MainCB);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+#define try_free(ptr) ({        \
+    void ** ptr__ = (void **)&(ptr);   \
+    if (*ptr__ != NULL)                \
+        Free(*ptr__);                  \
+})
+
+static void Menu_FreeResources(void)
+{
+    try_free(sMenuDataPtr);
+    try_free(sBg1TilemapBuffer);
+    FreeAllWindowBuffers();
+}
+
+
+static void Task_MenuWaitFadeAndBail(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        SetMainCallback2(sMenuDataPtr->savedCallback);
+        Menu_FreeResources();
+        DestroyTask(taskId);
+    }
+}
+
+static void Menu_FadeAndBail(void)
+{
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+    CreateTask(Task_MenuWaitFadeAndBail, 0);
+    SetVBlankCallback(Menu_VBlankCB);
+    SetMainCallback2(Menu_MainCB);
+}
+
+static bool8 Menu_InitBgs(void)
+{
+    ResetAllBgsCoordinates();
+    sBg1TilemapBuffer = Alloc(0x800);
+    if (sBg1TilemapBuffer == NULL)
+        return FALSE;
+
+    memset(sBg1TilemapBuffer, 0, 0x800);
+    ResetBgsAndClearDma3BusyFlags(0);
+    InitBgsFromTemplates(0, sMenuBgTemplates, NELEMS(sMenuBgTemplates));
+    SetBgTilemapBuffer(1, sBg1TilemapBuffer);
+    ScheduleBgCopyTilemapToVram(1);
+    ShowBg(0);
+    ShowBg(1);
+    ShowBg(2);
+    return TRUE;
+}
+
+static bool8 Menu_LoadGraphics(void)
+{
+    switch (sMenuDataPtr->gfxLoadState)
+    {
+    case 0:
+        ResetTempTileDataBuffers();
+        DecompressAndCopyTileDataToVram(1, sMenuTiles, 0, 0, 0);
+        sMenuDataPtr->gfxLoadState++;
+        break;
+    case 1:
+        if (FreeTempTileDataBuffersIfPossible() != TRUE)
+        {
+            LZDecompressWram(sMenuTilemap, sBg1TilemapBuffer);
+            sMenuDataPtr->gfxLoadState++;
+        }
+        break;
+    case 2:
+        LoadPalette(sMenuPalette, 0, 32);
+        sMenuDataPtr->gfxLoadState++;
+        break;
+    default:
+        sMenuDataPtr->gfxLoadState = 0;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static void Menu_InitWindows(void)
+{
+    u32 i;
+
+    InitWindows(sMenuWindowTemplates);
+    DeactivateAllTextPrinters();
+    ScheduleBgCopyTilemapToVram(0);
+
+    FillWindowPixelBuffer(WINDOW_1, 0);
+    LoadUserWindowBorderGfx(WINDOW_1, 720, 14 * 16);
+    PutWindowTilemap(WINDOW_1);
+    CopyWindowToVram(WINDOW_1, 3);
+
+    ScheduleBgCopyTilemapToVram(2);
+}
+
+static const u8 sText_MyMenu[] = _("HP: {STR_VAR_1}/{STR_VAR_2}");
+static const u8 sText_HP[] = _("HP: {STR_VAR_1}/{STR_VAR_2}");
+static const u8 sText_PP[] = _("PP: {STR_VAR_1}/{STR_VAR_2}");
+
+static const u8 sText_Ability[] = _("Ability:");
+static const u8 sText_Innate[]  = _("Innate:");
+static const u8 sText_Held_Item[] = _("Held Item:\n{STR_VAR_1}");
+static const u8 sText_None[]  = _("None");
+static const u8 sYourOpponentPokemonData[] = _("Your Opponent Pokémon Battle Data");
+static const u8 sYourPokemonData[] = _("Your Pokémon Battle Data");
+
+static const u8 sText_Attack[]         = _("Atk");
+static const u8 sText_Defense[]        = _("Def");
+static const u8 sText_SpecialAttack[]  = _("SpA");
+static const u8 sText_SpecialDefense[] = _("SpD");
+static const u8 sText_Speed[]          = _("Spd");
+static const u8 sText_Accuracy[]       = _("Acc");
+static const u8 sText_Evasion[]        = _("Eva");
+
+static u8 statorder[NUM_BATTLE_STATS] = {
+    STAT_HP,
+    STAT_ATK,
+    STAT_DEF,
+    STAT_SPATK,
+    STAT_SPDEF,
+    STAT_SPEED,
+    STAT_ACC,
+    STAT_EVASION,
+};
+
+const u8 gText_NewLevelSymbol[] = _("{LV}{STR_VAR_1}");
+static void PrintToWindow(u8 windowId, u8 colorIdx)
+{
+    const u8 *str = sText_MyMenu;
+    u8 i, j;
+    u8 x, y, x2, y2;
+    u16 species   = gBattleMons[sMenuDataPtr->battlerId].species;
+    u16 ability   = ABILITY_IRON_FIST;
+    u16 heldItem  = ITEM_SHELL_BELL;
+    u16 innate1 = gBaseStats[species].innates[0];
+    u16 innate2 = gBaseStats[species].innates[1];
+    u16 innate3 = gBaseStats[species].innates[2];
+    u32 personality = gBattleMons[sMenuDataPtr->battlerId].personality;
+    u16 move  = MOVE_ACROBATICS;
+    u16 statTest  = 999;
+    int levelTest = 100;
+    u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[sMenuDataPtr->battlerId].species, gBattleMons[sMenuDataPtr->battlerId].personality);
+    u8 statStage;
+    bool8 statStageUp = FALSE;
+    bool8 isEnemyMon = GetBattlerSide(sMenuDataPtr->battlerId) == B_SIDE_OPPONENT;
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+
+    if(!isEnemyMon){ //Enemy Mons have disabled randomized innates/abilies 
+        innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
+        innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
+        innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
+    }
+
+    //Title
+    x  = 7;
+    y  = 2;
+    x2 = 0;
+    y2 = -4;
+    if(isEnemyMon)
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sYourOpponentPokemonData);
+    else
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sYourPokemonData);
+
+    //Pokemon Name
+    y++;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gSpeciesNames[species]);
+    //Pokemon HP
+    y++;
+    ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].hp, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar2, gBattleMons[sMenuDataPtr->battlerId].maxHP, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, sText_HP);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    //Pokemon Gender
+    x = 2;
+    y = 6;
+    switch(gender){
+        case MON_MALE:
+            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLUE], 0xFF, gText_MaleSymbol);
+            break;
+        case MON_FEMALE:
+            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_RED], 0xFF, gText_FemaleSymbol);
+            break;
+    }
+
+    //Pokemon Level
+    x++;
+    ConvertIntToDecimalStringN(gStringVar1, levelTest, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_NewLevelSymbol);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+
+    //Held Item
+    x  = 22;
+    y  = 3;
+    if (gBattleMons[sMenuDataPtr->battlerId].item == ITEM_NONE)
+        StringCopy(gStringVar1, sText_None);
+    else
+        StringCopy(gStringVar1, ItemId_GetName(gBattleMons[sMenuDataPtr->battlerId].item));
+    StringExpandPlaceholders(gStringVar4, sText_Held_Item);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+
+    //Stats
+    x  = 3;
+    y  = 7;
+    //Attack
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Attack);
+	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].attack, STR_CONV_MODE_LEFT_ALIGN, 3);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
+    y++;
+    //Defense
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Defense);
+	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].defense, STR_CONV_MODE_LEFT_ALIGN, 3);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
+    y++;
+    //Special Attack
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_SpecialAttack);
+	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].spAttack, STR_CONV_MODE_LEFT_ALIGN, 3);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
+    y++;
+    //Special Defense
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_SpecialDefense);
+	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].spDefense, STR_CONV_MODE_LEFT_ALIGN, 3);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
+    y++;
+    //Speed
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Speed);
+	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].speed, STR_CONV_MODE_LEFT_ALIGN, 3);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
+
+    //Accuracy
+    y = y + 2;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Accuracy);
+    //Evasion
+    y++;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Evasion);
+
+    //Abilitites
+    x = 15;
+    y = 7;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Ability);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 5) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gAbilityNames[gBattleMons[sMenuDataPtr->battlerId].ability]);
+    y++;
+    //Innate 1
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Innate);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 5) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gAbilityNames[innate1]);
+    y++;
+    //Innate 2
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Innate);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 5) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gAbilityNames[innate2]);
+    y++;
+    //Innate 3
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, sText_Innate);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 5) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gAbilityNames[innate3]);
+
+    //Moves
+    y = y+2;
+    for(i = 0; i < MAX_MON_MOVES; i++){
+        move = gBattleMons[sMenuDataPtr->battlerId].moves[i];
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gMoveNames[move]);
+        //Current PP
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].pp[i], STR_CONV_MODE_LEFT_ALIGN, 3); //Current PP
+        ConvertIntToDecimalStringN(gStringVar2, gBattleMoves[move].pp, STR_CONV_MODE_LEFT_ALIGN, 3); //Max PP, ToFix
+        StringExpandPlaceholders(gStringVar4, sText_PP);
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 8) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+        y++;
+    }
+
+    //Stat Drops & Ups
+    x = 8;
+    y = 7;
+    for(i = 0; i < NUM_BATTLE_STATS - 1; i++){
+        
+        statStage = gBattleMons[sMenuDataPtr->battlerId].statStages[statorder[i + 1]];//HP is not taken into account
+        if(statStage != DEFAULT_STAT_STAGE){
+            if(statStage > DEFAULT_STAT_STAGE){
+                statStageUp = TRUE;
+                statStage = statStage - DEFAULT_STAT_STAGE;
+            }
+            else{
+                statStageUp = FALSE;
+                statStage = DEFAULT_STAT_STAGE - statStage;
+            }
+
+            for(j = 0; j < statStage; j++){
+                if(statStageUp)
+                    BlitBitmapToWindow(windowId, sStatUpArrow, ((x + j) * 8) + x2, (y * 8), 8, 8);
+                else
+                    BlitBitmapToWindow(windowId, sStatDownArrow, ((x + j) * 8) + x2, (y * 8), 8, 8);
+
+            }
+        }
+        if(statorder[i + 1] == STAT_SPEED)
+            y = y + 2;
+        else
+            y++;
+    }
+    
+
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, 3);
+}
+
+static void Task_MenuWaitFadeIn(u8 taskId)
+{
+    if (!gPaletteFade.active)
+        gTasks[taskId].func = Task_MenuMain;
+}
+
+static void Task_MenuTurnOff(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (!gPaletteFade.active)
+    {
+        SetMainCallback2(sMenuDataPtr->savedCallback);
+        Menu_FreeResources();
+        DestroyTask(taskId);
+    }
+}
+//Status
+
+static const union AnimCmd sSpriteAnim_StatusPoison[] = {
+    ANIMCMD_FRAME(0, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_StatusParalyzed[] = {
+    ANIMCMD_FRAME(4, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_StatusSleep[] = {
+    ANIMCMD_FRAME(8, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_StatusFrozen[] = {
+    ANIMCMD_FRAME(12, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_StatusBurn[] = {
+    ANIMCMD_FRAME(16, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_StatusPokerus[] = {
+    ANIMCMD_FRAME(20, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_StatusFaint[] = {
+    ANIMCMD_FRAME(24, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+static const union AnimCmd sSpriteAnim_StatusFrostbite[] = {
+    ANIMCMD_FRAME(28, 0, FALSE, FALSE),
+    ANIMCMD_END
+};
+static const union AnimCmd *const sSpriteAnimTable_StatusCondition[] = {
+    sSpriteAnim_StatusPoison,
+    sSpriteAnim_StatusParalyzed,
+    sSpriteAnim_StatusSleep,
+    sSpriteAnim_StatusFrozen,
+    sSpriteAnim_StatusBurn,
+    sSpriteAnim_StatusPokerus,
+    sSpriteAnim_StatusFaint,
+    sSpriteAnim_StatusFrostbite,
+};
+static const struct OamData sOamData_StatusCondition =
+{
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = 0,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(32x8),
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(32x8),
+    .tileNum = 0,
+    .priority = 3,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+#define TAG_MON_STATUS      30001
+static const struct SpriteTemplate sSpriteTemplate_StatusCondition =
+{
+    .tileTag = TAG_MON_STATUS,
+    .paletteTag = TAG_MON_STATUS,
+    .oam = &sOamData_StatusCondition,
+    .anims = sSpriteAnimTable_StatusCondition,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCallbackDummy
+};
+
+#define STATUS_ICON_X (7 * 8)
+#define STATUS_ICON_Y (5 * 8)
+static void CreateSetStatusSprite(void)
+{
+    u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_ID_STATUS];
+    u8 statusAnim;
+
+    if (*spriteId == SPRITE_NONE)
+        *spriteId = CreateSprite(&sSpriteTemplate_StatusCondition, STATUS_ICON_X, STATUS_ICON_Y, 0);
+
+    //statusAnim = gBattleMons[sMenuDataPtr->battlerId].status1;
+    statusAnim = sMenuDataPtr->battlerId;
+    if (statusAnim != 0)
+    {
+        StartSpriteAnim(&gSprites[*spriteId], statusAnim - 1);
+        SetSpriteInvisibility(SPRITE_ARR_ID_STATUS, FALSE);
+    }
+    else
+    {
+        SetSpriteInvisibility(SPRITE_ARR_ID_STATUS, TRUE);
+    }
+}
+
+static u8 DestroyBattleMenuSprite(u8 spriteArrayId)
+{
+    struct Sprite *sprite = &gSprites[sMenuDataPtr->spriteIds[spriteArrayId]];
+    sMenuDataPtr->spriteIds[spriteArrayId] = SPRITE_NONE;
+    DestroySpriteAndFreeResources(sprite);
+}
+
+static u8 ShowSpeciesIcon()
+{
+	u16 species     = gBattleMons[sMenuDataPtr->battlerId].species;
+    u16 personality = gBattleMons[sMenuDataPtr->battlerId].personality;
+	LoadMonIconPalette(species);
+
+    sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON] = CreateMonIcon(species, SpriteCallbackDummy, POKEMON_ICON_X, POKEMON_ICON_Y, 0, personality);
+            
+	gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON]].invisible = FALSE;
+    return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON];
+}
+// different from pokemon_summary_screen
+#define TYPE_ICON_PAL_NUM_0     13
+#define TYPE_ICON_PAL_NUM_1     14
+#define TYPE_ICON_PAL_NUM_2     15
+static const u8 sMoveTypeToOamPaletteNum[NUMBER_OF_MON_TYPES] =
+{
+    [TYPE_NORMAL] = TYPE_ICON_PAL_NUM_0,
+    [TYPE_FIGHTING] = TYPE_ICON_PAL_NUM_0,
+    [TYPE_FLYING] = TYPE_ICON_PAL_NUM_1,
+    [TYPE_POISON] = TYPE_ICON_PAL_NUM_1,
+    [TYPE_GROUND] = TYPE_ICON_PAL_NUM_0,
+    [TYPE_ROCK] = TYPE_ICON_PAL_NUM_0,
+    [TYPE_BUG] = TYPE_ICON_PAL_NUM_2,
+    [TYPE_GHOST] = TYPE_ICON_PAL_NUM_1,
+    [TYPE_STEEL] = TYPE_ICON_PAL_NUM_0,
+    [TYPE_MYSTERY] = TYPE_ICON_PAL_NUM_2,
+    [TYPE_FIRE] = TYPE_ICON_PAL_NUM_0,
+    [TYPE_WATER] = TYPE_ICON_PAL_NUM_1,
+    [TYPE_GRASS] = TYPE_ICON_PAL_NUM_2,
+    [TYPE_ELECTRIC] = TYPE_ICON_PAL_NUM_0,
+    [TYPE_PSYCHIC] = TYPE_ICON_PAL_NUM_1,
+    [TYPE_ICE] = TYPE_ICON_PAL_NUM_1,
+    [TYPE_DRAGON] = TYPE_ICON_PAL_NUM_2,
+    [TYPE_DARK] = TYPE_ICON_PAL_NUM_0,
+    [TYPE_FAIRY] = TYPE_ICON_PAL_NUM_1,
+};
+
+static void SetSpriteInvisibility(u8 spriteArrayId, bool8 invisible)
+{
+    gSprites[sMenuDataPtr->spriteIds[spriteArrayId]].invisible = invisible;
+}
+
+static void SetTypeIconSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
+{
+    struct Sprite *sprite = &gSprites[sMenuDataPtr->spriteIds[spriteArrayId]];
+    StartSpriteAnim(sprite, typeId);
+    sprite->oam.paletteNum = sMoveTypeToOamPaletteNum[typeId];
+    sprite->x = x + 16;
+    sprite->y = y + 8;
+    SetSpriteInvisibility(spriteArrayId, FALSE);
+}
+
+#define TYPE_ICON_Y (5 * 8)
+#define TYPE_ICON_1_X (7 * 8)
+#define TYPE_ICON_2_X TYPE_ICON_1_X + (4 * 8)
+#define TYPE_ICON_3_X TYPE_ICON_2_X + (4 * 8)
+static void SetMonTypeIcons(void)
+{
+    u8 type1 = gBattleMons[sMenuDataPtr->battlerId].type1;
+    u8 type2 = gBattleMons[sMenuDataPtr->battlerId].type2;
+    u8 type3 = gBattleMons[sMenuDataPtr->battlerId].type3;
+
+    if (type1 != type2)
+    {
+        SetTypeIconSpritePosAndPal(type1, TYPE_ICON_1_X, TYPE_ICON_Y, SPRITE_ARR_ID_TYPE_1);
+        SetTypeIconSpritePosAndPal(type2, TYPE_ICON_2_X, TYPE_ICON_Y, SPRITE_ARR_ID_TYPE_2);
+        SetSpriteInvisibility(SPRITE_ARR_ID_TYPE_2, FALSE);
+    }
+    else
+    {
+        SetTypeIconSpritePosAndPal(type1, TYPE_ICON_1_X, TYPE_ICON_Y, SPRITE_ARR_ID_TYPE_1);
+        SetSpriteInvisibility(SPRITE_ARR_ID_TYPE_2, TRUE);
+    }
+}
+
+/* This is the meat of the UI. This is where you wait for player inputs and can branch to other tasks accordingly */
+static void Task_MenuMain(u8 taskId)
+{
+    if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_PC_OFF);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        gTasks[taskId].func = Task_MenuTurnOff;
+    }
+
+    if (JOY_NEW(DPAD_RIGHT)){
+        if(sMenuDataPtr->battlerId != MAX_BATTLERS_COUNT - 1)
+            sMenuDataPtr->battlerId++;
+        else
+            sMenuDataPtr->battlerId = 0;
+        PrintToWindow(WINDOW_1, FONT_BLACK);
+        DestroyBattleMenuSprite(SPRITE_ARR_ID_MON_ICON);
+        //DestroyBattleMenuSprite(SPRITE_ARR_ID_STATUS);
+        //CreateSetStatusSprite();
+        ShowSpeciesIcon();
+    }
+
+    if (JOY_NEW(DPAD_LEFT)){
+        if(sMenuDataPtr->battlerId != 0)
+            sMenuDataPtr->battlerId--;
+        else
+            sMenuDataPtr->battlerId = MAX_BATTLERS_COUNT - 1;
+        PrintToWindow(WINDOW_1, FONT_BLACK);
+        DestroyBattleMenuSprite(SPRITE_ARR_ID_MON_ICON);
+        //DestroyBattleMenuSprite(SPRITE_ARR_ID_STATUS);
+        //CreateSetStatusSprite();
+        ShowSpeciesIcon();
+    }
+}
