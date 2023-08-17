@@ -12312,7 +12312,8 @@ static const struct LevelUpMove sWhirlipedeLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sScolipedeLevelUpLearnset[] = {
-	LEVEL_UP_MOVE( 0, MOVE_BATON_PASS),
+	LEVEL_UP_MOVE( 0, MOVE_LEECH_LIFE), // new
+	LEVEL_UP_MOVE( 1, MOVE_BATON_PASS),
     LEVEL_UP_MOVE( 1, MOVE_POISON_JAB),
 	LEVEL_UP_MOVE( 1, MOVE_IRON_DEFENSE),
 	LEVEL_UP_MOVE( 1, MOVE_DEFENSE_CURL),
