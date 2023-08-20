@@ -68,6 +68,7 @@ struct MenuResources
     u8 battlerId;
     u8 modeId;
     u8 tabId;
+    u8 tabModeId;
     u8 spriteIds[NUM_SPRITES];
 };
 
@@ -524,6 +525,7 @@ static u8 statorder[NUM_BATTLE_STATS] = {
 const u8 sText_Title_Battler_Stats[]    = _("Pokémon Stats");
 const u8 sText_Title_Battler_Ability[]  = _("Abilities Info");
 const u8 sText_Title_Battler_Moves[]    = _("Moves Info");
+const u8 sText_Title_Battler_Status[]    = _("Pokémon Status");
 const u8 sText_Title_Field_Stats[]      = _("Field Info");
 const u8 sText_Title_Controllers[]      = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
 
@@ -783,6 +785,7 @@ const u8 gText_MoveInfo_Target2[] = _("Target 2: {STR_VAR_1}");
 const u8 gText_MoveInfo_Damage[] = _("Damage");
 
 const u8 gText_Target_Nothing[]   = _("---");
+const u8 sText_Title_Controllers_Move[]      = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page {A_BUTTON}Mode");
 #define SPACE_BETWEEN_MOVES 1
 #define SPACE_BETWEEN_DAMAGE (4 * 8)
 #define MIN_MOVE_DAMAGE 4
@@ -814,8 +817,8 @@ static void PrintMoveTab(void){
     x2 = 0;
     y2 = 0;
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Battler_Moves);
-    x  = 19;
-    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
+    x  = 16;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers_Move);
 
     // First Move
     x  = 9;
@@ -1172,12 +1175,30 @@ static void PrintMoveTab(void){
 
 }
 
+const u8 sText_Title_Field_Turns_Left[]                   = _("Turns Left:");
+const u8 sText_Title_Field_Weather[]                      = _("Weather: {STR_VAR_1}");
+const u8 sText_Title_Field_Weather_Rain[]                 = _("Rain");
+const u8 sText_Title_Field_Weather_Description_Rain[]     = _("Strengthens Water-type moves by\n"
+                                                              "50% while weakening Fire-type\n"
+                                                              "moves by 50%.");
+const u8 sText_Title_Field_Terrain[]                      = _("Terrain: {STR_VAR_1}");
+const u8 sText_Title_Field_Terrain_Electric[]             = _("Electric");
+const u8 sText_Title_Field_Terrain_Description_Electric[] = _("Pokémon on the ground won't fall\n"
+                                                              "asleep. The power of Electric-type\n"
+                                                              "moves is boosted.");
+const u8 sText_Title_Field_Nature_Power[]                 = _("Nature Power:");
+const u8 sText_Title_Field_Secret_Power[]                 = _("Secret Power:");
+const u8 sText_Title_Field_Paralysis[]                    = _("Causes Paralysis");
+#define SPACE_BETWEEN_LINES_FIELD ((6 * 8) + 4)
+#define MAX_DESCRIPTION_LINES 3
+#define LINES_BETWEEN_STUFF 1
 static void PrintFieldTab(void)
 {
     u8 i, j;
     u8 x, y, x2, y2;
     u8 windowId = WINDOW_1;
     u8 colorIdx = FONT_BLACK;
+    u8 turnsLeft = 5;
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
@@ -1189,6 +1210,53 @@ static void PrintFieldTab(void)
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Stats);
     x  = 19;
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
+
+    // Weather
+    x  = 9;
+    y  = 3;
+    x2 = 0;
+    y2 = -4;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Weather);
+    StringCopy(gStringVar1, sText_Title_Field_Weather_Rain);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + SPACE_BETWEEN_LINES_FIELD, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+    //Turns Left
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Turns_Left);
+    ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+    y++;
+
+    //Weather Description
+    StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Rain);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+    //Terrain
+    y = y + MAX_DESCRIPTION_LINES + LINES_BETWEEN_STUFF;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Terrain);
+    StringCopy(gStringVar1, sText_Title_Field_Terrain_Electric);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + SPACE_BETWEEN_LINES_FIELD, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+    //Turns Left
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Turns_Left);
+    ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+    y++;
+    //Terrain Description
+    StringCopy(gStringVar1, sText_Title_Field_Terrain_Description_Electric);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+    //Nature Power
+    y = y + MAX_DESCRIPTION_LINES + LINES_BETWEEN_STUFF;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Nature_Power);
+    StringCopy(gStringVar1, gMoveNamesLong[MOVE_THUNDERBOLT]);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 1.5), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+    //Secret Power
+    y++;
+    StringCopy(gStringVar1, sText_Title_Field_Secret_Power);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+    StringCopy(gStringVar1, sText_Title_Field_Paralysis);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 1.5), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+
 
     //Selector
     x = 0;
