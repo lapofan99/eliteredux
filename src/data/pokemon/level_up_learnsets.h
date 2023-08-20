@@ -21194,6 +21194,7 @@ static const struct LevelUpMove sLycanrocMidnightLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_ROCK_CLIMB),
     LEVEL_UP_MOVE(48, MOVE_STONE_EDGE),
     #ifdef REBALANCED_VERSION
+        LEVEL_UP_MOVE(51, MOVE_SUCKER_PUNCH), // new
         LEVEL_UP_MOVE(53, MOVE_HEAD_SMASH),
         LEVEL_UP_MOVE(58, MOVE_WICKED_BLOW), // new
     #endif

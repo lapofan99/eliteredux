@@ -2657,7 +2657,7 @@ u8 DoBattlerEndTurnEffects(void)
              && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
              && gBattleMons[gActiveBattler].hp != 0)
             {
-                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 8);
+                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 16);
                 BattleScriptExecute(BattleScript_AquaRingHeal);
                 effect++;
             }

@@ -4034,7 +4034,6 @@ const u16 gEggMoves[] = {
         MOVE_CRUSH_CLAW,
         MOVE_FIRE_FANG,
         MOVE_THUNDER_FANG,
-        MOVE_SUCKER_PUNCH,
         MOVE_THRASH),
 
     egg_moves(WISHIWASHI,
