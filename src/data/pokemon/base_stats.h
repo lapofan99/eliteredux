@@ -3085,7 +3085,32 @@ const struct BaseStats gBaseStats[] =
     .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
-    },
+},
+
+[SPECIES_DEWGONG_MEGA] =
+    {
+    .baseHP        = 90,
+    .baseAttack    = 90,
+    .baseDefense   = 60, // With Fur Coat, effectively base 169. Was 209 with base 80
+    .baseSpeed     = 90,
+    .baseSpAttack  = 95,
+    .baseSpDefense = 95,
+    .type1 = TYPE_WATER,
+    .type2 = TYPE_ICE,
+    .catchRate = 255,
+    .expYield = 166,
+    .evYield_SpDefense = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_WATER_1,
+    .eggGroup2 = EGG_GROUP_FIELD,
+    .abilities = {ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_PERMAFROST},
+    .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
+    .bodyColor = BODY_COLOR_WHITE,
+    .noFlip = FALSE,
+},
 
 [SPECIES_GRIMER] =
     {

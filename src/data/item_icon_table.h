@@ -614,6 +614,7 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_KINGLERITE] = {gItemIcon_Kinglerite, gItemIconPalette_Kinglerite},
     [ITEM_LAPRASITE] = {gItemIcon_Laprasite, gItemIconPalette_Laprasite},
     [ITEM_KINGDRANITE]= {gItemIcon_Kingdranite, gItemIconPalette_Kingdranite},
+    [ITEM_DEWGONGITE]= {gItemIcon_Dewgongite, gItemIconPalette_Dewgongite},
     [ITEM_FLYGONITE] = {gItemIcon_Flygonite, gItemIconPalette_Flygonite},
     [ITEM_CAMERUPTITE] = {gItemIcon_Cameruptite, gItemIconPalette_Cameruptite},
     [ITEM_LOPUNNITE] = {gItemIcon_Lopunnite, gItemIconPalette_Lopunnite},

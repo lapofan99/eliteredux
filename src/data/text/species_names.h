@@ -954,6 +954,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_LAPRAS_MEGA] = _("Lapras"),
     [SPECIES_FLYGON_MEGA] = _("Flygon"),
     [SPECIES_KINGDRA_MEGA] = _("Kingdra"),
+    [SPECIES_DEWGONG_MEGA] = _("Dewgong"),
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] = _("Rayquaza"),
     [SPECIES_KYOGRE_PRIMAL] = _("Kyogre"),

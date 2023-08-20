@@ -4766,6 +4766,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x88,
         .y_offset = 7,
     },
+    [SPECIES_DEWGONG_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] =
     {

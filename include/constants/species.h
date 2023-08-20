@@ -1351,7 +1351,29 @@
 #define SPECIES_FLYGON_MEGA                 FORMS_START + 314
 #define SPECIES_KINGDRA_MEGA                FORMS_START + 315
 
-#define SPECIES_EGG SPECIES_KINGDRA_MEGA + 1
+#define SPECIES_DEWGONG_MEGA                FORMS_START + 316
+#define SPECIES_TEMP2_MEGA                  FORMS_START + 317
+#define SPECIES_TEMP3_MEGA                  FORMS_START + 318
+#define SPECIES_TEMP4_MEGA                  FORMS_START + 319
+#define SPECIES_TEMP5_MEGA                  FORMS_START + 320
+#define SPECIES_TEMP6_MEGA                  FORMS_START + 321
+#define SPECIES_TEMP7_MEGA                  FORMS_START + 322
+#define SPECIES_TEMP8_MEGA                  FORMS_START + 323
+#define SPECIES_TEMP9_MEGA                  FORMS_START + 324
+#define SPECIES_TEMP10_MEGA                 FORMS_START + 325
+#define SPECIES_TEMP11_MEGA                 FORMS_START + 326
+#define SPECIES_TEMP12_MEGA                 FORMS_START + 327
+#define SPECIES_TEMP13_MEGA                 FORMS_START + 328
+#define SPECIES_TEMP14_MEGA                 FORMS_START + 329
+#define SPECIES_TEMP15_MEGA                 FORMS_START + 330
+#define SPECIES_TEMP16_MEGA                 FORMS_START + 331
+#define SPECIES_TEMP17_MEGA                 FORMS_START + 332
+#define SPECIES_TEMP18_MEGA                 FORMS_START + 333
+#define SPECIES_TEMP19_MEGA                 FORMS_START + 334
+#define SPECIES_TEMP20_MEGA                 FORMS_START + 335
+#define SPECIES_TEMP21_MEGA                 FORMS_START + 336
+
+#define SPECIES_EGG SPECIES_TEMP21_MEGA + 1
 #define NUM_SPECIES SPECIES_EGG
 
 // National Dex Index Defines

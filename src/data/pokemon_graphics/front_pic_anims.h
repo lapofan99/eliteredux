@@ -9805,6 +9805,12 @@ static const union AnimCmd sAnim_KINGDRA_MEGA_1[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_DEWGONG_MEGA_1[] =
+{
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd sAnim_RATTATA_ALOLAN_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -15391,6 +15397,11 @@ static const union AnimCmd *const sAnims_KINGDRA_MEGA[] ={
     sAnim_KINGDRA_MEGA_1,
 };
 
+static const union AnimCmd *const sAnims_DEWGONG_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
 static const union AnimCmd *const sAnims_RATTATA_ALOLAN[] ={
     sAnim_GeneralFrame0,
     sAnim_RATTATA_ALOLAN_1,
@@ -16728,6 +16739,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(LAPRAS_MEGA),
     ANIM_CMD(FLYGON_MEGA),
     ANIM_CMD(KINGDRA_MEGA),
+    ANIM_CMD(DEWGONG_MEGA),
     ANIM_CMD(RAYQUAZA_MEGA),
     ANIM_CMD(KYOGRE_PRIMAL),
     ANIM_CMD(GROUDON_PRIMAL),

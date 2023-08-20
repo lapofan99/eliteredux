@@ -2598,6 +2598,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_MACHAMPITE,        1},
     {ITEM_KINGLERITE,        1},
     {ITEM_KINGDRANITE,       1},
+    //{ITEM_DEWGONGITE,       1},
     //Berries
     {ITEM_AGUAV_BERRY,      50},
     {ITEM_APICOT_BERRY,     50},

@@ -7778,6 +7778,18 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
+    [ITEM_DEWGONGITE] =
+    {
+        .name = _("Dewgongite"),
+        .itemId = ITEM_DEWGONGITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sDewgongiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
     [ITEM_FLYGONITE] =
     {
         .name = _("Flygonite"),
