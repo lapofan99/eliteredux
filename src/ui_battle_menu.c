@@ -118,6 +118,7 @@ static void Menu_InitWindows(void);
 static void PrintToWindow(u8 windowId, u8 colorIdx);
 static void PrintFieldTab(void);
 static void PrintStatusTab(void);
+static void PrintAbilityTab(void);
 static void Task_MenuWaitFadeIn(u8 taskId);
 static void Task_MenuMain(u8 taskId);
 
@@ -181,11 +182,14 @@ static const u16 sMenuPalette_Green[]  = INCBIN_U16("graphics/ui_menus/battle_me
 static const u16 sMenuPalette_Red[]    = INCBIN_U16("graphics/ui_menus/battle_menu/palette_red.gbapal");
 
 //Battler Tabs
-static const u32 sMenu_Tilemap_Singles_Battler_Status[]  = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_singles_battler_status.bin.lz");
-static const u32 sMenu_Tilemap_Doubles_Battler_Status[]  = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_doubles_battler_status.bin.lz");
+static const u32 sMenu_Tilemap_Singles_Battler_Status[]     = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_singles_battler_status.bin.lz");
+static const u32 sMenu_Tilemap_Doubles_Battler_Status[]     = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_doubles_battler_status.bin.lz");
+//
+static const u32 sMenu_Tilemap_Singles_Battler_Abilities[]  = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_singles_battler_abilities.bin.lz");
+static const u32 sMenu_Tilemap_Doubles_Battler_Abilities[]  = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_doubles_battler_abilities.bin.lz");
 //Field Tabs
-static const u32 sMenu_Tilemap_Singles_Field[]           = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_singles_field.bin.lz");
-static const u32 sMenu_Tilemap_Doubles_Field[]           = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_doubles_field.bin.lz");
+static const u32 sMenu_Tilemap_Singles_Field[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_singles_field.bin.lz");
+static const u32 sMenu_Tilemap_Doubles_Field[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_doubles_field.bin.lz");
 
 enum Colors
 {
@@ -370,23 +374,36 @@ void LoadTilemapFromMode(void)
     DecompressAndCopyTileDataToVram(1, sMenuTiles, 0, 0, 0);
     FreeTempTileDataBuffersIfPossible();
 
-    switch(sMenuDataPtr->modeId){
-        case MODE_FIELD:
-            if(IsDoubleBattle()){
-                LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
-            }
-            else{
-                LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
-            }
-        break;
-        default:
-            if(IsDoubleBattle()){
-                LZDecompressWram(sMenu_Tilemap_Doubles_Battler_Status, sBg1TilemapBuffer);
-            }
-            else{
-                LZDecompressWram(sMenu_Tilemap_Singles_Battler_Status, sBg1TilemapBuffer);
-            }
-        break;
+    if(sMenuDataPtr->modeId != MODE_FIELD){
+        switch(sMenuDataPtr->tabId){
+            case TAB_STATS:
+                if(IsDoubleBattle())
+                    LZDecompressWram(sMenu_Tilemap_Doubles_Battler_Status, sBg1TilemapBuffer);
+                else
+                    LZDecompressWram(sMenu_Tilemap_Singles_Battler_Status, sBg1TilemapBuffer);
+            break;
+            case TAB_ABILITIES:
+            case TAB_MOVES:
+                if(IsDoubleBattle())
+                    LZDecompressWram(sMenu_Tilemap_Doubles_Battler_Abilities, sBg1TilemapBuffer);
+                else
+                    LZDecompressWram(sMenu_Tilemap_Singles_Battler_Abilities, sBg1TilemapBuffer);
+            break;
+            default:
+                if(IsDoubleBattle())
+                    LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
+                else
+                    LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
+            break;
+        }
+    }
+    else{
+        if(IsDoubleBattle()){
+            LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
+        }
+        else{
+            LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
+        }
     }
 }
 
@@ -504,9 +521,11 @@ static u8 statorder[NUM_BATTLE_STATS] = {
     STAT_EVASION,
 };
 
-const u8 sText_Title_Battler_Stats[] = _("Pokémon Stats");
-const u8 sText_Title_Field_Stats[]  = _("Field Info");
-const u8 sText_Title_Controllers[] = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
+const u8 sText_Title_Battler_Stats[]    = _("Pokémon Stats");
+const u8 sText_Title_Battler_Ability[]  = _("Abilities Info");
+const u8 sText_Title_Battler_Moves[]    = _("Moves Info");
+const u8 sText_Title_Field_Stats[]      = _("Field Info");
+const u8 sText_Title_Controllers[]      = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
 
 const u8 gText_NewLevelSymbol[] = _("{LV}{STR_VAR_1}");
 static void PrintStatusTab(){
@@ -654,6 +673,480 @@ static void PrintStatusTab(){
     
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
+}
+
+
+const u8 sText_PrintAbilityTab_Ability[] = _("Ability");
+const u8 sText_PrintAbilityTab_Innate[] = _("Innate");
+#define SPACE_BETWEEN_ABILITY_AND_NAME (8 * 8)
+#define SPACE_BETWEEN_ABILITIES 3
+static void PrintAbilityTab(){
+    u8 i, j;
+    u8 x, y, x2, y2;
+    u8 windowId = WINDOW_1;
+    u8 colorIdx = FONT_BLACK;
+    u16 species = gBattleMons[sMenuDataPtr->battlerId].species;
+    u16 innate1 = gBaseStats[species].innates[0];
+    u16 innate2 = gBaseStats[species].innates[1];
+    u16 innate3 = gBaseStats[species].innates[2];
+    u16 ability = gBattleMons[sMenuDataPtr->battlerId].ability;
+    u32 personality = gBattleMons[sMenuDataPtr->battlerId].personality;
+    u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[sMenuDataPtr->battlerId].species, gBattleMons[sMenuDataPtr->battlerId].personality);
+    u8 statStage;
+    bool8 statStageUp = FALSE;
+    bool8 isEnemyMon = GetBattlerSide(sMenuDataPtr->battlerId) == B_SIDE_OPPONENT;
+
+    
+    if(!isEnemyMon){ //Enemy Mons have disabled randomized innates/abilies 
+        innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
+        innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
+        innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
+    }
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+
+    //Title
+    x  = 9;
+    y  = 0;
+    x2 = 0;
+    y2 = 0;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Battler_Ability);
+    x  = 19;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
+
+    // Main Ability
+    x  = 9;
+    y  = 3;
+    x2 = 0;
+    y2 = -4;
+    //Title
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_PrintAbilityTab_Ability);
+	// Name ---------------------------------------------------------------------------------------------------
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gAbilityNames[ability]);
+	// Description ---------------------------------------------------------------------------------------------------
+    y++;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2 + 4, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gAbilityDescriptionPointers[ability]);
+
+    // Innate 1
+    y = y + SPACE_BETWEEN_ABILITIES;
+    //Title
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_PrintAbilityTab_Innate);
+    // Name ---------------------------------------------------------------------------------------------------
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gAbilityNames[innate1]);
+    // Description ---------------------------------------------------------------------------------------------------
+    y++;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2 + 4, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gAbilityDescriptionPointers[innate1]);
+    
+    // Innate 2
+    y = y + SPACE_BETWEEN_ABILITIES;
+    //Title
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_PrintAbilityTab_Innate);
+    // Name ---------------------------------------------------------------------------------------------------
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gAbilityNames[innate2]);
+    // Description ---------------------------------------------------------------------------------------------------
+    y++;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2 + 4, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gAbilityDescriptionPointers[innate2]);
+       
+    // Innate 3
+    y = y + SPACE_BETWEEN_ABILITIES;
+    //Title
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_PrintAbilityTab_Innate);
+    // Name ---------------------------------------------------------------------------------------------------
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gAbilityNames[innate3]);
+    // Description ---------------------------------------------------------------------------------------------------
+    y++;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2 + 4, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gAbilityDescriptionPointers[innate3]);
+    
+    //Selector
+    x = 0;
+    y = 0;
+    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
+
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, 3);
+}
+
+
+const u8 gText_CurrentPP[]         = _("PP: {STR_VAR_1}/{STR_VAR_2}");
+const u8 gText_MoveInfo_Power[]    = _("Power: {STR_VAR_1}");
+const u8 gText_MoveInfo_Accuracy[] = _("Accuracy: {STR_VAR_1}");
+const u8 gText_MoveInfo_Priority[] = _("Priority: {STR_VAR_1}");
+const u8 gText_MoveInfo_Split[]    = _("Split: {STR_VAR_1}");
+
+const u8 gText_Split_Physical[] = _("Physical");
+const u8 gText_Split_Special[]  = _("Special");
+const u8 gText_Split_Status[]   = _("Status");
+
+const u8 gText_MoveInfo_Target1[] = _("Target 1: {STR_VAR_1}");
+const u8 gText_MoveInfo_Target2[] = _("Target 2: {STR_VAR_1}");
+
+const u8 gText_MoveInfo_Damage[] = _("Damage");
+
+const u8 gText_Target_Nothing[]   = _("---");
+#define SPACE_BETWEEN_MOVES 1
+#define SPACE_BETWEEN_DAMAGE (4 * 8)
+#define MIN_MOVE_DAMAGE 4
+static void PrintMoveTab(void){
+    u8 i, j;
+    u8 x, y, x2, y2;
+    u8 windowId = WINDOW_1;
+    u8 colorIdx = FONT_BLACK;
+    u16 species = gBattleMons[sMenuDataPtr->battlerId].species;
+    u16 move1   = gBattleMons[sMenuDataPtr->battlerId].moves[0];
+    u16 move2   = gBattleMons[sMenuDataPtr->battlerId].moves[1];
+    u16 move3   = gBattleMons[sMenuDataPtr->battlerId].moves[2];
+    u16 move4   = gBattleMons[sMenuDataPtr->battlerId].moves[3];
+    u16 ability = gBattleMons[sMenuDataPtr->battlerId].ability;
+    u16 gBattleMoveDamage;
+    u8 target = 1;
+    u32 personality = gBattleMons[sMenuDataPtr->battlerId].personality;
+    u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[sMenuDataPtr->battlerId].species, gBattleMons[sMenuDataPtr->battlerId].personality);
+    u8 statStage;
+    bool8 statStageUp = FALSE;
+    bool8 isEnemyMon = GetBattlerSide(sMenuDataPtr->battlerId) == B_SIDE_OPPONENT;
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+    
+    //Title
+    x  = 9;
+    y  = 0;
+    x2 = 0;
+    y2 = 0;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Battler_Moves);
+    x  = 19;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
+
+    // First Move
+    x  = 9;
+    y  = 3;
+    x2 = 0;
+    y2 = -4;
+    //Move Name
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gMoveNamesLong[move1]);
+	// PP ---------------------------------------------------------------------------------------------------
+    ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].pp[0],  STR_CONV_MODE_LEFT_ALIGN, 2); //Current PP
+    ConvertIntToDecimalStringN(gStringVar2, gBattleMoves[move1].pp, STR_CONV_MODE_LEFT_ALIGN, 2); //Max PP
+    StringExpandPlaceholders(gStringVar4, gText_CurrentPP);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+	//Type
+    StringCopy(gStringVar4, gTypeNames[gBattleMoves[move1].type]);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+    y++;
+    // Move Power ---------------------------------------------------------------------------------------------------
+    if(gBattleMoves[move1].power != 0)
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move1].power, STR_CONV_MODE_LEFT_ALIGN, 3);
+    else
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Power);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    // Move Accuracy
+    if(gBattleMoves[move1].accuracy != 0)
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move1].accuracy, STR_CONV_MODE_LEFT_ALIGN, 3);
+    else
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Accuracy);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    y++;
+    // Move Priority ---------------------------------------------------------------------------------------------------
+    ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move1].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Priority);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    // Move Split
+    switch(gBattleMoves[move1].split){
+        case SPLIT_PHYSICAL:
+            StringCopy(gStringVar1, gText_Split_Physical);
+        break;
+        case SPLIT_SPECIAL:
+            StringCopy(gStringVar1, gText_Split_Special);
+        break;
+        case SPLIT_STATUS:
+        default:
+            StringCopy(gStringVar1, gText_Split_Status);
+        break;
+    }
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Split);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    y++;
+    //Damage Text
+    x2 = 0;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gText_MoveInfo_Damage);
+    x2 = SPACE_BETWEEN_DAMAGE;
+    //Damage Calculation Target 1
+    if(isEnemyMon)
+        target = B_POSITION_PLAYER_LEFT;
+    else
+        target = B_POSITION_OPPONENT_LEFT;
+    gBattleMoveDamage = CalculateMoveDamage(move1, sMenuDataPtr->battlerId, target, gBattleMoves[move1].type, FALSE, FALSE, FALSE, FALSE);
+    if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    else
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target1);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    //Damage Calculation Target 2
+    if(IsDoubleBattle()){
+        if(isEnemyMon)
+            target = B_POSITION_PLAYER_RIGHT;
+        else
+            target = B_POSITION_OPPONENT_RIGHT;
+        gBattleMoveDamage = CalculateMoveDamage(move1, sMenuDataPtr->battlerId, target, gBattleMoves[move1].type, FALSE, FALSE, FALSE, FALSE);
+        if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
+            StringCopy(gStringVar1, gText_Target_Nothing);
+        else
+            ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
+        StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target2);
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    }
+
+    // Second Move
+    x2 = 0;
+    y = y + SPACE_BETWEEN_MOVES;
+    //Move Name
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gMoveNamesLong[move2]);
+	// PP ---------------------------------------------------------------------------------------------------
+    ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].pp[0],  STR_CONV_MODE_LEFT_ALIGN, 2); //Current PP
+    ConvertIntToDecimalStringN(gStringVar2, gBattleMoves[move2].pp, STR_CONV_MODE_LEFT_ALIGN, 2); //Max PP
+    StringExpandPlaceholders(gStringVar4, gText_CurrentPP);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+	//Type
+    StringCopy(gStringVar4, gTypeNames[gBattleMoves[move2].type]);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+    y++;
+    // Move Power ---------------------------------------------------------------------------------------------------
+    if(gBattleMoves[move2].power != 0)
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move2].power, STR_CONV_MODE_LEFT_ALIGN, 3);
+    else
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Power);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    // Move Accuracy
+    if(gBattleMoves[move2].accuracy != 0)
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move2].accuracy, STR_CONV_MODE_LEFT_ALIGN, 3);
+    else
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Accuracy);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    y++;
+    // Move Priority ---------------------------------------------------------------------------------------------------
+    ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move2].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Priority);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    // Move Split
+    switch(gBattleMoves[move2].split){
+        case SPLIT_PHYSICAL:
+            StringCopy(gStringVar1, gText_Split_Physical);
+        break;
+        case SPLIT_SPECIAL:
+            StringCopy(gStringVar1, gText_Split_Special);
+        break;
+        case SPLIT_STATUS:
+        default:
+            StringCopy(gStringVar1, gText_Split_Status);
+        break;
+    }
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Split);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    y++;
+    //Damage Text
+    x2 = 0;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gText_MoveInfo_Damage);
+    x2 = SPACE_BETWEEN_DAMAGE;
+    //Damage Calculation Target 1
+    if(isEnemyMon)
+        target = B_POSITION_PLAYER_LEFT;
+    else
+        target = B_POSITION_OPPONENT_LEFT;
+    gBattleMoveDamage = CalculateMoveDamage(move2, sMenuDataPtr->battlerId, target, gBattleMoves[move2].type, FALSE, FALSE, FALSE, FALSE);
+    if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    else
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target1);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    //Damage Calculation Target 2
+    if(IsDoubleBattle()){
+        if(isEnemyMon)
+            target = B_POSITION_PLAYER_RIGHT;
+        else
+            target = B_POSITION_OPPONENT_RIGHT;
+        gBattleMoveDamage = CalculateMoveDamage(move2, sMenuDataPtr->battlerId, target, gBattleMoves[move2].type, FALSE, FALSE, FALSE, FALSE);
+        if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
+            StringCopy(gStringVar1, gText_Target_Nothing);
+        else
+            ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
+        StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target2);
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    }
+
+    // Third Move
+    x2 = 0;
+    y = y + SPACE_BETWEEN_MOVES;
+    //Move Name
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gMoveNamesLong[move3]);
+	// PP ---------------------------------------------------------------------------------------------------
+    ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].pp[0],  STR_CONV_MODE_LEFT_ALIGN, 2); //Current PP
+    ConvertIntToDecimalStringN(gStringVar2, gBattleMoves[move3].pp, STR_CONV_MODE_LEFT_ALIGN, 2); //Max PP
+    StringExpandPlaceholders(gStringVar4, gText_CurrentPP);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+	//Type
+    StringCopy(gStringVar4, gTypeNames[gBattleMoves[move3].type]);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+    y++;
+    // Move Power ---------------------------------------------------------------------------------------------------
+    if(gBattleMoves[move3].power != 0)
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move3].power, STR_CONV_MODE_LEFT_ALIGN, 3);
+    else
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Power);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    // Move Accuracy
+    if(gBattleMoves[move3].accuracy != 0)
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move3].accuracy, STR_CONV_MODE_LEFT_ALIGN, 3);
+    else
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Accuracy);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    y++;
+    // Move Priority ---------------------------------------------------------------------------------------------------
+    ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move3].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Priority);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    // Move Split
+    switch(gBattleMoves[move3].split){
+        case SPLIT_PHYSICAL:
+            StringCopy(gStringVar1, gText_Split_Physical);
+        break;
+        case SPLIT_SPECIAL:
+            StringCopy(gStringVar1, gText_Split_Special);
+        break;
+        case SPLIT_STATUS:
+        default:
+            StringCopy(gStringVar1, gText_Split_Status);
+        break;
+    }
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Split);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    y++;
+    //Damage Text
+    x2 = 0;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gText_MoveInfo_Damage);
+    x2 = SPACE_BETWEEN_DAMAGE;
+    //Damage Calculation Target 1
+    if(isEnemyMon)
+        target = B_POSITION_PLAYER_LEFT;
+    else
+        target = B_POSITION_OPPONENT_LEFT;
+    gBattleMoveDamage = CalculateMoveDamage(move3, sMenuDataPtr->battlerId, target, gBattleMoves[move3].type, FALSE, FALSE, FALSE, FALSE);
+    if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    else
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target1);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    //Damage Calculation Target 2
+    if(IsDoubleBattle()){
+        if(isEnemyMon)
+            target = B_POSITION_PLAYER_RIGHT;
+        else
+            target = B_POSITION_OPPONENT_RIGHT;
+        gBattleMoveDamage = CalculateMoveDamage(move3, sMenuDataPtr->battlerId, target, gBattleMoves[move3].type, FALSE, FALSE, FALSE, FALSE);
+        if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
+            StringCopy(gStringVar1, gText_Target_Nothing);
+        else
+            ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
+        StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target2);
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    }
+
+    // Fourth Move
+    x2 = 0;
+    y = y + SPACE_BETWEEN_MOVES;
+    //Move Name
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gMoveNamesLong[move4]);
+	// PP ---------------------------------------------------------------------------------------------------
+    ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].pp[0],  STR_CONV_MODE_LEFT_ALIGN, 2); //Current PP
+    ConvertIntToDecimalStringN(gStringVar2, gBattleMoves[move4].pp, STR_CONV_MODE_LEFT_ALIGN, 2); //Max PP
+    StringExpandPlaceholders(gStringVar4, gText_CurrentPP);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+	//Type
+    StringCopy(gStringVar4, gTypeNames[gBattleMoves[move4].type]);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+    y++;
+    // Move Power ---------------------------------------------------------------------------------------------------
+    if(gBattleMoves[move4].power != 0)
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move4].power, STR_CONV_MODE_LEFT_ALIGN, 3);
+    else
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Power);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    // Move Accuracy
+    if(gBattleMoves[move4].accuracy != 0)
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move4].accuracy, STR_CONV_MODE_LEFT_ALIGN, 3);
+    else
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Accuracy);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    y++;
+    // Move Priority ---------------------------------------------------------------------------------------------------
+    ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move4].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Priority);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    // Move Split
+    switch(gBattleMoves[move4].split){
+        case SPLIT_PHYSICAL:
+            StringCopy(gStringVar1, gText_Split_Physical);
+        break;
+        case SPLIT_SPECIAL:
+            StringCopy(gStringVar1, gText_Split_Special);
+        break;
+        case SPLIT_STATUS:
+        default:
+            StringCopy(gStringVar1, gText_Split_Status);
+        break;
+    }
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Split);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    y++;
+    //Damage Text
+    x2 = 0;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gText_MoveInfo_Damage);
+    x2 = SPACE_BETWEEN_DAMAGE;
+    //Damage Calculation Target 1
+    if(isEnemyMon)
+        target = B_POSITION_PLAYER_LEFT;
+    else
+        target = B_POSITION_OPPONENT_LEFT;
+    gBattleMoveDamage = CalculateMoveDamage(move4, sMenuDataPtr->battlerId, target, gBattleMoves[move4].type, FALSE, FALSE, FALSE, FALSE);
+    if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
+        StringCopy(gStringVar1, gText_Target_Nothing);
+    else
+        ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
+    StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target1);
+    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    //Damage Calculation Target 2
+    if(IsDoubleBattle()){
+        if(isEnemyMon)
+            target = B_POSITION_PLAYER_RIGHT;
+        else
+            target = B_POSITION_OPPONENT_RIGHT;
+        gBattleMoveDamage = CalculateMoveDamage(move4, sMenuDataPtr->battlerId, target, gBattleMoves[move4].type, FALSE, FALSE, FALSE, FALSE);
+        if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
+            StringCopy(gStringVar1, gText_Target_Nothing);
+        else
+            ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
+        StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target2);
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+    }
+
+    //Selector
+    x = 0;
+    y = 0;
+    x2 = 0;
+    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
+
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, 3);
+
 }
 
 static void PrintFieldTab(void)
@@ -1128,9 +1621,23 @@ static void PrintPage(void){
     LoadTilemapFromMode();
     LoadTabPalette();
     if(sMenuDataPtr->modeId != MODE_FIELD)
-        PrintStatusTab();
-    else
+        switch(sMenuDataPtr->tabId){
+            case TAB_STATS:
+                PrintStatusTab();
+            break;
+            case TAB_ABILITIES:
+                PrintAbilityTab();
+            break;
+            case TAB_MOVES:
+                PrintMoveTab();
+            break;
+            default:
+                PrintStatusTab();
+            break;
+        }
+    else{
         PrintFieldTab();
+    }
 }
 
 /* This is the meat of the UI. This is where you wait for player inputs and can branch to other tasks accordingly */
