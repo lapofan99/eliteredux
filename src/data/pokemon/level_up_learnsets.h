@@ -3651,7 +3651,6 @@ static const struct LevelUpMove sFeraligatrLevelUpLearnset[] = {
     LEVEL_UP_MOVE(61, MOVE_HYDRO_PUMP),
 	LEVEL_UP_MOVE(64, MOVE_WAVE_CRASH), // new
     LEVEL_UP_MOVE(68, MOVE_DEATHROLL),
-    LEVEL_UP_MOVE(72, MOVE_FISHIOUS_REND), // new
     LEVEL_UP_END
 };
 

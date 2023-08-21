@@ -1363,7 +1363,7 @@ static const u8 sSandTombDescription[] = _(
 
 static const u8 sSheerColdDescription[] = _( // new
     "Super effective on Water.\n"
-    "30% freeze chance.");
+    "20% frostbite chance.");
 
 static const u8 sMuddyWaterDescription[] = _(
     "Attacks with muddy water.\n"
@@ -4164,7 +4164,7 @@ static const u8 sMoveFourLineDescription_SandTomb[] = _("The foe is trapped\nins
 #else
 static const u8 sMoveFourLineDescription_SandTomb[] = _("The foe is trapped\ninside a painful\nsandstorm for two\nto five turns.");
 #endif
-static const u8 sMoveFourLineDescription_SheerCold[] = _("This move is super\neffective on Water.\n30% freeze chance."); // new
+static const u8 sMoveFourLineDescription_SheerCold[] = _("This move is super\neffective on Water.\n20% frostbite chance."); // new
 static const u8 sMoveFourLineDescription_MuddyWater[] = _("The user attacks\nwith muddy water.\n30% chance to\nlower foe's accuracy."); // new
 static const u8 sMoveFourLineDescription_BulletSeed[] = _("The user shoots\nseeds at the foe.\nTwo to five seeds\nare shot at once.");
 static const u8 sMoveFourLineDescription_AerialAce[] = _("An extremely fast\nattack. It can't\nbe evaded.\nKeen Edge boost."); // new

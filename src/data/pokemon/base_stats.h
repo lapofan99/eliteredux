@@ -7865,10 +7865,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_SCEPTILE] =
     {
     .baseHP        = 70,
-    .baseAttack    = 85,
+    .baseAttack    = 105, // 85
     .baseDefense   = 65,
     .baseSpeed     = 120,
-    .baseSpAttack  = 105,
+    .baseSpAttack  = 85, // 105
     .baseSpDefense = 85,
     .type1 = TYPE_GRASS,
     .type2 = TYPE_DRAGON,
@@ -7890,10 +7890,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_SCEPTILE_MEGA] =
     {
     .baseHP        = 70,
-    .baseAttack    = 110,
+    .baseAttack    = 145, // 110
     .baseDefense   = 75,
     .baseSpeed     = 145,
-    .baseSpAttack  = 145,
+    .baseSpAttack  = 110, // 145
     .baseSpDefense = 85,
     .type1 = TYPE_GRASS,
     .type2 = TYPE_DRAGON,
