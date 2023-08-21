@@ -7896,6 +7896,28 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
+        if(BattlerHasInnate(battler, ABILITY_VENGEANCE)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+                u8 tempBattler = battler;
+                u16 extraMove = MOVE_ICE_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gBattlerTarget = gBattlerAttacker;
+                gBattlerAttacker = tempBattler;
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_VENGEANCE;
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                effect++;
+
+            }
+        }
 		
 		// Poison Point
         POISON_POINT_INNATE:

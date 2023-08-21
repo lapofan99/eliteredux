@@ -3107,7 +3107,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_FIELD,
     .abilities = {ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_PERMAFROST},
-    .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
+    .innates = {ABILITY_VENGEANCE, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
 },
