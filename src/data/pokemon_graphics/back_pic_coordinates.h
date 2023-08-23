@@ -4771,6 +4771,76 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x87,
         .y_offset = 2,
     },
+    [SPECIES_HITMONCHAN_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_HITMONTOP_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_CROBAT_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_SKARMORY_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_BRUXISH_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_TORTERRA_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_INFERNAPE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_EMPOLEON_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_SHUCKLE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_RELICANTH_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_QUAGSIRE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_JELLICENT_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_TOUCANNON_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_DRAGONITE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] =
     {

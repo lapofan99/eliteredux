@@ -14148,6 +14148,21 @@ void UndoMegaEvolution(u32 monId)
         case SPECIES_KINGLER_MEGA:
         case SPECIES_KINGDRA_MEGA:
         case SPECIES_DEWGONG_MEGA:
+        case SPECIES_HITMONCHAN_MEGA:
+        case SPECIES_HITMONLEE_MEGA:
+        case SPECIES_HITMONTOP_MEGA:
+        case SPECIES_CROBAT_MEGA:
+        case SPECIES_SKARMORY_MEGA:
+        case SPECIES_BRUXISH_MEGA:
+        case SPECIES_TORTERRA_MEGA:
+        case SPECIES_INFERNAPE_MEGA:
+        case SPECIES_EMPOLEON_MEGA:
+        case SPECIES_SHUCKLE_MEGA:
+        case SPECIES_RELICANTH_MEGA:
+        case SPECIES_QUAGSIRE_MEGA:
+        case SPECIES_JELLICENT_MEGA:
+        case SPECIES_TOUCANNON_MEGA:
+        case SPECIES_DRAGONITE_MEGA:
         case SPECIES_RAYQUAZA_MEGA:
             SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &baseSpecies);
         break;

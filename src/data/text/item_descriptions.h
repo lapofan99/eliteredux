@@ -3096,6 +3096,81 @@ static const u8 sDewgongiteDesc[] = _(
     "Dewgong to Mega\n"
     "Evolve in battle.");
 
+static const u8 sHitmonchaniteDesc[] = _(
+    "This stone enables\n"
+    "Hitmonchan to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sHitmonleeniteDesc[] = _(
+    "This stone enables\n"
+    "Hitmonlee to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sHitmontopiteDesc[] = _(
+    "This stone enables\n"
+    "Hitmontop to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sCrobatiteDesc[] = _(
+    "This stone enables\n"
+    "Crobat to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sSkarmoryniteDesc[] = _(
+    "This stone enables\n"
+    "Skarmory to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sBruxishiteDesc[] = _(
+    "This stone enables\n"
+    "Bruxish to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sTorterraniteDesc[] = _(
+    "This stone enables\n"
+    "Torterra to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sInfernapeniteDesc[] = _(
+    "This stone enables\n"
+    "Infernape to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sEmpoleoniteDesc[] = _(
+    "This stone enables\n"
+    "Empoleon to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sShuckleniteDesc[] = _(
+    "This stone enables\n"
+    "Shuckle to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sRelicantiteDesc[] = _(
+    "This stone enables\n"
+    "Relicanth to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sQuagsireniteDesc[] = _(
+    "This stone enables\n"
+    "Quagsire to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sJellicentiteDesc[] = _(
+    "This stone enables\n"
+    "Jellicent to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sToucannoniteDesc[] = _(
+    "This stone enables\n"
+    "Toucannon to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sDragoniteniteDesc[] = _(
+    "This stone enables\n"
+    "Dragonite to Mega\n"
+    "Evolve in battle.");
+
 static const u8 sFlygoniteDesc[] = _(
     "This stone enables\n"
     "Flygon to Mega\n"

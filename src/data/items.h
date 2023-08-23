@@ -7790,6 +7790,186 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
+    [ITEM_HITMONCHANITE] =
+    {
+        .name = _("Hitmonchanite"),
+        .itemId = ITEM_HITMONCHANITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sHitmonchaniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_HITMONLEENITE] =
+    {
+        .name = _("Hitmonleenite"),
+        .itemId = ITEM_HITMONLEENITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sHitmonleeniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_HITMONTOPITE] =
+    {
+        .name = _("Hitmontopite"),
+        .itemId = ITEM_HITMONTOPITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sHitmontopiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_CROBATITE] =
+    {
+        .name = _("Crobatite"),
+        .itemId = ITEM_CROBATITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sCrobatiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_SKARMORYNITE] =
+    {
+        .name = _("Skarmorynite"),
+        .itemId = ITEM_SKARMORYNITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSkarmoryniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_BRUXISHITE] =
+    {
+        .name = _("Bruxishite"),
+        .itemId = ITEM_BRUXISHITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sBruxishiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_TORTERRANITE] =
+    {
+        .name = _("Torterranite"),
+        .itemId = ITEM_TORTERRANITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sTorterraniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_INFERNAPENITE] =
+    {
+        .name = _("Infernapenite"),
+        .itemId = ITEM_INFERNAPENITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sInfernapeniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_EMPOLEONITE] =
+    {
+        .name = _("Empoleonite"),
+        .itemId = ITEM_EMPOLEONITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sEmpoleoniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_SHUCKLENITE] =
+    {
+        .name = _("Shicklenite"),
+        .itemId = ITEM_SHUCKLENITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sShuckleniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_RELICANTHITE] =
+    {
+        .name = _("Relicanthite"),
+        .itemId = ITEM_RELICANTHITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sRelicantiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_QUAGSIRENITE] =
+    {
+        .name = _("Quagsirenite"),
+        .itemId = ITEM_QUAGSIRENITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sQuagsireniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_JELLICENTITE] =
+    {
+        .name = _("Jellicentite"),
+        .itemId = ITEM_JELLICENTITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sJellicentiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+        [ITEM_TOUCANNONITE] =
+    {
+        .name = _("Toucannonite"),
+        .itemId = ITEM_TOUCANNONITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sToucannoniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_DRAGONITENITE] =
+    {
+        .name = _("Dragonitenite"),
+        .itemId = ITEM_DRAGONITENITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sDragoniteniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
     [ITEM_FLYGONITE] =
     {
         .name = _("Flygonite"),
@@ -7970,28 +8150,6 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_IronPill,
-    },
-
-    [ITEM_MUSCLE_FEATHER] =
-    {
-        .name = _("Muscle Feather"),
-        .itemId = ITEM_MUSCLE_FEATHER,
-        .price = 300,
-        .description = sMuscleFeatherDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-    },
-
-    [ITEM_RESIST_FEATHER] =
-    {
-        .name = _("Resist Feather"),
-        .itemId = ITEM_RESIST_FEATHER,
-        .price = 300,
-        .description = sResistFeatherDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
     },
 
     [ITEM_GENIUS_FEATHER] =

@@ -664,10 +664,69 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_KINGDRANITE)
                 return SPECIES_KINGDRA_MEGA;
         break;
-        
         case SPECIES_DEWGONG:
             if(item == ITEM_DEWGONGITE)
                 return SPECIES_DEWGONG_MEGA;
+        break;
+        case SPECIES_HITMONCHAN:
+            if(item == ITEM_HITMONCHANITE)
+                return SPECIES_HITMONCHAN_MEGA;
+        break;
+        case SPECIES_HITMONLEE:
+            if(item == ITEM_HITMONLEENITE)
+                return SPECIES_HITMONLEE_MEGA;
+        break;
+        case SPECIES_HITMONTOP:
+            if(item == ITEM_HITMONTOPITE)
+                return SPECIES_HITMONTOP_MEGA;
+        break;
+        case SPECIES_CROBAT:
+            if(item == ITEM_CROBATITE)
+                return SPECIES_CROBAT_MEGA;
+        break;
+        case SPECIES_SKARMORY:
+            if(item == ITEM_SKARMORYNITE)
+                return SPECIES_SKARMORY_MEGA;
+        break;
+        case SPECIES_BRUXISH:
+            if(item == ITEM_BRUXISHITE)
+                return SPECIES_BRUXISH_MEGA;
+        break;
+        case SPECIES_TORTERRA:
+            if(item == ITEM_TORTERRANITE)
+                return SPECIES_TORTERRA_MEGA;
+        break;
+        case SPECIES_INFERNAPE:
+            if(item == ITEM_INFERNAPENITE)
+                return SPECIES_INFERNAPE_MEGA;
+        break;
+        case SPECIES_EMPOLEON:
+            if(item == ITEM_EMPOLEONITE)
+                return SPECIES_EMPOLEON_MEGA;
+        break;
+        case SPECIES_SHUCKLE:
+            if(item == ITEM_SHUCKLENITE)
+                return SPECIES_SHUCKLE_MEGA;
+        break;
+        case SPECIES_RELICANTH:
+            if(item == ITEM_RELICANTHITE)
+                return SPECIES_RELICANTH_MEGA;
+        break;
+        case SPECIES_QUAGSIRE:
+            if(item == ITEM_QUAGSIRENITE)
+                return SPECIES_QUAGSIRE_MEGA;
+        break;
+        case SPECIES_JELLICENT:
+            if(item == ITEM_JELLICENTITE)
+                return SPECIES_JELLICENT_MEGA;
+        break;
+        case SPECIES_TOUCANNON:
+            if(item == ITEM_TOUCANNONITE)
+                return SPECIES_TOUCANNON_MEGA;
+        break;
+        case SPECIES_DRAGONITE:
+            if(item == ITEM_DRAGONITENITE) // :^)
+                return SPECIES_DRAGONITE_MEGA;
         break;
         case SPECIES_RAYQUAZA:
             for(i = 0; i < MAX_MON_MOVES; i++){

@@ -15402,6 +15402,81 @@ static const union AnimCmd *const sAnims_DEWGONG_MEGA[] ={
     sAnim_DEWGONG_MEGA_1,
 };
 
+static const union AnimCmd *const sAnims_HITMONCHAN_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_HITMONLEE_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_HITMONTOP_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_CROBAT_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_SKARMORY_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_BRUXISH_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_TORTERRA_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_INFERNAPE_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_EMPOLEON_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_SHUCKLE_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_RELICANTH_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_QUAGSIRE_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_JELLICENT_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_TOUCANNON_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
+static const union AnimCmd *const sAnims_DRAGONITE_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
 static const union AnimCmd *const sAnims_RATTATA_ALOLAN[] ={
     sAnim_GeneralFrame0,
     sAnim_RATTATA_ALOLAN_1,
@@ -16740,6 +16815,21 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(FLYGON_MEGA),
     ANIM_CMD(KINGDRA_MEGA),
     ANIM_CMD(DEWGONG_MEGA),
+    ANIM_CMD(HITMONCHAN_MEGA),
+    ANIM_CMD(HITMONLEE_MEGA),
+    ANIM_CMD(HITMONTOP_MEGA),
+    ANIM_CMD(CROBAT_MEGA),
+    ANIM_CMD(SKARMORY_MEGA),
+    ANIM_CMD(BRUXISH_MEGA),
+    ANIM_CMD(TORTERRA_MEGA),
+    ANIM_CMD(INFERNAPE_MEGA),
+    ANIM_CMD(EMPOLEON_MEGA),
+    ANIM_CMD(SHUCKLE_MEGA),
+    ANIM_CMD(RELICANTH_MEGA),
+    ANIM_CMD(QUAGSIRE_MEGA),
+    ANIM_CMD(JELLICENT_MEGA),
+    ANIM_CMD(TOUCANNON_MEGA),
+    ANIM_CMD(DRAGONITE_MEGA),
     ANIM_CMD(RAYQUAZA_MEGA),
     ANIM_CMD(KYOGRE_PRIMAL),
     ANIM_CMD(GROUDON_PRIMAL),

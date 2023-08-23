@@ -2416,7 +2416,7 @@ bool8 ScrCmd_multichoice2(struct ScriptContext *ctx){
 }
 
 //Items given to you by Nurse Joy
-#define NURSE_BATTLE_ITEM_COUNT 217
+#define NURSE_BATTLE_ITEM_COUNT 217//+ 16
 
 static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
 {
@@ -2598,7 +2598,23 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_MACHAMPITE,        1},
     {ITEM_KINGLERITE,        1},
     {ITEM_KINGDRANITE,       1},
-    //{ITEM_DEWGONGITE,       1},
+    /*
+    {ITEM_DEWGONGITE,        1},
+    {ITEM_HITMONCHANITE,     1},
+    {ITEM_HITMONLEENITE,     1},
+    {ITEM_HITMONTOPITE,      1},
+    {ITEM_CROBATITE,         1},
+    {ITEM_SKARMORYNITE,      1},
+    {ITEM_BRUXISHITE,        1},
+    {ITEM_TORTERRANITE,      1},
+    {ITEM_INFERNAPENITE,     1},
+    {ITEM_EMPOLEONITE,       1},
+    {ITEM_SHUCKLENITE,       1},
+    {ITEM_RELICANTHITE,      1},
+    {ITEM_QUAGSIRENITE,      1},
+    {ITEM_JELLICENTITE,      1},
+    {ITEM_TOUCANNONITE,      1},
+    {ITEM_DRAGONITENITE,     1},*/
     //Berries
     {ITEM_AGUAV_BERRY,      50},
     {ITEM_APICOT_BERRY,     50},
