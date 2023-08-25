@@ -203,7 +203,7 @@ static const u8 sSchoolingDescription[] = _("Forms a school when over 25% HP.\nN
 static const u8 sDisguiseDescription[] = _("Decoy protects it once.");
 static const u8 sBattleBondDescription[] = _("Changes form after a KO.");
 static const u8 sPowerConstructDescription[] = _("Cells aid it when under\nhalf HP.");
-static const u8 sCorrosionDescription[] = _("Poisons any type. Poison moves\nare super-effective against Steel.");
+static const u8 sCorrosionDescription[] = _("Poisons any type. Poison moves\nare super-effective to Steel.");
 static const u8 sComatoseDescription[] = _("Always drowsing.\nImmune to status moves.");
 static const u8 sQueenlyMajestyDescription[] = _("Protects itself and ally\nfrom priority moves.");
 static const u8 sInnardsOutDescription[] = _("Hurts foe when defeated.");
@@ -373,7 +373,7 @@ static const u8 sAmplifierDescription[] =  _("Ups sound moves by 20% and\nmakes 
 static const u8 sIceDewDescription[] = _("Ice ups Atk\nor SpAtk by +1.");
 static const u8 sSunWorshipDescription[] = _("Ups highest stat by +1\non entry when sunny.");
 static const u8 sBuginizeDescription[] = _("Normal moves become Bug\nand get a 20% boost.");
-static const u8 sVolcanoRageDescription[] = _("Uses Eruption after\nyou use a move.");
+static const u8 sVolcanoRageDescription[] = _("WIP - Uses Eruption\nafter you use a move.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 

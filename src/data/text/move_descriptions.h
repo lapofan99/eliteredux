@@ -3022,7 +3022,7 @@ static const u8 sDEATHROLLDescription[] = _(
     "Ignores target's stat changes.");
 
 static const u8 sEXCALIBURDescription[] = _(
-	"Super effective on Dragon-\n"
+	"Double damage on Dragon-\n"
 	"types. High critical ratio.");
 
 static const u8 sAQUA_FANGDescription[] = _(
@@ -4405,7 +4405,7 @@ static const u8 sMoveFourLineDescription_IonDeluge[] = _("The user disperses\nch
 static const u8 sMoveFourLineDescription_ParabolicCharge[] = _("The user attacks\nall around it, and\nrestores HP by 25%\nof damage dealt.");
 static const u8 sMoveFourLineDescription_ForestsCurse[] = _("The user puts a\nforest curse on the\nfoe. The foe is now\nGrass-type as well.");
 static const u8 sMoveFourLineDescription_PetalBlizzard[] = _("A violent petal\nblizzard stirs up,\nhitting everything\naround it.");
-static const u8 sMoveFourLineDescription_FreezeDry[] = _("This move is super\neffective on Water.\n10% freeze chance.");
+static const u8 sMoveFourLineDescription_FreezeDry[] = _("This move is super\neffective on Water.\n10% frostbite chance.");
 static const u8 sMoveFourLineDescription_DisarmingVoice[] = _("The user cries out\nwith a disarmingly\ncute voice. This\nnever misses.");
 static const u8 sMoveFourLineDescription_PartingShot[] = _("The foe's Attack\nand Sp. Atk stats\nare lowered by a\nparting threat.");
 static const u8 sMoveFourLineDescription_TopsyTurvy[] = _("All stat changes\naffecting the foe\nturn topsy-turvy\nand are inverted.");
@@ -4604,7 +4604,7 @@ static const u8 sMoveFourLineDescription_EerieSpell[] = _("Attacks with its\ntre
 
 // Darky's Custom Moves
 static const u8 sMoveFourLineDescription_Deathroll[] = _("20% confusion chance.\nStrong Jaw boost.\nIgnores target's\nstat changes."); // new
-static const u8 sMoveFourLineDescription_Excalibur[] = _("Hits hard. Super-\neffective on\nDragon-types.\nHigh critical ratio."); // new
+static const u8 sMoveFourLineDescription_Excalibur[] = _("Hits hard. Double\ndamage on\nDragon-types.\nHigh critical ratio."); // new
 static const u8 sMoveFourLineDescription_AquaFang[] = _("Bites with aquatic\nfangs. Has 10%\nflinch chance.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_WaveCrash[] = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
 

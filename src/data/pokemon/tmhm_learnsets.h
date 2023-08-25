@@ -13200,6 +13200,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM55_SCALD)
                                         | TMHM1(TM58_ENDURE),
                                           TMHM2(TM76_STEALTH_ROCK)
+                                        | TMHM2(TM79_FREEZE_DRY) // new
                                         | TMHM2(TM86_GRASS_KNOT)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM100_CURSE)
@@ -13231,6 +13232,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM58_ENDURE),
                                           TMHM2(TM65_SHADOW_CLAW)
                                         | TMHM2(TM76_STEALTH_ROCK)
+                                        | TMHM2(TM79_FREEZE_DRY) // new
                                         | TMHM2(TM86_GRASS_KNOT)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM100_CURSE)
@@ -13272,6 +13274,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM75_SWORDS_DANCE)
                                         | TMHM2(TM76_STEALTH_ROCK)
                                         | TMHM2(TM78_BULLDOZE)
+                                        | TMHM2(TM79_FREEZE_DRY) // new
                                         | TMHM2(TM86_GRASS_KNOT)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM91_FLASH_CANNON)

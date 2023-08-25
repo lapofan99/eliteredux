@@ -4614,7 +4614,6 @@ static const struct LevelUpMove sGirafarigLevelUpLearnset[] = {
     LEVEL_UP_MOVE(19, MOVE_PSYBEAM),
     LEVEL_UP_MOVE(23, MOVE_AGILITY),
     LEVEL_UP_MOVE(28, MOVE_DOUBLE_HIT),
-    LEVEL_UP_MOVE(30, MOVE_PSYCHO_BOOST), // new
     LEVEL_UP_MOVE(32, MOVE_ZEN_HEADBUTT),
     LEVEL_UP_MOVE(34, MOVE_AURA_SPHERE), // new
     LEVEL_UP_MOVE(37, MOVE_CRUNCH),
@@ -4626,6 +4625,7 @@ static const struct LevelUpMove sGirafarigLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(43, MOVE_PSYCHIC),
     LEVEL_UP_MOVE(46, MOVE_NASTY_PLOT),
     LEVEL_UP_MOVE(49, MOVE_FOCUS_BLAST), // new
+    LEVEL_UP_MOVE(60, MOVE_PSYCHO_BOOST), // new
     LEVEL_UP_END
 };
 
