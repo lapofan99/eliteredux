@@ -10601,8 +10601,9 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
     {
         if (gSideTimers[GET_BATTLER_SIDE(gActiveBattler)].mistTimer
             && !certain && gCurrentMove != MOVE_CURSE
-            && !(gActiveBattler == gBattlerTarget && (GetBattlerAbility(gBattlerAttacker) == ABILITY_INFILTRATOR
-            || BattlerHasInnate(gBattlerAttacker, ABILITY_INFILTRATOR))))
+            && !(gActiveBattler == gBattlerTarget && 
+            (GetBattlerAbility(gBattlerAttacker) == ABILITY_INFILTRATOR || BattlerHasInnate(gBattlerAttacker, ABILITY_INFILTRATOR) || 
+             GetBattlerAbility(gBattlerAttacker) == ABILITY_MARINE_APEX || BattlerHasInnate(gBattlerAttacker, ABILITY_MARINE_APEX))))
         {
             if (flags == STAT_BUFF_ALLOW_PTR)
             {
@@ -13767,6 +13768,8 @@ bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
     else if (gBattleMoves[move].flags & FLAG_SOUND && B_SOUND_SUBSTITUTE >= GEN_6)
         return FALSE;
     else if (GetBattlerAbility(battlerAtk) == ABILITY_INFILTRATOR || BattlerHasInnate(battlerAtk, ABILITY_INFILTRATOR))
+        return FALSE;
+    else if (GetBattlerAbility(battlerAtk) == ABILITY_MARINE_APEX || BattlerHasInnate(battlerAtk, ABILITY_MARINE_APEX))
         return FALSE;
     else if (gBattleMoves[move].flags & FLAG_HIT_IN_SUBSTITUTE)
         return FALSE;

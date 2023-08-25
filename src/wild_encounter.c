@@ -559,6 +559,8 @@ static bool8 DoWildEncounterRateTest(u32 encounterRate, bool8 ignoreAbility)
             encounterRate /= 2;
         else if (ability == ABILITY_INFILTRATOR)
             encounterRate /= 2;
+        else if (ability == ABILITY_MARINE_APEX)
+            encounterRate /= 2;
         else if (ability == ABILITY_NO_GUARD)
             encounterRate = encounterRate * 3 / 2;
     }

@@ -3797,10 +3797,11 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_EERIE_SPELL - 1] = sEERIE_SPELLDescription,
 
     // Darky's Custom Moves
-    [MOVE_DEATHROLL - 1] = sDEATHROLLDescription,
-    [MOVE_EXCALIBUR - 1] = sEXCALIBURDescription,
-    [MOVE_AQUA_FANG - 1] = sAQUA_FANGDescription,
+    [MOVE_DEATHROLL  - 1] = sDEATHROLLDescription,
+    [MOVE_EXCALIBUR  - 1] = sEXCALIBURDescription,
+    [MOVE_AQUA_FANG  - 1] = sAQUA_FANGDescription,
     [MOVE_WAVE_CRASH - 1] = sWAVE_CRASHDescription,
+    [MOVE_SMITE      - 1] = sWAVE_CRASHDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5371,4 +5372,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_EXCALIBUR    - 1] = sMoveFourLineDescription_Excalibur,
     [MOVE_AQUA_FANG    - 1] = sMoveFourLineDescription_AquaFang,
     [MOVE_WAVE_CRASH   - 1] = sMoveFourLineDescription_WaveCrash,
+    [MOVE_SMITE        - 1] = sMoveFourLineDescription_WaveCrash,
 };

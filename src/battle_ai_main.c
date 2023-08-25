@@ -1607,7 +1607,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 20;
             break;
         case EFFECT_SUBSTITUTE:
-            if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE || AI_DATA->defAbility == ABILITY_INFILTRATOR)
+            if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE || AI_DATA->defAbility == ABILITY_INFILTRATOR || AI_DATA->defAbility == ABILITY_MARINE_APEX)
                 score -= 10;
             else if (GetHealthPercentage(battlerAtk) <= 25)
                 score -= 10;

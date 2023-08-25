@@ -2076,6 +2076,7 @@
 
 	.macro jumpifsafeguard jumpptr:req
 	jumpifability BS_ATTACKER, ABILITY_INFILTRATOR, 1f
+	jumpifability BS_ATTACKER, ABILITY_MARINE_APEX, 1f
 	jumpifsideaffecting BS_TARGET, SIDE_STATUS_SAFEGUARD, \jumpptr
 	1:
 	.endm

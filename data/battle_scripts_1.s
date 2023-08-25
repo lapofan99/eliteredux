@@ -2878,6 +2878,32 @@ BattleScript_MoveEnd::
 	moveendall
 	end
 
+BattleScript_FastEffectHit::
+BattleScript_FastHitFromAtkCanceler::
+	attackcanceler
+BattleScript_FastHitFromAccCheck::
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+BattleScript_HitFromAtkStringFast::
+	attackstring
+	ppreduce
+BattleScript_FastHitFromCritCalc::
+	critcalc
+	damagecalc
+	adjustdamage
+BattleScript_FastHitFromAtkAnimation::
+	attackanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	resultmessage
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+BattleScript_FastMoveEnd::
+	moveendall
+	end
+
 BattleScript_EffectNaturalGift:
 	attackcanceler
 	attackstring
@@ -7995,14 +8021,13 @@ BattleScript_HurtTarget:
 BattleScript_AttackerUsedAnExtraMove::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
-	waitmessage B_WAIT_TIME_LONG
+	waitmessage B_WAIT_TIME_SHORT
 BattleScript_EffectExtraHit::
 BattleScript_ExtraHitFromAtkCanceler::
 	attackcanceler
 BattleScript_ExtraHitFromAccCheck::
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 BattleScript_ExtraHitFromAtkString::
-	attackstring
 BattleScript_ExtraHitFromCritCalc::
 	critcalc
 	damagecalc

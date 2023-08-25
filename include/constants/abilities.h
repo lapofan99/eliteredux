@@ -411,10 +411,14 @@
 #define ABILITY_BUGINIZE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon to become Bug-type and receive a 20% power boost.
 #define ABILITY_VOLCANO_RAGE     (ABILITIES_COUNT_LATEST_GEN + 114) // 
 #define ABILITY_DEWGONG          (ABILITIES_COUNT_LATEST_GEN + 115) // To be renamed
-#define ABILITY_HITMONCHAN       (ABILITIES_COUNT_LATEST_GEN + 116) // To be renamed
+#define ABILITY_LOW_BLOW         (ABILITIES_COUNT_LATEST_GEN + 116)
 #define ABILITY_CROBAT           (ABILITIES_COUNT_LATEST_GEN + 117) // To be renamed
+#define ABILITY_SPECTRAL_SHROUD  (ABILITIES_COUNT_LATEST_GEN + 118) // Ghostate, plus 30% chance to badly poison
+#define ABILITY_DISCIPLINE       (ABILITIES_COUNT_LATEST_GEN + 119) // Outrage Type Moves no longer trap you. Immunity to Confusion, Intimidate, and Scare
+#define ABILITY_THUNDERCALL      (ABILITIES_COUNT_LATEST_GEN + 120) // When using an Electric-Type Move, follow up with Smite at 20% of its power.
+#define ABILITY_MARINE_APEX      (ABILITIES_COUNT_LATEST_GEN + 121) // Dragonslayer for water types, as well as Infiltrator
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_CROBAT + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_MARINE_APEX + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

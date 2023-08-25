@@ -793,6 +793,7 @@ struct BattleBarInfo
     s32 oldValue;
     s32 receivedValue;
     s32 currValue;
+    u8 oddFrame; // For more speed control in moving hp bar down.
 };
 
 struct BattleSpriteData

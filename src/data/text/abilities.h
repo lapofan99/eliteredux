@@ -374,6 +374,7 @@ static const u8 sIceDewDescription[] = _("Ice ups Atk\nor SpAtk by +1.");
 static const u8 sSunWorshipDescription[] = _("Ups highest stat by +1\non entry when sunny.");
 static const u8 sBuginizeDescription[] = _("Normal moves become Bug\nand get a 20% boost.");
 static const u8 sVolcanoRageDescription[] = _("WIP - Uses Eruption\nafter you use a move.");
+static const u8 sLowBlowDescription[] = _("On Switch-in lands a low power\nDark-type move.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -762,9 +763,13 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_SUN_WORSHIP] = _("Sun Worship"),
     [ABILITY_BUGINIZE] = _("Buginize"),
     [ABILITY_VOLCANO_RAGE] = _("Volcano Rage"),
-    [ABILITY_DEWGONG] = _("-------"),
-    [ABILITY_HITMONCHAN] = _("-------"),
-    [ABILITY_CROBAT] = _("-------"),
+    [ABILITY_DEWGONG] = _("Test"),
+    [ABILITY_LOW_BLOW] = _("Low Blow"),
+    [ABILITY_CROBAT] = _("Test"),
+    [ABILITY_SPECTRAL_SHROUD] = _("Spectral Shroud"),
+    [ABILITY_DISCIPLINE] = _("Discipline"),
+    [ABILITY_THUNDERCALL] = _("Thundercall"),
+    [ABILITY_MARINE_APEX] = _("Marine Apex"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1152,7 +1157,11 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_SUN_WORSHIP] = sSunWorshipDescription,
     [ABILITY_BUGINIZE] = sBuginizeDescription,
     [ABILITY_VOLCANO_RAGE] = sVolcanoRageDescription,
-    [ABILITY_DEWGONG] = sAbilityTestDescription,     //To Change
-    [ABILITY_HITMONCHAN] = sAbilityTestDescription,  //To Change
-    [ABILITY_CROBAT] = sAbilityTestDescription,      //To Change
+    [ABILITY_DEWGONG] = sAbilityTestDescription,         //To Change
+    [ABILITY_LOW_BLOW] = sLowBlowDescription,
+    [ABILITY_CROBAT] = sAbilityTestDescription,          //To Change
+    [ABILITY_SPECTRAL_SHROUD] = sAbilityTestDescription, //To Change
+    [ABILITY_DISCIPLINE] = sAbilityTestDescription,      //To Change
+    [ABILITY_THUNDERCALL] = sAbilityTestDescription,     //To Change
+    [ABILITY_MARINE_APEX] = sAbilityTestDescription,     //To Change
 };

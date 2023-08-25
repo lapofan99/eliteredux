@@ -4839,13 +4839,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_HITMONCHAN:  //To Change
-            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_HITMONCHAN)]){
+        case ABILITY_LOW_BLOW:  //To Change
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LOW_BLOW)]){
                 u8 opposingBattler = BATTLE_OPPOSITE(battler);
-                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                u16 extraMove = MOVE_SUCKER_PUNCH; //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 40;                 //The Move power, leave at 0 if you want it to be the same as the normal move
                 bool8 hasTarget = FALSE;
-				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_HITMONCHAN)] = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LOW_BLOW)] = TRUE;
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gBattlerAttacker = battler;
@@ -4862,7 +4862,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 
                 if(hasTarget){//To check if the target is even alive
                     gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_HITMONCHAN;  //To Change
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_LOW_BLOW;  //To Change
                     gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                     effect++;
                 }
@@ -5626,13 +5626,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
         //
-        if(BattlerHasInnate(battler, ABILITY_HITMONCHAN)){  //To Change
-            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_HITMONCHAN)]){
+        if(BattlerHasInnate(battler, ABILITY_LOW_BLOW)){  //To Change
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LOW_BLOW)]){
                 u8 opposingBattler = BATTLE_OPPOSITE(battler);
-                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                u16 extraMove = MOVE_SUCKER_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 40;                  //The Move power, leave at 0 if you want it to be the same as the normal move
                 bool8 hasTarget = FALSE;
-				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_HITMONCHAN)] = TRUE;
+				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LOW_BLOW)] = TRUE;
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gBattlerAttacker = battler;
@@ -5649,7 +5649,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 
                 if(hasTarget){//To check if the target is even alive
                     gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_HITMONCHAN;  //To Change
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_LOW_BLOW;  //To Change
                     gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                     effect++;
                 }
@@ -8104,6 +8104,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_POISON_TOUCH:
+        case ABILITY_SPECTRAL_SHROUD:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8495,6 +8496,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
 				gBattleScripting.abilityPopupOverwrite = ABILITY_POISON_TOUCH;
 				gLastUsedAbility = ABILITY_POISON_TOUCH;
+                gBattleScripting.moveEffect = MOVE_EFFECT_TOXIC;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+		}
+		// Spectral Shroud
+        if (BattlerHasInnate(battler, ABILITY_SPECTRAL_SHROUD)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && CanBePoisoned(gBattlerAttacker, gBattlerTarget)
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && (Random() % 3) == 0)
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_SPECTRAL_SHROUD;
+				gLastUsedAbility = ABILITY_SPECTRAL_SHROUD;
                 gBattleScripting.moveEffect = MOVE_EFFECT_TOXIC;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                 BattleScriptPushCursor();
@@ -11618,6 +11639,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
             MulModifier(&modifier, UQ_4_12(1.5));
 		break;
+	case ABILITY_MARINE_APEX: // Marine Apex
+		if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER)) // check if foe has Water-type
+            MulModifier(&modifier, UQ_4_12(1.5));
+		break;
     case ABILITY_ANALYTIC:
         if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
            MulModifier(&modifier, UQ_4_12(1.3));
@@ -11653,6 +11678,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
 	case ABILITY_BURNATE:
         if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
+	case ABILITY_SPECTRAL_SHROUD:
+        if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
     case ABILITY_SOLAR_FLARE:
@@ -11931,6 +11960,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
 
+    // Spectral Shroud
+	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD)){
+		if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
+
     // Solar Flare
 	if(BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE)){
 		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
@@ -12013,8 +12048,14 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	
 	// Dragonslayer
 	if(BattlerHasInnate(battlerAtk, ABILITY_DRAGONSLAYER)){
-	if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
-            MulModifier(&modifier, UQ_4_12(1.5));
+        if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
+                MulModifier(&modifier, UQ_4_12(1.5));
+	}
+
+    // Marine Apex
+	if(BattlerHasInnate(battlerAtk, ABILITY_MARINE_APEX)){
+        if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER)) // check if foe has Water-type
+                MulModifier(&modifier, UQ_4_12(1.5));
 	}
 	
 	// Huge Power
@@ -13432,6 +13473,8 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
             || (gSideStatuses[defSide] & SIDE_STATUS_AURORA_VEIL))
         && abilityAtk != ABILITY_INFILTRATOR
 		&& !BattlerHasInnate(battlerAtk, ABILITY_INFILTRATOR)
+        && abilityAtk != ABILITY_MARINE_APEX
+		&& !BattlerHasInnate(battlerAtk, ABILITY_MARINE_APEX)
         && !(isCrit)
         && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
     {

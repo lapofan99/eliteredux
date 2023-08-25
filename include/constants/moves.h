@@ -782,17 +782,18 @@
 #define MOVE_ASTRAL_BARRAGE 753
 #define MOVE_EERIE_SPELL 754
 
-#define MOVES_COUNT_GEN8 MOVES_COUNT_DARKY
+#define MOVES_COUNT_GEN8 755
 
-// Darky's Custom Moves
-#define MOVE_DEATHROLL 755
-#define MOVE_EXCALIBUR 756
-#define MOVE_AQUA_FANG 757
-#define MOVE_WAVE_CRASH 758
+// New Moves (Gen 9 + Custom Moves)
+#define MOVE_DEATHROLL    755
+#define MOVE_EXCALIBUR    756
+#define MOVE_AQUA_FANG    757
+#define MOVE_WAVE_CRASH   758
+#define MOVE_SMITE        759
 
-#define MOVES_COUNT_DARKY 759
+#define MOVES_COUNT_DARKY 760
 
-#define MOVES_COUNT MOVES_COUNT_DARKY // before Custom Moves >> #define MOVES_COUNT MOVES_COUNT_GEN8
+#define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 
 // Moves with names longer than 12 characters
 #define MOVE_LONG_NONE                 MOVE_NONE
@@ -1550,5 +1551,10 @@
 #define MOVE_LONG_GLACIAL_LANCE        MOVE_GLACIAL_LANCE
 #define MOVE_LONG_ASTRAL_BARRAGE       MOVE_ASTRAL_BARRAGE
 #define MOVE_LONG_EERIE_SPELL          MOVE_EERIE_SPELL
+#define MOVE_LONG_DEATHROL             MOVE_DEATHROLL
+#define MOVE_LONG_EXCALIBUR            MOVE_EXCALIBUR
+#define MOVE_LONG_AQUA_FANG            MOVE_AQUA_FANG
+#define MOVE_LONG_WAVE_CRASH           MOVE_WAVE_CRASH
+#define MOVE_LONG_SMITE                MOVE_SMITE
 
 #endif  // GUARD_CONSTANTS_MOVES_H
