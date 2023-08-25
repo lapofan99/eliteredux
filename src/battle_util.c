@@ -8308,8 +8308,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_VOLCANO_RAGE;
                 gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                effect++;
+            }
+        case ABILITY_THUNDERCALL:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
+            {
+                u16 extraMove = MOVE_SMITE;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 20;           //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove_SmackDown;
                 effect++;
             }
         case ABILITY_GULP_MISSILE:
@@ -8442,6 +8455,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_VOLCANO_RAGE;
                 gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                effect++;
+            }
+		}
+
+        if (BattlerHasInnate(battler, ABILITY_THUNDERCALL)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
+            {
+                u16 extraMove = MOVE_SMITE;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 20;           //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_THUNDERCALL;
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove_SmackDown;
                 effect++;
             }
 		}
@@ -8615,8 +8645,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && CanBeParalyzed(gBattlerTarget, gBattlerAttacker)
              && IsMoveMakingContact(move, gBattlerAttacker)
-             && TARGET_TURN_DAMAGED
-             && (Random() % 5) == 0)
+             && TARGET_TURN_DAMAGED)
             {
                 gBattleScripting.moveEffect = MOVE_EFFECT_PARALYSIS;
                 BattleScriptPushCursor();

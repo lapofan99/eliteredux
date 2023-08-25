@@ -8018,6 +8018,10 @@ BattleScript_HurtTarget:
 	tryfaintmon BS_TARGET, FALSE, NULL
 	return
 
+BattleScript_AttackerUsedAnExtraMove_SmackDown::
+	setmoveeffect MOVE_EFFECT_SMACK_DOWN
+	goto BattleScript_AttackerUsedAnExtraMove
+
 BattleScript_AttackerUsedAnExtraMove::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
