@@ -3418,6 +3418,7 @@ BattleScript_EffectBide::
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectRampage::
+	jumpifability BS_ATTACKER, ABILITY_DISCIPLINE, BattleScript_EffectHit
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
@@ -3798,6 +3799,7 @@ BattleScript_EffectConfuse:
 	attackstring
 	ppreduce
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_OwnTempoPrevents
+	jumpifability BS_TARGET, ABILITY_DISCIPLINE, BattleScript_Discipline
 	jumpifsubstituteblocks BattleScript_ButItFailed
 	jumpifstatus2 BS_TARGET, STATUS2_CONFUSION, BattleScript_AlreadyConfused
 	jumpifterrainaffected BS_TARGET, STATUS_FIELD_MISTY_TERRAIN, BattleScript_MistyTerrainPrevents
@@ -4667,6 +4669,7 @@ BattleScript_EffectSwagger::
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_SwaggerTryConfuse:
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_OwnTempoPrevents
+	jumpifability BS_TARGET, ABILITY_DISCIPLINE, BattleScript_Discipline
 	jumpifsafeguard BattleScript_SafeguardProtected
 	setmoveeffect MOVE_EFFECT_CONFUSION
 	seteffectprimary
@@ -5363,6 +5366,7 @@ BattleScript_EffectFlatter::
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_FlatterTryConfuse::
 	jumpifability BS_TARGET, ABILITY_OWN_TEMPO, BattleScript_OwnTempoPrevents
+	jumpifability BS_TARGET, ABILITY_DISCIPLINE, BattleScript_Discipline
 	jumpifsafeguard BattleScript_SafeguardProtected
 	setmoveeffect MOVE_EFFECT_CONFUSION
 	seteffectprimary
@@ -8310,6 +8314,7 @@ BattleScript_IntimidateActivatesLoop:
 	jumpifability BS_TARGET, ABILITY_OBLIVIOUS,    BattleScript_IntimidatePrevented_Oblivious
 	jumpifability BS_TARGET, ABILITY_OVERWHELM,    BattleScript_IntimidatePrevented_Overwhelm
 	jumpifability BS_TARGET, ABILITY_MIRROR_ARMOR, BattleScript_IntimidatePrevented_MirrorArmor
+	jumpifability BS_TARGET, ABILITY_DISCIPLINE,   BattleScript_IntimidatePrevented_Discipline
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_IntimidateActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_IntimidateActivatesLoopIncrement
 	setgraphicalstatchangevalues
@@ -8367,6 +8372,10 @@ BattleScript_IntimidatePrevented_Hyper_Cutter:
 BattleScript_IntimidatePrevented_Scrappy:
 	sethword sABILITY_OVERWRITE, ABILITY_SCRAPPY
 	goto BattleScript_IntimidatePrevented
+
+BattleScript_IntimidatePrevented_Discipline:
+	sethword sABILITY_OVERWRITE, ABILITY_DISCIPLINE
+	goto BattleScript_IntimidatePrevented
 	
 BattleScript_ScareActivatesEnd3::
 	call BattleScript_PauseScareActivates
@@ -8391,6 +8400,7 @@ BattleScript_ScareActivatesLoop:
 	jumpifability BS_TARGET, ABILITY_OBLIVIOUS,    BattleScript_ScarePrevented_Oblivious
 	jumpifability BS_TARGET, ABILITY_OVERWHELM,    BattleScript_ScarePrevented_Overwhelm
 	jumpifability BS_TARGET, ABILITY_MIRROR_ARMOR, BattleScript_ScarePrevented_MirrorArmor
+	jumpifability BS_TARGET, ABILITY_DISCIPLINE,   BattleScript_ScarePrevented_Discipline
 	statbuffchange STAT_BUFF_NOT_PROTECT_AFFECTED | STAT_BUFF_ALLOW_PTR, BattleScript_ScareActivatesLoopIncrement
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_ScareActivatesLoopIncrement
 	setgraphicalstatchangevalues
@@ -8412,6 +8422,10 @@ BattleScript_ScarePrevented:
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryAdrenalineOrb
 	goto BattleScript_ScareActivatesLoopIncrement
+
+BattleScript_ScarePrevented_Discipline:
+	sethword sABILITY_OVERWRITE, ABILITY_DISCIPLINE
+	goto BattleScript_ScarePrevented
 
 BattleScript_ScarePrevented_MirrorArmor:
 	sethword sABILITY_OVERWRITE, ABILITY_MIRROR_ARMOR
@@ -8715,6 +8729,15 @@ BattleScript_ObliviousPreventsAttraction::
 
 BattleScript_OwnTempoPrevents::
 	pause B_WAIT_TIME_SHORT
+	sethword sABILITY_OVERWRITE, ABILITY_OWN_TEMPO
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNPREVENTSCONFUSIONWITH
+	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_MoveEnd
+
+BattleScript_Discipline::
+	pause B_WAIT_TIME_SHORT
+	sethword sABILITY_OVERWRITE, ABILITY_DISCIPLINE
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNPREVENTSCONFUSIONWITH
 	waitmessage B_WAIT_TIME_LONG

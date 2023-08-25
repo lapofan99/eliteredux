@@ -8698,6 +8698,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 break;
             case ABILITY_OWN_TEMPO:
+            case ABILITY_DISCIPLINE:
                 if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
                 {
                     StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
@@ -8759,6 +8760,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_OWN_TEMPO;
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
+                    effect = 2;
+                }
+            }
+
+            //Discipline
+            if(BattlerHasInnate(battler, ABILITY_DISCIPLINE)){
+                if (gBattleMons[battler].status2 & STATUS2_CONFUSION)
+                {
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DISCIPLINE;
                     StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
                     effect = 2;
                 }
@@ -9393,6 +9404,8 @@ bool32 CanBeConfused(u8 battlerId)
 {
     if (GetBattlerAbility(gEffectBattler) == ABILITY_OWN_TEMPO
 	  || BattlerHasInnate(battlerId, ABILITY_OWN_TEMPO)
+      || GetBattlerAbility(gEffectBattler) == ABILITY_DISCIPLINE
+      || BattlerHasInnate(battlerId, ABILITY_DISCIPLINE)
       || gBattleMons[gEffectBattler].status2 & STATUS2_CONFUSION
       || IsBattlerTerrainAffected(battlerId, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;

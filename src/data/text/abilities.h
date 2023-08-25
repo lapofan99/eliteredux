@@ -374,7 +374,8 @@ static const u8 sIceDewDescription[] = _("Ice ups Atk\nor SpAtk by +1.");
 static const u8 sSunWorshipDescription[] = _("Ups highest stat by +1\non entry when sunny.");
 static const u8 sBuginizeDescription[] = _("Normal moves become Bug\nand get a 20% boost.");
 static const u8 sVolcanoRageDescription[] = _("WIP - Uses Eruption\nafter you use a move.");
-static const u8 sLowBlowDescription[] = _("On Switch-in lands a low power\nDark-type move.");
+static const u8 sLowBlowDescription[]    = _("On Switch-in lands a low power\nDark-type move.");
+static const u8 sDisciplineDescription[] = _("Outrage Type Moves no longer trap you.\nImmunity to Confusion, Intimidate, and Scare.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -1161,7 +1162,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_LOW_BLOW] = sLowBlowDescription,
     [ABILITY_CROBAT] = sAbilityTestDescription,          //To Change
     [ABILITY_SPECTRAL_SHROUD] = sAbilityTestDescription, //To Change
-    [ABILITY_DISCIPLINE] = sAbilityTestDescription,      //To Change
+    [ABILITY_DISCIPLINE] = sDisciplineDescription,
     [ABILITY_THUNDERCALL] = sAbilityTestDescription,     //To Change
     [ABILITY_MARINE_APEX] = sAbilityTestDescription,     //To Change
 };

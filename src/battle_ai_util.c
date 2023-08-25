@@ -3006,7 +3006,8 @@ bool32 AI_CanParalyze(u8 battlerAtk, u8 battlerDef, u16 defAbility, u16 move, u1
 bool32 AI_CanBeConfused(u8 battler, u16 ability)
 {
     if ((gBattleMons[battler].status2 & STATUS2_CONFUSION)
-      || (ability == ABILITY_OWN_TEMPO || BattlerHasInnate(battler, ABILITY_OWN_TEMPO))
+      || (ability == ABILITY_OWN_TEMPO  || BattlerHasInnate(battler, ABILITY_OWN_TEMPO))
+      || (ability == ABILITY_DISCIPLINE || BattlerHasInnate(battler, ABILITY_DISCIPLINE))
       || (IsBattlerGrounded(battler) && (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)))
         return FALSE;
     return TRUE;
