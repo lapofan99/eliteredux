@@ -375,7 +375,7 @@ static const u8 sSunWorshipDescription[] = _("Ups highest stat by +1\non entry w
 static const u8 sBuginizeDescription[] = _("Normal moves become Bug\nand get a 20% boost.");
 static const u8 sVolcanoRageDescription[] = _("WIP - Uses Eruption\nafter you use a move.");
 static const u8 sLowBlowDescription[]    = _("On Switch-in lands a low power\nDark-type move.");
-static const u8 sDisciplineDescription[] = _("Outrage Type Moves no longer trap you.\nImmunity to Confusion, Intimidate, and Scare.");
+static const u8 sDisciplineDescription[] = _("Rampage moves no longer lock you.\nCan't be confused or intimidated.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
