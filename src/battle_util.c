@@ -4839,6 +4839,35 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_HITMONCHAN:  //To Change
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_HITMONCHAN)]){
+                u8 opposingBattler = BATTLE_OPPOSITE(battler);
+                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                bool8 hasTarget = FALSE;
+				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_HITMONCHAN)] = TRUE;
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gBattlerAttacker = battler;
+                
+                //Checks Target
+                for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+                {
+                    if (IsBattlerAlive(opposingBattler))
+                    {
+                        gBattlerTarget = opposingBattler;
+                        hasTarget = TRUE;
+                    }
+                }
+                
+                if(hasTarget){//To check if the target is even alive
+                    gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_HITMONCHAN;  //To Change
+                    gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                    effect++;
+                }
+            }
+        break;
         case ABILITY_INTIMIDATE:
             /*if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5595,6 +5624,37 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gSpecialStatuses[battler].scaredMon = TRUE;
 			}
 		}
+
+        //
+        if(BattlerHasInnate(battler, ABILITY_HITMONCHAN)){  //To Change
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_HITMONCHAN)]){
+                u8 opposingBattler = BATTLE_OPPOSITE(battler);
+                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                bool8 hasTarget = FALSE;
+				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_HITMONCHAN)] = TRUE;
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gBattlerAttacker = battler;
+                
+                //Checks Target
+                for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+                {
+                    if (IsBattlerAlive(opposingBattler))
+                    {
+                        gBattlerTarget = opposingBattler;
+                        hasTarget = TRUE;
+                    }
+                }
+                
+                if(hasTarget){//To check if the target is even alive
+                    gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_HITMONCHAN;  //To Change
+                    gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                    effect++;
+                }
+            }
+        }
 		
 		/*Zen Mode // This ability is never an innnate
 		if(BattlerHasInnate(battler, ABILITY_ZEN_MODE)){
@@ -7404,11 +7464,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
             break;
+            case ABILITY_DEWGONG: //To Change
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+                u16 extraMove = MOVE_ICE_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
+                effect++;
+            }
         }
-			
 		
 		// Innates
-
         // Justified
         if(BattlerHasInnate(battler, ABILITY_JUSTIFIED)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -7897,23 +7970,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        if(BattlerHasInnate(battler, ABILITY_VENGEANCE)){
+        if(BattlerHasInnate(battler, ABILITY_DEWGONG)){  //To Change
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                u8 tempBattler = battler;
                 u16 extraMove = MOVE_ICE_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
                 u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gBattlerTarget = gBattlerAttacker;
-                gBattlerAttacker = tempBattler;
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_VENGEANCE;
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_DEWGONG;  //To Change
+                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
 
             }
@@ -8108,6 +8178,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+		case ABILITY_CROBAT: // To Change
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && !BATTLER_MAX_HP(gBattlerAttacker) 
+             && IsBattlerAlive(gBattlerAttacker)
+             && TARGET_TURN_DAMAGED) // Need to actually hit the target
+            {
+                //Attacker
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
+                effect++;
+            }
+            break;
         case ABILITY_SOLENOGLYPHS:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -8256,6 +8341,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}
+
+        
+		if (BattlerHasInnate(battler, ABILITY_CROBAT)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && !BATTLER_MAX_HP(gBattlerAttacker) 
+             && IsBattlerAlive(gBattlerAttacker)
+             && TARGET_TURN_DAMAGED) // Need to actually hit the target
+            {
+                //Attacker
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
+                effect++;
+            }
+        }
 		
 		// Growing Tooth
 		if (BattlerHasInnate(battler, ABILITY_GROWING_TOOTH)){

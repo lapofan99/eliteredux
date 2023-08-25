@@ -443,6 +443,7 @@ extern const u8 BattleScript_ScareActivates[];
 extern const u8 BattleScript_ScareActivatesEnd3[];
 extern const u8 BattleScript_HandleSoulEaterEffect[];
 extern const u8 BattleScript_AttackerSoulLinker[];
+extern const u8 BattleScript_NosferatuActivated[];
 extern const u8 BattleScript_SweetDreamsActivates[];
 extern const u8 BattleScript_HauntedSpiritActivated[];
 extern const u8 BattleScript_UserGetsReckoilDamaged[];
@@ -454,6 +455,7 @@ extern const u8 BattleScript_PrintDamageDoneString[];
 extern const u8 BattleScript_BeakBlastSetUp[];
 extern const u8 BattleScript_BeakBlastBurn[];
 extern const u8 BattleScript_AttackerUsedAnExtraMove[];
+extern const u8 BattleScript_DefenderUsedAnExtraMove[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

@@ -410,8 +410,11 @@
 #define ABILITY_SUN_WORSHIP      (ABILITIES_COUNT_LATEST_GEN + 112) // Ups highest stat on entry when it's sunny.
 #define ABILITY_BUGINIZE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon to become Bug-type and receive a 20% power boost.
 #define ABILITY_VOLCANO_RAGE     (ABILITIES_COUNT_LATEST_GEN + 114) // 
+#define ABILITY_DEWGONG          (ABILITIES_COUNT_LATEST_GEN + 115) // To be renamed
+#define ABILITY_HITMONCHAN       (ABILITIES_COUNT_LATEST_GEN + 116) // To be renamed
+#define ABILITY_CROBAT           (ABILITIES_COUNT_LATEST_GEN + 117) // To be renamed
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_VOLCANO_RAGE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_CROBAT + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -7995,6 +7995,7 @@ BattleScript_HurtTarget:
 BattleScript_AttackerUsedAnExtraMove::
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_ABILITYLETITUSEMOVE
+	waitmessage B_WAIT_TIME_LONG
 BattleScript_EffectExtraHit::
 BattleScript_ExtraHitFromAtkCanceler::
 	attackcanceler
@@ -8021,6 +8022,46 @@ BattleScript_ExtraHitFromAtkAnimation::
 	seteffectwithchance
 	tryfaintmon BS_TARGET, FALSE, NULL
 BattleScript_ExtraExtraMoveEnd::
+	moveendall
+	end
+
+BattleScript_DefenderUsedAnExtraMove::
+	savetarget
+	copybyte sSAVED_BATTLER, gBattlerAttacker
+	copybyte gBattlerAttacker, gBattlerTarget
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ABILITYLETITUSEMOVE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_DefenderEffectExtraHit::
+BattleScript_DefenderExtraHitFromAtkCanceler::
+	attackcanceler
+BattleScript_DefenderExtraHitFromAccCheck::
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+BattleScript_DefenderExtraHitFromAtkString::
+	attackstring
+BattleScript_DefenderExtraHitFromCritCalc::
+	critcalc
+	damagecalc
+	adjustdamage
+BattleScript_DefenderExtraHitFromAtkAnimation::
+	playmoveanimation BS_ATTACKER, MOVE_NONE
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+BattleScript_DefenderExtraRestoreBattlers::
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	restoretarget
+BattleScript_DefenderExtraMoveEnd::
 	moveendall
 	end
 
@@ -9843,6 +9884,19 @@ BattleScript_AttackerSoulLinker::
 	datahpupdate BS_ATTACKER
 	tryfaintmon BS_ATTACKER, FALSE, NULL
 	return
+
+BattleScript_NosferatuActivated::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	setdrainedhp
+	manipulatedamage DMG_BIG_ROOT
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_ATTACKERREGAINEDHEALTH
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_NosferatuActivated_NothingToHeal:
+    return
 
 BattleScript_SweetDreamsActivates::
 	printstring STRINGID_SWEETDREAMSHPUP

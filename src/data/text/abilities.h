@@ -375,6 +375,8 @@ static const u8 sSunWorshipDescription[] = _("Ups highest stat by +1\non entry w
 static const u8 sBuginizeDescription[] = _("Normal moves become Bug\nand get a 20% boost.");
 static const u8 sVolcanoRageDescription[] = _("Uses Eruption after\nyou use a move.");
 
+static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
+
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 {
     [ABILITY_NONE] = _("-------"),
@@ -760,6 +762,9 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_SUN_WORSHIP] = _("Sun Worship"),
     [ABILITY_BUGINIZE] = _("Buginize"),
     [ABILITY_VOLCANO_RAGE] = _("Volcano Rage"),
+    [ABILITY_DEWGONG] = _("-------"),
+    [ABILITY_HITMONCHAN] = _("-------"),
+    [ABILITY_CROBAT] = _("-------"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1147,4 +1152,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_SUN_WORSHIP] = sSunWorshipDescription,
     [ABILITY_BUGINIZE] = sBuginizeDescription,
     [ABILITY_VOLCANO_RAGE] = sVolcanoRageDescription,
+    [ABILITY_DEWGONG] = sAbilityTestDescription,     //To Change
+    [ABILITY_HITMONCHAN] = sAbilityTestDescription,  //To Change
+    [ABILITY_CROBAT] = sAbilityTestDescription,      //To Change
 };
