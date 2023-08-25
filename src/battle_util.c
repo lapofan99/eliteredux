@@ -8645,7 +8645,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && CanBeParalyzed(gBattlerTarget, gBattlerAttacker)
              && IsMoveMakingContact(move, gBattlerAttacker)
-             && TARGET_TURN_DAMAGED)
+             && TARGET_TURN_DAMAGED
+             && (Random() % 5) == 0)
             {
                 gBattleScripting.moveEffect = MOVE_EFFECT_PARALYSIS;
                 BattleScriptPushCursor();
