@@ -8616,7 +8616,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && CanBeParalyzed(gBattlerTarget, gBattlerAttacker)
              && IsMoveMakingContact(move, gBattlerAttacker)
              && TARGET_TURN_DAMAGED
-             && (Random() % 3) == 0)
+             && (Random() % 5) == 0)
             {
                 gBattleScripting.moveEffect = MOVE_EFFECT_PARALYSIS;
                 BattleScriptPushCursor();
