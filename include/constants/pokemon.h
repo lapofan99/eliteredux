@@ -314,6 +314,7 @@
 
 // Battle move Flags 2
 #define FLAG_AIR_BASED                            (1 << 0) // For Giant Wings
+#define FLAG_HORN_BASED                           (1 << 1) // For Mighty Horn
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0

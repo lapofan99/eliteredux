@@ -376,6 +376,9 @@ static const u8 sBuginizeDescription[] = _("Normal moves become Bug\nand get a 2
 static const u8 sVolcanoRageDescription[] = _("WIP - Uses Eruption\nafter you use a move.");
 static const u8 sLowBlowDescription[]    = _("On Switch-in lands a low power\nDark-type move.");
 static const u8 sDisciplineDescription[] = _("Rampage moves no longer lock you.\nCan't be confused or intimidated.");
+static const u8 sMightyHornDescription[] = _("Boosts horn- and drill-based\nmoves by 30%.");
+static const u8 sHardenedSheathDescription[] =  _("Ups Attack by +1\nwhen using horn moves.");
+static const u8 sArcticFurDescription[] = _("Weakens incoming physical\nand special moves by 35%.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -771,6 +774,9 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_DISCIPLINE] = _("Discipline"),
     [ABILITY_THUNDERCALL] = _("Thundercall"),
     [ABILITY_MARINE_APEX] = _("Marine Apex"),
+	[ABILITY_MIGHTY_HORN] = _("Mighty Horn"),
+    [ABILITY_HARDENED_SHEATH] = _("Hardened Sheath"),
+    [ABILITY_ARCTIC_FUR] = _("Arctic Fur"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1165,4 +1171,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_DISCIPLINE] = sDisciplineDescription,
     [ABILITY_THUNDERCALL] = sAbilityTestDescription,     //To Change
     [ABILITY_MARINE_APEX] = sAbilityTestDescription,     //To Change
+	[ABILITY_MIGHTY_HORN] = sMightyHornDescription,
+    [ABILITY_HARDENED_SHEATH] = sHardenedSheathDescription,
+    [ABILITY_ARCTIC_FUR] = sArcticFurDescription,
 };

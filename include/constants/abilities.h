@@ -416,9 +416,12 @@
 #define ABILITY_SPECTRAL_SHROUD  (ABILITIES_COUNT_LATEST_GEN + 118) // Ghostate, plus 30% chance to badly poison
 #define ABILITY_DISCIPLINE       (ABILITIES_COUNT_LATEST_GEN + 119) // Outrage Type Moves no longer trap you. Immunity to Confusion, Intimidate, and Scare
 #define ABILITY_THUNDERCALL      (ABILITIES_COUNT_LATEST_GEN + 120) // When using an Electric-Type Move, follow up with Smite at 20% of its power.
-#define ABILITY_MARINE_APEX      (ABILITIES_COUNT_LATEST_GEN + 121) // Dragonslayer for water types, as well as Infiltrator
+#define ABILITY_MARINE_APEX      (ABILITIES_COUNT_LATEST_GEN + 121) // Dragonslayer for Water types, as well as Infiltrator
+#define ABILITY_MIGHTY_HORN      (ABILITIES_COUNT_LATEST_GEN + 122) // Boosts horn / drill moves by 1.3x. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
+#define ABILITY_HARDENED_SHEATH  (ABILITIES_COUNT_LATEST_GEN + 123) // Increases the Attack stat by one stage after using a horn move. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
+#define ABILITY_ARCTIC_FUR       (ABILITIES_COUNT_LATEST_GEN + 124) // Takes 35% less damage from incoming physical & special moves.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_MARINE_APEX + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_ARCTIC_FUR + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
