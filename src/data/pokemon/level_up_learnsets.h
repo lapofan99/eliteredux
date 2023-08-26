@@ -1906,6 +1906,7 @@ static const struct LevelUpMove sSeelLevelUpLearnset[] = {
 static const struct LevelUpMove sDewgongLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_SHEER_COLD),
 	LEVEL_UP_MOVE( 0, MOVE_AQUA_FANG), // new
+	LEVEL_UP_MOVE( 1, MOVE_ICE_FANG), // new
     LEVEL_UP_MOVE( 1, MOVE_SIGNAL_BEAM),
     #ifdef REBALANCED_VERSION
         LEVEL_UP_MOVE( 1, MOVE_ICICLE_CRASH),

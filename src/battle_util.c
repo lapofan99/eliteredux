@@ -7464,14 +7464,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
             break;
-            case ABILITY_DEWGONG: //To Change
+            case ABILITY_COLD_REBOUND:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                u16 extraMove = MOVE_ICE_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u16 extraMove = MOVE_ICY_WIND;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
                 u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
@@ -7970,19 +7970,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        if(BattlerHasInnate(battler, ABILITY_DEWGONG)){  //To Change
+        if(BattlerHasInnate(battler, ABILITY_COLD_REBOUND)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                u16 extraMove = MOVE_ICE_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u16 extraMove = MOVE_ICY_WIND;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
                 u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_DEWGONG;  //To Change
+                gBattleScripting.abilityPopupOverwrite = ABILITY_COLD_REBOUND;
                 gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
 

@@ -3090,11 +3090,11 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_DEWGONG_MEGA] =
     {
     .baseHP        = 90,
-    .baseAttack    = 90,
-    .baseDefense   = 60, // With Fur Coat, effectively base 169. Was 209 with base 80
+    .baseAttack    = 105,
+    .baseDefense   = 105,
     .baseSpeed     = 90,
-    .baseSpAttack  = 95,
-    .baseSpDefense = 95,
+    .baseSpAttack  = 125,
+    .baseSpDefense = 105,
     .type1 = TYPE_WATER,
     .type2 = TYPE_ICE,
     .catchRate = 255,
@@ -3106,8 +3106,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_DEWGONG, ABILITY_DEWGONG, ABILITY_DEWGONG},
-    .innates = {ABILITY_VENGEANCE, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
+    .abilities = {ABILITY_HARDENED_SHEATH, ABILITY_LIGHTNING_ROD, ABILITY_COLD_REBOUND},
+    .innates = {ABILITY_ARCTIC_FUR, ABILITY_WATER_VEIL, ABILITY_HYDRATE},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
 },
