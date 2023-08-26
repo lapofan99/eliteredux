@@ -10555,7 +10555,7 @@ case ITEMEFFECT_KINGSROCK:
                 gLastUsedItem = atkItem;
                 gPotentialItemEffectBattler = gBattlerAttacker;
                 gBattleScripting.battler = gBattlerAttacker;
-                gBattleMoveDamage = (gBattleMons[gBattlerTarget].maxHP - gBattleMons[gBattlerTarget].hp) / -3;
+                gBattleMoveDamage = (gBattleMons[gBattlerTarget].maxHP - gBattleMons[gBattlerTarget].hp) / -4;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = -1;
                 gSpecialStatuses[gBattlerTarget].dmg = 0;

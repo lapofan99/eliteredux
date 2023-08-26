@@ -1928,6 +1928,7 @@ static const struct LevelUpMove sDewgongLevelUpLearnset[] = {
     LEVEL_UP_MOVE(39, MOVE_TAKE_DOWN),
     LEVEL_UP_MOVE(40, MOVE_SCALD), // new
     LEVEL_UP_MOVE(42, MOVE_DRILL_RUN), // new
+    LEVEL_UP_MOVE(44, MOVE_HYPER_VOICE), // new
     LEVEL_UP_MOVE(45, MOVE_DIVE),
     LEVEL_UP_MOVE(47, MOVE_HORN_DRILL), // new
     LEVEL_UP_MOVE(49, MOVE_AQUA_TAIL),
@@ -3399,6 +3400,7 @@ static const struct LevelUpMove sDragoniteLevelUpLearnset[] = {
     LEVEL_UP_MOVE(67, MOVE_OUTRAGE),
     LEVEL_UP_MOVE(75, MOVE_GIGA_IMPACT), // new
     LEVEL_UP_MOVE(75, MOVE_HYPER_BEAM),
+    LEVEL_UP_MOVE(78, MOVE_THRASH), // new
     LEVEL_UP_MOVE(81, MOVE_HURRICANE),
     LEVEL_UP_END
 };

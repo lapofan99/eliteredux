@@ -3033,6 +3033,10 @@ static const u8 sWAVE_CRASHDescription[] = _(
     "A life-risking tackle that\n"
     "with 33% recoil damage.");
 
+static const u8 sSMITEDescription[] = _(
+    "Attacks from above with strong\n"
+    "electricity. Smack Down effect.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3801,7 +3805,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_EXCALIBUR  - 1] = sEXCALIBURDescription,
     [MOVE_AQUA_FANG  - 1] = sAQUA_FANGDescription,
     [MOVE_WAVE_CRASH - 1] = sWAVE_CRASHDescription,
-    [MOVE_SMITE      - 1] = sWAVE_CRASHDescription,
+    [MOVE_SMITE      - 1] = sSMITEDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4608,6 +4612,7 @@ static const u8 sMoveFourLineDescription_Deathroll[] = _("20% confusion chance.\
 static const u8 sMoveFourLineDescription_Excalibur[] = _("Hits hard. Double\ndamage on\nDragon-types.\nHigh critical ratio."); // new
 static const u8 sMoveFourLineDescription_AquaFang[] = _("Bites with aquatic\nfangs. Has 10%\nflinch chance.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_WaveCrash[] = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
+static const u8 sMoveFourLineDescription_Smite[] = _("Attacks from above\nwith strong electricity.\n20% paralysis chance.\nSmack Down effect."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5372,5 +5377,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_EXCALIBUR    - 1] = sMoveFourLineDescription_Excalibur,
     [MOVE_AQUA_FANG    - 1] = sMoveFourLineDescription_AquaFang,
     [MOVE_WAVE_CRASH   - 1] = sMoveFourLineDescription_WaveCrash,
-    [MOVE_SMITE        - 1] = sMoveFourLineDescription_WaveCrash,
+    [MOVE_SMITE        - 1] = sMoveFourLineDescription_Smite,
 };
