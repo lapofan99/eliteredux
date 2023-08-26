@@ -198,8 +198,8 @@ Feraligatr
     ability = Predator
     evs = 252, 252, 0, 0, 0, 4 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     nature = Adamant
-    moves =  Aqua Fang, psychic fangs, Ice Fang, crunch
-   comment = Aqua Fang & Crunch for STAB, Psychic Fangs to destroy screens and Ice Fang for coverage.
+    moves =  Deathroll, psychic fangs, Ice Fang, crunch
+   comment = Deathroll & Crunch for STAB, Psychic Fangs to destroy screens and Ice Fang for coverage.
 }
 Porygon-Z
 {
