@@ -8195,7 +8195,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-		case ABILITY_CROBAT: // To Change
+		case ABILITY_NOSFERATU:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8373,7 +8373,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
         
-		if (BattlerHasInnate(battler, ABILITY_CROBAT)){
+		if (BattlerHasInnate(battler, ABILITY_NOSFERATU)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -11785,6 +11785,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
+    case ABILITY_SPECTRALIZE:
+        if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
     case ABILITY_SOLAR_FLARE:
         if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -12069,6 +12073,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 
     // Spectral Shroud
 	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD)){
+		if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
+
+    // Spectralize
+	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE)){
 		if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}

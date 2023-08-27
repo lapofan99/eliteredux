@@ -408,11 +408,11 @@
 #define ABILITY_AMPLIFIER        (ABILITIES_COUNT_LATEST_GEN + 110) // Sound-based moves now target all foes [Affected moves: Hyper Voice, Boomburst, Bug Buzz, Chatter, Confide, Disarming Voice, Echoed Voice, Eerie Spell, Grass Whistle, Metal Sound, Noble Roar, Parting Shot, Roar, Round, Screech, Sing, Snore, Supersonic, Uproar etc.]. Also boosts power by 20%.
 #define ABILITY_ICE_DEW          (ABILITIES_COUNT_LATEST_GEN + 111) // Immune to Ice-type moves. Instead of being hit by Ice-type moves, it boosts its Attack or Sp. Attack stat (which is higher).
 #define ABILITY_SUN_WORSHIP      (ABILITIES_COUNT_LATEST_GEN + 112) // Ups highest stat on entry when it's sunny.
-#define ABILITY_BUGINIZE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon to become Bug-type and receive a 20% power boost.
-#define ABILITY_VOLCANO_RAGE     (ABILITIES_COUNT_LATEST_GEN + 114) // 
+#define ABILITY_BUGINIZE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon become Bug-type and receive a 20% power boost.
+#define ABILITY_VOLCANO_RAGE     (ABILITIES_COUNT_LATEST_GEN + 114) // Everytime when using a Fang move, triggers Eruption.
 #define ABILITY_COLD_REBOUND     (ABILITIES_COUNT_LATEST_GEN + 115) // Everytime when hit by a contact move, counter-attacks with Icy Wind.
-#define ABILITY_LOW_BLOW         (ABILITIES_COUNT_LATEST_GEN + 116)
-#define ABILITY_CROBAT           (ABILITIES_COUNT_LATEST_GEN + 117) // To be renamed
+#define ABILITY_LOW_BLOW         (ABILITIES_COUNT_LATEST_GEN + 116) // Lands a low-power punching move on switch-in.
+#define ABILITY_NOSFERATU        (ABILITIES_COUNT_LATEST_GEN + 117) // Contact Moves do +20% damage and heal the user for 33% of the damage dealt.
 #define ABILITY_SPECTRAL_SHROUD  (ABILITIES_COUNT_LATEST_GEN + 118) // Ghostate, plus 30% chance to badly poison
 #define ABILITY_DISCIPLINE       (ABILITIES_COUNT_LATEST_GEN + 119) // Moves like Outrage no longer trap you. Immunity to Confusion, Intimidate and Scare.
 #define ABILITY_THUNDERCALL      (ABILITIES_COUNT_LATEST_GEN + 120) // When using an Electric-type move, follows up with Smite at 20% of its power.
@@ -420,8 +420,9 @@
 #define ABILITY_MIGHTY_HORN      (ABILITIES_COUNT_LATEST_GEN + 122) // Boosts horn / drill moves by 1.3x. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
 #define ABILITY_HARDENED_SHEATH  (ABILITIES_COUNT_LATEST_GEN + 123) // Increases the Attack stat by one stage after using a horn move. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
 #define ABILITY_ARCTIC_FUR       (ABILITIES_COUNT_LATEST_GEN + 124) // Takes 35% less damage from incoming physical & special moves.
+#define ABILITY_SPECTRALIZE      (ABILITIES_COUNT_LATEST_GEN + 125) // All Normal-type moves used by the Pokémon become Ghost-type and receive a 20% power boost.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_ARCTIC_FUR + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SPECTRALIZE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
