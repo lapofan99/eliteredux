@@ -193,13 +193,13 @@ Gallade Mega
 }
 Feraligatr
 {
-    name = Dundee All Bites
+    name = Bulky Quad Bite
     item = Assault Vest
     ability = Predator
     evs = 252, 252, 0, 0, 0, 4 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-    nature = Jolly or Adamant
-    moves =  fishious Rend, psychic fang, Ice fang, crunch
-   comment = Works better with Sticky Web; heals itself with Predator and if you outspeed something, you can KO a lot with Fishious Rend.
+    nature = Adamant
+    moves =  Deathroll, psychic fangs, Ice Fang, crunch
+   comment = Deathroll & Crunch for STAB, Psychic Fangs to destroy screens and Ice Fang for coverage.
 }
 Porygon-Z
 {

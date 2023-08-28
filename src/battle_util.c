@@ -7464,14 +7464,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
             break;
-            case ABILITY_DEWGONG: //To Change
+            case ABILITY_COLD_REBOUND:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                u16 extraMove = MOVE_ICE_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u16 extraMove = MOVE_ICY_WIND;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
                 u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
@@ -7970,19 +7970,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        if(BattlerHasInnate(battler, ABILITY_DEWGONG)){  //To Change
+        if(BattlerHasInnate(battler, ABILITY_COLD_REBOUND)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
-                u16 extraMove = MOVE_ICE_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u16 extraMove = MOVE_ICY_WIND;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
                 u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_DEWGONG;  //To Change
+                gBattleScripting.abilityPopupOverwrite = ABILITY_COLD_REBOUND;
                 gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
 
@@ -8103,6 +8103,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        // Hardened Sheath
+		case ABILITY_HARDENED_SHEATH:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+			 && (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
+             && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleMons[battler].statStages[STAT_ATK]++;
+                gBattleScripting.animArg1 = 14 + STAT_ATK;
+                gBattleScripting.animArg2 = 0;
+                BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
+                gBattleScripting.battler = battler;
+                effect++;
+            }
+            break;
         case ABILITY_POISON_TOUCH:
         case ABILITY_SPECTRAL_SHROUD:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -8179,7 +8195,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-		case ABILITY_CROBAT: // To Change
+		case ABILITY_NOSFERATU:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8358,7 +8374,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
         
-		if (BattlerHasInnate(battler, ABILITY_CROBAT)){
+		if (BattlerHasInnate(battler, ABILITY_NOSFERATU)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -8384,6 +8400,26 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				{
 					gBattleScripting.abilityPopupOverwrite = ABILITY_GROWING_TOOTH;
 					gLastUsedAbility = ABILITY_GROWING_TOOTH;
+					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+					BattleScriptPushCursor();
+					gBattleMons[battler].statStages[STAT_ATK]++;
+					gBattleScripting.animArg1 = 14 + STAT_ATK;
+					gBattleScripting.animArg2 = 0;
+					BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
+					gBattleScripting.battler = battler;
+					effect++;
+				}
+		}
+        // Hardened Sheath
+		if (BattlerHasInnate(battler, ABILITY_HARDENED_SHEATH)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+				 && TARGET_TURN_DAMAGED
+				 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+				 && (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
+				 && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+				{
+					gBattleScripting.abilityPopupOverwrite = ABILITY_HARDENED_SHEATH;
+					gLastUsedAbility = ABILITY_HARDENED_SHEATH;
 					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 					BattleScriptPushCursor();
 					gBattleMons[battler].statStages[STAT_ATK]++;
@@ -10521,7 +10557,7 @@ case ITEMEFFECT_KINGSROCK:
                 gLastUsedItem = atkItem;
                 gPotentialItemEffectBattler = gBattlerAttacker;
                 gBattleScripting.battler = gBattlerAttacker;
-                gBattleMoveDamage = (gBattleMons[gBattlerTarget].maxHP - gBattleMons[gBattlerTarget].hp) / -3;
+                gBattleMoveDamage = (gBattleMons[gBattlerTarget].maxHP - gBattleMons[gBattlerTarget].hp) / -4;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = -1;
                 gSpecialStatuses[gBattlerTarget].dmg = 0;
@@ -11666,6 +11702,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.3));
         break;
+	case ABILITY_MIGHTY_HORN:
+        if (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
+           MulModifier(&modifier, UQ_4_12(1.3));
+        break;
 	case ABILITY_FIELD_EXPLORER:
         if (gBattleMoves[move].flags & FLAG_FIELD_BASED)
            MulModifier(&modifier, UQ_4_12(1.25));
@@ -11744,6 +11784,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
 	case ABILITY_SPECTRAL_SHROUD:
+        if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
+    case ABILITY_SPECTRALIZE:
         if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
@@ -11874,6 +11918,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Striker
 	if(BattlerHasInnate(battlerAtk, ABILITY_STRIKER)){
 		if (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.3));
+    }
+
+	// Mighty Horn
+	if(BattlerHasInnate(battlerAtk, ABILITY_MIGHTY_HORN)){
+		if (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
            MulModifier(&modifier, UQ_4_12(1.3));
     }
 	
@@ -12025,6 +12075,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 
     // Spectral Shroud
 	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD)){
+		if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
+				MulModifier(&modifier, UQ_4_12(1.2));
+	}
+
+    // Spectralize
+	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE)){
 		if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
@@ -13674,6 +13730,9 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         if (IS_MOVE_SPECIAL(move))
             MulModifier(&finalModifier, UQ_4_12(0.70));
         break;
+    case ABILITY_ARCTIC_FUR:
+            MulModifier(&finalModifier, UQ_4_12(0.65));
+        break;
     }
 	
 	
@@ -13688,6 +13747,10 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	if(BattlerHasInnate(battlerDef, ABILITY_PRISM_SCALES)){
 		if (IS_MOVE_SPECIAL(move))
             MulModifier(&finalModifier, UQ_4_12(0.70));
+    }
+    // Arctic Fur
+	if(BattlerHasInnate(battlerDef, ABILITY_ARCTIC_FUR)){
+            MulModifier(&finalModifier, UQ_4_12(0.65));
     }
 	// Multiscale and Shadow Shield
 	if(BattlerHasInnate(battlerDef, ABILITY_MULTISCALE) || 
