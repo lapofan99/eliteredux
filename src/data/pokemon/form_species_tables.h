@@ -1022,3 +1022,15 @@ static const u16 sCalyrexFormSpeciesIdTable[] = {
     SPECIES_CALYREX_SHADOW_RIDER,
     FORM_SPECIES_END,
 };
+
+static const u16 sCrobatFormSpeciesIdTable[] = {
+    SPECIES_CROBAT,
+    SPECIES_CROBAT_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sDewgongFormSpeciesIdTable[] = {
+    SPECIES_DEWGONG,
+    SPECIES_DEWGONG_MEGA,
+    FORM_SPECIES_END,
+};
