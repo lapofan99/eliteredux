@@ -1040,3 +1040,9 @@ static const u16 sHitmonchanFormSpeciesIdTable[] = {
     SPECIES_HITMONCHAN_MEGA,
     FORM_SPECIES_END,
 };
+
+static const u16 sSkarmoryFormSpeciesIdTable[] = {
+    SPECIES_SKARMORY,
+    SPECIES_SKARMORY_MEGA,
+    FORM_SPECIES_END,
+};
