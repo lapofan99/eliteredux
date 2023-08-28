@@ -4774,7 +4774,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_HITMONCHAN_MEGA] =
     {
         .size = 0x87,
-        .y_offset = 2,
+        .y_offset = 6,
     },
     [SPECIES_HITMONTOP_MEGA] =
     {
