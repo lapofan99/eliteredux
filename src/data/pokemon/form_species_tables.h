@@ -1034,3 +1034,9 @@ static const u16 sDewgongFormSpeciesIdTable[] = {
     SPECIES_DEWGONG_MEGA,
     FORM_SPECIES_END,
 };
+
+static const u16 sHitmonchanFormSpeciesIdTable[] = {
+    SPECIES_HITMONCHAN,
+    SPECIES_HITMONCHAN_MEGA,
+    FORM_SPECIES_END,
+};
