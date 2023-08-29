@@ -606,6 +606,10 @@ const u16 gEggMoves[] = {
         MOVE_CHIP_AWAY),
 
     egg_moves(LICKITUNG,
+        MOVE_SLACK_OFF, // new
+        MOVE_STOCKPILE, // new
+        MOVE_SPIT_UP, // new
+        MOVE_SWALLOW, // new
         MOVE_BELLY_DRUM,
         MOVE_MAGNITUDE,
         MOVE_BODY_SLAM,
@@ -2697,6 +2701,7 @@ const u16 gEggMoves[] = {
     egg_moves(DRIFLOON,
         MOVE_DARK_PULSE, // new
         MOVE_AIR_SLASH, // new
+        MOVE_FLING, // new
         MOVE_MEMENTO,
         MOVE_BODY_SLAM,
         MOVE_DESTINY_BOND,
@@ -3872,7 +3877,8 @@ const u16 gEggMoves[] = {
         MOVE_VENOM_DRENCH),
 
     egg_moves(CLAUNCHER,
-        MOVE_FLIP_TURN, //
+        MOVE_FLIP_TURN, // new
+        MOVE_AGILITY, // new
         MOVE_AQUA_JET,
         MOVE_ENTRAINMENT,
         MOVE_ENDURE,

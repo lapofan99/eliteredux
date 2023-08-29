@@ -8349,6 +8349,8 @@ static const struct LevelUpMove sArmaldoLevelUpLearnset[] = {
         LEVEL_UP_MOVE(50, MOVE_LIQUIDATION),
     #endif
     LEVEL_UP_MOVE(53, MOVE_PROTECT),
+    LEVEL_UP_MOVE(56, MOVE_WAVE_CRASH), // new
+    LEVEL_UP_MOVE(59, MOVE_HEAD_SMASH), // new
     LEVEL_UP_MOVE(61, MOVE_ROCK_BLAST),
     LEVEL_UP_END
 };
