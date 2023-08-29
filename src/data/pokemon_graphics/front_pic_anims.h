@@ -15477,6 +15477,11 @@ static const union AnimCmd *const sAnims_DRAGONITE_MEGA[] ={
     sAnim_DEWGONG_MEGA_1,
 };
 
+static const union AnimCmd *const sAnims_BRELOOM_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_DEWGONG_MEGA_1,
+};
+
 static const union AnimCmd *const sAnims_RATTATA_ALOLAN[] ={
     sAnim_GeneralFrame0,
     sAnim_RATTATA_ALOLAN_1,
@@ -16830,6 +16835,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(JELLICENT_MEGA),
     ANIM_CMD(TOUCANNON_MEGA),
     ANIM_CMD(DRAGONITE_MEGA),
+    ANIM_CMD(BRELOOM_MEGA),
     ANIM_CMD(RAYQUAZA_MEGA),
     ANIM_CMD(KYOGRE_PRIMAL),
     ANIM_CMD(GROUDON_PRIMAL),

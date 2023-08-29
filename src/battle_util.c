@@ -14434,6 +14434,7 @@ void UndoMegaEvolution(u32 monId)
         case SPECIES_JELLICENT_MEGA:
         case SPECIES_TOUCANNON_MEGA:
         case SPECIES_DRAGONITE_MEGA:
+        case SPECIES_BRELOOM_MEGA:
         case SPECIES_RAYQUAZA_MEGA:
             SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &baseSpecies);
         break;

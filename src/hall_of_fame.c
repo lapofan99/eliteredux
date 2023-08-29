@@ -728,6 +728,10 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_DRAGONITENITE) // :^)
                 return SPECIES_DRAGONITE_MEGA;
         break;
+        case SPECIES_BRELOOM:
+            if(item == ITEM_BRELOOMITE) // :^)
+                return SPECIES_BRELOOM_MEGA;
+        break;
         case SPECIES_RAYQUAZA:
             for(i = 0; i < MAX_MON_MOVES; i++){
                 if(GetMonData(&gPlayerParty[num], MON_DATA_MOVE1 + i) == MOVE_DRAGON_ASCENT)

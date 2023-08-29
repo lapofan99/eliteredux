@@ -9090,6 +9090,33 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+[SPECIES_BRELOOM_MEGA] =
+    {
+    .baseHP        = 60,
+    .baseAttack    = 130,
+    .baseDefense   = 80,
+    .baseSpeed     = 70,
+    .baseSpAttack  = 60,
+    .baseSpDefense = 60,
+    .type1 = TYPE_GRASS,
+    .type2 = TYPE_FIGHTING,
+    .catchRate = 255,
+    .expYield = 161,
+    .evYield_Attack    = 2,
+    .item1 = ITEM_BIG_MUSHROOM,
+    .item2 = ITEM_BIG_MUSHROOM,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_FAIRY,
+    .eggGroup2 = EGG_GROUP_GRASS,
+    .abilities = {ABILITY_POISON_HEAL, ABILITY_PRECISE_FIST, ABILITY_LONG_REACH},
+    .innates = {ABILITY_EFFECT_SPORE, ABILITY_TOXIC_BOOST, ABILITY_TECHNICIAN},
+    .bodyColor = BODY_COLOR_GREEN,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_SLAKOTH] =
     {
     .baseHP        = 60,

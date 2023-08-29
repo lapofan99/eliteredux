@@ -4842,6 +4842,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0x87,
         .y_offset = 2,
     },
+    [SPECIES_BRELOOM_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] =
     {

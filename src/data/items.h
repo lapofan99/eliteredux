@@ -7900,7 +7900,7 @@ const struct Item gItems[] =
 
     [ITEM_SHUCKLENITE] =
     {
-        .name = _("Shicklenite"),
+        .name = _("Shucklenite"),
         .itemId = ITEM_SHUCKLENITE,
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
@@ -7965,6 +7965,18 @@ const struct Item gItems[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sDragoniteniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_BRELOOMITE] =
+    {
+        .name = _("Breloomite"),
+        .itemId = ITEM_BRELOOMITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sBreloomiteDesc,
         .pocket = POCKET_MEGA_STONES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -8150,17 +8162,6 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_IronPill,
-    },
-
-    [ITEM_GENIUS_FEATHER] =
-    {
-        .name = _("Genius Feather"),
-        .itemId = ITEM_GENIUS_FEATHER,
-        .price = 300,
-        .description = sGeniusFeatherDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
     },
 
     [ITEM_CLEVER_FEATHER] =
