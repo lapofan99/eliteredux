@@ -4288,7 +4288,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     case EFFECT_FAKE_OUT:
         if (move == MOVE_FAKE_OUT    // filter out first impression
           && ShouldFakeOut(battlerAtk, battlerDef, move))
-            score += 8;
+            score += 16; // was 8
         break;
     case EFFECT_STOCKPILE:
         if (AI_DATA->atkAbility == ABILITY_CONTRARY)

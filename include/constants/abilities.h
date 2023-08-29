@@ -56,7 +56,7 @@
 #define ABILITY_HYPER_CUTTER 52 // Prevents other Pokémon from lowering its Attack stat. Contact moves have its critical hit rate increased by 1.
 #define ABILITY_PICKUP 53 // *No innate* Has a 10% chance of finding and holding an item after battle. Will not work if this Pokémon is already holding an item. From Black & White, it allows for the user to pick up the item of its opponent or ally if they used up the item in battle.
 #define ABILITY_TRUANT 54 // The Pokémon can't use a move if it had used a move on the previous turn.
-#define ABILITY_HUSTLE 55 // Boosts the Attack stat by 50%, but lowers accuracy by 20%.
+#define ABILITY_HUSTLE 55 // Boosts the Attack stat by 40%, but lowers accuracy by 10%.
 #define ABILITY_CUTE_CHARM 56 // The opponent has a 30% chance of being induced with Attract when using an attack, that requires physical contact, against this Pokémon.
 #define ABILITY_PLUS 57 // When battling with Plus or Minus, Special Attack increases by 50%.
 #define ABILITY_MINUS 58 // When battling with Plus or Minus, Special Attack increases by 50%.

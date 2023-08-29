@@ -49,7 +49,7 @@
 }
 
 #define DEBUG_BUILD
-#define CURRENT_GAME_VERSION 1011
+#define CURRENT_GAME_VERSION 1012
 
 // useful math macros
 

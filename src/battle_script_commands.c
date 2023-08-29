@@ -1926,8 +1926,8 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
 	if ((defAbility == ABILITY_TANGLED_FEET || BattlerHasInnate(battlerDef, ABILITY_TANGLED_FEET)) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
         calc = (calc * 50) / 100; // 1.5 tangled feet loss
 
-    if ((atkAbility == ABILITY_HUSTLE || BattlerHasInnate(battlerAtk, ABILITY_HUSTLE)) && IS_MOVE_PHYSICAL(move))
-        calc = (calc * 80) / 100; // 1.2 hustle loss
+    if ((atkAbility == ABILITY_HUSTLE || BattlerHasInnate(battlerAtk, ABILITY_HUSTLE)))
+        calc = (calc * 90) / 100; // 1.1 hustle loss
 
     if (defHoldEffect == HOLD_EFFECT_EVASION_UP)
         calc = (calc * (100 - defParam)) / 100;

@@ -13644,7 +13644,7 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 65,
     .baseAttack    = 96,
-    .baseDefense   = 84,
+    .baseDefense   = 64, // 84, nerf bc of Fur Coat
     .baseSpeed     = 125,
     .baseSpAttack  = 54,
     .baseSpDefense = 96,
@@ -13669,7 +13669,7 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 65,
     .baseAttack    = 146,
-    .baseDefense   = 94,
+    .baseDefense   = 74, // 94, nerf bc of Fur Coat
     .baseSpeed     = 145,
     .baseSpAttack  = 74,
     .baseSpDefense = 96,
