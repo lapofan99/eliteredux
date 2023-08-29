@@ -13643,9 +13643,9 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_LOPUNNY] =
     {
     .baseHP        = 65,
-    .baseAttack    = 96,
+    .baseAttack    = 76, // 76
     .baseDefense   = 64, // 84, nerf bc of Fur Coat
-    .baseSpeed     = 125,
+    .baseSpeed     = 115, // 105
     .baseSpAttack  = 54,
     .baseSpDefense = 96,
     .type1 = TYPE_NORMAL,
@@ -13668,10 +13668,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_LOPUNNY_MEGA] =
     {
     .baseHP        = 65,
-    .baseAttack    = 146,
+    .baseAttack    = 136,
     .baseDefense   = 74, // 94, nerf bc of Fur Coat
-    .baseSpeed     = 145,
-    .baseSpAttack  = 74,
+    .baseSpeed     = 135,
+    .baseSpAttack  = 64,
     .baseSpDefense = 96,
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_FIGHTING,
