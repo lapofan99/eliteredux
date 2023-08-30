@@ -7476,7 +7476,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
+                gBattlescriptCurrInstr = BattleScript_DefenderEffectSpeedDownHit;
                 effect++;
             }
         }
@@ -7983,7 +7983,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_COLD_REBOUND;
-                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
+                gBattlescriptCurrInstr = BattleScript_DefenderEffectSpeedDownHit;
                 effect++;
 
             }

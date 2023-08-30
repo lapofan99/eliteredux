@@ -8058,6 +8058,10 @@ BattleScript_ExtraExtraMoveEnd::
 	moveendall
 	end
 
+BattleScript_DefenderEffectSpeedDownHit::
+	setmoveeffect MOVE_EFFECT_SPD_MINUS_1
+	goto BattleScript_DefenderUsedAnExtraMove
+
 BattleScript_DefenderUsedAnExtraMove::
 	savetarget
 	copybyte sSAVED_BATTLER, gBattlerAttacker
