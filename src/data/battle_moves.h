@@ -11878,9 +11878,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_SMITE] =
     {
         .effect = EFFECT_SMACK_DOWN,
-        .power = 100,
+        .power = 110,
         .type = TYPE_ELECTRIC,
-        .accuracy = 95,
+        .accuracy = 85,
         .pp = 15,
         .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,

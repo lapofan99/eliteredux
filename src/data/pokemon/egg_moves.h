@@ -341,6 +341,9 @@ const u16 gEggMoves[] = {
         MOVE_PSYCHIC_TERRAIN),
 
     egg_moves(MACHOP,
+        MOVE_MACH_PUNCH, // new
+        MOVE_POWER_UP_PUNCH, // new
+        MOVE_DRAIN_PUNCH, // new
         MOVE_MEDITATE,
         MOVE_ROLLING_KICK,
         MOVE_ENCORE,
@@ -350,7 +353,6 @@ const u16 gEggMoves[] = {
         MOVE_FIRE_PUNCH,
         MOVE_THUNDER_PUNCH,
         MOVE_ICE_PUNCH,
-        MOVE_MACH_PUNCH, // new
         MOVE_BULLET_PUNCH,
         MOVE_POWER_TRICK,
         MOVE_HEAVY_SLAM,
@@ -527,6 +529,7 @@ const u16 gEggMoves[] = {
         MOVE_REFLECT_TYPE),
 
     egg_moves(ONIX,
+        MOVE_HYPER_FANG, // new
         MOVE_FLAIL,
         MOVE_BLOCK,
         MOVE_DEFENSE_CURL,
