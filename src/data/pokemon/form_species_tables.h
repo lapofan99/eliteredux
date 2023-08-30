@@ -1046,3 +1046,9 @@ static const u16 sSkarmoryFormSpeciesIdTable[] = {
     SPECIES_SKARMORY_MEGA,
     FORM_SPECIES_END,
 };
+
+static const u16 sSlakingFormSpeciesIdTable[] = {
+    SPECIES_SLAKING,
+    SPECIES_SLAKING_MEGA,
+    FORM_SPECIES_END,
+};

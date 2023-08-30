@@ -9192,6 +9192,31 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+[SPECIES_SLAKING_MEGA] =
+    {
+    .baseHP        = 130, // -20 nerf
+    .baseAttack    = 150, // -10 nerf
+    .baseDefense   = 100,
+    .baseSpeed     = 100,
+    .baseSpAttack  = 75, // -20 nerf
+    .baseSpDefense = 95, // +30
+    .type1 = TYPE_NORMAL,
+    .type2 = TYPE_NORMAL,
+    .catchRate = 255,
+    .expYield = 252,
+    .evYield_HP    = 3,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = 70,
+    .growthRate = GROWTH_SLOW,
+    .eggGroup1 = EGG_GROUP_FIELD,
+    .eggGroup2 = EGG_GROUP_FIELD,
+    .abilities = {ABILITY_TRUANT, ABILITY_NONE, ABILITY_STALL},
+    .innates = {ABILITY_COMATOSE, ABILITY_UNAWARE, ABILITY_MOLD_BREAKER},
+    .bodyColor = BODY_COLOR_BROWN,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_NINCADA] =
     {
     .baseHP        = 31,

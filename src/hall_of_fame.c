@@ -729,8 +729,12 @@ u16 getHallofFameSpecies(u8 num){
                 return SPECIES_DRAGONITE_MEGA;
         break;
         case SPECIES_BRELOOM:
-            if(item == ITEM_BRELOOMITE) // :^)
+            if(item == ITEM_BRELOOMITE)
                 return SPECIES_BRELOOM_MEGA;
+        break;
+        case SPECIES_SLAKING:
+            if(item == ITEM_SLAKINGITE)
+                return SPECIES_SLAKING_MEGA;
         break;
         case SPECIES_RAYQUAZA:
             for(i = 0; i < MAX_MON_MOVES; i++){

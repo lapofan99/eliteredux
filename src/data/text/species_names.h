@@ -971,6 +971,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_TOUCANNON_MEGA]  = _("Toucannon"),
     [SPECIES_DRAGONITE_MEGA]  = _("Dragonite"),
     [SPECIES_BRELOOM_MEGA]    = _("Breloom"),
+    [SPECIES_SLAKING_MEGA]    = _("Slaking"),
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] = _("Rayquaza"),
     [SPECIES_KYOGRE_PRIMAL] = _("Kyogre"),

@@ -997,6 +997,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_TOUCANNON_MEGA] = gMonIcon_ToucannonMega,
     [SPECIES_DRAGONITE_MEGA] = gMonIcon_DragoniteMega,
     [SPECIES_BRELOOM_MEGA] = gMonIcon_BreloomMega,
+    [SPECIES_SLAKING_MEGA] = gMonIcon_SlakingMega,
     [SPECIES_RAYQUAZA_MEGA] = gMonIcon_RayquazaMega,
     [SPECIES_KYOGRE_PRIMAL] = gMonIcon_KyogrePrimal,
     [SPECIES_GROUDON_PRIMAL] = gMonIcon_GroudonPrimal,
@@ -2247,6 +2248,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_TOUCANNON_MEGA]  = 0,
     [SPECIES_DRAGONITE_MEGA]  = 2,
     [SPECIES_BRELOOM_MEGA]    = 1,
+    [SPECIES_SLAKING_MEGA]    = 2,
 
     [SPECIES_RATTATA_ALOLAN] = 2,
     [SPECIES_RATICATE_ALOLAN] = 2,

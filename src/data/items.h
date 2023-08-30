@@ -7982,6 +7982,18 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
+    [ITEM_SLAKINGITE] =
+    {
+        .name = _("Slakingite"),
+        .itemId = ITEM_SLAKINGITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
     [ITEM_FLYGONITE] =
     {
         .name = _("Flygonite"),
@@ -8162,17 +8174,6 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_IronPill,
-    },
-
-    [ITEM_CLEVER_FEATHER] =
-    {
-        .name = _("Clever Feather"),
-        .itemId = ITEM_CLEVER_FEATHER,
-        .price = 300,
-        .description = sCleverFeatherDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
     },
 
     [ITEM_SWIFT_FEATHER] =

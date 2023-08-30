@@ -530,4 +530,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SKARMORY] = sSkarmoryFormSpeciesIdTable,
     [SPECIES_SKARMORY_MEGA] = sSkarmoryFormSpeciesIdTable,
 
+    [SPECIES_SLAKING] = sSlakingFormSpeciesIdTable,
+    [SPECIES_SLAKING_MEGA] = sSlakingFormSpeciesIdTable,
+
 };

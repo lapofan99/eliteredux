@@ -3176,6 +3176,11 @@ static const u8 sBreloomiteDesc[] = _(
     "Breloom to Mega\n"
     "Evolve in battle.");
 
+static const u8 sSlakingiteDesc[] = _(
+    "This stone enables\n"
+    "Slaking to Mega\n"
+    "Evolve in battle.");
+
 static const u8 sFlygoniteDesc[] = _(
     "This stone enables\n"
     "Flygon to Mega\n"
