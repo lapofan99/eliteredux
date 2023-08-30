@@ -8378,6 +8378,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM83_FLAME_CHARGE)
                                         | TMHM2(TM85_DREAM_EATER)
                                         | TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM99_DAZZLING_GLEAM) // new
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM02_FLY)
                                         | TMHM2(HM04_STRENGTH)
