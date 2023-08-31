@@ -382,6 +382,7 @@ static const u8 sDisciplineDescription[] = _("Rampage moves no longer lock you.\
 static const u8 sMightyHornDescription[] = _("Boosts horn- and drill-based\nmoves by 30%.");
 static const u8 sHardenedSheathDescription[] =  _("Ups Attack by +1\nwhen using horn moves.");
 static const u8 sArcticFurDescription[] = _("Weakens incoming physical\nand special moves by 35%.");
+static const u8 sLethargyDescription[] = _("Weakens incoming physical\nand special moves by 35%.");//To Change
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -780,6 +781,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_MIGHTY_HORN] = _("Mighty Horn"),
     [ABILITY_HARDENED_SHEATH] = _("Hardened Sheath"),
     [ABILITY_ARCTIC_FUR] = _("Arctic Fur"),
+    [ABILITY_LETHARGY] = _("Lethargy"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1177,4 +1179,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 	[ABILITY_MIGHTY_HORN] = sMightyHornDescription,
     [ABILITY_HARDENED_SHEATH] = sHardenedSheathDescription,
     [ABILITY_ARCTIC_FUR] = sArcticFurDescription,
+    [ABILITY_LETHARGY] = sLethargyDescription,
 };

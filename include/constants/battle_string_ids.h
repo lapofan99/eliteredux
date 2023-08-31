@@ -644,8 +644,10 @@
 #define STRINGID_REGENERATOR_EXITS                    673
 #define STRINGID_NATURAL_CURE_EXITS                   674
 #define STRINGID_ABILITYLETITUSEMOVE                  675
+#define STRINGID_LETHARGYTENTERS                      676
+#define STRINGID_LETHARGYENDS                         677
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_ABILITYLETITUSEMOVE + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_LETHARGYENDS + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
@@ -886,6 +888,7 @@
 #define B_MSG_SWITCHIN_CURIOUS_MEDICINE 14
 #define B_MSG_SWITCHIN_PASTEL_VEIL      15
 #define B_MSG_SWITCHIN_NEUTRALIZING_GAS 16
+#define B_MSG_SWITCHIN_LETHARGY         17
 
 // gMentalHerbCureStringIds
 #define B_MSG_MENTALHERBCURE_INFATUATION       0

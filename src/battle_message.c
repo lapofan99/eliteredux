@@ -774,9 +774,13 @@ static const u8 sText_BattlerGripPincerActivated[] = _("{B_DEF_NAME_WITH_PREFIX}
 static const u8 sText_PkmnDidAmmountDamage[] = _("{B_ACTIVE_NAME_WITH_PREFIX} did {B_BUFF4} Damage!");
 static const u8 sText_HeatingUpBeak[] = _("{B_ATK_NAME_WITH_PREFIX} started\nheating up its beak!");
 static const u8 sText_AbilityLetItUseMove[] = _("{B_ATK_NAME_WITH_PREFIX}'s ability let it use\n{B_CURRENT_MOVE}!");
+static const u8 sText_LethargyEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} has it's full energy!");
+static const u8 sText_LethargyEnd[] = _("{B_ATK_NAME_WITH_PREFIX} it's out\nof energy!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_LETHARGYENDS - 12] = sText_LethargyEnd,
+    [STRINGID_LETHARGYTENTERS - 12] = sText_LethargyEnters,
 	[STRINGID_ABILITYLETITUSEMOVE - 12] = sText_AbilityLetItUseMove,
     [STRINGID_PKMNHURTBYFROSTBITE - 12] = sText_PkmnHurtByFrostbite,
     [STRINGID_PKMNGOTFROSTBITE - 12] = sText_PkmnGotFrostbite,
@@ -1471,6 +1475,7 @@ const u16 gSwitchInAbilityStringIds[] =
     [B_MSG_SWITCHIN_CURIOUS_MEDICINE] = STRINGID_CURIOUSMEDICINEENTERS,
     [B_MSG_SWITCHIN_PASTEL_VEIL] = STRINGID_PASTELVEILENTERS,
     [B_MSG_SWITCHIN_NEUTRALIZING_GAS] = STRINGID_NEUTRALIZINGGASENTERS,
+    [B_MSG_SWITCHIN_LETHARGY] = STRINGID_LETHARGYTENTERS,
 };
 
 const u16 gMissStringIds[] =

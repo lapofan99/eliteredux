@@ -421,8 +421,9 @@
 #define ABILITY_HARDENED_SHEATH  (ABILITIES_COUNT_LATEST_GEN + 123) // Increases the Attack stat by one stage after using a horn move. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
 #define ABILITY_ARCTIC_FUR       (ABILITIES_COUNT_LATEST_GEN + 124) // Takes 35% less damage from incoming physical & special moves.
 #define ABILITY_SPECTRALIZE      (ABILITIES_COUNT_LATEST_GEN + 125) // All Normal-type moves used by the Pokémon become Ghost-type and receive a 20% power boost.
+#define ABILITY_LETHARGY         (ABILITIES_COUNT_LATEST_GEN + 126) // The user’s ATK is lowered by 20% at the end of each turn, down to 20% of the user’s ATK. Resets on switch out.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SPECTRALIZE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_LETHARGY + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

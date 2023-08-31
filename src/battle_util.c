@@ -3147,12 +3147,21 @@ u8 DoBattlerEndTurnEffects(void)
             gBattleStruct->turnEffectsTracker++;
             break;
         case ENDTURN_SLOW_START:
-            if (gDisableStructs[gActiveBattler].slowStartTimer
-                && --gDisableStructs[gActiveBattler].slowStartTimer == 0
+            if(gDisableStructs[gActiveBattler].slowStartTimer){
+                gDisableStructs[gActiveBattler].slowStartTimer--;
+
+                if (gDisableStructs[gActiveBattler].slowStartTimer == 0
                 && (ability == ABILITY_SLOW_START  || BattlerHasInnate(gActiveBattler, ABILITY_SLOW_START)))
-            {
-                BattleScriptExecute(BattleScript_SlowStartEnds);
-                effect++;
+                {
+                    BattleScriptExecute(BattleScript_SlowStartEnds);
+                    effect++;
+                }
+                else if (gDisableStructs[gActiveBattler].slowStartTimer == 0
+                    && (ability == ABILITY_LETHARGY || BattlerHasInnate(gActiveBattler, ABILITY_LETHARGY)))
+                {
+                    BattleScriptExecute(BattleScript_LethargyEnds);
+                    effect++;
+                }
             }
             gBattleStruct->turnEffectsTracker++;
             break;
@@ -4461,6 +4470,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_LETHARGY:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gDisableStructs[battler].slowStartTimer = 5;
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_LethargyEnters);
+                effect++;
+            }
+            break;
         case ABILITY_UNNERVE:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5485,6 +5503,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SLOWSTART;
                 gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SLOW_START)] = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+                effect++;
+            }
+        }
+
+        // Lethargy
+		if(BattlerHasInnate(battler, ABILITY_LETHARGY)){
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LETHARGY)])
+            {
+                gDisableStructs[battler].slowStartTimer = 5;
+                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LETHARGY)] = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_LethargyEnters);
                 effect++;
             }
         }
@@ -12721,6 +12750,16 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     case ABILITY_SLOW_START:
         if (gDisableStructs[battlerAtk].slowStartTimer != 0)
             MulModifier(&modifier, UQ_4_12(0.5));
+        break;
+    case ABILITY_LETHARGY:
+        if (gDisableStructs[battlerAtk].slowStartTimer != 5 && 
+            gDisableStructs[battlerAtk].slowStartTimer != 0){
+            double lethargymodifier = (1 - 0.2 * gDisableStructs[battlerAtk].slowStartTimer);
+            MulModifier(&modifier, UQ_4_12(lethargymodifier));
+        }
+        else if(gDisableStructs[battlerAtk].slowStartTimer == 0){
+            MulModifier(&modifier, UQ_4_12(0.2));
+        }
         break;
     case ABILITY_BIG_LEAVES:
     case ABILITY_SOLAR_POWER:

@@ -7149,10 +7149,28 @@ BattleScript_ThroatChopEndTurn::
 	end2
 	
 BattleScript_SlowStartEnds::
+	sethword sABILITY_OVERWRITE, ABILITY_SLOW_START
 	pause 5
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_SLOWSTARTEND
+	waitmessage B_WAIT_TIME_LONG
+	end2
+
+BattleScript_LethargyEnters::
+	sethword sABILITY_OVERWRITE, ABILITY_LETHARGY
+	pause 5
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_LETHARGYTENTERS
+	end3
+
+BattleScript_LethargyEnds::
+	sethword sABILITY_OVERWRITE, ABILITY_LETHARGY
+	pause 5
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_LETHARGYENDS
 	waitmessage B_WAIT_TIME_LONG
 	end2
 
