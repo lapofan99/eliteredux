@@ -10111,4 +10111,23 @@ extern const u16 gTMCaseMainWindowPalette[];
 
 extern const u32 gSwapLineGfx_RegisteredItemsMenu[];
 
+//New Species/Forms
+extern const u32 gMonFrontPic_NoibatRegional[];
+extern const u32 gMonBackPic_NoibatRegional[];
+extern const u32 gMonPalette_NoibatRegional[];
+extern const u32 gMonShinyPalette_NoibatRegional[];
+extern const u8  gMonIcon_NoibatRegional[];
+
+extern const u32 gMonFrontPic_NoivernRegional[];
+extern const u32 gMonBackPic_NoivernRegional[];
+extern const u32 gMonPalette_NoivernRegional[];
+extern const u32 gMonShinyPalette_NoivernRegional[];
+extern const u8  gMonIcon_NoivernRegional[];
+
+extern const u32 gMonFrontPic_InfernapeRegional[];
+extern const u32 gMonBackPic_InfernapeRegional[];
+extern const u32 gMonPalette_InfernapeRegional[];
+extern const u32 gMonShinyPalette_InfernapeRegional[];
+extern const u8  gMonIcon_InfernapeRegional[];
+
 #endif //GUARD_GRAPHICS_H

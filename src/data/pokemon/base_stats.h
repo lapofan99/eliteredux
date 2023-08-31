@@ -23187,7 +23187,58 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+
+[SPECIES_NOIBAT_REGIONAL] =
+    {
+    .baseHP        = 50, // 40
+    .baseAttack    = 30,
+    .baseDefense   = 45, // 35
+    .baseSpeed     = 95, // 55
+    .baseSpAttack  = 75, // 45
+    .baseSpDefense = 50, // 40
+    .type1 = TYPE_FLYING,
+    .type2 = TYPE_DRAGON,
+    .catchRate = 190,
+    .expYield = 49,
+    .evYield_Speed     = 1,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_FLYING,
+    .eggGroup2 = EGG_GROUP_DRAGON,
+    .abilities = {ABILITY_MOUNTAINEER, ABILITY_INFILTRATOR, ABILITY_NONE},
+    .innates = {ABILITY_LOUD_BANG, ABILITY_HYPER_AGGRESSIVE, ABILITY_NOCTURNAL},
+    .bodyColor = BODY_COLOR_PURPLE,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_NOIVERN] =
+    {
+    .baseHP        = 85,
+    .baseAttack    = 70,
+    .baseDefense   = 80,
+    .baseSpeed     = 123,
+    .baseSpAttack  = 97,
+    .baseSpDefense = 80,
+    .type1 = TYPE_FLYING,
+    .type2 = TYPE_DRAGON,
+    .catchRate = 255,
+    .expYield = 187,
+    .evYield_Speed     = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_FLYING,
+    .eggGroup2 = EGG_GROUP_DRAGON,
+    .abilities = {ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_AERODYNAMICS},
+    .innates = {ABILITY_LOUD_BANG, ABILITY_NOCTURNAL, ABILITY_HYPER_AGGRESSIVE},
+    .bodyColor = BODY_COLOR_PURPLE,
+    .noFlip = FALSE,
+    },
+
+[SPECIES_NOIVERN_REGIONAL] =
     {
     .baseHP        = 85,
     .baseAttack    = 70,

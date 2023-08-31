@@ -6220,6 +6220,24 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x87,
         .y_offset = 7,
     },
+
+    
+    [SPECIES_INFERNAPE_REGIONAL] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_NOIBAT_REGIONAL] =
+    {
+        .size = 0x87,
+        .y_offset = 7,
+    },
+    [SPECIES_NOIVERN_REGIONAL] =
+    {
+        .size = 0x87,
+        .y_offset = 4,
+    },
+
     // Egg
     [SPECIES_EGG] =
     {

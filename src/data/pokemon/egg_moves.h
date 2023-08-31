@@ -3969,6 +3969,13 @@ const u16 gEggMoves[] = {
         MOVE_OUTRAGE,
         MOVE_TAILWIND),
 
+    egg_moves(NOIBAT_REGIONAL,
+        MOVE_DUAL_WINGBEAT, // new
+        MOVE_SWITCHEROO,
+        MOVE_SNATCH,
+        MOVE_OUTRAGE,
+        MOVE_TAILWIND),
+
     egg_moves(ROWLET,
         MOVE_GRASSY_GLIDE, // new
         MOVE_DUAL_WINGBEAT, // new

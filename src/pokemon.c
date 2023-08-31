@@ -1620,6 +1620,10 @@ const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to 
     // Calyrex
     [SPECIES_CALYREX_ICE_RIDER - 1] = NATIONAL_DEX_CALYREX,
     [SPECIES_CALYREX_SHADOW_RIDER - 1] = NATIONAL_DEX_CALYREX,
+
+    [SPECIES_INFERNAPE_REGIONAL - 1] = NATIONAL_DEX_INFERNAPE,
+    [SPECIES_NOIBAT_REGIONAL - 1] = NATIONAL_DEX_NOIBAT,
+    [SPECIES_NOIVERN_REGIONAL - 1] = NATIONAL_DEX_NOIVERN,
 };
 
 const u16 gHoennToNationalOrder[HOENN_DEX_COUNT] = // Assigns Hoenn Dex Pokémon (Using National Dex Index)

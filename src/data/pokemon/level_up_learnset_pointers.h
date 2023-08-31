@@ -1297,4 +1297,9 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     // Calyrex
     [SPECIES_CALYREX_ICE_RIDER] = sCalyrexIceRiderLevelUpLearnset,
     [SPECIES_CALYREX_SHADOW_RIDER] = sCalyrexShadowRiderLevelUpLearnset,
+
+    //ToDo
+    [SPECIES_INFERNAPE_REGIONAL] = sInfernapeRegionalLevelUpLearnset,
+    [SPECIES_NOIBAT_REGIONAL] = sNoibatRegionalLevelUpLearnset,
+    [SPECIES_NOIVERN_REGIONAL] = sNoivernRegionalLevelUpLearnset,
 };

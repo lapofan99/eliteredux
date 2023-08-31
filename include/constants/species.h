@@ -1370,7 +1370,7 @@
 #define SPECIES_DRAGONITE_MEGA              FORMS_START + 331
 #define SPECIES_BRELOOM_MEGA                FORMS_START + 332
 #define SPECIES_SLAKING_MEGA                FORMS_START + 333
-#define SPECIES_TEMP3_MEGA                  FORMS_START + 334
+#define SPECIES_CASCOON_PRIMAL              FORMS_START + 334
 #define SPECIES_TEMP4_MEGA                  FORMS_START + 335
 #define SPECIES_TEMP5_MEGA                  FORMS_START + 336
 #define SPECIES_TEMP6_MEGA                  FORMS_START + 337

@@ -1298,6 +1298,10 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(CALYREX_SHADOW_RIDER, gMonPalette_CalyrexShadowRider),
 
     SPECIES_PAL(EGG, gMonPalette_Egg),
+
+    SPECIES_PAL(NOIBAT_REGIONAL,    gMonPalette_NoibatRegional),
+    SPECIES_PAL(NOIVERN_REGIONAL,   gMonPalette_NoivernRegional),
+    SPECIES_PAL(INFERNAPE_REGIONAL, gMonPalette_InfernapeRegional),
 };
 
 const struct CompressedSpritePalette gMonPaletteTableFemale[] =
