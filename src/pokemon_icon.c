@@ -998,6 +998,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_DRAGONITE_MEGA] = gMonIcon_DragoniteMega,
     [SPECIES_BRELOOM_MEGA] = gMonIcon_BreloomMega,
     [SPECIES_SLAKING_MEGA] = gMonIcon_SlakingMega,
+    [SPECIES_CASCOON_PRIMAL] = gMonIcon_CascoonPrimal,
     [SPECIES_RAYQUAZA_MEGA] = gMonIcon_RayquazaMega,
     [SPECIES_KYOGRE_PRIMAL] = gMonIcon_KyogrePrimal,
     [SPECIES_GROUDON_PRIMAL] = gMonIcon_GroudonPrimal,

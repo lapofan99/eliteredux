@@ -6645,3 +6645,9 @@ const u32 gMonBackPic_InfernapeRegional[]      = INCBIN_U32("graphics/pokemon/in
 const u32 gMonPalette_InfernapeRegional[]      = INCBIN_U32("graphics/pokemon/infernape_regional/normal.gbapal.lz");
 const u32 gMonShinyPalette_InfernapeRegional[] = INCBIN_U32("graphics/pokemon/infernape_regional/shiny.gbapal.lz");
 const u8  gMonIcon_InfernapeRegional[]         = INCBIN_U8("graphics/pokemon/infernape_regional/icon.4bpp");
+
+const u32 gMonFrontPic_CascoonPrimal[]     = INCBIN_U32("graphics/pokemon/primal_cascoon/front.4bpp.lz");
+const u32 gMonBackPic_CascoonPrimal[]      = INCBIN_U32("graphics/pokemon/primal_cascoon/back.4bpp.lz");
+const u32 gMonPalette_CascoonPrimal[]      = INCBIN_U32("graphics/pokemon/primal_cascoon/normal.gbapal.lz");
+const u32 gMonShinyPalette_CascoonPrimal[] = INCBIN_U32("graphics/pokemon/primal_cascoon/shiny.gbapal.lz");
+const u8  gMonIcon_CascoonPrimal[]         = INCBIN_U8("graphics/pokemon/primal_cascoon/icon.4bpp");

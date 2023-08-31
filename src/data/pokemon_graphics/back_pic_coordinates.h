@@ -6237,7 +6237,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x87,
         .y_offset = 4,
     },
-
+    [SPECIES_CASCOON_PRIMAL] =
+    {
+        .size = 0x87,
+        .y_offset = 4,
+    },
     // Egg
     [SPECIES_EGG] =
     {

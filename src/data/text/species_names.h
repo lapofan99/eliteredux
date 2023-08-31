@@ -1327,4 +1327,5 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_INFERNAPE_REGIONAL] = _("Infernape"),
     [SPECIES_NOIBAT_REGIONAL] = _("Noibat"),
     [SPECIES_NOIVERN_REGIONAL] = _("Noivern"),
+    [SPECIES_CASCOON_PRIMAL] = _("Cascoon"),
 };

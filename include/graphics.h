@@ -10130,4 +10130,10 @@ extern const u32 gMonPalette_InfernapeRegional[];
 extern const u32 gMonShinyPalette_InfernapeRegional[];
 extern const u8  gMonIcon_InfernapeRegional[];
 
+extern const u32 gMonFrontPic_CascoonPrimal[];
+extern const u32 gMonBackPic_CascoonPrimal[];
+extern const u32 gMonPalette_CascoonPrimal[];
+extern const u32 gMonShinyPalette_CascoonPrimal[];
+extern const u8  gMonIcon_CascoonPrimal[];
+
 #endif //GUARD_GRAPHICS_H

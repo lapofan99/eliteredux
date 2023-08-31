@@ -8602,6 +8602,31 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+[SPECIES_CASCOON_PRIMAL] =
+    {
+    .baseHP        = 50,
+    .baseAttack    = 35,
+    .baseDefense   = 55,
+    .baseSpeed     = 15,
+    .baseSpAttack  = 25,
+    .baseSpDefense = 25,
+    .type1 = TYPE_BUG,
+    .type2 = TYPE_BUG,
+    .catchRate = 120,
+    .expYield = 72,
+    .evYield_Defense   = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = 70,
+    .growthRate = GROWTH_FAST,
+    .eggGroup1 = EGG_GROUP_BUG,
+    .eggGroup2 = EGG_GROUP_BUG,
+    .abilities = {ABILITY_SHED_SKIN, ABILITY_SHED_SKIN, ABILITY_POISON_POINT},
+    .innates = {ABILITY_SWARM, ABILITY_BATTLE_ARMOR, ABILITY_SAP_SIPPER},
+    .bodyColor = BODY_COLOR_PURPLE,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_DUSTOX] =
     {
     .baseHP        = 80,
