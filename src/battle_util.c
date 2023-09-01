@@ -14296,8 +14296,21 @@ u16 GetMegaEvolutionSpecies(u16 preEvoSpecies, u16 heldItemId)
 
     for (i = 0; i < EVOS_PER_MON; i++)
     {
-        if ((gEvolutionTable[preEvoSpecies][i].method == EVO_MEGA_EVOLUTION
-         || gEvolutionTable[preEvoSpecies][i].method == EVO_PRIMAL_REVERSION)
+        if (gEvolutionTable[preEvoSpecies][i].method == EVO_MEGA_EVOLUTION
+         && gEvolutionTable[preEvoSpecies][i].param == heldItemId)
+            return gEvolutionTable[preEvoSpecies][i].targetSpecies;
+    }
+    return SPECIES_NONE;
+}
+
+
+u16 GetPrimalReversionSpecies(u16 preEvoSpecies, u16 heldItemId)
+{
+    u32 i;
+
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        if (gEvolutionTable[preEvoSpecies][i].method == EVO_PRIMAL_REVERSION
          && gEvolutionTable[preEvoSpecies][i].param == heldItemId)
             return gEvolutionTable[preEvoSpecies][i].targetSpecies;
     }
@@ -14335,16 +14348,6 @@ bool32 CanMegaEvolve(u8 battlerId)
         return FALSE;
     }
 
-    // Check if trainer already mega evolved a pokemon.
-    if (mega->alreadyEvolved[battlerPosition])
-        return FALSE;
-    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-    {
-        if (IsPartnerMonFromSameTrainer(battlerId)
-            && (mega->alreadyEvolved[partnerPosition] || (mega->toEvolve & gBitTable[BATTLE_PARTNER(battlerId)])))
-            return FALSE;
-    }
-
     // Gets mon data.
     if (GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
         mon = &gEnemyParty[gBattlerPartyIndexes[battlerId]];
@@ -14352,7 +14355,21 @@ bool32 CanMegaEvolve(u8 battlerId)
         mon = &gPlayerParty[gBattlerPartyIndexes[battlerId]];
 
     species = GetMonData(mon, MON_DATA_SPECIES);
-    itemId = GetMonData(mon, MON_DATA_HELD_ITEM);
+    itemId  = GetMonData(mon, MON_DATA_HELD_ITEM);
+
+    // Check if trainer already mega evolved a pokemon.
+    if (mega->alreadyEvolved[battlerPosition]
+        && ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB)//There can be a lot of primal mons per battle
+        return FALSE;
+
+    if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+    {
+        if (IsPartnerMonFromSameTrainer(battlerId)
+            && ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB //There can be a lot of primal mons per battle
+            && (mega->alreadyEvolved[partnerPosition] || (mega->toEvolve & gBitTable[BATTLE_PARTNER(battlerId)]))
+            )
+            return FALSE;
+    }
 
     // Check if there is an entry in the evolution table for regular Mega Evolution.
     if (GetMegaEvolutionSpecies(species, itemId) != SPECIES_NONE)
@@ -14370,6 +14387,17 @@ bool32 CanMegaEvolve(u8 battlerId)
             gBattleStruct->mega.isWishMegaEvo = FALSE;
             return TRUE;
         }
+    }
+
+    // Check if there is an entry in the evolution table for regular Primal Reversion.
+    if (GetPrimalReversionSpecies(species, itemId) != SPECIES_NONE)
+    {
+        if (B_ENABLE_DEBUG && gBattleStruct->debugHoldEffects[battlerId])
+            holdEffect = gBattleStruct->debugHoldEffects[battlerId];
+        else if (itemId == ITEM_ENIGMA_BERRY)
+            holdEffect = gEnigmaBerries[battlerId].holdEffect;
+        else
+            holdEffect = ItemId_GetHoldEffect(itemId);
 
         // Can undergo Primal Reversion.
         if (holdEffect == HOLD_EFFECT_PRIMAL_ORB)
