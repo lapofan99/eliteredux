@@ -8059,6 +8059,8 @@ extern const u32 gItemIcon_CleverFeather[];
 extern const u32 gItemIconPalette_CleverFeather[];
 extern const u32 gItemIcon_SwiftFeather[];
 extern const u32 gItemIconPalette_SwiftFeather[];
+extern const u32 gItemIcon_PurprleOrb[];
+extern const u32 gItemIconPalette_PurprleOrb[];
 extern const u32 gItemIcon_PrettyFeather[];
 extern const u32 gItemIconPalette_PrettyFeather[];
 extern const u32 gItemIcon_ShinyCharm[];

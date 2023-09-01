@@ -7994,6 +7994,20 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
+    
+
+    [ITEM_PURPLE_ORB] =
+    {
+        .name = _("Purple Orb"),
+        .itemId = ITEM_PURPLE_ORB,
+        .price = 0,
+        .description = sRedOrbDesc,
+        .holdEffect = HOLD_EFFECT_PRIMAL_ORB,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
     [ITEM_FLYGONITE] =
     {
         .name = _("Flygonite"),
@@ -8174,17 +8188,6 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_IronPill,
-    },
-
-    [ITEM_SWIFT_FEATHER] =
-    {
-        .name = _("Swift Feather"),
-        .itemId = ITEM_SWIFT_FEATHER,
-        .price = 300,
-        .description = sSwiftFeatherDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_PARTY_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
     },
 
     [ITEM_PRETTY_FEATHER] =

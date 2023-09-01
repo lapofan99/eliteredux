@@ -1052,3 +1052,10 @@ static const u16 sSlakingFormSpeciesIdTable[] = {
     SPECIES_SLAKING_MEGA,
     FORM_SPECIES_END,
 };
+
+static const u16 sCascoonFormSpeciesIdTable[] = {
+    SPECIES_CASCOON,
+    SPECIES_CASCOON_PRIMAL,
+    FORM_SPECIES_END,
+};
+

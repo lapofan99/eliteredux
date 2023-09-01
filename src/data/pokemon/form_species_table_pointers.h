@@ -533,4 +533,7 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SLAKING] = sSlakingFormSpeciesIdTable,
     [SPECIES_SLAKING_MEGA] = sSlakingFormSpeciesIdTable,
 
+    [SPECIES_CASCOON] = sCascoonFormSpeciesIdTable,
+    [SPECIES_CASCOON_PRIMAL] = sCascoonFormSpeciesIdTable,
+
 };
