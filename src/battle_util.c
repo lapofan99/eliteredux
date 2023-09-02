@@ -4800,6 +4800,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT && !gSpecialStatuses[battler].switchInAbilityDone)
             {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DROUGHT;
                 gSpecialStatuses[battler].switchInAbilityDone = 1;
                 BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
                 effect++;
@@ -5297,8 +5298,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		
 		// Drizzle
 		if(BattlerHasInnate(battler, ABILITY_DRIZZLE)){
-            gBattleScripting.abilityPopupOverwrite = ABILITY_DRIZZLE;
-			gLastUsedAbility = ABILITY_DRIZZLE;
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRIZZLE;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
             {
                 BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
@@ -5306,6 +5306,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT && !gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_DRIZZLE)])
             {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRIZZLE;
                 gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_DRIZZLE)] = 1;
                 BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
                 effect++;
@@ -5316,13 +5317,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_SAND_STREAM)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_SAND_STREAM;
-				gLastUsedAbility = ABILITY_SAND_STREAM;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SAND_STREAM;
                 BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
                 effect++;
             }
             else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT && !gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SAND_STREAM)])
             {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SAND_STREAM;
                 gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SAND_STREAM)] = 1;
                 BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
                 effect++;
@@ -5333,13 +5334,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_DROUGHT)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_DROUGHT;
-				gLastUsedAbility = ABILITY_DROUGHT;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DROUGHT;
                 BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
                 effect++;
             }
             else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT && !gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_DROUGHT)])
             {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DROUGHT;
                 gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_DROUGHT)] = 1;
                 BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
                 effect++;
@@ -5350,13 +5351,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_SNOW_WARNING)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_SNOW_WARNING;
-				gLastUsedAbility = ABILITY_SNOW_WARNING;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SNOW_WARNING;
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
                 effect++;
             }
             else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT && !gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SNOW_WARNING)])
             {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SNOW_WARNING;
                 gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SNOW_WARNING)] = 1;
                 BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
                 effect++;
@@ -5367,8 +5368,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_ELECTRIC_SURGE)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_ELECTRIC_SURGE;
-				gLastUsedAbility = ABILITY_ELECTRIC_SURGE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ELECTRIC_SURGE;
                 BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
                 effect++;
             }
@@ -5378,8 +5378,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_GRASSY_SURGE)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_GRASSY_SURGE;
-				gLastUsedAbility = ABILITY_GRASSY_SURGE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRASSY_SURGE;
                 BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
                 effect++;
             }
@@ -5389,8 +5388,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_MISTY_SURGE)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_MISTY_SURGE;
-				gLastUsedAbility = ABILITY_MISTY_SURGE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MISTY_SURGE;
                 BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
                 effect++;
             }
@@ -5400,8 +5398,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_PSYCHIC_SURGE)){
             if (TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_PSYCHIC_SURGE;
-				gLastUsedAbility = ABILITY_PSYCHIC_SURGE;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PSYCHIC_SURGE;
                 BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
                 effect++;
             }
@@ -5411,8 +5408,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_DESOLATE_LAND)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_DESOLATE_LAND;
-				gLastUsedAbility = ABILITY_DESOLATE_LAND;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DESOLATE_LAND;
                 BattleScriptPushCursorAndCallback(BattleScript_DesolateLandActivates);
                 effect++;
             }
@@ -5422,8 +5418,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_PRIMORDIAL_SEA)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_PRIMORDIAL_SEA;
-				gLastUsedAbility = ABILITY_PRIMORDIAL_SEA;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PRIMORDIAL_SEA;
                 BattleScriptPushCursorAndCallback(BattleScript_PrimordialSeaActivates);
                 effect++;
             }
@@ -5433,8 +5428,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if(BattlerHasInnate(battler, ABILITY_DELTA_STREAM)){
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_STRONG_WINDS, TRUE))
             {
-                gBattleScripting.abilityPopupOverwrite = ABILITY_DELTA_STREAM;
-				gLastUsedAbility = ABILITY_DELTA_STREAM;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DELTA_STREAM;
                 BattleScriptPushCursorAndCallback(BattleScript_DeltaStreamActivates);
                 effect++;
             }
