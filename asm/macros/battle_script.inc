@@ -1946,6 +1946,10 @@
 	various \battler, VARIOUS_GET_BATTLER_SIDE
 	.endm
 
+	.macro setgraphicalweathervalues
+	various BS_ATTACKER, VARIOUS_SET_WEATHER_GRAPHICS
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 3 | \down << 7

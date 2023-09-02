@@ -6499,6 +6499,7 @@ BattleScript_SunlightFaded::
 	end2
 
 BattleScript_OverworldWeatherStarts::
+	setgraphicalweathervalues
 	printfromtable gWeatherStartsStringIds
 	waitmessage B_WAIT_TIME_LONG
 	playanimation2 BS_ATTACKER, sB_ANIM_ARG1, NULL

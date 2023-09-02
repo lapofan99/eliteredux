@@ -9939,6 +9939,16 @@ static void Cmd_various(void)
         else
             gBattleCommunication[0] = B_SIDE_OPPONENT;
         break;
+    case VARIOUS_SET_WEATHER_GRAPHICS:
+            if (gBattleWeather & WEATHER_SUN_ANY)
+                gBattleScripting.animArg1 = B_ANIM_SUN_CONTINUES;
+            else if (gBattleWeather & WEATHER_RAIN_ANY)
+                gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;
+            else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+                gBattleScripting.animArg1 = B_ANIM_SANDSTORM_CONTINUES;
+            else if (gBattleWeather & WEATHER_HAIL_ANY)
+                gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;
+        break;
     } // End of switch (gBattlescriptCurrInstr[2])
 
     gBattlescriptCurrInstr += 3;
