@@ -5623,11 +5623,11 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_CROBAT_MEGA] =
     {
     .baseHP        = 85,
-    .baseAttack    = 90,
-    .baseDefense   = 80,
-    .baseSpeed     = 130,
-    .baseSpAttack  = 80, // +10
-    .baseSpDefense = 80,
+    .baseAttack    = 140,
+    .baseDefense   = 70,
+    .baseSpeed     = 170,
+    .baseSpAttack  = 110,
+    .baseSpDefense = 70,
     .type1 = TYPE_POISON,
     .type2 = TYPE_FLYING,
     .catchRate = 255,
@@ -5640,7 +5640,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FLYING,
     .eggGroup2 = EGG_GROUP_FLYING,
     .abilities = {ABILITY_NOSFERATU, ABILITY_NOSFERATU, ABILITY_AMPLIFIER},
-    .innates = {ABILITY_INFILTRATOR, ABILITY_SOUNDPROOF, ABILITY_NOCTURNAL},
+    .innates = {ABILITY_PHANTOM, ABILITY_SPECTRAL_SHROUD, ABILITY_SCARE},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },

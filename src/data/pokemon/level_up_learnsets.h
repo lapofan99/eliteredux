@@ -3881,6 +3881,7 @@ static const struct LevelUpMove sCrobatLevelUpLearnset[] = {
     LEVEL_UP_MOVE(43, MOVE_VENOSHOCK),
     LEVEL_UP_MOVE(48, MOVE_AIR_SLASH),
     LEVEL_UP_MOVE(51, MOVE_QUICK_GUARD),
+    LEVEL_UP_MOVE(54, MOVE_BOOMBURST), // new
     LEVEL_UP_END
 };
 

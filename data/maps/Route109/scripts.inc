@@ -683,7 +683,7 @@ Route109_EventScript_LegendaryNPC_11:
 
 Route109_EventScript_LegendaryNPC_14:
 	checktrainerflag TRAINER_HAILEY
-	goto_if 1, Route109_EventScript_LegendaryNPC_19
+	goto_if 1, Route109_EventScript_LegendaryNPC_18
 	goto Route109_EventScript_LegendaryNPC_9
 
 Route109_EventScript_LegendaryNPC_15:
@@ -692,13 +692,8 @@ Route109_EventScript_LegendaryNPC_15:
 	goto Route109_EventScript_LegendaryNPC_9
 
 Route109_EventScript_LegendaryNPC_18:
-	checktrainerflag TRAINER_TIANA
-	goto_if 1, Route109_EventScript_LegendaryNPC_8
-	goto Route109_EventScript_LegendaryNPC_9
-
-Route109_EventScript_LegendaryNPC_19:
 	checktrainerflag TRAINER_EDMOND
-	goto_if 1, Route109_EventScript_LegendaryNPC_18
+	goto_if 1, Route109_EventScript_LegendaryNPC_8
 	goto Route109_EventScript_LegendaryNPC_9
 
 

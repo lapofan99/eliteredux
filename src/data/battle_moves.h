@@ -8440,7 +8440,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_WILD_CHARGE] =
     {
         .effect = EFFECT_PARALYZE_HIT,
-        .power = 95,
+        .power = 90,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
         .pp = 15,
@@ -11878,9 +11878,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_SMITE] =
     {
         .effect = EFFECT_SMACK_DOWN,
-        .power = 110,
+        .power = 120,
         .type = TYPE_ELECTRIC,
-        .accuracy = 85,
+        .accuracy = 80,
         .pp = 15,
         .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
