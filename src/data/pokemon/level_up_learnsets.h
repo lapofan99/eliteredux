@@ -19199,6 +19199,7 @@ static const struct LevelUpMove sGrimmsnarlLevelUpLearnset[] = {
 
 static const struct LevelUpMove sObstagoonLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_OBSTRUCT),
+    LEVEL_UP_MOVE( 0, MOVE_FAKE_OUT), // new
     LEVEL_UP_MOVE( 1, MOVE_CROSS_CHOP),
     LEVEL_UP_MOVE( 1, MOVE_SUBMISSION),
     LEVEL_UP_MOVE( 1, MOVE_NIGHT_SLASH),
