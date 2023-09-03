@@ -1539,9 +1539,10 @@ void PrepareStringBattle(u16 stringId, u8 battler)
         stringId = STRINGID_STATSWONTINCREASE2;
     else if (stringId == STRINGID_STATSWONTINCREASE2 && (GetBattlerAbility(battler) == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY)))
         stringId = STRINGID_STATSWONTDECREASE2;
-
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
-    else if ((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH || stringId == STRINGID_PKMNCUTSSPATTACKWITH)
+    else if ((stringId == STRINGID_DEFENDERSSTATFELL    || 
+              stringId == STRINGID_PKMNCUTSATTACKWITH   || 
+              stringId == STRINGID_PKMNCUTSSPATTACKWITH)
               && (((GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT       || BattlerHasInnate(gBattlerTarget, ABILITY_DEFIANT))
 		           && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
                  || ((GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || BattlerHasInnate(gBattlerTarget, ABILITY_COMPETITIVE))
