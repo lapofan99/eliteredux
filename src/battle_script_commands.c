@@ -14811,6 +14811,10 @@ bool8 IsMoveAffectedByParentalBond(u16 move, u8 battlerId)
 					if (CountAliveMonsInBattle(BATTLE_ALIVE_EXCEPT_ACTIVE) >= 2) // Count mons on both sides; ignore attacker
 						return FALSE;
 					break;
+                case MOVE_TARGET_SELECTED:
+                    if ((gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN) && gBattleMoves[move].effect == EFFECT_EXPANDING_FORCE && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) >= 2) // Check for Expanding Force
+						return FALSE;
+                break;
 			}
 		}
 		return TRUE;
