@@ -183,6 +183,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_RIVALRY] = 1,
     [ABILITY_RKS_SYSTEM] = 8,
     [ABILITY_ROCK_HEAD] = 5,
+    [ABILITY_STEEL_BARREL] = 5,
     [ABILITY_ROUGH_SKIN] = 6,
     [ABILITY_RUN_AWAY] = 0,
     [ABILITY_SAND_FORCE] = 4,
@@ -861,7 +862,7 @@ static u32 WhichMoveBetter(u32 move1, u32 move2)
             return 0;
     }
     // Check recoil
-    if (GetBattlerAbility(sBattler_AI) != ABILITY_ROCK_HEAD)
+    if (GetBattlerAbility(sBattler_AI) != (ABILITY_ROCK_HEAD || ABILITY_STEEL_BARREL))
     {
         if (((gBattleMoves[move1].effect == EFFECT_RECOIL_25
                 || gBattleMoves[move1].effect == EFFECT_RECOIL_IF_MISS
@@ -1487,6 +1488,9 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
     if (atkAbility == ABILITY_SIGHTING_SYSTEM || BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM))
         moveAcc = 100;
 
+    if (atkAbility == ABILITY_IRON_BARRAGE || BattlerHasInnate(battlerAtk, ABILITY_IRON_BARRAGE))
+        moveAcc = 100;
+
     if ((atkAbility == ABILITY_ARTILLERY || BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY)) && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
         moveAcc = 100;
 
@@ -1568,6 +1572,9 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
         return TRUE;
 
     if((BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM) || AI_GetAbility(battlerAtk) == ABILITY_SIGHTING_SYSTEM))
+        return TRUE;   
+
+    if((BattlerHasInnate(battlerAtk, ABILITY_IRON_BARRAGE) || AI_GetAbility(battlerAtk) == ABILITY_IRON_BARRAGE))
         return TRUE;   
     
     //TODO - anticipate protect move?

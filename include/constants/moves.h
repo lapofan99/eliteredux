@@ -790,8 +790,9 @@
 #define MOVE_AQUA_FANG    757
 #define MOVE_WAVE_CRASH   758
 #define MOVE_SMITE        759
+#define MOVE_OUTBURST     760
 
-#define MOVES_COUNT_DARKY 760
+#define MOVES_COUNT_DARKY 761
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 
@@ -1556,5 +1557,6 @@
 #define MOVE_LONG_AQUA_FANG            MOVE_AQUA_FANG
 #define MOVE_LONG_WAVE_CRASH           MOVE_WAVE_CRASH
 #define MOVE_LONG_SMITE                MOVE_SMITE
+#define MOVE_LONG_OUTBURST             MOVE_OUTBURST
 
 #endif  // GUARD_CONSTANTS_MOVES_H

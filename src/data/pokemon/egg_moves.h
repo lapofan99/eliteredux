@@ -4291,6 +4291,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(ROLYCOLY,
         MOVE_EXPLOSION,
+        MOVE_OUTBURST,
         MOVE_MUD_SLAP,
         MOVE_BLOCK),
 

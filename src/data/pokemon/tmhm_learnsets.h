@@ -24860,6 +24860,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM89_U_TURN)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM91_FLASH_CANNON)
+                                        | TMHM2(TM97_DARK_PULSE) // new
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM02_FLY)
                                         | TMHM2(HM06_ROCK_SMASH)),

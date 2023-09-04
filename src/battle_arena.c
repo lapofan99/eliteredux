@@ -196,6 +196,7 @@ static const s8 sMindRatings[] =
     [MOVE_ACID_ARMOR] = 0,
     [MOVE_CRABHAMMER] = 1,
     [MOVE_EXPLOSION] = 1,
+    [MOVE_OUTBURST] = 1,
     [MOVE_FURY_SWIPES] = 1,
     [MOVE_BONEMERANG] = 1,
     [MOVE_REST] = 0,

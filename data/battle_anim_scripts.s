@@ -784,7 +784,8 @@ gBattleAnims_Moves::
 	.4byte Move_AQUA_FANG
 	.4byte Move_WAVE_CRASH
 	.4byte Move_SMITE
-	.4byte Move_COUNT @ cannot be reached, because last move is Smite
+	.4byte Move_OUTBURST
+	.4byte Move_COUNT @ cannot be reached, because last move is Outburst
 
 	.align 2
 gBattleAnims_StatusConditions::
@@ -14095,6 +14096,9 @@ Move_SHELL_SIDE_ARM_SPECIAL: @ Modified Snipe Shot, placeholder
 	end
 
 Move_MISTY_EXPLOSION::
+	goto Move_EXPLOSION
+
+Move_OUTBURST::
 	goto Move_EXPLOSION
 
 Move_GRASSY_GLIDE::

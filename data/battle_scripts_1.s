@@ -7912,6 +7912,7 @@ BattleScript_MoveEffectRecoilWithStatus::
 BattleScript_MoveEffectRecoil::
 	jumpifmove MOVE_STRUGGLE, BattleScript_DoRecoil
 	jumpifability BS_ATTACKER, ABILITY_ROCK_HEAD,    BattleScript_RecoilEnd
+	jumpifability BS_ATTACKER, ABILITY_STEEL_BARREL, BattleScript_RecoilEnd
 	jumpifability BS_ATTACKER, ABILITY_IMPENETRABLE, BattleScript_RecoilEnd
 	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD,  BattleScript_RecoilEnd
 	jumpifability BS_ATTACKER, ABILITY_BAD_COMPANY,  BattleScript_RecoilEnd

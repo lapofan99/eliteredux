@@ -4967,6 +4967,13 @@ s8 GetMovePriority(u32 battlerId, u16 move)
     { 
         priority = priority - 3;
     }
+
+    // Iron Barrage
+	if ((GetBattlerAbility(battlerId) == ABILITY_IRON_BARRAGE  || BattlerHasInnate(battlerId, ABILITY_IRON_BARRAGE))
+        && gBattleMoves[move].accuracy <= 75)
+    { 
+        priority = priority - 3;
+    }
     
 	if (gBattleMoves[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battlerId))
     {

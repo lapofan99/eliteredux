@@ -8350,6 +8350,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                 effect++;
             }
+        case ABILITY_PYRO_SHELLS:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
+            {
+                u16 extraMove = MOVE_OUTBURST;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 50;              //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                effect++;
+            }
         case ABILITY_THUNDERCALL:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -8514,6 +8529,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_VOLCANO_RAGE;
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                effect++;
+            }
+		}
+
+        if (BattlerHasInnate(battler, ABILITY_PYRO_SHELLS)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
+            {
+                u16 extraMove = MOVE_OUTBURST;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 50;              //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_PYRO_SHELLS;
                 gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                 effect++;
             }
@@ -11785,6 +11818,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.5));
         break;
+    case ABILITY_IRON_BARRAGE:
+        if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.5));
+        break;
     case ABILITY_WATER_BUBBLE:
         if (moveType == TYPE_WATER)
            MulModifier(&modifier, UQ_4_12(2.0));
@@ -12237,6 +12274,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	
 	// Mega Launcher
 	if(BattlerHasInnate(battlerAtk, ABILITY_MEGA_LAUNCHER)){
+		if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
+           MulModifier(&modifier, UQ_4_12(1.5));
+	}
+
+    // Iron Barrage
+	if(BattlerHasInnate(battlerAtk, ABILITY_IRON_BARRAGE)){
 		if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
            MulModifier(&modifier, UQ_4_12(1.5));
 	}

@@ -421,9 +421,12 @@
 #define ABILITY_HARDENED_SHEATH  (ABILITIES_COUNT_LATEST_GEN + 123) // Increases the Attack stat by one stage after using a horn move. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
 #define ABILITY_ARCTIC_FUR       (ABILITIES_COUNT_LATEST_GEN + 124) // Takes 35% less damage from incoming physical & special moves.
 #define ABILITY_SPECTRALIZE      (ABILITIES_COUNT_LATEST_GEN + 125) // All Normal-type moves used by the Pokémon become Ghost-type and receive a 20% power boost.
-#define ABILITY_LETHARGY         (ABILITIES_COUNT_LATEST_GEN + 126) // The user’s ATK is lowered by 20% at the end of each turn, down to 20% of the user’s ATK. Resets on switch out.
+#define ABILITY_LETHARGY         (ABILITIES_COUNT_LATEST_GEN + 126) // The user's Atk is lowered by 20% at the end of each turn, down to 20% of the user's Atk. Resets on switching out.
+#define ABILITY_IRON_BARRAGE     (ABILITIES_COUNT_LATEST_GEN + 127) // Combines Mega Launcher with Sighting System
+#define ABILITY_STEEL_BARREL     (ABILITIES_COUNT_LATEST_GEN + 128) // Protects the Pokémon from recoil damage.
+#define ABILITY_PYRO_SHELLS      (ABILITIES_COUNT_LATEST_GEN + 129) // Triggers 50 BP Outburst after using a Mega Launcher move.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_LETHARGY + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_PYRO_SHELLS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
