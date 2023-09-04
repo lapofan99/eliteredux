@@ -9592,6 +9592,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM63_ROCK_SLIDE),
                                           TMHM2(TM65_SHADOW_CLAW)
                                         | TMHM2(TM68_GIGA_IMPACT)
+                                        | TMHM2(TM71_STONE_EDGE) // new
                                         | TMHM2(TM78_BULLDOZE)
                                         | TMHM2(TM87_SMACK_DOWN)
                                         | TMHM2(TM88_LOW_SWEEP)
