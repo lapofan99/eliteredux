@@ -425,8 +425,9 @@
 #define ABILITY_IRON_BARRAGE     (ABILITIES_COUNT_LATEST_GEN + 127) // Combines Mega Launcher with Sighting System
 #define ABILITY_STEEL_BARREL     (ABILITIES_COUNT_LATEST_GEN + 128) // Protects the Pokémon from recoil damage.
 #define ABILITY_PYRO_SHELLS      (ABILITIES_COUNT_LATEST_GEN + 129) // Triggers 50 BP Outburst after using a Mega Launcher move.
+#define ABILITY_FUNGAL_INFECTION (ABILITIES_COUNT_LATEST_GEN + 130) // Physical moves inflict Leech Seed.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_PYRO_SHELLS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_FUNGAL_INFECTION + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

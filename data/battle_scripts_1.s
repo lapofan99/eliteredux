@@ -7978,6 +7978,13 @@ BattleScript_AttackBoostActivates::
 	printstring STRINGID_PKMNRAISEDATTACK
 	waitmessage B_WAIT_TIME_LONG
 	end3
+
+BattleScript_FungalInfectionActivates::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNSEEDED
+	waitmessage B_WAIT_TIME_LONG
+	end3
 	
 BattleScript_InflatableActivates::
 	call BattleScript_AbilityPopUp

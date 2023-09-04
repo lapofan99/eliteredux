@@ -388,6 +388,7 @@ static const u8 sLethargyDescription[] = _("Atk is lowered by 20% at the\nend of
 static const u8 sIronBarrageDescription[] = _("Combines Mega Launcher\nwith Sighting System.");
 static const u8 sSteelBarrelDescription[] = _("Prevents recoil damage.");
 static const u8 sPyroShellsDescription[] = _("Triggers 50 BP Outburst after\nusing a Mega Launcher move.");
+static const u8 sFungalInfectionDescription[] = _("Contact moves seed the target.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -790,6 +791,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_IRON_BARRAGE] = _("Iron Barrage"),
     [ABILITY_STEEL_BARREL] = _("Steel Barrel"),
     [ABILITY_PYRO_SHELLS] = _("Pyro Shells"),
+    [ABILITY_FUNGAL_INFECTION] = _("Fungal Infection"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1191,4 +1193,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_IRON_BARRAGE] = sIronBarrageDescription,
     [ABILITY_STEEL_BARREL] = sSteelBarrelDescription,
     [ABILITY_PYRO_SHELLS] = sPyroShellsDescription,
+    [ABILITY_FUNGAL_INFECTION] = sFungalInfectionDescription,
 };

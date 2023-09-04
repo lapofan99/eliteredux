@@ -8160,6 +8160,23 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_FUNGAL_INFECTION:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
+            {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FUNGAL_INFECTION;
+                gStatuses3[gBattlerTarget]   |= STATUS3_LEECHSEED;
+                gStatuses3[gBattlerAttacker] |= STATUS3_LEECHSEED_BATTLER;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+				BattleScriptPushCursorAndCallback(BattleScript_FungalInfectionActivates);
+                effect++;
+            }
+        break;
         case ABILITY_GRIP_PINCER:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -8705,6 +8722,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}
+
+        if (BattlerHasInnate(battler, ABILITY_FUNGAL_INFECTION)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
+            {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FUNGAL_INFECTION;
+                gStatuses3[gBattlerTarget]   |= STATUS3_LEECHSEED;
+                gStatuses3[gBattlerAttacker] |= STATUS3_LEECHSEED_BATTLER;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+				BattleScriptPushCursorAndCallback(BattleScript_FungalInfectionActivates);
+                effect++;
+            }
+        }
 
         if (BattlerHasInnate(battler, ABILITY_GRIP_PINCER)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
