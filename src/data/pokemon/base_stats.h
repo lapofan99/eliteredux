@@ -2173,7 +2173,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
     .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
     .abilities = {ABILITY_MYSTIC_POWER, ABILITY_TRACE, ABILITY_EXPLOIT_WEAKNESS},
-    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_HYPNOTIST, ABILITY_MAGIC_GUARD},
+    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = TRUE,
     },
@@ -2199,7 +2199,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
     .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
     .abilities = {ABILITY_MYSTIC_POWER, ABILITY_TRACE, ABILITY_EXPLOIT_WEAKNESS},
-    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_HYPNOTIST, ABILITY_MAGIC_GUARD},
+    .innates = {ABILITY_PSYCHIC_MIND, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },
@@ -3815,8 +3815,8 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 80,
     .baseAttack    = 145,
-    .baseDefense   = 79,
-    .baseSpeed     = 126,
+    .baseDefense   = 99,
+    .baseSpeed     = 106,
     .baseSpAttack  = 35,
     .baseSpDefense = 120,
     .type1 = TYPE_FIGHTING,
@@ -3830,8 +3830,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
     .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
-    .abilities = {ABILITY_LOW_BLOW, ABILITY_LOW_BLOW, ABILITY_LOW_BLOW},
-    .innates = {ABILITY_INNER_FOCUS, ABILITY_FATAL_PRECISION, ABILITY_PERFECTIONIST},
+    .abilities = {ABILITY_PARRY, ABILITY_PARRY, ABILITY_PARRY},
+    .innates = {ABILITY_RAGING_BOXER, ABILITY_POWER_FISTS, ABILITY_EARTHBOUND},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },
@@ -9119,7 +9119,7 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 60,
     .baseAttack    = 150,
-    .baseDefense   = 120,
+    .baseDefense   = 130,
     .baseSpeed     = 70,
     .baseSpAttack  = 50,
     .baseSpDefense = 100,
@@ -9136,7 +9136,7 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_FAIRY,
     .eggGroup2 = EGG_GROUP_GRASS,
-    .abilities = {ABILITY_POISON_HEAL, ABILITY_PRECISE_FIST, ABILITY_LONG_REACH},
+    .abilities = {ABILITY_FUNGAL_INFECTION, ABILITY_FUNGAL_INFECTION, ABILITY_FUNGAL_INFECTION},
     .innates = {ABILITY_PERFECTIONIST, ABILITY_TECHNICIAN, ABILITY_SUPER_LUCK},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
@@ -24692,7 +24692,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_SHIINOTIC] =
     {
-    .baseHP        = 80, // 60
+    .baseHP        = 60, // 60
     .baseAttack    = 45,
     .baseDefense   = 80,
     .baseSpeed     = 30,
@@ -24711,8 +24711,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_GRASS,
     .eggGroup2 = EGG_GROUP_GRASS,
-    .abilities = {ABILITY_FAIRY_AURA, ABILITY_TWISTED_DIMENSION, ABILITY_POISON_HEAL},
-    .innates = {ABILITY_POISON_ABSORB, ABILITY_DREAMCATCHER, ABILITY_BAD_DREAMS},
+    .abilities = {ABILITY_DREAMCATCHER, ABILITY_TWISTED_DIMENSION, ABILITY_POISON_HEAL},
+    .innates = {ABILITY_POISON_ABSORB, ABILITY_FAIRY_AURA, ABILITY_BAD_DREAMS},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },

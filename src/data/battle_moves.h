@@ -11675,7 +11675,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_WICKED_BLOW] =
     {
         .effect = EFFECT_ALWAYS_CRIT,
-        .power = 80,
+        .power = 70, // 80
         .type = TYPE_DARK,
         .accuracy = 100,
         .pp = 5,

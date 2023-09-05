@@ -4997,13 +4997,14 @@ s8 GetMovePriority(u32 battlerId, u16 move)
         case EFFECT_ABSORB:
         case EFFECT_ROOST:
         case EFFECT_STRENGTH_SAP:
-            priority += 3;
+            priority++; // priority += 3;
             break;
         }
     }
     
 	if ((GetBattlerAbility(battlerId) == ABILITY_BLITZ_BOXER || BattlerHasInnate(battlerId, ABILITY_BLITZ_BOXER))
-		&& (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
+		&& (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST)
+        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
     {
         priority++;
     }
