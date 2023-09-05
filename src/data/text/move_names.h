@@ -758,11 +758,12 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_EERIE_SPELL] = _("Eerie Spell"),
 
     // Custom Moves
-    [MOVE_DEATHROLL]  = _("Deathroll"),
-    [MOVE_EXCALIBUR]  = _("Excalibur"),
-    [MOVE_AQUA_FANG]  = _("Aqua Fang"),
-    [MOVE_WAVE_CRASH] = _("Wave Crash"),
-    [MOVE_SMITE]      = _("Smite"),
+    [MOVE_DEATHROLL]    = _("Deathroll"),
+    [MOVE_EXCALIBUR]    = _("Excalibur"),
+    [MOVE_AQUA_FANG]    = _("Aqua Fang"),
+    [MOVE_WAVE_CRASH]   = _("Wave Crash"),
+    [MOVE_SMITE]        = _("Smite"),
+    [MOVE_SEISMIC_FIST] = _("Seismic Fist"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1526,9 +1527,10 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_EERIE_SPELL] = _("Eerie Spell"),
 
     // Custom Moves
-    [MOVE_DEATHROLL]  = _("Deathroll"),
-    [MOVE_EXCALIBUR]  = _("Excalibur"),
-    [MOVE_AQUA_FANG]  = _("Aqua Fang"),
-    [MOVE_WAVE_CRASH] = _("Wave Crash"),
-    [MOVE_SMITE]      = _("Smite"),
+    [MOVE_DEATHROLL]    = _("Deathroll"),
+    [MOVE_EXCALIBUR]    = _("Excalibur"),
+    [MOVE_AQUA_FANG]    = _("Aqua Fang"),
+    [MOVE_WAVE_CRASH]   = _("Wave Crash"),
+    [MOVE_SMITE]        = _("Smite"),
+    [MOVE_SEISMIC_FIST] = _("Seismic Fist"),
 };

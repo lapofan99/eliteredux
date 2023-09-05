@@ -785,6 +785,7 @@ gBattleAnims_Moves::
 	.4byte Move_WAVE_CRASH
 	.4byte Move_SMITE
 	.4byte Move_OUTBURST
+	.4byte Move_SEIMSIC_FIST
 	.4byte Move_COUNT @ cannot be reached, because last move is Outburst
 
 	.align 2
@@ -20226,6 +20227,26 @@ SmiteUnleashEnd:
 	waitforvisualfinish
 	clearmonbg ANIM_TARGET
 	blendoff
+	end
+
+Move_SEIMSIC_FIST::
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	setalpha 12, 8
+	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_TARGET
+	createvisualtask AnimTask_AttackerPunchWithTrace, 2, RGB(8, 9, 28), 10
+	fadetobg BG_FISSURE
+	waitbgfadeout
+	launchtask AnimTask_PositionFissureBgOnBattler 0x5 0x3 0x1 0x5 0xffff
+	createsprite gFistFootSpriteTemplate, ANIM_TARGET, 3, 0, 0, 8, 1, 0
+	waitforvisualfinish
+	delay 6
+	playsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 15, 1
+	loopsewithpan SE_M_STRENGTH, SOUND_PAN_TARGET, 8, 10
+	delay 6
+	waitforvisualfinish
+	call UnsetPsychicBg
 	end
 
 @ Also used by Sandstorm weather

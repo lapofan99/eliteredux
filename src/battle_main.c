@@ -6796,8 +6796,6 @@ static u8 getRole (u16 species)
     u16 spDef = gBaseStats[species].baseSpDefense;
     u16 HP = gBaseStats[species].baseHP;
         
-        
-        
     if (atk >= spAtk)
         max = atk;
     else

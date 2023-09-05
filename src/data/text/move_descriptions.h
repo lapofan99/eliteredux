@@ -3041,6 +3041,10 @@ static const u8 sOUTBURSTDescription[] = _(
     "Severe special damage but\n"
     "makes the user faint.");
 
+static const u8 sSEISMICFISRTDescription[] = _(
+    "A ground-breaking punch\n"
+    "is thrown at the target.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3805,12 +3809,13 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_EERIE_SPELL - 1] = sEERIE_SPELLDescription,
 
     // Darky's Custom Moves
-    [MOVE_DEATHROLL  - 1] = sDEATHROLLDescription,
-    [MOVE_EXCALIBUR  - 1] = sEXCALIBURDescription,
-    [MOVE_AQUA_FANG  - 1] = sAQUA_FANGDescription,
-    [MOVE_WAVE_CRASH - 1] = sWAVE_CRASHDescription,
-    [MOVE_SMITE      - 1] = sSMITEDescription,
-    [MOVE_OUTBURST   - 1] = sOUTBURSTDescription,
+    [MOVE_DEATHROLL    - 1] = sDEATHROLLDescription,
+    [MOVE_EXCALIBUR    - 1] = sEXCALIBURDescription,
+    [MOVE_AQUA_FANG    - 1] = sAQUA_FANGDescription,
+    [MOVE_WAVE_CRASH   - 1] = sWAVE_CRASHDescription,
+    [MOVE_SMITE        - 1] = sSMITEDescription,
+    [MOVE_OUTBURST     - 1] = sOUTBURSTDescription,
+    [MOVE_SEISMIC_FIST - 1] = sSEISMICFISRTDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4618,7 +4623,8 @@ static const u8 sMoveFourLineDescription_Excalibur[] = _("Hits hard. Double\ndam
 static const u8 sMoveFourLineDescription_AquaFang[] = _("Bites with aquatic\nfangs. Has 10%\nflinch chance.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_WaveCrash[] = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
 static const u8 sMoveFourLineDescription_Smite[] = _("Attacks from above\nwith strong electricity.\n20% paralysis chance.\nSmack Down effect."); // new
-static const u8 sMoveFourLineDescription_Outburst[] = _("The user explodes\nto inflict terrible\ndamage even while\nfainting itself."); // new
+static const u8 sMoveFourLineDescription_Outburst[]     = _("The user explodes\nto inflict terrible\ndamage even while\nfainting itself."); // new
+static const u8 sMoveFourLineDescription_SeismicFistt[] = _("The user throws\na ground-breaking\nfist at the\ntarget."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5385,4 +5391,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_WAVE_CRASH   - 1] = sMoveFourLineDescription_WaveCrash,
     [MOVE_SMITE        - 1] = sMoveFourLineDescription_Smite,
     [MOVE_OUTBURST     - 1] = sMoveFourLineDescription_Outburst,
+    [MOVE_SEISMIC_FIST - 1] = sMoveFourLineDescription_SeismicFistt,
 };
