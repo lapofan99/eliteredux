@@ -388,7 +388,7 @@ static const u8 sLethargyDescription[] = _("Atk is lowered by 20% at the\nend of
 static const u8 sIronBarrageDescription[] = _("Combines Mega Launcher\nwith Sighting System.");
 static const u8 sSteelBarrelDescription[] = _("Prevents recoil damage.");
 static const u8 sPyroShellsDescription[] = _("Triggers 50 BP Outburst after\nusing a Mega Launcher move.");
-static const u8 sFungalInfectionDescription[] = _("Contact moves seed the target.");
+static const u8 sFungalInfectionDescription[] = _("Every attacking move inflicts\nLeech Seed on the target.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 

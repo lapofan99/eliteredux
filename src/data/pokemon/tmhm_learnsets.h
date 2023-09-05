@@ -28103,7 +28103,8 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(HM01_CUT)
                                         | TMHM2(HM02_FLY)
                                         | TMHM2(HM05_FLASH)),
-    [SPECIES_APPLETUN]   = TMHM_LEARNSET (TMHM1(TM06_TOXIC)
+    [SPECIES_APPLETUN]   = TMHM_LEARNSET (TMHM1(TM02_DRAGON_CLAW) // new
+                                        | TMHM1(TM06_TOXIC)
                                         | TMHM1(TM09_BULLET_SEED)
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM11_SUNNY_DAY)

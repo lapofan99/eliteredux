@@ -9119,7 +9119,7 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 60,
     .baseAttack    = 150,
-    .baseDefense   = 120,
+    .baseDefense   = 130,
     .baseSpeed     = 70,
     .baseSpAttack  = 50,
     .baseSpDefense = 100,
@@ -24692,7 +24692,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_SHIINOTIC] =
     {
-    .baseHP        = 80, // 60
+    .baseHP        = 60, // 60
     .baseAttack    = 45,
     .baseDefense   = 80,
     .baseSpeed     = 30,
@@ -24711,8 +24711,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_GRASS,
     .eggGroup2 = EGG_GROUP_GRASS,
-    .abilities = {ABILITY_FAIRY_AURA, ABILITY_TWISTED_DIMENSION, ABILITY_POISON_HEAL},
-    .innates = {ABILITY_POISON_ABSORB, ABILITY_DREAMCATCHER, ABILITY_BAD_DREAMS},
+    .abilities = {ABILITY_DREAMCATCHER, ABILITY_TWISTED_DIMENSION, ABILITY_POISON_HEAL},
+    .innates = {ABILITY_POISON_ABSORB, ABILITY_FAIRY_AURA, ABILITY_BAD_DREAMS},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },

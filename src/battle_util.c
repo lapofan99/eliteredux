@@ -8165,7 +8165,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
-             && IsMoveMakingContact(move, gBattlerAttacker)
+             // && IsMoveMakingContact(move, gBattlerAttacker)
              && TARGET_TURN_DAMAGED // Need to actually hit the target
              && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
             {

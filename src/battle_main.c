@@ -4997,7 +4997,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
         case EFFECT_ABSORB:
         case EFFECT_ROOST:
         case EFFECT_STRENGTH_SAP:
-            priority += 3;
+            priority++; // priority += 3;
             break;
         }
     }
