@@ -7503,6 +7503,20 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattlescriptCurrInstr = BattleScript_DefenderEffectSpeedDownHit;
                 effect++;
             }
+            case ABILITY_PARRY:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                effect++;
+            }
         }
 		
 		// Innates
@@ -7994,6 +8008,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
+        // Cold Rebound
         if(BattlerHasInnate(battler, ABILITY_COLD_REBOUND)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
@@ -8008,6 +8023,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_COLD_REBOUND;
                 gBattlescriptCurrInstr = BattleScript_DefenderEffectSpeedDownHit;
+                effect++;
+
+            }
+        }
+
+        // Parry
+        if(BattlerHasInnate(battler, ABILITY_PARRY)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker))
+            {
+                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_PARRY;
                 effect++;
 
             }
@@ -12446,6 +12480,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (updateFlags)
             RecordAbilityBattle(battlerDef, ability);
         break;
+    case ABILITY_PARRY:
+        MulModifier(&modifier, UQ_4_12(0.8));
+        if (updateFlags)
+            RecordAbilityBattle(battlerDef, ability);
+        break;
 	case ABILITY_IMMUNITY:
         if (moveType == TYPE_POISON)
         {
@@ -12521,6 +12560,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Lead Coat
 	if(BattlerHasInnate(battlerDef, ABILITY_LEAD_COAT)){
 		MulModifier(&modifier, UQ_4_12(0.7));
+    }
+    // Parry
+	if(BattlerHasInnate(battlerDef, ABILITY_PARRY)){
+		MulModifier(&modifier, UQ_4_12(0.8));
     }
 	// Fossilized
 	if(BattlerHasInnate(battlerDef, ABILITY_FOSSILIZED)){

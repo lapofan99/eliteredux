@@ -426,8 +426,9 @@
 #define ABILITY_STEEL_BARREL     (ABILITIES_COUNT_LATEST_GEN + 128) // Protects the Pokémon from recoil damage.
 #define ABILITY_PYRO_SHELLS      (ABILITIES_COUNT_LATEST_GEN + 129) // Triggers 50 BP Outburst after using a Mega Launcher move.
 #define ABILITY_FUNGAL_INFECTION (ABILITIES_COUNT_LATEST_GEN + 130) // Every attacking move inflicts Leech Seed on the target.
+#define ABILITY_PARRY            (ABILITIES_COUNT_LATEST_GEN + 131) // Takes 80% from Contact moves, then counters with Mach Punch.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_FUNGAL_INFECTION + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_PARRY + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
