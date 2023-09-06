@@ -3816,6 +3816,8 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_SMITE        - 1] = sSMITEDescription,
     [MOVE_OUTBURST     - 1] = sOUTBURSTDescription,
     [MOVE_SEISMIC_FIST - 1] = sSEISMICFISRTDescription,
+    [MOVE_IRON_FANGS - 1]   = sSEISMICFISRTDescription,
+    [MOVE_SHADOW_FANGS - 1] = sSEISMICFISRTDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -5392,4 +5394,6 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SMITE        - 1] = sMoveFourLineDescription_Smite,
     [MOVE_OUTBURST     - 1] = sMoveFourLineDescription_Outburst,
     [MOVE_SEISMIC_FIST - 1] = sMoveFourLineDescription_SeismicFistt,
+    [MOVE_IRON_FANGS - 1]   = sMoveFourLineDescription_SeismicFistt,
+    [MOVE_SHADOW_FANGS - 1] = sMoveFourLineDescription_SeismicFistt,
 };
