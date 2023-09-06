@@ -789,6 +789,8 @@ gBattleAnims_Moves::
 	.4byte Move_IRON_FANGS
 	.4byte Move_SHADOW_FANG
 	.4byte Move_FAIRY_FANG
+	.4byte Move_JAGGED_FANG
+	.4byte Move_BURNING_GROUND
 	.4byte Move_COUNT @ cannot be reached, because last move is Outburst
 
 	.align 2
@@ -20395,6 +20397,149 @@ AquaFangRemoveBlend:
 	waitforvisualfinish
 	clearmonbg ANIM_DEF_PARTNER
 	end
+
+Move_JAGGED_FANG::
+	loadspritegfx ANIM_TAG_SHARP_TEETH
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_ROCKS
+	loadspritegfx ANIM_TAG_WHITE_STREAK
+	loadspritegfx ANIM_TAG_SPARKLE_3
+JagedFangCharge:
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, 1, 3, 0, 12, RGB_BLACK
+	waitforvisualfinish
+	loopsewithpan SE_M_HARDEN, SOUND_PAN_ATTACKER, 10, 7
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -10, 3
+	delay 1
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, 24, -19
+	delay 1
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -28, -15
+	delay 2
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -6, -30
+	delay 1
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -20, 6
+	delay 1
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, 28, 2
+	delay 2
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -14, -25
+	delay 1
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, 9, -2
+	delay 2
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -1, 0
+	delay 1
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, 21, 4
+	delay 2
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, 28, 20
+	delay 2
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -7, 24
+	delay 2
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -11, 1
+	delay 2
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, 12, -18
+	delay 2
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -21, -14
+	delay 1
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -29, 7
+	delay 2
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, 15, 28
+	delay 1
+	createsprite gRockPolishStreakSpriteTemplate, ANIM_ATTACKER, 2, -21, -16
+	delay 2
+	waitforvisualfinish
+	playsewithpan SE_M_ATTRACT, SOUND_PAN_ATTACKER
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, -20, 9
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, -10, -15
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, 1, 17
+	delay 1
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, -23, -16
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, 10, -6
+	delay 1
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, -16, -7
+	delay 1
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, 22, -7
+	delay 1
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, -19, 11
+	delay 1
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, 12, 12
+	delay 1
+	createsprite gRockPolishSparkleSpriteTemplate, ANIM_ATTACKER, 2, 0, -17
+	waitforvisualfinish
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, 1, 3, 12, 0, RGB_BLACK
+	waitforvisualfinish
+	call SetImpactBackground
+JagedFangHitTarget:
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 4, 0, -819, 10
+	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
+JagedFangExtraEffect:
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 20, 24, 14, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 5, 0, -20, 24, 14, 1
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 5, 20, -24, 14, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, -5, 0, -20, -24, 14, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, -5, 30, 18, 8, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 30, -18, 8, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, 18, 8, 2
+	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, -18, 8, 2
+JagedFangRemoveBlend:
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, 1, 3, 12, 0, RGB_BLACK
+	restorebg
+	waitforvisualfinish
+	blendoff
+	delay 1
+	end
+
+Move_BURNING_GROUND::
+	loadspritegfx ANIM_TAG_SMALL_EMBER
+	loadspritegfx ANIM_TAG_FIRE_PLUME
+	loadspritegfx ANIM_TAG_BROWN_ORB
+BurningGroundExtraHitTarget:
+	setalpha 12, 8
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_ATTACKER, 0, 2, 46, 1
+	delay 6
+	createvisualtask AnimTask_StartSinAnimTimer, 5, 100
+	panse_1B SE_M_WHIRLPOOL, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +1, 0
+	call BurningGroundOrbs
+	call BurningGroundOrbs
+	call BurningGroundOrbs
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 3, 0, 43, 1
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 9, RGB_RED
+	call BurningGroundOrbs
+	call BurningGroundOrbs
+	call BurningGroundOrbs
+	call BurningGroundOrbs
+	call BurningGroundOrbs
+	call BurningGroundOrbs
+	call BurningGroundOrbs
+	call BurningGroundOrbs
+BurningGroundExtraEffect:
+	playsewithpan SE_M_FIRE_PUNCH, SOUND_PAN_TARGET
+	createsprite gDragonRageFirePlumeSpriteTemplate, 194, 3, 1, 5, 0
+	delay 1
+	createsprite gDragonRageFirePlumeSpriteTemplate, 194, 3, 1, -10, -15
+	delay 1
+	createsprite gDragonRageFirePlumeSpriteTemplate, 130, 3, 1, 0, 25
+	delay 1
+	createsprite gDragonRageFirePlumeSpriteTemplate, 194, 3, 1, 15, 5
+	delay 1
+	createsprite gDragonRageFirePlumeSpriteTemplate, 194, 3, 1, -25, 0
+	delay 1
+	createsprite gDragonRageFirePlumeSpriteTemplate, 130, 3, 1, 30, 30
+	delay 1
+	createsprite gDragonRageFirePlumeSpriteTemplate, 130, 3, 1, -27, 25
+	delay 1
+	createsprite gDragonRageFirePlumeSpriteTemplate, 194, 3, 1, 0, 8
+BurningGroundRemoveBlend:
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, RGB_RED
+	waitforvisualfinish
+	createsprite gSlideMonToOriginalPosSpriteTemplate, 194, 3, 0, 0, 4
+	waitforvisualfinish
+	end
+BurningGroundOrbs:
+	createsprite gMudShotOrbSpriteTemplate, ANIM_ATTACKER, 3, 10, 10, 0, 16
+	delay 2
+	createsprite gMudShotOrbSpriteTemplate, ANIM_ATTACKER, 3, 10, 10, 0, 16
+	delay 2
+	return
 
 Move_FAIRY_FANG::
 	loadspritegfx ANIM_TAG_SHARP_TEETH

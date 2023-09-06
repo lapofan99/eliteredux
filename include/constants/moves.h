@@ -785,18 +785,20 @@
 #define MOVES_COUNT_GEN8 755
 
 // New Moves (Gen 9 + Custom Moves)
-#define MOVE_DEATHROLL    755
-#define MOVE_EXCALIBUR    756
-#define MOVE_AQUA_FANG    757
-#define MOVE_WAVE_CRASH   758
-#define MOVE_SMITE        759
-#define MOVE_OUTBURST     760
-#define MOVE_SEISMIC_FIST 761
-#define MOVE_IRON_FANGS   762
-#define MOVE_SHADOW_FANG 763
-#define MOVE_FAIRY_FANG   764
+#define MOVE_DEATHROLL      755
+#define MOVE_EXCALIBUR      756
+#define MOVE_AQUA_FANG      757
+#define MOVE_WAVE_CRASH     758
+#define MOVE_SMITE          759
+#define MOVE_OUTBURST       760
+#define MOVE_SEISMIC_FIST   761
+#define MOVE_IRON_FANGS     762
+#define MOVE_SHADOW_FANG    763
+#define MOVE_FAIRY_FANG     764
+#define MOVE_JAGGED_FANG    765
+#define MOVE_BURNING_GROUND 766
 
-#define MOVES_COUNT_DARKY 765
+#define MOVES_COUNT_DARKY 767
 
 #define MOVES_COUNT     (MOVES_COUNT_DARKY + 1)
 
