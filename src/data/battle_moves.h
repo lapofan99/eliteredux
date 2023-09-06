@@ -11889,7 +11889,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_IRON_FANG] =
+    [MOVE_IRON_FANGS] =
     {
         .effect = EFFECT_FLINCH_HIT,
         .power = 75,

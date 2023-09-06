@@ -786,7 +786,7 @@ gBattleAnims_Moves::
 	.4byte Move_SMITE
 	.4byte Move_OUTBURST
 	.4byte Move_SEIMSIC_FIST
-	.4byte Move_IRON_FANG
+	.4byte Move_IRON_FANGS
 	.4byte Move_SHADOW_FANG
 	.4byte Move_FAIRY_FANG
 	.4byte Move_COUNT @ cannot be reached, because last move is Outburst
@@ -20434,7 +20434,7 @@ FairyFangRemoveBlend:
 	delay 1
 	end
 
-Move_IRON_FANG::
+Move_IRON_FANGS::
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_ROCKS
