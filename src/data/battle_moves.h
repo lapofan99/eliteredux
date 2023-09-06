@@ -11889,7 +11889,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_IRON_FANGS] =
+    [MOVE_IRON_FANG] =
     {
         .effect = EFFECT_FLINCH_HIT,
         .power = 75,
@@ -11903,7 +11903,21 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_SHADOW_FANGS] =
+    [MOVE_FAIRY_FANG] =
+    {
+        .effect = EFFECT_FLINCH_HIT,
+        .power = 75,
+        .type = TYPE_FAIRY,
+        .accuracy = 95,
+        .pp = 15,
+        .secondaryEffectChance = 10,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
+        .split = SPLIT_PHYSICAL,
+    },
+
+    [MOVE_SHADOW_FANG] =
     {
         .effect = EFFECT_FLINCH_HIT,
         .power = 75,

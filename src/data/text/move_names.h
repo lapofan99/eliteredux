@@ -764,8 +764,9 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_WAVE_CRASH]   = _("Wave Crash"),
     [MOVE_SMITE]        = _("Smite"),
     [MOVE_SEISMIC_FIST] = _("Seismic Fist"),
-    [MOVE_IRON_FANGS]   = _("Iron Fangs"),
-    [MOVE_SHADOW_FANGS] = _("Shadow Fangs"),
+    [MOVE_IRON_FANG]    = _("Iron Fang"),
+    [MOVE_SHADOW_FANG]  = _("Shadow Fang"),
+    [MOVE_FAIRY_FANG]   = _("Fairy Fang"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1535,6 +1536,7 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_WAVE_CRASH]   = _("Wave Crash"),
     [MOVE_SMITE]        = _("Smite"),
     [MOVE_SEISMIC_FIST] = _("Seismic Fist"),
-    [MOVE_IRON_FANGS]   = _("Iron Fangs"),
-    [MOVE_SHADOW_FANGS] = _("Shadow Fangs"),
+    [MOVE_IRON_FANG]    = _("Iron Fang"),
+    [MOVE_SHADOW_FANG]  = _("Shadow Fang"),
+    [MOVE_FAIRY_FANG]   = _("Fairy Fang"),
 };

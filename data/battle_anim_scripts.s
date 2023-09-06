@@ -786,8 +786,9 @@ gBattleAnims_Moves::
 	.4byte Move_SMITE
 	.4byte Move_OUTBURST
 	.4byte Move_SEIMSIC_FIST
-	.4byte Move_IRON_FANGS
-	.4byte Move_SHADOW_FANGS
+	.4byte Move_IRON_FANG
+	.4byte Move_SHADOW_FANG
+	.4byte Move_FAIRY_FANG
 	.4byte Move_COUNT @ cannot be reached, because last move is Outburst
 
 	.align 2
@@ -20395,7 +20396,45 @@ AquaFangRemoveBlend:
 	clearmonbg ANIM_DEF_PARTNER
 	end
 
-Move_IRON_FANGS::
+Move_FAIRY_FANG::
+	loadspritegfx ANIM_TAG_SHARP_TEETH
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_MAGENTA_HEART
+	loadspritegfx ANIM_TAG_PINK_HEART
+	loadspritegfx ANIM_TAG_RED_HEART
+	loadspritegfx ANIM_TAG_ANGEL
+FairyFangCharge:
+	createsprite gAngelSpriteTemplate, ANIM_TARGET, 2, 16, -48
+	createsprite gMagentaHeartSpriteTemplate, ANIM_ATTACKER, 3, 0, 20
+	playsewithpan SE_M_HEAL_BELL, SOUND_PAN_TARGET
+	delay 23
+	createsprite gMagentaHeartSpriteTemplate, ANIM_ATTACKER, 3, 0, 20
+	playsewithpan SE_M_HEAL_BELL, SOUND_PAN_TARGET
+	delay 23
+	createsprite gMagentaHeartSpriteTemplate, ANIM_ATTACKER, 3, 0, 20
+	playsewithpan SE_M_HEAL_BELL, SOUND_PAN_TARGET
+	waitforvisualfinish
+FairyFangHitTarget:
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 4, 0, -819, 10
+	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 9, RGB(31, 21, 25)
+FairyFangExtraEffect:
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 160, -30
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -256, -42
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 128, -14
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 416, -38
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -128, -22
+	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -384, -31
+FairyFangRemoveBlend:
+	waitforvisualfinish
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, RGB(31, 21, 25)
+	blendoff
+	delay 1
+	end
+
+Move_IRON_FANG::
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_ROCKS
@@ -20425,7 +20464,7 @@ IronFangRemoveBlend:
 	delay 1
 	end
 
-Move_SHADOW_FANGS::
+Move_SHADOW_FANG::
 	loadspritegfx ANIM_TAG_PURPLE_FLAME
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
