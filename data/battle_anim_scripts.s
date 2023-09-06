@@ -20491,27 +20491,13 @@ JagedFangRemoveBlend:
 Move_BURNING_GROUND::
 	loadspritegfx ANIM_TAG_SMALL_EMBER
 	loadspritegfx ANIM_TAG_FIRE_PLUME
-	loadspritegfx ANIM_TAG_BROWN_ORB
+	loadspritegfx ANIM_TAG_MUD_SAND
 BurningGroundExtraHitTarget:
-	setalpha 12, 8
-	createvisualtask AnimTask_ShakeMon, 5, ANIM_ATTACKER, 0, 2, 46, 1
-	delay 6
-	createvisualtask AnimTask_StartSinAnimTimer, 5, 100
-	panse_1B SE_M_WHIRLPOOL, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +1, 0
-	call BurningGroundOrbs
-	call BurningGroundOrbs
-	call BurningGroundOrbs
-	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 3, 0, 43, 1
+	fadetobg BG_FISSURE
+	waitbgfadeout
+	createvisualtask AnimTask_PositionFissureBgOnBattler, 5, ANIM_TARGET, 5, -1
+	waitbgfadein
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 9, RGB_RED
-	call BurningGroundOrbs
-	call BurningGroundOrbs
-	call BurningGroundOrbs
-	call BurningGroundOrbs
-	call BurningGroundOrbs
-	call BurningGroundOrbs
-	call BurningGroundOrbs
-	call BurningGroundOrbs
-BurningGroundExtraEffect:
 	playsewithpan SE_M_FIRE_PUNCH, SOUND_PAN_TARGET
 	createsprite gDragonRageFirePlumeSpriteTemplate, 194, 3, 1, 5, 0
 	delay 1
@@ -20530,6 +20516,10 @@ BurningGroundExtraEffect:
 	createsprite gDragonRageFirePlumeSpriteTemplate, 194, 3, 1, 0, 8
 BurningGroundRemoveBlend:
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, RGB_RED
+	restorebg
+	waitbgfadeout
+	setarg 7, -1
+	waitbgfadein
 	waitforvisualfinish
 	createsprite gSlideMonToOriginalPosSpriteTemplate, 194, 3, 0, 0, 4
 	waitforvisualfinish
