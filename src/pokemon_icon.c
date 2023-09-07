@@ -1261,9 +1261,9 @@ const u8 *const gMonIconTable[] =
     [SPECIES_CALYREX_ICE_RIDER] = gMonIcon_CalyrexIceRider,
     [SPECIES_CALYREX_SHADOW_RIDER] = gMonIcon_CalyrexShadowRider,
 
-    [SPECIES_NOIBAT_REGIONAL] = gMonIcon_Noibat,
-    [SPECIES_NOIVERN_REGIONAL] = gMonIcon_Noivern,
-    [SPECIES_INFERNAPE_REGIONAL] = gMonIcon_Infernape,
+    [SPECIES_NOIBAT_REGIONAL] = gMonIcon_NoibatRegional,
+    [SPECIES_NOIVERN_REGIONAL] = gMonIcon_NoivernRegional,
+    [SPECIES_INFERNAPE_REGIONAL] = gMonIcon_InfernapeRegional,
 
     [SPECIES_EGG] = gMonIcon_Egg,
 };
