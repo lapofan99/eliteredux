@@ -2856,7 +2856,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_AEROBLAST] =
     {
-        .effect = EFFECT_ALWAYS_CRIT,
+        .effect = EFFECT_HIT,
         .power = 100,
         .type = TYPE_FLYING,
         .accuracy = 100,
