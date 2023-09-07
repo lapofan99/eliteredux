@@ -54,7 +54,7 @@
 #define ABILITY_RUN_AWAY 50 // Enables a sure getaway from wild Pokémon. Boosts the Pokémon's Speed stat sharply when its stats are lowered.
 #define ABILITY_KEEN_EYE 51 // Prevents loss of accuracy. Ups accuracy by 20%.
 #define ABILITY_HYPER_CUTTER 52 // Prevents other Pokémon from lowering its Attack stat. Contact moves have its critical hit rate increased by 1.
-#define ABILITY_PICKUP 53 // *No innate* Has a 10% chance of finding and holding an item after battle. Will not work if this Pokémon is already holding an item. From Black & White, it allows for the user to pick up the item of its opponent or ally if they used up the item in battle.
+#define ABILITY_PICKUP 53 // Removes all hazards on entry. Has a 10% chance of finding and holding an item after battle. Will not work if this Pokémon is already holding an item. From Black & White, it allows for the user to pick up the item of its opponent or ally if they used up the item in battle.
 #define ABILITY_TRUANT 54 // The Pokémon can't use a move if it had used a move on the previous turn.
 #define ABILITY_HUSTLE 55 // Boosts the Attack stat by 40%, but lowers accuracy by 10%.
 #define ABILITY_CUTE_CHARM 56 // The opponent has a 30% chance of being induced with Attract when using an attack, that requires physical contact, against this Pokémon.

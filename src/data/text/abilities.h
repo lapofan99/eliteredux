@@ -52,7 +52,7 @@ static const u8 sFlameBodyDescription[] = _("30% chance to burn on contact.\nAls
 static const u8 sRunAwayDescription[] = _("Makes escaping easier.\nLowering stats ups Speed.");
 static const u8 sKeenEyeDescription[] = _("Prevents loss of accuracy.\n1.2x accuracy boost.");
 static const u8 sHyperCutterDescription[] = _("Prevents Attack reduction.\nUps crit level by +1.");
-static const u8 sPickupDescription[] = _("May pick up items.");
+static const u8 sPickupDescription[] = _("Removes all hazards on entry.");
 static const u8 sTruantDescription[] = _("Moves only every two turns.");
 static const u8 sHustleDescription[] = _("Trades 10% accuracy\nfor 40% more power.");
 static const u8 sCuteCharmDescription[] = _("Infatuates on contact.");
@@ -256,7 +256,7 @@ static const u8 sGrimNeighDescription[] = _("KOs boost Sp. Atk stat +1.");
 static const u8 sAsOneIceRiderDescription[] = _("Unnerve and Chilling Neigh.");
 static const u8 sAsOneShadowRiderDescription[] = _("Unnerve and Grim Neigh.");
 // IE abilities
-static const u8 sChloroplastDescription[] = _("Battles as if in sunlight.");
+static const u8 sChloroplastDescription[] = _("Battles as if in sunlight.\nDoes not trigger abilities.");
 static const u8 sWhiteoutDescription[] = _("Boosts Ice moves by 50% in Hail.");
 static const u8 sPyromancyDescription[] = _("Fire moves burn 5x more often.");
 static const u8 sKeenEdgeDescription[] = _("Boosts slashing moves by 30%.");

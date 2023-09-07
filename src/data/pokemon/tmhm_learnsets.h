@@ -25381,6 +25381,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM13_ICE_BEAM)
                                         | TMHM1(TM14_BLIZZARD)
+                                        | TMHM1(TM16_LIGHT_SCREEN) // new
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM18_RAIN_DANCE)
                                         | TMHM1(TM19_GIGA_DRAIN)
@@ -26289,6 +26290,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(HM07_WATERFALL)
                                         | TMHM2(HM08_DIVE)),
     [SPECIES_DRAMPA]   = TMHM_LEARNSET (TMHM1(TM02_DRAGON_CLAW)
+                                        | TMHM1(TM04_CALM_MIND) // new
                                         | TMHM1(TM05_ROAR)
                                         | TMHM1(TM06_TOXIC)
                                         | TMHM1(TM10_HIDDEN_POWER)
