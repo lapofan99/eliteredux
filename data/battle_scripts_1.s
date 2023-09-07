@@ -8153,6 +8153,41 @@ BattleScript_DefenderExtraMoveEnd::
 	moveendall
 	end
 
+BattleScript_PickUpActivate::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PICKUPACTIVATED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_DefenderSetsSpikeLayer::
+	savetarget
+	copybyte sSAVED_BATTLER, gBattlerAttacker
+	copybyte gBattlerAttacker, gBattlerTarget
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	call BattleScript_AbilityPopUp
+	playmoveanimation BS_ATTACKER, MOVE_SPIKES
+	waitanimation
+	printstring STRINGID_SPIKESSCATTERED
+	waitmessage B_WAIT_TIME_LONG
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	restoretarget
+	end
+
+BattleScript_DefenderSetsToxicSpikeLayer::
+	savetarget
+	copybyte sSAVED_BATTLER, gBattlerAttacker
+	copybyte gBattlerAttacker, gBattlerTarget
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	call BattleScript_AbilityPopUp
+	playmoveanimation BS_ATTACKER, MOVE_TOXIC_SPIKES
+	waitanimation
+	printstring STRINGID_POISONSPIKESSCATTERED
+	waitmessage B_WAIT_TIME_LONG
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	restoretarget
+	end
+
 BattleScript_AttackerRoughSkinActivates::
 	call BattleScript_AbilityPopUp
 	call BattleScript_HurtTarget

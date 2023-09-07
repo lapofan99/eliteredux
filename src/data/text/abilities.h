@@ -390,6 +390,9 @@ static const u8 sSteelBarrelDescription[] = _("Prevents recoil damage.");
 static const u8 sPyroShellsDescription[] = _("Triggers 50 BP Outburst after\nusing a Mega Launcher move.");
 static const u8 sFungalInfectionDescription[] = _("Every attacking move inflicts\nLeech Seed on the target.");
 static const u8 sParryDescription[] = _("Takes 80% from Contact,\nthen counters with Mach Punch.");
+static const u8 sScrapyardDescription[] = _("Sets a layer of spikes when hit.");
+static const u8 sLooseQuillsDescription[] = _("Sets a layer of spikes when hit.");
+static const u8 sToxicDebrisDescription[] = _("Sets a layer of toxic spikes\nwhen hit.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -794,6 +797,9 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_PYRO_SHELLS] = _("Pyro Shells"),
     [ABILITY_FUNGAL_INFECTION] = _("Fungal Infection"),
     [ABILITY_PARRY] = _("Parry"),
+    [ABILITY_SCRAPYARD] = _("Scrapyard"),
+    [ABILITY_LOOSE_QUILLS] = _("Loose Quills"),
+    [ABILITY_TOXIC_DEBRIS] = _("Toxic Debris"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1197,4 +1203,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_PYRO_SHELLS] = sPyroShellsDescription,
     [ABILITY_FUNGAL_INFECTION] = sFungalInfectionDescription,
     [ABILITY_PARRY] = sParryDescription,
+    [ABILITY_SCRAPYARD] = sScrapyardDescription,
+    [ABILITY_LOOSE_QUILLS] = sLooseQuillsDescription,
+    [ABILITY_TOXIC_DEBRIS] = sToxicDebrisDescription,
 };

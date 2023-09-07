@@ -462,6 +462,9 @@ extern const u8 BattleScript_AttackerUsedAnExtraMove_SmackDown[];
 extern const u8 BattleScript_DefenderUsedAnExtraMove[];
 extern const u8 BattleScript_DefenderEffectSpeedDownHit[];
 extern const u8 BattleScript_FungalInfectionActivates[];
+extern const u8 BattleScript_DefenderSetsSpikeLayer[];
+extern const u8 BattleScript_DefenderSetsToxicSpikeLayer[];
+extern const u8 BattleScript_PickUpActivate[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

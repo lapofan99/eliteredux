@@ -427,8 +427,11 @@
 #define ABILITY_PYRO_SHELLS      (ABILITIES_COUNT_LATEST_GEN + 129) // Triggers 50 BP Outburst after using a Mega Launcher move.
 #define ABILITY_FUNGAL_INFECTION (ABILITIES_COUNT_LATEST_GEN + 130) // Every attacking move inflicts Leech Seed on the target.
 #define ABILITY_PARRY            (ABILITIES_COUNT_LATEST_GEN + 131) // Takes 80% from Contact, then counters with Mach Punch.
+#define ABILITY_SCRAPYARD        (ABILITIES_COUNT_LATEST_GEN + 132) // when being hit by any attacking move (like Stamina), trigger Spikes
+#define ABILITY_LOOSE_QUILLS     (ABILITIES_COUNT_LATEST_GEN + 133) // when being hit by any attacking move (like Stamina), trigger Spikes
+#define ABILITY_TOXIC_DEBRIS     (ABILITIES_COUNT_LATEST_GEN + 134) // Scatters poison spikes at the feet of the opposing team when the Pokémon takes damage from physical moves.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_PARRY + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_TOXIC_DEBRIS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

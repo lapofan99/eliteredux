@@ -4888,6 +4888,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
         break;
+		case ABILITY_PICKUP:
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+			   ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY)))
+            {
+				gBattlerAttacker = battler;
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
+                BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
+                effect++;
+            }
+            break;
         case ABILITY_INTIMIDATE:
             /*if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5648,6 +5659,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gSpecialStatuses[battler].scaredMon = TRUE;
 			}
 		}
+
+        //Pickup
+        if(BattlerHasInnate(battler, ABILITY_PICKUP)){
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+			   ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY)))
+            {
+				gBattlerAttacker = battler;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_PICKUP;
+				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
+                BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
+                effect++;
+            }
+            break;
+        }
 
         //
         if(BattlerHasInnate(battler, ABILITY_LOW_BLOW)){  //To Change
@@ -7503,6 +7529,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattlescriptCurrInstr = BattleScript_DefenderEffectSpeedDownHit;
                 effect++;
             }
+            break;
             case ABILITY_PARRY:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
@@ -7515,8 +7542,53 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
             }
+            break;
+            case ABILITY_SCRAPYARD:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && gSideTimers[gBattlerAttacker].spikesAmount != 3)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCRAPYARD;
+                gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_SPIKES;
+                gSideTimers[GetBattlerSide(gBattlerAttacker)].spikesAmount++;
+                gBattlescriptCurrInstr = BattleScript_DefenderSetsSpikeLayer;
+                effect++;
+            }
+            break;
+            case ABILITY_LOOSE_QUILLS:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && gSideTimers[gBattlerAttacker].spikesAmount != 3)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOSE_QUILLS;
+                gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_SPIKES;
+                gSideTimers[GetBattlerSide(gBattlerAttacker)].spikesAmount++;
+                gBattlescriptCurrInstr = BattleScript_DefenderSetsSpikeLayer;
+                effect++;
+            }
+            break;
+            case ABILITY_TOXIC_DEBRIS:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+			 && IsMoveMakingContact(move, gBattlerAttacker)
+             && gSideTimers[gBattlerAttacker].toxicSpikesAmount != 3)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TOXIC_DEBRIS;
+                gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_TOXIC_SPIKES;
+                gSideTimers[GetBattlerSide(gBattlerAttacker)].toxicSpikesAmount++;
+                gBattlescriptCurrInstr = BattleScript_DefenderSetsToxicSpikeLayer;
+                effect++;
+            }
+            break;
         }
 		
 		// Innates
@@ -8042,11 +8114,60 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_PARRY;
+                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
-
             }
         }
-		
+
+        // Scrapyard
+        if(BattlerHasInnate(battler, ABILITY_SCRAPYARD)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && gSideTimers[gBattlerAttacker].spikesAmount != 3)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCRAPYARD;
+                gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_SPIKES;
+                gSideTimers[GetBattlerSide(gBattlerAttacker)].spikesAmount++;
+                gBattlescriptCurrInstr = BattleScript_DefenderSetsSpikeLayer;
+                effect++;
+            }
+        }
+
+        // Loose Quills
+        if(BattlerHasInnate(battler, ABILITY_LOOSE_QUILLS)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && gSideTimers[gBattlerAttacker].spikesAmount != 3)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOSE_QUILLS;
+                gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_SPIKES;
+                gSideTimers[GetBattlerSide(gBattlerAttacker)].spikesAmount++;
+                gBattlescriptCurrInstr = BattleScript_DefenderSetsSpikeLayer;
+                effect++;
+            }
+        }
+
+        // Toxic Debris
+        if(BattlerHasInnate(battler, ABILITY_TOXIC_DEBRIS)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+			 && IsMoveMakingContact(move, gBattlerAttacker)
+             && gSideTimers[gBattlerAttacker].toxicSpikesAmount != 3)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TOXIC_DEBRIS;
+                gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_TOXIC_SPIKES;
+                gSideTimers[GetBattlerSide(gBattlerAttacker)].toxicSpikesAmount++;
+                gBattlescriptCurrInstr = BattleScript_DefenderSetsToxicSpikeLayer;
+                effect++;
+            }
+        }
+
 		// Poison Point
         POISON_POINT_INNATE:
 		if(BattlerHasInnate(battler, ABILITY_POISON_POINT)){
