@@ -4570,11 +4570,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             break;
         case ABILITY_DOWNLOAD:
+            // Check if the switch-in ability has already been done
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
                 u32 statId, opposingBattler;
                 u32 opposingDef = 0, opposingSpDef = 0;
 
+                // Get the opposing battler and calculate their defense and special defense
                 opposingBattler = BATTLE_OPPOSITE(battler);
                 for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
                 {
@@ -4589,13 +4591,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     }
                 }
 
+                // Determine which stat to raise based on the opposing defense and special defense
                 if (opposingDef < opposingSpDef)
                     statId = STAT_ATK;
                 else
                     statId = STAT_SPATK;
 
+                // Set the switch-in ability as done
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
 
+                // Raise the chosen stat if it is lower than the maximum stat stage
                 if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
                 {
                     gBattleMons[battler].statStages[statId]++;

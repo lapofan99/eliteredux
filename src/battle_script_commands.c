@@ -1893,7 +1893,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if ((atkAbility == ABILITY_SIGHTING_SYSTEM || BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM)))
         moveAcc = 100;
 
-    if ((atkAbility == ABILITY_ROUNDHOUSE || BattlerHasInnate(battlerAtk, ABILITY_ROUNDHOUSE) && (gBattleMoves[move].flags & FLAG_STRIKER_BOOST)))
+    if ((atkAbility == ABILITY_ROUNDHOUSE || BattlerHasInnate(battlerAtk, ABILITY_ROUNDHOUSE)) && (gBattleMoves[move].flags & FLAG_STRIKER_BOOST))
         moveAcc = 100;
 
     if ((atkAbility == ABILITY_IRON_BARRAGE || BattlerHasInnate(battlerAtk, ABILITY_IRON_BARRAGE)))
