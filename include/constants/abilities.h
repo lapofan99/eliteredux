@@ -430,8 +430,9 @@
 #define ABILITY_SCRAPYARD        (ABILITIES_COUNT_LATEST_GEN + 132) // when being hit by any attacking move (like Stamina), trigger Spikes
 #define ABILITY_LOOSE_QUILLS     (ABILITIES_COUNT_LATEST_GEN + 133) // when being hit by any attacking move (like Stamina), trigger Spikes
 #define ABILITY_TOXIC_DEBRIS     (ABILITIES_COUNT_LATEST_GEN + 134) // Scatters poison spikes at the feet of the opposing team when the Pokémon takes damage from physical moves.
+#define ABILITY_ROUNDHOUSE       (ABILITIES_COUNT_LATEST_GEN + 135) // Kick Moves can't miss and also deal damage depending on the lower of the target's defenses.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_TOXIC_DEBRIS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_ROUNDHOUSE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

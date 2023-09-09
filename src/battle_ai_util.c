@@ -1488,6 +1488,9 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
     if (atkAbility == ABILITY_SIGHTING_SYSTEM || BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM))
         moveAcc = 100;
 
+    if (atkAbility == ABILITY_ROUNDHOUSE || BattlerHasInnate(battlerAtk, ABILITY_ROUNDHOUSE))
+        moveAcc = 100;
+
     if (atkAbility == ABILITY_IRON_BARRAGE || BattlerHasInnate(battlerAtk, ABILITY_IRON_BARRAGE))
         moveAcc = 100;
 

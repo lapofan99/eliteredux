@@ -393,6 +393,8 @@ static const u8 sParryDescription[] = _("Takes 80% from Contact,\nthen counters 
 static const u8 sScrapyardDescription[] = _("Sets a layer of spikes when hit.");
 static const u8 sLooseQuillsDescription[] = _("Sets a layer of spikes when hit.");
 static const u8 sToxicDebrisDescription[] = _("Sets a layer of toxic spikes\nwhen hit.");
+static const u8 sRoundhouseDescription[] = _("Kicks always hit.\nDamages foes' weaker defenses.");
+static const u8 sMineralizeDescription[] = _("Normal moves become Rock\nand get a 20% boost.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -800,6 +802,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SCRAPYARD] = _("Scrapyard"),
     [ABILITY_LOOSE_QUILLS] = _("Loose Quills"),
     [ABILITY_TOXIC_DEBRIS] = _("Toxic Debris"),
+    [ABILITY_ROUNDHOUSE] = _("Roundhouse"),
+    [ABILITY_MINERALIZE] = _("Mineralize"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1206,4 +1210,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SCRAPYARD] = sScrapyardDescription,
     [ABILITY_LOOSE_QUILLS] = sLooseQuillsDescription,
     [ABILITY_TOXIC_DEBRIS] = sToxicDebrisDescription,
+    [ABILITY_ROUNDHOUSE] = sRoundhouseDescription,
+    [ABILITY_MINERALIZE] = sMineralizeDescription,
 };

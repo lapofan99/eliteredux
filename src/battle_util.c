@@ -12032,6 +12032,10 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
         break;
+    case ABILITY_MINERALIZE:
+        if (moveType == TYPE_ROCK && gBattleStruct->ateBoost[battlerAtk])
+            MulModifier(&modifier, UQ_4_12(1.2));
+        break;
 	case ABILITY_SPECTRAL_SHROUD:
         if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
             MulModifier(&modifier, UQ_4_12(1.2));
@@ -12321,6 +12325,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
 				MulModifier(&modifier, UQ_4_12(1.2));
 	}
+
+    // Mineralize
+    if(BattlerHasInnate(battlerAtk, ABILITY_MINERALIZE)){
+        if (moveType == TYPE_ROCK && gBattleStruct->ateBoost[battlerAtk])
+                MulModifier(&modifier, UQ_4_12(1.2));
+    }
 
     // Spectral Shroud
 	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD)){
