@@ -465,6 +465,7 @@ extern const u8 BattleScript_FungalInfectionActivates[];
 extern const u8 BattleScript_DefenderSetsSpikeLayer[];
 extern const u8 BattleScript_DefenderSetsToxicSpikeLayer[];
 extern const u8 BattleScript_PickUpActivate[];
+extern const u8 BattleScript_DefenderSetsStealthRock[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

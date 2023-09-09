@@ -8188,6 +8188,21 @@ BattleScript_DefenderSetsToxicSpikeLayer::
 	restoretarget
 	end
 
+BattleScript_DefenderSetsStealthRock::
+	savetarget
+	copybyte sSAVED_BATTLER, gBattlerAttacker
+	copybyte gBattlerAttacker, gBattlerTarget
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	call BattleScript_AbilityPopUp
+	playmoveanimation BS_ATTACKER, MOVE_STEALTH_ROCK
+	waitanimation
+	printstring STRINGID_POINTEDSTONESFLOAT
+	waitmessage B_WAIT_TIME_LONG
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	restoretarget
+	end
+
+
 BattleScript_AttackerRoughSkinActivates::
 	call BattleScript_AbilityPopUp
 	call BattleScript_HurtTarget

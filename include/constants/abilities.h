@@ -432,8 +432,9 @@
 #define ABILITY_TOXIC_DEBRIS     (ABILITIES_COUNT_LATEST_GEN + 134) // Scatters poison spikes at the feet of the opposing team when the Pokémon takes damage from physical moves.
 #define ABILITY_ROUNDHOUSE       (ABILITIES_COUNT_LATEST_GEN + 135) // Kick Moves can't miss and also deal damage depending on the lower of the target's defenses.
 #define ABILITY_MINERALIZE       (ABILITIES_COUNT_LATEST_GEN + 136) // All Normal-type moves used by the Pokémon become Rock-type and receive a 20% power boost.
+#define ABILITY_LOOSE_ROCKS      (ABILITIES_COUNT_LATEST_GEN + 137) // when being hit by any attacking move (like Stamina), trigger Stealth Rock
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_MINERALIZE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_LOOSE_ROCKS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

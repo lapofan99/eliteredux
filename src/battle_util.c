@@ -7594,6 +7594,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+            case ABILITY_LOOSE_ROCKS:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0 
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)){
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOSE_ROCKS;
+                gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_STEALTH_ROCK;
+                gBattlescriptCurrInstr = BattleScript_DefenderSetsStealthRock;
+                effect++;
+            }
         }
 		
 		// Innates
@@ -7608,6 +7620,22 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 SET_STATCHANGER(STAT_ATK, 1, FALSE);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_TargetAbilityStatRaiseOnMoveEnd;
+                effect++;
+            }
+        }
+
+        // Innates
+        // Loose Rocks
+        if (BattlerHasInnate(battler, ABILITY_LOOSE_ROCKS)) {
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0 
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)) {
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOSE_ROCKS;
+                gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_STEALTH_ROCK;
+                gBattlescriptCurrInstr = BattleScript_DefenderSetsStealthRock;
                 effect++;
             }
         }
@@ -13597,6 +13625,26 @@ static bool32 CanEvolve(u32 species)
     return FALSE;
 }
 
+u8 CalculateBattlerLowestDefense(u8 battler){
+    u8 defense = gBattleMons[battler].defense;
+    u8 specialDefense = gBattleMons[battler].spDefense;
+
+    if (defense < specialDefense)
+        return STAT_DEF;
+    else
+        return STAT_SPDEF;
+}
+
+u8 CalculateBattlerHighestAttack(u8 battler){
+    u8 attack = gBattleMons[battler].attack;
+    u8 specialAttack = gBattleMons[battler].spAttack;
+
+    if (attack > specialAttack)
+        return STAT_ATK;
+    else
+        return STAT_SPATK;
+}
+
 static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, bool32 updateFlags)
 {
     bool32 usesDefStat;
@@ -13635,6 +13683,22 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         defStat = spDef;
         defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
         usesDefStat = FALSE;
+    }
+
+    if ((gBattleMons[battlerAtk].ability == ABILITY_ROUNDHOUSE || 
+        BattlerHasInnate(battlerAtk, ABILITY_ROUNDHOUSE)) && 
+        gBattleMoves[move].flags & FLAG_STRIKER_BOOST) 
+    {
+        if(CalculateBattlerLowestDefense(battlerDef) == STAT_DEF){
+            defStat = def;
+            defStage = gBattleMons[battlerDef].statStages[STAT_DEF];
+            usesDefStat = TRUE;
+        }
+        else{
+            defStat = spDef;
+            defStage = gBattleMons[battlerDef].statStages[STAT_SPDEF];
+            usesDefStat = FALSE;
+        }
     }
 
     // critical hits ignore positive stat changes
