@@ -2140,7 +2140,7 @@ script PKMN_Center_Move_Tutor{
 
 script PKMN_Center_EventScript_DayNightToggle{
 	msgbox("Do you want to invert day/night?\n"
-           "Useful for wild encounters.$", MSGBOX_YESNO)
+           "Only used for the Shoal Cave.$", MSGBOX_YESNO)
 	switch(var(VAR_RESULT)){
 		case YES:
 			if(flag(FLAG_IS_DAYNIGHT_INVERTED)){
