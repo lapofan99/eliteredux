@@ -1354,83 +1354,6 @@ const struct Item gItems[] =
 
 // Valuable items
 
-    [ITEM_GYARADOSITE_Y] =
-    {
-        .name = _("Red Apricorn"),
-        .itemId = ITEM_GYARADOSITE_Y,
-        .price = 200,
-        .description = sRedApricornDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_FERALIGATRITE_X] =
-    {
-        .name = _("Blue Apricorn"),
-        .itemId = ITEM_FERALIGATRITE_X,
-        .price = 200,
-        .description = sBlueApricornDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_FERALIGATRITE_Y] =
-    {
-        .name = _("YellwApricorn"),
-        .itemId = ITEM_FERALIGATRITE_Y,
-        .price = 200,
-        .description = sYellowApricornDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_HAXORUSITE] =
-    {
-        .name = _("GreenApricorn"),
-        .itemId = ITEM_HAXORUSITE,
-        .price = 200,
-        .description = sGreenApricornDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_LUXRAYNITE] =
-    {
-        .name = _("Pink Apricorn"),
-        .itemId = ITEM_LUXRAYNITE,
-        .price = 200,
-        .description = sPinkApricornDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_GRANBULLITE] =
-    {
-        .name = _("WhiteApricorn"),
-        .itemId = ITEM_GRANBULLITE,
-        .price = 200,
-        .description = sWhiteApricornDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
-    [ITEM_TYPHLOSIONITE] =
-    {
-        .name = _("BlackApricorn"),
-        .itemId = ITEM_TYPHLOSIONITE,
-        .price = 200,
-        .description = sBlackApricornDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-    },
-
     [ITEM_TINY_MUSHROOM] =
     {
         .name = _("Tiny Mushroom"),
@@ -1727,54 +1650,6 @@ const struct Item gItems[] =
     },
 
 // Mail
-    [ITEM_NIDOQUEENITE] =
-    {
-        .name = _("Orange Mail"),
-        .itemId = ITEM_NIDOQUEENITE,
-        .price = 50,
-        .description = sOrangeMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_NIDOQUEENITE),
-    },
-
-    [ITEM_NIDOKINGITE] =
-    {
-        .name = _("Harbor Mail"),
-        .itemId = ITEM_NIDOKINGITE,
-        .price = 50,
-        .description = sHarborMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_NIDOKINGITE),
-    },
-
-    [ITEM_SANDSLASHITE] =
-    {
-        .name = _("Glitter Mail"),
-        .itemId = ITEM_SANDSLASHITE,
-        .price = 50,
-        .description = sGlitterMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_SANDSLASHITE),
-    },
-
-    [ITEM_MEGANIUMITE] =
-    {
-        .name = _("Mech Mail"),
-        .itemId = ITEM_MEGANIUMITE,
-        .price = 50,
-        .description = sMechMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_MEGANIUMITE),
-    },
-
     [ITEM_WOOD_MAIL] =
     {
         .name = _("Wood Mail"),
@@ -7994,8 +7869,138 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    
+    [ITEM_GYARADOSITE_Y] =
+    {
+        .name = _("Gyaradosite Y"),
+        .itemId = ITEM_GYARADOSITE_Y,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
 
+    [ITEM_FERALIGATRITE_X] =
+    {
+        .name = _("Feraligatrite X"),
+        .itemId = ITEM_FERALIGATRITE_X,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_FERALIGATRITE_Y] =
+    {
+        .name = _("Feraligatrite Y"),
+        .itemId = ITEM_FERALIGATRITE_Y,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_HAXORUSITE] =
+    {
+        .name = _("Haxorusite"),
+        .itemId = ITEM_HAXORUSITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_LUXRAYNITE] =
+    {
+        .name = _("Luxraynite"),
+        .itemId = ITEM_LUXRAYNITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_GRANBULLITE] =
+    {
+        .name = _("Granbullite"),
+        .itemId = ITEM_GRANBULLITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_TYPHLOSIONITE] =
+    {
+        .name = _("Typhlosionite"),
+        .itemId = ITEM_TYPHLOSIONITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_NIDOQUEENITE] =
+    {
+        .name = _("Nidoqueenite"),
+        .itemId = ITEM_NIDOQUEENITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_NIDOKINGITE] =
+    {
+        .name = _("Nidokingite"),
+        .itemId = ITEM_NIDOKINGITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_SANDSLASHITE] =
+    {
+        .name = _("Sandslashite"),
+        .itemId = ITEM_SANDSLASHITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_MEGANIUMITE] =
+    {
+        .name = _("Meganiumite"),
+        .itemId = ITEM_MEGANIUMITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+    
     [ITEM_PURPLE_ORB] =
     {
         .name = _("Purple Orb"),
