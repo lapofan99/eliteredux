@@ -2459,7 +2459,7 @@ PKMN_Center_Move_Tutor_Text_0:
 
 PKMN_Center_EventScript_DayNightToggle_Text_0:
 	.string "Do you want to invert day/night?\n"
-	.string "Useful for wild encounters.$"
+	.string "Only used for the Shoal Cave.$"
 
 PKMN_Center_EventScript_DayNightToggle_Text_1:
 	.string "The Day and Night time was inverted.$"
