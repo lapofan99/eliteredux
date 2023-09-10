@@ -4852,6 +4852,66 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0x87,
         .y_offset = 2,
     },
+    [SPECIES_FERALIGATR_MEGA_X] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_FERALIGATR_MEGA_Y] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_GRANBULL_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_GYARADOS_MEGA_Y] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_HAXORUS_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_KINGDRA_MEGA_Y] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_LUXRAY_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_NIDOKING_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_NIDOQUEEN_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_SANDSLASH_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_TYPHLOSION_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_MEGANIUM_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] =
     {

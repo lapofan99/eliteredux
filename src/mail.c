@@ -133,7 +133,7 @@ static const u16 sBgColors[GENDER_COUNT][2] = {
 };
 
 static const struct MailGraphics sMailGraphics[] = {
-    [ITEM_TO_MAIL(ITEM_ORANGE_MAIL)] = {
+    [ITEM_TO_MAIL(ITEM_NIDOQUEENITE)] = {
         .palette = gMailPalette_Orange, 
         .tiles = gMailTiles_Orange, 
         .tileMap = gMailTilemap_Orange, 
@@ -141,7 +141,7 @@ static const struct MailGraphics sMailGraphics[] = {
         .textColor = RGB(10, 10, 10),
         .textShadow = RGB(25, 25, 25),
     }, 
-    [ITEM_TO_MAIL(ITEM_HARBOR_MAIL)] = {
+    [ITEM_TO_MAIL(ITEM_NIDOKINGITE)] = {
         .palette = gMailPalette_Harbor, 
         .tiles = gMailTiles_Harbor, 
         .tileMap = gMailTilemap_Harbor, 
@@ -149,7 +149,7 @@ static const struct MailGraphics sMailGraphics[] = {
         .textColor = RGB_WHITE,
         .textShadow = RGB(17, 17, 17),
     },
-    [ITEM_TO_MAIL(ITEM_GLITTER_MAIL)] = {
+    [ITEM_TO_MAIL(ITEM_SANDSLASHITE)] = {
         .palette = gMailPalette_Glitter, 
         .tiles = gMailTiles_Glitter, 
         .tileMap = gMailTilemap_Glitter, 
@@ -157,7 +157,7 @@ static const struct MailGraphics sMailGraphics[] = {
         .textColor = RGB(10, 10, 10),
         .textShadow = RGB(25, 25, 25),
     }, 
-    [ITEM_TO_MAIL(ITEM_MECH_MAIL)] = {
+    [ITEM_TO_MAIL(ITEM_MEGANIUMITE)] = {
         .palette = gMailPalette_Mech, 
         .tiles = gMailTiles_Mech, 
         .tileMap = gMailTilemap_Mech, 
@@ -238,7 +238,7 @@ static const struct MailLineLayout sLineLayouts_Wide[] = {
 };
 
 static const struct MailLayout sMailLayouts_Wide[] = {
-    [ITEM_TO_MAIL(ITEM_ORANGE_MAIL)] = { 
+    [ITEM_TO_MAIL(ITEM_NIDOQUEENITE)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Wide),
         .signatureYPos = 0,
         .signatureWidth = 0,
@@ -246,7 +246,7 @@ static const struct MailLayout sMailLayouts_Wide[] = {
         .wordsXPos = 4,
         .lines = sLineLayouts_Wide,
     },
-    [ITEM_TO_MAIL(ITEM_HARBOR_MAIL)] = { 
+    [ITEM_TO_MAIL(ITEM_NIDOKINGITE)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Wide),
         .signatureYPos = 0,
         .signatureWidth = 0,
@@ -254,7 +254,7 @@ static const struct MailLayout sMailLayouts_Wide[] = {
         .wordsXPos = 4,
         .lines = sLineLayouts_Wide,
     },
-    [ITEM_TO_MAIL(ITEM_GLITTER_MAIL)] = { 
+    [ITEM_TO_MAIL(ITEM_SANDSLASHITE)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Wide),
         .signatureYPos = 0,
         .signatureWidth = 0,
@@ -262,7 +262,7 @@ static const struct MailLayout sMailLayouts_Wide[] = {
         .wordsXPos = 4,
         .lines = sLineLayouts_Wide,
     },
-    [ITEM_TO_MAIL(ITEM_MECH_MAIL)] = { 
+    [ITEM_TO_MAIL(ITEM_MEGANIUMITE)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Wide),
         .signatureYPos = 0,
         .signatureWidth = 0,
@@ -345,7 +345,7 @@ static const struct MailLineLayout sLineLayouts_Tall[] = {
 };
 
 static const struct MailLayout sMailLayouts_Tall[] = {
-    [ITEM_TO_MAIL(ITEM_ORANGE_MAIL)] = { 
+    [ITEM_TO_MAIL(ITEM_NIDOQUEENITE)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Tall),
         .signatureYPos = 7,
         .signatureWidth = 88,
@@ -353,7 +353,7 @@ static const struct MailLayout sMailLayouts_Tall[] = {
         .wordsXPos = 30,
         .lines = sLineLayouts_Tall,
     },
-    [ITEM_TO_MAIL(ITEM_HARBOR_MAIL)] = { 
+    [ITEM_TO_MAIL(ITEM_NIDOKINGITE)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Tall),
         .signatureYPos = 10,
         .signatureWidth = 96,
@@ -361,7 +361,7 @@ static const struct MailLayout sMailLayouts_Tall[] = {
         .wordsXPos = 30,
         .lines = sLineLayouts_Tall,
     },
-    [ITEM_TO_MAIL(ITEM_GLITTER_MAIL)] = { 
+    [ITEM_TO_MAIL(ITEM_SANDSLASHITE)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Tall),
         .signatureYPos = 12,
         .signatureWidth = 104,
@@ -369,7 +369,7 @@ static const struct MailLayout sMailLayouts_Tall[] = {
         .wordsXPos = 30,
         .lines = sLineLayouts_Tall,
     },
-    [ITEM_TO_MAIL(ITEM_MECH_MAIL)] = { 
+    [ITEM_TO_MAIL(ITEM_MEGANIUMITE)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Tall),
         .signatureYPos = 5,
         .signatureWidth = 96,

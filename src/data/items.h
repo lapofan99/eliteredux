@@ -1354,10 +1354,10 @@ const struct Item gItems[] =
 
 // Valuable items
 
-    [ITEM_RED_APRICORN] =
+    [ITEM_GYARADOSITE_Y] =
     {
         .name = _("Red Apricorn"),
-        .itemId = ITEM_RED_APRICORN,
+        .itemId = ITEM_GYARADOSITE_Y,
         .price = 200,
         .description = sRedApricornDesc,
         .pocket = POCKET_ITEMS,
@@ -1365,10 +1365,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_BLUE_APRICORN] =
+    [ITEM_FERALIGATRITE_X] =
     {
         .name = _("Blue Apricorn"),
-        .itemId = ITEM_BLUE_APRICORN,
+        .itemId = ITEM_FERALIGATRITE_X,
         .price = 200,
         .description = sBlueApricornDesc,
         .pocket = POCKET_ITEMS,
@@ -1376,10 +1376,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_YELLOW_APRICORN] =
+    [ITEM_FERALIGATRITE_Y] =
     {
         .name = _("YellwApricorn"),
-        .itemId = ITEM_YELLOW_APRICORN,
+        .itemId = ITEM_FERALIGATRITE_Y,
         .price = 200,
         .description = sYellowApricornDesc,
         .pocket = POCKET_ITEMS,
@@ -1387,10 +1387,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_GREEN_APRICORN] =
+    [ITEM_HAXORUSITE] =
     {
         .name = _("GreenApricorn"),
-        .itemId = ITEM_GREEN_APRICORN,
+        .itemId = ITEM_HAXORUSITE,
         .price = 200,
         .description = sGreenApricornDesc,
         .pocket = POCKET_ITEMS,
@@ -1398,10 +1398,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_PINK_APRICORN] =
+    [ITEM_LUXRAYNITE] =
     {
         .name = _("Pink Apricorn"),
-        .itemId = ITEM_PINK_APRICORN,
+        .itemId = ITEM_LUXRAYNITE,
         .price = 200,
         .description = sPinkApricornDesc,
         .pocket = POCKET_ITEMS,
@@ -1409,10 +1409,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_WHITE_APRICORN] =
+    [ITEM_GRANBULLITE] =
     {
         .name = _("WhiteApricorn"),
-        .itemId = ITEM_WHITE_APRICORN,
+        .itemId = ITEM_GRANBULLITE,
         .price = 200,
         .description = sWhiteApricornDesc,
         .pocket = POCKET_ITEMS,
@@ -1420,10 +1420,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_BLACK_APRICORN] =
+    [ITEM_TYPHLOSIONITE] =
     {
         .name = _("BlackApricorn"),
-        .itemId = ITEM_BLACK_APRICORN,
+        .itemId = ITEM_TYPHLOSIONITE,
         .price = 200,
         .description = sBlackApricornDesc,
         .pocket = POCKET_ITEMS,
@@ -1727,52 +1727,52 @@ const struct Item gItems[] =
     },
 
 // Mail
-    [ITEM_ORANGE_MAIL] =
+    [ITEM_NIDOQUEENITE] =
     {
         .name = _("Orange Mail"),
-        .itemId = ITEM_ORANGE_MAIL,
+        .itemId = ITEM_NIDOQUEENITE,
         .price = 50,
         .description = sOrangeMailDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_MAIL,
         .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_ORANGE_MAIL),
+        .secondaryId = ITEM_TO_MAIL(ITEM_NIDOQUEENITE),
     },
 
-    [ITEM_HARBOR_MAIL] =
+    [ITEM_NIDOKINGITE] =
     {
         .name = _("Harbor Mail"),
-        .itemId = ITEM_HARBOR_MAIL,
+        .itemId = ITEM_NIDOKINGITE,
         .price = 50,
         .description = sHarborMailDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_MAIL,
         .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_HARBOR_MAIL),
+        .secondaryId = ITEM_TO_MAIL(ITEM_NIDOKINGITE),
     },
 
-    [ITEM_GLITTER_MAIL] =
+    [ITEM_SANDSLASHITE] =
     {
         .name = _("Glitter Mail"),
-        .itemId = ITEM_GLITTER_MAIL,
+        .itemId = ITEM_SANDSLASHITE,
         .price = 50,
         .description = sGlitterMailDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_MAIL,
         .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_GLITTER_MAIL),
+        .secondaryId = ITEM_TO_MAIL(ITEM_SANDSLASHITE),
     },
 
-    [ITEM_MECH_MAIL] =
+    [ITEM_MEGANIUMITE] =
     {
         .name = _("Mech Mail"),
-        .itemId = ITEM_MECH_MAIL,
+        .itemId = ITEM_MEGANIUMITE,
         .price = 50,
         .description = sMechMailDesc,
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_MAIL,
         .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_MECH_MAIL),
+        .secondaryId = ITEM_TO_MAIL(ITEM_MEGANIUMITE),
     },
 
     [ITEM_WOOD_MAIL] =
@@ -8190,10 +8190,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_IronPill,
     },
 
-    [ITEM_PRETTY_FEATHER] =
+    [ITEM_KINGDRANITE_Y] =
     {
         .name = _("Pretty Feather"),
-        .itemId = ITEM_PRETTY_FEATHER,
+        .itemId = ITEM_KINGDRANITE_Y,
         .price = 1000,
         .description = sPrettyFeatherDesc,
         .pocket = POCKET_ITEMS,

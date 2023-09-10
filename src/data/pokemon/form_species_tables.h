@@ -77,6 +77,7 @@ static const u16 sSandshrewFormSpeciesIdTable[] = {
 static const u16 sSandslashFormSpeciesIdTable[] = {
     SPECIES_SANDSLASH,
     SPECIES_SANDSLASH_ALOLAN,
+    SPECIES_SANDSLASH_MEGA,
     FORM_SPECIES_END,
 };
 
@@ -229,6 +230,7 @@ static const u16 sPinsirFormSpeciesIdTable[] = {
 static const u16 sGyaradosFormSpeciesIdTable[] = {
     SPECIES_GYARADOS,
     SPECIES_GYARADOS_MEGA,
+    SPECIES_GYARADOS_MEGA_Y,
     FORM_SPECIES_END,
 };
 
@@ -1059,3 +1061,58 @@ static const u16 sCascoonFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 
+static const u16 sFeraligatrFormSpeciesIdTable[] = {
+    SPECIES_FERALIGATR,
+    SPECIES_FERALIGATR_MEGA_X,
+    SPECIES_FERALIGATR_MEGA_Y,
+    FORM_SPECIES_END,
+};
+
+static const u16 sGranbullFormSpeciesIdTable[] = {
+    SPECIES_GRANBULL,
+    SPECIES_GRANBULL_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sHaxorusFormSpeciesIdTable[] = {
+    SPECIES_HAXORUS,
+    SPECIES_HAXORUS_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sLuxrayFormSpeciesIdTable[] = {
+    SPECIES_LUXRAY,
+    SPECIES_LUXRAY_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sNidokingFormSpeciesIdTable[] = {
+    SPECIES_NIDOKING,
+    SPECIES_NIDOKING_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sNidoqueenFormSpeciesIdTable[] = {
+    SPECIES_NIDOQUEEN,
+    SPECIES_NIDOQUEEN_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sTyphlosionFormSpeciesIdTable[] = {
+    SPECIES_TYPHLOSION,
+    SPECIES_TYPHLOSION_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sMeganiumFormSpeciesIdTable[] = {
+    SPECIES_MEGANIUM,
+    SPECIES_MEGANIUM_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sKingdraFormSpeciesIdTable[] = {
+    SPECIES_KINGDRA,
+    SPECIES_KINGDRA_MEGA,
+    SPECIES_KINGDRA_MEGA_Y,
+    FORM_SPECIES_END,
+};

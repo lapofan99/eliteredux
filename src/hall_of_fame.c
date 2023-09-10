@@ -529,6 +529,8 @@ u16 getHallofFameSpecies(u8 num){
         case SPECIES_GYARADOS:
             if(item == ITEM_GYARADOSITE)
                 return SPECIES_GYARADOS_MEGA;
+            else if(item == ITEM_GYARADOSITE_Y)
+                return SPECIES_GYARADOS_MEGA_Y;
         break;
         case SPECIES_HERACROSS:
             if(item == ITEM_HERACRONITE)
@@ -663,6 +665,8 @@ u16 getHallofFameSpecies(u8 num){
         case SPECIES_KINGDRA:
             if(item == ITEM_KINGDRANITE)
                 return SPECIES_KINGDRA_MEGA;
+            else if (item == ITEM_KINGDRANITE_Y)
+                return SPECIES_KINGDRA_MEGA_Y;
         break;
         case SPECIES_DEWGONG:
             if(item == ITEM_DEWGONGITE)
@@ -735,6 +739,44 @@ u16 getHallofFameSpecies(u8 num){
         case SPECIES_SLAKING:
             if(item == ITEM_SLAKINGITE)
                 return SPECIES_SLAKING_MEGA;
+        break;
+        case SPECIES_FERALIGATR:
+            if(item == ITEM_FERALIGATRITE_X)
+                return SPECIES_FERALIGATR_MEGA_X;
+            else if(item == ITEM_FERALIGATRITE_Y)
+                return SPECIES_FERALIGATR_MEGA_Y;
+        break;
+        case SPECIES_HAXORUS:
+            if(item == ITEM_HAXORUSITE)
+                return SPECIES_HAXORUS_MEGA;
+        break;
+        case SPECIES_LUXRAY:
+            if(item == ITEM_LUXRAYNITE)
+                return SPECIES_LUXRAY_MEGA;
+        break;
+        case SPECIES_GRANBULL:
+            if(item == ITEM_GRANBULLITE)
+                return SPECIES_GRANBULL_MEGA;
+        break;
+        case SPECIES_TYPHLOSION:
+            if(item == ITEM_TYPHLOSIONITE)
+                return SPECIES_TYPHLOSION_MEGA;
+        break;
+        case SPECIES_NIDOQUEEN:
+            if(item == ITEM_NIDOQUEENITE)
+                return SPECIES_NIDOQUEEN_MEGA;
+        break;
+        case SPECIES_NIDOKING:
+            if(item == ITEM_NIDOKINGITE)
+                return SPECIES_NIDOKING_MEGA;
+        break;
+        case SPECIES_SANDSLASH:
+            if(item == ITEM_SANDSLASHITE)
+                return SPECIES_SANDSLASH_MEGA;
+        break;
+        case SPECIES_MEGANIUM:
+            if(item == ITEM_MEGANIUMITE)
+                return SPECIES_MEGANIUM_MEGA;
         break;
         case SPECIES_CASCOON:
             if(item == ITEM_PURPLE_ORB)

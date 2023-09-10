@@ -1371,13 +1371,13 @@
 #define SPECIES_BRELOOM_MEGA                FORMS_START + 332
 #define SPECIES_SLAKING_MEGA                FORMS_START + 333
 #define SPECIES_CASCOON_PRIMAL              FORMS_START + 334
-#define SPECIES_TEMP4_MEGA                  FORMS_START + 335
-#define SPECIES_TEMP5_MEGA                  FORMS_START + 336
-#define SPECIES_TEMP6_MEGA                  FORMS_START + 337
-#define SPECIES_TEMP7_MEGA                  FORMS_START + 338
-#define SPECIES_TEMP8_MEGA                  FORMS_START + 339
-#define SPECIES_TEMP9_MEGA                  FORMS_START + 340
-#define SPECIES_TEMP10_MEGA                 FORMS_START + 341
+#define SPECIES_FERALIGATR_MEGA_X           FORMS_START + 335
+#define SPECIES_FERALIGATR_MEGA_Y           FORMS_START + 336
+#define SPECIES_GRANBULL_MEGA               FORMS_START + 337
+#define SPECIES_GYARADOS_MEGA_Y             FORMS_START + 338
+#define SPECIES_HAXORUS_MEGA                FORMS_START + 339
+#define SPECIES_KINGDRA_MEGA_Y              FORMS_START + 340
+#define SPECIES_MEGANIUM_MEGA               FORMS_START + 341
 
 #define SPECIES_INFERNAPE_REGIONAL          FORMS_START + 342
 #define SPECIES_NOIBAT_REGIONAL             FORMS_START + 343
@@ -1392,7 +1392,24 @@
 #define SPECIES_TEMP9_REGIONAL              FORMS_START + 352
 #define SPECIES_TEMP10_REGIONAL             FORMS_START + 353
 
-#define SPECIES_EGG SPECIES_TEMP10_REGIONAL + 1
+#define SPECIES_LUXRAY_MEGA                 FORMS_START + 354
+#define SPECIES_NIDOKING_MEGA               FORMS_START + 355
+#define SPECIES_NIDOQUEEN_MEGA              FORMS_START + 356
+#define SPECIES_SANDSLASH_MEGA              FORMS_START + 357
+#define SPECIES_TYPHLOSION_MEGA             FORMS_START + 358
+#define SPECIES_TEMP_MEGA11                 FORMS_START + 359
+#define SPECIES_TEMP_MEGA1                  FORMS_START + 360
+#define SPECIES_TEMP_MEGA2                  FORMS_START + 361
+#define SPECIES_TEMP_MEGA3                  FORMS_START + 362
+#define SPECIES_TEMP_MEGA4                  FORMS_START + 363
+#define SPECIES_TEMP_MEGA5                  FORMS_START + 364
+#define SPECIES_TEMP_MEGA6                  FORMS_START + 365
+#define SPECIES_TEMP_MEGA7                  FORMS_START + 366
+#define SPECIES_TEMP_MEGA8                  FORMS_START + 367
+#define SPECIES_TEMP_MEGA9                  FORMS_START + 368
+#define SPECIES_TEMP_MEGA10                 FORMS_START + 369
+
+#define SPECIES_EGG SPECIES_TEMP_MEGA10 + 1
 #define NUM_SPECIES SPECIES_EGG
 
 // National Dex Index Defines

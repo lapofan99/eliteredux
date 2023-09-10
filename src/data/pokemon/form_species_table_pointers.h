@@ -536,4 +536,36 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_CASCOON] = sCascoonFormSpeciesIdTable,
     [SPECIES_CASCOON_PRIMAL] = sCascoonFormSpeciesIdTable,
 
+    [SPECIES_FERALIGATR] = sFeraligatrFormSpeciesIdTable,
+    [SPECIES_FERALIGATR_MEGA_X] = sFeraligatrFormSpeciesIdTable,
+    [SPECIES_FERALIGATR_MEGA_Y] = sFeraligatrFormSpeciesIdTable,
+
+    [SPECIES_GRANBULL] = sGranbullFormSpeciesIdTable,
+    [SPECIES_GRANBULL_MEGA] = sGranbullFormSpeciesIdTable,
+
+    [SPECIES_GYARADOS_MEGA_Y] = sGyaradosFormSpeciesIdTable,
+
+    [SPECIES_HAXORUS] = sHaxorusFormSpeciesIdTable,
+    [SPECIES_HAXORUS_MEGA] = sHaxorusFormSpeciesIdTable,
+
+    [SPECIES_KINGDRA] = sKingdraFormSpeciesIdTable,
+    [SPECIES_KINGDRA_MEGA_Y] = sKingdraFormSpeciesIdTable,
+
+    [SPECIES_LUXRAY] = sLuxrayFormSpeciesIdTable,
+    [SPECIES_LUXRAY_MEGA] = sLuxrayFormSpeciesIdTable,
+
+    [SPECIES_NIDOKING] = sNidokingFormSpeciesIdTable,
+    [SPECIES_NIDOKING_MEGA] = sNidokingFormSpeciesIdTable,
+
+    [SPECIES_NIDOQUEEN] = sNidoqueenFormSpeciesIdTable,
+    [SPECIES_NIDOQUEEN_MEGA] = sNidoqueenFormSpeciesIdTable,
+
+    [SPECIES_SANDSLASH_MEGA] = sSandslashFormSpeciesIdTable,
+
+    [SPECIES_TYPHLOSION] = sTyphlosionFormSpeciesIdTable,
+    [SPECIES_TYPHLOSION_MEGA] = sTyphlosionFormSpeciesIdTable,
+
+    [SPECIES_MEGANIUM] = sMeganiumFormSpeciesIdTable,
+    [SPECIES_MEGANIUM_MEGA] = sMeganiumFormSpeciesIdTable,
+
 };

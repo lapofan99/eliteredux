@@ -1,10 +1,10 @@
 #ifndef GUARD_MAIL_H
 #define GUARD_MAIL_H
 
-#define IS_ITEM_MAIL(itemId)((itemId == ITEM_ORANGE_MAIL            \
-                              || itemId == ITEM_HARBOR_MAIL         \
-                              || itemId == ITEM_GLITTER_MAIL        \
-                              || itemId == ITEM_MECH_MAIL           \
+#define IS_ITEM_MAIL(itemId)((itemId == ITEM_NIDOQUEENITE            \
+                              || itemId == ITEM_NIDOKINGITE         \
+                              || itemId == ITEM_SANDSLASHITE        \
+                              || itemId == ITEM_MEGANIUMITE           \
                               || itemId == ITEM_WOOD_MAIL           \
                               || itemId == ITEM_WAVE_MAIL           \
                               || itemId == ITEM_BEAD_MAIL           \

@@ -14816,6 +14816,18 @@ void UndoMegaEvolution(u32 monId)
         case SPECIES_SLAKING_MEGA:
         case SPECIES_CASCOON_PRIMAL:
         case SPECIES_RAYQUAZA_MEGA:
+        case SPECIES_FERALIGATR_MEGA_X:
+        case SPECIES_FERALIGATR_MEGA_Y:
+        case SPECIES_GRANBULL_MEGA:
+        case SPECIES_GYARADOS_MEGA_Y:
+        case SPECIES_HAXORUS_MEGA:
+        case SPECIES_KINGDRA_MEGA_Y:
+        case SPECIES_LUXRAY_MEGA:
+        case SPECIES_NIDOKING_MEGA:
+        case SPECIES_NIDOQUEEN_MEGA:
+        case SPECIES_SANDSLASH_MEGA:
+        case SPECIES_TYPHLOSION_MEGA:
+        case SPECIES_MEGANIUM_MEGA:
             SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &baseSpecies);
         break;
     }
