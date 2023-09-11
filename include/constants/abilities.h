@@ -433,8 +433,9 @@
 #define ABILITY_ROUNDHOUSE       (ABILITIES_COUNT_LATEST_GEN + 135) // Kick Moves can't miss and also deal damage depending on the lower of the target's defenses.
 #define ABILITY_MINERALIZE       (ABILITIES_COUNT_LATEST_GEN + 136) // All Normal-type moves used by the Pokémon become Rock-type and receive a 20% power boost.
 #define ABILITY_LOOSE_ROCKS      (ABILITIES_COUNT_LATEST_GEN + 137) // when being hit by any attacking move (like Stamina), trigger Stealth Rock
+#define ABILITY_SPINNING_TOP     (ABILITIES_COUNT_LATEST_GEN + 138) // Fighting-type moves raise speed by +1 and clear hazards.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_LOOSE_ROCKS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SPINNING_TOP + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

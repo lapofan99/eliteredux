@@ -776,7 +776,7 @@ static const u8 sText_HeatingUpBeak[] = _("{B_ATK_NAME_WITH_PREFIX} started\nhea
 static const u8 sText_AbilityLetItUseMove[] = _("{B_ATK_NAME_WITH_PREFIX}'s ability let it use\n{B_CURRENT_MOVE}!");
 static const u8 sText_LethargyEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} has it's full energy!");
 static const u8 sText_LethargyEnd[] = _("{B_ATK_NAME_WITH_PREFIX} it's out\nof energy!");
-static const u8 sText_PickupActivated[] = _("{B_ATK_NAME_WITH_PREFIX} picked everything\non its field side!");
+static const u8 sText_PickupActivated[] = _("{B_ATK_NAME_WITH_PREFIX} removed hazards\non its field side!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {

@@ -4893,17 +4893,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
         break;
-		case ABILITY_PICKUP:
-            if (!gSpecialStatuses[battler].switchInAbilityDone &&
-			   ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY)))
-            {
-				gBattlerAttacker = battler;
-				gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
-                BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
-                effect++;
-            }
-            break;
+case ABILITY_PICKUP:
+    // Check if the Pokemon has already used its ability since entering the battle
+    if (!gSpecialStatuses[battler].switchInAbilityDone &&
+        // Check if there are any hazards on the side of the field that the Pokemon has just entered
+        ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY)))
+    {
+        // Set the attacker to the Pokemon with the Pickup ability
+        gBattlerAttacker = battler;
+        // Set a flag indicating that the Pokemon has used its ability
+        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+        // Remove any hazards from the side of the field that the Pokemon has just entered
+        gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
+        // Push a cursor and callback to a stack to activate the Pickup ability
+        BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
+        // Increment the effect counter
+        effect++;
+    }
+    break;
         case ABILITY_INTIMIDATE:
             /*if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -8312,6 +8319,39 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 gBattleScripting.animArg2 = 0;
                 BattleScriptPushCursorAndCallback(BattleScript_AttackBoostActivates);
                 gBattleScripting.battler = battler;
+                effect++;
+            }
+            break;
+        // Spinning Top
+        case ABILITY_SPINNING_TOP:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+			 && gBattleMoves[move].type == TYPE_FIGHTING) // Fighting-type moves
+             && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+				gBattleMons[battler].statStages[STAT_SPEED]++;
+                gBattleScripting.animArg1 = 14 + STAT_SPEED;
+                gBattleScripting.animArg2 = 0;
+                BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
+                gBattleScripting.battler = battler;
+                effect++;
+            }
+            break;
+            // Check if the Pokemon has already used its ability since entering the battle
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+                // Check if there are any hazards on the side of the field that the Pokemon has just entered
+                ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY)))
+            {
+                // Set the attacker to the Pokemon with the Spinning Top ability
+                gBattlerAttacker = battler;
+                // Set a flag indicating that the Pokemon has used its ability
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                // Remove any hazards from the side of the field that the Pokemon has just entered
+                gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
+                // Push a cursor and callback to a stack to activate the Pickup ability
+                BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
+                // Increment the effect counter
                 effect++;
             }
             break;
