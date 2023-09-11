@@ -11696,7 +11696,20 @@ static void Cmd_metronome(void)
 
 static void Cmd_dmgtolevel(void)
 {
-    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level;
+    if((gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)){
+        if(gBattleMons[gBattlerAttacker].ability == ABILITY_PARENTAL_BOND || BattlerHasInnate(gBattlerAttacker, ABILITY_PARENTAL_BOND))
+		    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 4;
+        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_RAGING_BOXER || BattlerHasInnate(gBattlerAttacker, ABILITY_RAGING_BOXER))
+		    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 2;
+        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED))
+			    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 5;
+        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_HYPER_AGGRESSIVE || BattlerHasInnate(gBattlerAttacker, ABILITY_HYPER_AGGRESSIVE))
+		    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 4;
+    }
+    else if((gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2) && (gBattleMons[gBattlerAttacker].ability == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED)))
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level  * 0.15;
+    else
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level;
     gBattlescriptCurrInstr++;
 }
 
