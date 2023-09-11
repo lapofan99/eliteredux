@@ -14504,8 +14504,9 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         modifier = UQ_4_12(1.0);
     }
 	
-	if ((GetBattlerAbility(battlerDef) == ABILITY_MOUNTAINEER || 
-         BattlerHasInnate(battlerDef, ABILITY_MOUNTAINEER))   && 
+	if ((GetBattlerAbility(battlerDef) == ABILITY_MOUNTAINEER ||
+         BattlerHasInnate(battlerDef, ABILITY_MOUNTAINEER))   &&
+         !DoesBattlerIgnoreAbilityorInnateChecks(battlerAtk)  &&
          moveType == TYPE_ROCK)
     {
         modifier = UQ_4_12(0.0);

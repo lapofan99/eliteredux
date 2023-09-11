@@ -2120,8 +2120,10 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     MulModifier(&mod, tempMod);
                 }
 
-                if(gBattleMons[targetId].ability == ABILITY_MOUNTAINEER || BattlerHasInnate(targetId, ABILITY_MOUNTAINEER))
-                    abilityNullifiesDamage = TRUE;
+                if((gBattleMons[targetId].ability == ABILITY_MOUNTAINEER || BattlerHasInnate(targetId, ABILITY_MOUNTAINEER)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum)){
+                    //Has mountaineer
+                    abilityNullifiesDamage = FALSE;
+                }
             break;
             case TYPE_NORMAL:
                 if(gBattleMons[userId].ability == ABILITY_SCRAPPY || BattlerHasInnate(userId, ABILITY_SCRAPPY)){

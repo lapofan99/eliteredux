@@ -624,13 +624,14 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 
         if(gBattleMoves[move].flags & FLAG_SOUND && (AI_DATA->atkAbility == ABILITY_SAND_SONG || BattlerHasInnate(battlerAtk, ABILITY_SAND_SONG)))
         {
-            if(IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) || (AI_DATA->defAbility == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE)))
+            if((IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING) || (AI_DATA->defAbility == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE))) && !DoesBattlerIgnoreAbilityorInnateChecks(battlerAtk))
                 RETURN_SCORE_MINUS(20);
         }
 
 
-        if (moveType == TYPE_ROCK
-          && (AI_DATA->defAbility == ABILITY_MOUNTAINEER || BattlerHasInnate(battlerDef, ABILITY_MOUNTAINEER)))
+        if (moveType == TYPE_ROCK &&
+          (AI_DATA->defAbility == ABILITY_MOUNTAINEER || BattlerHasInnate(battlerDef, ABILITY_MOUNTAINEER)) &&
+          !DoesBattlerIgnoreAbilityorInnateChecks(battlerAtk))
         {
             RETURN_SCORE_MINUS(20);
         }
