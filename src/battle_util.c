@@ -8328,31 +8328,22 @@ case ABILITY_PICKUP:
              && TARGET_TURN_DAMAGED
 			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
 			 && gBattleMoves[move].type == TYPE_FIGHTING) // Fighting-type moves
-             && CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
             {
-				gBattleMons[battler].statStages[STAT_SPEED]++;
-                gBattleScripting.animArg1 = 14 + STAT_SPEED;
-                gBattleScripting.animArg2 = 0;
-                BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
-                gBattleScripting.battler = battler;
-                effect++;
-            }
-            break;
-            // Check if the Pokemon has already used its ability since entering the battle
-            if (!gSpecialStatuses[battler].switchInAbilityDone &&
-                // Check if there are any hazards on the side of the field that the Pokemon has just entered
-                ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY)))
-            {
-                // Set the attacker to the Pokemon with the Spinning Top ability
-                gBattlerAttacker = battler;
-                // Set a flag indicating that the Pokemon has used its ability
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                // Remove any hazards from the side of the field that the Pokemon has just entered
-                gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
-                // Push a cursor and callback to a stack to activate the Pickup ability
-                BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
-                // Increment the effect counter
-                effect++;
+                if(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_HAZARDS_ANY){
+                    gSideStatuses[GetBattlerSide(battler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
+                    BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
+                    gBattleScripting.battler = battler;
+                    effect++;
+                }
+                
+                if(CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)){
+                    gBattleMons[battler].statStages[STAT_SPEED]++;
+                    gBattleScripting.animArg1 = 14 + STAT_SPEED;
+                    gBattleScripting.animArg2 = 0;
+                    BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
+                    gBattleScripting.battler = battler;
+                    effect++;
+                }
             }
             break;
         // Hardened Sheath
@@ -8693,6 +8684,32 @@ case ABILITY_PICKUP:
 					effect++;
 				}
 		}
+        // Spinning Top
+		if (BattlerHasInnate(battler, ABILITY_SPINNING_TOP)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && TARGET_TURN_DAMAGED
+			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+			 && gBattleMoves[move].type == TYPE_FIGHTING) // Fighting-type moves
+            {
+                if(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_HAZARDS_ANY){
+				    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SPINNING_TOP;
+                    gSideStatuses[GetBattlerSide(battler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
+                    BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
+                    gBattleScripting.battler = battler;
+                    effect++;
+                }
+                
+                if(CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)){
+				    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SPINNING_TOP;
+                    gBattleMons[battler].statStages[STAT_SPEED]++;
+                    gBattleScripting.animArg1 = 14 + STAT_SPEED;
+                    gBattleScripting.animArg2 = 0;
+                    BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
+                    gBattleScripting.battler = battler;
+                    effect++;
+                }
+            }
+        }
         // Hardened Sheath
 		if (BattlerHasInnate(battler, ABILITY_HARDENED_SHEATH)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -8701,8 +8718,7 @@ case ABILITY_PICKUP:
 				 && (gBattleMoves[move].flags2 & FLAG_HORN_BASED)
 				 && CompareStat(battler, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
 				{
-					gBattleScripting.abilityPopupOverwrite = ABILITY_HARDENED_SHEATH;
-					gLastUsedAbility = ABILITY_HARDENED_SHEATH;
+					gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HARDENED_SHEATH;
 					PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 					BattleScriptPushCursor();
 					gBattleMons[battler].statStages[STAT_ATK]++;
