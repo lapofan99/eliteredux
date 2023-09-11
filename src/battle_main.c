@@ -5873,7 +5873,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon){
              && gBattleMoves[move].effect != EFFECT_CHANGE_TYPE_ON_ITEM
              && gBattleMoves[move].effect != EFFECT_NATURAL_GIFT
              && (   ((ability == ABILITY_PIXILATE        || MonHasInnate(mon, ABILITY_PIXILATE))        && (ateType = TYPE_FAIRY))
-                 || ((ability == ABILITY_REFRIGERATE    || MonHasInnate(mon, ABILITY_REFRIGERATE))      && (ateType = TYPE_ICE))
+                 || ((ability == ABILITY_REFRIGERATE     || MonHasInnate(mon, ABILITY_REFRIGERATE))     && (ateType = TYPE_ICE))
                  || ((ability == ABILITY_AERILATE        || MonHasInnate(mon, ABILITY_AERILATE))        && (ateType = TYPE_FLYING))
 				 || ((ability == ABILITY_BURNATE         || MonHasInnate(mon, ABILITY_BURNATE))         && (ateType = TYPE_FIRE))
 				 || ((ability == ABILITY_SOLAR_FLARE     || MonHasInnate(mon, ABILITY_SOLAR_FLARE))     && (ateType = TYPE_FIRE))

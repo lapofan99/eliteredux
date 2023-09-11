@@ -8962,7 +8962,7 @@ u16 getRandomSpecies(void)
 	return species;
 }
 
-bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality, bool8 disablerandomizer){
+bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality, bool8 disablerandomizer, bool8 isEnemyMon){
 	u8 i;
     u16 innate1 = gBaseStats[species].innates[0];
     u16 innate2 = gBaseStats[species].innates[1];
@@ -8974,11 +8974,11 @@ bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality, bool
         innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
     }
 	
-    if(innate1 == ability      && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    if(innate1 == ability      && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon))
         return TRUE;
-    else if(innate2 == ability && (level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    else if(innate2 == ability && (level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon))
         return TRUE;
-    else if(innate3 == ability && (level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    else if(innate3 == ability && (level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon))
         return TRUE;
 	else
 	    return FALSE;
@@ -9134,7 +9134,7 @@ bool8 MonHasInnate(struct Pokemon *mon, u16 ability){
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
 
-    return SpeciesHasInnate(species, ability, level, personality, FALSE);
+    return SpeciesHasInnate(species, ability, level, personality, FALSE, FALSE);
 }
 
 bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability){
@@ -9142,7 +9142,7 @@ bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability){
     u32 personality = GetBoxMonData(boxmon, MON_DATA_PERSONALITY, NULL);
     u8 level = GetBoxMonData(boxmon, MON_DATA_LEVEL, NULL);
 
-    return SpeciesHasInnate(species, ability, level, personality, FALSE);
+    return SpeciesHasInnate(species, ability, level, personality, FALSE, FALSE);
 }
 
 u8 GetSpeciesInnateNum(u16 species, u16 ability, u8 level, u32 personality, bool8 disablerandomizer){
@@ -9174,7 +9174,6 @@ void CreateShinyMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 nat
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-
     do
     {
         personality = Random32();
