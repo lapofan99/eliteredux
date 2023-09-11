@@ -7858,7 +7858,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_HUMAN_LIKE,
     .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
     .abilities = {ABILITY_STEADFAST, ABILITY_FIGHT_SPIRIT, ABILITY_CONTRARY},
-    .innates = {ABILITY_TECHNICIAN, ABILITY_INTIMIDATE, ABILITY_NONE},
+    .innates = {ABILITY_TECHNICIAN, ABILITY_INTIMIDATE, ABILITY_SCRAPPY},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },
