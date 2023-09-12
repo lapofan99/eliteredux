@@ -2126,12 +2126,12 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     //Always Critical
     else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
              || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
+             || (gBattleMoves[move].flags2 & FLAG_ALWAYS_CRIT)
              || ((abilityAtk == ABILITY_MERCILESS || BattlerHasInnate(battlerAtk, ABILITY_MERCILESS)) && 
              ((gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY) || 
                gBattleMons[battlerDef].statStages[STAT_SPEED] < DEFAULT_STAT_STAGE || 
               (gBattleMons[battlerDef].status1 & STATUS1_PARALYSIS) || 
                gBattleMons[battlerDef].item == ITEM_IRON_BALL ))
-             || move == MOVE_SURGING_STRIKES
              || ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk))
              )
     {
