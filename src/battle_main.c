@@ -5886,6 +5886,7 @@ u8 GetMonMoveType(u16 move, struct Pokemon *mon){
 				 || ((ability == ABILITY_SPECTRAL_SHROUD || MonHasInnate(mon, ABILITY_SPECTRAL_SHROUD)) && (ateType = TYPE_GHOST))
 				 || ((ability == ABILITY_SPECTRALIZE     || MonHasInnate(mon, ABILITY_SPECTRALIZE))     && (ateType = TYPE_GHOST))
                  || ((ability == ABILITY_MINERALIZE      || MonHasInnate(mon, ABILITY_MINERALIZE))      && (ateType = TYPE_ROCK))
+                 || ((ability == ABILITY_DRACONIZE       || MonHasInnate(mon, ABILITY_DRACONIZE))       && (ateType = TYPE_DRAGON))
                 )
              ){
         return ateType;
@@ -6026,6 +6027,7 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
 				 || ((attackerAbility == ABILITY_SPECTRAL_SHROUD || BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD)) && (ateType = TYPE_GHOST))
 				 || ((attackerAbility == ABILITY_SPECTRALIZE     || BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE))     && (ateType = TYPE_GHOST))
                  || ((attackerAbility == ABILITY_MINERALIZE      || BattlerHasInnate(battlerAtk, ABILITY_MINERALIZE))      && (ateType = TYPE_ROCK))
+                 || ((attackerAbility == ABILITY_DRACONIZE       || BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE))       && (ateType = TYPE_DRAGON))
                 )
              )
         return ateType;
@@ -6152,6 +6154,7 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
                  || (((attackerAbility == ABILITY_SPECTRAL_SHROUD)   || BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD))     && (ateType = TYPE_GHOST))
                  || (((attackerAbility == ABILITY_SPECTRALIZE)       || BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE))         && (ateType = TYPE_GHOST))
                  || (((attackerAbility == ABILITY_MINERALIZE)        || BattlerHasInnate(battlerAtk, ABILITY_MINERALIZE))          && (ateType = TYPE_ROCK))
+                 || (((attackerAbility == ABILITY_DRACONIZE)         || BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE))           && (ateType = TYPE_DRAGON))
                 )
              )
     {

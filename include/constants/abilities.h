@@ -440,8 +440,9 @@
 #define ABILITY_QUEENS_MOURNING  (ABILITIES_COUNT_LATEST_GEN + 142) // When a stat is lowered, boost SpAtk and SpDef by +1. Includes Ally Drops.
 #define ABILITY_TOXIC_SPILL      (ABILITIES_COUNT_LATEST_GEN + 143) // The user regurgitates it's toxic fluids onto the field, causing all non-Poison Type Pokemon on the field to take 1/8th of their max HP at the end of every turn.
 #define ABILITY_DESERT_CLOAK     (ABILITIES_COUNT_LATEST_GEN + 144) // The pokemon shrouds itself and its allies protecting them from status conditions and secondary effects while under sand.
+#define ABILITY_DRACONIZE        (ABILITIES_COUNT_LATEST_GEN + 145) // All Normal-type moves used by the Pokémon become Dragon-type and receive a 20% power boost.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_DESERT_CLOAK + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_DRACONIZE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

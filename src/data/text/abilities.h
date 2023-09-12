@@ -403,6 +403,7 @@ static const u8 sKingsWrathDescription[]     = _("The Pokémon does stuff\nand t
 static const u8 sQueensMourningDescription[] = _("The Pokémon does stuff\nand then things happen.");
 static const u8 sToxicSpillDescription[]     = _("The Pokémon does stuff\nand then things happen.");
 static const u8 sDesertCloakDescription[]    = _("The Pokémon does stuff\nand then things happen.");
+static const u8 sDraconizeDescription[] = _("Normal moves become Dragon\nand get a 20% boost.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -820,6 +821,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_QUEENS_MOURNING] = _("Queen's Mourning"),
     [ABILITY_TOXIC_SPILL] = _("Toxic Spill"),
     [ABILITY_DESERT_CLOAK] = _("Desert Cloak"),
+    [ABILITY_DRACONIZE] = _("Draconize"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1236,4 +1238,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_QUEENS_MOURNING] = sQueensMourningDescription,
     [ABILITY_TOXIC_SPILL] = sToxicSpillDescription,
     [ABILITY_DESERT_CLOAK] = sDesertCloakDescription,
+    [ABILITY_DRACONIZE] = sDraconizeDescription,
 };
