@@ -1540,14 +1540,14 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_COUNTER:
-            if (IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility) || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
+            if (IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility) || gBattleMons[battlerDef].status2 & (STATUS2_CONFUSION))
                 score--;
             if (predictedMove == MOVE_NONE || GetBattleMoveSplit(predictedMove) == SPLIT_STATUS || (GetBattleMoveSplit(predictedMove) == SPLIT_SPECIAL && B_USE_COUNTER_MIRROR_COAT_RIGHT)
               || DoesSubstituteBlockMove(battlerAtk, AI_DATA->battlerDefPartner, predictedMove))
                 score -= 10;
             break;
         case EFFECT_MIRROR_COAT:
-            if (IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility) || gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION))
+            if (IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility) || gBattleMons[battlerDef].status2 & (STATUS2_CONFUSION))
                 score--;
             if (predictedMove == MOVE_NONE || GetBattleMoveSplit(predictedMove) == SPLIT_STATUS || (GetBattleMoveSplit(predictedMove) == SPLIT_PHYSICAL && B_USE_COUNTER_MIRROR_COAT_RIGHT)
               || DoesSubstituteBlockMove(battlerAtk, AI_DATA->battlerDefPartner, predictedMove))
@@ -5041,7 +5041,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         {
             if (IsBattlerIncapacitated(battlerDef, AI_DATA->defAbility))
                 score += 2;
-            else if ((gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION)) || (gBattleMons[battlerAtk].status2 &= ~(STATUS2_SUBSTITUTE)))
+            else if ((gBattleMons[battlerDef].status2 & (STATUS2_CONFUSION)) || (gBattleMons[battlerAtk].status2 &= ~(STATUS2_SUBSTITUTE)))
                 score++;
         }
         break;
@@ -5055,7 +5055,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         break;
     case EFFECT_REVENGE:
         if (!(gBattleMons[battlerDef].status1 & STATUS1_SLEEP)
-          &&  !(gBattleMons[battlerDef].status2 & (STATUS2_INFATUATION | STATUS2_CONFUSION)))
+          &&  !(gBattleMons[battlerDef].status2 & (STATUS2_CONFUSION)))
             score += 2;
         break;
     case EFFECT_ENDEAVOR:
