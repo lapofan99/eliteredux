@@ -2353,6 +2353,9 @@ const u16 gEggMoves[] = {
         MOVE_DRAGON_HAMMER),
 
     egg_moves(CHIMECHO,
+        MOVE_AFTER_YOU, // new
+        MOVE_FOLLOW_ME, // new
+        MOVE_ALLY_SWITCH, // new
         MOVE_MIRROR_SHOT, // new
         MOVE_MISTY_EXPLOSION, // new
         MOVE_MOONBLAST, // new
@@ -3251,6 +3254,13 @@ const u16 gEggMoves[] = {
         MOVE_POISON_FANG),
 
     egg_moves(COTTONEE,
+        MOVE_HEAL_BLOCK, // new
+        MOVE_HEAL_BELL, // new
+        MOVE_HEALING_WISH, // new
+        MOVE_LUNAR_DANCE, // new
+        MOVE_FLORAL_HEALING, // new
+        MOVE_RECOVER, // new
+        MOVE_STRENGTH_SAP, // new
         MOVE_GRASSY_GLIDE, // new
         MOVE_NATURAL_GIFT,
         MOVE_ENCORE,
@@ -4134,6 +4144,8 @@ const u16 gEggMoves[] = {
         MOVE_PSYCHIC_TERRAIN),
 
     egg_moves(PASSIMIAN,
+        MOVE_BATON_PASS, // new
+        MOVE_SUCKER_PUNCH, // new
         MOVE_SEISMIC_TOSS,
         MOVE_VITAL_THROW,
         MOVE_QUICK_GUARD,
@@ -4201,6 +4213,7 @@ const u16 gEggMoves[] = {
         MOVE_RAGE),
 
     egg_moves(DRAMPA,
+        MOVE_RETALIATE, // new
         MOVE_HURRICANE,
         MOVE_DRAGON_RUSH,
         MOVE_RAZOR_WIND,
