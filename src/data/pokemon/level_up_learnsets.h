@@ -565,6 +565,7 @@ static const struct LevelUpMove sSandslashLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_HIGH_HORSEPOWER), // new
     LEVEL_UP_MOVE(53, MOVE_EARTHQUAKE),
     LEVEL_UP_MOVE(58, MOVE_FISSURE), // new
+    LEVEL_UP_MOVE(63, MOVE_PRECIPICE_BLADES), // new
     LEVEL_UP_END
 };
 
@@ -15784,6 +15785,7 @@ static const struct LevelUpMove sClawitzerLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(49, MOVE_AQUA_JET),
 	LEVEL_UP_MOVE(57, MOVE_MUDDY_WATER),
 	LEVEL_UP_MOVE(65, MOVE_WAVE_CRASH), // new
+	LEVEL_UP_MOVE(73, MOVE_ORIGIN_PULSE), // new
 	LEVEL_UP_END
 };
 

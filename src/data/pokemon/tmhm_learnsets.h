@@ -18435,6 +18435,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM27_RETURN)
                                         | TMHM1(TM29_PSYCHIC)
                                         | TMHM1(TM30_SHADOW_BALL)
+                                        | TMHM1(TM33_REFLECT) // new
                                         | TMHM1(TM42_FACADE)
                                         | TMHM1(TM43_SECRET_POWER)
                                         | TMHM1(TM44_REST)
@@ -25844,6 +25845,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM88_LOW_SWEEP)
                                         | TMHM2(TM89_U_TURN)
                                         | TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM94_SUCKER_PUNCH) // new
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM04_STRENGTH)
                                         | TMHM2(HM06_ROCK_SMASH)),
