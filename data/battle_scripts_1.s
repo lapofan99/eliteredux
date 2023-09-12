@@ -7946,6 +7946,20 @@ BattleScript_DrizzleActivates::
 	call BattleScript_WeatherFormChanges
 	end3
 
+BattleScript_KingsWarthActivated::
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+BattleScript_KingsWarth_AttackUpDoAnim::
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_KingsWarth_DefenseUpDoAnim
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_PKMNRAISEDATTACK
+BattleScript_KingsWarth_DefenseUpDoAnim::
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_KingsWarth_End
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_PKMNRAISEDDEFENSE
+BattleScript_KingsWarth_End:
+	return
+
 BattleScript_DefiantActivates::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp

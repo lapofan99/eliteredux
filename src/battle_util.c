@@ -1541,6 +1541,31 @@ void PrepareStringBattle(u16 stringId, u8 battler)
         stringId = STRINGID_STATSWONTINCREASE2;
     else if (stringId == STRINGID_STATSWONTINCREASE2 && (GetBattlerAbility(battler) == ABILITY_CONTRARY || BattlerHasInnate(battler, ABILITY_CONTRARY)))
         stringId = STRINGID_STATSWONTDECREASE2;
+    else if((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH || stringId == STRINGID_PKMNCUTSSPATTACKWITH) &&
+            (GetBattlerAbility(gBattlerTarget) == ABILITY_KINGS_WRATH                 || BattlerHasInnate(gBattlerTarget, ABILITY_KINGS_WRATH) || 
+             GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) == ABILITY_KINGS_WRATH || BattlerHasInnate(BATTLE_PARTNER(gBattlerTarget), ABILITY_KINGS_WRATH)) &&
+             gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget) &&
+             gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget){
+            
+            //Overwrites the Popout
+			gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_KINGS_WRATH;
+            //Overwrites where it's written
+            if(GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) == ABILITY_KINGS_WRATH || BattlerHasInnate(BATTLE_PARTNER(gBattlerTarget), ABILITY_KINGS_WRATH)){
+                gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(gBattlerTarget);
+                gBattlerAbility = BATTLE_PARTNER(gBattlerTarget);
+            }
+            else
+                gBattlerAbility = gBattlerTarget;
+
+            if(CompareStat(gBattlerAbility, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+                gBattleMons[gBattlerAbility].statStages[STAT_ATK]++;
+
+            if(CompareStat(gBattlerAbility, STAT_DEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+                gBattleMons[gBattlerAbility].statStages[STAT_DEF]++;
+            
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_KingsWarthActivated;
+    }
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
     else if ((stringId == STRINGID_DEFENDERSSTATFELL    || 
               stringId == STRINGID_PKMNCUTSATTACKWITH   || 

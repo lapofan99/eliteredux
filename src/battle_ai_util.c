@@ -1905,6 +1905,10 @@ bool32 ShouldLowerAttack(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
       && defAbility != ABILITY_RUN_AWAY
       && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
+      && defAbility != ABILITY_KINGS_WRATH
+      && !BattlerHasInnate(battlerDef, ABILITY_KINGS_WRATH)
+      && defAbility != ABILITY_QUEENS_MOURNING
+      && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_HYPER_CUTTER
       && !BattlerHasInnate(battlerDef, ABILITY_HYPER_CUTTER))
         return TRUE;
@@ -1928,6 +1932,10 @@ bool32 ShouldLowerDefense(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
       && defAbility != ABILITY_RUN_AWAY
       && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
+      && defAbility != ABILITY_KINGS_WRATH
+      && !BattlerHasInnate(battlerDef, ABILITY_KINGS_WRATH)
+      && defAbility != ABILITY_QUEENS_MOURNING
+      && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
       && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
@@ -1950,6 +1958,10 @@ bool32 ShouldLowerSpeed(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
       && defAbility != ABILITY_RUN_AWAY
       && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
+      && defAbility != ABILITY_KINGS_WRATH
+      && !BattlerHasInnate(battlerDef, ABILITY_KINGS_WRATH)
+      && defAbility != ABILITY_QUEENS_MOURNING
+      && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
       && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
@@ -1973,6 +1985,10 @@ bool32 ShouldLowerSpAtk(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
       && defAbility != ABILITY_RUN_AWAY
       && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
+      && defAbility != ABILITY_KINGS_WRATH
+      && !BattlerHasInnate(battlerDef, ABILITY_KINGS_WRATH)
+      && defAbility != ABILITY_QUEENS_MOURNING
+      && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
       && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
@@ -1996,6 +2012,10 @@ bool32 ShouldLowerSpDef(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
       && defAbility != ABILITY_RUN_AWAY
       && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
+      && defAbility != ABILITY_KINGS_WRATH
+      && !BattlerHasInnate(battlerDef, ABILITY_KINGS_WRATH)
+      && defAbility != ABILITY_QUEENS_MOURNING
+      && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
       && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
@@ -2017,6 +2037,10 @@ bool32 ShouldLowerAccuracy(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
       && defAbility != ABILITY_RUN_AWAY
       && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
+      && defAbility != ABILITY_KINGS_WRATH
+      && !BattlerHasInnate(battlerDef, ABILITY_KINGS_WRATH)
+      && defAbility != ABILITY_QUEENS_MOURNING
+      && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
       && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
@@ -2039,6 +2063,10 @@ bool32 ShouldLowerEvasion(u8 battlerAtk, u8 battlerDef, u16 defAbility)
       && !BattlerHasInnate(battlerDef, ABILITY_FORT_KNOX)
       && defAbility != ABILITY_RUN_AWAY
       && !BattlerHasInnate(battlerDef, ABILITY_RUN_AWAY)
+      && defAbility != ABILITY_KINGS_WRATH
+      && !BattlerHasInnate(battlerDef, ABILITY_KINGS_WRATH)
+      && defAbility != ABILITY_QUEENS_MOURNING
+      && !BattlerHasInnate(battlerDef, ABILITY_QUEENS_MOURNING)
       && defAbility != ABILITY_FULL_METAL_BODY
       && !BattlerHasInnate(battlerDef, ABILITY_FULL_METAL_BODY))
         return TRUE;
