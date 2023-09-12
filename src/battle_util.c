@@ -61,6 +61,7 @@ functions instead of at the top of the file with the other declarations.
 static bool32 TryRemoveScreens(u8 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId);
 static bool8 DoesMoveBoostStats(u16 move);
+static bool8 HasAnyLoweredStat(u8 battler);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];
@@ -8286,7 +8287,7 @@ case ABILITY_PICKUP:
 
         for(i = 0; i < MAX_BATTLERS_COUNT; i++){
             //Godzilla Rage
-            if(GetBattlerAbility(i) == ABILITY_GODZILLA_RAGE || BattlerHasInnate(i, ABILITY_GODZILLA_RAGE)){
+            if(GetBattlerAbility(i) == ABILITY_ATOMIC_BURST || BattlerHasInnate(i, ABILITY_ATOMIC_BURST)){
                 if (IsBattlerAlive(i)
                 && DoesMoveBoostStats(gCurrentMove)
                 && !gProtectStructs[i].extraMoveUsed
@@ -8300,7 +8301,7 @@ case ABILITY_PICKUP:
                     VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                     gBattlerTarget = battler = i;
                     gProtectStructs[i].extraMoveUsed = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_GODZILLA_RAGE;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_ATOMIC_BURST;
                     gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                     effect++;
                 }
@@ -12620,6 +12621,17 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             MulModifier(&modifier, UQ_4_12(1.33));
     }
 
+    // Pretty Princess
+	if(BattlerHasInnate(battlerAtk, ABILITY_PRETTY_PRINCESS) || GetBattlerAbility(battlerAtk) == ABILITY_PRETTY_PRINCESS){
+        if(!BattlerHasInnate(battlerDef, ABILITY_UNAWARE)   && 
+           GetBattlerAbility(battlerDef) != ABILITY_UNAWARE &&
+           !BattlerHasInnate(battlerAtk, ABILITY_UNAWARE)   && 
+           GetBattlerAbility(battlerAtk) != ABILITY_UNAWARE &&
+           HasAnyLoweredStat(battlerDef)){
+            MulModifier(&modifier, UQ_4_12(1.5));
+        }
+    }
+
     // Attacker Partner's Abilities
     if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
     {
@@ -15648,7 +15660,7 @@ bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler)
     return FALSE;
 }
 
-bool8 DoesMoveBoostStats(u16 move){
+static bool8 DoesMoveBoostStats(u16 move){
     switch(gBattleMoves[move].effect){
         //All Stats Up
         case EFFECT_ALL_STATS_UP_HIT:
@@ -15676,6 +15688,15 @@ bool8 DoesMoveBoostStats(u16 move){
 		//case EFFECT_ACCURACY_UP:
             return TRUE;
         break;
+    }
+    return FALSE;
+}
+
+static bool8 HasAnyLoweredStat(u8 battler){
+    u8 i;
+    for(i = STAT_ATK; i < NUM_BATTLE_STATS; i++){
+        if(CompareStat(battler, i, DEFAULT_STAT_STAGE, CMP_LESS_THAN))
+            return TRUE;
     }
     return FALSE;
 }

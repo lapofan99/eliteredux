@@ -396,14 +396,15 @@ static const u8 sToxicDebrisDescription[] = _("Sets a layer of Toxic Spikes\nwhe
 static const u8 sRoundhouseDescription[] = _("Kicks always hit.\nDamages foes' weaker defenses.");
 static const u8 sMineralizeDescription[] = _("Normal moves become Rock\nand get a 20% boost.");
 static const u8 sLooseRocksDescription[] = _("Deploys Stealth Rocks\nwhen hit.");
-static const u8 sSpinningTopDescription[] = _("Fighting moves up speed +1\nand clear hazards.");
-static const u8 sGodzillaRageDescription[]   = _("The Pokémon does stuff\nand then things happen.");
-static const u8 sFearmongerDescription[]     = _("The Pokémon does stuff\nand then things happen.");
-static const u8 sKingsWrathDescription[]     = _("The Pokémon does stuff\nand then things happen.");
-static const u8 sQueensMourningDescription[] = _("The Pokémon does stuff\nand then things happen.");
-static const u8 sToxicSpillDescription[]     = _("The Pokémon does stuff\nand then things happen.");
-static const u8 sDesertCloakDescription[]    = _("The Pokémon does stuff\nand then things happen.");
-static const u8 sDraconizeDescription[] = _("Normal moves become Dragon\nand get a 20% boost.");
+static const u8 sSpinningTopDescription[]    = _("Fighting moves up speed +1\nand clear hazards.");
+static const u8 sAtomicBurstDescription[]    = _("Uses Hyper Beam if any foe\nuses an stat boosting move.");
+static const u8 sFearmongerDescription[]     = _("Lowers the foe's attacking\nstats, may paralyze on contact.");
+static const u8 sKingsWrathDescription[]     = _("Lowering any stats on it's\nside raises Atk and Def.");
+static const u8 sQueensMourningDescription[] = _("Lowering any stats on it's\nside raises Sp. Atk and Sp. Def.");
+static const u8 sToxicSpillDescription[]     = _("When on the field every non\nPoison-Type will take damage.");
+static const u8 sDesertCloakDescription[]    = _("Protects it's side from status\nand secondary effects in sand.");
+static const u8 sDraconizeDescription[]      = _("Normal moves become Dragon\nand get a 20% boost.");
+static const u8 sPrettyPrincessDescription[] = _("Does 50% more damage if the\ntarget has any lowered stat.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -815,13 +816,14 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MINERALIZE] = _("Mineralize"),
     [ABILITY_LOOSE_ROCKS] = _("Loose Rocks"),
     [ABILITY_SPINNING_TOP] = _("Spinning Top"),
-    [ABILITY_GODZILLA_RAGE] = _("Godzilla Rage"),
+    [ABILITY_ATOMIC_BURST] = _("Atomic Burst"),
     [ABILITY_FEARMONGER] = _("Fearmonger"),
     [ABILITY_KINGS_WRATH] = _("King's Wrath"),
     [ABILITY_QUEENS_MOURNING] = _("Queen's Mourning"),
     [ABILITY_TOXIC_SPILL] = _("Toxic Spill"),
     [ABILITY_DESERT_CLOAK] = _("Desert Cloak"),
     [ABILITY_DRACONIZE] = _("Draconize"),
+    [ABILITY_PRETTY_PRINCESS] = _("Pretty Princess"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1232,11 +1234,12 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_MINERALIZE] = sMineralizeDescription,
     [ABILITY_LOOSE_ROCKS] = sLooseRocksDescription,
     [ABILITY_SPINNING_TOP] = sSpinningTopDescription,
-    [ABILITY_GODZILLA_RAGE] = sGodzillaRageDescription,
+    [ABILITY_ATOMIC_BURST] = sAtomicBurstDescription,
     [ABILITY_FEARMONGER] = sFearmongerDescription,
     [ABILITY_KINGS_WRATH] = sKingsWrathDescription,
     [ABILITY_QUEENS_MOURNING] = sQueensMourningDescription,
     [ABILITY_TOXIC_SPILL] = sToxicSpillDescription,
     [ABILITY_DESERT_CLOAK] = sDesertCloakDescription,
     [ABILITY_DRACONIZE] = sDraconizeDescription,
+    [ABILITY_PRETTY_PRINCESS] = sPrettyPrincessDescription,
 };
