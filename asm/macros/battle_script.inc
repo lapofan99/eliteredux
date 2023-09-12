@@ -845,7 +845,7 @@
 	.byte 0x9e
 	.endm
 
-	.macro dmgtolevel
+	.macro calculatesetdamage
 	.byte 0x9f
 	.endm
 

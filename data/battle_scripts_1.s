@@ -3689,7 +3689,7 @@ BattleScript_EffectSuperFang::
 	ppreduce
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	damagetohalftargethp
+	calculatesetdamage
 	goto BattleScript_HitFromAtkAnimation
 
 BattleScript_EffectDragonRage::
@@ -3699,7 +3699,7 @@ BattleScript_EffectDragonRage::
 	ppreduce
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	setword gBattleMoveDamage, 40
+	calculatesetdamage
 	adjustdamage
 	goto BattleScript_HitFromAtkAnimation
 
@@ -4233,7 +4233,7 @@ BattleScript_EffectLevelDamage::
 	ppreduce
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	dmgtolevel
+	calculatesetdamage
 	adjustdamage
 	goto BattleScript_HitFromAtkAnimation
 
@@ -4244,7 +4244,7 @@ BattleScript_EffectPsywave::
 	ppreduce
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	psywavedamageeffect
+	calculatesetdamage
 	adjustdamage
 	goto BattleScript_HitFromAtkAnimation
 
@@ -4825,7 +4825,7 @@ BattleScript_EffectSonicboom::
 	ppreduce
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	setword gBattleMoveDamage, 20
+	calculatesetdamage
 	adjustdamage
 	goto BattleScript_HitFromAtkAnimation
 

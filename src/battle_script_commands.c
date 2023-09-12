@@ -468,7 +468,7 @@ static void Cmd_transformdataexecution(void);
 static void Cmd_setsubstitute(void);
 static void Cmd_mimicattackcopy(void);
 static void Cmd_metronome(void);
-static void Cmd_dmgtolevel(void);
+static void Cmd_calculatesetdamage(void);
 static void Cmd_psywavedamageeffect(void);
 static void Cmd_counterdamagecalculator(void);
 static void Cmd_mirrorcoatdamagecalculator(void);
@@ -724,7 +724,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_givepaydaymoney,                         //0x91
     Cmd_setlightscreen,                          //0x92
     Cmd_tryKO,                                   //0x93
-    Cmd_damagetohalftargethp,                    //0x94
+    Cmd_damagetohalftargethp,                    //0x94 //unused
     Cmd_setsandstorm,                            //0x95
     Cmd_weatherdamage,                           //0x96
     Cmd_tryinfatuating,                          //0x97
@@ -735,8 +735,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_setsubstitute,                           //0x9C
     Cmd_mimicattackcopy,                         //0x9D
     Cmd_metronome,                               //0x9E
-    Cmd_dmgtolevel,                              //0x9F
-    Cmd_psywavedamageeffect,                     //0xA0
+    Cmd_calculatesetdamage,                      //0x9F
+    Cmd_psywavedamageeffect,                     //0xA0 //unused
     Cmd_counterdamagecalculator,                 //0xA1
     Cmd_mirrorcoatdamagecalculator,              //0xA2
     Cmd_disablelastusedattack,                   //0xA3
@@ -11360,6 +11360,7 @@ static void Cmd_tryKO(void)
     }
 }
 
+//Unused
 static void Cmd_damagetohalftargethp(void) // super fang
 {
     gBattleMoveDamage = gBattleMons[gBattlerTarget].hp / 2;
@@ -11694,25 +11695,60 @@ static void Cmd_metronome(void)
     }
 }
 
-static void Cmd_dmgtolevel(void)
+static void Cmd_calculatesetdamage(void)
 {
+    s32 baseDamage = 1;
+    s32 randDamage;
+
+    //Calculate Base Damage
+    switch(gBattleMoves[gCurrentMove].effect)
+    {
+        case EFFECT_LEVEL_DAMAGE:
+            //Damage is the level of the Pokemon using the move	
+            baseDamage = gBattleMons[gBattlerAttacker].level;
+        break;
+        case EFFECT_DRAGON_RAGE:
+            //Damage is always 40
+            baseDamage = 40;
+        break;
+        case EFFECT_SONICBOOM:
+            //Damage is always 20
+            baseDamage = 20;
+        break;
+        case EFFECT_PSYWAVE:
+            //Inflicts a random amount of damage, varying between 1 damage and 1.5× the user's level.
+            randDamage = (Random() % 101);
+            baseDamage = gBattleMons[gBattlerAttacker].level * (randDamage + 50) / 100;
+        break;
+        case EFFECT_SUPER_FANG:
+            //Inflicts damage equal to half of the target's current HP.
+            baseDamage = gBattleMons[gBattlerTarget].hp / 2;
+        break;
+    }
+            
+    //Failsafe
+    if (baseDamage == 0)
+        baseDamage = 1;
+
+    //Multiplies depending on the ability and the hit number
     if((gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)){
         if(gBattleMons[gBattlerAttacker].ability == ABILITY_PARENTAL_BOND || BattlerHasInnate(gBattlerAttacker, ABILITY_PARENTAL_BOND))
-		    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 4;
+            gBattleMoveDamage = baseDamage / 4;
         else if(gBattleMons[gBattlerAttacker].ability == ABILITY_RAGING_BOXER || BattlerHasInnate(gBattlerAttacker, ABILITY_RAGING_BOXER))
-		    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 2;
+            gBattleMoveDamage = baseDamage / 2;
         else if(gBattleMons[gBattlerAttacker].ability == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED))
-			    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 5;
+                gBattleMoveDamage = baseDamage / 5;
         else if(gBattleMons[gBattlerAttacker].ability == ABILITY_HYPER_AGGRESSIVE || BattlerHasInnate(gBattlerAttacker, ABILITY_HYPER_AGGRESSIVE))
-		    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level / 4;
+            gBattleMoveDamage = baseDamage / 4;
     }
     else if((gSpecialStatuses[gBattlerAttacker].parentalBondOn == 2) && (gBattleMons[gBattlerAttacker].ability == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED)))
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level  * 0.15;
+        gBattleMoveDamage = baseDamage * 0.15;
     else
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].level;
+        gBattleMoveDamage = baseDamage;
     gBattlescriptCurrInstr++;
 }
 
+//unused
 static void Cmd_psywavedamageeffect(void)
 {
     s32 randDamage;
