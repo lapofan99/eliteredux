@@ -397,6 +397,7 @@ static const u8 sRoundhouseDescription[] = _("Kicks always hit.\nDamages foes' w
 static const u8 sMineralizeDescription[] = _("Normal moves become Rock\nand get a 20% boost.");
 static const u8 sLooseRocksDescription[] = _("Deploys Stealth Rocks\nwhen hit.");
 static const u8 sSpinningTopDescription[] = _("Fighting moves up speed +1\nand clear hazards.");
+static const u8 sDraconizeDescription[] = _("Normal moves become Dragon\nand get a 20% boost.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -808,6 +809,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MINERALIZE] = _("Mineralize"),
     [ABILITY_LOOSE_ROCKS] = _("Loose Rocks"),
     [ABILITY_SPINNING_TOP] = _("Spinning Top"),
+    [ABILITY_DRACONIZE] = _("Draconize"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1218,4 +1220,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_MINERALIZE] = sMineralizeDescription,
     [ABILITY_LOOSE_ROCKS] = sLooseRocksDescription,
     [ABILITY_SPINNING_TOP] = sSpinningTopDescription,
+    [ABILITY_DRACONIZE] = sDraconizeDescription,
 };

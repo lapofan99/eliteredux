@@ -434,8 +434,9 @@
 #define ABILITY_MINERALIZE       (ABILITIES_COUNT_LATEST_GEN + 136) // All Normal-type moves used by the Pokémon become Rock-type and receive a 20% power boost.
 #define ABILITY_LOOSE_ROCKS      (ABILITIES_COUNT_LATEST_GEN + 137) // when being hit by any attacking move (like Stamina), trigger Stealth Rock
 #define ABILITY_SPINNING_TOP     (ABILITIES_COUNT_LATEST_GEN + 138) // Fighting-type moves raise speed by +1 and clear hazards.
+#define ABILITY_DRACONIZE        (ABILITIES_COUNT_LATEST_GEN + 139) // All Normal-type moves used by the Pokémon become Dragon-type and receive a 20% power boost.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SPINNING_TOP + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_DRACONIZE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
