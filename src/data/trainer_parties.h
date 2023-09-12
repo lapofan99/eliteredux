@@ -40755,7 +40755,7 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Train
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
+	.moves = MOVE_NASTY_PLOT, MOVE_NASTY_PLOT, MOVE_NASTY_PLOT, MOVE_NASTY_PLOT
     },
     {
     .lvl = 0,

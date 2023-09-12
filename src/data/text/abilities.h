@@ -397,6 +397,12 @@ static const u8 sRoundhouseDescription[] = _("Kicks always hit.\nDamages foes' w
 static const u8 sMineralizeDescription[] = _("Normal moves become Rock\nand get a 20% boost.");
 static const u8 sLooseRocksDescription[] = _("Deploys Stealth Rocks\nwhen hit.");
 static const u8 sSpinningTopDescription[] = _("Fighting moves up speed +1\nand clear hazards.");
+static const u8 sGodzillaRageDescription[]   = _("The Pokémon does stuff\nand then things happen.");
+static const u8 sFearmongerDescription[]     = _("The Pokémon does stuff\nand then things happen.");
+static const u8 sKingsWrathDescription[]     = _("The Pokémon does stuff\nand then things happen.");
+static const u8 sQueensMourningDescription[] = _("The Pokémon does stuff\nand then things happen.");
+static const u8 sToxicSpillDescription[]     = _("The Pokémon does stuff\nand then things happen.");
+static const u8 sDesertCloakDescription[]    = _("The Pokémon does stuff\nand then things happen.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -808,6 +814,12 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_MINERALIZE] = _("Mineralize"),
     [ABILITY_LOOSE_ROCKS] = _("Loose Rocks"),
     [ABILITY_SPINNING_TOP] = _("Spinning Top"),
+    [ABILITY_GODZILLA_RAGE] = _("Godzilla Rage"),
+    [ABILITY_FEARMONGER] = _("Fearmonger"),
+    [ABILITY_KINGS_WRATH] = _("King's Wrath"),
+    [ABILITY_QUEENS_MOURNING] = _("Queen's Mourning"),
+    [ABILITY_TOXIC_SPILL] = _("Toxic Spill"),
+    [ABILITY_DESERT_CLOAK] = _("Desert Cloak"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1218,4 +1230,10 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_MINERALIZE] = sMineralizeDescription,
     [ABILITY_LOOSE_ROCKS] = sLooseRocksDescription,
     [ABILITY_SPINNING_TOP] = sSpinningTopDescription,
+    [ABILITY_GODZILLA_RAGE] = sGodzillaRageDescription,
+    [ABILITY_FEARMONGER] = sFearmongerDescription,
+    [ABILITY_KINGS_WRATH] = sKingsWrathDescription,
+    [ABILITY_QUEENS_MOURNING] = sQueensMourningDescription,
+    [ABILITY_TOXIC_SPILL] = sToxicSpillDescription,
+    [ABILITY_DESERT_CLOAK] = sDesertCloakDescription,
 };

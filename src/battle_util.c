@@ -60,6 +60,7 @@ functions instead of at the top of the file with the other declarations.
 
 static bool32 TryRemoveScreens(u8 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId);
+static bool8 DoesMoveBoostStats(u16 move);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];
@@ -8105,13 +8106,14 @@ case ABILITY_PICKUP:
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
+             && !gProtectStructs[battler].extraMoveUsed
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
                 u16 extraMove = MOVE_ICY_WIND;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
                 u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_COLD_REBOUND;
                 gBattlescriptCurrInstr = BattleScript_DefenderEffectSpeedDownHit;
                 effect++;
@@ -8125,13 +8127,14 @@ case ABILITY_PICKUP:
              && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
+             && !gProtectStructs[battler].extraMoveUsed
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
                 u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
                 u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
                 gBattleScripting.abilityPopupOverwrite = ABILITY_PARRY;
                 gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
@@ -8280,6 +8283,29 @@ case ABILITY_PICKUP:
                 effect++;
             }
 		}
+
+        for(i = 0; i < MAX_BATTLERS_COUNT; i++){
+            //Godzilla Rage
+            if(GetBattlerAbility(i) == ABILITY_GODZILLA_RAGE || BattlerHasInnate(i, ABILITY_GODZILLA_RAGE)){
+                if (IsBattlerAlive(i)
+                && DoesMoveBoostStats(gCurrentMove)
+                && !gProtectStructs[i].extraMoveUsed
+                && gBattlerAttacker != i
+                && (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST) || GetBattlerAbility(i) == ABILITY_SCRAPPY || BattlerHasInnate(i, ABILITY_SCRAPPY))
+                && GET_BATTLER_SIDE(gBattlerAttacker) != GET_BATTLER_SIDE(i))
+                {
+                    u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                    u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                    gCurrentMove = extraMove;
+                    VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                    gBattlerTarget = battler = i;
+                    gProtectStructs[i].extraMoveUsed = TRUE;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_GODZILLA_RAGE;
+                    gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
+                    effect++;
+                }
+            }
+        }
 		
         break;
     case ABILITYEFFECT_MOVE_END_ATTACKER: // Same as above, but for attacker
@@ -9008,9 +9034,8 @@ case ABILITY_PICKUP:
 		
         break;
     case ABILITYEFFECT_MOVE_END_OTHER: // Abilities that activate on *another* battler's moveend: Dancer, Soul-Heart, Receiver, Symbiosis
-        switch (GetBattlerAbility(battler))
-        {
-        case ABILITY_DANCER:
+        // Dancer
+        if(GetBattlerAbility(battler) == ABILITY_DANCER || BattlerHasInnate(battler, ABILITY_DANCER)){
             if (IsBattlerAlive(battler)
              && (gBattleMoves[gCurrentMove].flags & FLAG_DANCE)
              && !gSpecialStatuses[battler].dancerUsedMove
@@ -9033,8 +9058,8 @@ case ABILITY_PICKUP:
                 BattleScriptExecute(BattleScript_DancerActivates);
                 effect++;
             }
-            break;
         }
+        
         break;
     case ABILITYEFFECT_IMMUNITY: // 5
         for (battler = 0; battler < gBattlersCount; battler++)
@@ -15610,5 +15635,37 @@ bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler)
         BattlerHasInnate(battler, ABILITY_TURBOBLAZE))
         return TRUE;
 
+    return FALSE;
+}
+
+bool8 DoesMoveBoostStats(u16 move){
+    switch(gBattleMoves[move].effect){
+        //All Stats Up
+        case EFFECT_ALL_STATS_UP_HIT:
+        //Attack
+        case EFFECT_ATTACK_UP_HIT:
+        case EFFECT_ATTACK_UP:
+        case EFFECT_ATTACK_UP_2:
+        case EFFECT_HOWL:
+        //Defense
+        case EFFECT_DEFENSE_UP_HIT:
+        case EFFECT_DEFENSE_UP:
+        case EFFECT_DEFENSE_UP_2: 
+        //Special Attack
+        case EFFECT_SP_ATTACK_UP_HIT:
+        case EFFECT_SPECIAL_ATTACK_UP:
+        case EFFECT_SPECIAL_ATTACK_UP_2:
+        case EFFECT_SPECIAL_ATTACK_UP_3:
+		//Special Defense
+		//case EFFECT_SPECIAL_DEFENSE_UP:
+		case EFFECT_SPECIAL_DEFENSE_UP_2:
+		//Speed
+		case EFFECT_SPEED_UP_HIT:
+		case EFFECT_SPEED_UP_2:
+	    //Accuracy
+		//case EFFECT_ACCURACY_UP:
+            return TRUE;
+        break;
+    }
     return FALSE;
 }
