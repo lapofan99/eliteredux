@@ -442,8 +442,9 @@
 #define ABILITY_DESERT_CLOAK     (ABILITIES_COUNT_LATEST_GEN + 144) // The pokemon shrouds itself and its allies protecting them from status conditions and secondary effects while under sand.
 #define ABILITY_DRACONIZE        (ABILITIES_COUNT_LATEST_GEN + 145) // All Normal-type moves used by the Pokémon become Dragon-type and receive a 20% power boost.
 #define ABILITY_PRETTY_PRINCESS  (ABILITIES_COUNT_LATEST_GEN + 146) // +50% DMG against foes with lowered stats
+#define ABILITY_SELF_REPAIR      (ABILITIES_COUNT_LATEST_GEN + 147) // Self Sufficient + Natural Cure
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_PRETTY_PRINCESS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SELF_SUFFICIENT + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

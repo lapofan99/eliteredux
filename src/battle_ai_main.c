@@ -3343,10 +3343,12 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     // check burn
     if (gBattleMons[battlerAtk].status1 & STATUS1_BURN)
     {
-        if(BattlerHasInnate(battlerAtk, ABILITY_NATURAL_CURE) || AI_DATA->atkAbility == ABILITY_NATURAL_CURE){
-            if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING
-             && HasOnlyMovesWithSplit(battlerAtk, SPLIT_PHYSICAL, TRUE))
-                score = 90; // Force switch if all your attacking moves are special and you have Natural Cure.
+        if((BattlerHasInnate(battlerAtk, ABILITY_NATURAL_CURE) || AI_DATA->atkAbility == ABILITY_NATURAL_CURE ||
+            BattlerHasInnate(battlerAtk, ABILITY_SELF_REPAIR) || AI_DATA->atkAbility == ABILITY_SELF_REPAIR) &&
+            AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING &&
+            HasOnlyMovesWithSplit(battlerAtk, SPLIT_PHYSICAL, TRUE))
+        {
+            score = 90; // Force switch if all your attacking moves are special and you have Natural Cure or Self-Repair.
         }
         else if(!BattlerHasInnate(battlerAtk, ABILITY_GUTS)        && AI_DATA->atkAbility != ABILITY_GUTS &&
                 !BattlerHasInnate(battlerAtk, ABILITY_HEATPROOF)   && AI_DATA->atkAbility != ABILITY_HEATPROOF && 
@@ -3360,15 +3362,16 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     // Checks frostbite
     if (gBattleMons[battlerAtk].status1 & STATUS1_FROSTBITE)
     {
-        if(BattlerHasInnate(battlerAtk, ABILITY_NATURAL_CURE) || AI_DATA->atkAbility == ABILITY_NATURAL_CURE){
-            if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING
-             && HasOnlyMovesWithSplit(battlerAtk, SPLIT_SPECIAL, TRUE))
-                score = 90; // Force switch if all your attacking moves are special and you have Natural Cure.
+        if(BattlerHasInnate(battlerAtk, ABILITY_NATURAL_CURE) || AI_DATA->atkAbility == ABILITY_NATURAL_CURE ||
+           BattlerHasInnate(battlerAtk, ABILITY_SELF_REPAIR) || AI_DATA->atkAbility == ABILITY_SELF_REPAIR){
+        if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING
+         && HasOnlyMovesWithSplit(battlerAtk, SPLIT_SPECIAL, TRUE))
+            score = 90; // Force switch if all your attacking moves are special and you have Natural Cure or Self-Repair.
         }
         else if(!BattlerHasInnate(battlerAtk, ABILITY_GUTS) && AI_DATA->atkAbility != ABILITY_GUTS &&
-                IS_MOVE_SPECIAL(move) && 
-                gBattleMoves[move].effect != EFFECT_FACADE){
-                score -= 2;
+            IS_MOVE_SPECIAL(move) && 
+            gBattleMoves[move].effect != EFFECT_FACADE){
+            score -= 2;
         }
     }
 

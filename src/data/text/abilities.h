@@ -405,6 +405,7 @@ static const u8 sToxicSpillDescription[]     = _("When on the field every non\nP
 static const u8 sDesertCloakDescription[]    = _("Protects it's side from status\nand secondary effects in sand.");
 static const u8 sDraconizeDescription[]      = _("Normal moves become Dragon\nand get a 20% boost.");
 static const u8 sPrettyPrincessDescription[] = _("Does 50% more damage if the\ntarget has any lowered stat.");
+static const u8 sSelfRepairDescription[]     = _("Leftovers + Natural Cure.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -824,6 +825,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_DESERT_CLOAK] = _("Desert Cloak"),
     [ABILITY_DRACONIZE] = _("Draconize"),
     [ABILITY_PRETTY_PRINCESS] = _("Pretty Princess"),
+    [ABILITY_SELF_REPAIR] = _("Self Repair"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1242,4 +1244,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_DESERT_CLOAK] = sDesertCloakDescription,
     [ABILITY_DRACONIZE] = sDraconizeDescription,
     [ABILITY_PRETTY_PRINCESS] = sPrettyPrincessDescription,
+    [ABILITY_SELF_REPAIR] = sSelfRepairDescription,
 };

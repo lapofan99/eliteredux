@@ -6297,6 +6297,19 @@ case ABILITY_PICKUP:
                     effect++;
                 }
                 break;
+            case ABILITY_SELF_REPAIR:
+				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
+				{
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_REPAIR;
+			        gLastUsedAbility = ABILITY_SELF_REPAIR;
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    gBattleMoveDamage *= -1;
+                    BattleScriptExecute(BattleScript_SelfSufficientActivates);
+                    effect++;
+                }
+                break;
             }
 			
 			
@@ -6515,6 +6528,21 @@ case ABILITY_PICKUP:
 				{
 					gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_SUFFICIENT;
 					gLastUsedAbility = ABILITY_SELF_SUFFICIENT;
+				    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
+					if (gBattleMoveDamage == 0)
+						gBattleMoveDamage = 1;
+					gBattleMoveDamage *= -1;
+					BattleScriptExecute(BattleScript_SelfSufficientActivates);
+					effect++;
+				}
+			}
+
+            // Self Repair
+			if(BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR)){
+				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
+				{
+					gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_REPAIR;
+					gLastUsedAbility = ABILITY_SELF_REPAIR;
 				    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
 					if (gBattleMoveDamage == 0)
 						gBattleMoveDamage = 1;
