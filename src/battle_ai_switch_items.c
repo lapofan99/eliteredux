@@ -257,7 +257,8 @@ static bool8 ShouldSwitchIfNaturalCure(void)
 {
     if (!(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP))
         return FALSE;
-    if (AI_GetAbility(gActiveBattler) != ABILITY_NATURAL_CURE || AI_GetAbility(gActiveBattler) != ABILITY_SELF_REPAIR)
+    if (AI_GetAbility(gActiveBattler) != ABILITY_NATURAL_CURE || BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) ||
+        AI_GetAbility(gActiveBattler) != ABILITY_SELF_REPAIR  || BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR))
         return FALSE;
 
     if ((gLastLandedMoves[gActiveBattler] == 0 || gLastLandedMoves[gActiveBattler] == 0xFFFF) && Random() & 1)

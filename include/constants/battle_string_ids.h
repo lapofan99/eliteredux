@@ -648,8 +648,9 @@
 #define STRINGID_LETHARGYENDS                         677
 #define STRINGID_PICKUPACTIVATED                      678
 #define STRINGID_PKMNRAISEDDEFENSE                    679
+#define STRINGID_SELF_REPAIR_EXITS                    680
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNRAISEDDEFENSE + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_SELF_REPAIR_EXITS + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

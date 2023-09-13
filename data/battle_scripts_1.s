@@ -6133,10 +6133,10 @@ BattleScript_FaintedMonShiftSwitched:
 	goto BattleScript_FaintedMonChooseAnotherEnd
 
 BattleScript_HandleFaintedMonMultiple::
-	openpartyscreen BS_UNK_5, BattleScript_HandleFaintedMonMultipleStart
+	openpartyscreen BS_FAINTED_LINK_MULTIPLE_1, BattleScript_HandleFaintedMonMultipleStart
 BattleScript_HandleFaintedMonMultipleStart::
 	switchhandleorder BS_FAINTED, 0
-	openpartyscreen BS_UNK_6, BattleScript_HandleFaintedMonMultipleEnd
+	openpartyscreen BS_FAINTED_LINK_MULTIPLE_2, BattleScript_HandleFaintedMonMultipleEnd
 	switchhandleorder BS_FAINTED, 0
 BattleScript_HandleFaintedMonLoop::
 	switchhandleorder BS_FAINTED, 3
@@ -6886,7 +6886,34 @@ BattleScript_StickyWebOnSwitchInEnd:
 	jumpifability BS_TARGET, ABILITY_DEFIANT, BattleScript_StickyWebOnSwitch_Defiant
 	jumpifability BS_TARGET, ABILITY_FORT_KNOX, BattleScript_StickyWebOnSwitch_FortKnox
 	jumpifability BS_TARGET, ABILITY_RUN_AWAY, BattleScript_StickyWebOnSwitch_RunAway
+	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH, BattleScript_StickyWebOnSwitch_KingsWrath
 	return
+
+BattleScript_StickyWebOnSwitch_KingsWrath:
+	savetarget
+	copybyte gBattlerTarget, gBattlerAbility
+	sethword sABILITY_OVERWRITE, ABILITY_KINGS_WRATH
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+BattleScript_StickyWebOnSwitch_KingsWrath_BoostAtk:
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_StickyWebOnSwitch_KingsWrath_BoostDefense
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_DEFENDERSSTATROSE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_StickyWebOnSwitch_KingsWrath_BoostDefense:
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_StickyWebOnSwitch_KingsWrath_End
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_DEFENDERSSTATROSE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_StickyWebOnSwitch_KingsWrath_End:
+	restoretarget
+	goto BattleScript_StickyWebOnSwitchActivatesLoopIncrement
 
 BattleScript_StickyWebOnSwitch_Competitive:
 	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
@@ -7946,18 +7973,18 @@ BattleScript_DrizzleActivates::
 	call BattleScript_WeatherFormChanges
 	end3
 
-BattleScript_KingsWarthActivated::
+BattleScript_KingsWrathActivated::
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
-BattleScript_KingsWarth_AttackUpDoAnim::
-	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_KingsWarth_DefenseUpDoAnim
+BattleScript_KingsWrath_AttackUpDoAnim::
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_KingsWrath_DefenseUpDoAnim
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_PKMNRAISEDATTACK
-BattleScript_KingsWarth_DefenseUpDoAnim::
-	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_KingsWarth_End
+BattleScript_KingsWrath_DefenseUpDoAnim::
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_KingsWrath_End
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_PKMNRAISEDDEFENSE
-BattleScript_KingsWarth_End:
+BattleScript_KingsWrath_End:
 	return
 
 BattleScript_DefiantActivates::
@@ -8441,11 +8468,11 @@ BattleScript_IntimidateActivatesLoop:
 	printstring STRINGID_PKMNCUTSATTACKWITH
 	waitmessage B_WAIT_TIME_LONG
 	call BattleScript_TryAdrenalineOrb
-	jumpifability BS_TARGET, ABILITY_COMPETITIVE, BattleScript_Intimidate_Competitive
-	jumpifability BS_TARGET, ABILITY_DEFIANT,     BattleScript_Intimidate_Defiant
-	jumpifability BS_TARGET, ABILITY_FORT_KNOX,   BattleScript_Intimidate_FortKnox
-	jumpifability BS_TARGET, ABILITY_RUN_AWAY,    BattleScript_Intimidate_RunAway
-	jumpifability BS_TARGET, ABILITY_KINGS_WRATH, BattleScript_Intimidate_KingsWrath
+	jumpifability BS_TARGET,       ABILITY_COMPETITIVE, BattleScript_Intimidate_Competitive
+	jumpifability BS_TARGET,       ABILITY_DEFIANT,     BattleScript_Intimidate_Defiant
+	jumpifability BS_TARGET,       ABILITY_FORT_KNOX,   BattleScript_Intimidate_FortKnox
+	jumpifability BS_TARGET,       ABILITY_RUN_AWAY,    BattleScript_Intimidate_RunAway
+	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH, BattleScript_Intimidate_KingsWrath
 BattleScript_IntimidateActivatesLoopIncrement:
 	addbyte gBattlerTarget, 1
 	goto BattleScript_IntimidateActivatesLoop
@@ -8526,6 +8553,8 @@ BattleScript_Intimidate_RunAway:
 	goto BattleScript_Intimidate_DefiantActivates
 
 BattleScript_Intimidate_KingsWrath:
+	savetarget
+	copybyte gBattlerTarget, gBattlerAbility
 	sethword sABILITY_OVERWRITE, ABILITY_KINGS_WRATH
 	pause B_WAIT_TIME_SHORT
 	call BattleScript_AbilityPopUp
@@ -8546,6 +8575,7 @@ BattleScript_Intimidate_KingsWrath_BoostDefense:
 	printstring STRINGID_DEFENDERSSTATROSE
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_Intimidate_KingsWrath_End:
+	restoretarget
 	goto BattleScript_IntimidateActivatesLoopIncrement
 
 BattleScript_Intimidate_DefiantActivates:
@@ -8589,6 +8619,7 @@ BattleScript_ScareActivatesLoop:
 	jumpifability BS_TARGET, ABILITY_DEFIANT,     BattleScript_Scare_Defiant
 	jumpifability BS_TARGET, ABILITY_FORT_KNOX,   BattleScript_Scare_FortKnox
 	jumpifability BS_TARGET, ABILITY_RUN_AWAY,    BattleScript_Scare_RunAway
+	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH, BattleScript_Scare_KingsWrath
 BattleScript_ScareActivatesLoopIncrement:
 	addbyte gBattlerTarget, 1
 	goto BattleScript_ScareActivatesLoop
@@ -8672,6 +8703,32 @@ BattleScript_Scare_DefiantActivates:
 	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	printstring STRINGID_DEFENDERSSTATROSE
 	waitmessage B_WAIT_TIME_LONG
+	goto BattleScript_ScareActivatesLoopIncrement
+
+BattleScript_Scare_KingsWrath:
+	savetarget
+	copybyte gBattlerTarget, gBattlerAbility
+	sethword sABILITY_OVERWRITE, ABILITY_KINGS_WRATH
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+BattleScript_Scare_KingsWrath_BoostAtk:
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_ATK, MAX_STAT_STAGE, BattleScript_Scare_KingsWrath_BoostDefense
+	setstatchanger STAT_ATK, 1, FALSE
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_DEFENDERSSTATROSE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_Scare_KingsWrath_BoostDefense:
+	jumpifstat BS_ABILITY_BATTLER, CMP_EQUAL, STAT_DEF, MAX_STAT_STAGE, BattleScript_Scare_KingsWrath_End
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange 0, NULL
+	setgraphicalstatchangevalues
+	playanimation BS_ABILITY_BATTLER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printstring STRINGID_DEFENDERSSTATROSE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_Scare_KingsWrath_End:
+	restoretarget
 	goto BattleScript_ScareActivatesLoopIncrement
 
 BattleScript_DroughtActivates::

@@ -457,7 +457,7 @@ static void Cmd_tryconversiontypechange(void);
 static void Cmd_givepaydaymoney(void);
 static void Cmd_setlightscreen(void);
 static void Cmd_tryKO(void);
-static void Cmd_damagetohalftargethp(void);
+static void Cmd_jumpifabilityonside(void);
 static void Cmd_setsandstorm(void);
 static void Cmd_weatherdamage(void);
 static void Cmd_tryinfatuating(void);
@@ -724,7 +724,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_givepaydaymoney,                         //0x91
     Cmd_setlightscreen,                          //0x92
     Cmd_tryKO,                                   //0x93
-    Cmd_damagetohalftargethp,                    //0x94 //unused
+    Cmd_jumpifabilityonside,                     //0x94
     Cmd_setsandstorm,                            //0x95
     Cmd_weatherdamage,                           //0x96
     Cmd_tryinfatuating,                          //0x97
@@ -6281,7 +6281,7 @@ static void Cmd_openpartyscreen(void)
     flags = 0;
     jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 2);
 
-    if (gBattlescriptCurrInstr[1] == BS_UNK_5)
+    if (gBattlescriptCurrInstr[1] == BS_FAINTED_LINK_MULTIPLE_1)
     {
         if ((gBattleTypeFlags & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_MULTI)) != BATTLE_TYPE_DOUBLE)
         {
@@ -6436,7 +6436,7 @@ static void Cmd_openpartyscreen(void)
         }
         gBattlescriptCurrInstr += 6;
     }
-    else if (gBattlescriptCurrInstr[1] == BS_UNK_6)
+    else if (gBattlescriptCurrInstr[1] == BS_FAINTED_LINK_MULTIPLE_2)
     {
         if (!(gBattleTypeFlags & BATTLE_TYPE_MULTI))
         {
@@ -10579,6 +10579,11 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
     else
         gActiveBattler = gBattlerTarget;
 
+    //mgba
+    MgbaOpen();
+    MgbaPrintf(MGBA_LOG_WARN, "ChangeStatBuffs %d", gActiveBattler);
+    MgbaClose();
+
     gSpecialStatuses[gActiveBattler].changedStatsBattlerId = gBattlerAttacker;
 
     flags &= ~(MOVE_EFFECT_AFFECTS_USER);
@@ -11360,14 +11365,32 @@ static void Cmd_tryKO(void)
     }
 }
 
-//Unused
-static void Cmd_damagetohalftargethp(void) // super fang
+static void Cmd_jumpifabilityonside(void) // King's wrath + intimidate
 {
-    gBattleMoveDamage = gBattleMons[gBattlerTarget].hp / 2;
-    if (gBattleMoveDamage == 0)
-        gBattleMoveDamage = 1;
+    
+    u32 battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
+    bool32 hasAbility = FALSE;
+    u32 ability = T2_READ_16(gBattlescriptCurrInstr + 2);
+    u32 abilityBattlerId = 0;
 
-    gBattlescriptCurrInstr++;
+    abilityBattlerId = IsAbilityOnSide(gBattlerAttacker, ability);
+    if (abilityBattlerId)
+    {
+        abilityBattlerId--;
+        hasAbility = TRUE;
+    }
+
+    if (hasAbility)
+    {
+        gLastUsedAbility = ability;
+        gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 4);
+        RecordAbilityBattle(abilityBattlerId, gLastUsedAbility);
+        gBattlerAbility = abilityBattlerId;
+    }
+    else
+    {
+        gBattlescriptCurrInstr += 8;
+    }
 }
 
 static void Cmd_setsandstorm(void)
@@ -13506,8 +13529,10 @@ static void Cmd_switchoutabilities(void)
         gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;
     }
     else if(((BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) || 
-            (gBattleMons[gActiveBattler].ability == ABILITY_NATURAL_CURE && 
-            !gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_NATURAL_CURE)]))
+              BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR)  || 
+            (gBattleMons[gActiveBattler].ability == ABILITY_NATURAL_CURE && !gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_NATURAL_CURE)]) ||
+            (gBattleMons[gActiveBattler].ability == ABILITY_SELF_REPAIR  && !gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_SELF_REPAIR)])
+            )
             && gBattleMons[gActiveBattler].status1 != 0) && 
             (BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR) || 
             (gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR && 
@@ -13515,11 +13540,16 @@ static void Cmd_switchoutabilities(void)
             && !BATTLER_MAX_HP(gActiveBattler)){
             gBattleScripting.switchInBattlerOverwrite = gActiveBattler;
 
-            if(gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR || gBattleMons[gActiveBattler].ability == ABILITY_NATURAL_CURE)
+            if(gBattleMons[gActiveBattler].ability == ABILITY_REGENERATOR  || 
+               gBattleMons[gActiveBattler].ability == ABILITY_NATURAL_CURE || 
+               gBattleMons[gActiveBattler].ability == ABILITY_SELF_REPAIR)
                 gBattleMons[gActiveBattler].ability = ABILITY_NONE;
 
             if(BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE))
                 gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_NATURAL_CURE)] = TRUE;
+
+            if(BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR))
+                gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_SELF_REPAIR)] = TRUE;
 
             if(BattlerHasInnate(gActiveBattler, ABILITY_REGENERATOR))
                 gSpecialStatuses[gActiveBattler].switchInInnateDone[GetBattlerInnateNum(gActiveBattler, ABILITY_REGENERATOR)] = TRUE;
@@ -13528,7 +13558,8 @@ static void Cmd_switchoutabilities(void)
             gBattlescriptCurrInstr = BattleScript_RegeneratorExits;
     }
     else{
-        if((BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) || GetBattlerAbility(gActiveBattler) == ABILITY_NATURAL_CURE) && 
+        if((BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) || GetBattlerAbility(gActiveBattler) == ABILITY_NATURAL_CURE ||
+            BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR)  || GetBattlerAbility(gActiveBattler) == ABILITY_SELF_REPAIR) && 
             gBattleMons[gActiveBattler].status1 != 0){
             gBattleMons[gActiveBattler].status1 = 0;
             BtlController_EmitSetMonData(0, REQUEST_STATUS_BATTLE, gBitTable[*(gBattleStruct->field_58 + gActiveBattler)], 4, &gBattleMons[gActiveBattler].status1);

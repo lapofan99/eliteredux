@@ -466,7 +466,7 @@ extern const u8 BattleScript_DefenderSetsSpikeLayer[];
 extern const u8 BattleScript_DefenderSetsToxicSpikeLayer[];
 extern const u8 BattleScript_PickUpActivate[];
 extern const u8 BattleScript_DefenderSetsStealthRock[];
-extern const u8 BattleScript_KingsWarthActivated[];
+extern const u8 BattleScript_KingsWrathActivated[];
 extern const u8 BattleScript_SelfRepairExits[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];

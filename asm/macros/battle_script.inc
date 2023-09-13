@@ -798,8 +798,11 @@
 	.4byte \param0
 	.endm
 
-	.macro damagetohalftargethp
+	.macro jumpifabilityonside param0:req, ability:req, ptr:req
 	.byte 0x94
+	.byte \param0
+	.2byte \ability
+	.4byte \ptr
 	.endm
 
 	.macro setsandstorm

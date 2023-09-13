@@ -1564,7 +1564,7 @@ void PrepareStringBattle(u16 stringId, u8 battler)
                 gBattleMons[gBattlerAbility].statStages[STAT_DEF]++;
             
             BattleScriptPushCursor();
-            gBattlescriptCurrInstr = BattleScript_KingsWarthActivated;
+            gBattlescriptCurrInstr = BattleScript_KingsWrathActivated;
     }
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
     else if ((stringId == STRINGID_DEFENDERSSTATFELL    || 
