@@ -10579,11 +10579,6 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
     else
         gActiveBattler = gBattlerTarget;
 
-    //mgba
-    MgbaOpen();
-    MgbaPrintf(MGBA_LOG_WARN, "ChangeStatBuffs %d", gActiveBattler);
-    MgbaClose();
-
     gSpecialStatuses[gActiveBattler].changedStatsBattlerId = gBattlerAttacker;
 
     flags &= ~(MOVE_EFFECT_AFFECTS_USER);

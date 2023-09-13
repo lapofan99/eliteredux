@@ -443,6 +443,8 @@ static const u8 sText_Accuracy[] = _("accuracy");
 static const u8 sText_Evasiveness[] = _("evasiveness");
 static const u8 sText_PkmnRaisedAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\nraised its Attack!");
 static const u8 sText_PkmnRaisedDefense[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\nraised its Defense!");
+static const u8 sText_PkmnRaisedSpecialAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\nraised its Special Attack!");
+static const u8 sText_PkmnRaisedSpecialDefense[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Ability\nraised its Special Defense!");
 static const u8 sText_InflatablePkmnRaisedDefenses[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Inflatable\nraised its Defenses!");
 static const u8 sText_AngerPointsPkmnRaisedAttack[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Anger Point\nraised its Attack!");
 static const u8 sText_AttackerRegainedHealth[] = _("{B_ATK_NAME_WITH_PREFIX} regained\nhealth!");
@@ -1419,6 +1421,8 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_SWEETDREAMSHPUP - 12] = sText_SweetDreamsHealHpUp,
 	[STRINGID_POKEMONDIDAMMOUNTDAMAGE - 12] = sText_PkmnDidAmmountDamage,
     [STRINGID_PKMNRAISEDDEFENSE - 12] = sText_PkmnRaisedDefense,
+    [STRINGID_PKMNRAISEDSPECIALATTACK - 12] = sText_PkmnRaisedSpecialAttack,
+    [STRINGID_PKMNRAISEDSPECIALDEFENSE - 12] = sText_PkmnRaisedSpecialDefense,
 };
 
 const u16 gMentalHerbCureStringIds[] = 

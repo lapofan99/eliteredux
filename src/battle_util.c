@@ -1566,6 +1566,31 @@ void PrepareStringBattle(u16 stringId, u8 battler)
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_KingsWrathActivated;
     }
+    else if((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_PKMNCUTSATTACKWITH || stringId == STRINGID_PKMNCUTSSPATTACKWITH) &&
+            (GetBattlerAbility(gBattlerTarget) == ABILITY_QUEENS_MOURNING                 || BattlerHasInnate(gBattlerTarget, ABILITY_QUEENS_MOURNING) || 
+             GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) == ABILITY_QUEENS_MOURNING || BattlerHasInnate(BATTLE_PARTNER(gBattlerTarget), ABILITY_QUEENS_MOURNING)) &&
+             gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget) &&
+             gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget){
+            
+            //Overwrites the Popout
+			gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_QUEENS_MOURNING;
+            //Overwrites where it's written
+            if(GetBattlerAbility(BATTLE_PARTNER(gBattlerTarget)) == ABILITY_QUEENS_MOURNING || BattlerHasInnate(BATTLE_PARTNER(gBattlerTarget), ABILITY_QUEENS_MOURNING)){
+                gBattleScripting.battlerPopupOverwrite = BATTLE_PARTNER(gBattlerTarget);
+                gBattlerAbility = BATTLE_PARTNER(gBattlerTarget);
+            }
+            else
+                gBattlerAbility = gBattlerTarget;
+
+            if(CompareStat(gBattlerAbility, STAT_SPATK, MAX_STAT_STAGE, CMP_LESS_THAN))
+                gBattleMons[gBattlerAbility].statStages[STAT_SPATK]++;
+
+            if(CompareStat(gBattlerAbility, STAT_SPDEF, MAX_STAT_STAGE, CMP_LESS_THAN))
+                gBattleMons[gBattlerAbility].statStages[STAT_SPDEF]++;
+            
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_QueensMourningActivated;
+    }
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
     else if ((stringId == STRINGID_DEFENDERSSTATFELL    || 
               stringId == STRINGID_PKMNCUTSATTACKWITH   || 
