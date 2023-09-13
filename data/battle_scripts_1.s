@@ -10104,6 +10104,15 @@ BattleScript_NaturalCureExits::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_SelfRepairExits::
+	copybyte gBattlerAbility, gBattlerAttacker
+	sethword sABILITY_OVERWRITE, ABILITY_SELF_REPAIR
+	call BattleScript_AbilityPopUp
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_SELF_REPAIR_EXITS
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_RegeneratorExits::
 	clearstatus BS_ATTACKER
 	tryhealquarterhealth BS_ATTACKER, BattleScript_RegeneratorExits_NothingToHeal
