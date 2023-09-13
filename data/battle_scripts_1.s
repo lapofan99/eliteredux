@@ -6882,10 +6882,10 @@ BattleScript_StickyWebOnSwitchInPrintStatMsg:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_StickyWebOnSwitchInEnd:
 	restoretarget
-	jumpifability BS_TARGET, ABILITY_COMPETITIVE, BattleScript_StickyWebOnSwitch_Competitive
-	jumpifability BS_TARGET, ABILITY_DEFIANT, BattleScript_StickyWebOnSwitch_Defiant
-	jumpifability BS_TARGET, ABILITY_FORT_KNOX, BattleScript_StickyWebOnSwitch_FortKnox
-	jumpifability BS_TARGET, ABILITY_RUN_AWAY, BattleScript_StickyWebOnSwitch_RunAway
+	jumpifability       BS_TARGET, ABILITY_COMPETITIVE, BattleScript_StickyWebOnSwitch_Competitive
+	jumpifability       BS_TARGET, ABILITY_DEFIANT, BattleScript_StickyWebOnSwitch_Defiant
+	jumpifability       BS_TARGET, ABILITY_FORT_KNOX, BattleScript_StickyWebOnSwitch_FortKnox
+	jumpifability       BS_TARGET, ABILITY_RUN_AWAY, BattleScript_StickyWebOnSwitch_RunAway
 	jumpifabilityonside BS_TARGET, ABILITY_KINGS_WRATH, BattleScript_StickyWebOnSwitch_KingsWrath
 	return
 
@@ -6913,7 +6913,7 @@ BattleScript_StickyWebOnSwitch_KingsWrath_BoostDefense:
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_StickyWebOnSwitch_KingsWrath_End:
 	restoretarget
-	goto BattleScript_StickyWebOnSwitchActivatesLoopIncrement
+	return
 
 BattleScript_StickyWebOnSwitch_Competitive:
 	sethword sABILITY_OVERWRITE, ABILITY_COMPETITIVE
