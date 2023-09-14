@@ -434,7 +434,7 @@
 #define ABILITY_MINERALIZE       (ABILITIES_COUNT_LATEST_GEN + 136) // All Normal-type moves used by the Pokémon become Rock-type and receive a 20% power boost.
 #define ABILITY_LOOSE_ROCKS      (ABILITIES_COUNT_LATEST_GEN + 137) // when being hit by any attacking move (like Stamina), trigger Stealth Rock
 #define ABILITY_SPINNING_TOP     (ABILITIES_COUNT_LATEST_GEN + 138) // Fighting-type moves raise speed by +1 and clear hazards.
-#define ABILITY_ATOMIC_BURST    (ABILITIES_COUNT_LATEST_GEN + 139) // everytime a foe uses a stat boosting move, trigger a full power Hyperbeam
+#define ABILITY_RETRIBUTION_BLOW (ABILITIES_COUNT_LATEST_GEN + 139) // Everytime a foe uses a stat boosting move, trigger a full power Hyperbeam
 #define ABILITY_FEARMONGER       (ABILITIES_COUNT_LATEST_GEN + 140) // Scare + Intimidate + 10% chance to paralyze with attacks
 #define ABILITY_KINGS_WRATH      (ABILITIES_COUNT_LATEST_GEN + 141) // When a stat is lowered, gain +1 Atk and Def. Includes Ally Drops.
 #define ABILITY_QUEENS_MOURNING  (ABILITIES_COUNT_LATEST_GEN + 142) // When a stat is lowered, boost SpAtk and SpDef by +1. Includes Ally Drops.
@@ -443,7 +443,7 @@
 #define ABILITY_DRACONIZE        (ABILITIES_COUNT_LATEST_GEN + 145) // All Normal-type moves used by the Pokémon become Dragon-type and receive a 20% power boost.
 #define ABILITY_PRETTY_PRINCESS  (ABILITIES_COUNT_LATEST_GEN + 146) // +50% DMG against foes with lowered stats
 #define ABILITY_SELF_REPAIR      (ABILITIES_COUNT_LATEST_GEN + 147) // Self Sufficient + Natural Cure
-#define ABILITY_ATOMIC_CLONE     (ABILITIES_COUNT_LATEST_GEN + 148) // When taking super-effective damage, use Hyper Beam at 33% Power. (Needs a proper name)
+#define ABILITY_ATOMIC_BURST     (ABILITIES_COUNT_LATEST_GEN + 148) // When taking super-effective damage, use Hyper Beam at 33% Power.
 #define ABILITY_HELLBLAZE        (ABILITIES_COUNT_LATEST_GEN + 149) // Ups Fire moves by 30%, 80% when at 1/3 HP.
 #define ABILITY_RIPTIDE          (ABILITIES_COUNT_LATEST_GEN + 150) // Ups Water moves by 30%, 80% when at 1/3 HP.
 #define ABILITY_FOREST_RAGE      (ABILITIES_COUNT_LATEST_GEN + 151) // Ups Grass moves by 30%, 80% when at 1/3 HP.

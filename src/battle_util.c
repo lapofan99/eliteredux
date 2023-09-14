@@ -8182,7 +8182,7 @@ case ABILITY_PICKUP:
         }
 
         // Atomic Clone
-        if(BattlerHasInnate(battler, ABILITY_ATOMIC_CLONE) || GetBattlerAbility(battler) == ABILITY_ATOMIC_CLONE){
+        if(BattlerHasInnate(battler, ABILITY_ATOMIC_BURST) || GetBattlerAbility(battler) == ABILITY_ATOMIC_BURST){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && gBattleMons[battler].hp != 0
@@ -8196,7 +8196,7 @@ case ABILITY_PICKUP:
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[battler].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_ATOMIC_CLONE;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_ATOMIC_BURST;
                 gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
             }
@@ -8387,8 +8387,8 @@ case ABILITY_PICKUP:
 		}
 
         for(i = 0; i < MAX_BATTLERS_COUNT; i++){
-            //Godzilla Rage
-            if(GetBattlerAbility(i) == ABILITY_ATOMIC_BURST || BattlerHasInnate(i, ABILITY_ATOMIC_BURST)){
+            // Retribution Blow
+            if(GetBattlerAbility(i) == ABILITY_RETRIBUTION_BLOW || BattlerHasInnate(i, ABILITY_RETRIBUTION_BLOW)){
                 if (IsBattlerAlive(i)
                 && DoesMoveBoostStats(gCurrentMove)
                 && !gProtectStructs[i].extraMoveUsed
@@ -8402,7 +8402,7 @@ case ABILITY_PICKUP:
                     VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                     gBattlerTarget = battler = i;
                     gProtectStructs[i].extraMoveUsed = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_ATOMIC_BURST;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_RETRIBUTION_BLOW;
                     gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                     effect++;
                 }
