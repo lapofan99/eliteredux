@@ -1498,6 +1498,18 @@ static void Cmd_attackcanceler(void)
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
+    // Primal Maw
+    if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
+	&& (GetBattlerAbility(gBattlerAttacker) == ABILITY_PRIMAL_MAW || BattlerHasInnate(gBattlerAttacker, ABILITY_PRIMAL_MAW)) // Includes Innate
+	&& (gBattleMoves[gCurrentMove].flags & FLAG_STRONG_JAW_BOOST)
+    && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
+    && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
+    {
+        gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+        gMultiHitCounter = 2;
+        PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
+        return;
+    }
 	// Multi Headed
 	if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
     && (GetBattlerAbility(gBattlerAttacker) == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED)) // Includes Innate
@@ -11753,6 +11765,8 @@ static void Cmd_calculatesetdamage(void)
         if(gBattleMons[gBattlerAttacker].ability == ABILITY_PARENTAL_BOND || BattlerHasInnate(gBattlerAttacker, ABILITY_PARENTAL_BOND))
             gBattleMoveDamage = baseDamage / 4;
         else if(gBattleMons[gBattlerAttacker].ability == ABILITY_RAGING_BOXER || BattlerHasInnate(gBattlerAttacker, ABILITY_RAGING_BOXER))
+            gBattleMoveDamage = baseDamage / 2;
+        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_PRIMAL_MAW || BattlerHasInnate(gBattlerAttacker, ABILITY_PRIMAL_MAW))
             gBattleMoveDamage = baseDamage / 2;
         else if(gBattleMons[gBattlerAttacker].ability == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED))
                 gBattleMoveDamage = baseDamage / 5;

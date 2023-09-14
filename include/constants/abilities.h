@@ -346,7 +346,7 @@
 #define ABILITY_METALLIC         (ABILITIES_COUNT_LATEST_GEN + 48) // Adds the Steel-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_PERMAFROST       (ABILITIES_COUNT_LATEST_GEN + 49) // Reduces damage taken from super-effective attacks by 25%
 #define ABILITY_PRIMAL_ARMOR     (ABILITIES_COUNT_LATEST_GEN + 50) // Reduces damage taken from super-effective attacks by 50%
-#define ABILITY_RAGING_BOXER     (ABILITIES_COUNT_LATEST_GEN + 51) // Punch moves hit twice, with second hit deals 0.5x.
+#define ABILITY_RAGING_BOXER     (ABILITIES_COUNT_LATEST_GEN + 51) // Punch moves hit twice, second hit deals 0.5x.
 #define ABILITY_AIR_BLOWER       (ABILITIES_COUNT_LATEST_GEN + 52) // Sets Tailwind for 5 turns when entering battle.
 #define ABILITY_JUGGERNAUT       (ABILITIES_COUNT_LATEST_GEN + 53) // Contact moves use 20% of its Defense stat additionally. Also, the Pokémon cannot be paralyzed.
 #define ABILITY_SHORT_CIRCUIT    (ABILITIES_COUNT_LATEST_GEN + 54) // Overgrow for Electric moves.
@@ -447,8 +447,9 @@
 #define ABILITY_HELLBLAZE        (ABILITIES_COUNT_LATEST_GEN + 149) // Ups Fire moves by 30%, 80% when at 1/3 HP.
 #define ABILITY_RIPTIDE          (ABILITIES_COUNT_LATEST_GEN + 150) // Ups Water moves by 30%, 80% when at 1/3 HP.
 #define ABILITY_FOREST_RAGE      (ABILITIES_COUNT_LATEST_GEN + 151) // Ups Grass moves by 30%, 80% when at 1/3 HP.
+#define ABILITY_PRIMAL_MAW       (ABILITIES_COUNT_LATEST_GEN + 152) // Biting moves hit twice, second hit deals 0.5x.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_FOREST_RAGE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_PRIMAL_MAW + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

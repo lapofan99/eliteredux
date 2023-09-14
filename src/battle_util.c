@@ -14215,6 +14215,14 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 			MulModifier(&finalModifier, UQ_4_12(0.5));
 		}
 	}
+
+    // Primal Maw
+	if(abilityAtk == ABILITY_PRIMAL_MAW || BattlerHasInnate(gBattlerAttacker, ABILITY_PRIMAL_MAW)){
+		if (gSpecialStatuses[gBattlerAttacker].parentalBondOn == 1)
+		{
+			MulModifier(&finalModifier, UQ_4_12(0.5));
+		}
+	}
 	
 	// Multi Headed
 	if(abilityAtk == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED)){
