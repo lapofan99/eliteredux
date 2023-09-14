@@ -294,6 +294,7 @@ const u16 gEggMoves[] = {
         MOVE_POWER_TRIP),
 
     egg_moves(GROWLITHE,
+        MOVE_RAGING_FURY, // new
         MOVE_BODY_SLAM,
         MOVE_CRUNCH,
         MOVE_THRASH,

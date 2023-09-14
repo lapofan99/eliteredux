@@ -769,6 +769,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_FAIRY_FANG]     = _("Fairy Fang"),
     [MOVE_JAGGED_FANG]    = _("Jagged Fang"),
     [MOVE_BURNING_GROUND] = _("Brn.Ground"),
+    [MOVE_RAGING_FURY]    = _("Raging Fury"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1543,4 +1544,5 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_FAIRY_FANG]     = _("Fairy Fang"),
     [MOVE_JAGGED_FANG]    = _("Jagged Fang"),
     [MOVE_BURNING_GROUND] = _("Burning Ground"),
+    [MOVE_RAGING_FURY]    = _("Raging Fury"),
 };

@@ -2102,12 +2102,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_ARCANINE] =
     {
-    .baseHP        = 90,
-    .baseAttack    = 110,
-    .baseDefense   = 80,
-    .baseSpeed     = 95,
-    .baseSpAttack  = 100,
-    .baseSpDefense = 80,
+    .baseHP        = 90, // 90
+    .baseAttack    = 125, // 110
+    .baseDefense   = 85, // 80
+    .baseSpeed     = 115, // 95
+    .baseSpAttack  = 100, // 100
+    .baseSpDefense = 85, // 80
     .type1 = TYPE_FIRE,
     .type2 = TYPE_FIRE,
     .catchRate = 255,

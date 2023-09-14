@@ -107,7 +107,7 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
                             {EVO_ITEM, ITEM_MOON_STONE, SPECIES_UMBREON},
                             {EVO_ITEM, ITEM_LEAF_STONE, SPECIES_LEAFEON},
                             {EVO_ITEM, ITEM_ICE_STONE, SPECIES_GLACEON},
-                            {EVO_MOVE_TYPE, TYPE_FAIRY, SPECIES_SYLVEON}},
+                            {EVO_ITEM, ITEM_SHINY_STONE, SPECIES_SYLVEON}},
     [SPECIES_PORYGON]	 = {{EVO_ITEM, ITEM_UPGRADE, SPECIES_PORYGON2}},
     [SPECIES_OMANYTE]	 = {{EVO_LEVEL, 28, SPECIES_OMASTAR}},
     [SPECIES_KABUTO]	 = {{EVO_LEVEL, 28, SPECIES_KABUTOPS}},

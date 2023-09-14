@@ -791,6 +791,7 @@ gBattleAnims_Moves::
 	.4byte Move_FAIRY_FANG
 	.4byte Move_JAGGED_FANG
 	.4byte Move_BURNING_GROUND
+	.4byte Move_RAGING_FURY
 	.4byte Move_COUNT @ cannot be reached, because last move is Outburst
 
 	.align 2
@@ -7777,6 +7778,7 @@ LaunchIcicleCrashSpear:
 	delay 0x2
 	return
 
+Move_RAGING_FURY::
 Move_V_CREATE::
 	loadspritegfx ANIM_TAG_SMALL_EMBER @fire blast flame
 	loadspritegfx ANIM_TAG_THIN_RING @calm mind animation

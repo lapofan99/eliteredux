@@ -3041,9 +3041,13 @@ static const u8 sOUTBURSTDescription[] = _(
     "Severe special damage but\n"
     "makes the user faint.");
 
-static const u8 sSEISMICFISRTDescription[] = _(
+static const u8 sSEISMICFISTDescription[] = _(
     "A ground-breaking punch\n"
     "is thrown at the target.");
+
+static const u8 sRAGINGFURYDescription[] = _(
+    "A rampage of 2 to 3 turns\n"
+    "that confuses the user.");
 
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
@@ -3815,12 +3819,13 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_WAVE_CRASH   - 1]   = sWAVE_CRASHDescription,
     [MOVE_SMITE        - 1]   = sSMITEDescription,
     [MOVE_OUTBURST     - 1]   = sOUTBURSTDescription,
-    [MOVE_SEISMIC_FIST - 1]   = sSEISMICFISRTDescription,
-    [MOVE_IRON_FANGS - 1]     = sSEISMICFISRTDescription,
-    [MOVE_SHADOW_FANG - 1]    = sSEISMICFISRTDescription,
-    [MOVE_FAIRY_FANG - 1]     = sSEISMICFISRTDescription,
-    [MOVE_JAGGED_FANG - 1]    = sSEISMICFISRTDescription,
-    [MOVE_BURNING_GROUND - 1] = sSEISMICFISRTDescription,
+    [MOVE_SEISMIC_FIST - 1]   = sSEISMICFISTDescription,
+    [MOVE_IRON_FANGS - 1]     = sSEISMICFISTDescription,
+    [MOVE_SHADOW_FANG - 1]    = sSEISMICFISTDescription,
+    [MOVE_FAIRY_FANG - 1]     = sSEISMICFISTDescription,
+    [MOVE_JAGGED_FANG - 1]    = sSEISMICFISTDescription,
+    [MOVE_BURNING_GROUND - 1] = sSEISMICFISTDescription,
+    [MOVE_RAGING_FURY -1]     = sRAGINGFURYDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4629,7 +4634,8 @@ static const u8 sMoveFourLineDescription_AquaFang[] = _("Bites with aquatic\nfan
 static const u8 sMoveFourLineDescription_WaveCrash[] = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
 static const u8 sMoveFourLineDescription_Smite[] = _("Attacks from above\nwith strong electricity.\n20% paralysis chance.\nSmack Down effect."); // new
 static const u8 sMoveFourLineDescription_Outburst[]     = _("The user explodes\nto inflict terrible\ndamage even while\nfainting itself."); // new
-static const u8 sMoveFourLineDescription_SeismicFistt[] = _("The user throws\na ground-breaking\nfist at the\ntarget."); // new
+static const u8 sMoveFourLineDescription_SeismicFist[] = _("The user throws\na ground-breaking\nfist at the\ntarget."); // new
+static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5396,10 +5402,10 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_WAVE_CRASH   - 1]   = sMoveFourLineDescription_WaveCrash,
     [MOVE_SMITE        - 1]   = sMoveFourLineDescription_Smite,
     [MOVE_OUTBURST     - 1]   = sMoveFourLineDescription_Outburst,
-    [MOVE_SEISMIC_FIST - 1]   = sMoveFourLineDescription_SeismicFistt,
-    [MOVE_IRON_FANGS - 1]     = sMoveFourLineDescription_SeismicFistt,
-    [MOVE_SHADOW_FANG - 1]    = sMoveFourLineDescription_SeismicFistt,
-    [MOVE_FAIRY_FANG - 1]     = sMoveFourLineDescription_SeismicFistt,
-    [MOVE_JAGGED_FANG - 1]    = sMoveFourLineDescription_SeismicFistt,
-    [MOVE_BURNING_GROUND - 1] = sMoveFourLineDescription_SeismicFistt,
+    [MOVE_SEISMIC_FIST - 1]   = sMoveFourLineDescription_SeismicFist,
+    [MOVE_IRON_FANGS - 1]     = sMoveFourLineDescription_SeismicFist,
+    [MOVE_SHADOW_FANG - 1]    = sMoveFourLineDescription_SeismicFist,
+    [MOVE_FAIRY_FANG - 1]     = sMoveFourLineDescription_SeismicFist,
+    [MOVE_JAGGED_FANG - 1]    = sMoveFourLineDescription_SeismicFist,
+    [MOVE_BURNING_GROUND - 1] = sMoveFourLineDescription_SeismicFist,
 };
