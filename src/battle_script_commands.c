@@ -1914,6 +1914,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if ((atkAbility == ABILITY_ARTILLERY || BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY)) && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
         moveAcc = 100;
 
+    if ((atkAbility == ABILITY_SWEEPING_EDGE || BattlerHasInnate(battlerAtk, ABILITY_SWEEPING_EDGE)) && (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST))
+        moveAcc = 100;
+
     if ((atkAbility == ABILITY_DEADEYE || BattlerHasInnate(battlerAtk, ABILITY_DEADEYE)))
         moveAcc = 100;
 

@@ -277,6 +277,10 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
          && (gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
+    else if ((ability == ABILITY_SWEEPING_EDGE || BattlerHasInnate(gActiveBattler, ABILITY_SWEEPING_EDGE)) 
+         && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
+         && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
+        return MOVE_TARGET_BOTH;
     else if ((ability == ABILITY_AMPLIFIER || BattlerHasInnate(gActiveBattler, ABILITY_AMPLIFIER)) 
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
@@ -291,6 +295,10 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
     u16 ability = gBattleMons[battler].ability;
     if ((ability == ABILITY_ARTILLERY || BattlerHasInnate(battler, ABILITY_ARTILLERY)) 
          && (gBattleMoves[moveId].flags & FLAG_MEGA_LAUNCHER_BOOST)
+         && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
+        return MOVE_TARGET_BOTH;
+    else if ((ability == ABILITY_SWEEPING_EDGE || BattlerHasInnate(battler, ABILITY_SWEEPING_EDGE)) 
+         && (gBattleMoves[moveId].flags & FLAG_KEEN_EDGE_BOOST)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
     else if ((ability == ABILITY_AMPLIFIER || BattlerHasInnate(battler, ABILITY_AMPLIFIER)) 

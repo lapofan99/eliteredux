@@ -411,6 +411,7 @@ static const u8 sHellblazeDescription[] = _("Ups Fire moves by 30%,\n80% when at
 static const u8 sRiptideDescription[] = _("Ups Water moves by 30%,\n80% when at 1/3 HP.");
 static const u8 sForestRageDescription[] = _("Ups Grass moves by 30%,\n80% when at 1/3 HP.");
 static const u8 sPrimalMawDescription[] =  _("Biting moves hit twice.\n2nd hit does 0.5x damage.");
+static const u8 sSweepingEdgeDescription[] =  _("Keen Edge moves always hit.\nSingle-target now hits both foes.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -836,6 +837,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_RIPTIDE] = _("Riptide"),
     [ABILITY_FOREST_RAGE] = _("Forest Rage"),
     [ABILITY_PRIMAL_MAW] = _("Primal Maw"),
+    [ABILITY_SWEEPING_EDGE] = _("Sweeping Edge"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1260,4 +1262,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_RIPTIDE] = sRiptideDescription,
     [ABILITY_FOREST_RAGE] = sForestRageDescription,
     [ABILITY_PRIMAL_MAW] = sPrimalMawDescription,
+    [ABILITY_SWEEPING_EDGE] = sSweepingEdgeDescription
 };

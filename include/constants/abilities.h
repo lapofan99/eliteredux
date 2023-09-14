@@ -448,8 +448,9 @@
 #define ABILITY_RIPTIDE          (ABILITIES_COUNT_LATEST_GEN + 150) // Ups Water moves by 30%, 80% when at 1/3 HP.
 #define ABILITY_FOREST_RAGE      (ABILITIES_COUNT_LATEST_GEN + 151) // Ups Grass moves by 30%, 80% when at 1/3 HP.
 #define ABILITY_PRIMAL_MAW       (ABILITIES_COUNT_LATEST_GEN + 152) // Biting moves hit twice, second hit deals 0.5x.
+#define ABILITY_SWEEPING_EDGE    (ABILITIES_COUNT_LATEST_GEN + 153) // Keen Edge moves cannot miss and single-target moves hit both foes.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_PRIMAL_MAW + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_SWEEPING_EDGE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

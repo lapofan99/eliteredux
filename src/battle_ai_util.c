@@ -1499,6 +1499,9 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
     if ((atkAbility == ABILITY_ARTILLERY || BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY)) && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
         moveAcc = 100;
 
+    if ((atkAbility == ABILITY_SWEEPING_EDGE || BattlerHasInnate(battlerAtk, ABILITY_SWEEPING_EDGE)) && (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST))
+        moveAcc = 100;
+
     if ((atkAbility == ABILITY_DEADEYE || BattlerHasInnate(battlerAtk, ABILITY_DEADEYE)))
         moveAcc = 100;
 
@@ -1574,6 +1577,9 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
         return FALSE;
 
     if ((BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY) || AI_GetAbility(battlerAtk) == ABILITY_ARTILLERY) && gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
+        return TRUE;
+
+    if ((BattlerHasInnate(battlerAtk, ABILITY_SWEEPING_EDGE) || AI_GetAbility(battlerAtk) == ABILITY_SWEEPING_EDGE) && gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST)
         return TRUE;
 
     if((BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM) || AI_GetAbility(battlerAtk) == ABILITY_SIGHTING_SYSTEM))
