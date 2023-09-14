@@ -4648,14 +4648,19 @@ static const u8 sMoveFourLineDescription_AstralBarrage[] = _("Strikes by sending
 static const u8 sMoveFourLineDescription_EerieSpell[] = _("Attacks with its\ntremendous psychic\npower. Foe's last\nmove has 3 PP cut.");
 
 // Darky's Custom Moves
-static const u8 sMoveFourLineDescription_Deathroll[] = _("20% confusion chance.\nStrong Jaw boost.\nIgnores target's\nstat changes."); // new
-static const u8 sMoveFourLineDescription_Excalibur[] = _("Hits hard. Double\ndamage on\nDragon-types.\nHigh critical ratio."); // new
-static const u8 sMoveFourLineDescription_AquaFang[] = _("Bites with aquatic\nfangs. Has 10%\nflinch chance.\nStrong Jaw boost."); // new
-static const u8 sMoveFourLineDescription_WaveCrash[] = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
-static const u8 sMoveFourLineDescription_Smite[] = _("Attacks from above\nwith strong electricity.\n20% paralysis chance.\nSmack Down effect."); // new
-static const u8 sMoveFourLineDescription_Outburst[]     = _("The user explodes\nto inflict terrible\ndamage even while\nfainting itself."); // new
-static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n30% chance to drop\nthe foe's Def."); // new
-static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
+static const u8 sMoveFourLineDescription_Deathroll[]     = _("20% confusion chance.\nStrong Jaw boost.\nIgnores target's\nstat changes."); // new
+static const u8 sMoveFourLineDescription_Excalibur[]     = _("Hits hard. Double\ndamage on\nDragon-types.\nHigh critical ratio."); // new
+static const u8 sMoveFourLineDescription_AquaFang[]      = _("Bites with aquatic\nfangs. Has 10%\nflinch chance.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_WaveCrash[]     = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
+static const u8 sMoveFourLineDescription_Smite[]         = _("Attacks from above\nwith strong electricity.\n20% paralysis chance.\nSmack Down effect."); // new
+static const u8 sMoveFourLineDescription_Outburst[]      = _("The user explodes\nto inflict terrible\ndamage even while\nfainting itself."); // new
+static const u8 sMoveFourLineDescription_SeismicFist[]   = _("Throws a ground-\nbreaking fist.\n30% chance to drop\nthe foe's Def."); // new
+static const u8 sMoveFourLineDescription_RagingFury[]    = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
+static const u8 sMoveFourLineDescription_ShadowFangs[]   = _(""); // new
+static const u8 sMoveFourLineDescription_LovelyBite[]    = _(""); // new
+static const u8 sMoveFourLineDescription_JaggedFangs[]   = _(""); // new
+static const u8 sMoveFourLineDescription_BurningGround[] = _(""); // new
+static const u8 sMoveFourLineDescription_IronFangs[]     = _(""); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,

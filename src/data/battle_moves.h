@@ -8910,13 +8910,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_FLYING_PRESS] =
     {
-        #if B_UPDATED_MOVE_DATA >= GEN_7
-            .power = 100,
-        #else
-            .power = 80,
-        #endif
-        .effect = EFFECT_TWO_TYPED_MOVE,
+        .effect = EFFECT_HIT,
+        .power = 100,
         .type = TYPE_FIGHTING,
+        .type2 = TYPE_FLYING,
         .accuracy = 100,
         .pp = 10,
         .secondaryEffectChance = 0,
@@ -8924,7 +8921,6 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
-        .argument = TYPE_FLYING,
     },
 
     [MOVE_MAT_BLOCK] =
@@ -11941,17 +11937,17 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_BURNING_GROUND] =
     {
-        .effect = EFFECT_TWO_TYPED_MOVE,
+        .effect = EFFECT_BURN_HIT,
         .power = 100,
-        .type = TYPE_FIRE,
+        .type  = TYPE_FIRE,
+        .type2 = TYPE_GROUND,
         .accuracy = 100,
         .pp = 15,
-        .secondaryEffectChance = 0,
+        .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
-        .argument = TYPE_GROUND,
     },
 
     [MOVE_OUTBURST] =
