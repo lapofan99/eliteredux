@@ -789,7 +789,7 @@ gBattleAnims_Moves::
 	.4byte Move_IRON_FANGS
 	.4byte Move_SHADOW_FANGS
 	.4byte Move_LOVELY_BITE
-	.4byte MOVE_JAGGED_FANGS
+	.4byte Move_JAGGED_FANGS
 	.4byte Move_BURNING_GROUND
 	.4byte Move_RAGING_FURY
 	.4byte Move_COUNT @ cannot be reached, because last move is Outburst
@@ -20400,7 +20400,7 @@ AquaFangRemoveBlend:
 	clearmonbg ANIM_DEF_PARTNER
 	end
 
-MOVE_JAGGED_FANGS::
+Move_JAGGED_FANGS::
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_ROCKS
