@@ -767,7 +767,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_IRON_FANGS]     = _("Iron Fang"),
     [MOVE_SHADOW_FANG]    = _("Shadow Fang"),
     [MOVE_FAIRY_FANG]     = _("Fairy Fang"),
-    [MOVE_JAGGED_FANG]    = _("Jagged Fang"),
+    [MOVE_JAGGED_FANGS]    = _("Jagged Fang"),
     [MOVE_BURNING_GROUND] = _("Brn.Ground"),
     [MOVE_RAGING_FURY]    = _("Raging Fury"),
 };
@@ -1542,7 +1542,7 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_IRON_FANGS]     = _("Iron Fang"),
     [MOVE_SHADOW_FANG]    = _("Shadow Fang"),
     [MOVE_FAIRY_FANG]     = _("Fairy Fang"),
-    [MOVE_JAGGED_FANG]    = _("Jagged Fang"),
+    [MOVE_JAGGED_FANGS]    = _("Jagged Fang"),
     [MOVE_BURNING_GROUND] = _("Burning Ground"),
     [MOVE_RAGING_FURY]    = _("Raging Fury"),
 };

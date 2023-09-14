@@ -3823,7 +3823,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_IRON_FANGS - 1]     = sSEISMICFISTDescription,
     [MOVE_SHADOW_FANG - 1]    = sSEISMICFISTDescription,
     [MOVE_FAIRY_FANG - 1]     = sSEISMICFISTDescription,
-    [MOVE_JAGGED_FANG - 1]    = sSEISMICFISTDescription,
+    [MOVE_JAGGED_FANGS - 1]    = sSEISMICFISTDescription,
     [MOVE_BURNING_GROUND - 1] = sSEISMICFISTDescription,
     [MOVE_RAGING_FURY -1]     = sRAGINGFURYDescription,
 };
@@ -5406,6 +5406,6 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_IRON_FANGS - 1]     = sMoveFourLineDescription_SeismicFist,
     [MOVE_SHADOW_FANG - 1]    = sMoveFourLineDescription_SeismicFist,
     [MOVE_FAIRY_FANG - 1]     = sMoveFourLineDescription_SeismicFist,
-    [MOVE_JAGGED_FANG - 1]    = sMoveFourLineDescription_SeismicFist,
+    [MOVE_JAGGED_FANGS - 1]    = sMoveFourLineDescription_SeismicFist,
     [MOVE_BURNING_GROUND - 1] = sMoveFourLineDescription_SeismicFist,
 };

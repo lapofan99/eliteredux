@@ -11925,7 +11925,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_JAGGED_FANG] =
+    [MOVE_JAGGED_FANGS] =
     {
         .effect = EFFECT_DEFENSE_DOWN_HIT,
         .power = 75,

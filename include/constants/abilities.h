@@ -434,7 +434,7 @@
 #define ABILITY_MINERALIZE       (ABILITIES_COUNT_LATEST_GEN + 136) // All Normal-type moves used by the Pokémon become Rock-type and receive a 20% power boost.
 #define ABILITY_LOOSE_ROCKS      (ABILITIES_COUNT_LATEST_GEN + 137) // when being hit by any attacking move (like Stamina), trigger Stealth Rock
 #define ABILITY_SPINNING_TOP     (ABILITIES_COUNT_LATEST_GEN + 138) // Fighting-type moves raise speed by +1 and clear hazards.
-#define ABILITY_RETRIBUTION_BLOW (ABILITIES_COUNT_LATEST_GEN + 139) // Everytime a foe uses a stat boosting move, trigger a full power Hyperbeam
+#define ABILITY_RETRIBUTION_BLOW (ABILITIES_COUNT_LATEST_GEN + 139) // Everytime a foe uses a stat boosting move, trigger a full power Hyperbeam.
 #define ABILITY_FEARMONGER       (ABILITIES_COUNT_LATEST_GEN + 140) // Scare + Intimidate + 10% chance to paralyze with attacks.
 #define ABILITY_KINGS_WRATH      (ABILITIES_COUNT_LATEST_GEN + 141) // When a stat is lowered, boost Atk and Def by +1. Includes Ally Drops.
 #define ABILITY_QUEENS_MOURNING  (ABILITIES_COUNT_LATEST_GEN + 142) // When a stat is lowered, boost SpAtk and SpDef by +1. Includes Ally Drops.
