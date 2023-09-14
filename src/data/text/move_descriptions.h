@@ -3041,9 +3041,29 @@ static const u8 sOUTBURSTDescription[] = _(
     "Severe special damage but\n"
     "makes the user faint.");
 
-static const u8 sSEISMICFISTDescription[] = _(
+static const u8 sIRON_FANGSDescription[] = _(
     "A ground-breaking punch\n"
     "is thrown at the target.");
+
+static const u8 sLOVELY_BITEDescription[] = _(
+    "A ground-breaking punch\n"
+    "is thrown at the target.");
+
+static const u8 sSHADOW_FANGSDescription[] = _(
+    "A ground-breaking punch\n"
+    "is thrown at the target.");
+
+static const u8 sJAGGED_FANGSDescription[] = _(
+    "A ground-breaking punch\n"
+    "is thrown at the target.");
+
+static const u8 sBURNING_GROUNDDescription[] = _(
+    "Precisely burns the ground\n"
+    "under the foe. May burn.");
+
+static const u8 sSEISMIC_FISTDescription[] = _(
+    "A ground-breaking punch.\n"
+    "30% chance to drop Def.");
 
 static const u8 sRAGINGFURYDescription[] = _(
     "A rampage of 2 to 3 turns\n"
@@ -3819,12 +3839,12 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_WAVE_CRASH   - 1]   = sWAVE_CRASHDescription,
     [MOVE_SMITE        - 1]   = sSMITEDescription,
     [MOVE_OUTBURST     - 1]   = sOUTBURSTDescription,
-    [MOVE_SEISMIC_FIST - 1]   = sSEISMICFISTDescription,
-    [MOVE_IRON_FANGS - 1]     = sSEISMICFISTDescription,
-    [MOVE_SHADOW_FANGS - 1]   = sSEISMICFISTDescription,
-    [MOVE_LOVELY_BITE - 1]    = sSEISMICFISTDescription,
-    [MOVE_JAGGED_FANGS - 1]   = sSEISMICFISTDescription,
-    [MOVE_BURNING_GROUND - 1] = sSEISMICFISTDescription,
+    [MOVE_SEISMIC_FIST - 1]   = sSEISMIC_FISTDescription,
+    [MOVE_IRON_FANGS - 1]     = sIRON_FANGSDescription,
+    [MOVE_SHADOW_FANGS - 1]   = sSHADOW_FANGSDescription,
+    [MOVE_LOVELY_BITE - 1]    = sLOVELY_BITEDescription,
+    [MOVE_JAGGED_FANGS - 1]   = sJAGGED_FANGSDescription,
+    [MOVE_BURNING_GROUND - 1] = sBURNING_GROUNDDescription,
     [MOVE_RAGING_FURY -1]     = sRAGINGFURYDescription,
 };
 
@@ -4634,7 +4654,7 @@ static const u8 sMoveFourLineDescription_AquaFang[] = _("Bites with aquatic\nfan
 static const u8 sMoveFourLineDescription_WaveCrash[] = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
 static const u8 sMoveFourLineDescription_Smite[] = _("Attacks from above\nwith strong electricity.\n20% paralysis chance.\nSmack Down effect."); // new
 static const u8 sMoveFourLineDescription_Outburst[]     = _("The user explodes\nto inflict terrible\ndamage even while\nfainting itself."); // new
-static const u8 sMoveFourLineDescription_SeismicFist[] = _("The user throws\na ground-breaking\nfist at the\ntarget."); // new
+static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n30% chance to drop\nthe foe's Def."); // new
 static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
@@ -5403,10 +5423,10 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SMITE        - 1]   = sMoveFourLineDescription_Smite,
     [MOVE_OUTBURST     - 1]   = sMoveFourLineDescription_Outburst,
     [MOVE_SEISMIC_FIST - 1]   = sMoveFourLineDescription_SeismicFist,
-    [MOVE_IRON_FANGS - 1]     = sMoveFourLineDescription_SeismicFist,
-    [MOVE_SHADOW_FANGS - 1]   = sMoveFourLineDescription_SeismicFist,
-    [MOVE_LOVELY_BITE - 1]    = sMoveFourLineDescription_SeismicFist,
-    [MOVE_JAGGED_FANGS - 1]   = sMoveFourLineDescription_SeismicFist,
-    [MOVE_BURNING_GROUND - 1] = sMoveFourLineDescription_SeismicFist,
+    [MOVE_IRON_FANGS - 1]     = sMoveFourLineDescription_IronFangs,
+    [MOVE_SHADOW_FANGS - 1]   = sMoveFourLineDescription_ShadowFangs,
+    [MOVE_LOVELY_BITE - 1]    = sMoveFourLineDescription_LovelyBite,
+    [MOVE_JAGGED_FANGS - 1]   = sMoveFourLineDescription_JaggedFangs,
+    [MOVE_BURNING_GROUND - 1] = sMoveFourLineDescription_BurningGround,
     [MOVE_RAGING_FURY - 1]    = sMoveFourLineDescription_RagingFury,
 };

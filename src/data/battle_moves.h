@@ -11871,12 +11871,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_IRON_FANGS] =
     {
-        .effect = EFFECT_FLINCH_HIT,
-        .power = 75,
+        .effect = EFFECT_BRICK_BREAK,
+        .power = 85,
         .type = TYPE_STEEL,
-        .accuracy = 95,
+        .accuracy = 100,
         .pp = 15,
-        .secondaryEffectChance = 10,
+        .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_STRONG_JAW_BOOST,
@@ -11885,12 +11885,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_LOVELY_BITE] =
     {
-        .effect = EFFECT_FLINCH_HIT,
-        .power = 75,
+        .effect = EFFECT_ATTRACT,
+        .power = 70,
         .type = TYPE_FAIRY,
-        .accuracy = 95,
+        .accuracy = 100,
         .pp = 15,
-        .secondaryEffectChance = 10,
+        .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_STRONG_JAW_BOOST,
@@ -11900,9 +11900,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_SHADOW_FANGS] =
     {
         .effect = EFFECT_FLINCH_HIT,
-        .power = 75,
+        .power = 70,
         .type = TYPE_GHOST,
-        .accuracy = 95,
+        .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
@@ -11927,10 +11927,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_JAGGED_FANGS] =
     {
-        .effect = EFFECT_DEFENSE_DOWN_HIT,
-        .power = 75,
+        .effect = EFFECT_ATTACK_UP_HIT,
+        .power = 70,
         .type = TYPE_ROCK,
-        .accuracy = 95,
+        .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
@@ -11946,7 +11946,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .type = TYPE_FIRE,
         .accuracy = 100,
         .pp = 15,
-        .secondaryEffectChance = 10,
+        .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
