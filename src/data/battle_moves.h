@@ -11883,7 +11883,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_FAIRY_FANG] =
+    [MOVE_LOVELY_BITE] =
     {
         .effect = EFFECT_FLINCH_HIT,
         .power = 75,
@@ -11897,7 +11897,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_SHADOW_FANG] =
+    [MOVE_SHADOW_FANGS] =
     {
         .effect = EFFECT_FLINCH_HIT,
         .power = 75,

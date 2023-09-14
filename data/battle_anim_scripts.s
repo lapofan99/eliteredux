@@ -787,8 +787,8 @@ gBattleAnims_Moves::
 	.4byte Move_OUTBURST
 	.4byte Move_SEIMSIC_FIST
 	.4byte Move_IRON_FANGS
-	.4byte Move_SHADOW_FANG
-	.4byte Move_FAIRY_FANG
+	.4byte Move_SHADOW_FANGS
+	.4byte Move_LOVELY_BITE
 	.4byte MOVE_JAGGED_FANGS
 	.4byte Move_BURNING_GROUND
 	.4byte Move_RAGING_FURY
@@ -20406,7 +20406,7 @@ MOVE_JAGGED_FANGS::
 	loadspritegfx ANIM_TAG_ROCKS
 	loadspritegfx ANIM_TAG_WHITE_STREAK
 	loadspritegfx ANIM_TAG_SPARKLE_3
-JagedFangCharge:
+JaggedFangsCharge:
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, 1, 3, 0, 12, RGB_BLACK
 	waitforvisualfinish
 	loopsewithpan SE_M_HARDEN, SOUND_PAN_ATTACKER, 10, 7
@@ -20468,12 +20468,12 @@ JagedFangCharge:
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, 1, 3, 12, 0, RGB_BLACK
 	waitforvisualfinish
 	call SetImpactBackground
-JagedFangHitTarget:
+JaggedFangsHitTarget:
 	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
 	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 4, 0, -819, 10
 	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
 	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
-JagedFangExtraEffect:
+JaggedFangsExtraEffect:
 	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 20, 24, 14, 2
 	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 5, 0, -20, 24, 14, 1
 	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 5, 20, -24, 14, 2
@@ -20482,7 +20482,7 @@ JagedFangExtraEffect:
 	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 30, -18, 8, 2
 	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, 18, 8, 2
 	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, -18, 8, 2
-JagedFangRemoveBlend:
+JaggedFangsRemoveBlend:
 	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, 1, 3, 12, 0, RGB_BLACK
 	restorebg
 	waitforvisualfinish
@@ -20533,14 +20533,14 @@ BurningGroundOrbs:
 	delay 2
 	return
 
-Move_FAIRY_FANG::
+Move_LOVELY_BITE::
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_MAGENTA_HEART
 	loadspritegfx ANIM_TAG_PINK_HEART
 	loadspritegfx ANIM_TAG_RED_HEART
 	loadspritegfx ANIM_TAG_ANGEL
-FairyFangCharge:
+LovelyBiteCharge:
 	createsprite gAngelSpriteTemplate, ANIM_TARGET, 2, 16, -48
 	createsprite gMagentaHeartSpriteTemplate, ANIM_ATTACKER, 3, 0, 20
 	playsewithpan SE_M_HEAL_BELL, SOUND_PAN_TARGET
@@ -20551,20 +20551,20 @@ FairyFangCharge:
 	createsprite gMagentaHeartSpriteTemplate, ANIM_ATTACKER, 3, 0, 20
 	playsewithpan SE_M_HEAL_BELL, SOUND_PAN_TARGET
 	waitforvisualfinish
-FairyFangHitTarget:
+LovelyBiteHitTarget:
 	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
 	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 4, 0, -819, 10
 	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
 	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 9, RGB(31, 21, 25)
-FairyFangExtraEffect:
+LovelyBiteExtraEffect:
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 160, -30
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -256, -42
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 128, -14
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, 416, -38
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -128, -22
 	createsprite gRedHeartBurstSpriteTemplate, ANIM_TARGET, 3, -384, -31
-FairyFangRemoveBlend:
+LovelyBiteRemoveBlend:
 	waitforvisualfinish
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, RGB(31, 21, 25)
 	blendoff
@@ -20601,30 +20601,30 @@ IronFangRemoveBlend:
 	delay 1
 	end
 
-Move_SHADOW_FANG::
+Move_SHADOW_FANGS::
 	loadspritegfx ANIM_TAG_PURPLE_FLAME
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_GHOSTLY_SPIRIT
-ShadowFangBackground:
+ShadowFangsBackground:
 	fadetobg BG_GHOST
 	waitbgfadein
 	monbg ANIM_ATK_PARTNER
 	setalpha 9, 8
-ShadowFangBlendTarget:
+ShadowFangsBlendTarget:
 	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
 	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 4, 0, -819, 10
 	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 0, 9, 0x4C4A
 	delay 10
 	waitforvisualfinish
-ShadowFangHitTarget:
+ShadowFangsHitTarget:
 	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 4, 7, 1
 	launchtask AnimTask_PurpleFlamesOnTarget 0x3 0x0
 	delay 4
 	playsewithpan SE_M_NIGHTMARE, SOUND_PAN_TARGET
 	launchtemplate gCurseGhostSpriteTemplate 0x84, 0x0 
-ShadowFangRemoveBlend:
+ShadowFangsRemoveBlend:
 	waitforvisualfinish
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, 0x4C4A
 	clearmonbg ANIM_TARGET
