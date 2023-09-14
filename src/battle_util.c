@@ -4505,6 +4505,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_LETHARGY:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
+                TryResetBattlerStatChanges(battler);
                 gDisableStructs[battler].slowStartTimer = 5;
                 gSpecialStatuses[battler].switchInAbilityDone = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_LethargyEnters);
@@ -5560,6 +5561,7 @@ case ABILITY_PICKUP:
 		if(BattlerHasInnate(battler, ABILITY_LETHARGY)){
             if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LETHARGY)])
             {
+                TryResetBattlerStatChanges(battler);
                 gDisableStructs[battler].slowStartTimer = 5;
                 gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LETHARGY)] = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_LethargyEnters);
@@ -8175,6 +8177,27 @@ case ABILITY_PICKUP:
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
                 gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+        }
+
+        // Atomic Clone
+        if(BattlerHasInnate(battler, ABILITY_ATOMIC_CLONE) || GetBattlerAbility(battler) == ABILITY_ATOMIC_CLONE){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && gBattleMons[battler].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && !gProtectStructs[battler].extraMoveUsed
+             && (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE))
+            {
+                u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u8 movePower = 50;               //The Move power, leave at 0 if you want it to be the same as the normal move
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gProtectStructs[battler].extraMoveUsed = TRUE;
+                gBattleScripting.abilityPopupOverwrite = ABILITY_ATOMIC_CLONE;
+                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
             }
         }

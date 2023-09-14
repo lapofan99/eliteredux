@@ -443,8 +443,9 @@
 #define ABILITY_DRACONIZE        (ABILITIES_COUNT_LATEST_GEN + 145) // All Normal-type moves used by the Pokémon become Dragon-type and receive a 20% power boost.
 #define ABILITY_PRETTY_PRINCESS  (ABILITIES_COUNT_LATEST_GEN + 146) // +50% DMG against foes with lowered stats
 #define ABILITY_SELF_REPAIR      (ABILITIES_COUNT_LATEST_GEN + 147) // Self Sufficient + Natural Cure
+#define ABILITY_ATOMIC_CLONE     (ABILITIES_COUNT_LATEST_GEN + 148) // When taking super-effective damage, use Hyper Beam at 33% Power. (Needs a proper name)
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SELF_REPAIR + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_ATOMIC_CLONE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
