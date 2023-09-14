@@ -407,6 +407,9 @@ static const u8 sDraconizeDescription[]       = _("Normal moves become Dragon\na
 static const u8 sPrettyPrincessDescription[]  = _("Does 50% more damage if the\ntarget has any lowered stat.");
 static const u8 sSelfRepairDescription[]      = _("Leftovers + Natural Cure.");
 static const u8 sAtomicCloneDescription[]     = _("When hit by a super effective\nmove triggers a 50 BP Hyper Beam.");
+static const u8 sHellblazeDescription[] = _("Ups Fire moves by 30%,\n80% when at 1/3 HP.");
+static const u8 sRiptideDescription[] = _("Ups Water moves by 30%,\n80% when at 1/3 HP.");
+static const u8 sForestRageDescription[] = _("Ups Grass moves by 30%,\n80% when at 1/3 HP.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -828,6 +831,9 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_PRETTY_PRINCESS] = _("Pretty Princess"),
     [ABILITY_SELF_REPAIR] = _("Self Repair"),
     [ABILITY_ATOMIC_CLONE] = _("Atomic Clone"),
+    [ABILITY_HELLBLAZE] = _("Hellblaze"),
+    [ABILITY_RIPTIDE] = _("Riptide"),
+    [ABILITY_FOREST_RAGE] = _("Forest Rage"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1248,4 +1254,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_PRETTY_PRINCESS] = sPrettyPrincessDescription,
     [ABILITY_SELF_REPAIR] = sSelfRepairDescription,
     [ABILITY_ATOMIC_CLONE] = sAtomicCloneDescription,
+    [ABILITY_HELLBLAZE] = sHellblazeDescription,
+    [ABILITY_RIPTIDE] = sRiptideDescription,
+    [ABILITY_FOREST_RAGE] = sForestRageDescription,
 };

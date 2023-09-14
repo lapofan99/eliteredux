@@ -444,8 +444,11 @@
 #define ABILITY_PRETTY_PRINCESS  (ABILITIES_COUNT_LATEST_GEN + 146) // +50% DMG against foes with lowered stats
 #define ABILITY_SELF_REPAIR      (ABILITIES_COUNT_LATEST_GEN + 147) // Self Sufficient + Natural Cure
 #define ABILITY_ATOMIC_CLONE     (ABILITIES_COUNT_LATEST_GEN + 148) // When taking super-effective damage, use Hyper Beam at 33% Power. (Needs a proper name)
+#define ABILITY_HELLBLAZE        (ABILITIES_COUNT_LATEST_GEN + 149) // Ups Fire moves by 30%, 80% when at 1/3 HP.
+#define ABILITY_RIPTIDE          (ABILITIES_COUNT_LATEST_GEN + 150) // Ups Water moves by 30%, 80% when at 1/3 HP.
+#define ABILITY_FOREST_RAGE      (ABILITIES_COUNT_LATEST_GEN + 151) // Ups Grass moves by 30%, 80% when at 1/3 HP.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_ATOMIC_CLONE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_FOREST_RAGE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

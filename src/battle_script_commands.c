@@ -5361,7 +5361,7 @@ static void Cmd_moveend(void)
 				
 				if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || 
                    BattlerHasInnate(gBattlerAttacker, ABILITY_LIMBER))
-					gBattleMoveDamage = gBattleMoveDamage * 0.7;
+					gBattleMoveDamage = gBattleMoveDamage * 0.5;
             }
             gBattleScripting.moveendState++;
             break;
@@ -10252,7 +10252,7 @@ static void Cmd_manipulatedamage(void)
 		
 		if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || 
            BattlerHasInnate(gBattlerAttacker, ABILITY_LIMBER))
-			gBattleMoveDamage = gBattleMoveDamage * 0.7;
+			gBattleMoveDamage = gBattleMoveDamage * 0.5;
         break;
     case DMG_DOUBLED:
         gBattleMoveDamage *= 2;
@@ -10284,7 +10284,7 @@ static void Cmd_manipulatedamage(void)
 		
 		if(gBattleMons[gBattlerAttacker].ability == ABILITY_LIMBER || 
            BattlerHasInnate(gBattlerAttacker, ABILITY_LIMBER))
-			gBattleMoveDamage = gBattleMoveDamage * 0.7;
+			gBattleMoveDamage = gBattleMoveDamage * 0.5;
         break;
     }
 

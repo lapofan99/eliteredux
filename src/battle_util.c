@@ -13289,6 +13289,33 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
         break;
+    case ABILITY_HELLBLAZE:
+        if (moveType == TYPE_FIRE)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.8));
+            else
+                MulModifier(&modifier, UQ_4_12(1.3));
+        }
+        break;
+    case ABILITY_RIPTIDE:
+        if (moveType == TYPE_WATER)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.8));
+            else
+                MulModifier(&modifier, UQ_4_12(1.3));
+        }
+        break;
+    case ABILITY_FOREST_RAGE:
+        if (moveType == TYPE_GRASS)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.8));
+            else
+                MulModifier(&modifier, UQ_4_12(1.3));
+        }
+        break;
 	case ABILITY_FLOCK:
         if (moveType == TYPE_FLYING)
         {
@@ -13776,6 +13803,36 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.2));
         }
 	}
+    // Hellblaze
+    if(BattlerHasInnate(battlerAtk, ABILITY_HELLBLAZE)){
+        if (moveType == TYPE_FIRE)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.8));
+            else
+                MulModifier(&modifier, UQ_4_12(1.3));
+        }
+    }
+    // Riptide
+    if(BattlerHasInnate(battlerAtk, ABILITY_RIPTIDE)){
+        if (moveType == TYPE_WATER)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.8));
+            else
+                MulModifier(&modifier, UQ_4_12(1.3));
+        }
+    }
+    // Forest Rage
+    if(BattlerHasInnate(battlerAtk, ABILITY_FOREST_RAGE)){
+        if (moveType == TYPE_GRASS)
+        {
+            if (gBattleMons[battlerAtk].hp <= (gBattleMons[battlerAtk].maxHP / 3))
+                MulModifier(&modifier, UQ_4_12(1.8));
+            else
+                MulModifier(&modifier, UQ_4_12(1.3));
+        }
+    }
 	// Flock
 	if(BattlerHasInnate(battlerAtk, ABILITY_FLOCK)){
 		if (moveType == TYPE_FLYING)
