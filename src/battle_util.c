@@ -13087,6 +13087,21 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     u8 atkStage;
     u32 atkStat;
     u16 modifier;
+    //Calculates Highest Attack Stat after stat boosts
+    u32 atkStatCheck      = gBattleMons[battlerAtk].attack;
+    u8  atkStageCheck     = gBattleMons[battlerAtk].statStages[STAT_ATK];
+    u32 spAtkStatCheck    = gBattleMons[battlerAtk].attack;
+    u8  spAtkStageCheck   = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+    u8  highestAttackStat = STAT_ATK;
+
+    atkStatCheck *= gStatStageRatios[atkStageCheck][0];
+    atkStatCheck /= gStatStageRatios[atkStageCheck][1];
+
+    spAtkStatCheck *= gStatStageRatios[spAtkStageCheck][0];
+    spAtkStatCheck /= gStatStageRatios[spAtkStageCheck][1];
+
+    if(spAtkStatCheck > atkStatCheck)
+        highestAttackStat = STAT_SPATK;
 
     if (gBattleMoves[move].effect == EFFECT_FOUL_PLAY)
     {
@@ -13105,6 +13120,20 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     {
         atkStat = gBattleMons[battlerAtk].defense;
         atkStage = gBattleMons[battlerAtk].statStages[STAT_DEF];
+    }
+	// Equinox
+	else if (BattlerHasInnate(battlerAtk, ABILITY_EQUINOX)|| GetBattlerAbility(battlerAtk) == ABILITY_EQUINOX)
+    {
+		if (highestAttackStat == STAT_ATK)
+        {
+            atkStat  = gBattleMons[battlerAtk].attack;
+            atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
+        }
+        else
+        {
+            atkStat  = gBattleMons[battlerAtk].spAttack;
+            atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+        }
     }
 	// Ancient Idol
 	else if (BattlerHasInnate(battlerAtk, ABILITY_ANCIENT_IDOL)|| GetBattlerAbility(battlerAtk) == ABILITY_ANCIENT_IDOL)
