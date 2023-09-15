@@ -2650,6 +2650,10 @@ s32 GetDrainedBigRootHp(u32 battler, s32 hp)
 {
     if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_BIG_ROOT)
         hp = (hp * 3) / 2; // Buff Big Root's additional healing from 30% to 50%
+
+    if(gBattleMons[battler].ability == ABILITY_ABSORBANT || BattlerHasInnate(battler, ABILITY_ABSORBANT))
+        gBattleMoveDamage = (gBattleMoveDamage * 3) / 2; // Buff Absorbant additional healing from 30% to 50%
+
     if (hp == 0)
         hp = 1;
 
@@ -8574,6 +8578,7 @@ case ABILITY_PICKUP:
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && IsMoveMakingContact(move, gBattlerAttacker)
+             && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
              && !BATTLER_MAX_HP(gBattlerAttacker) 
              && IsBattlerAlive(gBattlerAttacker)
              && TARGET_TURN_DAMAGED) // Need to actually hit the target
@@ -8768,11 +8773,11 @@ case ABILITY_PICKUP:
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !BATTLER_MAX_HP(gBattlerAttacker) 
+             && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
              && IsBattlerAlive(gBattlerAttacker)
              && gBattleMoves[move].type == TYPE_WATER
              && TARGET_TURN_DAMAGED) // Need to actually hit the target
             {
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HYDRO_CIRCUIT;
                 //Attacker
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_HydroCircuitAbsorbEffectActivated;
@@ -8785,12 +8790,12 @@ case ABILITY_PICKUP:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
              && IsMoveMakingContact(move, gBattlerAttacker)
              && !BATTLER_MAX_HP(gBattlerAttacker) 
              && IsBattlerAlive(gBattlerAttacker)
              && TARGET_TURN_DAMAGED) // Need to actually hit the target
             {
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_NOSFERATU;
                 //Attacker
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
