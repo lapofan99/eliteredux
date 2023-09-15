@@ -7100,6 +7100,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM44_REST)
                                         | TMHM1(TM45_ATTRACT)
                                         | TMHM1(TM49_SLEEP_TALK)
+                                        | TMHM1(TM56_LEECH_LIFE) // new
                                         | TMHM1(TM58_ENDURE)
                                         | TMHM1(TM63_ROCK_SLIDE),
                                           TMHM2(TM69_ROCK_POLISH)

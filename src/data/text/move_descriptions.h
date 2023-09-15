@@ -4659,7 +4659,7 @@ static const u8 sMoveFourLineDescription_LovelyBite[]    = _("An affectionate bi
 static const u8 sMoveFourLineDescription_ShadowFangs[]   = _("The foe shudders.\n10% chance to\ncurse the foe.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_JaggedFangs[]   = _("A ferocious bite.\n20% chance to\nraise user's Attack.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_BurningGround[] = _("Fire- and Ground-\ntype at the same\ntime. Has 10%\nburn chance."); // new
-static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n30% chance to drop\nthe foe's Def."); // new
+static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n20% chance to drop\nthe foe's Def."); // new
 static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {

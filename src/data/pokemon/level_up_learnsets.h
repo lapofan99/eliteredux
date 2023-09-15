@@ -668,6 +668,7 @@ static const struct LevelUpMove sNidorinoLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sNidokingLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_SEISMIC_FIST), // new
 	LEVEL_UP_MOVE( 0, MOVE_WICKED_BLOW), // new
     LEVEL_UP_MOVE( 1, MOVE_SCORCHING_SANDS), // new
 	LEVEL_UP_MOVE( 1, MOVE_BODY_PRESS), // new
@@ -686,6 +687,7 @@ static const struct LevelUpMove sNidokingLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_HORN_DRILL),
     LEVEL_UP_MOVE(23, MOVE_CHIP_AWAY),
     LEVEL_UP_MOVE(35, MOVE_THRASH),
+    LEVEL_UP_MOVE(39, MOVE_GUNK_SHOT), // new
     LEVEL_UP_MOVE(43, MOVE_EARTH_POWER),
     LEVEL_UP_MOVE(58, MOVE_MEGAHORN),
     LEVEL_UP_END
