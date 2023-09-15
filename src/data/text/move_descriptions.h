@@ -3042,20 +3042,20 @@ static const u8 sOUTBURSTDescription[] = _(
     "makes the user faint.");
 
 static const u8 sIRON_FANGSDescription[] = _(
-    "A ground-breaking punch\n"
-    "is thrown at the target.");
+    "Chomps with hard fangs.\n"
+    "Destroys any barriers.");
 
 static const u8 sLOVELY_BITEDescription[] = _(
-    "A ground-breaking punch\n"
-    "is thrown at the target.");
+    "Bites the foe with love.\n"
+    "10% chance to infatuate.");
 
 static const u8 sSHADOW_FANGSDescription[] = _(
-    "A ground-breaking punch\n"
-    "is thrown at the target.");
+    "A bone-chilling bite.\n"
+    "10% curse chance.");
 
 static const u8 sJAGGED_FANGSDescription[] = _(
-    "A ground-breaking punch\n"
-    "is thrown at the target.");
+    "Bites aggressively.\n"
+    "10% chance to up Atk.");
 
 static const u8 sBURNING_GROUNDDescription[] = _(
     "Precisely burns the ground\n"
@@ -4648,19 +4648,19 @@ static const u8 sMoveFourLineDescription_AstralBarrage[] = _("Strikes by sending
 static const u8 sMoveFourLineDescription_EerieSpell[] = _("Attacks with its\ntremendous psychic\npower. Foe's last\nmove has 3 PP cut.");
 
 // Darky's Custom Moves
-static const u8 sMoveFourLineDescription_Deathroll[]     = _("20% confusion chance.\nStrong Jaw boost.\nIgnores target's\nstat changes."); // new
-static const u8 sMoveFourLineDescription_Excalibur[]     = _("Hits hard. Double\ndamage on\nDragon-types.\nHigh critical ratio."); // new
-static const u8 sMoveFourLineDescription_AquaFang[]      = _("Bites with aquatic\nfangs. Has 10%\nflinch chance.\nStrong Jaw boost."); // new
-static const u8 sMoveFourLineDescription_WaveCrash[]     = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
-static const u8 sMoveFourLineDescription_Smite[]         = _("Attacks from above\nwith strong electricity.\n20% paralysis chance.\nSmack Down effect."); // new
-static const u8 sMoveFourLineDescription_Outburst[]      = _("The user explodes\nto inflict terrible\ndamage even while\nfainting itself."); // new
-static const u8 sMoveFourLineDescription_SeismicFist[]   = _("Throws a ground-\nbreaking fist.\n30% chance to drop\nthe foe's Def."); // new
-static const u8 sMoveFourLineDescription_RagingFury[]    = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
-static const u8 sMoveFourLineDescription_ShadowFangs[]   = _(""); // new
-static const u8 sMoveFourLineDescription_LovelyBite[]    = _(""); // new
-static const u8 sMoveFourLineDescription_JaggedFangs[]   = _(""); // new
-static const u8 sMoveFourLineDescription_BurningGround[] = _(""); // new
-static const u8 sMoveFourLineDescription_IronFangs[]     = _(""); // new
+static const u8 sMoveFourLineDescription_Deathroll[] = _("20% confusion chance.\nStrong Jaw boost.\nIgnores target's\nstat changes."); // new
+static const u8 sMoveFourLineDescription_Excalibur[] = _("Hits hard. Double\ndamage on\nDragon-types.\nHigh critical ratio."); // new
+static const u8 sMoveFourLineDescription_AquaFang[] = _("Bites with aquatic\nfangs. Has 10%\nflinch chance.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_WaveCrash[] = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
+static const u8 sMoveFourLineDescription_Smite[] = _("Attacks from above\nwith strong electricity.\n20% paralysis chance.\nSmack Down effect."); // new
+static const u8 sMoveFourLineDescription_Outburst[] = _("The user explodes\nto inflict terrible\ndamage even while\nfainting itself."); // new
+static const u8 sMoveFourLineDescription_IronFangs[]     = _("Breaks any barrier\nlike Light Screen\nand Reflect.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_LovelyBite[]    = _("An affectionate bite.\n10% chance to\ninfatuate the foe.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_ShadowFangs[]   = _("The foe shudders.\n10% chance to\ncurse the foe.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_JaggedFangs[]   = _("A ferocious bite.\n20% chance to\nraise user's Attack.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_BurningGround[] = _("Fire- and Ground-\ntype at the same\ntime. Has 10%\nburn chance."); // new
+static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n30% chance to drop\nthe foe's Def."); // new
+static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
