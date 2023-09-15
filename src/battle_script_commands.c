@@ -11821,6 +11821,7 @@ static void Cmd_trytoapplymoveeffect(void)
             };
         break;
         case EFFECT_CURSE_HIT:
+            if(rand <= secondaryEffectChance){
                 if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && IsBattlerAlive(gBattlerTarget)
                 && !gProtectStructs[gBattlerTarget].confusionSelfDmg
@@ -11830,6 +11831,7 @@ static void Cmd_trytoapplymoveeffect(void)
                     gBattleMons[gBattlerTarget].status2 |= STATUS2_CURSED;
                     appliedEffect = TRUE;
                 }
+            };
         break;
     }
 
