@@ -418,4 +418,9 @@
 #define MOVE_TUTOR_TM_MOVES       2
 #define MOVE_TUTOR_MOVES          3
 
+//Drain Effect
+#define DRAIN_EFFECT_MOVE         0
+#define DRAIN_EFFECT_ABILITY      1
+#define DRAIN_EFFECT_OTHER        2
+
 #endif // GUARD_CONSTANTS_POKEMON_H

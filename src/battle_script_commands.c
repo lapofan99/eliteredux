@@ -712,7 +712,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_stockpile,                               //0x85
     Cmd_stockpiletobasedamage,                   //0x86
     Cmd_stockpiletohpheal,                       //0x87
-    Cmd_setdrainedhp,                            //0x88
+    Cmd_setdrainedhp,                            //0x88 //Unused
     Cmd_statbuffchange,                          //0x89
     Cmd_normalisebuffs,                          //0x8A
     Cmd_setbide,                                 //0x8B
@@ -10305,6 +10305,42 @@ static void Cmd_manipulatedamage(void)
            BattlerHasInnate(gBattlerAttacker, ABILITY_LIMBER))
 			gBattleMoveDamage = gBattleMoveDamage * 0.5;
         break;
+    case DMG_TO_HP_FROM_ABILITY:
+        if(gBattleMons[gBattlerAttacker].ability == ABILITY_NOSFERATU || BattlerHasInnate(gBattlerAttacker, ABILITY_NOSFERATU))
+            gBattleMoveDamage = (gHpDealt / 2);
+        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_HYDRO_CIRCUIT || BattlerHasInnate(gBattlerAttacker, ABILITY_HYDRO_CIRCUIT))
+            gBattleMoveDamage = (gHpDealt / 4);
+        else
+            gBattleMoveDamage = (gHpDealt / 2);
+
+        if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_BIG_ROOT)
+            gBattleMoveDamage = (gBattleMoveDamage * 3) / 2; // Buff Big Root's additional healing from 30% to 50%
+
+        if(gBattleMons[gBattlerAttacker].ability == ABILITY_ABSORBANT || BattlerHasInnate(gBattlerAttacker, ABILITY_ABSORBANT))
+            gBattleMoveDamage = (gBattleMoveDamage * 3) / 2; // Buff Absorbant additional healing from 30% to 50%
+            
+        if (gBattleMoveDamage == 0)
+            gBattleMoveDamage = 1;
+
+        gBattleMoveDamage = gBattleMoveDamage * -1;
+        break;
+    case DMG_TO_HP_FROM_MOVE:
+        if (gBattleMoves[gCurrentMove].argument != 0)
+            gBattleMoveDamage = (gHpDealt * gBattleMoves[gCurrentMove].argument / 100);
+        else
+            gBattleMoveDamage = (gHpDealt / 2);
+
+        if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_BIG_ROOT)
+            gBattleMoveDamage = (gBattleMoveDamage * 3) / 2; // Buff Big Root's additional healing from 30% to 50%
+
+        if(gBattleMons[gBattlerAttacker].ability == ABILITY_ABSORBANT || BattlerHasInnate(gBattlerAttacker, ABILITY_ABSORBANT))
+            gBattleMoveDamage = (gBattleMoveDamage * 3) / 2; // Buff Absorbant additional healing from 30% to 50%
+            
+        if (gBattleMoveDamage == 0)
+            gBattleMoveDamage = 1;
+
+        gBattleMoveDamage = gBattleMoveDamage * -1;
+        break;
     }
 
     gBattlescriptCurrInstr += 2;
@@ -10513,7 +10549,7 @@ static void Cmd_setdrainedhp(void)
         gBattleMoveDamage = (gHpDealt * gBattleMoves[gCurrentMove].argument / 100);
     else
         gBattleMoveDamage = (gHpDealt / 2);
-
+    
     if (gBattleMoveDamage == 0)
         gBattleMoveDamage = 1;
 

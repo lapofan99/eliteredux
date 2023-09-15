@@ -449,8 +449,13 @@
 #define ABILITY_FOREST_RAGE      (ABILITIES_COUNT_LATEST_GEN + 151) // Ups Grass moves by 30%, 80% when at 1/3 HP.
 #define ABILITY_PRIMAL_MAW       (ABILITIES_COUNT_LATEST_GEN + 152) // Biting moves hit twice, second hit deals 0.5x.
 #define ABILITY_SWEEPING_EDGE    (ABILITIES_COUNT_LATEST_GEN + 153) // Keen Edge moves cannot miss and single-target moves hit both foes.
+#define ABILITY_GIFTED_MIND      (ABILITIES_COUNT_LATEST_GEN + 154) // Immune to Psychic Weakness and always hits status moves
+#define ABILITY_HYDRO_CIRCUIT    (ABILITIES_COUNT_LATEST_GEN + 155) // Electric moves get a 50% Boost and water moves drain 25% of the damage dealt.
+#define ABILITY_EQUINOX          (ABILITIES_COUNT_LATEST_GEN + 156) // The user Attack and Special Attack are equal to the higher of the two, Applies after Stat Modifiers.
+#define ABILITY_ABSORBANT        (ABILITIES_COUNT_LATEST_GEN + 157) // 1.5x drain on draining moves, draining moves can cause leech seed effect.
+#define ABILITY_CLUELESS         (ABILITIES_COUNT_LATEST_GEN + 158) // When this Pokemon is on the field, all field effects, such as weather, rooms, or terrains, are negated
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_SWEEPING_EDGE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_CLUELESS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -3097,8 +3097,7 @@ BattleScript_EffectAbsorb::
 	waitmessage B_WAIT_TIME_LONG
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
-	setdrainedhp
-	manipulatedamage DMG_BIG_ROOT
+	manipulatedamage DMG_TO_HP_FROM_MOVE
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE
 	jumpifability BS_TARGET, ABILITY_LIQUID_OOZE, BattleScript_AbsorbLiquidOoze
 	jumpifability BS_ATTACKER, ABILITY_SOUL_LINKER, BattleScript_AbsorbSoulLinker
@@ -3291,8 +3290,7 @@ BattleScript_DreamEaterWorked:
 	waitmessage B_WAIT_TIME_LONG
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
-	setdrainedhp
-	manipulatedamage DMG_BIG_ROOT
+	manipulatedamage DMG_TO_HP_FROM_MOVE
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
@@ -10372,16 +10370,29 @@ BattleScript_AttackerSoulLinker::
 	return
 
 BattleScript_NosferatuActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_NOSFERATU
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	setdrainedhp
-	manipulatedamage DMG_BIG_ROOT
+	manipulatedamage DMG_TO_HP_FROM_ABILITY
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
 	printstring STRINGID_ATTACKERREGAINEDHEALTH
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_NosferatuActivated_NothingToHeal:
+    return
+
+BattleScript_HydroCircuitAbsorbEffectActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_HYDRO_CIRCUIT
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	manipulatedamage DMG_TO_HP_FROM_ABILITY
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_ATTACKERREGAINEDHEALTH
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_HydroCircuitAbsorbEffect_NothingToHeal:
     return
 
 BattleScript_SweetDreamsActivates::

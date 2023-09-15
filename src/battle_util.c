@@ -8762,7 +8762,25 @@ case ABILITY_PICKUP:
             }
 		}
 
-        
+        // Hydro Circuit
+		if (BattlerHasInnate(battler, ABILITY_HYDRO_CIRCUIT) || GetBattlerAbility(battler) == ABILITY_HYDRO_CIRCUIT){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !BATTLER_MAX_HP(gBattlerAttacker) 
+             && IsBattlerAlive(gBattlerAttacker)
+             && gBattleMoves[move].type == TYPE_WATER
+             && TARGET_TURN_DAMAGED) // Need to actually hit the target
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HYDRO_CIRCUIT;
+                //Attacker
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_HydroCircuitAbsorbEffectActivated;
+                effect++;
+            }
+        }
+
+        // Nosferatu
 		if (BattlerHasInnate(battler, ABILITY_NOSFERATU)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -8772,6 +8790,7 @@ case ABILITY_PICKUP:
              && IsBattlerAlive(gBattlerAttacker)
              && TARGET_TURN_DAMAGED) // Need to actually hit the target
             {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_NOSFERATU;
                 //Attacker
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
@@ -12713,6 +12732,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         if (moveType == TYPE_WATER)
            MulModifier(&modifier, UQ_4_12(2.0));
 	}
+
+    // Hydro Circuit
+	if(BattlerHasInnate(battlerAtk, ABILITY_HYDRO_CIRCUIT) || GetBattlerAbility(battlerAtk) == ABILITY_HYDRO_CIRCUIT){
+        if (moveType == TYPE_ELECTRIC)
+            MulModifier(&modifier, UQ_4_12(1.5));
+    }
 	
 	// Violent Rush
 	if(BattlerHasInnate(battlerAtk, ABILITY_VIOLENT_RUSH)){
