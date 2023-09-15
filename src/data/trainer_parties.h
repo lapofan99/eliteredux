@@ -2173,14 +2173,14 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt15[] = { // Slateport 
     },
     {
     .lvl = 0,
-    .species = SPECIES_GOREBYSS, // Aqua, Sitrus, Color Change
-    .heldItem = ITEM_SITRUS_BERRY,
-    .ability = 2, // ABILITY_WATER_VEIL, ABILITY_HYDRATION, ABILITY_COLOR_CHANGE},
+    .species = SPECIES_GOREBYSS, // Aqua, White Herb
+    .heldItem = ITEM_WHITE_HERB,
+    .ability = 2, // ABILITY_WATER_VEIL, ABILITY_HYDRATION, ABILITY_DAZZLING},
     // .innates = {ABILITY_SWIFT_SWIM, ABILITY_ADAPTABILITY, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_AQUA_TAIL, MOVE_AQUA_JET, MOVE_IRON_TAIL, MOVE_PLAY_ROUGH
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SHELL_SMASH, MOVE_SURF, MOVE_ICE_BEAM, MOVE_SUBSTITUTE
     },
     {
     .lvl = 0,

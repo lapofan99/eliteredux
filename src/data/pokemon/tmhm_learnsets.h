@@ -15827,6 +15827,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM47_STEEL_WING)
                                         | TMHM1(TM49_SLEEP_TALK)
                                         | TMHM1(TM51_ROOST)
+                                        | TMHM1(TM56_LEECH_LIFE) // new
                                         | TMHM1(TM58_ENDURE)
                                         | TMHM1(TM62_ACROBATICS)
                                         | TMHM1(TM63_ROCK_SLIDE),
