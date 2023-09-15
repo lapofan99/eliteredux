@@ -415,6 +415,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectHit                     @ EFFECT_EXPANDING_FORCE
 	.4byte BattleScript_EffectSteelBeam               @ EFFECT_STEEL_BEAM
 	.4byte BattleScript_EffectHowl		              @ EFFECT_HOWL
+	.4byte BattleScript_EffectAttracttHit             @ EFFECT_ATTRACT_HIT
+	.4byte BattleScript_EffectCurseHit                @ EFFECT_CURSE_HIT
 
 BattleScript_EffectHowl::
     attackcanceler
@@ -3143,6 +3145,60 @@ BattleScript_EffectFreezeHit::
 BattleScript_EffectParalyzeHit::
 	setmoveeffect MOVE_EFFECT_PARALYSIS
 	goto BattleScript_EffectHit
+
+BattleScript_EffectAttracttHit::
+	call BattleScript_EffectHit_Return
+	trytoapplymoveeffect BattleScript_MoveEffectAttract
+	goto BattleScript_MoveEnd
+	
+BattleScript_MoveEffectAttract::
+	statusanimation BS_EFFECT_BATTLER
+	printstring STRINGID_PKMNFELLINLOVE
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_EFFECT_BATTLER
+	waitstate
+	goto BattleScript_MoveEnd
+
+BattleScript_EffectCurseHit::
+	call BattleScript_EffectHit_Return
+	trytoapplymoveeffect BattleScript_MoveEffectCurse
+	goto BattleScript_MoveEnd
+
+BattleScript_MoveEffectCurse::
+	statusanimation BS_EFFECT_BATTLER
+	printstring STRINGID_TARGETGOTCURSED
+	waitmessage B_WAIT_TIME_LONG
+	updatestatusicon BS_EFFECT_BATTLER
+	waitstate
+	goto BattleScript_MoveEnd
+	
+BattleScript_EffectHit_Return::
+BattleScript_HitFromAtkCancelerReturn::
+	attackcanceler
+BattleScript_HitFromAccCheckReturn::
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+BattleScript_HitFromAtkStringReturn::
+	attackstring
+	ppreduce
+BattleScript_HitFromCritCalcReturn::
+	critcalc
+	damagecalc
+	adjustdamage
+BattleScript_HitFromAtkAnimationReturn::
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+	return
 
 BattleScript_EffectExplosion::
 	attackcanceler

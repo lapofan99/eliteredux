@@ -469,6 +469,8 @@ extern const u8 BattleScript_DefenderSetsStealthRock[];
 extern const u8 BattleScript_KingsWrathActivated[];
 extern const u8 BattleScript_QueensMourningActivated[];
 extern const u8 BattleScript_SelfRepairExits[];
+extern const u8 BattleScript_MoveEffectAttract[];
+extern const u8 BattleScript_MoveEffectCurse[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

@@ -852,8 +852,9 @@
 	.byte 0x9f
 	.endm
 
-	.macro psywavedamageeffect
+	.macro trytoapplymoveeffect ptr:req
 	.byte 0xa0
+	.4byte \ptr
 	.endm
 
 	.macro counterdamagecalculator param0:req

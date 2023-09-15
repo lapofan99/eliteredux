@@ -771,6 +771,7 @@ static const u8 sText_TargetPkmnHurtsWith[] = _("{B_DEF_NAME_WITH_PREFIX} was hu
 static const u8 sText_PkmnCutsSpecialAttackWith[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s Scare\ncuts {B_DEF_NAME_WITH_PREFIX}'s Special Attack!");
 static const u8 sText_SweetDreamsHealHpUp[] = _("Sleeping healed {B_ATK_NAME_WITH_PREFIX}\na little bit!");
 static const u8 sText_PkmnBecameCursed[] = _("{B_ATK_NAME_WITH_PREFIX} became Cursed!");
+static const u8 sText_TargetyBecameCursed[] = _("{B_DEF_NAME_WITH_PREFIX} became Cursed!");
 static const u8 sText_BattlerAbilitySetUpStickyWeb[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Spider Lair\nset up a Sticky Web on the opposite side!");
 static const u8 sText_BattlerAbilitySetUpTrickRoom[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s Twisted Dimension\nset up Trick Room!");
 static const u8 sText_BattlerAbilitySetUpAuroraVeil[] = _("{B_ACTIVE_NAME_WITH_PREFIX}'s North Wind\nset up Aurora Veil!");
@@ -784,7 +785,7 @@ static const u8 sText_PickupActivated[] = _("{B_ATK_NAME_WITH_PREFIX} removed ha
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
-
+    [STRINGID_TARGETGOTCURSED - 12] = sText_TargetyBecameCursed,
     [STRINGID_PICKUPACTIVATED - 12] = sText_PickupActivated,
     [STRINGID_LETHARGYENDS - 12] = sText_LethargyEnd,
     [STRINGID_LETHARGYTENTERS - 12] = sText_LethargyEnters,

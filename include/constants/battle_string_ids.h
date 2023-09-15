@@ -651,8 +651,9 @@
 #define STRINGID_SELF_REPAIR_EXITS                    680
 #define STRINGID_PKMNRAISEDSPECIALATTACK              681
 #define STRINGID_PKMNRAISEDSPECIALDEFENSE             682
+#define STRINGID_TARGETGOTCURSED                      683
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNRAISEDSPECIALDEFENSE + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_TARGETGOTCURSED + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

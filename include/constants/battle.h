@@ -364,7 +364,9 @@
 #define MOVE_EFFECT_RELIC_SONG             69
 #define MOVE_EFFECT_TRAP_BOTH              70
 #define MOVE_EFFECT_SPD_PLUS_1_DEF_MINUS_1 71
-#define NUM_MOVE_EFFECTS                   72
+#define MOVE_EFFECT_ATTRACT                72
+#define MOVE_EFFECT_CURSE                  73
+#define NUM_MOVE_EFFECTS                   74
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000

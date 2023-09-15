@@ -11881,7 +11881,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_LOVELY_BITE] =
     {
-        .effect = EFFECT_ATTRACT,
+        .effect = EFFECT_ATTRACT_HIT,
         .power = 70,
         .type = TYPE_FAIRY,
         .accuracy = 100,
@@ -11895,7 +11895,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SHADOW_FANGS] =
     {
-        .effect = EFFECT_FLINCH_HIT,
+        .effect = EFFECT_CURSE_HIT,
         .power = 70,
         .type = TYPE_GHOST,
         .accuracy = 100,

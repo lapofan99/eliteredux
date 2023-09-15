@@ -469,7 +469,7 @@ static void Cmd_setsubstitute(void);
 static void Cmd_mimicattackcopy(void);
 static void Cmd_metronome(void);
 static void Cmd_calculatesetdamage(void);
-static void Cmd_psywavedamageeffect(void);
+static void Cmd_trytoapplymoveeffect(void);
 static void Cmd_counterdamagecalculator(void);
 static void Cmd_mirrorcoatdamagecalculator(void);
 static void Cmd_disablelastusedattack(void);
@@ -736,7 +736,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_mimicattackcopy,                         //0x9D
     Cmd_metronome,                               //0x9E
     Cmd_calculatesetdamage,                      //0x9F
-    Cmd_psywavedamageeffect,                     //0xA0 //unused
+    Cmd_trytoapplymoveeffect,                     //0xA0
     Cmd_counterdamagecalculator,                 //0xA1
     Cmd_mirrorcoatdamagecalculator,              //0xA2
     Cmd_disablelastusedattack,                   //0xA3
@@ -869,6 +869,8 @@ static const u32 sStatusFlagsForMoveEffects[NUM_MOVE_EFFECTS] =
     [MOVE_EFFECT_PREVENT_ESCAPE] = STATUS2_ESCAPE_PREVENTION,
     [MOVE_EFFECT_NIGHTMARE]      = STATUS2_NIGHTMARE,
     [MOVE_EFFECT_THRASH]         = STATUS2_LOCK_CONFUSE,
+    [MOVE_EFFECT_ATTRACT]        = STATUS2_INFATUATION,
+    [MOVE_EFFECT_CURSE]          = STATUS2_CURSED,
 };
 
 static const u8* const sMoveEffectBS_Ptrs[] =
@@ -884,6 +886,8 @@ static const u8* const sMoveEffectBS_Ptrs[] =
     [MOVE_EFFECT_PAYDAY]           = BattleScript_MoveEffectPayDay,
     [MOVE_EFFECT_WRAP]             = BattleScript_MoveEffectWrap,
     [MOVE_EFFECT_FROSTBITE]        = BattleScript_MoveEffectFrostbite,
+    [MOVE_EFFECT_ATTRACT]          = BattleScript_MoveEffectAttract,
+    [MOVE_EFFECT_CURSE]            = BattleScript_MoveEffectCurse,
 };
 
 static const struct WindowTemplate sUnusedWinTemplate = {0, 1, 3, 7, 0xF, 0x1F, 0x3F};
@@ -11783,16 +11787,60 @@ static void Cmd_calculatesetdamage(void)
     gBattlescriptCurrInstr++;
 }
 
-//unused
-static void Cmd_psywavedamageeffect(void)
+static void Cmd_trytoapplymoveeffect(void)
 {
-    s32 randDamage;
-    if (B_PSYWAVE_DMG >= GEN_6)
-        randDamage = (Random() % 101);
+    //Set move effect
+    u8 attacker = gBattlerAttacker;
+    u8 target = gBattlerTarget;
+    bool8 appliedEffect = FALSE;
+    u8 secondaryEffectChance = gBattleMoves[gCurrentMove].secondaryEffectChance;
+    u8 rand = (Random() % 100);
+    
+    switch(gBattleMoves[gCurrentMove].effect)
+    {
+        case EFFECT_ATTRACT_HIT:
+            if(rand <= secondaryEffectChance){
+                u16 speciesAtk = gBattleMons[gBattlerAttacker].species;
+                u16 speciesDef = gBattleMons[gBattlerTarget].species;
+                u32 pidAtk     = gBattleMons[gBattlerAttacker].personality;
+                u32 pidDef     = gBattleMons[gBattlerTarget].personality;
+
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && IsBattlerAlive(gBattlerTarget)
+                && !gProtectStructs[gBattlerTarget].confusionSelfDmg
+                && GetBattlerAbility(gBattlerTarget) != ABILITY_OBLIVIOUS
+                && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
+                && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
+                && !(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
+                && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != MON_GENDERLESS
+                && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != MON_GENDERLESS)
+                {
+                    gBattleMons[gBattlerTarget].status2 |= STATUS2_INFATUATED_WITH(gBattlerAttacker);
+                    appliedEffect = TRUE;
+                }
+            };
+        break;
+        case EFFECT_CURSE_HIT:
+                if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                && IsBattlerAlive(gBattlerTarget)
+                && !gProtectStructs[gBattlerTarget].confusionSelfDmg
+                && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GHOST)
+                && !(gBattleMons[gBattlerTarget].status2 & STATUS2_CURSED))
+                {
+                    gBattleMons[gBattlerTarget].status2 |= STATUS2_CURSED;
+                    appliedEffect = TRUE;
+                }
+        break;
+    }
+
+    if (appliedEffect)
+    {
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    }
     else
-        randDamage = (Random() % 11) * 10;
-    gBattleMoveDamage = gBattleMons[gBattlerAttacker].level * (randDamage + 50) / 100;
-    gBattlescriptCurrInstr++;
+    {
+        gBattlescriptCurrInstr += 2;
+    }
 }
 
 static void Cmd_counterdamagecalculator(void)
