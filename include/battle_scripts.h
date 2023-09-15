@@ -472,6 +472,7 @@ extern const u8 BattleScript_SelfRepairExits[];
 extern const u8 BattleScript_MoveEffectAttract[];
 extern const u8 BattleScript_MoveEffectCurse[];
 extern const u8 BattleScript_HydroCircuitAbsorbEffectActivated[];
+extern const u8 BattleScript_AbsorbantActivated[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

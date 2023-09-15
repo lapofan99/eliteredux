@@ -8116,6 +8116,7 @@ BattleScript_AttackBoostActivates::
 	end3
 
 BattleScript_FungalInfectionActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_FUNGAL_INFECTION
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNSEEDED
@@ -10368,6 +10369,14 @@ BattleScript_AttackerSoulLinker::
 	datahpupdate BS_ATTACKER
 	tryfaintmon BS_ATTACKER, FALSE, NULL
 	return
+	
+BattleScript_AbsorbantActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_ABSORBANT
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNSEEDED
+	waitmessage B_WAIT_TIME_LONG
+	end3
 
 BattleScript_NosferatuActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_NOSFERATU
@@ -10440,6 +10449,7 @@ BattleScript_TwistedDimensionActivated::
 	end3
 
 BattleScript_GripPincerActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_GRIP_PINCER
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_GRIPPINCERACTIVATED

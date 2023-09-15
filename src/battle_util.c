@@ -8498,47 +8498,6 @@ case ABILITY_PICKUP:
                 effect++;
             }
             break;
-        case ABILITY_FUNGAL_INFECTION:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
-             // && IsMoveMakingContact(move, gBattlerAttacker)
-             && TARGET_TURN_DAMAGED // Need to actually hit the target
-             && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
-            {
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FUNGAL_INFECTION;
-                gStatuses3[gBattlerTarget]   |= STATUS3_LEECHSEED;
-                gStatuses3[gBattlerAttacker] |= STATUS3_LEECHSEED_BATTLER;
-                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-				BattleScriptPushCursorAndCallback(BattleScript_FungalInfectionActivates);
-                effect++;
-            }
-        break;
-        case ABILITY_GRIP_PINCER:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && IsMoveMakingContact(move, gBattlerAttacker)
-             && !(gBattleMons[gBattlerTarget].status2 & STATUS2_WRAPPED)
-             && TARGET_TURN_DAMAGED // Need to actually hit the target
-             && gBattlerAttacker != gBattlerTarget
-             && (Random() % 2) == 0)
-            {
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRIP_PINCER;
-
-                gBattleMons[gBattlerTarget].status2 |= STATUS2_WRAPPED;
-                if (GetBattlerHoldEffect(gBattlerAttacker, TRUE) == HOLD_EFFECT_GRIP_CLAW)
-                    gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
-                else
-                    gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
-
-                gBattleStruct->wrappedMove[gBattlerTarget] = gCurrentMove;
-                gBattleStruct->wrappedBy[gBattlerTarget] = gBattlerAttacker;
-				BattleScriptPushCursorAndCallback(BattleScript_GripPincerActivated);
-                effect++;
-            }
-            break;
         case ABILITY_STATIC: // Attacker Static
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -9106,7 +9065,28 @@ case ABILITY_PICKUP:
             }
 		}
 
-        if (BattlerHasInnate(battler, ABILITY_FUNGAL_INFECTION)){
+		// Absorbant
+		if (BattlerHasInnate(battler, ABILITY_ABSORBANT) || GetBattlerAbility(battler) == ABILITY_ABSORBANT){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+             && ((gBattleMoves[move].effect == EFFECT_ABSORB      && TARGET_TURN_DAMAGED) || 
+                 (gBattleMoves[move].effect == EFFECT_DREAM_EATER && TARGET_TURN_DAMAGED) ||
+                 (gBattleMoves[move].effect == EFFECT_STRENGTH_SAP))
+             && (Random() % 3) == 0)
+            {
+
+                gStatuses3[gBattlerTarget]   |= STATUS3_LEECHSEED;
+                gStatuses3[gBattlerAttacker] |= STATUS3_LEECHSEED_BATTLER;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+				BattleScriptPushCursorAndCallback(BattleScript_AbsorbantActivated);
+                effect++;
+            }
+		}
+
+        // Fungal Infection
+        if (BattlerHasInnate(battler, ABILITY_FUNGAL_INFECTION) || GetBattlerAbility(battler) == ABILITY_FUNGAL_INFECTION){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -9115,7 +9095,6 @@ case ABILITY_PICKUP:
              && TARGET_TURN_DAMAGED // Need to actually hit the target
              && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
             {
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FUNGAL_INFECTION;
                 gStatuses3[gBattlerTarget]   |= STATUS3_LEECHSEED;
                 gStatuses3[gBattlerAttacker] |= STATUS3_LEECHSEED_BATTLER;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
@@ -9124,7 +9103,7 @@ case ABILITY_PICKUP:
             }
         }
 
-        if (BattlerHasInnate(battler, ABILITY_GRIP_PINCER)){
+        if (BattlerHasInnate(battler, ABILITY_GRIP_PINCER) || GetBattlerAbility(battler) == ABILITY_GRIP_PINCER){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && gBattleMons[gBattlerTarget].hp != 0
                 && !gProtectStructs[battler].confusionSelfDmg
@@ -9134,13 +9113,11 @@ case ABILITY_PICKUP:
                 && TARGET_TURN_DAMAGED // Need to actually hit the target
                 && (Random() % 2) == 0)
                 {
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRIP_PINCER;
-
                     gBattleMons[gBattlerTarget].status2 |= STATUS2_WRAPPED;
                     if (GetBattlerHoldEffect(battler, TRUE) == HOLD_EFFECT_GRIP_CLAW)
-                            gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
-                        else
-                            gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
+                        gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? 7 : 5;
+                    else
+                        gDisableStructs[gBattlerTarget].wrapTurns = (B_BINDING_TURNS >= GEN_5) ? ((Random() % 2) + 4) : ((Random() % 4) + 2);
 
                     gBattleStruct->wrappedMove[gBattlerTarget] = gCurrentMove;
                     gBattleStruct->wrappedBy[gBattlerTarget] = battler;
