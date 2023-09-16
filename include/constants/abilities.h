@@ -421,7 +421,7 @@
 #define ABILITY_HARDENED_SHEATH  (ABILITIES_COUNT_LATEST_GEN + 123) // Increases the Attack stat by one stage after using a horn move. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
 #define ABILITY_ARCTIC_FUR       (ABILITIES_COUNT_LATEST_GEN + 124) // Takes 35% less damage from incoming physical & special moves.
 #define ABILITY_SPECTRALIZE      (ABILITIES_COUNT_LATEST_GEN + 125) // All Normal-type moves used by the Pokémon become Ghost-type and receive a 20% power boost.
-#define ABILITY_LETHARGY         (ABILITIES_COUNT_LATEST_GEN + 126) // The user's Atk is lowered by 20% at the end of each turn, down to 20% of the user's Atk. Resets on switching out.
+#define ABILITY_LETHARGY         (ABILITIES_COUNT_LATEST_GEN + 126) // Atk drops 20% each turn to 20%. Resets on switch-in.
 #define ABILITY_IRON_BARRAGE     (ABILITIES_COUNT_LATEST_GEN + 127) // Combines Mega Launcher with Sighting System
 #define ABILITY_STEEL_BARREL     (ABILITIES_COUNT_LATEST_GEN + 128) // Protects the Pokémon from recoil damage.
 #define ABILITY_PYRO_SHELLS      (ABILITIES_COUNT_LATEST_GEN + 129) // Triggers 50 BP Outburst after using a Mega Launcher move.
@@ -449,11 +449,11 @@
 #define ABILITY_FOREST_RAGE      (ABILITIES_COUNT_LATEST_GEN + 151) // Ups Grass moves by 30%, 80% when at 1/3 HP.
 #define ABILITY_PRIMAL_MAW       (ABILITIES_COUNT_LATEST_GEN + 152) // Biting moves hit twice, second hit deals 0.5x.
 #define ABILITY_SWEEPING_EDGE    (ABILITIES_COUNT_LATEST_GEN + 153) // Keen Edge moves cannot miss and single-target moves hit both foes.
-#define ABILITY_GIFTED_MIND      (ABILITIES_COUNT_LATEST_GEN + 154) // Immune to Psychic Weakness and always hits status moves
-#define ABILITY_HYDRO_CIRCUIT    (ABILITIES_COUNT_LATEST_GEN + 155) // Electric moves get a 50% Boost and water moves drain 25% of the damage dealt.
-#define ABILITY_EQUINOX          (ABILITIES_COUNT_LATEST_GEN + 156) // The user Attack and Special Attack are equal to the higher of the two, Applies after Stat Modifiers.
-#define ABILITY_ABSORBANT        (ABILITIES_COUNT_LATEST_GEN + 157) // 1.5x drain on draining moves, draining moves can cause leech seed effect.
-#define ABILITY_CLUELESS         (ABILITIES_COUNT_LATEST_GEN + 158) // When this Pokemon is on the field, all field effects, such as weather, rooms, or terrains, are negated
+#define ABILITY_GIFTED_MIND      (ABILITIES_COUNT_LATEST_GEN + 154) // Nulls Psychic weakness; status moves always hit.
+#define ABILITY_HYDRO_CIRCUIT    (ABILITIES_COUNT_LATEST_GEN + 155) // Electric moves +50%; Water moves siphon 25% damage.
+#define ABILITY_EQUINOX          (ABILITIES_COUNT_LATEST_GEN + 156) // Atk & SpAtk match higher value post-modifiers.
+#define ABILITY_ABSORBANT        (ABILITIES_COUNT_LATEST_GEN + 157) // Drain moves recover +50% HP & apply Leech Seed.
+#define ABILITY_CLUELESS         (ABILITIES_COUNT_LATEST_GEN + 158) // When in battle, weather, rooms & terrains are negated.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_CLUELESS + 1)
 
