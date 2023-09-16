@@ -7719,13 +7719,13 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_FLAME_BURST] =
     {
         .effect = EFFECT_FLAME_BURST,
-        .power = 70,
+        .power = 40, // 70
         .type = TYPE_FIRE,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
-        .priority = 0,
+        .priority = 1, // 0
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_SPECIAL,
     },
