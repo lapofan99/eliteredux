@@ -21417,6 +21417,7 @@ static const struct LevelUpMove sLycanrocDuskLevelUpLearnset[] = {
     LEVEL_UP_MOVE(45, MOVE_ROCK_CLIMB),
     LEVEL_UP_MOVE(48, MOVE_STONE_EDGE),
     LEVEL_UP_MOVE(53, MOVE_HEAD_SMASH), // new
+	LEVEL_UP_MOVE(58, MOVE_SUBMISSION), // new
     LEVEL_UP_END
 };
 static const struct LevelUpMove sToxtricityLowKeyLevelUpLearnset[] = {

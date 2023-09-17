@@ -24642,11 +24642,11 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_LYCANROC] =
     {
     .baseHP        = 75,
-    .baseAttack    = 125,
-    .baseDefense   = 70,
+    .baseAttack    = 115,
+    .baseDefense   = 65,
     .baseSpeed     = 112,
     .baseSpAttack  = 55,
-    .baseSpDefense = 70,
+    .baseSpDefense = 65,
     .type1 = TYPE_ROCK,
     .type2 = TYPE_GROUND,
     .catchRate = 255,
@@ -24666,9 +24666,9 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_LYCANROC_MIDNIGHT] =
     {
-    .baseHP        = 95,
+    .baseHP        = 85,
     .baseAttack    = 115,
-    .baseDefense   = 85,
+    .baseDefense   = 75,
     .baseSpeed     = 82,
     .baseSpAttack  = 55,
     .baseSpDefense = 75,
@@ -24692,13 +24692,13 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_LYCANROC_DUSK] =
     {
     .baseHP        = 75,
-    .baseAttack    = 127,
-    .baseDefense   = 70,
+    .baseAttack    = 117,
+    .baseDefense   = 65,
     .baseSpeed     = 110,
     .baseSpAttack  = 55,
-    .baseSpDefense = 70,
+    .baseSpDefense = 65,
     .type1 = TYPE_ROCK,
-    .type2 = TYPE_ROCK,
+    .type2 = TYPE_FIGHTING, // Rock
     .catchRate = 255,
     .expYield = 170,
     .evYield_Attack    = 2,
