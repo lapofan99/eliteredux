@@ -3840,9 +3840,9 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_HITMONLEE_MEGA] =
     {
     .baseHP        = 80,
-    .baseAttack    = 138,
-    .baseDefense   = 76,
-    .baseSpeed     = 116,
+    .baseAttack    = 140,
+    .baseDefense   = 73,
+    .baseSpeed     = 117,
     .baseSpAttack  = 65,
     .baseSpDefense = 110,
     .type1 = TYPE_FIGHTING,
@@ -14582,7 +14582,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_HUMAN_LIKE,
     .abilities = {ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY},
-    .innates = {ABILITY_INNER_FOCUS, ABILITY_FATAL_PRECISION, ABILITY_PRECISE_FIST},
+    .innates = {ABILITY_INNER_FOCUS, ABILITY_FATAL_PRECISION, ABILITY_FIGHT_SPIRIT},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = FALSE,
     },
