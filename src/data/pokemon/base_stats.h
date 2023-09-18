@@ -18562,10 +18562,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_ZORUA] =
     {
     .baseHP        = 40,
-    .baseAttack    = 50, // -15 nerf bc of 1.3x Illusion boost
+    .baseAttack    = 80,
     .baseDefense   = 40,
     .baseSpeed     = 65,
-    .baseSpAttack  = 65, // -15 nerf bc of 1.3x Illusion boost
+    .baseSpAttack  = 65,
     .baseSpDefense = 40,
     .type1 = TYPE_DARK,
     .type2 = TYPE_DARK,
@@ -18578,8 +18578,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_ILLUSION, ABILITY_ILLUSION, ABILITY_ILLUSION},
-    .innates = {ABILITY_PRANKSTER, ABILITY_INSOMNIA, ABILITY_NONE},
+    .abilities = {ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
+    .innates = {ABILITY_ILLUSION, ABILITY_CHEAP_TACTICS, ABILITY_OPPORTUNIST},
     .bodyColor = BODY_COLOR_GRAY,
     .noFlip = FALSE,
     },
@@ -18587,10 +18587,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_ZOROARK] =
     {
     .baseHP        = 60,
-    .baseAttack    = 105,
+    .baseAttack    = 120,
     .baseDefense   = 60,
     .baseSpeed     = 105,
-    .baseSpAttack  = 120,
+    .baseSpAttack  = 105,
     .baseSpDefense = 60,
     .type1 = TYPE_DARK,
     .type2 = TYPE_DARK,
@@ -18603,8 +18603,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_ILLUSION, ABILITY_ILLUSION, ABILITY_ILLUSION},
-    .innates = {ABILITY_PRANKSTER, ABILITY_INSOMNIA, ABILITY_OPPORTUNIST},
+    .abilities = {ABILITY_DISGUISE, ABILITY_DISGUISE, ABILITY_DISGUISE},
+    .innates = {ABILITY_ILLUSION, ABILITY_CHEAP_TACTICS, ABILITY_OPPORTUNIST},
     .bodyColor = BODY_COLOR_GRAY,
     .noFlip = FALSE,
     },

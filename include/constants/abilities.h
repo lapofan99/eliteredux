@@ -454,8 +454,9 @@
 #define ABILITY_EQUINOX          (ABILITIES_COUNT_LATEST_GEN + 156) // Atk & SpAtk match higher value post-modifiers.
 #define ABILITY_ABSORBANT        (ABILITIES_COUNT_LATEST_GEN + 157) // Drain moves recover +50% HP & apply Leech Seed.
 #define ABILITY_CLUELESS         (ABILITIES_COUNT_LATEST_GEN + 158) // When in battle, weather, rooms & terrains are negated.
+#define ABILITY_CHEAP_TACTICS    (ABILITIES_COUNT_LATEST_GEN + 159) // Attacks with Scratch on switch-in.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_CLUELESS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_CHEAP_TACTICS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
