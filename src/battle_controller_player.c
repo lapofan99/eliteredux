@@ -2081,7 +2081,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     }
                 }
 
-                if(gBattleMons[userId].ability == ABILITY_MOLTEN_DOWN|| BattlerHasInnate(userId, ABILITY_MOLTEN_DOWN)){
+                if(gBattleMons[userId].ability == ABILITY_MOLTEN_DOWN || BattlerHasInnate(userId, ABILITY_MOLTEN_DOWN)){
                     if(gBattleMons[targetId].type1 == TYPE_ROCK  || gBattleMons[targetId].type2 == TYPE_ROCK){
                         tempMod = UQ_4_12(4.0);
                         MulModifier(&mod, tempMod);
@@ -2194,6 +2194,12 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 if(gBattleMons[targetId].ability == ABILITY_AERODYNAMICS || BattlerHasInnate(targetId, ABILITY_AERODYNAMICS))
                     abilityNullifiesDamage = TRUE;
             break;
+        }
+
+        if(gBattleMons[targetId].ability == ABILITY_GIFTED_MIND || BattlerHasInnate(targetId, ABILITY_GIFTED_MIND)){
+            if(moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG){
+                abilityNullifiesDamage = TRUE;
+            }
         }
 
         if(gBattleMons[targetId].ability == ABILITY_WEATHER_CONTROL || BattlerHasInnate(targetId, ABILITY_WEATHER_CONTROL)){

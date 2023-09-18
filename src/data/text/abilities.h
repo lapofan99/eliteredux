@@ -417,6 +417,7 @@ static const u8 sHydroCircuitDescription[] =  _("");
 static const u8 sEquinoxDescription[] =  _("");
 static const u8 sAbsorbantDescription[] =  _("");
 static const u8 sCluelessDescription[] =  _("");
+static const u8 sCheatingDeathDescription[] =  _("");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -848,6 +849,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_EQUINOX] = _("Equinox"),
     [ABILITY_ABSORBANT] = _("Absorbant"),
     [ABILITY_CLUELESS] = _("Clueless"),
+    [ABILITY_CHEATING_DEATH] = _("Cheating Death"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1278,4 +1280,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_EQUINOX] = sEquinoxDescription,
     [ABILITY_ABSORBANT] = sAbsorbantDescription,
     [ABILITY_CLUELESS] = sCluelessDescription,
+    [ABILITY_CHEATING_DEATH] = sCheatingDeathDescription,
 };

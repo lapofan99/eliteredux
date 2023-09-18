@@ -782,9 +782,15 @@ static const u8 sText_AbilityLetItUseMove[] = _("{B_ATK_NAME_WITH_PREFIX}'s abil
 static const u8 sText_LethargyEnters[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} has it's full energy!");
 static const u8 sText_LethargyEnd[] = _("{B_ATK_NAME_WITH_PREFIX} it's out\nof energy!");
 static const u8 sText_PickupActivated[] = _("{B_ATK_NAME_WITH_PREFIX} removed hazards\non its field side!");
+static const u8 sText_BattlerHasNoDamageHits[] = _("{B_ATK_NAME_WITH_PREFIX} can endure\n{B_BUFF4} hits without taking damage!");
+static const u8 sText_BattlerCanNoLongerEndureHits[] = _("{B_ATK_NAME_WITH_PREFIX} can no longer\nendure any hits!{PAUSE 32}");
+static const u8 sText_BattlerCanStillEndureHits[] = _("{B_ATK_NAME_WITH_PREFIX} can still endure\n{B_BUFF4} hits without taking damage!{PAUSE 32}");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_BATTLERCANNOLONGERENDUREHITS - 12] = sText_BattlerCanNoLongerEndureHits,
+    [STRINGID_BATTLERCANSTILLENDUREHITS - 12] = sText_BattlerCanStillEndureHits,
+    [STRINGID_BATTLERHASNODAMAGEHITS - 12] = sText_BattlerHasNoDamageHits,
     [STRINGID_TARGETGOTCURSED - 12] = sText_TargetyBecameCursed,
     [STRINGID_PICKUPACTIVATED - 12] = sText_PickupActivated,
     [STRINGID_LETHARGYENDS - 12] = sText_LethargyEnd,

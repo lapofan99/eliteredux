@@ -4937,24 +4937,34 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
         break;
-case ABILITY_PICKUP:
-    // Check if the Pokemon has already used its ability since entering the battle
-    if (!gSpecialStatuses[battler].switchInAbilityDone &&
-        // Check if there are any hazards on the side of the field that the Pokemon has just entered
-        ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY)))
-    {
-        // Set the attacker to the Pokemon with the Pickup ability
-        gBattlerAttacker = battler;
-        // Set a flag indicating that the Pokemon has used its ability
-        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-        // Remove any hazards from the side of the field that the Pokemon has just entered
-        gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
-        // Push a cursor and callback to a stack to activate the Pickup ability
-        BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
-        // Increment the effect counter
-        effect++;
-    }
-    break;
+        case ABILITY_PICKUP:
+            // Check if the Pokemon has already used its ability since entering the battle
+            if (!gSpecialStatuses[battler].switchInAbilityDone &&
+                // Check if there are any hazards on the side of the field that the Pokemon has just entered
+                ((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY)))
+            {
+                // Set the attacker to the Pokemon with the Pickup ability
+                gBattlerAttacker = battler;
+                // Set a flag indicating that the Pokemon has used its ability
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                // Remove any hazards from the side of the field that the Pokemon has just entered
+                gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
+                // Push a cursor and callback to a stack to activate the Pickup ability
+                BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
+                // Increment the effect counter
+                effect++;
+            }
+            break;
+        case ABILITY_CHEATING_DEATH:
+            if(gDisableStructs[battler].noDamageHits == 0 && 
+               !gSpecialStatuses[battler].switchInAbilityDone){
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
+                gDisableStructs[battler].noDamageHits = 2;
+                ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
+                effect++;
+            }
         case ABILITY_INTIMIDATE:
             /*if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5694,6 +5704,19 @@ case ABILITY_PICKUP:
                 }
             }
         }
+
+        //Cheating Death
+        if(BattlerHasInnate(battler, ABILITY_CHEATING_DEATH)){
+            if(gDisableStructs[battler].noDamageHits == 0 && 
+               !gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH)]){
+                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH)] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
+                gDisableStructs[battler].noDamageHits = 2;
+                ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
+                effect++;
+            }
+		}
 		
 		// Intimidate
 		if(BattlerHasInnate(battler, ABILITY_INTIMIDATE)){
@@ -14752,11 +14775,27 @@ static u16 CalcTypeEffectivenessMultiplierInternal(u16 move, u8 moveType, u8 bat
         modifier = UQ_4_12(0.0);
         if (recordAbilities)
         {
-            gLastUsedAbility = gBattleMons[battlerDef].ability;
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MOUNTAINEER;
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
             gLastLandedMoves[battlerDef] = 0;
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
-            RecordAbilityBattle(battlerDef, gBattleMons[battlerDef].ability);
+            RecordAbilityBattle(battlerDef, ABILITY_MOUNTAINEER);
+        }
+    }
+
+    if ((GetBattlerAbility(battlerDef) == ABILITY_GIFTED_MIND ||
+         BattlerHasInnate(battlerDef, ABILITY_GIFTED_MIND))   &&
+         !DoesBattlerIgnoreAbilityorInnateChecks(battlerAtk)  &&
+         (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG))
+    {
+        modifier = UQ_4_12(0.0);
+        if (recordAbilities)
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GIFTED_MIND;
+            gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
+            gLastLandedMoves[battlerDef] = 0;
+            gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
+            RecordAbilityBattle(battlerDef, ABILITY_GIFTED_MIND);
         }
     }
 	
@@ -14826,6 +14865,9 @@ u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilit
         if (moveType == TYPE_GROUND && (abilityDef == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE)) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
             modifier = UQ_4_12(0.0);
 		if (moveType == TYPE_ROCK && (abilityDef == ABILITY_MOUNTAINEER || BattlerHasInnate(battlerDef, ABILITY_MOUNTAINEER))) 
+            modifier = UQ_4_12(0.0);
+		if ((moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG) && 
+            (abilityDef == ABILITY_GIFTED_MIND || BattlerHasInnate(battlerDef, ABILITY_GIFTED_MIND))) 
             modifier = UQ_4_12(0.0);
         if (abilityDef == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gBattleMoves[move].power)
             modifier = UQ_4_12(0.0);

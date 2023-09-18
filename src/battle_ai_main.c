@@ -762,6 +762,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (moveType == TYPE_FIRE)
                     RETURN_SCORE_MINUS(20);
                 break;
+            case ABILITY_GIFTED_MIND:
+                if (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG)
+                    RETURN_SCORE_MINUS(20);
+                break;
             case ABILITY_WONDER_GUARD:
                 if (effectiveness != AI_EFFECTIVENESS_x2 && effectiveness != AI_EFFECTIVENESS_x4)
                     return 0;
@@ -952,6 +956,10 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         if(BattlerHasInnate(battlerDef, ABILITY_FLASH_FIRE) && 
             moveType == TYPE_FIRE)
             RETURN_SCORE_MINUS(20);
+
+        if(BattlerHasInnate(battlerDef, ABILITY_GIFTED_MIND) && 
+           (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG))
+                RETURN_SCORE_MINUS(20);
         
         //Wonder Guard
         if(BattlerHasInnate(battlerDef, ABILITY_WONDER_GUARD) && 

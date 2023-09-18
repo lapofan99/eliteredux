@@ -2242,6 +2242,8 @@ static void Cmd_adjustdamage(void)
         goto END;
     if (DoesDisguiseBlockMove(gBattlerAttacker, gBattlerTarget, gCurrentMove))
         goto END;
+    if(DoesBattlerHasNoDamageHits(gBattlerAttacker, gBattlerTarget, gCurrentMove))
+        goto END;
     if (gBattleMons[gBattlerTarget].hp > gBattleMoveDamage)
         goto END;
 
@@ -2457,6 +2459,21 @@ static void Cmd_healthbarupdate(void)
             PrepareStringBattle(STRINGID_SUBSTITUTEDAMAGED, gActiveBattler);
             FlagSet(FLAG_SYS_DISABLE_DAMAGE_DONE);
         }
+        else if (DoesBattlerHasNoDamageHits(gBattlerAttacker, gActiveBattler, gCurrentMove))
+        {
+            u8 nodamageHits = gDisableStructs[gActiveBattler].noDamageHits;
+            
+            nodamageHits--;
+
+            if(nodamageHits == 0)
+                PrepareStringBattle(STRINGID_BATTLERCANNOLONGERENDUREHITS, gActiveBattler);
+            else{
+                ConvertIntToDecimalStringN(gBattleTextBuff4, nodamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
+                PrepareStringBattle(STRINGID_BATTLERCANSTILLENDUREHITS, gActiveBattler);
+            }
+
+            FlagSet(FLAG_SYS_DISABLE_DAMAGE_DONE);
+        }
         else if (!DoesDisguiseBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove))
         {
             s16 healthValue = min(gBattleMoveDamage, 10000); // Max damage (10000) not present in R/S, ensures that huge damage values don't change sign
@@ -2528,6 +2545,18 @@ static void Cmd_datahpupdate(void)
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_SubstituteFade;
                 return;
+            }
+        }
+        else if (DoesBattlerHasNoDamageHits(gBattlerAttacker, gActiveBattler, gCurrentMove))
+        {
+            if(gDisableStructs[gActiveBattler].noDamageHits != 0){
+                gDisableStructs[gActiveBattler].noDamageHits--;
+
+                if(gDisableStructs[gActiveBattler].noDamageHits == 0){
+                    gBattlescriptCurrInstr += 2;
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_BattlerCanNoLongerEndureHits;
+                }
             }
         }
         else if (DoesDisguiseBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove))
@@ -13975,18 +14004,32 @@ bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
         return TRUE;
 }
 
+bool32 DoesBattlerHasNoDamageHits(u8 battlerAtk, u8 battlerDef, u32 move)
+{
+    bool8 ret = FALSE;
+
+    if(gDisableStructs[battlerDef].noDamageHits != 0)
+        ret = TRUE;
+
+    MgbaOpen();
+    MgbaPrintf(MGBA_LOG_WARN, "DoesBattlerHasNoDamageHits noDamageHits %d ret %d", gDisableStructs[battlerDef].noDamageHits, ret);
+    MgbaClose();
+
+    return ret;
+}
+
 bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
 {
-    if (gBattleMons[battlerDef].species != SPECIES_MIMIKYU
-        || gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED
-        || IS_MOVE_STATUS(move)
-        || ((gHitMarker & HITMARKER_IGNORE_DISGUISE) && move != MOVE_SUCKER_PUNCH)
-        || GetBattlerAbility(battlerDef) != ABILITY_DISGUISE){
-            return FALSE;
+    if(GetBattlerAbility(battlerDef) != ABILITY_DISGUISE || BattlerHasInnate(battlerDef, ABILITY_DISGUISE)){
+        if(gBattleMons[battlerDef].species == SPECIES_MIMIKYU       &&
+           !(gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED) &&
+           !IS_MOVE_STATUS(move) &&
+           !((gHitMarker & HITMARKER_IGNORE_DISGUISE) && move != MOVE_SUCKER_PUNCH)){
+            return TRUE;
         }
-    else{
-        return TRUE;
     }
+
+    return FALSE;
 }
 
 static void Cmd_jumpifsubstituteblocks(void)

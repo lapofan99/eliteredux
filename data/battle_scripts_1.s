@@ -8297,6 +8297,23 @@ BattleScript_PickUpActivate::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_BattlerHasNoDamageHits::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BATTLERHASNODAMAGEHITS
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_BattlerStillEndureHits::
+	printstring STRINGID_BATTLERCANSTILLENDUREHITS
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_BattlerCanNoLongerEndureHits::
+	printstring STRINGID_BATTLERCANNOLONGERENDUREHITS
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_DefenderSetsSpikeLayer::
 	savetarget
 	copybyte sSAVED_BATTLER, gBattlerAttacker

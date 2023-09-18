@@ -454,8 +454,9 @@
 #define ABILITY_EQUINOX          (ABILITIES_COUNT_LATEST_GEN + 156) // The user Attack and Special Attack are equal to the higher of the two, Applies after Stat Modifiers.
 #define ABILITY_ABSORBANT        (ABILITIES_COUNT_LATEST_GEN + 157) // 1.5x drain on draining moves, draining moves can cause leech seed effect.
 #define ABILITY_CLUELESS         (ABILITIES_COUNT_LATEST_GEN + 158) // When this Pokemon is on the field, all field effects, such as weather, rooms, or terrains, are negated
+#define ABILITY_CHEATING_DEATH   (ABILITIES_COUNT_LATEST_GEN + 159) // You get no damage for the first two hits.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_CLUELESS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_CHEATING_DEATH + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
