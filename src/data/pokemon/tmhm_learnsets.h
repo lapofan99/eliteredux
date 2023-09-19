@@ -8935,6 +8935,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM80_VENOSHOCK)
                                         | TMHM2(TM89_U_TURN)
                                         | TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM97_DARK_PULSE)  // new
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM05_FLASH)),
     [SPECIES_LOTAD]   = TMHM_LEARNSET (TMHM1(TM03_WATER_PULSE)
