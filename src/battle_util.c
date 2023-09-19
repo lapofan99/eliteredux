@@ -4986,12 +4986,30 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         case ABILITY_CHEATING_DEATH:
             if(gDisableStructs[battler].noDamageHits == 0 && 
-               !gSpecialStatuses[battler].switchInAbilityDone){
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+               !gBattleMons[battler].singeuseability[0]){
+                gBattleMons[battler].singeuseability[0] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
                 gDisableStructs[battler].noDamageHits = 2;
-                ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
-                BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
+                if(gDisableStructs[battler].noDamageHits == 1)
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
+                else{
+                    ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
+                }
+                effect++;
+            }
+        case ABILITY_DOUBLE_SHIELD:
+            if(gDisableStructs[battler].noDamageHits == 0 && 
+               !gBattleMons[battler].singeuseability[0]){
+                gBattleMons[battler].singeuseability[0] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DOUBLE_SHIELD;
+                gDisableStructs[battler].noDamageHits = 1;
+                if(gDisableStructs[battler].noDamageHits == 1)
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
+                else{
+                    ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
+                }
                 effect++;
             }
         case ABILITY_INTIMIDATE:
@@ -5737,19 +5755,41 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         //Cheating Death
         if(BattlerHasInnate(battler, ABILITY_CHEATING_DEATH)){
             if(gDisableStructs[battler].noDamageHits == 0 && 
-               !gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH)]){
-                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH)] = TRUE;
+               !gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH) + 1]){
+                gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH) + 1] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
                 gDisableStructs[battler].noDamageHits = 2;
-                ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
-                BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
+                if(gDisableStructs[battler].noDamageHits == 1)
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
+                else{
+                    ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
+                }
                 effect++;
             }
 		}
+
+        //Double Shield
+        if(BattlerHasInnate(battler, ABILITY_DOUBLE_SHIELD)){
+            if(gDisableStructs[battler].noDamageHits == 0 && 
+               !gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_DOUBLE_SHIELD) + 1]){
+                gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_DOUBLE_SHIELD) + 1] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DOUBLE_SHIELD;
+                gDisableStructs[battler].noDamageHits = 1;
+                if(gDisableStructs[battler].noDamageHits == 1)
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
+                else{
+                    ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
+                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
+                }
+                effect++;
+            }
+        }
 		
 		// Intimidate
 		if(BattlerHasInnate(battler, ABILITY_INTIMIDATE)){
-			if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_INTIMIDATE)] && !(gSpecialStatuses[battler].intimidatedMon) )
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_INTIMIDATE)] && 
+                !(gSpecialStatuses[battler].intimidatedMon))
 			{
 				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_INTIMIDATE)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INTIMIDATE;
@@ -5760,7 +5800,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         //Scare
 		if(BattlerHasInnate(battler, ABILITY_SCARE)){
-			if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SCARE)] && !(gSpecialStatuses[battler].scaredMon) )
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SCARE)] && !(gSpecialStatuses[battler].scaredMon))
 			{
 				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_SCARE)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCARE;

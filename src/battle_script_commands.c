@@ -2467,6 +2467,8 @@ static void Cmd_healthbarupdate(void)
 
             if(nodamageHits == 0)
                 PrepareStringBattle(STRINGID_BATTLERCANNOLONGERENDUREHITS, gActiveBattler);
+            else if(nodamageHits == 1)
+                PrepareStringBattle(STRINGID_BATTLERCANSTILLENDUREASINGLEHIT, gActiveBattler);
             else{
                 ConvertIntToDecimalStringN(gBattleTextBuff4, nodamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
                 PrepareStringBattle(STRINGID_BATTLERCANSTILLENDUREHITS, gActiveBattler);

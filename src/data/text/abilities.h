@@ -419,6 +419,7 @@ static const u8 sAbsorbantDescription[] =  _("Drain moves recover +50%\nHP & app
 static const u8 sCluelessDescription[] =  _("Negates Weather, Rooms\nand Terrains.");
 static const u8 sCheapTacticsDescription[]    = _("Attacks with Scratch\non switch-in.");
 static const u8 sCheatingDeathDescription[] =  _("");
+static const u8 sDoubleShieldDescription[] =  _("");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -852,6 +853,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_CLUELESS] = _("Clueless"),
     [ABILITY_CHEATING_DEATH] = _("Cheating Death"),
     [ABILITY_CHEAP_TACTICS] = _("Cheap Tactics"),
+    [ABILITY_DOUBLE_SHIELD] = _("Double Shield"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1284,4 +1286,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_CLUELESS] = sCluelessDescription,
     [ABILITY_CHEATING_DEATH] = sCheatingDeathDescription,
     [ABILITY_CHEAP_TACTICS] = sCheapTacticsDescription,
+    [ABILITY_DOUBLE_SHIELD] = sDoubleShieldDescription,
 };

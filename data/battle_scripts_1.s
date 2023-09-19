@@ -8304,6 +8304,13 @@ BattleScript_BattlerHasNoDamageHits::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_BattlerHasASingleNoDamageHit::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BATTLERHASSINGLENODAMAGEHITS
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 BattleScript_BattlerStillEndureHits::
 	printstring STRINGID_BATTLERCANSTILLENDUREHITS
 	waitmessage B_WAIT_TIME_LONG

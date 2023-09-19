@@ -655,8 +655,10 @@
 #define STRINGID_BATTLERHASNODAMAGEHITS               684
 #define STRINGID_BATTLERCANNOLONGERENDUREHITS         685
 #define STRINGID_BATTLERCANSTILLENDUREHITS            686
+#define STRINGID_BATTLERHASSINGLENODAMAGEHITS         687
+#define STRINGID_BATTLERCANSTILLENDUREASINGLEHIT      688
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_BATTLERCANSTILLENDUREHITS + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_BATTLERCANSTILLENDUREASINGLEHIT + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

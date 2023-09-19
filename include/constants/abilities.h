@@ -456,8 +456,9 @@
 #define ABILITY_CLUELESS         (ABILITIES_COUNT_LATEST_GEN + 158) // When this Pokemon is on the field, all field effects, such as weather, rooms, or terrains, are negated
 #define ABILITY_CHEATING_DEATH   (ABILITIES_COUNT_LATEST_GEN + 159) // You get no damage for the first two hits.
 #define ABILITY_CHEAP_TACTICS    (ABILITIES_COUNT_LATEST_GEN + 160) // Attacks with Scratch on switch-in.
+#define ABILITY_DOUBLE_SHIELD    (ABILITIES_COUNT_LATEST_GEN + 161) // Disguise Clone without transformation
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_CHEAP_TACTICS + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_DOUBLE_SHIELD + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
