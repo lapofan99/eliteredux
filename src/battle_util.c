@@ -4908,11 +4908,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_LOW_BLOW:  //To Change
+        case ABILITY_LOW_BLOW:  // To Change
             if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LOW_BLOW)]){
                 u8 opposingBattler = BATTLE_OPPOSITE(battler);
-                u16 extraMove = MOVE_SUCKER_PUNCH; //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 40;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                u16 extraMove = MOVE_SUCKER_PUNCH; // The Extra Move to be used, it only works for normal moves that hit the target
+                u8 movePower = 40;                 // The Move power, leave at 0 if you want it to be the same as the normal move
                 bool8 hasTarget = FALSE;
 				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LOW_BLOW)] = TRUE;
                 gCurrentMove = extraMove;
@@ -4931,7 +4931,36 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 
                 if(hasTarget){//To check if the target is even alive
                     gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_LOW_BLOW;  //To Change
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_LOW_BLOW;  // To Change
+                    gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                    effect++;
+                }
+            }
+        break;
+        case ABILITY_CHEAP_TACTICS:
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CHEAP_TACTICS)]){
+                u8 opposingBattler = BATTLE_OPPOSITE(battler);
+                u16 extraMove = MOVE_SCRATCH; // The Extra Move to be used, it only works for normal moves that hit the target
+                u8 movePower = 0;                 // The Move power, leave at 0 if you want it to be the same as the normal move
+                bool8 hasTarget = FALSE;
+				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CHEAP_TACTICS)] = TRUE;
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gBattlerAttacker = battler;
+                
+                // Checks Target
+                for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+                {
+                    if (IsBattlerAlive(opposingBattler))
+                    {
+                        gBattlerTarget = opposingBattler;
+                        hasTarget = TRUE;
+                    }
+                }
+                
+                if(hasTarget){ // To check if the target is even alive
+                    gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_CHEAP_TACTICS;
                     gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                     effect++;
                 }
@@ -5755,7 +5784,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         }
 
-        //
+        // Low Blow
         if(BattlerHasInnate(battler, ABILITY_LOW_BLOW)){  //To Change
             if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_LOW_BLOW)]){
                 u8 opposingBattler = BATTLE_OPPOSITE(battler);
@@ -5780,6 +5809,37 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if(hasTarget){//To check if the target is even alive
                     gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
                     gBattleScripting.abilityPopupOverwrite = ABILITY_LOW_BLOW;  //To Change
+                    gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
+                    effect++;
+                }
+            }
+        }
+
+        // Cheap Tactics
+        if(BattlerHasInnate(battler, ABILITY_CHEAP_TACTICS)){
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CHEAP_TACTICS)]){
+                u8 opposingBattler = BATTLE_OPPOSITE(battler);
+                u16 extraMove = MOVE_SCRATCH;  // The Extra Move to be used, it only works for normal moves that hit the target
+                u8 movePower = 0;                  // The Move power, leave at 0 if you want it to be the same as the normal move
+                bool8 hasTarget = FALSE;
+				gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CHEAP_TACTICS)] = TRUE;
+                gCurrentMove = extraMove;
+                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                gBattlerAttacker = battler;
+                
+                // Checks Target
+                for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+                {
+                    if (IsBattlerAlive(opposingBattler))
+                    {
+                        gBattlerTarget = opposingBattler;
+                        hasTarget = TRUE;
+                    }
+                }
+                
+                if(hasTarget){ // To check if the target is even alive
+                    gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                    gBattleScripting.abilityPopupOverwrite = ABILITY_CHEAP_TACTICS;
                     gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                     effect++;
                 }

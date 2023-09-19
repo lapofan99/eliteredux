@@ -11679,6 +11679,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM82_DRAGON_TAIL)
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM96_AVALANCHE)
+                                        | TMHM2(TM99_DAZZLING_GLEAM) // new
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM03_SURF)
                                         | TMHM2(HM07_WATERFALL)

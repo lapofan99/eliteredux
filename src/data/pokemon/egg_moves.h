@@ -2846,6 +2846,7 @@ const u16 gEggMoves[] = {
         MOVE_DISABLE),
 
     egg_moves(GIBLE,
+        MOVE_DRAGON_DANCE, // new
         MOVE_SCALE_SHOT, // new
         MOVE_DRAGON_BREATH,
         MOVE_OUTRAGE,

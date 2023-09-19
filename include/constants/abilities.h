@@ -421,7 +421,7 @@
 #define ABILITY_HARDENED_SHEATH  (ABILITIES_COUNT_LATEST_GEN + 123) // Increases the Attack stat by one stage after using a horn move. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
 #define ABILITY_ARCTIC_FUR       (ABILITIES_COUNT_LATEST_GEN + 124) // Takes 35% less damage from incoming physical & special moves.
 #define ABILITY_SPECTRALIZE      (ABILITIES_COUNT_LATEST_GEN + 125) // All Normal-type moves used by the Pokémon become Ghost-type and receive a 20% power boost.
-#define ABILITY_LETHARGY         (ABILITIES_COUNT_LATEST_GEN + 126) // The user's Atk is lowered by 20% at the end of each turn, down to 20% of the user's Atk. Resets on switching out.
+#define ABILITY_LETHARGY         (ABILITIES_COUNT_LATEST_GEN + 126) // Atk drops 20% each turn to 20%. Resets on switch-in.
 #define ABILITY_IRON_BARRAGE     (ABILITIES_COUNT_LATEST_GEN + 127) // Combines Mega Launcher with Sighting System
 #define ABILITY_STEEL_BARREL     (ABILITIES_COUNT_LATEST_GEN + 128) // Protects the Pokémon from recoil damage.
 #define ABILITY_PYRO_SHELLS      (ABILITIES_COUNT_LATEST_GEN + 129) // Triggers 50 BP Outburst after using a Mega Launcher move.
@@ -455,8 +455,9 @@
 #define ABILITY_ABSORBANT        (ABILITIES_COUNT_LATEST_GEN + 157) // 1.5x drain on draining moves, draining moves can cause leech seed effect.
 #define ABILITY_CLUELESS         (ABILITIES_COUNT_LATEST_GEN + 158) // When this Pokemon is on the field, all field effects, such as weather, rooms, or terrains, are negated
 #define ABILITY_CHEATING_DEATH   (ABILITIES_COUNT_LATEST_GEN + 159) // You get no damage for the first two hits.
+#define ABILITY_CHEAP_TACTICS    (ABILITIES_COUNT_LATEST_GEN + 160) // Attacks with Scratch on switch-in.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_CHEATING_DEATH + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_CHEAP_TACTICS + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
