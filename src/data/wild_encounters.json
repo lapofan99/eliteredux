@@ -1981,7 +1981,7 @@
               {
                 "min_level": 14,
                 "max_level": 14,
-                "species": "SPECIES_MINCCINO"
+                "species": "SPECIES_SANDSHREW"
               },
               {
                 "min_level": 13,
@@ -1991,7 +1991,7 @@
               {
                 "min_level": 13,
                 "max_level": 13,
-                "species": "SPECIES_MINCCINO"
+                "species": "SPECIES_SANDSHREW"
               }
             ]
           },
