@@ -12916,12 +12916,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
 	case ABILITY_SHELL_ARMOR:
 	case ABILITY_BATTLE_ARMOR:
-        MulModifier(&modifier, UQ_4_12(0.9));
+        MulModifier(&modifier, UQ_4_12(0.8));
         if (updateFlags)
             RecordAbilityBattle(battlerDef, ability);
         break;
 	case ABILITY_LEAD_COAT:
-        MulModifier(&modifier, UQ_4_12(0.7));
+        MulModifier(&modifier, UQ_4_12(0.6));
         if (updateFlags)
             RecordAbilityBattle(battlerDef, ability);
         break;
@@ -12933,7 +12933,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	case ABILITY_IMMUNITY:
         if (moveType == TYPE_POISON)
         {
-            MulModifier(&modifier, UQ_4_12(0.8));
+            MulModifier(&modifier, UQ_4_12(0.5));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ability);
         }
@@ -13000,11 +13000,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Battle Armor
 	if(BattlerHasInnate(battlerDef, ABILITY_BATTLE_ARMOR) ||
 	   BattlerHasInnate(battlerDef, ABILITY_SHELL_ARMOR)){
-		MulModifier(&modifier, UQ_4_12(0.9));
+		MulModifier(&modifier, UQ_4_12(0.8));
     }
 	// Lead Coat
 	if(BattlerHasInnate(battlerDef, ABILITY_LEAD_COAT)){
-		MulModifier(&modifier, UQ_4_12(0.7));
+		MulModifier(&modifier, UQ_4_12(0.6));
     }
     // Parry
 	if(BattlerHasInnate(battlerDef, ABILITY_PARRY)){
@@ -13501,6 +13501,18 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.25));
         }
         break;
+    case ABILITY_FOSSILIZED:
+        if (moveType == TYPE_ROCK)
+        {
+            MulModifier(&modifier, UQ_4_12(1.2));
+        }
+        break;
+    case ABILITY_RAW_WOOD:
+        if (moveType == TYPE_GRASS)
+        {
+            MulModifier(&modifier, UQ_4_12(1.2));
+        }
+        break;
     case ABILITY_PLUS:
     case ABILITY_MINUS:
         if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
@@ -13666,7 +13678,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         break;
 	case ABILITY_OVERCOAT:
         if (IS_MOVE_SPECIAL(move))
-            MulModifier(&modifier, UQ_4_12(0.9));
+            MulModifier(&modifier, UQ_4_12(0.8));
         break;
     case ABILITY_ICE_SCALES:
         if (IS_MOVE_SPECIAL(move))
@@ -13752,7 +13764,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	//Overcoat
 	if(BattlerHasInnate(battlerDef, ABILITY_OVERCOAT)){
 		if (IS_MOVE_SPECIAL(move))
-            MulModifier(&modifier, UQ_4_12(0.9));
+            MulModifier(&modifier, UQ_4_12(0.8));
 	}
 	
 	//Water Compaction
@@ -13861,6 +13873,20 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		if (moveType == TYPE_PSYCHIC)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
+        }
+	}
+    // Fossilized
+	if(BattlerHasInnate(battlerAtk, ABILITY_FOSSILIZED)){
+		if (moveType == TYPE_ROCK)
+        {
+            MulModifier(&modifier, UQ_4_12(1.2));
+        }
+	}
+    // Raw Wood
+	if(BattlerHasInnate(battlerAtk, ABILITY_RAW_WOOD)){
+		if (moveType == TYPE_GRASS)
+        {
+            MulModifier(&modifier, UQ_4_12(1.2));
         }
 	}
 	// Swarm
@@ -14445,7 +14471,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
     case ABILITY_PRISM_ARMOR:
 	case ABILITY_PERMAFROST:
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
-            MulModifier(&finalModifier, UQ_4_12(0.75));
+            MulModifier(&finalModifier, UQ_4_12(0.65));
         break;
 	case ABILITY_PRIMAL_ARMOR:
         if (typeEffectivenessModifier >= UQ_4_12(2.0))
@@ -14492,7 +14518,7 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	BattlerHasInnate(battlerDef, ABILITY_SOLID_ROCK) ||
 	BattlerHasInnate(battlerDef, ABILITY_PRISM_ARMOR)){
 		if (typeEffectivenessModifier >= UQ_4_12(2.0))
-            MulModifier(&finalModifier, UQ_4_12(0.75));
+            MulModifier(&finalModifier, UQ_4_12(0.65));
     }
 	// Primal Armor
 	if(BattlerHasInnate(battlerDef, ABILITY_PRIMAL_ARMOR)){

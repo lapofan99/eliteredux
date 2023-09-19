@@ -7844,7 +7844,6 @@ static const struct LevelUpMove sGulpinLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sSwalotLevelUpLearnset[] = {
-	LEVEL_UP_MOVE( 0, MOVE_RECOVER), // new
     LEVEL_UP_MOVE( 1, MOVE_BODY_SLAM),
 	LEVEL_UP_MOVE( 1, MOVE_BODY_PRESS), // new
     LEVEL_UP_MOVE( 1, MOVE_VENOM_DRENCH),
@@ -7864,6 +7863,7 @@ static const struct LevelUpMove sSwalotLevelUpLearnset[] = {
     LEVEL_UP_MOVE(37, MOVE_SLUDGE_BOMB),
     LEVEL_UP_MOVE(42, MOVE_GASTRO_ACID),
     LEVEL_UP_MOVE(49, MOVE_BELCH),
+    LEVEL_UP_MOVE(56, MOVE_RECOVER), // new
     LEVEL_UP_END
 };
 
@@ -13589,6 +13589,7 @@ static const struct LevelUpMove sAlomomolaLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(45, MOVE_SAFEGUARD),
 	LEVEL_UP_MOVE(49, MOVE_WHIRLPOOL),
 	LEVEL_UP_MOVE(53, MOVE_HELPING_HAND),
+	LEVEL_UP_MOVE(56, MOVE_FLIP_TURN), // new
 	LEVEL_UP_MOVE(57, MOVE_HEALING_WISH),
 	LEVEL_UP_MOVE(61, MOVE_WIDE_GUARD),
 	LEVEL_UP_MOVE(65, MOVE_HYDRO_PUMP),

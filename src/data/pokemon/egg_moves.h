@@ -3551,6 +3551,7 @@ const u16 gEggMoves[] = {
         MOVE_CONSTRICT),
 
     egg_moves(ALOMOMOLA,
+        MOVE_HEAL_BELL, // new
         MOVE_PAIN_SPLIT,
         MOVE_REFRESH,
         MOVE_TICKLE,

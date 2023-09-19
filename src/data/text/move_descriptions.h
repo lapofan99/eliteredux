@@ -743,7 +743,7 @@ static const u8 sConversion2Description[] = _(
 
 static const u8 sAeroblastDescription[] = _( // new
     "Launches a vacuumed blast.\n"
-    "Always crits.");
+    "High crit ratio.");
 
 static const u8 sCottonSporeDescription[] = _(
     "Spores cling to the foe,\n"
@@ -4045,7 +4045,7 @@ static const u8 sMoveFourLineDescription_Snore[] = _("An attack that can\nbe use
 static const u8 sMoveFourLineDescription_Curse[] = _("A move that works\ndifferently for the\nGHOST-type and all\nthe other types.");
 static const u8 sMoveFourLineDescription_Flail[] = _("A desperate attack\nthat becomes more\npowerful the less\nHP the user has.");
 static const u8 sMoveFourLineDescription_Conversion2[] = _("The user changes\ntype to make itself\nresistant to the\nlast attack it took.");
-static const u8 sMoveFourLineDescription_Aeroblast[] = _("A vortex of air is\nshot at the foe.\nAlways crits.\nAir-based."); // new
+static const u8 sMoveFourLineDescription_Aeroblast[] = _("A vortex of air is\nshot at the foe.\nHigh crit ratio.\nAir-based."); // new
 static const u8 sMoveFourLineDescription_CottonSpore[] = _("Cotton-like spores\ncling to the foe,\nsharply reducing\nits Speed stat.");
 static const u8 sMoveFourLineDescription_Reversal[] = _("An all-out attack\nthat becomes more\npowerful the less\nHP the user has.");
 static const u8 sMoveFourLineDescription_Spite[] = _("A move that cuts\n2 to 5 PP from the\nmove last used by\nthe foe.");
