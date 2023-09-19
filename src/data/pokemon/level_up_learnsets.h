@@ -7842,7 +7842,8 @@ static const struct LevelUpMove sGulpinLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sSwalotLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_BODY_SLAM),
+	LEVEL_UP_MOVE( 0, MOVE_RECOVER), // new
+    LEVEL_UP_MOVE( 1, MOVE_BODY_SLAM),
 	LEVEL_UP_MOVE( 1, MOVE_BODY_PRESS), // new
     LEVEL_UP_MOVE( 1, MOVE_VENOM_DRENCH),
     LEVEL_UP_MOVE( 1, MOVE_GUNK_SHOT),
