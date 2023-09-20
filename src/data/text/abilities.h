@@ -376,6 +376,7 @@ static const u8 sBuginizeDescription[] = _("Normal moves become Bug\nand get a 2
 static const u8 sVolcanoRageDescription[] = _("Triggers 50 BP Eruption after\nusing a Fire-type move.");
 static const u8 sColdReboundDescription[] = _("Attacks with Icy Wind\nwhen hit by a contact move.");
 static const u8 sNosferatuDescription[] = _("Contact moves do +20% damage\nand heal 1/3 of damage dealt.");
+static const u8 sSpectralizeDescription[] = _("Normal moves turn Ghost\nand get a 20% boost.");
 static const u8 sSpectralShroudDescription[] = _("Spectralize + 30% chance\nto badly poison the foe.");
 static const u8 sThunderCallDescription[] = _("Triggers Smite at 20% power\nwhen using an Electric move.");
 static const u8 sMarineApexDescription[] =  _("50% more damage to Water-\ntypes + Infiltrator.");
@@ -854,6 +855,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_CHEATING_DEATH] = _("Cheating Death"),
     [ABILITY_CHEAP_TACTICS] = _("Cheap Tactics"),
     [ABILITY_DOUBLE_SHIELD] = _("Double Shield"),
+    [ABILITY_SPECTRALIZE] = _("Spectralize"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1287,4 +1289,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_CHEATING_DEATH] = sCheatingDeathDescription,
     [ABILITY_CHEAP_TACTICS] = sCheapTacticsDescription,
     [ABILITY_DOUBLE_SHIELD] = sDoubleShieldDescription,
+    [ABILITY_SPECTRALIZE] = sSpectralizeDescription,
 };

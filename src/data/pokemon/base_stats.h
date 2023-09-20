@@ -1000,7 +1000,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
     .abilities = {ABILITY_BATTLE_ARMOR, ABILITY_STAMINA, ABILITY_SAND_STREAM},
-    .innates = {ABILITY_LETS_ROLL, ABILITY_SAND_RUSH, ABILITY_TOUGH_CLAWS},
+    .innates = {ABILITY_LETS_ROLL, ABILITY_LOOSE_QUILLS, ABILITY_TOUGH_CLAWS},
     .bodyColor = BODY_COLOR_YELLOW,
     .noFlip = FALSE,
     },
