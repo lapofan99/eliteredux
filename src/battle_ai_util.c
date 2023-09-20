@@ -1569,6 +1569,9 @@ bool32 IsMoveEncouragedToHit(u8 battlerAtk, u8 battlerDef, u16 move)
 
     if ((BattlerHasInnate(battlerAtk, ABILITY_DEADEYE) || AI_GetAbility(battlerAtk) == ABILITY_DEADEYE))
         return TRUE;
+
+    if ((BattlerHasInnate(battlerAtk, ABILITY_GIFTED_MIND) || AI_GetAbility(battlerAtk) == ABILITY_GIFTED_MIND) && IS_MOVE_STATUS(move))
+        return TRUE;
     
     if (B_TOXIC_NEVER_MISS >= GEN_6 && gBattleMoves[move].effect == EFFECT_TOXIC && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
         return TRUE;

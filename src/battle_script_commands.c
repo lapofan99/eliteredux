@@ -1924,6 +1924,9 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if ((atkAbility == ABILITY_DEADEYE || BattlerHasInnate(battlerAtk, ABILITY_DEADEYE)))
         moveAcc = 100;
 
+    if ((BattlerHasInnate(battlerAtk, ABILITY_GIFTED_MIND) || atkAbility == ABILITY_GIFTED_MIND) && IS_MOVE_STATUS(move))
+        moveAcc = 100;
+
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
 
