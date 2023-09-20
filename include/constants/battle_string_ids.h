@@ -657,8 +657,11 @@
 #define STRINGID_BATTLERCANSTILLENDUREHITS            686
 #define STRINGID_BATTLERHASSINGLENODAMAGEHITS         687
 #define STRINGID_BATTLERCANSTILLENDUREASINGLEHIT      688
+#define STRINGID_BATTLERHASSPILLEDTOXICWASTE          689
+#define STRINGID_THETOXICWASTEHASDISSAPPEARED         690
+#define STRINGID_PKMNHURTBYTOXICWASTE                 691
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_BATTLERCANSTILLENDUREASINGLEHIT + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNHURTBYTOXICWASTE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

@@ -477,6 +477,9 @@ extern const u8 BattleScript_BattlerHasNoDamageHits[];
 extern const u8 BattleScript_BattlerHasASingleNoDamageHit[];
 extern const u8 BattleScript_BattlerStillEndureHits[];
 extern const u8 BattleScript_BattlerCanNoLongerEndureHits[];
+extern const u8 BattleScript_BattlerAnnouncedToxicSpill[];
+extern const u8 BattleScript_TheToxicWasHasDissapeared[];
+extern const u8 BattleScript_ToxicWasteTurnDmg[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

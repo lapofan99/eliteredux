@@ -7719,6 +7719,20 @@ BattleScript_DoTurnDmg:
 BattleScript_DoTurnDmgEnd:
 	end2
 
+BattleScript_ToxicWasteTurnDmg::
+	printstring STRINGID_PKMNHURTBYTOXICWASTE
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_DoToxicWasteTurnDmg::
+	chosenstatus1animation BS_ATTACKER, STATUS1_POISON
+BattleScript_ToxicWasteDoTurnDmg:
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE | HITMARKER_IGNORE_DISGUISE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	tryfaintmon BS_ATTACKER, FALSE, NULL
+	atk24 BattleScript_ToxicWasteDoTurnDmgEnd
+BattleScript_ToxicWasteDoTurnDmgEnd:
+	end2
+
 BattleScript_PoisonHealActivates::
 	printstring STRINGID_POISONHEALHPUP
 	waitmessage B_WAIT_TIME_LONG
@@ -8311,6 +8325,11 @@ BattleScript_BattlerHasASingleNoDamageHit::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_TheToxicWasHasDissapeared::
+	printstring STRINGID_THETOXICWASTEHASDISSAPPEARED
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_BattlerStillEndureHits::
 	printstring STRINGID_BATTLERCANSTILLENDUREHITS
 	waitmessage B_WAIT_TIME_LONG
@@ -8320,6 +8339,13 @@ BattleScript_BattlerCanNoLongerEndureHits::
 	printstring STRINGID_BATTLERCANNOLONGERENDUREHITS
 	waitmessage B_WAIT_TIME_LONG
 	return
+
+BattleScript_BattlerAnnouncedToxicSpill::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_BATTLERHASSPILLEDTOXICWASTE
+	waitmessage B_WAIT_TIME_LONG
+	end3
 
 BattleScript_DefenderSetsSpikeLayer::
 	savetarget

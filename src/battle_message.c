@@ -787,9 +787,15 @@ static const u8 sText_BattlerCanNoLongerEndureHits[] = _("{B_DEF_NAME_WITH_PREFI
 static const u8 sText_BattlerCanStillEndureHits[] = _("{B_ATK_NAME_WITH_PREFIX} can still endure\n{B_BUFF4} hits without taking damage!{PAUSE 32}");
 static const u8 sText_BattlerHasASingleNoDamageHit[] = _("{B_DEF_NAME_WITH_PREFIX} can endure\na single hit without taking damage!");
 static const u8 sText_BattlerCanStillEndureASingleHit[] = _("{B_DEF_NAME_WITH_PREFIX} can still endure\na single hit without taking damage!{PAUSE 32}");
+static const u8 sText_BattlerHasSpilledToxicWaste[] = _("{B_ATK_NAME_WITH_PREFIX} has spilled\nToxic Waste on the field!");
+static const u8 sText_TheToxicWasteHasDissappeared[] = _("The Toxic Waste has dissappeared!");
+static const u8 sText_PkmnHurtByToxicWaste[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt\nby the Toxic Waste!");//{B_ATK_NAME_WITH_PREFIX} is hurt\nby poison!
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_PKMNHURTBYTOXICWASTE - 12] = sText_PkmnHurtByToxicWaste,
+    [STRINGID_THETOXICWASTEHASDISSAPPEARED - 12] = sText_TheToxicWasteHasDissappeared,
+    [STRINGID_BATTLERHASSPILLEDTOXICWASTE - 12] = sText_BattlerHasSpilledToxicWaste,
     [STRINGID_BATTLERCANSTILLENDUREASINGLEHIT - 12] = sText_BattlerCanStillEndureASingleHit,
     [STRINGID_BATTLERHASSINGLENODAMAGEHITS - 12] = sText_BattlerHasASingleNoDamageHit,
     [STRINGID_BATTLERCANNOLONGERENDUREHITS - 12] = sText_BattlerCanNoLongerEndureHits,

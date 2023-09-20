@@ -2642,6 +2642,7 @@ enum
     ENDTURN_THROAT_CHOP,
     ENDTURN_SLOW_START,
     ENDTURN_PLASMA_FISTS,
+    ENDTURN_TOXIC_WASTE_DAMAGE,
     ENDTURN_BATTLER_COUNT
 };
 
@@ -2763,6 +2764,36 @@ u8 DoBattlerEndTurnEffects(void)
                 gBattleScripting.animArg2 = gBattlerAttacker;
                 BattleScriptExecute(BattleScript_LeechSeedTurnDrain);
                 effect++;
+            }
+            gBattleStruct->turnEffectsTracker++;
+            break;
+        case ENDTURN_TOXIC_WASTE_DAMAGE:
+            if ((IsAbilityOnField(ABILITY_TOXIC_SPILL)) && gBattleMons[gActiveBattler].hp != 0 && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_POISON))
+            {
+                MAGIC_GUARD_CHECK;
+                if(ability != ABILITY_POISON_HEAL && !BattlerHasInnate(gActiveBattler, ABILITY_POISON_HEAL))
+				    TOXIC_BOOST_CHECK;
+
+                if (ability == ABILITY_POISON_HEAL || BattlerHasInnate(gActiveBattler, ABILITY_POISON_HEAL))
+                {
+                    if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK))
+                    {
+                        gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
+                        if (gBattleMoveDamage == 0)
+                            gBattleMoveDamage = 1;
+                        gBattleMoveDamage *= -1;
+                        BattleScriptExecute(BattleScript_PoisonHealActivates);
+                        effect++;
+                    }
+                }
+                else
+                {
+                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 8;
+                    if (gBattleMoveDamage == 0)
+                        gBattleMoveDamage = 1;
+                    BattleScriptExecute(BattleScript_ToxicWasteTurnDmg);
+                    effect++;
+                }
             }
             gBattleStruct->turnEffectsTracker++;
             break;
@@ -4984,6 +5015,16 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        //Toxic Spill
+        case ABILITY_TOXIC_SPILL:
+            if(gDisableStructs[battler].noDamageHits == 0 && 
+               !gSpecialStatuses[battler].switchInAbilityDone){
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TOXIC_SPILL;
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerAnnouncedToxicSpill);
+                effect++;
+            }
+        break;
         case ABILITY_CHEATING_DEATH:
             if(gDisableStructs[battler].noDamageHits == 0 && 
                !gBattleMons[battler].singeuseability[0]){
@@ -4998,6 +5039,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 effect++;
             }
+            break;
         case ABILITY_DOUBLE_SHIELD:
             if(gDisableStructs[battler].noDamageHits == 0 && 
                !gBattleMons[battler].singeuseability[0]){
@@ -5012,6 +5054,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
                 effect++;
             }
+            break;
         case ABILITY_INTIMIDATE:
             /*if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5751,6 +5794,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
         }
+
+        //Toxic Spill
+        if(BattlerHasInnate(battler, ABILITY_TOXIC_SPILL)){
+            if(gDisableStructs[battler].noDamageHits == 0 && 
+               !gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_TOXIC_SPILL)] &&
+               GetBattlerAbility(battler) != ABILITY_NONE){
+                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_TOXIC_SPILL)] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TOXIC_SPILL;
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerAnnouncedToxicSpill);
+                effect++;
+            }
+		}
 
         //Cheating Death
         if(BattlerHasInnate(battler, ABILITY_CHEATING_DEATH)){

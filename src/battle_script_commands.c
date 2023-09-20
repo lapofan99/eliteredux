@@ -13649,13 +13649,21 @@ static void Cmd_trygetintimidatetarget(void)
 static void Cmd_switchoutabilities(void)
 {
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
-    if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS)
+    if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS || (BattlerHasInnate(gActiveBattler, ABILITY_NEUTRALIZING_GAS && gBattleMons[gActiveBattler].ability != ABILITY_NONE)))
     {
         gBattleScripting.switchInBattlerOverwrite = gActiveBattler;
 
         gBattleMons[gActiveBattler].ability = ABILITY_NONE;
         BattleScriptPush(gBattlescriptCurrInstr);
         gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;
+    }
+    else if (gBattleMons[gActiveBattler].ability == ABILITY_TOXIC_SPILL || (BattlerHasInnate(gActiveBattler, ABILITY_TOXIC_SPILL) && gBattleMons[gActiveBattler].ability != ABILITY_NONE))
+    {
+        gBattleScripting.switchInBattlerOverwrite = gActiveBattler;
+
+        gBattleMons[gActiveBattler].ability = ABILITY_NONE;
+        BattleScriptPush(gBattlescriptCurrInstr);
+        gBattlescriptCurrInstr = BattleScript_TheToxicWasHasDissapeared;
     }
     else if(((BattlerHasInnate(gActiveBattler, ABILITY_NATURAL_CURE) || 
               BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR)  || 
@@ -14012,10 +14020,6 @@ bool32 DoesBattlerHasNoDamageHits(u8 battlerAtk, u8 battlerDef, u32 move)
 
     if(gDisableStructs[battlerDef].noDamageHits != 0)
         ret = TRUE;
-
-    MgbaOpen();
-    MgbaPrintf(MGBA_LOG_WARN, "DoesBattlerHasNoDamageHits noDamageHits %d ret %d", gDisableStructs[battlerDef].noDamageHits, ret);
-    MgbaClose();
 
     return ret;
 }
