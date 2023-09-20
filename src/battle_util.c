@@ -12426,71 +12426,71 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         break;
     case ABILITY_PIXILATE:
         if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_BUGINIZE:
         if (moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_DRACONIZE:
         if (moveType == TYPE_DRAGON && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
 	case ABILITY_BURNATE:
         if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_MINERALIZE:
         if (moveType == TYPE_ROCK && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
 	case ABILITY_SPECTRAL_SHROUD:
         if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_SPECTRALIZE:
         if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_SOLAR_FLARE:
         if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
 	case ABILITY_CRYSTALLIZE:
         if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
 	case ABILITY_FIGHT_SPIRIT:
         if (moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
 	case ABILITY_GROUNDATE:
         if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
 	case ABILITY_HYDRATE:
         if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
 	case ABILITY_POISONATE:
         if (moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_GALVANIZE:
         if (moveType == TYPE_ELECTRIC && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_REFRIGERATE:
         if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_AERILATE:
         if (moveType == TYPE_FLYING && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_NORMALIZE:
         if (moveType == TYPE_NORMAL && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
         break;
     case ABILITY_PUNK_ROCK:
         if (gBattleMoves[move].flags & FLAG_SOUND)
@@ -12628,43 +12628,43 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Pixilate
 	if(BattlerHasInnate(battlerAtk, ABILITY_PIXILATE)){
 		if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
     }
 
     // Buginize
 	if(BattlerHasInnate(battlerAtk, ABILITY_BUGINIZE)){
 		if (moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
     }
 
     // Draconize
     if(BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE)){
         if (moveType == TYPE_DRAGON && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
     }
 	
 	// Galvanize
 	if(BattlerHasInnate(battlerAtk, ABILITY_GALVANIZE)){
 		if (moveType == TYPE_ELECTRIC && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
     }
 	
 	// Refrigerate
 	if(BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE)){
 		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
     }
 	
 	// Aerilate
 	if(BattlerHasInnate(battlerAtk, ABILITY_AERILATE)){
 		if (moveType == TYPE_FLYING && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
     }
 	
 	// Normalize
 	if(BattlerHasInnate(battlerAtk, ABILITY_NORMALIZE)){
 		if (moveType == TYPE_NORMAL && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.2));
+            MulModifier(&modifier, UQ_4_12(1.1));
     }
 	
 	// Punk Rock
@@ -12737,61 +12737,61 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Burnate
 	if(BattlerHasInnate(battlerAtk, ABILITY_BURNATE)){
 		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
+				MulModifier(&modifier, UQ_4_12(1.1));
 	}
 
     // Mineralize
     if(BattlerHasInnate(battlerAtk, ABILITY_MINERALIZE)){
         if (moveType == TYPE_ROCK && gBattleStruct->ateBoost[battlerAtk])
-                MulModifier(&modifier, UQ_4_12(1.2));
+                MulModifier(&modifier, UQ_4_12(1.1));
     }
 
     // Spectral Shroud
 	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD)){
 		if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
+				MulModifier(&modifier, UQ_4_12(1.1));
 	}
 
     // Spectralize
 	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE)){
 		if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
+				MulModifier(&modifier, UQ_4_12(1.1));
 	}
 
     // Solar Flare
 	if(BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE)){
 		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
+				MulModifier(&modifier, UQ_4_12(1.1));
 	}
 
 	// Crystallize
 	if(BattlerHasInnate(battlerAtk, ABILITY_CRYSTALLIZE)){
 		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
+				MulModifier(&modifier, UQ_4_12(1.1));
 	}
 
 	// Fight Spirit
 	if(BattlerHasInnate(battlerAtk, ABILITY_FIGHT_SPIRIT)){
 		if (moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
+				MulModifier(&modifier, UQ_4_12(1.1));
 	}
 	
 	// Groundate
 	if(BattlerHasInnate(battlerAtk, ABILITY_GROUNDATE)){
 		if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
+				MulModifier(&modifier, UQ_4_12(1.1));
 	}
 	
 	// Hydrate
 	if(BattlerHasInnate(battlerAtk, ABILITY_HYDRATE)){
 		if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
+				MulModifier(&modifier, UQ_4_12(1.1));
 	}
 	
 	// Poisonate
 	if(BattlerHasInnate(battlerAtk, ABILITY_POISONATE)){
 		if (moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.2));
+				MulModifier(&modifier, UQ_4_12(1.1));
 	}
 	
 	// Long Reach

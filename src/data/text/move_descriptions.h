@@ -4649,7 +4649,7 @@ static const u8 sMoveFourLineDescription_EerieSpell[] = _("Attacks with its\ntre
 
 // Darky's Custom Moves
 static const u8 sMoveFourLineDescription_Deathroll[] = _("20% confusion chance.\nStrong Jaw boost.\nIgnores target's\nstat changes."); // new
-static const u8 sMoveFourLineDescription_Excalibur[] = _("Hits hard. Double\ndamage on\nDragon-types.\nHigh critical ratio."); // new
+static const u8 sMoveFourLineDescription_Excalibur[] = _("Double damage\non Dragons.\nHigh critical ratio.\nKeen Edge boost."); // new
 static const u8 sMoveFourLineDescription_AquaFang[] = _("Bites with aquatic\nfangs. Has 10%\nflinch chance.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_WaveCrash[] = _("Slams the whole body\ninto the target\nwith lots of water.\n33% recoil."); // new
 static const u8 sMoveFourLineDescription_Smite[] = _("Attacks from above\nwith strong electricity.\n20% paralysis chance.\nSmack Down effect."); // new

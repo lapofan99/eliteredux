@@ -9047,6 +9047,7 @@ static const struct LevelUpMove sEmpoleonLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(44, MOVE_DRILL_PECK),
 	LEVEL_UP_MOVE(52, MOVE_HYDRO_PUMP),
 	LEVEL_UP_MOVE(56, MOVE_WAVE_CRASH), // new
+    LEVEL_UP_MOVE(58, MOVE_SHEER_COLD), // new
     LEVEL_UP_MOVE(60, MOVE_STEEL_BEAM), // new
 	LEVEL_UP_END
 };

@@ -101,7 +101,7 @@
 #define ABILITY_HYDRATION 93 // Heals status conditions every turn if it's raining.
 #define ABILITY_SOLAR_POWER 94 // Ups Sp. Atk in the sun by 1.5x. No longer decreases HP at end of every sun turn.
 #define ABILITY_QUICK_FEET 95 // Boosts the Speed stat if the Pokémon has a status condition.
-#define ABILITY_NORMALIZE 96 // All the Pokémon's moves become Normal type. The power of those moves is boosted by 20%.
+#define ABILITY_NORMALIZE 96 // All the Pokémon's moves become Normal type. The power of those moves is boosted by 10%.
 #define ABILITY_SNIPER 97 // Power of critical-hit moves is increased to 225% rather than 150%.
 #define ABILITY_MAGIC_GUARD 98 // The Pokémon only takes damage from attacks.
 #define ABILITY_NO_GUARD 99 // The Pokémon employs no-guard tactics to ensure incoming and outgoing attacks always land.
@@ -187,7 +187,7 @@
 #define ABILITY_BULLETPROOF 171 // Protects the Pokémon from some ball and bomb moves.
 #define ABILITY_COMPETITIVE 172 // Boosts the Sp. Atk stat sharply when a stat is lowered.
 #define ABILITY_STRONG_JAW 173 // The Pokémon's strong jaw boosts the power of its biting moves. [Now affects Bug Bite, Super Fang, Deathroll]
-#define ABILITY_REFRIGERATE 174 // All Normal-type moves used by the Pokémon to become Ice-type and receive a 20% power boost.
+#define ABILITY_REFRIGERATE 174 // All Normal-type moves used by the Pokémon to become Ice-type and receive a 10% power boost.
 #define ABILITY_SWEET_VEIL 175 // *No innate* Prevents itself and ally Pokémon from falling asleep.
 #define ABILITY_STANCE_CHANGE 176 // *No innate* The Pokémon changes its form to Blade Forme when it uses an attack move and changes to Shield Forme when it uses King's Shield.
 #define ABILITY_GALE_WINGS 177 // Flying moves have priority. Doesn’t require full HP.
@@ -195,9 +195,9 @@
 #define ABILITY_GRASS_PELT 179 // Increases Defense by 50% when battling on Grass or if the move Grassy Terrain is in effect
 #define ABILITY_SYMBIOSIS 180 // May pass an item to an ally.
 #define ABILITY_TOUGH_CLAWS 181 // Powers up moves by 30% that make direct contact.
-#define ABILITY_PIXILATE 182 // All Normal-type moves used by the Pokémon to become Fairy-type and receive a 20% power boost.
+#define ABILITY_PIXILATE 182 // All Normal-type moves used by the Pokémon to become Fairy-type and receive a 10% power boost.
 #define ABILITY_GOOEY 183 // Lowers speed on contact.
-#define ABILITY_AERILATE 184 // All Normal-type moves used by the Pokémon to become Flying-type and receive a 20% power boost.
+#define ABILITY_AERILATE 184 // All Normal-type moves used by the Pokémon to become Flying-type and receive a 10% power boost.
 #define ABILITY_PARENTAL_BOND 185 // Hits twice. Second hit deals 0.25x damage.
 #define ABILITY_DARK_AURA 186 // Powers up each Pokémon's Dark-type moves by 50%.
 #define ABILITY_FAIRY_AURA 187 // Powers up each Pokémon's Fairy-type moves by 50%.
@@ -223,7 +223,7 @@
 #define ABILITY_LONG_REACH 203 // The Pokémon uses its moves without making contact with the target. If a physical move already doesn't make contact before applying this ability, boosts its damage by 20%.
 #define ABILITY_LIQUID_VOICE 204 // All sound-based moves become Water-type moves and boosts them by 20%.
 #define ABILITY_TRIAGE 205 // Gives priority to healing moves.
-#define ABILITY_GALVANIZE 206 // All Normal-type moves become Electric-type moves and boosts them by 20%.
+#define ABILITY_GALVANIZE 206 // All Normal-type moves become Electric-type moves and boosts them by 10%.
 #define ABILITY_SURGE_SURFER 207 // Doubles the Pokémon's Speed stat on Electric Terrain. Works while levitating.
 #define ABILITY_SCHOOLING 208 // Changes the Pokémon's form when it is Level 20 and has more than 25% Hit Points. When Hit Points drop below 25%, it changes back to Solo Form
 #define ABILITY_DISGUISE 209 // *No innate* Once per battle, the Pokémon can withstand one damaging attack without receiving any damage. Damage inflicted through entry hazards, weather or status conditions will not break the disguise. Damage from Confusion will break the Disguise. It causes 1/8th of max Hit Point damage when it breaks
@@ -298,7 +298,7 @@
 #define ABILITY_PYROMANCY        (ABILITIES_COUNT_LATEST_GEN + 2)  // Fire attacks are 5x more likely to inflict a burn
 #define ABILITY_KEEN_EDGE        (ABILITIES_COUNT_LATEST_GEN + 3)  // Cutting moves do 30% more damage
 #define ABILITY_PRISM_SCALES     (ABILITIES_COUNT_LATEST_GEN + 4)  // Reduces special damage taken by 30%
-#define ABILITY_POWER_FISTS      (ABILITIES_COUNT_LATEST_GEN + 5)  // Punching moves do special damage and get 20% boost
+#define ABILITY_POWER_FISTS      (ABILITIES_COUNT_LATEST_GEN + 5)  // Punching moves do special damage and get 30% boost
 #define ABILITY_SAND_SONG        (ABILITIES_COUNT_LATEST_GEN + 6)  // Sound moves become Ground type. No damage boost.
 #define ABILITY_RAMPAGE          (ABILITIES_COUNT_LATEST_GEN + 7)  // If a recharge move KOs the foe, it doesn't need to recharge.
 #define ABILITY_VENGEANCE        (ABILITIES_COUNT_LATEST_GEN + 8)  // Overgrow for Ghost moves.
@@ -306,8 +306,8 @@
 
 // Darky's Custom Abilities / Innates
 #define ABILITY_ANTARCTIC_BIRD   (ABILITIES_COUNT_LATEST_GEN + 10) // Ice and Flying-type moves gain 1.3x power.
-#define ABILITY_BURNATE          (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon become Fire-type and receive a 20% power boost.
-#define ABILITY_CRYSTALLIZE      (ABILITIES_COUNT_LATEST_GEN + 12) // All Rock-type moves used by the Pokémon become Ice-type and receive a 20% power boost.
+#define ABILITY_BURNATE          (ABILITIES_COUNT_LATEST_GEN + 11) // All Normal-type moves used by the Pokémon become Fire-type and receive a 10% power boost.
+#define ABILITY_CRYSTALLIZE      (ABILITIES_COUNT_LATEST_GEN + 12) // All Rock-type moves used by the Pokémon become Ice-type and receive a 10% power boost.
 #define ABILITY_ELECTROCYTES     (ABILITIES_COUNT_LATEST_GEN + 13) // Increases the power of Electric-type moves by 25%.
 #define ABILITY_AERODYNAMICS     (ABILITIES_COUNT_LATEST_GEN + 14) // Boosts its Speed stat if hit by an Flying-type move instead of taking damage.
 #define ABILITY_CHRISTMAS_SPIRIT (ABILITIES_COUNT_LATEST_GEN + 15) // The Pokémon is protected by a mysterious force that reduces all incoming damage by 50% during a hailstorm.
@@ -327,22 +327,22 @@
 #define ABILITY_AMPHIBIOUS       (ABILITIES_COUNT_LATEST_GEN + 29) // Water-type moves gain 1.5x power.
 #define ABILITY_GROUNDED         (ABILITIES_COUNT_LATEST_GEN + 30) // Adds the Ground-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_EARTHBOUND       (ABILITIES_COUNT_LATEST_GEN + 31) // Increases own Ground-type attacks by 25%.
-#define ABILITY_FIGHT_SPIRIT     (ABILITIES_COUNT_LATEST_GEN + 32) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 20% power boost.
+#define ABILITY_FIGHT_SPIRIT     (ABILITIES_COUNT_LATEST_GEN + 32) // All Normal-type moves used by the Pokémon become Fighting-type and receive a 10% power boost.
 #define ABILITY_FELINE_PROWESS   (ABILITIES_COUNT_LATEST_GEN + 33) // Doubles Special Attack (special Huge/Pure Power).
 #define ABILITY_COIL_UP          (ABILITIES_COUNT_LATEST_GEN + 34) // The Pokémon enters the battlefield coiled up. Coil: The next time the Pokémon uses a biting move, its priority is increased 1.
-#define ABILITY_FOSSILIZED       (ABILITIES_COUNT_LATEST_GEN + 35) // Only takes half damage from Rock-type moves. Boosts Rock-type moves by 20%.
+#define ABILITY_FOSSILIZED       (ABILITIES_COUNT_LATEST_GEN + 35) // Only takes half damage from Rock-type moves. Boosts Rock-type moves by 10%.
 #define ABILITY_MAGICAL_DUST     (ABILITIES_COUNT_LATEST_GEN + 36) // When is hit by contact move, it leaves a Magic Powder that adds Psychic-type to the target.
 #define ABILITY_DREAMCATCHER     (ABILITIES_COUNT_LATEST_GEN + 37) // Boosts power of moves by 50% if a Pokemon is asleep on the field.
 #define ABILITY_NOCTURNAL        (ABILITIES_COUNT_LATEST_GEN + 38) // Boosts Dark-type moves by 25%, takes 25% less from Dark and Fairy
 #define ABILITY_SELF_SUFFICIENT  (ABILITIES_COUNT_LATEST_GEN + 39) // Heals 1/16 at the end of every turn.
-#define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Ground-type and receive a 20% power boost.
+#define ABILITY_GROUNDATE        (ABILITIES_COUNT_LATEST_GEN + 40) // All Normal-type moves used by the Pokémon become Ground-type and receive a 10% power boost.
 #define ABILITY_ICE_AGE          (ABILITIES_COUNT_LATEST_GEN + 41) // Adds the Ice-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_HALF_DRAKE       (ABILITIES_COUNT_LATEST_GEN + 42) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_LIQUIFIED        (ABILITIES_COUNT_LATEST_GEN + 43) // Takes half damage from contact moves. Takes 2x damage from Water-type moves.
 #define ABILITY_DRAGONFLY        (ABILITIES_COUNT_LATEST_GEN + 44) // Adds the Dragon-type to the Pokémon, in addition to the Pokémon's original type(s). Immune to Ground-type moves.
 #define ABILITY_DRAGONSLAYER     (ABILITIES_COUNT_LATEST_GEN + 45) // Increases the damage dealt against Dragon-type Pokémon by 50%.
 #define ABILITY_MOUNTAINEER      (ABILITIES_COUNT_LATEST_GEN + 46) // Immune to Rock attacks and Stealth Rocks.
-#define ABILITY_HYDRATE          (ABILITIES_COUNT_LATEST_GEN + 47) // All Normal-type moves used by the Pokémon become Water-type and receive a 20% power boost.
+#define ABILITY_HYDRATE          (ABILITIES_COUNT_LATEST_GEN + 47) // All Normal-type moves used by the Pokémon become Water-type and receive a 10% power boost.
 #define ABILITY_METALLIC         (ABILITIES_COUNT_LATEST_GEN + 48) // Adds the Steel-type to the Pokémon, in addition to the Pokémon's original type(s).
 #define ABILITY_PERMAFROST       (ABILITIES_COUNT_LATEST_GEN + 49) // Reduces damage taken from super-effective attacks by 25%
 #define ABILITY_PRIMAL_ARMOR     (ABILITIES_COUNT_LATEST_GEN + 50) // Reduces damage taken from super-effective attacks by 50%
@@ -352,7 +352,7 @@
 #define ABILITY_SHORT_CIRCUIT    (ABILITIES_COUNT_LATEST_GEN + 54) // Overgrow for Electric moves.
 #define ABILITY_MAJESTIC_BIRD    (ABILITIES_COUNT_LATEST_GEN + 55) // Boosts Special Attack by 50%.
 #define ABILITY_PHANTOM          (ABILITIES_COUNT_LATEST_GEN + 56) // Adds the Ghost-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_POISONATE        (ABILITIES_COUNT_LATEST_GEN + 57) // All Normal-type moves used by the Pokémon to become Poison-type and receive a 20% power boost.
+#define ABILITY_POISONATE        (ABILITIES_COUNT_LATEST_GEN + 57) // All Normal-type moves used by the Pokémon to become Poison-type and receive a 10% power boost.
 #define ABILITY_IMPENETRABLE     (ABILITIES_COUNT_LATEST_GEN + 58) // Takes no indirect damage.
 #define ABILITY_HYPNOTIST        (ABILITIES_COUNT_LATEST_GEN + 59) // Increases Hypnosis accuracy by 50%.
 #define ABILITY_OVERWHELM        (ABILITIES_COUNT_LATEST_GEN + 60) // The Pokémon can hit Fairy-type Pokémon with Dragon-type moves. Also blocks Intimidate and Scare.
@@ -364,7 +364,7 @@
 #define ABILITY_BAD_LUCK         (ABILITIES_COUNT_LATEST_GEN + 66) // Enemies can't critically hit and have decreased accuracy of 5%.
 #define ABILITY_HAUNTED_SPIRIT   (ABILITIES_COUNT_LATEST_GEN + 67) // When the Pokémon faints by a damaging move from an opposing Pokémon, the attacker becomes cursed.
 #define ABILITY_ELECTRIC_BURST   (ABILITIES_COUNT_LATEST_GEN + 68) // The Pokémon's Electric-type moves are boosted by 35%, but the Pokémon takes 10% of damage dealt.
-#define ABILITY_RAW_WOOD         (ABILITIES_COUNT_LATEST_GEN + 69) // Halves incoming Rock-type damage. Boosts Rock-type moves by 20%.");
+#define ABILITY_RAW_WOOD         (ABILITIES_COUNT_LATEST_GEN + 69) // Halves incoming Rock-type damage. Boosts Rock-type moves by 10%.");
 #define ABILITY_SOLENOGLYPHS     (ABILITIES_COUNT_LATEST_GEN + 70) // Biting moves have a 50% chance of badly poisoning the target.
 #define ABILITY_SPIDER_LAIR      (ABILITIES_COUNT_LATEST_GEN + 71) // Sets up Sticky Web on entry.
 #define ABILITY_FATAL_PRECISION  (ABILITIES_COUNT_LATEST_GEN + 72) // Super Effective Moves from this Pokemon can’t miss and receive a 20% damage boost.
@@ -408,7 +408,7 @@
 #define ABILITY_AMPLIFIER        (ABILITIES_COUNT_LATEST_GEN + 110) // Sound-based moves now target all foes [Affected moves: Hyper Voice, Boomburst, Bug Buzz, Chatter, Confide, Disarming Voice, Echoed Voice, Eerie Spell, Grass Whistle, Metal Sound, Noble Roar, Parting Shot, Roar, Round, Screech, Sing, Snore, Supersonic, Uproar etc.]. Also boosts power by 30%.
 #define ABILITY_ICE_DEW          (ABILITIES_COUNT_LATEST_GEN + 111) // Immune to Ice-type moves. Instead of being hit by Ice-type moves, it boosts its Attack or Sp. Attack stat (which is higher).
 #define ABILITY_SUN_WORSHIP      (ABILITIES_COUNT_LATEST_GEN + 112) // Ups highest stat on entry when it's sunny.
-#define ABILITY_BUGINIZE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon become Bug-type and receive a 20% power boost.
+#define ABILITY_BUGINIZE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon become Bug-type and receive a 10% power boost.
 #define ABILITY_VOLCANO_RAGE     (ABILITIES_COUNT_LATEST_GEN + 114) // Triggers 50 BP Eruption after using a Fire-type move.
 #define ABILITY_COLD_REBOUND     (ABILITIES_COUNT_LATEST_GEN + 115) // Everytime when hit by a contact move, counter-attacks with Icy Wind.
 #define ABILITY_LOW_BLOW         (ABILITIES_COUNT_LATEST_GEN + 116) // Lands a low-power punching move on switch-in.
@@ -420,7 +420,7 @@
 #define ABILITY_MIGHTY_HORN      (ABILITIES_COUNT_LATEST_GEN + 122) // Boosts horn / drill moves by 1.3x. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
 #define ABILITY_HARDENED_SHEATH  (ABILITIES_COUNT_LATEST_GEN + 123) // Increases the Attack stat by one stage after using a horn move. Moves affected: Horn Attack, Horn Drill, Drill Peck, Megahorn, Drill Run, Horn Leech, Fury Attack, Poison Jab, Peck, Smart Strike
 #define ABILITY_ARCTIC_FUR       (ABILITIES_COUNT_LATEST_GEN + 124) // Takes 35% less damage from incoming physical & special moves.
-#define ABILITY_SPECTRALIZE      (ABILITIES_COUNT_LATEST_GEN + 125) // All Normal-type moves used by the Pokémon become Ghost-type and receive a 20% power boost.
+#define ABILITY_SPECTRALIZE      (ABILITIES_COUNT_LATEST_GEN + 125) // All Normal-type moves used by the Pokémon become Ghost-type and receive a 10% power boost.
 #define ABILITY_LETHARGY         (ABILITIES_COUNT_LATEST_GEN + 126) // Atk drops 20% each turn to 20%. Resets on switch-in.
 #define ABILITY_IRON_BARRAGE     (ABILITIES_COUNT_LATEST_GEN + 127) // Combines Mega Launcher with Sighting System
 #define ABILITY_STEEL_BARREL     (ABILITIES_COUNT_LATEST_GEN + 128) // Protects the Pokémon from recoil damage.
@@ -431,7 +431,7 @@
 #define ABILITY_LOOSE_QUILLS     (ABILITIES_COUNT_LATEST_GEN + 133) // when being hit by any attacking move (like Stamina), trigger Spikes
 #define ABILITY_TOXIC_DEBRIS     (ABILITIES_COUNT_LATEST_GEN + 134) // Scatters poison spikes at the feet of the opposing team when the Pokémon takes damage from physical moves.
 #define ABILITY_ROUNDHOUSE       (ABILITIES_COUNT_LATEST_GEN + 135) // Kick Moves can't miss and also deal damage depending on the lower of the target's defenses.
-#define ABILITY_MINERALIZE       (ABILITIES_COUNT_LATEST_GEN + 136) // All Normal-type moves used by the Pokémon become Rock-type and receive a 20% power boost.
+#define ABILITY_MINERALIZE       (ABILITIES_COUNT_LATEST_GEN + 136) // All Normal-type moves used by the Pokémon become Rock-type and receive a 10% power boost.
 #define ABILITY_LOOSE_ROCKS      (ABILITIES_COUNT_LATEST_GEN + 137) // when being hit by any attacking move (like Stamina), trigger Stealth Rock
 #define ABILITY_SPINNING_TOP     (ABILITIES_COUNT_LATEST_GEN + 138) // Fighting-type moves raise speed by +1 and clear hazards.
 #define ABILITY_RETRIBUTION_BLOW (ABILITIES_COUNT_LATEST_GEN + 139) // Everytime a foe uses a stat boosting move, trigger a full power Hyperbeam.
@@ -440,7 +440,7 @@
 #define ABILITY_QUEENS_MOURNING  (ABILITIES_COUNT_LATEST_GEN + 142) // When a stat is lowered, boost SpAtk and SpDef by +1. Includes Ally Drops.
 #define ABILITY_TOXIC_SPILL      (ABILITIES_COUNT_LATEST_GEN + 143) // The user regurgitates it's toxic fluids onto the field, causing all non-Poison Type Pokemon on the field to take 1/8th of their max HP at the end of every turn. Effect disappears when the Pokémon is not on the field anymore.
 #define ABILITY_DESERT_CLOAK     (ABILITIES_COUNT_LATEST_GEN + 144) // The pokemon shrouds itself and allies protecting them from status conditions and secondary effects while under sand.
-#define ABILITY_DRACONIZE        (ABILITIES_COUNT_LATEST_GEN + 145) // All Normal-type moves used by the Pokémon become Dragon-type and receive a 20% power boost.
+#define ABILITY_DRACONIZE        (ABILITIES_COUNT_LATEST_GEN + 145) // All Normal-type moves used by the Pokémon become Dragon-type and receive a 10% power boost.
 #define ABILITY_PRETTY_PRINCESS  (ABILITIES_COUNT_LATEST_GEN + 146) // Increases the damage dealt against foes with lowered stats by 50%.
 #define ABILITY_SELF_REPAIR      (ABILITIES_COUNT_LATEST_GEN + 147) // Self Sufficient + Natural Cure
 #define ABILITY_ATOMIC_BURST     (ABILITIES_COUNT_LATEST_GEN + 148) // When taking super-effective damage, use Hyper Beam at 33% Power.
