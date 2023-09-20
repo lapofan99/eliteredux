@@ -1111,19 +1111,19 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     }
         
         // terrain & effect checks
-        if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+        if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
         {
             if (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN)
                 RETURN_SCORE_MINUS(20);
         }
         
-        if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+        if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN)
         {
             if (IsNonVolatileStatusMoveEffect(moveEffect) || IsConfusionMoveEffect(moveEffect))
                 RETURN_SCORE_MINUS(20);
         }
         
-        if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+        if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
         {
             if (atkPriority > 0 && gBattleMoves[move].target != MOVE_TARGET_USER)
                 RETURN_SCORE_MINUS(20);
@@ -2087,12 +2087,12 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             if (((gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
               || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move) && AI_DATA->defAbility == ABILITY_OWN_TEMPO)
               || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move) && AI_DATA->defAbility == ABILITY_DISCIPLINE)
-              || (IsBattlerGrounded(battlerDef) && (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+              || (IsBattlerGrounded(battlerDef) && ( GetCurrentTerrain() ==  STATUS_FIELD_MISTY_TERRAIN))
               || (DoesSubstituteBlockMove(battlerAtk, battlerDef, move)))
              && ((gBattleMons[AI_DATA->battlerDefPartner].status2 & STATUS2_CONFUSION)
               || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move) && AI_DATA->defPartnerAbility == ABILITY_OWN_TEMPO)
               || (!DoesBattlerIgnoreAbilityChecks(battlerAtk, move) && AI_DATA->defPartnerAbility == ABILITY_DISCIPLINE)
-              || (IsBattlerGrounded(AI_DATA->battlerDefPartner) && (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+              || (IsBattlerGrounded(AI_DATA->battlerDefPartner) && ( GetCurrentTerrain() ==  STATUS_FIELD_MISTY_TERRAIN))
               || (DoesSubstituteBlockMove(battlerAtk, AI_DATA->battlerDefPartner, move))))
             {
                score -= 10;
@@ -2513,19 +2513,27 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_GRASSY_TERRAIN:
-            if (PartnerMoveEffectIsTerrain(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove) || gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+            if (PartnerMoveEffectIsTerrain(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove) || GetCurrentTerrain() == STATUS_FIELD_GRASSY_TERRAIN)
+                score -= 20;
+            if(!TERRAIN_HAS_EFFECT)
                 score -= 20;
             break;
         case EFFECT_ELECTRIC_TERRAIN:
-            if (PartnerMoveEffectIsTerrain(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove) || gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+            if (PartnerMoveEffectIsTerrain(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove) || GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
+                score -= 20;
+            if(!TERRAIN_HAS_EFFECT)
                 score -= 20;
             break;
         case EFFECT_PSYCHIC_TERRAIN:
-            if (PartnerMoveEffectIsTerrain(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove) || gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+            if (PartnerMoveEffectIsTerrain(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove) || GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
+                score -= 20;
+            if(!TERRAIN_HAS_EFFECT)
                 score -= 20;
             break;
         case EFFECT_MISTY_TERRAIN:
-            if (PartnerMoveEffectIsTerrain(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove) || gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+            if (PartnerMoveEffectIsTerrain(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove) || GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN)
+                score -= 20;
+            if(!TERRAIN_HAS_EFFECT)
                 score -= 20;
             break;
         case EFFECT_PLEDGE:
@@ -4361,7 +4369,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score++;
         break;
     case EFFECT_SAFEGUARD:
-        if (!(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN) || !IsBattlerGrounded(battlerAtk))
+        if (!( GetCurrentTerrain() ==  STATUS_FIELD_MISTY_TERRAIN) || !IsBattlerGrounded(battlerAtk))
             score++;
         //if (CountUsablePartyMons(battlerDef) != 0)
             //score += 8;

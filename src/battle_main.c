@@ -4875,7 +4875,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     if ((ability == ABILITY_QUICK_FEET  || BattlerHasInnate(battlerId, ABILITY_QUICK_FEET)) && gBattleMons[battlerId].status1 & STATUS1_ANY)
         speed = (speed * 150) / 100;
 
-    if ((ability == ABILITY_SURGE_SURFER || BattlerHasInnate(battlerId, ABILITY_SURGE_SURFER)) && gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+    if ((ability == ABILITY_SURGE_SURFER || BattlerHasInnate(battlerId, ABILITY_SURGE_SURFER)) && GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
         speed = (speed * 150) / 100;
 
     if ((ability == ABILITY_SLOW_START  || BattlerHasInnate(battlerId, ABILITY_SLOW_START)) && gDisableStructs[battlerId].slowStartTimer != 0)
@@ -4980,7 +4980,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
         priority = priority - 3;
     }
     
-	if (gBattleMoves[move].effect == EFFECT_GRASSY_GLIDE && gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battlerId))
+	if (gBattleMoves[move].effect == EFFECT_GRASSY_GLIDE && GetCurrentTerrain() == STATUS_FIELD_GRASSY_TERRAIN && IsBattlerGrounded(battlerId))
     {
         priority++;
     }
@@ -5996,13 +5996,13 @@ u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk){
     {
         if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_TERRAIN_ANY))
         {
-            if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+            if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
                 return TYPE_ELECTRIC;
-            else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+            else if (GetCurrentTerrain() == STATUS_FIELD_GRASSY_TERRAIN)
                 return TYPE_GRASS;
-            else if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+            else if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN)
                 return TYPE_FAIRY;
-            else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+            else if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
                 return TYPE_PSYCHIC;
             else //failsafe
                 return TYPE_NORMAL;
@@ -6120,13 +6120,13 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
     {
         if (IsBattlerTerrainAffected(battlerAtk, STATUS_FIELD_TERRAIN_ANY))
         {
-            if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+            if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
                 gBattleStruct->dynamicMoveType = TYPE_ELECTRIC | 0x80;
-            else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+            else if (GetCurrentTerrain() == STATUS_FIELD_GRASSY_TERRAIN)
                 gBattleStruct->dynamicMoveType = TYPE_GRASS | 0x80;
-            else if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+            else if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN)
                 gBattleStruct->dynamicMoveType = TYPE_FAIRY | 0x80;
-            else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+            else if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
                 gBattleStruct->dynamicMoveType = TYPE_PSYCHIC | 0x80;
             else //failsafe
                 gBattleStruct->dynamicMoveType = TYPE_NORMAL | 0x80;

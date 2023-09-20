@@ -36,7 +36,9 @@
 #define ITEMEFFECT_LIFEORB_SHELLBELL            0x7
 #define ITEMEFFECT_BATTLER_MOVE_END             0x8 // move end effects for just the battler, not whole field
 
-#define WEATHER_HAS_EFFECT ((!IsAbilityOnField(ABILITY_CLOUD_NINE) && !IsAbilityOnField(ABILITY_AIR_LOCK)))
+#define WEATHER_HAS_EFFECT ((!IsAbilityOnField(ABILITY_CLOUD_NINE) && !IsAbilityOnField(ABILITY_AIR_LOCK) && !IsAbilityOnField(ABILITY_CLUELESS)))
+#define TERRAIN_HAS_EFFECT (!IsAbilityOnField(ABILITY_CLUELESS))
+#define ROOM_HAS_EFFECT    (!IsAbilityOnField(ABILITY_CLUELESS))
 
 #define IS_WHOLE_SIDE_ALIVE(battler)((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
 
@@ -170,6 +172,7 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler);
 bool32 ShouldChangeFormHpBased(u32 battler);
 u32 CountBattlerStatIncreases(u8 battlerId, bool32 countEvasionAcc);
 bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler);
+s32 GetCurrentTerrain(void);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

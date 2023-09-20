@@ -6762,7 +6762,7 @@ static void Cmd_switchineffects(void)
                 && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_STEEL)
                 && GetBattlerAbility(gActiveBattler) != ABILITY_IMMUNITY
                 && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_SAFEGUARD)
-                && !(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+                && GetCurrentTerrain() != STATUS_FIELD_MISTY_TERRAIN)
             {
                 if (gSideTimers[GetBattlerSide(gActiveBattler)].toxicSpikesAmount >= 2)
                     gBattleMons[gActiveBattler].status1 |= STATUS1_TOXIC_POISON;
@@ -13085,13 +13085,13 @@ static void Cmd_callterrainattack(void) // nature power
 
 u16 GetNaturePowerMove(void)
 {
-    if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+    if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN)
         return MOVE_MOONBLAST;
-    else if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+    else if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN)
         return MOVE_THUNDERBOLT;
-    else if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+    else if (GetCurrentTerrain() == STATUS_FIELD_GRASSY_TERRAIN)
         return MOVE_ENERGY_BALL;
-    else if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+    else if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
         return MOVE_PSYCHIC;
     else if (sNaturePowerMoves == MOVE_NONE)
         return MOVE_TRI_ATTACK;
@@ -15049,7 +15049,7 @@ bool8 IsMoveAffectedByParentalBond(u16 move, u8 battlerId)
 						return FALSE;
 					break;
                 case MOVE_TARGET_SELECTED:
-                    if ((gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN) && gBattleMoves[move].effect == EFFECT_EXPANDING_FORCE && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) >= 2) // Check for Expanding Force
+                    if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN && gBattleMoves[move].effect == EFFECT_EXPANDING_FORCE && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) >= 2) // Check for Expanding Force
 						return FALSE;
                 break;
 			}

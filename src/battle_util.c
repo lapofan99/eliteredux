@@ -285,7 +285,7 @@ u8 GetBattleMoveTargetFlags(u16 moveId, u16 ability)
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if (gBattleMoves[moveId].effect == EFFECT_EXPANDING_FORCE && (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
+    else if (gBattleMoves[moveId].effect == EFFECT_EXPANDING_FORCE && GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
         return MOVE_TARGET_BOTH;
     return gBattleMoves[moveId].target;
 }
@@ -305,7 +305,7 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler)
          && (gBattleMoves[moveId].flags & FLAG_SOUND)
          && gBattleMoves[moveId].target == MOVE_TARGET_SELECTED)
         return MOVE_TARGET_BOTH;
-    else if (gBattleMoves[moveId].effect == EFFECT_EXPANDING_FORCE && (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
+    else if (gBattleMoves[moveId].effect == EFFECT_EXPANDING_FORCE && GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
         return MOVE_TARGET_BOTH;
     return gBattleMoves[moveId].target;
 }
@@ -3952,7 +3952,7 @@ u8 AtkCanceller_UnableToUseMove2(void)
         case CANCELLER_END:
             gBattleStruct->atkCancellerTracker++;
         case CANCELLER_PSYCHIC_TERRAIN:
-            if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN
+            if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN
                 && IsBattlerGrounded(gBattlerTarget)
                 && GetChosenMovePriority(gBattlerAttacker) > 0
                 && gBattleMoves[gCurrentMove].target == MOVE_TARGET_SELECTED
@@ -5153,6 +5153,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_CLUELESS:
+            if (!gSpecialStatuses[battler].switchInAbilityDone)
+            {
+                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_AnnounceAirLockCloudNine);
+                effect++;
+            }
+            break;
 		case ABILITY_ZEN_MODE:
             if (ShouldChangeFormHpBased(battler))
             {
@@ -6216,6 +6224,18 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
+        //Clueless
+        if(BattlerHasInnate(battler, ABILITY_CLUELESS)){
+            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CLUELESS)])
+            {
+                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_CLUELESS)] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = ABILITY_CLUELESS;
+				gLastUsedAbility = ABILITY_CLUELESS;
+                BattleScriptPushCursorAndCallback(BattleScript_AnnounceAirLockCloudNine);
+                effect++;
+            }
+		}
 		
 		//Air Lock
         if(BattlerHasInnate(battler, ABILITY_AIR_LOCK)){
@@ -9923,7 +9943,9 @@ enum
 
 bool32 IsBattlerTerrainAffected(u8 battlerId, u32 terrainFlag)
 {
-    if (!(gFieldStatuses & terrainFlag))
+    if(!TERRAIN_HAS_EFFECT)
+        return FALSE;
+    else if (!(gFieldStatuses & terrainFlag))
         return FALSE;
     else if (gStatuses3[battlerId] & STATUS3_SEMI_INVULNERABLE)
         return FALSE;
@@ -12221,7 +12243,7 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             basePower *= 2;
         break;
     case EFFECT_EXPLOSION:
-        if (move == MOVE_MISTY_EXPLOSION && gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(battlerAtk))
+        if (move == MOVE_MISTY_EXPLOSION &&  GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(battlerAtk))
             MulModifier(&basePower, UQ_4_12(1.5));
         break;
     case EFFECT_DYNAMAX_DOUBLE_DMG:
@@ -12261,12 +12283,12 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             basePower *= 2;
         break;
     case EFFECT_RISING_VOLTAGE:
-        if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && !IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING)
+        if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN && !IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING)
             && gBattleMons[battlerDef].item != ITEM_AIR_BALLOON && gBattleMons[battlerDef].ability != ABILITY_LEVITATE)
         basePower *= 2;
         break;
     case EFFECT_EXPANDING_FORCE:
-        if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+        if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
             basePower = 120;
         break;
     }
@@ -13229,7 +13251,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     case EFFECT_BULLDOZE:
     case EFFECT_MAGNITUDE:
     case EFFECT_EARTHQUAKE:
-        if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && !(gStatuses3[battlerDef] & STATUS3_SEMI_INVULNERABLE))
+        if (GetCurrentTerrain() == STATUS_FIELD_GRASSY_TERRAIN && !(gStatuses3[battlerDef] & STATUS3_SEMI_INVULNERABLE))
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
     case EFFECT_KNOCK_OFF:
@@ -13248,13 +13270,13 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         MulModifier(&modifier, UQ_4_12(2.0));
     if (gStatuses3[battlerAtk] & STATUS3_ME_FIRST)
         MulModifier(&modifier, UQ_4_12(1.5));
-    if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && moveType == TYPE_GRASS && IsBattlerGrounded(battlerAtk) && !(gStatuses3[battlerAtk] & STATUS3_SEMI_INVULNERABLE))
+    if (GetCurrentTerrain() == STATUS_FIELD_GRASSY_TERRAIN && moveType == TYPE_GRASS && IsBattlerGrounded(battlerAtk) && !(gStatuses3[battlerAtk] & STATUS3_SEMI_INVULNERABLE))
         MulModifier(&modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8) ? UQ_4_12(1.3) : UQ_4_12(1.5));
-    if (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN && moveType == TYPE_DRAGON && IsBattlerGrounded(battlerDef) && !(gStatuses3[battlerDef] & STATUS3_SEMI_INVULNERABLE))
+    if (GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && moveType == TYPE_DRAGON && IsBattlerGrounded(battlerDef) && !(gStatuses3[battlerDef] & STATUS3_SEMI_INVULNERABLE))
         MulModifier(&modifier, UQ_4_12(0.5));
-    if (gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN && moveType == TYPE_ELECTRIC && IsBattlerGrounded(battlerAtk) && !(gStatuses3[battlerAtk] & STATUS3_SEMI_INVULNERABLE))
+    if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN && moveType == TYPE_ELECTRIC && IsBattlerGrounded(battlerAtk) && !(gStatuses3[battlerAtk] & STATUS3_SEMI_INVULNERABLE))
         MulModifier(&modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8) ? UQ_4_12(1.3) : UQ_4_12(1.5));
-    if (gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN && moveType == TYPE_PSYCHIC && IsBattlerGrounded(battlerAtk) && !(gStatuses3[battlerAtk] & STATUS3_SEMI_INVULNERABLE))
+    if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN && moveType == TYPE_PSYCHIC && IsBattlerGrounded(battlerAtk) && !(gStatuses3[battlerAtk] & STATUS3_SEMI_INVULNERABLE))
         MulModifier(&modifier, (B_TERRAIN_TYPE_BOOST >= GEN_8) ? UQ_4_12(1.3) : UQ_4_12(1.5));
 	
     return ApplyModifier(modifier, basePower);
@@ -14232,7 +14254,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
         }
         break;
     case ABILITY_GRASS_PELT:
-        if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
+        if (GetCurrentTerrain() == STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
             if (updateFlags)
@@ -14274,7 +14296,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 	
 	// Grass Pelt
 	if(BattlerHasInnate(battlerDef, ABILITY_GRASS_PELT)){
-        if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
+        if (GetCurrentTerrain() == STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
         {
             MulModifier(&modifier, UQ_4_12(1.5));
             if (updateFlags)
@@ -16135,4 +16157,20 @@ static bool8 HasAnyLoweredStat(u8 battler){
             return TRUE;
     }
     return FALSE;
+}
+
+s32 GetCurrentTerrain(void)
+{
+    if(!TERRAIN_HAS_EFFECT)
+        return 0;
+    else if(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+        return STATUS_FIELD_MISTY_TERRAIN;
+    else if(gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+        return STATUS_FIELD_PSYCHIC_TERRAIN;
+    else if(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+        return STATUS_FIELD_ELECTRIC_TERRAIN;
+    else if(gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+        return STATUS_FIELD_GRASSY_TERRAIN;
+    else
+        return 0;
 }

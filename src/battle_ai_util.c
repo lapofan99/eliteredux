@@ -28,6 +28,7 @@ static const s8 sAiAbilityRatings[ABILITIES_COUNT] =
     [ABILITY_AFTERMATH] = 5,
     [ABILITY_AERILATE] = 8,
     [ABILITY_AIR_LOCK] = 5,
+    [ABILITY_CLUELESS] = 8,
     [ABILITY_ANALYTIC] = 5,
     [ABILITY_ANGER_POINT] = 4,
     [ABILITY_ANTICIPATION] = 2,
@@ -1321,19 +1322,7 @@ bool32 DoesBattlerIgnoreAbilityChecks(u8 battler, u16 move)
 
 bool32 AI_WeatherHasEffect(void)
 {
-    u32 i;
-    if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_NEGATE_UNAWARE)
-        return TRUE;   // AI doesn't understand weather supression (handicap)
-    
-    // need to manually check since we don't necessarily know opponent ability
-    for (i = 0; i < gBattlersCount; i++)
-    {
-        if (IsBattlerAlive(i)
-          && (AI_GetAbility(i) == ABILITY_AIR_LOCK   || BattlerHasInnate(i, ABILITY_AIR_LOCK) ||
-              AI_GetAbility(i) == ABILITY_CLOUD_NINE || BattlerHasInnate(i, ABILITY_CLOUD_NINE)))
-            return FALSE;
-    }
-    return TRUE;
+    return WEATHER_HAS_EFFECT;
 }
 
 bool32 IsAromaVeilProtectedMove(u16 move)
@@ -2955,7 +2944,8 @@ bool32 AI_CanSleep(u8 battler, u16 ability)
       || IsSleepDisabled(battler, 1)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
-      || (gFieldStatuses & (STATUS_FIELD_MISTY_TERRAIN | STATUS_FIELD_ELECTRIC_TERRAIN))
+      || GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN
+      || GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN
       || IsAbilityStatusProtected(battler))
         return FALSE;
     return TRUE;
@@ -3058,7 +3048,7 @@ bool32 AI_CanBeConfused(u8 battler, u16 ability)
     if ((gBattleMons[battler].status2 & STATUS2_CONFUSION)
       || (ability == ABILITY_OWN_TEMPO  || BattlerHasInnate(battler, ABILITY_OWN_TEMPO))
       || (ability == ABILITY_DISCIPLINE || BattlerHasInnate(battler, ABILITY_DISCIPLINE))
-      || (IsBattlerGrounded(battler) && (gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)))
+      || (IsBattlerGrounded(battler) && GetCurrentTerrain() ==  STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
     return TRUE;
 }
