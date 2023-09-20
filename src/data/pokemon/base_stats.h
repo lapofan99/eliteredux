@@ -13615,8 +13615,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_BUG,
     .eggGroup2 = EGG_GROUP_BUG,
-    .abilities = {ABILITY_REGENERATOR, ABILITY_STAMINA, ABILITY_QUEENLY_MAJESTY},
-    .innates = {ABILITY_POISON_POINT, ABILITY_PARENTAL_BOND, ABILITY_SELF_SUFFICIENT},
+    .abilities = {ABILITY_REGENERATOR, ABILITY_STAMINA, ABILITY_PARENTAL_BOND},
+    .innates = {ABILITY_QUEENS_MOURNING, ABILITY_QUEENLY_MAJESTY, ABILITY_SELF_SUFFICIENT},
     .bodyColor = BODY_COLOR_YELLOW,
     .noFlip = FALSE,
     },
@@ -24766,7 +24766,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_MAREANIE] =
     {
-    .baseHP        = 50,
+    .baseHP        = 60, // 50
     .baseAttack    = 53,
     .baseDefense   = 62,
     .baseSpeed     = 45,
@@ -24784,15 +24784,15 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_WATER_1,
-    .abilities = {ABILITY_LOOTER, ABILITY_LIMBER, ABILITY_EXPLOIT_WEAKNESS},
-    .innates = {ABILITY_POISON_POINT, ABILITY_REGENERATOR, ABILITY_MERCILESS},
+    .abilities = {ABILITY_LOOTER, ABILITY_LIMBER, ABILITY_TOXIC_DEBRIS},
+    .innates = {ABILITY_POISON_POINT, ABILITY_REGENERATOR, ABILITY_ROUGH_SKIN},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = FALSE,
     },
 
 [SPECIES_TOXAPEX] =
     {
-    .baseHP        = 50,
+    .baseHP        = 75, // 50
     .baseAttack    = 63,
     .baseDefense   = 152,
     .baseSpeed     = 35,
@@ -24810,8 +24810,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_WATER_1,
-    .abilities = {ABILITY_ROUGH_SKIN, ABILITY_FORT_KNOX, ABILITY_EXPLOIT_WEAKNESS},
-    .innates = {ABILITY_POISON_TOUCH, ABILITY_REGENERATOR, ABILITY_MERCILESS},
+    .abilities = {ABILITY_BATTLE_ARMOR, ABILITY_FORT_KNOX, ABILITY_TOXIC_DEBRIS},
+    .innates = {ABILITY_POISON_TOUCH, ABILITY_REGENERATOR, ABILITY_ROUGH_SKIN},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = FALSE,
     },

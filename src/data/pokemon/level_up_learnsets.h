@@ -9185,7 +9185,9 @@ static const struct LevelUpMove sKricketuneLevelUpLearnset[] = {
         LEVEL_UP_MOVE(25, MOVE_QUIVER_DANCE), // new
     #endif
 	LEVEL_UP_MOVE(28, MOVE_FELL_STINGER),
+    LEVEL_UP_MOVE(29, MOVE_PIN_MISSILE), // new
 	LEVEL_UP_MOVE(30, MOVE_HYPER_VOICE),
+    LEVEL_UP_MOVE(31, MOVE_FURY_SWIPES), // new
     LEVEL_UP_MOVE(32, MOVE_BREAKING_SWIPE), // new
 	LEVEL_UP_MOVE(33, MOVE_STICKY_WEB),
 	LEVEL_UP_MOVE(36, MOVE_BUG_BUZZ),
@@ -17946,6 +17948,7 @@ static const struct LevelUpMove sTapuLeleLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sTapuBuluLevelUpLearnset[] = {
+	LEVEL_UP_MOVE( 1, MOVE_PLAY_ROUGH), // new
 	LEVEL_UP_MOVE( 1, MOVE_GRASSY_TERRAIN),
 	LEVEL_UP_MOVE( 1, MOVE_WOOD_HAMMER),
 	LEVEL_UP_MOVE( 1, MOVE_SUPERPOWER),
@@ -17966,6 +17969,7 @@ static const struct LevelUpMove sTapuBuluLevelUpLearnset[] = {
     LEVEL_UP_MOVE(55, MOVE_SOLAR_BLADE),
 	LEVEL_UP_MOVE(58, MOVE_SKULL_BASH),
 	LEVEL_UP_MOVE(61, MOVE_U_TURN), // new
+	LEVEL_UP_MOVE(64, MOVE_SPIRIT_BREAK), // new
 	LEVEL_UP_END
 };
 
