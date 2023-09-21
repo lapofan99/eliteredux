@@ -133,14 +133,14 @@
 #define VAR_ROUTE119_STATE                   0x4072
 #define VAR_ROUTE120_STATE                   0x4073 // Unused Var
 #define VAR_ROUTE121_STATE                   0x4074
-#define VAR_ROUTE122_STATE                   0x4075 // Unused Var
-#define VAR_ROUTE123_STATE                   0x4076 // Unused Var
-#define VAR_ROUTE124_STATE                   0x4077 // Unused Var
-#define VAR_ROUTE125_STATE                   0x4078 // Unused Var
-#define VAR_ROUTE126_STATE                   0x4079 // Unused Var
-#define VAR_ROUTE127_STATE                   0x407A // Unused Var
+#define VAR_TOTEM_POKEMON_ATK_BOOST          0x4075 // Attack Boost
+#define VAR_TOTEM_POKEMON_DEF_BOOST          0x4076 // Defense Boost
+#define VAR_TOTEM_POKEMON_SP_ATK_BOOST       0x4077 // Special Attack Boost
+#define VAR_TOTEM_POKEMON_SP_DEF_BOOST       0x4078 // Special Defense Boost
+#define VAR_TOTEM_POKEMON_SPEED_BOOST        0x4079 // Speed Boost
+#define VAR_TOTEM_POKEMON_ACCURACY_BOOST     0x407A // Accuracy Boost
 #define VAR_ROUTE128_STATE                   0x407B
-#define VAR_ROUTE129_STATE                   0x407C // Unused Var
+#define VAR_TOTEM_POKEMON_EVASION_BOOST      0x407C // Evasion Boost
 #define VAR_ROUTE130_STATE                   0x407D // Unused Var
 #define VAR_ROUTE131_STATE                   0x407E // Unused Var
 #define VAR_ROUTE132_STATE                   0x407F // Unused Var

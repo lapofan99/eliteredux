@@ -3679,6 +3679,8 @@ static void DoBattleIntro(void)
 
                 for (i = 0; i < NUM_INNATE_PER_SPECIES + 1; i++)
                     gBattleMons[gActiveBattler].singeuseability[i] = FALSE;
+
+                gBattleMons[gActiveBattler].wasalreadytotemboosted = FALSE;
                 
                 gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)] = gBattleMons[gActiveBattler].hp;
                 gBattleMons[gActiveBattler].status2 = 0;
@@ -5304,10 +5306,17 @@ static void CheckMegaEvolutionBeforeTurn(void)
             {
                 gBattleStruct->mega.toEvolve &= ~(gBitTable[gActiveBattler]);
                 gLastUsedItem = gBattleMons[gActiveBattler].item;
-                if (gBattleStruct->mega.isWishMegaEvo == TRUE)
-                    BattleScriptExecute(BattleScript_WishMegaEvolution);
-                else
-                    BattleScriptExecute(BattleScript_MegaEvolution);
+
+                //Trainer Mega Evolution
+                if((gBattleTypeFlags & BATTLE_TYPE_TRAINER) || GET_BATTLER_SIDE(gActiveBattler) == B_SIDE_PLAYER){
+                    if (gBattleStruct->mega.isWishMegaEvo == TRUE)
+                        BattleScriptExecute(BattleScript_WishMegaEvolution);
+                    else
+                        BattleScriptExecute(BattleScript_MegaEvolution);
+                }
+				else //Wild Mega Evolution
+					BattleScriptExecute(BattleScript_WildTotemMegaEvolution);
+
                 return;
             }
         }
@@ -5680,6 +5689,10 @@ static void HandleEndTurn_FinishBattle(void)
             UndoFormChange(i, B_SIDE_PLAYER, FALSE);
             DoBurmyFormChange(i);
         }
+
+		FlagClear(FLAG_SMART_AI);
+		FlagClear(FLAG_TOTEM_BATTLE);
+
     #if B_RECALCULATE_STATS >= GEN_5
         // Recalculate the stats of every party member before the end
         for (i = 0; i < PARTY_SIZE; i++)

@@ -14221,6 +14221,12 @@ static void Cmd_handleballthrow(void)
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr = BattleScript_WallyBallThrow;
     }
+	else if (FlagGet(FLAG_TOTEM_BATTLE) && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+    {
+        BtlController_EmitBallThrowAnim(0, BALL_TRAINER_BLOCK);
+        MarkBattlerForControllerExec(gActiveBattler);
+        gBattlescriptCurrInstr = BattleScript_LegendaryPokemonBallBlock;
+    }
     else
     {
         u32 odds, i;

@@ -175,6 +175,7 @@ struct BattlePokemon
     /*0x54*/ u32 otId;
     /*0x58*/ u8 nature;
     /*0x59*/ bool8 singeuseability[NUM_INNATE_PER_SPECIES + 1];
+    /*0x5A*/ bool8 wasalreadytotemboosted;
 };
 
 struct BaseStats

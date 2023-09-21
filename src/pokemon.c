@@ -7989,7 +7989,7 @@ void SetWildMonHeldItem(void)
 {
     u16 rnd, species, var1, var2, i, count;
 
-    if (gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_TRAINER | BATTLE_TYPE_PYRAMID | BATTLE_TYPE_PIKE) || gDexnavBattle)
+    if (gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_TRAINER | BATTLE_TYPE_PYRAMID | BATTLE_TYPE_PIKE) || gDexnavBattle || FlagGet(FLAG_TOTEM_BATTLE))
         return;
 
     count = (WILD_DOUBLE_BATTLE) ? 2 : 1;

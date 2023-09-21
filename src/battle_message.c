@@ -789,10 +789,18 @@ static const u8 sText_BattlerHasASingleNoDamageHit[] = _("{B_DEF_NAME_WITH_PREFI
 static const u8 sText_BattlerCanStillEndureASingleHit[] = _("{B_DEF_NAME_WITH_PREFIX} can still endure\na single hit without taking damage!{PAUSE 32}");
 static const u8 sText_BattlerHasSpilledToxicWaste[] = _("{B_ATK_NAME_WITH_PREFIX} has spilled\nToxic Waste on the field!");
 static const u8 sText_TheToxicWasteHasDissappeared[] = _("The Toxic Waste has dissappeared!");
-static const u8 sText_PkmnHurtByToxicWaste[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt\nby the Toxic Waste!");//{B_ATK_NAME_WITH_PREFIX} is hurt\nby poison!
+static const u8 sText_PkmnHurtByToxicWaste[] = _("{B_ATK_NAME_WITH_PREFIX} was hurt\nby the Toxic Waste!");
+static const u8 sText_ThePokemonBlockedTheBall[] = _("{B_OPPONENT_MON1_NAME} blocked the Ball!");
+static const u8 sText_AttackerIsReadyToTestYou[] = _("The Pokémon {B_OPPONENT_MON1_NAME} is ready\nto test you!");
+static const u8 sText_AttackerStatsWereBoosted[] = _("Some of the {B_OPPONENT_MON1_NAME}'s\nstats were raised!");
+static const u8 sText_WildMonMegaEvolved[] = _("A mysterious force is surrounding the\nPokemon {B_OPPONENT_MON1_NAME}!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_WILDPOKEMONMEGAEVOLVED - 12] = sText_WildMonMegaEvolved,
+    [STRINGID_PKMNSSTATSWEREBOOSTED - 12] = sText_AttackerStatsWereBoosted,
+    [STRINGID_ATTACKERISREADYTOTESTYOU - 12] = sText_AttackerIsReadyToTestYou,
+	[STRINGID_THEPOKEMONBLOCKEDTHEBALL - 12] = sText_ThePokemonBlockedTheBall,
     [STRINGID_PKMNHURTBYTOXICWASTE - 12] = sText_PkmnHurtByToxicWaste,
     [STRINGID_THETOXICWASTEHASDISSAPPEARED - 12] = sText_TheToxicWasteHasDissappeared,
     [STRINGID_BATTLERHASSPILLEDTOXICWASTE - 12] = sText_BattlerHasSpilledToxicWaste,

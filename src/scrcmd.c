@@ -2750,3 +2750,43 @@ bool8 ScrCmd_checkSaveblockValue(struct ScriptContext *ctx)
     }
     return FALSE;
 }
+
+bool8 ScrCmd_setwildbattlewithcustommoves(struct ScriptContext *ctx)
+{
+    u16 species    = ScriptReadHalfword(ctx);
+    u8  level      = ScriptReadByte(ctx);
+    u16 item       = ScriptReadHalfword(ctx);
+    u16 move1      = ScriptReadHalfword(ctx);
+    u16 move2      = ScriptReadHalfword(ctx);
+    u16 move3      = ScriptReadHalfword(ctx);
+    u16 move4      = ScriptReadHalfword(ctx);
+    u16 abilitynum = ScriptReadHalfword(ctx);
+    u16 nature     = ScriptReadHalfword(ctx);
+    bool8 shiny    = ScriptReadHalfword(ctx);
+    struct Pokemon *pkmn = &gEnemyParty[0];
+
+    CreateScriptedWildMon(species, level, item);
+
+    if (move1 != MOVE_NONE) {
+        SetMonMoveSlot(pkmn, move1, 0);
+    }    
+    if (move2 != MOVE_NONE) {
+        SetMonMoveSlot(pkmn, move2, 1);
+    }    
+    if (move3 != MOVE_NONE) {
+        SetMonMoveSlot(pkmn, move3, 2);
+    }    
+    if (move4 != MOVE_NONE) {
+        SetMonMoveSlot(pkmn, move4, 3);
+    }   
+	if (abilitynum != 3) {
+		SetMonData(pkmn, MON_DATA_ABILITY_NUM, &abilitynum);
+    }      
+	if (nature != 0) {
+		SetMonData(pkmn, MON_DATA_NATURE, &nature);
+    }
+	
+	SetMonData(pkmn, MON_DATA_HELD_ITEM, &item);
+	
+    return FALSE;
+}

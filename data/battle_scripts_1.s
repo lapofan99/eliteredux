@@ -10505,3 +10505,31 @@ BattleScript_GripPincerActivated::
 	printstring STRINGID_GRIPPINCERACTIVATED
 	waitmessage B_WAIT_TIME_LONG
 	end3
+
+BattleScript_WildTotemBoostActivated::
+	printstring STRINGID_ATTACKERISREADYTOTESTYOU
+	waitmessage B_WAIT_TIME_LONG
+	playmoveanimation BS_ATTACKER, MOVE_FOCUS_ENERGY
+	waitanimation
+	waitmessage B_WAIT_TIME_LONG
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printstring STRINGID_PKMNSSTATSWEREBOOSTED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+
+BattleScript_WildTotemMegaEvolution::
+	printstring STRINGID_WILDPOKEMONMEGAEVOLVED
+	waitmessage B_WAIT_TIME_LONG
+	setbyte gIsCriticalHit, 0
+	handlemegaevo BS_ATTACKER, 0
+	handlemegaevo BS_ATTACKER, 1
+	playanimation BS_ATTACKER, B_ANIM_MEGA_EVOLUTION, NULL
+	waitanimation
+	handlemegaevo BS_ATTACKER, 2
+	printstring STRINGID_MEGAEVOEVOLVED
+	waitmessage B_WAIT_TIME_LONG
+	switchinabilities BS_ATTACKER
+	end2

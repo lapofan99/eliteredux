@@ -6287,6 +6287,32 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 
+        //Totem Boost
+        if(FlagGet(FLAG_TOTEM_BATTLE) 
+			&& GetBattlerSide(battler) != B_SIDE_PLAYER 
+			&& gBattleResults.battleTurnCounter == 0
+			&& !(gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+            && !gBattleMons[battler].wasalreadytotemboosted){
+			FlagSet(FLAG_SMART_AI);
+			
+			gBattlerAttacker = battler;
+            gBattleMons[battler].wasalreadytotemboosted = TRUE;
+
+			gBattleMons[battler].statStages[STAT_ATK]     = gBattleMons[battler].statStages[STAT_ATK]     + VarGet(VAR_TOTEM_POKEMON_ATK_BOOST);
+			gBattleMons[battler].statStages[STAT_DEF]     = gBattleMons[battler].statStages[STAT_DEF]     + VarGet(VAR_TOTEM_POKEMON_DEF_BOOST);
+			gBattleMons[battler].statStages[STAT_SPATK]   = gBattleMons[battler].statStages[STAT_SPATK]   + VarGet(VAR_TOTEM_POKEMON_SP_ATK_BOOST);
+			gBattleMons[battler].statStages[STAT_SPDEF]   = gBattleMons[battler].statStages[STAT_SPDEF]   + VarGet(VAR_TOTEM_POKEMON_SP_DEF_BOOST);
+			gBattleMons[battler].statStages[STAT_SPEED]   = gBattleMons[battler].statStages[STAT_SPEED]   + VarGet(VAR_TOTEM_POKEMON_SPEED_BOOST);
+			gBattleMons[battler].statStages[STAT_ACC]     = gBattleMons[battler].statStages[STAT_ACC]     + VarGet(VAR_TOTEM_POKEMON_ACCURACY_BOOST);
+			gBattleMons[battler].statStages[STAT_EVASION] = gBattleMons[battler].statStages[STAT_EVASION] + VarGet(VAR_TOTEM_POKEMON_EVASION_BOOST);
+			
+			SET_STATCHANGER(STAT_SPATK, 1, FALSE);
+            BattleScriptPushCursorAndCallback(BattleScript_WildTotemBoostActivated); // Try activate
+            effect++;
+
+            //Removing these flags are handled in HandleEndTurn_FinishBattle
+		}
+
         break;
     case ABILITYEFFECT_ENDTURN: // 1
         if (gBattleMons[battler].hp != 0)
@@ -15198,6 +15224,7 @@ bool32 CanMegaEvolve(u8 battlerId)
     struct Pokemon *mon;
     u8 battlerPosition = GetBattlerPosition(battlerId);
     u8 partnerPosition = GetBattlerPosition(BATTLE_PARTNER(battlerId));
+    u8 step = 0;
     struct MegaEvolutionData *mega = &(((struct ChooseMoveStruct*)(&gBattleResources->bufferA[gActiveBattler][4]))->mega);
 
     // Check if Player has a Mega Ring and the appropriate flag is set

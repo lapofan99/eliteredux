@@ -660,8 +660,12 @@
 #define STRINGID_BATTLERHASSPILLEDTOXICWASTE          689
 #define STRINGID_THETOXICWASTEHASDISSAPPEARED         690
 #define STRINGID_PKMNHURTBYTOXICWASTE                 691
+#define STRINGID_THEPOKEMONBLOCKEDTHEBALL             692
+#define STRINGID_ATTACKERISREADYTOTESTYOU             693
+#define STRINGID_PKMNSSTATSWEREBOOSTED                694
+#define STRINGID_WILDPOKEMONMEGAEVOLVED               695
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_PKMNHURTBYTOXICWASTE + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_WILDPOKEMONMEGAEVOLVED + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
