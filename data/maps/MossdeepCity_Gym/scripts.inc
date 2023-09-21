@@ -49,7 +49,7 @@ MossdeepCity_Gym_EventScript_SetSwitch4Metatiles:: @ 8220885
 	end
 
 MossdeepCity_Gym_EventScript_TateAndLiza:: @ 8220898
-	call MossdeepCity_Gym_EventScript_CheckTrainers
+	//call MossdeepCity_Gym_EventScript_CheckTrainers
 	setflag FLAG_SYS_INVERSE_BATTLE
 	//goto_if_set FLAG_DAILY_REMATCH_TATE_AND_LIZA, MossdeepCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_Gym_EventScript_TateAndLizaRematch
@@ -723,7 +723,7 @@ MossdeepCity_Gym_EventScript_CheckTrainers::
 	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
 	checktrainerflag TRAINER_NATE
 	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
-	checktrainerflag TRAINER_SYLVIA
+	checktrainerflag TRAINER_MAURA
 	goto_if 0, MossdeepCity_Gym_EventScript_CheckTrainers_3
 MossdeepCity_Gym_EventScript_CheckTrainers_2:
 	return
