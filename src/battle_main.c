@@ -6811,7 +6811,6 @@ u16 selectMoves (u16 species, u8 i, u16 atk, u16 spAtk)
     return oldPlayerTypeMove[type][split][randomMove];
 }
 
-
 static u8 getRole (u16 species)
 {
     u16 max = 0;
@@ -6831,3 +6830,8 @@ static u8 getRole (u16 species)
     else
         return 1;    
 };
+
+bool32 IsWildMonSmart(void)
+{
+    return (B_SMART_WILD_AI_FLAG != 0 && FlagGet(B_SMART_WILD_AI_FLAG));
+}

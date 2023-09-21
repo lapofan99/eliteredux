@@ -7,6 +7,7 @@
 #include "battle_factory.h"
 #include "battle_setup.h"
 #include "data.h"
+#include "event_data.h"
 #include "item.h"
 #include "pokemon.h"
 #include "random.h"
@@ -125,6 +126,28 @@ void BattleAI_SetupItems(void)
     }
 }
 
+static u32 GetWildAiFlags(void)
+{
+    u8 avgLevel = GetMonData(&gEnemyParty[0], MON_DATA_LEVEL);
+    u32 flags;
+
+    if (IsDoubleBattle())
+        avgLevel = (GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) + GetMonData(&gEnemyParty[1], MON_DATA_LEVEL)) / 2;
+
+    flags |= AI_FLAG_CHECK_BAD_MOVE;
+    if (avgLevel >= 20)
+        flags |= AI_FLAG_CHECK_VIABILITY;
+    if (avgLevel >= 60)
+        flags |= AI_FLAG_PREFER_STRONGEST_MOVE;
+    if (avgLevel >= 80)
+        flags |= AI_FLAG_HP_AWARE;
+
+    if (B_VAR_WILD_AI_FLAGS != 0 && VarGet(B_VAR_WILD_AI_FLAGS) != 0)
+        flags |= VarGet(B_VAR_WILD_AI_FLAGS);
+
+    return flags;
+}
+
 void BattleAI_SetupFlags(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
@@ -143,6 +166,10 @@ void BattleAI_SetupFlags(void)
         AI_THINKING_STRUCT->aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE;
     else
         AI_THINKING_STRUCT->aiFlags = gTrainers[gTrainerBattleOpponent_A].aiFlags;
+
+    // check smart wild AI
+    if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER)) && IsWildMonSmart())
+        AI_THINKING_STRUCT->aiFlags |= GetWildAiFlags();
 
     if (gBattleTypeFlags & (BATTLE_TYPE_DOUBLE | BATTLE_TYPE_TWO_OPPONENTS) || gTrainers[gTrainerBattleOpponent_A].doubleBattle || (gSaveBlock2Ptr->doubleBattleMode == TRUE))
         AI_THINKING_STRUCT->aiFlags |= AI_FLAG_DOUBLE_BATTLE; // Act smart in doubles and don't attack your partner.
