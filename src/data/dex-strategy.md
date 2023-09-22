@@ -896,33 +896,33 @@ Alternatively, a physically defensive EV spread can be used, further easing it's
 }
 Arcanine 
 {
-    Name: Physical Pivot 
-    Item: Heavy Duty Boots
-    Ability: Intimidate 
-    EVs: 252, 252, 4, 0, 0, 0 
-    Nature: Adamant 
-    Moves: Flare Blitz, Bulldoze, Morning Sun, Teleport 
-    Comment: With access to Intimidate and Teleport, Arcanine becomes a valuable pivot against physically oriented Pokémon, while maintaining offensive presence.
+    Name = Physical Pivot 
+    Item = Heavy Duty Boots
+    Ability = Intimidate 
+    EVs = 252, 252, 4, 0, 0, 0 
+    Nature = Adamant 
+    Moves = Flare Blitz, Bulldoze, Morning Sun, Teleport 
+    Comment = With access to Intimidate and Teleport, Arcanine becomes a valuable pivot against physically oriented Pokémon, while maintaining offensive presence.
 }
 Hoopa
 {
-    Name: Annoying Special Attacker 
-    Item: Life Orb 
-    Ability: Illusion 
-    EVs: 252, 0, 0, 252, 0, 0 
-    Nature: Quiet
-    Moves: Destiny Bond, Hypnosis, Hyperspace Hole, Focus Blast
-    Comment: Hoopa serves as a very annoying special attacker with its combination of Prankster-boosted Hypnosis, Destiny Bond, and the priority move Hyperspace Hole. Focus Blast deals with Dark-types, Hoopa's main weakness.
+    Name = Annoying Special Attacker 
+    Item = Life Orb 
+    Ability = Illusion 
+    EVs = 252, 0, 0, 252, 0, 0 
+    Nature = Quiet
+    Moves = Destiny Bond, Hypnosis, Hyperspace Hole, Focus Blast
+    Comment = Hoopa serves as a very annoying special attacker with its combination of Prankster-boosted Hypnosis, Destiny Bond, and the priority move Hyperspace Hole. Focus Blast deals with Dark-types, Hoopa's main weakness.
 }
 Florges
 {
-    Name: Specially Defensive Wall 
-    Item: Leftovers
-    Ability: Fairy Aura
-    EVs: 248, 0, 0, 8, 252, 0 
-    Nature: Calm
-    Moves: Moonblast, Wish, Teleport, Toxic
-    Comment: An incredibly durable special wall, Florges supports teammates by passing slow Wishes and wearing down opponents with status and potent Moonblasts.
+    Name = Specially Defensive Wall 
+    Item = Leftovers
+    Ability = Fairy Aura
+    EVs = 248, 0, 0, 8, 252, 0 
+    Nature = Calm
+    Moves = Moonblast, Wish, Teleport, Toxic
+    Comment = An incredibly durable special wall, Florges supports teammates by passing slow Wishes and wearing down opponents with status and potent Moonblasts.
 }
 Sableye Mega
 {
@@ -986,13 +986,13 @@ Giratina-Origin
 }
 Groudon-primal
 {
-    Name: THE PAIN TRAIN 
-    Item: Red Orb
-    Ability: Tough Claws 
-    EVs: 0, 252, 0, 0, 4, 252 
-    Nature: Adamant 
-    Moves: Swords Dance, Rock Polish, Precipice Blades, V-create / Strength / Heat Crash 
-    Comment: "And the lord wept, as he looked down upon the earth and witnessed the scorched bodies, entire towns swallowed up by the earth... and at the center of it all, a raging, primordial beast." - Book of Groudon, Chapter 0
+    Name = THE PAIN TRAIN 
+    Item = Red Orb
+    Ability = Tough Claws 
+    EVs = 0, 252, 0, 0, 4, 252 
+    Nature = Adamant 
+    Moves = Swords Dance, Rock Polish, Precipice Blades, V-create / Strength / Heat Crash 
+    Comment = "And the lord wept, as he looked down upon the earth and witnessed the scorched bodies, entire towns swallowed up by the earth... and at the center of it all, a raging, primordial beast." - Book of Groudon, Chapter 0
 }
 Zapdos-Galar
 {
@@ -1096,13 +1096,13 @@ Magearna
 }
 Mandibuzz
 {
-    Name: Defog Support
-    Item: Heavy Duty Boots
-    Ability: Air Blower 
-    EVs: 252, 0, 252, 0, 4, 0
-    Nature: Impish
-    Moves: Roost, Defog, U-turn, Foul Play / Knock Off
-    Comment: A solid support Pokémon, capable of setting up Tailwind and removing hazards. Roost helps maintain its health, enabling multiple opportunities to come in and defog. Defog serves its purpose of hazard removal, while U-turn permits switching to a different ally while dealing minor chip damage. Foul Play is effective against physical Pokémon, whereas Knock Off provides additional utility.
+    Name = Defog Support
+    Item = Heavy Duty Boots
+    Ability =Air Blower 
+    EVs = 252, 0, 252, 0, 4, 0
+    Nature = Impish
+    Moves = Roost, Defog, U-turn, Foul Play / Knock Off
+    Comment = A solid support Pokémon, capable of setting up Tailwind and removing hazards. Roost helps maintain its health, enabling multiple opportunities to come in and defog. Defog serves its purpose of hazard removal, while U-turn permits switching to a different ally while dealing minor chip damage. Foul Play is effective against physical Pokémon, whereas Knock Off provides additional utility.
 }
 Empoleon
 {
