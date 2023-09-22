@@ -18933,6 +18933,7 @@ static const struct LevelUpMove sApplinLevelUpLearnset[] = {
 
 static const struct LevelUpMove sFlappleLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_WING_ATTACK),
+    LEVEL_UP_MOVE( 1, MOVE_POISON_JAB) // new
     LEVEL_UP_MOVE( 1, MOVE_RECYCLE),
     LEVEL_UP_MOVE( 1, MOVE_WITHDRAW),
     LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
@@ -18949,6 +18950,7 @@ static const struct LevelUpMove sFlappleLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_IRON_DEFENSE),
     LEVEL_UP_MOVE(40, MOVE_FLY),
     LEVEL_UP_MOVE(44, MOVE_DRAGON_RUSH),
+    LEVEL_UP_MOVE(48, MOVE_GUNK_SHOT) // new
     LEVEL_UP_END
 };
 
