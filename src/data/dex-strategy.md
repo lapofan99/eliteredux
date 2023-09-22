@@ -926,23 +926,23 @@ Florges
 }
 Sableye Mega
 {
-    Name: Defensive Utility 
-    Item: Sablenite 
-    Ability: Soul Linker 
-    EVs: 252, 4, 0, 0, 252, 0
-    Nature: Careful 
-    Moves: Knock Off, Wil-o-Wisp / Thunder Wave, Taunt, Recover 
-    Comment: This versatile utility set uses Knock Off to deny items, spreads status with Wil-o-Wisp or Thunder Wave, and disrupts opponents' hazard setting and removal with Taunt
+    Name = Defensive Utility 
+    Item = Sablenite 
+    Ability = Soul Linker 
+    EVs = 252, 4, 0, 0, 252, 0
+    Nature = Careful 
+    Moves = Knock Off, Wil-o-Wisp / Thunder Wave, Taunt, Recover 
+    Comment = This versatile utility set uses Knock Off to deny items, spreads status with Wil-o-Wisp or Thunder Wave, and disrupts opponents' hazard setting and removal with Taunt
 }
 Mewtwo-mega-y
 {
-    Name: Special Sweeper 
-    Item: Mewtwonite Y
-    Ability: Psychic Surge
-    EVs: 0, 0, 4, 252, 0, 252
-    Nature: Timid
-    Moves: Expanding Force, Blizzard / Thunder, Shadow Ball / Focus Blast, Nasty Plot
-    Comment: A formidable special attacker, Mewtwo-mega-y sets up with Nasty Plot to become a destructive force against opposing teams.
+    Name = Nuclear Warhead
+    Item = Mewtwonite Y
+    Ability = Psychic Surge
+    EVs = 0, 0, 4, 252, 0, 252
+    Nature = Timid
+    Moves = Expanding Force, Blizzard / Thunder, Shadow Ball / Focus Blast, Nasty Plot
+    Comment = A formidable special attacker, Mega Mewtwo Y sets up with Nasty Plot to become a destructive force against opposing teams.
 }
 Slurpuff
 {
