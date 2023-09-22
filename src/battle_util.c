@@ -14838,7 +14838,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
 	else if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && (GetBattlerAbility(battlerAtk) == ABILITY_GROUND_SHOCK || BattlerHasInnate(battlerAtk, ABILITY_GROUND_SHOCK)) && mod == UQ_4_12(0.0))
     {
 		//Has Innate Effect here too
-        mod = UQ_4_12(1.0);
+        mod = UQ_4_12(0.5);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_GROUND_SHOCK);
     }
