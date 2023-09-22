@@ -872,73 +872,644 @@ Chandelure
     moves = Fire Blast, Shadow Ball, Energy Ball, Psychic / Trick / Heat Wave
    comment = Pyromancy gives Fire Blast 50% chance to burn. Illuminate makes Fire Blast 100 accurate. Every possible speed investment + scarf allows Chandelure to outspeed a lot of things, then wreak havoc with Fire Blast. Other moves are for coverage. Psychic can be switched for Trick to cripple or Heatwave for doubles.
 }
-Banette Mega
+Banette-mega
 {
-    name = Offensive PranksterBond
-    item = bannettite
-    ability = cursed body/insomnia 
-    evs = 252, 252, 0, 0, 0, 0(0 speed ivs but not sure where to put that)
-    nature = brave
-    moves = destiny bond, spectral thief, shadows sneak, double edge
-   comment = a potent counter sweeper, he has the potential to force trades with prankster destiny bond, and punish destiny bond counterplay by stealing boosts and punishing switches with spectral thief and drawbackless double edge
+name = Offensive PranksterBond
+item = Banettite
+ability = Cursed Body / Insomnia
+evs = 252, 252, 0, 0, 0, 0 (0 Speed IVs but not sure where to put that)
+nature = Brave
+moves = Destiny Bond, Spectral Thief, Shadow Sneak, Double Edge
+comment = A potent counter sweeper, Banette-Mega has the potential to force trades with Prankster Destiny Bond. It can also punish Destiny Bond counterplay by stealing boosts and punishing switches with Spectral Thief and drawbackless Double Edge.
 }
 Mew
 {
-    name = Dance Party 
+    name = Dance Party
     item = Life Orb
-    ability = magic guard 
-    evs = 0, 0, 0, 252, 0, 252
-    nature = timid
-    moves = quiver dance, roost, stored power, coverage 
-   comment = it's Mew with QD! Stored power is to overwhelm unaware walls and the last slot is literally just "decide what you dont want to wall you" with mews incredible movepool 
+    ability = Magic Guard
+    evs = 0, 0, 4, 252, 0, 252
+    nature = Timid
+    moves = Quiver Dance, Roost, Stored Power, Aura Sphere
+    comment = It's Mew with Quiver Dance, which boosts its already decent special stats. Roost keeps it healthy enough to get Stored Power to incredible levels, and Aura Sphere provides coverage. 
+
+Alternatively, a physically defensive EV spread can be used, further easing it's setup against a wider variety of pokemon.
 }
 Arcanine 
 {
-    name = Physical Pivot 
-    item = Heavy Duty Boots
-    ability = intimidate 
-    evs = 252, 252, 4, 0, 0, 0 
-    nature = adamant 
-    moves = flare blitz, bulldoze, morning sun, teleport 
-   comment = with access to intimidate and teleport Arcanine becomes a very useful pivot into many physically oriented mons, while also retaining a decent amount of offensive presence 
+    Name: Physical Pivot 
+    Item: Heavy Duty Boots
+    Ability: Intimidate 
+    EVs: 252, 252, 4, 0, 0, 0 
+    Nature: Adamant 
+    Moves: Flare Blitz, Bulldoze, Morning Sun, Teleport 
+    Comment: With access to Intimidate and Teleport, Arcanine becomes a valuable pivot against physically oriented Pokémon, while maintaining offensive presence.
 }
 Hoopa
 {
-    name = Skill Issue 
-    item = life orb 
-    ability = illusion 
-    evs = 252, 0, 0, 252, 0, 0 
-    nature = quiet
-    moves = destiny bond, hypnosis, hyperspace hole, focus blast
-   comment = Hoopa functions as a very annoying special attacker with its combination of prankster hypnotist hypnosis, destiny bond, and a strong priority move in hyperspace hole. focus blast hits the dark types hoopa otherwise has no way to hit
+    Name: Annoying Special Attacker 
+    Item: Life Orb 
+    Ability: Illusion 
+    EVs: 252, 0, 0, 252, 0, 0 
+    Nature: Quiet
+    Moves: Destiny Bond, Hypnosis, Hyperspace Hole, Focus Blast
+    Comment: Hoopa serves as a very annoying special attacker with its combination of Prankster-boosted Hypnosis, Destiny Bond, and the priority move Hyperspace Hole. Focus Blast deals with Dark-types, Hoopa's main weakness.
 }
 Florges
 {
-    name = Specially Defensive 
-    item = leftovers
-    ability = fairy aura
-    evs = 248, 0, 0, 8, 252, 0 
-    nature = calm
-    moves = moonblast, wish, teleport, toxic
-   comment = an extremely durable special wall, capable of supporting teammates by passing them slow wishes and wearing down opposing pokemon with status and strong moonblasts
+    Name: Specially Defensive Wall 
+    Item: Leftovers
+    Ability: Fairy Aura
+    EVs: 248, 0, 0, 8, 252, 0 
+    Nature: Calm
+    Moves: Moonblast, Wish, Teleport, Toxic
+    Comment: An incredibly durable special wall, Florges supports teammates by passing slow Wishes and wearing down opponents with status and potent Moonblasts.
 }
 Sableye Mega
 {
-    name = Defensive Utility 
-    item = sablenite 
-    ability = soul linker 
-    evs = 252, 0, 0, 0, 252, 0
-    nature = careful 
-    moves = knock off, wil-o-wisp/thunder wave, taunt, recover 
-   comment = an incredibly useful utility set, capable of denying and spreading knock off, denying and spreading your choice of status, and denying opponents hazard setting and removal
+    Name: Defensive Utility 
+    Item: Sablenite 
+    Ability: Soul Linker 
+    EVs: 252, 4, 0, 0, 252, 0
+    Nature: Careful 
+    Moves: Knock Off, Wil-o-Wisp / Thunder Wave, Taunt, Recover 
+    Comment: This versatile utility set uses Knock Off to deny items, spreads status with Wil-o-Wisp or Thunder Wave, and disrupts opponents' hazard setting and removal with Taunt
 }
-mewtwo mega y
+Mewtwo-mega-y
 {
-    name = Nuclear Warhead 
-    item = mewtwonite y
-    ability = psychic surge
+    Name: Special Sweeper 
+    Item: Mewtwonite Y
+    Ability: Psychic Surge
+    EVs: 0, 0, 4, 252, 0, 252
+    Nature: Timid
+    Moves: Expanding Force, Blizzard / Thunder, Shadow Ball / Focus Blast, Nasty Plot
+    Comment: A formidable special attacker, Mewtwo-mega-y sets up with Nasty Plot to become a destructive force against opposing teams.
+}
+Slurpuff
+{
+    name = Suicide Lead
+    item = Focus Sash
+    ability = Unburden
+    evs = 0, 0, 0, 252, 0, 252 (0 IVs in both Defenses)
+    nature = Hasty
+    moves = Sticky Web, Yawn, Endeavor, Misty Explosion
+    comment = A good hazard lead that gets Sticky Web up and then cripples something on its way down.
+}
+Steelix
+{
+    name = Great Wall of Johto
+    item = Leftovers
+    ability = Impenetrable / Fort Knox
+    evs = 252, 252, 4, 0, 0, 0
+    nature = Adamant
+    moves = Double Edge / Body Press, Dragon Tail, Stealth Rock, Shore Up
+    comment = Nigh unbreakable physically, sets rocks and annoys things by phasing them onto said rocks. Groundate recoil-free double edge hits like a truck and punishes things that want to stay in and defog on him. Alternatively, Fort Knox and Body Press can achieve similar results, though it takes a turn of defog to set up. Replace attack EVs with defense EVs if you choose this option. Shore up keeps him healthy, allowing him to reset Stealth Rock if the opponent removes it.
+}
+Zapdos
+{
+    name = Zap Rain
+    item = Heavy Duty Boots
+    ability = Drizzle
+    evs = 248, 0, 8, 252, 0, 0
+    nature = Modest
+    moves = Roost, Defog, Hurricane, Volt Switch / Thunder
+    comment = Solid rain setter, hazard control, and pivot. Roost keeps him healthy, Heavy Duty Boots protect him from the rocks he wants to remove, Hurricane takes advantage of the rain, and Volt Switch allows him to pivot into a teammate ready to abuse his rain. You could run Thunder over Volt Switch for more power, but this detracts from his utility as a rain setter.
+}
+Giratina-Origin
+{
+    name = Twist Dim. Attacker
+    item = Griseous Core
+    ability = Twist Dimension
+    evs = 252, 4, 0, 252, 0, 0 (any combination of Atk and Spa)
+    nature = Quiet / Brave
+    moves = Spectral Thief, Draco Meteor, Recover, Toxic
+    comment = One of the few Mons capable of viably running a mixed set, Twist Dimensions allows it to run a -spe nature, letting it not have to choose between bulk or power. Toxic+Recover lets it serve as a general answer to many things, spectral thief allows it to steal boosts, and Draco Meteor offers immediate power.
+}
+Groudon-primal
+{
+    Name: THE PAIN TRAIN 
+    Item: Red Orb
+    Ability: Tough Claws 
+    EVs: 0, 252, 0, 0, 4, 252 
+    Nature: Adamant 
+    Moves: Swords Dance, Rock Polish, Precipice Blades, V-create / Strength / Heat Crash 
+    Comment: "And the lord wept, as he looked down upon the earth and witnessed the scorched bodies, entire towns swallowed up by the earth... and at the center of it all, a raging, primordial beast." - Book of Groudon, Chapter 0
+}
+Zapdos-Galar
+{
+    name = Swift Scarf
+    item = Choice Scarf
+    ability = Aerodynamics
+    evs = 0, 252, 0, 0, 4, 252
+    nature = Jolly
+    moves = Thunderous Kick, Bolt Beak, Brave Bird, U-turn
+    comment = A decent revenge killer or speed control option, capable of outspeeding all unboosted Pokémon except Deoxys-S. Thunderous Kick provides solid Fighting STAB, Bolt Beak essentially functions as a third STAB, hitting hard due to Zapdos usually moving first, and Brave Bird is present but is generally not the best choice to click. U-turn allows Gapdos to pivot against opponents that don't want to be revenge killed or can threaten it with strong priority.
+}
+Kyurem-Black
+{
+    name = DDance Sweeper
+    item = Heavy Duty Boots
+    ability = Refrigerate
+    evs = 4, 252, 0, 0, 0, 252
+    nature = Adamant
+    moves = Dragon Dance, Bolt Strike, Outrage, Extreme Speed/Return
+    comment = An enormously powerful sweeper, known for its incredible Ice/Electric coverage. Dragon Dance boosts its already impressive Attack to formidable levels, Bolt Strike serves as a devastating attack, and Refrigerate Extreme Speed provides excellent Ice STAB and strong priority.
+}
+Regigigas
+{
+    name = Offensive Tank
+    item = Assault Vest
+    ability = Raging Boxer
+    evs = 252, 4, 252, 0, 0, 0
+    nature = Impish
+    moves = Powerup Punch, Drain Punch, Mega Punch, Frustration
+    comment = Regigigas is an immensely bulky beast, capable of fully investing in bulk while still dealing significant damage due to Juggernaut and Power Core boosting its offense based on its Defense. Power-up Punch and Drain Punch offer incredible utility when combined with Raging Boxer, allowing it to boost its Attack, sustain itself, and hit Steel types it would otherwise struggle against. Frustration hits Ghost-types that otherwise counter it, and Mega Punch serves as its strongest STAB move with Raging Boxer.
+}
+Kyogre-Primal
+{
+    name = THE PAIN BOAT
+    item = Blue Orb
+    ability = Predator (pre-Mega)
+    evs = 0, 0, 0, 252, 4, 252
+    nature = Timid
+    moves = Hydro Pump, Sheer Cold, Water Spout / Thunder / Substitute, Calm Mind
+    comment = And the people wept with joy as the rains fell, soothing their dry, sun-scorched lands. But their joy soon turned to terror as the downpour intensified, the scalding primordial beast drowning all beneath its waves - Book of Kyogre, Chapter 0
+}
+Piloswine
+{
+    name = THICCOswine
+    item = Eviolite
+    ability = Fur Coat
+    evs = 252, 4, 252, 0, 0, 0
+    nature = Impish
+    moves = Earthquake, Ice Fang, Rest, Sleep Talk
+    comment = With Eviolite and Fur Coat, Piloswine becomes an absolute behemoth on the physical side, capable of walling nearly any physically oriented set it encounters. Earthquake is its strongest STAB, Ice Fang is a secondary STAB that both complements Earthquake well and allows it to set up its mediocre attack stat. Rest serves as it's only form of recovery, with Sleep Talk allowing it to potentially maintain offensive pressure. DAMN BOII HE THICC
+}
+Registeel
+{
+    name = Special Tank
+    item = Leftovers
+    ability = Steely Spirit
+    evs = 252, 0, 4, 0, 252, 0
+    nature = Calm
+    moves = Recover, Stealth Rock, Toxic, Steel Beam
+    comment = An extremely resilient special wall, it sets up hazards and annoys foes with Toxic, all while delivering surprisingly strong drawback-less Steel Beams.
+}
+Tapu-Bulu
+{
+  name = Regenvest Pivot
+  item = Assault Vest
+  ability = Grass Pelt
+  evs = 252, 252, 4, 0, 0, 0
+  nature = Brave
+  moves = U-turn, Wood Hammer, Nature's Madness, Sucker Punch
+  comment = The combination of Grass Pelt and Assault Vest transforms Tapu Bulu into a solid pivot, allowing it to switch in, absorb hits, and then perform a slow U-turn into a teammate. Wood Hammer serves as a strong Grass STAB, further boosted by Tapu Bulu's Grassy Terrain. Nature's Madness can chunk a switch-ins health, and Sucker Punch gives it priority, allowing it to bypass it's slow speed to secure the KO on weakened targets.
+}
+Blastoise
+{
+    name = Regenvest
+    item = Assault Vest
+    ability = Regenerator
+    evs = 252, 0, 0, 252, 4, 0
+    nature = Modest
+    moves = Rapid Spin, Flip Turn, Water Pulse, Ice Beam
+    comment = Access to valuable utility moves in Flip Turn and Rapid Spin, decent natural bulk, and Mega Launcher boosted moves come together to make Blastoise effective at hazard control while also being able to deal decent damage. Water Pulse is its most consistent STAB and Launcher boosted move, although Hydro Pump or Water Spout are alternatives, at the cost of accuracy and consistency, respectively. Ice Beam provides helpful coverage, hitting Grass-types that Blastoise otherwise struggles against. A slow Flip Turn safely brings in allies, and Rapid Spin allows it to remove hazards from its side of the field.
+}
+Snorlax 
+{
+    name = this is not ok 
+    item = choice scarf 
+    ability = comatose 
+    evs = 252, 0, 252, 0, 4, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = bold 
+    moves = sleep talk, whirlwind 
+   comment = idk what this does. i guess it just does stuff and things happen. definitely 0 potential to be uncompetitive here, none 
+}
+Magearna
+{
+    name = Deer Repellent
+    item = Leftovers
+    ability = Pixilate
+    evs = 252, 0, 0, 4, 252, 0
+    nature = Calm
+    moves = Heart Swap, Recover, Boomburst, Flash Cannon
+    comment = Serving as a solid special wall, Magearna excels in stealing boosts with Heart Swap, effectively turning the sweeper into the swept.
+}
+Mandibuzz
+{
+    Name: Defog Support
+    Item: Heavy Duty Boots
+    Ability: Air Blower 
+    EVs: 252, 0, 252, 0, 4, 0
+    Nature: Impish
+    Moves: Roost, Defog, U-turn, Foul Play / Knock Off
+    Comment: A solid support Pokémon, capable of setting up Tailwind and removing hazards. Roost helps maintain its health, enabling multiple opportunities to come in and defog. Defog serves its purpose of hazard removal, while U-turn permits switching to a different ally while dealing minor chip damage. Foul Play is effective against physical Pokémon, whereas Knock Off provides additional utility.
+}
+Empoleon
+{
+    name = Offensive Rocker
+    item = Heavy Duty Boots/Leftovers
+    ability = Competitive 
+    evs = 252, 0, 252, 4, 0, 0 
+    nature = Bold
+    moves = Roost, Stealth Rock, Scald, Ice Beam
+    comment = A very cool Pokémon for setting up rocks. Its unique typing gives it a solid matchup against many Rapid Spin users, and its ability, Competitive, allows it to punish Defog, potentially boosting its Special Attack to extreme levels. It also annoys opponents with Scald burns and has a chance to cause frostbite if you're lucky.
+}
+Granbull
+{
+    name = Guts Princess
+    item = Flame Orb
+    ability = Guts
+    evs = 0, 252, 0, 0, 0, 252
+    nature = Adamant/Jolly
+    moves = Facade, Crunch, Play Rough, Bulk Up / Fire Fang
+    comment = With Guts and Quick Feet, Granbull becomes an incredible wallbreaker that's also decently fast. With an excellent offensive typing and a useful third pseudo STAB in Fighting Spirit, this mon is capable of hitting the majority of Pokémon for neutral STAB damage at the very least.
+}
+Gardevoir-mega
+{
+    name = Substitute+Calm Mind 
+    item = Gardevoirite
+    ability = Psychic Surge
     evs = 0, 0, 4, 252, 0, 252
-    nature = timid
-    moves = expanding force, blizzard/thunder, shadow ball/focus blast, nasty plot
-   comment = an absolute demon of a mon, nasty plot up and destroy everything 
+    nature = Timid
+    moves = Calm Mind, Substitute, Future Sight / Expanding Force, Moonblast / Hyper Voice
+    comment = A pretty cool mon, Substitute helps to alleviate its terrible physical bulk by limiting how much damage it takes. Calm Mind allows her to boost both her SpA and SpD, increasing both her damage output and staying power on the special side. Moonblast is her strongest Fairy STAB, although Hyper Voice can be used to bypass opposing substitutes. Future Sight allows her to attack while setting up or help overwhelm walls with multiple attacks per turn, while Expanding Force offers more immediate power.
+}
+Silvally
+{
+    name = Demi-God Ekiller
+    item = Silk Scarf / Life Orb / Leftovers
+    ability = Unaware
+    evs = 248, 252, 0, 0, 0, 0 
+    nature = Adamant
+    moves = Extreme Speed, Frustration / Shadow Claw, Recover, Swords Dance / Parting Shot
+    comment = An excellent selection of abilities, as well as access to STAB and Adaptability-boosted Extreme Speed, make Silvally a fantastic revenge killer. It can also function as a decent Unaware wall and pivot with Parting Shot, making this mon ideal for role compression.
+}
+Mew
+{
+    name = Cool Set, It's Mine Now
+    item = Choice Scarf / Leftovers
+    ability = Imposter
+    evs = 252 HP, 0 Atk, 0 Def, 0 SpA, 0 SpD, 0 Spe/generally irrelevant except for HP
+    nature = Irrelevant
+    moves = Irrelevant
+    comment = With more than double the HP of Ditto, Mew makes a far better abuser of Imposter. Its decent HP stat means it can potentially run Leftovers and make use of fatter mons' own recovery or offensive mons' setup, while a more traditional Choice Scarf allows it to easily revenge kill many boosted or weakened threats.
+}
+Jolteon
+{
+    name = Big Zaps 
+    item = Choice Specs / Life Orb
+    ability = Electro Surge
+    evs = 0, 0, 4, 252, 0, 252
+    nature = Timid
+    moves = Rising Voltage, Volt Switch, Ice Beam, Earth Power
+    comment = A strong Rising Voltage abuser, it also has incredible coverage options as an Eeveelution, learning Ice Beam from Glaceon and Earth Power from Leafeon.
+}
+Vaporeon 
+{
+    name = Specially Defensive 
+    item = Leftovers 
+    ability = Regenerator 
+    evs = 252, 0, 0, 4, 252, 0 
+    nature = Calm
+    moves = Scald, Strength Sap, Toxic, Teleport / Ice Beam 
+    comment = Vaporeon excels as a special wall due to her solid defensive stats, valuable abilities like Water Veil and Regenerator, and her reliable Water typing. Scald and Strength Sap are preferred to enhance her matchup against physical attackers by reducing their damage output. Toxic handles threats that can't be dealt with using Scald, while Teleport is useful for safely switching in an ally. Ice Beam can also be used to broaden her coverage and potentially Frostbite special targets.
+}
+Flareon
+{
+    name = Guts Attacker 
+    item = Toxic Orb
+    ability = Guts
+    evs = 0, 252, 0, 0, 4, 252 
+    nature = Adamant 
+    moves = Flare Blitz / Blaze Kick, Leaf Blade / Wild Charge, Icicle Crash / Triple Axle, Swords Dance / Extreme Speed
+   comment = The very definition of live fast, die hard. Flareon is an absolute monster, blowing as many holes in as many things as it can, before inevitably succumbing to it's toxic orb or recoil damage.
+}
+Espeon 
+{
+    name = Big Psychic 
+    item = Choice Specs / Life Orb / Choice Scarf 
+    ability = Psychic Surge
+    evs = 0, 0, 4, 252, 0, 252
+    nature = Modest / Timid 
+    moves = Expanding Force, Moonblast / Focus Blast, Fire Blast / Flamethrower / Overheat, Volt Switch 
+    comment = Similar to its cousin Jolteon, Espeon benefits from setting its own terrain for a terrain-boosted move. Being an Eeveelution grants it an extensive pool of coverage options. Its naturally high speed and ability to set Psychic Terrain make it excellent for speed and priority control, outpacing all unboosted Pokémon and suppressing priority moves. This synergy also complements its Avenger ability, allowing it to function as a potent revenge killer. Alternatively, Choice Specs or a Life Orb can significantly bolster Espeon's power, turning it into a formidable wallbreaker.
+}
+Umbreon 
+{
+    name = No Taunt Pls
+    item = Leftovers 
+    ability = Soul Linker
+    evs = 252, 0, 252, 0, 4, 0 
+    nature = Bold
+    moves = Strength Sap / Wish / Moonlight, Toxic / Leech Seed, Taunt, Teleport 
+   comment = Thanks to a very funny ability in Soul Linker, Umbreon essentially turns the opponents damage against them, which works well with it thanks to excellent bulk. Teleport and Taunt are mandatory, allowing Umbreon to function as both an interesting pivot and deny opponents attempts to wear it down through passive damage, or overwhelm it with boosts. The third slot should be some form of reliable recovery, as the vast majority of the damage this set inflicts mandates also receiving said damage. Strength Sap is useful to make the damage output of strong physical threats more manageable, Wish allows it to support teammates and synergizes extremely well with Teleport, while Moonlight serves as a more generally reliable and immediate option. The last slot should go to either Leech Seed or Toxic, with the former improving longevity and the latter ensuring most targets faint even if they avoid hitting Umbreon.
+}
+Glaceon 
+{
+    name = Calm Mind Sweeper 
+    item = Life Orb / Shell Bell / Heavy Duty Boots
+    ability = Ice Scales
+    evs = 252, 0, 252, 4, 0, 0 
+    nature = Bold
+    moves = Calm Mind, Freeze Dry / Blizzard / Hyper Voice, Earth Power, Thunderbolt 
+   comment = Excellent natural bulk combined with Ice Scales makes Glaceon extremely durable, easing it's setup with Calm Mind. Maximum defense investment is preferred, as several Calm Mind boosts alleviate the lack of SpA EVs
+}
+Sylveon
+{
+    name = Calm Mind Sweeper 
+    item = Life Orb / Shell Bell
+    ability = Fairy Aura 
+    evs = 252, 0, 252, 4, 0, 0
+    nature = Bold
+    moves = Hyper Voice / Moonblast, Earth Power, Calm Mind, Wish / Draining Kiss / Fireblast / Agility 
+   comment = Sylveon makes an excellent calm mind abuser thanks to her fantastic mono fairy typing, allowing her to run Earth Power to cover the majority of fairy resistant types, therefore freeing her moveslots up for other options such as Wish or Draining Kiss for recovery, Fire blast for the occasional oddball pokemon that resists both Fairy and Ground type, or Agility to fix her lacking speed stat 
+}
+Diancie-mega
+{
+    name = Calm Mind Sweeper 
+    item = Diancite
+    ability = Magic Guard 
+    evs = 0, 0, 4, 252, 0, 252
+    nature = Timid
+    moves = Diamond Storm, Body Press, Moonblast / Draining Kiss, Calm Mind
+   comment = Solid mixed defenses, sky high SpA, and an incredible signature move in Diamond Storm enable Diance-mega to become a powerful, bulky, and surprisingly fast sweeper. Diamond Storm has incredible synergy with Body Press, enabling her to bypass special walls that could otherwise slow her down. Calm Mind boosts her already impressive stats to monstrous levels, allowing her to tear through unprepared teams. Lastly, Moonblast or Draining Kiss provide a Fairy STAB, with the former being stronger and the latter increasing longevity.
+}
+Buzzwole
+{
+    name = BUZZ! BUZZ! BUZZ!
+    item = Life Orb / Shell Bell / Leftovers 
+    ability = Sheer Force 
+    evs = 152, 252, 0, 0, 0, 104
+    nature = Adamant 
+    moves = Quiver Dance, Bulk Up, Brick Break / Close Combat, Leech Life / Fell Stinger / Poison Jab / Meteor Mash
+   comment = Another Bug to be graced with the much coveted Quiver Dance, and an interesting pick for sure. 104 Speed EVs allow him to outspeed Timid base 100s at +1, while the rest goes into Attack and HP to maximize his damage output and survivability.
+   Quiver Dance does wonders for him, helping to patch up his severely lacking SpD and Spe stats. Bulk Up serves as secondary set up, allowing him to further bolster his already impressive physical side. With Sheer Force and Iron Fist, Brick Break reaches an impressive base power, without having to sacrifice the bulk he dances so hard to maintain. Alternatively, Close Combat offers a significantly stronger alternative if you are willing to suffer the defense drops. For the last slot, Bug STAB is an option, however this leave Buzz quite walled by most Fairy types, so Meteor Mash or Poison Jab could provide useful coverage against them.
+}
+Goodra
+{
+    name = Bulky Curse Sweeper 
+    item = Toxic Orb
+    ability = Sap Sipper
+    evs = 248, 252, 8, 0, 0, 0
+    nature = Adamant 
+    moves = Curse, Facade, Dragon Tail, Poison Tail / Power Whip / Fire Punch
+   comment = With access to a phenomenal combination of abilities in Poison Heal, Hydrate, and Amphibious, Goodra is able to find itself a unique niche as a Water type Facade abuser. It's excellent special bulk compliments a Curse set well, and after a few boosts it becomes a formidable powerhouse, both eating and delivering large amounts of damage.
+Facade serves as the main source of damage, with Poison Tail both providing coverage against Faeries that might try to threaten it, and potentially poisoning as well, allowing for passive damage as it boosts. Dragon Tail serves as a secondary STAB, and can be used to phase out opponents who attempt to boost up alongside Goodra. Alternatively, Power Whip or Fire Punch are options to hit oddball targets that might otherwise slow Goodra down, such as Quagsire or Ferrothorn.
+}
+Articuno
+{
+    name = North Wind Support 
+    item = Heavy Duty Boots
+    ability = North Wind
+    evs = 248, 0, 0, 4, 252, 0
+    nature = Calm
+    moves = Roost, Defog, U-Turn, Ice Beam
+   comment = With access to potentially the single best support ability in North Wind and a pivoting move in U-Turn, Articuno functions as excellent support, greatly reducing the damage it's team takes by setting Aurora Veil and removing hazards. Take care not to be reckless and allow it's Heavy Duty Boots to be removed, as it's poor defensive typing gives it an extreme vulnerability to Stealth Rock, greatly nullifying it's value as a defensive pivot.
+}
+Bastiodon
+{
+    name = Bastion 
+    item = Leftovers / Life Orb
+    ability = Stamina 
+    evs = 248, 0, 8, 0, 248, 0
+    nature = Calm
+    moves = Stealth Rock, Shore Up, Body Press, Iron Defense / Toxic / Roar
+   comment = A fantastic combination of abilities as well as ridiculous natural bulk makes Bastiodon quite hard to break on either side. Besides Stealth Rock and Recovery, Body Press synergizes well with Dauntless Shield and Stamina. For the last move, Iron Defense serves well to boost it's defense to astronomical levels in a single turn, making it's Body Press akin to a force of nature. Toxic is a decent alternative, useful for occasions where you want to keep hazards up against something spamming defog. Finally, Roar could be used, phasing moves naturally having good synergy with hazards and it allows Bastiodon to punish Ghost or Psychic types that might seek to boost up and overwhelm him.
+}
+Milotic 
+{
+    name = Mixed Wall
+    item = Flame Orb
+    ability = Marvel Scale 
+    evs = 248, 0, 252, 8, 0, 0 
+    nature = Bold
+    moves = Recover, Haze, Scald, Moonblast 
+   comment = A solid defensive typing, good natural bulk, and an excellent selection of abilities combine to turn Milotic into a durable wall on both sides. Haze+Recover allow it to serve as a general answer to many forms of set up, while Adaptability boosted Scald and Moonblast serve as both damage output, and a means to further bolster her bulk via Scald burns and Moonblast SpA drops.
+}
+Tyranitar-mega
+{
+    name = DDance Sweeper 
+    item = Tyranitarite
+    ability =  Moxie / Sand Stream
+    evs = 88, 252, 0, 0, 0, 168 
+    nature = Adamant 
+    moves = Dragon Dance, Wicked Blow, Strength, High Horsepower
+   comment = Tyranitar has been blessed with a myriad of boons, from a nuclear new Dark STAB in Wicked Blow to a more consistent(and stronger thanks to Juggernaut) Rock STAB in Strength, to slightly stronger Ground coverage thanks to Juggernaut additionally boosting High Horsepower. 168 Speed EVs outspeed Timid base 100s after a Dragon Dance, with the rest going into Attack and HP to maximize it's damage and bulk.
+}
+Blacephalon
+{
+    name = Special Scarf 
+    item = Choice Scarf 
+    ability = Pyromancy 
+    evs = 0, 0, 4, 252, 0, 252 
+    nature = Timid
+    moves = Shadow Ball, Fire Blast, Mind Blown / Hidden Power(Fighting), Trick 
+   comment = A good Speed tier and naturally high SpA make Blacephalon a good Choice Scarf user, outspeeding all unboosted mons and many Swift Swimmers and the like. Fire Blast serves as a strong Fire STAB, with Shadow Ball doing the same for Ghost. Mind Blown is an extremely powerful attack at the cost of cutting it's own Health, while HP Fighting hits oddball targets like Gyarados-mega or Tyranitar who resist it's STAB combination. Finally, Trick can be used to cripple opposing walls or lock offensive mons into their set up moves.
+}
+Heatmor
+{
+    name = AV Attacker
+    item = Assault Vest 
+    ability = Steelworker
+    evs = 252, 252, 4, 0, 0, 0 
+    nature = Adamant 
+    moves = Fire Lash, Bullet Punch, Meteor Mash / Drain Punch, Stomping Tantrum 
+   comment = A nice buff to it's bulk alongside it's already existing signature move Fire Lash(which has a 100% chance to lower the opponents defense) enable Heatmor as a viable AV abuser. Bullet Punch boosted by Tough Claws and Steelworker becomes a powerful priority move, Meteor Mash gives Heatmor the chance to boost it's attack, further increasing it's damage output alongside Fire Lash. Drain Punch could be used here instead to provide sustain, which this set notably lacks. Stomping Tantrum fills the last slot, having both good synergy with potential Meteor Mash misses, and allows Heatmor to hit fire types it would otherwise struggle against.
+}
+Yveltal 
+{
+    name = God of Death
+    item = Life Orb / Shell Bell / Heavy Duty Boots
+    ability = Bad Luck 
+    evs = 180, 0, 0, 252, 0, 76
+    nature = Modest
+    moves = Nasty Plot, Taunt / Roost, Dark Pulse, Oblivion Wing / Hurricane 
+   comment = Being granted access to an actually useful boosting move in addition to a plethora of fantastic abilities has made it amply clear that this mon is indeed a force of nature.
+   76 EVs in Speed guarantee Yveltal is the fastest unboosted mon in the game with Air Blower active, but investing fully into Speed to outspeed boosted foes is an option as well. The rest should go into SpA, and then HP whatever you choose. Nasty Plot boosts it's already impressive SpA to nuclear levels, allowing it to shred through all save the most durable or resistant walls. Dark Pulse is a consistent STAB move, with the added benefit of potentially denying a slower opponent a move via flinch. Oblivion Wing serves as an excellent secondary STAB, and can also provide valuable sustain to variants that opt for Taunt over Roost. Hurricane is an option instead, providing higher power at the cost of accuracy and a less useful/consistent secondary effect. Taunt or Roost are the main options for the last slot, with Taunt allowing it to deny hazards or recovery and Roost providing valuable sustain in addition to removing it's Flying type for the turn, allowing it to avoid SE damage from attacks aimed at that side of it's typing.
+}
+Xerneas
+{
+    name = DEER
+    item = Power Herb
+    ability = Pixilate 
+    evs = 0, 0, 4, 252, 0, 252 
+    nature = Modest / Timid 
+    moves = Geomancy, Boomburst, Earth Power, Ingrain / Substitute 
+   comment = Somehow, the Deer of Life has become more terrifying than it's death and destruction inspired brother, Pixilate and Fairy Aura boosted Boomburst render all things to dust, and Earth Power provides perfect coverage, hitting Fire, Poison, and Steel types that might aim to survive more than a single Boomburst on account of their typing. Geomancy is it's signature move, and with Power Herb it becomes a single turn boosting moves that even Quiver Dancers drool over. For the last slot, Ingrain is an option to prevent opponents from phasing Xerneas out, preventing them from wasting it's Power Herb. Substitute is an option instead, allowing it to scout out how the opponent reacts, therefore allowing to to preserve it's Herb if strong counterplay that could prevent it's sweep is present.
+}
+Dewgong 
+{
+    name = The Gong :skull:
+    item = Light Clay
+    ability = Fur Coat / Ice Scales
+    evs = 248, 0, 252, 8, 0, 0 
+    nature = Relaxed 
+    moves = Flip Turn, Freeze Dry, Slack Off, Toxic / Encore / Heal Bell / Scald
+   comment = Thanks to a couple....minor... buffs, Dewgong manages to find use on many teams, providing valuable support with it's extremely useful ability in North Wind. It also functions as an excellent wall, becoming nigh invincible on whichever side it chooses to supplement with it's ability. Freeze Dry serves as the main source of damage, with Ice being an excellent offensive type and Freeze Dry specifically being able to hit opposing Water Types for SE damage. Flip Turn allows The Gong to pivot out of bad matchups, allowing it to safely bring in an ally. Slack Off provides sustain, as even only taking 3% from most attacks does tend to add up. The last slot is generally free, and allows it to customize to suit it's team, having such options as Scald or Toxic to further spread status among the opposing team, Heal Bell enables it to further support it's allies, and Encore allowing it to further frustrate opponents by  locking them into their status or weak attacking moves.
+}
+Porygon2
+{
+    name = Bulky Sweeper
+    item = Eviolite 
+    ability = Download 
+    evs = 252, 0, 4, 252, 0, 0(0 spe IVs)
+    nature = Quiet
+    moves = Nasty Plot, Recover, Shadow Ball, Tri Attack
+   comment = Decent natural bulk combined with Eviolite makes Porygon2 quite sturdy for a sweeper, allowing it to set up multiple Nasty Plot boosts to patch up it's somewhat lacking SpA stat. Tri Attack is P2s' strongest Normal STAB that doesn't have any drawbacks, with the added benefit of potentially inflicting a status upon the opponent as well. Shadow Ball is it's best option hit ghosts with. A Quiet nature and 0 Speed IVs allow Porygon to go last as often as possible, therefore activating Analytic and maximizing it's damage output. 
+}
+Scyther 
+{
+    name = Bulky Sweeper 
+    item =  Eviolite 
+    ability = Perfectionist 
+    evs = 252, 252, 4, 0, 0, 0 
+    nature = Adamant 
+    moves = Swords Dance, Fury Attack, Pin Missile / U-Turn / X-Scissor, Sacred Sword 
+   comment = Thanks to decent bulk with Eviolite and Perfectionist allowing him to gain priority on low BP moves, Scyther becomes a fast and durable sweeper, at the notable downside of being inconsistent due to the mechanics behind multi-hit moves.
+   Fury Attack serves as the main damage output, gaining a Flying typing thanks to Aerilate while also gaining priority thanks to Perfectionist. Pin Missile can serve as a secondary STAB, although U-Turn provides valuable utility in a pivoting option and X-Scissor allows it to hit things immune to priority with STAB. Sacred Sword serves as the last attacking move, allowing Scyther to hit Steel types it's dual STAB is otherwise resisted by. Swords Dance fills the last move slot, allowing Scyther to boost it's attack and tear through teams.
+}
+Necrozma-Dusk-Mane
+{
+    name = DDance/Ultra Burst
+    item = Weakness Policy 
+    ability = Neuroforce
+    evs = 196, 252, 0, 0, 0, 60
+    nature = Adamant 
+    moves = Dragon Dance, Photon Geyser, Strength / Stone Edge, Frustration / Sunsteel Strike / Outrage / Earthquake 
+   comment = Thanks to the lack of Z moves and the subsequent rework of Ultra Burst into a move based Mega, NDM finds himself in the unique position of being able to combine two powerful sets, with his good bulk and Prism Armor in Dusk Mane form usually allowing him to proc his Weakness Policy, then Mega Evolve if needed to surprise threats with a drastic shift in Speed as well as a modest bump to power.
+   Photon Geyser serves as the STAB for this set, as well as being mandatory to allow it to Ultra Burst. Dragon Dance is the next hard slot, allowing it to boost it's Speed and Attack, further increasing it's destructive power. The last two slots should be dedicated to coverage, as Psychic is quite a poor type and there are many threats that might aim to eat such an attack. 
+   252 Attack EVs maximize Necrozmas sweeping potential, with 60 Speed EVs allowing it to outspeed pokemon with 90 base speed or below after a single Dragon Dance, without having to rely on Ultra Burst right away. The rest go into HP, to maximize it's bulk and allow it to activate it's Weakness Policy against as many threats as possible.
+}
+Shuckle
+{
+    name = Shuck
+    item = Leftovers 
+    ability = Contrary 
+    evs = 252, 0, 252, 0, 4, 0 
+    nature = Impish 
+    moves = Strength, Infestation, Toxic, Pain Split / Encore 
+   comment = With Contrary Strength, Shuckle gains the ability to boost both it's defenses while also delivering (extremely weak) attacks. This allows it to build into an extremely durable wall despite it's low HP stat, with it's skyhigh base defenses quickly rising to extremely high levels. Infestation and Toxic serve as passive damage, as this set is severely lacking in damage output. The last slot should go to pain split to maximize longevity and lessen Shuckle's Leftover dependency, or Encore to frustrate enemies who attempt to take advantage of Shuckle through status, boosting, etc.
+}
+Grimmsnarl
+{
+    name = Screens Support
+    item = Light Clay
+    ability = Prankster 
+    evs = 252, 0, 252, 0, 4, 0 
+    nature = Impish 
+    moves = Spirit Break, Taunt, Light Screen, Reflect 
+   comment = Thanks to a plethora of useful defensive abilities, Grimmsnarl becomes even more suited to it's vanilla niche as a screen setter. Light Screen and Reflect reduce all damage taken from their respective stat. Taunt allows it to deny the opponent hazards, status, or boosting. Spirit Break serves as a useful final move, as Fairy type has no immunities and the SpA drop further serves to reduce the damage it and it's team takes.
+}
+Snorlax 
+{
+    name = Slowlax
+    item = Leftovers 
+    ability = Comatose 
+    evs = 252, 4, 0, 0, 252, 0 
+    nature = Careful 
+    moves = Slack Off, Curse, Body Slam / Return, Body Press / Darkest Lariat
+   comment = A classic Snorlax set, enhanced thanks to his gains in reliable recovery and status immunity allowing him to function as an even better Curse user than before. Curse+Slack off allow him to setup on many things, with his high HP and SpD combining with Curse boosts to make him extremely durable while also packing quite the punch. Body Slam is a decently powerful Normal STAB with a useful secondary effect, although Return is an option for slightly more power. For the last slot, either Body Press or Darkest Lariat serve to allow it to muscle past Steel and Ghost types, respectively.
+}
+Pachirisu
+{
+    name = Regenvest 
+    item = Assault Vest
+    ability = Electric Surge
+    evs = 252, 0, 252, 4, 0, 0 
+    nature = Bold
+    moves = Nuzzle, Super Fang, U-Turn / Volt Switch, Thunderbolt  / Thunder 
+   comment = Thanks to a myriad of useful tools such as Nuzzle allowing it to spread status, Volt Switch or U-Turn to pivot, and Super Fang to instantly chunk a targets health, Pachirisu functions as a good defensive pivot, capable of stomaching a surprising number of hits thanks to Fur Coat and good special bulk.
+}
+Skarmory
+{
+    name = Physical Wall 
+    item = Rocky Helmet 
+    ability = Lead Coat 
+    evs = 252, 4, 252, 0, 0, 0 
+    nature = Impish
+    moves = Spikes / Stealth Rock, Whirlwind / Stealth Rock / Spikes,  Roost, Steel Wing / Wing Attack / Brave Bird
+   comment = An incredible typing and physical defense make Skarmory a fantastic wall, setting hazards while also wearing most physical threats down through chip damage thanks to it's Rocky Helmet. Any combination of Hazards and Whirlwind will do, while Roost is mandatory to keep Skarmory healthy and stacking hazards. The last slot should ideally go to some sort of attack to not leave Skarmory completely helpless against Taunt, although you could instead opt for dual hazards+Whirlwind if you're not worried about that.
+}
+Eevee
+{
+    name = Baby Baby Ekiller
+    item = Eviolite 
+    ability = Adaptability 
+    evs = 252, 252, 0, 0, 4, 0
+    nature = Adamant 
+    moves = Curse, Substitute, Extreme Speed, Frustration 
+   comment = Being a baby pokemon, Eevee is often far from the most viable or ideal choice. However, he does have the added benefit of offering an extreme amount of cuteness to teams, which can often be difficult to fit.  
+}
+Mew
+{
+    name = Degenerate Incarnate 
+    item = Leftovers 
+    ability = Magic Guard
+    evs = 252, 0, 252, 0, 4, 0
+    nature = Impish / Bold 
+    moves = Imprison, Transform, Block, U-Turn
+   comment = Hi there. Are you evil? Do you enjoy inflicting pain and misery upon whatever victim might be in front of you? Then look no further, as Mew apparently enjoys these things as well. Due to it's absurdly wide movepool, Mew finds itself with access to a terrifying combo. Block prevents the opposing Pokemon from switching out, while Imprison+Transform enables Mew to render the opposing Pokemon completely incapable of performing any action save struggling, allowing Mew to both easily remove it from the game, while additionally abusing whatever tools said Pokemon had to the greatest extent, allowing it to easily torment defensive pokemon through stacking their own hazards agains them, or offensive ones by setting itself up for a sweep.
+   Warning: The poster of this set is not responsible for any personal injuries resulting from the usage of this Pokemon!
+}
+Landorus-Therian
+{
+    name = Boom
+    item = Choice Band
+    ability = Aerilate 
+    evs = 0, 252, 0, 0, 4, 252
+    nature = Jolly
+    moves = Explosion, Stone Edge, Fissure, U-Turn
+   comment = This set is incredibly simple and straightforward. Explode if you want whats in front of you dead, U-Turn otherwise. Thanks to Aerilate, Choice Band, and an incredible Attack, Explosion will do a massive amount of damage to nearly any target, resulting in a large hole in most things irregardless of the opponent attempting counterplay.
+}
+Coalossal
+{
+    name = Galvspin
+    item = Heavy-Duty Boots
+    ability = Galvanize
+    evs = 252, 4, 0, 0, 252, 0
+    nature = Calm 
+    moves = Rapid Spin, Spikes / Stealth Rock, Wil-o-wisp, Flare Blitz / Fire Punch 
+   comment = Thanks to a rare combination in Galvanize and Rapid Spin, Coalossal finds itself in the unique position to not be spinblocked by ghosts, allowing it to function as extremely consistent hazard removal via bypassing the typical tools used to deny Rapid Spin. Giving it a move such as Spikes or Stealth Rock allows it to set it's own hazards, allowing for valuable role compression. Wil-o-wisp allows it to cripple opposing physical attackers, greatly reducing their damage output. Finally, some sort of attacking move should be run in the last slot to prevent coalossal from being excessively passive. Generally Fire is more advisable, as it threatens many Hazard setters far more than a Rock type move would, further allowing Coalossal to excel at it's role in hazard control 
+}
+Aggron-mega
+{
+    name = Curse Sweeper 
+    item = Aggronite
+    ability = Juggernaut 
+    evs = 248, 8, 252, 0, 0, 0
+    nature = Careful 
+    moves = Curse, Slack Off, Heavy Slam / Iron Head, Body Press / Earthquake 
+   comment = An absurdly high Defense, mono Steel typing combined with Primal Armor, and access to reliable recovery all combine to turn Mega Aggron into a nigh unbreakable beast on the physical side, with Curse enabling it to become an even more unstoppable force. Curse functions as a boost to both Aggrons' Attack and Defense, at the generally negligible cost of lowering it's already low speed. Slack off keeps Aggron healthy, preventing it from being worn down and allowing it to easily boost it's stats to maximum against many physical threats. Heavy Slam is a reliable Steel type STAB that often reaches good base power thanks to Aggrons weight, although Iron Head could be run as a more consistent option instead. For the last slot, Body Press synergizes well with Curse, Juggernaut, and Aggron as a whole allowing him to hit opposing Steel Types for SE damage. Earthquake can provide to the same ends, but lacks the high amount of synergy Body Press offers, in return offering a situationally more powerful attack, with the added benefit of not making contact.
+}
+Scizor-mega
+{
+    name = Demon Bug
+    item = Scizorite
+    ability = Intimidate 
+    evs = 252, 252, 0, 0, 4, 0
+    nature = Adamant 
+    moves = Extreme Speed, Bullet Punch, Sacred Sword / Roost, Swords Dance
+   comment = Incredible Attack, excellent typing, and a ridiculous combination of abilities combine to turn Scizor-mega into one of the most threatening offensive pokemon in the entire game, capable of tearing through teams lacking strong counterplay with ease thanks to it's powerful priority moves in Extreme Speed and Bullet Punch. Sacred Sword is an option to allow it to muscle past certain Steel types, while Roost allows it to take full advantage of it's bulk and typing, allowing it to freely set up multiple Swords Dances if needed.
+}
+Furret 
+{
+    name = Subbell
+    item = Shell Bell / Salac Berry (Belly Drum)
+    ability = Adaptability 
+    evs = 0, 252, 0, 0, 4, 252
+    nature = Adamant 
+    moves = Belly Drum / Coil, Substitute, Body Slam / Return / Headbutt, Drain Punch / Focus Punch / Fire Punch
+   comment = Good Speed and an excellent ability combination in Adaptability+Scrappy enable Furret to skip Ghost coverage, enabling it to setup behind a Substitute, ignoring most direct attempts at inflicting it with status as well as limiting the damage it takes. Belly Drum synergizes well with Substitute, as using it after Sub will put Furret at exactly the right HP to activate Salac Berry, turning it into a fast and devestatingly strong sweeper. Alternatively, Coil takes much longer to set up, but pairs well with Shell Bell and Substitute thanks to increasing Defense alongside Attack. Normal STAB fills the next slot, which a choice few moves offering acceptable BP with useful secondary effects. For the last slot, Steel and Rock coverage such as Drain Punch, or Focus Punch with skillful Sub usage is an obvious, although Fire Punch is an option to hit more specific targets harder. 
+}
+Chimecho
+{
+    name = Calm Mind Sweeper 
+    item = Leftovers / Life Orb
+    ability = Mystic Power / Magic Guard 
+    evs = 248, 0, 252, 8, 0, 0
+    nature = Bold
+    moves = Calm Mind, Recover, Stored Power / Moonblast, Boomburst / Shadow Ball / Energy Ball
+   comment = A unique and useful typing complimented by workable bulk enables Chimecho as a strong Calm Mind sweeper, with access to Recover easing it's setup and allowing it to boost itself to +6 easily. Furthermore, it is graced with the choice of two excellent ability options, with Magic Guard allowing it to wield a Life Orb for free, ignore passive damage, and potentially function as an excellent Burn absorber if needed.
+
+   Mystic Power is an equally appealing alternative, STAB offering a substantial increase in power over a Life Orb, while not giving up it's item slot, allowing it to potentially use Leftovers and lessen it's reliance on Recover, allowing it to setup faster.
 }
