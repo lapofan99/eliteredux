@@ -779,9 +779,166 @@ Ursaring
     name = The Pain Train
     item = Flame Orb
     ability = Tough Claws
-    evs = 6, 252, 0, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 6, 252, 0, 0, 0, 252
     nature = Jolly
-    moves = Protect, Facade, Close Combat/Frustration, Crunch/Psychic Fang
-   comment = Protect to set up burn and Facade to your heart's content. Fighting coverage will help with those pesky normal resist walls and situationally Crunch for Ghost types and Psychic Fang to break through screens
+    moves = Protect, Facade, Close Combat / Frustration, Crunch / Psychic Fang
+   comment = Protect to set up burn and Facade to your heart's content. Fighting coverage will help with those pesky normal resist walls and situationally Crunch for Ghost types and Psychic Fang to break through screens.
     .tags = Singles, Offensive
+}
+Magcargo
+{
+    name = Shell Smash Sweeper
+    item = Focus Sash
+    ability = Simple
+    evs = 6, 0, 0, 252, 0, 252
+    nature = Timid
+    moves = Shell Smash, Flamethrower / Heat Wave, Power Gem, Earth Power
+   comment = Partnered with a Stone or Spike setter this pokemon can Decimate the opposition. Just watch out for priority after you've set up as you likely be very low if not at 1 HP after setting up and don't try to set up on anything with hyper aggressive or Opportunist. This set up only offers one chance
+    .tags = Singles, Offensive, Troll
+}
+Umbreon
+{
+    name = Physical Regen Stall
+    item = Leftovers
+    ability = Self Sufficient 
+    evs = 252, 0, 130, 0, 128, 0
+    nature = Calm
+    moves = Acid Armor, Aqua Ring, Leech Seed, Toxic
+   comment = Can take care of a lot of targets once defenses and regeneration are up especially physical enemies but can be shut down hard by Taunt and Crit abusers as well as Grass Poison and Grass Steel types
+    .tags = Singles, Defensive, Troll
+}
+Typhlosion
+{
+    name = Choice Spec Eruption
+    item = Choice Spec
+    ability = Earthbound
+    evs = 6, 0, 0 , 252, 0, 252
+    nature = Timid / Modest
+    moves = Eruption, Earth Power, Extrasensory / Weatherball, Aura Sphere / Weatherball
+   comment = Very simple set, send Typhlosion out and nuke things with Eruption or one of your coverage moves, watch out for Entry Hazards. You can swap Extrasensory or Aura Sphere for Weatherball if you are running a Sandstorm team.
+    .tags = Single, Offensive
+}
+Skarmory
+{
+    name = Bulky Suicide Lead
+    item = Leftovers
+    ability = Sturdy
+    evs = 188, 0, 188, 0, 0, 134
+    nature = Jolly
+    moves = Stealth Rocks, Spikes / Defog, Air Cutter / Body Press, Protect / Roost
+   comment = This Set is almost guaranteed to set at least one this up before going down and has enough utility to do things like stalling out weather, clearing opposition entry hazards and breaking their entries Focus Sash
+    .tags = Single, Doubles, Defensive
+}
+Espeon
+{
+    name = Nuclear Kitty
+    item = Choice Scarf
+    ability = Sage Power / Soul Heart
+    evs = 0, 0, 0, 252, 6, 252
+    nature = Timid
+    moves = Psychic / Psyshock, Muddy Water, Shadow Ball / Dark Pulse, Freeze Dry
+   comment = This Kitty will hit hard and fast. The ability is personal preference on whether you want to hit hard or if you want to build momentum.
+    .tags = Singles, Offensive
+} 
+Furret
+{
+    name = The Fuzzy Wuzzy Physical Wall
+    item = Leftovers / Big Root
+    ability = Adaptability 
+    evs = 0, 252, 252, 0, 0, 6
+    nature = Impish
+    moves = Coil, Drain Punch, Cut, Return
+   comment = Send in on a physical attacker, Coil up and start Drain Punching if your HP starts getting too low. Great early game pokemon that can put some work in for your team.
+    .tags = Single, Double, Defensive, Offensive 
+} 
+Furret
+{
+    name = The Fuzzy Wuzzy Baton Passer
+    item = Leftovers
+    ability = Adaptability
+    evs = 0, 0, 252, 0, 252, 6
+    nature = Impish
+    moves = Coil, Drain Punch, Amnesia, Baton Pass
+   comment = Coil on a physical attacker, Drain punch to heal as needed and Amnesia until you are ready to pass over to the wrecking ball of your choice.
+    .tags = Single, Double, Defensive, Troll
+}
+Chandelure
+{
+    name = Candle of doom
+    item = Choice Scarf
+    ability = Flash Fire / Infiltrator
+    evs = 4, 0, 0, 252, 0, 252
+    nature = Timid
+    moves = Fire Blast, Shadow Ball, Energy Ball, Psychic / Trick / Heat Wave
+   comment = Pyromancy gives Fire Blast 50% chance to burn. Illuminate makes Fire Blast 100 accurate. Every possible speed investment + scarf allows Chandelure to outspeed a lot of things, then wreak havoc with Fire Blast. Other moves are for coverage. Psychic can be switched for Trick to cripple or Heatwave for doubles.
+}
+Banette Mega
+{
+    name = Offensive PranksterBond
+    item = bannettite
+    ability = cursed body/insomnia 
+    evs = 252, 252, 0, 0, 0, 0(0 speed ivs but not sure where to put that)
+    nature = brave
+    moves = destiny bond, spectral thief, shadows sneak, double edge
+   comment = a potent counter sweeper, he has the potential to force trades with prankster destiny bond, and punish destiny bond counterplay by stealing boosts and punishing switches with spectral thief and drawbackless double edge
+}
+Mew
+{
+    name = Dance Party 
+    item = Life Orb
+    ability = magic guard 
+    evs = 0, 0, 0, 252, 0, 252
+    nature = timid
+    moves = quiver dance, roost, stored power, coverage 
+   comment = it's Mew with QD! Stored power is to overwhelm unaware walls and the last slot is literally just "decide what you dont want to wall you" with mews incredible movepool 
+}
+Arcanine 
+{
+    name = Physical Pivot 
+    item = Heavy Duty Boots
+    ability = intimidate 
+    evs = 252, 252, 4, 0, 0, 0 
+    nature = adamant 
+    moves = flare blitz, bulldoze, morning sun, teleport 
+   comment = with access to intimidate and teleport Arcanine becomes a very useful pivot into many physically oriented mons, while also retaining a decent amount of offensive presence 
+}
+Hoopa
+{
+    name = Skill Issue 
+    item = life orb 
+    ability = illusion 
+    evs = 252, 0, 0, 252, 0, 0 
+    nature = quiet
+    moves = destiny bond, hypnosis, hyperspace hole, focus blast
+   comment = Hoopa functions as a very annoying special attacker with its combination of prankster hypnotist hypnosis, destiny bond, and a strong priority move in hyperspace hole. focus blast hits the dark types hoopa otherwise has no way to hit
+}
+Florges
+{
+    name = Specially Defensive 
+    item = leftovers
+    ability = fairy aura
+    evs = 248, 0, 0, 8, 252, 0 
+    nature = calm
+    moves = moonblast, wish, teleport, toxic
+   comment = an extremely durable special wall, capable of supporting teammates by passing them slow wishes and wearing down opposing pokemon with status and strong moonblasts
+}
+Sableye Mega
+{
+    name = Defensive Utility 
+    item = sablenite 
+    ability = soul linker 
+    evs = 252, 0, 0, 0, 252, 0
+    nature = careful 
+    moves = knock off, wil-o-wisp/thunder wave, taunt, recover 
+   comment = an incredibly useful utility set, capable of denying and spreading knock off, denying and spreading your choice of status, and denying opponents hazard setting and removal
+}
+mewtwo mega y
+{
+    name = Nuclear Warhead 
+    item = mewtwonite y
+    ability = psychic surge
+    evs = 0, 0, 4, 252, 0, 252
+    nature = timid
+    moves = expanding force, blizzard/thunder, shadow ball/focus blast, nasty plot
+   comment = an absolute demon of a mon, nasty plot up and destroy everything 
 }
