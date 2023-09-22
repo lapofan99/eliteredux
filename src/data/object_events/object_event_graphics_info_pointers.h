@@ -261,6 +261,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Carbink;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Diancie;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chansey;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cynthia;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Haxorus;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Haxorus_Shiny;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -519,6 +521,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_DIANCIE] =                  &gObjectEventGraphicsInfo_Diancie,
     [OBJ_EVENT_GFX_CHANSEY] =                  &gObjectEventGraphicsInfo_Chansey,
     [OBJ_EVENT_GFX_CYNTHIA] =                  &gObjectEventGraphicsInfo_Cynthia,
+    [OBJ_EVENT_GFX_HAXORUS] =                  &gObjectEventGraphicsInfo_Haxorus,
+    [OBJ_EVENT_GFX_HAXORUS_SHINY] =            &gObjectEventGraphicsInfo_Haxorus_Shiny,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

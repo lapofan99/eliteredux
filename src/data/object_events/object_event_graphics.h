@@ -397,14 +397,18 @@ const u32 gObjectEventPic_Regigigas[] = INCBIN_U32("graphics/object_events/pics/
 const u32 gObjectEventPic_Carbink[] = INCBIN_U32("graphics/object_events/pics/pokemon/carbink.4bpp");
 const u32 gObjectEventPic_Diancie[] = INCBIN_U32("graphics/object_events/pics/pokemon/diancie.4bpp");
 const u32 gObjectEventPic_Chansey[] = INCBIN_U32("graphics/object_events/pics/pokemon/chansey.4bpp");
+const u32 gObjectEventPic_Haxorus[] = INCBIN_U32("graphics/object_events/pics/pokemon/haxorus.4bpp");
 // People
 const u32 gObjectEventPic_Cynthia[] = INCBIN_U32("graphics/object_events/pics/people/cynthia.4bpp");
 // New pals
-const u16 gObjectEventPaletteCelebi[] = INCBIN_U16("graphics/object_events/palettes/celebi.gbapal");
-const u16 gObjectEventPaletteJirachi[] = INCBIN_U16("graphics/object_events/palettes/jirachi.gbapal");
-const u16 gObjectEventPaletteHeatran[] = INCBIN_U16("graphics/object_events/palettes/heatran.gbapal");
-const u16 gObjectEventPaletteRegigigas[] = INCBIN_U16("graphics/object_events/palettes/regigigas.gbapal");
-const u16 gObjectEventPaletteCynthia[] = INCBIN_U16("graphics/object_events/palettes/cynthia.gbapal");
+const u16 gObjectEventPaletteCelebi[]       = INCBIN_U16("graphics/object_events/palettes/celebi.gbapal");
+const u16 gObjectEventPaletteJirachi[]      = INCBIN_U16("graphics/object_events/palettes/jirachi.gbapal");
+const u16 gObjectEventPaletteHeatran[]      = INCBIN_U16("graphics/object_events/palettes/heatran.gbapal");
+const u16 gObjectEventPaletteRegigigas[]    = INCBIN_U16("graphics/object_events/palettes/regigigas.gbapal");
+const u16 gObjectEventPaletteCynthia[]      = INCBIN_U16("graphics/object_events/palettes/cynthia.gbapal");
+const u16 gObjectEventPaletteHaxorus[]      = INCBIN_U16("graphics/object_events/palettes/haxorus.gbapal");
+const u16 gObjectEventPaletteHaxorusShiny[] = INCBIN_U16("graphics/object_events/palettes/haxorus_shiny.gbapal");
+
 
 const u32 gFieldEffectObjectPic_CaveDust[] = INCBIN_U32("graphics/field_effects/pics/cave_dust.4bpp");
 const u16 gFieldEffectObjectPalette_CaveDust[] = INCBIN_U16("graphics/field_effects/palettes/cave_dust.gbapal");

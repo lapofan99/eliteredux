@@ -257,8 +257,10 @@
 #define OBJ_EVENT_GFX_DIANCIE                    253
 #define OBJ_EVENT_GFX_CHANSEY                    254
 #define OBJ_EVENT_GFX_CYNTHIA                    255
+#define OBJ_EVENT_GFX_HAXORUS                    256
+#define OBJ_EVENT_GFX_HAXORUS_SHINY              257
 
-#define NUM_OBJ_EVENT_GFX                        256
+#define NUM_OBJ_EVENT_GFX                        258
 
 
 // These are dynamic object gfx ids.

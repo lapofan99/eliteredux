@@ -2276,3 +2276,15 @@ static const struct SpriteFrameImage sPicTable_Cynthia[] = {
     overworld_frame(gObjectEventPic_Cynthia, 2, 4, 2),
     overworld_frame(gObjectEventPic_Cynthia, 2, 4, 2),
 };
+
+static const struct SpriteFrameImage sPicTable_Haxorus[] = {
+    overworld_frame(gObjectEventPic_Haxorus, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Haxorus, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Haxorus, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Haxorus, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Haxorus, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Haxorus, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Haxorus, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Haxorus, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Haxorus, 4, 4, 2),
+};
