@@ -419,8 +419,9 @@ static const u8 sEquinoxDescription[] =  _("Atk & SpAtk match higher\nvalue post
 static const u8 sAbsorbantDescription[] =  _("Drain moves recover +50%\nHP & apply Leech Seed.");
 static const u8 sCluelessDescription[] =  _("Negates Weather, Rooms\nand Terrains.");
 static const u8 sCheapTacticsDescription[]    = _("Attacks with Scratch\non switch-in.");
-static const u8 sCheatingDeathDescription[] =  _("");
-static const u8 sDoubleShieldDescription[] =  _("");
+static const u8 sCheatingDeathDescription[] =  _("Gets no damage for\nthe first two hits.");
+static const u8 sCowardDescription[] =  _("Sets up Protect on switch-in.\nOnly works once.");
+static const u8 sVoltRushDescription[] =  _("Electric moves get +1\npriority. Requires full HP.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -854,8 +855,9 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_CLUELESS] = _("Clueless"),
     [ABILITY_CHEATING_DEATH] = _("Cheating Death"),
     [ABILITY_CHEAP_TACTICS] = _("Cheap Tactics"),
-    [ABILITY_DOUBLE_SHIELD] = _("Double Shield"),
+    [ABILITY_COWARD] = _("Coward"),
     [ABILITY_SPECTRALIZE] = _("Spectralize"),
+	[ABILITY_VOLT_RUSH] = _("Volt Rush"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1288,6 +1290,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_CLUELESS] = sCluelessDescription,
     [ABILITY_CHEATING_DEATH] = sCheatingDeathDescription,
     [ABILITY_CHEAP_TACTICS] = sCheapTacticsDescription,
-    [ABILITY_DOUBLE_SHIELD] = sDoubleShieldDescription,
+    [ABILITY_COWARD] = sCowardDescription,
     [ABILITY_SPECTRALIZE] = sSpectralizeDescription,
+    [ABILITY_VOLT_RUSH] = sVoltRushDescription,
 };

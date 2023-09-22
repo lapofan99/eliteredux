@@ -5040,11 +5040,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_DOUBLE_SHIELD:
+        case ABILITY_COWARD:
             if(gDisableStructs[battler].noDamageHits == 0 && 
                !gBattleMons[battler].singeuseability[0]){
                 gBattleMons[battler].singeuseability[0] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DOUBLE_SHIELD;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COWARD;
                 gDisableStructs[battler].noDamageHits = 1;
                 if(gDisableStructs[battler].noDamageHits == 1)
                     BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
@@ -5832,12 +5832,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 
-        //Double Shield
-        if(BattlerHasInnate(battler, ABILITY_DOUBLE_SHIELD)){
+        // Coward
+        if(BattlerHasInnate(battler, ABILITY_COWARD)){
             if(gDisableStructs[battler].noDamageHits == 0 && 
-               !gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_DOUBLE_SHIELD) + 1]){
-                gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_DOUBLE_SHIELD) + 1] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DOUBLE_SHIELD;
+               !gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_COWARD) + 1]){
+                gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_COWARD) + 1] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COWARD;
                 gDisableStructs[battler].noDamageHits = 1;
                 if(gDisableStructs[battler].noDamageHits == 1)
                     BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);

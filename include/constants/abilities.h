@@ -190,7 +190,7 @@
 #define ABILITY_REFRIGERATE 174 // All Normal-type moves used by the Pokémon to become Ice-type and receive a 10% power boost.
 #define ABILITY_SWEET_VEIL 175 // *No innate* Prevents itself and ally Pokémon from falling asleep.
 #define ABILITY_STANCE_CHANGE 176 // *No innate* The Pokémon changes its form to Blade Forme when it uses an attack move and changes to Shield Forme when it uses King's Shield.
-#define ABILITY_GALE_WINGS 177 // Flying moves have priority. Doesn’t require full HP.
+#define ABILITY_GALE_WINGS 177 // Flying-type moves have +1 priority. Requires full HP.
 #define ABILITY_MEGA_LAUNCHER 178 // Boosts all beam, pump, cannon, zooka, shot, gun, aura and pulse moves by 50%.
 #define ABILITY_GRASS_PELT 179 // Increases Defense by 50% when battling on Grass or if the move Grassy Terrain is in effect
 #define ABILITY_SYMBIOSIS 180 // May pass an item to an ally.
@@ -378,7 +378,7 @@
 #define ABILITY_NORTH_WIND       (ABILITIES_COUNT_LATEST_GEN + 80) // Sets Aurora Veil on entry. Immune to Hail damage.
 #define ABILITY_OVERCHARGE       (ABILITIES_COUNT_LATEST_GEN + 81) // Electric does 2x damage against Electric. Can paralyze Electric-types.
 #define ABILITY_VIOLENT_RUSH     (ABILITIES_COUNT_LATEST_GEN + 82) // Boosts Speed by 1.5x, Attack by 1.2x on first turn (same activation requirements as Fake Out)
-#define ABILITY_FLAMING_SOUL     (ABILITIES_COUNT_LATEST_GEN + 83) // Fire type moves have +1 priority (Fire type Gale Wings).
+#define ABILITY_FLAMING_SOUL     (ABILITIES_COUNT_LATEST_GEN + 83) // Fire-type moves have +1 priority. Requires full HP.
 #define ABILITY_SAGE_POWER       (ABILITIES_COUNT_LATEST_GEN + 84) // Automatically locked into the first move chosen, but boosts Special Attack by 1.5x (Gorilla Tactics for Special moves)
 #define ABILITY_BONE_ZONE        (ABILITIES_COUNT_LATEST_GEN + 85) // Bone-Based moves ignore immunities and also deal double damage on not very effective. 
 #define ABILITY_WEATHER_CONTROL  (ABILITIES_COUNT_LATEST_GEN + 86) // Negates all moves related to weather condition from opposing Pokémon. [Affected moves: Thunder, Blizzard, Solar Beam, Solar Blade, Hurricane]
@@ -389,7 +389,7 @@
 #define ABILITY_FLOCK            (ABILITIES_COUNT_LATEST_GEN + 91) // Overgrow for Flying moves.
 #define ABILITY_FIELD_EXPLORER   (ABILITIES_COUNT_LATEST_GEN + 92) // Increases the power of field moves by 25%. [Affected moves: Dig, Headbutt, Secret Power, Chatter, Fly, Cut, Strength, Surf, Waterfall, Rock Climb, Flash, Whirlpool, Dive]
 #define ABILITY_STRIKER          (ABILITIES_COUNT_LATEST_GEN + 93) // Boosts kicking moves by 1.3x. Moves affected by Striker: Blaze Kick, Jump Kick, High Jump Kick, Triple Axel, Triple Kick, Stomp, Mega Kick, Low Kick, Rolling Kick, Trop Kick, Pyro Ball, High Horsepower, Double Kick, Thunderous Kick.
-#define ABILITY_FROZEN_SOUL      (ABILITIES_COUNT_LATEST_GEN + 94) // Ice-type moves have +1 priority (Ice type Gale Wings).
+#define ABILITY_FROZEN_SOUL      (ABILITIES_COUNT_LATEST_GEN + 94) // Ice--type moves have +1 priority. Requires full HP.
 #define ABILITY_PREDATOR         (ABILITIES_COUNT_LATEST_GEN + 95) // Heals 1/4 HP when defeating an enemy.
 #define ABILITY_LOOTER           (ABILITIES_COUNT_LATEST_GEN + 96) // Heals 1/4 HP when defeating an enemy.
 #define ABILITY_LUNAR_ECLIPSE    (ABILITIES_COUNT_LATEST_GEN + 97) // The Pokémon's Fairy- and Dark-type moves gain same-type attack bonus regardless the Pokémon's typing. Hypnosis has its Accuracy increased by 50%.
@@ -456,9 +456,10 @@
 #define ABILITY_CLUELESS         (ABILITIES_COUNT_LATEST_GEN + 158) // When this Pokemon is on the field, all field effects, such as weather, rooms, or terrains, are negated
 #define ABILITY_CHEATING_DEATH   (ABILITIES_COUNT_LATEST_GEN + 159) // You get no damage for the first two hits.
 #define ABILITY_CHEAP_TACTICS    (ABILITIES_COUNT_LATEST_GEN + 160) // Attacks with Scratch on switch-in.
-#define ABILITY_DOUBLE_SHIELD    (ABILITIES_COUNT_LATEST_GEN + 161) // Disguise Clone without transformation
+#define ABILITY_COWARD    (ABILITIES_COUNT_LATEST_GEN + 161) // Disguise Clone without transformation
+#define ABILITY_VOLT_RUSH        (ABILITIES_COUNT_LATEST_GEN + 162) // Electric-type moves have +1 priority. Requires full HP.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_DOUBLE_SHIELD + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_VOLT_RUSH + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 
