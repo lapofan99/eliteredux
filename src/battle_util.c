@@ -13072,6 +13072,14 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
                 RecordAbilityBattle(battlerDef, ability);
         }
         break;
+    case ABILITY_DUNE_TERROR:
+        if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+        break;
 	case ABILITY_SHELL_ARMOR:
 	case ABILITY_BATTLE_ARMOR:
         MulModifier(&modifier, UQ_4_12(0.8));
@@ -13152,6 +13160,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Christmas Spirit
 	if(BattlerHasInnate(battlerDef, ABILITY_CHRISTMAS_SPIRIT)){
 		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY){
+			MulModifier(&modifier, UQ_4_12(0.5));
+		}
+    }
+    // Dune Terror
+	if(BattlerHasInnate(battlerDef, ABILITY_DUNE_TERROR)){
+		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY){
 			MulModifier(&modifier, UQ_4_12(0.5));
 		}
     }
@@ -13640,6 +13654,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.25));
         }
         break;
+    case ABILITY_DUNE_TERROR:
+        if (moveType == TYPE_GROUND)
+        {
+            MulModifier(&modifier, UQ_4_12(1.2));
+        }
+        break;
 	case ABILITY_ILLUSION:
         if (gBattleStruct->illusion[battlerAtk].on && !gBattleStruct->illusion[battlerAtk].broken)
         {
@@ -14017,6 +14037,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		if (moveType == TYPE_GROUND)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
+        }
+	}
+    // Dune Terror
+	if(BattlerHasInnate(battlerAtk, ABILITY_DUNE_TERROR)){
+		if (moveType == TYPE_GROUND)
+        {
+            MulModifier(&modifier, UQ_4_12(1.2));
         }
 	}
 	// Levitate

@@ -422,6 +422,7 @@ static const u8 sCheapTacticsDescription[]    = _("Attacks with Scratch\non swit
 static const u8 sCheatingDeathDescription[] =  _("Gets no damage for\nthe first two hits.");
 static const u8 sCowardDescription[] =  _("Sets up Protect on switch-in.\nOnly works once.");
 static const u8 sVoltRushDescription[] =  _("Electric moves get +1\npriority. Requires full HP.");
+static const u8 sDuneTerrorDescription[] = _("Halves incoming damage in sand.\nBoosts Ground moves by 20%.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -858,6 +859,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_COWARD] = _("Coward"),
     [ABILITY_SPECTRALIZE] = _("Spectralize"),
 	[ABILITY_VOLT_RUSH] = _("Volt Rush"),
+    [ABILITY_DUNE_TERROR] = _("Dune Terror"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1293,4 +1295,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_COWARD] = sCowardDescription,
     [ABILITY_SPECTRALIZE] = sSpectralizeDescription,
     [ABILITY_VOLT_RUSH] = sVoltRushDescription,
+    [ABILITY_DUNE_TERROR] = sDuneTerrorDescription,
 };
