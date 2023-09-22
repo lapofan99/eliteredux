@@ -664,8 +664,9 @@
 #define STRINGID_ATTACKERISREADYTOTESTYOU             693
 #define STRINGID_PKMNSSTATSWEREBOOSTED                694
 #define STRINGID_WILDPOKEMONMEGAEVOLVED               695
+#define STRINGID_THEOPPOSINGATTACKERROARSWILDLY       696
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_WILDPOKEMONMEGAEVOLVED + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_THEOPPOSINGATTACKERROARSWILDLY + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

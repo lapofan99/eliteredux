@@ -794,9 +794,11 @@ static const u8 sText_ThePokemonBlockedTheBall[] = _("{B_OPPONENT_MON1_NAME} blo
 static const u8 sText_AttackerIsReadyToTestYou[] = _("The Pokémon {B_OPPONENT_MON1_NAME} is ready\nto test you!");
 static const u8 sText_AttackerStatsWereBoosted[] = _("Some of the {B_OPPONENT_MON1_NAME}'s\nstats were raised!");
 static const u8 sText_WildMonMegaEvolved[] = _("A mysterious force is surrounding the\nPokemon {B_OPPONENT_MON1_NAME}!");
+static const u8 sText_TheOpposingAttackerRoarsWildly[] = _("The opposing {B_OPPONENT_MON1_NAME} roars wildly!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_THEOPPOSINGATTACKERROARSWILDLY - 12] = sText_TheOpposingAttackerRoarsWildly,
     [STRINGID_WILDPOKEMONMEGAEVOLVED - 12] = sText_WildMonMegaEvolved,
     [STRINGID_PKMNSSTATSWEREBOOSTED - 12] = sText_AttackerStatsWereBoosted,
     [STRINGID_ATTACKERISREADYTOTESTYOU - 12] = sText_AttackerIsReadyToTestYou,

@@ -10519,6 +10519,18 @@ BattleScript_WildTotemBoostActivated::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_HaxorusTotemBoostActivated::
+	printstring STRINGID_THEOPPOSINGATTACKERROARSWILDLY
+	waitmessage B_WAIT_TIME_LONG
+	playmoveanimation BS_ATTACKER, MOVE_HOWL
+	waitanimation
+	waitmessage B_WAIT_TIME_LONG
+	setgraphicalstatchangevalues
+	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printstring STRINGID_PKMNSSTATSWEREBOOSTED
+	waitmessage B_WAIT_TIME_LONG
+	end3
 
 BattleScript_WildTotemMegaEvolution::
 	printstring STRINGID_WILDPOKEMONMEGAEVOLVED

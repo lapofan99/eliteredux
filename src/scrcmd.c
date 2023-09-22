@@ -2762,7 +2762,6 @@ bool8 ScrCmd_setwildbattlewithcustommoves(struct ScriptContext *ctx)
     u16 move4      = ScriptReadHalfword(ctx);
     u16 abilitynum = ScriptReadHalfword(ctx);
     u16 nature     = ScriptReadHalfword(ctx);
-    bool8 shiny    = ScriptReadHalfword(ctx);
     struct Pokemon *pkmn = &gEnemyParty[0];
 
     CreateScriptedWildMon(species, level, item);

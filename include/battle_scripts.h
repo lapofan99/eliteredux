@@ -483,6 +483,7 @@ extern const u8 BattleScript_ToxicWasteTurnDmg[];
 extern const u8 BattleScript_LegendaryPokemonBallBlock[];
 extern const u8 BattleScript_WildTotemBoostActivated[];
 extern const u8 BattleScript_WildTotemMegaEvolution[];
+extern const u8 BattleScript_HaxorusTotemBoostActivated[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

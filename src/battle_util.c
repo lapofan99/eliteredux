@@ -6307,10 +6307,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			gBattleMons[battler].statStages[STAT_EVASION] = gBattleMons[battler].statStages[STAT_EVASION] + VarGet(VAR_TOTEM_POKEMON_EVASION_BOOST);
 			
 			SET_STATCHANGER(STAT_SPATK, 1, FALSE);
-            BattleScriptPushCursorAndCallback(BattleScript_WildTotemBoostActivated); // Try activate
+
+            switch(VarGet(VAR_TOTEM_MESSAGE)){
+                case TOTEM_FIGHT_HAXORUS:
+                    BattleScriptPushCursorAndCallback(BattleScript_HaxorusTotemBoostActivated);
+                break;
+                default:
+                    BattleScriptPushCursorAndCallback(BattleScript_WildTotemBoostActivated);
+                break;
+            }
             effect++;
 
-            //Removing these flags are handled in HandleEndTurn_FinishBattle
+			VarSet(VAR_TOTEM_POKEMON_ATK_BOOST, 0);
+			VarSet(VAR_TOTEM_POKEMON_DEF_BOOST, 0);
+			VarSet(VAR_TOTEM_POKEMON_SP_ATK_BOOST, 0);
+			VarSet(VAR_TOTEM_POKEMON_SP_DEF_BOOST, 0);
+			VarSet(VAR_TOTEM_POKEMON_SPEED_BOOST, 0);
+			VarSet(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 0);
+			VarSet(VAR_TOTEM_POKEMON_EVASION_BOOST, 0);
+			VarSet(VAR_TOTEM_MESSAGE, 0);
 		}
 
         break;

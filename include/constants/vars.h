@@ -131,7 +131,7 @@
 #define VAR_ROUTE117_STATE                   0x4070 // Unused Var
 #define VAR_ROUTE118_STATE                   0x4071
 #define VAR_ROUTE119_STATE                   0x4072
-#define VAR_ROUTE120_STATE                   0x4073 // Unused Var
+#define VAR_TOTEM_MESSAGE                    0x4073
 #define VAR_ROUTE121_STATE                   0x4074
 #define VAR_TOTEM_POKEMON_ATK_BOOST          0x4075 // Attack Boost
 #define VAR_TOTEM_POKEMON_DEF_BOOST          0x4076 // Defense Boost

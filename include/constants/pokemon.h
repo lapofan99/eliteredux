@@ -423,4 +423,8 @@
 #define DRAIN_EFFECT_ABILITY      1
 #define DRAIN_EFFECT_OTHER        2
 
+//Totem Fights
+#define TOTEM_FIGHT_NORMAL        0
+#define TOTEM_FIGHT_HAXORUS       0
+
 #endif // GUARD_CONSTANTS_POKEMON_H
