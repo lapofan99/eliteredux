@@ -774,3 +774,14 @@ Torterra
     moves = Leech Seed, Body Press, Synthesis, Amnesia / Stockpile
    comment = Aim of this set is to take in resisted hits while using Amnesia or Stockpile to make Torterra virtually unkillable short of a critical hit due to Big Leaves Sitrus Berry and Synthesis. Stamina will keep boosting Defenses and will continuously amp the damage from Body Press. If you don't need +6 SpDef you can opt for Stockpile so that you can reach +6 Def sooner. Because of Big Leaves, Synthesis will heal for 75% health, but be aware of the limited PP. Sitrus Berry for survival, but you can opt for things like Yache, Occa, or Coba Berry as well, which will be all be harvested due to Big Leaves. Depending on who you're fighting against, you can put EVs from Defense into SpDef.
 }
+Ursaring
+{
+    name = The Pain Train
+    item = Flame Orb
+    ability = Tough Claws
+    evs = 6, 252, 0, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    nature = Jolly
+    moves = Protect, Facade, Close Combat/Frustration, Crunch/Psychic Fang
+   comment = Protect to set up burn and Facade to your heart's content. Fighting coverage will help with those pesky normal resist walls and situationally Crunch for Ghost types and Psychic Fang to break through screens
+    .tags = Singles, Offensive
+}
