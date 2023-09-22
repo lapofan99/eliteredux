@@ -5173,6 +5173,7 @@ static const struct LevelUpMove sOctilleryLevelUpLearnset[] = {
 
 static const struct LevelUpMove sDelibirdLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_DUAL_WINGBEAT), // new
+    LEVEL_UP_MOVE( 1, MOVE_HAIL), // new
     LEVEL_UP_MOVE( 1, MOVE_PRESENT),
     LEVEL_UP_MOVE(25, MOVE_DRILL_PECK),
 	//LEVEL_UP_MOVE(30, MOVE_SKY_DROP), //new
@@ -13976,6 +13977,10 @@ static const struct LevelUpMove sFraxureLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sHaxorusLevelUpLearnset[] = {
+	LEVEL_UP_MOVE( 1, MOVE_FIRE_PUNCH), // new
+	LEVEL_UP_MOVE( 1, MOVE_THUNDER_PUNCH), // new
+	LEVEL_UP_MOVE( 1, MOVE_ICE_PUNCH), // new
+	LEVEL_UP_MOVE( 1, MOVE_DRAIN_PUNCH), // new
 	LEVEL_UP_MOVE( 1, MOVE_LEER),
 	LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
 	LEVEL_UP_MOVE( 1, MOVE_BITE),
