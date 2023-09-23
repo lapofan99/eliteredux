@@ -19293,6 +19293,7 @@ static const struct LevelUpMove sMorgremLevelUpLearnset[] = {
 
 static const struct LevelUpMove sGrimmsnarlLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_SPIRIT_BREAK),
+    LEVEL_UP_MOVE( 1, MOVE_PARTING_SHOT), // 
     LEVEL_UP_MOVE( 1, MOVE_FALSE_SURRENDER),
     LEVEL_UP_MOVE( 1, MOVE_BULK_UP),
     LEVEL_UP_MOVE( 1, MOVE_POWER_UP_PUNCH),
