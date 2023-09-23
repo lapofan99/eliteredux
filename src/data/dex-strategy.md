@@ -1665,3 +1665,128 @@ Shuckle
     Your item slot has a lot of flexibility. The 50% healing berries, Sitrus Berry or Leftovers will let Shuckle click moves other than Pain Split more often, the choice is mostly up to preference and/or what you're fighting. Mental Herb is cute if you use Shuckle against something with Taunt or Encore. Lum Berry is there if random para or sleep will ruin your day. There's probably something funny you can pull on the AI with a Red Card. That being said, it's still ultimately best as a suicide lead, so Custap Berry, the weakness berries or Focus Sash are there if that's your thing.
     .tags = Defensive
 }
+Musharna
+{  name = The Nuclear Option
+    item = Choice Specs
+    ability = Psychic Surge
+    evs = 252, 0, 0, 252, 4, 0
+    nature = Quiet / Modest
+    moves = Expanding Force, Dazzling Gleam / Moonblast, Shadow Ball, Coverage Move
+   comment = This set does one thing, and that is nuke things with Expanding Force. Fairy/Ghost mixed with Psychic give you near perfect coverage, so the 4th slot can really be whatever super.effective move you might need. This set should primarily be used on a Doubles team with a Trick Room setter like Reuniclus or Haterrene as it allows you to move first and kill most things before they get a chance to move as you get to click double expanding force.
+    .tags = Doubles, Offensive
+} 
+Azumarill 
+{
+    name = Shell Bell Terror
+    item = Shell Bell
+    ability = Sap Sipper 
+    evs = 252, 252, 0, 0, 6, 0,
+    nature = Adamant 
+    moves = Aqua Jet, Play Rough, Belly Drum, Ice Punch
+    comment = The Shell Bell will restore 1/3 of your HP after you hit the opponent each time so after you use Belly Drum, Aqua Jet will heal you up right away next turn when used.
+}
+Persian
+{
+    name = Crit Cat
+    item = Scope Lens
+    ability = Sniper
+    evs = 4, 252, 0, 0, 0, 252
+    nature = Adamant
+    moves = Fake Out, Fury Swipes, Payback, Knock Off
+   comment = Perfectionist with Scope Lens gives all of it's moves 50% Crit Chance excluding Knock Off because it has no other physical move 50 BP or lower that isn't either a Special Attack or Scratch and the Sniper and Technician boosts allows it to hit really hard with crit Fury Swipes.
+    .tags = Singles, Offensive
+}
+Gallade
+{ 
+    name = Reversal
+    item = Liechi Berry
+    ability = Perfectionist
+    evs = 0, 252, 4, 0, 0, 252
+    nature = Adamant
+    moves = Endure, Reversal, Triple Axel, Shadow Sneak
+   comment = Reversal is programmed to have 1 BP, meaning it activates Perfectionist. Endure down to 1 HP and then start clicking your 200 BP priority STAB move with additional +1 priority coverage for the Flying- and Ghost-types that love to stop your Reversal spam. 
+
+   Be careful of Rocky Helmet/Rough Skin, Dazzling/Queenly Majesty, and chip from weather or abilities like Aftermath. There is a lot of inconsistency with this kind of set, but when positioned properly with Stealth Rock to deal with Focus Sash and a way to keep Gallade safe from chip, the power of it is unmatched. Very few things can boast a 200 BP priority STAB from 125 base Attack.
+    .tags = Singles, Troll
+}
+Braviary
+{
+    name = Murder Bird
+    item = Choice Band
+    ability = Gale Wings
+    evs = 252, 4, 0, 0, 0, 252
+    nature = Adamant
+    moves = Dual Wingbeat, Return, Steel Wing, Close Combat / Zen Headbutt
+   comment = This set takes out just about anything that doesn't resist Dual Wingbeat even if they have a Focus Sash
+}
+Sigilyph 
+{
+    name = Your dreams are mine now
+    item = Shell Bell / Focus Sash
+    ability = Dreamcatcher
+    evs = 6, 0, 0, 252, 0, 252
+    nature = Timid
+    moves = Hypnosis, Shadow Ball, Dream Eater, Dazzling Gleam/Ice Beam
+    comment = Sigilyph is an underrated Pokémon but in the right conditions it could do massive damages and sweep the foe's team. 
+
+    Dreamcatcher is an ability that doubles move power if anyone in the field is asleep.
+    Its base speed is really good (97) and investing 252 EV on this stat should ensure you the first move. 
+    Obviously you'll use Hypnosis as first move and restore your HP with Dream Eater + Shell Bell in case you've missed the first status move or the foe is faster that Sigilyph. 
+    Shadow Ball is a must pick thanks to Sigilyph's ability it gains STAB and as fourth move it could be good Dazzling Gleam in case you're facing a Dark type Pokémon but elemental moves like Heat Wave and Ice Beam should work too. 
+    It can learn Solar Beam too so it's totally worth even in a Sunny Day/Drought team. 
+    Show Sigilyph some love, it deserve it! 
+}
+Ninjask
+{
+    name = Fly-By
+    item = Focus Sash / Heavy-Duty Boots
+    ability = Speed Force
+    evs = 0, 252, 6, 0, 0, 252
+    nature = Adamant
+    moves = Swords Dance / Protect, X-Scissor, Fly, Dig
+   comment = Sash for SD, Protect for Boots. Fly is Ninjask's most powerful Flying STAB and its one turn of invulnerability allows you to get a Speed Boost to power up your attacks even more. The same goes for Dig, which is for anything its dual STABs can't handle (Steel, Rock, Fire etc.).
+}
+Shedinja
+{
+    name = Bug-Burner
+    item = Heavy-Duty Boots / Focus Sash
+    ability = Wonder Guard
+    evs = 0, 0, 0, 252, 0, 252
+    nature = Naive
+    moves = Will O Wisp, Hex, Skitter Smack / Struggle Bug / Poltergeist, Swagger / Shadow Sneak / Thief
+   comment = Pester physical attackers with this pesky Shedinja set. The last 2 moves can be interchanged with almost any other move in Shedinja's kit, depending on what the situation calls for. Can also be a wincon if you can manage to get rid of your opponents' Ghost and Bug coverage.
+}
+Excadrill
+{ 
+    name = Sand Rush Sweeper
+    item = Life Orb / Leftovers
+    ability = Tough claws
+    evs = 0, 252, 0, 0, 4, 252
+    nature = Jolly
+    moves = High Horsepower / Drill Run, Iron Head, Strength, Swords Dance / Rapid Spin
+   comment = Thanks to Tough Claws, Sand Force and Earthbound, High Horsepower hits insanely harder than Earthquake. OHKO's and outspeeds most, if not all mons in the field.
+    .tags = Singles, Offensive
+}
+Swellow
+{
+    name = Biggest McBirb
+    item = Normal Gem / Flying Gem
+    ability = scrappy
+    evs = 0, 252, 0, 252, 4, 0
+    nature = mild
+    moves = Extreme Speed, Boomburst, Hurricane, Brave Bird
+   comment = big damage kamikaze with both attack options 
+} 
+Victreebell
+{
+    name = Fun in the Sun
+    item = Petaya Berry
+    ability = Harvest
+    evs = 16, 0, 0, 236, 0, 252
+    nature = Timid
+    moves = Solar Beam, Belch, Synthesis, Weather Ball
+   comment = Get sun up (Ninetales is probably Victreebel's best partner, as it negates priority moves like Ice Shard/Sucker Punch/ESpeed that would otherwise punch through its 65/70 defenses, and you can bait fire moves with Flash Fire) and click Belch to boost your Sp. Atk with Harvest Petaya Berry. With Corrosive, Victreebel hits Steels super-effectively, with Weather Ball being your best move to hit opposing Poison types. Use Synthesis to heal on a switch or after switching in yourself on a resisted hit.
+
+   You could, theoretically, use Starf instead of Petaya to try and fish for a useful +2 boost and run Natural Gift instead of Weather Ball, which with Starf has the distinction of turning into Victreebel's only Psychic move, but a) Natural Gift is physical, necessitating split EV investment and a Mild nature or something, and b) Unless you get lucky, a random +2 boost is going to be less valuable than a definite +1 Sp. Atk boost. Still funny though!
+    .tags = Singles, Offensive
+}
