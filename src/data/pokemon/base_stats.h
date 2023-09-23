@@ -3142,7 +3142,7 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 90,
     .baseAttack    = 90,
-    .baseDefense   = 60, // With Fur Coat, effectively base 169. Was 209 with base 80
+    .baseDefense   = 65, // With Fur Coat, effectively base 169. Was 209 with base 80
     .baseSpeed     = 90,
     .baseSpAttack  = 95,
     .baseSpDefense = 95,
@@ -3166,7 +3166,7 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_DEWGONG_MEGA] =
     {
     .baseHP        = 90,
-    .baseAttack    = 105,
+    .baseAttack    = 110,
     .baseDefense   = 105,
     .baseSpeed     = 90,
     .baseSpAttack  = 125,
