@@ -14214,6 +14214,7 @@ static void Cmd_handleballthrow(void)
         BtlController_EmitBallThrowAnim(0, BALL_TRAINER_BLOCK);
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr = BattleScript_TrainerBallBlock;
+        AddBagItem(gLastUsedItem, 1);
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_WALLY_TUTORIAL)
     {
@@ -14226,6 +14227,7 @@ static void Cmd_handleballthrow(void)
         BtlController_EmitBallThrowAnim(0, BALL_TRAINER_BLOCK);
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr = BattleScript_LegendaryPokemonBallBlock;
+        AddBagItem(gLastUsedItem, 1);
     }
     else
     {

@@ -471,6 +471,13 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_CYNTHIA                 0x1128
 #define OBJ_EVENT_PAL_TAG_HAXORUS                 0x1129
 #define OBJ_EVENT_PAL_TAG_HAXORUS_SHINY           0x112A
+#define OBJ_EVENT_PAL_TAG_BRELOOM                 0x112B                 
+#define OBJ_EVENT_PAL_TAG_SANDSLASH               0x112C 
+#define OBJ_EVENT_PAL_TAG_GYARADOS                0x112D  
+#define OBJ_EVENT_PAL_TAG_GYARADOS_SHINY          0x112E
+#define OBJ_EVENT_PAL_TAG_SALAMENCE               0x112F
+#define OBJ_EVENT_PAL_TAG_DEWGONG                 0x1130
+#define OBJ_EVENT_PAL_TAG_FERALIGATR              0x1131
 #define OBJ_EVENT_PAL_TAG_NONE                    0x11FF
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -524,6 +531,13 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPaletteCynthia,            OBJ_EVENT_PAL_TAG_CYNTHIA},
     {gObjectEventPaletteHaxorus,            OBJ_EVENT_PAL_TAG_HAXORUS},
     {gObjectEventPaletteHaxorusShiny,       OBJ_EVENT_PAL_TAG_HAXORUS_SHINY},
+    {gObjectEventPaletteBreloom,            OBJ_EVENT_PAL_TAG_BRELOOM},
+    {gObjectEventPaletteSandslash,          OBJ_EVENT_PAL_TAG_SANDSLASH},
+    {gObjectEventPaletteGyarados,           OBJ_EVENT_PAL_TAG_GYARADOS},
+    {gObjectEventPaletteGyarados_Shiny,     OBJ_EVENT_PAL_TAG_GYARADOS_SHINY},
+    {gObjectEventPaletteSalamence,          OBJ_EVENT_PAL_TAG_SALAMENCE},
+    {gObjectEventPaletteDewgong,            OBJ_EVENT_PAL_TAG_DEWGONG},
+    {gObjectEventPaletteFeraligatr,         OBJ_EVENT_PAL_TAG_FERALIGATR},
     {NULL,                                  0x0000},
 };
 

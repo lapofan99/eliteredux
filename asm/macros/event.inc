@@ -1776,7 +1776,7 @@
 	.2byte \flag
 	.endm
 
-	.macro setwildbattlewithcustommoves species:req, level:req, item:req, move1:req, move2:req, move3:req, move4:req, abilityNum:req, nature:req
+	.macro setwildbattlewithcustommoves species:req, level:req, item:req, move1:req, move2:req, move3:req, move4:req, abilityNum:req, nature:req, hp_evs:req, atk_evs:req, def_evs:req, spa_evs:req, spd_evs, speed_evs:req
     .byte 0xea
     .2byte \species
     .byte \level
@@ -1787,6 +1787,12 @@
     .2byte \move4
     .2byte \abilityNum
     .2byte \nature
+    .2byte \hp_evs
+    .2byte \atk_evs
+    .2byte \def_evs
+    .2byte \spa_evs
+    .2byte \spd_evs
+    .2byte \speed_evs
     .endm
 
 @ Supplementary

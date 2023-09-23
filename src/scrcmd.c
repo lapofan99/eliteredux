@@ -2762,6 +2762,12 @@ bool8 ScrCmd_setwildbattlewithcustommoves(struct ScriptContext *ctx)
     u16 move4      = ScriptReadHalfword(ctx);
     u16 abilitynum = ScriptReadHalfword(ctx);
     u16 nature     = ScriptReadHalfword(ctx);
+    u16 hp_evs     = ScriptReadHalfword(ctx);
+    u16 atk_evs    = ScriptReadHalfword(ctx);
+    u16 def_evs    = ScriptReadHalfword(ctx);
+    u16 spa_evs    = ScriptReadHalfword(ctx);
+    u16 spd_evs    = ScriptReadHalfword(ctx);
+    u16 speed_evs  = ScriptReadHalfword(ctx);
     struct Pokemon *pkmn = &gEnemyParty[0];
 
     CreateScriptedWildMon(species, level, item);
@@ -2786,6 +2792,12 @@ bool8 ScrCmd_setwildbattlewithcustommoves(struct ScriptContext *ctx)
     }
 	
 	SetMonData(pkmn, MON_DATA_HELD_ITEM, &item);
+	SetMonData(pkmn, MON_DATA_HP_EV,     &hp_evs);
+	SetMonData(pkmn, MON_DATA_ATK_EV,    &atk_evs);
+	SetMonData(pkmn, MON_DATA_DEF_EV,    &def_evs);
+	SetMonData(pkmn, MON_DATA_SPATK_EV,  &spa_evs);
+	SetMonData(pkmn, MON_DATA_SPDEF_EV,  &spd_evs);
+	SetMonData(pkmn, MON_DATA_SPEED_EV,  &speed_evs);
 	
     return FALSE;
 }
