@@ -1513,3 +1513,155 @@ Chimecho
 
    Mystic Power is an equally appealing alternative, STAB offering a substantial increase in power over a Life Orb, while not giving up it's item slot, allowing it to potentially use Leftovers and lessen it's reliance on Recover, allowing it to setup faster.
 }
+Golisopod 
+{
+    name = AV Attacker 
+    item = Assault Vest 
+    ability = Tough Claws / Predator 
+    evs = 252, 252, 0, 0, 4, 0 
+    nature = Adamant 
+    moves = Flip Turn, First Impression, Leech Life / X-Scissor, Knock Off
+   comment = Excellent bulk further complemented by good abilities, Attack, and movepool options enable Golisopod as a solid Assault Vest user, with options such as Flip Turn to bring allies in safely, one of the most powerful priority moves in First Impression, Leech Life for sustain, and Knock Off for utility. X-Scissor is also an option over Leech Life, offering higher damage and excellent potential for Crits with Hyper Cutter.
+
+   Golisopod also has several other viable movepool options such as Close Combat, Poison Jab, or Shadow Claw should you wish to hit a specific target harder.
+}
+Tauros
+{
+    name = Deleted by Giga Impact
+    item = Choice Band
+    ability = Rampage
+    evs = 6, 252, 0, 0, 0, 252
+    nature = Jolly
+    moves = Giga Impact, Zen Headbutt, Rock Slide, High Horsepower / Earthquake
+   comment = This absolute beast can destroy almost everything unresisted or that's not physical wall with Hyper Aggressive Giga Impact. Scrappy makes Giga Impact completely free against Ghost Types. Zen Headbutt, Rock Slide and High Horsepower or Earthquake (depending on the situation) for useful coverage.
+}
+Weavile
+{ 
+    name = Physical Sweeper
+    item = Focus Sash
+    ability = Hyper Aggressive
+    evs = 0, 252, 4, 0, 0, 252
+    nature = Jolly
+    moves = Swords Dance, Triple Axel, Wicked Blow / Knock Off, Ice Shard
+   comment = Weavile is one of the best offensive sweepers in the game. After 1 Swords Dance, anything not named steelix, aggron, and sometimes camerupt will most likely die in 1 hit. 
+    .tags = Singles, Offensive
+}
+Torterra
+{
+    name = Body Press Sustain
+    item = Sitrus Berry
+    ability = Stamina
+    evs = 252, 0, 252, 0, 4, 0
+    nature = Bold/Calm
+    moves = Leech Seed, Body Press, Synthesis, Amnesia / Stockpile
+   comment = Aim of this set is to take in resisted hits while using Amnesia or Stockpile to make Torterra virtually unkillable short of a critical hit due to Big Leaves Sitrus Berry and Synthesis. Stamina will keep boosting Defenses and will continuously amp the damage from Body Press. If you don't need +6 SpDef you can opt for Stockpile so that you can reach +6 Def sooner. Because of Big Leaves, Synthesis will heal for 75% health, but be aware of the limited PP. Sitrus Berry for survival, but you can opt for things like Yache, Occa, or Coba Berry as well, which will be all be harvested due to Big Leaves. Depending on who you're fighting against, you can put EVs from Defense into SpDef.
+}
+Milotic
+{
+    name = Comp Sweeper
+    item = Shell Bell
+    ability = Competitive
+    evs = 252, 0, 4, 252, 0, 0
+    nature = Modest
+    moves = Scald, Moonblast, Flip Turn, Recover
+   comment = Utterly destroys stuff if it gets the Competitive Boost. You can use it to punish Defog, Intimidate/Scare (to a lesser extent), or Sticky Webs (including getting it Magic Bounced to you). Flip Turn is there when they switch into a Special Wall (Mainly just Chansey) so you can Flip Turn out, deal decent damage and heal a bit with Shell Bell. You can run Quiet if you want the extra power when facing against Blissey but Modest allows you to outspeed the not super slow walls (ie. Umbreon). Scald instead of Surf or Hydro Pump so you can fish for burns and the less power doesn't matter much if you have +2 with the added power of Adaptability but Moonblast is your main STAB.
+}
+Dragonite
+{
+    name = Physical Rampage Breaker
+    item = Choice Band
+    ability = Aerilate
+    evs = 0, 252, 4, 0, 0, 252
+    nature = Adamant/Jolly
+    moves = Giga Impact, Extreme Speed, Earthquake, Outrage / Fire Punch
+   comment = Thanks to the incredible combination of Rampage and Aerilate, Dragonite becomes a potent wallbreaker capable of quickly and easily crushing almost any Pokemon slower than it in a single turn with Giga Impact. Extreme Speed also serves as a shockingly powerful attack to revenge kill anything faster than Dragonite. Earthquake and Fire Punch are chosen for coverage against the various Pokemon that resist Dragonite's flying STAB.
+    .tags = Singles, Offensive
+} 
+Flapple
+{
+    name = Quiver Apple
+    item = Focus Sash
+    ability = Aerodynamics
+    evs = 4, 0, 0, 252, 0, 252
+    nature = Modest
+    moves = Hidden Power Fire / Sludge Bomb, Energy Ball, Dragon Pulse, Quiver Dance
+   comment = Great Quiver Dance sweeper when you really need a Grass Dragon type. Focus Sash almost guarantees you at least 1 Quiver Dance, 2 or more if the opponent makes a defensive switch (only applicable in Showdown). Regenerator actually allows you to still get value out of the sash even if you take a resisted hit which allows you to still use it's typing defensively. Aerodynamics can also catch Aerilate E-Speed Dragonites and the like off guard allowing you to set up for free while also allowing you free switch ins. Replace HP Fire with Sludge Bomb when (if) it gets it if you need more power to get kills on Forretress and the like.
+} 
+Malamar
+{ 
+    name =  Contrary abuse
+    item = Shell bell 
+    ability = Contrary 
+    evs = 252, 0, 0, 0, 188, 70
+    nature = Jolly
+    moves = Superpower, Psycho Cut, Sucker Punch, Hypnosis
+   comment =  Walls most physical pokemon while ramping up with super power. Incredible in conjunction with Tailwind support.  Near perfect accuracy hypnosis gives you even more opportunity to setup or deal with annoying stuff before you ramp up. +2 sucker punches also deal huge damage. Tailor the EV spread however you need to fit into your team.  Extremely powerful pokemon.
+ } 
+Kommo-o
+{
+    name = Mixed Shell Smash
+    item = White Herb
+    ability = Bulletproof
+    evs = 0, 252, 0, 4, 0, 252
+    nature = Lonely
+    moves = Shell Smash, Close Combat, Clanging Scales, Poison Jab
+   comment = An absolutely horrifying sweeper thanks to it’s extreme ease in setting up afforded by its great natural bulk combined with multiple defensively oriented innates that even allow for a setup opportunity vs many special attacking Flying or Ice-type Pokemon. Kommo-o is very unfortunately unable to learn Dragon Rush, and as a result Clanging Scales is it’s preferred Dragon STAB due to both it’s slightly higher power even through the EV difference, and it’s ability to not be stonewalled by the numerous Fur Coat Pokemon. Generally, Kommo-o prefers to be in a position where it can steamroll by just clicking +2 Close Combat a bunch of times, as this is by far it’s strongest move. Poison Jab is the most optimal anti-Fairy coverage, as only Mismagius takes more damage from Iron Head, the rest are either equivalent or weaker to Poison Jab.
+} 
+Quagsire
+{
+    name = No set up for you
+    item = Leftovers
+    ability = Water Veil
+    evs = 252, 0, 252, 0, 4, 0
+    nature = Careful
+    moves = Flip Turn, Recover, Toxic, Encore
+   comment = Goes in on most set up mons (excluding Raikou if Ground Shock isn't nerfed), clicks Encore, and gives a safe switch in to your big threat via Flip Turn. Toxic is there for any annoying walls you wanna chip (ie: Suicune) and Recover is for extra recover when Water Veil Leftovers with Regenerator isn't enough.
+}
+Electivire
+{
+    name = 'Mixed' Power Fists
+    item = Life Orb
+    ability = Power Fists
+    evs = 4, 252, 0, 0, 0, 252
+    nature = Jolly
+    moves = Plasma Fists, Close Combat / Drain Punch, Ice Punch, Wild Charge
+   comment = With Power Fists, Electivire's punching moves hit the target's Special Defense. However, the rest of its physical movepool still hits enemies in their normal Defense stat, meaning that this has the niche of being able to hit either Defense or Special Defense hard while only needing to invest in one offensive stat. The choice between Close Combat and Drain Punch depends on whether you want raw breaking power or a bit of sustain to offset the recoil from Life Orb and Wild Charge. Ice Punch is almost certainly Electivire's best coverage option, but you could theoretically replace it with another punching move, or even another physical move if you want to lean into the 'mixed' nature of the set.
+    .tags = Offensive, Mixed
+}
+Magnezone
+{
+    name = Charge Specs Magnezone
+    item = Choice Specs / Focus Sash
+    ability = Overcharge
+    evs = 0, 0, 70, 252, 188, 0
+    nature = Bold
+    moves = Charge Beam, Aurora Beam, Flash Cannon, Thunder / Tri Attack
+   comment = Charge Beam raises Sp Atk by 3 stages thanks to Multi Headed! This alone makes Magnezone a heavy hitter. Though it's not useful against Unaware mons, use Thunder/Thunderbolt (Aurora Beam in case of Quagsire) which will also deal good amount of damage to Electric types, thanks to Overcharge.
+    .tags = Offensive, Doubles
+}
+Mismagius
+{ 
+    name = Prankster Support
+    item = Leftovers
+    ability = Prankster
+    evs = 252, 0, 4, 252, 0, 0
+    nature = Modest
+    moves = Will-O-Wisp, Hex, Toxic, Destiny Bond
+   comment = It's main goal is to spread as many statuses as possible then take something with it via Destiny Bond. Will-O-Wisp is to cripple Physical Attackers, Toxic is for the tanks and Burn Immune, Hex is to deal big damage to statused targets, and Destiny Bond can get rid of a stacked up sweeper.
+    .tags = Singles, Mixed
+}
+Shuckle
+{ 
+    name = You Already Know What It Does
+    item = Iapapa Berry
+    ability = Regenerator
+    evs = 0, 0, 252, 4, 252, 0
+    nature = Bold / Calm
+    moves = Infestation, Pain Split, Toxic / Sticky Web, Stealth Rock / Sticky Web / Protect
+    comment = Shuckle is a serviceable choice for wearing down tanks and walls at low risk. Also, clicking Rocks and Webs.
+    Infestation stops it from being Taunt bait (rare as it is) and adds damage over time. Pain Split needs little explanation, click when your HP is low (usually) and your opponent's is high. Some mix of the four moves in the last two slots will tend to get the most mileage out of your bug. The combination of Toxic, Infestation, and Pain Split can burn through the PP of foe's recovery moves, but dual hazards may be situationally preferable. Stealth Rock does what it's done since 2006, Sticky Web suits aggressive teams, and Protect is great for doubles and racking up your damage over time ticks.
+    Adjust your nature as appropriate. Zero HP EVs maximize Pain Split's effectiveness, but compromise Shuckle's full bulk. Against anything that hits harder, moving some EVs to HP and focusing on one side of defense can help it stay competitive.
+    Regenerator provides a safety net and much needed utility as a pivot, but rolling the dice for defense boosts with Moody might be funny.
+    Your item slot has a lot of flexibility. The 50% healing berries, Sitrus Berry or Leftovers will let Shuckle click moves other than Pain Split more often, the choice is mostly up to preference and/or what you're fighting. Mental Herb is cute if you use Shuckle against something with Taunt or Encore. Lum Berry is there if random para or sleep will ruin your day. There's probably something funny you can pull on the AI with a Red Card. That being said, it's still ultimately best as a suicide lead, so Custap Berry, the weakness berries or Focus Sash are there if that's your thing.
+    .tags = Defensive
+}
