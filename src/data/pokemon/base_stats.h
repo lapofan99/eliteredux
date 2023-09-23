@@ -5843,8 +5843,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_FLYING,
     .eggGroup2 = EGG_GROUP_FLYING,
-    .abilities = {ABILITY_SHADOW_SHIELD, ABILITY_NOSFERATU, ABILITY_AMPLIFIER},
-    .innates = {ABILITY_PHANTOM, ABILITY_SPECTRAL_SHROUD, ABILITY_SCARE},
+    .abilities = {ABILITY_SCARE, ABILITY_NOSFERATU, ABILITY_AMPLIFIER},
+    .innates = {ABILITY_PHANTOM, ABILITY_SPECTRAL_SHROUD, ABILITY_SHADOW_SHIELD},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },
@@ -10148,7 +10148,7 @@ const struct BaseStats gBaseStats[] =
     .baseHP        = 70,
     .baseAttack    = 75,
     .baseDefense   = 85,
-    .baseSpeed     = 165, // 135
+    .baseSpeed     = 155, // 135
     .baseSpAttack  = 145, // 135
     .baseSpDefense = 85,
     .type1 = TYPE_ELECTRIC,
@@ -14359,7 +14359,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_SPIRITOMB] =
     {
-    .baseHP        = 70,
+    .baseHP        = 50,
     .baseAttack    = 108,
     .baseDefense   = 108,
     .baseSpeed     = 35,
