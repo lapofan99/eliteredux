@@ -1777,7 +1777,7 @@ Swellow
     moves = Extreme Speed, Boomburst, Hurricane, Brave Bird
    comment = big damage kamikaze with both attack options 
 } 
-Victreebell
+Victreebel
 {
     name = Fun in the Sun
     item = Petaya Berry
@@ -1789,4 +1789,17 @@ Victreebell
 
    You could, theoretically, use Starf instead of Petaya to try and fish for a useful +2 boost and run Natural Gift instead of Weather Ball, which with Starf has the distinction of turning into Victreebel's only Psychic move, but a) Natural Gift is physical, necessitating split EV investment and a Mild nature or something, and b) Unless you get lucky, a random +2 boost is going to be less valuable than a definite +1 Sp. Atk boost. Still funny though!
     .tags = Singles, Offensive
+}
+Gallade
+{ 
+    name = Ronin
+    item = Choice Scarf / Choice Band / Expert Belt
+    ability = Sweeping Edge
+    evs = 4, 252, 0, 0, 0, 252
+    nature = Jolly
+    moves = Psycho Cut / Night Slash , Sacred Sword, Solar Blade, Excalibur
+   comment = Keen Edge boosts moves cutting moves by 30% and is awesome here because all are cutting moves coming from Gallade's excellent base 125 Atk stat.
+   Excalibur will punish the dragons and fairies that woudl otherwise bother Gallade.
+   Also when paired up with a Drought teammate like Torcoal or Mega Charizard Y, and Solar Blade effectively goes up to 162.5BP!
+    .tags = Singles, Doubles, Offensive
 }
