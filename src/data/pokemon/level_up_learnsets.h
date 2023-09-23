@@ -3947,7 +3947,8 @@ static const struct LevelUpMove sLanturnLevelUpLearnset[] = {
     LEVEL_UP_MOVE(37, MOVE_DISCHARGE),
 	LEVEL_UP_MOVE(40, MOVE_RISING_VOLTAGE), // new
     LEVEL_UP_MOVE(43, MOVE_TAKE_DOWN),
-    LEVEL_UP_MOVE(47, MOVE_AQUA_RING),
+	LEVEL_UP_MOVE(46, MOVE_PARABOLIC_CHARGE), // new
+    LEVEL_UP_MOVE(48, MOVE_AQUA_RING),
     LEVEL_UP_MOVE(51, MOVE_HYDRO_PUMP),
     LEVEL_UP_MOVE(54, MOVE_ION_DELUGE),
     LEVEL_UP_MOVE(58, MOVE_CHARGE),
@@ -5173,6 +5174,7 @@ static const struct LevelUpMove sOctilleryLevelUpLearnset[] = {
 
 static const struct LevelUpMove sDelibirdLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_DUAL_WINGBEAT), // new
+    LEVEL_UP_MOVE( 1, MOVE_HAIL), // new
     LEVEL_UP_MOVE( 1, MOVE_PRESENT),
     LEVEL_UP_MOVE(25, MOVE_DRILL_PECK),
 	//LEVEL_UP_MOVE(30, MOVE_SKY_DROP), //new
@@ -13976,6 +13978,10 @@ static const struct LevelUpMove sFraxureLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sHaxorusLevelUpLearnset[] = {
+	LEVEL_UP_MOVE( 1, MOVE_FIRE_PUNCH), // new
+	LEVEL_UP_MOVE( 1, MOVE_THUNDER_PUNCH), // new
+	LEVEL_UP_MOVE( 1, MOVE_ICE_PUNCH), // new
+	LEVEL_UP_MOVE( 1, MOVE_DRAIN_PUNCH), // new
 	LEVEL_UP_MOVE( 1, MOVE_LEER),
 	LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
 	LEVEL_UP_MOVE( 1, MOVE_BITE),
@@ -18933,6 +18939,7 @@ static const struct LevelUpMove sApplinLevelUpLearnset[] = {
 
 static const struct LevelUpMove sFlappleLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_WING_ATTACK),
+    LEVEL_UP_MOVE( 1, MOVE_POISON_JAB), // new
     LEVEL_UP_MOVE( 1, MOVE_RECYCLE),
     LEVEL_UP_MOVE( 1, MOVE_WITHDRAW),
     LEVEL_UP_MOVE( 1, MOVE_ASTONISH),
@@ -18949,6 +18956,7 @@ static const struct LevelUpMove sFlappleLevelUpLearnset[] = {
     LEVEL_UP_MOVE(36, MOVE_IRON_DEFENSE),
     LEVEL_UP_MOVE(40, MOVE_FLY),
     LEVEL_UP_MOVE(44, MOVE_DRAGON_RUSH),
+    LEVEL_UP_MOVE(48, MOVE_GUNK_SHOT), // new
     LEVEL_UP_END
 };
 
@@ -19286,6 +19294,7 @@ static const struct LevelUpMove sMorgremLevelUpLearnset[] = {
 
 static const struct LevelUpMove sGrimmsnarlLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_SPIRIT_BREAK),
+    LEVEL_UP_MOVE( 1, MOVE_PARTING_SHOT), // 
     LEVEL_UP_MOVE( 1, MOVE_FALSE_SURRENDER),
     LEVEL_UP_MOVE( 1, MOVE_BULK_UP),
     LEVEL_UP_MOVE( 1, MOVE_POWER_UP_PUNCH),

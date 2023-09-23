@@ -274,7 +274,7 @@ static const u8 sElectrocytesDescription[] = _("Increases Electric-type\nmoves b
 static const u8 sAerodynamicsDescription[] = _("Getting hit by Flying raises\nSpeed by +1 instead.");
 static const u8 sChristmasSpiritDescription[] = _("Reduces incoming damage\nin Hail by 50%.");
 static const u8 sExploitWeaknessDescription[] = _("+25% damage against foes\nwith any status problem.");
-static const u8 sGroundShockDescription[] = _("Allow Electric-type moves\nto hit Ground.");
+static const u8 sGroundShockDescription[] = _("Electric moves hit Ground\nnot very effective.");
 static const u8 sAncientIdolDescription[] = _("Hits with its Defense\nStats respectively.");
 static const u8 sMysticPowerDescription[] = _("Gains STAB for all moves.");
 static const u8 sPerfectionistDescription[] = _("+1 crit to moves <50 BP.\n+1 crit & +1 prio for <25 BP");
@@ -419,8 +419,10 @@ static const u8 sEquinoxDescription[] =  _("Atk & SpAtk match higher\nvalue post
 static const u8 sAbsorbantDescription[] =  _("Drain moves recover +50%\nHP & apply Leech Seed.");
 static const u8 sCluelessDescription[] =  _("Negates Weather, Rooms\nand Terrains.");
 static const u8 sCheapTacticsDescription[]    = _("Attacks with Scratch\non switch-in.");
-static const u8 sCheatingDeathDescription[] =  _("");
-static const u8 sDoubleShieldDescription[] =  _("");
+static const u8 sCheatingDeathDescription[] =  _("Gets no damage for\nthe first two hits.");
+static const u8 sCowardDescription[] =  _("Sets up Protect on switch-in.\nOnly works once.");
+static const u8 sVoltRushDescription[] =  _("Electric moves get +1\npriority. Requires full HP.");
+static const u8 sDuneTerrorDescription[] = _("Halves incoming damage in sand.\nBoosts Ground moves by 20%.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -854,8 +856,10 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_CLUELESS] = _("Clueless"),
     [ABILITY_CHEATING_DEATH] = _("Cheating Death"),
     [ABILITY_CHEAP_TACTICS] = _("Cheap Tactics"),
-    [ABILITY_DOUBLE_SHIELD] = _("Double Shield"),
+    [ABILITY_COWARD] = _("Coward"),
     [ABILITY_SPECTRALIZE] = _("Spectralize"),
+	[ABILITY_VOLT_RUSH] = _("Volt Rush"),
+    [ABILITY_DUNE_TERROR] = _("Dune Terror"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1288,6 +1292,8 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_CLUELESS] = sCluelessDescription,
     [ABILITY_CHEATING_DEATH] = sCheatingDeathDescription,
     [ABILITY_CHEAP_TACTICS] = sCheapTacticsDescription,
-    [ABILITY_DOUBLE_SHIELD] = sDoubleShieldDescription,
+    [ABILITY_COWARD] = sCowardDescription,
     [ABILITY_SPECTRALIZE] = sSpectralizeDescription,
+    [ABILITY_VOLT_RUSH] = sVoltRushDescription,
+    [ABILITY_DUNE_TERROR] = sDuneTerrorDescription,
 };

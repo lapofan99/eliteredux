@@ -5040,11 +5040,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_DOUBLE_SHIELD:
+        case ABILITY_COWARD:
             if(gDisableStructs[battler].noDamageHits == 0 && 
                !gBattleMons[battler].singeuseability[0]){
                 gBattleMons[battler].singeuseability[0] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DOUBLE_SHIELD;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COWARD;
                 gDisableStructs[battler].noDamageHits = 1;
                 if(gDisableStructs[battler].noDamageHits == 1)
                     BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
@@ -5832,12 +5832,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 
-        //Double Shield
-        if(BattlerHasInnate(battler, ABILITY_DOUBLE_SHIELD)){
+        // Coward
+        if(BattlerHasInnate(battler, ABILITY_COWARD)){
             if(gDisableStructs[battler].noDamageHits == 0 && 
-               !gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_DOUBLE_SHIELD) + 1]){
-                gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_DOUBLE_SHIELD) + 1] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DOUBLE_SHIELD;
+               !gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_COWARD) + 1]){
+                gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_COWARD) + 1] = TRUE;
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COWARD;
                 gDisableStructs[battler].noDamageHits = 1;
                 if(gDisableStructs[battler].noDamageHits == 1)
                     BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
@@ -13072,6 +13072,14 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
                 RecordAbilityBattle(battlerDef, ability);
         }
         break;
+    case ABILITY_DUNE_TERROR:
+        if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
+        {
+            MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ability);
+        }
+        break;
 	case ABILITY_SHELL_ARMOR:
 	case ABILITY_BATTLE_ARMOR:
         MulModifier(&modifier, UQ_4_12(0.8));
@@ -13152,6 +13160,12 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	// Christmas Spirit
 	if(BattlerHasInnate(battlerDef, ABILITY_CHRISTMAS_SPIRIT)){
 		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY){
+			MulModifier(&modifier, UQ_4_12(0.5));
+		}
+    }
+    // Dune Terror
+	if(BattlerHasInnate(battlerDef, ABILITY_DUNE_TERROR)){
+		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY){
 			MulModifier(&modifier, UQ_4_12(0.5));
 		}
     }
@@ -13640,6 +13654,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.25));
         }
         break;
+    case ABILITY_DUNE_TERROR:
+        if (moveType == TYPE_GROUND)
+        {
+            MulModifier(&modifier, UQ_4_12(1.2));
+        }
+        break;
 	case ABILITY_ILLUSION:
         if (gBattleStruct->illusion[battlerAtk].on && !gBattleStruct->illusion[battlerAtk].broken)
         {
@@ -14017,6 +14037,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		if (moveType == TYPE_GROUND)
         {
             MulModifier(&modifier, UQ_4_12(1.25));
+        }
+	}
+    // Dune Terror
+	if(BattlerHasInnate(battlerAtk, ABILITY_DUNE_TERROR)){
+		if (moveType == TYPE_GROUND)
+        {
+            MulModifier(&modifier, UQ_4_12(1.2));
         }
 	}
 	// Levitate
@@ -14811,7 +14838,7 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
 	else if (moveType == TYPE_ELECTRIC && defType == TYPE_GROUND && (GetBattlerAbility(battlerAtk) == ABILITY_GROUND_SHOCK || BattlerHasInnate(battlerAtk, ABILITY_GROUND_SHOCK)) && mod == UQ_4_12(0.0))
     {
 		//Has Innate Effect here too
-        mod = UQ_4_12(1.0);
+        mod = UQ_4_12(0.5);
         if (recordAbilities)
             RecordAbilityBattle(battlerAtk, ABILITY_GROUND_SHOCK);
     }

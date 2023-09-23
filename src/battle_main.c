@@ -4961,6 +4961,14 @@ s8 GetMovePriority(u32 battlerId, u16 move)
         priority++;
     }
 
+    // Volt Rush
+	if ((GetBattlerAbility(battlerId) == ABILITY_VOLT_RUSH  || BattlerHasInnate(battlerId, ABILITY_VOLT_RUSH))
+        && GetTypeBeforeUsingMove(move, battlerId) == TYPE_ELECTRIC
+        && (B_GALE_WINGS <= GEN_6 || BATTLER_MAX_HP(battlerId)))
+    {
+        priority++;
+    }
+
     // Prankster
 	if ((GetBattlerAbility(battlerId) == ABILITY_PRANKSTER || BattlerHasInnate(battlerId, ABILITY_PRANKSTER)) && IS_MOVE_STATUS(move))
     {

@@ -1992,7 +1992,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                         }
                         else if(gBattleMons[targetId].type1 == TYPE_GROUND && gBattleMons[targetId].type2 == TYPE_GROUND){
                             //Has the same type twice
-                            mod = UQ_4_12(1.0);
+                            mod = UQ_4_12(0.5);
                         }
                         //tempMod = UQ_4_12(2.0);
                         //MulModifier(&mod, tempMod);

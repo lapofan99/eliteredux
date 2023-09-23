@@ -28090,6 +28090,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM21_FRUSTRATION)
                                         | TMHM1(TM22_SOLARBEAM)
                                         | TMHM1(TM27_RETURN)
+                                        | TMHM1(TM36_SLUDGE_BOMB) // new
                                         | TMHM1(TM40_AERIAL_ACE)
                                         | TMHM1(TM42_FACADE)
                                         | TMHM1(TM43_SECRET_POWER)
