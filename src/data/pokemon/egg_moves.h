@@ -1942,6 +1942,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(MAWILE,
         MOVE_IRON_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_POISON_FANG,
         MOVE_ANCIENT_POWER,
         MOVE_TICKLE,
@@ -3771,6 +3772,7 @@ const u16 gEggMoves[] = {
         MOVE_BELCH),
 
     egg_moves(DURANT,
+        MOVE_LEECH_LIFE, // new
         MOVE_SCREECH,
         MOVE_ENDURE,
         MOVE_ROCK_CLIMB,
