@@ -14222,7 +14222,7 @@ static void Cmd_handleballthrow(void)
         MarkBattlerForControllerExec(gActiveBattler);
         gBattlescriptCurrInstr = BattleScript_WallyBallThrow;
     }
-	else if (FlagGet(FLAG_TOTEM_BATTLE) && !(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+	else if (FlagGet(FLAG_TOTEM_BATTLE))
     {
         BtlController_EmitBallThrowAnim(0, BALL_TRAINER_BLOCK);
         MarkBattlerForControllerExec(gActiveBattler);

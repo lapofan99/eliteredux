@@ -6305,9 +6305,78 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			gBattleMons[battler].statStages[STAT_SPEED]   = gBattleMons[battler].statStages[STAT_SPEED]   + VarGet(VAR_TOTEM_POKEMON_SPEED_BOOST);
 			gBattleMons[battler].statStages[STAT_ACC]     = gBattleMons[battler].statStages[STAT_ACC]     + VarGet(VAR_TOTEM_POKEMON_ACCURACY_BOOST);
 			gBattleMons[battler].statStages[STAT_EVASION] = gBattleMons[battler].statStages[STAT_EVASION] + VarGet(VAR_TOTEM_POKEMON_EVASION_BOOST);
-			
-			SET_STATCHANGER(STAT_SPATK, 1, FALSE);
 
+            //Evasion
+            if(VarGet(VAR_TOTEM_POKEMON_EVASION_BOOST) == 1){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Evasion);
+                effect++;
+            }
+            else if(VarGet(VAR_TOTEM_POKEMON_EVASION_BOOST) == 2){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Evasion2);
+                effect++;
+            }
+
+            //Accuracy
+            if(VarGet(VAR_TOTEM_POKEMON_ACCURACY_BOOST) == 1){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Accuracy);
+                effect++;
+            }
+            else if(VarGet(VAR_TOTEM_POKEMON_ACCURACY_BOOST) == 2){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Accuracy2);
+                effect++;
+            }
+
+            //Speed
+            if(VarGet(VAR_TOTEM_POKEMON_SPEED_BOOST) == 1){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Speed);
+                effect++;
+            }
+            else if(VarGet(VAR_TOTEM_POKEMON_SPEED_BOOST) == 2){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Speed2);
+                effect++;
+            }
+
+            //Special Defense
+            if(VarGet(VAR_TOTEM_POKEMON_SP_DEF_BOOST) == 1){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_SpecialDefense);
+                effect++;
+            }
+            else if(VarGet(VAR_TOTEM_POKEMON_SP_DEF_BOOST) == 2){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_SpecialDefense2);
+                effect++;
+            }
+
+            //Special Attack
+            if(VarGet(VAR_TOTEM_POKEMON_SP_ATK_BOOST) == 1){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_SpecialAttack);
+                effect++;
+            }
+            else if(VarGet(VAR_TOTEM_POKEMON_SP_ATK_BOOST) == 2){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_SpecialAttack2);
+                effect++;
+            }
+
+            //Defense
+            if(VarGet(VAR_TOTEM_POKEMON_DEF_BOOST) == 1){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Defense);
+                effect++;
+            }
+            else if(VarGet(VAR_TOTEM_POKEMON_DEF_BOOST) == 2){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Defense2);
+                effect++;
+            }
+
+            //Attack
+            if(VarGet(VAR_TOTEM_POKEMON_ATK_BOOST) == 1){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Attack);
+                effect++;
+            }
+            else if(VarGet(VAR_TOTEM_POKEMON_ATK_BOOST) == 2){
+                BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Attack2);
+                effect++;
+            }
+
+			SET_STATCHANGER(STAT_SPATK, 1, FALSE); //Just for the animation
             switch(VarGet(VAR_TOTEM_MESSAGE)){
                 case TOTEM_FIGHT_HAXORUS:
                     BattleScriptPushCursorAndCallback(BattleScript_HaxorusTotemBoostActivated);
@@ -6318,14 +6387,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
             effect++;
 
-			VarSet(VAR_TOTEM_POKEMON_ATK_BOOST, 0);
-			VarSet(VAR_TOTEM_POKEMON_DEF_BOOST, 0);
-			VarSet(VAR_TOTEM_POKEMON_SP_ATK_BOOST, 0);
-			VarSet(VAR_TOTEM_POKEMON_SP_DEF_BOOST, 0);
-			VarSet(VAR_TOTEM_POKEMON_SPEED_BOOST, 0);
+			VarSet(VAR_TOTEM_POKEMON_ATK_BOOST,      0);
+			VarSet(VAR_TOTEM_POKEMON_DEF_BOOST,      0);
+			VarSet(VAR_TOTEM_POKEMON_SP_ATK_BOOST,   0);
+			VarSet(VAR_TOTEM_POKEMON_SP_DEF_BOOST,   0);
+			VarSet(VAR_TOTEM_POKEMON_SPEED_BOOST,    0);
 			VarSet(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 0);
-			VarSet(VAR_TOTEM_POKEMON_EVASION_BOOST, 0);
-			VarSet(VAR_TOTEM_MESSAGE, 0);
+			VarSet(VAR_TOTEM_POKEMON_EVASION_BOOST,  0);
+			VarSet(VAR_TOTEM_MESSAGE,                0);
+            
 		}
 
         break;

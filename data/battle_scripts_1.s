@@ -10508,30 +10508,95 @@ BattleScript_GripPincerActivated::
 
 BattleScript_WildTotemBoostActivated::
 	printstring STRINGID_ATTACKERISREADYTOTESTYOU
-	waitmessage B_WAIT_TIME_LONG
 	playmoveanimation BS_ATTACKER, MOVE_FOCUS_ENERGY
 	waitanimation
-	waitmessage B_WAIT_TIME_LONG
+	waitmessage B_WAIT_TIME_SHORT
 	setgraphicalstatchangevalues
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
-	printstring STRINGID_PKMNSSTATSWEREBOOSTED
-	waitmessage B_WAIT_TIME_LONG
 	end3
 
 BattleScript_HaxorusTotemBoostActivated::
 	printstring STRINGID_THEOPPOSINGATTACKERROARSWILDLY
-	waitmessage B_WAIT_TIME_LONG
+	waitmessage B_WAIT_TIME_SHORT
 	playmoveanimation BS_ATTACKER, MOVE_HOWL
 	waitanimation
-	waitmessage B_WAIT_TIME_LONG
+	waitmessage B_WAIT_TIME_SHORT
 	setgraphicalstatchangevalues
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
-	printstring STRINGID_PKMNSSTATSWEREBOOSTED
-	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_TotemBoosted_Attack::
+	printstring STRINGID_ATTACKER_ATTACK_ROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_Attack2::
+	printstring STRINGID_ATTACKER_ATTACK_SHARPLYROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_Defense::
+	printstring STRINGID_ATTACKER_DEFENSE_ROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_Defense2::
+	printstring STRINGID_ATTACKER_DEFENSE_SHARPLYROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_SpecialAttack::
+	printstring STRINGID_ATTACKER_SPECIAL_ATTACK_ROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_SpecialAttack2::
+	printstring STRINGID_ATTACKER_SPECIAL_ATTACK_SHARPLYROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_SpecialDefense::
+	printstring STRINGID_ATTACKER_SPECIAL_DEFENSE_ROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_SpecialDefense2::
+	printstring STRINGID_ATTACKER_SPECIAL_DEFENSE_SHARPLYROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_Speed::
+	printstring STRINGID_ATTACKER_SPEED_ROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_Speed2::
+	printstring STRINGID_ATTACKER_SPEED_SHARPLYROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_Accuracy::
+	printstring STRINGID_ATTACKER_ACCURACY_ROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_Accuracy2::
+	printstring STRINGID_ATTACKER_ACCURACY_SHARPLYROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_Evasion::
+	printstring STRINGID_ATTACKER_EVASIVENESS_ROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+
+BattleScript_TotemBoosted_Evasion2::
+	printstring STRINGID_ATTACKER_EVASIVENESS_SHARPLYROSE
+	waitmessage B_WAIT_TIME_SHORT
+	end3
+	
 BattleScript_WildTotemMegaEvolution::
 	printstring STRINGID_WILDPOKEMONMEGAEVOLVED
 	waitmessage B_WAIT_TIME_LONG
