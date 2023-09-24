@@ -3688,6 +3688,7 @@ static const struct LevelUpMove sFeraligatrLevelUpLearnset[] = {
     LEVEL_UP_MOVE(32, MOVE_AQUA_TAIL),
     LEVEL_UP_MOVE(35, MOVE_PARTING_SHOT), // new
     LEVEL_UP_MOVE(38, MOVE_DARKEST_LARIAT), // new
+    LEVEL_UP_MOVE(40, MOVE_HYPER_VOICE), // new
     LEVEL_UP_MOVE(43, MOVE_THRASH),
     LEVEL_UP_MOVE(49, MOVE_WATERFALL),
     LEVEL_UP_MOVE(54, MOVE_SUPERPOWER),
@@ -13449,6 +13450,8 @@ static const struct LevelUpMove sDeerlingLevelUpLearnset[] = {
 
 static const struct LevelUpMove sSawsbuckLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_HORN_LEECH),
+    LEVEL_UP_MOVE( 1, MOVE_HORN_ATTACK), // new
+    LEVEL_UP_MOVE( 1, MOVE_FURY_ATTACK), // new
 	LEVEL_UP_MOVE( 1, MOVE_MEGAHORN),
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE),
 	LEVEL_UP_MOVE( 1, MOVE_CAMOUFLAGE),
@@ -13459,6 +13462,7 @@ static const struct LevelUpMove sSawsbuckLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(16, MOVE_FEINT_ATTACK),
 	LEVEL_UP_MOVE(20, MOVE_TAKE_DOWN),
 	LEVEL_UP_MOVE(24, MOVE_JUMP_KICK),
+    LEVEL_UP_MOVE(26, MOVE_DRILL_RUN), // new
 	LEVEL_UP_MOVE(28, MOVE_AROMATHERAPY),
 	LEVEL_UP_MOVE(32, MOVE_ENERGY_BALL),
 	LEVEL_UP_MOVE(36, MOVE_CHARM),

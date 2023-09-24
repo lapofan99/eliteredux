@@ -1559,8 +1559,6 @@ const u16 gEggMoves[] = {
         MOVE_ME_FIRST),
 
     egg_moves(TYROGUE,
-        MOVE_IRON_FANGS, // new
-        MOVE_JAGGED_FANGS, // new
         MOVE_RAPID_SPIN,
         MOVE_HIGH_JUMP_KICK,
         MOVE_MACH_PUNCH,
@@ -3953,6 +3951,8 @@ const u16 gEggMoves[] = {
 
     egg_moves(TYRUNT,
         MOVE_DRAGON_DANCE,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
         MOVE_THUNDER_FANG,
         MOVE_ICE_FANG,
         MOVE_POISON_FANG,
