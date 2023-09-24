@@ -97,6 +97,10 @@ const u16 gEggMoves[] = {
         MOVE_SLAM,
         MOVE_SPITE,
         MOVE_BEAT_UP,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_SHADOW_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_POISON_FANG,
         MOVE_SCARY_FACE,
         MOVE_POISON_TAIL,
@@ -279,6 +283,7 @@ const u16 gEggMoves[] = {
         MOVE_CLEAR_SMOG),
 
     egg_moves(MANKEY,
+        MOVE_SEISMIC_FIST, // new
         MOVE_FORESIGHT,
         MOVE_MEDITATE,
         MOVE_COUNTER,
@@ -294,6 +299,10 @@ const u16 gEggMoves[] = {
         MOVE_POWER_TRIP),
 
     egg_moves(GROWLITHE,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_SHADOW_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_RAGING_FURY, // new
         MOVE_BODY_SLAM,
         MOVE_CRUNCH,
@@ -345,6 +354,7 @@ const u16 gEggMoves[] = {
         MOVE_MACH_PUNCH, // new
         MOVE_POWER_UP_PUNCH, // new
         MOVE_DRAIN_PUNCH, // new
+        MOVE_SEISMIC_FIST, // new
         MOVE_MEDITATE,
         MOVE_ROLLING_KICK,
         MOVE_ENCORE,
@@ -530,6 +540,8 @@ const u16 gEggMoves[] = {
         MOVE_REFLECT_TYPE),
 
     egg_moves(ONIX,
+        MOVE_JAGGED_FANGS, // new
+        MOVE_IRON_FANGS, // new
         MOVE_HYPER_FANG, // new
         MOVE_FLAIL,
         MOVE_BLOCK,
@@ -688,6 +700,7 @@ const u16 gEggMoves[] = {
         MOVE_WAKE_UP_SLAP),
 
     egg_moves(KANGASKHAN,
+        MOVE_SEISMIC_FIST, // new
         MOVE_STOMP,
         MOVE_FORESIGHT,
         MOVE_FOCUS_ENERGY,
@@ -913,6 +926,10 @@ const u16 gEggMoves[] = {
         MOVE_FLAME_BURST),
 
     egg_moves(TOTODILE,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_SHADOW_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_CRUNCH,
         MOVE_THRASH,
         MOVE_HYDRO_PUMP,
@@ -1308,6 +1325,9 @@ const u16 gEggMoves[] = {
         MOVE_SNORE,
         MOVE_SMELLING_SALTS,
         MOVE_CLOSE_COMBAT,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_HYPER_FANG, // new
         MOVE_ICE_FANG,
         MOVE_FIRE_FANG,
@@ -1539,6 +1559,8 @@ const u16 gEggMoves[] = {
         MOVE_ME_FIRST),
 
     egg_moves(TYROGUE,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
         MOVE_RAPID_SPIN,
         MOVE_HIGH_JUMP_KICK,
         MOVE_MACH_PUNCH,
@@ -1608,6 +1630,9 @@ const u16 gEggMoves[] = {
         MOVE_BELCH),
 
     egg_moves(LARVITAR,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_SEISMIC_FIST, // new
         MOVE_PURSUIT,
         MOVE_STOMP,
         MOVE_OUTRAGE,
@@ -1677,6 +1702,10 @@ const u16 gEggMoves[] = {
         MOVE_BARRIER),
 
     egg_moves(POOCHYENA,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_SHADOW_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_PSYCHIC_FANGS, // new
         MOVE_ASTONISH,
         MOVE_POISON_FANG,
@@ -1842,6 +1871,7 @@ const u16 gEggMoves[] = {
         MOVE_WHIRLWIND),
 
     egg_moves(MAKUHITA,
+        MOVE_SEISMIC_FIST, // new
         MOVE_FEINT_ATTACK,
         MOVE_DETECT,
         MOVE_FORESIGHT,
@@ -1913,6 +1943,7 @@ const u16 gEggMoves[] = {
         MOVE_IMPRISON),
 
     egg_moves(MAWILE,
+        MOVE_IRON_FANGS, // new
         MOVE_POISON_FANG,
         MOVE_ANCIENT_POWER,
         MOVE_TICKLE,
@@ -2208,6 +2239,10 @@ const u16 gEggMoves[] = {
         MOVE_BELLY_DRUM),
 
     egg_moves(SEVIPER,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_SHADOW_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_STOCKPILE,
         MOVE_SWALLOW,
         MOVE_SPIT_UP,
@@ -2846,6 +2881,7 @@ const u16 gEggMoves[] = {
         MOVE_DISABLE),
 
     egg_moves(GIBLE,
+        MOVE_SEISMIC_FIST, // new
         MOVE_DRAGON_DANCE, // new
         MOVE_SCALE_SHOT, // new
         MOVE_DRAGON_BREATH,
@@ -2877,6 +2913,7 @@ const u16 gEggMoves[] = {
         MOVE_BELCH),
 
     egg_moves(RIOLU,
+        MOVE_SEISMIC_FIST, // new
         MOVE_CROSS_CHOP,
         MOVE_FIRE_PUNCH,
         MOVE_ICE_PUNCH,
@@ -3183,6 +3220,7 @@ const u16 gEggMoves[] = {
         MOVE_PSYCHO_SHIFT),
 
     egg_moves(DRILBUR,
+        MOVE_SEISMIC_FIST, // new
         MOVE_IRON_DEFENSE,
         MOVE_RAPID_SPIN,
         MOVE_EARTH_POWER,
@@ -3306,6 +3344,10 @@ const u16 gEggMoves[] = {
         MOVE_ROCK_CLIMB,
         MOVE_PURSUIT,
         MOVE_UPROAR,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_SHADOW_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_FIRE_FANG,
         MOVE_THUNDER_FANG,
         MOVE_BEAT_UP,
@@ -3671,6 +3713,8 @@ const u16 gEggMoves[] = {
         MOVE_ALLY_SWITCH),
 
     egg_moves(DRUDDIGON,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
         MOVE_FIRE_FANG,
         MOVE_THUNDER_FANG,
         MOVE_CRUSH_CLAW,
@@ -4028,6 +4072,9 @@ const u16 gEggMoves[] = {
     egg_moves(YUNGOOS,
         MOVE_REVENGE,
         MOVE_LAST_RESORT,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_FIRE_FANG,
         MOVE_ICE_FANG,
         MOVE_THUNDER_FANG),
@@ -4061,6 +4108,7 @@ const u16 gEggMoves[] = {
 
     egg_moves(ROCKRUFF,
         MOVE_CRUSH_CLAW,
+        MOVE_JAGGED_FANGS, // new
         MOVE_FIRE_FANG,
         MOVE_THUNDER_FANG,
         MOVE_THRASH),
@@ -4116,6 +4164,7 @@ const u16 gEggMoves[] = {
         MOVE_FAKE_OUT),
 
     egg_moves(STUFFUL,
+        MOVE_SEISMIC_FIST, // new
         MOVE_ICE_PUNCH,
         MOVE_THUNDER_PUNCH,
         MOVE_FORCE_PALM,
@@ -4211,6 +4260,10 @@ const u16 gEggMoves[] = {
 
     egg_moves(BRUXISH,
         MOVE_WATER_PULSE,
+        MOVE_IRON_FANGS, // new
+        MOVE_JAGGED_FANGS, // new
+        MOVE_SHADOW_FANGS, // new
+        MOVE_LOVELY_BITE, // new
         MOVE_POISON_FANG,
         MOVE_ICE_FANG,
         MOVE_RAGE),
@@ -4294,6 +4347,7 @@ const u16 gEggMoves[] = {
         MOVE_COUNTER),
 
     egg_moves(CHEWTLE,
+        MOVE_JAGGED_FANGS, // new
         MOVE_SKULL_BASH,
         MOVE_GASTRO_ACID,
         MOVE_DRAGON_TAIL),
@@ -4419,6 +4473,7 @@ const u16 gEggMoves[] = {
         MOVE_MIRROR_COAT),
 
     egg_moves(DREEPY,
+        MOVE_SHADOW_FANGS, // new
         MOVE_CURSE,
         MOVE_GRUDGE,
         MOVE_CONFUSE_RAY,
@@ -4590,6 +4645,7 @@ const u16 gEggMoves[] = {
         MOVE_POWER_UP_PUNCH),
 
     egg_moves(YAMASK_GALARIAN,
+        MOVE_SEISMIC_FIST, // new
         MOVE_MEMENTO),
 
     egg_moves(STUNFISK_GALARIAN,

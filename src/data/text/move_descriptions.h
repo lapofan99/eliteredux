@@ -3057,7 +3057,7 @@ static const u8 sJAGGED_FANGSDescription[] = _(
     "Bites aggressively.\n"
     "10% chance to up Atk.");
 
-static const u8 sBURNING_GROUNDDescription[] = _(
+static const u8 sSCORCHED_EARTHDescription[] = _(
     "Precisely burns the ground\n"
     "under the foe. May burn.");
 
@@ -3844,7 +3844,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_SHADOW_FANGS - 1]   = sSHADOW_FANGSDescription,
     [MOVE_LOVELY_BITE - 1]    = sLOVELY_BITEDescription,
     [MOVE_JAGGED_FANGS - 1]   = sJAGGED_FANGSDescription,
-    [MOVE_BURNING_GROUND - 1] = sBURNING_GROUNDDescription,
+    [MOVE_SCORCHED_EARTH - 1] = sSCORCHED_EARTHDescription,
     [MOVE_RAGING_FURY -1]     = sRAGINGFURYDescription,
 };
 
@@ -4658,7 +4658,7 @@ static const u8 sMoveFourLineDescription_IronFangs[]     = _("Breaks any barrier
 static const u8 sMoveFourLineDescription_LovelyBite[]    = _("An affectionate bite.\n10% chance to\ninfatuate the foe.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_ShadowFangs[]   = _("The foe shudders.\n10% chance to\ncurse the foe.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_JaggedFangs[]   = _("A ferocious bite.\n20% chance to\nraise user's Attack.\nStrong Jaw boost."); // new
-static const u8 sMoveFourLineDescription_BurningGround[] = _("Fire- and Ground-\ntype at the same\ntime. Has 10%\nburn chance."); // new
+static const u8 sMoveFourLineDescription_ScorchedEarth[] = _("Fire- and Ground-\ntype at the same\ntime. Has 10%\nburn chance."); // new
 static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n20% chance to drop\nthe foe's Def."); // new
 static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
 
@@ -5432,6 +5432,6 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SHADOW_FANGS - 1]   = sMoveFourLineDescription_ShadowFangs,
     [MOVE_LOVELY_BITE - 1]    = sMoveFourLineDescription_LovelyBite,
     [MOVE_JAGGED_FANGS - 1]   = sMoveFourLineDescription_JaggedFangs,
-    [MOVE_BURNING_GROUND - 1] = sMoveFourLineDescription_BurningGround,
+    [MOVE_SCORCHED_EARTH - 1] = sMoveFourLineDescription_ScorchedEarth,
     [MOVE_RAGING_FURY - 1]    = sMoveFourLineDescription_RagingFury,
 };

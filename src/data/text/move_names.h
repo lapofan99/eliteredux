@@ -768,7 +768,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_SHADOW_FANGS]    = _("Shadow Fang"),
     [MOVE_LOVELY_BITE]     = _("Fairy Fang"),
     [MOVE_JAGGED_FANGS]    = _("Jagged Fang"),
-    [MOVE_BURNING_GROUND] = _("Brn.Ground"),
+    [MOVE_SCORCHED_EARTH] = _("Brn.Ground"),
     [MOVE_RAGING_FURY]    = _("Raging Fury"),
 };
 
@@ -1543,6 +1543,6 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_SHADOW_FANGS]    = _("Shadow Fangs"),
     [MOVE_LOVELY_BITE]     = _("Lovely Bite"),
     [MOVE_JAGGED_FANGS]    = _("Jagged Fangs"),
-    [MOVE_BURNING_GROUND] = _("Burning Ground"),
+    [MOVE_SCORCHED_EARTH] = _("Scorched Earth"),
     [MOVE_RAGING_FURY]    = _("Raging Fury"),
 };

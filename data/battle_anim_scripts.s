@@ -790,7 +790,7 @@ gBattleAnims_Moves::
 	.4byte Move_SHADOW_FANGS
 	.4byte Move_LOVELY_BITE
 	.4byte Move_JAGGED_FANGS
-	.4byte Move_BURNING_GROUND
+	.4byte Move_SCORCHED_EARTH
 	.4byte Move_RAGING_FURY
 	.4byte Move_COUNT @ cannot be reached, because last move is Outburst
 
@@ -20490,11 +20490,11 @@ JaggedFangsRemoveBlend:
 	delay 1
 	end
 
-Move_BURNING_GROUND::
+Move_SCORCHED_EARTH::
 	loadspritegfx ANIM_TAG_SMALL_EMBER
 	loadspritegfx ANIM_TAG_FIRE_PLUME
 	loadspritegfx ANIM_TAG_MUD_SAND
-BurningGroundExtraHitTarget:
+ScorchedEarthExtraHitTarget:
 	fadetobg BG_FISSURE
 	waitbgfadeout
 	createvisualtask AnimTask_PositionFissureBgOnBattler, 5, ANIM_TARGET, 5, -1
@@ -20516,7 +20516,7 @@ BurningGroundExtraHitTarget:
 	createsprite gDragonRageFirePlumeSpriteTemplate, 130, 3, 1, -27, 25
 	delay 1
 	createsprite gDragonRageFirePlumeSpriteTemplate, 194, 3, 1, 0, 8
-BurningGroundRemoveBlend:
+ScorchedEarthRemoveBlend:
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, RGB_RED
 	restorebg
 	waitbgfadeout
@@ -20526,7 +20526,7 @@ BurningGroundRemoveBlend:
 	createsprite gSlideMonToOriginalPosSpriteTemplate, 194, 3, 0, 0, 4
 	waitforvisualfinish
 	end
-BurningGroundOrbs:
+ScorchedEarthOrbs:
 	createsprite gMudShotOrbSpriteTemplate, ANIM_ATTACKER, 3, 10, 10, 0, 16
 	delay 2
 	createsprite gMudShotOrbSpriteTemplate, ANIM_ATTACKER, 3, 10, 10, 0, 16

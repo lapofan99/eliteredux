@@ -11935,7 +11935,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_BURNING_GROUND] =
+    [MOVE_SCORCHED_EARTH] =
     {
         .effect = EFFECT_BURN_HIT,
         .power = 100,

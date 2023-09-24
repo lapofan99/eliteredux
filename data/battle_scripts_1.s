@@ -10545,3 +10545,4 @@ BattleScript_WildTotemMegaEvolution::
 	waitmessage B_WAIT_TIME_LONG
 	switchinabilities BS_ATTACKER
 	end2
+	

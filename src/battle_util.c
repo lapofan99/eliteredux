@@ -8889,6 +8889,21 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
+        case ABILITY_INFERNAL_RAGE:
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+			 && gBattleMoves[move].type == TYPE_FIRE)
+            {
+                gBattleMoveDamage = gSpecialStatuses[gBattlerTarget].dmg / 10;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_UserGetsReckoilDamaged;
+                effect++;
+            }
+            break;
         case ABILITY_VOLCANO_RAGE:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -9177,6 +9192,24 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             {
 				gBattleScripting.abilityPopupOverwrite = ABILITY_ELECTRIC_BURST;
 				gLastUsedAbility = ABILITY_ELECTRIC_BURST;
+                gBattleMoveDamage = gSpecialStatuses[gBattlerTarget].dmg / 10;
+                if (gBattleMoveDamage == 0)
+                    gBattleMoveDamage = 1;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_UserGetsReckoilDamaged;
+                effect++;
+            }
+		}
+        // Infernal Rage
+		if (BattlerHasInnate(battler, ABILITY_INFERNAL_RAGE)){
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+			 && gBattleMoves[move].type == TYPE_FIRE)
+            {
+				gBattleScripting.abilityPopupOverwrite = ABILITY_INFERNAL_RAGE;
+				gLastUsedAbility = ABILITY_INFERNAL_RAGE;
                 gBattleMoveDamage = gSpecialStatuses[gBattlerTarget].dmg / 10;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
@@ -13733,6 +13766,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(1.35));
         }
         break;
+    case ABILITY_INFERNAL_RAGE:
+        if (moveType == TYPE_FIRE)
+        {
+            MulModifier(&modifier, UQ_4_12(1.35));
+        }
+        break;
 	case ABILITY_SEAWEED:
 		if (moveType == TYPE_GRASS && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE))
         {
@@ -14184,6 +14223,13 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	// Electric Burst
 	if(BattlerHasInnate(battlerAtk, ABILITY_ELECTRIC_BURST)){
 		if (moveType == TYPE_ELECTRIC)
+        {
+            MulModifier(&modifier, UQ_4_12(1.35));
+        }
+	}
+    // Infernal Rage
+	if(BattlerHasInnate(battlerAtk, ABILITY_INFERNAL_RAGE)){
+		if (moveType == TYPE_FIRE)
         {
             MulModifier(&modifier, UQ_4_12(1.35));
         }
