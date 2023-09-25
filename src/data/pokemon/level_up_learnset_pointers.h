@@ -983,6 +983,11 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_SANDSLASH_MEGA] = sSandslashLevelUpLearnset,
     [SPECIES_TYPHLOSION_MEGA] = sTyphlosionLevelUpLearnset,
     [SPECIES_MEGANIUM_MEGA] = sMeganiumLevelUpLearnset,
+    [SPECIES_KROOKODILE_MEGA] = sKrookodileLevelUpLearnset,
+    [SPECIES_MAGNEZONE_MEGA] = sMagnezoneLevelUpLearnset,
+    [SPECIES_SHEDINJA_MEGA] = sShedinjaLevelUpLearnset,
+    [SPECIES_SWALOT_MEGA] = sSwalotLevelUpLearnset,
+    [SPECIES_DEWLEON] = sDewleonLevelUpLearnset,
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] = sRayquazaLevelUpLearnset,
     [SPECIES_KYOGRE_PRIMAL] = sKyogreLevelUpLearnset,

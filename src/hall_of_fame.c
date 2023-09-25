@@ -778,6 +778,22 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_MEGANIUMITE)
                 return SPECIES_MEGANIUM_MEGA;
         break;
+        case SPECIES_KROOKODILE:
+            if(item == ITEM_MEGANIUMITE)
+                return SPECIES_KROOKODILE_MEGA;
+        break;
+        case SPECIES_MAGNEZONE:
+            if(item == ITEM_MEGANIUMITE)
+                return SPECIES_MAGNEZONE_MEGA;
+        break;
+        case SPECIES_SHEDINJA:
+            if(item == ITEM_MEGANIUMITE)
+                return SPECIES_SHEDINJA_MEGA;
+        break;
+        case SPECIES_SWALOT:
+            if(item == ITEM_MEGANIUMITE)
+                return SPECIES_SWALOT_MEGA;
+        break;
         case SPECIES_CASCOON:
             if(item == ITEM_PURPLE_ORB)
                 return SPECIES_CASCOON_PRIMAL;

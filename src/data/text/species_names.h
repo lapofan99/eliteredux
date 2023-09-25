@@ -984,6 +984,11 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_SANDSLASH_MEGA]    = _("Sandslash"),
     [SPECIES_TYPHLOSION_MEGA]   = _("Typhlosion"),
     [SPECIES_MEGANIUM_MEGA]     = _("Meganium"),
+    [SPECIES_KROOKODILE_MEGA]   = _("Krookodile"),
+    [SPECIES_MAGNEZONE_MEGA]    = _("Magnezone"),
+    [SPECIES_SHEDINJA_MEGA]     = _("Shedinja"),
+    [SPECIES_SWALOT_MEGA]       = _("Swalot"),
+    [SPECIES_DEWLEON]           = _("Dewleon"),
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] = _("Rayquaza"),
     [SPECIES_KYOGRE_PRIMAL] = _("Kyogre"),

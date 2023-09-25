@@ -1116,3 +1116,27 @@ static const u16 sKingdraFormSpeciesIdTable[] = {
     SPECIES_KINGDRA_MEGA_Y,
     FORM_SPECIES_END,
 };
+
+static const u16 sKrookodileFormSpeciesIdTable[] = {
+    SPECIES_KROOKODILE,
+    SPECIES_KROOKODILE_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sMagnezoneFormSpeciesIdTable[] = {
+    SPECIES_MAGNEZONE,
+    SPECIES_MAGNEZONE_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sShedinjaFormSpeciesIdTable[] = {
+    SPECIES_SHEDINJA,
+    SPECIES_SHEDINJA_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sSwalotFormSpeciesIdTable[] = {
+    SPECIES_SWALOT,
+    SPECIES_SWALOT_MEGA,
+    FORM_SPECIES_END,
+};

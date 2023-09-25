@@ -568,4 +568,12 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_MEGANIUM] = sMeganiumFormSpeciesIdTable,
     [SPECIES_MEGANIUM_MEGA] = sMeganiumFormSpeciesIdTable,
 
+    [SPECIES_KROOKODILE] = sKrookodileFormSpeciesIdTable,
+    [SPECIES_KROOKODILE_MEGA] = sKrookodileFormSpeciesIdTable,
+    [SPECIES_MAGNEZONE] = sMagnezoneFormSpeciesIdTable,
+    [SPECIES_MAGNEZONE_MEGA] = sMagnezoneFormSpeciesIdTable,
+    [SPECIES_SHEDINJA] = sShedinjaFormSpeciesIdTable,
+    [SPECIES_SHEDINJA_MEGA] = sShedinjaFormSpeciesIdTable,
+    [SPECIES_SWALOT] = sSwalotFormSpeciesIdTable,
+    [SPECIES_SWALOT_MEGA] = sSwalotFormSpeciesIdTable,
 };

@@ -6724,3 +6724,33 @@ const u32 gMonBackPic_MeganiumMega[]            = INCBIN_U32("graphics/pokemon/m
 const u32 gMonPalette_MeganiumMega[]            = INCBIN_U32("graphics/pokemon/mega_meganium/normal.gbapal.lz");
 const u32 gMonShinyPalette_MeganiumMega[]       = INCBIN_U32("graphics/pokemon/mega_meganium/shiny.gbapal.lz");
 const u8  gMonIcon_MeganiumMega[]               = INCBIN_U8("graphics/pokemon/mega_meganium/icon.4bpp");
+
+const u32 gMonFrontPic_KrookodileMega[]         = INCBIN_U32("graphics/pokemon/mega_krookodile/front.4bpp.lz");
+const u32 gMonBackPic_KrookodileMega[]          = INCBIN_U32("graphics/pokemon/mega_krookodile/back.4bpp.lz");
+const u32 gMonPalette_KrookodileMega[]          = INCBIN_U32("graphics/pokemon/mega_krookodile/normal.gbapal.lz");
+const u32 gMonShinyPalette_KrookodileMega[]     = INCBIN_U32("graphics/pokemon/mega_krookodile/shiny.gbapal.lz");
+const u8  gMonIcon_KrookodileMega[]             = INCBIN_U8("graphics/pokemon/mega_krookodile/icon.4bpp");
+
+const u32 gMonFrontPic_MagnezoneMega[]          = INCBIN_U32("graphics/pokemon/mega_magnezone/front.4bpp.lz");
+const u32 gMonBackPic_MagnezoneMega[]           = INCBIN_U32("graphics/pokemon/mega_magnezone/back.4bpp.lz");
+const u32 gMonPalette_MagnezoneMega[]           = INCBIN_U32("graphics/pokemon/mega_magnezone/normal.gbapal.lz");
+const u32 gMonShinyPalette_MagnezoneMega[]      = INCBIN_U32("graphics/pokemon/mega_magnezone/shiny.gbapal.lz");
+const u8  gMonIcon_MagnezoneMega[]              = INCBIN_U8("graphics/pokemon/mega_magnezone/icon.4bpp");
+
+const u32 gMonFrontPic_ShedinjaMega[]           = INCBIN_U32("graphics/pokemon/mega_shedinja/front.4bpp.lz");
+const u32 gMonBackPic_ShedinjaMega[]            = INCBIN_U32("graphics/pokemon/mega_shedinja/back.4bpp.lz");
+const u32 gMonPalette_ShedinjaMega[]            = INCBIN_U32("graphics/pokemon/mega_shedinja/normal.gbapal.lz");
+const u32 gMonShinyPalette_ShedinjaMega[]       = INCBIN_U32("graphics/pokemon/mega_shedinja/shiny.gbapal.lz");
+const u8  gMonIcon_ShedinjaMega[]               = INCBIN_U8("graphics/pokemon/mega_shedinja/icon.4bpp");
+
+const u32 gMonFrontPic_SwalotMega[]             = INCBIN_U32("graphics/pokemon/mega_swalot/front.4bpp.lz");
+const u32 gMonBackPic_SwalotMega[]              = INCBIN_U32("graphics/pokemon/mega_swalot/back.4bpp.lz");
+const u32 gMonPalette_SwalotMega[]              = INCBIN_U32("graphics/pokemon/mega_swalot/normal.gbapal.lz");
+const u32 gMonShinyPalette_SwalotMega[]         = INCBIN_U32("graphics/pokemon/mega_swalot/shiny.gbapal.lz");
+const u8  gMonIcon_SwalotMega[]                 = INCBIN_U8("graphics/pokemon/mega_swalot/icon.4bpp");
+
+const u32 gMonFrontPic_Dewleon[]                = INCBIN_U32("graphics/pokemon/dewleon/front.4bpp.lz");
+const u32 gMonBackPic_Dewleon[]                 = INCBIN_U32("graphics/pokemon/dewleon/back.4bpp.lz");
+const u32 gMonPalette_Dewleon[]                 = INCBIN_U32("graphics/pokemon/dewleon/normal.gbapal.lz");
+const u32 gMonShinyPalette_Dewleon[]            = INCBIN_U32("graphics/pokemon/dewleon/shiny.gbapal.lz");
+const u8  gMonIcon_Dewleon[]                    = INCBIN_U8("graphics/pokemon/dewleon/icon.4bpp");

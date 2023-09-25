@@ -10210,4 +10210,34 @@ extern const u32 gMonPalette_MeganiumMega[];
 extern const u32 gMonShinyPalette_MeganiumMega[];
 extern const u8  gMonIcon_MeganiumMega[];
 
+extern const u32 gMonFrontPic_KrookodileMega[];
+extern const u32 gMonBackPic_KrookodileMega[];
+extern const u32 gMonPalette_KrookodileMega[];
+extern const u32 gMonShinyPalette_KrookodileMega[];
+extern const u8  gMonIcon_KrookodileMega[];
+
+extern const u32 gMonFrontPic_MagnezoneMega[];
+extern const u32 gMonBackPic_MagnezoneMega[];
+extern const u32 gMonPalette_MagnezoneMega[];
+extern const u32 gMonShinyPalette_MagnezoneMega[];
+extern const u8  gMonIcon_MagnezoneMega[];
+
+extern const u32 gMonFrontPic_ShedinjaMega[];
+extern const u32 gMonBackPic_ShedinjaMega[];
+extern const u32 gMonPalette_ShedinjaMega[];
+extern const u32 gMonShinyPalette_ShedinjaMega[];
+extern const u8  gMonIcon_ShedinjaMega[];
+
+extern const u32 gMonFrontPic_SwalotMega[];
+extern const u32 gMonBackPic_SwalotMega[];
+extern const u32 gMonPalette_SwalotMega[];
+extern const u32 gMonShinyPalette_SwalotMega[];
+extern const u8  gMonIcon_SwalotMega[];
+
+extern const u32 gMonFrontPic_Dewleon[];
+extern const u32 gMonBackPic_Dewleon[];
+extern const u32 gMonPalette_Dewleon[];
+extern const u32 gMonShinyPalette_Dewleon[];
+extern const u8  gMonIcon_Dewleon[];
+
 #endif //GUARD_GRAPHICS_H
