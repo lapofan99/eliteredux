@@ -426,5 +426,6 @@
 //Totem Fights
 #define TOTEM_FIGHT_NORMAL        0
 #define TOTEM_FIGHT_HAXORUS       0
+#define TOTEM_FIGHT_DEWGONG       0
 
 #endif // GUARD_CONSTANTS_POKEMON_H
