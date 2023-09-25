@@ -4929,7 +4929,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_LANTURN_MEGA] =
     {
         .size = 0x87,
-        .y_offset = 0,
+        .y_offset = 4,
     },
     [SPECIES_DEWLEON] =
     {
