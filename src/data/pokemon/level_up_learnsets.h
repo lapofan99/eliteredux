@@ -11137,6 +11137,7 @@ static const struct LevelUpMove sPalkiaLevelUpLearnset[] = {
 static const struct LevelUpMove sHeatranLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SCORCHED_EARTH), // new
     LEVEL_UP_MOVE( 1, MOVE_SCORCHING_SANDS), // new
+    LEVEL_UP_MOVE( 1, MOVE_ERUPTION), // new
 	LEVEL_UP_MOVE( 1, MOVE_BODY_PRESS), // new
 	LEVEL_UP_MOVE( 1, MOVE_MAGMA_STORM),
 	LEVEL_UP_MOVE( 1, MOVE_HEAT_WAVE),
