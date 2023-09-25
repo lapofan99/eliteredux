@@ -576,4 +576,6 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_SHEDINJA_MEGA] = sShedinjaFormSpeciesIdTable,
     [SPECIES_SWALOT] = sSwalotFormSpeciesIdTable,
     [SPECIES_SWALOT_MEGA] = sSwalotFormSpeciesIdTable,
+    [SPECIES_LANTURN] = sLanturnFormSpeciesIdTable,
+    [SPECIES_LANTURN_MEGA] = sLanturnFormSpeciesIdTable,
 };

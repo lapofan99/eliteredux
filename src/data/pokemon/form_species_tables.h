@@ -1140,3 +1140,9 @@ static const u16 sSwalotFormSpeciesIdTable[] = {
     SPECIES_SWALOT_MEGA,
     FORM_SPECIES_END,
 };
+
+static const u16 sLanturnFormSpeciesIdTable[] = {
+    SPECIES_LANTURN,
+    SPECIES_LANTURN_MEGA,
+    FORM_SPECIES_END,
+};

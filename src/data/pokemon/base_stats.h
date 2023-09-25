@@ -32606,6 +32606,33 @@ const struct BaseStats gBaseStats[] =
         .noFlip = FALSE,
     },
 
+[SPECIES_LANTURN_MEGA] = 
+    {
+    .baseHP        = 125,
+    .baseAttack    = 58,
+    .baseDefense   = 58,
+    .baseSpeed     = 67,
+    .baseSpAttack  = 86,
+    .baseSpDefense = 86,
+    .type1 = TYPE_WATER,
+    .type2 = TYPE_ELECTRIC,
+    .catchRate = 255,
+    .expYield = 161,
+    .evYield_HP    = 2,
+    .item1 = ITEM_YELLOW_SHARD,
+    .item2 = ITEM_DEEP_SEA_SCALE,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_FAST,
+    .eggGroup1 = EGG_GROUP_WATER_2,
+    .eggGroup2 = EGG_GROUP_WATER_2,
+    .abilities = {ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM},
+    .innates = {ABILITY_PLUS, ABILITY_WATER_ABSORB, ABILITY_VOLT_ABSORB},
+    .bodyColor = BODY_COLOR_BLUE,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_DEWLEON] =
     {
     .baseHP        = 200,

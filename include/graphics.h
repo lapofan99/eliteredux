@@ -10234,6 +10234,12 @@ extern const u32 gMonPalette_SwalotMega[];
 extern const u32 gMonShinyPalette_SwalotMega[];
 extern const u8  gMonIcon_SwalotMega[];
 
+extern const u32 gMonFrontPic_LanturnMega[];
+extern const u32 gMonBackPic_LanturnMega[];
+extern const u32 gMonPalette_LanturnMega[];
+extern const u32 gMonShinyPalette_LanturnMega[];
+extern const u8  gMonIcon_LanturnMega[];
+
 extern const u32 gMonFrontPic_Dewleon[];
 extern const u32 gMonBackPic_Dewleon[];
 extern const u32 gMonPalette_Dewleon[];

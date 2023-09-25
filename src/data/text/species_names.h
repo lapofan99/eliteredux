@@ -988,6 +988,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_MAGNEZONE_MEGA]    = _("Magnezone"),
     [SPECIES_SHEDINJA_MEGA]     = _("Shedinja"),
     [SPECIES_SWALOT_MEGA]       = _("Swalot"),
+    [SPECIES_LANTURN_MEGA]      = _("Lanturn"),
     [SPECIES_DEWLEON]           = _("Dewleon"),
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] = _("Rayquaza"),

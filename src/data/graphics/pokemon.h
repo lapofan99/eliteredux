@@ -6749,6 +6749,12 @@ const u32 gMonPalette_SwalotMega[]              = INCBIN_U32("graphics/pokemon/m
 const u32 gMonShinyPalette_SwalotMega[]         = INCBIN_U32("graphics/pokemon/mega_swalot/shiny.gbapal.lz");
 const u8  gMonIcon_SwalotMega[]                 = INCBIN_U8("graphics/pokemon/mega_swalot/icon.4bpp");
 
+const u32 gMonFrontPic_LanturnMega[]             = INCBIN_U32("graphics/pokemon/mega_lanturn/front.4bpp.lz");
+const u32 gMonBackPic_LanturnMega[]              = INCBIN_U32("graphics/pokemon/mega_lanturn/back.4bpp.lz");
+const u32 gMonPalette_LanturnMega[]              = INCBIN_U32("graphics/pokemon/mega_lanturn/normal.gbapal.lz");
+const u32 gMonShinyPalette_LanturnMega[]         = INCBIN_U32("graphics/pokemon/mega_lanturn/shiny.gbapal.lz");
+const u8  gMonIcon_LanturnMega[]                 = INCBIN_U8("graphics/pokemon/mega_lanturn/icon.4bpp");
+
 const u32 gMonFrontPic_Dewleon[]                = INCBIN_U32("graphics/pokemon/dewleon/front.4bpp.lz");
 const u32 gMonBackPic_Dewleon[]                 = INCBIN_U32("graphics/pokemon/dewleon/back.4bpp.lz");
 const u32 gMonPalette_Dewleon[]                 = INCBIN_U32("graphics/pokemon/dewleon/normal.gbapal.lz");

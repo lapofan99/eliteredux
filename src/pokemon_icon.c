@@ -1014,6 +1014,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_MAGNEZONE_MEGA] = gMonIcon_MagnezoneMega,
     [SPECIES_SHEDINJA_MEGA] = gMonIcon_ShedinjaMega,
     [SPECIES_SWALOT_MEGA] = gMonIcon_SwalotMega,
+    [SPECIES_LANTURN_MEGA] = gMonIcon_LanturnMega,
     [SPECIES_DEWLEON] = gMonIcon_Dewleon,
     [SPECIES_CASCOON_PRIMAL] = gMonIcon_CascoonPrimal,
     [SPECIES_RAYQUAZA_MEGA] = gMonIcon_RayquazaMega,
@@ -2290,6 +2291,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_MAGNEZONE_MEGA] = 0,
     [SPECIES_SHEDINJA_MEGA] = 0,
     [SPECIES_SWALOT_MEGA] = 0,
+    [SPECIES_LANTURN_MEGA] = 0,
     [SPECIES_DEWLEON] = 1,
 
     [SPECIES_RATTATA_ALOLAN] = 2,

@@ -794,6 +794,10 @@ u16 getHallofFameSpecies(u8 num){
             if(item == ITEM_MEGANIUMITE)
                 return SPECIES_SWALOT_MEGA;
         break;
+        case SPECIES_LANTURN:
+            if(item == ITEM_MEGANIUMITE)
+                return SPECIES_LANTURN_MEGA;
+        break;
         case SPECIES_CASCOON:
             if(item == ITEM_PURPLE_ORB)
                 return SPECIES_CASCOON_PRIMAL;

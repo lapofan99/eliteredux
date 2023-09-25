@@ -15587,6 +15587,11 @@ static const union AnimCmd *const sAnims_SWALOT_MEGA[] ={
     sAnim_GENERIC,
 };
 
+static const union AnimCmd *const sAnims_LANTURN_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
+};
+
 static const union AnimCmd *const sAnims_DEWLEON[] ={
     sAnim_GeneralFrame0,
     sAnim_GENERIC,
@@ -16968,6 +16973,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(MAGNEZONE_MEGA),
     ANIM_CMD(SHEDINJA_MEGA),
     ANIM_CMD(SWALOT_MEGA),
+    ANIM_CMD(LANTURN_MEGA),
     ANIM_CMD(RAYQUAZA_MEGA),
     ANIM_CMD(KYOGRE_PRIMAL),
     ANIM_CMD(GROUDON_PRIMAL),
