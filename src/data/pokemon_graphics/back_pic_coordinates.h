@@ -4909,7 +4909,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_KROOKODILE_MEGA] =
     {
         .size = 0x87,
-        .y_offset = 0,
+        .y_offset = 1,
     },
     [SPECIES_MAGNEZONE_MEGA] =
     {
@@ -4929,7 +4929,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_DEWLEON] =
     {
         .size = 0x87,
-        .y_offset = 0,
+        .y_offset = 5,
     },
     [SPECIES_MEGANIUM_MEGA] =
     {
