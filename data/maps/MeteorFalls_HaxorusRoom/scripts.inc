@@ -19,7 +19,7 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus::
 	setvar VAR_TOTEM_POKEMON_EVASION_BOOST, 0
 	setvar VAR_TOTEM_MESSAGE, TOTEM_FIGHT_HAXORUS
 	setflag FLAG_SHINY_CREATION
-	setwildbattlewithcustommoves SPECIES_HAXORUS, 75, ITEM_HAXORUSITE, MOVE_DUAL_CHOP, MOVE_EXCALIBUR, MOVE_DRAIN_PUNCH, MOVE_TAUNT, 0, NATURE_ADAMANT, 252, 252, 252, 252, 252, 252
+	setwildbattlewithcustommoves SPECIES_HAXORUS, 0, ITEM_HAXORUSITE, MOVE_DUAL_CHOP, MOVE_EXCALIBUR, MOVE_DRAIN_PUNCH, MOVE_TAUNT, 0, NATURE_ADAMANT, 252, 252, 252, 252, 252, 252
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	dowildbattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -60,7 +60,7 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus_4:
 	goto MeteorFalls_HaxorusRoom_EventScript_Haxorus_1
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_6:
-	givecustommon SPECIES_HAXORUS, 75, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_ADAMANT, 0, 252, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_CHOP, MOVE_EXCALIBUR, MOVE_DRAIN_PUNCH, MOVE_TAUNT, TRUE
+	givecustommon SPECIES_HAXORUS, 0, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_ADAMANT, 0, 252, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_CHOP, MOVE_EXCALIBUR, MOVE_DRAIN_PUNCH, MOVE_TAUNT, TRUE
 	playfanfare MUS_OBTAIN_ITEM
 	message MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_2
 	waitfanfare

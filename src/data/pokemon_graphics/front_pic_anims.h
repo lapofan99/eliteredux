@@ -9805,7 +9805,7 @@ static const union AnimCmd sAnim_KINGDRA_MEGA_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_DEWGONG_MEGA_1[] =
+static const union AnimCmd sAnim_GENERIC[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END,
@@ -15399,172 +15399,197 @@ static const union AnimCmd *const sAnims_KINGDRA_MEGA[] ={
 
 static const union AnimCmd *const sAnims_DEWGONG_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_HITMONCHAN_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_HITMONLEE_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_HITMONTOP_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_CROBAT_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_SKARMORY_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_BRUXISH_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_TORTERRA_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_INFERNAPE_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_EMPOLEON_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_SHUCKLE_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_RELICANTH_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_QUAGSIRE_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_JELLICENT_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_TOUCANNON_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_DRAGONITE_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_BRELOOM_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_SLAKING_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_INFERNAPE_REGIONAL[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_NOIBAT_REGIONAL[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_NOIVERN_REGIONAL[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_CASCOON_PRIMAL[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_FERALIGATR_MEGA_X[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_FERALIGATR_MEGA_Y[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_GRANBULL_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_GYARADOS_MEGA_Y[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_HAXORUS_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_KINGDRA_MEGA_Y[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_LUXRAY_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_NIDOKING_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_NIDOQUEEN_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_SANDSLASH_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_TYPHLOSION_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_MEGANIUM_MEGA[] ={
     sAnim_GeneralFrame0,
-    sAnim_DEWGONG_MEGA_1,
+    sAnim_GENERIC,
+};
+
+static const union AnimCmd *const sAnims_KROOKODILE_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
+};
+
+static const union AnimCmd *const sAnims_MAGNEZONE_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
+};
+
+static const union AnimCmd *const sAnims_SHEDINJA_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
+};
+
+static const union AnimCmd *const sAnims_SWALOT_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
+};
+
+static const union AnimCmd *const sAnims_DEWLEON[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
 };
 
 static const union AnimCmd *const sAnims_RATTATA_ALOLAN[] ={
@@ -16933,11 +16958,16 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(HAXORUS_MEGA),
     ANIM_CMD(KINGDRA_MEGA_Y),
     ANIM_CMD(LUXRAY_MEGA),
+    ANIM_CMD(DEWLEON),
     ANIM_CMD(NIDOKING_MEGA),
     ANIM_CMD(NIDOQUEEN_MEGA),
     ANIM_CMD(SANDSLASH_MEGA),
     ANIM_CMD(TYPHLOSION_MEGA),
     ANIM_CMD(MEGANIUM_MEGA),
+    ANIM_CMD(KROOKODILE_MEGA),
+    ANIM_CMD(MAGNEZONE_MEGA),
+    ANIM_CMD(SHEDINJA_MEGA),
+    ANIM_CMD(SWALOT_MEGA),
     ANIM_CMD(RAYQUAZA_MEGA),
     ANIM_CMD(KYOGRE_PRIMAL),
     ANIM_CMD(GROUDON_PRIMAL),
