@@ -1,6 +1,7 @@
 #include "global.h"
 #include "frontier_util.h"
 #include "battle_setup.h"
+#include "battle_tower.h"
 #include "berry.h"
 #include "clock.h"
 #include "coins.h"
@@ -2712,6 +2713,9 @@ bool8 ScrCmd_givecustommon(struct ScriptContext *ctx)
     u8 ivs[NUM_STATS] = {hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv};
     u16 moves[4] = {move1, move2, move3, move4};
 
+    if(level == 0)
+        level = GetHighestLevelInPlayerParty();
+
     gSpecialVar_Result = ScriptGiveCustomMon(species, level, item, ball, nature, abilityNum, evs, ivs, moves, isShiny);
     return FALSE;
 }
@@ -2769,6 +2773,9 @@ bool8 ScrCmd_setwildbattlewithcustommoves(struct ScriptContext *ctx)
     u16 spd_evs    = ScriptReadHalfword(ctx);
     u16 speed_evs  = ScriptReadHalfword(ctx);
     struct Pokemon *pkmn = &gEnemyParty[0];
+    
+    if(level == 0)
+        level = GetHighestLevelInPlayerParty();
 
     CreateScriptedWildMon(species, level, item);
 

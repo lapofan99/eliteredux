@@ -65,6 +65,45 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
       "flag": "FLAG_TEMP_14"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
+      "x": 31,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_CutTree",
+      "flag": "FLAG_TEMP_8"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
+      "x": 32,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_CutTree",
+      "flag": "FLAG_TEMP_9"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
+      "x": 30,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_CutTree",
+      "flag": "FLAG_TEMP_7"
     }
   ],
   "warp_events": [
@@ -94,6 +133,20 @@
       "y": 34,
       "elevation": 0,
       "dest_map": "MAP_PETALBURG_WOODS_3",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 30,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PETALBURG_WOODS_BRELOOM_ROOM",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 31,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PETALBURG_WOODS_BRELOOM_ROOM",
       "dest_warp_id": 1
     }
   ],
