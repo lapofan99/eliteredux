@@ -1650,65 +1650,6 @@ const struct Item gItems[] =
     },
 
 // Mail
-    [ITEM_WOOD_MAIL] =
-    {
-        .name = _("Wood Mail"),
-        .itemId = ITEM_WOOD_MAIL,
-        .price = 50,
-        .description = sWoodMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_WOOD_MAIL),
-    },
-
-    [ITEM_WAVE_MAIL] =
-    {
-        .name = _("Wave Mail"),
-        .itemId = ITEM_WAVE_MAIL,
-        .price = 50,
-        .description = sWaveMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_WAVE_MAIL),
-    },
-
-    [ITEM_BEAD_MAIL] =
-    {
-        .name = _("Bead Mail"),
-        .itemId = ITEM_BEAD_MAIL,
-        .price = 50,
-        .description = sBeadMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_BEAD_MAIL),
-    },
-
-    [ITEM_SHADOW_MAIL] =
-    {
-        .name = _("Shadow Mail"),
-        .itemId = ITEM_SHADOW_MAIL,
-        .price = 50,
-        .description = sShadowMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_SHADOW_MAIL),
-    },
-
-    [ITEM_TROPIC_MAIL] =
-    {
-        .name = _("Tropic Mail"),
-        .itemId = ITEM_TROPIC_MAIL,
-        .price = 50,
-        .description = sTropicMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_TROPIC_MAIL),
-    },
 
     [ITEM_DREAM_MAIL] =
     {
@@ -7996,6 +7937,66 @@ const struct Item gItems[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sSlakingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+    
+    [ITEM_KROOKODILENITE] =
+    {
+        .name = _("Krookodilenite"),
+        .itemId = ITEM_KROOKODILENITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sKrookodileniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_MAGNEZONENITE] =
+    {
+        .name = _("Magnezonite"),
+        .itemId = ITEM_MAGNEZONENITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sMagnezoniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_SHEDINJANITE] =
+    {
+        .name = _("Shedinjanite"),
+        .itemId = ITEM_SHEDINJANITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sShedinjaniteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_SWALOTITE] =
+    {
+        .name = _("Swalotite"),
+        .itemId = ITEM_SWALOTITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSwalotiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_LANTURNITE] =
+    {
+        .name = _("Lanturnite"),
+        .itemId = ITEM_LANTURNITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sLanturniteDesc,
         .pocket = POCKET_MEGA_STONES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,

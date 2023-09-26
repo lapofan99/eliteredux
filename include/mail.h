@@ -1,16 +1,7 @@
 #ifndef GUARD_MAIL_H
 #define GUARD_MAIL_H
 
-#define IS_ITEM_MAIL(itemId)((itemId == ITEM_NIDOQUEENITE            \
-                              || itemId == ITEM_NIDOKINGITE         \
-                              || itemId == ITEM_SANDSLASHITE        \
-                              || itemId == ITEM_MEGANIUMITE           \
-                              || itemId == ITEM_WOOD_MAIL           \
-                              || itemId == ITEM_WAVE_MAIL           \
-                              || itemId == ITEM_BEAD_MAIL           \
-                              || itemId == ITEM_SHADOW_MAIL         \
-                              || itemId == ITEM_TROPIC_MAIL         \
-                              || itemId == ITEM_DREAM_MAIL          \
+#define IS_ITEM_MAIL(itemId)((itemId == ITEM_DREAM_MAIL          \
                               || itemId == ITEM_FAB_MAIL            \
                               || itemId == ITEM_RETRO_MAIL))
 

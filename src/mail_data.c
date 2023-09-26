@@ -168,15 +168,6 @@ bool8 ItemIsMail(u16 itemId)
 {
     switch (itemId)
     {
-    case ITEM_NIDOQUEENITE:
-    case ITEM_NIDOKINGITE:
-    case ITEM_SANDSLASHITE:
-    case ITEM_MEGANIUMITE:
-    case ITEM_WOOD_MAIL:
-    case ITEM_WAVE_MAIL:
-    case ITEM_BEAD_MAIL:
-    case ITEM_SHADOW_MAIL:
-    case ITEM_TROPIC_MAIL:
     case ITEM_DREAM_MAIL:
     case ITEM_FAB_MAIL:
     case ITEM_RETRO_MAIL:

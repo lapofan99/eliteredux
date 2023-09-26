@@ -133,78 +133,6 @@ static const u16 sBgColors[GENDER_COUNT][2] = {
 };
 
 static const struct MailGraphics sMailGraphics[] = {
-    [ITEM_TO_MAIL(ITEM_NIDOQUEENITE)] = {
-        .palette = gMailPalette_Orange, 
-        .tiles = gMailTiles_Orange, 
-        .tileMap = gMailTilemap_Orange, 
-        .unused = 0x2C0, 
-        .textColor = RGB(10, 10, 10),
-        .textShadow = RGB(25, 25, 25),
-    }, 
-    [ITEM_TO_MAIL(ITEM_NIDOKINGITE)] = {
-        .palette = gMailPalette_Harbor, 
-        .tiles = gMailTiles_Harbor, 
-        .tileMap = gMailTilemap_Harbor, 
-        .unused = 0x2E0, 
-        .textColor = RGB_WHITE,
-        .textShadow = RGB(17, 17, 17),
-    },
-    [ITEM_TO_MAIL(ITEM_SANDSLASHITE)] = {
-        .palette = gMailPalette_Glitter, 
-        .tiles = gMailTiles_Glitter, 
-        .tileMap = gMailTilemap_Glitter, 
-        .unused = 0x400, 
-        .textColor = RGB(10, 10, 10),
-        .textShadow = RGB(25, 25, 25),
-    }, 
-    [ITEM_TO_MAIL(ITEM_MEGANIUMITE)] = {
-        .palette = gMailPalette_Mech, 
-        .tiles = gMailTiles_Mech, 
-        .tileMap = gMailTilemap_Mech, 
-        .unused = 0x1E0, 
-        .textColor = RGB_WHITE,
-        .textShadow = RGB(17, 17, 17),
-    }, 
-    [ITEM_TO_MAIL(ITEM_WOOD_MAIL)] = {
-        .palette = gMailPalette_Wood, 
-        .tiles = gMailTiles_Wood, 
-        .tileMap = gMailTilemap_Wood, 
-        .unused = 0x2E0, 
-        .textColor = RGB_WHITE,
-        .textShadow = RGB(17, 17, 17),
-    }, 
-    [ITEM_TO_MAIL(ITEM_WAVE_MAIL)] = {
-        .palette = gMailPalette_Wave, 
-        .tiles = gMailTiles_Wave, 
-        .tileMap = gMailTilemap_Wave, 
-        .unused = 0x300, 
-        .textColor = RGB(10, 10, 10),
-        .textShadow = RGB(25, 25, 25),
-    }, 
-    [ITEM_TO_MAIL(ITEM_BEAD_MAIL)] = {
-        .palette = gMailPalette_Bead, 
-        .tiles = gMailTiles_Bead, 
-        .tileMap = gMailTilemap_Bead, 
-        .unused = 0x140, 
-        .textColor = RGB_WHITE,
-        .textShadow = RGB(17, 17, 17),
-    }, 
-    [ITEM_TO_MAIL(ITEM_SHADOW_MAIL)] = {
-        .palette = gMailPalette_Shadow, 
-        .tiles = gMailTiles_Shadow, 
-        .tileMap = gMailTilemap_Shadow, 
-        .unused = 0x300, 
-        .textColor = RGB_WHITE,
-        .textShadow = RGB(17, 17, 17),
-    }, 
-    [ITEM_TO_MAIL(ITEM_TROPIC_MAIL)] = {
-        .palette = gMailPalette_Tropic, 
-        .tiles = gMailTiles_Tropic, 
-        .tileMap = gMailTilemap_Tropic, 
-        .unused = 0x220, 
-        .textColor = RGB(10, 10, 10),
-        .textShadow = RGB(25, 25, 25),
-    }, 
     [ITEM_TO_MAIL(ITEM_DREAM_MAIL)] = {
         .palette = gMailPalette_Dream, 
         .tiles = gMailTiles_Dream, 
@@ -238,78 +166,6 @@ static const struct MailLineLayout sLineLayouts_Wide[] = {
 };
 
 static const struct MailLayout sMailLayouts_Wide[] = {
-    [ITEM_TO_MAIL(ITEM_NIDOQUEENITE)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
-    [ITEM_TO_MAIL(ITEM_NIDOKINGITE)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
-    [ITEM_TO_MAIL(ITEM_SANDSLASHITE)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
-    [ITEM_TO_MAIL(ITEM_MEGANIUMITE)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
-    [ITEM_TO_MAIL(ITEM_WOOD_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
-    [ITEM_TO_MAIL(ITEM_WAVE_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
-    [ITEM_TO_MAIL(ITEM_BEAD_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
-    [ITEM_TO_MAIL(ITEM_SHADOW_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
-    [ITEM_TO_MAIL(ITEM_TROPIC_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
     [ITEM_TO_MAIL(ITEM_DREAM_MAIL)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Wide),
         .signatureYPos = 0,
@@ -345,78 +201,6 @@ static const struct MailLineLayout sLineLayouts_Tall[] = {
 };
 
 static const struct MailLayout sMailLayouts_Tall[] = {
-    [ITEM_TO_MAIL(ITEM_NIDOQUEENITE)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 7,
-        .signatureWidth = 88,
-        .wordsYPos = 11,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
-    [ITEM_TO_MAIL(ITEM_NIDOKINGITE)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 10,
-        .signatureWidth = 96,
-        .wordsYPos = 9,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
-    [ITEM_TO_MAIL(ITEM_SANDSLASHITE)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 12,
-        .signatureWidth = 104,
-        .wordsYPos = 5,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
-    [ITEM_TO_MAIL(ITEM_MEGANIUMITE)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 5,
-        .signatureWidth = 96,
-        .wordsYPos = 8,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
-    [ITEM_TO_MAIL(ITEM_WOOD_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 10,
-        .signatureWidth = 96,
-        .wordsYPos = 9,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
-    [ITEM_TO_MAIL(ITEM_WAVE_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 9,
-        .signatureWidth = 112,
-        .wordsYPos = 5,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
-    [ITEM_TO_MAIL(ITEM_BEAD_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 12,
-        .signatureWidth = 104,
-        .wordsYPos = 9,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
-    [ITEM_TO_MAIL(ITEM_SHADOW_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 13,
-        .signatureWidth = 104,
-        .wordsYPos = 13,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
-    [ITEM_TO_MAIL(ITEM_TROPIC_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 9,
-        .signatureWidth = 96,
-        .wordsYPos = 9,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
     [ITEM_TO_MAIL(ITEM_DREAM_MAIL)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Tall),
         .signatureYPos = 9,
@@ -481,7 +265,7 @@ void ReadMail(struct MailStruct *mail, void (*exitCallback)(void), bool8 hasText
         default:
             sMailRead->iconType = ICON_TYPE_NONE;
             break;
-        case ITEM_TO_MAIL(ITEM_BEAD_MAIL):
+        case ITEM_TO_MAIL(ITEM_SHEDINJANITE):
             sMailRead->iconType = ICON_TYPE_BEAD;
             break;
         case ITEM_TO_MAIL(ITEM_DREAM_MAIL):
