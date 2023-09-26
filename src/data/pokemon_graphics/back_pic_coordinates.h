@@ -4764,7 +4764,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_KINGDRA_MEGA] =
     {
         .size = 0x88,
-        .y_offset = 7,
+        .y_offset = 2,
     },
     [SPECIES_DEWGONG_MEGA] =
     {

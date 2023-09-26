@@ -963,6 +963,7 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_SKARMORY_MEGA]     = _("Skarmory"),
     [SPECIES_BRUXISH_MEGA]      = _("Bruxish"),
     [SPECIES_TORTERRA_MEGA]     = _("Torterra"),
+    [SPECIES_EMPOLEON_MEGA]     = _("Empoleon"),
     [SPECIES_INFERNAPE_MEGA]    = _("Infernape"),
     [SPECIES_SHUCKLE_MEGA]      = _("Shuckle"),
     [SPECIES_RELICANTH_MEGA]    = _("Relicanth"),
@@ -994,6 +995,23 @@ const u8 gSpeciesNames[][POKEMON_SPECIES_NAME_LENGTH + 1] = {
     [SPECIES_RAYQUAZA_MEGA] = _("Rayquaza"),
     [SPECIES_KYOGRE_PRIMAL] = _("Kyogre"),
     [SPECIES_GROUDON_PRIMAL] = _("Groudon"),
+
+    
+    //Temporary
+    [SPECIES_TEMP4_REGIONAL]  = _("Placeholder"),
+    [SPECIES_TEMP5_REGIONAL]  = _("Placeholder"),
+    [SPECIES_TEMP6_REGIONAL]  = _("Placeholder"),
+    [SPECIES_TEMP7_REGIONAL]  = _("Placeholder"),
+    [SPECIES_TEMP8_REGIONAL]  = _("Placeholder"),
+    [SPECIES_TEMP9_REGIONAL]  = _("Placeholder"),
+    [SPECIES_TEMP10_REGIONAL] = _("Placeholder"),
+
+    [SPECIES_TEMP_MEGA5]   = _("Placeholder"),
+    [SPECIES_TEMP_MEGA6]   = _("Placeholder"),
+    [SPECIES_TEMP_MEGA7]   = _("Placeholder"),
+    [SPECIES_TEMP_MEGA8]   = _("Placeholder"),
+    [SPECIES_TEMP_MEGA9]   = _("Placeholder"),
+    [SPECIES_TEMP_MEGA10]  = _("Placeholder"),
 
     // Alolan Forms
     [SPECIES_RATTATA_ALOLAN] = _("Rattata"),
