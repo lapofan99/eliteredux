@@ -4919,7 +4919,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_SHEDINJA_MEGA] =
     {
         .size = 0x87,
-        .y_offset = 0,
+        .y_offset = 1,
     },
     [SPECIES_SWALOT_MEGA] =
     {
