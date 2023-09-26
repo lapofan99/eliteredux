@@ -3439,6 +3439,7 @@ static const struct LevelUpMove sDragoniteLevelUpLearnset[] = {
 static const struct LevelUpMove sMewtwoLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SCORCHING_SANDS), // new
     LEVEL_UP_MOVE( 1, MOVE_EXPANDING_FORCE), // new
+    LEVEL_UP_MOVE( 1, MOVE_CLOSE_COMBAT), // new
     LEVEL_UP_MOVE( 1, MOVE_LASER_FOCUS),
     LEVEL_UP_MOVE( 1, MOVE_PSYWAVE),
     LEVEL_UP_MOVE( 1, MOVE_CONFUSION),
