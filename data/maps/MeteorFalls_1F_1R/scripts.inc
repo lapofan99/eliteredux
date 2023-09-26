@@ -5,7 +5,7 @@
 .set LOCALID_AQUA_GRUNT_2, 5
 .set LOCALID_PROF_COSMO, 6
 .set LOCALID_RIVAL, 7
-.set LOCALID_OLD_MAN, 8
+.set LOCALID_ACE_TRAINER, 8
 
 MeteorFalls_1F_1R_MapScripts:: @ 822BD2A
 	map_script MAP_SCRIPT_ON_LOAD, MeteorFalls_1F_1R_OnLoad
@@ -598,31 +598,31 @@ MeteorFalls_1F_1R_Text_RivalAfterBattle:
 	.string "I've got to get the professor back to\n"
 	.string "his lab in Fallarbor!$"
 
-MeteorFalls_1F_1R_EventScript_Old_Man_Block::
+MeteorFalls_1F_1R_EventScript_AceTrainer_Block::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE07_GET, MeteorFalls_1F_1R_EventScript_Old_Man_Block_2
-	msgbox MeteorFalls_1F_1R_EventScript_Old_Man_Block_Text_1, MSGBOX_NPC
-MeteorFalls_1F_1R_EventScript_Old_Man_Block_1:
+	goto_if_set FLAG_BADGE07_GET, MeteorFalls_1F_1R_EventScript_AceTrainer_Block_2
+	msgbox MeteorFalls_1F_1R_EventScript_AceTrainer_Block_Text_1, MSGBOX_NPC
+MeteorFalls_1F_1R_EventScript_AceTrainer_Block_1:
 	release
 	end
 
-MeteorFalls_1F_1R_EventScript_Old_Man_Block_2:
-	msgbox MeteorFalls_1F_1R_EventScript_Old_Man_Block_Text_0, MSGBOX_NPC
-	goto MeteorFalls_1F_1R_EventScript_Old_Man_Block_1
+MeteorFalls_1F_1R_EventScript_AceTrainer_Block_2:
+	msgbox MeteorFalls_1F_1R_EventScript_AceTrainer_Block_Text_0, MSGBOX_NPC
+	goto MeteorFalls_1F_1R_EventScript_AceTrainer_Block_1
 
 
-MeteorFalls_1F_1R_EventScript_MoveOldMan::
-	setobjectxyperm LOCALID_OLD_MAN, 11, 27
+MeteorFalls_1F_1R_EventScript_MoveAceTrainer::
+	setobjectxyperm LOCALID_ACE_TRAINER, 11, 27
 	return
 
 
-MeteorFalls_1F_1R_EventScript_Old_Man_Block_Text_0:
+MeteorFalls_1F_1R_EventScript_AceTrainer_Block_Text_0:
 	.string "Hmmm... You look strong. I think it's\n"
 	.string "okay for you to go in there. But be\l"
 	.string "warned! That Pokémon is no joke.$"
 
-MeteorFalls_1F_1R_EventScript_Old_Man_Block_Text_1:
+MeteorFalls_1F_1R_EventScript_AceTrainer_Block_Text_1:
 	.string "Hey, you can't come in here, kid! There's\n"
 	.string "a rampaging Pokémon on the loose! Only\l"
 	.string "trainers who are at least strong\l"

@@ -222,7 +222,7 @@
 #define ABILITY_SLUSH_RUSH 202 // Doubles speed in hail.
 #define ABILITY_LONG_REACH 203 // The Pokémon uses its moves without making contact with the target. If a physical move already doesn't make contact before applying this ability, boosts its damage by 20%.
 #define ABILITY_LIQUID_VOICE 204 // All sound-based moves become Water-type moves and boosts them by 20%.
-#define ABILITY_TRIAGE 205 // Gives priority to healing moves.
+#define ABILITY_TRIAGE 205 // Gives +1 priority to healing moves.
 #define ABILITY_GALVANIZE 206 // All Normal-type moves become Electric-type moves and boosts them by 10%.
 #define ABILITY_SURGE_SURFER 207 // Doubles the Pokémon's Speed stat on Electric Terrain. Works while levitating.
 #define ABILITY_SCHOOLING 208 // Changes the Pokémon's form when it is Level 20 and has more than 25% Hit Points. When Hit Points drop below 25%, it changes back to Solo Form

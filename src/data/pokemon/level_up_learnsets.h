@@ -9446,7 +9446,8 @@ static const struct LevelUpMove sShieldonLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sBastiodonLevelUpLearnset[] = {
-	LEVEL_UP_MOVE( 0, MOVE_BLOCK),
+	LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
+	LEVEL_UP_MOVE( 1, MOVE_BLOCK),
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE),
 	LEVEL_UP_MOVE( 1, MOVE_PROTECT),
 	LEVEL_UP_MOVE( 1, MOVE_TAUNT),
@@ -13169,6 +13170,7 @@ static const struct LevelUpMove sZoroarkLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(52, MOVE_NASTY_PLOT),
 	LEVEL_UP_MOVE(56, MOVE_IMPRISON),
 	LEVEL_UP_MOVE(60, MOVE_FOUL_PLAY),
+	LEVEL_UP_MOVE(64, MOVE_PLAY_ROUGH), // new
 	LEVEL_UP_END
 };
 
@@ -19822,6 +19824,7 @@ static const struct LevelUpMove sDracovishLevelUpLearnset[] = {
     LEVEL_UP_MOVE(42, MOVE_STOMP),
     LEVEL_UP_MOVE(49, MOVE_SUPER_FANG),
     LEVEL_UP_MOVE(56, MOVE_CRUNCH),
+    LEVEL_UP_MOVE(60, MOVE_IRON_FANGS), // new
     LEVEL_UP_MOVE(63, MOVE_FISHIOUS_REND),
     LEVEL_UP_MOVE(70, MOVE_DRAGON_PULSE),
     LEVEL_UP_MOVE(77, MOVE_DRAGON_RUSH),
