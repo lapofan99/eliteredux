@@ -4884,7 +4884,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_LUXRAY_MEGA] =
     {
         .size = 0x87,
-        .y_offset = 0,
+        .y_offset = 3,
     },
     [SPECIES_NIDOKING_MEGA] =
     {
