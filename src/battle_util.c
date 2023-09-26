@@ -7950,6 +7950,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCRAPYARD;
                 gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_SPIKES;
                 gSideTimers[GetBattlerSide(gBattlerAttacker)].spikesAmount++;
+				BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_DefenderSetsSpikeLayer;
                 effect++;
             }
@@ -7964,6 +7965,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOSE_QUILLS;
                 gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_SPIKES;
                 gSideTimers[GetBattlerSide(gBattlerAttacker)].spikesAmount++;
+				BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_DefenderSetsSpikeLayer;
                 effect++;
             }
@@ -7979,6 +7981,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TOXIC_DEBRIS;
                 gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_TOXIC_SPIKES;
                 gSideTimers[GetBattlerSide(gBattlerAttacker)].toxicSpikesAmount++;
+				BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_DefenderSetsToxicSpikeLayer;
                 effect++;
             }
@@ -7992,6 +7995,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)){
                 gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOSE_ROCKS;
                 gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_STEALTH_ROCK;
+				BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_DefenderSetsStealthRock;
                 effect++;
             }
@@ -8575,6 +8579,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCRAPYARD;
                 gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_SPIKES;
                 gSideTimers[GetBattlerSide(gBattlerAttacker)].spikesAmount++;
+				BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_DefenderSetsSpikeLayer;
                 effect++;
             }
@@ -8591,6 +8596,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOSE_QUILLS;
                 gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_SPIKES;
                 gSideTimers[GetBattlerSide(gBattlerAttacker)].spikesAmount++;
+				BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_DefenderSetsSpikeLayer;
                 effect++;
             }
@@ -8608,6 +8614,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TOXIC_DEBRIS;
                 gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_TOXIC_SPIKES;
                 gSideTimers[GetBattlerSide(gBattlerAttacker)].toxicSpikesAmount++;
+				BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_DefenderSetsToxicSpikeLayer;
                 effect++;
             }

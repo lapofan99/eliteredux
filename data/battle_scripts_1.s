@@ -8359,7 +8359,7 @@ BattleScript_DefenderSetsSpikeLayer::
 	waitmessage B_WAIT_TIME_LONG
 	copybyte gBattlerAttacker, sSAVED_BATTLER
 	restoretarget
-	end
+	return
 
 BattleScript_DefenderSetsToxicSpikeLayer::
 	savetarget
@@ -8373,7 +8373,7 @@ BattleScript_DefenderSetsToxicSpikeLayer::
 	waitmessage B_WAIT_TIME_LONG
 	copybyte gBattlerAttacker, sSAVED_BATTLER
 	restoretarget
-	end
+	return
 
 BattleScript_DefenderSetsStealthRock::
 	savetarget
@@ -8387,8 +8387,7 @@ BattleScript_DefenderSetsStealthRock::
 	waitmessage B_WAIT_TIME_LONG
 	copybyte gBattlerAttacker, sSAVED_BATTLER
 	restoretarget
-	end
-
+	return
 
 BattleScript_AttackerRoughSkinActivates::
 	call BattleScript_AbilityPopUp
