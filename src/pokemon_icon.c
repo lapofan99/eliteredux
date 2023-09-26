@@ -1282,6 +1282,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_NOIBAT_REGIONAL] = gMonIcon_NoibatRegional,
     [SPECIES_NOIVERN_REGIONAL] = gMonIcon_NoivernRegional,
     [SPECIES_INFERNAPE_REGIONAL] = gMonIcon_InfernapeRegional,
+    [SPECIES_LUXRAY_REGIONAL] = gMonIcon_LuxrayRegional,
 
     [SPECIES_EGG] = gMonIcon_Egg,
 };

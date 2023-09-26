@@ -6327,6 +6327,11 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = 0x87,
         .y_offset = 4,
     },
+    [SPECIES_LUXRAY_REGIONAL] =
+    {
+        .size = 0x87,
+        .y_offset = 3,
+    },
     [SPECIES_CASCOON_PRIMAL] =
     {
         .size = 0x87,

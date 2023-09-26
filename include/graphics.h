@@ -10132,6 +10132,12 @@ extern const u32 gMonPalette_InfernapeRegional[];
 extern const u32 gMonShinyPalette_InfernapeRegional[];
 extern const u8  gMonIcon_InfernapeRegional[];
 
+extern const u32 gMonFrontPic_LuxrayRegional[];
+extern const u32 gMonBackPic_LuxrayRegional[];
+extern const u32 gMonPalette_LuxrayRegional[];
+extern const u32 gMonShinyPalette_LuxrayRegional[];
+extern const u8  gMonIcon_LuxrayRegional[];
+
 extern const u32 gMonFrontPic_CascoonPrimal[];
 extern const u32 gMonBackPic_CascoonPrimal[];
 extern const u32 gMonPalette_CascoonPrimal[];

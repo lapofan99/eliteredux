@@ -1319,6 +1319,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_INFERNAPE_REGIONAL] = sInfernapeRegionalLevelUpLearnset,
     [SPECIES_NOIBAT_REGIONAL] = sNoibatRegionalLevelUpLearnset,
     [SPECIES_NOIVERN_REGIONAL] = sNoivernRegionalLevelUpLearnset,
+    [SPECIES_LUXRAY_REGIONAL] = sLuxrayRegionalLevelUpLearnset,
     
     [SPECIES_CASCOON_PRIMAL] = sCascoonLevelUpLearnset,
 };

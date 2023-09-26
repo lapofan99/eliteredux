@@ -13259,6 +13259,31 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+[SPECIES_LUXRAY_REGIONAL] =
+    {
+    .baseHP        = 90,
+    .baseAttack    = 120,
+    .baseDefense   = 79,
+    .baseSpeed     = 90,
+    .baseSpAttack  = 75,
+    .baseSpDefense = 79,
+    .type1 = TYPE_ELECTRIC,
+    .type2 = TYPE_ICE,
+    .catchRate = 255,
+    .expYield = 235,
+    .evYield_Attack    = 3,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_SLOW,
+    .eggGroup1 = EGG_GROUP_FIELD,
+    .eggGroup2 = EGG_GROUP_FIELD,
+    .abilities = {ABILITY_INTIMIDATE, ABILITY_ELECTRIC_BURST, ABILITY_GUTS},
+    .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_BAD_LUCK, ABILITY_PREDATOR},
+    .bodyColor = BODY_COLOR_BLUE,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_LUXRAY_MEGA] =
     {
     .baseHP        = 90,

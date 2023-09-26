@@ -6641,6 +6641,12 @@ const u32 gMonPalette_NoivernRegional[]        = INCBIN_U32("graphics/pokemon/no
 const u32 gMonShinyPalette_NoivernRegional[]   = INCBIN_U32("graphics/pokemon/noivern_regional/shiny.gbapal.lz");
 const u8  gMonIcon_NoivernRegional[]           = INCBIN_U8("graphics/pokemon/noivern_regional/icon.4bpp");
 
+const u32 gMonFrontPic_LuxrayRegional[]        = INCBIN_U32("graphics/pokemon/luxray_regional/front.4bpp.lz");
+const u32 gMonBackPic_LuxrayRegional[]         = INCBIN_U32("graphics/pokemon/luxray_regional/back.4bpp.lz");
+const u32 gMonPalette_LuxrayRegional[]         = INCBIN_U32("graphics/pokemon/luxray_regional/normal.gbapal.lz");
+const u32 gMonShinyPalette_LuxrayRegional[]    = INCBIN_U32("graphics/pokemon/luxray_regional/shiny.gbapal.lz");
+const u8  gMonIcon_LuxrayRegional[]            = INCBIN_U8("graphics/pokemon/luxray_regional/icon.4bpp");
+
 const u32 gMonFrontPic_InfernapeRegional[]     = INCBIN_U32("graphics/pokemon/infernape_regional/front.4bpp.lz");
 const u32 gMonBackPic_InfernapeRegional[]      = INCBIN_U32("graphics/pokemon/infernape_regional/back.4bpp.lz");
 const u32 gMonPalette_InfernapeRegional[]      = INCBIN_U32("graphics/pokemon/infernape_regional/normal.gbapal.lz");

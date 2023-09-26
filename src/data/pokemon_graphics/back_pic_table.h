@@ -1320,6 +1320,7 @@ const struct CompressedSpriteSheet gMonBackPicTable[] =
     SPECIES_SPRITE(NOIBAT_REGIONAL, gMonBackPic_NoibatRegional),
     SPECIES_SPRITE(NOIVERN_REGIONAL, gMonBackPic_NoivernRegional),
     SPECIES_SPRITE(INFERNAPE_REGIONAL, gMonBackPic_InfernapeRegional),
+    SPECIES_SPRITE(LUXRAY_REGIONAL, gMonBackPic_LuxrayRegional),
     SPECIES_SPRITE(CASCOON_PRIMAL, gMonBackPic_CascoonPrimal),
 };
 

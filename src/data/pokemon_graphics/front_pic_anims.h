@@ -15492,6 +15492,11 @@ static const union AnimCmd *const sAnims_INFERNAPE_REGIONAL[] ={
     sAnim_GENERIC,
 };
 
+static const union AnimCmd *const sAnims_LUXRAY_REGIONAL[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
+};
+
 static const union AnimCmd *const sAnims_NOIBAT_REGIONAL[] ={
     sAnim_GeneralFrame0,
     sAnim_GENERIC,
@@ -16955,6 +16960,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(INFERNAPE_REGIONAL),
     ANIM_CMD(NOIBAT_REGIONAL),
     ANIM_CMD(NOIVERN_REGIONAL),
+    ANIM_CMD(LUXRAY_REGIONAL),
     ANIM_CMD(CASCOON_PRIMAL),
     ANIM_CMD(FERALIGATR_MEGA_X),
     ANIM_CMD(FERALIGATR_MEGA_Y),

@@ -1320,6 +1320,7 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(NOIBAT_REGIONAL,    gMonPalette_NoibatRegional),
     SPECIES_PAL(NOIVERN_REGIONAL,   gMonPalette_NoivernRegional),
     SPECIES_PAL(INFERNAPE_REGIONAL, gMonPalette_InfernapeRegional),
+    SPECIES_PAL(LUXRAY_REGIONAL,    gMonPalette_LuxrayRegional),
     SPECIES_PAL(CASCOON_PRIMAL,     gMonPalette_CascoonPrimal),
 };
 

@@ -1644,6 +1644,7 @@ const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to 
     [SPECIES_INFERNAPE_REGIONAL - 1] = NATIONAL_DEX_INFERNAPE,
     [SPECIES_NOIBAT_REGIONAL - 1] = NATIONAL_DEX_NOIBAT,
     [SPECIES_NOIVERN_REGIONAL - 1] = NATIONAL_DEX_NOIVERN,
+    [SPECIES_LUXRAY_REGIONAL - 1] = NATIONAL_DEX_LUXRAY,
 };
 
 const u16 gHoennToNationalOrder[HOENN_DEX_COUNT] = // Assigns Hoenn Dex Pokémon (Using National Dex Index)
