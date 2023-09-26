@@ -892,8 +892,8 @@ static const u8 sMeanLookDescription[] = _(
     "look that prevents escape.");
 
 static const u8 sAttractDescription[] = _(
-    "Makes the opposite gender\n"
-    "less likely to attack.");
+    "Halves the Atk & SpAtk of\n"
+    "the opposite gender.");
 
 static const u8 sSleepTalkDescription[] = _(
     "Uses an available move\n"
@@ -4081,7 +4081,7 @@ static const u8 sMoveFourLineDescription_Spark[] = _("An electrically\ncharged t
 static const u8 sMoveFourLineDescription_FuryCutter[] = _("Doubles power on\neach successive hit.\nMax 160 base power.\nKeen Edge boost."); // new
 static const u8 sMoveFourLineDescription_SteelWing[] = _("Hits with wings\nof steel. 20% chance\nto raise Defense.\nAir-based."); // new
 static const u8 sMoveFourLineDescription_MeanLook[] = _("The foe is fixed\nwith a mean look\nthat prevents it\nfrom escaping.");
-static const u8 sMoveFourLineDescription_Attract[] = _("If it is the other\ngender, the foe is\nmade infatuated and\nunlikely to attack.");
+static const u8 sMoveFourLineDescription_Attract[] = _("Inflicts infatuation\non opposite gender\nwhich halves\nAtk and SpAtk."); // new
 static const u8 sMoveFourLineDescription_SleepTalk[] = _("While asleep, the\nuser randomly uses\none of the moves it\nknows.");
 static const u8 sMoveFourLineDescription_HealBell[] = _("A soothing bell\nchimes to heal the\nstatus problems of\nall allies.");
 static const u8 sMoveFourLineDescription_Return[] = _("A strong and reliable\nNormal-type attack.");
@@ -4532,7 +4532,7 @@ static const u8 sMoveFourLineDescription_RevelationDance[] = _("The user attacks
 static const u8 sMoveFourLineDescription_CoreEnforcer[] = _("This attack will\nalso negate the\nfoe's Ability if it\nhas moved already.");
 static const u8 sMoveFourLineDescription_TropKick[] = _("An intense, tropical\nkick. This lowers\nfoe's Attack.\nStriker boost."); // new
 static const u8 sMoveFourLineDescription_Instruct[] = _("The user instructs\nthe target to use\nthe target's last\nmove again.");
-static const u8 sMoveFourLineDescription_BeakBlast[] = _("The user heats up\nits beak, then\nstrikes. Contact\nwill burn the foe.");
+static const u8 sMoveFourLineDescription_BeakBlast[] = _("The user strikes\nwith its heated\nbeak. Has 30%\nburn chance."); // new
 static const u8 sMoveFourLineDescription_ClangingScales[] = _("The user attacks by\nrubbing the scales\non its body. This\nlowers its Defense.");
 static const u8 sMoveFourLineDescription_DragonHammer[] = _("Using its body like\na hammer, the user\nattacks its foe.");
 static const u8 sMoveFourLineDescription_BrutalSwing[] = _("The user violently\nswings its body\naround, damaging\neveryone nearby.");
@@ -4657,7 +4657,7 @@ static const u8 sMoveFourLineDescription_Outburst[] = _("The user explodes\nto i
 static const u8 sMoveFourLineDescription_IronFangs[]     = _("Breaks any barrier\nlike Light Screen\nand Reflect.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_LovelyBite[]    = _("An affectionate bite.\n10% chance to\ninfatuate the foe.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_ShadowFangs[]   = _("The foe shudders.\n10% chance to\ncurse the foe.\nStrong Jaw boost."); // new
-static const u8 sMoveFourLineDescription_JaggedFangs[]   = _("A ferocious bite.\n20% chance to\nraise user's Attack.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_JaggedFangs[]   = _("A ferocious bite.\n10% chance to\nraise user's Attack.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_ScorchedEarth[] = _("Fire- and Ground-\ntype at the same\ntime. Has 10%\nburn chance."); // new
 static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n20% chance to drop\nthe foe's Def."); // new
 static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new

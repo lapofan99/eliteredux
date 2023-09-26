@@ -5262,7 +5262,7 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {76, 236, 0, 0, 0, 196},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_STEALTH_ROCK, MOVE_ROCK_CLIMB, MOVE_EARTHQUAKE, MOVE_TAUNT
+    .moves = MOVE_JAGGED_FANGS, MOVE_IRON_FANGS, MOVE_EARTHQUAKE, MOVE_TAUNT
     },
     {
     .lvl = 0,
@@ -5331,7 +5331,7 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1Insane[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {180, 76, 252, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_IMPISH,
-    .moves = MOVE_STEALTH_ROCK, MOVE_ROCK_CLIMB, MOVE_HIGH_HORSEPOWER, MOVE_BODY_PRESS
+    .moves = MOVE_JAGGED_FANGS, MOVE_IRON_FANGS, MOVE_HIGH_HORSEPOWER, MOVE_BODY_PRESS
     },
     {
     .lvl = 0,
