@@ -1055,6 +1055,12 @@ static const u16 sSlakingFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 
+static const u16 sHitmonleeFormSpeciesIdTable[] = {
+    SPECIES_HITMONLEE,
+    SPECIES_HITMONLEE_MEGA,
+    FORM_SPECIES_END,
+};
+
 static const u16 sCascoonFormSpeciesIdTable[] = {
     SPECIES_CASCOON,
     SPECIES_CASCOON_PRIMAL,
