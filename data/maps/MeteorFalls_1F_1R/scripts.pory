@@ -14,7 +14,7 @@ MeteorFalls_1F_1R_MapScripts:: @ 822BD2A
 
 MeteorFalls_1F_1R_OnLoad:
 	call_if_set FLAG_SYS_GAME_CLEAR, MeteorFalls_1F_1R_EventScript_OpenStevensCave
-	call_if_set FLAG_BADGE07_GET, MeteorFalls_1F_1R_EventScript_MoveOldMan
+	call_if_set FLAG_BADGE07_GET, MeteorFalls_1F_1R_EventScript_MoveAceTrainer
 	call Common_EventScript_SetupRivalGfxId
 	end
 
