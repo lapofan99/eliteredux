@@ -6250,19 +6250,18 @@ static const struct TrainerMonItemCustomMoves sParty_Brawly1Insane[] = {
     .evs = {252, 0, 4, 252, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .zeroSpeedIvs = TRUE,
 	.nature = NATURE_QUIET,
-    .moves = MOVE_PSYCHIC, MOVE_CHARGE_BEAM, MOVE_HYPER_VOICE, MOVE_MYSTICAL_FIRE
+    .moves = MOVE_TAUNT, MOVE_CHARGE_BEAM, MOVE_HYPER_VOICE, MOVE_TOXIC
     },
     {
     .lvl = 0,
-    .species = SPECIES_EMBOAR, // Brawly-E, Bulky Vest, low speed
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_RECKLESS, ABILITY_AVENGER, ABILITY_VIOLENT_RUSH},
-    // .innates = {ABILITY_BLAZE, ABILITY_THICK_FAT, ABILITY_JUGGERNAUT},
-    .ivs = {31, 31, 31, 31, 31, 0},
-    .evs = {252, 252, 4, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-    .zeroSpeedIvs = TRUE,
-	.nature = NATURE_BRAVE,
-    .moves = MOVE_HAMMER_ARM, MOVE_HEAT_CRASH, MOVE_SUCKER_PUNCH, MOVE_WILD_CHARGE
+    .species = SPECIES_LUCARIO, // Brawly-E, Orb, Power Fists
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // ABILITY_FIGHT_SPIRIT, ABILITY_COMPETITIVE, ABILITY_POWER_FISTS},
+    // .innates = {ABILITY_INNER_FOCUS, ABILITY_FATAL_PRECISION, ABILITY_VITAL_SPIRIT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_METEOR_MASH, MOVE_BULLET_PUNCH, MOVE_ICE_PUNCH, MOVE_CLOSE_COMBAT
     },
     {
     .lvl = 0,
@@ -6289,14 +6288,14 @@ static const struct TrainerMonItemCustomMoves sParty_Brawly1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_SIRFETCHD, // Brawly-E, Sash, Hyper Cutter, Swords Dance
+    .species = SPECIES_TOXICROAK, // Brawly-E, Sash, Hydrate, SD
     .heldItem = ITEM_FOCUS_SASH,
-    .ability = 0, // ABILITY_HYPER_CUTTER, ABILITY_LEAF_GUARD, ABILITY_CHLOROPHYLL},
-    // .innates = {ABILITY_SCRAPPY, ABILITY_KEEN_EDGE, ABILITY_DAUNTLESS_SHIELD},
+    .ability = 1, // ABILITY_POISON_TOUCH, ABILITY_HYDRATE, ABILITY_FIGHT_SPIRIT},
+    // .innates = {ABILITY_DRY_SKIN, ABILITY_AMPHIBIOUS, ABILITY_OPPORTUNIST},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_SACRED_SWORD, MOVE_NIGHT_SLASH, MOVE_DUAL_WINGBEAT, MOVE_SWORDS_DANCE
+    .moves = MOVE_CLOSE_COMBAT, MOVE_POISON_JAB, MOVE_FAKE_OUT, MOVE_SWORDS_DANCE
     },
     {
     .lvl = 0,
@@ -6310,6 +6309,29 @@ static const struct TrainerMonItemCustomMoves sParty_Brawly1Insane[] = {
 	.nature = NATURE_IMPISH,
     .moves = MOVE_SYNTHESIS, MOVE_DRAIN_PUNCH, MOVE_WOOD_HAMMER, MOVE_EARTHQUAKE
     }
+    /*{
+    .lvl = 0,
+    .species = SPECIES_SIRFETCHD, // Brawly-E, Sash, Hyper Cutter, Swords Dance
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // ABILITY_HYPER_CUTTER, ABILITY_LEAF_GUARD, ABILITY_CHLOROPHYLL},
+    // .innates = {ABILITY_SCRAPPY, ABILITY_KEEN_EDGE, ABILITY_DAUNTLESS_SHIELD},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_SACRED_SWORD, MOVE_NIGHT_SLASH, MOVE_DUAL_WINGBEAT, MOVE_SWORDS_DANCE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_EMBOAR, // Brawly-E, Bulky Vest, low speed
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_RECKLESS, ABILITY_AVENGER, ABILITY_VIOLENT_RUSH},
+    // .innates = {ABILITY_BLAZE, ABILITY_THICK_FAT, ABILITY_JUGGERNAUT},
+    .ivs = {31, 31, 31, 31, 31, 0},
+    .evs = {252, 252, 4, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .zeroSpeedIvs = TRUE,
+	.nature = NATURE_BRAVE,
+    .moves = MOVE_HAMMER_ARM, MOVE_HEAT_CRASH, MOVE_SUCKER_PUNCH, MOVE_WILD_CHARGE
+    }*/
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Brawly2[] = { // singles
@@ -14383,15 +14405,15 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_SHIINOTIC, // Wattson-E, Twist. Dimension
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 1, // ABILITY_FAIRY_AURA, ABILITY_TWISTED_DIMENSION, ABILITY_POISON_HEAL},
+    .species = SPECIES_SHIINOTIC, // Wattson-E, Toxic Orb, Poison Heal
+    .heldItem = ITEM_TOXIC_ORB,
+    .ability = 2, // ABILITY_FAIRY_AURA, ABILITY_TWISTED_DIMENSION, ABILITY_POISON_HEAL},
     // .innates = {ABILITY_POISON_ABSORB, ABILITY_DREAMCATCHER, ABILITY_BAD_DREAMS},
     .ivs = {31, 0, 31, 31, 31, 0},
     .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .zeroSpeedIvs = TRUE,
 	.nature = NATURE_RELAXED,
-    .moves = MOVE_STRENGTH_SAP, MOVE_SPORE, MOVE_DAZZLING_GLEAM, MOVE_GIGA_DRAIN
+    .moves = MOVE_LEECH_SEED, MOVE_SPORE, MOVE_DRAINING_KISS, MOVE_GIGA_DRAIN
     },
     {
     .lvl = 0,
@@ -14406,6 +14428,20 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     },
     {
     .lvl = 0,
+    .species = SPECIES_MANECTRIC, // Mega, Wattson-E
+    .heldItem = ITEM_MANECTITE,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_INTIMIDATE, ABILITY_INTIMIDATE},
+    // .innates = {ABILITY_VOLT_RUSH, ABILITY_GROUND_SHOCK, ABILITY_OVERCHARGE},
+    // Pre-Mega
+    // ABILITY_STATIC, ABILITY_ILLUMINATE, ABILITY_ELECTRIC_BURST},
+    // .innates = {ABILITY_PLUS, ABILITY_LIGHTNING_ROD, ABILITY_OVERCHARGE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+	.nature = NATURE_MODEST,
+    .moves = MOVE_RISING_VOLTAGE, MOVE_FLAMETHROWER, MOVE_AURORA_BEAM, MOVE_FLAME_BURST
+    }
+    /*{
+    .lvl = 0,
     .species = SPECIES_AMPHAROS, // Mega, Wattson-E, Surge, Bulky Special
     .heldItem = ITEM_AMPHAROSITE,
     .ability = 2, // ABILITY_TRANSISTOR, ABILITY_TRANSISTOR, ABILITY_TRANSISTOR},
@@ -14418,7 +14454,7 @@ static const struct TrainerMonItemCustomMoves sParty_Wattson1Insane[] = {
     .zeroSpeedIvs = TRUE,
 	.nature = NATURE_QUIET,
     .moves = MOVE_RISING_VOLTAGE, MOVE_DRAGON_PULSE, MOVE_FOCUS_BLAST, MOVE_SLACK_OFF
-    }
+    }*/
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Wattson2[] = { // singles
@@ -19236,14 +19272,14 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_ENTEI, // Flannery-E, Fast Vest, Flaming Soul
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 1, // ABILITY_AVENGER, ABILITY_FLAMING_SOUL, ABILITY_DROUGHT},
-    // .innates = {ABILITY_STRONG_JAW, ABILITY_BEAST_BOOST, ABILITY_MOLTEN_DOWN},
+    .species = SPECIES_ENTEI, // Flannery-E, Fast Boots, Flaming Soul
+    .heldItem = ITEM_HEAVY_DUTY_BOOTS,
+    .ability = 1, // ABILITY_STRONG_JAW, ABILITY_FLAMING_SOUL, ABILITY_DROUGHT},
+    // .innates = {ABILITY_VOLCANO_RAGE, ABILITY_BEAST_BOOST, ABILITY_MOLTEN_DOWN},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {160, 252, 0, 0, 0, 96},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_FIRE_FANG, MOVE_CRUNCH, MOVE_THUNDER_FANG, MOVE_HIGH_HORSEPOWER
+    .moves = MOVE_FIRE_FANG, MOVE_ICE_FANG, MOVE_THUNDER_FANG, MOVE_HIGH_HORSEPOWER
     },
     {
     .lvl = 0,

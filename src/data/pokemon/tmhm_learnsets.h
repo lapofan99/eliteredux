@@ -28558,6 +28558,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM04_CALM_MIND)
                                         | TMHM1(TM06_TOXIC)
                                         | TMHM1(TM10_HIDDEN_POWER)
+                                        | TMHM1(TM12_TAUNT) // new
                                         | TMHM1(TM15_HYPER_BEAM)
                                         | TMHM1(TM16_LIGHT_SCREEN)
                                         | TMHM1(TM17_PROTECT)

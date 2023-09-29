@@ -4905,7 +4905,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_HYPER_VOICE] =
     {
         .effect = EFFECT_HIT,
-        .power = 100,
+        .power = 90, // 90
         .type = TYPE_NORMAL,
         .accuracy = 100,
         .pp = 10,
@@ -6288,7 +6288,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 1,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_IRON_FIST_BOOST,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
         .split = SPLIT_PHYSICAL,
     },
 
@@ -9316,10 +9316,10 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_BOOMBURST] =
     {
         .effect = EFFECT_HIT,
-        .power = 130, // 140
+        .power = 140, // 140
         .type = TYPE_NORMAL,
         .accuracy = 100,
-        .pp = 10,
+        .pp = 5,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_FOES_AND_ALLY, // was MOVE_TARGET_BOTH
         .priority = 0,
@@ -10384,14 +10384,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_PSYCHIC_FANGS] =
     {
         .effect = EFFECT_BRICK_BREAK,
-        .power = 85,
+        .power = 80, // 75
         .type = TYPE_PSYCHIC,
         .accuracy = 100,
         .pp = 15,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
-        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_STRONG_JAW_BOOST,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED | FLAG_STRONG_JAW_BOOST | FLAG_IRON_FIST_BOOST,
         .split = SPLIT_PHYSICAL,
     },
 
