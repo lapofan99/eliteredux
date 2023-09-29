@@ -14453,7 +14453,8 @@ static const struct LevelUpMove sBouffalantLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sRuffletLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_DUAL_WINGBEAT), // new
+    LEVEL_UP_MOVE( 1, MOVE_DUAL_WINGBEAT), // new
+    LEVEL_UP_MOVE( 1, MOVE_WING_ATTACK),
 	LEVEL_UP_MOVE( 1, MOVE_PECK),
 	LEVEL_UP_MOVE( 1, MOVE_LEER),
 	LEVEL_UP_MOVE( 4, MOVE_FURY_ATTACK),
@@ -14463,7 +14464,7 @@ static const struct LevelUpMove sRuffletLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(20, MOVE_SCARY_FACE),
 	LEVEL_UP_MOVE(25, MOVE_WHIRLWIND),
     LEVEL_UP_MOVE(30, MOVE_SLASH),
-    LEVEL_UP_MOVE(35, MOVE_WING_ATTACK),
+    LEVEL_UP_MOVE(35, MOVE_DRILL_PECK), // new
 	LEVEL_UP_MOVE(40, MOVE_CRUSH_CLAW),
     //LEVEL_UP_MOVE(45, MOVE_SKY_DROP),
     LEVEL_UP_MOVE(50, MOVE_AIR_SLASH),
@@ -14474,8 +14475,9 @@ static const struct LevelUpMove sRuffletLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sBraviaryLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_DUAL_WINGBEAT), // new
     LEVEL_UP_MOVE( 0, MOVE_SUPERPOWER),
+    LEVEL_UP_MOVE( 1, MOVE_DUAL_WINGBEAT), // new
+    LEVEL_UP_MOVE( 1, MOVE_WING_ATTACK),
 	LEVEL_UP_MOVE( 1, MOVE_PECK),
 	LEVEL_UP_MOVE( 1, MOVE_LEER),
 	LEVEL_UP_MOVE( 5, MOVE_FURY_ATTACK),
@@ -14485,7 +14487,7 @@ static const struct LevelUpMove sBraviaryLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(20, MOVE_SCARY_FACE),
 	LEVEL_UP_MOVE(25, MOVE_WHIRLWIND),
     LEVEL_UP_MOVE(30, MOVE_SLASH),
-    LEVEL_UP_MOVE(35, MOVE_WING_ATTACK),
+    LEVEL_UP_MOVE(35, MOVE_DRILL_PECK), // new
 	LEVEL_UP_MOVE(40, MOVE_CRUSH_CLAW),
     //LEVEL_UP_MOVE(46, MOVE_SKY_DROP),
     LEVEL_UP_MOVE(52, MOVE_AIR_SLASH),
