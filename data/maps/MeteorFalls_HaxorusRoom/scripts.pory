@@ -3,6 +3,7 @@ mapscripts MeteorFalls_HaxorusRoom_MapScripts {}
 script MeteorFalls_HaxorusRoom_EventScript_Haxorus{
 	lock
 	faceplayer
+    goto_if_set(FLAG_DEFEATED_METEOR_FALLS_HAXORUS, MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join)
 	playmoncry(SPECIES_HAXORUS, 2)
     msgbox(format("Haxorus: Hax!"), MSGBOX_DEFAULT)
 	delay(40)
@@ -25,26 +26,7 @@ script MeteorFalls_HaxorusRoom_EventScript_Haxorus{
     switch(var(VAR_RESULT)){
         case B_OUTCOME_CAUGHT:
         case B_OUTCOME_WON:
-    		msgbox(format("Haxorus seems to want to join your team, will you let this Haxorus join you?"), MSGBOX_YESNO)
-			if(var(VAR_RESULT) == 1){
-				givecustommon(SPECIES_HAXORUS, 0, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_ADAMANT, 0, 252, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_CHOP, MOVE_EXCALIBUR, MOVE_DRAIN_PUNCH, MOVE_TAUNT, TRUE)
-				playfanfare(MUS_OBTAIN_ITEM)
-				message(format("{PLAYER} received a Haxorus!"))
-				waitfanfare
-			}
-			else{
-				playmoncry(SPECIES_HAXORUS, 2)
-				msgbox(format("Haxorus ran away!"), MSGBOX_DEFAULT)
-			}
-            setflag(FLAG_DEFEATED_METEOR_FALLS_HAXORUS)
-            fadescreenswapbuffers(FADE_TO_BLACK)
-            removeobject(VAR_LAST_TALKED)
-            fadescreenswapbuffers(FADE_FROM_BLACK)
-
-			playfanfare(MUS_OBTAIN_ITEM)
-			giveitem(ITEM_HAXORUSITE, 1)
-			message(format("{PLAYER} received a Haxorusite!"))
-			waitfanfare
+			goto(MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join)
         break
         case B_OUTCOME_RAN:
         case B_OUTCOME_PLAYER_TELEPORTED:
@@ -56,6 +38,29 @@ script MeteorFalls_HaxorusRoom_EventScript_Haxorus{
             msgbox(format("The {STR_VAR_1} ran away!"), MSGBOX_DEFAULT)
         break
     }
+	release
+	end
+}
+
+script MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join{
+    msgbox(format("Haxorus seems to want to join your team, will you let this Haxorus join you?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		setflag(FLAG_OBTAINED_METEOR_FALLS_HAXORUS)
+		givecustommon(SPECIES_HAXORUS, 0, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_ADAMANT, 0, 252, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_CHOP, MOVE_EXCALIBUR, MOVE_DRAIN_PUNCH, MOVE_TAUNT, TRUE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} received a Haxorus!"))
+		waitfanfare
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		removeobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
+	if(!flag(FLAG_DEFEATED_METEOR_FALLS_HAXORUS)){
+    	setflag(FLAG_DEFEATED_METEOR_FALLS_HAXORUS)
+		playfanfare(MUS_OBTAIN_ITEM)
+		giveitem(ITEM_HAXORUSITE, 1)
+		message(format("{PLAYER} received a Haxorusite!"))
+		waitfanfare
+	}
 	release
 	end
 }

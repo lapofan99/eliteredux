@@ -25,7 +25,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MeteorFalls_HaxorusRoom_EventScript_Haxorus",
-      "flag": "FLAG_DEFEATED_METEOR_FALLS_HAXORUS"
+      "flag": "FLAG_OBTAINED_METEOR_FALLS_HAXORUS"
     }
   ],
   "warp_events": [

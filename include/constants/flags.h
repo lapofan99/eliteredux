@@ -705,8 +705,8 @@
 
 #define FLAG_SYS_MOVE_INFO                    0x29A // Battle Interface
 #define FLAG_IS_DAYNIGHT_INVERTED             0x29B // Ported from ROWE
-#define FLAG_SYS_AUTOWIN                      0x29C //DEBUG
-#define FLAG_SYS_MGBA_PRINT                   0x29D //DEBUG
+#define FLAG_SYS_AUTOWIN                      0x29C // DEBUG
+#define FLAG_SYS_MGBA_PRINT                   0x29D // DEBUG
 #define FLAG_SYS_DISABLE_AUTOHEAL             0x29E // Used in some battles
 #define FLAG_SYS_DISABLE_DAMAGE_DONE          0x29F
 #define FLAG_SYS_LOCKED_MODE                  0x2A0 // Elite Four only
@@ -715,9 +715,9 @@
 #define FLAG_DEFEATED_METEOR_FALLS_HAXORUS    0x2A3 // 
 #define FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG   0x2A4 //
 #define FLAG_DEFEATED_PETALBURG_WOODS_BRELOOM 0x2A5 //
-#define FLAG_UNUSED_0x2A6  0x2A6 // Unused Flag
-#define FLAG_UNUSED_0x2A7  0x2A7 // Unused Flag
-#define FLAG_UNUSED_0x2A8  0x2A8 // Unused Flag
+#define FLAG_OBTAINED_METEOR_FALLS_HAXORUS    0x2A6 //
+#define FLAG_OBTAINED_SEASPRAY_CAVE_DEWGONG   0x2A7 //
+#define FLAG_OBTAINED_PETALBURG_WOODS_BRELOOM 0x2A8 //
 #define FLAG_UNUSED_0x2A9  0x2A9 // Unused Flag
 #define FLAG_UNUSED_0x2AA  0x2AA // Unused Flag
 #define FLAG_UNUSED_0x2AB  0x2AB // Unused Flag

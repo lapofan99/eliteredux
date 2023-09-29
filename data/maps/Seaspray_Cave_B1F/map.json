@@ -38,7 +38,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Seaspray_Cave_B1F_EventScript_Dewgong",
-      "flag": "FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG"
+      "flag": "FLAG_OBTAINED_SEASPRAY_CAVE_DEWGONG"
     }
   ],
   "warp_events": [

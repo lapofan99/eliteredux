@@ -5,6 +5,7 @@ MeteorFalls_HaxorusRoom_MapScripts::
 MeteorFalls_HaxorusRoom_EventScript_Haxorus::
 	lock
 	faceplayer
+	goto_if_set FLAG_DEFEATED_METEOR_FALLS_HAXORUS, MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join
 	playmoncry SPECIES_HAXORUS, 2
 	msgbox MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_0, MSGBOX_DEFAULT
 	delay 40
@@ -34,20 +35,7 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus_1:
 	end
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_3:
-	msgbox MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq MeteorFalls_HaxorusRoom_EventScript_Haxorus_6
-	playmoncry SPECIES_HAXORUS, 2
-	msgbox MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_3, MSGBOX_DEFAULT
-MeteorFalls_HaxorusRoom_EventScript_Haxorus_5:
-	setflag FLAG_DEFEATED_METEOR_FALLS_HAXORUS
-	fadescreenswapbuffers FADE_TO_BLACK
-	removeobject VAR_LAST_TALKED
-	fadescreenswapbuffers FADE_FROM_BLACK
-	playfanfare MUS_OBTAIN_ITEM
-	giveitem ITEM_HAXORUSITE, 1
-	message MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_4
-	waitfanfare
+	goto MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join
 	goto MeteorFalls_HaxorusRoom_EventScript_Haxorus_1
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_4:
@@ -56,33 +44,53 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus_4:
 	removeobject VAR_LAST_TALKED
 	fadescreenswapbuffers FADE_FROM_BLACK
 	bufferspeciesname 0, VAR_0x8004
-	msgbox MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_5, MSGBOX_DEFAULT
+	msgbox MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_1, MSGBOX_DEFAULT
 	goto MeteorFalls_HaxorusRoom_EventScript_Haxorus_1
 
-MeteorFalls_HaxorusRoom_EventScript_Haxorus_6:
+
+MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join::
+	msgbox MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_2
+MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_1:
+	goto_if_unset FLAG_DEFEATED_METEOR_FALLS_HAXORUS, MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_5
+MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_4:
+	release
+	end
+
+MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_2:
+	setflag FLAG_OBTAINED_METEOR_FALLS_HAXORUS
 	givecustommon SPECIES_HAXORUS, 0, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_ADAMANT, 0, 252, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_CHOP, MOVE_EXCALIBUR, MOVE_DRAIN_PUNCH, MOVE_TAUNT, TRUE
 	playfanfare MUS_OBTAIN_ITEM
-	message MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_2
+	message MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_1
 	waitfanfare
-	goto MeteorFalls_HaxorusRoom_EventScript_Haxorus_5
+	fadescreenswapbuffers FADE_TO_BLACK
+	removeobject VAR_LAST_TALKED
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_1
+
+MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_5:
+	setflag FLAG_DEFEATED_METEOR_FALLS_HAXORUS
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_HAXORUSITE, 1
+	message MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_2
+	waitfanfare
+	goto MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_4
 
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_0:
 	.string "Haxorus: Hax!$"
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_1:
+	.string "The {STR_VAR_1} ran away!$"
+
+MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_0:
 	.string "Haxorus seems to want to join your\n"
 	.string "team, will you let this Haxorus join\l"
 	.string "you?$"
 
-MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_2:
+MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_1:
 	.string "{PLAYER} received a Haxorus!$"
 
-MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_3:
-	.string "Haxorus ran away!$"
-
-MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_4:
+MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_2:
 	.string "{PLAYER} received a Haxorusite!$"
-
-MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_5:
-	.string "The {STR_VAR_1} ran away!$"

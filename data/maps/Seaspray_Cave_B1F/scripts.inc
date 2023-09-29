@@ -5,6 +5,7 @@ Seaspray_Cave_B1F_MapScripts::
 Seaspray_Cave_B1F_EventScript_Dewgong::
 	lock
 	faceplayer
+	goto_if_set FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG, Seaspray_Cave_B1F_EventScript_Dewgong_Join
 	playmoncry SPECIES_DEWGONG, 2
 	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_0, MSGBOX_DEFAULT
 	delay 40
@@ -33,20 +34,7 @@ Seaspray_Cave_B1F_EventScript_Dewgong_1:
 	end
 
 Seaspray_Cave_B1F_EventScript_Dewgong_3:
-	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, 1
-	goto_if_eq Seaspray_Cave_B1F_EventScript_Dewgong_6
-	playmoncry SPECIES_DEWGONG, 2
-	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_3, MSGBOX_DEFAULT
-Seaspray_Cave_B1F_EventScript_Dewgong_5:
-	setflag FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG
-	fadescreenswapbuffers FADE_TO_BLACK
-	removeobject VAR_LAST_TALKED
-	fadescreenswapbuffers FADE_FROM_BLACK
-	playfanfare MUS_OBTAIN_ITEM
-	giveitem ITEM_DEWGONGITE, 1
-	message Seaspray_Cave_B1F_EventScript_Dewgong_Text_4
-	waitfanfare
+	goto Seaspray_Cave_B1F_EventScript_Dewgong_Join
 	goto Seaspray_Cave_B1F_EventScript_Dewgong_1
 
 Seaspray_Cave_B1F_EventScript_Dewgong_4:
@@ -55,33 +43,53 @@ Seaspray_Cave_B1F_EventScript_Dewgong_4:
 	removeobject VAR_LAST_TALKED
 	fadescreenswapbuffers FADE_FROM_BLACK
 	bufferspeciesname 0, VAR_0x8004
-	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_5, MSGBOX_DEFAULT
+	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_1, MSGBOX_DEFAULT
 	goto Seaspray_Cave_B1F_EventScript_Dewgong_1
 
-Seaspray_Cave_B1F_EventScript_Dewgong_6:
+
+Seaspray_Cave_B1F_EventScript_Dewgong_Join::
+	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Seaspray_Cave_B1F_EventScript_Dewgong_Join_2
+Seaspray_Cave_B1F_EventScript_Dewgong_Join_1:
+	goto_if_unset FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG, Seaspray_Cave_B1F_EventScript_Dewgong_Join_5
+Seaspray_Cave_B1F_EventScript_Dewgong_Join_4:
+	release
+	end
+
+Seaspray_Cave_B1F_EventScript_Dewgong_Join_2:
+	setflag FLAG_OBTAINED_SEASPRAY_CAVE_DEWGONG
 	givecustommon SPECIES_DEWGONG, 0, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_MODEST, 0, 252, 4, 0, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_HORN_DRILL, MOVE_FREEZE_DRY, MOVE_AQUA_JET, MOVE_SLACK_OFF, FALSE
 	playfanfare MUS_OBTAIN_ITEM
-	message Seaspray_Cave_B1F_EventScript_Dewgong_Text_2
+	message Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_1
 	waitfanfare
-	goto Seaspray_Cave_B1F_EventScript_Dewgong_5
+	fadescreenswapbuffers FADE_TO_BLACK
+	removeobject VAR_LAST_TALKED
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto Seaspray_Cave_B1F_EventScript_Dewgong_Join_1
+
+Seaspray_Cave_B1F_EventScript_Dewgong_Join_5:
+	setflag FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_DEWGONGITE, 1
+	message Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_2
+	waitfanfare
+	goto Seaspray_Cave_B1F_EventScript_Dewgong_Join_4
 
 
 Seaspray_Cave_B1F_EventScript_Dewgong_Text_0:
 	.string "Dewgong: Gong!$"
 
 Seaspray_Cave_B1F_EventScript_Dewgong_Text_1:
+	.string "The {STR_VAR_1} ran away!$"
+
+Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_0:
 	.string "Dewgong seems to want to join your\n"
 	.string "team, will you let this Dewgong join\l"
 	.string "you?$"
 
-Seaspray_Cave_B1F_EventScript_Dewgong_Text_2:
+Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_1:
 	.string "{PLAYER} received a Dewgong!$"
 
-Seaspray_Cave_B1F_EventScript_Dewgong_Text_3:
-	.string "Dewgong ran away!$"
-
-Seaspray_Cave_B1F_EventScript_Dewgong_Text_4:
+Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_2:
 	.string "{PLAYER} received a Dewgongite!$"
-
-Seaspray_Cave_B1F_EventScript_Dewgong_Text_5:
-	.string "The {STR_VAR_1} ran away!$"
