@@ -10171,11 +10171,11 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_MANECTRIC_MEGA] =
     {
     .baseHP        = 70,
-    .baseAttack    = 75,
-    .baseDefense   = 85,
-    .baseSpeed     = 155, // 135
-    .baseSpAttack  = 145, // 135
-    .baseSpDefense = 85,
+    .baseAttack    = 110,
+    .baseDefense   = 80,
+    .baseSpeed     = 155,
+    .baseSpAttack  = 135, // 135
+    .baseSpDefense = 80,
     .type1 = TYPE_ELECTRIC,
     .type2 = TYPE_ELECTRIC,
     .catchRate = 255,
