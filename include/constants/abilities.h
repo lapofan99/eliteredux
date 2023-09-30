@@ -460,8 +460,13 @@
 #define ABILITY_VOLT_RUSH        (ABILITIES_COUNT_LATEST_GEN + 162) // Electric-type moves have +1 priority. Requires full HP.
 #define ABILITY_DUNE_TERROR      (ABILITIES_COUNT_LATEST_GEN + 163) // Halves incoming damage in sand. Boosts Ground moves by 20%.
 #define ABILITY_INFERNAL_RAGE    (ABILITIES_COUNT_LATEST_GEN + 164) // Fire-type moves are boosted by 35% with 10% recoil.
+#define ABILITY_DUAL_WIELD       (ABILITIES_COUNT_LATEST_GEN + 165) // Mega Launcher moves hit twice, each hit at 75% power.
+#define ABILITY_ELEMENTAL_CHARGE (ABILITIES_COUNT_LATEST_GEN + 166) // 20% BRN/FRB/PARA chance with their types.
+#define ABILITY_AMBUSH           (ABILITIES_COUNT_LATEST_GEN + 167) // Guarantees a critical hit on the turn immediately after a Pokemon enters battle. Like Violent Rush but for Critical hits.
+#define ABILITY_ATLAS            (ABILITIES_COUNT_LATEST_GEN + 168) // On switch-in, sets Gravity (field effect) for 5 turns. Also combines the ability Stall.
+#define ABILITY_RADIANCE         (ABILITIES_COUNT_LATEST_GEN + 169) // +20% accuracy. All Dark moves fail while user is on field.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_INFERNAL_RAGE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_RADIANCE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -272,6 +272,8 @@ struct FormChange {
     | (((personality) & 0x00000003) >> 0)  \
 ) % NUM_UNOWN_FORMS)
 
+#define BATTLER_HAS_ABILITY(battlerId, ability) (gBattleMons[battlerId].ability == ability || BattlerHasInnateAbility(battlerId, ability))
+
 extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
 extern u8 gEnemyPartyCount;

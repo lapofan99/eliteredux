@@ -1,8 +1,7 @@
 #ifndef GUARD_MAIL_H
 #define GUARD_MAIL_H
 
-#define IS_ITEM_MAIL(itemId)((itemId == ITEM_LAPRASITE_X          \
-                              || itemId == ITEM_FAB_MAIL            \
+#define IS_ITEM_MAIL(itemId)((itemId == ITEM_FAB_MAIL            \
                               || itemId == ITEM_RETRO_MAIL))
 
 // mail.h
