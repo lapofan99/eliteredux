@@ -2145,13 +2145,9 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
         critChance = -1;
     }
     //Never Critical
-    else if (abilityDef        == ABILITY_BAD_LUCK              || 
-             abilityDefPartner == ABILITY_BAD_LUCK              || 
-             abilityDef        == ABILITY_BATTLE_ARMOR          || 
-             abilityDef        == ABILITY_SHELL_ARMOR           || 
-             BattlerHasInnate(battlerDef, ABILITY_BATTLE_ARMOR) || 
-             BattlerHasInnate(battlerDef, ABILITY_BAD_LUCK)     ||
-             BattlerHasInnate(battlerDef, ABILITY_SHELL_ARMOR))
+    else if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_BAD_LUCK)    ||
+             BATTLER_HAS_ABILITY(battlerDef, ABILITY_SHELL_ARMOR) ||
+            (BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK) && IsBattlerAlive(BATTLE_PARTNER(gBattlerTarget))))
     {
         if (recordAbility)
             RecordAbilityBattle(battlerDef, abilityDef);
@@ -2161,13 +2157,13 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
              || gBattleMoves[move].effect == EFFECT_ALWAYS_CRIT
              || (gBattleMoves[move].flags2 & FLAG_ALWAYS_CRIT)
-             || ((abilityAtk == ABILITY_MERCILESS || BattlerHasInnate(battlerAtk, ABILITY_MERCILESS)) && 
-             ((gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY) || 
-               gBattleMons[battlerDef].statStages[STAT_SPEED] < DEFAULT_STAT_STAGE || 
-              (gBattleMons[battlerDef].status1 & STATUS1_PARALYSIS) || 
-               gBattleMons[battlerDef].item == ITEM_IRON_BALL ))
-             || ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk))
-             )
+             || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MERCILESS)  && 
+             (( gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY)                   ||  
+             (  gBattleMons[battlerDef].statStages[STAT_SPEED] < DEFAULT_STAT_STAGE) || 
+             (  gBattleMons[battlerDef].status1 & STATUS1_PARALYSIS)                 || 
+             (  gBattleMons[battlerDef].item == ITEM_IRON_BALL)))
+             || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AMBUSH)     && gDisableStructs[battlerDef].isFirstTurn)
+             || ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)))
     {
         critChance = -2;
     }

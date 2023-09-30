@@ -1433,11 +1433,11 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
     gPotentialItemEffectBattler = battlerDef;
     accStage = gBattleMons[battlerAtk].statStages[STAT_ACC];
     evasionStage = gBattleMons[battlerDef].statStages[STAT_EVASION];
-    if (atkAbility == ABILITY_UNAWARE || BattlerHasInnate(battlerAtk, ABILITY_UNAWARE) || atkAbility == ABILITY_KEEN_EYE || BattlerHasInnate(battlerAtk, ABILITY_KEEN_EYE))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_UNAWARE) || BATTLER_HAS_ABILITY(battlerAtk, ABILITY_KEEN_EYE))
         evasionStage = DEFAULT_STAT_STAGE;
     if (gBattleMoves[move].flags & FLAG_STAT_STAGES_IGNORED)
         evasionStage = DEFAULT_STAT_STAGE;
-    if (defAbility == ABILITY_UNAWARE)
+    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_UNAWARE))
         accStage = DEFAULT_STAT_STAGE;
 
     if (gBattleMons[battlerDef].status2 & STATUS2_FORESIGHT || gStatuses3[battlerDef] & STATUS3_MIRACLE_EYED)
@@ -1453,18 +1453,22 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
     moveAcc = gBattleMoves[move].accuracy;
 
     //Hypnotist + Hypnosis - Ability and Innate
-	if(move == MOVE_HYPNOSIS && (BattlerHasInnate(battlerAtk, ABILITY_HYPNOTIST) || atkAbility == ABILITY_HYPNOTIST))
+	if(move == MOVE_HYPNOSIS && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HYPNOTIST))
 		moveAcc = moveAcc * 1.5;
 
-    if(move == MOVE_HYPNOSIS && (BattlerHasInnate(battlerAtk, ABILITY_LUNAR_ECLIPSE) || atkAbility == ABILITY_LUNAR_ECLIPSE))
+    if(move == MOVE_HYPNOSIS && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LUNAR_ECLIPSE))
 		moveAcc = moveAcc * 1.5;
+
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_RADIANCE))
+        moveAcc = moveAcc * 1.2;
 	
 	//Inner Focus + Focus Blast - Ability and Innate
-	if(move == MOVE_FOCUS_BLAST && (BattlerHasInnate(battlerAtk, ABILITY_INNER_FOCUS) || atkAbility == ABILITY_INNER_FOCUS))
+	if(move == MOVE_FOCUS_BLAST && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_INNER_FOCUS))
 		moveAcc = 90;
 
     // Bad Luck Ability lowers accuracy by 5%
-    if (defAbility == ABILITY_BAD_LUCK || BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK) || BattlerHasInnate(battlerDef, ABILITY_BAD_LUCK))
+
+    if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_BAD_LUCK) || (BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerDef), ABILITY_BAD_LUCK) && IsBattlerAlive(BATTLE_PARTNER(battlerDef))))
         moveAcc = (moveAcc * 95) / 100;
 
     // Check Thunder and Hurricane on sunny weather.
@@ -1473,25 +1477,25 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
         moveAcc = 50;
 
     // Check Wonder Skin.
-    if ((defAbility == ABILITY_WONDER_SKIN || BattlerHasInnate(battlerDef, ABILITY_WONDER_SKIN)) && gBattleMoves[move].power == 0)
+    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_WONDER_SKIN) && gBattleMoves[move].power == 0)
         moveAcc = 50;
 
-    if (atkAbility == ABILITY_SIGHTING_SYSTEM || BattlerHasInnate(battlerAtk, ABILITY_SIGHTING_SYSTEM))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SIGHTING_SYSTEM))
         moveAcc = 100;
 
-    if ((atkAbility == ABILITY_ROUNDHOUSE || BattlerHasInnate(battlerAtk, ABILITY_ROUNDHOUSE)) && gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ROUNDHOUSE) && gBattleMoves[move].flags & FLAG_STRIKER_BOOST)
         moveAcc = 100;
 
-    if (atkAbility == ABILITY_IRON_BARRAGE || BattlerHasInnate(battlerAtk, ABILITY_IRON_BARRAGE))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_BARRAGE))
         moveAcc = 100;
 
-    if ((atkAbility == ABILITY_ARTILLERY || BattlerHasInnate(battlerAtk, ABILITY_ARTILLERY)) && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ARTILLERY) && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
         moveAcc = 100;
 
-    if ((atkAbility == ABILITY_SWEEPING_EDGE || BattlerHasInnate(battlerAtk, ABILITY_SWEEPING_EDGE)) && (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SWEEPING_EDGE) && (gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST))
         moveAcc = 100;
 
-    if ((atkAbility == ABILITY_DEADEYE || BattlerHasInnate(battlerAtk, ABILITY_DEADEYE)))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DEADEYE))
         moveAcc = 100;
 
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
@@ -1500,28 +1504,28 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
     if (atkAbility == ABILITY_COMPOUND_EYES || BattlerHasInnate(battlerAtk, ABILITY_COMPOUND_EYES))
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
 
-    if (atkAbility == ABILITY_VICTORY_STAR || BattlerHasInnate(battlerAtk, ABILITY_VICTORY_STAR))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_VICTORY_STAR))
         calc = (calc * 120) / 100; // 1.2 victory star boost
 
-    if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)) && (GetBattlerAbility(BATTLE_PARTNER(battlerAtk)) == ABILITY_VICTORY_STAR || BattlerHasInnate(battlerAtk, ABILITY_VICTORY_STAR)))
+    if (BATTLER_HAS_ABILITY(BATTLE_PARTNER(battlerAtk), ABILITY_VICTORY_STAR) && IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
         calc = (calc * 120) / 100; // 1.2 ally's victory star boost
 
-    if (atkAbility == ABILITY_ILLUMINATE || BattlerHasInnate(battlerAtk, ABILITY_ILLUMINATE))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ILLUMINATE))
         calc = (calc * 120) / 100; // 1.2 illuminate boost
 
-    if (atkAbility == ABILITY_KEEN_EYE || BattlerHasInnate(battlerAtk, ABILITY_KEEN_EYE))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_KEEN_EYE))
         calc = (calc * 120) / 100; // 1.2 keen eye boost
 
-    if ((defAbility == ABILITY_SAND_VEIL || BattlerHasInnate(battlerDef, ABILITY_SAND_VEIL)) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
+    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_SAND_VEIL) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
         calc = (calc * 80) / 100; // 1.2 sand veil loss
     
-	if ((defAbility == ABILITY_SNOW_CLOAK || BattlerHasInnate(battlerDef, ABILITY_SNOW_CLOAK)) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
+	if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_SNOW_CLOAK) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY)
         calc = (calc * 80) / 100; // 1.2 snow cloak loss
 
-    if ((defAbility == ABILITY_TANGLED_FEET || BattlerHasInnate(battlerDef, ABILITY_TANGLED_FEET)) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
+    if (BATTLER_HAS_ABILITY(battlerDef, ABILITY_TANGLED_FEET) && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
         calc = (calc * 50) / 100; // 1.5 tangled feet loss
 
-    if ((atkAbility == ABILITY_HUSTLE || BattlerHasInnate(battlerAtk, ABILITY_HUSTLE)))
+    if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HUSTLE))
         calc = (calc * 90) / 100; // 1.1 hustle loss
 
     if (defHoldEffect == HOLD_EFFECT_EVASION_UP)

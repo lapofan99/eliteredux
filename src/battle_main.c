@@ -5107,11 +5107,13 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
             strikesFirst = 1;
         else if (holdEffectBattler2 == HOLD_EFFECT_LAGGING_TAIL && holdEffectBattler1 != HOLD_EFFECT_LAGGING_TAIL)
             strikesFirst = 0;
-        else if ((GetBattlerAbility(battler1) == ABILITY_STALL || BattlerHasInnate(battler1, ABILITY_STALL)) && 
-		         (GetBattlerAbility(battler2) != ABILITY_STALL && !BattlerHasInnate(battler2, ABILITY_STALL)))
+        else if (BATTLER_HAS_ABILITY(battler1, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler2, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS))
             strikesFirst = 1;
-        else if ((GetBattlerAbility(battler2) == ABILITY_STALL || BattlerHasInnate(battler2, ABILITY_STALL))&& 
-		         (GetBattlerAbility(battler1) != ABILITY_STALL && !BattlerHasInnate(battler1, ABILITY_STALL)))
+        else if (BATTLER_HAS_ABILITY(battler2, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler1, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS))
+            strikesFirst = 0;
+        else if (BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS) && !BATTLER_HAS_ABILITY(battler2, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS))
+            strikesFirst = 1;
+        else if (BATTLER_HAS_ABILITY(battler2, ABILITY_ATLAS) && !BATTLER_HAS_ABILITY(battler1, ABILITY_STALL) && !BATTLER_HAS_ABILITY(battler1, ABILITY_ATLAS))
             strikesFirst = 0;
         else
         {
