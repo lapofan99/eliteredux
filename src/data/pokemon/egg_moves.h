@@ -655,6 +655,7 @@ const u16 gEggMoves[] = {
         MOVE_VENOM_DRENCH),
 
     egg_moves(RHYHORN,
+        MOVE_ACCELEROCK, // new
         MOVE_CRUNCH,
         MOVE_REVERSAL,
         MOVE_MAGNITUDE,
@@ -3952,6 +3953,7 @@ const u16 gEggMoves[] = {
         MOVE_ELECTRIC_TERRAIN),
 
     egg_moves(TYRUNT,
+        MOVE_ACCELEROCK, // new
         MOVE_DRAGON_DANCE,
         MOVE_IRON_FANGS, // new
         MOVE_JAGGED_FANGS, // new
