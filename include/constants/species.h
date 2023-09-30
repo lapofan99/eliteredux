@@ -1384,7 +1384,7 @@
 #define SPECIES_NOIVERN_REGIONAL            FORMS_START + 344
 #define SPECIES_DEWLEON                     FORMS_START + 345
 #define SPECIES_LUXRAY_REGIONAL             FORMS_START + 346
-#define SPECIES_TEMP4_REGIONAL              FORMS_START + 347
+#define SPECIES_CLAWITZER_REGIONAL          FORMS_START + 347
 #define SPECIES_TEMP5_REGIONAL              FORMS_START + 348
 #define SPECIES_TEMP6_REGIONAL              FORMS_START + 349
 #define SPECIES_TEMP7_REGIONAL              FORMS_START + 350
@@ -1402,7 +1402,7 @@
 #define SPECIES_SHEDINJA_MEGA               FORMS_START + 361
 #define SPECIES_SWALOT_MEGA                 FORMS_START + 362
 #define SPECIES_LANTURN_MEGA                FORMS_START + 363
-#define SPECIES_TEMP_MEGA5                  FORMS_START + 364
+#define SPECIES_LAPRAS_MEGA_X               FORMS_START + 364
 #define SPECIES_TEMP_MEGA6                  FORMS_START + 365
 #define SPECIES_TEMP_MEGA7                  FORMS_START + 366
 #define SPECIES_TEMP_MEGA8                  FORMS_START + 367

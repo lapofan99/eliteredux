@@ -37086,7 +37086,7 @@ static const struct TrainerMonItemCustomMoves sParty_Micah[] = {
     {
     .lvl = 0,
     .species = SPECIES_LAPRAS, // Mega, Bulky Special, Boomburst, Refresh
-    .heldItem = ITEM_LAPRASITE,
+    .heldItem = ITEM_LAPRASITE_Y,
     .ability = 0, // ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE},
     // .innates = {ABILITY_ICE_SCALES, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
     // Pre-Mega
@@ -37615,7 +37615,7 @@ static const struct TrainerMonItemCustomMoves sParty_Glacia[] = {
     {
     .lvl = 0,
     .species = SPECIES_LAPRAS, // Mega, Glacia, Bulky Special, Boomburst, Hail Setter
-    .heldItem = ITEM_LAPRASITE,
+    .heldItem = ITEM_LAPRASITE_Y,
     .ability = 1, // ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE},
     // .innates = {ABILITY_ICE_SCALES, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
     // Pre-Mega
@@ -37632,7 +37632,7 @@ static const struct TrainerMonItemCustomMoves sParty_GlaciaInsane[] = {
     {
     .lvl = 0,
     .species = SPECIES_LAPRAS, // Mega, Glacia-E, Bulky Special, Boomburst, Hail Setter
-    .heldItem = ITEM_LAPRASITE,
+    .heldItem = ITEM_LAPRASITE_Y,
     .ability = 1, // ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE},
     // .innates = {ABILITY_ICE_SCALES, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
     // Pre-Mega

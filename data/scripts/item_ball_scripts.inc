@@ -267,7 +267,7 @@ Route127_EventScript_ItemZinc:: @ 8291032
 	end
 
 Route127_EventScript_ItemLaprasite:: @ 829103F
-	finditem ITEM_LAPRASITE
+	finditem ITEM_LAPRASITE_Y
 	end
 
 Route127_EventScript_ItemRareCandy:: @ 829104C

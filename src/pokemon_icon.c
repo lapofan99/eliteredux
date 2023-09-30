@@ -1015,7 +1015,9 @@ const u8 *const gMonIconTable[] =
     [SPECIES_SHEDINJA_MEGA] = gMonIcon_ShedinjaMega,
     [SPECIES_SWALOT_MEGA] = gMonIcon_SwalotMega,
     [SPECIES_LANTURN_MEGA] = gMonIcon_LanturnMega,
+    [SPECIES_LAPRAS_MEGA_X] = gMonIcon_LaprasMegaX,
     [SPECIES_DEWLEON] = gMonIcon_Dewleon,
+    [SPECIES_CLAWITZER_REGIONAL] = gMonIcon_ClawitzerRegional,
     [SPECIES_CASCOON_PRIMAL] = gMonIcon_CascoonPrimal,
     [SPECIES_RAYQUAZA_MEGA] = gMonIcon_RayquazaMega,
     [SPECIES_KYOGRE_PRIMAL] = gMonIcon_KyogrePrimal,
@@ -1283,7 +1285,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_NOIVERN_REGIONAL] = gMonIcon_NoivernRegional,
     [SPECIES_INFERNAPE_REGIONAL] = gMonIcon_InfernapeRegional,
     [SPECIES_LUXRAY_REGIONAL] = gMonIcon_LuxrayRegional,
-    [SPECIES_TEMP4_REGIONAL]  = gMonIcon_QuestionMark,
+
     [SPECIES_TEMP5_REGIONAL]  = gMonIcon_QuestionMark,
     [SPECIES_TEMP6_REGIONAL]  = gMonIcon_QuestionMark,
     [SPECIES_TEMP7_REGIONAL]  = gMonIcon_QuestionMark,
@@ -1291,7 +1293,6 @@ const u8 *const gMonIconTable[] =
     [SPECIES_TEMP9_REGIONAL]  = gMonIcon_QuestionMark,
     [SPECIES_TEMP10_REGIONAL] = gMonIcon_QuestionMark,
 
-    [SPECIES_TEMP_MEGA5]  = gMonIcon_QuestionMark,
     [SPECIES_TEMP_MEGA6]  = gMonIcon_QuestionMark,
     [SPECIES_TEMP_MEGA7]  = gMonIcon_QuestionMark,
     [SPECIES_TEMP_MEGA8]  = gMonIcon_QuestionMark,
@@ -2296,7 +2297,6 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_INFERNAPE_REGIONAL] = 0,
     [SPECIES_LUXRAY_REGIONAL] = 0,
 
-    [SPECIES_TEMP4_REGIONAL] = 0,
     [SPECIES_TEMP5_REGIONAL] = 0,
     [SPECIES_TEMP6_REGIONAL] = 0,
     [SPECIES_TEMP7_REGIONAL] = 0,
@@ -2304,7 +2304,6 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_TEMP9_REGIONAL] = 0,
     [SPECIES_TEMP10_REGIONAL] = 0,
 
-    [SPECIES_TEMP_MEGA5]   = 0,
     [SPECIES_TEMP_MEGA6]   = 0,
     [SPECIES_TEMP_MEGA7]   = 0,
     [SPECIES_TEMP_MEGA8]   = 0,
@@ -2328,6 +2327,8 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_SHEDINJA_MEGA] = 1,
     [SPECIES_SWALOT_MEGA] = 2,
     [SPECIES_LANTURN_MEGA] = 0,
+    [SPECIES_CLAWITZER_REGIONAL] = 0,
+    [SPECIES_LAPRAS_MEGA_X] = 2,
     [SPECIES_DEWLEON] = 1,
 
     [SPECIES_RATTATA_ALOLAN] = 2,

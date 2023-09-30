@@ -2598,7 +2598,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_MILOTICITE,        1},
     {ITEM_FLYGONITE,         1},
     {ITEM_BUTTERFRENITE,     1},
-    {ITEM_LAPRASITE,         1},
+    {ITEM_LAPRASITE_Y,         1},
     {ITEM_MACHAMPITE,        1},
     {ITEM_KINGLERITE,        1},
     {ITEM_KINGDRANITE,       1},

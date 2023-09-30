@@ -6761,6 +6761,18 @@ const u32 gMonPalette_LanturnMega[]              = INCBIN_U32("graphics/pokemon/
 const u32 gMonShinyPalette_LanturnMega[]         = INCBIN_U32("graphics/pokemon/mega_lanturn/shiny.gbapal.lz");
 const u8  gMonIcon_LanturnMega[]                 = INCBIN_U8("graphics/pokemon/mega_lanturn/icon.4bpp");
 
+const u32 gMonFrontPic_LaprasMegaX[]            = INCBIN_U32("graphics/pokemon/mega_lapras_x/front.4bpp.lz");
+const u32 gMonBackPic_LaprasMegaX[]             = INCBIN_U32("graphics/pokemon/mega_lapras_x/back.4bpp.lz");
+const u32 gMonPalette_LaprasMegaX[]             = INCBIN_U32("graphics/pokemon/mega_lapras_x/normal.gbapal.lz");
+const u32 gMonShinyPalette_LaprasMegaX[]        = INCBIN_U32("graphics/pokemon/mega_lapras_x/shiny.gbapal.lz");
+const u8  gMonIcon_LaprasMegaX[]                = INCBIN_U8("graphics/pokemon/mega_lapras_x/icon.4bpp");
+
+const u32 gMonFrontPic_ClawitzerRegional[]      = INCBIN_U32("graphics/pokemon/clawitzer_regional/front.4bpp.lz");
+const u32 gMonBackPic_ClawitzerRegional[]       = INCBIN_U32("graphics/pokemon/clawitzer_regional/back.4bpp.lz");
+const u32 gMonPalette_ClawitzerRegional[]       = INCBIN_U32("graphics/pokemon/clawitzer_regional/normal.gbapal.lz");
+const u32 gMonShinyPalette_ClawitzerRegional[]  = INCBIN_U32("graphics/pokemon/clawitzer_regional/shiny.gbapal.lz");
+const u8  gMonIcon_ClawitzerRegional[]          = INCBIN_U8("graphics/pokemon/clawitzer_regional/icon.4bpp");
+
 const u32 gMonFrontPic_Dewleon[]                = INCBIN_U32("graphics/pokemon/dewleon/front.4bpp.lz");
 const u32 gMonBackPic_Dewleon[]                 = INCBIN_U32("graphics/pokemon/dewleon/back.4bpp.lz");
 const u32 gMonPalette_Dewleon[]                 = INCBIN_U32("graphics/pokemon/dewleon/normal.gbapal.lz");

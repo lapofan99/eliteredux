@@ -168,7 +168,7 @@ bool8 ItemIsMail(u16 itemId)
 {
     switch (itemId)
     {
-    case ITEM_DREAM_MAIL:
+    case ITEM_LAPRASITE_X:
     case ITEM_FAB_MAIL:
     case ITEM_RETRO_MAIL:
         return TRUE;

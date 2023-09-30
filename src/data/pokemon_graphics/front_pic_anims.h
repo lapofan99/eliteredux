@@ -15597,6 +15597,16 @@ static const union AnimCmd *const sAnims_LANTURN_MEGA[] ={
     sAnim_GENERIC,
 };
 
+static const union AnimCmd *const sAnims_CLAWITZER_REGIONAL[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
+};
+
+static const union AnimCmd *const sAnims_LAPRAS_MEGA_X[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
+};
+
 static const union AnimCmd *const sAnims_DEWLEON[] ={
     sAnim_GeneralFrame0,
     sAnim_GENERIC,
@@ -16961,6 +16971,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(NOIBAT_REGIONAL),
     ANIM_CMD(NOIVERN_REGIONAL),
     ANIM_CMD(LUXRAY_REGIONAL),
+    ANIM_CMD(CLAWITZER_REGIONAL),
     ANIM_CMD(CASCOON_PRIMAL),
     ANIM_CMD(FERALIGATR_MEGA_X),
     ANIM_CMD(FERALIGATR_MEGA_Y),
@@ -16980,6 +16991,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SHEDINJA_MEGA),
     ANIM_CMD(SWALOT_MEGA),
     ANIM_CMD(LANTURN_MEGA),
+    ANIM_CMD(LAPRAS_MEGA_X),
     ANIM_CMD(RAYQUAZA_MEGA),
     ANIM_CMD(KYOGRE_PRIMAL),
     ANIM_CMD(GROUDON_PRIMAL),

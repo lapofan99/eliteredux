@@ -651,8 +651,10 @@ u16 getHallofFameSpecies(u8 num){
                 return SPECIES_BUTTERFREE_MEGA;
         break;
         case SPECIES_LAPRAS:
-            if(item == ITEM_LAPRASITE)
+            if(item == ITEM_LAPRASITE_Y)
                 return SPECIES_LAPRAS_MEGA;
+            if(item ==  ITEM_LAPRASITE_X)
+                return SPECIES_LAPRAS_MEGA_X;
         break;
         case SPECIES_MACHAMP:
             if(item == ITEM_MACHAMPITE)

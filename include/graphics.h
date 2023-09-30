@@ -10246,10 +10246,23 @@ extern const u32 gMonPalette_LanturnMega[];
 extern const u32 gMonShinyPalette_LanturnMega[];
 extern const u8  gMonIcon_LanturnMega[];
 
+extern const u32 gMonFrontPic_LaprasMegaX[];
+extern const u32 gMonBackPic_LaprasMegaX[];
+extern const u32 gMonPalette_LaprasMegaX[];
+extern const u32 gMonShinyPalette_LaprasMegaX[];
+extern const u8  gMonIcon_LaprasMegaX[];
+
+extern const u32 gMonFrontPic_ClawitzerRegional[];
+extern const u32 gMonBackPic_ClawitzerRegional[];
+extern const u32 gMonPalette_ClawitzerRegional[];
+extern const u32 gMonShinyPalette_ClawitzerRegional[];
+extern const u8  gMonIcon_ClawitzerRegional[];
+
 extern const u32 gMonFrontPic_Dewleon[];
 extern const u32 gMonBackPic_Dewleon[];
 extern const u32 gMonPalette_Dewleon[];
 extern const u32 gMonShinyPalette_Dewleon[];
 extern const u8  gMonIcon_Dewleon[];
+
 
 #endif //GUARD_GRAPHICS_H

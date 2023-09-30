@@ -124,7 +124,6 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_GOLD_BOTTLE_CAP] = {gItemIcon_GoldBottleCap, gItemIconPalette_GoldBottleCap},
     [ITEM_HEART_SCALE] = {gItemIcon_HeartScale, gItemIconPalette_HeartScale},
     // Mail
-    [ITEM_DREAM_MAIL] = {gItemIcon_DreamMail, gItemIconPalette_DreamMail},
     [ITEM_FAB_MAIL] = {gItemIcon_FabMail, gItemIconPalette_FabMail},
     [ITEM_RETRO_MAIL] = {gItemIcon_RetroMail, gItemIconPalette_RetroMail},
     // Berries
@@ -610,7 +609,8 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_BUTTERFRENITE] = {gItemIcon_Butterfrenite, gItemIconPalette_Butterfrenite},
     [ITEM_MACHAMPITE]    = {gItemIcon_Machampite, gItemIconPalette_Machampite},
     [ITEM_KINGLERITE]    = {gItemIcon_Kinglerite, gItemIconPalette_Kinglerite},
-    [ITEM_LAPRASITE]     = {gItemIcon_Laprasite, gItemIconPalette_Laprasite},
+    [ITEM_LAPRASITE_Y]   = {gItemIcon_Laprasite, gItemIconPalette_Laprasite},
+    [ITEM_LAPRASITE_X]   = {gItemIcon_Laprasite, gItemIconPalette_Laprasite},
     [ITEM_KINGDRANITE]   = {gItemIcon_Kingdranite, gItemIconPalette_Kingdranite},
     [ITEM_DEWGONGITE]    = {gItemIcon_Dewgongite, gItemIconPalette_Dewgongite},
     [ITEM_HITMONCHANITE] = {gItemIcon_Dewgongite, gItemIconPalette_Dewgongite},

@@ -4631,6 +4631,31 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+[SPECIES_LAPRAS_MEGA_X] =
+    {
+    .baseHP        = 130,
+    .baseAttack    = 105,
+    .baseDefense   = 110,
+    .baseSpeed     = 50,
+    .baseSpAttack  = 125,
+    .baseSpDefense = 125,
+    .type1 = TYPE_WATER,
+    .type2 = TYPE_ICE,
+    .catchRate = 255,
+    .expYield = 287,
+    .evYield_HP    = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 40,
+    .friendship = 70,
+    .growthRate = GROWTH_SLOW,
+    .eggGroup1 = EGG_GROUP_MONSTER,
+    .eggGroup2 = EGG_GROUP_WATER_1,
+    .abilities = {ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE, ABILITY_LIQUID_VOICE},
+    .innates = {ABILITY_ICE_SCALES, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
+    .bodyColor = BODY_COLOR_BLUE,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_LAPRAS_MEGA] =
     {
     .baseHP        = 130,
@@ -22838,6 +22863,31 @@ const struct BaseStats gBaseStats[] =
     },
 
 [SPECIES_CLAWITZER] =
+    {
+    .baseHP        = 90, // 70 vanilla
+    .baseAttack    = 73,
+    .baseDefense   = 98, // 88 vanilla
+    .baseSpeed     = 50, // 50 vanilla
+    .baseSpAttack  = 130, // 120
+    .baseSpDefense = 89,
+    .type1 = TYPE_WATER,
+    .type2 = TYPE_WATER,
+    .catchRate = 255,
+    .expYield = 100,
+    .evYield_SpAttack  = 2,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 15,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_WATER_1,
+    .eggGroup2 = EGG_GROUP_WATER_3,
+    .abilities = {ABILITY_MULTISCALE, ABILITY_RAMPAGE, ABILITY_ARTILLERY},
+    .innates = {ABILITY_HYDRATE, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
+    .bodyColor = BODY_COLOR_BLUE,
+    .noFlip = TRUE,
+    },
+
+[SPECIES_CLAWITZER_REGIONAL] =
     {
     .baseHP        = 90, // 70 vanilla
     .baseAttack    = 73,

@@ -133,14 +133,6 @@ static const u16 sBgColors[GENDER_COUNT][2] = {
 };
 
 static const struct MailGraphics sMailGraphics[] = {
-    [ITEM_TO_MAIL(ITEM_DREAM_MAIL)] = {
-        .palette = gMailPalette_Dream, 
-        .tiles = gMailTiles_Dream, 
-        .tileMap = gMailTilemap_Dream, 
-        .unused = 0x340, 
-        .textColor = RGB(10, 10, 10),
-        .textShadow = RGB(25, 25, 25),
-    }, 
     [ITEM_TO_MAIL(ITEM_FAB_MAIL)] = {
         .palette = gMailPalette_Fab, 
         .tiles = gMailTiles_Fab, 
@@ -166,14 +158,6 @@ static const struct MailLineLayout sLineLayouts_Wide[] = {
 };
 
 static const struct MailLayout sMailLayouts_Wide[] = {
-    [ITEM_TO_MAIL(ITEM_DREAM_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Wide),
-        .signatureYPos = 0,
-        .signatureWidth = 0,
-        .wordsYPos = 2,
-        .wordsXPos = 4,
-        .lines = sLineLayouts_Wide,
-    },
     [ITEM_TO_MAIL(ITEM_FAB_MAIL)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Wide),
         .signatureYPos = 8,
@@ -201,14 +185,6 @@ static const struct MailLineLayout sLineLayouts_Tall[] = {
 };
 
 static const struct MailLayout sMailLayouts_Tall[] = {
-    [ITEM_TO_MAIL(ITEM_DREAM_MAIL)] = { 
-        .numLines = ARRAY_COUNT(sLineLayouts_Tall),
-        .signatureYPos = 9,
-        .signatureWidth = 96,
-        .wordsYPos = 9,
-        .wordsXPos = 30,
-        .lines = sLineLayouts_Tall,
-    },
     [ITEM_TO_MAIL(ITEM_FAB_MAIL)] = { 
         .numLines = ARRAY_COUNT(sLineLayouts_Tall),
         .signatureYPos = 17,
@@ -264,12 +240,6 @@ void ReadMail(struct MailStruct *mail, void (*exitCallback)(void), bool8 hasText
         {
         default:
             sMailRead->iconType = ICON_TYPE_NONE;
-            break;
-        case ITEM_TO_MAIL(ITEM_SHEDINJANITE):
-            sMailRead->iconType = ICON_TYPE_BEAD;
-            break;
-        case ITEM_TO_MAIL(ITEM_DREAM_MAIL):
-            sMailRead->iconType = ICON_TYPE_DREAM;
             break;
         }
     }

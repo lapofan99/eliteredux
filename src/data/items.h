@@ -1651,18 +1651,6 @@ const struct Item gItems[] =
 
 // Mail
 
-    [ITEM_DREAM_MAIL] =
-    {
-        .name = _("Dream Mail"),
-        .itemId = ITEM_DREAM_MAIL,
-        .price = 50,
-        .description = sDreamMailDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_MAIL,
-        .fieldUseFunc = ItemUseOutOfBattle_Mail,
-        .secondaryId = ITEM_TO_MAIL(ITEM_DREAM_MAIL),
-    },
-
     [ITEM_FAB_MAIL] =
     {
         .name = _("Fab Mail"),
@@ -7570,10 +7558,22 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_LAPRASITE] =
+    [ITEM_LAPRASITE_Y] =
     {
-        .name = _("Laprasite"),
-        .itemId = ITEM_LAPRASITE,
+        .name = _("Laprasite Y"),
+        .itemId = ITEM_LAPRASITE_Y,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sLaprasiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
+
+    [ITEM_LAPRASITE_X] =
+    {
+        .name = _("Laprasite X"),
+        .itemId = ITEM_LAPRASITE_X,
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sLaprasiteDesc,

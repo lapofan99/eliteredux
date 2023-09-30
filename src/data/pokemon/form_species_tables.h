@@ -1152,3 +1152,16 @@ static const u16 sLanturnFormSpeciesIdTable[] = {
     SPECIES_LANTURN_MEGA,
     FORM_SPECIES_END,
 };
+
+static const u16 sLaprasFormSpeciesIdTable[] = {
+    SPECIES_LAPRAS,
+    SPECIES_LAPRAS_MEGA,
+    SPECIES_LAPRAS_MEGA_X,
+    FORM_SPECIES_END,
+};
+
+static const u16 sClawitzerFormSpeciesIdTable[] = {
+    SPECIES_CLAWITZER,
+    SPECIES_CLAWITZER_REGIONAL,
+    FORM_SPECIES_END,
+};
