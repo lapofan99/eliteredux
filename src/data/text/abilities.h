@@ -424,7 +424,11 @@ static const u8 sCowardDescription[] =  _("Sets up Protect on switch-in.\nOnly w
 static const u8 sVoltRushDescription[] =  _("Electric moves get +1\npriority. Requires full HP.");
 static const u8 sDuneTerrorDescription[] = _("Halves incoming damage in sand.\nBoosts Ground moves by 20%.");
 static const u8 sInfernalRageDescription[] = _("Fire-type moves are boosted\nby 35% with 10% recoil.");
-
+static const u8 sDualWieldDescription[] = _("Allows the Pokémon to hold\nand use two items at once."); //These ones were wrote by the AI(the AI wanted to write "These ones were wrote by me" lol)
+static const u8 sElementalChargeDescription[] = _("Boosts the power of moves\nthat match the user's type.");
+static const u8 sAmbushDescription[] = _("The Pokémon strikes first\nif it has full HP.");
+static const u8 sAtlasDescription[] = _("The Pokémon's weight is\nquadrupled, but it becomes\nimmune to Ground-type moves.");
+static const u8 sRadianceDescription[] = _("The Pokémon's Special Attack\nis boosted by 50% in\nsunny weather.");
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -862,6 +866,11 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
 	[ABILITY_VOLT_RUSH] = _("Volt Rush"),
     [ABILITY_DUNE_TERROR] = _("Dune Terror"),
     [ABILITY_INFERNAL_RAGE] = _("Infernal Rage"),
+    [ABILITY_DUAL_WIELD] = _("Dual Wield"),
+    [ABILITY_ELEMENTAL_CHARGE] = _("Elemental Charge"),
+    [ABILITY_AMBUSH] = _("Ambush"),
+    [ABILITY_ATLAS] = _("Atlas"),
+    [ABILITY_RADIANCE] = _("Radiance"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1299,4 +1308,9 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_VOLT_RUSH] = sVoltRushDescription,
     [ABILITY_DUNE_TERROR] = sDuneTerrorDescription,
     [ABILITY_INFERNAL_RAGE] = sInfernalRageDescription,
+    [ABILITY_DUAL_WIELD] = sDualWieldDescription,
+    [ABILITY_ELEMENTAL_CHARGE] = sElementalChargeDescription,
+    [ABILITY_AMBUSH] = sAmbushDescription,
+    [ABILITY_ATLAS] = sAtlasDescription,
+    [ABILITY_RADIANCE] = sRadianceDescription,
 };

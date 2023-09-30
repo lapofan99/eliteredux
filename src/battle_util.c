@@ -9374,6 +9374,61 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 
+        // Elemental Charge
+		if (BATTLER_HAS_ABILITY(battler, ABILITY_ELEMENTAL_CHARGE)){ //this macro convines both ability and innate check
+            //Paralysis
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && CanBeParalyzed(gBattlerTarget, gBattlerAttacker)
+             && gBattleMoves[move].type == TYPE_ELECTRIC
+             && TARGET_TURN_DAMAGED  // Need to actually hit the target
+             && (Random() % 5) == 0) //20% chance
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ELEMENTAL_CHARGE;
+                gBattleScripting.moveEffect = MOVE_EFFECT_PARALYSIS;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+            //Burn
+            else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && CanBeBurned(gBattlerTarget)
+             && gBattleMoves[move].type == TYPE_FIRE
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && (Random() % 5) == 0) //20% chance
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ELEMENTAL_CHARGE;
+                gBattleScripting.moveEffect = MOVE_EFFECT_BURN;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+            //Frostbite
+            else if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && CanBeFrozen(gBattlerTarget)
+             && gBattleMoves[move].type == TYPE_ICE
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && (Random() % 5) == 0) //20% chance
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ELEMENTAL_CHARGE;
+                gBattleScripting.moveEffect = MOVE_EFFECT_FROSTBITE;
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+		}
+
 		// Flame Body (Attacker)
 		if (BattlerHasInnate(battler, ABILITY_FLAME_BODY)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
