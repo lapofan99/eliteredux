@@ -6956,6 +6956,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gBattlescriptCurrInstr = BattleScript_SoundproofProtected;
             effect = 1;
         }
+        else if ((IsAbilityOnField(ABILITY_RADIANCE)) && moveType == TYPE_DARK)
+        {
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_RADIANCE;
+            gBattleScripting.battlerPopupOverwrite = IsAbilityOnField(ABILITY_RADIANCE);
+            if (gBattleMons[gBattlerAttacker].status2 & STATUS2_MULTIPLETURNS)
+                gHitMarker |= HITMARKER_NO_PPDEDUCT;
+            gBattlescriptCurrInstr = BattleScript_RadianceProtected;
+            effect = 1;
+        }
         //Queenly Majesty
         else if(((GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY            || 
              BattlerHasInnate(battler, ABILITY_QUEENLY_MAJESTY))                   ||
