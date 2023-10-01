@@ -5124,7 +5124,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
             else if (speedBattler1 < speedBattler2)
             {
                 // battler2 has more speed
-                if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM)
+                if (IsTrickRoomActive())
                     strikesFirst = 0;
                 else
                     strikesFirst = 1;
@@ -5132,7 +5132,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
             else
             {
                 // battler1 has more speed
-                if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM)
+                if (IsTrickRoomActive())
                     strikesFirst = 1;
                 else
                     strikesFirst = 0;

@@ -179,6 +179,10 @@ u32 CountBattlerStatIncreases(u8 battlerId, bool32 countEvasionAcc);
 bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler);
 s32 GetCurrentTerrain(void);
 u8 BattlerHasInnateOrAbility(u8 battler, u16 ability);
+bool8 IsTrickRoomActive(void);
+bool8 IsGravityActive(void);
+bool8 isMagicRoomActive(void);
+bool8 isWonderRoomActive(void);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

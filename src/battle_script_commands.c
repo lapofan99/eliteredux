@@ -1987,7 +1987,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
             calc = (calc * 120) / 100;  // 20% acc boost
     }
 
-    if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+    if (IsGravityActive())
         calc = (calc * 5) / 3; // 1.66 Gravity acc boost
 
     return calc;
@@ -9939,7 +9939,7 @@ static void Cmd_various(void)
         return;
     case VARIOUS_CHECK_POLTERGEIST:
         if (gBattleMons[gActiveBattler].item == ITEM_NONE
-           || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
+           || isMagicRoomActive()
            || (gStatuses3[gActiveBattler] & STATUS3_SEMI_INVULNERABLE)
            || IS_BATTLER_PROTECTED(gActiveBattler)
            || GetBattlerAbility(gActiveBattler) == ABILITY_KLUTZ)

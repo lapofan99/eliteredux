@@ -586,7 +586,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
            !DoesBattlerIgnoreAbilityChecks(battlerAtk, move) &&
            //Other Checks
            !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL &&
-           !(gFieldStatuses & STATUS_FIELD_GRAVITY) &&
+           !IsGravityActive() &&
            !(gStatuses3[battlerDef] & STATUS3_ROOTED) && 
            !(gStatuses3[battlerDef] & STATUS3_SMACKED_DOWN) &&
            !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)){
@@ -600,7 +600,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
            !DoesBattlerIgnoreAbilityChecks(battlerAtk, move) &&
            //Other Checks
            !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL &&
-           !(gFieldStatuses & STATUS_FIELD_GRAVITY) &&
+           !IsGravityActive() &&
            !(gStatuses3[battlerDef] & STATUS3_ROOTED) && 
            !(gStatuses3[battlerDef] & STATUS3_SMACKED_DOWN) &&
            !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)){
@@ -612,7 +612,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
            AI_DATA->defHoldEffect == HOLD_EFFECT_AIR_BALLOON && 
            //Other Checks
            !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL && // This is not needed but still
-           !(gFieldStatuses & STATUS_FIELD_GRAVITY) &&
+           !IsGravityActive() &&
            !(gStatuses3[battlerDef] & STATUS3_ROOTED) && 
            !(gStatuses3[battlerDef] & STATUS3_SMACKED_DOWN) &&
            !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)){
@@ -624,7 +624,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
            (gStatuses3[battlerDef] & (STATUS3_MAGNET_RISE | STATUS3_TELEKINESIS)) && 
            //Other Checks
            !GetBattlerHoldEffect(battlerDef, TRUE) == HOLD_EFFECT_IRON_BALL &&
-           !(gFieldStatuses & STATUS_FIELD_GRAVITY) &&
+           !IsGravityActive() &&
            !(gStatuses3[battlerDef] & STATUS3_ROOTED) && 
            !(gStatuses3[battlerDef] & STATUS3_SMACKED_DOWN) &&
            !TestMoveFlags(move, FLAG_DMG_UNGROUNDED_IGNORE_TYPE_IF_FLYING)){
@@ -2463,7 +2463,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             else
             {
-                if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM && (gBattleMons[battlerAtk].speed <= gBattleMons[battlerDef].speed))
+                if (IsTrickRoomActive() && (gBattleMons[battlerAtk].speed <= gBattleMons[battlerDef].speed))
                     score -= 10;
                 else if (gBattleMons[battlerAtk].speed >= gBattleMons[battlerDef].speed)
                     score -= 10;
@@ -2577,11 +2577,13 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_TRICK_ROOM:
-            if (PartnerMoveIs(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove, MOVE_TRICK_ROOM))
+            if(IsAbilityOnField(ABILITY_CLUELESS))
+                score -= 10;
+            else if (PartnerMoveIs(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove, MOVE_TRICK_ROOM))
             {
                 score -= 10;
             }
-            else if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM) // Trick Room Up
+            else if (IsTrickRoomActive()) // Trick Room Up
             {
                 if (GetBattlerSideSpeedAverage(battlerAtk) < GetBattlerSideSpeedAverage(battlerDef)) // Attacker side slower than target side
                     score -= 10; // Keep the Trick Room up
@@ -2593,15 +2595,19 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
             break;
         case EFFECT_MAGIC_ROOM:
-            if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM || PartnerMoveIsSameNoTarget(AI_DATA->battlerAtkPartner, move, AI_DATA->partnerMove))
+            if(IsAbilityOnField(ABILITY_CLUELESS))
+                score -= 10;
+            else if (isMagicRoomActive() || PartnerMoveIsSameNoTarget(AI_DATA->battlerAtkPartner, move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_WONDER_ROOM:
-            if (gFieldStatuses & STATUS_FIELD_WONDER_ROOM || PartnerMoveIsSameNoTarget(AI_DATA->battlerAtkPartner, move, AI_DATA->partnerMove))
+            if(IsAbilityOnField(ABILITY_CLUELESS))
+                score -= 10;
+            else if (gFieldStatuses & STATUS_FIELD_WONDER_ROOM || PartnerMoveIsSameNoTarget(AI_DATA->battlerAtkPartner, move, AI_DATA->partnerMove))
                 score -= 10;
             break;
         case EFFECT_GRAVITY:
-            if ((gFieldStatuses & STATUS_FIELD_GRAVITY
+            if ((IsGravityActive()
               && !IS_BATTLER_OF_TYPE(battlerAtk, TYPE_FLYING)
               && AI_DATA->atkHoldEffect != HOLD_EFFECT_AIR_BALLOON) // Should revert Gravity in this case
               || PartnerMoveIsSameNoTarget(AI_DATA->battlerAtkPartner, move, AI_DATA->partnerMove))
@@ -2649,7 +2655,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_EMBARGO:
             if (AI_DATA->defAbility == ABILITY_KLUTZ
-              || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
+              || isMagicRoomActive()
               || gDisableStructs[battlerDef].embargoTimer != 0
               || PartnerMoveIsSameAsAttacker(AI_DATA->battlerAtkPartner, battlerDef, move, AI_DATA->partnerMove))
                 score -= 10;
@@ -2661,7 +2667,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_TELEKINESIS:
             if (gStatuses3[battlerDef] & (STATUS3_TELEKINESIS | STATUS3_ROOTED | STATUS3_SMACKED_DOWN)
-              || gFieldStatuses & STATUS_FIELD_GRAVITY
+              || IsGravityActive()
               || AI_DATA->defHoldEffect == HOLD_EFFECT_IRON_BALL
               || IsTelekinesisBannedSpecies(gBattleMons[battlerDef].species)
               || PartnerMoveIsSameAsAttacker(AI_DATA->battlerAtkPartner, battlerDef, move, AI_DATA->partnerMove))
@@ -2810,7 +2816,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         case EFFECT_TAILWIND:
             if (gSideTimers[GetBattlerSide(battlerAtk)].tailwindTimer != 0
               || PartnerMoveIs(AI_DATA->battlerAtkPartner, AI_DATA->partnerMove, MOVE_TAILWIND)
-              || (gFieldStatuses & STATUS_FIELD_TRICK_ROOM && gFieldTimers.trickRoomTimer > 1)) // Trick Room active and not ending this turn
+              || (IsTrickRoomActive() && gFieldTimers.trickRoomTimer > 1)) // Trick Room active and not ending this turn
                 score -= 10;
             break;
         case EFFECT_LUCKY_CHANT:
@@ -2819,7 +2825,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_MAGNET_RISE:
-            if (gFieldStatuses & STATUS_FIELD_GRAVITY
+            if (IsGravityActive()
               ||  gDisableStructs[battlerAtk].magnetRiseTimer != 0
               || AI_DATA->atkHoldEffect == HOLD_EFFECT_IRON_BALL
               || gStatuses3[battlerAtk] & (STATUS3_ROOTED | STATUS3_MAGNET_RISE | STATUS3_SMACKED_DOWN)
@@ -4869,7 +4875,9 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             score += 2;
         break;
     case EFFECT_GRAVITY:
-        if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
+        if(IsAbilityOnField(ABILITY_CLUELESS))
+            RETURN_SCORE_MINUS(20)
+        else if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
         {
             if (HasSleepMoveWithLowAccuracy(battlerAtk, battlerDef)) // Has Gravity for a move like Hypnosis
                 IncreaseSleepScore(battlerAtk, battlerDef, move, &score);

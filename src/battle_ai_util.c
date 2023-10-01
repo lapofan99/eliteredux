@@ -1243,7 +1243,7 @@ u16 AI_GetHoldEffect(u32 battlerId)
     
     if (gStatuses3[battlerId] & STATUS3_EMBARGO)
         return HOLD_EFFECT_NONE;
-    if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM)
+    if (isMagicRoomActive())
         return HOLD_EFFECT_NONE;
     if (AI_GetAbility(battlerId) == ABILITY_KLUTZ && !(gStatuses3[battlerId] & STATUS3_GASTRO_ACID))
         return HOLD_EFFECT_NONE;
@@ -1267,7 +1267,7 @@ bool32 AI_IsBattlerGrounded(u8 battlerId)
     
     if (holdEffect == HOLD_EFFECT_IRON_BALL)
         return TRUE;
-    else if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+    else if (IsGravityActive())
         return TRUE;
     else if (gStatuses3[battlerId] & STATUS3_ROOTED)
         return TRUE;

@@ -1710,7 +1710,7 @@ void BattleScriptPop(void)
 
 bool32 IsGravityPreventingMove(u32 move)
 {
-    if (!(gFieldStatuses & STATUS_FIELD_GRAVITY))
+    if (!IsGravityActive())
         return FALSE;
 
     switch (move)
@@ -11950,7 +11950,7 @@ u32 GetBattlerHoldEffect(u8 battlerId, bool32 checkNegating)
     {
         if (gStatuses3[battlerId] & STATUS3_EMBARGO)
             return HOLD_EFFECT_NONE;
-        if (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM)
+        if (isMagicRoomActive())
             return HOLD_EFFECT_NONE;
         if (GetBattlerAbility(battlerId) == ABILITY_KLUTZ)
             return HOLD_EFFECT_NONE;
@@ -12048,7 +12048,7 @@ bool32 IsBattlerGrounded(u8 battlerId)
 {
     if (GetBattlerHoldEffect(battlerId, TRUE) == HOLD_EFFECT_IRON_BALL)
         return TRUE;
-    else if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+    else if (IsGravityActive())
         return TRUE;
     else if (gStatuses3[battlerId] & STATUS3_ROOTED)
         return TRUE;
@@ -12491,7 +12491,7 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         break;
     }
     case EFFECT_GRAV_APPLE:
-        if (gFieldStatuses & STATUS_FIELD_GRAVITY)
+        if (IsGravityActive())
             MulModifier(&basePower, UQ_4_12(1.5));
         break;
     case EFFECT_TERRAIN_PULSE:
@@ -14423,7 +14423,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     u32 defStat, def, spDef;
     u16 modifier;
 
-    if (gFieldStatuses & STATUS_FIELD_WONDER_ROOM) // the defense stats are swapped
+    if (isWonderRoomActive()) // the defense stats are swapped
     {
         def = gBattleMons[battlerDef].spDefense;
         spDef = gBattleMons[battlerDef].defense;
@@ -15968,7 +15968,7 @@ bool32 CanFling(u8 battlerId)
 
     if (item == ITEM_NONE
       || GetBattlerAbility(battlerId) == ABILITY_KLUTZ
-      || gFieldStatuses & STATUS_FIELD_MAGIC_ROOM
+      || isMagicRoomActive()
       || gDisableStructs[battlerId].embargoTimer != 0
       || !CanBattlerGetOrLoseItem(battlerId, item)
       //|| itemEffect == HOLD_EFFECT_PRIMAL_ORB
@@ -16306,7 +16306,7 @@ void BufferStatChange(u8 battlerId, u8 statId, u8 stringId)
 
 bool32 TryRoomService(u8 battlerId)
 {
-    if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM && CompareStat(battlerId, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN))
+    if (IsTrickRoomActive() && CompareStat(battlerId, STAT_SPEED, MIN_STAT_STAGE, CMP_GREATER_THAN))
     {
         BufferStatChange(battlerId, STAT_SPEED, STRINGID_STATFELL);
         gEffectBattler = gBattleScripting.battler = battlerId;
@@ -16452,3 +16452,40 @@ u8 BattlerHasInnateOrAbility(u8 battler, u16 ability){
     else
         return BATTLER_NONE;
 }
+
+bool8 IsTrickRoomActive(void){
+    if(IsAbilityOnField(ABILITY_CLUELESS))
+        return FALSE;
+    else if(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 IsGravityActive(void){
+    if(IsAbilityOnField(ABILITY_CLUELESS))
+        return FALSE;
+    else if(gFieldStatuses & STATUS_FIELD_GRAVITY)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 isMagicRoomActive(void){
+    if(IsAbilityOnField(ABILITY_CLUELESS))
+        return FALSE;
+    else if(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 isWonderRoomActive(void){
+    if(IsAbilityOnField(ABILITY_CLUELESS))
+        return FALSE;
+    else if(gFieldStatuses & STATUS_FIELD_WONDER_ROOM)
+        return TRUE;
+    else
+        return FALSE;
+}
+
