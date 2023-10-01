@@ -69,7 +69,7 @@ script Route131_EventScript_LegendaryNPC{
 		"Hopping from planet to planet like a flock of hungry locusts, they only leave a trail of darkness and desolation behind.\p"
 		"Their goal? Consuming the entire galaxy, turning those who inhabit subjugated planets into soldiers for his galactic army.\p"
 		"Many worlds have already been consumed by their hunger, but we must put a stop to this!\p"
-		"Me and my colleagues managed to temporarly stall him, but you must help us.\p"
+		"Me and my colleagues managed to temporarily stall him, but you must help us.\p"
 		"You're already destined to become champion. Once you do, come back here and help us stop this disgrace from happening!"))
 	}
 	else{

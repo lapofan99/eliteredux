@@ -137,7 +137,7 @@ Route131_EventScript_LegendaryNPC_Text_1:
 	.string "by their hunger, but we must put a stop\l"
 	.string "to this!\p"
 	.string "Me and my colleagues managed to\n"
-	.string "temporarly stall him, but you must help\l"
+	.string "temporarily stall him, but you must help\l"
 	.string "us.\p"
 	.string "You're already destined to become\n"
 	.string "champion. Once you do, come back here\l"
