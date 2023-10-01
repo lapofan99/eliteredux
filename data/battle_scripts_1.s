@@ -8318,6 +8318,13 @@ BattleScript_BattlerHasNoDamageHits::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_GravityStarts::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_GRAVITYINTENSIFIED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 BattleScript_BattlerHasASingleNoDamageHit::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp

@@ -40,8 +40,11 @@
 #define TERRAIN_HAS_EFFECT (!IsAbilityOnField(ABILITY_CLUELESS))
 #define ROOM_HAS_EFFECT    (!IsAbilityOnField(ABILITY_CLUELESS))
 
-#define IS_WHOLE_SIDE_ALIVE(battler)((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
+#define BATTLER_NONE       0
+#define BATTLER_ABILITY    1
+#define BATTLER_INNATE     2
 
+#define IS_WHOLE_SIDE_ALIVE(battler)((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
 #define BATTLER_HAS_ABILITY(battlerId, ability) ((GetBattlerAbility(battlerId) == ability || BattlerHasInnate(battlerId, ability)))
 
 // for Natural Gift and Fling
@@ -175,6 +178,7 @@ bool32 ShouldChangeFormHpBased(u32 battler);
 u32 CountBattlerStatIncreases(u8 battlerId, bool32 countEvasionAcc);
 bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler);
 s32 GetCurrentTerrain(void);
+u8 BattlerHasInnateOrAbility(u8 battler, u16 ability);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);
