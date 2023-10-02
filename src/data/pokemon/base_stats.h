@@ -3142,7 +3142,7 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 90,
     .baseAttack    = 90,
-    .baseDefense   = 65, // With Fur Coat, effectively base 169. Was 209 with base 80
+    .baseDefense   = 65,
     .baseSpeed     = 90,
     .baseSpAttack  = 95,
     .baseSpDefense = 95,
