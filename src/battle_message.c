@@ -809,9 +809,11 @@ static const u8 sText_AttackerSpecialDefenseSharplyRose[] = _("{B_ATK_NAME_WITH_
 static const u8 sText_AttackerSpeedSharplyRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s Speed\nsharply rose!");
 static const u8 sText_AttackerAccuracySharplyRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s Accuracy\nsharply rose!");
 static const u8 sText_AttackerEvasivenessSharplyRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s Evasiveness\nsharply rose!");
+static const u8 sText_DesertCloakVeilProtected[] = _("{B_DEF_NAME_WITH_PREFIX} is protected\nwith a veil of sand!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_DESERTCLOAKPROTECTED - 12] = sText_DesertCloakVeilProtected,
     [STRINGID_ATTACKER_EVASIVENESS_SHARPLYROSE - 12] = sText_AttackerEvasivenessSharplyRose,
     [STRINGID_ATTACKER_ACCURACY_SHARPLYROSE - 12] = sText_AttackerAccuracySharplyRose,
     [STRINGID_ATTACKER_SPEED_SHARPLYROSE - 12] = sText_AttackerSpeedSharplyRose,

@@ -1121,6 +1121,11 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
         }
 
+        //Desert Cloak
+        if(IsDesertCloakProtected(battlerDef) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringMoveEffect(moveEffect))){
+            RETURN_SCORE_MINUS(20);
+        }
+
         //Flower Veil
         if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_FLOWER_VEIL)){
             if((IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringMoveEffect(moveEffect))){

@@ -2999,6 +2999,13 @@ BattleScript_FlowerVeilProtectsRet::
 	waitmessage B_WAIT_TIME_LONG
 	return
 
+BattleScript_DesertCloakProtectsRet::
+	pause B_WAIT_TIME_SHORT
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_DESERTCLOAKPROTECTED
+	waitmessage B_WAIT_TIME_LONG
+	return
+
 BattleScript_FlowerVeilProtects:
 	call BattleScript_FlowerVeilProtectsRet
 	orhalfword gMoveResultFlags, MOVE_RESULT_FAILED

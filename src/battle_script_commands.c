@@ -8041,6 +8041,15 @@ u32 IsLeafGuardProtected(u32 battler)
         return FALSE;
 }
 
+u32 IsDesertCloakProtected(u32 battler)
+{
+    if (IsBattlerWeatherAffected(battler, WEATHER_SANDSTORM_ANY) && 
+       (BATTLER_HAS_ABILITY(battler, ABILITY_DESERT_CLOAK) || BATTLER_HAS_ABILITY(BATTLE_PARTNER(battler), ABILITY_DESERT_CLOAK)))
+        return TRUE;
+    else
+        return FALSE;
+}
+
 bool32 IsShieldsDownProtected(u32 battler)
 {
     return (GetBattlerAbility(battler) == ABILITY_SHIELDS_DOWN
@@ -8051,6 +8060,7 @@ u32 IsAbilityStatusProtected(u32 battler)
 {
     return IsFlowerVeilProtected(battler)
         || IsLeafGuardProtected(battler)
+        || IsDesertCloakProtected(battler)
         || IsShieldsDownProtected(battler
         || GetBattlerAbility(battler) == ABILITY_COMATOSE);
 }
@@ -10807,6 +10817,26 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             }
             return STAT_CHANGE_DIDNT_WORK;
         }
+        else if ((index = IsDesertCloakProtected(gActiveBattler)) && !certain)
+        {
+            if (flags == STAT_BUFF_ALLOW_PTR)
+            {
+                if (gSpecialStatuses[gActiveBattler].statLowered)
+                {
+                    gBattlescriptCurrInstr = BS_ptr;
+                }
+                else
+                {
+                    BattleScriptPush(BS_ptr);
+                    gBattleScripting.battler = gActiveBattler;
+                    gBattlerAbility = index - 1;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DESERT_CLOAK;
+                    gBattlescriptCurrInstr = BattleScript_DesertCloakProtectsRet;
+                    gSpecialStatuses[gActiveBattler].statLowered = TRUE;
+                }
+            }
+            return STAT_CHANGE_DIDNT_WORK;
+        }
         else if (!certain
                 && ((GetBattlerAbility(gActiveBattler) == ABILITY_KEEN_EYE && statId == STAT_ACC)
 				|| (BattlerHasInnate(gActiveBattler, ABILITY_KEEN_EYE) && statId == STAT_ACC)
@@ -11515,14 +11545,11 @@ static void Cmd_weatherdamage(void)
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ROCK)
                 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GROUND)
                 && !IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_STEEL)
-                && ability != ABILITY_SAND_VEIL
-				&& !BattlerHasInnate(gBattlerAttacker, ABILITY_SAND_VEIL)
-                && ability != ABILITY_SAND_FORCE
-				&& !BattlerHasInnate(gBattlerAttacker, ABILITY_SAND_FORCE)
-                && ability != ABILITY_SAND_RUSH
-				&& !BattlerHasInnate(gBattlerAttacker, ABILITY_SAND_RUSH)
-                && ability != ABILITY_OVERCOAT
-				&& !BattlerHasInnate(gBattlerAttacker, ABILITY_OVERCOAT)
+                && !IsAbilityOnSide(gBattlerAttacker, ABILITY_DESERT_CLOAK)
+                && !BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SAND_VEIL)
+                && !BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SAND_FORCE)
+                && !BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SAND_RUSH)
+                && !BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_OVERCOAT)
                 && !(gStatuses3[gBattlerAttacker] & (STATUS3_UNDERGROUND | STATUS3_UNDERWATER))
                 && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_SAFETY_GOGGLES)
             {

@@ -500,6 +500,7 @@ extern const u8 BattleScript_TotemBoosted_Accuracy2[];
 extern const u8 BattleScript_TotemBoosted_Evasion2[];
 extern const u8 BattleScript_GravityStarts[];
 extern const u8 BattleScript_RadianceProtected[];
+extern const u8 BattleScript_DesertCloakProtectsRet[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];
