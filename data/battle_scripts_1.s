@@ -8332,6 +8332,13 @@ BattleScript_GravityStarts::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
+BattleScript_BattlerIsProtectedForThisTurn::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_PKMNPROTECTEDITSELF2
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
 BattleScript_BattlerHasASingleNoDamageHit::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
@@ -10432,6 +10439,17 @@ BattleScript_HandleSoulEaterEffect::
 	printstring STRINGID_ATTACKERREGAINEDHEALTH
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_HandleSoulEaterEffect_NothingToHeal:
+    return
+
+BattleScript_HandleJawsOfCarnageEffect::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	tryhealhalfhealth BattleScript_HandleJawsOfCarnageEffect_NothingToHeal, BS_ATTACKER
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_ATTACKERREGAINEDHEALTH
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_HandleJawsOfCarnageEffect_NothingToHeal:
     return
 
 BattleScript_AttackerSoulLinker::

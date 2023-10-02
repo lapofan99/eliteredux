@@ -3677,9 +3677,6 @@ static void DoBattleIntro(void)
                 else
                     gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);
 
-                for (i = 0; i < NUM_INNATE_PER_SPECIES + 1; i++)
-                    gBattleMons[gActiveBattler].singeuseability[i] = FALSE;
-
                 gBattleMons[gActiveBattler].wasalreadytotemboosted = FALSE;
                 
                 gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)] = gBattleMons[gActiveBattler].hp;
@@ -5266,6 +5263,7 @@ static void TurnValuesCleanUp(bool8 var0)
     {
         if (var0)
         {
+            gDisableStructs[gActiveBattler].protectedThisTurn = FALSE;
             gProtectStructs[gActiveBattler].protected = FALSE;
             gProtectStructs[gActiveBattler].spikyShielded = FALSE;
             gProtectStructs[gActiveBattler].kingsShielded = FALSE;

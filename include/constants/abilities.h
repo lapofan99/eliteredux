@@ -465,8 +465,9 @@
 #define ABILITY_AMBUSH           (ABILITIES_COUNT_LATEST_GEN + 167) // Guaranteed critical hit on first turn.
 #define ABILITY_ATLAS            (ABILITIES_COUNT_LATEST_GEN + 168) // Sets Gravity on entry for 8 turns. User moves last.
 #define ABILITY_RADIANCE         (ABILITIES_COUNT_LATEST_GEN + 169) // +20% accuracy; Dark moves fail when user is present.
+#define ABILITY_JAWS_OF_CARNAGE  (ABILITIES_COUNT_LATEST_GEN + 170) // Heals 50% HP when defeating an enemy.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_RADIANCE + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_JAWS_OF_CARNAGE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

@@ -216,6 +216,7 @@
 #define VARIOUS_CAN_TELEPORT                    141
 #define VARIOUS_GET_BATTLER_SIDE                142
 #define VARIOUS_SET_WEATHER_GRAPHICS            143
+#define VARIOUS_TRY_ACTIVATE_JAWS_OF_CARNAGE    144
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0

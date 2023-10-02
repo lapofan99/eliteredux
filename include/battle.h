@@ -120,6 +120,7 @@ struct DisableStruct
     u8 hasBeenOnBattle:1;
     u8 substituteDestroyedThisTurn:1;
     u8 noDamageHits;
+    bool8 protectedThisTurn;
 };
 
 struct ProtectStruct
@@ -633,6 +634,7 @@ struct BattleStruct
     u8 enemyInfoSpriteId;    // window gfx
     u8 stickyWebUser;
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
+    bool8 singleuseability[PARTY_SIZE][NUM_INNATE_PER_SPECIES + 1][2]; // For the sake of Instruct
 };
 
 #define GET_MOVE_TYPE(move, typeArg)                        \
@@ -660,6 +662,7 @@ struct BattleStruct
 }
 
 #define IS_BATTLER_PROTECTED(battlerId)(gProtectStructs[battlerId].protected                                           \
+                                        || gDisableStructs[gActiveBattler].protectedThisTurn                           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \

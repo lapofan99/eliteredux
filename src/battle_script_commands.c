@@ -3654,6 +3654,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                 if (IS_BATTLER_PROTECTED(gBattlerTarget))
                 {
                     gProtectStructs[gBattlerTarget].protected = FALSE;
+                    gDisableStructs[gActiveBattler].protectedThisTurn = FALSE;
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~(SIDE_STATUS_WIDE_GUARD);
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~(SIDE_STATUS_QUICK_GUARD);
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~(SIDE_STATUS_CRAFTY_SHIELD);
@@ -6092,7 +6093,7 @@ static void Cmd_switchindataupdate(void)
         gBattleMons[gActiveBattler].ability = RandomizeAbility(GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum), gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].personality);
     else
         gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);
-                
+
     // check knocked off item
     i = GetBattlerSide(gActiveBattler);
     if (gWishFutureKnock.knockedOffMons[i] & gBitTable[gBattlerPartyIndexes[gActiveBattler]])
@@ -8627,14 +8628,12 @@ static void Cmd_various(void)
         }
         break;
     case VARIOUS_TRY_ACTIVATE_SOUL_EATER:
-        if (GetBattlerAbility(gActiveBattler) == ABILITY_SOUL_EATER || 
-		    BattlerHasInnate(gActiveBattler, ABILITY_SOUL_EATER) || 
-		    GetBattlerAbility(gActiveBattler) == ABILITY_SCAVENGER || 
-		    BattlerHasInnate(gActiveBattler, ABILITY_SCAVENGER) || 
-		    GetBattlerAbility(gActiveBattler) == ABILITY_PREDATOR || 
-		    BattlerHasInnate(gActiveBattler, ABILITY_PREDATOR) || 
-		    GetBattlerAbility(gActiveBattler) == ABILITY_LOOTER || 
-		    BattlerHasInnate(gActiveBattler, ABILITY_LOOTER)) {
+        if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_JAWS_OF_CARNAGE) ||
+            BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUL_EATER)      ||
+            BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SCAVENGER)       ||
+            BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_PREDATOR)        ||
+            BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_LOOTER)) {
+            bool8 curehalfhealth = FALSE;
             if (!HasAttackerFaintedTarget() && NoAliveMonsForEitherParty())
                 break;
             
@@ -8642,30 +8641,25 @@ static void Cmd_various(void)
             if (BATTLER_MAX_HP(gBattlerAttacker) || !IsBattlerAlive(gBattlerAttacker))
                 break;
 
-            if (GetBattlerAbility(gActiveBattler) == ABILITY_SOUL_EATER || 
-		        BattlerHasInnate(gActiveBattler, ABILITY_SOUL_EATER)){
-                gBattleScripting.abilityPopupOverwrite = ABILITY_SOUL_EATER;
-				gLastUsedAbility = ABILITY_SOUL_EATER;
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_JAWS_OF_CARNAGE)){
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_JAWS_OF_CARNAGE;
+                curehalfhealth = TRUE;
             }
-            else if (GetBattlerAbility(gActiveBattler) == ABILITY_SCAVENGER || 
-		        BattlerHasInnate(gActiveBattler, ABILITY_SCAVENGER)){
-                gBattleScripting.abilityPopupOverwrite = ABILITY_SCAVENGER;
-				gLastUsedAbility = ABILITY_SCAVENGER;
-            }
-            else if (GetBattlerAbility(gActiveBattler) == ABILITY_PREDATOR || 
-		        BattlerHasInnate(gActiveBattler, ABILITY_PREDATOR)){
-                gBattleScripting.abilityPopupOverwrite = ABILITY_PREDATOR;
-				gLastUsedAbility = ABILITY_PREDATOR;
-            }
-            else if (GetBattlerAbility(gActiveBattler) == ABILITY_LOOTER || 
-		        BattlerHasInnate(gActiveBattler, ABILITY_LOOTER)){
-                gBattleScripting.abilityPopupOverwrite = ABILITY_LOOTER;
-				gLastUsedAbility = ABILITY_LOOTER;
-            }
+            else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SOUL_EATER))
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SOUL_EATER;
+            else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SCAVENGER))
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCAVENGER;
+            else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_PREDATOR))
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PREDATOR;
+            else if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_LOOTER))
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOTER;
 
             // Let the battle script handler decide the stat changes
             BattleScriptPush(gBattlescriptCurrInstr + 3);
-            gBattlescriptCurrInstr = BattleScript_HandleSoulEaterEffect;
+            if(curehalfhealth)
+                gBattlescriptCurrInstr = BattleScript_HandleJawsOfCarnageEffect;
+            else
+                gBattlescriptCurrInstr = BattleScript_HandleSoulEaterEffect;
             return;
         }
         break;
@@ -13689,6 +13683,8 @@ static void Cmd_trygetintimidatetarget(void)
 static void Cmd_switchoutabilities(void)
 {
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
+    gDisableStructs[gActiveBattler].protectedThisTurn = FALSE;
+
     if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS || (BattlerHasInnate(gActiveBattler, ABILITY_NEUTRALIZING_GAS && gBattleMons[gActiveBattler].ability != ABILITY_NONE)))
     {
         gBattleScripting.switchInBattlerOverwrite = gActiveBattler;

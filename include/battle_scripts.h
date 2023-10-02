@@ -501,6 +501,8 @@ extern const u8 BattleScript_TotemBoosted_Evasion2[];
 extern const u8 BattleScript_GravityStarts[];
 extern const u8 BattleScript_RadianceProtected[];
 extern const u8 BattleScript_DesertCloakProtectsRet[];
+extern const u8 BattleScript_HandleJawsOfCarnageEffect[];
+extern const u8 BattleScript_BattlerIsProtectedForThisTurn[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

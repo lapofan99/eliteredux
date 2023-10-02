@@ -4979,26 +4979,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         break;
         case ABILITY_CHEATING_DEATH:
-            if(gDisableStructs[battler].noDamageHits == 0 && 
-               !gBattleMons[battler].singeuseability[0]){
-                gBattleMons[battler].singeuseability[0] = TRUE;
+            if(gDisableStructs[battler].noDamageHits == 0 &&
+                gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)]){
+                gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
                 gDisableStructs[battler].noDamageHits = 2;
-                if(gDisableStructs[battler].noDamageHits == 1)
-                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
-                else{
-                    ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
-                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
-                }
-                effect++;
-            }
-            break;
-        case ABILITY_COWARD:
-            if(gDisableStructs[battler].noDamageHits == 0 && 
-               !gBattleMons[battler].singeuseability[0]){
-                gBattleMons[battler].singeuseability[0] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COWARD;
-                gDisableStructs[battler].noDamageHits = 1;
                 if(gDisableStructs[battler].noDamageHits == 1)
                     BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
                 else{
@@ -5771,8 +5756,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         //Cheating Death
         if(BattlerHasInnate(battler, ABILITY_CHEATING_DEATH)){
             if(gDisableStructs[battler].noDamageHits == 0 && 
-               !gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH) + 1]){
-                gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH) + 1] = TRUE;
+               !gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH) + 1][GetBattlerSide(battler)]){
+                gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, ABILITY_CHEATING_DEATH) + 1][GetBattlerSide(battler)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
                 gDisableStructs[battler].noDamageHits = 2;
                 if(gDisableStructs[battler].noDamageHits == 1)
@@ -5786,18 +5771,30 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
         // Coward
-        if(BattlerHasInnate(battler, ABILITY_COWARD)){
-            if(gDisableStructs[battler].noDamageHits == 0 && 
-               !gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_COWARD) + 1]){
-                gBattleMons[battler].singeuseability[GetBattlerInnateNum(battler, ABILITY_COWARD) + 1] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COWARD;
-                gDisableStructs[battler].noDamageHits = 1;
-                if(gDisableStructs[battler].noDamageHits == 1)
-                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasASingleNoDamageHit);
-                else{
-                    ConvertIntToDecimalStringN(gBattleTextBuff4, gDisableStructs[battler].noDamageHits, STR_CONV_MODE_LEFT_ALIGN, 2);
-                    BattleScriptPushCursorAndCallback(BattleScript_BattlerHasNoDamageHits);
-                }
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_COWARD)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_COWARD; //For easier copypaste
+
+            switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                case BATTLER_INNATE:
+                    if(!gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, abilityToCheck) + 1][GetBattlerSide(battler)]){
+                        gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][GetBattlerInnateNum(battler, abilityToCheck) + 1][GetBattlerSide(battler)] = TRUE;
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                        activateAbilty = TRUE;
+                    }
+                break;
+                case BATTLER_ABILITY:
+                    if(!gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)]){
+                        gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)] = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                gDisableStructs[battler].protectedThisTurn = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_BattlerIsProtectedForThisTurn);
                 effect++;
             }
         }
@@ -12018,6 +12015,8 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
     else if (gBattleMoves[move].effect == MOVE_EFFECT_FEINT)
         return FALSE;
     else if (gProtectStructs[battlerId].protected)
+        return TRUE;
+    else if (gDisableStructs[battlerId].protectedThisTurn)
         return TRUE;
     else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD
              && GetBattlerBattleMoveTargetFlags(move, battlerId) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
