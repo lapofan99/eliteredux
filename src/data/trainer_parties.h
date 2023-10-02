@@ -13503,14 +13503,14 @@ static const struct TrainerMonItemCustomMoves sParty_Brooke4[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_LAPRAS, // Weakness Policy, Permafrost, Physical, DD
+    .species = SPECIES_LAPRAS, // Weakness Policy, Permafrost, Physical
     .heldItem = ITEM_WEAKNESS_POLICY,
     .ability = 2, // ABILITY_REGENERATOR, ABILITY_SNOW_WARNING, ABILITY_PERMAFROST},
     // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_ICICLE_CRASH, MOVE_AQUA_TAIL, MOVE_DRAGON_HAMMER, MOVE_DRAGON_DANCE
+    .moves = MOVE_ICICLE_CRASH, MOVE_AQUA_TAIL, MOVE_DRAGON_HAMMER, MOVE_RECOVER
     },
     {
     .lvl = 0,
@@ -34706,14 +34706,14 @@ static const struct TrainerMonItemCustomMoves sParty_Daphne[] = { // with Annika
     },
     {
     .lvl = 0,
-    .species = SPECIES_LAPRAS, // Ground Gem, Permafrost, Fast DD
+    .species = SPECIES_LAPRAS, // Ground Gem, Permafrost, Fast
     .heldItem = ITEM_GROUND_GEM,
     .ability = 2, // ABILITY_REGENERATOR, ABILITY_SNOW_WARNING, ABILITY_PERMAFROST},
     // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_WATERFALL, MOVE_DRAGON_HAMMER, MOVE_DRILL_RUN, MOVE_DRAGON_DANCE
+    .moves = MOVE_WATERFALL, MOVE_DRAGON_HAMMER, MOVE_DRILL_RUN, MOVE_RECOVER
     },
     {
     .lvl = 0,

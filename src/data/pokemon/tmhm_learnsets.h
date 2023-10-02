@@ -13042,6 +13042,7 @@ const u32 gTMHMLearnsets[][4] =
                                           TMHM2(TM68_GIGA_IMPACT)
                                         | TMHM2(TM69_ROCK_POLISH)
                                         | TMHM2(TM71_STONE_EDGE)
+                                        | TMHM2(TM74_GYRO_BALL) // new
                                         | TMHM2(TM75_SWORDS_DANCE)
                                         | TMHM2(TM76_STEALTH_ROCK)
                                         | TMHM2(TM78_BULLDOZE)
