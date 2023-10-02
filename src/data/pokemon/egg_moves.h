@@ -787,6 +787,7 @@ const u16 gEggMoves[] = {
         MOVE_SUPERPOWER),
 
     egg_moves(LAPRAS,
+        MOVE_ICE_FANG, // new
         MOVE_CRUNCH, // new
         MOVE_IRON_FANGS, // new
         MOVE_JAGGED_FANGS, // new
