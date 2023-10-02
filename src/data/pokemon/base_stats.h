@@ -10437,11 +10437,11 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_SWALOT_MEGA] =
     {
         .baseHP        = 100,
-        .baseAttack    = 109,
-        .baseDefense   = 119,
+        .baseAttack    = 108,
+        .baseDefense   = 118,
         .baseSpeed     = 55,
-        .baseSpAttack  = 109,
-        .baseSpDefense = 119,
+        .baseSpAttack  = 108,
+        .baseSpDefense = 118,
         .type1 = TYPE_POISON,
         .type2 = TYPE_POISON,
         .catchRate = 75,
@@ -12996,10 +12996,10 @@ const struct BaseStats gBaseStats[] =
     {
     .baseHP        = 76,
     .baseAttack    = 145,
-    .baseDefense   = 74,
+    .baseDefense   = 75,
     .baseSpeed     = 123,
     .baseSpAttack  = 145,
-    .baseSpDefense = 69,
+    .baseSpDefense = 70,
     .type1 = TYPE_FIRE,
     .type2 = TYPE_FIGHTING,
     .catchRate = 255,
@@ -13371,7 +13371,7 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
-[SPECIES_LUXRAY_REGIONAL] =
+[SPECIES_LUXRAY_REDUX] =
     {
     .baseHP        = 90,
     .baseAttack    = 120,
@@ -23034,7 +23034,7 @@ const struct BaseStats gBaseStats[] =
     .noFlip = TRUE,
     },
 
-[SPECIES_CLAWITZER_REGIONAL] =
+[SPECIES_CLAWITZER_REDUX] =
     {
     .baseHP        = 80, // 70 vanilla
     .baseAttack    = 65,
@@ -23744,7 +23744,7 @@ const struct BaseStats gBaseStats[] =
     },
 
 
-[SPECIES_NOIBAT_REGIONAL] =
+[SPECIES_NOIBAT_REDUX] =
     {
     .baseHP        = 50, // 40
     .baseAttack    = 75,
@@ -23794,7 +23794,7 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
-[SPECIES_NOIVERN_REGIONAL] =
+[SPECIES_NOIVERN_REDUX] =
     {
     .baseHP        = 85,
     .baseAttack    = 97,

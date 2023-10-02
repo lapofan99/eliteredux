@@ -9014,7 +9014,7 @@ static const struct LevelUpMove sInfernapeLevelUpLearnset[] = {
 	LEVEL_UP_END
 };
 
-static const struct LevelUpMove sInfernapeRegionalLevelUpLearnset[] = {
+static const struct LevelUpMove sInfernapeReduxLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 0, MOVE_CLOSE_COMBAT),
     LEVEL_UP_MOVE( 1, MOVE_PUNISHMENT),
 	LEVEL_UP_MOVE( 1, MOVE_MACH_PUNCH),
@@ -9322,7 +9322,7 @@ static const struct LevelUpMove sLuxrayLevelUpLearnset[] = {
 	LEVEL_UP_END
 };
 
-static const struct LevelUpMove sLuxrayRegionalLevelUpLearnset[] = {
+static const struct LevelUpMove sLuxrayReduxLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 0, MOVE_NIGHT_SLASH),
     LEVEL_UP_MOVE( 1, MOVE_ICE_FANG),
     LEVEL_UP_MOVE( 1, MOVE_FIRE_FANG),
@@ -15961,6 +15961,29 @@ static const struct LevelUpMove sClawitzerLevelUpLearnset[] = {
 	LEVEL_UP_END
 };
 
+static const struct LevelUpMove sClawitzerReduxLevelUpLearnset[] = {
+    LEVEL_UP_MOVE(0, MOVE_PLASMA_PULSE),
+    LEVEL_UP_MOVE(1, MOVE_AURA_SPHERE),
+    LEVEL_UP_MOVE(1, MOVE_DARK_PULSE),
+    LEVEL_UP_MOVE(1, MOVE_DRAGON_PULSE),
+    LEVEL_UP_MOVE(1, MOVE_HEAL_PULSE),
+    LEVEL_UP_MOVE(1, MOVE_SPLASH),
+    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),
+    LEVEL_UP_MOVE(1, MOVE_VISE_GRIP),
+    LEVEL_UP_MOVE(1, MOVE_FLARE_BLITZ),
+    LEVEL_UP_MOVE(12, MOVE_THUNDER_SHOCK),
+    LEVEL_UP_MOVE(16, MOVE_FLAIL),
+    LEVEL_UP_MOVE(20, MOVE_FIRE_SPIN),
+    LEVEL_UP_MOVE(25, MOVE_SWORDS_DANCE),
+    LEVEL_UP_MOVE(30, MOVE_ICICLE_CRASH),
+    LEVEL_UP_MOVE(34, MOVE_ZAP_CANNON),
+    LEVEL_UP_MOVE(42, MOVE_FLAME_BURST),
+    LEVEL_UP_MOVE(49, MOVE_SMITE),
+    LEVEL_UP_MOVE(57, MOVE_HYDRO_PUMP),
+    LEVEL_UP_MOVE(65, MOVE_SEARING_SHOT),
+    LEVEL_UP_END
+};
+
 static const struct LevelUpMove sHelioptileLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_POUND),
 	LEVEL_UP_MOVE( 1, MOVE_TAIL_WHIP),
@@ -16434,7 +16457,7 @@ static const struct LevelUpMove sNoibatLevelUpLearnset[] = {
 	LEVEL_UP_END
 };
 
-static const struct LevelUpMove sNoibatRegionalLevelUpLearnset[] = {
+static const struct LevelUpMove sNoibatReduxLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_SCREECH),
 	LEVEL_UP_MOVE( 1, MOVE_SUPERSONIC),
 	LEVEL_UP_MOVE( 1, MOVE_TACKLE),
@@ -16486,7 +16509,7 @@ static const struct LevelUpMove sNoivernLevelUpLearnset[] = {
 	LEVEL_UP_END
 };
 
-static const struct LevelUpMove sNoivernRegionalLevelUpLearnset[] = {
+static const struct LevelUpMove sNoivernReduxLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 0, MOVE_DRAGON_BREATH),
 	LEVEL_UP_MOVE( 1, MOVE_MOONLIGHT),
 	LEVEL_UP_MOVE( 1, MOVE_SCREECH),

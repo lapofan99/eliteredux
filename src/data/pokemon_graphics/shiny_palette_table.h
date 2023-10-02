@@ -1311,10 +1311,10 @@ const struct CompressedSpritePalette gMonShinyPaletteTable[] =
 
     SPECIES_SHINY_PAL(EGG, gMonPalette_Egg),
 
-    SPECIES_SHINY_PAL(NOIBAT_REGIONAL,    gMonShinyPalette_NoibatRegional),
-    SPECIES_SHINY_PAL(NOIVERN_REGIONAL,   gMonShinyPalette_NoivernRegional),
-    SPECIES_SHINY_PAL(INFERNAPE_REGIONAL, gMonShinyPalette_InfernapeRegional),
-    SPECIES_SHINY_PAL(LUXRAY_REGIONAL,    gMonShinyPalette_LuxrayRegional),
+    SPECIES_SHINY_PAL(NOIBAT_REDUX,    gMonShinyPalette_NoibatRedux),
+    SPECIES_SHINY_PAL(NOIVERN_REDUX,   gMonShinyPalette_NoivernRedux),
+    SPECIES_SHINY_PAL(INFERNAPE_REDUX, gMonShinyPalette_InfernapeRedux),
+    SPECIES_SHINY_PAL(LUXRAY_REDUX,    gMonShinyPalette_LuxrayRedux),
     SPECIES_SHINY_PAL(CASCOON_PRIMAL,     gMonShinyPalette_CascoonPrimal),
 };
 

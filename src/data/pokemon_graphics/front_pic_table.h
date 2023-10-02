@@ -991,7 +991,7 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(SWALOT_MEGA,       gMonFrontPic_SwalotMega),
     SPECIES_SPRITE(LANTURN_MEGA,      gMonFrontPic_LanturnMega),
     SPECIES_SPRITE(LAPRAS_MEGA_X,     gMonFrontPic_LaprasMegaX),
-    SPECIES_SPRITE(CLAWITZER_REGIONAL, gMonFrontPic_ClawitzerRegional),
+    SPECIES_SPRITE(CLAWITZER_REDUX, gMonFrontPic_ClawitzerRedux),
     SPECIES_SPRITE(DEWLEON,           gMonFrontPic_Dewleon),
     
     SPECIES_SPRITE(RAYQUAZA_MEGA, gMonFrontPic_RayquazaMega),
@@ -1318,10 +1318,10 @@ const struct CompressedSpriteSheet gMonFrontPicTable[] =
     SPECIES_SPRITE(CALYREX_ICE_RIDER, gMonFrontPic_CalyrexIceRider),
     SPECIES_SPRITE(CALYREX_SHADOW_RIDER, gMonFrontPic_CalyrexShadowRider),
 
-    SPECIES_SPRITE(NOIBAT_REGIONAL,    gMonFrontPic_NoibatRegional),
-    SPECIES_SPRITE(NOIVERN_REGIONAL,   gMonFrontPic_NoivernRegional),
-    SPECIES_SPRITE(INFERNAPE_REGIONAL, gMonFrontPic_InfernapeRegional),
-    SPECIES_SPRITE(LUXRAY_REGIONAL,    gMonFrontPic_LuxrayRegional),
+    SPECIES_SPRITE(NOIBAT_REDUX,    gMonFrontPic_NoibatRedux),
+    SPECIES_SPRITE(NOIVERN_REDUX,   gMonFrontPic_NoivernRedux),
+    SPECIES_SPRITE(INFERNAPE_REDUX, gMonFrontPic_InfernapeRedux),
+    SPECIES_SPRITE(LUXRAY_REDUX,    gMonFrontPic_LuxrayRedux),
     SPECIES_SPRITE(CASCOON_PRIMAL,     gMonFrontPic_CascoonPrimal),
 
     SPECIES_SPRITE(EGG, gMonFrontPic_Egg),

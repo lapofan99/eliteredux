@@ -3069,6 +3069,10 @@ static const u8 sRAGINGFURYDescription[] = _(
     "A rampage of 2 to 3 turns\n"
     "that confuses the user.");
 
+static const u8 sPLASMAPULSEDescription[] = _(
+    "50% more damage to foes\n"
+    "with status problems.");
+
 static const u8 sNotDoneYetDescription[] = _(
     "Not done yet.");
 
@@ -3846,6 +3850,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_JAGGED_FANGS - 1]   = sJAGGED_FANGSDescription,
     [MOVE_SCORCHED_EARTH - 1] = sSCORCHED_EARTHDescription,
     [MOVE_RAGING_FURY -1]     = sRAGINGFURYDescription,
+    [MOVE_PLASMA_PULSE -1]     = sPLASMAPULSEDescription,
 };
 
 static const u8 sMoveFourLineDescription_Pound[] = _("A physical attack\ndelivered with a\nlong tail or a\nforeleg, etc.");
@@ -4661,6 +4666,7 @@ static const u8 sMoveFourLineDescription_JaggedFangs[]   = _("A ferocious bite.\
 static const u8 sMoveFourLineDescription_ScorchedEarth[] = _("Fire- and Ground-\ntype at the same\ntime. Has 10%\nburn chance."); // new
 static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n20% chance to drop\nthe foe's Def."); // new
 static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
+static const u8 sMoveFourLineDescription_PlasmaPulse[] = _("50% more damage\nagainst status.\n10% paralyze chance.\nMega Launcher boost"); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,
@@ -5434,4 +5440,5 @@ const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_JAGGED_FANGS - 1]   = sMoveFourLineDescription_JaggedFangs,
     [MOVE_SCORCHED_EARTH - 1] = sMoveFourLineDescription_ScorchedEarth,
     [MOVE_RAGING_FURY - 1]    = sMoveFourLineDescription_RagingFury,
+    [MOVE_PLASMA_PULSE - 1]   = sMoveFourLineDescription_PlasmaPulse,
 };

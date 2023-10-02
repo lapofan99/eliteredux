@@ -990,7 +990,7 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_LANTURN_MEGA] = sLanturnLevelUpLearnset,
     [SPECIES_LAPRAS_MEGA_X] = sLaprasLevelUpLearnset,
     [SPECIES_DEWLEON] = sDewleonLevelUpLearnset,
-    [SPECIES_CLAWITZER_REGIONAL] = sClawitzerLevelUpLearnset,
+    [SPECIES_CLAWITZER_REDUX] = sClawitzerReduxLevelUpLearnset,
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] = sRayquazaLevelUpLearnset,
     [SPECIES_KYOGRE_PRIMAL] = sKyogreLevelUpLearnset,
@@ -1318,10 +1318,10 @@ const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =
     [SPECIES_CALYREX_ICE_RIDER] = sCalyrexIceRiderLevelUpLearnset,
     [SPECIES_CALYREX_SHADOW_RIDER] = sCalyrexShadowRiderLevelUpLearnset,
 
-    [SPECIES_INFERNAPE_REGIONAL] = sInfernapeRegionalLevelUpLearnset,
-    [SPECIES_NOIBAT_REGIONAL] = sNoibatRegionalLevelUpLearnset,
-    [SPECIES_NOIVERN_REGIONAL] = sNoivernRegionalLevelUpLearnset,
-    [SPECIES_LUXRAY_REGIONAL] = sLuxrayRegionalLevelUpLearnset,
+    [SPECIES_INFERNAPE_REDUX] = sInfernapeReduxLevelUpLearnset,
+    [SPECIES_NOIBAT_REDUX] = sNoibatReduxLevelUpLearnset,
+    [SPECIES_NOIVERN_REDUX] = sNoivernReduxLevelUpLearnset,
+    [SPECIES_LUXRAY_REDUX] = sLuxrayReduxLevelUpLearnset,
     
     [SPECIES_CASCOON_PRIMAL] = sCascoonLevelUpLearnset,
 };

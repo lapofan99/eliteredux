@@ -792,7 +792,8 @@ gBattleAnims_Moves::
 	.4byte Move_JAGGED_FANGS
 	.4byte Move_SCORCHED_EARTH
 	.4byte Move_RAGING_FURY
-	.4byte Move_COUNT @ cannot be reached, because last move is Outburst
+	.4byte Move_PLASMA_PULSE
+	.4byte Move_COUNT @ cannot be reached, because last move is Plasma Pulse
 
 	.align 2
 gBattleAnims_StatusConditions::
@@ -21493,6 +21494,7 @@ PsywaveRings:
 	delay 4
 	return
 
+Move_PLASMA_PULSE::
 Move_ZAP_CANNON:
 	loadspritegfx ANIM_TAG_BLACK_BALL_2
 	loadspritegfx ANIM_TAG_SPARK_2

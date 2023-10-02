@@ -1162,6 +1162,6 @@ static const u16 sLaprasFormSpeciesIdTable[] = {
 
 static const u16 sClawitzerFormSpeciesIdTable[] = {
     SPECIES_CLAWITZER,
-    SPECIES_CLAWITZER_REGIONAL,
+    SPECIES_CLAWITZER_REDUX,
     FORM_SPECIES_END,
 };

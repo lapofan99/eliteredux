@@ -764,12 +764,13 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_WAVE_CRASH]     = _("Wave Crash"),
     [MOVE_SMITE]          = _("Smite"),
     [MOVE_SEISMIC_FIST]   = _("Seismic Fist"),
-    [MOVE_IRON_FANGS]     = _("Iron Fang"),
-    [MOVE_SHADOW_FANGS]    = _("Shadow Fang"),
-    [MOVE_LOVELY_BITE]     = _("Fairy Fang"),
-    [MOVE_JAGGED_FANGS]    = _("Jagged Fang"),
-    [MOVE_SCORCHED_EARTH] = _("Brn.Ground"),
+    [MOVE_IRON_FANGS]     = _("Iron Fangs"),
+    [MOVE_SHADOW_FANGS]   = _("Shadow Fangs"),
+    [MOVE_LOVELY_BITE]    = _("Lovely Bite"),
+    [MOVE_JAGGED_FANGS]   = _("Jagged Fangs"),
+    [MOVE_SCORCHED_EARTH] = _("Scor. Earth"),
     [MOVE_RAGING_FURY]    = _("Raging Fury"),
+    [MOVE_PLASMA_PULSE]   = _("Plasma Pulse"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1545,4 +1546,5 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_JAGGED_FANGS]    = _("Jagged Fangs"),
     [MOVE_SCORCHED_EARTH] = _("Scorched Earth"),
     [MOVE_RAGING_FURY]    = _("Raging Fury"),
+    [MOVE_PLASMA_PULSE]    = _("Plasma Pulse"),
 };

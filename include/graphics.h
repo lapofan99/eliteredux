@@ -10114,29 +10114,29 @@ extern const u16 gTMCaseMainWindowPalette[];
 extern const u32 gSwapLineGfx_RegisteredItemsMenu[];
 
 //New Species/Forms
-extern const u32 gMonFrontPic_NoibatRegional[];
-extern const u32 gMonBackPic_NoibatRegional[];
-extern const u32 gMonPalette_NoibatRegional[];
-extern const u32 gMonShinyPalette_NoibatRegional[];
-extern const u8  gMonIcon_NoibatRegional[];
+extern const u32 gMonFrontPic_NoibatRedux[];
+extern const u32 gMonBackPic_NoibatRedux[];
+extern const u32 gMonPalette_NoibatRedux[];
+extern const u32 gMonShinyPalette_NoibatRedux[];
+extern const u8  gMonIcon_NoibatRedux[];
 
-extern const u32 gMonFrontPic_NoivernRegional[];
-extern const u32 gMonBackPic_NoivernRegional[];
-extern const u32 gMonPalette_NoivernRegional[];
-extern const u32 gMonShinyPalette_NoivernRegional[];
-extern const u8  gMonIcon_NoivernRegional[];
+extern const u32 gMonFrontPic_NoivernRedux[];
+extern const u32 gMonBackPic_NoivernRedux[];
+extern const u32 gMonPalette_NoivernRedux[];
+extern const u32 gMonShinyPalette_NoivernRedux[];
+extern const u8  gMonIcon_NoivernRedux[];
 
-extern const u32 gMonFrontPic_InfernapeRegional[];
-extern const u32 gMonBackPic_InfernapeRegional[];
-extern const u32 gMonPalette_InfernapeRegional[];
-extern const u32 gMonShinyPalette_InfernapeRegional[];
-extern const u8  gMonIcon_InfernapeRegional[];
+extern const u32 gMonFrontPic_InfernapeRedux[];
+extern const u32 gMonBackPic_InfernapeRedux[];
+extern const u32 gMonPalette_InfernapeRedux[];
+extern const u32 gMonShinyPalette_InfernapeRedux[];
+extern const u8  gMonIcon_InfernapeRedux[];
 
-extern const u32 gMonFrontPic_LuxrayRegional[];
-extern const u32 gMonBackPic_LuxrayRegional[];
-extern const u32 gMonPalette_LuxrayRegional[];
-extern const u32 gMonShinyPalette_LuxrayRegional[];
-extern const u8  gMonIcon_LuxrayRegional[];
+extern const u32 gMonFrontPic_LuxrayRedux[];
+extern const u32 gMonBackPic_LuxrayRedux[];
+extern const u32 gMonPalette_LuxrayRedux[];
+extern const u32 gMonShinyPalette_LuxrayRedux[];
+extern const u8  gMonIcon_LuxrayRedux[];
 
 extern const u32 gMonFrontPic_CascoonPrimal[];
 extern const u32 gMonBackPic_CascoonPrimal[];
@@ -10252,11 +10252,11 @@ extern const u32 gMonPalette_LaprasMegaX[];
 extern const u32 gMonShinyPalette_LaprasMegaX[];
 extern const u8  gMonIcon_LaprasMegaX[];
 
-extern const u32 gMonFrontPic_ClawitzerRegional[];
-extern const u32 gMonBackPic_ClawitzerRegional[];
-extern const u32 gMonPalette_ClawitzerRegional[];
-extern const u32 gMonShinyPalette_ClawitzerRegional[];
-extern const u8  gMonIcon_ClawitzerRegional[];
+extern const u32 gMonFrontPic_ClawitzerRedux[];
+extern const u32 gMonBackPic_ClawitzerRedux[];
+extern const u32 gMonPalette_ClawitzerRedux[];
+extern const u32 gMonShinyPalette_ClawitzerRedux[];
+extern const u8  gMonIcon_ClawitzerRedux[];
 
 extern const u32 gMonFrontPic_Dewleon[];
 extern const u32 gMonBackPic_Dewleon[];

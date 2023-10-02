@@ -990,7 +990,7 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
     SPECIES_PAL(SWALOT_MEGA,       gMonPalette_SwalotMega),
     SPECIES_PAL(LANTURN_MEGA,      gMonPalette_LanturnMega),
     SPECIES_PAL(LAPRAS_MEGA_X,     gMonPalette_LaprasMegaX),
-    SPECIES_PAL(CLAWITZER_REGIONAL, gMonPalette_ClawitzerRegional),
+    SPECIES_PAL(CLAWITZER_REDUX, gMonPalette_ClawitzerRedux),
     SPECIES_PAL(DEWLEON,           gMonPalette_Dewleon),
 
     SPECIES_PAL(RAYQUAZA_MEGA, gMonPalette_RayquazaMega),
@@ -1319,10 +1319,10 @@ const struct CompressedSpritePalette gMonPaletteTable[] =
 
     SPECIES_PAL(EGG, gMonPalette_Egg),
 
-    SPECIES_PAL(NOIBAT_REGIONAL,    gMonPalette_NoibatRegional),
-    SPECIES_PAL(NOIVERN_REGIONAL,   gMonPalette_NoivernRegional),
-    SPECIES_PAL(INFERNAPE_REGIONAL, gMonPalette_InfernapeRegional),
-    SPECIES_PAL(LUXRAY_REGIONAL,    gMonPalette_LuxrayRegional),
+    SPECIES_PAL(NOIBAT_REDUX,    gMonPalette_NoibatRedux),
+    SPECIES_PAL(NOIVERN_REDUX,   gMonPalette_NoivernRedux),
+    SPECIES_PAL(INFERNAPE_REDUX, gMonPalette_InfernapeRedux),
+    SPECIES_PAL(LUXRAY_REDUX,    gMonPalette_LuxrayRedux),
     SPECIES_PAL(CASCOON_PRIMAL,     gMonPalette_CascoonPrimal),
 };
 

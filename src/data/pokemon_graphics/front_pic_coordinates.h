@@ -4937,7 +4937,7 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0x87,
         .y_offset = 0,
     },
-    [SPECIES_CLAWITZER_REGIONAL] =
+    [SPECIES_CLAWITZER_REDUX] =
     {
         .size = 0x87,
         .y_offset = 0,
@@ -6321,22 +6321,22 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0x88,
         .y_offset = 0,
     },
-    [SPECIES_INFERNAPE_REGIONAL] =
+    [SPECIES_INFERNAPE_REDUX] =
     {
         .size = 0x88,
         .y_offset = 0,
     },
-    [SPECIES_NOIBAT_REGIONAL] =
+    [SPECIES_NOIBAT_REDUX] =
     {
         .size = 0x88,
         .y_offset = 0,
     },
-    [SPECIES_NOIVERN_REGIONAL] =
+    [SPECIES_NOIVERN_REDUX] =
     {
         .size = 0x88,
         .y_offset = 0,
     },
-    [SPECIES_LUXRAY_REGIONAL] =
+    [SPECIES_LUXRAY_REDUX] =
     {
         .size = 0x88,
         .y_offset = 0,
