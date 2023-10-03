@@ -983,3 +983,85 @@ script Route111Desert_EventScript_LegendaryNPC{
 	release
     end
 }
+
+script Route111_EventScript_Sandslash{
+	lock
+	faceplayer
+    goto_if_set(FLAG_DEFEATED_ROUTE111_SANDSLASH, Route111_EventScript_Sandslash_Join)
+    goto_if_unset(FLAG_BADGE05_GET, Route111_EventScript_Sandslash_PreNorman)
+	playmoncry(SPECIES_SANDSLASH, 2)
+    msgbox(format("Sandslash regards you as an equal and appears eager to challenge you in battle. Are you ready?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+        playmoncry(SPECIES_SANDSLASH, 2)
+        msgbox(format("Sandslash: Slash!"), MSGBOX_DEFAULT)
+	delay(40)
+	waitmoncry
+	setflag(FLAG_TOTEM_BATTLE)
+	setvar(VAR_TOTEM_POKEMON_ATK_BOOST,      1)
+	setvar(VAR_TOTEM_POKEMON_DEF_BOOST,      3)
+	setvar(VAR_TOTEM_POKEMON_SP_ATK_BOOST,   0)
+	setvar(VAR_TOTEM_POKEMON_SP_DEF_BOOST,   3)
+	setvar(VAR_TOTEM_POKEMON_SPEED_BOOST,    1)
+	setvar(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2)
+	setvar(VAR_TOTEM_POKEMON_EVASION_BOOST,  0)
+	setvar(VAR_TOTEM_MESSAGE, TOTEM_FIGHT_SANDSLASH)
+	setflag(FLAG_SHINY_CREATION)
+	setwildbattlewithcustommoves(SPECIES_SANDSLASH, 0, ITEM_SANDSLASHITE, MOVE_FISSURE, MOVE_STONE_EDGE, MOVE_POISON_JAB, MOVE_KNOCK_OFF, 2, NATURE_JOLLY, 252, 252, 252, 252, 252, 252)
+	setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	dowildbattle
+	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	specialvar(VAR_RESULT, GetBattleOutcome)
+    switch(var(VAR_RESULT)){
+        case B_OUTCOME_CAUGHT:
+        case B_OUTCOME_WON:
+			goto(Route111_EventScript_Sandslash_Join)
+        break
+        case B_OUTCOME_RAN:
+        case B_OUTCOME_PLAYER_TELEPORTED:
+            setvar(VAR_0x8004, SPECIES_SANDSLASH)
+            fadescreenswapbuffers(FADE_TO_BLACK)
+            removeobject(VAR_LAST_TALKED)
+            fadescreenswapbuffers(FADE_FROM_BLACK)
+            bufferspeciesname(0, VAR_0x8004)
+            msgbox(format("The {STR_VAR_1} ran away!"), MSGBOX_DEFAULT)
+        break
+    }
+}
+    else{
+        playmoncry(SPECIES_SANDSLASH, 2)
+        msgbox(format("Sandslash: Slash..."), MSGBOX_DEFAULT)
+    }
+	release
+	end
+}
+
+script Route111_EventScript_Sandslash_PreNorman{
+    lock
+    faceplayer
+    message(format("Sandslash appears to regard you with a sense of superiority. It might be advisable to return once you've bolstered your strength."))
+    release
+    end	
+}
+
+script Route111_EventScript_Sandslash_Join{
+    msgbox(format("Sandslash seems to want to join your team, will you let this Sandslash join you?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		setflag(FLAG_OBTAINED_ROUTE111_SANDSLASH)
+		givecustommon(SPECIES_SANDSLASH, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 252, 252, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_FISSURE, MOVE_STONE_EDGE, MOVE_POISON_JAB, MOVE_KNOCK_OFF, TRUE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} received a Sandslash!"))
+		waitfanfare
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		removeobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
+	if(!flag(FLAG_DEFEATED_ROUTE111_SANDSLASH)){
+    	setflag(FLAG_DEFEATED_ROUTE111_SANDSLASH)
+		playfanfare(MUS_OBTAIN_ITEM)
+		giveitem(ITEM_SANDSLASHITE, 1)
+		message(format("{PLAYER} received a Sandslashite!"))
+		waitfanfare
+	}
+	release
+	end
+}

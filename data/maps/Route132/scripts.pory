@@ -54,7 +54,7 @@ script Route132_EventScript_LegendaryNPC{
 		"but necessity: Necrozma's hunger didn't spare their planets, so they roamed until they found a hospitable place to live.\p"
 		"Those who didn't immediately flee were either consumed or turned into soldiers for Necrozma's galactic army. Many of these\p"
 		"Ultra Beasts perished in the war waged on them by the Tapus and King Calyrex, but it looks like some have survived by hiding in these small islands.\p"
-		"These creatures suffered a lot in their life, I think they deserve a guardian to take care of them. Your heart seems in the right place. Once you'll be worthy of them, return to me\p."))
+		"These creatures suffered a lot in their life, I think they deserve a guardian to take care of them. Your heart seems in the right place. Once you'll be worthy of them, return to me.\p"))
 	}
 	else{
 		if(defeated(TRAINER_MAKAYLA)  &&
@@ -65,7 +65,7 @@ script Route132_EventScript_LegendaryNPC{
 		   defeated(TRAINER_RONALD)   &&
 		   defeated(TRAINER_DANA)     &&
 		   defeated(TRAINER_GILBERT)){
-			msgbox(format("Your heart is in the right place, and your strenght is the one of a great trainer. I added the location of some of the Ultra Beasts in your DexNav. There might be more in other routes, too: try to catch them all!"))
+			msgbox(format("Your heart is in the right place, and your strength is the one of a great trainer. I added the location of some of the Ultra Beasts in your DexNav. There might be more in other routes, too: try to catch them all!"))
 		}
 		else{
 			msgbox(format("You have demonstrated great strenght so far. But I want to see it with my eyes! Defeat these last few trainers, and I'll show you the place where the Ultra Beasts reside."))
@@ -77,4 +77,86 @@ script Route132_EventScript_LegendaryNPC{
 	}
     release
     end
+}
+
+script Route132_EventScript_Gyarados{
+	lock
+	faceplayer
+    goto_if_set(FLAG_DEFEATED_ROUTE132_GYARADOS, Route132_EventScript_Gyarados_Join)
+    goto_if_unset(FLAG_BADGE07_GET, Route132_EventScript_Gyarados_PreTateLiza)
+    playmoncry(SPECIES_GYARADOS, 2)
+    msgbox(format("Gyarados locks eyes with you, its challenging stare conveying a clear invitation to a fierce battle. Do you possess the courage to accept the challenge?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+        playmoncry(SPECIES_GYARADOS, 2)
+        msgbox(format("Gyarados: Gyara!"), MSGBOX_DEFAULT)
+        delay(40)
+        waitmoncry
+        setflag(FLAG_TOTEM_BATTLE)
+        setvar(VAR_TOTEM_POKEMON_ATK_BOOST,      0)
+        setvar(VAR_TOTEM_POKEMON_DEF_BOOST,      3)
+        setvar(VAR_TOTEM_POKEMON_SP_ATK_BOOST,   1)
+        setvar(VAR_TOTEM_POKEMON_SP_DEF_BOOST,   3)
+        setvar(VAR_TOTEM_POKEMON_SPEED_BOOST,    1)
+        setvar(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2)
+        setvar(VAR_TOTEM_POKEMON_EVASION_BOOST,  0)
+        setvar(VAR_TOTEM_MESSAGE, TOTEM_FIGHT_GYARADOS)
+        setflag(FLAG_SHINY_CREATION)
+        setwildbattlewithcustommoves(SPECIES_GYARADOS, 0, ITEM_GYARADOSITE_Y, MOVE_BOOMBURST, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HURRICANE, 0, NATURE_TIMID, 252, 252, 252, 252, 252, 252)
+        setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+        dowildbattle
+        clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+        specialvar(VAR_RESULT, GetBattleOutcome)
+        switch(var(VAR_RESULT)){
+            case B_OUTCOME_CAUGHT:
+            case B_OUTCOME_WON:
+                goto(Route132_EventScript_Gyarados_Join)
+            break
+            case B_OUTCOME_RAN:
+            case B_OUTCOME_PLAYER_TELEPORTED:
+                setvar(VAR_0x8004, SPECIES_GYARADOS)
+                fadescreenswapbuffers(FADE_TO_BLACK)
+                removeobject(VAR_LAST_TALKED)
+                fadescreenswapbuffers(FADE_FROM_BLACK)
+                bufferspeciesname(0, VAR_0x8004)
+                msgbox(format("The {STR_VAR_1} ran away!"), MSGBOX_DEFAULT)
+            break
+        }
+    }
+    else{
+        playmoncry(SPECIES_GYARADOS, 2)
+        msgbox(format("Gyarados: Gyara..."), MSGBOX_DEFAULT)
+    }
+	release
+	end
+}
+
+script Route132_EventScript_Gyarados_PreTateLiza{
+    lock
+    faceplayer
+    message(format("Gyarados gazes past you, as though you're invisible, suggesting that you may want to come back when you possess the strength to rival its presence."))
+    release
+    end	
+}
+
+script Route132_EventScript_Gyarados_Join{
+    msgbox(format("Gyarados seems to want to join your team, will you let this Gyarados join you?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		setflag(FLAG_OBTAINED_ROUTE132_GYARADOS)
+		givecustommon(SPECIES_GYARADOS, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_TIMID, 0, 252, 0, 0, 4, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_BOOMBURST, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HURRICANE, TRUE)
+        playfanfare(MUS_OBTAIN_ITEM)
+        message(format("{PLAYER} received a Gyarados!"))
+        waitfanfare
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		removeobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
+	if(!flag(FLAG_DEFEATED_ROUTE132_GYARADOS)){
+    	setflag(FLAG_DEFEATED_ROUTE132_GYARADOS)
+		playfanfare(MUS_OBTAIN_ITEM)
+        giveitem(ITEM_GYARADOSITE_Y, 1)
+        message(format("{PLAYER} received a Gyaradosite Y!"))
+        waitfanfare
+	}
+	release
+	end
 }
