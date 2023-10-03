@@ -8603,15 +8603,30 @@ BattleScript_TryAdrenalineOrb:
 BattleScript_TryAdrenalineOrbRet:
 	return
 
+BattleScript_IntimidateActivatesEnd3Popout::
+	sethword sABILITY_OVERWRITE, ABILITY_INTIMIDATE
+	goto BattleScript_IntimidateActivatesEnd3
+
+BattleScript_IntimidateActivatesEnd3PopoutFearmonger::
+	sethword sABILITY_OVERWRITE, ABILITY_FEARMONGER
+	goto BattleScript_IntimidateActivatesEnd3
+
 BattleScript_IntimidateActivatesEnd3::
 	call BattleScript_PauseIntimidateActivates
 	end3
+
+BattleScript_IntimidateActivatesPopout::
+	sethword sABILITY_OVERWRITE, ABILITY_INTIMIDATE
+	goto BattleScript_IntimidateActivates
+
+BattleScript_IntimidateActivatesPopoutFearmonger::
+	sethword sABILITY_OVERWRITE, ABILITY_FEARMONGER
+	goto BattleScript_IntimidateActivates
 
 BattleScript_PauseIntimidateActivates:
 	pause B_WAIT_TIME_SHORT
 BattleScript_IntimidateActivates::
 	setbyte gBattlerTarget, 0
-	sethword sABILITY_OVERWRITE, ABILITY_INTIMIDATE
 	call BattleScript_AbilityPopUp
 BattleScript_IntimidateActivatesLoop:
 	setstatchanger STAT_ATK, 1, TRUE
@@ -8694,6 +8709,14 @@ BattleScript_IntimidatePrevented_Scrappy:
 BattleScript_IntimidatePrevented_Discipline:
 	sethword sABILITY_OVERWRITE, ABILITY_DISCIPLINE
 	goto BattleScript_IntimidatePrevented
+
+BattleScript_ScareActivatesEnd3Popout::
+	sethword sABILITY_OVERWRITE, ABILITY_SCARE
+	goto BattleScript_ScareActivatesEnd3
+
+BattleScript_ScareActivatesEnd3PopoutFearmonger::
+	sethword sABILITY_OVERWRITE, ABILITY_FEARMONGER
+	goto BattleScript_ScareActivatesEnd3
 	
 BattleScript_ScareActivatesEnd3::
 	call BattleScript_PauseScareActivates
@@ -8782,10 +8805,17 @@ BattleScript_Intimidate_DefiantActivates:
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_IntimidateActivatesLoopIncrement
 
+BattleScript_ScareActivatesPopout::
+	sethword sABILITY_OVERWRITE, ABILITY_SCARE
+	goto BattleScript_ScareActivates
+
+BattleScript_ScareActivatesPopoutFearmonger::
+	sethword sABILITY_OVERWRITE, ABILITY_FEARMONGER
+	goto BattleScript_ScareActivates
+
 BattleScript_PauseScareActivates:
 	pause B_WAIT_TIME_SHORT
 BattleScript_ScareActivates::
-	sethword sABILITY_OVERWRITE, ABILITY_SCARE
 	setbyte gBattlerTarget, 0
 	call BattleScript_AbilityPopUp
 BattleScript_ScareActivatesLoop:

@@ -5828,6 +5828,27 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
+
+        // Fearmonger
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_FEARMONGER)){
+			if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FEARMONGER)]){
+                if(!(gSpecialStatuses[battler].intimidatedMon))
+                {
+                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FEARMONGER)] = TRUE;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FEARMONGER;
+                    gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
+                    gSpecialStatuses[battler].intimidatedMon = TRUE;
+                }
+
+                if(!(gSpecialStatuses[battler].scaredMon))
+                {
+                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FEARMONGER)] = TRUE;
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FEARMONGER;
+                    gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_SCARED;
+                    gSpecialStatuses[battler].scaredMon = TRUE;
+                }
+            }  
+		}
 		
 		// Intimidate
 		if(BattlerHasInnate(battler, ABILITY_INTIMIDATE)){
@@ -8474,6 +8495,25 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 		}
+
+        //Fearmonger Paralyze Chance
+		if(BATTLER_HAS_ABILITY(battler, ABILITY_FEARMONGER)){
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && gBattleMons[gBattlerAttacker].hp != 0
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && TARGET_TURN_DAMAGED
+             && CanBeParalyzed(gBattlerAttacker, gBattlerTarget)
+             && IsMoveMakingContact(move, gBattlerAttacker) //Does it need to be a contact move?
+             && (Random() % 10) == 0)
+            {
+				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FEARMONGER;
+                gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_PARALYSIS;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
+                gHitMarker |= HITMARKER_IGNORE_SAFEGUARD;
+                effect++;
+            }
+        }
 		
 		// Static (Defender)
         STATIC_INNATE:
@@ -9872,38 +9912,49 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
     case ABILITYEFFECT_INTIMIDATE2:
         for (i = 0; i < gBattlersCount; i++)
         {
-            if ((GetBattlerAbility(i) == ABILITY_INTIMIDATE || BattlerHasInnate(i, ABILITY_INTIMIDATE)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED
+            if ((BATTLER_HAS_ABILITY(i, ABILITY_INTIMIDATE) || BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_INTIMIDATED
                 && (IsBattlerAlive(BATTLE_OPPOSITE(i)) || IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(i))))) // At least one opposing mon has to be alive.
             {
-                gLastUsedAbility = ABILITY_INTIMIDATE;
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_INTIMIDATED);
                 if (caseID == ABILITYEFFECT_INTIMIDATE1)
                 {
-                    BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3);
+                    if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
+                        BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3PopoutFearmonger);
+                    else
+                        BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivatesEnd3Popout);
                 }
                 else
                 {
                     BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_IntimidateActivates;
+                    if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
+                        gBattlescriptCurrInstr = BattleScript_IntimidateActivatesPopoutFearmonger;
+                    else
+                        gBattlescriptCurrInstr = BattleScript_IntimidateActivatesPopout;
                 }
                 battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
                 effect++;
                 break;
             }
             
-            if ((GetBattlerAbility(i) == ABILITY_SCARE || BattlerHasInnate(i, ABILITY_SCARE)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_SCARED
+            if ((BATTLER_HAS_ABILITY(i, ABILITY_SCARE) || BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER)) && gBattleResources->flags->flags[i] & RESOURCE_FLAG_SCARED
                 && (IsBattlerAlive(BATTLE_OPPOSITE(i)) || IsBattlerAlive(BATTLE_PARTNER(BATTLE_OPPOSITE(i))))) // At least one opposing mon has to be alive.
             {
                 gLastUsedAbility = ABILITY_SCARE;
                 gBattleResources->flags->flags[i] &= ~(RESOURCE_FLAG_SCARED);
                 if (caseID == ABILITYEFFECT_INTIMIDATE1)
                 {
-                    BattleScriptPushCursorAndCallback(BattleScript_ScareActivatesEnd3);
+                    if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
+                        BattleScriptPushCursorAndCallback(BattleScript_ScareActivatesEnd3PopoutFearmonger);
+                    else
+                        BattleScriptPushCursorAndCallback(BattleScript_ScareActivatesEnd3Popout);
                 }
                 else
                 {
                     BattleScriptPushCursor();
-                    gBattlescriptCurrInstr = BattleScript_ScareActivates;
+                    if(BATTLER_HAS_ABILITY(i, ABILITY_FEARMONGER))
+                        gBattlescriptCurrInstr = BattleScript_ScareActivatesPopoutFearmonger;
+                    else
+                        gBattlescriptCurrInstr = BattleScript_ScareActivatesPopout;
                 }
                 battler = gBattlerAbility = gBattleStruct->intimidateBattler = i;
                 effect++;

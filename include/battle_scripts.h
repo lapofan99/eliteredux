@@ -503,6 +503,14 @@ extern const u8 BattleScript_RadianceProtected[];
 extern const u8 BattleScript_DesertCloakProtectsRet[];
 extern const u8 BattleScript_HandleJawsOfCarnageEffect[];
 extern const u8 BattleScript_BattlerIsProtectedForThisTurn[];
+extern const u8 BattleScript_ScareActivatesPopoutFearmonger[];
+extern const u8 BattleScript_ScareActivatesPopout[];
+extern const u8 BattleScript_IntimidateActivatesPopoutFearmonger[];
+extern const u8 BattleScript_IntimidateActivatesPopout[];
+extern const u8 BattleScript_ScareActivatesEnd3Popout[];
+extern const u8 BattleScript_ScareActivatesEnd3PopoutFearmonger[];
+extern const u8 BattleScript_IntimidateActivatesEnd3Popout[];
+extern const u8 BattleScript_IntimidateActivatesEnd3PopoutFearmonger[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];
