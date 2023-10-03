@@ -6343,7 +6343,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			gBattleMons[battler].statStages[STAT_EVASION] = gBattleMons[battler].statStages[STAT_EVASION] + VarGet(VAR_TOTEM_POKEMON_EVASION_BOOST);
 
             //Evasion
-            if(VarGet(VAR_TOTEM_POKEMON_EVASION_BOOST) == 1){
+            /*if(VarGet(VAR_TOTEM_POKEMON_EVASION_BOOST) == 1){
                 BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Evasion);
                 effect++;
             }
@@ -6360,7 +6360,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             else if(VarGet(VAR_TOTEM_POKEMON_ACCURACY_BOOST) == 2){
                 BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Accuracy2);
                 effect++;
-            }
+            }*/
 
             //Speed
             if(VarGet(VAR_TOTEM_POKEMON_SPEED_BOOST) == 1){
@@ -6431,7 +6431,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			VarSet(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 0);
 			VarSet(VAR_TOTEM_POKEMON_EVASION_BOOST,  0);
 			VarSet(VAR_TOTEM_MESSAGE,                0);
-            
 		}
 
         break;

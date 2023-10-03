@@ -10578,6 +10578,7 @@ BattleScript_GripPincerActivated::
 
 BattleScript_WildTotemBoostActivated::
 	printstring STRINGID_ATTACKERISREADYTOTESTYOU
+	waitmessage B_WAIT_TIME_SHORT
 	playmoveanimation BS_ATTACKER, MOVE_FOCUS_ENERGY
 	waitanimation
 	waitmessage B_WAIT_TIME_SHORT
