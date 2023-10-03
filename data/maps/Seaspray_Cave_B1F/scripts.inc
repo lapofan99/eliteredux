@@ -6,8 +6,20 @@ Seaspray_Cave_B1F_EventScript_Dewgong::
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG, Seaspray_Cave_B1F_EventScript_Dewgong_Join
+	goto_if_unset FLAG_BADGE07_GET, Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza
 	playmoncry SPECIES_DEWGONG, 2
-	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_0, MSGBOX_DEFAULT
+	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Seaspray_Cave_B1F_EventScript_Dewgong_2
+	playmoncry SPECIES_DEWGONG, 2
+	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_3, MSGBOX_DEFAULT
+Seaspray_Cave_B1F_EventScript_Dewgong_1:
+	release
+	end
+
+Seaspray_Cave_B1F_EventScript_Dewgong_2:
+	playmoncry SPECIES_DEWGONG, 2
+	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_1, MSGBOX_DEFAULT
 	delay 40
 	waitmoncry
 	setflag FLAG_TOTEM_BATTLE
@@ -19,32 +31,38 @@ Seaspray_Cave_B1F_EventScript_Dewgong::
 	setvar VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2
 	setvar VAR_TOTEM_POKEMON_EVASION_BOOST, 0
 	setvar VAR_TOTEM_MESSAGE, TOTEM_FIGHT_DEWGONG
-	setwildbattlewithcustommoves SPECIES_DEWGONG, 2, ITEM_DEWGONGITE, MOVE_HORN_DRILL, MOVE_FREEZE_DRY, MOVE_AQUA_JET, MOVE_SLACK_OFF, 0, NATURE_BRAVE, 252, 252, 252, 252, 252, 252
+	setwildbattlewithcustommoves SPECIES_DEWGONG, 0, ITEM_DEWGONGITE, MOVE_HORN_DRILL, MOVE_FREEZE_DRY, MOVE_AQUA_JET, MOVE_SLACK_OFF, 2, NATURE_BRAVE, 252, 252, 252, 252, 252, 252
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	dowildbattle
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome
 	switch VAR_RESULT
-	case B_OUTCOME_CAUGHT, Seaspray_Cave_B1F_EventScript_Dewgong_3
-	case B_OUTCOME_WON, Seaspray_Cave_B1F_EventScript_Dewgong_3
-	case B_OUTCOME_RAN, Seaspray_Cave_B1F_EventScript_Dewgong_4
-	case B_OUTCOME_PLAYER_TELEPORTED, Seaspray_Cave_B1F_EventScript_Dewgong_4
-Seaspray_Cave_B1F_EventScript_Dewgong_1:
-	release
-	end
+	case B_OUTCOME_CAUGHT, Seaspray_Cave_B1F_EventScript_Dewgong_6
+	case B_OUTCOME_WON, Seaspray_Cave_B1F_EventScript_Dewgong_6
+	case B_OUTCOME_RAN, Seaspray_Cave_B1F_EventScript_Dewgong_7
+	case B_OUTCOME_PLAYER_TELEPORTED, Seaspray_Cave_B1F_EventScript_Dewgong_7
+	goto Seaspray_Cave_B1F_EventScript_Dewgong_1
 
-Seaspray_Cave_B1F_EventScript_Dewgong_3:
+Seaspray_Cave_B1F_EventScript_Dewgong_6:
 	goto Seaspray_Cave_B1F_EventScript_Dewgong_Join
 	goto Seaspray_Cave_B1F_EventScript_Dewgong_1
 
-Seaspray_Cave_B1F_EventScript_Dewgong_4:
+Seaspray_Cave_B1F_EventScript_Dewgong_7:
 	setvar VAR_0x8004, SPECIES_DEWGONG
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject VAR_LAST_TALKED
 	fadescreenswapbuffers FADE_FROM_BLACK
 	bufferspeciesname 0, VAR_0x8004
-	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_1, MSGBOX_DEFAULT
+	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_2, MSGBOX_DEFAULT
 	goto Seaspray_Cave_B1F_EventScript_Dewgong_1
+
+
+Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza::
+	lock
+	faceplayer
+	message Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza_Text_0
+	release
+	end
 
 
 Seaspray_Cave_B1F_EventScript_Dewgong_Join::
@@ -59,7 +77,7 @@ Seaspray_Cave_B1F_EventScript_Dewgong_Join_4:
 
 Seaspray_Cave_B1F_EventScript_Dewgong_Join_2:
 	setflag FLAG_OBTAINED_SEASPRAY_CAVE_DEWGONG
-	givecustommon SPECIES_DEWGONG, 0, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_BRAVE, 2, 252, 4, 0, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_HORN_DRILL, MOVE_FREEZE_DRY, MOVE_AQUA_JET, MOVE_SLACK_OFF, FALSE
+	givecustommon SPECIES_DEWGONG, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_BRAVE, 2, 252, 4, 0, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_HORN_DRILL, MOVE_FREEZE_DRY, MOVE_AQUA_JET, MOVE_SLACK_OFF, FALSE
 	playfanfare MUS_OBTAIN_ITEM
 	message Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_1
 	waitfanfare
@@ -78,10 +96,22 @@ Seaspray_Cave_B1F_EventScript_Dewgong_Join_5:
 
 
 Seaspray_Cave_B1F_EventScript_Dewgong_Text_0:
-	.string "Dewgong: Gong!$"
+	.string "The Dewgong considers you a worthy\n"
+	.string "opponent. It seems it wishes to test\l"
+	.string "you in battle.$"
 
 Seaspray_Cave_B1F_EventScript_Dewgong_Text_1:
+	.string "Dewgong: Gong!$"
+
+Seaspray_Cave_B1F_EventScript_Dewgong_Text_2:
 	.string "The {STR_VAR_1} ran away!$"
+
+Seaspray_Cave_B1F_EventScript_Dewgong_Text_3:
+	.string "Dewgong: Gong...$"
+
+Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza_Text_0:
+	.string "The Dewgong finds you pitiful. Perhaps\n"
+	.string "return after growing stronger?$"
 
 Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_0:
 	.string "Dewgong seems to want to join your\n"

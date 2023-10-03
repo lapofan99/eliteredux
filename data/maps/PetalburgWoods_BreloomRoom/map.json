@@ -25,7 +25,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgWoods_BreloomRoom_EventScript_Breloom",
-      "flag": "FLAG_DEFEATED_PETALBURG_WOODS_BRELOOM"
+      "flag": "FLAG_OBTAINED_PETALBURG_WOODS_BRELOOM"
     }
   ],
   "warp_events": [

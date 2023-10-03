@@ -712,18 +712,18 @@
 #define FLAG_SYS_LOCKED_MODE                  0x2A0 // Elite Four only
 #define FLAG_TOTEM_BATTLE                     0x2A1 // For Totem boost
 #define FLAG_SMART_AI                         0x2A2 //
-#define FLAG_DEFEATED_METEOR_FALLS_HAXORUS    0x2A3 // 
+#define FLAG_DEFEATED_METEOR_FALLS_HAXORUS    0x2A3 //
 #define FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG   0x2A4 //
 #define FLAG_DEFEATED_PETALBURG_WOODS_BRELOOM 0x2A5 //
 #define FLAG_OBTAINED_METEOR_FALLS_HAXORUS    0x2A6 //
 #define FLAG_OBTAINED_SEASPRAY_CAVE_DEWGONG   0x2A7 //
 #define FLAG_OBTAINED_PETALBURG_WOODS_BRELOOM 0x2A8 //
-#define FLAG_UNUSED_0x2A9  0x2A9 // Unused Flag
-#define FLAG_UNUSED_0x2AA  0x2AA // Unused Flag
-#define FLAG_UNUSED_0x2AB  0x2AB // Unused Flag
-#define FLAG_UNUSED_0x2AC  0x2AC // Unused Flag
-#define FLAG_UNUSED_0x2AD  0x2AD // Unused Flag
-#define FLAG_UNUSED_0x2AE  0x2AE // Unused Flag
+#define FLAG_DEFEATED_ROUTE114_FERALIGATR     0x2A9 //
+#define FLAG_OBTAINED_ROUTE114_FERALIGATR     0x2AA //
+#define FLAG_DEFEATED_ROUTE132_GYARADOS       0x2AB //
+#define FLAG_OBTAINED_ROUTE132_GYARADOS       0x2AC //
+#define FLAG_DEFEATED_ROUTE111_SANDSLASH      0x2AD //
+#define FLAG_OBTAINED_ROUTE111_SANDSLASH      0x2AE //
 #define FLAG_UNUSED_0x2AF  0x2AF // Unused Flag
 #define FLAG_UNUSED_0x2B0  0x2B0 // Unused Flag
 #define FLAG_UNUSED_0x2B1  0x2B1 // Unused Flag

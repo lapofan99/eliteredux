@@ -284,6 +284,99 @@ Route114_EventScript_LegendaryNPC_30:
 	goto Route114_EventScript_LegendaryNPC_9
 
 
+Route114_EventScript_Feraligatr::
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_ROUTE114_FERALIGATR, Route114_EventScript_Feraligatr_Join
+	goto_if_unset FLAG_BADGE05_GET, Route114_EventScript_Feraligatr_PreNorman
+	playmoncry SPECIES_FERALIGATR, 2
+	msgbox Route114_EventScript_Feraligatr_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route114_EventScript_Feraligatr_2
+	playmoncry SPECIES_FERALIGATR, 2
+	msgbox Route114_EventScript_Feraligatr_Text_3, MSGBOX_DEFAULT
+Route114_EventScript_Feraligatr_1:
+	release
+	end
+
+Route114_EventScript_Feraligatr_2:
+	playmoncry SPECIES_FERALIGATR, 2
+	msgbox Route114_EventScript_Feraligatr_Text_1, MSGBOX_DEFAULT
+	delay 40
+	waitmoncry
+	setflag FLAG_TOTEM_BATTLE
+	setvar VAR_TOTEM_POKEMON_ATK_BOOST, 2
+	setvar VAR_TOTEM_POKEMON_DEF_BOOST, 2
+	setvar VAR_TOTEM_POKEMON_SP_ATK_BOOST, 2
+	setvar VAR_TOTEM_POKEMON_SP_DEF_BOOST, 2
+	setvar VAR_TOTEM_POKEMON_SPEED_BOOST, 1
+	setvar VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2
+	setvar VAR_TOTEM_POKEMON_EVASION_BOOST, 0
+	setvar VAR_TOTEM_MESSAGE, TOTEM_FIGHT_FERALIGATR
+	setwildbattlewithcustommoves SPECIES_FERALIGATR, 0, ITEM_FERALIGATRITE_Y, MOVE_HYDRO_CANNON, MOVE_HYPER_BEAM, MOVE_BLIZZARD, MOVE_HYPER_VOICE, 0, NATURE_MODEST, 252, 252, 252, 252, 252, 252
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	dowildbattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	switch VAR_RESULT
+	case B_OUTCOME_CAUGHT, Route114_EventScript_Feraligatr_6
+	case B_OUTCOME_WON, Route114_EventScript_Feraligatr_6
+	case B_OUTCOME_RAN, Route114_EventScript_Feraligatr_7
+	case B_OUTCOME_PLAYER_TELEPORTED, Route114_EventScript_Feraligatr_7
+	goto Route114_EventScript_Feraligatr_1
+
+Route114_EventScript_Feraligatr_6:
+	goto Route114_EventScript_Feraligatr_Join
+	goto Route114_EventScript_Feraligatr_1
+
+Route114_EventScript_Feraligatr_7:
+	setvar VAR_0x8004, SPECIES_FERALIGATR
+	fadescreenswapbuffers FADE_TO_BLACK
+	removeobject VAR_LAST_TALKED
+	fadescreenswapbuffers FADE_FROM_BLACK
+	bufferspeciesname 0, VAR_0x8004
+	msgbox Route114_EventScript_Feraligatr_Text_2, MSGBOX_DEFAULT
+	goto Route114_EventScript_Feraligatr_1
+
+
+Route114_EventScript_Feraligatr_PreNorman::
+	lock
+	faceplayer
+	message Route114_EventScript_Feraligatr_PreNorman_Text_0
+	release
+	end
+
+
+Route114_EventScript_Feraligatr_Join::
+	msgbox Route114_EventScript_Feraligatr_Join_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route114_EventScript_Feraligatr_Join_2
+Route114_EventScript_Feraligatr_Join_1:
+	goto_if_unset FLAG_DEFEATED_ROUTE114_FERALIGATR, Route114_EventScript_Feraligatr_Join_5
+Route114_EventScript_Feraligatr_Join_4:
+	release
+	end
+
+Route114_EventScript_Feraligatr_Join_2:
+	setflag FLAG_OBTAINED_ROUTE114_FERALIGATR
+	givecustommon SPECIES_FERALIGATR, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_MODEST, 0, 252, 0, 0, 0, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_HYDRO_CANNON, MOVE_HYPER_BEAM, MOVE_BLIZZARD, MOVE_HYPER_VOICE, FALSE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route114_EventScript_Feraligatr_Join_Text_1
+	waitfanfare
+	fadescreenswapbuffers FADE_TO_BLACK
+	removeobject VAR_LAST_TALKED
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto Route114_EventScript_Feraligatr_Join_1
+
+Route114_EventScript_Feraligatr_Join_5:
+	setflag FLAG_DEFEATED_ROUTE114_FERALIGATR
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_FERALIGATRITE_Y, 1
+	message Route114_EventScript_Feraligatr_Join_Text_2
+	waitfanfare
+	goto Route114_EventScript_Feraligatr_Join_4
+
+
 Route114_EventScript_LegendaryNPC_Text_0:
 	.string "Sage: Are you one of those trainers\n"
 	.string "trying to become champion?$"
@@ -324,3 +417,33 @@ Route114_EventScript_LegendaryNPC_Text_3:
 
 Route114_EventScript_LegendaryNPC_Text_4:
 	.string "Then why are we even talking?$"
+
+Route114_EventScript_Feraligatr_Text_0:
+	.string "With a thunderous roar, Feraligatr\n"
+	.string "lunges forward, launching a fierce\l"
+	.string "attack against you!$"
+
+Route114_EventScript_Feraligatr_Text_1:
+	.string "Feraligatr: Fera!$"
+
+Route114_EventScript_Feraligatr_Text_2:
+	.string "The {STR_VAR_1} ran away!$"
+
+Route114_EventScript_Feraligatr_Text_3:
+	.string "Feraligatr: Fera...$"
+
+Route114_EventScript_Feraligatr_PreNorman_Text_0:
+	.string "Feraligatr regards you with disdain.\n"
+	.string "Maybe come back once you've become\l"
+	.string "more formidable?$"
+
+Route114_EventScript_Feraligatr_Join_Text_0:
+	.string "Feraligatr seems to want to join your\n"
+	.string "team, will you let this Feraligatr join\l"
+	.string "you?$"
+
+Route114_EventScript_Feraligatr_Join_Text_1:
+	.string "{PLAYER} received a Feraligatr!$"
+
+Route114_EventScript_Feraligatr_Join_Text_2:
+	.string "{PLAYER} received a Feraligatrite Y!$"

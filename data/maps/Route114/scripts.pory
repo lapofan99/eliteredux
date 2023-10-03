@@ -242,3 +242,84 @@ script Route114_EventScript_LegendaryNPC{
     end
 }
 
+script Route114_EventScript_Feraligatr{
+	lock
+	faceplayer
+    goto_if_set(FLAG_DEFEATED_ROUTE114_FERALIGATR, Route114_EventScript_Feraligatr_Join)
+    goto_if_unset(FLAG_BADGE05_GET, Route114_EventScript_Feraligatr_PreNorman)
+	playmoncry(SPECIES_FERALIGATR, 2)
+    msgbox(format("With a thunderous roar, Feraligatr lunges forward, launching a fierce attack against you!"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+        playmoncry(SPECIES_FERALIGATR, 2)
+        msgbox(format("Feraligatr: Fera!"), MSGBOX_DEFAULT)
+	delay(40)
+	waitmoncry
+	setflag(FLAG_TOTEM_BATTLE)
+	setvar(VAR_TOTEM_POKEMON_ATK_BOOST,      2)
+	setvar(VAR_TOTEM_POKEMON_DEF_BOOST,      2)
+	setvar(VAR_TOTEM_POKEMON_SP_ATK_BOOST,   2)
+	setvar(VAR_TOTEM_POKEMON_SP_DEF_BOOST,   2)
+	setvar(VAR_TOTEM_POKEMON_SPEED_BOOST,    1)
+	setvar(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2)
+	setvar(VAR_TOTEM_POKEMON_EVASION_BOOST,  0)
+	setvar(VAR_TOTEM_MESSAGE, TOTEM_FIGHT_FERALIGATR)
+	//setflag(FLAG_SHINY_CREATION)
+	setwildbattlewithcustommoves(SPECIES_FERALIGATR, 0, ITEM_FERALIGATRITE_Y, MOVE_HYDRO_CANNON, MOVE_HYPER_BEAM, MOVE_BLIZZARD, MOVE_HYPER_VOICE, 0, NATURE_MODEST, 252, 252, 252, 252, 252, 252)
+	setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	dowildbattle
+	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	specialvar(VAR_RESULT, GetBattleOutcome)
+    switch(var(VAR_RESULT)){
+        case B_OUTCOME_CAUGHT:
+        case B_OUTCOME_WON:
+			goto(Route114_EventScript_Feraligatr_Join)
+        break
+        case B_OUTCOME_RAN:
+        case B_OUTCOME_PLAYER_TELEPORTED:
+            setvar(VAR_0x8004, SPECIES_FERALIGATR)
+            fadescreenswapbuffers(FADE_TO_BLACK)
+            removeobject(VAR_LAST_TALKED)
+            fadescreenswapbuffers(FADE_FROM_BLACK)
+            bufferspeciesname(0, VAR_0x8004)
+            msgbox(format("The {STR_VAR_1} ran away!"), MSGBOX_DEFAULT)
+        break
+    }
+}
+    else{
+        playmoncry(SPECIES_FERALIGATR, 2)
+        msgbox(format("Feraligatr: Fera..."), MSGBOX_DEFAULT)
+    }
+	release
+	end
+}
+
+script Route114_EventScript_Feraligatr_PreNorman{
+    lock
+    faceplayer
+    message(format("Feraligatr regards you with disdain. Maybe come back once you've become more formidable?"))
+    release
+    end	
+}
+
+script Route114_EventScript_Feraligatr_Join{
+    msgbox(format("Feraligatr seems to want to join your team, will you let this Feraligatr join you?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == 1){
+		setflag(FLAG_OBTAINED_ROUTE114_FERALIGATR)
+		givecustommon(SPECIES_FERALIGATR, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_MODEST, 0, 252, 0, 0, 0, 252, 4, 0, 0, 0, 0, 0, 0, MOVE_HYDRO_CANNON, MOVE_HYPER_BEAM, MOVE_BLIZZARD, MOVE_HYPER_VOICE, FALSE)
+		playfanfare(MUS_OBTAIN_ITEM)
+		message(format("{PLAYER} received a Feraligatr!"))
+		waitfanfare
+		fadescreenswapbuffers(FADE_TO_BLACK)
+		removeobject(VAR_LAST_TALKED)
+		fadescreenswapbuffers(FADE_FROM_BLACK)
+	}
+	if(!flag(FLAG_DEFEATED_ROUTE114_FERALIGATR)){
+    	setflag(FLAG_DEFEATED_ROUTE114_FERALIGATR)
+		playfanfare(MUS_OBTAIN_ITEM)
+		giveitem(ITEM_FERALIGATRITE_Y, 1)
+		message(format("{PLAYER} received a Feraligatrite Y!"))
+		waitfanfare
+	}
+	release
+	end
+}
