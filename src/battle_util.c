@@ -5898,7 +5898,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             //This is the stuff that has to be changed for each ability
             if((gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_HAZARDS_ANY) && activateAbilty){
 				gBattlerAttacker = battler;
-                gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
+                gSideStatuses[GetBattlerSide(gActiveBattler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES | SIDE_STATUS_STICKY_WEB);
                 BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
                 effect++;
             }
@@ -9422,6 +9422,45 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}
 
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_ANGELS_WRATH)){
+            switch(move){
+                case MOVE_TACKLE:
+                    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                    && gBattleMons[gBattlerTarget].hp != 0
+                    && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                    && TARGET_TURN_DAMAGED)
+                    {
+                        gDisableStructs[gBattlerTarget].encoreTimer = 2;
+                        gDisableStructs[gBattlerTarget].encoredMove = gBattleMons[gBattlerTarget].moves[0];
+
+                        gDisableStructs[gBattlerTarget].disableTimer = gDisableStructs[gBattlerTarget].disableTimerStartValue = 2;
+                        gDisableStructs[gBattlerTarget].disabledMove = gBattleMons[gBattlerTarget].moves[0];
+                        effect++;
+                    }
+                break;
+                case MOVE_STRING_SHOT:
+                    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                    && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
+                    {
+                        gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STEALTH_ROCK);
+                        gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_TOXIC_SPIKES);
+                        gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_SPIKES);
+                        gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STICKY_WEB);
+                    }
+                break;
+                case MOVE_HARDEN:
+                    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                    && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
+                    {
+                        for(i = 1; i < NUM_STATS; i++){
+                            if(gBattleMons[battler].statStages[i] <= MAX_STAT_STAGE && i != STAT_DEF)
+                                gBattleMons[battler].statStages[i] += 1;
+                        }
+                    }
+                break;
+            }
+        }
+
         // Elemental Charge
 		if (BATTLER_HAS_ABILITY(battler, ABILITY_ELEMENTAL_CHARGE)){ //this macro convines both ability and innate check
             //Paralysis
@@ -12569,6 +12608,20 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         break;
     }
 
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ANGELS_WRATH)){
+        switch(move){
+        case MOVE_TACKLE:
+            basePower = 100;
+            break;
+        case MOVE_POISON_STING:
+            basePower = 120;
+            break;
+        case MOVE_ELECTROWEB:
+            basePower = 140;
+            break;
+        }
+    }
+
     if (basePower == 0)
         basePower = 1;
     return basePower;
@@ -15102,6 +15155,13 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
             RecordAbilityBattle(battlerAtk, ABILITY_MOLTEN_DOWN);
     }
 	else if (moveType == TYPE_POISON && defType == TYPE_STEEL && (GetBattlerAbility(battlerAtk) == ABILITY_CORROSION || BattlerHasInnate(battlerAtk, ABILITY_CORROSION)) && mod == UQ_4_12(0.0))
+    {
+		//Has Innate Effect here too
+        mod = UQ_4_12(2.0); // super-effective
+        if (recordAbilities)
+            RecordAbilityBattle(battlerAtk, ABILITY_CORROSION);
+    }
+	else if (move == MOVE_POISON_STING && defType == TYPE_STEEL && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ANGELS_WRATH))
     {
 		//Has Innate Effect here too
         mod = UQ_4_12(2.0); // super-effective

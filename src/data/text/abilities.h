@@ -430,6 +430,8 @@ static const u8 sAmbushDescription[] = _("Guaranteed critical hit\non first turn
 static const u8 sAtlasDescription[] = _("Sets Gravity on entry for\n8 turns. User moves last.");
 static const u8 sRadianceDescription[] = _("+20% accuracy; Dark moves\nfail when user is present.");
 static const u8 sJawsOfCarnageDescription[] = _("The Pokémon does stuff\nand then things happen.");
+static const u8 sAngelsWrathDescription[] = _("The Pokémon does stuff\nand then things happen.");
+
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -873,6 +875,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_ATLAS] = _("Atlas"),
     [ABILITY_RADIANCE] = _("Radiance"),
     [ABILITY_JAWS_OF_CARNAGE] = _("Jaws of Carnage"),
+    [ABILITY_ANGELS_WRATH] = _("Angel's Wrath"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1316,4 +1319,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_ATLAS] = sAtlasDescription,
     [ABILITY_RADIANCE] = sRadianceDescription,
     [ABILITY_JAWS_OF_CARNAGE] = sJawsOfCarnageDescription,
+    [ABILITY_ANGELS_WRATH] = sAngelsWrathDescription,
 };

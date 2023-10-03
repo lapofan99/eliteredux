@@ -1498,6 +1498,17 @@ u32 AI_GetMoveAccuracy(u8 battlerAtk, u8 battlerDef, u16 atkAbility, u16 defAbil
     if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DEADEYE))
         moveAcc = 100;
 
+    //Angel's Wrath
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ANGELS_WRATH)){
+        switch(move){
+            case MOVE_TACKLE:
+            case MOVE_POISON_STING:
+            case MOVE_ELECTROWEB:
+                moveAcc = 100;
+            break;
+        }
+    }
+
     calc = gAccuracyStageRatios[buff].dividend * moveAcc;
     calc /= gAccuracyStageRatios[buff].divisor;
 

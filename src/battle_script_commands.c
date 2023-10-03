@@ -1936,6 +1936,17 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if ((atkAbility == ABILITY_DEADEYE || BattlerHasInnate(battlerAtk, ABILITY_DEADEYE)))
         moveAcc = 100;
 
+    //Angel's Wrath
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ANGELS_WRATH)){
+        switch(move){
+            case MOVE_TACKLE:
+            case MOVE_POISON_STING:
+            case MOVE_ELECTROWEB:
+                moveAcc = 100;
+            break;
+        }
+    }
+
     if ((BattlerHasInnate(battlerAtk, ABILITY_GIFTED_MIND) || atkAbility == ABILITY_GIFTED_MIND) && IS_MOVE_STATUS(move))
         moveAcc = 100;
 
@@ -3828,6 +3839,15 @@ static void Cmd_seteffectwithchance(void)
     //Frostbite are more likely to occour during Hail
     if (moveEffect == EFFECT_FROSTBITE_HIT && IsBattlerWeatherAffected(gBattlerTarget, WEATHER_HAIL_ANY))
         percentChance = percentChance * 3;
+
+    //Angel's Wrath
+    if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_ANGELS_WRATH)){
+        switch(gCurrentMove){
+        case MOVE_POISON_STING:
+            percentChance = 100;
+            break;
+        }
+    }
 
     if(percentChance > 100)
         percentChance = 100;
@@ -7945,8 +7965,7 @@ static void HandleTerrainMove(u32 moveEffect)
 
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget)
 {
-    return ((GetBattlerAbility(battlerAttacker) == ABILITY_CORROSION || 
-             BattlerHasInnate(battlerAttacker, ABILITY_CORROSION)) ||
+    return ((BATTLER_HAS_ABILITY(battlerAttacker, ABILITY_CORROSION) || BattlerHasInnate(battlerAttacker, ABILITY_ANGELS_WRATH)) ||
              !(IS_BATTLER_OF_TYPE(battlerTarget, TYPE_POISON) || IS_BATTLER_OF_TYPE(battlerTarget, TYPE_STEEL)));
 }
 

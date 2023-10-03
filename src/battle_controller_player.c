@@ -2051,6 +2051,26 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                         MulModifier(&mod, tempMod);
                     }
                 }
+                
+                if(BATTLER_HAS_ABILITY(userId, ABILITY_ANGELS_WRATH)){
+                    if(moveNum == MOVE_POISON_STING){
+                        if(gBattleMons[targetId].type1 == TYPE_STEEL && gBattleMons[targetId].type2 != TYPE_STEEL){
+                            //Removes First Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type2];
+                        }
+                        else if(gBattleMons[targetId].type2 == TYPE_STEEL && gBattleMons[targetId].type1 != TYPE_STEEL){
+                            //Removes Second Type Effectiveness and recalculates it
+                            mod = sTypeEffectivenessTable[moveType][gBattleMons[targetId].type1];
+                        }
+                        else if(gBattleMons[targetId].type1 == TYPE_STEEL && gBattleMons[targetId].type2 == TYPE_STEEL){
+                            //Has the same type twice
+                            mod = UQ_4_12(1.0);
+                        }
+                            
+                        tempMod = UQ_4_12(2.0);
+                        MulModifier(&mod, tempMod);
+                    }
+                }
 
                 if(gBattleMons[targetId].ability == ABILITY_POISON_ABSORB || BattlerHasInnate(targetId, ABILITY_POISON_ABSORB))
                     abilityNullifiesDamage = TRUE;
