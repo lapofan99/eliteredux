@@ -763,6 +763,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_AQUA_FANG]      = _("Aqua Fang"),
     [MOVE_WAVE_CRASH]     = _("Wave Crash"),
     [MOVE_SMITE]          = _("Smite"),
+    [MOVE_OUTBURST]       = _("Outburst"),
     [MOVE_SEISMIC_FIST]   = _("Seismic Fist"),
     [MOVE_IRON_FANGS]     = _("Iron Fangs"),
     [MOVE_SHADOW_FANGS]   = _("Shadow Fangs"),
