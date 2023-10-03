@@ -10585,6 +10585,8 @@ BattleScript_WildTotemBoostActivated::
 	setgraphicalstatchangevalues
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
+	printstring STRINGID_ATTACKER_STATS_ROSE
+	waitmessage B_WAIT_TIME_SHORT
 	end3
 
 BattleScript_HaxorusTotemBoostActivated::
@@ -10596,6 +10598,8 @@ BattleScript_HaxorusTotemBoostActivated::
 	setgraphicalstatchangevalues
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
 	waitanimation
+	printstring STRINGID_ATTACKER_STATS_ROSE
+	waitmessage B_WAIT_TIME_SHORT
 	end3
 
 BattleScript_TotemBoosted_Attack::

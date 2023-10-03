@@ -6360,7 +6360,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             else if(VarGet(VAR_TOTEM_POKEMON_ACCURACY_BOOST) == 2){
                 BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Accuracy2);
                 effect++;
-            }*/
+            }
 
             //Speed
             if(VarGet(VAR_TOTEM_POKEMON_SPEED_BOOST) == 1){
@@ -6410,9 +6410,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             else if(VarGet(VAR_TOTEM_POKEMON_ATK_BOOST) == 2){
                 BattleScriptPushCursorAndCallback(BattleScript_TotemBoosted_Attack2);
                 effect++;
-            }
+            }*/
 
-			SET_STATCHANGER(STAT_SPATK, 1, FALSE); //Just for the animation
+			SET_STATCHANGER(STAT_ATK, 1, FALSE); //Just for the animation
             switch(VarGet(VAR_TOTEM_MESSAGE)){
                 case TOTEM_FIGHT_HAXORUS:
                     BattleScriptPushCursorAndCallback(BattleScript_HaxorusTotemBoostActivated);

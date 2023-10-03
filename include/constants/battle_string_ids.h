@@ -680,8 +680,9 @@
 #define STRINGID_ATTACKER_ACCURACY_SHARPLYROSE        709
 #define STRINGID_ATTACKER_EVASIVENESS_SHARPLYROSE     710
 #define STRINGID_DESERTCLOAKPROTECTED                 711
+#define STRINGID_ATTACKER_STATS_ROSE                  712
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_DESERTCLOAKPROTECTED + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_ATTACKER_STATS_ROSE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
