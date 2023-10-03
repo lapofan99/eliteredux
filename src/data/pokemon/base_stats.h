@@ -14401,7 +14401,7 @@ const struct BaseStats gBaseStats[] =
     .baseSpAttack  = 10,
     .baseSpDefense = 45,
     .type1 = TYPE_ROCK,
-    .type2 = TYPE_GRASS,
+    .type2 = TYPE_ROCK,
     .catchRate = 255,
     .expYield = 58,
     .evYield_Defense   = 1,
@@ -23011,7 +23011,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_CLAWITZER] =
     {
-    .baseHP        = 80, // 70 vanilla
+    .baseHP        = 90, // 70 vanilla
     .baseAttack    = 73,
     .baseDefense   = 98, // 88 vanilla
     .baseSpeed     = 50, // 50 vanilla
@@ -24495,8 +24495,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_STAKEOUT, ABILITY_CHEAP_TACTICS, ABILITY_COWARD},
-    .innates = {ABILITY_STRONG_JAW, ABILITY_ADAPTABILITY, ABILITY_PREDATOR},
+    .abilities = {ABILITY_AMBUSH, ABILITY_HUSTLE, ABILITY_OPPORTUNIST},
+    .innates = {ABILITY_STAKEOUT, ABILITY_STRONG_JAW, ABILITY_PREDATOR},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },
@@ -24521,8 +24521,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_STAKEOUT, ABILITY_CHEAP_TACTICS, ABILITY_COWARD},
-    .innates = {ABILITY_STRONG_JAW, ABILITY_ADAPTABILITY, ABILITY_PREDATOR},
+    .abilities = {ABILITY_AMBUSH, ABILITY_ANALYTIC, ABILITY_OPPORTUNIST},
+    .innates = {ABILITY_STAKEOUT, ABILITY_STRONG_JAW, ABILITY_PREDATOR},
     .bodyColor = BODY_COLOR_BROWN,
     .noFlip = FALSE,
     },

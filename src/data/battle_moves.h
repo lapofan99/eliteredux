@@ -8413,7 +8413,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_DUAL_CHOP] =
     {
         .effect = EFFECT_DOUBLE_HIT,
-        .power = 45,
+        .power = 40,
         .type = TYPE_DRAGON,
         .accuracy = 100,
         .pp = 15,

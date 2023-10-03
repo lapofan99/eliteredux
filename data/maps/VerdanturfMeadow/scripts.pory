@@ -73,3 +73,9 @@ VerdanturfMeadow_Text_PlayerReceivedAudino:
 VerdanturfMeadow_Text_TakeCareOfAudino:
 	.string "Take good care of Audino!$"
 `
+script VerdanturfMeadow_EventScript_Mega_Meganium_Battle{
+	lock
+	faceplayer
+	trainerbattle_single(TRAINER_MEGA_MEGANIUM_VERDANTURF_MEADOW, format("Steven: Young trainer, show me what you've got, before we talk."), format("Steven: You have great potential."), GraniteCave_StevensRoom_EventScript_Steven, NO_MUSIC)
+	//goto(GraniteCave_StevensRoom_EventScript_Steven)
+}

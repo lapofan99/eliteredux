@@ -3070,7 +3070,7 @@ static const u8 sRAGINGFURYDescription[] = _(
     "that confuses the user.");
 
 static const u8 sPLASMAPULSEDescription[] = _(
-    "50% more damage to foes\n"
+    "Double damage to foes\n"
     "with status problems.");
 
 static const u8 sNotDoneYetDescription[] = _(
@@ -4237,7 +4237,7 @@ static const u8 sMoveFourLineDescription_LeafBlade[] = _("The foe is slashed\nwi
 static const u8 sMoveFourLineDescription_DragonDance[] = _("A mystic, powerful\ndance that boosts\nthe user's Attack\nand Speed stats.");
 static const u8 sMoveFourLineDescription_RockBlast[] = _("The user hurls two\nto five hard rocks\nat the foe to\nattack.");
 static const u8 sMoveFourLineDescription_ShockWave[] = _("A rapid jolt of\nelectricity strikes.\nNever misses.\nHas +2 priority."); // new
-static const u8 sMoveFourLineDescription_WaterPulse[] = _("An attack with a\npulsing blast of\nwater. Has 20%\nconfusion chance."); // new
+static const u8 sMoveFourLineDescription_WaterPulse[] = _("A pulsing blast of\nwater. Has 20%\nconfusion chance.\nMega Launcher boost"); // new
 static const u8 sMoveFourLineDescription_DoomDesire[] = _("A move that attacks\nthe foe with a\nblast of light two\nturns after use.");
 static const u8 sMoveFourLineDescription_PsychoBoost[] = _("An intense attack\nthat also sharply\nreduces the user's\nSp. Atk stat.");
 static const u8 sMoveFourLineDescription_Roost[] = _("The user lands and\nrests its body. It\nrestores up to half\nof its max HP.");
@@ -4666,7 +4666,7 @@ static const u8 sMoveFourLineDescription_JaggedFangs[]   = _("A ferocious bite.\
 static const u8 sMoveFourLineDescription_ScorchedEarth[] = _("Fire- and Ground-\ntype at the same\ntime. Has 10%\nburn chance."); // new
 static const u8 sMoveFourLineDescription_SeismicFist[] = _("Throws a ground-\nbreaking fist.\n20% chance to drop\nthe foe's Def."); // new
 static const u8 sMoveFourLineDescription_RagingFury[] = _("The user thrashes\nabout for two to\nthree turns, then\nbecomes confused."); // new
-static const u8 sMoveFourLineDescription_PlasmaPulse[] = _("50% more damage\nagainst status.\n10% paralyze chance.\nMega Launcher boost"); // new
+static const u8 sMoveFourLineDescription_PlasmaPulse[] = _("Double damage\nagainst status.\n10% paralyze chance.\nMega Launcher boost"); // new
 
 const u8 *const gMoveFourLineDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = sMoveFourLineDescription_Pound,

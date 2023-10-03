@@ -12068,4 +12068,20 @@ const struct Trainer gTrainers[] = {
         .partySizeInsane = ARRAY_COUNT(sParty_StevenGraniteCaveInsane),
         .partyInsane = {.ItemCustomMoves = sParty_StevenGraniteCaveInsane},
     },
+
+    [TRAINER_MEGA_MEGANIUM_VERDANTURF_MEADOW] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
+        .trainerPic = TRAINER_PIC_AROMA_LADY,
+        .trainerName = _("Aroma Lady"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_MegaMeganiumVerdanturfMeadow),
+        .party = {.ItemCustomMoves = sParty_MegaMeganiumVerdanturfMeadow},
+        //.partySizeInsane = ARRAY_COUNT(sParty_MegaMeganiumVerdanturfMeadowInsane),
+        //.partyInsane = {.ItemCustomMoves = sParty_MegaMeganiumVerdanturfMeadowInsane},
+    },
 };

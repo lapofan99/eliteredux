@@ -1330,6 +1330,7 @@ const u16 gEggMoves[] = {
         MOVE_SNORE,
         MOVE_SMELLING_SALTS,
         MOVE_CLOSE_COMBAT,
+        MOVE_HIGH_HORSEPOWER, // new
         MOVE_IRON_FANGS, // new
         MOVE_JAGGED_FANGS, // new
         MOVE_LOVELY_BITE, // new
