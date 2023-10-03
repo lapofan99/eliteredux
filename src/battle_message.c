@@ -812,8 +812,23 @@ static const u8 sText_AttackerEvasivenessSharplyRose[] = _("{B_ATK_NAME_WITH_PRE
 static const u8 sText_DesertCloakVeilProtected[] = _("{B_DEF_NAME_WITH_PREFIX} is protected\nwith a veil of sand!");
 static const u8 sText_AttackerStatsRose[] = _("{B_ATK_NAME_WITH_PREFIX}'s stats rose!");
 
+static const u8 sText_AngelsWrath_TackleEffect[]      = _("{B_DEF_NAME_WITH_PREFIX} became encored\nand got it's move disabled!");
+static const u8 sText_AngelsWrath_StringShotEffect[]  = _("{B_DEF_NAME_WITH_PREFIX}'s side became\ncovered in a lot of hazards!");
+static const u8 sText_AngelsWrath_HardenEffect[]      = _("{B_ATK_NAME_WITH_PREFIX}'s stats rose!");
+static const u8 sText_AngelsWrath_IronDefenseEffect[] = _("{B_ATK_NAME_WITH_PREFIX} protected itself!");
+static const u8 sText_AngelsWrath_ElectrowebEffect[]  = _("{B_DEF_NAME_WITH_PREFIX} got trapped\nand became really slow!");
+static const u8 sText_AngelsWrath_BugBiteEffect[]     = _("{B_DEF_NAME_WITH_PREFIX}'s got it's item eaten!");
+static const u8 sText_AngelsWrath_ProtectEffect[]     = _("All of {B_DEF_NAME_WITH_PREFIX}'s\nstats were lowered!");
+
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_ANGELS_WRATH_PROTECT_EFFECT - 12] = sText_AngelsWrath_ProtectEffect,
+    [STRINGID_ANGELS_WRATH_TACKLE_EFFECT - 12] = sText_AngelsWrath_TackleEffect,
+    [STRINGID_ANGELS_WRATH_STRING_SHOT_EFFECT - 12] = sText_AngelsWrath_StringShotEffect,
+    [STRINGID_ANGELS_WRATH_HARDEN_EFFECT - 12] = sText_AngelsWrath_HardenEffect,
+    [STRINGID_ANGELS_WRATH_IRON_DEFENSE_EFFECT - 12] = sText_AngelsWrath_IronDefenseEffect,
+    [STRINGID_ANGELS_WRATH_ELECTROWEB_EFFECT - 12] = sText_AngelsWrath_ElectrowebEffect,
+    [STRINGID_ANGELS_WRATH_BUG_BITE_EFFECT - 12] = sText_AngelsWrath_BugBiteEffect,
     [STRINGID_ATTACKER_STATS_ROSE - 12] = sText_AttackerStatsRose,
     [STRINGID_DESERTCLOAKPROTECTED - 12] = sText_DesertCloakVeilProtected,
     [STRINGID_ATTACKER_EVASIVENESS_SHARPLYROSE - 12] = sText_AttackerEvasivenessSharplyRose,

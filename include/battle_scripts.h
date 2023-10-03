@@ -511,6 +511,14 @@ extern const u8 BattleScript_ScareActivatesEnd3Popout[];
 extern const u8 BattleScript_ScareActivatesEnd3PopoutFearmonger[];
 extern const u8 BattleScript_IntimidateActivatesEnd3Popout[];
 extern const u8 BattleScript_IntimidateActivatesEnd3PopoutFearmonger[];
+extern const u8 BattleScript_AngelsWrath_Effect_Tackle[];
+extern const u8 BattleScript_AngelsWrath_Effect_String_Shot[];
+extern const u8 BattleScript_AngelsWrath_Effect_Harden[];
+extern const u8 BattleScript_AngelsWrath_Effect_Iron_Defense[];
+extern const u8 BattleScript_AngelsWrath_Effect_Electroweb[];
+extern const u8 BattleScript_AngelsWrath_Effect_Bug_Bite[];
+extern const u8 BattleScript_AngelsWrath_Effect_Bug_Bite_2[];
+extern const u8 BattleScript_AngelsWrathProtectEffect[];
 
 extern const u8 BattleScript_FrostbiteTurnDmg[];
 extern const u8 BattleScript_MoveUsedUnfrostbite[];

@@ -9434,6 +9434,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                         gDisableStructs[gBattlerTarget].disableTimer = gDisableStructs[gBattlerTarget].disableTimerStartValue = 2;
                         gDisableStructs[gBattlerTarget].disabledMove = gBattleMons[gBattlerTarget].moves[0];
+                        
+				        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_Tackle);
                         effect++;
                     }
                 break;
@@ -9445,6 +9449,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_TOXIC_SPIKES);
                         gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_SPIKES);
                         gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STICKY_WEB);
+
+				        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_String_Shot);
+                        effect++;
                     }
                 break;
                 case MOVE_HARDEN:
@@ -9454,6 +9463,53 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                         for(i = 1; i < NUM_STATS; i++){
                             if(gBattleMons[battler].statStages[i] <= MAX_STAT_STAGE && i != STAT_DEF)
                                 gBattleMons[battler].statStages[i] += 1;
+                        }
+				        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_Harden);
+                        effect++;
+                    }
+                break;
+                case MOVE_IRON_DEFENSE:
+                    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                    && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
+                    {
+                        gProtectStructs[gBattlerAttacker].angelsWrathProtected = TRUE;
+				        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_Iron_Defense);
+                        effect++;
+                    }
+                break;
+                case MOVE_ELECTROWEB:
+                    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                    && gBattleMons[gBattlerTarget].hp != 0
+                    && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                    && TARGET_TURN_DAMAGED)
+                    {
+                        gBattleMons[gBattlerTarget].statStages[STAT_SPEED] = 0;
+                        gBattleMons[gBattlerTarget].status2 |= (STATUS2_ESCAPE_PREVENTION);
+				        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_Electroweb);
+                        effect++;
+                    }
+                break;
+                case MOVE_BUG_BITE:
+                    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+                    && gBattleMons[gBattlerTarget].hp != 0
+                    && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                    && TARGET_TURN_DAMAGED)
+                    {
+                        if(CanBattlerGetOrLoseItem(gBattlerTarget, gBattleMons[gBattlerTarget].item)){
+                            gBattleMons[gBattlerTarget].item = ITEM_NONE;
+                            BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_Bug_Bite);
+                            effect++;
+                        }
+
+                        if(!BATTLER_MAX_HP(gBattlerAttacker)){
+                            BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_Bug_Bite_2);
+                            effect++;
                         }
                     }
                 break;
@@ -12118,6 +12174,8 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
         return TRUE;
     else if (gProtectStructs[battlerId].kingsShielded && gBattleMoves[move].power != 0)
         return TRUE;
+    else if (gProtectStructs[battlerId].angelsWrathProtected && gBattleMoves[move].power != 0)
+        return TRUE;
     else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD
              && GetChosenMovePriority(gBattlerAttacker) > 0)
         return TRUE;
@@ -12616,6 +12674,9 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             basePower = 120;
             break;
         case MOVE_ELECTROWEB:
+            basePower = 155;
+            break;
+        case MOVE_BUG_BITE:
             basePower = 140;
             break;
         }
@@ -15164,8 +15225,11 @@ static void MulByTypeEffectiveness(u16 *modifier, u16 move, u8 moveType, u8 batt
     {
 		//Has Innate Effect here too
         mod = UQ_4_12(2.0); // super-effective
-        if (recordAbilities)
-            RecordAbilityBattle(battlerAtk, ABILITY_CORROSION);
+    }
+	else if (move == MOVE_ELECTROWEB && defType == TYPE_GROUND && BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ANGELS_WRATH))
+    {
+		//Has Innate Effect here too
+        mod = UQ_4_12(2.0); // super-effective
     }
 	else if (moveType == TYPE_DRAGON && defType == TYPE_FAIRY && (GetBattlerAbility(battlerAtk) == ABILITY_OVERWHELM || BattlerHasInnate(battlerAtk, ABILITY_OVERWHELM)) && mod == UQ_4_12(0.0))
     {

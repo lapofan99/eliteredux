@@ -1942,6 +1942,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
             case MOVE_TACKLE:
             case MOVE_POISON_STING:
             case MOVE_ELECTROWEB:
+            case MOVE_BUG_BITE:
                 moveAcc = 100;
             break;
         }
@@ -3672,6 +3673,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
                     gSideStatuses[GetBattlerSide(gBattlerTarget)] &= ~(SIDE_STATUS_MAT_BLOCK);
                     gProtectStructs[gBattlerTarget].spikyShielded = FALSE;
                     gProtectStructs[gBattlerTarget].kingsShielded = FALSE;
+                    gProtectStructs[gBattlerTarget].angelsWrathProtected = FALSE;
                     gProtectStructs[gBattlerTarget].banefulBunkered = FALSE;
                     gProtectStructs[gBattlerTarget].obstructed = FALSE;
                     if (gCurrentMove == MOVE_FEINT)
@@ -5277,7 +5279,7 @@ static bool32 TryKnockOffBattleScript(u32 battlerDef)
 
 static void Cmd_moveend(void)
 {
-    s32 i;
+    s32 i, j;
     bool32 effect = FALSE;
     u32 moveType = 0;
     u32 holdEffectAtk = 0;
@@ -5332,6 +5334,23 @@ static void Cmd_moveend(void)
                     gBattleScripting.moveEffect = (B_KINGS_SHIELD_LOWER_ATK >= GEN_8) ? MOVE_EFFECT_ATK_MINUS_1 : MOVE_EFFECT_ATK_MINUS_2;
                     BattleScriptPushCursor();
                     gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
+                    effect = 1;
+                }
+                else if (gProtectStructs[gBattlerTarget].angelsWrathProtected)
+                {
+                    gProtectStructs[gBattlerAttacker].touchedProtectLike = FALSE;
+                    i = gBattlerAttacker;
+                    gBattlerAttacker = gBattlerTarget;
+                    gBattlerTarget = i; // gBattlerTarget and gBattlerAttacker are swapped in order to activate Defiant, if applicable
+
+                    for(j = 1; j < NUM_STATS; j++){
+                        if(gBattleMons[gBattlerTarget].statStages[j] > 0)
+                            gBattleMons[gBattlerTarget].statStages[j]--;
+                    }
+
+			        SET_STATCHANGER(STAT_ATK, 1, TRUE); //Just for the animation
+                    BattleScriptPushCursor();
+                    gBattlescriptCurrInstr = BattleScript_AngelsWrathProtectEffect;
                     effect = 1;
                 }
                 else if (gProtectStructs[gBattlerTarget].banefulBunkered)
@@ -10371,10 +10390,12 @@ static void Cmd_manipulatedamage(void)
 			gBattleMoveDamage = gBattleMoveDamage * 0.5;
         break;
     case DMG_TO_HP_FROM_ABILITY:
-        if(gBattleMons[gBattlerAttacker].ability == ABILITY_NOSFERATU || BattlerHasInnate(gBattlerAttacker, ABILITY_NOSFERATU))
+        if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_NOSFERATU))
             gBattleMoveDamage = (gHpDealt / 2);
-        else if(gBattleMons[gBattlerAttacker].ability == ABILITY_HYDRO_CIRCUIT || BattlerHasInnate(gBattlerAttacker, ABILITY_HYDRO_CIRCUIT))
+        else if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_HYDRO_CIRCUIT))
             gBattleMoveDamage = (gHpDealt / 4);
+        else if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_ANGELS_WRATH))
+            gBattleMoveDamage = gHpDealt;
         else
             gBattleMoveDamage = (gHpDealt / 2);
 

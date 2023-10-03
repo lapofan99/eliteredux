@@ -681,8 +681,15 @@
 #define STRINGID_ATTACKER_EVASIVENESS_SHARPLYROSE     710
 #define STRINGID_DESERTCLOAKPROTECTED                 711
 #define STRINGID_ATTACKER_STATS_ROSE                  712
+#define STRINGID_ANGELS_WRATH_TACKLE_EFFECT           713
+#define STRINGID_ANGELS_WRATH_STRING_SHOT_EFFECT      714
+#define STRINGID_ANGELS_WRATH_HARDEN_EFFECT           715
+#define STRINGID_ANGELS_WRATH_IRON_DEFENSE_EFFECT     716
+#define STRINGID_ANGELS_WRATH_ELECTROWEB_EFFECT       717
+#define STRINGID_ANGELS_WRATH_BUG_BITE_EFFECT         718
+#define STRINGID_ANGELS_WRATH_PROTECT_EFFECT          719
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_ATTACKER_STATS_ROSE + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_ANGELS_WRATH_PROTECT_EFFECT + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.

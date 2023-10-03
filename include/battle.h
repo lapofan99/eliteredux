@@ -167,6 +167,7 @@ struct ProtectStruct
     u8 specialBattlerId;
     u32 beakBlastCharge:1;
     u32 extraMoveUsed:1;
+    u32 angelsWrathProtected:1;
 };
 
 struct SpecialStatus
@@ -667,6 +668,7 @@ struct BattleStruct
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_MAT_BLOCK            \
+                                        || gProtectStructs[battlerId].angelsWrathProtected                             \
                                         || gProtectStructs[battlerId].spikyShielded                                    \
                                         || gProtectStructs[battlerId].kingsShielded                                    \
                                         || gProtectStructs[battlerId].banefulBunkered                                  \

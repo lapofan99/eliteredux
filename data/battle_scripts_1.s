@@ -9637,6 +9637,14 @@ BattleScript_KingsShieldEffect::
 	copybyte gBattlerAttacker, sBATTLER
 	return
 
+BattleScript_AngelsWrathProtectEffect::
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	waitanimation
+	printstring STRINGID_ANGELS_WRATH_PROTECT_EFFECT
+	waitmessage B_WAIT_TIME_SHORT
+	return
+
 BattleScript_BanefulBunkerEffect::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_SAFEGUARD | HITMARKER_PASSIVE_DAMAGE
 	bichalfword gMoveResultFlags, MOVE_RESULT_NO_EFFECT
@@ -10495,6 +10503,66 @@ BattleScript_AbsorbantActivated::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNSEEDED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
+BattleScript_AngelsWrath_Effect_Tackle::
+	sethword sABILITY_OVERWRITE, ABILITY_ANGELS_WRATH
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ANGELS_WRATH_TACKLE_EFFECT
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
+BattleScript_AngelsWrath_Effect_String_Shot::
+	sethword sABILITY_OVERWRITE, ABILITY_ANGELS_WRATH
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ANGELS_WRATH_STRING_SHOT_EFFECT
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
+BattleScript_AngelsWrath_Effect_Harden::
+	sethword sABILITY_OVERWRITE, ABILITY_ANGELS_WRATH
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ANGELS_WRATH_HARDEN_EFFECT
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
+BattleScript_AngelsWrath_Effect_Iron_Defense::
+	sethword sABILITY_OVERWRITE, ABILITY_ANGELS_WRATH
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ANGELS_WRATH_IRON_DEFENSE_EFFECT
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
+BattleScript_AngelsWrath_Effect_Electroweb::
+	sethword sABILITY_OVERWRITE, ABILITY_ANGELS_WRATH
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ANGELS_WRATH_ELECTROWEB_EFFECT
+	waitmessage B_WAIT_TIME_LONG
+	end3
+	
+BattleScript_AngelsWrath_Effect_Bug_Bite::
+	sethword sABILITY_OVERWRITE, ABILITY_ANGELS_WRATH
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ANGELS_WRATH_BUG_BITE_EFFECT
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+BattleScript_AngelsWrath_Effect_Bug_Bite_2::
+	sethword sABILITY_OVERWRITE, ABILITY_ANGELS_WRATH
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	manipulatedamage DMG_TO_HP_FROM_ABILITY
+	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
+	healthbarupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER
+	printstring STRINGID_ATTACKERREGAINEDHEALTH
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
