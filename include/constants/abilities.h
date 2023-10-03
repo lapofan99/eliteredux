@@ -466,7 +466,7 @@
 #define ABILITY_ATLAS            (ABILITIES_COUNT_LATEST_GEN + 168) // Sets Gravity on entry for 8 turns. User moves last.
 #define ABILITY_RADIANCE         (ABILITIES_COUNT_LATEST_GEN + 169) // +20% accuracy; Dark moves fail when user is present.
 #define ABILITY_JAWS_OF_CARNAGE  (ABILITIES_COUNT_LATEST_GEN + 170) // Heals 50% HP when defeating an enemy.
-#define ABILITY_ANGELS_WRATH     (ABILITIES_COUNT_LATEST_GEN + 171) // Radically changes the user moves
+#define ABILITY_ANGELS_WRATH     (ABILITIES_COUNT_LATEST_GEN + 171) // Radically changes the user's moves.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_ANGELS_WRATH + 1)
 

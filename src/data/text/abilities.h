@@ -429,8 +429,8 @@ static const u8 sElementalChargeDescription[] = _("20% chance to BRN/FRZ/PARA\nw
 static const u8 sAmbushDescription[] = _("Guaranteed critical hit\non first turn.");
 static const u8 sAtlasDescription[] = _("Sets Gravity on entry for\n8 turns. User moves last.");
 static const u8 sRadianceDescription[] = _("+20% accuracy; Dark moves\nfail when user is present.");
-static const u8 sJawsOfCarnageDescription[] = _("The Pokémon does stuff\nand then things happen.");
-static const u8 sAngelsWrathDescription[] = _("The Pokémon does stuff\nand then things happen.");
+static const u8 sJawsOfCarnageDescription[] = _("Devours half of the foe\nwhen defeating it.");
+static const u8 sAngelsWrathDescription[] = _("Drastically alters all\nof the users moves.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
