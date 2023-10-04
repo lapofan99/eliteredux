@@ -15572,6 +15572,11 @@ static const union AnimCmd *const sAnims_MEGANIUM_MEGA[] ={
     sAnim_GENERIC,
 };
 
+static const union AnimCmd *const sAnims_SLOWKING_MEGA[] ={
+    sAnim_GeneralFrame0,
+    sAnim_GENERIC,
+};
+
 static const union AnimCmd *const sAnims_KROOKODILE_MEGA[] ={
     sAnim_GeneralFrame0,
     sAnim_GENERIC,
@@ -16986,6 +16991,7 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(SANDSLASH_MEGA),
     ANIM_CMD(TYPHLOSION_MEGA),
     ANIM_CMD(MEGANIUM_MEGA),
+    ANIM_CMD(SLOWKING_MEGA),
     ANIM_CMD(KROOKODILE_MEGA),
     ANIM_CMD(MAGNEZONE_MEGA),
     ANIM_CMD(SHEDINJA_MEGA),

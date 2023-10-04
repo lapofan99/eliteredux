@@ -10216,6 +10216,12 @@ extern const u32 gMonPalette_MeganiumMega[];
 extern const u32 gMonShinyPalette_MeganiumMega[];
 extern const u8  gMonIcon_MeganiumMega[];
 
+extern const u32 gMonFrontPic_SlowkingMega[];
+extern const u32 gMonBackPic_SlowkingMega[];
+extern const u32 gMonPalette_SlowkingMega[];
+extern const u32 gMonShinyPalette_SlowkingMega[];
+extern const u8  gMonIcon_SlowkingMega[];
+
 extern const u32 gMonFrontPic_KrookodileMega[];
 extern const u32 gMonBackPic_KrookodileMega[];
 extern const u32 gMonPalette_KrookodileMega[];

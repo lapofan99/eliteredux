@@ -95,6 +95,30 @@ Seaspray_Cave_B1F_EventScript_Dewgong_Join_5:
 	goto Seaspray_Cave_B1F_EventScript_Dewgong_Join_4
 
 
+Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate::
+	lock
+	faceplayer
+	checktrainerflag TRAINER_KAYLEE
+	goto_if 0, Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_2
+	msgbox Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_4, MSGBOX_NPC
+Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_1:
+	release
+	end
+
+Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_2:
+	msgbox Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_5
+	msgbox Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_3, MSGBOX_NPC
+	goto Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_1
+
+Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_5:
+	trainerbattle_no_intro TRAINER_KAYLEE, Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_1
+	msgbox Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_2, MSGBOX_NPC
+	giveitem ITEM_DEWGONGITE, 1
+	goto Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_1
+
+
 Seaspray_Cave_B1F_EventScript_Dewgong_Text_0:
 	.string "The Dewgong considers you a worthy\n"
 	.string "opponent. It seems it wishes to test\l"
@@ -123,3 +147,21 @@ Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_1:
 
 Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_2:
 	.string "{PLAYER} received a Dewgongite!$"
+
+Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_0:
+	.string "Do you want to battle?, I have a pretty\n"
+	.string "good prize for you if you win.$"
+
+Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_1:
+	.string "I got defeated...$"
+
+Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_2:
+	.string "That was a great battle, here is your\n"
+	.string "prize, you earned it!$"
+
+Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_3:
+	.string "Oh well...$"
+
+Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate_Text_4:
+	.string "It was a good battle but I already gave\n"
+	.string "you your prize.$"

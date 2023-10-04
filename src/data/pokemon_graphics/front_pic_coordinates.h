@@ -4912,6 +4912,11 @@ const struct MonCoords gMonFrontPicCoords[] =
         .size = 0x87,
         .y_offset = 0,
     },
+    [SPECIES_SLOWKING_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
     [SPECIES_KROOKODILE_MEGA] =
     {
         .size = 0x87,

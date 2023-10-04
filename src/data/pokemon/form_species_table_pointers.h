@@ -571,6 +571,8 @@ const u16 *const gFormSpeciesIdTables[NUM_SPECIES] =
     [SPECIES_MEGANIUM] = sMeganiumFormSpeciesIdTable,
     [SPECIES_MEGANIUM_MEGA] = sMeganiumFormSpeciesIdTable,
 
+    [SPECIES_SLOWKING_MEGA] = sSlowkingFormSpeciesIdTable,
+
     [SPECIES_KROOKODILE]         = sKrookodileFormSpeciesIdTable,
     [SPECIES_KROOKODILE_MEGA]    = sKrookodileFormSpeciesIdTable,
     [SPECIES_MAGNEZONE]          = sMagnezoneFormSpeciesIdTable,

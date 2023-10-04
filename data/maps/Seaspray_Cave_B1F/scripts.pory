@@ -10,39 +10,39 @@ script Seaspray_Cave_B1F_EventScript_Dewgong{
 	if(var(VAR_RESULT) == 1){
         playmoncry(SPECIES_DEWGONG, 2)
         msgbox(format("Dewgong: Gong!"), MSGBOX_DEFAULT)
-	delay(40)
-	waitmoncry
-	setflag(FLAG_TOTEM_BATTLE)
-	setvar(VAR_TOTEM_POKEMON_ATK_BOOST,      2)
-	setvar(VAR_TOTEM_POKEMON_DEF_BOOST,      2)
-	setvar(VAR_TOTEM_POKEMON_SP_ATK_BOOST,   2)
-	setvar(VAR_TOTEM_POKEMON_SP_DEF_BOOST,   2)
-	setvar(VAR_TOTEM_POKEMON_SPEED_BOOST,    2)
-	setvar(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2)
-	setvar(VAR_TOTEM_POKEMON_EVASION_BOOST,  0)
-	setvar(VAR_TOTEM_MESSAGE, TOTEM_FIGHT_DEWGONG)
-	//setflag(FLAG_SHINY_CREATION)
-	setwildbattlewithcustommoves(SPECIES_DEWGONG, 0, ITEM_DEWGONGITE, MOVE_HORN_DRILL, MOVE_FREEZE_DRY, MOVE_AQUA_JET, MOVE_SLACK_OFF, 2, NATURE_BRAVE, 252, 252, 252, 252, 252, 252)
-	setflag(FLAG_SYS_CTRL_OBJ_DELETE)
-	dowildbattle
-	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
-	specialvar(VAR_RESULT, GetBattleOutcome)
-    switch(var(VAR_RESULT)){
-        case B_OUTCOME_CAUGHT:
-        case B_OUTCOME_WON:
-			goto(Seaspray_Cave_B1F_EventScript_Dewgong_Join)
-        break
-        case B_OUTCOME_RAN:
-        case B_OUTCOME_PLAYER_TELEPORTED:
-            setvar(VAR_0x8004, SPECIES_DEWGONG)
-            fadescreenswapbuffers(FADE_TO_BLACK)
-            removeobject(VAR_LAST_TALKED)
-            fadescreenswapbuffers(FADE_FROM_BLACK)
-            bufferspeciesname(0, VAR_0x8004)
-            msgbox(format("The {STR_VAR_1} ran away!"), MSGBOX_DEFAULT)
-        break
-    }
-}
+		delay(40)
+		waitmoncry
+		setflag(FLAG_TOTEM_BATTLE)
+		setvar(VAR_TOTEM_POKEMON_ATK_BOOST,      2)
+		setvar(VAR_TOTEM_POKEMON_DEF_BOOST,      2)
+		setvar(VAR_TOTEM_POKEMON_SP_ATK_BOOST,   2)
+		setvar(VAR_TOTEM_POKEMON_SP_DEF_BOOST,   2)
+		setvar(VAR_TOTEM_POKEMON_SPEED_BOOST,    2)
+		setvar(VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2)
+		setvar(VAR_TOTEM_POKEMON_EVASION_BOOST,  0)
+		setvar(VAR_TOTEM_MESSAGE, TOTEM_FIGHT_DEWGONG)
+		//setflag(FLAG_SHINY_CREATION)
+		setwildbattlewithcustommoves(SPECIES_DEWGONG, 0, ITEM_DEWGONGITE, MOVE_HORN_DRILL, MOVE_FREEZE_DRY, MOVE_AQUA_JET, MOVE_SLACK_OFF, 2, NATURE_BRAVE, 252, 252, 252, 252, 252, 252)
+		setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+		dowildbattle
+		clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+		specialvar(VAR_RESULT, GetBattleOutcome)
+		switch(var(VAR_RESULT)){
+			case B_OUTCOME_CAUGHT:
+			case B_OUTCOME_WON:
+				goto(Seaspray_Cave_B1F_EventScript_Dewgong_Join)
+			break
+			case B_OUTCOME_RAN:
+			case B_OUTCOME_PLAYER_TELEPORTED:
+				setvar(VAR_0x8004, SPECIES_DEWGONG)
+				fadescreenswapbuffers(FADE_TO_BLACK)
+				removeobject(VAR_LAST_TALKED)
+				fadescreenswapbuffers(FADE_FROM_BLACK)
+				bufferspeciesname(0, VAR_0x8004)
+				msgbox(format("The {STR_VAR_1} ran away!"), MSGBOX_DEFAULT)
+			break
+		}
+	}
     else{
         playmoncry(SPECIES_DEWGONG, 2)
         msgbox(format("Dewgong: Gong..."), MSGBOX_DEFAULT)
@@ -80,4 +80,26 @@ script Seaspray_Cave_B1F_EventScript_Dewgong_Join{
 	}
 	release
 	end
+}
+
+script Seaspray_Cave_B1F_EventScript_TrainerMegaStoneTemplate{
+	lock
+	faceplayer
+	//cleartrainerflag(TRAINER_KAYLEE) // Only For testing, comment this line when you are done testing
+	if(!defeated(TRAINER_KAYLEE)){
+		msgbox(format("Do you want to battle?, I have a pretty good prize for you if you win."), MSGBOX_YESNO)
+		if(var(VAR_RESULT) == 1){
+			trainerbattle_no_intro(TRAINER_KAYLEE, format("I got defeated..."))
+			msgbox(format("That was a great battle, here is your prize, you earned it!"), MSGBOX_NPC)
+			giveitem(ITEM_DEWGONGITE, 1)
+		}
+		else{
+			msgbox(format("Oh well..."), MSGBOX_NPC)
+		}
+	}
+	else{
+		msgbox(format("It was a good battle but I already gave you your prize."), MSGBOX_NPC)
+	}
+	release
+	end	
 }

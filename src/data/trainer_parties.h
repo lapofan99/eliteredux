@@ -40791,28 +40791,8 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Train
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
 	.nature = NATURE_ADAMANT,
-	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
+	.moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
     },
-    {
-    .lvl = 0,
-    .species = SPECIES_BULBASAUR,
-    .heldItem = ITEM_POKE_BALL,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_CYNDAQUIL,
-    .heldItem = ITEM_POKE_BALL,
-    .ability = 0, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
-    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCave[] = {

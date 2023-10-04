@@ -280,6 +280,7 @@ static const u16 sAmpharosFormSpeciesIdTable[] = {
 static const u16 sSlowkingFormSpeciesIdTable[] = {
     SPECIES_SLOWKING,
     SPECIES_SLOWKING_GALARIAN,
+    SPECIES_SLOWKING_MEGA,
     FORM_SPECIES_END,
 };
 

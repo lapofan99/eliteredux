@@ -6731,6 +6731,12 @@ const u32 gMonPalette_MeganiumMega[]            = INCBIN_U32("graphics/pokemon/m
 const u32 gMonShinyPalette_MeganiumMega[]       = INCBIN_U32("graphics/pokemon/mega_meganium/shiny.gbapal.lz");
 const u8  gMonIcon_MeganiumMega[]               = INCBIN_U8("graphics/pokemon/mega_meganium/icon.4bpp");
 
+const u32 gMonFrontPic_SlowkingMega[]           = INCBIN_U32("graphics/pokemon/mega_slowking/front.4bpp.lz");
+const u32 gMonBackPic_SlowkingMega[]            = INCBIN_U32("graphics/pokemon/mega_slowking/back.4bpp.lz");
+const u32 gMonPalette_SlowkingMega[]            = INCBIN_U32("graphics/pokemon/mega_slowking/normal.gbapal.lz");
+const u32 gMonShinyPalette_SlowkingMega[]       = INCBIN_U32("graphics/pokemon/mega_slowking/shiny.gbapal.lz");
+const u8  gMonIcon_SlowkingMega[]               = INCBIN_U8("graphics/pokemon/mega_slowking/icon.4bpp");
+
 const u32 gMonFrontPic_KrookodileMega[]         = INCBIN_U32("graphics/pokemon/mega_krookodile/front.4bpp.lz");
 const u32 gMonBackPic_KrookodileMega[]          = INCBIN_U32("graphics/pokemon/mega_krookodile/back.4bpp.lz");
 const u32 gMonPalette_KrookodileMega[]          = INCBIN_U32("graphics/pokemon/mega_krookodile/normal.gbapal.lz");

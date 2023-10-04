@@ -6711,6 +6711,33 @@ const struct BaseStats gBaseStats[] =
     .noFlip = FALSE,
     },
 
+
+[SPECIES_SLOWKING_MEGA] =
+    {
+    .baseHP        = 95,
+    .baseAttack    = 75,
+    .baseDefense   = 80,
+    .baseSpeed     = 30,
+    .baseSpAttack  = 100,
+    .baseSpDefense = 110,
+    .type1 = TYPE_WATER,
+    .type2 = TYPE_PSYCHIC,
+    .catchRate = 255,
+    .expYield = 172,
+    .evYield_SpDefense = 3,
+    .item2 = ITEM_KINGS_ROCK,
+    .genderRatio = PERCENT_FEMALE(50),
+    .eggCycles = 20,
+    .friendship = 70,
+    .growthRate = GROWTH_MEDIUM_FAST,
+    .eggGroup1 = EGG_GROUP_MONSTER,
+    .eggGroup2 = EGG_GROUP_WATER_1,
+    .abilities = {ABILITY_REGENERATOR, ABILITY_UNAWARE, ABILITY_TWISTED_DIMENSION},
+    .innates = {ABILITY_OBLIVIOUS, ABILITY_OWN_TEMPO, ABILITY_BATTLE_ARMOR},
+    .bodyColor = BODY_COLOR_PINK,
+    .noFlip = FALSE,
+    },
+
 [SPECIES_MISDREAVUS] =
     {
     .baseHP        = 60,
