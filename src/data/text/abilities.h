@@ -877,6 +877,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_RADIANCE] = _("Radiance"),
     [ABILITY_JAWS_OF_CARNAGE] = _("Jaws of Carnage"),
     [ABILITY_ANGELS_WRATH] = _("Angel's Wrath"),
+    [ABILITY_PRISMATIC_FUR] = _("Prismatic Fur"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
