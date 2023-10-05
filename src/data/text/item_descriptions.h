@@ -3211,6 +3211,12 @@ static const u8 sLanturniteDesc[] = _(
     "Evolve in battle."
 );
 
+static const u8 sSlowkingiteDesc[] = _(
+    "This stone enables\n"
+    "Slowking to Mega\n"
+    "Evolve in battle."
+);
+
 static const u8 sFlygoniteDesc[] = _(
     "This stone enables\n"
     "Flygon to Mega\n"

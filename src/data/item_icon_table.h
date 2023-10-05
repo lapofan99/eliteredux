@@ -468,6 +468,7 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_SHEDINJANITE] = {gItemIcon_BlackApricorn, gItemIconPalette_BlackApricorn},
     [ITEM_SWALOTITE] = {gItemIcon_BlackApricorn, gItemIconPalette_BlackApricorn},
     [ITEM_LANTURNITE] = {gItemIcon_BlackApricorn, gItemIconPalette_BlackApricorn},
+    [ITEM_SLOWKINGITE] = {gItemIcon_BlackApricorn, gItemIconPalette_BlackApricorn},
 
     [ITEM_RARE_BONE] = {gItemIcon_RareBone, gItemIconPalette_RareBone},
     [ITEM_OCCA_BERRY] = {gItemIcon_OccaBerry, gItemIconPalette_OccaBerry},
@@ -555,7 +556,6 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_PLUME_FOSSIL] = {gItemIcon_PlumeFossil, gItemIconPalette_PlumeFossil},
     [ITEM_IRON_PILL]    = {gItemIcon_IronPill,    gItemIconPalette_IronPill},
     [ITEM_PURPLE_ORB]   = {gItemIcon_PurprleOrb,  gItemIconPalette_PurprleOrb},
-    [ITEM_KINGDRANITE_Y] = {gItemIcon_PrettyFeather, gItemIconPalette_PrettyFeather},
     [ITEM_SHINY_CHARM] = {gItemIcon_ShinyCharm, gItemIconPalette_ShinyCharm},
     [ITEM_OVAL_CHARM] = {gItemIcon_OvalCharm, gItemIconPalette_OvalCharm},
 	// Gen 6 Items

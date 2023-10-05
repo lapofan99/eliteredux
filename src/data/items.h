@@ -8001,6 +8001,18 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
+
+    [ITEM_SLOWKINGITE] =
+    {
+        .name = _("Slowkingite"),
+        .itemId = ITEM_SLOWKINGITE,
+        .price = 0,
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sSlowkingiteDesc,
+        .pocket = POCKET_MEGA_STONES,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+    },
     
     [ITEM_PURPLE_ORB] =
     {
@@ -8194,17 +8206,6 @@ const struct Item gItems[] =
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_IronPill,
-    },
-
-    [ITEM_KINGDRANITE_Y] =
-    {
-        .name = _("Pretty Feather"),
-        .itemId = ITEM_KINGDRANITE_Y,
-        .price = 1000,
-        .description = sPrettyFeatherDesc,
-        .pocket = POCKET_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
     [ITEM_SHINY_CHARM] =

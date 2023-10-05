@@ -667,8 +667,6 @@ u16 getHallofFameSpecies(u8 num){
         case SPECIES_KINGDRA:
             if(item == ITEM_KINGDRANITE)
                 return SPECIES_KINGDRA_MEGA;
-            else if (item == ITEM_KINGDRANITE_Y)
-                return SPECIES_KINGDRA_MEGA_Y;
         break;
         case SPECIES_DEWGONG:
             if(item == ITEM_DEWGONGITE)
