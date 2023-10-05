@@ -857,6 +857,7 @@ const u16 gEggMoves[] = {
         MOVE_TAKE_DOWN),
 
     egg_moves(AERODACTYL,
+        MOVE_JAGGED_FANGS, // new
         MOVE_DUAL_WINGBEAT, // new
         MOVE_WHIRLWIND,
         MOVE_PURSUIT,

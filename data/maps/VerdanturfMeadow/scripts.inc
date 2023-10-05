@@ -1,7 +1,7 @@
 VerdanturfMeadow_MapScripts::
 	.byte 0
 
-VerdanturfMeadow_EventScript_GiftAudino::
+VerdanturfMeadow_EventScript_GiftMeganiumite::
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_AUDINO, VerdanturfMeadow_EventScript_TakeCareOfAudino
@@ -72,16 +72,72 @@ VerdanturfMeadow_Text_PlayerReceivedAudino:
 VerdanturfMeadow_Text_TakeCareOfAudino:
 	.string "Take good care of Audino!$"
 
-VerdanturfMeadow_EventScript_Mega_Meganium_Battle::
+VerdanturfMeadow_EventScript_Meganiumite_Battle::
 	lock
 	faceplayer
-	trainerbattle_single TRAINER_MEGA_MEGANIUM_VERDANTURF_MEADOW, VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_0, VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_1, GraniteCave_StevensRoom_EventScript_Steven, NO_MUSIC
-	return
+	goto_if_set FLAG_BADGE05_GET, VerdanturfMeadow_EventScript_Meganiumite_Battle_2
+	msgbox VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_6, MSGBOX_NPC
+VerdanturfMeadow_EventScript_Meganiumite_Battle_1:
+	release
+	end
+
+VerdanturfMeadow_EventScript_Meganiumite_Battle_2:
+	checktrainerflag TRAINER_MEGANIUMITE_VERDANTURF_MEADOW
+	goto_if 0, VerdanturfMeadow_EventScript_Meganiumite_Battle_5
+	msgbox VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_5, MSGBOX_NPC
+	goto VerdanturfMeadow_EventScript_Meganiumite_Battle_1
+
+VerdanturfMeadow_EventScript_Meganiumite_Battle_5:
+	msgbox VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq VerdanturfMeadow_EventScript_Meganiumite_Battle_8
+	msgbox VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_4, MSGBOX_NPC
+	goto VerdanturfMeadow_EventScript_Meganiumite_Battle_1
+
+VerdanturfMeadow_EventScript_Meganiumite_Battle_8:
+	msgbox VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_1, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_MEGANIUMITE_VERDANTURF_MEADOW, VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_2
+	msgbox VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_3, MSGBOX_NPC
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_MEGANIUMITE, 1
+	waitmessage
+	goto VerdanturfMeadow_EventScript_Meganiumite_Battle_1
 
 
-VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_0:
-	.string "Steven: Young trainer, show me what\n"
-	.string "you've got, before we talk.$"
+VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_0:
+	.string "Ah, I see you've triumphed over Norman,\n"
+	.string "quite the impressive feat at your age.\l"
+	.string "How about we put your skills to the\l"
+	.string "test in a friendly match? If you win,\l"
+	.string "I'll reward you with this Meganiumite!$"
 
-VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_1:
-	.string "Steven: You have great potential.$"
+VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_1:
+	.string "Splendid, let's start!$"
+
+VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_2:
+	.string "Your strength is truly awe-inspiring...$"
+
+VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_3:
+	.string "You truly are strong. I hope to see your\n"
+	.string "growth even further into the future.\l"
+	.string "But for now, take this gift from me, and\l"
+	.string "use it well.$"
+
+VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_4:
+	.string "That's a bit disappointing. I hope you\n"
+	.string "change your mind.$"
+
+VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_5:
+	.string "I trust you'll find delight in the token\n"
+	.string "I've bestowed upon you!$"
+
+VerdanturfMeadow_EventScript_Meganiumite_Battle_Text_6:
+	.string "Greetings! Have you come to savor the\n"
+	.string "fragrance of these blossoms? You\l"
+	.string "strike me as someone with different\l"
+	.string "interests. A Pokémon Trainer,\l"
+	.string "perchance? Well, here's a proposition\l"
+	.string "for you: how about dropping by after\l"
+	.string "exploring Petalburg? I may just have a\l"
+	.string "little something that piques your\l"
+	.string "curiosity.$"

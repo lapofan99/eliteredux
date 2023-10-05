@@ -1007,7 +1007,8 @@ static const struct LevelUpMove sParasLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sParasectLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_CROSS_POISON),
+    LEVEL_UP_MOVE( 0, MOVE_SHADOW_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_CROSS_POISON),
     LEVEL_UP_MOVE( 1, MOVE_SCRATCH),
     LEVEL_UP_MOVE( 1, MOVE_STUN_SPORE),
     LEVEL_UP_MOVE( 1, MOVE_POISON_POWDER),
@@ -1521,7 +1522,8 @@ static const struct LevelUpMove sWeepinbellLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sVictreebelLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_LEAF_TORNADO),
+    LEVEL_UP_MOVE( 0, MOVE_GUNK_SHOT), // new
+    LEVEL_UP_MOVE( 1, MOVE_LEAF_TORNADO),
 	LEVEL_UP_MOVE( 1, MOVE_GROWTH),
     LEVEL_UP_MOVE( 1, MOVE_POISON_POWDER),
     LEVEL_UP_MOVE( 1, MOVE_STUN_SPORE),
@@ -2082,7 +2084,8 @@ static const struct LevelUpMove sHaunterLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sGengarLevelUpLearnset[] = {
-	LEVEL_UP_MOVE( 0, MOVE_SHADOW_SNEAK), // new
+	LEVEL_UP_MOVE( 0, MOVE_SHADOW_FANGS), // new
+	LEVEL_UP_MOVE( 1, MOVE_SHADOW_SNEAK), // new
 	LEVEL_UP_MOVE( 1, MOVE_PERISH_SONG),
 	LEVEL_UP_MOVE( 1, MOVE_REFLECT_TYPE),
 	LEVEL_UP_MOVE( 1, MOVE_SHADOW_PUNCH),
@@ -21734,6 +21737,55 @@ static const struct LevelUpMove sCalyrexShadowRiderLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sDewleonLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 1, MOVE_POUND),
+    LEVEL_UP_MOVE(0, MOVE_SHEER_COLD), // Dewgong
+    LEVEL_UP_MOVE(0, MOVE_AQUA_FANG), // Dewgong
+    LEVEL_UP_MOVE(1, MOVE_LOVELY_BITE), // Dewgong
+    LEVEL_UP_MOVE(1, MOVE_ICE_FANG), // Dewgong
+    LEVEL_UP_MOVE(1, MOVE_SIGNAL_BEAM), // Dewgong
+    LEVEL_UP_MOVE(1, MOVE_HEADBUTT), // Dewgong
+    LEVEL_UP_MOVE(1, MOVE_GROWL), // Dewgong
+    LEVEL_UP_MOVE(1, MOVE_ICY_WIND), // Dewgong
+    LEVEL_UP_MOVE(1, MOVE_HORN_ATTACK), // Dewgong
+    LEVEL_UP_MOVE(1, MOVE_FURY_ATTACK), // Dewgong
+    LEVEL_UP_MOVE(1, MOVE_THIEF), // Kecleon
+    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP), // Kecleon
+    LEVEL_UP_MOVE(1, MOVE_ASTONISH), // Kecleon
+    LEVEL_UP_MOVE(1, MOVE_LICK), // Kecleon
+    LEVEL_UP_MOVE(1, MOVE_SCRATCH), // Kecleon
+    LEVEL_UP_MOVE(4, MOVE_BIND), // Kecleon
+    LEVEL_UP_MOVE(7, MOVE_SHADOW_SNEAK), // Kecleon
+    LEVEL_UP_MOVE(10, MOVE_FEINT), // Kecleon
+    LEVEL_UP_MOVE(13, MOVE_ENCORE), // Dewgong
+    LEVEL_UP_MOVE(13, MOVE_FURY_SWIPES), // Kecleon
+    LEVEL_UP_MOVE(16, MOVE_FEINT_ATTACK), // Kecleon
+    LEVEL_UP_MOVE(17, MOVE_ICE_SHARD), // Dewgong
+    LEVEL_UP_MOVE(18, MOVE_PSYBEAM), // Kecleon
+    LEVEL_UP_MOVE(21, MOVE_ANCIENT_POWER), // Kecleon
+    LEVEL_UP_MOVE(21, MOVE_REST), // Dewgong
+    LEVEL_UP_MOVE(23, MOVE_AQUA_RING), // Dewgong
+    LEVEL_UP_MOVE(25, MOVE_SLASH), // Kecleon
+    LEVEL_UP_MOVE(27, MOVE_AURORA_BEAM), // Dewgong
+    LEVEL_UP_MOVE(28, MOVE_INSTRUCT), // Kecleon
+    LEVEL_UP_MOVE(30, MOVE_CAMOUFLAGE), // Kecleon
+    LEVEL_UP_MOVE(31, MOVE_AQUA_JET), // Dewgong
+    LEVEL_UP_MOVE(33, MOVE_BRINE), // Dewgong
+    LEVEL_UP_MOVE(33, MOVE_SHADOW_CLAW), // Kecleon
+    LEVEL_UP_MOVE(36, MOVE_SLACK_OFF), // Dewgong
+    LEVEL_UP_MOVE(38, MOVE_SCREECH), // Kecleon
+    LEVEL_UP_MOVE(39, MOVE_TAKE_DOWN), // Dewgong
+    LEVEL_UP_MOVE(40, MOVE_SCALD), // Dewgong
+    LEVEL_UP_MOVE(42, MOVE_DRILL_RUN), // Dewgong
+    LEVEL_UP_MOVE(42, MOVE_SUBSTITUTE), // Kecleon
+    LEVEL_UP_MOVE(44, MOVE_HYPER_VOICE), // Dewgong
+    LEVEL_UP_MOVE(46, MOVE_SUCKER_PUNCH), // Kecleon
+    LEVEL_UP_MOVE(47, MOVE_HORN_DRILL), // Dewgong
+    LEVEL_UP_MOVE(49, MOVE_AQUA_TAIL), // Dewgong
+    LEVEL_UP_MOVE(50, MOVE_SYNCHRONOISE), // Kecleon
+    LEVEL_UP_MOVE(51, MOVE_WAVE_CRASH), // Dewgong
+    LEVEL_UP_MOVE(53, MOVE_MEGAHORN), // Dewgong
+    LEVEL_UP_MOVE(55, MOVE_ICE_BEAM), // Dewgong
+    LEVEL_UP_MOVE(58, MOVE_HYDRO_PUMP), // Dewgong
+    LEVEL_UP_MOVE(61, MOVE_SAFEGUARD), // Dewgong
+    LEVEL_UP_MOVE(65, MOVE_HAIL), // Dewgong
     LEVEL_UP_END
 };
