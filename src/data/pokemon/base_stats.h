@@ -32737,12 +32737,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_DEWLEON] =
     {
-    .baseHP        = 75,
+    .baseHP        = 90,
     .baseAttack    = 90,
-    .baseDefense   = 68,
-    .baseSpeed     = 68,
-    .baseSpAttack  = 78,
-    .baseSpDefense = 108,
+    .baseDefense   = 70,
+    .baseSpeed     = 95,
+    .baseSpAttack  = 95,
+    .baseSpDefense = 120,
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_NORMAL,
     .catchRate = 3,

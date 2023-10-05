@@ -106,64 +106,56 @@ Route105_EventScript_FeraligatriteX_Battle::
 	lock
 	faceplayer
 	goto_if_set FLAG_BADGE05_GET, Route105_EventScript_FeraligatriteX_Battle_2
-	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_5, MSGBOX_NPC
+	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_6, MSGBOX_NPC
 Route105_EventScript_FeraligatriteX_Battle_1:
 	release
 	end
 
 Route105_EventScript_FeraligatriteX_Battle_2:
-	checktrainerflag TRAINER_MEGANIUMITE_VERDANTURF_MEADOW
+	checktrainerflag TRAINER_FERALIGATRITEX_ROUTE105
 	goto_if 0, Route105_EventScript_FeraligatriteX_Battle_5
-	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_4, MSGBOX_NPC
+	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_5, MSGBOX_NPC
 	goto Route105_EventScript_FeraligatriteX_Battle_1
 
 Route105_EventScript_FeraligatriteX_Battle_5:
 	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_0, MSGBOX_YESNO
 	compare VAR_RESULT, 1
 	goto_if_eq Route105_EventScript_FeraligatriteX_Battle_8
-	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_3, MSGBOX_NPC
+	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_4, MSGBOX_NPC
 	goto Route105_EventScript_FeraligatriteX_Battle_1
 
 Route105_EventScript_FeraligatriteX_Battle_8:
-	trainerbattle_no_intro TRAINER_MEGANIUMITE_VERDANTURF_MEADOW, Route105_EventScript_FeraligatriteX_Battle_Text_1
-	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_2, MSGBOX_NPC
+	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_1, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_FERALIGATRITEX_ROUTE105, Route105_EventScript_FeraligatriteX_Battle_Text_2
+	msgbox Route105_EventScript_FeraligatriteX_Battle_Text_3, MSGBOX_NPC
 	playfanfare MUS_OBTAIN_ITEM
-	giveitem ITEM_MEGANIUMITE, 1
+	giveitem ITEM_FERALIGATRITE_X, 1
 	waitmessage
 	goto Route105_EventScript_FeraligatriteX_Battle_1
 
 
 Route105_EventScript_FeraligatriteX_Battle_Text_0:
-	.string "Ah, I see you've triumphed over Norman,\n"
-	.string "quite the impressive feat at your age.\l"
-	.string "How about we put your skills to the\l"
-	.string "test in a friendly match? If you win,\l"
-	.string "I'll reward you with this Meganiumite!$"
+	.string "Ahoy there, ye seem like a sturdy one,\n"
+	.string "aye? Fancy a little tussle with me? If\l"
+	.string "ye be willin', I'll part with this here\l"
+	.string "fine stone as a reward for our bout.$"
 
 Route105_EventScript_FeraligatriteX_Battle_Text_1:
-	.string "I got defeated...$"
+	.string "Aye, that be a fine choice, indeed!$"
 
 Route105_EventScript_FeraligatriteX_Battle_Text_2:
-	.string "You truly are strong. I hope to see your\n"
-	.string "growth even further into the future.\l"
-	.string "But for now, take this gift from me, and\l"
-	.string "use it well.$"
+	.string "Aye, ye had me figured out, ye did!$"
 
 Route105_EventScript_FeraligatriteX_Battle_Text_3:
-	.string "That's a bit disappointing. I hope you\n"
-	.string "change your mind.$"
+	.string "Ye've proven yer mettle, and true to me\n"
+	.string "word, here's that stone I promised ye!$"
 
 Route105_EventScript_FeraligatriteX_Battle_Text_4:
-	.string "I trust you'll find delight in the token\n"
-	.string "I've bestowed upon you!$"
+	.string "What are ye, scared?$"
 
 Route105_EventScript_FeraligatriteX_Battle_Text_5:
-	.string "Greetings! Have you come to savor the\n"
-	.string "fragrance of these blossoms? You\l"
-	.string "strike me as someone with different\l"
-	.string "interests. A Pokémon Trainer,\l"
-	.string "perchance? Well, here's a proposition\l"
-	.string "for you: how about dropping by after\l"
-	.string "exploring Petalburg? I may just have a\l"
-	.string "little something that piques your\l"
-	.string "curiosity.$"
+	.string "Aye, I reckon ye'll find some joy in the\n"
+	.string "gift I've handed over to ye, me hearty!$"
+
+Route105_EventScript_FeraligatriteX_Battle_Text_6:
+	.string "Ye be lackin' the strength, me hearty!$"
