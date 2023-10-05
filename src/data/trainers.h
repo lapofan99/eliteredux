@@ -12077,7 +12077,7 @@ const struct Trainer gTrainers[] = {
         .trainerClass = TRAINER_CLASS_AROMA_LADY,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_AROMA_LADY,
-        .trainerName = _("Flower Lady"),
+        .trainerName = _("Lily"),
         .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
@@ -12087,31 +12087,45 @@ const struct Trainer gTrainers[] = {
         //.partyInsane = {.ItemCustomMoves = sParty_MeganiumiteVerdanturfMeadowInsane},
     },
 
-    /*[TRAINER_HUEY] = // Feraligatrite X
+    [TRAINER_FERALIGATRITEX_ROUTE105] = // Feraligatrite X
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = TRAINER_CLASS_SAILOR,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_SAILOR,
-        .trainerName = _("Huey"),
+        .trainerName = _("Caleb"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
-        .partySize = ARRAY_COUNT(sParty_Huey),
-        .party = {.ItemCustomMoves = sParty_Huey},
+        .partySize = ARRAY_COUNT(sParty_FeraligatriteXRoute105),
+        .party = {.ItemCustomMoves = sParty_FeraligatriteXRoute105},
     },
 
-    [TRAINER_BERNIE_1] = // Typhlosionite
+    [TRAINER_TYPHLOSIONITE_ASHEN_WOODS] = // Typhlosionite
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = TRAINER_CLASS_KINDLER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_KINDLER,
-        .trainerName = _("Bernie"),
+        .trainerName = _("Ignatius"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
-        .partySize = ARRAY_COUNT(sParty_Bernie1),
-        .party = {.ItemCustomMoves = sParty_Bernie1},
-    },*/
+        .partySize = ARRAY_COUNT(sParty_TyphlosioniteAshenWoods),
+        .party = {.ItemCustomMoves = sParty_TyphlosioniteAshenWoods},
+    },
+
+    [TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR] = // KROOKODILENITE
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
+        .trainerPic = TRAINER_PIC_RUIN_MANIAC,
+        .trainerName = _("Jones"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_KrookodileniteRoute111RuinsExterior),
+        .party = {.ItemCustomMoves = sParty_KrookodileniteRoute111RuinsExterior},
+    },
 };

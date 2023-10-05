@@ -2,3 +2,32 @@ raw `
 Route111_RuinsExterior_MapScripts::
 	.byte 0
 `
+script Route111_Ruins_Exterior_EventScript_Krookodilenite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE05_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR) // Only For testing
+		if (!defeated(TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR)) { // asking for battle
+			msgbox(format("Hmm, searching for something interesting, are we? I've already claimed this site, but I see spirit in you. Prove me right, and I'll reward you with something nice I've dug up."), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("Let's get to it then!"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR, format("Ha, these old eyes never lie to me.")) // in-battle, player wins
+				msgbox(format("I knew I saw something great in you! Take this, and get out of here before you get footprints on my dig!"), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_KROOKODILENITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("Such a shame, come back when you're ready to get your hands dirty!"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("Your persistence is admirable, young one, yet fruitless. My treasures have been exhausted. Find your fortune elsewhere, and leave this hollow sanctum to rest undisturbed."), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("What's this? A young explorer scurrying onto my site? Run along chap, maybe I'll entertain you when you're stronger."), MSGBOX_NPC)
+	}
+	release
+	end	
+}

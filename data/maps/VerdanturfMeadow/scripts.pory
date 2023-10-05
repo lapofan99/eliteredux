@@ -79,26 +79,26 @@ script VerdanturfMeadow_EventScript_Meganiumite_Battle {
 	lock
 	faceplayer
 	if (flag(FLAG_BADGE05_GET)) { // Checking if the player has the badge
-		//cleartrainerflag(TRAINER_KAYLEE) // Only For testing, comment this line when you are done testing
+		//cleartrainerflag(TRAINER_MEGANIUMITE_VERDANTURF_MEADOW) // Only For testing
 		if (!defeated(TRAINER_MEGANIUMITE_VERDANTURF_MEADOW)) {
 			msgbox(format("Ah, I see you've triumphed over Norman, quite the impressive feat at your age. How about we put your skills to the test in a friendly match? If you win, I'll reward you with this Meganiumite!"), MSGBOX_YESNO) // Asking for battle
 			if (var(VAR_RESULT) == 1) {
 				msgbox(format("Splendid, let's start!"), MSGBOX_NPC) // When the player accepts the battle
 				trainerbattle_no_intro(TRAINER_MEGANIUMITE_VERDANTURF_MEADOW, format("Your strength is truly awe-inspiring...")) // When the player defeats the trainer, shows in-battle
-				msgbox(format("You truly are strong. I hope to see your growth even further into the future. But for now, take this gift from me, and use it well."), MSGBOX_NPC)
+				msgbox(format("You truly are strong. I hope to see your growth even further into the future. But for now, take this gift from me, and use it well."), MSGBOX_NPC) // when the player wins
 				playfanfare(MUS_OBTAIN_ITEM)
 				giveitem(ITEM_MEGANIUMITE, 1) // Item given to the player
 				waitmessage
 			}
-			else {
+			else { // when refusing the battle
 				msgbox(format("That's a bit disappointing. I hope you change your mind."), MSGBOX_NPC)
 			}
 		}
-		else {
+		else { // When the trainer is already defeated
 			msgbox(format("I trust you'll find delight in the token I've bestowed upon you!"), MSGBOX_NPC)
 		}
 	}
-	else {
+	else { // When the player doesn't have the badge yet
 		msgbox(format("Greetings! Have you come to savor the fragrance of these blossoms? You strike me as someone with different interests. A Pokémon Trainer, perchance? Well, here's a proposition for you: how about dropping by after exploring Petalburg? I may just have a little something that piques your curiosity."), MSGBOX_NPC)
 	}
 	release
