@@ -431,6 +431,7 @@ static const u8 sAtlasDescription[] = _("Sets Gravity on entry for\n8 turns. Use
 static const u8 sRadianceDescription[] = _("+20% accuracy; Dark moves\nfail when user is present.");
 static const u8 sJawsOfCarnageDescription[] = _("Devours half of the foe\nwhen defeating it.");
 static const u8 sAngelsWrathDescription[] = _("Drastically alters all\nof the users moves.");
+static const u8 sPrismaticFurDescription[] = _("Color Change + Protean,\nFur Coat + Ice Scales");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -876,6 +877,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_RADIANCE] = _("Radiance"),
     [ABILITY_JAWS_OF_CARNAGE] = _("Jaws of Carnage"),
     [ABILITY_ANGELS_WRATH] = _("Angel's Wrath"),
+    [ABILITY_PRISMATIC_FUR] = _("Prismatic Fur"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1320,4 +1322,5 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_RADIANCE] = sRadianceDescription,
     [ABILITY_JAWS_OF_CARNAGE] = sJawsOfCarnageDescription,
     [ABILITY_ANGELS_WRATH] = sAngelsWrathDescription,
+    [ABILITY_PRISMATIC_FUR] = sPrismaticFurDescription,
 };

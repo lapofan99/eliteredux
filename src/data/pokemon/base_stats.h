@@ -2453,7 +2453,7 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_GRASS,
     .eggGroup2 = EGG_GROUP_GRASS,
-    .abilities = {ABILITY_CHLOROPLAST, ABILITY_HARVEST, ABILITY_ARENA_TRAP},
+    .abilities = {ABILITY_CHLOROPLAST, ABILITY_AMBUSH, ABILITY_ARENA_TRAP},
     .innates = {ABILITY_CHLOROPHYLL, ABILITY_GLUTTONY, ABILITY_CORROSION},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
@@ -2478,8 +2478,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_GRASS,
     .eggGroup2 = EGG_GROUP_GRASS,
-    .abilities = {ABILITY_CHLOROPLAST, ABILITY_HARVEST, ABILITY_ARENA_TRAP},
-    .innates = {ABILITY_CHLOROPHYLL, ABILITY_GLUTTONY, ABILITY_CORROSION},
+    .abilities = {ABILITY_PREDATOR, ABILITY_AMBUSH, ABILITY_ARENA_TRAP},
+    .innates = {ABILITY_BIG_LEAVES, ABILITY_GLUTTONY, ABILITY_CORROSION},
     .bodyColor = BODY_COLOR_GREEN,
     .noFlip = FALSE,
     },
@@ -6058,11 +6058,11 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_TOGETIC] =
     {
-    .baseHP        = 55,
+    .baseHP        = 70, // 55
     .baseAttack    = 40,
     .baseDefense   = 85,
     .baseSpeed     = 40,
-    .baseSpAttack  = 80,
+    .baseSpAttack  = 65, // 80
     .baseSpDefense = 105,
     .type1 = TYPE_FAIRY,
     .type2 = TYPE_FLYING,
@@ -6075,8 +6075,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_FLYING,
     .eggGroup2 = EGG_GROUP_FAIRY,
-    .abilities = {ABILITY_REGENERATOR, ABILITY_SELF_SUFFICIENT, ABILITY_SOUL_HEART},
-    .innates = {ABILITY_SUPER_LUCK, ABILITY_SERENE_GRACE, ABILITY_PIXILATE},
+    .abilities = {ABILITY_SHIELD_DUST, ABILITY_SELF_SUFFICIENT, ABILITY_AERODYNAMICS},
+    .innates = {ABILITY_CUTE_CHARM, ABILITY_REGENERATOR, ABILITY_SERENE_GRACE},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
     },
@@ -23013,11 +23013,11 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_CLAUNCHER] =
     {
-    .baseHP        = 50,
+    .baseHP        = 60, // 50 vanilla
     .baseAttack    = 53,
     .baseDefense   = 62,
     .baseSpeed     = 44,
-    .baseSpAttack  = 58,
+    .baseSpAttack  = 78, // 58 vanilla
     .baseSpDefense = 63,
     .type1 = TYPE_WATER,
     .type2 = TYPE_WATER,
@@ -23030,8 +23030,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_WATER_3,
-    .abilities = {ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_NONE},
-    .innates = {ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_NONE},
+    .abilities = {ABILITY_MULTISCALE, ABILITY_NONE, ABILITY_NONE},
+    .innates = {ABILITY_SWIFT_SWIM, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = TRUE,
     },
@@ -32737,12 +32737,12 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_DEWLEON] =
     {
-    .baseHP        = 200,
-    .baseAttack    = 200,
-    .baseDefense   = 200,
-    .baseSpeed     = 200,
-    .baseSpAttack  = 200,
-    .baseSpDefense = 200,
+    .baseHP        = 75,
+    .baseAttack    = 90,
+    .baseDefense   = 68,
+    .baseSpeed     = 68,
+    .baseSpAttack  = 78,
+    .baseSpDefense = 108,
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_NORMAL,
     .catchRate = 3,
@@ -32754,8 +32754,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_WATER_1,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_HARDENED_SHEATH, ABILITY_LIGHTNING_ROD, ABILITY_ARCTIC_FUR},
-    .innates = {ABILITY_MAGIC_GUARD, ABILITY_WONDER_GUARD, ABILITY_COLOR_CHANGE},
+    .abilities = {ABILITY_PRISMATIC_FUR, ABILITY_PRISMATIC_FUR, ABILITY_PRISMATIC_FUR},
+    .innates = {ABILITY_RETRIBUTION_BLOW, ABILITY_WONDER_SKIN, ABILITY_NORTH_WIND},
     .bodyColor = BODY_COLOR_WHITE,
     .noFlip = FALSE,
     },

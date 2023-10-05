@@ -1557,7 +1557,7 @@ static void Cmd_attackcanceler(void)
         return;
     }
 
-    // Check Protean activation.
+    // Check Protean activation
     if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PROTEAN || BattlerHasInnate(gBattlerAttacker, ABILITY_PROTEAN) ||
 	     GetBattlerAbility(gBattlerAttacker) == ABILITY_LIBERO  || BattlerHasInnate(gBattlerAttacker, ABILITY_LIBERO))
         && (gBattleMons[gBattlerAttacker].type1 != moveType || gBattleMons[gBattlerAttacker].type2 != moveType ||
@@ -1581,7 +1581,32 @@ static void Cmd_attackcanceler(void)
         return;
     }
 
-    if (((GetBattlerAbility(gBattlerTarget) == ABILITY_COLOR_CHANGE) || BattlerHasInnate(gBattlerTarget, ABILITY_COLOR_CHANGE)) && (gBattlerAttacker != gBattlerTarget)) {
+    // Check Prismatic Fur activation
+    if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_PRISMATIC_FUR || BattlerHasInnate(gBattlerAttacker, ABILITY_PRISMATIC_FUR))
+        && (gBattleMons[gBattlerAttacker].type1 != moveType || gBattleMons[gBattlerAttacker].type2 != moveType ||
+            (gBattleMons[gBattlerAttacker].type3 != moveType && gBattleMons[gBattlerAttacker].type3 != TYPE_MYSTERY))
+        && gCurrentMove != MOVE_STRUGGLE)
+    {
+		if(GetBattlerAbility(gBattlerAttacker) == ABILITY_PRISMATIC_FUR || BattlerHasInnate(gBattlerAttacker, ABILITY_PRISMATIC_FUR)){
+			gBattleScripting.abilityPopupOverwrite = ABILITY_PRISMATIC_FUR;
+			gLastUsedAbility = ABILITY_PRISMATIC_FUR;
+		}
+		else{
+			gBattleScripting.abilityPopupOverwrite = ABILITY_PRISMATIC_FUR;
+			gLastUsedAbility = ABILITY_PRISMATIC_FUR;
+		}
+		
+        PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
+        SET_BATTLER_TYPE(gBattlerAttacker, moveType);
+        gBattlerAbility = gBattlerAttacker;
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_ProteanActivates;
+        return;
+    }
+
+    if (((GetBattlerAbility(gBattlerTarget) == ABILITY_COLOR_CHANGE) || BattlerHasInnate(gBattlerTarget, ABILITY_COLOR_CHANGE) ||
+         (GetBattlerAbility(gBattlerTarget) == ABILITY_PRISMATIC_FUR) || BattlerHasInnate(gBattlerTarget, ABILITY_PRISMATIC_FUR))
+        && (gBattlerAttacker != gBattlerTarget)) {
         u32 currentType;
         u32 bestType = gBattleMons[gBattlerTarget].type1;
         u16 bestModifier = GetTypeModifier(moveType, bestType);

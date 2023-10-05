@@ -40933,71 +40933,65 @@ static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCaveInsane[] =
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_MegaMeganiumVerdanturfMeadow[] = {
+static const struct TrainerMonItemCustomMoves sParty_MeganiumiteVerdanturfMeadow[] = {
     {
     .lvl = 0,
-    .species = SPECIES_METANG, // Steven
+    .species = SPECIES_AGGRON,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // Juggernaut
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 4, 0, 0, 252, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_BODY_PRESS, MOVE_STEALTH_ROCK, MOVE_SLACK_OFF, MOVE_IRON_HEAD
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_CHANSEY,
     .heldItem = ITEM_EVIOLITE,
-    .ability = 2, // ABILITY_FATAL_PRECISION, ABILITY_PREDATOR, ABILITY_LEAD_COAT},
-    // .innates = {ABILITY_LEVITATE, ABILITY_FULL_METAL_BODY, ABILITY_DOWNLOAD},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 176, 0, 0, 80, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_BULLET_PUNCH, MOVE_METEOR_MASH, MOVE_EARTHQUAKE, MOVE_STEALTH_ROCK
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_LYCANROC, // Steven, Rock Gem, Violent Rush
-    .heldItem = ITEM_ROCK_GEM,
-    .ability = 2, // ABILITY_SPEED_FORCE, ABILITY_FATAL_PRECISION, ABILITY_VIOLENT_RUSH},
-    // .innates = {ABILITY_OPPORTUNIST, ABILITY_SAND_RUSH, ABILITY_ROCK_HEAD},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {192, 252, 0, 0, 0, 64},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_HEAD_SMASH, MOVE_EARTHQUAKE, MOVE_PSYCHIC_FANGS, MOVE_ACCELEROCK
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_HEATMOR, // Steven, Fast Vest
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 1, // ABILITY_BURNATE, ABILITY_WHITE_SMOKE, ABILITY_STEELWORKER},
-    // .innates = {ABILITY_UNAWARE, ABILITY_TOUGH_CLAWS, ABILITY_FATAL_PRECISION},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_FIRE_LASH, MOVE_IRON_TAIL, MOVE_THROAT_CHOP, MOVE_STOMPING_TANTRUM
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_CRADILY, // Steven, Lead, Mixed Wall, Big Root
-    .heldItem = ITEM_BIG_ROOT,
-    .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
+    .ability = 0, // Cute Charm
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_CALM,
-    .moves = MOVE_GIGA_DRAIN, MOVE_POWER_GEM, MOVE_SCALD, MOVE_RECOVER
+    .evs = {248, 0, 252, 0, 8, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_BOLD,
+    .moves = MOVE_SOFT_BOILED, MOVE_SEISMIC_TOSS, MOVE_THUNDER_WAVE, MOVE_REFLECT
     },
     {
     .lvl = 0,
-    .species = SPECIES_DUGTRIO_ALOLAN, // Steven, Sash, Trapper
-    .heldItem = ITEM_FOCUS_SASH,
-    .ability = 1, // ABILITY_SAND_RUSH, ABILITY_ARENA_TRAP, ABILITY_STEELWORKER},
-    // .innates = {ABILITY_MULTI_HEADED, ABILITY_SAND_FORCE, ABILITY_SPEED_FORCE},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_JOLLY,
-    .moves = MOVE_EARTHQUAKE, MOVE_STONE_EDGE, MOVE_IRON_HEAD, MOVE_SUCKER_PUNCH
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_DHELMISE, // Steven, Water Absobrb, Bulky Occa
+    .species = SPECIES_PARASECT,
     .heldItem = ITEM_OCCA_BERRY,
-    .ability = 0, // ABILITY_WATER_ABSORB, ABILITY_SOUL_EATER, ABILITY_SHEER_FORCE},
-    // .innates = {ABILITY_METALLIC, ABILITY_SEAWEED, ABILITY_STEELWORKER},
+    .ability = 0, // Self Sufficient
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 12, 0, 0, 136, 108},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-	.nature = NATURE_CAREFUL,
-    .moves = MOVE_ANCHOR_SHOT, MOVE_POLTERGEIST, MOVE_POWER_WHIP, MOVE_SYNTHESIS
+    .evs = {248, 252, 8, 0, 0, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_LEECH_LIFE, MOVE_LEECH_SEED, MOVE_SWORDS_DANCE, MOVE_SHADOW_FANGS
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GENGAR,
+    .heldItem = ITEM_WIDE_LENS,
+    .ability = 2, // Prankster
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_HYPNOSIS, MOVE_SLUDGE_BOMB, MOVE_NASTY_PLOT, MOVE_DREAM_EATER
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_TOXICROAK,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // Hydrate
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_DRAIN_PUNCH, MOVE_RETURN, MOVE_CROSS_POISON, MOVE_SUCKER_PUNCH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_MEGANIUM, // Mega
+    .heldItem = ITEM_MEGANIUMITE,
+    .ability = 0, // Regenerator
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_MODEST,
+    .moves = MOVE_DRAINING_KISS, MOVE_GIGA_DRAIN, MOVE_CALM_MIND, MOVE_SYNTHESIS
     }
 };
