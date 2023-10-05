@@ -1985,7 +1985,7 @@ static void DebugAction_Util_Trainer_Id(u8 taskId)
 static void DebugAction_Util_ResetTrainerFlags(u8 taskId)
 {
     u16 i;
-    for(i = 0; i < MAX_TRAINERS_COUNT; i++){
+    for(i = 0; i < MAX_OLD_TRAINERS_COUNT; i++){
         ClearTrainerFlag(i);
     }
     Debug_DestroyMenu_Full(taskId);

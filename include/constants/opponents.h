@@ -861,11 +861,16 @@
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
-//       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
+//       MAX_OLD_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
 #define TRAINERS_COUNT                      856
-#define MAX_TRAINERS_COUNT                  864
+#define MAX_OLD_TRAINERS_COUNT              864
+
+#define TRAINER_NEW_TEST                    MAX_OLD_TRAINERS_COUNT + 1
 
 #define TRAINER_OLDPLAYER             2000
+
+// Trainers after this have use the flag in the trainer structure
+
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

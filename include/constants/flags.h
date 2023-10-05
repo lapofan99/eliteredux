@@ -1331,7 +1331,7 @@
 // See constants/opponents.h. The values there + FLAG_TRAINER_FLAG_START are the flag IDs
 
 #define TRAINER_FLAGS_START                                         0x500
-#define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_TRAINERS_COUNT - 1) // 0x85F
+#define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_OLD_TRAINERS_COUNT - 1) // 0x85F
 
 // System Flags
 
@@ -1382,7 +1382,7 @@
 #define FLAG_SYS_DETECTOR_MODE                      (SYSTEM_FLAGS + 0x23) // allow player to find hidden mons
 #define FLAG_SYS_DEXNAV_GET                         (SYSTEM_FLAGS + 0x24) // dexnav shows in start menu
 #define FLAG_USED_CANDY_BOX                         (SYSTEM_FLAGS + 0x25)
-#define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
+#define FLAG_TRAINER_NEW_TEST                       (SYSTEM_FLAGS + 0x26) // New trainer example
 #define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag
 
 #define FLAG_SYS_USE_FLASH                          (SYSTEM_FLAGS + 0x28)

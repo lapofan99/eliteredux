@@ -75,8 +75,25 @@ VerdanturfMeadow_Text_TakeCareOfAudino:
 VerdanturfMeadow_EventScript_Mega_Meganium_Battle::
 	lock
 	faceplayer
-	trainerbattle_single TRAINER_MEGA_MEGANIUM_VERDANTURF_MEADOW, VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_0, VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_1, GraniteCave_StevensRoom_EventScript_Steven, NO_MUSIC
-	return
+	checktrainerflag TRAINER_NEW_TEST
+	goto_if 0, VerdanturfMeadow_EventScript_Mega_Meganium_Battle_2
+	msgbox VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_4, MSGBOX_NPC
+VerdanturfMeadow_EventScript_Mega_Meganium_Battle_1:
+	release
+	end
+
+VerdanturfMeadow_EventScript_Mega_Meganium_Battle_2:
+	msgbox VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq VerdanturfMeadow_EventScript_Mega_Meganium_Battle_5
+	msgbox VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_3, MSGBOX_NPC
+	goto VerdanturfMeadow_EventScript_Mega_Meganium_Battle_1
+
+VerdanturfMeadow_EventScript_Mega_Meganium_Battle_5:
+	trainerbattle_no_intro TRAINER_NEW_TEST, VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_1
+	msgbox VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_2, MSGBOX_NPC
+	giveitem ITEM_DEWGONGITE, 1
+	goto VerdanturfMeadow_EventScript_Mega_Meganium_Battle_1
 
 
 VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_0:
@@ -84,4 +101,15 @@ VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_0:
 	.string "you've got, before we talk.$"
 
 VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_1:
-	.string "Steven: You have great potential.$"
+	.string "I got defeated...$"
+
+VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_2:
+	.string "That was a great battle, here is your\n"
+	.string "prize, you earned it!$"
+
+VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_3:
+	.string "Oh well...$"
+
+VerdanturfMeadow_EventScript_Mega_Meganium_Battle_Text_4:
+	.string "It was a good battle but I already gave\n"
+	.string "you your prize.$"

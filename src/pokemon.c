@@ -9198,10 +9198,16 @@ u16 getNumberOfUniqueDefeatedTrainers(void){
     u16 i;
 
     for(i = 0; i < TRAINERS_COUNT; i++){
-        if(FlagGet(TRAINER_FLAGS_START + i)){
-            defeatedTrainers++;
+        if(i <= MAX_OLD_TRAINERS_COUNT || i == TRAINER_OLDPLAYER){
+            if(FlagGet(TRAINER_FLAGS_START + i))
+                defeatedTrainers++;
+        }
+        else{
+            if(FlagGet(gTrainers[i].trainerFlag))
+                defeatedTrainers++;
         }
     }
+
     return defeatedTrainers;
 }
 
