@@ -10292,6 +10292,8 @@ static const struct LevelUpMove sHippopotasLevelUpLearnset[] = {
 static const struct LevelUpMove sHippowdonLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SCORCHING_SANDS), // new
 	LEVEL_UP_MOVE( 1, MOVE_BODY_PRESS), // new
+	LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
+	LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
 	LEVEL_UP_MOVE( 1, MOVE_FIRE_FANG),
 	LEVEL_UP_MOVE( 1, MOVE_ICE_FANG),
 	LEVEL_UP_MOVE( 1, MOVE_THUNDER_FANG),
