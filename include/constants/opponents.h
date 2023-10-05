@@ -866,7 +866,7 @@
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_OLD_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      856
+#define TRAINERS_COUNT                      860
 #define MAX_OLD_TRAINERS_COUNT              864
 
 #define TRAINER_NEW_TEST                    MAX_OLD_TRAINERS_COUNT + 1
