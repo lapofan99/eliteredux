@@ -459,6 +459,7 @@ extern const u8 BattleScript_BeakBlastSetUp[];
 extern const u8 BattleScript_BeakBlastBurn[];
 extern const u8 BattleScript_AttackerUsedAnExtraMove[];
 extern const u8 BattleScript_AttackerUsedAnExtraMove_SmackDown[];
+extern const u8 BattleScript_AttackerUsedAnExtraMoveOnSwitchIn[];
 extern const u8 BattleScript_DefenderUsedAnExtraMove[];
 extern const u8 BattleScript_DefenderEffectSpeedDownHit[];
 extern const u8 BattleScript_FungalInfectionActivates[];

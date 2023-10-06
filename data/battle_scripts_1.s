@@ -8267,6 +8267,38 @@ BattleScript_ExtraExtraMoveEnd::
 	moveendall
 	end
 
+BattleScript_AttackerUsedAnExtraMoveOnSwitchIn::
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_ABILITYLETITUSEMOVE
+	waitmessage B_WAIT_TIME_SHORT
+BattleScript_EffectExtraHitOnSwitchIn::
+BattleScript_ExtraHitFromAtkCancelerOnSwitchIn::
+	attackcanceler
+BattleScript_ExtraHitFromAccCheckOnSwitchIn::
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
+BattleScript_ExtraHitFromAtkStringOnSwitchIn::
+BattleScript_ExtraHitFromCritCalcOnSwitchIn::
+	critcalc
+	damagecalc
+	adjustdamage
+BattleScript_ExtraHitFromAtkAnimationOnSwitchIn::
+	playmoveanimation BS_ATTACKER, MOVE_NONE
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
+	tryfaintmon BS_TARGET, FALSE, NULL
+BattleScript_ExtraExtraMoveEndOnSwitchIn::
+	moveendall
+	end3
+
 BattleScript_DefenderEffectSpeedDownHit::
 	setmoveeffect MOVE_EFFECT_SPD_MINUS_1
 	goto BattleScript_DefenderUsedAnExtraMove
