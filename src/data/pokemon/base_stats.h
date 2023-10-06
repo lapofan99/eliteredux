@@ -18476,7 +18476,7 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_SCRAFTY] =
     {
-    .baseHP        = 65,
+    .baseHP        = 65, // 65
     .baseAttack    = 90,
     .baseDefense   = 115,
     .baseSpeed     = 58,
