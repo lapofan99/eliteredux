@@ -724,7 +724,7 @@
 #define FLAG_OBTAINED_ROUTE132_GYARADOS       0x2AC //
 #define FLAG_DEFEATED_ROUTE111_SANDSLASH      0x2AD //
 #define FLAG_OBTAINED_ROUTE111_SANDSLASH      0x2AE //
-#define FLAG_HIDE_ABANDONED_SHIP_SHEDINJITE 0x2AF // Hide Shedinjite until Bug Catcher is defeated
+#define FLAG_HIDE_ABANDONED_SHIP_SHEDINJITE      0x2AF // Hide Shedinjite until Bug Catcher is defeated
 #define FLAG_DEFEATED_ABANDONDED_SHIP_BUGCATCHER 0x2B0 // Hide Shedinjite Bug Catcher when defeated
 #define FLAG_UNUSED_0x2B1  0x2B1 // Unused Flag
 #define FLAG_UNUSED_0x2B2  0x2B2 // Unused Flag

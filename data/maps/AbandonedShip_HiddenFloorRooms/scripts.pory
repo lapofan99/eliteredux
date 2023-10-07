@@ -1,7 +1,10 @@
 raw `
 .set LOCALID_OLD_SEA_MAP, 2
+.set LOCALID_BUG_CATCHER, 3
+.set LOCALID_SHEDINJAITE, 4
 
 AbandonedShip_HiddenFloorRooms_MapScripts:: @ 8238C49
+	map_script MAP_SCRIPT_ON_LOAD, AbandonedShip_HiddenFloorRooms_OnResume
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, AbandonedShip_HiddenFloorRooms_OnFrame
 	.byte 0
 
@@ -139,7 +142,7 @@ AbandonedShip_HiddenFloorRooms_Text_BrightShinyTrash: @ 8238DFE
 script AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle {
 	lock
 	faceplayer
-	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
+	if (flag(FLAG_BADGE07_GET) && !flag(FLAG_DEFEATED_ABANDONDED_SHIP_BUGCATCHER)) { // Checking if the player has the badge
 		//cleartrainerflag(TRAINER_SHEDINJITE_ABANDONED_SHIP) // Only For testing
 		if (!defeated(TRAINER_SHEDINJITE_ABANDONED_SHIP)) { // asking for battle
 			msgbox(format("...Nincada?"), MSGBOX_YESNO)
@@ -147,9 +150,17 @@ script AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle {
 				msgbox(format("It's so scary now..."), MSGBOX_NPC) // When the player accepts the battle
 				trainerbattle_no_intro(TRAINER_SHEDINJITE_ABANDONED_SHIP, format("Thank...you...")) // in-battle, player wins
 				// fade the screen here, remove the Bug Catcher and show the Mega Stone
-				playfanfare(MUS_OBTAIN_ITEM)
-				giveitem(ITEM_SHEDINJITE, 1) // Item given to the player
-				waitmessage
+				setflag(FLAG_DEFEATED_ABANDONDED_SHIP_BUGCATCHER)
+				clearflag(FLAG_HIDE_ABANDONED_SHIP_SHEDINJITE)
+				fadescreenswapbuffers(FADE_TO_BLACK)
+				removeobject(VAR_LAST_TALKED)
+				addobject(LOCALID_SHEDINJAITE)
+				setobjectxy(LOCALID_SHEDINJAITE, 23, 10)
+				setobjectmovementtype(LOCALID_SHEDINJAITE, MOVEMENT_TYPE_WALK_IN_PLACE_DOWN)
+				fadescreenswapbuffers(FADE_FROM_BLACK)
+				//playfanfare(MUS_OBTAIN_ITEM)
+				//giveitem(ITEM_SHEDINJITE, 1) // Item given to the player
+				//waitmessage
 			}
 			else { // when refusing the battle
 				msgbox(format("..."), MSGBOX_NPC)
@@ -164,4 +175,15 @@ script AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle {
 	}
 	release
 	end	
+}
+
+script AbandonedShip_HiddenFloorRooms_OnResume{
+	if(defeated(TRAINER_SHEDINJITE_ABANDONED_SHIP) && !flag(FLAG_HIDE_ABANDONED_SHIP_SHEDINJITE)){
+		setobjectxy(LOCALID_SHEDINJAITE, 23, 10)
+	}
+	else{
+		setflag(FLAG_HIDE_ABANDONED_SHIP_SHEDINJITE)
+		setobjectxy(LOCALID_SHEDINJAITE, 0, 0)
+	}
+	return
 }

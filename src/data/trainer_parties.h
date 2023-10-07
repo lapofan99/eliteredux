@@ -41194,58 +41194,8 @@ static const struct TrainerMonItemCustomMoves sParty_Shedinjite_AbandonedShip_Hi
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
     .nature = NATURE_CALM,
-    .moves = MOVE_SCORCHING_SANDS, MOVE_SHADOW_BALL, MOVE_SHORE_UP, MOVE_STEALTH_ROCK
+    .moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
     },
-    {
-    .lvl = 0,
-    .species = SPECIES_KROOKODILE, // Mega
-    .heldItem = ITEM_KROOKODILENITE,
-    .ability = 0, // Intimidate > Dune Terror
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 0, 4, 252}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_JOLLY,
-    .moves = MOVE_BULK_UP, MOVE_KNOCK_OFF, MOVE_SEISMIC_FIST, MOVE_IRON_FANGS
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_SCIZOR,
-    .heldItem = ITEM_METAL_COAT,
-    .ability = 0, // Steely Spirit
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_ADAMANT,
-    .moves = MOVE_SACRED_SWORD, MOVE_BULLET_PUNCH, MOVE_SWORDS_DANCE, MOVE_QUICK_ATTACK
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_DRACOVISH,
-    .heldItem = ITEM_CHOICE_BAND,
-    .ability = 0, // Strong Jaw
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 0, 4, 252}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_JOLLY,
-    .moves = MOVE_FISHIOUS_REND, MOVE_DRAGON_RUSH, MOVE_CRUNCH, MOVE_IRON_FANGS
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_GIGALITH,
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 1, // Sand Stream
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 4, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_MODEST,
-    .moves = MOVE_SHOCK_WAVE, MOVE_POWER_GEM, MOVE_EARTH_POWER, MOVE_FLASH_CANNON
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_GLISCOR,
-    .heldItem = ITEM_TOXIC_ORB,
-    .ability = 2, // Poison Heal
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_ADAMANT,
-    .moves = MOVE_PROTECT, MOVE_ICE_FANG, MOVE_DUAL_WINGBEAT, MOVE_DEFOG
-    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Crobatite_DewfordManor[] = { // Crobatite

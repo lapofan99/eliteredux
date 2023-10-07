@@ -450,6 +450,10 @@ AbandonedShip_HiddenFloorRooms_EventScript_ItemScanner:: @ 8291288
 	finditem ITEM_SCANNER
 	end
 
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite:: @ 8291288
+	finditem ITEM_SHEDINJITE
+	end
+
 AbandonedShip_HiddenFloorRooms_EventScript_ItemLucarionite:: @ 8291295
 	finditem ITEM_LUCARIONITE
 	end
