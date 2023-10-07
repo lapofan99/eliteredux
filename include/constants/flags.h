@@ -726,13 +726,13 @@
 #define FLAG_OBTAINED_ROUTE111_SANDSLASH      0x2AE //
 #define FLAG_HIDE_ABANDONED_SHIP_SHEDINJITE      0x2AF // Hide Shedinjite until Bug Catcher is defeated
 #define FLAG_DEFEATED_ABANDONDED_SHIP_BUGCATCHER 0x2B0 // Hide Shedinjite Bug Catcher when defeated
-#define FLAG_UNUSED_0x2B1  0x2B1 // Unused Flag
-#define FLAG_UNUSED_0x2B2  0x2B2 // Unused Flag
-#define FLAG_UNUSED_0x2B3  0x2B3 // Unused Flag
-#define FLAG_UNUSED_0x2B4  0x2B4 // Unused Flag
-#define FLAG_UNUSED_0x2B5  0x2B5 // Unused Flag
-#define FLAG_UNUSED_0x2B6  0x2B6 // Unused Flag
-#define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag
+#define FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_1  0x2B1 // 
+#define FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_2  0x2B2 //
+#define FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_3  0x2B3 //
+#define FLAG_OBTAINED_DRAGONITENITE              0x2B4 //
+#define FLAG_TRAINER_DRAGONITENITE_SAGE_1        0x2B5 // Trainer Flag
+#define FLAG_TRAINER_DRAGONITENITE_SAGE_2        0x2B6 // Trainer Flag
+#define FLAG_TRAINER_DRAGONITENITE_SAGE_3        0x2B7 // Trainer Flag
 #define FLAG_UNUSED_0x2B8  0x2B8 // Unused Flag
 #define FLAG_UNUSED_0x2B9  0x2B9 // Unused Flag
 #define FLAG_UNUSED_0x2BA  0x2BA // Unused Flag

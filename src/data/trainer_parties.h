@@ -41198,6 +41198,45 @@ static const struct TrainerMonItemCustomMoves sParty_Shedinjite_AbandonedShip_Hi
     },
 };
 
+static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_1_SkyPillar_Outside[] = { // Dragonitenite
+    {
+    .lvl = 0,
+    .species = SPECIES_DRAGONITE,
+    .heldItem = ITEM_SMOOTH_ROCK,
+    .ability = 2, // Sand Stream
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
+    .nature = NATURE_CALM,
+    .moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+    },
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_2_SkyPillar_Outside[] = { // Shedinjite
+    {
+    .lvl = 0,
+    .species = SPECIES_GARCHOMP,
+    .heldItem = ITEM_SMOOTH_ROCK,
+    .ability = 2, // Sand Stream
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
+    .nature = NATURE_CALM,
+    .moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+    },
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_3_SkyPillar_Outside[] = { // Shedinjite
+    {
+    .lvl = 0,
+    .species = SPECIES_HAXORUS,
+    .heldItem = ITEM_SMOOTH_ROCK,
+    .ability = 2, // Sand Stream
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
+    .nature = NATURE_CALM,
+    .moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+    },
+};
+
 static const struct TrainerMonItemCustomMoves sParty_Crobatite_DewfordManor[] = { // Crobatite
     {
     .lvl = 0,

@@ -12201,4 +12201,49 @@ const struct Trainer gTrainers[] = {
         .partySize = ARRAY_COUNT(sParty_NidoMegas_Route116Rusturf),
         .party = {.ItemCustomMoves = sParty_NidoMegas_Route116Rusturf},
     },
+
+    [TRAINER_DRAGONITENITE_SAGE_1] = // Dragonitenite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_ANAB,
+        .trainerName = _("Sage 1"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Dragonitenite_Sage_1_SkyPillar_Outside),
+        .party = {.ItemCustomMoves = sParty_Dragonitenite_Sage_1_SkyPillar_Outside},
+        .trainerFlag = FLAG_TRAINER_DRAGONITENITE_SAGE_1,
+    },
+
+    [TRAINER_DRAGONITENITE_SAGE_2] = // Dragonitenite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_AQUA_GRUNT_M,
+        .trainerName = _("Sage 2"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Dragonitenite_Sage_2_SkyPillar_Outside),
+        .party = {.ItemCustomMoves = sParty_Dragonitenite_Sage_2_SkyPillar_Outside},
+        .trainerFlag = FLAG_TRAINER_DRAGONITENITE_SAGE_2,
+    },
+
+    [TRAINER_DRAGONITENITE_SAGE_3] = // Dragonitenite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_AQUA_GRUNT_F,
+        .trainerName = _("Sage 3"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Dragonitenite_Sage_3_SkyPillar_Outside),
+        .party = {.ItemCustomMoves = sParty_Dragonitenite_Sage_3_SkyPillar_Outside},
+        .trainerFlag = FLAG_TRAINER_DRAGONITENITE_SAGE_3,
+    },
 };

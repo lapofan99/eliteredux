@@ -1,4 +1,7 @@
 .set LOCALID_WALLACE, 1
+.set LOCALID_GAUNTLET_TRAINER_1, 2
+.set LOCALID_GAUNTLET_TRAINER_2, 3
+.set LOCALID_GAUNTLET_TRAINER_3, 4
 
 SkyPillar_Outside_MapScripts:: @ 82392A8
 	map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_Outside_OnTransition
@@ -22,6 +25,7 @@ SkyPillar_Outside_EventScript_CheckSetAbnormalWeather:: @ 82392D3
 	return
 
 SkyPillar_Outside_OnLoad: @ 82392DD
+	call SkyPillar_Outside_EventScript_HideGauntletTrainers
 	call_if_set FLAG_WALLACE_GOES_TO_SKY_PILLAR, SkyPillar_Outside_EventScript_OpenDoor
 	end
 
@@ -172,3 +176,108 @@ SkyPillar_Outside_Text_GotToGoBackForSootopolis: @ 823953A
 	.string "I've got to go back.\p"
 	.string "Everything is in your hands now.\n"
 	.string "Don't fail us!$"
+
+SkyPillar_Outside_Text_Gauntlet::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE07_GET, SkyPillar_Outside_Text_Gauntlet_2
+	msgbox SkyPillar_Outside_Text_Gauntlet_Text_7, MSGBOX_NPC
+SkyPillar_Outside_Text_Gauntlet_1:
+	release
+	end
+
+SkyPillar_Outside_Text_Gauntlet_2:
+	goto_if_unset FLAG_OBTAINED_DRAGONITENITE, SkyPillar_Outside_Text_Gauntlet_5
+	msgbox SkyPillar_Outside_Text_Gauntlet_Text_8, MSGBOX_NPC
+	goto SkyPillar_Outside_Text_Gauntlet_1
+
+SkyPillar_Outside_Text_Gauntlet_5:
+	msgbox SkyPillar_Outside_Text_Gauntlet_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq SkyPillar_Outside_Text_Gauntlet_8
+	msgbox SkyPillar_Outside_Text_Gauntlet_Text_7, MSGBOX_NPC
+	goto SkyPillar_Outside_Text_Gauntlet_1
+
+SkyPillar_Outside_Text_Gauntlet_8:
+	setflag FLAG_SYS_DISABLE_AUTOHEAL
+	fadescreenswapbuffers FADE_TO_BLACK
+	setobjectxy LOCALID_GAUNTLET_TRAINER_1, 14, 17
+	clearflag FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_2
+	addobject LOCALID_GAUNTLET_TRAINER_2
+	setobjectxy LOCALID_GAUNTLET_TRAINER_2, 15, 17
+	clearflag FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_3
+	addobject LOCALID_GAUNTLET_TRAINER_3
+	setobjectxy LOCALID_GAUNTLET_TRAINER_3, 16, 17
+	fadescreenswapbuffers FADE_FROM_BLACK
+	msgbox SkyPillar_Outside_Text_Gauntlet_Text_1, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_DRAGONITENITE_SAGE_2, SkyPillar_Outside_Text_Gauntlet_Text_2
+	fadescreenswapbuffers FADE_TO_BLACK
+	setobjectxy LOCALID_GAUNTLET_TRAINER_2, 16, 17
+	setobjectxy LOCALID_GAUNTLET_TRAINER_3, 15, 17
+	fadescreenswapbuffers FADE_FROM_BLACK
+	msgbox SkyPillar_Outside_Text_Gauntlet_Text_3, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_DRAGONITENITE_SAGE_3, SkyPillar_Outside_Text_Gauntlet_Text_2
+	fadescreenswapbuffers FADE_TO_BLACK
+	setobjectxy LOCALID_GAUNTLET_TRAINER_1, 15, 17
+	setobjectxy LOCALID_GAUNTLET_TRAINER_3, 14, 17
+	fadescreenswapbuffers FADE_FROM_BLACK
+	msgbox SkyPillar_Outside_Text_Gauntlet_Text_4, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_DRAGONITENITE_SAGE_1, SkyPillar_Outside_Text_Gauntlet_Text_2
+	msgbox SkyPillar_Outside_Text_Gauntlet_Text_5, MSGBOX_NPC
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_DRAGONITENITE, 1
+	setflag FLAG_OBTAINED_DRAGONITENITE
+	clearflag FLAG_SYS_DISABLE_AUTOHEAL
+	waitfanfare
+	msgbox SkyPillar_Outside_Text_Gauntlet_Text_6, MSGBOX_NPC
+	waitmessage
+	fadescreenswapbuffers FADE_TO_BLACK
+	setflag FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_1
+	setflag FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_2
+	setflag FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_3
+	removeobject LOCALID_GAUNTLET_TRAINER_1
+	removeobject LOCALID_GAUNTLET_TRAINER_2
+	removeobject LOCALID_GAUNTLET_TRAINER_3
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto SkyPillar_Outside_Text_Gauntlet_1
+
+
+SkyPillar_Outside_EventScript_HideGauntletTrainers::
+	goto_if_unset FLAG_OBTAINED_DRAGONITENITE, SkyPillar_Outside_EventScript_HideGauntletTrainers_2
+SkyPillar_Outside_EventScript_HideGauntletTrainers_1:
+	return
+
+SkyPillar_Outside_EventScript_HideGauntletTrainers_2:
+	setflag FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_2
+	setflag FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_3
+	goto SkyPillar_Outside_EventScript_HideGauntletTrainers_1
+
+
+SkyPillar_Outside_Text_Gauntlet_Text_0:
+	.string "Do you seek strength, young one? Prove\n"
+	.string "yourself to me, and I will grant you\l"
+	.string "strength unrivaled.$"
+
+SkyPillar_Outside_Text_Gauntlet_Text_1:
+	.string "Then let us begin$"
+
+SkyPillar_Outside_Text_Gauntlet_Text_2:
+	.string "Thank...you...$"
+
+SkyPillar_Outside_Text_Gauntlet_Text_3:
+	.string "Trainer 2 text$"
+
+SkyPillar_Outside_Text_Gauntlet_Text_4:
+	.string "Trainer 3 text$"
+
+SkyPillar_Outside_Text_Gauntlet_Text_5:
+	.string "Congratulations, here is your reward$"
+
+SkyPillar_Outside_Text_Gauntlet_Text_6:
+	.string "This item is blablabla...$"
+
+SkyPillar_Outside_Text_Gauntlet_Text_7:
+	.string "...$"
+
+SkyPillar_Outside_Text_Gauntlet_Text_8:
+	.string "remove this code$"
