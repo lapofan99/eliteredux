@@ -201,6 +201,7 @@ AshenWoods_Text_BlobCaught:
 	.string "Blob was caught!\p"
 	.string "Blob was sent to the nurse's PC.$"
 `
+
 script AshenWoods_EventScript_Typhlosionite_Battle {
 	lock
 	faceplayer

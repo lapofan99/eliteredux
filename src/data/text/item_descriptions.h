@@ -3193,7 +3193,7 @@ static const u8 sMagnezoniteDesc[] = _(
     "Evolve in battle."
 );
 
-static const u8 sShedinjaniteDesc[] = _(
+static const u8 sShedinjiteDesc[] = _(
     "This stone enables\n"
     "Shedinja to Mega\n"
     "Evolve in battle."

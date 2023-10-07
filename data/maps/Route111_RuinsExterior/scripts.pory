@@ -2,6 +2,7 @@ raw `
 Route111_RuinsExterior_MapScripts::
 	.byte 0
 `
+
 script Route111_Ruins_Exterior_EventScript_Krookodilenite_Battle {
 	lock
 	faceplayer

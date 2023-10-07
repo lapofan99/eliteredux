@@ -3906,6 +3906,7 @@ static const struct LevelUpMove sAriadosLevelUpLearnset[] = {
 static const struct LevelUpMove sCrobatLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_CROSS_POISON),
     LEVEL_UP_MOVE( 1, MOVE_SHADOW_CLAW), // new
+    LEVEL_UP_MOVE( 1, MOVE_HYPER_FANG), // new
     LEVEL_UP_MOVE( 1, MOVE_MEAN_LOOK),
     LEVEL_UP_MOVE( 1, MOVE_SCREECH),
     LEVEL_UP_MOVE( 1, MOVE_ABSORB),
@@ -18363,6 +18364,9 @@ static const struct LevelUpMove sKartanaLevelUpLearnset[] = {
 static const struct LevelUpMove sGuzzlordLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_BODY_PRESS), // new
     LEVEL_UP_MOVE( 1, MOVE_WICKED_BLOW), // new
+    LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_SHADOW_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
 	LEVEL_UP_MOVE( 1, MOVE_BELCH),
 	LEVEL_UP_MOVE( 1, MOVE_WIDE_GUARD),
 	LEVEL_UP_MOVE( 1, MOVE_SWALLOW),

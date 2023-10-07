@@ -787,7 +787,7 @@ u16 getHallofFameSpecies(u8 num){
                 return SPECIES_MAGNEZONE_MEGA;
         break;
         case SPECIES_SHEDINJA:
-            if(item == ITEM_SHEDINJANITE)
+            if(item == ITEM_SHEDINJITE)
                 return SPECIES_SHEDINJA_MEGA;
         break;
         case SPECIES_SWALOT:
@@ -1498,7 +1498,7 @@ static void Task_HofPC_ExitOnButtonPress(u8 taskId)
 static void HallOfFame_PrintWelcomeText(u8 unusedPossiblyWindowId, u8 unused2)
 {
     u8 numModes = 0;
-    static const u8 gText_WelcomeToHOF[] 		  = _("Elite Redux v1.6-b4 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
+    static const u8 gText_WelcomeToHOF[] 		  = _("Elite Redux v1.6-b5 - {STR_VAR_1} Mode{COLOR WHITE}{SHADOW DARK_GRAY}, {STR_VAR_2} Caps\n{COLOR WHITE}{SHADOW DARK_GRAY}{STR_VAR_3}");
     static const u8 sText_WinsLossesText[]        = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}");
     static const u8 sText_WinsLossesLockedText[]  = _("Wins: {STR_VAR_1}      Losses: {STR_VAR_2}      {COLOR LIGHT_RED}{SHADOW RED}Locked Mode{COLOR WHITE}{SHADOW DARK_GRAY}");
     

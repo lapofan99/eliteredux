@@ -631,6 +631,38 @@ Route116_EventScript_Gen8_NPC_20:
 	goto Route116_EventScript_Gen8_NPC_3
 
 
+Route116_EventScript_MegaNidos_Battle::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE07_GET, Route116_EventScript_MegaNidos_Battle_2
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_6, MSGBOX_NPC
+Route116_EventScript_MegaNidos_Battle_1:
+	release
+	end
+
+Route116_EventScript_MegaNidos_Battle_2:
+	checktrainerflag TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR
+	goto_if 0, Route116_EventScript_MegaNidos_Battle_5
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_5, MSGBOX_NPC
+	goto Route116_EventScript_MegaNidos_Battle_1
+
+Route116_EventScript_MegaNidos_Battle_5:
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route116_EventScript_MegaNidos_Battle_8
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_4, MSGBOX_NPC
+	goto Route116_EventScript_MegaNidos_Battle_1
+
+Route116_EventScript_MegaNidos_Battle_8:
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_1, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR, Route116_EventScript_MegaNidos_Battle_Text_2
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_3, MSGBOX_NPC
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_KROOKODILENITE, 1
+	waitmessage
+	goto Route116_EventScript_MegaNidos_Battle_1
+
+
 Route116_EventScript_LegendaryNPC_Text_0:
 	.string "Sage: Despite your young age, you\n"
 	.string "appear to be someone who seeks a\l"
@@ -679,6 +711,40 @@ Route116_EventScript_Gen8_NPC_Text_2:
 	.string "give you an exotic Pokémon from the\l"
 	.string "Galar region: a valiant wielder of\l"
 	.string "longswords!$"
+
+Route116_EventScript_MegaNidos_Battle_Text_0:
+	.string "Hmm, searching for something\n"
+	.string "interesting, are we? I've already\l"
+	.string "claimed this site, but I see spirit in\l"
+	.string "you. Prove me right, and I'll reward you\l"
+	.string "with something nice I've dug up.$"
+
+Route116_EventScript_MegaNidos_Battle_Text_1:
+	.string "Let's get to it then!$"
+
+Route116_EventScript_MegaNidos_Battle_Text_2:
+	.string "Ha, these old eyes never lie to me.$"
+
+Route116_EventScript_MegaNidos_Battle_Text_3:
+	.string "I knew I saw something great in you!\n"
+	.string "Take this, and get out of here before\l"
+	.string "you get footprints on my dig!$"
+
+Route116_EventScript_MegaNidos_Battle_Text_4:
+	.string "Such a shame, come back when you're\n"
+	.string "ready to get your hands dirty!$"
+
+Route116_EventScript_MegaNidos_Battle_Text_5:
+	.string "Your persistence is admirable, young\n"
+	.string "one, yet fruitless. My treasures have\l"
+	.string "been exhausted. Find your fortune\l"
+	.string "elsewhere, and leave this hollow\l"
+	.string "sanctum to rest undisturbed.$"
+
+Route116_EventScript_MegaNidos_Battle_Text_6:
+	.string "What's this? A young explorer scurrying\n"
+	.string "onto my site? Run along chap, maybe I'll\l"
+	.string "entertain you when you're stronger.$"
 
 Route116_EventScript_Text_Got_Aggron::
 	.string "{PLAYER} got an {COLOR BLUE}Aggron{COLOR DARK_GRAY} as a gift!$"

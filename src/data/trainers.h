@@ -12087,7 +12087,7 @@ const struct Trainer gTrainers[] = {
         //.partyInsane = {.ItemCustomMoves = sParty_MeganiumiteVerdanturfMeadowInsane},
     },
 
-    /*[TRAINER_NEW_TEST] =
+    [TRAINER_NEW_TEST] = // to change
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = TRAINER_CLASS_AROMA_LADY,
@@ -12102,7 +12102,7 @@ const struct Trainer gTrainers[] = {
         //.partySizeInsane = ARRAY_COUNT(sParty_MegaMeganiumVerdanturfMeadowInsane),
         //.partyInsane = {.ItemCustomMoves = sParty_MegaMeganiumVerdanturfMeadowInsane},
         .trainerFlag = FLAG_TRAINER_NEW_TEST,
-    },*/
+    },
 
     [TRAINER_FERALIGATRITEX_ROUTE105] = // Feraligatrite X
     {
@@ -12144,5 +12144,61 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
         .partySize = ARRAY_COUNT(sParty_KrookodileniteRoute111RuinsExterior),
         .party = {.ItemCustomMoves = sParty_KrookodileniteRoute111RuinsExterior},
+    },
+
+    [TRAINER_SHEDINJITE_ABANDONED_SHIP] = // Shedinjite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BUG_CATCHER,
+        .trainerName = _("???"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Shedinjite_AbandonedShip_HiddenFloorRooms),
+        .party = {.ItemCustomMoves = sParty_Shedinjite_AbandonedShip_HiddenFloorRooms},
+    },
+
+    [TRAINER_CROBATITE_DEWFORD_MANOR] = // Crobatite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_EXPERT,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_EXPERT_F,
+        .trainerName = _("Morticia"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Crobatite_DewfordManor),
+        .party = {.ItemCustomMoves = sParty_Crobatite_DewfordManor},
+    },
+
+    [TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER] = // Sinnoh Megas
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_POKEMANIAC,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
+        .trainerPic = TRAINER_PIC_POKEMANIAC,
+        .trainerName = _("Wyatt"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_SinnohMegas_MauvilleGameCorner),
+        .party = {.ItemCustomMoves = sParty_SinnohMegas_MauvilleGameCorner},
+    },
+
+    [TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF] = // Nido Megas
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
+        .trainerPic = TRAINER_PIC_COOLTRAINER_M,
+        .trainerName = _("Jaxon"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_NidoMegas_Route116Rusturf),
+        .party = {.ItemCustomMoves = sParty_NidoMegas_Route116Rusturf},
     },
 };

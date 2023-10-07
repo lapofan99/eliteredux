@@ -132,3 +132,49 @@ AbandonedShip_HiddenFloorRooms_EventScript_OldSeaMap::
 AbandonedShip_HiddenFloorRooms_Text_BrightShinyTrash: @ 8238DFE
 	.string "It's bright and shiny!\n"
 	.string "But it's just trash…$"
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE07_GET, AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_2
+	msgbox AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_3, MSGBOX_NPC
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_1:
+	release
+	end
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_2:
+	checktrainerflag TRAINER_SHEDINJITE_ABANDONED_SHIP
+	goto_if 0, AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_5
+	msgbox AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_4, MSGBOX_NPC
+	goto AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_1
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_5:
+	msgbox AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_8
+	msgbox AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_3, MSGBOX_NPC
+	goto AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_1
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_8:
+	msgbox AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_1, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_SHEDINJITE_ABANDONED_SHIP, AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_2
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_SHEDINJITE, 1
+	waitmessage
+	goto AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_1
+
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_0:
+	.string "...Nincada?$"
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_1:
+	.string "It's so scary now...$"
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_2:
+	.string "Thank...you...$"
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_3:
+	.string "...$"
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_4:
+	.string "remove this code$"

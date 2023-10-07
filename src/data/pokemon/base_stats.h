@@ -18476,10 +18476,10 @@ const struct BaseStats gBaseStats[] =
 
 [SPECIES_SCRAFTY] =
     {
-    .baseHP        = 65, // 65
+    .baseHP        = 73, // 65
     .baseAttack    = 90,
     .baseDefense   = 115,
-    .baseSpeed     = 58,
+    .baseSpeed     = 73, // 58
     .baseSpAttack  = 45,
     .baseSpDefense = 115,
     .type1 = TYPE_DARK,
@@ -27208,7 +27208,7 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_SLOW,
     .eggGroup1 = EGG_GROUP_UNDISCOVERED,
     .eggGroup2 = EGG_GROUP_UNDISCOVERED,
-    .abilities = {ABILITY_INTIMIDATE, ABILITY_STRONG_JAW, ABILITY_PREDATOR},
+    .abilities = {ABILITY_INTIMIDATE, ABILITY_STRONG_JAW, ABILITY_JAWS_OF_CARNAGE},
     .innates = {ABILITY_BEAST_BOOST, ABILITY_THICK_FAT, ABILITY_GRIP_PINCER},
     .bodyColor = BODY_COLOR_BLACK,
     .noFlip = FALSE,

@@ -861,6 +861,10 @@
 #define TRAINER_FERALIGATRITEX_ROUTE105     857
 #define TRAINER_TYPHLOSIONITE_ASHEN_WOODS   858
 #define TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR 859
+#define TRAINER_SHEDINJITE_ABANDONED_SHIP   860
+#define TRAINER_CROBATITE_DEWFORD_MANOR     861
+#define TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER 862
+#define TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF 863
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled

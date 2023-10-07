@@ -135,3 +135,33 @@ AbandonedShip_HiddenFloorRooms_Text_BrightShinyTrash: @ 8238DFE
 	.string "But it's just trash…$"
 
 `
+
+script AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_SHEDINJITE_ABANDONED_SHIP) // Only For testing
+		if (!defeated(TRAINER_SHEDINJITE_ABANDONED_SHIP)) { // asking for battle
+			msgbox(format("...Nincada?"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("It's so scary now..."), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_SHEDINJITE_ABANDONED_SHIP, format("Thank...you...")) // in-battle, player wins
+				// fade the screen here, remove the Bug Catcher and show the Mega Stone
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_SHEDINJITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("..."), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated << not needed here as the trainer is gone
+			msgbox(format("remove this code"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("..."), MSGBOX_NPC)
+	}
+	release
+	end	
+}

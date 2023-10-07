@@ -7966,13 +7966,13 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_SHEDINJANITE] =
+    [ITEM_SHEDINJITE] =
     {
-        .name = _("Shedinjanite"),
-        .itemId = ITEM_SHEDINJANITE,
+        .name = _("Shedinjite"),
+        .itemId = ITEM_SHEDINJITE,
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
-        .description = sShedinjaniteDesc,
+        .description = sShedinjiteDesc,
         .pocket = POCKET_MEGA_STONES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
