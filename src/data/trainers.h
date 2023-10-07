@@ -12207,7 +12207,7 @@ const struct Trainer gTrainers[] = {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_ANAB,
+        .trainerPic = TRAINER_PIC_SALON_MAIDEN_ANABEL,
         .trainerName = _("Sage 1"),
         .items = {},
         .doubleBattle = FALSE,
@@ -12245,5 +12245,50 @@ const struct Trainer gTrainers[] = {
         .partySize = ARRAY_COUNT(sParty_Dragonitenite_Sage_3_SkyPillar_Outside),
         .party = {.ItemCustomMoves = sParty_Dragonitenite_Sage_3_SkyPillar_Outside},
         .trainerFlag = FLAG_TRAINER_DRAGONITENITE_SAGE_3,
+    },
+
+    [TRAINER_HITMONSTONE_BLACKBELT_1] = // Hitmonlee
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_BLACK_BELT,
+        .trainerName = _("John"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonlee),
+        .party = {.ItemCustomMoves = sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonlee},
+        .trainerFlag = FLAG_TRAINER_HITMONSTONE_BLACKBELT,
+    },
+
+    [TRAINER_HITMONSTONE_BLACKBELT_2] = // Hitmonchan
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_BLACK_BELT,
+        .trainerName = _("John"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonchan),
+        .party = {.ItemCustomMoves = sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonchan},
+        .trainerFlag = FLAG_TRAINER_HITMONSTONE_BLACKBELT,
+    },
+
+    [TRAINER_HITMONSTONE_BLACKBELT_3] = // Hitmontop
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_BLACK_BELT,
+        .trainerName = _("John"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_BlackBelt_Hitmon_Mega_Stone_Hitmontop),
+        .party = {.ItemCustomMoves = sParty_BlackBelt_Hitmon_Mega_Stone_Hitmontop},
+        .trainerFlag = FLAG_TRAINER_HITMONSTONE_BLACKBELT,
     },
 };

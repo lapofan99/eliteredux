@@ -41394,3 +41394,45 @@ static const struct TrainerMonItemCustomMoves sParty_NidoMegas_Route116Rusturf[]
     .moves = MOVE_PROTECT, MOVE_ICE_FANG, MOVE_DUAL_WINGBEAT, MOVE_DEFOG
     }
 };
+
+static const struct TrainerMonItemCustomMoves sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonlee[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_HITMONLEE, // Doubles, Bulky Vest, Iron Fist
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_IRON_FIST, ABILITY_SKILL_LINK, ABILITY_STAMINA},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_GUTS, ABILITY_RIVALRY},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_CLOSE_COMBAT, MOVE_KNOCK_OFF, MOVE_HEAVY_SLAM, MOVE_FAKE_OUT
+    },
+};
+
+static const struct TrainerMonItemCustomMoves sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonchan[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_HITMONCHAN, // Doubles, Bulky Vest, Iron Fist
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_IRON_FIST, ABILITY_SKILL_LINK, ABILITY_STAMINA},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_GUTS, ABILITY_RIVALRY},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_CLOSE_COMBAT, MOVE_KNOCK_OFF, MOVE_HEAVY_SLAM, MOVE_FAKE_OUT
+    },
+};
+
+static const struct TrainerMonItemCustomMoves sParty_BlackBelt_Hitmon_Mega_Stone_Hitmontop[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_HITMONTOP, // Doubles, Bulky Vest, Iron Fist
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // ABILITY_IRON_FIST, ABILITY_SKILL_LINK, ABILITY_STAMINA},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_GUTS, ABILITY_RIVALRY},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_CLOSE_COMBAT, MOVE_KNOCK_OFF, MOVE_HEAVY_SLAM, MOVE_FAKE_OUT
+    },
+};

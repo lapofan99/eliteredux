@@ -2755,6 +2755,35 @@ bool8 ScrCmd_checkSaveblockValue(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_checkpartyfortypeornumber(struct ScriptContext *ctx)
+{
+    u16 type  = ScriptReadHalfword(ctx);
+    u16 number  = ScriptReadHalfword(ctx);
+    u8 partySize = CalculatePlayerPartyCount();
+    u8 i, type1, type2;
+    u16 species;
+
+    if(partySize != number && number != 0){
+        gSpecialVar_Result = FALSE;
+        return FALSE;
+    }
+
+    if(type != NUMBER_OF_MON_TYPES){
+        for(i = 0; i < partySize; i++){
+            species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+            type1 = gBaseStats[species].type1;
+            type2 = gBaseStats[species].type2;
+            if(type1 != type && type2 != type){
+                gSpecialVar_Result = FALSE;
+                return FALSE;
+            }
+        }
+    }
+
+    gSpecialVar_Result = TRUE;
+    return TRUE;
+}
+
 bool8 ScrCmd_setwildbattlewithcustommoves(struct ScriptContext *ctx)
 {
     u16 species    = ScriptReadHalfword(ctx);

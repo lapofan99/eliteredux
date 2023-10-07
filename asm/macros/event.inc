@@ -1795,6 +1795,12 @@
     .2byte \speed_evs
     .endm
 
+	.macro checkpartyfortypeornumber type:req, number:req
+	.byte 0xeb
+	.2byte \type
+	.2byte \number
+	.endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req
