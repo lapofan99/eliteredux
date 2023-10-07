@@ -704,6 +704,16 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
     s16* data = gTasks[taskId].data;
 	u16 timesUpdated = 0 + VarGet(VAR_UPDATED_TIMES);
 
+    if(VarGet(VAR_SAVE_VERSION) < 1017){
+        //updating version
+        FlagClear(FLAG_GOT_TM24_FROM_WATTSON);
+        if(FlagGet(FLAG_BADGE05_GET) == TRUE){
+            FlagSet(FLAG_GOT_TM24_FROM_WATTSON);
+            FlagClear(FLAG_HIDE_MAUVILLE_CITY_WATTSON);
+            FlagClear(FLAG_WATTSON_REMATCH_AVAILABLE);
+        }
+    }
+
     if (!gPaletteFade.active)
     {
         SetGpuReg(REG_OFFSET_WIN0H, 0);

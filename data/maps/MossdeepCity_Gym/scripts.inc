@@ -692,7 +692,11 @@ MossdeepCity_Gym_EventScript_GiveCalmMind::
 	msgbox MossdeepCity_Gym_EventScript_GiveCalmMind_Text_0
 	givecustommon SPECIES_REUNICLUS, 60, ITEM_LIFE_ORB, ITEM_CHERISH_BALL, NATURE_QUIET, 2, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_PSYSHOCK, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_PROTECT, TRUE
 	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
 	msgbox MossdeepCity_Gym_EventScript_GiveCalmMind_Text_1
+	msgbox MossdeepCity_Gym_EventScript_GiveCalmMind_Text_2
+	giveitem ITEM_SLOWKINGITE, 1
+	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare
 	setflag FLAG_RECEIVED_TM04
 	msgbox MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT
@@ -740,12 +744,15 @@ MossdeepCity_Gym_EventScript_CheckTrainers_3:
 
 
 MossdeepCity_Gym_EventScript_GiveCalmMind_Text_0:
-	.string "Take this special Pokémon as a gift\n"
-	.string "from us!$"
+	.string "Tate: Take this special Pokémon as a\n"
+	.string "gift from me!$"
 
 MossdeepCity_Gym_EventScript_GiveCalmMind_Text_1:
-	.string "{PLAYER} got Tate & Liza's {COLOR BLUE}Reuniclus{COLOR DARK_GRAY}\n"
-	.string "as a gift!$"
+	.string "{PLAYER} got Tate's {COLOR BLUE}Reuniclus{COLOR DARK_GRAY} as a\n"
+	.string "gift!$"
+
+MossdeepCity_Gym_EventScript_GiveCalmMind_Text_2:
+	.string "Liza: And take this gift from me!$"
 
 MossdeepCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "Tate: Sorry, but you need to defeat\n"

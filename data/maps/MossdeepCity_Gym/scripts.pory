@@ -690,10 +690,14 @@ MossdeepCity_Gym_Text_TateAndLizaAllowLegends:
 	.string "Liza: Our Legendary Pokémon?$"
 `
 script MossdeepCity_Gym_EventScript_GiveCalmMind{
-	msgbox(format("Take this special Pokémon as a gift from us!"))
+	msgbox(format("Tate: Take this special Pokémon as a gift from me!"))
 	givecustommon(SPECIES_REUNICLUS, 60, ITEM_LIFE_ORB, ITEM_CHERISH_BALL, NATURE_QUIET, 2, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_PSYSHOCK, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_PROTECT, TRUE)
 	playfanfare(MUS_OBTAIN_ITEM)
-	msgbox(format("{PLAYER} got Tate & Liza's {COLOR BLUE}Reuniclus{COLOR DARK_GRAY} as a gift!"))
+	waitfanfare
+	msgbox(format("{PLAYER} got Tate's {COLOR BLUE}Reuniclus{COLOR DARK_GRAY} as a gift!"))
+	msgbox(format("Liza: And take this gift from me!"))
+	giveitem(ITEM_SLOWKINGITE, 1)
+	playfanfare(MUS_OBTAIN_ITEM)
 	waitfanfare
 	setflag(FLAG_RECEIVED_TM04)
 	msgbox(MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT)
