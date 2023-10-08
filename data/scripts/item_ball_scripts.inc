@@ -454,6 +454,10 @@ AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite:: @ 8291288
 	finditem ITEM_SHEDINJITE
 	end
 
+Route110_EventScript_Shucklenite:: @ 8291288
+	finditem ITEM_SHUCKLENITE
+	end
+
 AbandonedShip_HiddenFloorRooms_EventScript_ItemLucarionite:: @ 8291295
 	finditem ITEM_LUCARIONITE
 	end
