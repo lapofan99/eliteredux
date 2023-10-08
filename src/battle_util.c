@@ -15637,7 +15637,8 @@ bool32 CanMegaEvolve(u8 battlerId)
     if ((GetBattlerPosition(battlerId) == B_POSITION_PLAYER_LEFT || (!(gBattleTypeFlags & BATTLE_TYPE_MULTI) && GetBattlerPosition(battlerId) == B_POSITION_PLAYER_RIGHT))
      && (!CheckBagHasItem(ITEM_MEGA_BRACELET, 1) || !FlagGet(FLAG_SYS_RECEIVED_KEYSTONE)))
     {
-        return FALSE;
+        if(GetBattlerSide(battlerId) == B_SIDE_PLAYER)
+            return FALSE;
     }
 
     // Gets mon data.
@@ -15650,8 +15651,9 @@ bool32 CanMegaEvolve(u8 battlerId)
     itemId  = GetMonData(mon, MON_DATA_HELD_ITEM);
 
     // Check if trainer already mega evolved a pokemon.
-    if (mega->alreadyEvolved[battlerPosition]
-        && ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB)//There can be a lot of primal mons per battle
+    if (mega->alreadyEvolved[battlerPosition] &&
+        ItemId_GetHoldEffect(itemId) != HOLD_EFFECT_PRIMAL_ORB && 
+        GetBattlerSide(battlerId) == B_SIDE_PLAYER) //There can be a lot of primal mons per battle, it's only checked with the player
         return FALSE;
 
     if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
