@@ -41268,43 +41268,133 @@ static const struct TrainerMonItemCustomMoves sParty_Shedinjite_AbandonedShip_Hi
     }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_1_SkyPillar_Outside[] = { // Dragonitenite
+static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_1_SkyPillar_Outside[] = { // Dragonitenite, Man
     {
     .lvl = 0,
-    .species = SPECIES_DRAGONITE,
-    .heldItem = ITEM_SMOOTH_ROCK,
-    .ability = 2, // Sand Stream
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_CALM,
-    .moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+    .species = SPECIES_JOLTEON,
+    .heldItem = ITEM_TERRAIN_EXTENDER,
+    .ability = 2, // Electric Surge
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_RISING_VOLTAGE, MOVE_ENERGY_BALL, MOVE_ICE_BEAM, MOVE_EARTH_POWER
     },
+    {
+    .lvl = 0,
+    .species = SPECIES_ZEKROM,
+    .heldItem = ITEM_SHELL_BELL,
+    .ability = 1, // Galvanize
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 4, 0, 252, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_MILD,
+    .moves = MOVE_EXTREME_SPEED, MOVE_BOOMBURST, MOVE_SCALE_SHOT, MOVE_STEEL_WING
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_RAICHU_ALOLAN,
+    .heldItem = ITEM_LIGHT_BALL,
+    .ability = 2, // Electric Surge
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_RISING_VOLTAGE, MOVE_AURORA_BEAM, MOVE_PSYSHOCK, MOVE_NASTY_PLOT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DRAGONITE, // Mega
+    .heldItem = ITEM_DRAGONITENITE,
+    .ability = 2, // Prism Scales > Multiscale
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_EXTREME_SPEED, MOVE_OUTRAGE, MOVE_THRASH, MOVE_DRAGON_DANCE
+    }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_2_SkyPillar_Outside[] = { // Shedinjite
+static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_2_SkyPillar_Outside[] = { // Dragonitenite, Woman
     {
     .lvl = 0,
-    .species = SPECIES_GARCHOMP,
-    .heldItem = ITEM_SMOOTH_ROCK,
-    .ability = 2, // Sand Stream
+    .species = SPECIES_NINETALES_ALOLAN,
+    .heldItem = ITEM_ICY_ROCK,
+    .ability = 2, // Snow Warning
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_CALM,
-    .moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+    .evs = {0, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_BLIZZARD, MOVE_DRAINING_KISS, MOVE_FREEZE_DRY, MOVE_NASTY_PLOT
     },
+    {
+    .lvl = 0,
+    .species = SPECIES_KYUREM,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // Snow Warning
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {176, 252, 0, 0, 0, 80}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_BOLT_STRIKE, MOVE_CORE_ENFORCER, MOVE_GLACIAL_LANCE, MOVE_DRAGON_DANCE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_MAMOSWINE,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 2, // Whiteout
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_EARTHQUAKE, MOVE_ICE_SHARD, MOVE_KNOCK_OFF, MOVE_ICE_FANG
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_LAPRAS, // Mega
+    .heldItem = ITEM_LAPRASITE_Y,
+    .ability = 1, // Snow Warning > Liquid Voice
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {248, 0, 8, 0, 252, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_CALM,
+    .moves = MOVE_BOOMBURST, MOVE_FREEZE_DRY, MOVE_RECOVER, MOVE_PERISH_SONG
+    }
 };
 
-static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_3_SkyPillar_Outside[] = { // Shedinjite
+static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_3_SkyPillar_Outside[] = { // Dragonitenite, Woman
     {
     .lvl = 0,
-    .species = SPECIES_HAXORUS,
-    .heldItem = ITEM_SMOOTH_ROCK,
-    .ability = 2, // Sand Stream
+    .species = SPECIES_NINETALES,
+    .heldItem = ITEM_HEAT_ROCK,
+    .ability = 2, // Drought
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_CALM,
-    .moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+    .evs = {0, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_DRAINING_KISS, MOVE_WEATHER_BALL, MOVE_FLAME_BURST, MOVE_OVERHEAT
     },
+    {
+    .lvl = 0,
+    .species = SPECIES_RESHIRAM,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 1, // Burnate
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {248, 0, 0, 40, 0, 220}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_DRAGON_BREATH, MOVE_SCORCHING_SANDS, MOVE_FLAME_BURST
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_ARCANINE,
+    .heldItem = ITEM_HEAVY_DUTY_BOOTS,
+    .ability = 2, // Burnate
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_EXTREME_SPEED, MOVE_CLOSE_COMBAT, MOVE_MORNING_SUN, MOVE_WILD_CHARGE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_CHARIZARD, // Mega
+    .heldItem = ITEM_CHARIZARDITE_Y,
+    .ability = 0, // Burnate > Drought
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 8, 248}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_DRAGON_PULSE, MOVE_WEATHER_BALL, MOVE_ROOST, MOVE_SOLAR_BEAM
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Crobatite_DewfordManor[] = { // Crobatite
