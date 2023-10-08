@@ -14344,11 +14344,11 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_SKUNTANK] =
     {
     .baseHP        = 103,
-    .baseAttack    = 113,
-    .baseDefense   = 67,
+    .baseAttack    = 51, // 113
+    .baseDefense   = 77, // 67
     .baseSpeed     = 84,
-    .baseSpAttack  = 71,
-    .baseSpDefense = 61,
+    .baseSpAttack  = 113, // 71
+    .baseSpDefense = 71, // 61
     .type1 = TYPE_POISON,
     .type2 = TYPE_DARK,
     .catchRate = 255,
@@ -14360,8 +14360,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_FAST,
     .eggGroup1 = EGG_GROUP_FIELD,
     .eggGroup2 = EGG_GROUP_FIELD,
-    .abilities = {ABILITY_POISON_POINT, ABILITY_ANTICIPATION, ABILITY_RUN_AWAY},
-    .innates = {ABILITY_AFTERMATH, ABILITY_STENCH, ABILITY_KEEN_EYE},
+    .abilities = {ABILITY_AFTERMATH, ABILITY_UNBURDEN, ABILITY_ADAPTABILITY},
+    .innates = {ABILITY_CORROSION, ABILITY_GLUTTONY, ABILITY_CHEEK_POUCH},
     .bodyColor = BODY_COLOR_PURPLE,
     .noFlip = FALSE,
     },
