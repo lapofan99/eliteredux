@@ -7,8 +7,8 @@ GraniteCave_B2F_SetFlashRadius:
 GraniteCave_B2F_EventScript_HitmonStone::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE07_GET, GraniteCave_B2F_EventScript_HitmonStone_2
-	msgbox GraniteCave_B2F_EventScript_HitmonStone_Text_6, MSGBOX_NPC
+	goto_if_set FLAG_BADGE06_GET, GraniteCave_B2F_EventScript_HitmonStone_2
+	msgbox GraniteCave_B2F_EventScript_HitmonStone_Text_8, MSGBOX_NPC
 GraniteCave_B2F_EventScript_HitmonStone_1:
 	release
 	end
@@ -65,27 +65,44 @@ GraniteCave_B2F_EventScript_HitmonStone_18:
 
 
 GraniteCave_B2F_EventScript_HitmonStone_Text_0:
-	.string "Do you seek strength, young one? Prove\n"
-	.string "yourself to me, and I will grant you\l"
-	.string "strength unrivaled.$"
+	.string "Greetings, young one. I can tell you\n"
+	.string "wield immense strength. How about a\l"
+	.string "proposal? If you can defeat one of my\l"
+	.string "Pokemon with only one of your own, I\l"
+	.string "will grant you these Mega Stones. My\l"
+	.string "Pokemon are all Fighting-Type, so I ask\l"
+	.string "that you only use Fighting-Types\l"
+	.string "yourself.$"
 
 GraniteCave_B2F_EventScript_HitmonStone_Text_1:
-	.string "Then let us begin$"
+	.string "Then let the duel start!$"
 
 GraniteCave_B2F_EventScript_HitmonStone_Text_2:
-	.string "Thank...you...$"
+	.string "You truly are incredibly strong.$"
 
 GraniteCave_B2F_EventScript_HitmonStone_Text_3:
-	.string "Congratulations, here is your reward$"
+	.string "I am very impressed with your strength.\n"
+	.string "As promised, take these Mega Stones.$"
 
 GraniteCave_B2F_EventScript_HitmonStone_Text_4:
-	.string "This item is blablabla...$"
+	.string "Each one corresponds to one of\n"
+	.string "Tyrogue's 3 evolutions. Use them well.$"
 
 GraniteCave_B2F_EventScript_HitmonStone_Text_5:
-	.string "You don't have the correct Pokémon$"
+	.string "You don't have the correct Pokémon. You\n"
+	.string "can only bring 1 Fighting-type into\l"
+	.string "this battle.$"
 
 GraniteCave_B2F_EventScript_HitmonStone_Text_6:
-	.string "...$"
+	.string "I understand. Please, do return\n"
+	.string "whenever you are ready.$"
 
 GraniteCave_B2F_EventScript_HitmonStone_Text_7:
-	.string "TEXT$"
+	.string "My apologies, but I have nothing left\n"
+	.string "for you.$"
+
+GraniteCave_B2F_EventScript_HitmonStone_Text_8:
+	.string "My apologies, but you aren't worthy yet.\n"
+	.string "Come back after defeating the\l"
+	.string "Mossdeep Twins, and I will speak with\l"
+	.string "you.$"

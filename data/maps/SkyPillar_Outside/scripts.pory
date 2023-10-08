@@ -183,7 +183,7 @@ script SkyPillar_Outside_Text_Gauntlet{
 	lock
 	faceplayer
 	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
-		//cleartrainerflag(TRAINER_SHEDINJITE_ABANDONED_SHIP) // Only For testing
+		//cleartrainerflag(TRAINER_DRAGONITENITE_SAGE_2) // Only For testing
 		if (!flag(FLAG_OBTAINED_DRAGONITENITE)) { // asking for battle
 			msgbox(format("Does thou seek might, young seeker? Display thine prowess unto us, and thee shall be endowed with strength unparalleled."), MSGBOX_YESNO)
 			if (var(VAR_RESULT) == 1) { // When the player accepts the battle
