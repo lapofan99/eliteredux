@@ -41271,11 +41271,11 @@ static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_1_SkyPil
     },
     {
     .lvl = 0,
-    .species = SPECIES_RAICHU_ALOLA,
+    .species = SPECIES_RAICHU_ALOLAN,
     .heldItem = ITEM_LIGHT_BALL,
-    .ability = 0, // Electric Surge
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 4, 0, 252, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .ability = 2, // Electric Surge
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .nature = NATURE_TIMID,
     .moves = MOVE_RISING_VOLTAGE, MOVE_AURORA_BEAM, MOVE_PSYSHOCK, MOVE_NASTY_PLOT
     },
