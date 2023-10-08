@@ -357,6 +357,7 @@ PetalburgCity_Gym_EventScript_NormanFaceDoorEast:: @ 8204D7F
 	return
 
 PetalburgCity_Gym_EventScript_NormanPostBattle:: @ 8204D80
+	call_if_set FLAG_BADGE06_GET, PetalburgCity_Gym_EventScript_Give_Slakingite
 	call PetalburgCity_Gym_EventScript_ShouldGiveEnigmaBerry
 	compare VAR_RESULT, TRUE
 	goto_if_eq PetalburgCity_Gym_EventScript_GiveEnigmaBerry
@@ -1818,6 +1819,20 @@ PetalburgCity_Gym_EventScript_CheckTrainers_3:
 	goto PetalburgCity_Gym_EventScript_CheckTrainers_2
 
 
+PetalburgCity_Gym_EventScript_Give_Slakingite::
+	goto_if_unset FLAG_OBTAINED_SLAKINGITE, PetalburgCity_Gym_EventScript_Give_Slakingite_1
+	return
+
+PetalburgCity_Gym_EventScript_Give_Slakingite_1:
+	msgbox PetalburgCity_Gym_EventScript_Give_Slakingite_Text_0
+	giveitem ITEM_SLAKINGITE
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
+	setflag FLAG_OBTAINED_SLAKINGITE
+	release
+	end
+
+
 PetalburgCity_Gym_EventScript_GiveFacade_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
@@ -1830,6 +1845,10 @@ PetalburgCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "Dad: Sorry {PLAYER}, but you need to\n"
 	.string "defeat every trainer on this Gym\l"
 	.string "before battling your dad.$"
+
+PetalburgCity_Gym_EventScript_Give_Slakingite_Text_0:
+	.string "Take this special Item as a gift from\n"
+	.string "me!$"
 
 PetalburgCity_Gym_Text_PlayerGotMegaStones::
 	.string "{PLAYER} got all the {COLOR LIGHT_GREEN}Mega Stones{COLOR DARK_GRAY}!$"
