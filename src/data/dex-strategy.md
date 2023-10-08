@@ -1546,16 +1546,6 @@ Weavile
    comment = Weavile is one of the best offensive sweepers in the game. After 1 Swords Dance, anything not named steelix, aggron, and sometimes camerupt will most likely die in 1 hit. 
     .tags = Singles, Offensive
 }
-Torterra
-{
-    name = Body Press Sustain
-    item = Sitrus Berry
-    ability = Stamina
-    evs = 252, 0, 252, 0, 4, 0
-    nature = Bold/Calm
-    moves = Leech Seed, Body Press, Synthesis, Amnesia / Stockpile
-   comment = Aim of this set is to take in resisted hits while using Amnesia or Stockpile to make Torterra virtually unkillable short of a critical hit due to Big Leaves Sitrus Berry and Synthesis. Stamina will keep boosting Defenses and will continuously amp the damage from Body Press. If you don't need +6 SpDef you can opt for Stockpile so that you can reach +6 Def sooner. Because of Big Leaves, Synthesis will heal for 75% health, but be aware of the limited PP. Sitrus Berry for survival, but you can opt for things like Yache, Occa, or Coba Berry as well, which will be all be harvested due to Big Leaves. Depending on who you're fighting against, you can put EVs from Defense into SpDef.
-}
 Milotic
 {
     name = Comp Sweeper

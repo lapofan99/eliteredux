@@ -41188,14 +41188,64 @@ static const struct TrainerMonItemCustomMoves sParty_KrookodileniteRoute111Ruins
 static const struct TrainerMonItemCustomMoves sParty_Shedinjite_AbandonedShip_HiddenFloorRooms[] = { // Shedinjite
     {
     .lvl = 0,
-    .species = SPECIES_PALOSSAND,
-    .heldItem = ITEM_SMOOTH_ROCK,
-    .ability = 2, // Sand Stream
+    .species = SPECIES_WORMADAM_TRASH_CLOAK,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // Overcoat
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_CALM,
-    .moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+    .evs = {252, 0, 252, 4, 0, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_BOLD,
+    .moves = MOVE_RECOVER, MOVE_INFESTATION, MOVE_FLASH_CANNON, MOVE_STEALTH_ROCK
     },
+    {
+    .lvl = 0,
+    .species = SPECIES_SHEDINJA, // Mega
+    .heldItem = ITEM_SHEDINJITE,
+    .ability = 0, // Wonder Guard > Cheating Death
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_U_TURN, MOVE_SHADOW_SNEAK, MOVE_X_SCISSOR, MOVE_SWORDS_DANCE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_ARAQUANID,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // Water Veil
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {248, 252, 0, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_LIQUIDATION, MOVE_LEECH_LIFE, MOVE_POISON_JAB, MOVE_ICE_FANG
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_NINJASK,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // Speed Force
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_DUAL_WINGBEAT, MOVE_LEECH_LIFE, MOVE_FRUSTRATION, MOVE_PROTECT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_BUTTERFREE,
+    .heldItem = ITEM_HEAVY_DUTY_BOOTS,
+    .ability = 0, // Tinted Lens
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_QUIVER_DANCE, MOVE_BUG_BUZZ, MOVE_DREAM_EATER, MOVE_SLEEP_POWDER
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_BEEDRILL,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // Sniper
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_CROSS_POISON, MOVE_TWINEEDLE, MOVE_DRILL_RUN, MOVE_KNOCK_OFF
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_Dragonitenite_Sage_1_SkyPillar_Outside[] = { // Dragonitenite
@@ -41291,6 +41341,7 @@ static const struct TrainerMonItemCustomMoves sParty_Crobatite_DewfordManor[] = 
     {
     .lvl = 0,
     .species = SPECIES_CROBAT, // Mega
+    .heldItem = ITEM_CROBATITE,
     .ability = 1, // Momentum > Nosferatu
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, SpA, SpD, Spe
@@ -41302,96 +41353,96 @@ static const struct TrainerMonItemCustomMoves sParty_Crobatite_DewfordManor[] = 
 static const struct TrainerMonItemCustomMoves sParty_SinnohMegas_MauvilleGameCorner[] = { // Sinnoh Megas
     {
     .lvl = 0,
-    .species = SPECIES_PALOSSAND,
-    .heldItem = ITEM_SMOOTH_ROCK,
-    .ability = 2, // Sand Stream
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_CALM,
-    .moves = MOVE_SCORCHING_SANDS, MOVE_SHADOW_BALL, MOVE_SHORE_UP, MOVE_STEALTH_ROCK
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_KROOKODILE, // Mega
-    .heldItem = ITEM_KROOKODILENITE,
-    .ability = 0, // Intimidate > Dune Terror
+    .species = SPECIES_INFERNAPE_MEGA, // Mega
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // Equinox
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 0, 4, 252}, // HP, Atk, Def, SpA, SpD, Spe
+    .evs = {4, 252, 0, 0, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .nature = NATURE_JOLLY,
-    .moves = MOVE_BULK_UP, MOVE_KNOCK_OFF, MOVE_SEISMIC_FIST, MOVE_IRON_FANGS
+    .moves = MOVE_OVERHEAT, MOVE_CLOSE_COMBAT, MOVE_MACH_PUNCH, MOVE_FRUSTRATION
     },
     {
     .lvl = 0,
-    .species = SPECIES_GLISCOR,
-    .heldItem = ITEM_TOXIC_ORB,
-    .ability = 2, // Poison Heal
+    .species = SPECIES_EMPOLEON_MEGA, // Mega
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // Impenetrable > No Guard
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 252, 0, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_MODEST,
+    .moves = MOVE_HYDRO_PUMP, MOVE_SHEER_COLD, MOVE_HURRICANE, MOVE_ROOST
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_TORTERRA_MEGA, // Mega
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // Loose Rocks > Atlas
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, SpA, SpD, Spe
+    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .nature = NATURE_ADAMANT,
-    .moves = MOVE_PROTECT, MOVE_ICE_FANG, MOVE_DUAL_WINGBEAT, MOVE_DEFOG
+    .moves = MOVE_GRAV_APPLE, MOVE_FISSURE, MOVE_STONE_EDGE, MOVE_SYNTHESIS
     }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_NidoMegas_Route116Rusturf[] = { // Nido Megas, Doubles
     {
     .lvl = 0,
-    .species = SPECIES_PALOSSAND,
-    .heldItem = ITEM_SMOOTH_ROCK,
-    .ability = 2, // Sand Stream
+    .species = SPECIES_FERROTHORN,
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 0, // Impenetrable
+    .ivs = {31, 31, 31, 0, 31, 31}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 0, 4, 0, 252, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_STEALTH_ROCK, MOVE_KNOCK_OFF, MOVE_THUNDER_WAVE, MOVE_LEECH_SEED
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GRIMMSNARL,
+    .heldItem = ITEM_LIGHT_CLAY,
+    .ability = 0, // Prankster
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 4, 0, 0, 252, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_CAREFUL,
+    .moves = MOVE_LIGHT_SCREEN, MOVE_REFLECT, MOVE_TAUNT, MOVE_SPIRIT_BREAK
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_HYDREIGON,
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 1, // Mega Launcher
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 4, 252, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_CALM,
-    .moves = MOVE_SCORCHING_SANDS, MOVE_SHADOW_BALL, MOVE_SHORE_UP, MOVE_STEALTH_ROCK
+    .evs = {0, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_DARK_PULSE, MOVE_FLASH_CANNON, MOVE_AURA_SPHERE, MOVE_DRAGON_PULSE
     },
     {
     .lvl = 0,
-    .species = SPECIES_KROOKODILE, // Mega
-    .heldItem = ITEM_KROOKODILENITE,
-    .ability = 0, // Intimidate > Dune Terror
+    .species = SPECIES_ARCANINE,
+    .heldItem = ITEM_HEAVY_DUTY_BOOTS,
+    .ability = 2, // Burnate
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 0, 4, 252}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_JOLLY,
-    .moves = MOVE_BULK_UP, MOVE_KNOCK_OFF, MOVE_SEISMIC_FIST, MOVE_IRON_FANGS
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_SCIZOR,
-    .heldItem = ITEM_METAL_COAT,
-    .ability = 0, // Steely Spirit
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, SpA, SpD, Spe
+    .evs = {252, 252, 0, 0, 0, 4}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .nature = NATURE_ADAMANT,
-    .moves = MOVE_SACRED_SWORD, MOVE_BULLET_PUNCH, MOVE_SWORDS_DANCE, MOVE_QUICK_ATTACK
+    .moves = MOVE_EXTREME_SPEED, MOVE_WILD_CHARGE, MOVE_SNARL, MOVE_MORNING_SUN
     },
     {
     .lvl = 0,
-    .species = SPECIES_DRACOVISH,
-    .heldItem = ITEM_CHOICE_BAND,
-    .ability = 0, // Strong Jaw
+    .species = SPECIES_NIDOKING_MEGA, // Mega
+    .heldItem = ITEM_NIDOKINGITE,
+    .ability = 0, // Sheer Force > Sheer Force
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 0, 4, 252}, // HP, Atk, Def, SpA, SpD, Spe
+    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .nature = NATURE_JOLLY,
-    .moves = MOVE_FISHIOUS_REND, MOVE_DRAGON_RUSH, MOVE_CRUNCH, MOVE_IRON_FANGS
+    .moves = MOVE_HORN_DRILL, MOVE_DRILL_RUN, MOVE_ICE_PUNCH, MOVE_POISON_JAB
     },
     {
     .lvl = 0,
-    .species = SPECIES_GIGALITH,
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 1, // Sand Stream
+    .species = SPECIES_NIDOQUEEN_MEGA, // Mega
+    .heldItem = ITEM_NIDOQUEENITE,
+    .ability = 0, // Poison Point > Sheer Force
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 4, 0}, // HP, Atk, Def, SpA, SpD, Spe
+    .evs = {248, 0, 128, 0, 132, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .nature = NATURE_MODEST,
-    .moves = MOVE_SHOCK_WAVE, MOVE_POWER_GEM, MOVE_EARTH_POWER, MOVE_FLASH_CANNON
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_GLISCOR,
-    .heldItem = ITEM_TOXIC_ORB,
-    .ability = 2, // Poison Heal
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, SpA, SpD, Spe
-    .nature = NATURE_ADAMANT,
-    .moves = MOVE_PROTECT, MOVE_ICE_FANG, MOVE_DUAL_WINGBEAT, MOVE_DEFOG
+    .moves = MOVE_ICE_BEAM, MOVE_HELPING_HAND, MOVE_SHADOW_BALL, MOVE_EARTH_POWER
     }
 };
 

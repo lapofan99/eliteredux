@@ -568,6 +568,7 @@ script Route116_EventScript_MegaNidos_Battle {
 			msgbox(format("Hmm, searching for something interesting, are we? I've already claimed this site, but I see spirit in you. Prove me right, and I'll reward you with something nice I've dug up."), MSGBOX_YESNO)
 			if (var(VAR_RESULT) == 1) {
 				msgbox(format("Let's get to it then!"), MSGBOX_NPC) // When the player accepts the battle
+				// trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
 				trainerbattle_no_intro(TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR, format("Ha, these old eyes never lie to me.")) // in-battle, player wins
 				msgbox(format("I knew I saw something great in you! Take this, and get out of here before you get footprints on my dig!"), MSGBOX_NPC) // after player won
 				playfanfare(MUS_OBTAIN_ITEM)

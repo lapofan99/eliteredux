@@ -13404,7 +13404,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     case ABILITY_DUNE_TERROR:
         if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY)
         {
-            MulModifier(&modifier, UQ_4_12(0.5));
+            MulModifier(&modifier, UQ_4_12(0.65));
             if (updateFlags)
                 RecordAbilityBattle(battlerDef, ability);
         }
@@ -13495,7 +13495,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     // Dune Terror
 	if(BattlerHasInnate(battlerDef, ABILITY_DUNE_TERROR)){
 		if(WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY){
-			MulModifier(&modifier, UQ_4_12(0.5));
+			MulModifier(&modifier, UQ_4_12(0.65));
 		}
     }
 	// Battle Armor

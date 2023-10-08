@@ -89,7 +89,7 @@
 #define ABILITY_SNOW_CLOAK 81 // Boosts the Pokémon's evasiveness in a hailstorm by 20%.
 #define ABILITY_GLUTTONY 82 // Eats berries at 1/2 HP instead of 1/3 HP.
 #define ABILITY_ANGER_POINT 83 // The Pokémon is angered when it takes a critical hit from physical move from opposing Pokémon, and that maxes its Attack stat. Boosts the Attack stat by one stage when hit by physical moves.
-#define ABILITY_UNBURDEN 84 // *No innate* Boosts the Speed stat if the Pokémon's held item is used or lost.
+#define ABILITY_UNBURDEN 84 // *No innate* Doubles the Speed stat if the Pokémon's held item is used or lost.
 #define ABILITY_HEATPROOF 85 // The heatproof body of the Pokémon halves the damage from Fire-type moves that hit it.
 #define ABILITY_SIMPLE 86 // Doubles all stat changes.
 #define ABILITY_DRY_SKIN 87 // Rain: HP will increase by 1/8 of its max HP each turn. Intense Sunlight: HP will decrease by 1/8 of its max HP each turn.
@@ -458,7 +458,7 @@
 #define ABILITY_CHEAP_TACTICS    (ABILITIES_COUNT_LATEST_GEN + 160) // Attacks with Scratch on switch-in.
 #define ABILITY_COWARD           (ABILITIES_COUNT_LATEST_GEN + 161) // Sets up Protect on switch-in. Only works once.
 #define ABILITY_VOLT_RUSH        (ABILITIES_COUNT_LATEST_GEN + 162) // Electric-type moves have +1 priority. Requires full HP.
-#define ABILITY_DUNE_TERROR      (ABILITIES_COUNT_LATEST_GEN + 163) // Halves incoming damage in sand. Boosts Ground moves by 20%.
+#define ABILITY_DUNE_TERROR      (ABILITIES_COUNT_LATEST_GEN + 163) // Sand reduces damage by 35%. Boosts Ground moves by 20%.
 #define ABILITY_INFERNAL_RAGE    (ABILITIES_COUNT_LATEST_GEN + 164) // Fire-type moves are boosted by 35% with 5% recoil.
 #define ABILITY_DUAL_WIELD       (ABILITIES_COUNT_LATEST_GEN + 165) // Mega Launcher moves hit twice, each hit at 75% power.
 #define ABILITY_ELEMENTAL_CHARGE (ABILITIES_COUNT_LATEST_GEN + 166) // 20% chance to BRN/FRZ/PARA with respective types.

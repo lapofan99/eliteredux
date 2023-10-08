@@ -196,13 +196,13 @@ AbandonedShip_HiddenFloorRooms_OnResume_4:
 
 
 AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_0:
-	.string "...Nincada?$"
+	.string "... Nincada?$"
 
 AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_1:
 	.string "It's so scary now...$"
 
 AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_2:
-	.string "Thank...you...$"
+	.string "Thank... you...$"
 
 AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite_Battle_Text_3:
 	.string "...$"
