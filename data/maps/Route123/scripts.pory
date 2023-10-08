@@ -234,3 +234,34 @@ script Route123_EventScript_LegendaryNPC{
     release
     end
 }
+
+script Route123_EventScript_Granbullite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_GRANBULLITE_ROUTE123) // Only For testing
+		if (!defeated(TRAINER_GRANBULLITE_ROUTE123)) { // asking for battle
+			msgbox(format("Why hello there. Do you want to pet my dogs? They don't bite!"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("Ah! Granbull, no!"), MSGBOX_NPC) // When the player accepts the battle
+				// trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+				trainerbattle_no_intro(TRAINER_GRANBULLITE_ROUTE123, format("I'm so, so, so, sorry!")) // in-battle, player wins
+				msgbox(format("I'm so sorry! I didn't expect all 6 of them to jump out of their Pokéballs like that! They usually don't bite. Please, take this as compensation."), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_GRANBULLITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("Aww, alright. I swear, they don't bite."), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("Again, I'm so sorry. My dogs are all usually very kind, and wouldn't hurt a fly!"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("Hm? Ooh. You seem fun. Hey, if you come back after defeating those twins in Mossdeep, I'll give you something!"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

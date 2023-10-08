@@ -10,50 +10,50 @@ GraniteCave_B2F_SetFlashRadius:
 script GraniteCave_B2F_EventScript_HitmonStone{
 	lock
 	faceplayer
-	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
-		//cleartrainerflag(TRAINER_SHEDINJITE_ABANDONED_SHIP) // Only For testing
+	if (flag(FLAG_BADGE06_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_HITMONSTONE_BLACKBELT_1) // Only For testing
 		if (!flag(FLAG_OBTAINED_HITMON_MEGA_STONE)) { // asking for battle
-			msgbox(format("Do you seek strength, young one? Prove yourself to me, and I will grant you strength unrivaled."), MSGBOX_YESNO)
+			msgbox(format("Greetings, young one. I can tell you wield immense strength. How about a proposal? If you can defeat one of my Pokemon with only one of your own, I will grant you these Mega Stones. My Pokemon are all Fighting-Type, so I ask that you only use Fighting-Types yourself."), MSGBOX_YESNO)
 			if (var(VAR_RESULT) == 1) { // When the player accepts the battle
 				checkpartyfortypeornumber(TYPE_FIGHTING, 1)
-				if(var(VAR_RESULT) == 1){//Check if you have 1 fighting type mon in your party, need to add macro for this yet
-					msgbox(format("Then let us begin"), MSGBOX_NPC)
+				if(var(VAR_RESULT) == 1){//Check if you have 1 fighting type mon in your party
+					msgbox(format("Then let the duel start!"), MSGBOX_NPC)
 					random(3)
 					switch(var(VAR_RESULT)){
 						case 0:
-							trainerbattle_no_intro(TRAINER_HITMONSTONE_BLACKBELT_1, format("Thank...you...")) // in-battle, player wins
+							trainerbattle_no_intro(TRAINER_HITMONSTONE_BLACKBELT_1, format("You truly are incredibly strong.")) // in-battle, player wins
 						break
 						case 1:
-							trainerbattle_no_intro(TRAINER_HITMONSTONE_BLACKBELT_2, format("Thank...you...")) // in-battle, player wins
+							trainerbattle_no_intro(TRAINER_HITMONSTONE_BLACKBELT_2, format("You truly are incredibly strong.")) // in-battle, player wins
 						break
 						case 2:
-							trainerbattle_no_intro(TRAINER_HITMONSTONE_BLACKBELT_3, format("Thank...you...")) // in-battle, player wins
+							trainerbattle_no_intro(TRAINER_HITMONSTONE_BLACKBELT_3, format("You truly are incredibly strong.")) // in-battle, player wins
 						break
 					}
-					msgbox(format("Congratulations, here is your reward"), MSGBOX_NPC)
+					msgbox(format("I am very impressed with your strength. As promised, take these Mega Stones."), MSGBOX_NPC)
 					playfanfare(MUS_OBTAIN_ITEM)
 					giveitem(ITEM_HITMONCHANITE, 1)
 					giveitem(ITEM_HITMONLEENITE, 1)
 					giveitem(ITEM_HITMONTOPITE, 1)
 					setflag(FLAG_OBTAINED_HITMON_MEGA_STONE)
 					waitfanfare
-					msgbox(format("This item is blablabla..."), MSGBOX_NPC)
+					msgbox(format("Each one corresponds to one of Tyrogue's 3 evolutions. Use them well."), MSGBOX_NPC)
 					waitmessage
 				}
 				else{
-					msgbox(format("You don't have the correct Pokémon"), MSGBOX_NPC)
+					msgbox(format("You don't have the correct Pokémon. You can only bring 1 Fighting-type into this battle."), MSGBOX_NPC)
 				}
 			}
 			else { // when refusing the battle
-				msgbox(format("..."), MSGBOX_NPC)
+				msgbox(format("I understand. Please, do return whenever you are ready."), MSGBOX_NPC)
 			}
 		}
 		else { //After you defeat it and talk to the npc again
-			msgbox(format("TEXT"), MSGBOX_NPC)
+			msgbox(format("My apologies, but I have nothing left for you."), MSGBOX_NPC)
 		}
 	}
 	else { // When the player doesn't have the badge yet
-		msgbox(format("..."), MSGBOX_NPC)
+		msgbox(format("My apologies, but you aren't worthy yet. Come back after defeating the Mossdeep Twins, and I will speak with you."), MSGBOX_NPC)
 	}
 	release
 	end	

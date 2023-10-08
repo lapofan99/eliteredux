@@ -12194,7 +12194,7 @@ const struct Trainer gTrainers[] = {
         .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_COOLTRAINER_M,
-        .trainerName = _("Jaxon"),
+        .trainerName = _("Prince"), // or Jaxon
         .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = TRUE,
         .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
@@ -12247,7 +12247,7 @@ const struct Trainer gTrainers[] = {
         .trainerFlag = FLAG_TRAINER_DRAGONITENITE_SAGE_3,
     },
 
-    [TRAINER_HITMONSTONE_BLACKBELT_1] = // Hitmonlee
+    [TRAINER_HITMONSTONE_BLACKBELT_1] = // Mega Hitmonlee
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = TRAINER_CLASS_BLACK_BELT,
@@ -12262,7 +12262,7 @@ const struct Trainer gTrainers[] = {
         .trainerFlag = FLAG_TRAINER_HITMONSTONE_BLACKBELT,
     },
 
-    [TRAINER_HITMONSTONE_BLACKBELT_2] = // Hitmonchan
+    [TRAINER_HITMONSTONE_BLACKBELT_2] = // Mega Hitmonchan
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = TRAINER_CLASS_BLACK_BELT,
@@ -12277,7 +12277,7 @@ const struct Trainer gTrainers[] = {
         .trainerFlag = FLAG_TRAINER_HITMONSTONE_BLACKBELT,
     },
 
-    [TRAINER_HITMONSTONE_BLACKBELT_3] = // Hitmontop
+    [TRAINER_HITMONSTONE_BLACKBELT_3] = // Mega Hitmontop
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = TRAINER_CLASS_BLACK_BELT,
@@ -12290,5 +12290,20 @@ const struct Trainer gTrainers[] = {
         .partySize = ARRAY_COUNT(sParty_BlackBelt_Hitmon_Mega_Stone_Hitmontop),
         .party = {.ItemCustomMoves = sParty_BlackBelt_Hitmon_Mega_Stone_Hitmontop},
         .trainerFlag = FLAG_TRAINER_HITMONSTONE_BLACKBELT,
+    },
+
+    [TRAINER_GRANBULLITE_ROUTE123] = // Granbullite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_LADY,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_LADY,
+        .trainerName = _("Amelia"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Granbullite_Route123),
+        .party = {.ItemCustomMoves = sParty_Granbullite_Route123},
+        .trainerFlag = FLAG_TRAINER_GRANBULLITE_ROUTE123,
     },
 };

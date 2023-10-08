@@ -733,9 +733,9 @@
 #define FLAG_TRAINER_DRAGONITENITE_SAGE_1        0x2B5 // Trainer Flag
 #define FLAG_TRAINER_DRAGONITENITE_SAGE_2        0x2B6 // Trainer Flag
 #define FLAG_TRAINER_DRAGONITENITE_SAGE_3        0x2B7 // Trainer Flag
-#define FLAG_OBTAINED_HITMON_MEGA_STONE          0x2B8 // Unused Flag
-#define FLAG_TRAINER_HITMONSTONE_BLACKBELT       0x2B9 // Unused Flag
-#define FLAG_UNUSED_0x2BA  0x2BA // Unused Flag
+#define FLAG_OBTAINED_HITMON_MEGA_STONE          0x2B8 // Trainer Flag
+#define FLAG_TRAINER_HITMONSTONE_BLACKBELT       0x2B9 // Trainer Flag
+#define FLAG_TRAINER_GRANBULLITE_ROUTE123        0x2BA // Trainer Flag
 #define FLAG_UNUSED_0x2BB  0x2BB // Unused Flag
 
 // Event Flags

@@ -289,6 +289,38 @@ Route123_EventScript_LegendaryNPC_35:
 	goto Route123_EventScript_LegendaryNPC_9
 
 
+Route123_EventScript_Granbullite_Battle::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE07_GET, Route123_EventScript_Granbullite_Battle_2
+	msgbox Route123_EventScript_Granbullite_Battle_Text_6, MSGBOX_NPC
+Route123_EventScript_Granbullite_Battle_1:
+	release
+	end
+
+Route123_EventScript_Granbullite_Battle_2:
+	checktrainerflag TRAINER_GRANBULLITE_ROUTE123
+	goto_if 0, Route123_EventScript_Granbullite_Battle_5
+	msgbox Route123_EventScript_Granbullite_Battle_Text_5, MSGBOX_NPC
+	goto Route123_EventScript_Granbullite_Battle_1
+
+Route123_EventScript_Granbullite_Battle_5:
+	msgbox Route123_EventScript_Granbullite_Battle_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route123_EventScript_Granbullite_Battle_8
+	msgbox Route123_EventScript_Granbullite_Battle_Text_4, MSGBOX_NPC
+	goto Route123_EventScript_Granbullite_Battle_1
+
+Route123_EventScript_Granbullite_Battle_8:
+	msgbox Route123_EventScript_Granbullite_Battle_Text_1, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_GRANBULLITE_ROUTE123, Route123_EventScript_Granbullite_Battle_Text_2
+	msgbox Route123_EventScript_Granbullite_Battle_Text_3, MSGBOX_NPC
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_GRANBULLITE, 1
+	waitmessage
+	goto Route123_EventScript_Granbullite_Battle_1
+
+
 Route123_EventScript_LegendaryNPC_Text_0:
 	.string "Sage: three Dragons of legend tread\n"
 	.string "carefully around us. Want to learn more\l"
@@ -329,3 +361,32 @@ Route123_EventScript_LegendaryNPC_Text_3:
 
 Route123_EventScript_LegendaryNPC_Text_4:
 	.string "Well then, I suppose we won't get along.$"
+
+Route123_EventScript_Granbullite_Battle_Text_0:
+	.string "Why hello there. Do you want to pet my\n"
+	.string "dogs? They don't bite!$"
+
+Route123_EventScript_Granbullite_Battle_Text_1:
+	.string "Ah! Granbull, no!$"
+
+Route123_EventScript_Granbullite_Battle_Text_2:
+	.string "I'm so, so, so, sorry!$"
+
+Route123_EventScript_Granbullite_Battle_Text_3:
+	.string "I'm so sorry! I didn't expect all 6 of\n"
+	.string "them to jump out of their Pokéballs\l"
+	.string "like that! They usually don't bite.\l"
+	.string "Please, take this as compensation.$"
+
+Route123_EventScript_Granbullite_Battle_Text_4:
+	.string "Aww, alright. I swear, they don't bite.$"
+
+Route123_EventScript_Granbullite_Battle_Text_5:
+	.string "Again, I'm so sorry. My dogs are all\n"
+	.string "usually very kind, and wouldn't hurt a\l"
+	.string "fly!$"
+
+Route123_EventScript_Granbullite_Battle_Text_6:
+	.string "Hm? Ooh. You seem fun. Hey, if you come\n"
+	.string "back after defeating those twins in\l"
+	.string "Mossdeep, I'll give you something!$"

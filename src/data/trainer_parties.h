@@ -41559,41 +41559,100 @@ static const struct TrainerMonItemCustomMoves sParty_NidoMegas_Route116Rusturf[]
 static const struct TrainerMonItemCustomMoves sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonlee[] = {
     {
     .lvl = 0,
-    .species = SPECIES_HITMONLEE, // Doubles, Bulky Vest, Iron Fist
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_IRON_FIST, ABILITY_SKILL_LINK, ABILITY_STAMINA},
-    // .innates = {ABILITY_THICK_FAT, ABILITY_GUTS, ABILITY_RIVALRY},
+    .species = SPECIES_HITMONLEE, // Mega
+    .heldItem = ITEM_HITMONLEENITE,
+    .ability = 0, // Unburden > Roundhouse
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_CLOSE_COMBAT, MOVE_KNOCK_OFF, MOVE_HEAVY_SLAM, MOVE_FAKE_OUT
-    },
+    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_FAKE_OUT, MOVE_MEGA_KICK, MOVE_HIGH_JUMP_KICK, MOVE_TRIPLE_AXEL
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonchan[] = {
     {
     .lvl = 0,
-    .species = SPECIES_HITMONCHAN, // Doubles, Bulky Vest, Iron Fist
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_IRON_FIST, ABILITY_SKILL_LINK, ABILITY_STAMINA},
-    // .innates = {ABILITY_THICK_FAT, ABILITY_GUTS, ABILITY_RIVALRY},
+    .species = SPECIES_HITMONCHAN, // Mega
+    .heldItem = ITEM_HITMONCHANITE,
+    .ability = 0, // Precise Fist > Parry
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_CLOSE_COMBAT, MOVE_KNOCK_OFF, MOVE_HEAVY_SLAM, MOVE_FAKE_OUT
-    },
+    .evs = {252, 252, 0, 0, 0, 4}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_SKY_UPPERCUT, MOVE_ICE_PUNCH, MOVE_MACH_PUNCH, MOVE_SEISMIC_FIST
+    }
 };
 
 static const struct TrainerMonItemCustomMoves sParty_BlackBelt_Hitmon_Mega_Stone_Hitmontop[] = {
     {
     .lvl = 0,
-    .species = SPECIES_HITMONTOP, // Doubles, Bulky Vest, Iron Fist
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 0, // ABILITY_IRON_FIST, ABILITY_SKILL_LINK, ABILITY_STAMINA},
-    // .innates = {ABILITY_THICK_FAT, ABILITY_GUTS, ABILITY_RIVALRY},
+    .species = SPECIES_HITMONTOP, // Mega
+    .heldItem = ITEM_HITMONTOPITE,
+    .ability = 0, // Steadfast > Spinning Top
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_CLOSE_COMBAT, MOVE_KNOCK_OFF, MOVE_HEAVY_SLAM, MOVE_FAKE_OUT
+    .evs = {252, 252, 0, 0, 0, 4}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_TRIPLE_KICK, MOVE_TRIPLE_AXEL, MOVE_METEOR_MASH, MOVE_BULLET_PUNCH
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Granbullite_Route123[] = { // Granbullite, Doubles
+    {
+    .lvl = 0,
+    .species = SPECIES_ARCANINE,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // Intimidate
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 56, 0, 0, 0, 200}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_SNARL, MOVE_EXTREME_SPEED, MOVE_WILD_CHARGE, MOVE_RAGING_FURY
     },
+    {
+    .lvl = 0,
+    .species = SPECIES_ZOROARK,
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // Illusion
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_KNOCK_OFF, MOVE_PLAY_ROUGH, MOVE_SWORDS_DANCE, MOVE_U_TURN
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_STOUTLAND,
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 0, // Scrappy
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_CLOSE_COMBAT, MOVE_RETALIATE, MOVE_PLAY_ROUGH, MOVE_CLOSE_COMBAT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_RAIKOU,
+    .heldItem = ITEM_AIR_BALLOON,
+    .ability = 0, // Ground Shock
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_SCALD, MOVE_RISING_VOLTAGE, MOVE_EERIE_IMPULSE, MOVE_AURORA_BEAM
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_SUICUNE,
+    .heldItem = ITEM_LIGHT_CLAY,
+    .ability = 0, // North Wind
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_ICY_WIND, MOVE_RECOVER, MOVE_SCALD, MOVE_TAILWIND
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GRANBULL,
+    .ability = 0, // Violent Rush
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {248, 252, 0, 0, 8, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_PLAY_ROUGH, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_BULK_UP
+    }
 };

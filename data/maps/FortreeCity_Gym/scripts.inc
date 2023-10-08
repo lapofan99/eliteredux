@@ -371,6 +371,10 @@ FortreeCity_Gym_EventScript_GiveRoost::
 	playfanfare MUS_OBTAIN_ITEM
 	message FortreeCity_Gym_EventScript_GiveRoost_Text_1
 	waitfanfare
+	msgbox FortreeCity_Gym_EventScript_GiveRoost_Text_2
+	giveitem ITEM_TOUCANNONITE, 1
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
 	setflag FLAG_RECEIVED_TM51
 	msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
 	release
@@ -405,6 +409,9 @@ FortreeCity_Gym_EventScript_GiveRoost_Text_0:
 FortreeCity_Gym_EventScript_GiveRoost_Text_1:
 	.string "{PLAYER} got Winona's {COLOR BLUE}Dragonite{COLOR DARK_GRAY} as a\n"
 	.string "gift!$"
+
+FortreeCity_Gym_EventScript_GiveRoost_Text_2:
+	.string "Also take this rare Mega stone!$"
 
 FortreeCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "Winona: Sorry, but you need to defeat\n"
