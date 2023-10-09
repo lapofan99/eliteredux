@@ -7678,6 +7678,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_SOUL_LINKER:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
+              && gBattleMons[gBattlerAttacker].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
               && move != MOVE_PAIN_SPLIT
               && gBattleMons[gBattlerAttacker].ability != ABILITY_SOUL_LINKER
@@ -8151,6 +8152,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if(BattlerHasInnate(battler, ABILITY_SOUL_LINKER)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
+              && gBattleMons[gBattlerAttacker].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
               && move != MOVE_PAIN_SPLIT
               && gBattleMons[gBattlerAttacker].ability != ABILITY_SOUL_LINKER
@@ -8945,6 +8947,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_SOUL_LINKER:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
+              && gBattleMons[gBattlerAttacker].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
               && gBattleMons[gBattlerTarget].ability != ABILITY_SOUL_LINKER
               && !BattlerHasInnate(gBattlerTarget, ABILITY_SOUL_LINKER)
@@ -9087,6 +9090,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		if (BattlerHasInnate(battler, ABILITY_SOUL_LINKER)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
               && gBattleMons[gBattlerTarget].hp != 0
+              && gBattleMons[gBattlerAttacker].hp != 0
               && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
               && gBattleMons[gBattlerTarget].ability != ABILITY_SOUL_LINKER
               && !BattlerHasInnate(gBattlerTarget, ABILITY_SOUL_LINKER)
@@ -13848,14 +13852,14 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
             MulModifier(&modifier, UQ_4_12(0.5));
         break;
     case ABILITY_LETHARGY:
-        if (gDisableStructs[battlerAtk].slowStartTimer != 5 && 
-            gDisableStructs[battlerAtk].slowStartTimer != 0){
-            double lethargymodifier = (1 - 0.2 * gDisableStructs[battlerAtk].slowStartTimer);
-            MulModifier(&modifier, UQ_4_12(lethargymodifier));
-        }
-        else if(gDisableStructs[battlerAtk].slowStartTimer == 0){
+        if(gDisableStructs[battlerAtk].slowStartTimer == 0 || gDisableStructs[battlerAtk].slowStartTimer == 1)
             MulModifier(&modifier, UQ_4_12(0.2));
-        }
+        else if(gDisableStructs[battlerAtk].slowStartTimer == 2)
+            MulModifier(&modifier, UQ_4_12(0.4));
+        else if(gDisableStructs[battlerAtk].slowStartTimer == 3)
+            MulModifier(&modifier, UQ_4_12(0.6));
+        else if(gDisableStructs[battlerAtk].slowStartTimer == 4)
+            MulModifier(&modifier, UQ_4_12(0.8));
         break;
     case ABILITY_BIG_LEAVES:
     case ABILITY_SOLAR_POWER:
@@ -14096,6 +14100,17 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 	if(BattlerHasInnate(battlerAtk, ABILITY_SLOW_START)){
         if (gDisableStructs[battlerAtk].slowStartTimer != 0)
             MulModifier(&modifier, UQ_4_12(0.5));
+    }
+
+	if(BattlerHasInnate(battlerAtk, ABILITY_LETHARGY)){
+        if(gDisableStructs[battlerAtk].slowStartTimer == 0 || gDisableStructs[battlerAtk].slowStartTimer == 1)
+            MulModifier(&modifier, UQ_4_12(0.2));
+        else if(gDisableStructs[battlerAtk].slowStartTimer == 2)
+            MulModifier(&modifier, UQ_4_12(0.4));
+        else if(gDisableStructs[battlerAtk].slowStartTimer == 3)
+            MulModifier(&modifier, UQ_4_12(0.6));
+        else if(gDisableStructs[battlerAtk].slowStartTimer == 4)
+            MulModifier(&modifier, UQ_4_12(0.8));
     }
 
     //Infatuation

@@ -8358,6 +8358,7 @@ BattleScript_BattlerHasNoDamageHits::
 	end3
 
 BattleScript_GravityStarts::
+	sethword sABILITY_OVERWRITE, ABILITY_ATLAS
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_GRAVITYINTENSIFIED
@@ -8429,6 +8430,7 @@ BattleScript_DefenderSetsToxicSpikeLayer::
 	return
 
 BattleScript_DefenderSetsStealthRock::
+	sethword sABILITY_OVERWRITE, ABILITY_LOOSE_ROCKS
 	savetarget
 	copybyte sSAVED_BATTLER, gBattlerAttacker
 	copybyte gBattlerAttacker, gBattlerTarget

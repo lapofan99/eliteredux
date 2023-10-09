@@ -40785,33 +40785,33 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy6[] = { // Unused
 static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Trainer, do not move or use
     {
     .lvl = 0,
-    .species = SPECIES_METAGROSS,
-    .heldItem = ITEM_METAGROSSITE,
+    .species = SPECIES_SHUCKLE,
+    .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-	.moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
     },
     {
     .lvl = 0,
-    .species = SPECIES_SWALOT,
-    .heldItem = ITEM_SWALOTITE,
+    .species = SPECIES_SHUCKLE,
+    .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-	.moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
     },
     {
     .lvl = 0,
-    .species = SPECIES_DRAGONITE,
-    .heldItem = ITEM_DRAGONITENITE,
+    .species = SPECIES_SHUCKLE,
+    .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-	.moves = MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO, MOVE_MEMENTO
+	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
     },
 };
 
