@@ -41656,3 +41656,72 @@ static const struct TrainerMonItemCustomMoves sParty_Granbullite_Route123[] = { 
     .moves = MOVE_PLAY_ROUGH, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_BULK_UP
     }
 };
+
+static const struct TrainerMonItemCustomMoves sParty_CalvinE4[] = { // E4
+    {
+    .lvl = 0,
+    .species = SPECIES_DEWLEON, // Calvin E4, Light Clay
+    .heldItem = ITEM_LIGHT_CLAY,
+    .ability = 1, // ABILITY_PRISMATIC_FUR, ABILITY_PRISMATIC_FUR, ABILITY_PRISMATIC_FUR},
+    // .innates = {ABILITY_RETRIBUTION_BLOW, ABILITY_WONDER_SKIN, ABILITY_NORTH_WIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_BOLD,
+    .moves = MOVE_FREEZE_DRY, MOVE_SCALD, MOVE_STEALTH_ROCK, MOVE_CALM_MIND
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_STOUTLAND, // Calvin E4, 
+    .heldItem = ITEM_ROCKY_HELMET,
+    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_SAND_RUSH, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_OVERCOAT, ABILITY_FUR_COAT, ABILITY_FILTER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 4, 252, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_RETURN, MOVE_FIRE_FANG, MOVE_CRUNCH, MOVE_ROAR
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_PRIMEAPE, // Calvin E4, 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 1, // ABILITY_MOXIE, ABILITY_GORILLA_TACTICS, ABILITY_NO_GUARD},
+    // .innates = {ABILITY_ANGER_POINT, ABILITY_HYPER_AGGRESSIVE, ABILITY_VIOLENT_RUSH},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_CLOSE_COMBAT, MOVE_STONE_EDGE, MOVE_U_TURN, MOVE_GUNK_SHOT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_SWELLOW, // Calvin E4, 
+    .heldItem = ITEM_CHOICE_SPECS,
+    .ability = 2, // ABILITY_GALE_WINGS, ABILITY_AIR_BLOWER, ABILITY_SCRAPPY},
+    // .innates = {ABILITY_FLOCK, ABILITY_KEEN_EYE, ABILITY_GUTS},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BOOMBURST, MOVE_U_TURN, MOVE_HEAT_WAVE, MOVE_AIR_SLASH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_VIKAVOLT, // Calvin E4, 
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // ABILITY_SPEED_BOOST, ABILITY_AERODYNAMICS, ABILITY_OVERCHARGE},
+    // .innates = {ABILITY_SWARM, ABILITY_LEVITATE, ABILITY_ELECTROCYTES},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_TIMID,
+    .moves = MOVE_BUG_BUZZ, MOVE_VOLT_SWITCH, MOVE_ENERGY_BALL, MOVE_ROOST
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GASTRODON, // Calvin E4, 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // ABILITY_SHELL_ARMOR, ABILITY_STORM_DRAIN, ABILITY_REGENERATOR},
+    // .innates = {ABILITY_STICKY_HOLD, ABILITY_SELF_SUFFICIENT, ABILITY_GROUNDATE},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {248, 0, 8, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_SASSY,
+    .moves = MOVE_SCALD, MOVE_RECOVER, MOVE_BODY_SLAM, MOVE_TOXIC
+    }
+};

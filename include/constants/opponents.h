@@ -873,6 +873,8 @@
 #define TRAINERS_COUNT                      860
 #define MAX_OLD_TRAINERS_COUNT              864
 
+// Trainers after this have to use the flag in the trainer structure
+
 #define TRAINER_NEW_TEST                    MAX_OLD_TRAINERS_COUNT + 1
 #define TRAINER_DRAGONITENITE_SAGE_1        MAX_OLD_TRAINERS_COUNT + 2
 #define TRAINER_DRAGONITENITE_SAGE_2        MAX_OLD_TRAINERS_COUNT + 3
@@ -881,10 +883,9 @@
 #define TRAINER_HITMONSTONE_BLACKBELT_2     MAX_OLD_TRAINERS_COUNT + 6
 #define TRAINER_HITMONSTONE_BLACKBELT_3     MAX_OLD_TRAINERS_COUNT + 7
 #define TRAINER_GRANBULLITE_ROUTE123        MAX_OLD_TRAINERS_COUNT + 8
+#define TRAINER_CALVIN_E4                   MAX_OLD_TRAINERS_COUNT + 9
 
 #define TRAINER_OLDPLAYER             2000
-
-// Trainers after this have use the flag in the trainer structure
 
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

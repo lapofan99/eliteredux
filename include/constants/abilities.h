@@ -468,8 +468,10 @@
 #define ABILITY_JAWS_OF_CARNAGE  (ABILITIES_COUNT_LATEST_GEN + 170) // Heals 50% HP when defeating an enemy.
 #define ABILITY_ANGELS_WRATH     (ABILITIES_COUNT_LATEST_GEN + 171) // Radically changes the user's moves.
 #define ABILITY_PRISMATIC_FUR    (ABILITIES_COUNT_LATEST_GEN + 172) // Color Change + Protean + Fur Coat + Ice Scales
+#define ABILITY_SHOCKING_JAWS    (ABILITIES_COUNT_LATEST_GEN + 173)  // Biting moves are 5x more likely to inflict paralysis
+#define ABILITY_FAE_HUNTER       (ABILITIES_COUNT_LATEST_GEN + 174) // Increases the damage dealt against Fairy-type Pokémon by 50%.
 
-#define ABILITIES_COUNT_CUSTOM (ABILITY_PRISMATIC_FUR + 1)
+#define ABILITIES_COUNT_CUSTOM (ABILITY_FAE_HUNTER + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

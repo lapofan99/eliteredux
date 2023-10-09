@@ -1316,7 +1316,7 @@
 #define FLAG_DEFEATED_SOOTOPOLIS_GYM                                0x4F7
 #define FLAG_DEFEATED_METEOR_FALLS_STEVEN                           0x4F8 // Unused Flag
 
-#define FLAG_USED_0x4F9                                             0x4F9 // Unused Flag
+#define FLAG_TRAINER_CALVIN_E4                                      0x4F9 // Trainer Flag
 #define FLAG_GOT_LEGENDARY_NPC_ITEMS                                0x4FA
 
 #define FLAG_DEFEATED_ELITE_4_SIDNEY                                0x4FB

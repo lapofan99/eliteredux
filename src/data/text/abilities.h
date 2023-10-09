@@ -432,6 +432,8 @@ static const u8 sRadianceDescription[] = _("+20% accuracy; Dark moves\nfail when
 static const u8 sJawsOfCarnageDescription[] = _("Devours half of the foe\nwhen defeating it.");
 static const u8 sAngelsWrathDescription[] = _("Drastically alters all\nof the users moves.");
 static const u8 sPrismaticFurDescription[] = _("Color Change + Protean,\nFur Coat + Ice Scales");
+static const u8 sShockingJawsDescription[] = _("Biting moves have 50% chance\nto paralyze the target.");
+static const u8 sFaeHunterDescription[] = _("Does 50% more damage to\nFairy-types.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 
@@ -878,6 +880,8 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_JAWS_OF_CARNAGE] = _("Jaws of Carnage"),
     [ABILITY_ANGELS_WRATH] = _("Angel's Wrath"),
     [ABILITY_PRISMATIC_FUR] = _("Prismatic Fur"),
+    [ABILITY_SHOCKING_JAWS] = _("Shocking Jaws"),
+    [ABILITY_FAE_HUNTER] = _("Fae Hunter"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
@@ -1323,4 +1327,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_JAWS_OF_CARNAGE] = sJawsOfCarnageDescription,
     [ABILITY_ANGELS_WRATH] = sAngelsWrathDescription,
     [ABILITY_PRISMATIC_FUR] = sPrismaticFurDescription,
+    [ABILITY_SHOCKING_JAWS] = sShockingJawsDescription,
+    [ABILITY_FAE_HUNTER] = sFaeHunterDescription,
 };

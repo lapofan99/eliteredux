@@ -32,7 +32,7 @@ script DewfordManor_1F_EventScript_Crobatite_Battle {
 		}
 	}
 	else { // When the player doesn't have the badge yet
-		msgbox(format("A traveler, eh? You look quite young to be in a place like this. If you're looking for Pokémon, there are a quite a few here, looking for new trainers. Have you heard of those psychic twins in Mossdeep? Once you defeat them, come back here."), MSGBOX_NPC)
+		msgbox(format("A traveler, eh? You look quite young to be in a place like this. If you're looking for Pokémon, there are quite a few here, looking for new trainers. Have you heard of those psychic twins in Mossdeep? Once you defeat them, come back here."), MSGBOX_NPC)
 	}
 	release
 	end	

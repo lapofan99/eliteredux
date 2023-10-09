@@ -66,8 +66,8 @@ DewfordManor_1F_EventScript_Crobatite_Battle_Text_5:
 DewfordManor_1F_EventScript_Crobatite_Battle_Text_6:
 	.string "A traveler, eh? You look quite young to\n"
 	.string "be in a place like this. If you're\l"
-	.string "looking for Pokémon, there are a quite\l"
-	.string "a few here, looking for new trainers.\l"
+	.string "looking for Pokémon, there are quite a\l"
+	.string "few here, looking for new trainers.\l"
 	.string "Have you heard of those psychic twins\l"
 	.string "in Mossdeep? Once you defeat them,\l"
 	.string "come back here.$"
