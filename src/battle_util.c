@@ -4951,7 +4951,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         break;
         case ABILITY_CHEATING_DEATH:
             if(gDisableStructs[battler].noDamageHits == 0 &&
-                gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)]){
+               !gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)]){
                 gBattleStruct->singleuseability[gBattlerPartyIndexes[battler]][0][GetBattlerSide(battler)] = TRUE;
 				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CHEATING_DEATH;
                 gDisableStructs[battler].noDamageHits = 2;
