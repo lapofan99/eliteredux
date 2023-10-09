@@ -1070,7 +1070,6 @@ MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle::
 	faceplayer
 	goto_if_set FLAG_BADGE05_GET, MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_2
 	msgbox MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_1, MSGBOX_NPC
-	msgbox MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_1, MSGBOX_NPC
 MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_1:
 	release
 	end
