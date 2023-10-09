@@ -7946,6 +7946,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_COLD_REBOUND:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
+             && gBattleMons[gBattlerTarget].hp != 0
+             && !(gBattleMons[gBattlerTarget].status1 & STATUS1_SLEEP)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker))
@@ -8551,6 +8553,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerAttacker].hp != 0
              && gBattleMons[gBattlerTarget].hp != 0
              && gBattleMons[battler].hp != 0
+             && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && !gProtectStructs[battler].extraMoveUsed
@@ -8572,6 +8575,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && gBattleMons[gBattlerTarget].hp != 0
+             && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && !gProtectStructs[battler].extraMoveUsed
@@ -8594,6 +8598,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
              && gBattleMons[gBattlerTarget].hp != 0
+             && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && !gProtectStructs[battler].extraMoveUsed
@@ -8762,6 +8767,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (IsBattlerAlive(i)
                 && DoesMoveBoostStats(gCurrentMove)
                 && !gProtectStructs[i].extraMoveUsed
+                && !(gBattleMons[i].status1 & STATUS1_SLEEP)
                 && gBattlerAttacker != i
                 && (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST) || GetBattlerAbility(i) == ABILITY_SCRAPPY || BattlerHasInnate(i, ABILITY_SCRAPPY))
                 && GET_BATTLER_SIDE(gBattlerAttacker) != GET_BATTLER_SIDE(i))
@@ -9060,6 +9066,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && gBattleMons[gBattlerAttacker].hp != 0
+             && !(gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !gProtectStructs[gBattlerAttacker].extraMoveUsed
              && gBattleMoves[move].split != SPLIT_STATUS
@@ -9293,6 +9300,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if (BattlerHasInnate(battler, ABILITY_THUNDERCALL)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
+             && !(gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !gProtectStructs[gBattlerAttacker].extraMoveUsed
              && GetTypeBeforeUsingMove(move, gBattlerAttacker) == TYPE_ELECTRIC)
