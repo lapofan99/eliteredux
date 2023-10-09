@@ -5022,7 +5022,7 @@ s8 GetMovePriority(u32 battlerId, u16 move)
         priority++;
     }
 
-	if((GetBattlerAbility(battlerId) == ABILITY_PERFECTIONIST || BattlerHasInnate(battlerId, ABILITY_PERFECTIONIST)) && gBattleMoves[move].power <= 25)
+	if(BATTLER_HAS_ABILITY(ABILITY_PERFECTIONIST, battlerId) && gBattleMoves[move].power <= 25 && gBattleMoves[move].power > 0)
 		priority++;
 
     if((gStatuses4[battlerId] & STATUS4_COILED) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)){

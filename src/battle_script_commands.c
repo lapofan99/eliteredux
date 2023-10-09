@@ -2215,7 +2215,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
                     + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
                     + 2 * ((abilityAtk == ABILITY_HYPER_CUTTER || BattlerHasInnate(battlerAtk, ABILITY_HYPER_CUTTER)) && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
 			        + 2 * ((abilityAtk == ABILITY_PRECISE_FIST || BattlerHasInnate(battlerAtk, ABILITY_PRECISE_FIST)) && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
-					+ ((abilityAtk == ABILITY_PERFECTIONIST || BattlerHasInnate(gBattlerAttacker, ABILITY_PERFECTIONIST)) && gBattleMoves[move].power <= 50)
+					+ ((abilityAtk == ABILITY_PERFECTIONIST || BattlerHasInnate(gBattlerAttacker, ABILITY_PERFECTIONIST)) && gBattleMoves[move].power <= 50 && gBattleMoves[move].power > 0)
                     + ((abilityAtk == ABILITY_SUPER_LUCK    || BattlerHasInnate(gBattlerAttacker, ABILITY_SUPER_LUCK)));
 
         if (critChance >= ARRAY_COUNT(sCriticalHitChance))
