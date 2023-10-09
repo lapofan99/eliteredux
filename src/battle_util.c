@@ -8547,6 +8547,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if(BattlerHasInnate(battler, ABILITY_ATOMIC_BURST) || GetBattlerAbility(battler) == ABILITY_ATOMIC_BURST){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
+             && gBattleMons[gBattlerTarget].hp != 0
              && gBattleMons[battler].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
@@ -8568,6 +8569,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if(BattlerHasInnate(battler, ABILITY_COLD_REBOUND)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
+             && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && !gProtectStructs[battler].extraMoveUsed
@@ -8589,6 +8591,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         if(BATTLER_HAS_ABILITY(battler, ABILITY_PARRY)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerAttacker].hp != 0
+             && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && !gProtectStructs[battler].extraMoveUsed
@@ -9021,6 +9024,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_VOLCANO_RAGE:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
+             && gBattleMons[gBattlerAttacker].hp != 0
              && gBattleMoves[move].type == TYPE_FIRE
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
@@ -9036,6 +9040,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_PYRO_SHELLS:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
+             && gBattleMons[gBattlerAttacker].hp != 0
              && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
@@ -9051,6 +9056,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         case ABILITY_THUNDERCALL:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
+             && gBattleMons[gBattlerAttacker].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !gProtectStructs[gBattlerAttacker].extraMoveUsed
              && gBattleMoves[move].split != SPLIT_STATUS
