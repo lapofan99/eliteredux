@@ -9053,6 +9053,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !gProtectStructs[gBattlerAttacker].extraMoveUsed
+             && gBattleMoves[move].split != SPLIT_STATUS
              && GetTypeBeforeUsingMove(move, gBattlerAttacker) == TYPE_ELECTRIC)
             {
                 u16 extraMove = MOVE_SMITE;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me

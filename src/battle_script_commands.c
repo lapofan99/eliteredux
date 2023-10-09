@@ -2326,6 +2326,12 @@ static void Cmd_adjustdamage(void)
     // Handle reducing the dmg to 1 hp.
     gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
 
+    if(gBattleMoveDamage == 0 && gBattleMons[gBattlerTarget].maxHP != 1){
+        gBattleMoveDamage = 1;
+        gSpecialStatuses[gBattlerTarget].focusBanded = FALSE;
+        gSpecialStatuses[gBattlerTarget].focusSashed = FALSE;
+    }
+
     if (gProtectStructs[gBattlerTarget].endured)
     {
         gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
