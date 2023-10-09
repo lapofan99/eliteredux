@@ -3974,7 +3974,7 @@ void CalculateMonStats(struct Pokemon *mon)
 		speedEV 	= 0;
     }
 
-    if (species == SPECIES_SHEDINJA)
+    if (species == SPECIES_SHEDINJA || species == SPECIES_SHEDINJA_MEGA)
     {
         newMaxHP = 1;
     }
