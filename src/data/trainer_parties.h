@@ -13582,7 +13582,7 @@ static const struct TrainerMonItemCustomMoves sParty_Heidi[] = {
     {
     .lvl = 0,
     .species = SPECIES_BELLOSSOM,
-    .heldItem = ITEM_KEE_BERRY,
+    .heldItem = ITEM_SITRUS_BERRY,
     .ability = 2, // ABILITY_CHLOROPLAST, ABILITY_HARVEST, ABILITY_TRIAGE},
     // .innates = {ABILITY_CHLOROPHYLL, ABILITY_HEALER, ABILITY_LEAF_GUARD},
     .ivs = {31, 0, 31, 31, 31, 31},
@@ -33738,8 +33738,8 @@ static const struct TrainerMonItemCustomMoves sParty_Grunt34[] = { // 1/3 in a r
 static const struct TrainerMonItemCustomMoves sParty_Grunt35[] = { // 2/3 in a row, no healing
     {
     .lvl = 0,
-    .species = SPECIES_HIPPOWDON, // SpDef Wall + Kee Berry, Sand + SR Setter
-    .heldItem = ITEM_KEE_BERRY,
+    .species = SPECIES_HIPPOWDON, // SpDef Wall + Sitrus Berry, Sand + SR Setter
+    .heldItem = ITEM_SITRUS_BERRY,
     .ability = 0, // ABILITY_SAND_STREAM, ABILITY_GROWING_TOOTH, ABILITY_HYPER_AGGRESSIVE},
     // .innates = {ABILITY_SAND_FORCE, ABILITY_PREDATOR, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
@@ -35133,14 +35133,14 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_LAPRAS, // Juan-E, Bulky Vest Mixed, Permafrost
-    .heldItem = ITEM_ASSAULT_VEST,
-    .ability = 2, // ABILITY_REGENERATOR, ABILITY_SNOW_WARNING, ABILITY_PERMAFROST},
-    // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
-    .moves = MOVE_SPARKLING_ARIA, MOVE_SHEER_COLD, MOVE_DRACO_METEOR, MOVE_FLIP_TURN
+    .species = SPECIES_DEWGONG, // Juan-E, Mixed Wall, Light Clay, North Wind
+    .heldItem = ITEM_LIGHT_CLAY,
+    .ability = 2, // ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_ARCTIC_FUR},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 76, 0, 180, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_BOLD,
+    .moves = MOVE_SHEER_COLD, MOVE_SCALD, MOVE_SLACK_OFF, MOVE_TOXIC
     },
     {
     .lvl = 0,
@@ -35156,6 +35156,20 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     },
     {
     .lvl = 0,
+    .species = SPECIES_LAPRAS, // Juan-E, Mega X, Rain Sweeper
+    .heldItem = ITEM_LAPRASITE_X,
+    .ability = 2, // ABILITY_PRIMAL_MAW, ABILITY_PRIMAL_MAW, ABILITY_PRIMAL_MAW},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_SHELL_ARMOR, ABILITY_JAWS_OF_CARNAGE},
+    // Pre-Mega
+    // ABILITY_ADAPTABILITY, ABILITY_SNOW_WARNING, ABILITY_PERMAFROST},
+    // .innates = {ABILITY_HALF_DRAKE, ABILITY_SHELL_ARMOR, ABILITY_SELF_SUFFICIENT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_DEATHROLL, MOVE_JAGGED_FANGS, MOVE_ICE_FANG, MOVE_IRON_FANGS
+    }
+    /*{
+    .lvl = 0,
     .species = SPECIES_KINGDRA, // Mega, Juan-E, Rain Sweeper
     .heldItem = ITEM_KINGDRANITE,
     .ability = 0, // ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM, ABILITY_SWIFT_SWIM},
@@ -35166,9 +35180,9 @@ static const struct TrainerMonItemCustomMoves sParty_Juan1Insane[] = {
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_MODEST,
-    .moves = MOVE_WATER_PULSE, MOVE_HURRICANE, MOVE_DRAGON_PULSE, MOVE_FLASH_CANNON  
+    .moves = MOVE_WATER_PULSE, MOVE_HURRICANE, MOVE_DRAGON_PULSE, MOVE_FLASH_CANNON
     }
-    /*{
+    {
     .lvl = 0,
     .species = SPECIES_CLAWITZER, // Juan-E, Orb, Rampage + Hydrate + Hyper Beam
     .heldItem = ITEM_LIFE_ORB,
@@ -37658,7 +37672,7 @@ static const struct TrainerMonItemCustomMoves sParty_GlaciaInsane[] = {
     .lvl = 0,
     .species = SPECIES_DEWGONG, // Glacia-E, Mixed Wall, Light Clay, Fur Coat, North Wind
     .heldItem = ITEM_LIGHT_CLAY,
-    .ability = 0, // ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_PERMAFROST},
+    .ability = 0, // ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_ARCTIC_FUR},
     // .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 76, 0, 180, 0},      // HP, Atk, Def, SpA, SpD, Spe
@@ -38595,8 +38609,8 @@ static const struct TrainerMonItemCustomMoves sParty_SpenserFortree[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_SUICUNE, // Kee, North Wind, CM, RestTalk
-    .heldItem = ITEM_KEE_BERRY,
+    .species = SPECIES_SUICUNE, // Leftovers, North Wind, CM, RestTalk
+    .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // ABILITY_NORTH_WIND, ABILITY_PRISM_SCALES, ABILITY_DRIZZLE},
     // .innates = {ABILITY_AURORA_BOREALIS, ABILITY_WATER_VEIL, ABILITY_SEA_GUARDIAN},
     .ivs = {31, 0, 31, 31, 31, 31},
