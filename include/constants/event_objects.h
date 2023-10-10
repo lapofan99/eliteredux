@@ -266,8 +266,9 @@
 #define OBJ_EVENT_GFX_SALAMENCE                  262
 #define OBJ_EVENT_GFX_DEWGONG                    263
 #define OBJ_EVENT_GFX_FERALIGATR                 264
+#define OBJ_EVENT_GFX_BANEFUL                    265
 
-#define NUM_OBJ_EVENT_GFX                        265
+#define NUM_OBJ_EVENT_GFX                        266
 
 
 // These are dynamic object gfx ids.

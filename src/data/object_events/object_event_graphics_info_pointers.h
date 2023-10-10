@@ -270,6 +270,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gyarados_Shiny;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Salamence;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dewgong;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Feraligatr;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Baneful;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -537,6 +538,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_SALAMENCE] =                &gObjectEventGraphicsInfo_Salamence,
     [OBJ_EVENT_GFX_DEWGONG] =                  &gObjectEventGraphicsInfo_Dewgong,
     [OBJ_EVENT_GFX_FERALIGATR] =               &gObjectEventGraphicsInfo_Feraligatr,
+    [OBJ_EVENT_GFX_BANEFUL] =                  &gObjectEventGraphicsInfo_Baneful,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
