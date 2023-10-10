@@ -2628,7 +2628,6 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_LIECHI_BERRY,     50},
     {ITEM_PETAYA_BERRY,     50},
     {ITEM_SALAC_BERRY,      50},
-    {ITEM_KEE_BERRY,        50},
     {ITEM_WIKI_BERRY,       50},
     {ITEM_CHERI_BERRY,      50},
     {ITEM_CHESTO_BERRY,     50},

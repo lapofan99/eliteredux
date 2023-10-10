@@ -2944,6 +2944,7 @@ static const struct LevelUpMove sGyaradosLevelUpLearnset[] = {
     LEVEL_UP_MOVE(33, MOVE_SCARY_FACE),
     LEVEL_UP_MOVE(36, MOVE_TWISTER),
     LEVEL_UP_MOVE(39, MOVE_CRUNCH),
+    LEVEL_UP_MOVE(39, MOVE_JAGGED_FANGS), // new
     LEVEL_UP_MOVE(39, MOVE_DARK_PULSE), // new
     LEVEL_UP_MOVE(42, MOVE_HYDRO_PUMP),
     LEVEL_UP_MOVE(45, MOVE_WATERFALL),
@@ -2998,6 +2999,7 @@ static const struct LevelUpMove sLaprasLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_DRACO_METEOR), // new
 	LEVEL_UP_MOVE(49, MOVE_WAVE_CRASH), // new
     LEVEL_UP_MOVE(50, MOVE_FREEZE_DRY),
+    LEVEL_UP_MOVE(51, MOVE_DEATHROLL), // new
 	LEVEL_UP_MOVE(53, MOVE_BOOMBURST),
     LEVEL_UP_MOVE(56, MOVE_SPARKLING_ARIA),
     LEVEL_UP_MOVE(59, MOVE_SHEER_COLD),
@@ -3905,7 +3907,8 @@ static const struct LevelUpMove sAriadosLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sCrobatLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_CROSS_POISON),
+    LEVEL_UP_MOVE( 0, MOVE_SHADOW_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_CROSS_POISON),
     LEVEL_UP_MOVE( 1, MOVE_SHADOW_CLAW), // new
     LEVEL_UP_MOVE( 1, MOVE_HYPER_FANG), // new
     LEVEL_UP_MOVE( 1, MOVE_MEAN_LOOK),
@@ -8557,6 +8560,7 @@ static const struct LevelUpMove sShelgonLevelUpLearnset[] = {
 
 static const struct LevelUpMove sSalamenceLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_FLY),
+    LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
     LEVEL_UP_MOVE( 1, MOVE_PROTECT),
     LEVEL_UP_MOVE( 1, MOVE_DRAGON_TAIL),
     LEVEL_UP_MOVE( 1, MOVE_FIRE_FANG),
@@ -8731,6 +8735,8 @@ static const struct LevelUpMove sGroudonLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_SCORCHED_EARTH), // new
 	LEVEL_UP_MOVE( 1, MOVE_BODY_PRESS), // new
     LEVEL_UP_MOVE( 1, MOVE_SEISMIC_FIST), // new
+    LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
     LEVEL_UP_MOVE( 1, MOVE_ANCIENT_POWER),
     LEVEL_UP_MOVE( 1, MOVE_MUD_SHOT),
     LEVEL_UP_MOVE( 5, MOVE_SCARY_FACE),
@@ -8753,6 +8759,8 @@ static const struct LevelUpMove sGroudonLevelUpLearnset[] = {
 
 static const struct LevelUpMove sRayquazaLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_TWISTER),
+    LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
     LEVEL_UP_MOVE( 5, MOVE_SCARY_FACE),
     LEVEL_UP_MOVE(15, MOVE_ANCIENT_POWER),
     LEVEL_UP_MOVE(20, MOVE_CRUNCH),
@@ -9299,6 +9307,9 @@ static const struct LevelUpMove sLuxioLevelUpLearnset[] = {
 
 static const struct LevelUpMove sLuxrayLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 0, MOVE_NIGHT_SLASH),
+    LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_SHADOW_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
     LEVEL_UP_MOVE( 1, MOVE_ICE_FANG),
     LEVEL_UP_MOVE( 1, MOVE_FIRE_FANG),
     LEVEL_UP_MOVE( 1, MOVE_ELECTRIC_TERRAIN),
@@ -10169,7 +10180,8 @@ static const struct LevelUpMove sGabiteLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sGarchompLevelUpLearnset[] = {
-	LEVEL_UP_MOVE( 0, MOVE_CRUNCH),
+    LEVEL_UP_MOVE( 0, MOVE_JAGGED_FANGS), // new
+	LEVEL_UP_MOVE( 1, MOVE_CRUNCH),
     LEVEL_UP_MOVE( 1, MOVE_SCORCHING_SANDS), // new
 	LEVEL_UP_MOVE( 1, MOVE_DUAL_CHOP),
 	LEVEL_UP_MOVE( 1, MOVE_FIRE_FANG),
@@ -11233,6 +11245,9 @@ static const struct LevelUpMove sRegigigasLevelUpLearnset[] = {
 
 static const struct LevelUpMove sGiratinaLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_DUAL_WINGBEAT), // new
+    LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_SHADOW_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
 	LEVEL_UP_MOVE( 1, MOVE_DRAGON_BREATH),
 	LEVEL_UP_MOVE( 1, MOVE_SCARY_FACE),
 	LEVEL_UP_MOVE( 6, MOVE_OMINOUS_WIND),
@@ -18167,6 +18182,8 @@ static const struct LevelUpMove sCosmoemLevelUpLearnset[] = {
 
 static const struct LevelUpMove sSolgaleoLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_SUNSTEEL_STRIKE),
+    LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
 	LEVEL_UP_MOVE( 1, MOVE_BODY_PRESS), // new
     LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
 	LEVEL_UP_MOVE( 1, MOVE_COSMIC_POWER),
