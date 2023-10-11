@@ -6790,6 +6790,8 @@ extern const u32 gTrainerFrontPic_RubySapphireBrendan[];
 extern const u32 gTrainerFrontPic_RubySapphireMay[];
 extern const u32 gTrainerFrontPic_MagmaAdminF[];
 extern const u32 gTrainerFrontPic_Cynthia[];
+extern const u32 gTrainerFrontPic_Baneful[];
+extern const u32 gTrainerPalette_Baneful[];
 
 extern const u32 gTrainerPalette_Hiker[];
 extern const u32 gTrainerPalette_AquaGruntM[];
