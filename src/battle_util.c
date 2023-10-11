@@ -1600,9 +1600,7 @@ void PrepareStringBattle(u16 stringId, u8 battler)
             gBattlescriptCurrInstr = BattleScript_QueensMourningActivated;
     }
     // Check Defiant and Competitive stat raise whenever a stat is lowered.
-    else if ((stringId == STRINGID_DEFENDERSSTATFELL    || 
-              stringId == STRINGID_PKMNCUTSATTACKWITH   || 
-              stringId == STRINGID_PKMNCUTSSPATTACKWITH)
+    else if ((stringId == STRINGID_DEFENDERSSTATFELL)
               && (((GetBattlerAbility(gBattlerTarget) == ABILITY_DEFIANT       || BattlerHasInnate(gBattlerTarget, ABILITY_DEFIANT))
 		           && CompareStat(gBattlerTarget, STAT_ATK, MAX_STAT_STAGE, CMP_LESS_THAN))
                  || ((GetBattlerAbility(gBattlerTarget) == ABILITY_COMPETITIVE || BattlerHasInnate(gBattlerTarget, ABILITY_COMPETITIVE))
@@ -5801,25 +5799,42 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
         // Fearmonger
-		if(BATTLER_HAS_ABILITY(battler, ABILITY_FEARMONGER)){
-			if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FEARMONGER)]){
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_FEARMONGER)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_FEARMONGER; //For easier copypaste
+
+            switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                case BATTLER_INNATE:
+                    if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                        gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+                case BATTLER_ABILITY:
+                    if(!gSpecialStatuses[battler].switchInAbilityDone){
+				        gBattlerAttacker = battler;
+                        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
                 if(!(gSpecialStatuses[battler].intimidatedMon))
                 {
-                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FEARMONGER)] = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FEARMONGER;
                     gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_INTIMIDATED;
                     gSpecialStatuses[battler].intimidatedMon = TRUE;
                 }
 
                 if(!(gSpecialStatuses[battler].scaredMon))
                 {
-                    gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_FEARMONGER)] = TRUE;
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FEARMONGER;
                     gBattleResources->flags->flags[battler] |= RESOURCE_FLAG_SCARED;
                     gSpecialStatuses[battler].scaredMon = TRUE;
                 }
-            }  
-		}
+            }
+        }
 		
 		// Intimidate
 		if(BattlerHasInnate(battler, ABILITY_INTIMIDATE)){
