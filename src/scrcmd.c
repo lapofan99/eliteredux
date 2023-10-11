@@ -2602,23 +2602,14 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_MACHAMPITE,        1},
     {ITEM_KINGLERITE,        1},
     {ITEM_KINGDRANITE,       1},
-    /*
-    {ITEM_DEWGONGITE,        1},
-    {ITEM_HITMONCHANITE,     1},
-    {ITEM_HITMONLEENITE,     1},
-    {ITEM_HITMONTOPITE,      1},
-    {ITEM_CROBATITE,         1},
     {ITEM_SKARMORYNITE,      1},
-    {ITEM_BRUXISHITE,        1},
-    {ITEM_TORTERRANITE,      1},
-    {ITEM_INFERNAPENITE,     1},
-    {ITEM_EMPOLEONITE,       1},
-    {ITEM_SHUCKLENITE,       1},
     {ITEM_RELICANTHITE,      1},
     {ITEM_QUAGSIRENITE,      1},
-    {ITEM_JELLICENTITE,      1},
-    {ITEM_TOUCANNONITE,      1},
-    {ITEM_DRAGONITENITE,     1},*/
+    {ITEM_SWALOTITE,         1},
+    {ITEM_LUXRAYNITE,        1},
+    /*
+    {ITEM_MAGNEZONITE,       1},
+    */
     //Berries
     {ITEM_AGUAV_BERRY,      50},
     {ITEM_APICOT_BERRY,     50},
