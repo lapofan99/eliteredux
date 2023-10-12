@@ -11,6 +11,7 @@
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "international_string_util.h"
+#include "item.h"
 #include "link.h"
 #include "main.h"
 #include "main_menu.h"
@@ -701,6 +702,7 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
 const u8 gText_FutureSave[] = _("The save file cannot be loaded since\nits from a future version of this game.");
 static void Task_MainMenuCheckSaveFile(u8 taskId)
 {
+    u8 i, j, itemcount;
     s16* data = gTasks[taskId].data;
 	u16 timesUpdated = 0 + VarGet(VAR_UPDATED_TIMES);
 
@@ -712,6 +714,17 @@ static void Task_MainMenuCheckSaveFile(u8 taskId)
             FlagClear(FLAG_HIDE_MAUVILLE_CITY_WATTSON);
             FlagClear(FLAG_WATTSON_REMATCH_AVAILABLE);
         }
+    }
+
+    if(!FlagGet(FLAG_UPDATED_MEGA_STONE_POCKET)){
+        for (i = 0; i < BAG_MEGASTONES_COUNT; i++)
+        {
+            if(gSaveBlock1Ptr->bagPocket_MegaStones[i].itemId != ITEM_NONE){
+                itemcount = gSaveBlock1Ptr->bagPocket_MegaStones[i].quantity;
+                AddBagItem(gSaveBlock1Ptr->bagPocket_MegaStones[i].itemId, itemcount);
+            }
+        }
+        FlagSet(FLAG_UPDATED_MEGA_STONE_POCKET);
     }
 
     if (!gPaletteFade.active)
