@@ -1606,6 +1606,7 @@ static void Cmd_attackcanceler(void)
 
     if (((GetBattlerAbility(gBattlerTarget) == ABILITY_COLOR_CHANGE) || BattlerHasInnate(gBattlerTarget, ABILITY_COLOR_CHANGE) ||
          (GetBattlerAbility(gBattlerTarget) == ABILITY_PRISMATIC_FUR) || BattlerHasInnate(gBattlerTarget, ABILITY_PRISMATIC_FUR))
+        && gProtectStructs[gBattlerAttacker].extraMoveUsed != TRUE
         && (gBattlerAttacker != gBattlerTarget)) {
         u32 currentType;
         u32 bestType = gBattleMons[gBattlerTarget].type1;
