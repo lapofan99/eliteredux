@@ -12243,7 +12243,7 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
         return FALSE;
     else if (gProtectStructs[battlerId].protected)
         return TRUE;
-    else if (gDisableStructs[battlerId].protectedThisTurn)
+    else if (gDisableStructs[battlerId].protectedThisTurn && gProtectStructs[gBattlerAttacker].extraMoveUsed != TRUE)
         return TRUE;
     else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD
              && GetBattlerBattleMoveTargetFlags(move, battlerId) & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY))
