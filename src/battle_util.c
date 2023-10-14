@@ -4376,6 +4376,18 @@ bool8 BattlerCanBeIntimidated(u8 battler){
         return FALSE;
 }
 
+bool32 TryPrimalReversion(u8 battlerId)
+{
+    if (GetBattlerHoldEffect(battlerId, FALSE) == HOLD_EFFECT_PRIMAL_ORB
+     && GetPrimalReversionSpecies(gBattleMons[battlerId].species, gBattleMons[battlerId].item) != SPECIES_NONE)
+    {
+        gBattlerAttacker = battlerId;
+        BattleScriptExecute(BattleScript_PrimalReversion);
+        return TRUE;
+    }
+    return FALSE;
+}
+
 u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 moveArg)
 {
     u8 effect = 0;
@@ -15776,12 +15788,9 @@ bool32 CanMegaEvolve(u8 battlerId)
         else
             holdEffect = ItemId_GetHoldEffect(itemId);
 
-        // Can Mega Evolve via Mega Stone.
-        if (holdEffect == HOLD_EFFECT_MEGA_STONE)
-        {
-            gBattleStruct->mega.isWishMegaEvo = FALSE;
-            return TRUE;
-        }
+        gBattleStruct->mega.isWishMegaEvo = FALSE;
+        gBattleStruct->mega.isPrimalReversion = FALSE;
+        return TRUE;
     }
 
     // Check if there is an entry in the evolution table for regular Primal Reversion.
@@ -15794,13 +15803,9 @@ bool32 CanMegaEvolve(u8 battlerId)
         else
             holdEffect = ItemId_GetHoldEffect(itemId);
 
-        // Can undergo Primal Reversion.
-        if (holdEffect == HOLD_EFFECT_PRIMAL_ORB)
-        {
-            gBattleStruct->mega.isWishMegaEvo = FALSE;
-            gBattleStruct->mega.isPrimalReversion = TRUE;
-            return TRUE;
-        }
+        gBattleStruct->mega.isWishMegaEvo = FALSE;
+        gBattleStruct->mega.isPrimalReversion = TRUE;
+        return TRUE;
     }
 
     // Check if there is an entry in the evolution table for Wish Mega Evolution.

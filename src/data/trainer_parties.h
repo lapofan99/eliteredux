@@ -40799,8 +40799,8 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy6[] = { // Unused
 static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Trainer, do not move or use
     {
     .lvl = 0,
-    .species = SPECIES_SHUCKLE,
-    .heldItem = ITEM_LEFTOVERS,
+    .species = SPECIES_GROUDON,
+    .heldItem = ITEM_RED_ORB,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
@@ -40809,8 +40809,8 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Train
     },
     {
     .lvl = 0,
-    .species = SPECIES_SHUCKLE,
-    .heldItem = ITEM_LEFTOVERS,
+    .species = SPECIES_GROUDON,
+    .heldItem = ITEM_RED_ORB,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
@@ -40819,8 +40819,8 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Train
     },
     {
     .lvl = 0,
-    .species = SPECIES_SHUCKLE,
-    .heldItem = ITEM_LEFTOVERS,
+    .species = SPECIES_GROUDON,
+    .heldItem = ITEM_RED_ORB,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
