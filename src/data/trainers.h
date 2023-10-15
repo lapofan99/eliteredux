@@ -12325,7 +12325,7 @@ const struct Trainer gTrainers[] = {
     [TRAINER_BANEFUL_PETALBURG_WOODS]
     {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_CHAMPION,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_BANEFUL,
         .trainerName = _("Baneful"),

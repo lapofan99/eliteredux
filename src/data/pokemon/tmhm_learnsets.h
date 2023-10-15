@@ -8119,6 +8119,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM78_BULLDOZE)
                                         | TMHM2(TM83_FLAME_CHARGE)
                                         | TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM93_WILD_CHARGE) // new
                                         | TMHM2(TM95_SNARL)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM01_CUT)
@@ -8153,6 +8154,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM58_ENDURE),
                                           TMHM2(TM68_GIGA_IMPACT)
                                         | TMHM2(TM78_BULLDOZE)
+                                        | TMHM2(TM79_FREEZE_DRY) // new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM95_SNARL)
                                         | TMHM2(TM96_AVALANCHE)
