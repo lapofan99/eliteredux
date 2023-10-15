@@ -41086,13 +41086,13 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy6[] = { // Unused
 static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Trainer, do not move or use
     {
     .lvl = 0,
-    .species = SPECIES_GROUDON,
-    .heldItem = ITEM_RED_ORB,
+    .species = SPECIES_ONIX,
+    .heldItem = ITEM_LEFTOVERS,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
+	.moves = MOVE_TACKLE, MOVE_TACKLE, MOVE_TACKLE, MOVE_TACKLE
     },
     {
     .lvl = 0,
