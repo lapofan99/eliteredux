@@ -7654,13 +7654,13 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_SKARMORYNITE] =
+    [ITEM_SKARMORITE] =
     {
-        .name = _("Skarmorynite"),
-        .itemId = ITEM_SKARMORYNITE,
+        .name = _("Skarmorite"),
+        .itemId = ITEM_SKARMORITE,
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
-        .description = sSkarmoryniteDesc,
+        .description = sSkarmoriteDesc,
         .pocket = POCKET_MEGA_STONES,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,

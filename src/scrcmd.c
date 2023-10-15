@@ -2602,7 +2602,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_MACHAMPITE,        1},
     {ITEM_KINGLERITE,        1},
     {ITEM_KINGDRANITE,       1},
-    {ITEM_SKARMORYNITE,      1},
+    {ITEM_SKARMORITE,      1},
     {ITEM_RELICANTHITE,      1},
     {ITEM_QUAGSIRENITE,      1},
     {ITEM_SWALOTITE,         1},

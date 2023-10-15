@@ -11523,7 +11523,8 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM05_FLASH)),
-    [SPECIES_CRADILY]   = TMHM_LEARNSET (TMHM1(TM06_TOXIC)
+    [SPECIES_CRADILY]   = TMHM_LEARNSET (TMHM1(TM04_CALM_MIND) // new
+                                        | TMHM1(TM06_TOXIC)
                                         | TMHM1(TM09_BULLET_SEED)
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM11_SUNNY_DAY)

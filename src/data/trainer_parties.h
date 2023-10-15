@@ -30761,7 +30761,7 @@ static const struct TrainerMonItemCustomMoves sParty_Aidan[] = { // with Athena
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_DRILL_PECK, MOVE_STEEL_WING, MOVE_SWORDS_DANCE, MOVE_ROOST
+    .moves = MOVE_BRAVE_BIRD, MOVE_STEEL_WING, MOVE_SWORDS_DANCE, MOVE_ROOST
     }
 };
 
@@ -41737,5 +41737,80 @@ static const struct TrainerMonItemCustomMoves sParty_CalvinE4[] = { // E4
     .evs = {248, 0, 8, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_SASSY,
     .moves = MOVE_SCALD, MOVE_RECOVER, MOVE_BODY_SLAM, MOVE_TOXIC
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_Baneful_PetalburgWoods[] = { // Primal Cascoon
+    {
+    .lvl = 0,
+    .species = SPECIES_CLAYDOL, // Baneful, Leftovers, Mixed Wall
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_MYSTIC_POWER, ABILITY_SOUL_LINKER, ABILITY_TWISTED_DIMENSION},
+    // .innates = {ABILITY_LEVITATE, ABILITY_ANCIENT_IDOL, ABILITY_SAND_FORCE},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 104, 0, 152, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_BOLD,
+    .moves = MOVE_STEALTH_ROCK, MOVE_BODY_PRESS, MOVE_PSYSHOCK, MOVE_SCORCHING_SANDS
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_OMASTAR, // Baneful, Herb, Shell Smash
+    .heldItem = ITEM_WHITE_HERB,
+    .ability = 0, // ABILITY_WEAK_ARMOR, ABILITY_SWIFT_SWIM, ABILITY_WATER_COMPACTION},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_RAIN_DISH, ABILITY_SHELL_ARMOR},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_TIMID,
+    .moves = MOVE_SURF, MOVE_ICE_BEAM, MOVE_EARTH_POWER, MOVE_SHELL_SMASH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_TOXAPEX, // Baneful, Mixed Wall, Venoshock
+    .heldItem = ITEM_BLACK_SLUDGE,
+    .ability = 2, // ABILITY_BATTLE_ARMOR, ABILITY_FORT_KNOX, ABILITY_TOXIC_DEBRIS},
+    // .innates = {ABILITY_POISON_TOUCH, ABILITY_REGENERATOR, ABILITY_ROUGH_SKIN},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 76, 0, 180, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_CALM,
+    .moves = MOVE_SCALD, MOVE_SLUDGE_BOMB, MOVE_BANEFUL_BUNKER, MOVE_RECOVER
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_CRADILY, // Baneful, CM
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // ABILITY_ABSORBANT, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
+    // .innates = {ABILITY_BATTLE_ARMOR, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_BOLD,
+    .moves = MOVE_GIGA_DRAIN, MOVE_CALM_MIND, MOVE_SCALD, MOVE_RECOVER
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_SKARMORY, // Baneful, Mega, Mixed Wall
+    .heldItem = ITEM_SKARMORITE,
+    .ability = 2, // ABILITY_SCRAPYARD, ABILITY_SCRAPYARD, ABILITY_SCRAPYARD},
+    // .innates = {ABILITY_MOTOR_DRIVE, ABILITY_POWER_CORE, ABILITY_SELF_REPAIR},
+    // Pre-Mega
+    // ABILITY_MIRROR_ARMOR, ABILITY_STURDY, ABILITY_LEAD_COAT},
+    // .innates = {ABILITY_GIANT_WINGS, ABILITY_FULL_METAL_BODY, ABILITY_BATTLE_ARMOR},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_IMPISH,
+    .moves = MOVE_BRAVE_BIRD, MOVE_STEEL_WING, MOVE_BODY_PRESS, MOVE_ROOST
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_CASCOON, // Baneful, Primal
+    .heldItem = ITEM_PURPLE_ORB,
+    .ability = 0, // ABILITY_ANGELS_WRATH, ABILITY_ANGELS_WRATH, ABILITY_ANGELS_WRATH},
+    // .innates = {ABILITY_COLOR_CHANGE, ABILITY_IMPENETRABLE, ABILITY_ADAPTABILITY},
+    // Pre-Primal
+    // ABILITY_SHED_SKIN, ABILITY_SHED_SKIN, ABILITY_POISON_POINT},
+    // .innates = {ABILITY_SWARM, ABILITY_BATTLE_ARMOR, ABILITY_SAP_SIPPER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 252, 252, 252, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_TACKLE, MOVE_POISON_STING, MOVE_BUG_BITE, MOVE_ELECTROWEB
     }
 };

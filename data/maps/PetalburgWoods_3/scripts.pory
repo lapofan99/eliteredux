@@ -2,3 +2,35 @@ raw `
 PetalburgWoods_3_MapScripts:: 
 	.byte 0
 `
+
+script PetalburgWoods3_EventScript_PrimalCascoon_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_SYS_GAME_CLEAR)) { // Checking if the player has the badge
+		//cleartrainerflag(FLAG_TRAINER_BANEFUL_PETALBURG_WOODS) // Only For testing
+		if (!defeated(FLAG_TRAINER_BANEFUL_PETALBURG_WOODS)) { // asking for battle
+			msgbox(format("All Pokémon have their limits, right? Wrong.\p{PLAYER}, you must be dead strong to have found me here.\pI've raised my Pokémon beyond their normal limits and I've been waiting here just dying for a challenge.\pYou wanna have a crack at it?"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("Let's have it then! Cascoon, you ready to take some names?"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(FLAG_TRAINER_BANEFUL_PETALBURG_WOODS, format("Amazing... You've broken the limits too...")) // in-battle, player wins
+				msgbox(format("I'm well impressed, mate. I reckon you're champion material.
+I've got a great reward for you since you've put the work in. Here."), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_PURPLE_ORB, 1) // Item given to the player
+				waitmessage
+				msgbox(format("If you dream of further defying the limits you'll want that Purple Orb.\pIt allows Cascoon to unlock it's potential that was lost to time..."), MSGBOX_NPC) // after player won
+			}
+			else { // when refusing the battle
+				msgbox(format("Sound. Come back when you're ready then."), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("I come from a distant land called Liverpool. It's not very well known around here."), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("Oi there, {PLAYER}! Thought you'd come and have a go, did ya? But listen, I'm lookin' for a certain level of challenge, somethin' only a Champion can give me.\pGet yourself that title, become the Champion, and then we'll have ourselves a proper scrap, eh? Until then, keep it on the down low that you've seen me, alright?"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

@@ -3116,7 +3116,7 @@ static const u8 sCrobatiteDesc[] = _(
     "Crobat to Mega\n"
     "Evolve in battle.");
 
-static const u8 sSkarmoryniteDesc[] = _(
+static const u8 sSkarmoriteDesc[] = _(
     "This stone enables\n"
     "Skarmory to Mega\n"
     "Evolve in battle.");
