@@ -462,7 +462,6 @@ SlateportCity_OceanicMuseum_2F_EventScript_LaprasiteX:: @ 8291288
 	finditem ITEM_LAPRASITE_X
 	end
 
-
 AbandonedShip_HiddenFloorRooms_EventScript_ItemLucarionite:: @ 8291295
 	finditem ITEM_LUCARIONITE
 	end

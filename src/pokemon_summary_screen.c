@@ -4412,7 +4412,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
             case 0:
                 if(innate1 != ABILITY_NONE){
                     y += 32;
-                    if(level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE){
+                    if(level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
@@ -4434,7 +4434,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
             case 1:
                 if(innate2 != ABILITY_NONE){
                     y += 32;
-                    if(level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE){
+                    if(level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
@@ -4456,7 +4456,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
             case 2:
                 if(innate3 != ABILITY_NONE){
                     y += 32;
-                    if(level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE){
+                    if(level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);

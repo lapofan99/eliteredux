@@ -8119,6 +8119,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM78_BULLDOZE)
                                         | TMHM2(TM83_FLAME_CHARGE)
                                         | TMHM2(TM90_SUBSTITUTE)
+                                        | TMHM2(TM93_WILD_CHARGE) // new
                                         | TMHM2(TM95_SNARL)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM01_CUT)
@@ -8153,6 +8154,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM58_ENDURE),
                                           TMHM2(TM68_GIGA_IMPACT)
                                         | TMHM2(TM78_BULLDOZE)
+                                        | TMHM2(TM79_FREEZE_DRY) // new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM95_SNARL)
                                         | TMHM2(TM96_AVALANCHE)
@@ -11523,7 +11525,8 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM05_FLASH)),
-    [SPECIES_CRADILY]   = TMHM_LEARNSET (TMHM1(TM06_TOXIC)
+    [SPECIES_CRADILY]   = TMHM_LEARNSET (TMHM1(TM04_CALM_MIND) // new
+                                        | TMHM1(TM06_TOXIC)
                                         | TMHM1(TM09_BULLET_SEED)
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM11_SUNNY_DAY)

@@ -5649,7 +5649,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     }
 
     // Skip using the item if it won't do anything
-    if (!ITEM_HAS_EFFECT(item))
+    if (!ITEM_HAS_EFFECT(item) && ItemId_GetFieldFunc(item) != ItemId_GetFieldFunc(ITEM_FIRE_STONE))
         return TRUE;
     if (gItemEffectTable[item - ITEM_POTION] == NULL && item != ITEM_ENIGMA_BERRY)
         return TRUE;

@@ -8035,19 +8035,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-            case ABILITY_LOOSE_ROCKS:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0 
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && TARGET_TURN_DAMAGED
-             && IsMoveMakingContact(move, gBattlerAttacker)
-             && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)){
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOSE_ROCKS;
-                gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_STEALTH_ROCK;
-				BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_DefenderSetsStealthRock;
-                effect++;
-            }
         }
 		
 		// Innates
@@ -8068,14 +8055,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         // Innates
         // Loose Rocks
-        if (BattlerHasInnate(battler, ABILITY_LOOSE_ROCKS)) {
+        if (BATTLER_HAS_ABILITY(battler, ABILITY_LOOSE_ROCKS)) {
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0 
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
              && IsMoveMakingContact(move, gBattlerAttacker)
              && !(gSideStatuses[GetBattlerSide(gActiveBattler)] & SIDE_STATUS_STEALTH_ROCK)) {
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LOOSE_ROCKS;
+                BattleScriptPushCursor();
                 gSideStatuses[GetBattlerSide(gBattlerAttacker)] |= SIDE_STATUS_STEALTH_ROCK;
                 gBattlescriptCurrInstr = BattleScript_DefenderSetsStealthRock;
                 effect++;
@@ -9082,6 +9069,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerTarget].hp != 0
              && gBattleMons[gBattlerAttacker].hp != 0
              && gBattleMoves[move].type == TYPE_FIRE
+             && gBattlerTarget != gBattlerAttacker
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
             {
@@ -9315,6 +9303,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && gBattleMoves[move].type == TYPE_FIRE
+             && gBattlerTarget != gBattlerAttacker
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
             {
