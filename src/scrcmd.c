@@ -495,7 +495,16 @@ bool8 ScrCmd_additem(struct ScriptContext *ctx)
     u16 itemId = VarGet(ScriptReadHalfword(ctx));
     u32 quantity = VarGet(ScriptReadHalfword(ctx));
 
-    gSpecialVar_Result = AddBagItem(itemId, (u16)quantity);
+    if(AddBagItem(itemId, (u16)quantity)){
+        gSpecialVar_Result = 1; //Bag
+    }
+    else if(AddPCItem(itemId, (u16)quantity)){
+        gSpecialVar_Result = 2; //PC
+    }
+    else{
+        gSpecialVar_Result = 0; //Failed
+    }
+
     return FALSE;
 }
 

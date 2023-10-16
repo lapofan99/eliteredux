@@ -48,7 +48,7 @@
     b = temp;               \
 }
 
-//#define DEBUG_BUILD
+#define DEBUG_BUILD
 #define CURRENT_GAME_VERSION 1021
 
 // useful math macros
@@ -543,7 +543,6 @@ struct SaveBlock2
               u8 typeRandomizedMode:1;
               u8 encounterRandomizedLegendaryMode:1;
               u8 filler:2;
-    /*0x???*/ struct ItemSlot bagPocket_MegaStones_New[BAG_MEGASTONES_COUNT_NEW];
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
