@@ -48,8 +48,8 @@
     b = temp;               \
 }
 
-#define DEBUG_BUILD
-#define CURRENT_GAME_VERSION 1020
+//#define DEBUG_BUILD
+#define CURRENT_GAME_VERSION 1021
 
 // useful math macros
 
