@@ -655,10 +655,14 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 RETURN_SCORE_MINUS(20);
         }
 
-
         if (moveType == TYPE_ROCK &&
           (AI_DATA->defAbility == ABILITY_MOUNTAINEER || BattlerHasInnate(battlerDef, ABILITY_MOUNTAINEER)) &&
           !DoesBattlerIgnoreAbilityorInnateChecks(battlerAtk))
+        {
+            RETURN_SCORE_MINUS(20);
+        }
+
+        if (moveType == TYPE_DARK && (IsAbilityOnField(ABILITY_RADIANCE)) && !DoesBattlerIgnoreAbilityorInnateChecks(battlerAtk))
         {
             RETURN_SCORE_MINUS(20);
         }
