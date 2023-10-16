@@ -16657,8 +16657,9 @@ bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler)
 
 static bool8 DoesMoveBoostStats(u16 move){
     switch(gBattleMoves[move].effect){
-        //All Stats Up
+        //Multiple Stats Up
         case EFFECT_ALL_STATS_UP_HIT:
+        case EFFECT_CALM_MIND:
         //Attack
         case EFFECT_ATTACK_UP_HIT:
         case EFFECT_ATTACK_UP:
