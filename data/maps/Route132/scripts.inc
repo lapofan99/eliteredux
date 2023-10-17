@@ -161,8 +161,6 @@ Route132_EventScript_Gyarados_7:
 
 
 Route132_EventScript_Gyarados_PreTateLiza::
-	lock
-	faceplayer
 	message Route132_EventScript_Gyarados_PreTateLiza_Text_0
 	release
 	end
@@ -270,7 +268,7 @@ Route132_EventScript_Gyarados_PreTateLiza_Text_0:
 	.string "you're invisible, suggesting that you\l"
 	.string "may want to come back when you\l"
 	.string "possess the strength to rival its\l"
-	.string "presence.$"
+	.string "presence.{PAUSE_UNTIL_PRESS}$"
 
 Route132_EventScript_Gyarados_Join_Text_0:
 	.string "Gyarados seems to want to join your\n"

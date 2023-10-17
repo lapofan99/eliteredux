@@ -340,8 +340,6 @@ Route114_EventScript_Feraligatr_7:
 
 
 Route114_EventScript_Feraligatr_PreNorman::
-	lock
-	faceplayer
 	message Route114_EventScript_Feraligatr_PreNorman_Text_0
 	release
 	end
@@ -435,7 +433,7 @@ Route114_EventScript_Feraligatr_Text_3:
 Route114_EventScript_Feraligatr_PreNorman_Text_0:
 	.string "Feraligatr regards you with disdain.\n"
 	.string "Maybe come back once you've become\l"
-	.string "more formidable?$"
+	.string "more formidable?{PAUSE_UNTIL_PRESS}$"
 
 Route114_EventScript_Feraligatr_Join_Text_0:
 	.string "Feraligatr seems to want to join your\n"

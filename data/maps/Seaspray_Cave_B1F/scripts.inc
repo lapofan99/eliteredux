@@ -58,8 +58,6 @@ Seaspray_Cave_B1F_EventScript_Dewgong_7:
 
 
 Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza::
-	lock
-	faceplayer
 	message Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza_Text_0
 	release
 	end
@@ -135,7 +133,7 @@ Seaspray_Cave_B1F_EventScript_Dewgong_Text_3:
 
 Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza_Text_0:
 	.string "The Dewgong finds you pitiful. Perhaps\n"
-	.string "return after growing stronger?$"
+	.string "return after growing stronger?{PAUSE_UNTIL_PRESS}$"
 
 Seaspray_Cave_B1F_EventScript_Dewgong_Join_Text_0:
 	.string "Dewgong seems to want to join your\n"

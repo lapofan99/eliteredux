@@ -1117,8 +1117,6 @@ Route111_EventScript_Sandslash_7:
 
 
 Route111_EventScript_Sandslash_PreNorman::
-	lock
-	faceplayer
 	message Route111_EventScript_Sandslash_PreNorman_Text_0
 	release
 	end
@@ -1262,7 +1260,7 @@ Route111_EventScript_Sandslash_PreNorman_Text_0:
 	.string "Sandslash appears to regard you with a\n"
 	.string "sense of superiority. It might be\l"
 	.string "advisable to return once you've\l"
-	.string "bolstered your strength.$"
+	.string "bolstered your strength.{PAUSE_UNTIL_PRESS}$"
 
 Route111_EventScript_Sandslash_Join_Text_0:
 	.string "Sandslash seems to want to join your\n"
