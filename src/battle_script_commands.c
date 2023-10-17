@@ -5534,13 +5534,15 @@ static void Cmd_moveend(void)
         case MOVEEND_CHOICE_MOVE: // update choice band move
             if (gHitMarker & HITMARKER_OBEYS
              && (HOLD_EFFECT_CHOICE(holdEffectAtk) || 
-			     GetBattlerAbility(gBattlerAttacker) == ABILITY_GORILLA_TACTICS || 
-				 BattlerHasInnate(gBattlerAttacker, ABILITY_GORILLA_TACTICS)|| 
-			     GetBattlerAbility(gBattlerAttacker) == ABILITY_SAGE_POWER || 
-				 BattlerHasInnate(gBattlerAttacker, ABILITY_SAGE_POWER))
+                (BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_DISCIPLINE) && gBattleMoves[gChosenMove].effect == EFFECT_RAMPAGE) ||
+                 BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_GORILLA_TACTICS) ||
+                 BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SAGE_POWER))
              && gChosenMove != MOVE_STRUGGLE
              && (*choicedMoveAtk == 0 || *choicedMoveAtk == 0xFFFF))
             {
+                if(BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_DISCIPLINE) && gBattleMoves[gChosenMove].effect == EFFECT_RAMPAGE)
+                    gDisableStructs[gBattlerAttacker].disciplineCounter = 3;
+
                 if ((gBattleMoves[gChosenMove].effect == EFFECT_BATON_PASS
                  || gBattleMoves[gChosenMove].effect == EFFECT_HEALING_WISH)
                  && !(gMoveResultFlags & MOVE_RESULT_FAILED))
