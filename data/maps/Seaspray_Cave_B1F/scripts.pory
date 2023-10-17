@@ -52,9 +52,7 @@ script Seaspray_Cave_B1F_EventScript_Dewgong{
 }
 
 script Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza{
-    lock
-    faceplayer
-    message(format("The Dewgong finds you pitiful. Perhaps return after growing stronger?"))
+    message(format("The Dewgong finds you pitiful. Perhaps return after growing stronger?{PAUSE_UNTIL_PRESS}"))
     release
     end	
 }

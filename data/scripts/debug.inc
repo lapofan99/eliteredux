@@ -48,7 +48,7 @@ Debug_Script_1::
 	end
 
 Debug_Script_2::
-	setflag FLAG_SYS_GAME_CLEAR
+	goto EventScript_Debug_CheatStart
 	end
 
 Debug_Script_3::
