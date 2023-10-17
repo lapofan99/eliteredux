@@ -21470,6 +21470,7 @@ const u32 gTMHMLearnsets[][4] =
     [SPECIES_TERRAKION]   = TMHM_LEARNSET (TMHM1(TM04_CALM_MIND)
                                         | TMHM1(TM05_ROAR)
                                         | TMHM1(TM06_TOXIC)
+                                        | TMHM1(TM08_BULK_UP) // new
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM12_TAUNT)
                                         | TMHM1(TM15_HYPER_BEAM)
