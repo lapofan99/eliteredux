@@ -9003,9 +9003,13 @@ u16 RandomizeMoves(u16 moves, u16 species, u32 personality){
                 randomizedMove = randomizedMove % MOVES_COUNT;
             }
             while(gBattleMoves[randomizedMove].effect == EFFECT_PLACEHOLDER || 
+                  randomizedMove >= MOVES_COUNT    ||
                   randomizedMove == MOVE_DARK_VOID ||
                   randomizedMove == MOVE_NONE);
-            
+                  
+            if(randomizedMove >= (MOVES_COUNT - 1))
+                randomizedMove = MOVE_SPLASH;
+
             return randomizedMove;
     }
     else

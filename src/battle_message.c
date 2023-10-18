@@ -744,7 +744,7 @@ static const u8 sText_PkmnRevertedToPrimal[] = _("{B_ATK_NAME_WITH_PREFIX}'s Pri
 static const u8 sText_ButPokemonCantUseTheMove[] = _("But {B_ATK_NAME_WITH_PREFIX} can't\nuse the move!");
 static const u8 sText_ButHoopaCantUseIt[] = _("But Hoopa can't use it\nthe way it is now!");
 static const u8 sText_BrokeThroughProtection[] = _("It broke through the\n{B_DEF_NAME_WITH_PREFIX}'s protection!");
-static const u8 sText_AbilityAllowsOnlyMove[] = _("{B_ATK_ABILITY} allows the\nuse of only {B_CURRENT_MOVE}!\p");
+static const u8 sText_AbilityAllowsOnlyMove[] = _("{B_ATK_NAME_WITH_PREFIX} can only use\n{B_CURRENT_MOVE}!\p");
 static const u8 sText_SwappedAbilities[] = _("{B_DEF_NAME_WITH_PREFIX} swapped Abilities\nwith its target!");
 static const u8 sText_PastelVeilProtected[] = _("{B_DEF_NAME_WITH_PREFIX} is protected\nby a pastel veil!");
 static const u8 sText_PastelVeilEnters[] = _("{B_DEF_NAME_WITH_PREFIX} was cured\nof its poisoning!");
@@ -819,9 +819,11 @@ static const u8 sText_AngelsWrath_IronDefenseEffect[] = _("{B_ATK_NAME_WITH_PREF
 static const u8 sText_AngelsWrath_ElectrowebEffect[]  = _("{B_DEF_NAME_WITH_PREFIX} got trapped\nand became really slow!");
 static const u8 sText_AngelsWrath_BugBiteEffect[]     = _("{B_DEF_NAME_WITH_PREFIX}'s got it's item eaten!");
 static const u8 sText_AngelsWrath_ProtectEffect[]     = _("All of {B_DEF_NAME_WITH_PREFIX}'s\nstats were lowered!");
+static const u8 sText_PkmnsDisciplineLockEnds[]       = _("{B_ATK_NAME_WITH_PREFIX} is no longer\nlocked into only using one move!");
 
 const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
 {
+    [STRINGID_DISCIPLINE_LOCK_ENDS - 12] = sText_PkmnsDisciplineLockEnds,
     [STRINGID_ANGELS_WRATH_PROTECT_EFFECT - 12] = sText_AngelsWrath_ProtectEffect,
     [STRINGID_ANGELS_WRATH_TACKLE_EFFECT - 12] = sText_AngelsWrath_TackleEffect,
     [STRINGID_ANGELS_WRATH_STRING_SHOT_EFFECT - 12] = sText_AngelsWrath_StringShotEffect,

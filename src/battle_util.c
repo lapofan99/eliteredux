@@ -1932,22 +1932,22 @@ u8 TrySetCantSelectMoveBattleScript(void)
             limitations++;
         }
     }
-    if ((GetBattlerAbility(gActiveBattler) == ABILITY_GORILLA_TACTICS ||
-	     GetBattlerAbility(gActiveBattler) == ABILITY_SAGE_POWER      ||
-	     BattlerHasInnate(gActiveBattler, ABILITY_GORILLA_TACTICS)    ||
-	     BattlerHasInnate(gActiveBattler, ABILITY_SAGE_POWER))
-		  && *choicedMove != 0 
-              && *choicedMove != 0xFFFF && *choicedMove != move)
+    //Sage Power and Gorilla Tactics
+    if ((BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SAGE_POWER)     ||
+        BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_GORILLA_TACTICS) ||
+        BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_DISCIPLINE))     &&
+		*choicedMove != 0      &&
+        *choicedMove != 0xFFFF && 
+        *choicedMove != move)
     {
         gCurrentMove = *choicedMove;
-        gLastUsedItem = gBattleMons[gActiveBattler].item;
         if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
         {
             gProtectStructs[gActiveBattler].palaceUnableToUseMove = 1;
         }
         else
         {
-            gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveGorillaTactics;
+            gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingNotAllowedMoveGorillaTactics;//To Change
             limitations++;
         }
     }
@@ -2006,10 +2006,10 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u8 check)
             unusableMoves |= gBitTable[i];
         else if (gBattleMons[battlerId].moves[i] == MOVE_STUFF_CHEEKS && ItemId_GetPocket(gBattleMons[gActiveBattler].item) != POCKET_BERRIES)
             unusableMoves |= gBitTable[i];
-        else if ((GetBattlerAbility(battlerId) == ABILITY_GORILLA_TACTICS || 
-		          GetBattlerAbility(battlerId) == ABILITY_SAGE_POWER      || 
-		          BattlerHasInnate(battlerId, ABILITY_GORILLA_TACTICS)    ||
-				  BattlerHasInnate(battlerId, ABILITY_SAGE_POWER))
+        else if (BATTLER_HAS_ABILITY(battlerId, ABILITY_DISCIPLINE) && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
+            unusableMoves |= gBitTable[i];
+        else if ((BATTLER_HAS_ABILITY(battlerId, ABILITY_GORILLA_TACTICS) ||
+                  BATTLER_HAS_ABILITY(battlerId, ABILITY_SAGE_POWER))
 			&& *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
             unusableMoves |= gBitTable[i];
     }
@@ -3257,7 +3257,19 @@ u8 DoBattlerEndTurnEffects(void)
                     effect++;
                 }
             }
+            
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_DISCIPLINE) && gDisableStructs[gActiveBattler].disciplineCounter)
+            {
+                gDisableStructs[gActiveBattler].disciplineCounter--;
+                if (gDisableStructs[gActiveBattler].disciplineCounter == 0)
+                {
+                    gBattleStruct->choicedMove[gActiveBattler] = MOVE_NONE;
+                    BattleScriptExecute(BattleScript_DisciplineLockEnds);
+                    effect++;
+                }
+            }
             gBattleStruct->turnEffectsTracker++;
+
             break;
         case ENDTURN_PLASMA_FISTS:
             for (i = 0; i < gBattlersCount; i++)

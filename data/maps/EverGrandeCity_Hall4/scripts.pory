@@ -14,12 +14,9 @@ EverGrandeCity_Hall4_EventScript_TurnPlayerNorth:: @ 82295B8
 `
 
 script EverGrandeCity_Hall4_EventScript_Calvin {
-	lock
-	faceplayer
-	msgbox(format("Hehe! I slipped into the Pokémon League 'cause they said I wasn't ready. Look at me now, I'm Calvin, and I'm a wall before the Champion! Ready for a real challenge?"), MSGBOX_NPC) // When the player accepts the battle
-	trainerbattle_no_intro(TRAINER_CALVIN_E4, format("Whoa, you're tough! Promise you won't rat me out?")) // in-battle, player wins
+	trainerbattle_single(TRAINER_CALVIN_E4, format("Hehe! I slipped into the Pokémon League 'cause they said I wasn't ready. Look at me now, I'm Calvin, and I'm a wall before the Champion! Ready for a real challenge?"), format("Whoa, you're tough! Promise you won't rat me out?"))
 	msgbox(format("Hey, give the Champion a run for his money, will ya? Good luck!"), MSGBOX_NPC) // after player won
-	settrainerflag(TRAINER_CALVIN_E4)
+	settrainerflag(TRAINER_CALVIN_E4) 
 	release
-	end	
+	end
 }

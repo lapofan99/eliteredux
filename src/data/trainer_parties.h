@@ -33428,7 +33428,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { //
     {
     .lvl = 0,
     .species = SPECIES_SLOWKING, // T&L-E, Mega, TR Setter, CM
-    .heldItem = ITEM_LIGHT_CLAY,
+    .heldItem = ITEM_SLOWKINGITE,
     .ability = 2, // ABILITY_GIFTED_MIND, ABILITY_GIFTED_MIND, ABILITY_GIFTED_MIND},
     // .innates = {ABILITY_OWN_TEMPO, ABILITY_PSYCHIC_SURGE, ABILITY_MAGICAL_DUST},
     // Pre-Mega
@@ -41252,6 +41252,35 @@ static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCaveInsane[] =
 	.nature = NATURE_CAREFUL,
     .moves = MOVE_ANCHOR_SHOT, MOVE_POLTERGEIST, MOVE_POWER_WHIP, MOVE_SYNTHESIS
     }
+};
+
+
+static const struct TrainerMonItemCustomMoves sParty_StevenRoute118[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_CRADILY, // Steven, Lead, Mixed Wall, SR, Big Root
+    .heldItem = ITEM_BIG_ROOT,
+    .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_CALM,
+    .moves = MOVE_GIGA_DRAIN, MOVE_POWER_GEM, MOVE_STEALTH_ROCK, MOVE_RECOVER
+    },
+};
+
+static const struct TrainerMonItemCustomMoves sParty_StevenRoute118Insane[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_CRADILY, // Steven, Lead, Mixed Wall, SR, Big Root
+    .heldItem = ITEM_BIG_ROOT,
+    .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
+    // .innates = {ABILITY_FOSSILIZED, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_CALM,
+    .moves = MOVE_GIGA_DRAIN, MOVE_POWER_GEM, MOVE_STEALTH_ROCK, MOVE_RECOVER
+    },
 };
 
 static const struct TrainerMonItemCustomMoves sParty_MeganiumiteVerdanturfMeadow[] = { // Meganiumite

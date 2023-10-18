@@ -7296,6 +7296,11 @@ BattleScript_SlowStartEnds::
 	printstring STRINGID_SLOWSTARTEND
 	waitmessage B_WAIT_TIME_LONG
 	end2
+	
+BattleScript_DisciplineLockEnds::
+	printstring STRINGID_DISCIPLINE_LOCK_ENDS
+	waitmessage B_WAIT_TIME_LONG
+	end2
 
 BattleScript_LethargyEnters::
 	sethword sABILITY_OVERWRITE, ABILITY_LETHARGY

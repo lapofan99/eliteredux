@@ -11,10 +11,7 @@ EverGrandeCity_Hall4_EventScript_TurnPlayerNorth:: @ 82295B8
 	end
 
 EverGrandeCity_Hall4_EventScript_Calvin::
-	lock
-	faceplayer
-	msgbox EverGrandeCity_Hall4_EventScript_Calvin_Text_0, MSGBOX_NPC
-	trainerbattle_no_intro TRAINER_CALVIN_E4, EverGrandeCity_Hall4_EventScript_Calvin_Text_1
+	trainerbattle_single TRAINER_CALVIN_E4, EverGrandeCity_Hall4_EventScript_Calvin_Text_0, EverGrandeCity_Hall4_EventScript_Calvin_Text_1, FALSE
 	msgbox EverGrandeCity_Hall4_EventScript_Calvin_Text_2, MSGBOX_NPC
 	settrainerflag TRAINER_CALVIN_E4
 	release

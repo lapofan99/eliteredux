@@ -7,7 +7,7 @@ SPECIES_VENUSAUR
     .ability = 0, // ABILITY_CHLOROPLAST, ABILITY_EFFECT_SPORE, ABILITY_CHLOROPHYLL},
     // .innates = {ABILITY_OVERGROW, ABILITY_THICK_FAT, ABILITY_POISON_TOUCH},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 0, 252, 0, 4, 0},     
 	.nature = NATURE_BOLD,
     .moves = MOVE_SOLAR_BEAM, MOVE_SLUDGE_BOMB, MOVE_LEECH_SEED, MOVE_SLEEP_POWDER
     .tags = Singles, Defensive
@@ -21,7 +21,7 @@ venusaur
     .ability = 0, // ABILITY_CHLOROPLAST, ABILITY_EFFECT_SPORE, ABILITY_CHLOROPHYLL},
     // .innates = {ABILITY_OVERGROW, ABILITY_THICK_FAT, ABILITY_POISON_TOUCH},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 0, 0, 252, 0, 4},     
 	.nature = NATURE_MODEST,
     .moves = MOVE_SOLAR_BEAM, MOVE_SLUDGE_BOMB, MOVE_EARTH_POWER, MOVE_SLEEP_POWDER
     }
@@ -34,7 +34,7 @@ SPECIES_CHARIZARD
     .ability = 0, // ABILITY_BURNATE, ABILITY_AERILATE, ABILITY_TOUGH_CLAWS},
     // .innates = {ABILITY_BLAZE, ABILITY_LEVITATE, ABILITY_SUN_WORSHIP},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 4, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 0, 4, 252, 0, 252},     
 	.nature = NATURE_TIMID,
     .moves = MOVE_SOLAR_BEAM, MOVE_SCORCHING_SANDS, MOVE_DRACO_METEOR, MOVE_HYPER_VOICE
     }
@@ -55,7 +55,7 @@ SPECIES_BLASTOISE_MEGA
     .species = BLASTOISE_MEGA SPECIES_BLASTOISE_MEGA,
     .heldItem = ITEM_BLASTOISINITE,
     .ability = 0, // ABILITY_TORRENT, ABILITY_SHELL_ARMOR, ABILITY_MEGA_LAUNCHER},
-    .evs = {0, 0, 6, 252, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 0, 6, 252, 0, 252},     
     .nature = NATURE_TIMID,
     .moves = MOVE_SHELL_SMASH, MOVE_HYDRO_PUMP, MOVE_FOCUS_BLAST, MOVE_FLASH_CANNON
     .comment = Inaccurate moves cannot miss thanks to Artillery. With the added Steel type upon Mega Evolution, Blastoise gains STAB on Flash Cannon and additional resistances, so you can time the Mega Evolution well and get rewarded for it.
@@ -65,7 +65,7 @@ escavalier
     name = Speed Boost Sweeper
     item = leftovers
     ability = no guard
-    evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 252, 4, 0, 0, 252
     nature = jolly
     moves = megahorn, Iron Head / Close Combat / Drill Run, protect, swords dance
    comment = Use Protect to gain Speed Boost and Leftovers recovery at the same time. Ideally Protect -> Swords Dance -> Protect. Megahorn is usually strong enough, and the 2nd move depends on your opponent. 
@@ -75,7 +75,7 @@ golurk
     name = Rock Polish WP Sweeper
     item = weakness policy
     ability = no guard
-    evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 252, 4, 0, 0, 252
     nature = jolly
     moves = fissure, shadow punch / poltergeist, dynamic punch / ice punch, rock polish
    comment = Shadow Shield makes sure that Golurk can always setup safely, activating Weakness Policy then sweep. The moves take advantage of Golurk's ability Iron Fist and No Guard. 
@@ -85,7 +85,7 @@ alakazam
     name = Singles Calm Mind + Substitute Sleep Chains
     item = Leftovers
     ability = Exploit Weakness
-    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 4, 0, 0, 252, 0, 252
     nature = Timid
     moves = Hypnosis, Substitute, Calm Mind, Dream Eater / Stored Power / Psychic
    comment = Thanks to Hypnosist, Alakazam can inflict sleep on the opponent 90% of the time. All it needs to do is to set up a Substitute in case the enemy wakes up early and set up some Calm Minds before attacking with a Psychic-type move. However, you should immediately switch out if you face a Dark-type Pokémon.
@@ -98,7 +98,7 @@ kecleon
     .ability = 0, // ABILITY_LIMBER, ABILITY_NONE, ABILITY_NONE},
     // .innates = {ABILITY_COLOR_CHANGE, ABILITY_PROTEAN, ABILITY_NONE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 0, 180, 0, 76, 0},     
 	.nature = NATURE_IMPISH,
     .moves = MOVE_PROTECT, MOVE_TOXIC, MOVE_RECOVER, MOVE_DIZZY_PUNCH
     }
@@ -124,7 +124,7 @@ SPECIES_AERODACTYL_MEGA
     // ABILITY_SPEED_FORCE, ABILITY_PREDATOR, ABILITY_FATAL_PRECISION},
     // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_HALF_DRAKE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},     
 	.nature = NATURE_JOLLY,
     .moves = MOVE_BRAVE_BIRD, MOVE_HEAD_SMASH, MOVE_EARTHQUAKE, MOVE_ROOST
     }
@@ -137,7 +137,7 @@ SPECIES_AERODACTYL
     .ability = 1, // ABILITY_SPEED_FORCE, ABILITY_PREDATOR, ABILITY_FATAL_PRECISION},
     // .innates = {ABILITY_FOSSILIZED, ABILITY_ROCK_HEAD, ABILITY_HALF_DRAKE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},     
 	.nature = NATURE_JOLLY,
     .moves = MOVE_BRAVE_BIRD, MOVE_HEAD_SMASH, MOVE_EARTHQUAKE, MOVE_DRAGON_RUSH
     }
@@ -162,7 +162,7 @@ Heliolisk
     name = Singles Invincible Lightning Rod
     item = Focus Sash
     ability = Lightning Rod
-    evs = 0, 0, 6, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 0, 6, 252, 0, 252
     nature = Timid
     moves = Electrify, Parabolic Charge, Surf / Protect / Weather Ball, Earth Power / Aurasphere / Hyper Voice
    comment = Thanks to its three immunities due to its Normal typing, Dry Skin innate and Lightning Rod ability, Heliolisk can either come in after a KO or switch into certain attacks and start spamming Electrify to boost its Sp.Atk until it decides to stop.
@@ -176,7 +176,7 @@ Ferrothorn
     name = Rocky Helmet Physical Tank
     item = rocky helmet
     ability = bulletproof
-    evs = 252, 0, 252, 0, 4, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 0, 252, 0, 4, 0
     nature = bold
     moves = ingrain, curse, gyro ball, power whip
    comment = Switch in on contact attackers, set up to sweep with Power Whip and Gyro Ball
@@ -186,7 +186,7 @@ Gallade Mega
     name = Sir Galahad
     item = Galladite
     ability = Intrepid Sword
-    evs = 4, 252, 0, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 4, 252, 0, 0, 0, 252
     nature = Jolly / Adamant 
     moves =  shadow sneak, Excalibur, psycho cut, sacred sword
    comment = You can hit other Pokémon in the semi invincible turn of Fly with Fatal Precission, if it's super-effective. 
@@ -196,7 +196,7 @@ Feraligatr
     name = Bulky Quad Bite
     item = Assault Vest
     ability = Predator
-    evs = 252, 252, 0, 0, 0, 4 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 252, 0, 0, 0, 4
     nature = Adamant
     moves =  Deathroll, psychic fangs, Ice Fang, crunch
    comment = Deathroll & Crunch for STAB, Psychic Fangs to destroy screens and Ice Fang for coverage.
@@ -206,7 +206,7 @@ Porygon-Z
     name = Reverse Trick Room Analytic Nuke
     item = choice specs
     ability = twisted dimension
-    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 4, 0, 0, 252, 0, 252
     nature = timid
     moves = techno blast, thunderbolt, ice beam, Dark Pulse / Bug Buzz
    comment = Analytic, Adaptability, and Choice Specs each boost Techno Blast by an extra 50% damage. Outspeed, go last, and blow up whatever you hit. Coverage there if you really need it but you'll mostly be using Techno Blast.
@@ -227,7 +227,7 @@ greninja
     name = Fatal and Precise
     item = choice specs
     ability = fatal precision
-    evs = 0, 0, 0, 252, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 0, 0, 252, 4, 252
     nature = timid
     moves = water shuriken / Hydro Pump, Dark Pulse, blizzard, u-turn
    comment = Fatal Precision works really well with lower accuracy moves like Hydro Pump or Blizzard, although Water Shuriken is still nice as it's also priority. Choice Specs allow Gren to dish out heavy hits with high base power moves, while U-Turn can be used to predict the opponent's check to Gren switching in. 
@@ -238,7 +238,7 @@ greninja
     name = Hit the Other Side
     item = life orb
     ability = protean
-    evs = 0, 80, 0, 172, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 80, 0, 172, 0, 252
     nature = naive
     moves = water shuriken, ice beam, Power whip / Gunk Shot / Strength, u-turn
    comment = This set allows you to hit on the physical side but mainly still focused on the special side, Life Orb helps with boosting the power. The third move is the most flexible one and for physical moves, you can choose depends on the matchup. Could also swap them on the second move slot but I like using the slot for other special moves. Now you can screw those Ground / Water or Fairy and Bug types. 
@@ -249,7 +249,7 @@ Dragonite
     name = Aerilate E-Speed Sweeper
     item = weakness policy
     ability = aerilate
-    evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 252, 4, 0, 0, 252
     nature = jolly
     moves = dragon dance, fire punch, extreme speed, earthquake
    comment = Dragonite, now armed with the coveted Aerilate ability, is poised to deliver powerful blows with its Extreme Speed STAB move. The inclusion of Aerilate allows Dragonite to maximize the damage output of this move, making it a formidable force to be reckoned with.
@@ -268,7 +268,7 @@ roserade
     .ability = 1, // ABILITY_TECHNICIAN, ABILITY_MERCILESS, ABILITY_PREDATOR},
     // .innates = {ABILITY_NATURAL_CURE, ABILITY_CHLOROPHYLL, ABILITY_POISON_POINT},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 240, 0, 0, 16},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {252, 0, 240, 0, 0, 16},     
 	.nature = NATURE_BOLD,
     .moves = MOVE_TOXIC_SPIKES, MOVE_GRASS_KNOT, MOVE_SYNTHESIS, MOVE_SLUDGE_BOMB
     .tags = singles, defensive
@@ -305,7 +305,7 @@ Lopunny
     name = Offensive Fighting Spirit
     item = Life Orb
     ability = Fighting Spirit
-    evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 252, 4, 0, 0, 252
     nature = Jolly / Adamant
     moves = Quick Attack / Fake Out, Mega Kick, Triple Axel, Play Rough
    comment = Fighting Spirit boosts all Normal moves by 20% and turns them into Fighting-type. Mega Kick and Triple Axel are boosted 30% by Striker.
@@ -316,7 +316,7 @@ Ariados
     name = Critical Point
     item = Bug Gem / Focus Sash / Life Orb
     ability = sniper
-    evs = 0, 252, 6, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 252, 6, 0, 0, 252
     nature = jolly
     moves = fell stinger, sucker punch, cross poison, psycho cut
    comment = Use this pokemon if the enemy has less than half hitpoints (yellow). Opportunitist helps you strike first. Use Fell Stinger if possible to raise attack drasticlly. Use Sucker punch / Psycho Cut for coverage, and Cross Poison for STAB + Crit.
@@ -346,7 +346,7 @@ Gardevoir Mega
     name = Fast Sweeper
     item = Gardevoirite
     ability = Pixilate (Psychic Surge pre-mega)
-    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 4, 0, 0, 252, 0, 252
     nature = Timid 
     moves = Hyper Voice, Expanding Force, Thunderbolt, Mystic Fire
    comment = Before being a Mega, Gardevoir needs to have Psychic Surge as ability, which prevents priority moves.
@@ -364,7 +364,7 @@ Pinsir Mega
     // ABILITY_ANGER_POINT, ABILITY_VIOLENT_RUSH, ABILITY_MOXIE},
     // .innates = {ABILITY_SWARM, ABILITY_HYPER_CUTTER, ABILITY_GRIP_PINCER},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {52, 188, 28, 0, 4, 236},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {52, 188, 28, 0, 4, 236},     
 	.nature = NATURE_JOLLY,
     .moves = MOVE_HORN_DRILL, MOVE_QUICK_ATTACK, MOVE_CLOSE_COMBAT, MOVE_PROTECT
     .comment = Choose Violent Rush as pre-mega ability to profit from the first turn boosts.
@@ -385,7 +385,7 @@ Dragapult
     .ability = 2, // ABILITY_ARTILLERY, ABILITY_SPEED_BOOST, ABILITY_PARENTAL_BOND},
     // .innates = {ABILITY_LEVITATE, ABILITY_CLEAR_BODY, ABILITY_HAUNTED_SPIRIT},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {4, 252, 0, 0, 0, 252},     
 	.nature = NATURE_JOLLY,
     .moves = MOVE_POLTERGEIST, MOVE_DRAGON_DARTS, MOVE_U_TURN, MOVE_WILL_O_WISP
     .tags = Singles, Offensive
@@ -395,7 +395,7 @@ Umbreon
     name = SpDef Stall Wall
     item = Leftovers / Bright Dust
     ability = bad luck
-    evs = 252, 0, 4, 0, 252, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 0, 4, 0, 252, 0
     nature = Calm
     moves = foul play, protect, Moonlight / Strength Sap, toxic
    comment = A basic Toxic/Protect stall with Moonlight over Wish for instant healing (Strength Sap comes at level 60 once you can learn it off Leafeon and do the devolve/re-evolve). Foul Play does really well vs any Pokémon with more Atk than you have, which is why you pick -Atk +SpDef nature and later have Strength Sap.
@@ -410,7 +410,7 @@ Ledian
     .ability = 1, // ABILITY_AERILATE, ABILITY_BUGINIZE, ABILITY_AERODYNAMICS},
     // .innates = {ABILITY_RAGING_BOXER, ABILITY_IRON_FIST, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 0, 0, 4, 252},     
 	.nature = NATURE_JOLLY,
     .moves = MOVE_MEGA_PUNCH, MOVE_DUAL_WINGBEAT, MOVE_CLOSE_COMBAT, MOVE_ICE_PUNCH
     .tags = Singles, Offensive
@@ -425,7 +425,7 @@ Granbull
     .ability = 0, // ABILITY_INTIMIDATE, ABILITY_GUTS, ABILITY_VIOLENT_RUSH},
     // .innates = {ABILITY_FIGHT_SPIRIT, ABILITY_STRONG_JAW, ABILITY_QUICK_FEET},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 252, 4, 0, 0, 252},     
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_PLAY_ROUGH, MOVE_EARTHQUAKE, MOVE_FIRE_FANG, MOVE_HYPER_FANG
     .tags = Singles, Offensive
@@ -436,7 +436,7 @@ Talonflame
     name = Nuke Pivot
     item = Heavy-Duty Boots / Choice Band
     ability = Big Pecks
-    evs = 4, 252, 0, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 4, 252, 0, 0, 0, 252
     nature = Adamant
     moves = Flare Blitz, Brave Bird, U-turn, Roost 
    comment = This set’s main purpose is to hit the field quick, deal a lot of damage, and leave the field just as fast. High BP contact moves to take advantage of Big Pecks, Flock and Violent Rush, U-turn for pivoting and Roost to stay healthy. 
@@ -449,7 +449,7 @@ Forretress
     name = Steel Sentry
     item = leftovers
     ability = stamina
-    evs = 252, 0, 252, 0, 4, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 0, 252, 0, 4, 0
     nature = relaxed
     moves = body press, gyro ball, protect, toxic
    comment = Foretress embraces a Relaxed nature to excel in defensive capabilities. Its moveset further reinforces its defensive prowess, including Body Press and Gyro Ball, which take advantage of its impressive Defense stat to deal damage based on its defense and low speed stat, respectively. 
@@ -487,7 +487,7 @@ SPECIES_SIRFETCHD
     name = Leek Hero
     item = leek
     ability = chlorophyll
-    evs = 252, 252, 4, 0, 0, 0// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 252, 4, 0, 0, 
     nature = adamant
     moves = meteor assault, solar blade, Dual Wingbeat / Bave Bird, first impression
     comment = Firstly, use a Pokemon with Drought (or manually setup Sun) to activate Sirfetchds Chlorophyll, allowing it to outspeed most Pokemon. Meteor Assault as STAB. Thanks to Rampage, it has no recharge after a KO. Solar Blade, along with Dual Wingbeat / Brave Bird for coverage, and First Impression as priority move and Revenge-Killer for Psychic Types.
@@ -498,7 +498,7 @@ Hydreigon
     name = Three Strikes, You're Out!
     item = Choice Scarf
     ability = Mega Launcher
-    evs = 0, 0, 0, 252, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 0, 0, 252, 4, 252
     nature = Timid / Modest
     moves = Dark Pulse, Dragon Pulse, Flash Cannon / Focus Blast, U Turn
    comment = All moves are boosted by Mega Launcher, except U-turn. Dragon Pulse hits slightly harder than Draco Meteor (5 BP difference) without the drawback of an SpAtk drop after use. For coverage, Flash Cannon is preferable for Fairies, but if for some reason you wanted to nuke anything weak to Fighting (or just any non-Fighting resist in general), there's a 180 BP Focus Blast. ¯\_(ツ)_/¯
@@ -508,7 +508,7 @@ Meganium
     name = Nature's Medic
     item = kebia berry
     ability = triage
-    evs = 252, 0, 252, 6, 0, 0// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 0, 252, 6, 0, 
     nature = modest
     moves = giga drain, draining kiss, synthesis, heal pulse
    comment = Meganium's moveset includes Giga Drain and Draining Kiss, which not only deals damage but also provides valuable sustain, making it a reliable healer. Synthesis grants it further recovery, while Heal Pulse lets it support its allies when needed. The Kebia berry helps to reduce Poison-Type moves.
@@ -521,7 +521,7 @@ cacturne
     name = One Punch Plant
     item = life orb 
     ability = sand rush
-    evs = 0, 252, 0, 0, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 252, 0, 0, 4, 252
     nature = adamant
     moves = wicked blow, sucker punch, needle arm, Destiny Bond / Swords Dance
    comment = Boasting one of the strongest Wicked Blows in the game while still having great speed in sandstorm, it needs no boosts outside of STAB, Nocturnal and Life Orb to one-shot anything not resisted or very defensive, but if you need that extra bit of damage you can use swords dance over destiny bond.
@@ -534,7 +534,7 @@ Alakazam Mega
 name = Almighty STAB
 item = Alakazite
 ability = Mystic Power
-evs = 0, 0, 0, 252, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+evs = 0, 0, 0, 252, 4, 252
 nature = Timid
 moves = Psyshock, Calm Mind, Shadow Ball, Focus Blast 
 comment = He will always have STAB thanks to Mystic Power. Inner Focus will boost Focus Blast's accuracy to 90% instead of 70% making him an absolutely busted Glass Cannon.
@@ -576,7 +576,7 @@ Mismagius
     name = Go to Therapy
     item = choice scarf
     ability = bad luck
-    evs = 0, 0, 0, 252, 4, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 0, 0, 252, 4, 252
     nature = modest
     moves = Hyper Voice, shadow ball, dark pulse, mystical fire
    comment = A potent nuker with fairly broad coverage. Often utilizes Pixilate-boosted Hyper Voice to secure victories.
@@ -586,7 +586,7 @@ Trevenant
     Name = Please don't disturb the Tree
     Item = Aguav Berry
     Ability = Grassy Surge
-    EVs = 252, 0, 0, 0, 252, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    EVs = 252, 0, 0, 0, 252, 0
     Nature = Careful
     Moves = Substitute, Leech Seed, Curse, Protect
     Comment = Watch opposing trainers become bewildered by this formidable wooden wall. Determining the optimal move sequence can be challenging, as it depends on the opposing Pokémon.
@@ -598,7 +598,7 @@ araquanid
     name = Special Attacker be-gone
     item = leftovers
     ability = Water Veil
-    evs = 252, 4, 0, 0, 252, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 4, 0, 0, 252, 0
     nature = adamant
     moves = liquidation, leech life, protect, curse
    comment = Can go in on any neutral special hit and set up with Curse to tank physical hits. Water Veil for recovery, then hit very hard with Water Bubble Liquidation with the added bonus of burn immunity.
@@ -609,7 +609,7 @@ Leafeon
     name = Leafeon is special!
     item = Life Orb
     ability = Avenger
-    evs = 0, 0, 6, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 0, 6, 252, 0, 252
     nature = Modest
     moves = Solar Beam, Flamethrower, Giga Drain, Power Gem
    comment = Use it in a Sunny Day/Drought team. Set the weather with your lead and play cool, when your Pokémon goes down it'll be Leafeon's moment. Avenger in combination with Big Leaves and Feline Prowess will ensure a devastating first special move. Leafeon can learn Solar Beam & Giga Drain but you have to transform it into Flareon and Espeon in order to learn Flamethrower and Power Gem for a good coverage against Bug, Steel and Flying Pokémon. 
@@ -621,7 +621,7 @@ Sunflora
     name = Radical Red Sunflora but better 
     item = Choice Specs
     ability = Drought
-    evs = 0, 0, 0, 252, 4, 252// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 0, 0, 252, 4, 25
     nature = timid
     moves = solar beam, sludge bomb, mystical fire, earth power
    comment = Thanks to having permanent Drought, Chlorophyll and Solar Power all at once, it allows instant charging Solar Power, and hitting hard with the other moves with Choice Specs + Solar Power while outspeeding some threats thanks to Chlorophyll. 
@@ -636,7 +636,7 @@ accelgor
     name = Mixed Momentum Attacker
     item = life orb
     ability = momentum
-    evs = 252, 0, 0, 4, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 0, 0, 4, 0, 252
     nature = timid
     moves = leech life, frustration, sucker punch, water shuriken
     comment = Momentum coupled with it's honestly absurd Speed makes it both hit super hard and be super fast while still being able to invest in bulk to take a hit or two. Water Shuriken is there to activate Protean and take a Fire-type move you would never be able to take even when neutral.
@@ -647,7 +647,7 @@ Starmie
     name = Bulky Superstar
     item = Expert Belt / Choice Specs
     ability = Mystic Power
-    evs = 252, 0, 0, 252, 6, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 0, 0, 252, 6, 0
     nature = quiet
     moves = psychic, ice beam, thunderbolt, hydro pump
     comment = With Mystic Power giving BoltBeam STAB (though it can be changed to Thunder and Blizzard for more power and better accuracy because of Victory Star), 0 IVs and Quiet Nature to make the most off Analytic, this Starmie will always deal a lot of damage. Item of choice can differ between Expert Belt to deal more damage on super-effective moves, or Choice Specs to lock to one move. This is not ideal as a main Trick Room sweeper, as it is still fast enough to possibly outspeed slower threats.
@@ -662,7 +662,7 @@ Galvantula
     .ability = 2, // ABILITY_COMPOUND_EYES, ABILITY_LOOTER, ABILITY_SPIDER_LAIR},
     // .innates = {ABILITY_IMMUNITY, ABILITY_SWARM, ABILITY_OVERCOAT},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .evs = {0, 0, 0, 252, 4, 252},     
 	.nature = NATURE_TIMID,
     .moves = MOVE_THUNDERBOLT, MOVE_VOLT_SWITCH, MOVE_BUG_BUZZ, MOVE_ENERGY_BALL
     .comment = A true classic for Galvantula - sets up Sticky Web on entry, then decide if you want to attack normally or Volt Switch out into a better Pokémon.
@@ -673,7 +673,7 @@ galvantula
     name = Kamikaze Spider
     item = focus sash
     ability = compound eyes
-    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 4, 0, 0, 252, 0, 252
     nature = modest
     moves = thunder, bug buzz, protect, sticky web
     comment = Will take a hit from anything without any multi-hit abilities, moves, or Fake Out, hit something, possibly set up Sticky Webs, then die to get a safe switch into something else. Best used for Weather setters when your Weather setter is too fast to lead with. Can be Timid when opposing lead is faster than it when Modest. Protect is there to stall out Air Blower or Twist. Dimension.
@@ -684,7 +684,7 @@ lurantis
     name = Budget Serperior
     item = life orb
     ability = contrary
-    evs = 4, 0, 0, 252, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 4, 0, 0, 252, 0, 252
     nature = modest
     moves = leaf storm, hidden power ground, weather ball, air slash
    comment = What it says on the tin. Requires sun to function due to it's low base speed and reliance on Weather Ball. Has slightly more power and no quad weakness to Ice Shard but has much less bulk compared to Serperior.
@@ -695,7 +695,7 @@ seviper
     name = Priority Attacker
     item = dark gem 
     ability = Hyper Aggressive 
-    evs = 0, 252, 4, 0, 0, 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 252, 4, 0, 0, 252
     nature = adamant
     moves = Crunch, Poison Fang, Sucker Punch / Dragon Dance, Fire Fang / Ice Fang / Thunder Fang / Psychic Fangs
    comment = Seviper puts its massive fangs to use in Elite Redux. It is one of two Pokemon, alongside Steelix, with the combination of Strong Jaw and Coil Up. With Strong Jaw, Crunch becomes a one-turn 120 BP priority STAB move, boosted further by Hyper Aggressive and Dark Gem. Solenoglyphs means Seviper will usually add poison to what it doesn't OHKO. Sucker Punch and Dragon Dance both give Seviper additional Speed control outside of Coil Up. The last slot is customizable based on what team you'll be facing; use it to exploit 4x weaknesses!
@@ -709,7 +709,7 @@ Runerigus
     name = Your Idol sign is B
     item = leftovers
     ability = Ancient Idol
-    evs = 252, 0, 252, 0, 4, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 0, 252, 0, 4, 0
     nature = Impish
     moves = earthquake, poltergeist, Will-O-Wisp, body press
    comment = With the Ancient Idol ability, Runerigus gains a significant advantage in its offensive potential, utilizing its Defense stat as its main attack stat. Runerigus can really be a great physical tank with Will-O-Wisp and Leftovers. 
@@ -719,7 +719,7 @@ Swellow
     name = Air Blower Sweeper
     item = choice specs
     ability = air blower
-    evs = 0, 6, 0, 252, 0 , 252 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 0, 6, 0, 252, 0 , 252
     nature = timid
     moves = Boomburst, Hurricane, Heat Wave, U-turn
    comment = Can destroy almost any non-resistant Pokémon with Boomburst. Heat Wave is a good coverage against Steel (resists both Boomburst and Hurricane), U-turn to outspeed anything and switch out to a Pokémon that can resist/be immune to the opponent's upcoming move while doing chip damage.
@@ -730,7 +730,7 @@ Centiskorch
     name = First Impression but better
     item = choice band
     ability = coil up
-    evs = 252, 252, 4, 0, 0, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 252, 4, 0, 0, 0
     nature = adamant
     moves = bug bite, fire fang, thunder fang, crunch
    comment = Coil Up in combination with Choice Band allows it to near guarantee a kill on anything that isn't a physical wall. 
@@ -741,7 +741,7 @@ Marowak
     name = Bonebreaker
     item = thick club
     ability = skill link
-    evs = 252, 252, 0, 0, 0, 4// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 252, 0, 0, 0, 
     nature = adamant
     moves = bone rush, head smash, knock off, swords dance
    comment =Marowak's moveset includes Bone Rush which benefits from its ability to ignore immunities and deal double damage even on targets that resist bone-type moves. Bone Rush is also a +1 priority move in Elite Redux. Knock Off is a useful utility move to remove opponents' items, and Swords Dance boosts Marowak's Attack to absurdly high levels.
@@ -769,7 +769,7 @@ Torterra
     name = Body Press Sustain
     item = Sitrus Berry
     ability = Stamina
-    evs = 252, 0, 252, 0, 4, 0// HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 0, 252, 0, 4, 
     nature = Bold/Calm
     moves = Leech Seed, Body Press, Synthesis, Amnesia / Stockpile
    comment = Aim of this set is to take in resisted hits while using Amnesia or Stockpile to make Torterra virtually unkillable short of a critical hit due to Big Leaves Sitrus Berry and Synthesis. Stamina will keep boosting Defenses and will continuously amp the damage from Body Press. If you don't need +6 SpDef you can opt for Stockpile so that you can reach +6 Def sooner. Because of Big Leaves, Synthesis will heal for 75% health, but be aware of the limited PP. Sitrus Berry for survival, but you can opt for things like Yache, Occa, or Coba Berry as well, which will be all be harvested due to Big Leaves. Depending on who you're fighting against, you can put EVs from Defense into SpDef.
@@ -1079,7 +1079,7 @@ Snorlax
     name = this is not ok 
     item = choice scarf 
     ability = comatose 
-    evs = 252, 0, 252, 0, 4, 0 // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    evs = 252, 0, 252, 0, 4, 0
     nature = bold 
     moves = sleep talk, whirlwind 
    comment = idk what this does. i guess it just does stuff and things happen. definitely 0 potential to be uncompetitive here, none 
@@ -1792,4 +1792,373 @@ Gallade
    Excalibur will punish the dragons and fairies that woudl otherwise bother Gallade.
    Also when paired up with a Drought teammate like Torcoal or Mega Charizard Y, and Solar Blade effectively goes up to 162.5BP!
     .tags = Singles, Doubles, Offensive
+}
+Butterfree
+{
+    name = Fast Sleeper
+    item = Wide Lens
+    ability = Tinted Lens
+    evs = 0, 0, 0, 252, 6, 252
+    nature = Timid
+    moves = Sleep Powder, Bug Buzz, Dream Eater, Hurricane
+   comment = Due to the Speed stat being higher you get a free speed increase upon sending Butterfree in which will allow you to put most anything to sleep. The Grass types you can't put to sleep will be covered by Hurricane or Bug Buzz.
+Sleep Powder and Hurricane will have near perfect accuracy due to the combination of Wide Lense and Compound Eyes and Tinted Lenses will ensure that you can hit something for Neutral stab no matter what. Dream Eater ensures you to stay healthy even when coming in on super effective stealth rocks, spikes and weather chip.
+    .tags = Mixed
+} 
+Beedrill-Mega
+{
+    name = Sweeper
+    item = Beedrillite
+    ability = Poison Point
+    evs = 0, 252, 0, 0, 0, 252
+    nature = Adamant
+    moves = Fell Stinger, Cross Poison, Drill Peck / Air Cutter, Drill Run / Brick Break / Frustration
+   comment = A Basic Hyper Offensive set. If you are able to get Beedrill in for free on a weakened opponent and get a KO with Fell Stinger you are pretty much set to sweep thanks to Hyper Aggressive. Drill Peck is boosted by Levitate and the last slot is basically for whatever type of coverage you feel you may need and you can switch Drill Peck for Air Cutter if doing a doubles battle
+    .tags = Singles, Doubles, Offensive
+} 
+Parasect
+{
+    name = Special Trapper
+    item = Leftovers 
+    ability = Shadow Tag
+    evs = 0, 252, 6, 0, 252, 0
+    nature = Adamant
+    moves = Fell Stinger, Leech Seed, Spore, Shadow Sneak
+   comment = This set is good for trapping a special attacker and whittling them down with leech status and eventually taking them out with a Fell Stinger for a huge attack boost. Priority Shadow Sneak and Opportunist allows you to offset Parasects awful speed stat. Phantom adding the Ghost type gives immunity to normal Quick Attack and Extreme Speed. Spore is a great tool for reading and punishing a Sucker Punch which is hugely baited because of said added Ghost type.
+    .tags = Single, Defensive, Offensive
+}
+Escavalier
+{
+    name = Physical Wall -- > Sweeper
+    item = Leftovers
+    ability = Overcoat
+    evs = 0, 130, 252, 0, 0, 128
+    nature = Jolly
+    moves = Protect, Iron Defense, Fell Stinger, Iron Head
+   comment = Most times you send him in you will start with a Protect then Iron Defense and rinse and repeat until you want to start chipping away at them. Take them out with fell stinger for a big power spike and begin your sweep.
+    .tags = Singles, Doubles, Defensive, Offensive
+} 
+Araquanid
+{
+    name = Bulky Fire Sponge
+    item = Leftovers
+    ability = Water Veil
+    evs = 126, 128, 128, 0, 128, 0
+    nature = Adamant
+    moves = Stockpile, Mirror Coat, Leech Life / Lunge, Liquidation / Dive
+   comment = Great to deal with and set up on pesky fire types especially if you are doing a Bug Monotype run. The combination of Water Veil and Leftovers should help you set up Stockpiles, as well as ensure a fire type will have a hard time breaking through your defenses and you can punish special attackers hard with Mirror Coat. Water Bubble also helps your water moves to hit hard even without full EV investments.
+    .tags = Singles, Doubles, Defensive
+} 
+Ninjask
+{
+    name = Quick Wallbreaker
+    item = Life Orb
+    ability = Aerodynamic 
+    evs = 6, 252, 0, 0, 0, 252
+    nature = Adamant
+    moves = Protect, Dual Wingbeat, X Scissor / U Turn, Extreme Speed / Baton Pass
+   comment = Come in and hit hard right from the get go with Ninjasks amazing base speed stat, Aerodynamic ensures a free switch on a flying attack and a start to its speed boosting. You could use this to help stall out a Weather, Tail Wind or Terrain or to come in and break a sash with U Turn
+    .tags = Single, Double, Offensive
+} 
+Butterfree-Mega
+{
+    name = Basic Sweeper
+    item = Butterfrenite
+    ability = Magical Dust
+    evs = 0, 0, 0, 252, 6, 252
+    nature = Timid
+    moves = Sleep Powder, Bug Buzz, Dream Eater / Psychic, Quiver Dance / Giga Drain / Draining Kiss
+   comment = The Speed Being higher allows for a free +1 increase due to Majestic Moth allowing Butterfree to outspeed most things. With a pretty reliable 90% accurate Sleep Powder you can outspeed to put them to sleep and either set up a Quiver Dance or just hit hard with Mega Butterfrees naturally high Sp Atk.
+    .tags = Singles, Doubles, Offensive
+} 
+Venomoth
+{
+    name = Quick Setup
+    item = Throat Spray
+    ability = Tinted Lense
+    evs = 6, 0, 0, 252, 0, 252
+    nature = Modest
+    moves = Bug Buzz, Sludge Bomb, Sleep Powder, Quiver Dance
+   comment = Venomoth with recieve a free +1 Spd from Majestic Moth whenever it comes onto the field. From there you can either put your opponent to sleep and try setting up a Quiver Dance or if you can ensure a K.O. you can hit Bug Buzz for a free +1 to your Sp Atk and Tinted Lense helps to ensure you can always hit for Neutral with your 2 STAB options.
+    .tags = Singles, Doubles, Offensive
+} 
+Durant
+{
+    name = Basic Wall Breaker
+    item = Choice Band
+    ability = Steelworker
+    evs = 0, 252, 6, 0, 0, 252
+    nature = Jolly
+    moves = Cut, Bug Bite, Crunch, Thunder Fang
+   comment = This set is quite basic. Just send it in and hit stuff really hard really fast. Cut will ignore any set up defenses with its guaranteed Crit which is powered up 1.3x by Steelworker, and the 3 bite moves are all boosted 1.5x from Strong Jaw while Bug Bite gets an even bigger boost of 1.7x / 2.0x if less than 1/3 hp. Combined with Looter allowing Durant to deal with every K.O and it will be hard to take down, just keep it away from Fire.
+    .tags = Singles, Offensive
+}
+Durant
+{
+    name = Chewing Through The Walls
+    item = Life Orb / Choice Band / Choice Scarf
+    ability = Hustle
+    evs = 0, 252, 6, 0, 0, 252
+    nature = Jolly / Adamant
+    moves = Iron Fang, Bug Bite, Crunch, Thunder Fang
+   comment = NEW PATCH ONLY: With Compound Eyes completely negating the loss of accuracy from hustle you receive a free 1.4x on all attacks, combining that with the 1.5x increase from Strong Jaw on all your moves and Durant is going to be hitting like an absolute truck.
+The item is up to personal preference if you want more speed to ensure you go before the opponent or if you want to hit even harder.
+    .tags = Singles, Offensive
+} 
+Venusaur-Mega
+{
+    name = Special Sweeper
+    item = Venusaurite
+    ability = Effect Spore
+    evs = 0, 0, 0, 252, 6, 252
+    nature = Timid
+    moves = Growth, Solar Beam, Sludge Bomb, Earth Power
+   comment = Mega Venusaurs natural bulk should help make sure you can get a Growth off which will give you a +2 because of Big Leaves which will also allow you to get 1 turn Solar Beams going to do some big damage to anything that hasn't been able to shut Venusaur down. Earth Power is there for coverage. Effect Spore is chosen to hopefully get a status on the enemy if switching in on a physical attacker.
+    .tags = Singles, Doubles, Offensive
+} 
+Pidgeot-Mega
+{
+    name = Buff Bird 
+    item = Pidgeotite
+    ability = Big Pecks
+    evs = 6, 252, 0, 0, 0, 252
+    nature = Jolly / Adamant
+    moves = Dual Wingbeat / Air Cutter, Steel Wing, U-Turn, Return / Double Edge / Frustration 
+   comment = Mega Pidgeot can pack a bit of a punch as a fast physical attacker, Keen Eye gives Dual Wingbeat 100% accuracy or you can choose Air Cutter for double battles. Steel Wing is Boosted and is there for Rock and Ice coverage. You can Pivot to a better matchup with U-turn if needed and you are free to choose between STAB Return / Double Edge or Frustration to take care of Ghost types. This set will allow very little to be able to resist an attack from Mega Pidgeot
+   This Set could also work for Regular Pidgeot with a Life Orb or Choice item.
+    .tags = Singles, Doubles, Offensive
+} 
+Pidgeot
+{
+    name = Majestic Lens
+    item = Wide Lens
+    ability = Majestic Bird
+    evs = 6, 0, 0, 252, 0, 252
+    nature = Timid
+    moves = Hurricane, Heat Wave, Hyper Voice, Focus Blast / Ominous Wind / Twister
+   comment = A fast special attacker that has a very high chance to his STAB Giant Wing boosted Hurricanes with basically a +1 to its special attack stat due to Majestic Bird. Hyper Voice offers some hard hitting Neutral STAB, Heat Wave is a Boosted coverage move and the last slot can be pretty flexible. Focus Blast hits hard and covers the Rock Weakness but isn't a Guaranteed Hit while Ominous Wind and Twister are both Giant Wing Boosted for decent damage and coverage as well as the possibility of an Omni Boost or Flinch.
+   This Set could also work for Mega Pidgeot but either your accuracy would take a hit or you would need to replace Majestic Bird with No Guard.
+    .tags = Singles, Doubles, Offensive
+}
+Raticate
+{
+    name = RAT POWER
+    item = Flame Orb
+    ability = Looter
+    evs = 0, 252, 0, 0, 0, 252
+    nature = Adamant / Jolly
+    moves = Facade, Hyper Fang / Protect, Crunch / Sucker Punch, Ice / Fire / Thunder Fang
+   comment = Like most Guts Facade users this move set is pretty basic but can put in a large amount of work especially with the rats unique addition of Growing Tooth and Looter. Being able to snag a K.O. with a bite move over Facade will grant you a +1 to your ATK stat and Looter will help with longevity as you get worn down from Burn damage. You can use Protect to set up your burn or try to keep Raticate in the back to snag a K.O. and become a wrecking ball. There is some freedom to the biting moves in the moveset to help cover your bases but Ice Fang hits more for super effective than the others and you could also opt for Sucker Punch over Crunch for some Priority. 
+    .tags = Single, Offensive
+} 
+Fearow
+{
+    name = Utility Bird
+    item = Heavy Duty Boots
+    ability = Intimidate
+    evs = 6, 0, 252, 0, 0, 252
+    nature = Impish
+    moves = Feather Dance, Defog, U Turn, Pluck / Tailwind / Roost
+   comment = This set can do a few things for you, get rid of Hazards, set up a Tailwind, steal a berry, and most importantly absolutely ruin a Physical Attacker. Between Intimidate and Feather Dance they will likely be sitting at a -3 attack before they can even get a hit on you. Once you are all done doing what you need to do you can just U Turn out to help keep some momentum going for your team.
+    .tags = Singles, Defensive
+}
+Fearow
+{
+    name = Wall Beaker / Pivot
+    item = Scope Lens
+    ability = Gale Wings / Big Pecks
+    evs = 0, 252, 6, 0, 0, 252
+    nature = Jolly / Adamant
+    moves = Drill Peck, Drill Run, Shadow Claw, Fury Attack / Steel Wing / U Turn
+   comment = Being relatively strong and having Sniper as well as a few high Crit chance moves makes fishing for Crits with a Scope Lens a pretty appealing option for breaking through any potential walls.
+    .tags = Singles, Offensive
+}
+Claydol
+{
+    name = Reverse Nuke
+    item = Shell Bell
+    ability = Twist. Dimension
+    evs = 6, 0, 252, 0, 252, 0
+    nature = Sassy
+    moves = Cosmic Power, Earth Power, Extrasensory / Stored Power, Ice Beam / Shadow Ball / Grass Knot / Dazzling Gleam
+   comment = Are you getting swept by a speedy cannon? Well reverse that turn order and hit them like a truck with this set.
+You can even send this thing out to set up 2 Cosmic Powers and then heal most of your health back with the help of the Shell Bell. This set is basically a get out of jail free card for alot of situations you.might find yourself in.
+    .tags = Mixed
+}
+Cacturn
+{
+    name = Sand Rusher
+    item = Life Orb
+    ability = Sand Rush
+    evs = 6, 0, 0, 252, 0, 252
+    nature = Timid
+    moves = Spiky Shield, Energy Ball, Dark Pulse, Aura Sphere / Earth Power
+   comment = A very good and fast hard hitter for a sandstorm team that requires little to no set up. Use Spiky Shield on physical mons to help break sashes or to help bring them into a guaranteed K.O. range. Life Orbs recoil is largely negated due to Soul Eater and Cacturn most likely won't survive anything that actually gets a hit on it anyways.
+    .tags = Singles, Doubles, Offensive
+} 
+Lunatone
+{
+    name = The Moon (Walmart Blood Moon)
+    item = Choice Scarf
+    ability = Sage Power
+    evs = 6, 0, 0, 252, 0, 252
+    nature = Modest
+    moves = Power Gem, Psychic, Dark Pulse, Moonblast
+   comment = Very Basic set to capitalize on Lunatones 4 STAB options as quickly and as powerful as possible. Due to Lunar Eclipse Lunatone gets 4 STAB options coming off of its very respectable 125 Base Sp Atk that is at a free +1 because of Sage Power. Lunatone will break through most things that you need broken and is surprisingly fast once Scarfed.
+    .tags = Singles, Offensive
+} 
+Mudsdale
+{
+    name = Rock Setter 
+    item = Leftovers / Rocky Helmet 
+    ability = Striker
+    evs = 252, 252, 0, 0, 4, 0 
+    nature = Adamant 
+    moves = Stealth Rock, Slack Off / Toxic, Body Press / Strength, High Horsepower / Earthquake 
+   comment = Good natural bulk and abilities to further compliment it enable Mudsdale as a solid Stealth Rock user. Slack Off allows it to remain healthy throughout the course of a match so it can reset Stealth Rock, however Toxic is an alternative if youre not worried about needing to keep him alive forever. Body Press is an excellent move alongside Stamina, with every hit he takes increasingly it's power. Strength is a valid alternative, allowing Mudsdale to hit Flying types that it will struggle against otherwise. Finally, High Horsepower serves as a solid Ground STAB option, with Mudsdales Striker ability boosting it to a respectable 123 BP. Alternatively, Earthquake could be run here to avoid any potential accuracy issues. If opting for Earthquake over High Horsepower, switch ability Striker with Own Tempo 
+}
+Keldeo
+{ 
+    name = Calm Mind
+    item = Shell Bell / Leftovers 
+    ability = Dragonslayer 
+    evs = 0, 0, 4, 252, 0, 252
+    nature = Timid 
+    moves = Secret Sword, Scald, Calm Mind, Taunt / Substitute 
+   comment = Mediocre abilities do little to hold this sword back, with it's excellent typing both offensively and defensively allowing it to remain an excellent win condition. Secret Sword is an excellent Fighting STAB, both receiving a Keen Edge boost and allowing it to smash through common Special walls by targeting their weaker Defense stat. Scald is the secondary STAB of choice, offering valuable utility though Burns in addition to having acceptable BP. Calm Mind does what Calm Mind typically does, turning Keldeo into a powerful threat capable of destroying teams. The last slot should go to Taunt or Substitute to avoid things such as Toxic ending it's sweep early, the opponent attempting to set hazards, etc. Alternatively, it has several viable picks for coverage such as Air Slash or Aurora Beam, as well as even an option in priority via Aqua Jet.
+    .tags = Singles, Offensive 
+}
+Garbodor
+{ 
+    name = AV Attacker
+    item = Assault Vest
+    ability = Scrapyard / Toxic Debris 
+    evs = 252, 252, 0, 0, 4, 0 
+    nature = Adamant 
+    moves = Gunk Shot / Cross Poison, Meteor Mash, Sucker Punch, Infestation / Clear Smog / Seed Bomb / Explosion 
+   comment = An interesting typing and workable bulk alongside Scrapyard or Toxic Debris enable Garbodor as a decent damage sponge, capable of annoying the opponent in a multitude of ways such as hazards, spreading Poison through it's STAB options, trapping them with Infestation, or removing their attempts to boost with Clear Smog.
+    .tags = Singles, Offensive 
+}
+Beedrill-Mega
+{ 
+    name = Very Angry Bee
+    item = Beedrillite
+    ability = Poison Touch
+    evs = 0, 252, 0, 0, 4, 252
+    nature = Adamant 
+    moves = Megahorn, Cross Poison / Pursuit, Drill Run, U-Turn / Knock Off / Swords Dance
+   comment = A poor typing does little to hold back this offensive powerhouse, with it's sheer stats and Merciless ability enabling it to dish out ridiculous amounts of damage when properly supported. Megahorn serves as an extremely powerful nuke, even hitting many things that resist it extremely hard. Cross Poison is a secondary stab with the added bonus of a poison chance, giving Beedrill some slight potential to enable his own Merciless. Pursuit is an alternative option here, taking advantage of it's ability to send most Psychic types running should it find itself an opportunity to come in safely against them. Drill Run should go to the last slot, allowing it to smash the many Steel types that want to eat it's STAB moves. The last slot is malleable, with options such as U-Turn to keep momentum going, Knock Off to remove Heavy Duty Boots and other key items, or Swords Dance to boost it's impressive attack to truly astounding levels.
+    .tags = Singles, Offensive, Showdown 
+}
+Venusaur-Mega
+{ 
+    name = Average Sun Enjoyer 
+    item = Venusaurite
+    ability = Big Leaves
+    evs = 104, 0, 0, 252, 0, 152 
+    nature = Modest
+    moves = Sludge Bomb / Weather Ball / Earth Power, Solarbeam, Synthesis / Leech Seed, Growth / Sleep Powder / Stun Spore 
+   comment = Good bulk and access to Big Leaves enables Venusaur as a terrifying sweeper under Sun, gaining a 1.5 boost to both it's Speed and SpA stat as well as immunity to status effects. Solar Beam is generally the STAB of choice, and under sun is incredibly spammable. Sludge Bomb is a choice as a secondary STAB, with the ever present promise of a poison chance. Alternatively, Earth Power or Weather Ball offer it potential to hit Steel or Fire, which may otherwise threaten to wall this set. Synthesis is a fantastic option to keep Venusaur healthy, allowing it multiple opportunities to drop nukes, set up, or annoy the opponent with status. Leech Seed is a viable alternative here, although this can situationally leave Venusaur with zero longevity. For the last slot, some form of support is generally recommended, be it Growth to support itself or Status infliction to support it's team. A third attack is also a viable option, allowing it to surprise opponents with unexpected coverage. 252 SpA EVs and a modest nature serve to maximize Venusaur's raw damage output, while 152 Speed EVs allow it to outspeed up to and including Jolly/Timid Pokemon with base 110 Speed under sun. The rest goes into HP to maximize Venusaur's bulk.
+    .tags = Singles, Offensive, Showdown 
+}
+Charizard-Mega-Y
+{ 
+    name = Sun God
+    item = Charizardite-Y
+    ability = Solar Power
+    evs = 0, 0, 4, 252, 0, 252 
+    nature = Timid
+    moves = Fire Blast / Flamethrower, Dragon Pulse / Draco Meteor, Solarbeam, Roost
+   comment = The ability to set his own sun alongside Solar Power make Charizard Y into a powerful and self contained sun abuser. Fire Blast is a strong Fire STAB, although Flamethrower is a valid alternative if you prefer not to risk the miss. Dragon Pulse is a good, consistent Dragon STAB, although Draco Meteor is valid as well if you're willing to accept the drawbacks. Solarbeam is the coverage of choice, giving an option to hit the many Water/Fairy pokemon running around. Roost is preferred for the last slot, allowing him to take advantage of his surprisingly good defensive typing and heal off residual damage from Stealth Rock or weaker attacks.
+    .tags = Singles, Offensive, Showdown 
+} 
+Pidgeot-Mega
+{ 
+    name = Birb
+    item = Pidgeotite
+    ability = Majestic Bird
+    evs = 0, 0, 4, 252, 0, 252
+    nature = Timid
+    moves = Hyper Voice, Hurricane, Heat Wave / Focus Blast, Roost / U-Turn 
+   comment = The most basic of birds manages to establish itself as a somewhat respectable mega via it's ability in Majestic Bird greatly increasing it's SpA, complimented well by Keen Eye boosting the accuracy of Hurricane and Heat Wave. These two moves, alongside Hyper Voice form Pidgeots main attacking movepool, and he unfortunately has very little else to choose from as a special attacker. Focus Blast is worth considering, although similar to Hurricane it's accuracy remains low, and without the STAB boost behind it, it is generally an inferior option to Heat Wave. The last slot should go to U-Turn to generate momentum and pivot out of  bad matchups, although Roost is potentially worth considering to negate Pidgeots weakness to Stealth Rock. Do keep in mind that Pidgeot-mega remains relatively frail, so it will not be able to Roost off even reasonably strong neutral hits.
+    .tags = Singles, Offensive 
+}
+Slowbro-Mega
+{ 
+    name = Stallbro
+    item = Slowbronite
+    ability = Unaware
+    evs = 252, 0, 252, 4, 0, 0 
+    nature = Bold
+    moves = Scald, Toxic / Thunder Wave / Yawn, Slack Off, Teleport / Magic Coat
+   comment = Gargantuan physical bulk and a quality selection of innates enable Megabro as a potent physical wall. Scald forms the backbone of any defensive Water type, allowing them to not be entirely passive alongside a good chance to inflict Burn. Slack Off should be your next guaranteed pick, ensuring Slowbro remains healthy even if not able to immediately activate Regenerator. Toxic, Thunder Wave, or Yawn all offer additional status choices, allowing Slowbro to further cripple more threats, depending on what it's team needs most. For the last slot, Teleport is a fantastic option, allowing Slowbro to function as an excellent damage sponge while safely enabling it's frailer teammates to enter the field. Alternatively, Magic Coat is a nice surprise option, allowing Slowbro to deny a wide variety of status moves.
+    .tags = Singles, Defensive, Showdown 
+} 
+Slowbro-Mega
+{ 
+    name = Unbreakable Sweeper
+    item = Slowbronite
+    ability = Unaware
+    evs = 252, 0, 4, 0, 252, 0
+    nature = Sassy
+    moves = Body Press / Stored Power / Surf, Iron Defense, Amnesia, Slack Off
+   comment = Use Twist. Dimension pre-mega to gain a Speed advantage. Set up either Amnesia or Iron Defense depending on their lead, and once you've gotten that to full then start setting up the next defensive stat. Once you get low you can just Slack Off. Due to Shell Armor you won't be able to get crit through your defenses, and Unaware means the opponent can't break through by setting up their offenses. Use either Body Press, Stored Power or Surf depending on the opponent.
+    .tags = Singles, Mixed
+}
+Boltund
+{
+    name = Bulky Setup Sweeper
+    item = Shell Bell
+    ability = Scare
+    evs = 252, 0, 4, 0, 252, 0
+    nature = Impish
+    moves = Bulk Up, Thunder Fang , Ice Fang, Roar / Fire Fang / Psychic Fang
+   comment =  Game plan is pretty simple. Buff with Bulk Up + Speed Boost, and sweep. This set maximizes Spe.Def , together with Scare to further weaken special attacker. Speed investments aren't needed because 1 Speed Boost is enough to outspeed unboosted Deoxys-Speed and scarfed Garchomp/Landorus. Thunder Fang as STAB, Ice Fang to deal with Ground/Grass, and last slot can pick between Roar for opposing boosting mon, Fire Fang for Ferrothorn, Psychic Fang for annoying screens. 
+    .tags = Singles, Mixed
+}
+Sandslash-Mega
+{
+    name = Quill for the Kill
+    item = Sandslashite
+    ability = Sand Stream
+    evs = 0, 180, 0, 0, 78, 252
+    nature = Jolly
+    moves = High Horsepower, Strength, Rapid Spin, Swords Dance
+   comment = Upon coming into the battle, Sandslash sneezing causes an 8 turn sandstorm, which benefits his Mega's innates. When he megas, he practically gets 182 Attack and 142 Speed from Sand Force and Sand Rush, which already sounds BUSTED before I explain what happens next. Slashy sets up a Swords Dance, and thanks to Sp.Def investment, lives any special water or grass type moves not spelled Hydro Pump or Leaf Storm. Desert Cloak prevents you from being GIMMICKED from any cheesers. After that, you know what to do. The Hash Slinging Slasher's Tough Claws make his 3 moves do even more damage. Ground and Rock coverage ensures he can hit every type for at least neutral damage. Something somehow outspeeds you? Rapid Spin it if you can, while also clearing entry hazards. They can't kill you if you quill em first.
+    .tags = Singles, Offensive
+} 
+Obstagoon
+{ 
+    name = No drawback Guts Facade Abuser
+    item = Toxic Orb
+    ability = Poison Heal
+    evs = 4, 252, 0, 0, 0, 252
+    nature = Jolly / Adamant
+    moves = Facade, Knock Off / Sucker Punch / Throat Chop, Bulk Up / Switcheroo / Obstruct, Fire Punch / Gunk Shot / Parting Shot
+   comment = Obstagoon is a force to be reckon with with a unique niche as a Guts STAB Facade user that is not hindered by chip damages. He can also support the team by removing hazards with his Pickup ability. 
+Obstagoon has several tools at his disposal to deal with any situation he finds itself in. Bulk Up lets him be a bulky sweeper, Throat Chop to hinder the plethora of Sound-based attackers, switch his Toxic Orb for another beneficial item, or spread debuffs with Parting Shot and Obstruct(with the added benefit of letting him recover some damage with Poison Heal) 
+
+    .tags = Singles, Offensive
+}
+Pheromosa
+{
+    name = Physical Sweeper
+    item = Wide Lens 
+    ability = Speed Force
+    evs = 4, 252, 0, 0, 0, 252
+    nature = Adamant
+    moves = Substitute, Feint, Triple Axel, Triple Kick, 
+    comment = Although not as Devastating as Pre-Nerf Weavile, It has both Triple Axel and Kick, as well as Speed Boost and Speed Force to take advantage of her 151 SPE stat, outspeeding everything after a single turn surviving. Additionally, Psychic Terrain helps Phermosa Greatly, as it disables priority attack moves from killing phermosa instantly. Protect and Substitute allows Phermosa to continously gain +1 speed. Roost for Reliable Recover if running with life orb.
+    .tags = Single, Offensive
+}
+Victreebel
+{ 
+    name = Funny Sub-Liechi Breaker
+    item = Liechi Berry
+    ability = Harvest
+    evs = 4, 252, 0, 0, 0, 252
+    nature = Adamant
+    moves = Leaf Blade / Power Whip, Poison Jab / Gunk Shot, Knock Off / Encore / Clear Smog / Sleep Powder / Sucker Punch, Substitute
+   comment = Substitutes to Activate Liechi Berry (preferably in Sun), waits a couple turns (click Substitute if Destiny Bond scares you), gets many attack boosts, breaks walls. 3rd slot depends on what you want whether it's support or priority. Don't recommend Jolly to get kills it wouldn't without +attack nature. You can pick whether you want the power or accuracy. (Note: for 1.6 and up)
+   .tags = Singles, Offensive
 }

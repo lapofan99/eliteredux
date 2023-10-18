@@ -68,52 +68,6 @@ Route118_EventScript_RouteSign119:: @ 81F3E85
 	msgbox Route118_Text_RouteSign119, MSGBOX_SIGN
 	end
 
-Route118_EventScript_StevenTrigger0:: @ 81F3E8E
-	lockall
-	setvar VAR_0x8008, 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
-	waitmovement 0
-	applymovement LOCALID_STEVEN, Route118_Movement_StevenApproachLedge0
-	waitmovement 0
-	goto Route118_EventScript_StevenTrigger
-	end
-
-Route118_EventScript_StevenTrigger1:: @ 81F3EAE
-	lockall
-	setvar VAR_0x8008, 1
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
-	waitmovement 0
-	goto Route118_EventScript_StevenTrigger
-	end
-
-Route118_EventScript_StevenTrigger2:: @ 81F3EC4
-	lockall
-	setvar VAR_0x8008, 2
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
-	waitmovement 0
-	applymovement LOCALID_STEVEN, Route118_Movement_StevenApproachLedge2
-	waitmovement 0
-	goto Route118_EventScript_StevenTrigger
-	end
-
-Route118_EventScript_StevenTrigger:: @ 81F3EE4
-	playse SE_LEDGE
-	applymovement LOCALID_STEVEN, Route118_Movement_StevenJumpLedge
-	waitmovement 0
-	delay 30
-	msgbox Route118_Text_StevenQuestions, MSGBOX_DEFAULT
-	closemessage
-	compare VAR_0x8008, 0
-	call_if_eq Route118_EventScript_StevenExit0
-	compare VAR_0x8008, 1
-	call_if_eq Route118_EventScript_StevenExit1
-	compare VAR_0x8008, 2
-	call_if_eq Route118_EventScript_StevenExit2
-	setvar VAR_ROUTE118_STATE, 1
-	removeobject LOCALID_STEVEN
-	releaseall
-	end
-
 Route118_EventScript_StevenExit0:: @ 81F3F28
 	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit
 	applymovement LOCALID_STEVEN, Route118_Movement_StevenExit0
@@ -531,6 +485,71 @@ Route118East_EventScript_Gen8_NPC_5:
 	goto Route118East_EventScript_Gen8_NPC_3
 
 
+Route118_EventScript_StevenTrigger0::
+	lockall
+	setvar VAR_0x8008, 0
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	applymovement LOCALID_STEVEN, Route118_Movement_StevenApproachLedge0
+	waitmovement 0
+	goto Route118_EventScript_StevenTrigger
+	end
+
+
+Route118_EventScript_StevenTrigger1::
+	lockall
+	setvar VAR_0x8008, 1
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	goto Route118_EventScript_StevenTrigger
+	end
+
+
+Route118_EventScript_StevenTrigger2::
+	lockall
+	setvar VAR_0x8008, 2
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	applymovement LOCALID_STEVEN, Route118_Movement_StevenApproachLedge2
+	waitmovement 0
+	goto Route118_EventScript_StevenTrigger
+	end
+
+
+Route118_EventScript_StevenTrigger::
+	playse SE_LEDGE
+	applymovement LOCALID_STEVEN, Route118_Movement_StevenJumpLedge
+	waitmovement 0
+	delay 30
+	msgbox Route118_EventScript_StevenTrigger_Text_0, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_STEVEN_GRANITE_CAVE, Route118_EventScript_StevenTrigger_Text_1
+	msgbox Route118_EventScript_StevenTrigger_Text_2, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit
+	switch VAR_0x8008
+	case 0, Route118_EventScript_StevenTrigger_3
+	case 1, Route118_EventScript_StevenTrigger_4
+	case 2, Route118_EventScript_StevenTrigger_5
+Route118_EventScript_StevenTrigger_1:
+	waitmovement 0
+	setvar VAR_ROUTE118_STATE, 1
+	removeobject LOCALID_STEVEN
+	releaseall
+	end
+
+Route118_EventScript_StevenTrigger_3:
+	applymovement LOCALID_STEVEN, Route118_Movement_StevenExit0
+	goto Route118_EventScript_StevenTrigger_1
+
+Route118_EventScript_StevenTrigger_4:
+	applymovement LOCALID_STEVEN, Route118_Movement_StevenExit1
+	goto Route118_EventScript_StevenTrigger_1
+
+Route118_EventScript_StevenTrigger_5:
+	applymovement LOCALID_STEVEN, Route118_Movement_StevenExit2
+	goto Route118_EventScript_StevenTrigger_1
+
+
 Route118_EventScript_LegendaryNPC_Text_0:
 	.string "Sage: The world we live truly is a thing\n"
 	.string "of beauty. Do you agree?$"
@@ -600,6 +619,31 @@ Route118East_EventScript_Gen8_NPC_Text_2:
 	.string "trainers at the east side of this\l"
 	.string "route, I will give you this fossil I\l"
 	.string "stole from school!$"
+
+Route118_EventScript_StevenTrigger_Text_0:
+	.string "Steven: Hi, {PLAYER}{KUN} let's battle\n"
+	.string "again!$"
+
+Route118_EventScript_StevenTrigger_Text_1:
+	.string "Steven: You still have great potential.$"
+
+Route118_EventScript_StevenTrigger_Text_2:
+	.string "Steven: Hi, {PLAYER}{KUN}!\p"
+	.string "It's me, Steven!\n"
+	.string "We met in the cave near Dewford.\p"
+	.string "Have you met many kinds of Pokémon\n"
+	.string "since I last saw you?\p"
+	.string "There are many, many kinds of Pokémon\n"
+	.string "in this wide world of ours.\p"
+	.string "If you wanted to raise only your\n"
+	.string "favorites, that's fine.\p"
+	.string "Perhaps you find it more fun to raise\n"
+	.string "all sorts of Pokémon.\p"
+	.string "As a Trainer of Pokémon,\n"
+	.string "what do you think?\p"
+	.string "Of course, it's not any of my business.\p"
+	.string "It would be nice if we were to meet\n"
+	.string "again somewhere.$"
 
 Route118_EventScript_Text_Got_Magikarp::
 	.string "{PLAYER} got a {COLOR BLUE}Magikarp{COLOR DARK_GRAY} as a gift!$"

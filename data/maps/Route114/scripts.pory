@@ -294,9 +294,7 @@ script Route114_EventScript_Feraligatr{
 }
 
 script Route114_EventScript_Feraligatr_PreNorman{
-    lock
-    faceplayer
-    message(format("Feraligatr regards you with disdain. Maybe come back once you've become more formidable?"))
+    message(format("Feraligatr regards you with disdain. Maybe come back once you've become more formidable?{PAUSE_UNTIL_PRESS}"))
     release
     end	
 }

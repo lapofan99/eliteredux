@@ -1036,9 +1036,7 @@ script Route111_EventScript_Sandslash{
 }
 
 script Route111_EventScript_Sandslash_PreNorman{
-    lock
-    faceplayer
-    message(format("Sandslash appears to regard you with a sense of superiority. It might be advisable to return once you've bolstered your strength."))
+    message(format("Sandslash appears to regard you with a sense of superiority. It might be advisable to return once you've bolstered your strength.{PAUSE_UNTIL_PRESS}"))
     release
     end	
 }

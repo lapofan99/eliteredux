@@ -131,9 +131,7 @@ script Route132_EventScript_Gyarados{
 }
 
 script Route132_EventScript_Gyarados_PreTateLiza{
-    lock
-    faceplayer
-    message(format("Gyarados gazes past you, as though you're invisible, suggesting that you may want to come back when you possess the strength to rival its presence."))
+    message(format("Gyarados gazes past you, as though you're invisible, suggesting that you may want to come back when you possess the strength to rival its presence.{PAUSE_UNTIL_PRESS}"))
     release
     end	
 }

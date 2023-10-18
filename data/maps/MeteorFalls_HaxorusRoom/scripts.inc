@@ -60,7 +60,7 @@ MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_4:
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_2:
 	setflag FLAG_OBTAINED_METEOR_FALLS_HAXORUS
-	givecustommon SPECIES_HAXORUS, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_ADAMANT, 0, 252, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_CHOP, MOVE_EXCALIBUR, MOVE_DRAIN_PUNCH, MOVE_TAUNT, TRUE
+	givecustommon SPECIES_HAXORUS, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_ADAMANT, 0, 4, 252, 0, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_DUAL_CHOP, MOVE_EXCALIBUR, MOVE_DRAIN_PUNCH, MOVE_TAUNT, TRUE
 	playfanfare MUS_OBTAIN_ITEM
 	message MeteorFalls_HaxorusRoom_EventScript_Haxorus_Join_Text_1
 	waitfanfare
@@ -842,6 +842,18 @@ EventScript_ObtainedItem_PC::
 	waitfanfare
 	setvar VAR_RESULT, 1
 	return
+
+
+EventScript_Debug_CheatStart::
+	setflag FLAG_BADGE01_GET
+	setflag FLAG_BADGE02_GET
+	setflag FLAG_BADGE03_GET
+	setflag FLAG_BADGE04_GET
+	setflag FLAG_BADGE05_GET
+	setflag FLAG_BADGE06_GET
+	setflag FLAG_BADGE07_GET
+	setflag FLAG_BADGE08_GET
+	end
 
 
 MeteorFalls_HaxorusRoom_EventScript_Haxorus_Text_0:

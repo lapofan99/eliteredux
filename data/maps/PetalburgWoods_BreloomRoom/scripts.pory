@@ -52,9 +52,8 @@ script PetalburgWoods_BreloomRoom_EventScript_Breloom{
 }
 
 script PetalburgWoods_BreloomRoom_EventScript_Breloom_PreNorman{
-    lock
-    faceplayer
-    message(format("The Breloom refuses to acknowledge your presence. Perhaps it doesn't yet consider you a worthy opponent?"))
+    message(format("The Breloom refuses to acknowledge your presence. Perhaps it doesn't yet consider you a worthy opponent?{PAUSE_UNTIL_PRESS}"))
+    waitmessage
     release
     end	
 }

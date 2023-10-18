@@ -59,9 +59,8 @@ PetalburgWoods_BreloomRoom_EventScript_Breloom_7:
 
 
 PetalburgWoods_BreloomRoom_EventScript_Breloom_PreNorman::
-	lock
-	faceplayer
 	message PetalburgWoods_BreloomRoom_EventScript_Breloom_PreNorman_Text_0
+	waitmessage
 	release
 	end
 
@@ -113,7 +112,7 @@ PetalburgWoods_BreloomRoom_EventScript_Breloom_Text_3:
 PetalburgWoods_BreloomRoom_EventScript_Breloom_PreNorman_Text_0:
 	.string "The Breloom refuses to acknowledge\n"
 	.string "your presence. Perhaps it doesn't yet\l"
-	.string "consider you a worthy opponent?$"
+	.string "consider you a worthy opponent?{PAUSE_UNTIL_PRESS}$"
 
 PetalburgWoods_BreloomRoom_EventScript_Breloom_Join_Text_0:
 	.string "Breloom seems to want to join your\n"
