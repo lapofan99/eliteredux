@@ -2028,7 +2028,7 @@ Keldeo
    comment = Mediocre abilities do little to hold this sword back, with it's excellent typing both offensively and defensively allowing it to remain an excellent win condition. Secret Sword is an excellent Fighting STAB, both receiving a Keen Edge boost and allowing it to smash through common Special walls by targeting their weaker Defense stat. Scald is the secondary STAB of choice, offering valuable utility though Burns in addition to having acceptable BP. Calm Mind does what Calm Mind typically does, turning Keldeo into a powerful threat capable of destroying teams. The last slot should go to Taunt or Substitute to avoid things such as Toxic ending it's sweep early, the opponent attempting to set hazards, etc. Alternatively, it has several viable picks for coverage such as Air Slash or Aurora Beam, as well as even an option in priority via Aqua Jet.
     .tags = Singles, Offensive 
 }
- Garbodor
+Garbodor
 { 
     name = AV Attacker
     item = Assault Vest
@@ -2094,7 +2094,7 @@ Slowbro-Mega
    comment = Gargantuan physical bulk and a quality selection of innates enable Megabro as a potent physical wall. Scald forms the backbone of any defensive Water type, allowing them to not be entirely passive alongside a good chance to inflict Burn. Slack Off should be your next guaranteed pick, ensuring Slowbro remains healthy even if not able to immediately activate Regenerator. Toxic, Thunder Wave, or Yawn all offer additional status choices, allowing Slowbro to further cripple more threats, depending on what it's team needs most. For the last slot, Teleport is a fantastic option, allowing Slowbro to function as an excellent damage sponge while safely enabling it's frailer teammates to enter the field. Alternatively, Magic Coat is a nice surprise option, allowing Slowbro to deny a wide variety of status moves.
     .tags = Singles, Defensive, Showdown 
 } 
-Mega Slowbro
+Slowbro-Mega
 { 
     name = Unbreakable Sweeper
     item = Slowbronite
@@ -2116,7 +2116,7 @@ Boltund
    comment =  Game plan is pretty simple. Buff with Bulk Up + Speed Boost, and sweep. This set maximizes Spe.Def , together with Scare to further weaken special attacker. Speed investments aren't needed because 1 Speed Boost is enough to outspeed unboosted Deoxys-Speed and scarfed Garchomp/Landorus. Thunder Fang as STAB, Ice Fang to deal with Ground/Grass, and last slot can pick between Roar for opposing boosting mon, Fire Fang for Ferrothorn, Psychic Fang for annoying screens. 
     .tags = Singles, Mixed
 }
-Mega Sandslash
+Sandslash-Mega
 {
     name = Quill for the Kill
     item = Sandslashite
@@ -2140,7 +2140,7 @@ Obstagoon has several tools at his disposal to deal with any situation he finds 
 
     .tags = Singles, Offensive
 }
-Phermosa
+Pheromosa
 {
     name = Physical Sweeper
     item = Wide Lens 
