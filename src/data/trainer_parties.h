@@ -33428,7 +33428,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1Insane[] = { //
     {
     .lvl = 0,
     .species = SPECIES_SLOWKING, // T&L-E, Mega, TR Setter, CM
-    .heldItem = ITEM_LIGHT_CLAY,
+    .heldItem = ITEM_SLOWKINGITE,
     .ability = 2, // ABILITY_GIFTED_MIND, ABILITY_GIFTED_MIND, ABILITY_GIFTED_MIND},
     // .innates = {ABILITY_OWN_TEMPO, ABILITY_PSYCHIC_SURGE, ABILITY_MAGICAL_DUST},
     // Pre-Mega
