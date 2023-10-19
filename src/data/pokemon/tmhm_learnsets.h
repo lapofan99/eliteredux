@@ -24176,11 +24176,13 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM01_CUT)
                                         | TMHM2(HM02_FLY)),
-    [SPECIES_NOIBAT_REDUX]   = TMHM_LEARNSET (TMHM1(TM03_WATER_PULSE)
+    [SPECIES_NOIBAT_REDUX]   = TMHM_LEARNSET (TMHM1(TM02_DRAGON_CLAW)
                                         | TMHM1(TM06_TOXIC)
+                                        | TMHM1(TM08_BULK_UP) //new
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM11_SUNNY_DAY)
                                         | TMHM1(TM12_TAUNT)
+                                        | TMHM1(TM15_HYPER_BEAM)
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM21_FRUSTRATION)
                                         | TMHM1(TM22_SOLARBEAM)
@@ -24189,6 +24191,8 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM29_PSYCHIC)
                                         | TMHM1(TM30_SHADOW_BALL)
                                         | TMHM1(TM31_BRICK_BREAK)
+                                        | TMHM1(TM35_FLAMETHROWER)
+                                        | TMHM1(TM37_SANDSTORM) //new
                                         | TMHM1(TM40_AERIAL_ACE)
                                         | TMHM1(TM41_TORMENT)
                                         | TMHM1(TM42_FACADE)
@@ -24199,14 +24203,22 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM47_STEEL_WING)
                                         | TMHM1(TM49_SLEEP_TALK)
                                         | TMHM1(TM51_ROOST)
+                                        | TMHM1(TM52_FOCUS_BLAST)
                                         | TMHM1(TM56_LEECH_LIFE)
                                         | TMHM1(TM58_ENDURE)
                                         | TMHM1(TM59_DRAGON_PULSE)
                                         | TMHM1(TM62_ACROBATICS),
+                                        | TMHM1(TM63_ROCK_SLIDE), //new
                                           TMHM2(TM65_SHADOW_CLAW)
+                                        | TMHM2(TM68_GIGA_IMPACT)
+                                        | TMHM2(TM71_STONE_EDGE) //new
+                                        | TMHM2(TM76_STEALTH_ROCK) //new
+                                        | TMHM2(TM78_BULLDOZE) //new
                                         | TMHM2(TM81_X_SCISSOR)
                                         | TMHM2(TM85_DREAM_EATER)
+                                        | TMHM2(TM87_SMACK_DOWN) //new
                                         | TMHM2(TM89_U_TURN)
+                                        | TMHM2(TM88_LOW_SWEEP) //new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM93_WILD_CHARGE)
                                         | TMHM2(TM94_SUCKER_PUNCH)
@@ -24260,6 +24272,7 @@ const u32 gTMHMLearnsets[][4] =
     [SPECIES_NOIVERN_REDUX]   = TMHM_LEARNSET (TMHM1(TM02_DRAGON_CLAW)
                                         | TMHM1(TM03_WATER_PULSE)
                                         | TMHM1(TM06_TOXIC)
+                                        | TMHM1(TM08_BULK_UP) //new
                                         | TMHM1(TM10_HIDDEN_POWER)
                                         | TMHM1(TM11_SUNNY_DAY)
                                         | TMHM1(TM12_TAUNT)
@@ -24273,6 +24286,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM30_SHADOW_BALL)
                                         | TMHM1(TM31_BRICK_BREAK)
                                         | TMHM1(TM35_FLAMETHROWER)
+                                        | TMHM1(TM37_SANDSTORM) //new
                                         | TMHM1(TM40_AERIAL_ACE)
                                         | TMHM1(TM41_TORMENT)
                                         | TMHM1(TM42_FACADE)
@@ -24288,11 +24302,18 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM58_ENDURE)
                                         | TMHM1(TM59_DRAGON_PULSE)
                                         | TMHM1(TM62_ACROBATICS),
+                                        | TMHM1(TM63_ROCK_SLIDE), //new
                                           TMHM2(TM65_SHADOW_CLAW)
                                         | TMHM2(TM68_GIGA_IMPACT)
+                                        | TMHM2(TM71_STONE_EDGE) //new
+                                        | TMHM2(TM76_STEALTH_ROCK) //new
+                                        | TMHM2(TM78_BULLDOZE) //new
                                         | TMHM2(TM81_X_SCISSOR)
+                                        | TMHM2(TM84_POISON_JAB) //new
                                         | TMHM2(TM85_DREAM_EATER)
+                                        | TMHM2(TM87_SMACK_DOWN) //new
                                         | TMHM2(TM89_U_TURN)
+                                        | TMHM2(TM88_LOW_SWEEP) //new
                                         | TMHM2(TM90_SUBSTITUTE)
                                         | TMHM2(TM93_WILD_CHARGE)
                                         | TMHM2(TM94_SUCKER_PUNCH)

@@ -555,7 +555,7 @@ Route120_EventScript_LegendaryNPC_Text_1:
 	.string "It might not seem like it at first, but\n"
 	.string "you have entered the domain of the\l"
 	.string "Forces of Nature.\p"
-	.string "They strayed all the way from Unima to\n"
+	.string "They strayed all the way from Unova to\n"
 	.string "here, looking for wild lands to unleash\l"
 	.string "their powers onto.\p"
 	.string "But, despite what we initially feared, it\n"
