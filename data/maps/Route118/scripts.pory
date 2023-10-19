@@ -480,24 +480,9 @@ script Route118_EventScript_StevenTrigger{
 	applymovement(LOCALID_STEVEN, Route118_Movement_StevenJumpLedge)
 	waitmovement(0)
 	delay(30)
-	msgbox(format("Steven: Hi, {PLAYER}{KUN} let's battle again!"), MSGBOX_DEFAULT) //Intro
-	trainerbattle_no_intro(TRAINER_STEVEN_GRANITE_CAVE, format("Steven: You still have great potential.")) // in-battle, player wins
-	msgbox(format("Steven: Hi, {PLAYER}{KUN}!\p"
-				  "It's me, Steven!\n"
-				  "We met in the cave near Dewford.\p"
-				  "Have you met many kinds of Pokémon\n"
-				  "since I last saw you?\p"
-				  "There are many, many kinds of Pokémon\n"
-				  "in this wide world of ours.\p"
-				  "If you wanted to raise only your\n"
-				  "favorites, that's fine.\p"
-				  "Perhaps you find it more fun to raise\n"
-				  "all sorts of Pokémon.\p"
-				  "As a Trainer of Pokémon,\n"
-				  "what do you think?\p"
-				  "Of course, it's not any of my business.\p"
-				  "It would be nice if we were to meet\n"
-				  "again somewhere."), MSGBOX_DEFAULT) //Vanilla Message
+	msgbox(format("Steven: Hi, {PLAYER}{KUN} I hope you're ready. I upgraded my team after you defeat me last time..."), MSGBOX_DEFAULT) //Intro
+	trainerbattle_no_intro(TRAINER_STEVEN_GRANITE_CAVE, format("You still have great potential.")) // in-battle, player wins
+	msgbox(format("Steven: I knew I wasn't the only one who upgraded his team. I hope we meet again."), MSGBOX_DEFAULT) // post-battle
 	closemessage
 	applymovement(OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit)
 	switch(var(VAR_0x8008)){
