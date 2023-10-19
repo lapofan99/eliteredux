@@ -4445,17 +4445,10 @@ static void DebugAction_AccessPC(u8 taskId)
 
 static void DebugAction_FillBox(u8 taskId)
 {
-    u8 i, j;
-    struct Pokemon mon;
-    int sentToPc;
-    u16 species = SPECIES_BULBASAUR;
-
     Debug_DestroyMenu_Full(taskId);
-
-    for(i = 0; i < 30; i++){
-        CreateMon(&mon, SPECIES_BULBASAUR + i, i + 1, USE_RANDOM_IVS, 0, 0, OT_ID_PLAYER_ID, 0);
-        sentToPc = GiveMonToPlayer(&mon);
-    }
+    CleanupOverworldWindowsAndTilemaps();
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+    CreateTask(Task_WaitFadeAccessPC, 0);
 }
 
 #endif
