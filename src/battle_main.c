@@ -2256,6 +2256,12 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 {
                     level = level + partyData[i].lvl;
                 }
+
+                #ifdef DEBUG_BUILD
+                if(FlagGet(FLAG_DEBUG_GODMODE))
+                    level = 10;
+                #endif
+
                 if (trainerNum == TRAINER_OLDPLAYER)
                 {
                     species = Random() % 500;
@@ -5697,6 +5703,10 @@ static void HandleEndTurn_FinishBattle(void)
 
 		FlagClear(FLAG_SMART_AI);
 		FlagClear(FLAG_TOTEM_BATTLE);
+
+    #ifdef DEBUG_BUILD
+        CheckForBadEggs();
+    #endif
 
     #if B_RECALCULATE_STATS >= GEN_5
         // Recalculate the stats of every party member before the end

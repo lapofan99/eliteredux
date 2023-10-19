@@ -15185,3 +15185,29 @@ bool8 IsMoveAffectedByParentalBond(u16 move, u8 battlerId)
 	}
 	return FALSE;
 }
+
+void CheckForBadEggs(void){
+    u8 i, j;
+    //Check Party
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_BAD_EGG) == TRUE){
+            if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                MgbaOpen();
+                MgbaPrintf(MGBA_LOG_WARN, "WARNING: Bad Egg in Party Detected %d", i);
+                MgbaClose();
+            }
+        }
+    }
+    //Check Box 1
+    for (i = 0; i < 30; i++)
+    {
+        if (GetBoxMonDataAt(0, i, MON_DATA_SANITY_IS_BAD_EGG) == TRUE){ //Only Checks Box 1
+            if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                MgbaOpen();
+                MgbaPrintf(MGBA_LOG_WARN, "WARNING: Bad Egg in Box 1 Detected %d", i);
+                MgbaClose();
+            }
+        }
+    }
+}

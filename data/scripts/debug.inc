@@ -48,7 +48,7 @@ Debug_Script_1::
 	end
 
 Debug_Script_2::
-	goto EventScript_Debug_CheatStart
+	setvar VAR_PETALBURG_GYM_STATE, 6
 	end
 
 Debug_Script_3::

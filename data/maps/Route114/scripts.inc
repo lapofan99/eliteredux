@@ -341,6 +341,7 @@ Route114_EventScript_Feraligatr_7:
 
 Route114_EventScript_Feraligatr_PreNorman::
 	message Route114_EventScript_Feraligatr_PreNorman_Text_0
+	waitmessage
 	release
 	end
 

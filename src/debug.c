@@ -73,6 +73,7 @@ enum { // Main
     DEBUG_MENU_ITEM_FILL,
     DEBUG_MENU_ITEM_SOUND,
     DEBUG_MENU_ITEM_ACCESS_PC,
+    DEBUG_MENU_ITEM_FILL_BOX,
     DEBUG_MENU_ITEM_CANCEL
 };
 enum { // Util
@@ -104,6 +105,7 @@ enum { // Scripts
 enum { // Flags and Vars
     DEBUG_FLAGVAR_MENU_ITEM_FLAGS,
     DEBUG_FLAGVAR_MENU_ITEM_VARS,
+    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_GODMODE,
     DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_ALL,
     DEBUG_FLAGVAR_MENU_ITEM_DEXFLAGS_RESET,
     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_POKEDEX,
@@ -294,6 +296,7 @@ static void DebugAction_OpenGiveMenu(u8 taskId);
 static void DebugAction_OpenFillMenu(u8 taskId);
 static void DebugAction_OpenSoundMenu(u8 taskId);
 static void DebugAction_AccessPC(u8 taskId);
+static void DebugAction_FillBox(u8 taskId);
 static void DebugTask_HandleMenuInput_Main(u8 taskId);
 static void DebugTask_HandleMenuInput_Utilities(u8 taskId);
 static void DebugTask_HandleMenuInput_Scripts(u8 taskId);
@@ -344,6 +347,7 @@ static void DebugAction_FlagsVars_EncounterOnOff(u8 taskId);
 static void DebugAction_FlagsVars_TrainerSeeOnOff(u8 taskId);
 static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId);
 static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId);
+static void DebugAction_FlagsVars_GodMode(u8 taskId);
 
 static void Debug_InitializeBattle(u8 taskId);
 
@@ -418,6 +422,7 @@ static const u8 sDebugText_Give[] =             _("Give X…{CLEAR_TO 110}{RIGHT
 static const u8 sDebugText_Fill[] =             _("Fill PC/Pockets…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Sound[] =            _("Sound…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_AccessPC[] =         _("Access PC…{CLEAR_TO 110}{RIGHT_ARROW}");
+static const u8 sDebugText_Fill_Box[] =          _("Fill Box…{CLEAR_TO 110}{RIGHT_ARROW}");
 static const u8 sDebugText_Cancel[] =           _("Cancel");
 // Script menu
 static const u8 sDebugText_Util_Script_1[] =               _("Script 1");
@@ -470,6 +475,7 @@ static const u8 sDebugText_FlagsVars_SwitchEncounter[] =        _("Toggle {STR_V
 static const u8 sDebugText_FlagsVars_SwitchTrainerSee[] =       _("Toggle {STR_VAR_1}TrainerSee OFF");
 static const u8 sDebugText_FlagsVars_SwitchBagUse[] =           _("Toggle {STR_VAR_1}BagUse OFF");
 static const u8 sDebugText_FlagsVars_SwitchCatching[] =         _("Toggle {STR_VAR_1}Catching OFF");
+static const u8 sDebugText_FlagsVars_SwitchGodMode[] =          _("Toggle {STR_VAR_1}GodMode OFF");
 static const u8 sDebugText_FlagsVars_SwitchAutowin[] =          _("Toggle {STR_VAR_1}Autowin OFF");
 static const u8 sDebugText_FlagsVars_SwitchmGBAPrint[] =        _("Toggle {STR_VAR_1}mGBA Print OFF");
 static const u8 sDebugText_FlagsVars_SwitchRandomPrint[] =      _("Toggle {STR_VAR_1}Randomized Mode OFF");
@@ -606,6 +612,7 @@ static const struct ListMenuItem sDebugMenu_Items_Main[] =
     [DEBUG_MENU_ITEM_FILL]          = {sDebugText_Fill,         DEBUG_MENU_ITEM_FILL},
     [DEBUG_MENU_ITEM_SOUND]         = {sDebugText_Sound,        DEBUG_MENU_ITEM_SOUND},
     [DEBUG_MENU_ITEM_ACCESS_PC]     = {sDebugText_AccessPC,     DEBUG_MENU_ITEM_ACCESS_PC},
+    [DEBUG_MENU_ITEM_FILL_BOX]      = {sDebugText_Fill_Box,     DEBUG_MENU_ITEM_FILL_BOX},
     [DEBUG_MENU_ITEM_CANCEL]        = {sDebugText_Cancel,       DEBUG_MENU_ITEM_CANCEL}
 };
 static const struct ListMenuItem sDebugMenu_Items_Utilities[] =
@@ -654,6 +661,7 @@ static const struct ListMenuItem sDebugMenu_Items_FlagsVars[] =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]     = {sDebugText_FlagsVars_SwitchTrainerSee,   DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]         = {sDebugText_FlagsVars_SwitchBagUse,       DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]        = {sDebugText_FlagsVars_SwitchCatching,     DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING},
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_GODMODE]         = {sDebugText_FlagsVars_SwitchGodMode,      DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_GODMODE},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_AUTOWIN]         = {sDebugText_FlagsVars_SwitchAutowin,      DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_AUTOWIN},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_MGBA_PRINT]      = {sDebugText_FlagsVars_SwitchmGBAPrint,    DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_MGBA_PRINT},
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOMIZED_MODE] = {sDebugText_FlagsVars_SwitchRandomPrint,  DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOMIZED_MODE},
@@ -744,6 +752,7 @@ static void (*const sDebugMenu_Actions_Main[])(u8) =
     [DEBUG_MENU_ITEM_FILL]          = DebugAction_OpenFillMenu,
     [DEBUG_MENU_ITEM_SOUND]         = DebugAction_OpenSoundMenu,
     [DEBUG_MENU_ITEM_ACCESS_PC]     = DebugAction_AccessPC,
+    [DEBUG_MENU_ITEM_FILL_BOX]      = DebugAction_FillBox,
     [DEBUG_MENU_ITEM_CANCEL]        = DebugAction_Cancel
 };
 static void (*const sDebugMenu_Actions_Utilities[])(u8) =
@@ -792,6 +801,7 @@ static void (*const sDebugMenu_Actions_Flags[])(u8) =
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_TRAINER_SEE]     = DebugAction_FlagsVars_TrainerSeeOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_BAG_USE]         = DebugAction_FlagsVars_BagUseOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING]        = DebugAction_FlagsVars_CatchingOnOff,
+    [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_GODMODE]         = DebugAction_FlagsVars_GodMode,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_AUTOWIN]         = DebugAction_FlagsVars_AutoWinOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_MGBA_PRINT]      = DebugAction_FlagsVars_MgbaPrintOnOff,
     [DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_RANDOMIZED_MODE] = DebugAction_FlagsVars_RandomOnOff,
@@ -1104,6 +1114,9 @@ static u8 Debug_CheckToggleFlags(u8 id)
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_CATCHING:
             result = FlagGet(FLAG_SYS_NO_CATCHING);
+            break;
+        case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_GODMODE:
+            result = FlagGet(FLAG_DEBUG_GODMODE);
             break;
         case DEBUG_FLAGVAR_MENU_ITEM_TOGGLE_AUTOWIN:
             result = FlagGet(FLAG_SYS_AUTOWIN);
@@ -2542,6 +2555,14 @@ static void DebugAction_FlagsVars_CatchingOnOff(u8 taskId)
     else
         PlaySE(SE_PC_LOGIN);
     FlagToggle(FLAG_SYS_NO_CATCHING);
+}
+static void DebugAction_FlagsVars_GodMode(u8 taskId)
+{
+    if (FlagGet(FLAG_DEBUG_GODMODE))
+        PlaySE(SE_PC_OFF);
+    else
+        PlaySE(SE_PC_LOGIN);
+    FlagToggle(FLAG_DEBUG_GODMODE);
 }
 
 // *******************************
@@ -4420,6 +4441,21 @@ static void DebugAction_AccessPC(u8 taskId)
     CleanupOverworldWindowsAndTilemaps();
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
     CreateTask(Task_WaitFadeAccessPC, 0);
+}
+
+static void DebugAction_FillBox(u8 taskId)
+{
+    u8 i, j;
+    struct Pokemon mon;
+    int sentToPc;
+    u16 species = SPECIES_BULBASAUR;
+
+    Debug_DestroyMenu_Full(taskId);
+
+    for(i = 0; i < 30; i++){
+        CreateMon(&mon, SPECIES_BULBASAUR + i, i + 1, USE_RANDOM_IVS, 0, 0, OT_ID_PLAYER_ID, 0);
+        sentToPc = GiveMonToPlayer(&mon);
+    }
 }
 
 #endif
