@@ -1452,7 +1452,7 @@ const struct BaseStats gBaseStats[] =
     .baseDefense   = 45, // With Fur Coat, effectively base 139
     .baseSpeed     = 45,
     .baseSpAttack  = 105,
-    .baseSpDefense = 60,
+    .baseSpDefense = 80, // 60
     .type1 = TYPE_NORMAL,
     .type2 = TYPE_FAIRY,
     .catchRate = 255,
@@ -1466,7 +1466,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_FAIRY,
     .eggGroup2 = EGG_GROUP_FAIRY,
     .abilities = {ABILITY_SWEET_DREAMS, ABILITY_COMPETITIVE, ABILITY_MAGIC_GUARD},
-    .innates = {ABILITY_CUTE_CHARM, ABILITY_INFLATABLE, ABILITY_FLUFFY},
+    .innates = {ABILITY_CUTE_CHARM, ABILITY_INFLATABLE, ABILITY_FUR_COAT},
     .bodyColor = BODY_COLOR_PINK,
     .noFlip = TRUE,
     },
