@@ -11995,6 +11995,7 @@ static void Cmd_trytoapplymoveeffect(void)
                 && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
                 && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != GetGenderFromSpeciesAndPersonality(speciesDef, pidDef)
                 && !(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
+                && TARGET_TURN_DAMAGED
                 && GetGenderFromSpeciesAndPersonality(speciesAtk, pidAtk) != MON_GENDERLESS
                 && GetGenderFromSpeciesAndPersonality(speciesDef, pidDef) != MON_GENDERLESS)
                 {
@@ -12008,6 +12009,7 @@ static void Cmd_trytoapplymoveeffect(void)
                 if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                 && IsBattlerAlive(gBattlerTarget)
                 && !gProtectStructs[gBattlerTarget].confusionSelfDmg
+                && TARGET_TURN_DAMAGED
                 && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GHOST)
                 && !(gBattleMons[gBattlerTarget].status2 & STATUS2_CURSED))
                 {
@@ -12020,11 +12022,13 @@ static void Cmd_trytoapplymoveeffect(void)
 
     if (appliedEffect)
     {
+        BattleScriptPushCursor();
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
     }
     else
     {
-        gBattlescriptCurrInstr += 2;
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_MoveEnd;
     }
 }
 
