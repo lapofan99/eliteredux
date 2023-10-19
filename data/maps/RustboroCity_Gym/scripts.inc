@@ -325,10 +325,7 @@ RustboroCity_Gym_Text_GymGuideAdvice::
 	.string "You could also ask around the town.\p"
 	.string "People might have something that\n"
 	.string "could help you, like a Steel-type\l"
-	.string "Pokémon they're willing to trade!\p"
-	.string "That Pokémon might even be holding\n"
-	.string "something that the local Nidoran\l"
-	.string "really like (Hint, hint)!$"
+	.string "Pokémon they're willing to trade!$"
 
 RustboroCity_Gym_Text_GymGuidePostVictory: @ 82132E2
 	.string "Whoa! What a breathtaking victory!\n"
