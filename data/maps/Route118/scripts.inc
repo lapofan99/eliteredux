@@ -621,29 +621,17 @@ Route118East_EventScript_Gen8_NPC_Text_2:
 	.string "stole from school!$"
 
 Route118_EventScript_StevenTrigger_Text_0:
-	.string "Steven: Hi, {PLAYER}{KUN} let's battle\n"
-	.string "again!$"
+	.string "Steven: Hi, {PLAYER}{KUN} I hope you're\n"
+	.string "ready. I upgraded my team after you\l"
+	.string "defeat me last time...$"
 
 Route118_EventScript_StevenTrigger_Text_1:
-	.string "Steven: You still have great potential.$"
+	.string "You still have great potential.$"
 
 Route118_EventScript_StevenTrigger_Text_2:
-	.string "Steven: Hi, {PLAYER}{KUN}!\p"
-	.string "It's me, Steven!\n"
-	.string "We met in the cave near Dewford.\p"
-	.string "Have you met many kinds of Pokémon\n"
-	.string "since I last saw you?\p"
-	.string "There are many, many kinds of Pokémon\n"
-	.string "in this wide world of ours.\p"
-	.string "If you wanted to raise only your\n"
-	.string "favorites, that's fine.\p"
-	.string "Perhaps you find it more fun to raise\n"
-	.string "all sorts of Pokémon.\p"
-	.string "As a Trainer of Pokémon,\n"
-	.string "what do you think?\p"
-	.string "Of course, it's not any of my business.\p"
-	.string "It would be nice if we were to meet\n"
-	.string "again somewhere.$"
+	.string "Steven: I knew I wasn't the only one\n"
+	.string "who upgraded his team. I hope we meet\l"
+	.string "again.$"
 
 Route118_EventScript_Text_Got_Magikarp::
 	.string "{PLAYER} got a {COLOR BLUE}Magikarp{COLOR DARK_GRAY} as a gift!$"

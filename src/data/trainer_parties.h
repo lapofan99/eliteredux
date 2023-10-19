@@ -41254,35 +41254,6 @@ static const struct TrainerMonItemCustomMoves sParty_StevenGraniteCaveInsane[] =
     }
 };
 
-
-static const struct TrainerMonItemCustomMoves sParty_StevenRoute118[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_CRADILY, // Steven, Lead, Mixed Wall, SR, Big Root
-    .heldItem = ITEM_BIG_ROOT,
-    .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_CALM,
-    .moves = MOVE_GIGA_DRAIN, MOVE_POWER_GEM, MOVE_STEALTH_ROCK, MOVE_RECOVER
-    },
-};
-
-static const struct TrainerMonItemCustomMoves sParty_StevenRoute118Insane[] = {
-    {
-    .lvl = 0,
-    .species = SPECIES_CRADILY, // Steven, Lead, Mixed Wall, SR, Big Root
-    .heldItem = ITEM_BIG_ROOT,
-    .ability = 0, // ABILITY_BATTLE_ARMOR, ABILITY_REGENERATOR, ABILITY_STORM_DRAIN},
-    // .innates = {ABILITY_FOSSILIZED, ABILITY_AMPHIBIOUS, ABILITY_SEAWEED},
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 180, 0, 76, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_CALM,
-    .moves = MOVE_GIGA_DRAIN, MOVE_POWER_GEM, MOVE_STEALTH_ROCK, MOVE_RECOVER
-    },
-};
-
 static const struct TrainerMonItemCustomMoves sParty_MeganiumiteVerdanturfMeadow[] = { // Meganiumite
     {
     .lvl = 0,
@@ -42131,5 +42102,139 @@ static const struct TrainerMonItemCustomMoves sParty_Baneful_PetalburgWoods[] = 
     .evs = {252, 252, 252, 252, 252, 252},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
     .moves = MOVE_TACKLE, MOVE_POISON_STING, MOVE_BUG_BITE, MOVE_ELECTROWEB
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_StevenRoute118[] = { // needs to be changed
+    {
+    .lvl = 0,
+    .species = SPECIES_BASTIODON, // Steven118, Leftovers, Stamina, SpDef Wall
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // Stamina
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_CALM,
+    .moves = MOVE_STEALTH_ROCK, MOVE_BODY_PRESS, MOVE_TOXIC, MOVE_SHORE_UP
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GENESECT, // Steven118, Orb, Download
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // Download
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_BUG_BUZZ, MOVE_FLASH_CANNON, MOVE_ICE_BEAM, MOVE_THUNDERBOLT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_AEGISLASH, // Steven118, Leftovers, Shadow Shield
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // Shadow Shield
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_EXCALIBUR, MOVE_SHADOW_SNEAK, MOVE_KINGS_SHIELD, MOVE_SWORDS_DANCE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_KARTANA, // Steven118, Sash, Keen Edge
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // Keen Edge
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_EXCALIBUR, MOVE_GUILLOTINE, MOVE_LEAF_BLADE, MOVE_SACRED_SWORD
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_METAGROSS, // Steven118, Vest, Lead Coat
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // Lead Coat
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_BULLET_PUNCH, MOVE_EARTHQUAKE, MOVE_METEOR_MASH, MOVE_THUNDER_PUNCH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_SKARMORY, // Steven118, Mega, Bulky Attacker
+    .heldItem = ITEM_SKARMORITE,
+    .ability = 2, // ABILITY_SCRAPYARD, ABILITY_SCRAPYARD, ABILITY_SCRAPYARD},
+    // .innates = {ABILITY_MOTOR_DRIVE, ABILITY_POWER_CORE, ABILITY_SELF_REPAIR},
+    // Pre-Mega
+    // ABILITY_MIRROR_ARMOR, ABILITY_STURDY, ABILITY_LEAD_COAT},
+    // .innates = {ABILITY_GIANT_WINGS, ABILITY_FULL_METAL_BODY, ABILITY_BATTLE_ARMOR},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_BRAVE_BIRD, MOVE_STEEL_WING, MOVE_ROOST, MOVE_BODY_PRESS
+    }
+};
+
+static const struct TrainerMonItemCustomMoves sParty_StevenRoute118Insane[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_BASTIODON, // Steven118, Leftovers, Stamina, SpDef Wall
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 1, // Stamina
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_CALM,
+    .moves = MOVE_STEALTH_ROCK, MOVE_BODY_PRESS, MOVE_TOXIC, MOVE_SHORE_UP
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_GENESECT, // Steven118, Orb, Download
+    .heldItem = ITEM_LIFE_ORB,
+    .ability = 0, // Download
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_BUG_BUZZ, MOVE_FLASH_CANNON, MOVE_ICE_BEAM, MOVE_THUNDERBOLT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_AEGISLASH, // Steven118, Leftovers, Shadow Shield
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // Shadow Shield
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_EXCALIBUR, MOVE_SHADOW_SNEAK, MOVE_KINGS_SHIELD, MOVE_SWORDS_DANCE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_KARTANA, // Steven118, Sash, Keen Edge
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 0, // Keen Edge
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_EXCALIBUR, MOVE_GUILLOTINE, MOVE_LEAF_BLADE, MOVE_SACRED_SWORD
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_METAGROSS, // Steven118, Vest, Lead Coat
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // Lead Coat
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 252, 0, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_BULLET_PUNCH, MOVE_EARTHQUAKE, MOVE_METEOR_MASH, MOVE_THUNDER_PUNCH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_SKARMORY, // Steven118, Mega, Bulky Attacker
+    .heldItem = ITEM_SKARMORITE,
+    .ability = 2, // ABILITY_SCRAPYARD, ABILITY_SCRAPYARD, ABILITY_SCRAPYARD},
+    // .innates = {ABILITY_MOTOR_DRIVE, ABILITY_POWER_CORE, ABILITY_SELF_REPAIR},
+    // Pre-Mega
+    // ABILITY_MIRROR_ARMOR, ABILITY_STURDY, ABILITY_LEAD_COAT},
+    // .innates = {ABILITY_GIANT_WINGS, ABILITY_FULL_METAL_BODY, ABILITY_BATTLE_ARMOR},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_CAREFUL,
+    .moves = MOVE_BRAVE_BIRD, MOVE_STEEL_WING, MOVE_ROOST, MOVE_BODY_PRESS
     }
 };
