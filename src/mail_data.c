@@ -166,13 +166,5 @@ u8 TakeMailFromMon2(struct Pokemon *mon)
 
 bool8 ItemIsMail(u16 itemId)
 {
-    switch (itemId)
-    {
-    case ITEM_LAPRASITE_X:
-    case ITEM_FAB_MAIL:
-    case ITEM_RETRO_MAIL:
-        return TRUE;
-    default:
-        return FALSE;
-    }
+    return FALSE;
 }
