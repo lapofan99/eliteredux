@@ -14749,6 +14749,7 @@ static const struct LevelUpMove sVolcaronaLevelUpLearnset[] = {
 
 static const struct LevelUpMove sCobalionLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_QUICK_ATTACK),
+    LEVEL_UP_MOVE( 1, MOVE_SECRET_SWORD), // new
 	LEVEL_UP_MOVE( 1, MOVE_LEER),
 	LEVEL_UP_MOVE( 1, MOVE_DOUBLE_KICK),
     LEVEL_UP_MOVE( 1, MOVE_VACUUM_WAVE), // new
@@ -14771,6 +14772,7 @@ static const struct LevelUpMove sCobalionLevelUpLearnset[] = {
 static const struct LevelUpMove sTerrakionLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_ACCELEROCK), // new
 	LEVEL_UP_MOVE( 1, MOVE_QUICK_ATTACK),
+    LEVEL_UP_MOVE( 1, MOVE_SECRET_SWORD), // new
 	LEVEL_UP_MOVE( 1, MOVE_LEER),
 	LEVEL_UP_MOVE( 1, MOVE_DOUBLE_KICK),
 	LEVEL_UP_MOVE( 1, MOVE_SMACK_DOWN),
@@ -14792,6 +14794,7 @@ static const struct LevelUpMove sVirizionLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_LEER),
     LEVEL_UP_MOVE( 1, MOVE_GROWTH), // new
 	LEVEL_UP_MOVE( 1, MOVE_DOUBLE_KICK),
+    LEVEL_UP_MOVE( 1, MOVE_SECRET_SWORD), // new
 	LEVEL_UP_MOVE( 1, MOVE_MAGICAL_LEAF),    
     LEVEL_UP_MOVE( 1, MOVE_HORN_LEECH), // new
     LEVEL_UP_MOVE( 1, MOVE_VACUUM_WAVE), // new
@@ -14960,6 +14963,7 @@ static const struct LevelUpMove sKyuremLevelUpLearnset[] = {
 
 static const struct LevelUpMove sKeldeoLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 1, MOVE_AQUA_JET),
+    LEVEL_UP_MOVE( 1, MOVE_SECRET_SWORD), // new
 	LEVEL_UP_MOVE( 1, MOVE_LEER),
 	LEVEL_UP_MOVE( 1, MOVE_DOUBLE_KICK),
 	LEVEL_UP_MOVE( 1, MOVE_WATER_PULSE),
