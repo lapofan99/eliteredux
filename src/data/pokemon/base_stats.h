@@ -23232,7 +23232,7 @@ const struct BaseStats gBaseStats[] =
     .eggGroup1 = EGG_GROUP_MONSTER,
     .eggGroup2 = EGG_GROUP_MONSTER,
     .abilities = {ABILITY_REFRIGERATE, ABILITY_SOLID_ROCK, ABILITY_SNOW_WARNING},
-    .innates = {ABILITY_FOSSILIZED, ABILITY_ICE_BODY, ABILITY_PERMAFROST},
+    .innates = {ABILITY_PRIMAL_ARMOR, ABILITY_ICE_BODY, ABILITY_PERMAFROST},
     .bodyColor = BODY_COLOR_BLUE,
     .noFlip = FALSE,
     },
