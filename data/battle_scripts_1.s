@@ -10642,6 +10642,7 @@ BattleScript_SweetDreamsActivates::
 	end2
 	
 BattleScript_HauntedSpiritActivated::
+	sethword sABILITY_OVERWRITE, ABILITY_HAUNTED_SPIRIT
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNBECAMECURSED
 	waitmessage B_WAIT_TIME_LONG

@@ -13771,7 +13771,7 @@ static void Cmd_switchoutabilities(void)
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     gDisableStructs[gActiveBattler].protectedThisTurn = FALSE;
 
-    if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS || (BattlerHasInnate(gActiveBattler, ABILITY_NEUTRALIZING_GAS && gBattleMons[gActiveBattler].ability != ABILITY_NONE)))
+    if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS || (BattlerHasInnate(gActiveBattler, ABILITY_NEUTRALIZING_GAS) && gBattleMons[gActiveBattler].ability != ABILITY_NONE))
     {
         gBattleScripting.switchInBattlerOverwrite = gActiveBattler;
 
