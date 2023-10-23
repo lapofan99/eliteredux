@@ -5959,7 +5959,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-                u16 extraMove = MOVE_FEINT_ATTACK; //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u16 extraMove = MOVE_FEINT_ATTACK; //The Extra Move to be used
                 u8 movePower = 0;                  //The Move power, leave at 0 if you want it to be the same as the normal move
                 u8 moveEffectPercentChance  = 0;   //The percent chance of the move effect happening
                 u8 extraMoveSecondaryEffect = 0;   //Leave at 0 to remove it's secondary effect
@@ -6022,7 +6022,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-                u16 extraMove = MOVE_SCRATCH;     //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u16 extraMove = MOVE_SCRATCH;     //The Extra Move to be used
                 u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
                 u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
                 u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
@@ -8599,7 +8599,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-                u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used
                 u8 movePower = 50;                //The Move power, leave at 0 if you want it to be the same as the normal move
                 u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
                 u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
@@ -8638,8 +8638,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-                u16 extraMove = MOVE_ICY_WIND;    //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                u16 extraMove = MOVE_ICY_WIND;     //The Extra Move to be used
+                u8 movePower = 0;                  //The Move power, leave at 0 if you want it to be the same as the normal move
                 u8 moveEffectPercentChance  = 100; //The percent chance of the move effect happening
                 u8 extraMoveSecondaryEffect = MOVE_EFFECT_SPD_MINUS_1; //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
@@ -8677,7 +8677,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used
                 u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
                 u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
                 u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
@@ -8856,7 +8856,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 && (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST) || GetBattlerAbility(i) == ABILITY_SCRAPPY || BattlerHasInnate(i, ABILITY_SCRAPPY))
                 && GET_BATTLER_SIDE(gBattlerAttacker) != GET_BATTLER_SIDE(i))
                 {
-                    u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                    u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used
                     u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
                     u8 moveEffectPercentChance  = 0;  //The secondary effect is removed here
                     u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
@@ -9335,7 +9335,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-				u16 extraMove = MOVE_ERUPTION;    //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+				u16 extraMove = MOVE_ERUPTION;    //The Extra Move to be used
                 u8 movePower = 50;                //The Move power, leave at 0 if you want it to be the same as the normal move
                 u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
                 u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
@@ -9371,7 +9371,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-				u16 extraMove = MOVE_OUTBURST;    //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+				u16 extraMove = MOVE_OUTBURST;    //The Extra Move to be used
                 u8 movePower = 50;                //The Move power, leave at 0 if you want it to be the same as the normal move
                 u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
                 u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
@@ -9407,7 +9407,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-				u16 extraMove = MOVE_SMITE;        //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+				u16 extraMove = MOVE_SMITE;        //The Extra Move to be used
                 u8 movePower = 20;                 //The Move power, leave at 0 if you want it to be the same as the normal move
                 u8 moveEffectPercentChance  = 100; //The percent chance of the move effect happening
                 u8 extraMoveSecondaryEffect = MOVE_EFFECT_SMACK_DOWN; //Leave at 0 to remove it's secondary effect
