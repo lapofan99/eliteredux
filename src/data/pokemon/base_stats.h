@@ -17852,10 +17852,10 @@ const struct BaseStats gBaseStats[] =
 [SPECIES_LEAVANNY] =
     {
     .baseHP        = 75,
-    .baseAttack    = 113,
+    .baseAttack    = 120, // 113
     .baseDefense   = 80,
-    .baseSpeed     = 102,
-    .baseSpAttack  = 70,
+    .baseSpeed     = 110, // 102
+    .baseSpAttack  = 55, // 70
     .baseSpDefense = 80,
     .type1 = TYPE_BUG,
     .type2 = TYPE_GRASS,
@@ -17869,8 +17869,8 @@ const struct BaseStats gBaseStats[] =
     .growthRate = GROWTH_MEDIUM_SLOW,
     .eggGroup1 = EGG_GROUP_BUG,
     .eggGroup2 = EGG_GROUP_BUG,
-    .abilities = {ABILITY_LEAF_GUARD, ABILITY_NONE, ABILITY_KEEN_EDGE},
-    .innates = {ABILITY_SWARM, ABILITY_CHLOROPHYLL, ABILITY_OVERCOAT},
+    .abilities = {ABILITY_SWARM, ABILITY_COMPOUND_EYES, ABILITY_CHLOROPHYLL},
+    .innates = {ABILITY_KEEN_EDGE, ABILITY_SUPER_LUCK, ABILITY_OVERCOAT},
     .bodyColor = BODY_COLOR_YELLOW,
     .noFlip = FALSE,
     },
