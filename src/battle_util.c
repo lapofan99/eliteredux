@@ -5965,12 +5965,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 u8 extraMoveSecondaryEffect = 0;   //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[battler].extraMoveUsed = TRUE;
 
                 //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
                 VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
 
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
@@ -6028,12 +6028,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[battler].extraMoveUsed = TRUE;
 
                 //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
                 VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
 
                 gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
                 BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
@@ -8605,12 +8605,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[battler].extraMoveUsed = TRUE;
 
                 //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
                 VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
 
                 //If the ability is an innate overwrite the popout
                 if(BattlerHasInnate(battler, abilityToCheck))
@@ -8644,12 +8644,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 u8 extraMoveSecondaryEffect = MOVE_EFFECT_SPD_MINUS_1; //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[battler].extraMoveUsed = TRUE;
 
                 //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
                 VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
 
                 //If the ability is an innate overwrite the popout
                 if(BattlerHasInnate(battler, abilityToCheck))
@@ -8683,40 +8683,17 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[battler].extraMoveUsed = TRUE;
 
                 //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
                 VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
 
                 //If the ability is an innate overwrite the popout
                 if(BattlerHasInnate(battler, abilityToCheck))
                     gBattleScripting.abilityPopupOverwrite = abilityToCheck;
 
-                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
-                effect++;
-            }
-        }
-
-        // Parry
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_PARRY)){
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerAttacker].hp != 0
-             && gBattleMons[gBattlerTarget].hp != 0
-             && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && TARGET_TURN_DAMAGED
-             && !gProtectStructs[battler].extraMoveUsed
-             && IsMoveMakingContact(move, gBattlerAttacker))
-            {
-                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[battler].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_PARRY;
                 gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
             }
@@ -9436,12 +9413,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 u8 extraMoveSecondaryEffect = MOVE_EFFECT_SMACK_DOWN; //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[battler].extraMoveUsed = TRUE;
 
                 //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
                 VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
-                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
 
                 //If the ability is an innate overwrite the popout
                 if(BattlerHasInnate(battler, abilityToCheck))
