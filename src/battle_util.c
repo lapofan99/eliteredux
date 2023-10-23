@@ -62,6 +62,7 @@ static bool32 TryRemoveScreens(u8 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId);
 static bool8 DoesMoveBoostStats(u16 move);
 static bool8 HasAnyLoweredStat(u8 battler);
+bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];
@@ -5917,101 +5918,126 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         // Low Blow
         if(BATTLER_HAS_ABILITY(battler, ABILITY_LOW_BLOW)){
             bool8 activateAbilty = FALSE;
+            bool8 checkPassed    = FALSE;
+            bool8 hasTarget      = FALSE;
             u16 abilityToCheck = ABILITY_LOW_BLOW; //For easier copypaste
+			u8 opposingBattler = BATTLE_OPPOSITE(battler);
 
             switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
                 case BATTLER_INNATE:
                     if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
                         gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
                         gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
-                        activateAbilty = TRUE;
+                        checkPassed = TRUE;
                     }
                 break;
                 case BATTLER_ABILITY:
                     if(!gSpecialStatuses[battler].switchInAbilityDone){
 				        gBattlerAttacker = battler;
                         gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                        activateAbilty = TRUE;
+                        checkPassed = TRUE;
                     }
                 break;
             }
 
+            //Checks Target
+            for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+            {
+                if (IsBattlerAlive(opposingBattler))
+                {
+                    gBattlerTarget = opposingBattler;
+                    hasTarget = TRUE;
+                }
+            }
+
+            if(checkPassed && hasTarget){
+                //Checks if the ability is triggered
+                if(canUseExtraMove(battler, gBattlerTarget)){
+                    activateAbilty = TRUE;
+                }
+            }
+
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-				u8 opposingBattler = BATTLE_OPPOSITE(battler);
-                u16 extraMove = MOVE_FEINT_ATTACK;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                u16 extraMove = MOVE_FEINT_ATTACK; //The Extra Move to be used
                 u8 movePower = 0;                  //The Move power, leave at 0 if you want it to be the same as the normal move
-                bool8 hasTarget = FALSE;
+                u8 moveEffectPercentChance  = 0;   //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = 0;   //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gBattlerAttacker = battler;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
 
-                //Checks Target
-                for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
-                {
-                    if (IsBattlerAlive(opposingBattler))
-                    {
-                        gBattlerTarget = opposingBattler;
-                        hasTarget = TRUE;
-                    }
-                }
-                
-                if(hasTarget){//To check if the target is even alive
-                    gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                    BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
-                    effect++;
-                }
+                //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
+                effect++;
             }
         }
 
         // Cheap Tactics
         if(BATTLER_HAS_ABILITY(battler, ABILITY_CHEAP_TACTICS)){
             bool8 activateAbilty = FALSE;
+            bool8 checkPassed    = FALSE;
+            bool8 hasTarget      = FALSE;
             u16 abilityToCheck = ABILITY_CHEAP_TACTICS; //For easier copypaste
+			u8 opposingBattler = BATTLE_OPPOSITE(battler);
 
             switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
                 case BATTLER_INNATE:
                     if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
                         gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
                         gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
-                        activateAbilty = TRUE;
+                        checkPassed = TRUE;
                     }
                 break;
                 case BATTLER_ABILITY:
                     if(!gSpecialStatuses[battler].switchInAbilityDone){
 				        gBattlerAttacker = battler;
                         gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                        activateAbilty = TRUE;
+                        checkPassed = TRUE;
                     }
                 break;
             }
 
+            //Checks Target
+            for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+            {
+                if (IsBattlerAlive(opposingBattler))
+                {
+                    gBattlerTarget = opposingBattler;
+                    hasTarget = TRUE;
+                }
+            }
+
+            if(checkPassed && hasTarget){
+                //Checks if the ability is triggered
+                if(canUseExtraMove(battler, gBattlerTarget)){
+                    activateAbilty = TRUE;
+                }
+            }
+
             //This is the stuff that has to be changed for each ability
             if(activateAbilty){
-				u8 opposingBattler = BATTLE_OPPOSITE(battler);
-                u16 extraMove = MOVE_SCRATCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 0;              //The Move power, leave at 0 if you want it to be the same as the normal move
-                bool8 hasTarget = FALSE;
+                u16 extraMove = MOVE_SCRATCH;     //The Extra Move to be used
+                u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
+                gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gBattlerAttacker = battler;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
 
-                //Checks Target
-                for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
-                {
-                    if (IsBattlerAlive(opposingBattler))
-                    {
-                        gBattlerTarget = opposingBattler;
-                        hasTarget = TRUE;
-                    }
-                }
-                
-                if(hasTarget){//To check if the target is even alive
-                    gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                    BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
-                    effect++;
-                }
+                //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_AttackerUsedAnExtraMoveOnSwitchIn);
+                effect++;
             }
         }
 		
@@ -7983,24 +8009,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
             break;
-            case ABILITY_COLD_REBOUND:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerAttacker].hp != 0
-             && gBattleMons[gBattlerTarget].hp != 0
-             && !(gBattleMons[gBattlerTarget].status1 & STATUS1_SLEEP)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && TARGET_TURN_DAMAGED
-             && IsMoveMakingContact(move, gBattlerAttacker))
-            {
-                u16 extraMove = MOVE_ICY_WIND;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattlescriptCurrInstr = BattleScript_DefenderEffectSpeedDownHit;
-                effect++;
-            }
-            break;
             case ABILITY_SCRAPYARD:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -8574,70 +8582,118 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        // Atomic Clone
-        if(BattlerHasInnate(battler, ABILITY_ATOMIC_BURST) || GetBattlerAbility(battler) == ABILITY_ATOMIC_BURST){
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerAttacker].hp != 0
-             && gBattleMons[gBattlerTarget].hp != 0
-             && gBattleMons[battler].hp != 0
-             && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && TARGET_TURN_DAMAGED
-             && !gProtectStructs[battler].extraMoveUsed
-             && (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE))
-            {
-                u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 50;               //The Move power, leave at 0 if you want it to be the same as the normal move
+        //Atomic Burst
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_ATOMIC_BURST)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_ATOMIC_BURST; //For easier copypaste
+            //Target and Attacker are swapped because this is the defender's ability
+            //battler = attacker, gBattlerAttacker = defender
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)       &&
+                canUseExtraMove(battler, gBattlerAttacker)       && //gBattlerAttacer is the target in this instance
+                (gMoveResultFlags & MOVE_RESULT_SUPER_EFFECTIVE) &&
+                TARGET_TURN_DAMAGED){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used
+                u8 movePower = 50;                //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
+                gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[battler].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_ATOMIC_BURST;
+
+                //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
                 gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
             }
         }
 
-        // Cold Rebound
-        if(BattlerHasInnate(battler, ABILITY_COLD_REBOUND)){
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerAttacker].hp != 0
-             && gBattleMons[gBattlerTarget].hp != 0
-             && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && TARGET_TURN_DAMAGED
-             && !gProtectStructs[battler].extraMoveUsed
-             && IsMoveMakingContact(move, gBattlerAttacker))
-            {
-                u16 extraMove = MOVE_ICY_WIND;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 0;               //The Move power, leave at 0 if you want it to be the same as the normal move
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[battler].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_COLD_REBOUND;
-                gBattlescriptCurrInstr = BattleScript_DefenderEffectSpeedDownHit;
-                effect++;
+        //Cold Rebound
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_COLD_REBOUND)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_COLD_REBOUND; //For easier copypaste
+            //Target and Attacker are swapped because this is the defender's ability
+            //battler = attacker, gBattlerAttacker = defender
 
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)  &&
+                canUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
+                IsMoveMakingContact(move, gBattlerAttacker) &&
+                TARGET_TURN_DAMAGED){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                u16 extraMove = MOVE_ICY_WIND;     //The Extra Move to be used
+                u8 movePower = 0;                  //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 100; //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = MOVE_EFFECT_SPD_MINUS_1; //Leave at 0 to remove it's secondary effect
+                gTempMove = gCurrentMove;
+                gCurrentMove = extraMove;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
+                gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
+                effect++;
             }
         }
 
-        // Parry
+        //Parry
         if(BATTLER_HAS_ABILITY(battler, ABILITY_PARRY)){
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerAttacker].hp != 0
-             && gBattleMons[gBattlerTarget].hp != 0
-             && !(gBattleMons[battler].status1 & STATUS1_SLEEP)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && TARGET_TURN_DAMAGED
-             && !gProtectStructs[battler].extraMoveUsed
-             && IsMoveMakingContact(move, gBattlerAttacker))
-            {
-                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_PARRY; //For easier copypaste
+            //Target and Attacker are swapped because this is the defender's ability
+            //battler = attacker, gBattlerAttacker = defender
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)  &&
+                canUseExtraMove(battler, gBattlerAttacker)  && //gBattlerAttacer is the target in this instance
+                IsMoveMakingContact(move, gBattlerAttacker) &&
+                TARGET_TURN_DAMAGED){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                u16 extraMove = MOVE_MACH_PUNCH;  //The Extra Move to be used
                 u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
                 gProtectStructs[battler].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_PARRY;
+
+                //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
                 gBattlescriptCurrInstr = BattleScript_DefenderUsedAnExtraMove;
                 effect++;
             }
@@ -8800,11 +8856,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 && (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST) || GetBattlerAbility(i) == ABILITY_SCRAPPY || BattlerHasInnate(i, ABILITY_SCRAPPY))
                 && GET_BATTLER_SIDE(gBattlerAttacker) != GET_BATTLER_SIDE(i))
                 {
-                    u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
+                    u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used
                     u8 movePower = 0;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                    u8 moveEffectPercentChance  = 0;  //The secondary effect is removed here
+                    u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
                     gTempMove = gCurrentMove;
                     gCurrentMove = extraMove;
                     VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
+                    gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                    //Move Effect
+                    VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                    VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+
                     gBattlerTarget = battler = i;
                     gProtectStructs[i].extraMoveUsed = TRUE;
                     gBattleScripting.abilityPopupOverwrite = ABILITY_RETRIBUTION_BLOW;
@@ -9076,60 +9140,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_VOLCANO_RAGE:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && gBattleMons[gBattlerAttacker].hp != 0
-             && gBattleMoves[move].type == TYPE_FIRE
-             && gBattlerTarget != gBattlerAttacker
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
-            {
-                u16 extraMove = MOVE_ERUPTION;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 50;              //The Move power, leave at 0 if you want it to be the same as the normal move
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
-                effect++;
-            }
-        case ABILITY_PYRO_SHELLS:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && gBattleMons[gBattlerAttacker].hp != 0
-             && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
-            {
-                u16 extraMove = MOVE_OUTBURST;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 50;              //The Move power, leave at 0 if you want it to be the same as the normal move
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
-                effect++;
-            }
-        case ABILITY_THUNDERCALL:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && gBattleMons[gBattlerAttacker].hp != 0
-             && !(gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && !gProtectStructs[gBattlerAttacker].extraMoveUsed
-             && gBattleMoves[move].split != SPLIT_STATUS
-             && GetTypeBeforeUsingMove(move, gBattlerAttacker) == TYPE_ELECTRIC)
-            {
-                u16 extraMove = MOVE_SMITE;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 20;           //The Move power, leave at 0 if you want it to be the same as the normal move
-                gTempMove = gCurrentMove;
-                gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove_SmackDown;
-                effect++;
-            }
         case ABILITY_GULP_MISSILE:
             if (((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED) || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER)
              && (effect = ShouldChangeFormHpBased(gBattlerAttacker)))
@@ -9311,64 +9321,113 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		}*/
 
-		if (BattlerHasInnate(battler, ABILITY_VOLCANO_RAGE)){
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && gBattleMoves[move].type == TYPE_FIRE
-             && gBattlerTarget != gBattlerAttacker
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
-            {
-                u16 extraMove = MOVE_ERUPTION;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 50;               //The Move power, leave at 0 if you want it to be the same as the normal move
+        //Volcano Rage
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_VOLCANO_RAGE)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_VOLCANO_RAGE; //For easier copypaste
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                canUseExtraMove(battler, gBattlerTarget)   &&
+                (GetTypeBeforeUsingMove(move, battler) == TYPE_FIRE)){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+				u16 extraMove = MOVE_ERUPTION;    //The Extra Move to be used
+                u8 movePower = 50;                //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_VOLCANO_RAGE;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                //Move Effect
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
                 gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                 effect++;
             }
-		}
+        }
 
-        if (BattlerHasInnate(battler, ABILITY_PYRO_SHELLS)){
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && !gProtectStructs[gBattlerAttacker].extraMoveUsed)
-            {
-                u16 extraMove = MOVE_OUTBURST;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 50;              //The Move power, leave at 0 if you want it to be the same as the normal move
+        //Pryo Shells
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_PYRO_SHELLS)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_PYRO_SHELLS; //For easier copypaste
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                canUseExtraMove(battler, gBattlerTarget)   &&
+                (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+				u16 extraMove = MOVE_OUTBURST;    //The Extra Move to be used
+                u8 movePower = 50;                //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 0;  //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
                 VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_PYRO_SHELLS;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                //Move Effect
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT, extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
                 gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                 effect++;
             }
-		}
+        }
 
-        if (BattlerHasInnate(battler, ABILITY_THUNDERCALL)){
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && !(gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && !gProtectStructs[gBattlerAttacker].extraMoveUsed
-             && GetTypeBeforeUsingMove(move, gBattlerAttacker) == TYPE_ELECTRIC)
-            {
-                u16 extraMove = MOVE_SMITE;  //The Extra Move to be used, it only works for normal moves that hit the target, if you want one with an extra effect please tell me
-                u8 movePower = 20;           //The Move power, leave at 0 if you want it to be the same as the normal move
+        //Thundercall
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_THUNDERCALL)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_THUNDERCALL; //For easier copypaste
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) &&
+                canUseExtraMove(battler, gBattlerTarget)   &&
+                (GetTypeBeforeUsingMove(move, battler) == TYPE_ELECTRIC)){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+				u16 extraMove = MOVE_SMITE;        //The Extra Move to be used
+                u8 movePower = 20;                 //The Move power, leave at 0 if you want it to be the same as the normal move
+                u8 moveEffectPercentChance  = 100; //The percent chance of the move effect happening
+                u8 extraMoveSecondaryEffect = MOVE_EFFECT_SMACK_DOWN; //Leave at 0 to remove it's secondary effect
                 gTempMove = gCurrentMove;
                 gCurrentMove = extraMove;
-                VarSet(VAR_EXTRA_MOVE_DAMAGE, movePower);
-                gProtectStructs[gBattlerAttacker].extraMoveUsed = TRUE;
-                gBattleScripting.abilityPopupOverwrite = ABILITY_THUNDERCALL;
-                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove_SmackDown;
+                gProtectStructs[battler].extraMoveUsed = TRUE;
+
+                //Move Effect
+                VarSet(VAR_EXTRA_MOVE_DAMAGE,     movePower);
+                VarSet(VAR_TEMP_MOVEEFECT_CHANCE, moveEffectPercentChance);
+                VarSet(VAR_TEMP_MOVEEFFECT,       extraMoveSecondaryEffect);
+
+                //If the ability is an innate overwrite the popout
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
+                gBattlescriptCurrInstr = BattleScript_AttackerUsedAnExtraMove;
                 effect++;
             }
-		}
+        }
 		
 		//Electric Burst
 		if (BattlerHasInnate(battler, ABILITY_ELECTRIC_BURST)){
@@ -16765,6 +16824,19 @@ bool8 isWonderRoomActive(void){
     if(IsAbilityOnField(ABILITY_CLUELESS))
         return FALSE;
     else if(gFieldStatuses & STATUS_FIELD_WONDER_ROOM)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
+    if(IsBattlerAlive(sBattlerAttacker)                         &&
+       IsBattlerAlive(sBattlerTarget)                           &&
+       sBattlerAttacker != sBattlerTarget                       &&
+       !gProtectStructs[sBattlerAttacker].confusionSelfDmg      &&
+       !gProtectStructs[sBattlerAttacker].extraMoveUsed         &&
+       !(gBattleMons[sBattlerAttacker].status1 & STATUS1_SLEEP) &&
+       !(gBattleMons[sBattlerAttacker].status1 & STATUS1_FREEZE))
         return TRUE;
     else
         return FALSE;

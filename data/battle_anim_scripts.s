@@ -20484,7 +20484,6 @@ JaggedFangsExtraEffect:
 	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, 18, 8, 2
 	createsprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, -18, 8, 2
 JaggedFangsRemoveBlend:
-	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 0, 1, 3, 12, 0, RGB_BLACK
 	restorebg
 	waitforvisualfinish
 	blendoff
@@ -20628,7 +20627,7 @@ ShadowFangsHitTarget:
 ShadowFangsRemoveBlend:
 	waitforvisualfinish
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, 4, 2, 9, 0, 0x4C4A
-	clearmonbg ANIM_TARGET
+	clearmonbg ANIM_ATK_PARTNER
 	restorebg
 	waitbgfadein
 	blendoff

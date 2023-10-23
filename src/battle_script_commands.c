@@ -3856,6 +3856,19 @@ static void Cmd_seteffectwithchance(void)
     u8 moveType = gBattleMoves[gCurrentMove].type;
     u8 moveEffect = gBattleMoves[gCurrentMove].effect;
 
+    if(gProtectStructs[gBattlerAttacker].extraMoveUsed){
+        if(VarGet(VAR_TEMP_MOVEEFECT_CHANCE) != 0){
+            percentChance = VarGet(VAR_TEMP_MOVEEFECT_CHANCE);
+            VarSet(VAR_TEMP_MOVEEFECT_CHANCE, 0);
+        }
+
+        if(VarGet(VAR_TEMP_MOVEEFFECT) != 0){
+            moveEffect = VarGet(VAR_TEMP_MOVEEFFECT);
+            gBattleScripting.moveEffect = moveEffect;
+            VarSet(VAR_TEMP_MOVEEFFECT, 0);
+        }
+    }
+
     //Serene Grace boost
     if (GetBattlerAbility(gBattlerAttacker) == ABILITY_SERENE_GRACE || BattlerHasInnate(gBattlerAttacker, ABILITY_SERENE_GRACE))
         percentChance = percentChance * 2;
@@ -13771,7 +13784,7 @@ static void Cmd_switchoutabilities(void)
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     gDisableStructs[gActiveBattler].protectedThisTurn = FALSE;
 
-    if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS || (BattlerHasInnate(gActiveBattler, ABILITY_NEUTRALIZING_GAS && gBattleMons[gActiveBattler].ability != ABILITY_NONE)))
+    if (gBattleMons[gActiveBattler].ability == ABILITY_NEUTRALIZING_GAS || (BattlerHasInnate(gActiveBattler, ABILITY_NEUTRALIZING_GAS) && gBattleMons[gActiveBattler].ability != ABILITY_NONE))
     {
         gBattleScripting.switchInBattlerOverwrite = gActiveBattler;
 
