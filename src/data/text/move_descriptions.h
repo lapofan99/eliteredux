@@ -3063,7 +3063,7 @@ static const u8 sSCORCHED_EARTHDescription[] = _(
 
 static const u8 sSEISMIC_FISTDescription[] = _(
     "A ground-breaking punch.\n"
-    "30% chance to drop Def.");
+    "20% chance to drop Def.");
 
 static const u8 sRAGINGFURYDescription[] = _(
     "A rampage of 2 to 3 turns\n"
