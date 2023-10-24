@@ -1934,9 +1934,9 @@ u8 TrySetCantSelectMoveBattleScript(void)
         }
     }
     //Sage Power and Gorilla Tactics
-    if ((BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_SAGE_POWER)     ||
-        BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_GORILLA_TACTICS) ||
-        BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_DISCIPLINE))     &&
+    if ((BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SAGE_POWER)      ||
+         BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_GORILLA_TACTICS) ||
+         BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_DISCIPLINE))     &&
 		*choicedMove != 0      &&
         *choicedMove != 0xFFFF && 
         *choicedMove != move)
