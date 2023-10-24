@@ -9899,8 +9899,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if (gBattleMons[battler].status1 & STATUS1_PARALYSIS)
                 {
                     gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_LIMBER;
-                    StringCopy(gBattleTextBuff1, gStatusConditionString_ConfusionJpn);
-                    effect = 2;
+                    StringCopy(gBattleTextBuff1, gStatusConditionString_ParalysisJpn);
+                    effect = 1;
                 }
             }
 
