@@ -5500,12 +5500,13 @@ static void SetMoveTypeIcons(void)
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    bool8 isEnemyMon = VarGet(VAR_BATTLE_CONTROLLER_PLAYER_F) == 2; //checks if you are looking into the summary screen for the enemy
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (summary->moves[i] != MOVE_NONE)
         {
-            u8 movetype = GetMonMoveType(summary->moves[i], mon);
+            u8 movetype = GetMonMoveType(summary->moves[i], mon, isEnemyMon);
             SetTypeSpritePosAndPal(movetype, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
         }
         else
@@ -5532,6 +5533,7 @@ static void SetNewMoveTypeIcon(void)
 {
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    bool8 isEnemyMon = VarGet(VAR_BATTLE_CONTROLLER_PLAYER_F) == 2; //checks if you are looking into the summary screen for the enemy
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
@@ -5541,7 +5543,7 @@ static void SetNewMoveTypeIcon(void)
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
-            u8 movetype = GetMonMoveType(sMonSummaryScreen->newMove, mon);
+            u8 movetype = GetMonMoveType(sMonSummaryScreen->newMove, mon, isEnemyMon);
             SetTypeSpritePosAndPal(movetype, 116, 136, SPRITE_ARR_ID_TYPE + 6);
         }
         else

@@ -12554,7 +12554,7 @@ static void Cmd_healpartystatus(void)
                 else
                     ability = GetAbilityBySpecies(species, abilityNum);
 
-                if (ability != ABILITY_SOUNDPROOF && !MonHasInnate(&party[i], ABILITY_SOUNDPROOF))
+                if (ability != ABILITY_SOUNDPROOF && !MonHasInnate(&party[i], ABILITY_SOUNDPROOF, FALSE))
                     toHeal |= (1 << i);
             }
         }

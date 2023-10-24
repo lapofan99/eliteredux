@@ -130,11 +130,11 @@ s32 DoPoisonFieldEffect(void)
         if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) 
             && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS)) == AILMENT_PSN
             && ability != ABILITY_POISON_HEAL
-            && !MonHasInnate(pokemon, ABILITY_POISON_HEAL)
+            && !MonHasInnate(pokemon, ABILITY_POISON_HEAL, FALSE)
             && ability != ABILITY_TOXIC_BOOST
-            && !MonHasInnate(pokemon, ABILITY_TOXIC_BOOST)
+            && !MonHasInnate(pokemon, ABILITY_TOXIC_BOOST, FALSE)
             && ability != ABILITY_MAGIC_GUARD
-            && !MonHasInnate(pokemon, ABILITY_MAGIC_GUARD)
+            && !MonHasInnate(pokemon, ABILITY_MAGIC_GUARD, FALSE)
             && B_ENABLE_FIELD_POISON)
         {
             hp = GetMonData(pokemon, MON_DATA_HP); 

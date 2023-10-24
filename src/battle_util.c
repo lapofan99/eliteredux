@@ -16123,9 +16123,10 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId)
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u32 personality = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u16 ability = RandomizeAbility(GetMonAbility(mon), species, personality);
+    bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
 
     gBattleStruct->illusion[battlerId].set = 1;
-    if (ability != ABILITY_ILLUSION && !MonHasInnate(mon, ABILITY_ILLUSION))
+    if (ability != ABILITY_ILLUSION && !MonHasInnate(mon, ABILITY_ILLUSION, isEnemyMon))
         return FALSE;
 
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)

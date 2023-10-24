@@ -9033,6 +9033,7 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
        innate != ABILITY_GULP_MISSILE      &&
        innate != ABILITY_DISGUISE          &&
        innate != ABILITY_FLOWER_GIFT       &&
+       innate != ABILITY_ANGELS_WRATH      &&
        innate != ABILITY_HUNGER_SWITCH){ 
         //Only Randomize if you have the Innate Randomized Mode Enabled
         //Exclude form change abilities from being randomized and other mons can't get them either
@@ -9062,6 +9063,7 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
               randomizedInnate == ABILITY_POWER_CONSTRUCT ||
               randomizedInnate == ABILITY_FLOWER_GIFT     ||
               randomizedInnate == ABILITY_ICE_FACE        ||
+              randomizedInnate == ABILITY_ANGELS_WRATH    ||
               randomizedInnate == ABILITY_GULP_MISSILE);
         return randomizedInnate;
     }
@@ -9086,6 +9088,7 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
        ability != ABILITY_GULP_MISSILE      &&
        ability != ABILITY_DISGUISE          &&
        ability != ABILITY_FLOWER_GIFT       &&
+       ability != ABILITY_ANGELS_WRATH      &&
        ability != ABILITY_HUNGER_SWITCH){ 
         //Only Randomize if you have the Ability Randomized Mode Enabled
         //Exclude form change abilities from being randomized and other mons can't get them either
@@ -9115,6 +9118,7 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
               randomizedAbility == ABILITY_POWER_CONSTRUCT ||
               randomizedAbility == ABILITY_FLOWER_GIFT     ||
               randomizedAbility == ABILITY_ICE_FACE        ||
+              randomizedAbility == ABILITY_ANGELS_WRATH    ||
               randomizedAbility == ABILITY_GULP_MISSILE);
         return randomizedAbility;
     }
@@ -9143,20 +9147,20 @@ u8 RandomizeType(u8 type, u16 species, u32 personality, bool8 isFirstType){
         return type;
 }
 
-bool8 MonHasInnate(struct Pokemon *mon, u16 ability){
+bool8 MonHasInnate(struct Pokemon *mon, u16 ability, bool8 disableRandomizer){
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
 
-    return SpeciesHasInnate(species, ability, level, personality, FALSE, FALSE);
+    return SpeciesHasInnate(species, ability, level, personality, disableRandomizer, disableRandomizer);
 }
 
-bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability){
+bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability, bool8 disableRandomizer){
     u16 species = GetBoxMonData(boxmon, MON_DATA_SPECIES, NULL);
     u32 personality = GetBoxMonData(boxmon, MON_DATA_PERSONALITY, NULL);
     u8 level = GetBoxMonData(boxmon, MON_DATA_LEVEL, NULL);
 
-    return SpeciesHasInnate(species, ability, level, personality, FALSE, FALSE);
+    return SpeciesHasInnate(species, ability, level, personality, disableRandomizer, disableRandomizer);
 }
 
 u8 GetSpeciesInnateNum(u16 species, u16 ability, u8 level, u32 personality, bool8 disablerandomizer){

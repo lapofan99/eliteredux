@@ -2718,12 +2718,13 @@ static bool32 PartyBattlerShouldAvoidHazards(u8 currBattler, u8 switchBattler)
     u16 ability = GetMonAbility(mon);   // we know our own party data
     u16 holdEffect = GetBattlerHoldEffect(GetMonData(mon, MON_DATA_HELD_ITEM), TRUE);
     u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
+    bool8 isEnemyMon = GetBattlerSide(currBattler) == B_SIDE_OPPONENT;
     
     if (flags == 0)
         return FALSE;
     
-    if (ability == ABILITY_MAGIC_GUARD || MonHasInnate(mon, ABILITY_MAGIC_GUARD) ||
-        ability == ABILITY_LEVITATE    || MonHasInnate(mon, ABILITY_LEVITATE)    ||
+    if (ability == ABILITY_MAGIC_GUARD || MonHasInnate(mon, ABILITY_MAGIC_GUARD, isEnemyMon) ||
+        ability == ABILITY_LEVITATE    || MonHasInnate(mon, ABILITY_LEVITATE, isEnemyMon)    ||
         holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
         return FALSE;
     

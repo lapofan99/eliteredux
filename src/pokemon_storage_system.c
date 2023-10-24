@@ -6920,13 +6920,13 @@ void SetArceusFormPSS(struct BoxPokemon *boxMon)
     u16 ability = GetAbilityBySpecies(species, abilityNum);
     u8 level = GetMonData(boxMon, MON_DATA_LEVEL);
 
-    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS && (ability == ABILITY_MULTITYPE  || BoxMonHasInnate(boxMon, ABILITY_MULTITYPE)))
+    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS && (ability == ABILITY_MULTITYPE  || BoxMonHasInnate(boxMon, ABILITY_MULTITYPE, FALSE)))
     {
         forme = GetArceusFormPSS(boxMon);
         SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);
         UpdateSpeciesSpritePSS(boxMon);
     }
-    else if(GET_BASE_SPECIES_ID(species) == SPECIES_SILVALLY && (ability == ABILITY_RKS_SYSTEM || BoxMonHasInnate(boxMon, ABILITY_RKS_SYSTEM)))
+    else if(GET_BASE_SPECIES_ID(species) == SPECIES_SILVALLY && (ability == ABILITY_RKS_SYSTEM || BoxMonHasInnate(boxMon, ABILITY_RKS_SYSTEM, FALSE)))
     {
         forme = GetSilvallyFormPSS(boxMon);
         SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);
