@@ -4106,11 +4106,8 @@ static void Cmd_jumpifability(void)
     {
     default:
         battlerId = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
-        if (GetBattlerAbility(battlerId) == ability)
+        if (BATTLER_HAS_ABILITY(battlerId, ability) && IsBattlerAlive(battlerId))
             hasAbility = TRUE;
-        else if (BattlerHasInnate(battlerId, ability)){
-            hasAbility = TRUE;
-        }
         break;
     case BS_ATTACKER_SIDE:
         battlerId = IsAbilityOnSide(gBattlerAttacker, ability);
