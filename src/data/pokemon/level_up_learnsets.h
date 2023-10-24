@@ -18119,6 +18119,7 @@ static const struct LevelUpMove sTapuKokoLevelUpLearnset[] = {
 	//LEVEL_UP_MOVE(49, MOVE_SKY_DROP), //new
 	LEVEL_UP_MOVE(53, MOVE_AGILITY),
 	LEVEL_UP_MOVE(58, MOVE_ELECTRO_BALL),
+    LEVEL_UP_MOVE(69, MOVE_PLAY_ROUGH),
 	LEVEL_UP_END
 };
 
