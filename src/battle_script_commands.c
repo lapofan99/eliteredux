@@ -445,7 +445,7 @@ static void Cmd_jumpifcantmakeasleep(void);
 static void Cmd_stockpile(void);
 static void Cmd_stockpiletobasedamage(void);
 static void Cmd_stockpiletohpheal(void);
-static void Cmd_setdrainedhp(void);
+static void Cmd_checkcondition(void);
 static void Cmd_statbuffchange(void);
 static void Cmd_normalisebuffs(void);
 static void Cmd_setbide(void);
@@ -712,7 +712,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_stockpile,                               //0x85
     Cmd_stockpiletobasedamage,                   //0x86
     Cmd_stockpiletohpheal,                       //0x87
-    Cmd_setdrainedhp,                            //0x88 //Unused
+    Cmd_checkcondition,                          //0x88
     Cmd_statbuffchange,                          //0x89
     Cmd_normalisebuffs,                          //0x8A
     Cmd_setbide,                                 //0x8B
@@ -736,7 +736,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_mimicattackcopy,                         //0x9D
     Cmd_metronome,                               //0x9E
     Cmd_calculatesetdamage,                      //0x9F
-    Cmd_trytoapplymoveeffect,                     //0xA0
+    Cmd_trytoapplymoveeffect,                    //0xA0
     Cmd_counterdamagecalculator,                 //0xA1
     Cmd_mirrorcoatdamagecalculator,              //0xA2
     Cmd_disablelastusedattack,                   //0xA3
@@ -10683,18 +10683,48 @@ static void Cmd_stockpiletohpheal(void)
     }
 }
 
-// Sign change for drained HP handled in GetDrainedBigRootHp
-static void Cmd_setdrainedhp(void)
+static void Cmd_checkcondition(void)
 {
-    if (gBattleMoves[gCurrentMove].argument != 0)
-        gBattleMoveDamage = (gHpDealt * gBattleMoves[gCurrentMove].argument / 100);
-    else
-        gBattleMoveDamage = (gHpDealt / 2);
-    
-    if (gBattleMoveDamage == 0)
-        gBattleMoveDamage = 1;
+    u8 targetSide = GetBattlerSide(gBattlerTarget);
+    u16 condition = T1_READ_16(gBattlescriptCurrInstr + 1);
+    const u8 *ptrBefore = gBattlescriptCurrInstr;
+    const u8 *jumpPtr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+    bool8 appliedEffect = FALSE;
 
-    gBattlescriptCurrInstr++;
+    switch(condition){
+        case CONDITION_SPIKES:
+            if (gSideTimers[targetSide].spikesAmount < 3)
+            {
+                gSideTimers[targetSide].spikesAmount++;
+                gSideStatuses[targetSide] |= SIDE_STATUS_SPIKES;
+                appliedEffect = TRUE;
+            }
+        break;
+        case CONDITION_TOXIC_SPIKES:
+            if (gSideTimers[targetSide].toxicSpikesAmount < 2)
+            {
+                gSideTimers[targetSide].toxicSpikesAmount++;
+                gSideStatuses[targetSide] |= SIDE_STATUS_TOXIC_SPIKES;
+                appliedEffect = TRUE;
+            }
+        break;
+        case CONDITION_STEALTH_ROCK:
+            if (!(gSideStatuses[targetSide] & SIDE_STATUS_STEALTH_ROCK))
+            {
+                gSideStatuses[targetSide] |= SIDE_STATUS_STEALTH_ROCK;
+                appliedEffect = TRUE;
+            }
+        break;
+    }
+
+    if (appliedEffect)
+    {
+        gBattlescriptCurrInstr += 7;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
+    }
 }
 
 static u16 ReverseStatChangeMoveEffect(u16 moveEffect)

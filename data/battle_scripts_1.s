@@ -8406,16 +8406,36 @@ BattleScript_BattlerAnnouncedToxicSpill::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
-BattleScript_DefenderSetsSpikeLayer::
+BattleScript_DefenderSetsSpikeLayer_LooseQuills::
 	savetarget
 	copybyte sSAVED_BATTLER, gBattlerAttacker
 	copybyte gBattlerAttacker, gBattlerTarget
 	copybyte gBattlerTarget, sSAVED_BATTLER
+	checkcondition CONDITION_SPIKES, BattleScript_DefenderSetsSpikeLayer_LooseQuillsEnd
+	sethword sABILITY_OVERWRITE, ABILITY_LOOSE_QUILLS
 	call BattleScript_AbilityPopUp
 	playmoveanimation BS_ATTACKER, MOVE_SPIKES
 	waitanimation
 	printstring STRINGID_SPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_DefenderSetsSpikeLayer_LooseQuillsEnd:
+	copybyte gBattlerAttacker, sSAVED_BATTLER
+	restoretarget
+	return
+
+BattleScript_DefenderSetsSpikeLayer_Scrapyard::
+	savetarget
+	copybyte sSAVED_BATTLER, gBattlerAttacker
+	copybyte gBattlerAttacker, gBattlerTarget
+	copybyte gBattlerTarget, sSAVED_BATTLER
+	checkcondition CONDITION_SPIKES, BattleScript_DefenderSetsSpikeLayer_ScrapyardEnd
+	sethword sABILITY_OVERWRITE, ABILITY_SCRAPYARD
+	call BattleScript_AbilityPopUp
+	playmoveanimation BS_ATTACKER, MOVE_SPIKES
+	waitanimation
+	printstring STRINGID_SPIKESSCATTERED
+	waitmessage B_WAIT_TIME_LONG
+BattleScript_DefenderSetsSpikeLayer_ScrapyardEnd:
 	copybyte gBattlerAttacker, sSAVED_BATTLER
 	restoretarget
 	return
@@ -8425,26 +8445,31 @@ BattleScript_DefenderSetsToxicSpikeLayer::
 	copybyte sSAVED_BATTLER, gBattlerAttacker
 	copybyte gBattlerAttacker, gBattlerTarget
 	copybyte gBattlerTarget, sSAVED_BATTLER
+	checkcondition CONDITION_SPIKES, BattleScript_DefenderSetsToxicSpikeLayerEnd
+	sethword sABILITY_OVERWRITE, ABILITY_TOXIC_DEBRIS
 	call BattleScript_AbilityPopUp
 	playmoveanimation BS_ATTACKER, MOVE_TOXIC_SPIKES
 	waitanimation
 	printstring STRINGID_POISONSPIKESSCATTERED
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_DefenderSetsToxicSpikeLayerEnd:
 	copybyte gBattlerAttacker, sSAVED_BATTLER
 	restoretarget
 	return
 
 BattleScript_DefenderSetsStealthRock::
-	sethword sABILITY_OVERWRITE, ABILITY_LOOSE_ROCKS
 	savetarget
 	copybyte sSAVED_BATTLER, gBattlerAttacker
 	copybyte gBattlerAttacker, gBattlerTarget
 	copybyte gBattlerTarget, sSAVED_BATTLER
+	checkcondition CONDITION_STEALTH_ROCK, BattleScript_DefenderSetsStealthRockEnd
+	sethword sABILITY_OVERWRITE, ABILITY_LOOSE_ROCKS
 	call BattleScript_AbilityPopUp
 	playmoveanimation BS_ATTACKER, MOVE_STEALTH_ROCK
 	waitanimation
 	printstring STRINGID_POINTEDSTONESFLOAT
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_DefenderSetsStealthRockEnd:
 	copybyte gBattlerAttacker, sSAVED_BATTLER
 	restoretarget
 	return

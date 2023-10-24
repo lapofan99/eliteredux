@@ -744,8 +744,10 @@
 	.4byte \param0
 	.endm
 
-	.macro setdrainedhp
+	.macro checkcondition condition:req, ptr:req
 	.byte 0x88
+	.2byte \condition
+	.4byte \ptr
 	.endm
 
 	.macro statbuffchange flags:req, jumpptr:req
