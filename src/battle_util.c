@@ -9547,7 +9547,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
                     {
                         for(i = 1; i < NUM_STATS; i++){
-                            if(gBattleMons[battler].statStages[i] <= MAX_STAT_STAGE && i != STAT_DEF)
+                            if(gBattleMons[battler].statStages[i] < MAX_STAT_STAGE && i != STAT_DEF)
                                 gBattleMons[battler].statStages[i] += 1;
                         }
 				        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
@@ -9698,15 +9698,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
 		// Absorbant
-		if (BattlerHasInnate(battler, ABILITY_ABSORBANT) || GetBattlerAbility(battler) == ABILITY_ABSORBANT){
+		if (BATTLER_HAS_ABILITY(battler, ABILITY_ABSORBANT)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
              && ((gBattleMoves[move].effect == EFFECT_ABSORB      && TARGET_TURN_DAMAGED) || 
                  (gBattleMoves[move].effect == EFFECT_DREAM_EATER && TARGET_TURN_DAMAGED) ||
-                 (gBattleMoves[move].effect == EFFECT_STRENGTH_SAP))
-             && (Random() % 3) == 0)
+                 (gBattleMoves[move].effect == EFFECT_STRENGTH_SAP)))
             {
 
                 gStatuses3[gBattlerTarget]   |= STATUS3_LEECHSEED;
