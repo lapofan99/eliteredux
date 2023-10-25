@@ -9033,7 +9033,9 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
        innate != ABILITY_GULP_MISSILE      &&
        innate != ABILITY_DISGUISE          &&
        innate != ABILITY_FLOWER_GIFT       &&
+       #ifdef BALANCE_RANDOMIZER_ABILITIES
        innate != ABILITY_ANGELS_WRATH      &&
+       #endif
        innate != ABILITY_HUNGER_SWITCH){ 
         //Only Randomize if you have the Innate Randomized Mode Enabled
         //Exclude form change abilities from being randomized and other mons can't get them either
@@ -9043,33 +9045,36 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
             randomizedInnate = randomizedInnate % ABILITIES_COUNT;
         }
         while(randomizedInnate == ABILITY_NONE            ||
-              randomizedInnate == ABILITY_HUGE_POWER      ||
-              randomizedInnate == ABILITY_PURE_POWER      ||
-              randomizedInnate == ABILITY_FELINE_PROWESS  ||
               randomizedInnate == ABILITY_HUNGER_SWITCH   ||
               randomizedInnate == ABILITY_ZEN_MODE        ||
               randomizedInnate == ABILITY_WONDER_GUARD    ||
               randomizedInnate == ABILITY_POWER_CONSTRUCT ||
               randomizedInnate == ABILITY_SCHOOLING       ||
               randomizedInnate == ABILITY_TRACE           ||
-              randomizedInnate == ABILITY_TRUANT          ||
               randomizedInnate == ABILITY_MULTITYPE       ||
               randomizedInnate == ABILITY_FORECAST        ||
               randomizedInnate == ABILITY_DISGUISE        ||
               randomizedInnate == ABILITY_STANCE_CHANGE   ||
-              randomizedInnate == ABILITY_COMATOSE        ||
               randomizedInnate == ABILITY_RKS_SYSTEM      ||
               randomizedInnate == ABILITY_BATTLE_BOND     ||
-              randomizedInnate == ABILITY_POWER_CONSTRUCT ||
               randomizedInnate == ABILITY_FLOWER_GIFT     ||
               randomizedInnate == ABILITY_ICE_FACE        ||
+              #ifdef BALANCE_RANDOMIZER_ABILITIES
+              randomizedInnate == ABILITY_COMATOSE        ||
+              randomizedInnate == ABILITY_TRUANT          ||
               randomizedInnate == ABILITY_ANGELS_WRATH    ||
+              randomizedInnate == ABILITY_HUGE_POWER      ||
+              randomizedInnate == ABILITY_PURE_POWER      ||
+              randomizedInnate == ABILITY_FELINE_PROWESS  ||
+              #endif
               randomizedInnate == ABILITY_GULP_MISSILE);
         return randomizedInnate;
     }
     else
         return innate;
 }
+
+//#define BALANCE_RANDOMIZER_ABILITIES
 
 u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
     if(gSaveBlock2Ptr->abilityRandomizedMode == 1 && 
@@ -9088,7 +9093,9 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
        ability != ABILITY_GULP_MISSILE      &&
        ability != ABILITY_DISGUISE          &&
        ability != ABILITY_FLOWER_GIFT       &&
+       #ifdef BALANCE_RANDOMIZER_ABILITIES
        ability != ABILITY_ANGELS_WRATH      &&
+       #endif
        ability != ABILITY_HUNGER_SWITCH){ 
         //Only Randomize if you have the Ability Randomized Mode Enabled
         //Exclude form change abilities from being randomized and other mons can't get them either
@@ -9098,27 +9105,28 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
             randomizedAbility = randomizedAbility % ABILITIES_COUNT;
         }
         while(randomizedAbility == ABILITY_NONE            ||
-              randomizedAbility == ABILITY_HUGE_POWER      ||
-              randomizedAbility == ABILITY_PURE_POWER      ||
-              randomizedAbility == ABILITY_FELINE_PROWESS  ||
               randomizedAbility == ABILITY_HUNGER_SWITCH   ||
               randomizedAbility == ABILITY_ZEN_MODE        ||
-              randomizedAbility == ABILITY_WONDER_GUARD    ||
               randomizedAbility == ABILITY_POWER_CONSTRUCT ||
               randomizedAbility == ABILITY_SCHOOLING       ||
               randomizedAbility == ABILITY_TRACE           ||
-              randomizedAbility == ABILITY_TRUANT          ||
               randomizedAbility == ABILITY_MULTITYPE       ||
               randomizedAbility == ABILITY_FORECAST        ||
               randomizedAbility == ABILITY_DISGUISE        ||
               randomizedAbility == ABILITY_STANCE_CHANGE   ||
-              randomizedAbility == ABILITY_COMATOSE        ||
               randomizedAbility == ABILITY_RKS_SYSTEM      ||
               randomizedAbility == ABILITY_BATTLE_BOND     ||
-              randomizedAbility == ABILITY_POWER_CONSTRUCT ||
               randomizedAbility == ABILITY_FLOWER_GIFT     ||
               randomizedAbility == ABILITY_ICE_FACE        ||
+              #ifdef BALANCE_RANDOMIZER_ABILITIES
+              randomizedAbility == ABILITY_COMATOSE        ||
+              randomizedAbility == ABILITY_WONDER_GUARD    ||
+              randomizedAbility == ABILITY_TRUANT          ||
               randomizedAbility == ABILITY_ANGELS_WRATH    ||
+              randomizedAbility == ABILITY_HUGE_POWER      ||
+              randomizedAbility == ABILITY_PURE_POWER      ||
+              randomizedAbility == ABILITY_FELINE_PROWESS  ||
+              #endif
               randomizedAbility == ABILITY_GULP_MISSILE);
         return randomizedAbility;
     }
