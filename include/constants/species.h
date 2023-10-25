@@ -1379,18 +1379,18 @@
 #define SPECIES_KINGDRA_MEGA_Y              FORMS_START + 340
 #define SPECIES_MEGANIUM_MEGA               FORMS_START + 341
 
-#define SPECIES_INFERNAPE_REDUX          FORMS_START + 342
-#define SPECIES_NOIBAT_REDUX             FORMS_START + 343
-#define SPECIES_NOIVERN_REDUX            FORMS_START + 344
+#define SPECIES_INFERNAPE_REDUX             FORMS_START + 342
+#define SPECIES_NOIBAT_REDUX                FORMS_START + 343
+#define SPECIES_NOIVERN_REDUX               FORMS_START + 344
 #define SPECIES_DEWLEON                     FORMS_START + 345
-#define SPECIES_LUXRAY_REDUX             FORMS_START + 346
-#define SPECIES_CLAWITZER_REDUX          FORMS_START + 347
-#define SPECIES_TEMP5_REDUX              FORMS_START + 348
-#define SPECIES_TEMP6_REDUX              FORMS_START + 349
-#define SPECIES_TEMP7_REDUX              FORMS_START + 350
-#define SPECIES_TEMP8_REDUX              FORMS_START + 351
-#define SPECIES_TEMP9_REDUX              FORMS_START + 352
-#define SPECIES_TEMP10_REDUX             FORMS_START + 353
+#define SPECIES_LUXRAY_REDUX                FORMS_START + 346
+#define SPECIES_CLAWITZER_REDUX             FORMS_START + 347
+#define SPECIES_TEMP5_REDUX                 FORMS_START + 348
+#define SPECIES_TEMP6_REDUX                 FORMS_START + 349
+#define SPECIES_TEMP7_REDUX                 FORMS_START + 350
+#define SPECIES_TEMP8_REDUX                 FORMS_START + 351
+#define SPECIES_TEMP9_REDUX                 FORMS_START + 352
+#define SPECIES_TEMP10_REDUX                FORMS_START + 353
 
 #define SPECIES_LUXRAY_MEGA                 FORMS_START + 354
 #define SPECIES_NIDOKING_MEGA               FORMS_START + 355
@@ -1410,7 +1410,7 @@
 #define SPECIES_TEMP_MEGA10                 FORMS_START + 369
 
 #define SPECIES_EGG SPECIES_TEMP_MEGA10 + 1
-#define NUM_SPECIES SPECIES_EGG
+#define NUM_SPECIES SPECIES_EGG + 1
 
 // National Dex Index Defines
 
