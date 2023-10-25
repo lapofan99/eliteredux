@@ -9337,6 +9337,7 @@ u16 GetRandomPokemonFromSpecies(u16 basespecies){
                 species == SPECIES_RAIKOU                     || 
                 species == SPECIES_ENTEI                      || 
                 species == SPECIES_SUICUNE                    || 
+                species == SPECIES_REGICE                     || 
                 species == SPECIES_REGIROCK                   || 
                 species == SPECIES_REGISTEEL                  || 
                 species == SPECIES_LATIAS                     || 
