@@ -8841,30 +8841,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        // Spinning Top
-        case ABILITY_SPINNING_TOP:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && TARGET_TURN_DAMAGED
-			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-			 && gBattleMoves[move].type == TYPE_FIGHTING) // Fighting-type moves
-            {
-                if(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_HAZARDS_ANY){
-                    gSideStatuses[GetBattlerSide(battler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
-                    BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
-                    gBattleScripting.battler = battler;
-                    effect++;
-                }
-                
-                if(CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)){
-                    gBattleMons[battler].statStages[STAT_SPEED]++;
-                    gBattleScripting.animArg1 = 14 + STAT_SPEED;
-                    gBattleScripting.animArg2 = 0;
-                    BattleScriptPushCursorAndCallback(BattleScript_SpeedBoostActivates);
-                    gBattleScripting.battler = battler;
-                    effect++;
-                }
-            }
-            break;
         // Hardened Sheath
 		case ABILITY_HARDENED_SHEATH:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -9172,23 +9148,37 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					effect++;
 				}
 		}
-        // Spinning Top
-		if (BattlerHasInnate(battler, ABILITY_SPINNING_TOP)){
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+        //Spinning Top
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_SPINNING_TOP)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_SPINNING_TOP; //For easier copypaste
+
+            //Checks if the ability is triggered
+            if(!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && TARGET_TURN_DAMAGED
 			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-			 && gBattleMoves[move].type == TYPE_FIGHTING) // Fighting-type moves
-            {
-                if(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_HAZARDS_ANY){
-				    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SPINNING_TOP;
+			 && gBattleMoves[move].type == TYPE_FIGHTING
+             && gBattleMoves[move].effect != EFFECT_MULTI_HIT){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                //Remove Hazards
+				if(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_HAZARDS_ANY){
+                    //If the ability is an innate overwrite the popout
+                    if(BattlerHasInnate(battler, abilityToCheck))
+                        gBattleScripting.abilityPopupOverwrite = abilityToCheck;
                     gSideStatuses[GetBattlerSide(battler)] &= ~(SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SPIKES_DAMAGED | SIDE_STATUS_STICKY_WEB);
                     BattleScriptPushCursorAndCallback(BattleScript_PickUpActivate);
                     gBattleScripting.battler = battler;
                     effect++;
                 }
-                
+                //Boosts Speed
                 if(CompareStat(battler, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN)){
-				    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SPINNING_TOP;
+                    //If the ability is an innate overwrite the popout
+                    if(BattlerHasInnate(battler, abilityToCheck))
+                        gBattleScripting.abilityPopupOverwrite = abilityToCheck;
                     gBattleMons[battler].statStages[STAT_SPEED]++;
                     gBattleScripting.animArg1 = 14 + STAT_SPEED;
                     gBattleScripting.animArg2 = 0;
@@ -9198,6 +9188,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 }
             }
         }
+
         // Hardened Sheath
 		if (BattlerHasInnate(battler, ABILITY_HARDENED_SHEATH)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
