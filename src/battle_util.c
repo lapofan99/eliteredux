@@ -3965,7 +3965,7 @@ u8 AtkCanceller_UnableToUseMove2(void)
         case CANCELLER_PSYCHIC_TERRAIN:
             if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN
                 && IsBattlerGrounded(gBattlerTarget)
-                && GetChosenMovePriority(gBattlerAttacker) > 0
+                && GetChosenMovePriority(gBattlerAttacker, gBattlerTarget) > 0
                 && gBattleMoves[gCurrentMove].target == MOVE_TARGET_SELECTED
                 && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gBattlerTarget))
             {
@@ -7044,7 +7044,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
            ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_QUEENLY_MAJESTY || 
              BattlerHasInnate(BATTLE_PARTNER(battler), ABILITY_QUEENLY_MAJESTY))   && 
              IsBattlerAlive(BATTLE_PARTNER(battler))))
-            && GetChosenMovePriority(gBattlerAttacker) > 0
+            && GetChosenMovePriority(gBattlerAttacker, battler) > 0
             && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
         {
             if(GetBattlerAbility(battler) == ABILITY_QUEENLY_MAJESTY || BattlerHasInnate(battler, ABILITY_QUEENLY_MAJESTY)){
@@ -7069,7 +7069,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         //Dazzling
         else if(((GetBattlerAbility(battler) == ABILITY_DAZZLING || BattlerHasInnate(battler, ABILITY_DAZZLING)) ||
            ((GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_DAZZLING || BattlerHasInnate(BATTLE_PARTNER(battler), ABILITY_DAZZLING)) && IsBattlerAlive(BATTLE_PARTNER(battler))))
-            && GetChosenMovePriority(gBattlerAttacker) > 0
+            && GetChosenMovePriority(gBattlerAttacker, battler) > 0
             && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(battler))
         {
             if(GetBattlerAbility(battler) == ABILITY_DAZZLING || BattlerHasInnate(battler, ABILITY_DAZZLING)){
@@ -8909,22 +8909,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-		case ABILITY_NOSFERATU:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && IsMoveMakingContact(move, gBattlerAttacker)
-             && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
-             && !BATTLER_MAX_HP(gBattlerAttacker) 
-             && IsBattlerAlive(gBattlerAttacker)
-             && TARGET_TURN_DAMAGED) // Need to actually hit the target
-            {
-                //Attacker
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
-                effect++;
-            }
-            break;
         case ABILITY_SOLENOGLYPHS:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -9093,7 +9077,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
         // Hydro Circuit
-		if (BattlerHasInnate(battler, ABILITY_HYDRO_CIRCUIT) || GetBattlerAbility(battler) == ABILITY_HYDRO_CIRCUIT){
+	    if(BATTLER_HAS_ABILITY(battler, ABILITY_WATER_BUBBLE)){
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
@@ -9110,18 +9094,28 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        // Nosferatu
-		if (BattlerHasInnate(battler, ABILITY_NOSFERATU)){
+        //Nosferatu
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_NOSFERATU)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_NOSFERATU; //For easier copypaste
+
+            //Checks if the ability is triggered
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
+             && IsBattlerAlive(gBattlerAttacker)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
              && IsMoveMakingContact(move, gBattlerAttacker)
              && !BATTLER_MAX_HP(gBattlerAttacker) 
              && IsBattlerAlive(gBattlerAttacker)
-             && TARGET_TURN_DAMAGED) // Need to actually hit the target
-            {
-                //Attacker
+             && TARGET_TURN_DAMAGED){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
                 effect++;
@@ -9574,11 +9568,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 break;
                 case MOVE_BUG_BITE:
                     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-                    && gBattleMons[gBattlerTarget].hp != 0
                     && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
                     && TARGET_TURN_DAMAGED)
                     {
-                        if(CanBattlerGetOrLoseItem(gBattlerTarget, gBattleMons[gBattlerTarget].item)){
+                        if(CanBattlerGetOrLoseItem(gBattlerTarget, gBattleMons[gBattlerTarget].item) && gBattleMons[gBattlerTarget].hp != 0){
                             gBattleMons[gBattlerTarget].item = ITEM_NONE;
                             BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_Bug_Bite);
                             effect++;
@@ -12253,7 +12246,7 @@ bool32 IsBattlerProtected(u8 battlerId, u16 move)
     else if (gProtectStructs[battlerId].angelsWrathProtected && gBattleMoves[move].power != 0)
         return TRUE;
     else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD
-             && GetChosenMovePriority(gBattlerAttacker) > 0)
+             && GetChosenMovePriority(gBattlerAttacker, battlerId) > 0)
         return TRUE;
     else if (gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD
       && IS_MOVE_STATUS(move))
@@ -12682,7 +12675,7 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             basePower *= 2;
         break;
     case EFFECT_EXPLOSION:
-        if (move == MOVE_MISTY_EXPLOSION &&  GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(battlerAtk))
+        if (move == MOVE_MISTY_EXPLOSION && GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN && IsBattlerGrounded(battlerAtk))
             MulModifier(&basePower, UQ_4_12(1.5));
         break;
     case EFFECT_DYNAMAX_DOUBLE_DMG:
@@ -12722,9 +12715,8 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             basePower *= 2;
         break;
     case EFFECT_RISING_VOLTAGE:
-        if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN && !IS_BATTLER_OF_TYPE(battlerDef, TYPE_FLYING)
-            && gBattleMons[battlerDef].item != ITEM_AIR_BALLOON && gBattleMons[battlerDef].ability != ABILITY_LEVITATE)
-        basePower *= 2;
+        if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN && !IsBattlerGrounded(battlerDef))
+            basePower *= 2;
         break;
     case EFFECT_EXPANDING_FORCE:
         if (GetCurrentTerrain() == STATUS_FIELD_PSYCHIC_TERRAIN)
@@ -12782,18 +12774,6 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     // attacker's abilities]
     switch (GetBattlerAbility(battlerAtk))
     {
-    case ABILITY_TECHNICIAN:
-        if (basePower <= 60)
-           MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-    case ABILITY_FLARE_BOOST:
-        if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_SPECIAL(move))
-           MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-    case ABILITY_TOXIC_BOOST:
-        if (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY && IS_MOVE_PHYSICAL(move))
-           MulModifier(&modifier, UQ_4_12(1.5));
-        break;
     case ABILITY_RECKLESS:
         if (gBattleMoves[move].flags & FLAG_RECKLESS_BOOST)
            MulModifier(&modifier, UQ_4_12(1.2));
@@ -12832,187 +12812,14 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
             && gBattleWeather & B_WEATHER_SANDSTORM && WEATHER_HAS_EFFECT)
            MulModifier(&modifier, UQ_4_12(1.3));
         break;
-    case ABILITY_RIVALRY:
-        if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality) != MON_GENDERLESS
-            && GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality) != MON_GENDERLESS)
-        {
-            if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality)
-             == GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality))
-               MulModifier(&modifier, UQ_4_12(1.25));
-            else
-               MulModifier(&modifier, UQ_4_12(1)); // was 0.75
-        }
-        break;
-	case ABILITY_DRAGONSLAYER: // Dragonslayer
-		if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
-            MulModifier(&modifier, UQ_4_12(1.5));
-		break;
-    case ABILITY_FAE_HUNTER: // Fae Hunter
-		if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_FAIRY)) // check if foe has Fairy-type
-            MulModifier(&modifier, UQ_4_12(1.5));
-		break;
-	case ABILITY_MARINE_APEX: // Marine Apex
-		if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER)) // check if foe has Water-type
-            MulModifier(&modifier, UQ_4_12(1.5));
-		break;
     case ABILITY_ANALYTIC:
         if (GetBattlerTurnOrderNum(battlerAtk) == gBattlersCount - 1 && move != MOVE_FUTURE_SIGHT && move != MOVE_DOOM_DESIRE)
            MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_TOUGH_CLAWS:
-    case ABILITY_BIG_PECKS:
-        if (IsMoveMakingContact(move, battlerAtk))
-           MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_STRONG_JAW:
-        if (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-    case ABILITY_MEGA_LAUNCHER:
-        if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-    case ABILITY_IRON_BARRAGE:
-        if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-    case ABILITY_WATER_BUBBLE:
-        if (moveType == TYPE_WATER)
-           MulModifier(&modifier, UQ_4_12(2.0));
         break;
     case ABILITY_STEELWORKER:
         if (moveType == TYPE_STEEL)
            MulModifier(&modifier, UQ_4_12(1.3)); // was 1.5
         break;
-    case ABILITY_PIXILATE:
-        if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_BUGINIZE:
-        if (moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_DRACONIZE:
-        if (moveType == TYPE_DRAGON && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-	case ABILITY_BURNATE:
-        if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_MINERALIZE:
-        if (moveType == TYPE_ROCK && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-	case ABILITY_SPECTRAL_SHROUD:
-        if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_SPECTRALIZE:
-        if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_SOLAR_FLARE:
-        if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-	case ABILITY_CRYSTALLIZE:
-        if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-	case ABILITY_FIGHT_SPIRIT:
-        if (moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-	case ABILITY_GROUNDATE:
-        if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-	case ABILITY_HYDRATE:
-        if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-	case ABILITY_POISONATE:
-        if (moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_GALVANIZE:
-        if (moveType == TYPE_ELECTRIC && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_REFRIGERATE:
-        if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_AERILATE:
-        if (moveType == TYPE_FLYING && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_NORMALIZE:
-        if (moveType == TYPE_NORMAL && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-        break;
-    case ABILITY_PUNK_ROCK:
-        if (gBattleMoves[move].flags & FLAG_SOUND)
-            MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_AMPLIFIER:
-        if (gBattleMoves[move].flags & FLAG_SOUND)
-            MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_STEELY_SPIRIT:
-        if (moveType == TYPE_STEEL)
-            MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_TRANSISTOR:
-        if (moveType == TYPE_ELECTRIC)
-            MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-    case ABILITY_DRAGONS_MAW:
-        if (moveType == TYPE_DRAGON)
-            MulModifier(&modifier, UQ_4_12(1.3));
-        break;
-    case ABILITY_LIQUID_VOICE:
-        if (gBattleMoves[move].flags & FLAG_SOUND)
-            MulModifier(&modifier, UQ_4_12(1.2));
-    case ABILITY_GORILLA_TACTICS:
-        if (IS_MOVE_PHYSICAL(move))
-            MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-    case ABILITY_SAGE_POWER:
-        if (IS_MOVE_SPECIAL(move))
-            MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-	case ABILITY_EXPLOIT_WEAKNESS:
-        if (gBattleMons[battlerDef].status1 & STATUS1_ANY)
-            MulModifier(&modifier, UQ_4_12(1.25));
-        break;
-	case ABILITY_AVENGER:
-		if (gSideTimers[atkSide].retaliateTimer == 1)
-            MulModifier(&modifier, UQ_4_12(1.5));
-		break;
-	/*case ABILITY_NOCTURNAL: // Nocturnal old effect
-		if (!IsCurrentlyDay())
-            MulModifier(&modifier, UQ_4_12(1.1));
-		break;*/
-	case ABILITY_DREAMCATCHER:
-		if (numsleepmons == 1)
-            MulModifier(&modifier, UQ_4_12(2.0)); // buffed bc of Sleep Clause
-		else if (numsleepmons == 2)
-            MulModifier(&modifier, UQ_4_12(2.0));
-		else if (numsleepmons == 3)
-            MulModifier(&modifier, UQ_4_12(2.0));
-		else if (numsleepmons == 4)
-            MulModifier(&modifier, UQ_4_12(2.0));
-		break;
-	case ABILITY_LONG_REACH:
-		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
-            MulModifier(&modifier, UQ_4_12(1.2));
-		break;
-	case ABILITY_VIOLENT_RUSH:
-		if (gDisableStructs[battlerAtk].isFirstTurn)
-           MulModifier(&modifier, UQ_4_12(1.2));
-	    break;
     }
 	
 	// Attacker Innates
@@ -13080,318 +12887,203 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     }
 	
 	// Strong Jaw
-	if(BattlerHasInnate(battlerAtk, ABILITY_STRONG_JAW)){
-		if (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.5));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STRONG_JAW) && (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST))
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Pixilate
-	if(BattlerHasInnate(battlerAtk, ABILITY_PIXILATE)){
-		if (moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PIXILATE) && moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
 
     // Buginize
-	if(BattlerHasInnate(battlerAtk, ABILITY_BUGINIZE)){
-		if (moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BUGINIZE) && moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
 
     // Draconize
-    if(BattlerHasInnate(battlerAtk, ABILITY_DRACONIZE)){
-        if (moveType == TYPE_DRAGON && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DRACONIZE) && moveType == TYPE_DRAGON && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Galvanize
-	if(BattlerHasInnate(battlerAtk, ABILITY_GALVANIZE)){
-		if (moveType == TYPE_ELECTRIC && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_GALVANIZE) && moveType == TYPE_ELECTRIC && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Refrigerate
-	if(BattlerHasInnate(battlerAtk, ABILITY_REFRIGERATE)){
-		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_REFRIGERATE) && moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Aerilate
-	if(BattlerHasInnate(battlerAtk, ABILITY_AERILATE)){
-		if (moveType == TYPE_FLYING && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AERILATE) && moveType == TYPE_FLYING && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Normalize
-	if(BattlerHasInnate(battlerAtk, ABILITY_NORMALIZE)){
-		if (moveType == TYPE_NORMAL && gBattleStruct->ateBoost[battlerAtk])
-            MulModifier(&modifier, UQ_4_12(1.1));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_NORMALIZE) && moveType == TYPE_NORMAL && gBattleStruct->ateBoost[battlerAtk])
+        MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Punk Rock
-	if(BattlerHasInnate(battlerAtk, ABILITY_PUNK_ROCK)){
-		if (gBattleMoves[move].flags & FLAG_SOUND)
-            MulModifier(&modifier, UQ_4_12(1.3));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PUNK_ROCK) && (gBattleMoves[move].flags & FLAG_SOUND))
+        MulModifier(&modifier, UQ_4_12(1.3));
 
     // Amplifier
-	if(BattlerHasInnate(battlerAtk, ABILITY_AMPLIFIER)){
-		if (gBattleMoves[move].flags & FLAG_SOUND)
-            MulModifier(&modifier, UQ_4_12(1.3));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AMPLIFIER) && (gBattleMoves[move].flags & FLAG_SOUND))
+        MulModifier(&modifier, UQ_4_12(1.3));
 	
 	// Steely Spirit
-	if(BattlerHasInnate(battlerAtk, ABILITY_STEELY_SPIRIT)){
-		if (moveType == TYPE_STEEL)
-            MulModifier(&modifier, UQ_4_12(1.5));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_STEELY_SPIRIT) && moveType == TYPE_STEEL)
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Transistor
-	if(BattlerHasInnate(battlerAtk, ABILITY_TRANSISTOR)){
-		if (moveType == TYPE_ELECTRIC)
-            MulModifier(&modifier, UQ_4_12(1.5));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TRANSISTOR) && moveType == TYPE_ELECTRIC)
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Dragon's Maw
-	if(BattlerHasInnate(battlerAtk, ABILITY_DRAGONS_MAW)){
-		if (moveType == TYPE_DRAGON)
-            MulModifier(&modifier, UQ_4_12(1.5));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DRAGONS_MAW) && moveType == TYPE_DRAGON)
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Liquid Voice
-	if(BattlerHasInnate(battlerAtk, ABILITY_LIQUID_VOICE)){
-		if (gBattleMoves[move].flags & FLAG_SOUND)
-            MulModifier(&modifier, UQ_4_12(1.2));
-    }
-	
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LIQUID_VOICE) && (gBattleMoves[move].flags & FLAG_SOUND))
+        MulModifier(&modifier, UQ_4_12(1.2));
+
 	// Gorilla Tactics
-	if(BattlerHasInnate(battlerAtk, ABILITY_GORILLA_TACTICS)){
-		if (IS_MOVE_PHYSICAL(move))
-            MulModifier(&modifier, UQ_4_12(1.5));
-    }
-	
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_GORILLA_TACTICS) && IS_MOVE_PHYSICAL(move))
+        MulModifier(&modifier, UQ_4_12(1.5));
+
 	// Sage Power
-	if(BattlerHasInnate(battlerAtk, ABILITY_SAGE_POWER)){
-		if (IS_MOVE_SPECIAL(move))
-            MulModifier(&modifier, UQ_4_12(1.5));
-    }
-	
-	// Exploit Weakness
-	if(BattlerHasInnate(battlerAtk, ABILITY_EXPLOIT_WEAKNESS)){
-		if (gBattleMons[battlerDef].status1 & STATUS1_ANY){
-            MulModifier(&modifier, UQ_4_12(1.25));
-		}
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SAGE_POWER) && IS_MOVE_SPECIAL(move))
+        MulModifier(&modifier, UQ_4_12(1.5));
+
+    //Exploit Weakness
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_EXPLOIT_WEAKNESS) && (gBattleMons[battlerDef].status1 & STATUS1_ANY))
+        MulModifier(&modifier, UQ_4_12(1.25));
 
 	// Avenger
-	if(BattlerHasInnate(battlerAtk, ABILITY_AVENGER)){
-		if (gSideTimers[atkSide].retaliateTimer == 1)
-            MulModifier(&modifier, UQ_4_12(1.5));
-    }
-	
-	//Nocturnal old effect
-	/*if(BattlerHasInnate(battlerAtk, ABILITY_NOCTURNAL)){
-		if (!IsCurrentlyDay())
-            MulModifier(&modifier, UQ_4_12(1.1));
-	}*/
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AVENGER) && gSideTimers[atkSide].retaliateTimer == 1)
+        MulModifier(&modifier, UQ_4_12(1.5));
 
 	// Burnate
-	if(BattlerHasInnate(battlerAtk, ABILITY_BURNATE)){
-		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BURNATE) && moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 
     // Mineralize
-    if(BattlerHasInnate(battlerAtk, ABILITY_MINERALIZE)){
-        if (moveType == TYPE_ROCK && gBattleStruct->ateBoost[battlerAtk])
-                MulModifier(&modifier, UQ_4_12(1.1));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MINERALIZE) && moveType == TYPE_ROCK && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 
     // Spectral Shroud
-	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRAL_SHROUD)){
-		if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SPECTRAL_SHROUD) && moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 
     // Spectralize
-	if(BattlerHasInnate(battlerAtk, ABILITY_SPECTRALIZE)){
-		if (moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SPECTRALIZE) && moveType == TYPE_GHOST && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 
     // Solar Flare
-	if(BattlerHasInnate(battlerAtk, ABILITY_SOLAR_FLARE)){
-		if (moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SOLAR_FLARE) && moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 
 	// Crystallize
-	if(BattlerHasInnate(battlerAtk, ABILITY_CRYSTALLIZE)){
-		if (moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_CRYSTALLIZE) && moveType == TYPE_ICE && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 
 	// Fight Spirit
-	if(BattlerHasInnate(battlerAtk, ABILITY_FIGHT_SPIRIT)){
-		if (moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FIGHT_SPIRIT) && moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Groundate
-	if(BattlerHasInnate(battlerAtk, ABILITY_GROUNDATE)){
-		if (moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_GROUNDATE) && moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Hydrate
-	if(BattlerHasInnate(battlerAtk, ABILITY_HYDRATE)){
-		if (moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HYDRATE) && moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Poisonate
-	if(BattlerHasInnate(battlerAtk, ABILITY_POISONATE)){
-		if (moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
-				MulModifier(&modifier, UQ_4_12(1.1));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POISONATE) && moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
+		MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Long Reach
-	if(BattlerHasInnate(battlerAtk, ABILITY_LONG_REACH)){
-		if (IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
-            MulModifier(&modifier, UQ_4_12(1.2));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_LONG_REACH) && IS_MOVE_PHYSICAL(move) && !(gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
+        MulModifier(&modifier, UQ_4_12(1.2));
 	
 	// Tough Claws & Big Pecks
-	if(BattlerHasInnate(battlerAtk, ABILITY_TOUGH_CLAWS) || 
-       BattlerHasInnate(battlerAtk, ABILITY_BIG_PECKS)){
-        if (IsMoveMakingContact(move, battlerAtk))
+	if((BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TOUGH_CLAWS) ||
+        BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BIG_PECKS))  && 
+        IsMoveMakingContact(move, battlerAtk))
            MulModifier(&modifier, UQ_4_12(1.3));
-	}
 	
 	//DreamCatcher
-	if(BattlerHasInnate(battlerAtk, ABILITY_DREAMCATCHER)){
-		switch(numsleepmons){
-			case 1:
-				MulModifier(&modifier, UQ_4_12(2.0)); // buffed bc of Sleep Clause
-			break;
-			case 2:
-				MulModifier(&modifier, UQ_4_12(2.0));
-			break;
-			case 3:
-				MulModifier(&modifier, UQ_4_12(2.0));
-			break;
-			case 4:
-				MulModifier(&modifier, UQ_4_12(2.0));
-			break;
-		}
-	}
-	
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DREAMCATCHER) && numsleepmons > 0) //It used to be depending on the number of sleeping mons, but the sleep clause made it useless
+		MulModifier(&modifier, UQ_4_12(2.0));
+
 	// Rivalry
-	if(BattlerHasInnate(battlerAtk, ABILITY_RIVALRY)){
-	if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality) != MON_GENDERLESS
+    if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_RIVALRY)){
+        if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality) != MON_GENDERLESS
             && GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality) != MON_GENDERLESS)
-        {
-            if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality)
-             == GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality))
-               MulModifier(&modifier, UQ_4_12(1.25));
-            else
-               MulModifier(&modifier, UQ_4_12(1)); // was 0.75
-        }
+            {
+                if (GetGenderFromSpeciesAndPersonality(gBattleMons[battlerAtk].species, gBattleMons[battlerAtk].personality)
+                == GetGenderFromSpeciesAndPersonality(gBattleMons[battlerDef].species, gBattleMons[battlerDef].personality))
+                MulModifier(&modifier, UQ_4_12(1.25));
+            }
 	}
 	
 	// Dragonslayer
-	if(BattlerHasInnate(battlerAtk, ABILITY_DRAGONSLAYER)){
-        if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
-                MulModifier(&modifier, UQ_4_12(1.5));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_DRAGONSLAYER) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_DRAGON)) // check if foe has Dragon-type
+        MulModifier(&modifier, UQ_4_12(1.5));
 
     // Fae Hunter
-	if(BattlerHasInnate(battlerAtk, ABILITY_FAE_HUNTER)){
-        if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_FAIRY)) // check if foe has Fairy-type
-                MulModifier(&modifier, UQ_4_12(1.5));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FAE_HUNTER) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FAIRY)) // check if foe has Fairy-type
+        MulModifier(&modifier, UQ_4_12(1.5));
 
     // Marine Apex
-	if(BattlerHasInnate(battlerAtk, ABILITY_MARINE_APEX)){
-        if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER)) // check if foe has Water-type
-                MulModifier(&modifier, UQ_4_12(1.5));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MARINE_APEX) && IS_BATTLER_OF_TYPE(battlerDef, TYPE_WATER)) // check if foe has Water-type
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
-	// Huge Power
-	if(BattlerHasInnate(battlerAtk, ABILITY_HUGE_POWER)){
-        if (IS_MOVE_PHYSICAL(move))
-            MulModifier(&modifier, UQ_4_12(2.0));
-    }
-	
-	// Pure Power
-	if(BattlerHasInnate(battlerAtk, ABILITY_PURE_POWER)){
-        if (IS_MOVE_PHYSICAL(move))
-            MulModifier(&modifier, UQ_4_12(2.0));
-    }
-	
+	// Huge Power & Pure Power
+	if((BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HUGE_POWER)  ||
+        BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PURE_POWER)) && 
+        IS_MOVE_PHYSICAL(move))
+           MulModifier(&modifier, UQ_4_12(2.0));
+
 	// Feline Prowess
-	if(BattlerHasInnate(battlerAtk, ABILITY_FELINE_PROWESS)){
-		if (IS_MOVE_SPECIAL(move))
-            MulModifier(&modifier, UQ_4_12(2.0));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FELINE_PROWESS) && IS_MOVE_SPECIAL(move))
+        MulModifier(&modifier, UQ_4_12(2.0));
 	
 	// Majestic Bird
-	if(BattlerHasInnate(battlerAtk, ABILITY_MAJESTIC_BIRD)){
-		if (IS_MOVE_SPECIAL(move))
-            MulModifier(&modifier, UQ_4_12(1.5));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MAJESTIC_BIRD) && IS_MOVE_SPECIAL(move))
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	//Toxic Boost
-	if(BattlerHasInnate(battlerAtk, ABILITY_TOXIC_BOOST)){
-		if (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY && IS_MOVE_PHYSICAL(move))
-           MulModifier(&modifier, UQ_4_12(1.5));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TOXIC_BOOST) && (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY) && IS_MOVE_PHYSICAL(move))
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	//Flare Boost
-	if(BattlerHasInnate(battlerAtk, ABILITY_FLARE_BOOST)){
-		if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_SPECIAL(move))
-           MulModifier(&modifier, UQ_4_12(1.5));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FLARE_BOOST) && (gBattleMons[battlerAtk].status1 & STATUS1_BURN) && IS_MOVE_SPECIAL(move))
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Mega Launcher
-	if(BattlerHasInnate(battlerAtk, ABILITY_MEGA_LAUNCHER)){
-		if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.5));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_MEGA_LAUNCHER) && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
+        MulModifier(&modifier, UQ_4_12(1.5));
 
     // Iron Barrage
-	if(BattlerHasInnate(battlerAtk, ABILITY_IRON_BARRAGE)){
-		if (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST)
-           MulModifier(&modifier, UQ_4_12(1.5));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IRON_BARRAGE) && (gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST))
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Hustle
-	if(BattlerHasInnate(battlerAtk, ABILITY_HUSTLE)){
-            MulModifier(&modifier, UQ_4_12(1.4));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HUSTLE))
+        MulModifier(&modifier, UQ_4_12(1.4));
 	
 	// Technician
-	if(BattlerHasInnate(battlerAtk, ABILITY_TECHNICIAN)){
-        if (basePower <= 60)
-           MulModifier(&modifier, UQ_4_12(1.5));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TECHNICIAN) && basePower <= 60)
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Water Bubble
-	if(BattlerHasInnate(battlerAtk, ABILITY_WATER_BUBBLE)){
-        if (moveType == TYPE_WATER)
-           MulModifier(&modifier, UQ_4_12(2.0));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_WATER_BUBBLE) && moveType == TYPE_WATER)
+        MulModifier(&modifier, UQ_4_12(2.0));
 
     // Hydro Circuit
-	if(BattlerHasInnate(battlerAtk, ABILITY_HYDRO_CIRCUIT) || GetBattlerAbility(battlerAtk) == ABILITY_HYDRO_CIRCUIT){
-        if (moveType == TYPE_ELECTRIC)
-            MulModifier(&modifier, UQ_4_12(1.5));
-    }
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HYDRO_CIRCUIT) && moveType == TYPE_ELECTRIC)
+        MulModifier(&modifier, UQ_4_12(1.5));
 	
 	// Violent Rush
-	if(BattlerHasInnate(battlerAtk, ABILITY_VIOLENT_RUSH)){
-        if (gDisableStructs[battlerAtk].isFirstTurn)
-           MulModifier(&modifier, UQ_4_12(1.2));
-	}
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_VIOLENT_RUSH) && (gDisableStructs[battlerAtk].isFirstTurn))
+        MulModifier(&modifier, UQ_4_12(1.2));
 	
     // Field Abilities
     if ((IsAbilityOnField(ABILITY_DARK_AURA) && moveType == TYPE_DARK)
@@ -13404,14 +13096,11 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     }
 
     // Pretty Princess
-	if(BattlerHasInnate(battlerAtk, ABILITY_PRETTY_PRINCESS) || GetBattlerAbility(battlerAtk) == ABILITY_PRETTY_PRINCESS){
-        if(!BattlerHasInnate(battlerDef, ABILITY_UNAWARE)   && 
-           GetBattlerAbility(battlerDef) != ABILITY_UNAWARE &&
-           !BattlerHasInnate(battlerAtk, ABILITY_UNAWARE)   && 
-           GetBattlerAbility(battlerAtk) != ABILITY_UNAWARE &&
-           HasAnyLoweredStat(battlerDef)){
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PRETTY_PRINCESS)){
+        if(!BATTLER_HAS_ABILITY(battlerAtk, ABILITY_UNAWARE) &&
+           !BattlerHasInnate(battlerDef, ABILITY_UNAWARE) &&
+           HasAnyLoweredStat(battlerDef))
             MulModifier(&modifier, UQ_4_12(1.5));
-        }
     }
 
     // Attacker Partner's Abilities
@@ -13927,11 +13616,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     // attacker's abilities
     switch (GetBattlerAbility(battlerAtk))
     {
-    case ABILITY_HUGE_POWER:
-    case ABILITY_PURE_POWER:
-        if (IS_MOVE_PHYSICAL(move))
-            MulModifier(&modifier, UQ_4_12(2.0));
-        break;
     case ABILITY_SLOW_START:
         if (gDisableStructs[battlerAtk].slowStartTimer != 0)
             MulModifier(&modifier, UQ_4_12(0.5));
@@ -14129,9 +13813,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (gBattleMons[battlerAtk].species == SPECIES_CHERRIM && IsBattlerWeatherAffected(battlerAtk, WEATHER_SUN_ANY) && IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
-    case ABILITY_HUSTLE:
-            MulModifier(&modifier, UQ_4_12(1.4));
-        break;
     case ABILITY_STAKEOUT:
         if (gDisableStructs[battlerDef].isFirstTurn == 2) // just switched in
             MulModifier(&modifier, UQ_4_12(2.0));
@@ -14142,14 +13823,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         break;
     case ABILITY_GUTS:
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY && IS_MOVE_PHYSICAL(move))
-            MulModifier(&modifier, UQ_4_12(1.5));
-        break;
-	case ABILITY_FELINE_PROWESS:
-        if (IS_MOVE_SPECIAL(move))
-            MulModifier(&modifier, UQ_4_12(2.0));
-        break;
-	case ABILITY_MAJESTIC_BIRD:
-        if (IS_MOVE_SPECIAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
 	case ABILITY_ELECTRIC_BURST:
@@ -14214,11 +13887,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 			)
                 MulModifier(&modifier, UQ_4_12(1.5));
         }
-	}
-
-	// Hustle
-	if(BattlerHasInnate(battlerAtk, ABILITY_HUSTLE)){
-            MulModifier(&modifier, UQ_4_12(1.4));
 	}
 	
 	// Stakeout
@@ -16664,24 +16332,19 @@ bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler)
 static bool8 DoesMoveBoostStats(u16 move){
     switch(gBattleMoves[move].effect){
         //Multiple Stats Up
-        case EFFECT_ALL_STATS_UP_HIT:
         case EFFECT_CALM_MIND:
         //Attack
-        case EFFECT_ATTACK_UP_HIT:
         case EFFECT_ATTACK_UP:
         case EFFECT_ATTACK_UP_2:
         case EFFECT_HOWL:
         //Defense
-        case EFFECT_DEFENSE_UP_HIT:
         case EFFECT_DEFENSE_UP:
         case EFFECT_DEFENSE_UP_2: 
         //Special Attack
-        case EFFECT_SP_ATTACK_UP_HIT:
         case EFFECT_SPECIAL_ATTACK_UP:
         case EFFECT_SPECIAL_ATTACK_UP_2:
         case EFFECT_SPECIAL_ATTACK_UP_3:
 		//Special Defense
-		//case EFFECT_SPECIAL_DEFENSE_UP:
 		case EFFECT_SPECIAL_DEFENSE_UP_2:
 		//Speed
 		case EFFECT_SPEED_UP_HIT:
@@ -16689,6 +16352,14 @@ static bool8 DoesMoveBoostStats(u16 move){
 	    //Accuracy
 		//case EFFECT_ACCURACY_UP:
             return TRUE;
+        break;
+        case EFFECT_ATTACK_UP_HIT:
+		case EFFECT_SPECIAL_DEFENSE_UP:
+        case EFFECT_SP_ATTACK_UP_HIT:
+        case EFFECT_DEFENSE_UP_HIT:
+        case EFFECT_ALL_STATS_UP_HIT:
+            if(gBattleMoves[move].secondaryEffectChance == 100 || (gBattleScripting.moveEffect & MOVE_EFFECT_CERTAIN) || FlagGet(FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED))
+                return TRUE;
         break;
     }
     return FALSE;

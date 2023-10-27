@@ -475,6 +475,7 @@ BattleScript_EffectSteelBeam::
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
+	jumpifability BS_ATTACKER, ABILITY_STEEL_BARREL, BattleScript_SteelBeamAfterSelfDamage
 	jumpifability BS_ATTACKER, ABILITY_IMPENETRABLE, BattleScript_SteelBeamAfterSelfDamage
 	jumpifability BS_ATTACKER, ABILITY_MAGIC_GUARD,  BattleScript_SteelBeamAfterSelfDamage
 	call BattleScript_SteelBeamSelfDamage

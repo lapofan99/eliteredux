@@ -4917,7 +4917,7 @@ u32 GetBattlerTotalSpeedStat(u8 battlerId)
     return speed;
 }
 
-s8 GetChosenMovePriority(u32 battlerId)
+s8 GetChosenMovePriority(u32 battlerId, u32 target)
 {
     u16 move;
 
@@ -4927,14 +4927,18 @@ s8 GetChosenMovePriority(u32 battlerId)
     else
         move = gBattleMons[battlerId].moves[*(gBattleStruct->chosenMovePositions + battlerId)];
 
-    return GetMovePriority(battlerId, move);
+    return GetMovePriority(battlerId, move, target);
 }
 
-s8 GetMovePriority(u32 battlerId, u16 move)
+s8 GetMovePriority(u32 battlerId, u16 move, u32 target)
 {
     s8 priority;
 
     priority = gBattleMoves[move].priority;
+
+    if(BATTLER_HAS_ABILITY(battlerId, ABILITY_OPPORTUNIST) && gBattleMons[target].hp <= gBattleMons[target].maxHP / 2)
+        priority++;
+
 	// Gale Wings
     if ((GetBattlerAbility(battlerId) == ABILITY_GALE_WINGS  || BattlerHasInnate(battlerId, ABILITY_GALE_WINGS))
         && GetTypeBeforeUsingMove(move, battlerId) == TYPE_FLYING
@@ -5047,12 +5051,6 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     // Quick Draw
     if (!ignoreChosenMoves && GetBattlerAbility(battler1) == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler1]) && Random() % 100 < 30)
         gProtectStructs[battler1].quickDraw = TRUE;
-
-    // Opportunist
-    if (!ignoreChosenMoves && (GetBattlerAbility(battler1) == ABILITY_OPPORTUNIST || BattlerHasInnate(battler1, ABILITY_OPPORTUNIST)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-        && gBattleMons[battler2].hp <= gBattleMons[battler2].maxHP / 2 && gBattleMoves[gBattleMons[battler1].moves[*(gBattleStruct->chosenMovePositions + battler1)]].target == MOVE_TARGET_SELECTED){
-            gProtectStructs[battler1].quickDraw = TRUE;
-    }
     
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler1].quickDraw
@@ -5068,10 +5066,6 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     // Quick Draw
     if (!ignoreChosenMoves && GetBattlerAbility(battler2) == ABILITY_QUICK_DRAW && !IS_MOVE_STATUS(gChosenMoveByBattler[battler2]) && Random() % 100 < 30)
         gProtectStructs[battler2].quickDraw = TRUE;
-    // Opportunist
-    if (!ignoreChosenMoves && (GetBattlerAbility(battler2) == ABILITY_OPPORTUNIST || BattlerHasInnate(battler2, ABILITY_OPPORTUNIST)) && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-        && gBattleMons[battler1].hp <= gBattleMons[battler1].maxHP / 2 && gBattleMoves[gBattleMons[battler2].moves[*(gBattleStruct->chosenMovePositions + battler2)]].target == MOVE_TARGET_SELECTED)
-        gProtectStructs[battler2].quickDraw = TRUE;
     // Quick Claw and Custap Berry
     if (!gProtectStructs[battler2].quickDraw
      && ((holdEffectBattler2 == HOLD_EFFECT_QUICK_CLAW && gRandomTurnNumber < (0xFFFF * GetBattlerHoldEffectParam(battler2)) / 100)
@@ -5083,9 +5077,9 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
     if (!ignoreChosenMoves)
     {
         if (gChosenActionByBattler[battler1] == B_ACTION_USE_MOVE)
-            priority1 = GetChosenMovePriority(battler1);
+            priority1 = GetChosenMovePriority(battler1, battler2);
         if (gChosenActionByBattler[battler2] == B_ACTION_USE_MOVE)
-            priority2 = GetChosenMovePriority(battler2);
+            priority2 = GetChosenMovePriority(battler2, battler1);
     }
 
     if (priority1 == priority2)
@@ -5439,15 +5433,6 @@ static void CheckQuickClaw_CustapBerryActivation(void)
                         PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                         //gBattlerAbility = gActiveBattler;
                         RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
-                        BattleScriptExecute(BattleScript_QuickDrawActivation);
-                    }
-                    else if(gBattleMons[gActiveBattler].ability == ABILITY_OPPORTUNIST || 
-                            BattlerHasInnate(gActiveBattler, ABILITY_OPPORTUNIST)){
-                        gProtectStructs[gActiveBattler].quickDraw = FALSE;
-                        gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_OPPORTUNIST;
-                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-                        gBattlerAbility = gActiveBattler;
-                        //RecordAbilityBattle(gActiveBattler, gLastUsedAbility);
                         BattleScriptExecute(BattleScript_QuickDrawActivation);
                     }
                     else{
