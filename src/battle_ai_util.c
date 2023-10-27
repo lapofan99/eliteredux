@@ -1062,7 +1062,7 @@ bool32 IsAiFaster(u8 battler)
     s8 prioAI, prioPlayer;
 
     // Check move priorities first.
-    prioAI = GetMovePriority(sBattler_AI, AI_THINKING_STRUCT->moveConsidered);
+    prioAI = GetMovePriority(sBattler_AI, AI_THINKING_STRUCT->moveConsidered, gBattlerTarget);
     SaveBattlerData(gBattlerTarget);
     SetBattlerData(gBattlerTarget);
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -1070,7 +1070,7 @@ bool32 IsAiFaster(u8 battler)
         if (gBattleMons[gBattlerTarget].moves[i] == 0 || gBattleMons[gBattlerTarget].moves[i] == 0xFFFF)
             continue;
 
-        prioPlayer = GetMovePriority(gBattlerTarget, gBattleMons[gBattlerTarget].moves[i]);
+        prioPlayer = GetMovePriority(gBattlerTarget, gBattleMons[gBattlerTarget].moves[i], battler);
         if (prioAI > prioPlayer)
             fasterAI++;
         else if (prioPlayer > prioAI)

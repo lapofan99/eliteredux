@@ -547,7 +547,7 @@ static void BattleAI_DoAIProcessing(void)
 static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 {
     // move data
-    u8 atkPriority = GetMovePriority(battlerAtk, move);
+    u8 atkPriority = GetMovePriority(battlerAtk, move, battlerDef);
     u16 moveEffect = gBattleMoves[move].effect;
     s32 moveType;
     u16 moveTarget = gBattleMoves[move].target;
@@ -2921,7 +2921,7 @@ static s16 AI_TryToFaint(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0) && gBattleMoves[move].effect != EFFECT_EXPLOSION)
     {
         // this move can faint the target
-        if (GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 0 || GetMovePriority(battlerAtk, move) > 0)
+        if (GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 0 || GetMovePriority(battlerAtk, move, battlerDef) > 0)
             score += 4; // we go first or we're using priority move
         else
             score += 2;
@@ -3351,7 +3351,7 @@ static s16 AI_CheckViability(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     // move data
     u16 moveEffect = gBattleMoves[move].effect;
     u8 effectiveness = AI_GetMoveEffectiveness(move, battlerAtk, battlerDef);
-    u8 atkPriority = GetMovePriority(battlerAtk, move);
+    u8 atkPriority = GetMovePriority(battlerAtk, move, battlerDef);
     u16 predictedMove = gLastMoves[battlerDef]; //for now
     bool32 isDoubleBattle = IsValidDoubleBattle(battlerAtk);
     u32 i;
@@ -5159,7 +5159,7 @@ static s16 AI_SetupFirstTurn(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (AI_THINKING_STRUCT->aiFlags & AI_FLAG_SMART_SWITCHING 
       && GetWhoStrikesFirst(battlerAtk, battlerDef, TRUE) == 1
       && CanTargetFaintAi(battlerDef, battlerAtk)
-      && GetMovePriority(battlerAtk, move) == 0)
+      && GetMovePriority(battlerAtk, move, battlerDef) == 0)
     {
         RETURN_SCORE_MINUS(20);    // No point in setting up if you will faint. Should just switch if possible..
     }
