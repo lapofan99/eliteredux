@@ -8909,22 +8909,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-		case ABILITY_NOSFERATU:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && IsMoveMakingContact(move, gBattlerAttacker)
-             && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
-             && !BATTLER_MAX_HP(gBattlerAttacker) 
-             && IsBattlerAlive(gBattlerAttacker)
-             && TARGET_TURN_DAMAGED) // Need to actually hit the target
-            {
-                //Attacker
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
-                effect++;
-            }
-            break;
         case ABILITY_SOLENOGLYPHS:
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && gBattleMons[gBattlerTarget].hp != 0
@@ -9110,18 +9094,28 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
         }
 
-        // Nosferatu
-		if (BattlerHasInnate(battler, ABILITY_NOSFERATU)){
+        //Nosferatu
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_NOSFERATU)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_NOSFERATU; //For easier copypaste
+
+            //Checks if the ability is triggered
             if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && gBattleMons[gBattlerTarget].hp != 0
+             && IsBattlerAlive(gBattlerAttacker)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
              && IsMoveMakingContact(move, gBattlerAttacker)
              && !BATTLER_MAX_HP(gBattlerAttacker) 
              && IsBattlerAlive(gBattlerAttacker)
-             && TARGET_TURN_DAMAGED) // Need to actually hit the target
-            {
-                //Attacker
+             && TARGET_TURN_DAMAGED){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
                 effect++;
@@ -16664,24 +16658,19 @@ bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler)
 static bool8 DoesMoveBoostStats(u16 move){
     switch(gBattleMoves[move].effect){
         //Multiple Stats Up
-        case EFFECT_ALL_STATS_UP_HIT:
         case EFFECT_CALM_MIND:
         //Attack
-        case EFFECT_ATTACK_UP_HIT:
         case EFFECT_ATTACK_UP:
         case EFFECT_ATTACK_UP_2:
         case EFFECT_HOWL:
         //Defense
-        case EFFECT_DEFENSE_UP_HIT:
         case EFFECT_DEFENSE_UP:
         case EFFECT_DEFENSE_UP_2: 
         //Special Attack
-        case EFFECT_SP_ATTACK_UP_HIT:
         case EFFECT_SPECIAL_ATTACK_UP:
         case EFFECT_SPECIAL_ATTACK_UP_2:
         case EFFECT_SPECIAL_ATTACK_UP_3:
 		//Special Defense
-		//case EFFECT_SPECIAL_DEFENSE_UP:
 		case EFFECT_SPECIAL_DEFENSE_UP_2:
 		//Speed
 		case EFFECT_SPEED_UP_HIT:
@@ -16689,6 +16678,14 @@ static bool8 DoesMoveBoostStats(u16 move){
 	    //Accuracy
 		//case EFFECT_ACCURACY_UP:
             return TRUE;
+        break;
+        case EFFECT_ATTACK_UP_HIT:
+		case EFFECT_SPECIAL_DEFENSE_UP:
+        case EFFECT_SP_ATTACK_UP_HIT:
+        case EFFECT_DEFENSE_UP_HIT:
+        case EFFECT_ALL_STATS_UP_HIT:
+            if(gBattleMoves[move].secondaryEffectChance == 100 || (gBattleScripting.moveEffect & MOVE_EFFECT_CERTAIN) || FlagGet(FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED))
+                return TRUE;
         break;
     }
     return FALSE;

@@ -3856,6 +3856,8 @@ static void Cmd_seteffectwithchance(void)
     u8 moveType = gBattleMoves[gCurrentMove].type;
     u8 moveEffect = gBattleMoves[gCurrentMove].effect;
 
+    FlagClear(FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED);
+
     if(gProtectStructs[gBattlerAttacker].extraMoveUsed){
         if(VarGet(VAR_TEMP_MOVEEFECT_CHANCE) != 0){
             percentChance = VarGet(VAR_TEMP_MOVEEFECT_CHANCE);
@@ -3901,7 +3903,7 @@ static void Cmd_seteffectwithchance(void)
             percentChance = 100;
             break;
         }
-    }
+    }   
 
     if(percentChance > 100)
         percentChance = 100;
@@ -3920,6 +3922,8 @@ static void Cmd_seteffectwithchance(void)
             SetMoveEffect(FALSE, MOVE_EFFECT_CERTAIN);
         else
             SetMoveEffect(FALSE, 0);
+
+        FlagSet(FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED);
     }
     else
     {
