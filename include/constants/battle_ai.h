@@ -56,6 +56,7 @@
 #define AI_FLAG_SCREENER                (1 << 14)  // AI prefers screening effects like reflect, mist, etc. TODO unfinished
 #define AI_FLAG_SMART_SWITCHING         (1 << 15)  // AI includes a lot more switching checks
 #define AI_FLAG_CHECK_FOE               (1 << 16)  // AI is aware of abilities and moves that a Pokemon has
+#define AI_FLAG_DISABLE_SWITCHING       (1 << 17)  // AI is not able to switch (used for trainers that only have 1 move like explosion)
 
 // 'other' ai logic flags
 #define AI_FLAG_ROAMING                 (1 << 29)

@@ -6,10 +6,12 @@
 #include "battle_controllers.h"
 #include "battle_setup.h"
 #include "battle_util.h"
+#include "event_data.h"
 #include "pokemon.h"
 #include "random.h"
 #include "util.h"
 #include "constants/abilities.h"
+#include "constants/battle_ai.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/hold_effects.h"
@@ -606,6 +608,8 @@ bool32 ShouldSwitch(void)
     s32 i;
     s32 availableToSwitch;
 
+    if (gBattleTypeFlags & (AI_FLAG_DISABLE_SWITCHING))
+        return FALSE;
     if (gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
         return FALSE;
     if (gStatuses3[gActiveBattler] & STATUS3_ROOTED)

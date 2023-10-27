@@ -8860,7 +8860,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Trent"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_HP_AWARE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_HP_AWARE | AI_FLAG_DISABLE_SWITCHING | AI_FLAG_WILL_SUICIDE,
         .partySize = ARRAY_COUNT(sParty_Trent1),
         .party = {.ItemCustomMoves = sParty_Trent1},
     },
