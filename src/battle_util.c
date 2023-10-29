@@ -11628,13 +11628,14 @@ case ITEMEFFECT_KINGSROCK:
             if (gSpecialStatuses[gBattlerAttacker].damagedMons
                 && !(TestSheerForceFlag(gBattlerAttacker, gCurrentMove))
                 && gBattlerAttacker != gBattlerTarget
+                && gSpecialStatuses[gBattlerTarget].dmg != 0
                 && gBattleMons[gBattlerAttacker].hp != gBattleMons[gBattlerAttacker].maxHP
                 && gBattleMons[gBattlerAttacker].hp != 0)
             {
                 gLastUsedItem = atkItem;
                 gPotentialItemEffectBattler = gBattlerAttacker;
                 gBattleScripting.battler = gBattlerAttacker;
-                gBattleMoveDamage = (gBattleMons[gBattlerTarget].maxHP - gBattleMons[gBattlerTarget].hp) / -4;
+                gBattleMoveDamage = (gSpecialStatuses[gBattlerTarget].dmg / 4) * -1;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = -1;
                 gSpecialStatuses[gBattlerTarget].dmg = 0;
