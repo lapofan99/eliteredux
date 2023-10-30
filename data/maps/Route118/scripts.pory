@@ -481,7 +481,7 @@ script Route118_EventScript_StevenTrigger{
 	waitmovement(0)
 	delay(30)
 	msgbox(format("Steven: Hi, {PLAYER}{KUN} I hope you're ready. I upgraded my team after you defeat me last time..."), MSGBOX_DEFAULT) //Intro
-	trainerbattle_no_intro(TRAINER_STEVEN_GRANITE_CAVE, format("You still have great potential.")) // in-battle, player wins
+	trainerbattle_no_intro(TRAINER_STEVEN_ROUTE118, format("You still have great potential.")) // in-battle, player wins
 	msgbox(format("Steven: I knew I wasn't the only one who upgraded his team. I hope we meet again."), MSGBOX_DEFAULT) // post-battle
 	closemessage
 	applymovement(OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit)

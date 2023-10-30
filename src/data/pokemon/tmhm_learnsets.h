@@ -27487,6 +27487,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM21_FRUSTRATION)
                                         | TMHM1(TM27_RETURN)
+                                        | TMHM1(TM28_DIG) // new
                                         | TMHM1(TM35_FLAMETHROWER)
                                         | TMHM1(TM38_FIRE_BLAST)
                                         | TMHM1(TM42_FACADE)
@@ -27514,6 +27515,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM21_FRUSTRATION)
                                         | TMHM1(TM27_RETURN)
+                                        | TMHM1(TM28_DIG) // new
                                         | TMHM1(TM35_FLAMETHROWER)
                                         | TMHM1(TM38_FIRE_BLAST)
                                         | TMHM1(TM42_FACADE)
@@ -27542,6 +27544,7 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM1(TM17_PROTECT)
                                         | TMHM1(TM21_FRUSTRATION)
                                         | TMHM1(TM27_RETURN)
+                                        | TMHM1(TM28_DIG) // new
                                         | TMHM1(TM30_SHADOW_BALL)
                                         | TMHM1(TM35_FLAMETHROWER)
                                         | TMHM1(TM38_FIRE_BLAST)

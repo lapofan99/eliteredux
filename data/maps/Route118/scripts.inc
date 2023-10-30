@@ -522,7 +522,7 @@ Route118_EventScript_StevenTrigger::
 	waitmovement 0
 	delay 30
 	msgbox Route118_EventScript_StevenTrigger_Text_0, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_STEVEN_GRANITE_CAVE, Route118_EventScript_StevenTrigger_Text_1
+	trainerbattle_no_intro TRAINER_STEVEN_ROUTE118, Route118_EventScript_StevenTrigger_Text_1
 	msgbox Route118_EventScript_StevenTrigger_Text_2, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, Route118_Movement_PlayerWatchStevenExit

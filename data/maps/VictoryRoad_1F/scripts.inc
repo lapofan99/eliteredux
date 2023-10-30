@@ -275,6 +275,14 @@ VictoryRoad_1F_EventScript_LegendaryNPC_18:
 	goto VictoryRoad_1F_EventScript_LegendaryNPC_9
 
 
+VictoryRoad_1F_EventScript_Calvin::
+	trainerbattle_single TRAINER_CALVIN_E4, VictoryRoad_1F_EventScript_Calvin_Text_0, VictoryRoad_1F_EventScript_Calvin_Text_1
+	msgbox VictoryRoad_1F_EventScript_Calvin_Text_2, MSGBOX_NPC
+	settrainerflag TRAINER_CALVIN_E4
+	release
+	end
+
+
 VictoryRoad_1F_EventScript_LegendaryNPC_Text_0:
 	.string "Sage intern: Why did I choose to get an\n"
 	.string "internship at the Academy of Pokémon\l"
@@ -384,3 +392,16 @@ VictoryRoad_1F_EventScript_LegendaryNPC_Text_4:
 	.string "time for me to take a hot bath. I would\l"
 	.string "keep on talking otherwise.. Consider\l"
 	.string "yourself lucky, kid! - Luca$"
+
+VictoryRoad_1F_EventScript_Calvin_Text_0:
+	.string "Hehe! I'm almost at the Pokémon League.\n"
+	.string "Some say I'm not ready. Look at me now,\l"
+	.string "I'm Calvin, and I'm a wall before the\l"
+	.string "League! Ready for a real challenge?$"
+
+VictoryRoad_1F_EventScript_Calvin_Text_1:
+	.string "Whoa, you're tough!$"
+
+VictoryRoad_1F_EventScript_Calvin_Text_2:
+	.string "Hey, give the E4 a run for their money,\n"
+	.string "will ya? Good luck!$"
