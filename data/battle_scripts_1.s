@@ -8454,7 +8454,7 @@ BattleScript_DefenderSetsToxicSpikeLayer::
 	copybyte sSAVED_BATTLER, gBattlerAttacker
 	copybyte gBattlerAttacker, gBattlerTarget
 	copybyte gBattlerTarget, sSAVED_BATTLER
-	checkcondition CONDITION_SPIKES, BattleScript_DefenderSetsToxicSpikeLayerEnd
+	checkcondition CONDITION_TOXIC_SPIKES, BattleScript_DefenderSetsToxicSpikeLayerEnd
 	sethword sABILITY_OVERWRITE, ABILITY_TOXIC_DEBRIS
 	call BattleScript_AbilityPopUp
 	playmoveanimation BS_ATTACKER, MOVE_TOXIC_SPIKES
