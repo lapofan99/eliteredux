@@ -2994,7 +2994,7 @@ static const u8 sDRAGON_ENERGYDescription[] = _(
 
 static const u8 sFREEZING_GLAREDescription[] = _(
     "Shoots psychic power from\n"
-    "the eyes. May freeze the foe.");
+    "the eyes. May frostbite the foe.");
 
 static const u8 sFIERY_WRATHDescription[] = _(
     "An attack fueled by your\n"
@@ -4034,7 +4034,7 @@ static const u8 sMoveFourLineDescription_RockSlide[] = _("Large boulders are\nhu
 static const u8 sMoveFourLineDescription_HyperFang[] = _("The foe is attacked\nwith sharp fangs.\n30% flinch chance.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_Sharpen[] = _("The user reduces\nits polygon count\nto sharpen edges\nand raise Attack.");
 static const u8 sMoveFourLineDescription_Conversion[] = _("The user changes\nits type to match\nthe type of one of\nits moves.");
-static const u8 sMoveFourLineDescription_TriAttack[] = _("A simultaneous\n3-beam attack. 30%\nchance to paralyze,\nburn or freeze foes."); // new
+static const u8 sMoveFourLineDescription_TriAttack[] = _("A simultaneous\n3-beam attack. 30%\nchance to paralyze,\nburn or frostbite foes."); // new
 static const u8 sMoveFourLineDescription_SuperFang[] = _("The user attacks\nwith sharp fangs\nand halves the\nfoe's HP.");
 static const u8 sMoveFourLineDescription_Slash[] = _("The foe is slashed\nwith claws, etc.\nHigh crit.\nKeen Edge boost."); // new
 static const u8 sMoveFourLineDescription_Substitute[] = _("The user creates a\ndecoy using one-\nquarter of its full\nHP.");
@@ -4054,7 +4054,7 @@ static const u8 sMoveFourLineDescription_Aeroblast[] = _("A vortex of air is\nsh
 static const u8 sMoveFourLineDescription_CottonSpore[] = _("Cotton-like spores\ncling to the foe,\nsharply reducing\nits Speed stat.");
 static const u8 sMoveFourLineDescription_Reversal[] = _("An all-out attack\nthat becomes more\npowerful the less\nHP the user has.");
 static const u8 sMoveFourLineDescription_Spite[] = _("A move that cuts\n2 to 5 PP from the\nmove last used by\nthe foe.");
-static const u8 sMoveFourLineDescription_PowderSnow[] = _("Blasts the foe with\na snowy gust.\n10% chance to\nfreeze the foe."); // new
+static const u8 sMoveFourLineDescription_PowderSnow[] = _("Blasts the foe with\na snowy gust.\n10% chance to\nfrostbite the foe."); // new
 static const u8 sMoveFourLineDescription_Protect[] = _("Enables the user to\nevade all attacks.\nIt may fail if used\nin succession.");
 static const u8 sMoveFourLineDescription_MachPunch[] = _("A punch thrown at\nblinding speed.\n+1 priority.\nIron Fist boost."); // new
 static const u8 sMoveFourLineDescription_ScaryFace[] = _("Frightens the foe\nwith a scary face\nto sharply reduce\nits Speed.");
@@ -4306,7 +4306,7 @@ static const u8 sMoveFourLineDescription_BulletPunch[] = _("Bullet-fast punches\
 static const u8 sMoveFourLineDescription_IceShard[] = _("Flash-frozen ice\nchunks are hurled\nat the foe.\n+1 priority."); // new
 static const u8 sMoveFourLineDescription_ShadowClaw[] = _("Claws made from\nshadows strike the\nfoe. High crit.\nKeen Edge boost.");
 static const u8 sMoveFourLineDescription_ThunderFang[] = _("Electrified fangs.\n10% paralyze or\nflinch chance.\nStrong Jaw boost."); // new
-static const u8 sMoveFourLineDescription_IceFang[] = _("Frozen fangs.\n10% freeze or\nflinch chance.\nStrong Jaw boost."); // new
+static const u8 sMoveFourLineDescription_IceFang[] = _("Frozen fangs.\n10% frostbite or\nflinch chance.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_FireFang[] = _("Fiery fangs.\n10% burn or\nflinch chance.\nStrong Jaw boost."); // new
 static const u8 sMoveFourLineDescription_ShadowSneak[] = _("The user's shadow\nextends and strikes\nthe foe.\n+1 priority."); // new
 static const u8 sMoveFourLineDescription_MudBomb[] = _("A hard-packed mud\nball is hurled at\nthe foe. 30% chance\nto drop accuracy."); // new
