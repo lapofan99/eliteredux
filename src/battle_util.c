@@ -9687,13 +9687,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && gBattleMons[gBattlerTarget].hp != 0
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && !IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_GRASS)
+             && TARGET_TURN_DAMAGED // Need to actually hit the target
+             && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED)
              && ((gBattleMoves[move].effect == EFFECT_ABSORB      && TARGET_TURN_DAMAGED) || 
                  (gBattleMoves[move].effect == EFFECT_DREAM_EATER && TARGET_TURN_DAMAGED) ||
                  (gBattleMoves[move].effect == EFFECT_STRENGTH_SAP)))
             {
-
-                gStatuses3[gBattlerTarget]   |= STATUS3_LEECHSEED;
-                gStatuses3[gBattlerAttacker] |= STATUS3_LEECHSEED_BATTLER;
+                gStatuses3[gBattlerTarget] |= gBattlerAttacker;
+                gStatuses3[gBattlerTarget] |= STATUS3_LEECHSEED;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 				BattleScriptPushCursorAndCallback(BattleScript_AbsorbantActivated);
                 effect++;
@@ -9710,8 +9711,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && TARGET_TURN_DAMAGED // Need to actually hit the target
              && !(gStatuses3[gBattlerTarget] & STATUS3_LEECHSEED))
             {
-                gStatuses3[gBattlerTarget]   |= STATUS3_LEECHSEED;
-                gStatuses3[gBattlerAttacker] |= STATUS3_LEECHSEED_BATTLER;
+                gStatuses3[gBattlerTarget] |= gBattlerAttacker;
+                gStatuses3[gBattlerTarget] |= STATUS3_LEECHSEED;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
 				BattleScriptPushCursorAndCallback(BattleScript_FungalInfectionActivates);
                 effect++;
