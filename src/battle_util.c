@@ -4923,34 +4923,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_ELECTRIC_SURGE:
-            if (TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer))
-            {
-                BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
-                effect++;
-            }
-            break;
-        case ABILITY_GRASSY_SURGE:
-            if (TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer))
-            {
-                BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
-                effect++;
-            }
-            break;
-        case ABILITY_MISTY_SURGE:
-            if (TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer))
-            {
-                BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
-                effect++;
-            }
-            break;
-        case ABILITY_PSYCHIC_SURGE:
-            if (TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer))
-            {
-                BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
-                effect++;
-            }
-            break;
 		case ABILITY_LETS_ROLL:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5473,42 +5445,126 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 
 		// Electric Surge
-		if(BattlerHasInnate(battler, ABILITY_ELECTRIC_SURGE)){
-            if (TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer))
-            {
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ELECTRIC_SURGE;
-                BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
-                effect++;
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_ELECTRIC_SURGE)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_ELECTRIC_SURGE; //For easier copypaste
+
+            switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                case BATTLER_INNATE:
+                    if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                        gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+                case BATTLER_ABILITY:
+                    if(!gSpecialStatuses[battler].switchInAbilityDone){
+				        gBattlerAttacker = battler;
+                        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer)){
+                    BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
+                    effect++;
+                }
             }
         }
 
 		// Grassy Surge
-		if(BattlerHasInnate(battler, ABILITY_GRASSY_SURGE)){
-            if (TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer))
-            {
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRASSY_SURGE;
-                BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
-                effect++;
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_GRASSY_SURGE)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_GRASSY_SURGE; //For easier copypaste
+
+            switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                case BATTLER_INNATE:
+                    if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                        gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+                case BATTLER_ABILITY:
+                    if(!gSpecialStatuses[battler].switchInAbilityDone){
+				        gBattlerAttacker = battler;
+                        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                if(TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer)){
+                    BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
+                    effect++;
+                }
             }
         }
 			
 		// Misty Surge
-		if(BattlerHasInnate(battler, ABILITY_MISTY_SURGE)){
-            if (TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer))
-            {
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MISTY_SURGE;
-                BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
-                effect++;
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_MISTY_SURGE)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_MISTY_SURGE; //For easier copypaste
+
+            switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                case BATTLER_INNATE:
+                    if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                        gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+                case BATTLER_ABILITY:
+                    if(!gSpecialStatuses[battler].switchInAbilityDone){
+				        gBattlerAttacker = battler;
+                        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                if(TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer)){
+                    BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
+                    effect++;
+                }
             }
         }
-			
+
 		// Psychic Surge
-		if(BattlerHasInnate(battler, ABILITY_PSYCHIC_SURGE)){
-            if (TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer))
-            {
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PSYCHIC_SURGE;
-                BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
-                effect++;
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_PSYCHIC_SURGE)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_PSYCHIC_SURGE; //For easier copypaste
+
+            switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                case BATTLER_INNATE:
+                    if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                        gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+                case BATTLER_ABILITY:
+                    if(!gSpecialStatuses[battler].switchInAbilityDone){
+				        gBattlerAttacker = battler;
+                        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                if(TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer)){
+                    BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
+                    effect++;
+                }
             }
         }
 		

@@ -2544,7 +2544,9 @@ static void Task_ShinyStars(u8 taskId)
         return;
 
     timer = gTasks[taskId].tStarTimer++;
-    if (timer % 4) // Create sprite 1 of every 4 frames
+    if(IsDoubleBattle() && timer % 1) // Create sprite 1 of every 1 frames in double battles
+        return;
+    else if (!IsDoubleBattle() && timer % 4) // Create sprite 1 of every 4 frames for single battles
         return;
 
     battler = gTasks[taskId].tBattler;
