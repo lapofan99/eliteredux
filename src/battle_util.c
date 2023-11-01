@@ -9549,11 +9549,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 		}
 
         if(BATTLER_HAS_ABILITY(battler, ABILITY_ANGELS_WRATH)){
+            bool8 effectActivated = FALSE;
+
             switch(move){
                 case MOVE_TACKLE:
                     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                     && gBattleMons[gBattlerTarget].hp != 0
                     && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                    && gDisableStructs[gBattlerTarget].encoreTimer  == 0
+                    && gDisableStructs[gBattlerTarget].disableTimer == 0
                     && TARGET_TURN_DAMAGED)
                     {
                         gDisableStructs[gBattlerTarget].encoreTimer = 2;
@@ -9569,37 +9573,47 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     }
                 break;
                 case MOVE_STRING_SHOT:
-                    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-                    && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
+                    if (!gProtectStructs[gBattlerAttacker].confusionSelfDmg)
                     {
-                        gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STEALTH_ROCK);
-                        gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_TOXIC_SPIKES);
-                        gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_SPIKES);
-                        gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STICKY_WEB);
+                        if(!(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_STEALTH_ROCK) ||
+                           !(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_TOXIC_SPIKES) ||
+                           !(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_SPIKES) ||
+                           !(gSideStatuses[GetBattlerSide(gBattlerTarget)] & SIDE_STATUS_STICKY_WEB))
+                                effectActivated = TRUE;
 
-				        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
-                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-                        BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_String_Shot);
-                        effect++;
+                        if(effectActivated){
+                            gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STEALTH_ROCK);
+                            gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_TOXIC_SPIKES);
+                            gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_SPIKES);
+                            gSideStatuses[GetBattlerSide(gBattlerTarget)] |= (SIDE_STATUS_STICKY_WEB);
+
+                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
+                            PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                            BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_String_Shot);
+                            effect++;
+                        }
                     }
                 break;
                 case MOVE_HARDEN:
-                    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-                    && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
+                    if (!gProtectStructs[gBattlerAttacker].confusionSelfDmg)
                     {
                         for(i = 1; i < NUM_STATS; i++){
-                            if(gBattleMons[battler].statStages[i] < MAX_STAT_STAGE && i != STAT_DEF)
+                            if(gBattleMons[battler].statStages[i] < MAX_STAT_STAGE && i != STAT_DEF){
                                 gBattleMons[battler].statStages[i] += 1;
+                                effectActivated = TRUE;
+                            }
                         }
-				        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
-                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-                        BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_Harden);
-                        effect++;
+
+                        if(effectActivated){
+                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
+                            PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                            BattleScriptPushCursorAndCallback(BattleScript_AngelsWrath_Effect_Harden);
+                            effect++;
+                        }
                     }
                 break;
                 case MOVE_IRON_DEFENSE:
-                    if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-                    && !gProtectStructs[gBattlerAttacker].confusionSelfDmg)
+                    if (!gProtectStructs[gBattlerAttacker].confusionSelfDmg)
                     {
                         gProtectStructs[gBattlerAttacker].angelsWrathProtected = TRUE;
 				        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ANGELS_WRATH;
@@ -9612,6 +9626,8 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
                     && gBattleMons[gBattlerTarget].hp != 0
                     && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+                    && (gBattleMons[gBattlerTarget].statStages[STAT_SPEED] != 0
+                    || !(gBattleMons[gBattlerTarget].status2 & STATUS2_ESCAPE_PREVENTION))
                     && TARGET_TURN_DAMAGED)
                     {
                         gBattleMons[gBattlerTarget].statStages[STAT_SPEED] = 0;
