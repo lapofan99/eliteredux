@@ -2201,7 +2201,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
              (  gBattleMons[battlerDef].statStages[STAT_SPEED] < DEFAULT_STAT_STAGE) || 
              (  gBattleMons[battlerDef].status1 & STATUS1_PARALYSIS)                 || 
              (  gBattleMons[battlerDef].item == ITEM_IRON_BALL)))
-             || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AMBUSH)     && gDisableStructs[battlerDef].isFirstTurn)
+             || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AMBUSH)     && gDisableStructs[battlerAtk].isFirstTurn)
              || ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)))
     {
         critChance = -2;
