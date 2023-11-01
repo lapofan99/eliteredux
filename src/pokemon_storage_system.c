@@ -2700,7 +2700,10 @@ static void Task_OnSelectedMon(u8 taskId)
             }
             else if (sStorage->displayMonIsEgg)
             {
-                sStorage->state = 5; // Cannot release an Egg.
+                PlaySE(SE_SELECT);
+                SetPokeStorageTask(Task_ReleaseMon);
+                
+                //sStorage->state = 5; // Cannot release an Egg.
             }
             else if (ItemIsMail(sStorage->displayMonItemId))
             {
@@ -4011,7 +4014,7 @@ static void LoadDisplayMonGfx(u16 species, u32 pid)
     {
         LoadSpecialPokePic(&gMonFrontPicTable[species], sStorage->tileBuffer, species, pid, TRUE);
         LZ77UnCompWram(sStorage->displayMonPalette, sStorage->displayMonPalBuffer);
-        if (gSaveBlock2Ptr->individualColors)
+        if (gSaveBlock2Ptr->individualColors == TRUE)
             HueShiftMonPalette((u16*) sStorage->displayMonPalBuffer, sStorage->displayMonPersonality);
         CpuCopy32(sStorage->tileBuffer, sStorage->displayMonTilePtr, MON_PIC_SIZE);
         LoadPalette(sStorage->displayMonPalBuffer, sStorage->displayMonPalOffset, 0x20);

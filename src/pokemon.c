@@ -4564,6 +4564,21 @@ u32 GetMonData(struct Pokemon *mon, s32 field, u8* data)
     return ret;
 }
 
+bool8 CheckBoxMonForBadChecksum(u8 box, u8 slot){
+    struct BoxPokemon *boxMon = GetBoxedMonPtr(box, slot);
+
+    DecryptBoxMon(boxMon);
+
+    if (CalculateBoxMonChecksum(boxMon) != boxMon->checksum){
+        EncryptBoxMon(boxMon);
+        return TRUE;
+    }
+    else{
+        EncryptBoxMon(boxMon);
+        return FALSE;
+    }
+}
+
 u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
 {
     s32 i;

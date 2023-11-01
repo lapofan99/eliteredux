@@ -15230,7 +15230,10 @@ bool8 IsMoveAffectedByParentalBond(u16 move, u8 battlerId)
 	return FALSE;
 }
 
+//#define CHECK_FOR_BAD_EGGS //Uncomment if you want to check for bad eggs after each step or after each fight (causes slowdown)
+
 void CheckForBadEggs(void){
+    #ifdef CHECK_FOR_BAD_EGGS
     u8 i, j;
     //Check Party
     for (i = 0; i < PARTY_SIZE; i++)
@@ -15244,14 +15247,27 @@ void CheckForBadEggs(void){
         }
     }
     //Check Box 1
-    for (i = 0; i < 30; i++)
+    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
     {
-        if (GetBoxMonDataAt(0, i, MON_DATA_SANITY_IS_BAD_EGG) == TRUE){ //Only Checks Box 1
-            if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                MgbaOpen();
-                MgbaPrintf(MGBA_LOG_WARN, "WARNING: Bad Egg in Box 1 Detected %d", i);
-                MgbaClose();
+        for (j = 0; j < IN_BOX_COUNT; j++){
+            if (CheckBoxMonForBadChecksum(i, j))
+            {
+                if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                    MgbaOpen();
+                    MgbaPrintf(MGBA_LOG_WARN, "WARNING: Bad Egg Generated in Box %d slot %d", i, j);
+                    MgbaClose();
+                }
             }
+
+            if (GetBoxMonDataAt(i, j, MON_DATA_SANITY_IS_BAD_EGG) == TRUE){ //Only Checks Box 1
+                if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                    MgbaOpen();
+                    MgbaPrintf(MGBA_LOG_WARN, "WARNING: Bad Egg in Box %d Detected %d", i, j);
+                    MgbaClose();
+                }
+            }
+
         }
     }
+    #endif
 }
