@@ -13028,6 +13028,7 @@ static const struct LevelUpMove sTirtougaLevelUpLearnset[] = {
 	LEVEL_UP_MOVE(15, MOVE_AQUA_JET),
 	LEVEL_UP_MOVE(18, MOVE_ANCIENT_POWER),
 	LEVEL_UP_MOVE(20, MOVE_AQUA_FANG), // new
+	LEVEL_UP_MOVE(20, MOVE_JAGGED_FANGS), // new
 	LEVEL_UP_MOVE(21, MOVE_CRUNCH),
 	LEVEL_UP_MOVE(25, MOVE_WIDE_GUARD),
 	LEVEL_UP_MOVE(28, MOVE_BRINE),
@@ -13043,6 +13044,7 @@ static const struct LevelUpMove sTirtougaLevelUpLearnset[] = {
 
 static const struct LevelUpMove sCarracostaLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 0, MOVE_ACCELEROCK), // new
+	LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
 	LEVEL_UP_MOVE( 1, MOVE_BIDE),
 	LEVEL_UP_MOVE( 1, MOVE_WITHDRAW),
 	LEVEL_UP_MOVE( 1, MOVE_WATER_GUN),
