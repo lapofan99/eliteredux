@@ -10322,36 +10322,48 @@ u32 GetBattlerAbility(u8 battlerId)
 
 bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability)
 {
-    u16 abilityAtk = gBattleMons[sBattlerAttacker].ability;
-    bool8 hasMoldBreaker = (abilityAtk == ABILITY_MOLD_BREAKER ||
-                            abilityAtk == ABILITY_TERAVOLT     ||
-                            abilityAtk == ABILITY_TURBOBLAZE);
+    u16 abilityAtk  = gBattleMons[sBattlerAttacker].ability;
+    u16 species     = gBattleMons[sBattlerAttacker].species;
+    u16 level       = gBattleMons[sBattlerAttacker].level;
+    u32 personality = gBattleMons[sBattlerAttacker].personality;
+    bool8 isEnemyMon = GetBattlerSide(sBattlerAttacker) == B_SIDE_OPPONENT;
 
+    //Check that the battler is currently attacking the target
+    if(gBattlerByTurnOrder[gCurrentTurnActionNumber] != sBattlerAttacker                ||
+        gActionsByTurnOrder[gBattlerByTurnOrder[sBattlerAttacker]] != B_ACTION_USE_MOVE ||
+        gCurrentTurnActionNumber >= gBattlersCount)
+        return FALSE;
+
+    //Ability is unaffected by Mold Breaker
     if(sAbilitiesAffectedByMoldBreaker[ability] == 0)
         return FALSE;
 
+    //Move ignores target ability regardless if it has Mold Breaker
     if(gBattleMoves[gCurrentMove].flags & FLAG_TARGET_ABILITY_IGNORED &&
        GetBattlerSide(sBattlerAttacker) != GetBattlerSide(sBattlerTarget))
         return TRUE;
     
+    //Attacker Ability is suppressed so it can't ignore target ability
     if((gStatuses3[sBattlerAttacker] & STATUS3_GASTRO_ACID) ||
         GetBattlerSide(sBattlerAttacker) == GetBattlerSide(sBattlerTarget))
         return FALSE;
 
-    if(!hasMoldBreaker){
-        if(BattlerHasInnate(sBattlerAttacker, ABILITY_MOLD_BREAKER) ||
-           BattlerHasInnate(sBattlerAttacker, ABILITY_TERAVOLT)     ||
-           BattlerHasInnate(sBattlerAttacker, ABILITY_TURBOBLAZE))
-            hasMoldBreaker = TRUE;
+    //Check if the attacker has any Mold Breaker Variant
+    switch(abilityAtk){
+        case ABILITY_MOLD_BREAKER:
+        case ABILITY_TERAVOLT:
+        case ABILITY_TURBOBLAZE:
+            return TRUE;
+            break;
+        default:
+            if(SpeciesHasInnate(species, ABILITY_MOLD_BREAKER, level, personality, isEnemyMon, isEnemyMon) ||
+               SpeciesHasInnate(species, ABILITY_TERAVOLT,     level, personality, isEnemyMon, isEnemyMon) ||
+               SpeciesHasInnate(species, ABILITY_TURBOBLAZE,   level, personality, isEnemyMon, isEnemyMon))
+            return TRUE;
+        break;
     }
-        
-    if (hasMoldBreaker &&
-        gBattlerByTurnOrder[gCurrentTurnActionNumber] == sBattlerAttacker &&
-        gActionsByTurnOrder[gBattlerByTurnOrder[sBattlerAttacker]] == B_ACTION_USE_MOVE &&
-        gCurrentTurnActionNumber < gBattlersCount)
-        return TRUE;
-    else
-        return FALSE;
+    
+    return FALSE;
 }
 
 bool8 BattlerAbilityWasRemoved(u8 battlerId, u32 ability)

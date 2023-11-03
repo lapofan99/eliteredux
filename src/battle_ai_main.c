@@ -5600,15 +5600,16 @@ static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 }
 
 bool8 BattlerHasInnate(u8 battlerId, u16 ability){
-    if(GetBattlerSide(battlerId) == B_SIDE_PLAYER)
-        return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, FALSE, FALSE);
+    bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
+
+    if(BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability))
+        return FALSE;
     else
-        return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, TRUE, TRUE);
+        return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, isEnemyMon, isEnemyMon);
 }
 
 bool8 GetBattlerInnateNum(u8 battlerId, u16 ability){
-    if(GetBattlerSide(battlerId) == B_SIDE_PLAYER)
-        return GetSpeciesInnateNum(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, FALSE);
-    else
-        return GetSpeciesInnateNum(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, TRUE);
+    bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
+
+    return GetSpeciesInnateNum(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, isEnemyMon);
 }
