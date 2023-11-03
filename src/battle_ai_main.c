@@ -5604,6 +5604,8 @@ bool8 BattlerHasInnate(u8 battlerId, u16 ability){
 
     if(BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability))
         return FALSE;
+    else if BattlerAbilityWasRemoved(battlerId, ability)
+        return FALSE;
     else
         return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, isEnemyMon, isEnemyMon);
 }
