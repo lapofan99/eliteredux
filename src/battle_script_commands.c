@@ -2019,7 +2019,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     if (gProtectStructs[battlerAtk].usedMicleBerry)
     {
         gProtectStructs[battlerAtk].usedMicleBerry = FALSE;
-        if (atkAbility == ABILITY_RIPEN)
+        if (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_RIPEN))
             calc = (calc * 140) / 100;  // ripen gives 40% acc boost
         else
             calc = (calc * 120) / 100;  // 20% acc boost

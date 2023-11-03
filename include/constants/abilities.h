@@ -268,7 +268,7 @@
 #define ABILITY_PUNK_ROCK 244 // Boosts the power of sound-based moves by 30%. The Pokémon also takes half the damage from these kinds of moves.
 #define ABILITY_SAND_SPIT 245 // The Pokémon creates a sandstorm when it's hit by an attack.
 #define ABILITY_ICE_SCALES 246 // The Pokémon is protected by ice scales, which halve the damage taken from special moves.
-#define ABILITY_RIPEN 247 // *No innate* Ripens Berries and doubles their effect.
+#define ABILITY_RIPEN 247 // Ripens Berries and doubles their effect.
 #define ABILITY_ICE_FACE 248 // *No innate* Has a protective barrier that protects against Physical Attacks once and will change form to Noice Face after breaking. Confusion also breaks the barrier. Setting Hail or being sent out during hail will restore the Ice Face and change form to Ice Face
 #define ABILITY_POWER_SPOT 249 // Increases the power of Ally Pokémon's attacks by 30%
 #define ABILITY_MIMICRY 250 // *No innate* Changes the Pokémon's type depending on the terrain.
