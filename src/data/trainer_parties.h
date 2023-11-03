@@ -42269,3 +42269,66 @@ static const struct TrainerMonItemCustomMoves sParty_StevenRoute118Insane[] = {
     .moves = MOVE_BRAVE_BIRD, MOVE_STEEL_WING, MOVE_ROOST, MOVE_BODY_PRESS
     }
 };
+
+static const struct TrainerMonItemCustomMoves sParty_YdaMtPyre[] = {
+    {
+    .lvl = 0,
+    .species = SPECIES_WISHIWASHI, // Yda, 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 0, // Schooling
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {252, 0, 252, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_RELAXED,
+    .moves = MOVE_AQUA_TAIL, MOVE_ICE_BEAM, MOVE_U_TURN, MOVE_PROTECT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_CROBAT, // Yda, Mega
+    .heldItem = ITEM_CROBATITE,
+    .ability = 1, // Momentum > Nosferatu
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_ADAMANT,
+    .moves = MOVE_BRAVE_BIRD, MOVE_DOUBLE_EDGE, MOVE_CROSS_POISON, MOVE_SUBSTITUTE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_MOLTRES_GALARIAN, // Yda, 
+    .heldItem = ITEM_WEAKNESS_POLICY,
+    .ability = 1, // Soul Eater
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {0, 0, 4, 252, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_MODEST,
+    .moves = MOVE_OBLIVION_WING, MOVE_FIERY_WRATH, MOVE_HYPER_BEAM, MOVE_SCORCHING_SANDS
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_UMBREON, // Yda, 
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = 2, // Soul Linker
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 4, 0, 252, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_CALM,
+    .moves = MOVE_FOUL_PLAY, MOVE_SWAGGER, MOVE_STRENGTH_SAP, MOVE_LEECH_SEED
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DARKRAI, // Yda, 
+    .heldItem = ITEM_WIDE_LENS,
+    .ability = 1, // Bad Dreams
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_DARK_VOID, MOVE_DREAM_EATER, MOVE_HEX, MOVE_NASTY_PLOT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_CHANDELURE, // Yda, 
+    .heldItem = ITEM_CHOICE_SCARF,
+    .ability = 2, // Soul Eater
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {4, 0, 0, 252, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_TIMID,
+    .moves = MOVE_FIRE_BLAST, MOVE_SHADOW_BALL, MOVE_ENERGY_BALL, MOVE_TRICK
+    }
+};

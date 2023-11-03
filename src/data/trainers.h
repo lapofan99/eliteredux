@@ -12353,4 +12353,21 @@ const struct Trainer gTrainers[] = {
         .partyInsane = {.ItemCustomMoves = sParty_StevenRoute118Insane},
         .trainerFlag = FLAG_TRAINER_STEVEN_ROUTE118,
     },
+
+    [TRAINER_YDA_MTPYRE] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_COOLTRAINER_M,
+        .trainerName = _("Ydarissep"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_YdaMtPyre),
+        .party = {.ItemCustomMoves = sParty_YdaMtPyre},
+        //.partySizeInsane = ARRAY_COUNT(sParty_YdaMtPyre),
+        //.partyInsane = {.ItemCustomMoves = sParty_YdaMtPyre},
+        .trainerFlag = FLAG_TRAINER_YDA_MTPYRE,
+    },
 };

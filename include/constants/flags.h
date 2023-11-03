@@ -1504,7 +1504,7 @@
 #define FLAG_LANDMARK_SANDSTREWN_RUINS              (SYSTEM_FLAGS + 0x8A)
 #define FLAG_TRAINER_BANEFUL_PETALBURG_WOODS        (SYSTEM_FLAGS + 0x8B) // Primal Cascoon battle
 #define FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED   (SYSTEM_FLAGS + 0x8C)
-#define FLAG_UNUSED_0x8ED                           (SYSTEM_FLAGS + 0x8D) // Unused Flag
+#define FLAG_TRAINER_YDA_MTPYRE                     (SYSTEM_FLAGS + 0x8D) //
 #define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag
 #define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag
 #define FLAG_UNUSED_0x8F0                           (SYSTEM_FLAGS + 0x90) // Unused Flag
