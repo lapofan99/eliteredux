@@ -19028,6 +19028,9 @@ static const struct LevelUpMove sChewtleLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_WATER_GUN),
     LEVEL_UP_MOVE( 7, MOVE_BITE),
     LEVEL_UP_MOVE(14, MOVE_PROTECT),
+    LEVEL_UP_MOVE(21, MOVE_AQUA_FANG), // new
+    LEVEL_UP_MOVE(21, MOVE_JAGGED_FANGS), // new
+    LEVEL_UP_MOVE(21, MOVE_IRON_FANGS), // new
     LEVEL_UP_MOVE(21, MOVE_HEADBUTT),
     LEVEL_UP_MOVE(28, MOVE_COUNTER),
     LEVEL_UP_MOVE(35, MOVE_JAW_LOCK),
@@ -19037,7 +19040,11 @@ static const struct LevelUpMove sChewtleLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sDrednawLevelUpLearnset[] = {
-    LEVEL_UP_MOVE( 0, MOVE_ROCK_TOMB),
+    LEVEL_UP_MOVE( 0, MOVE_SHELL_SMASH), // new
+    LEVEL_UP_MOVE( 1, MOVE_ROCK_TOMB),
+    LEVEL_UP_MOVE( 1, MOVE_AQUA_FANG), // new
+    LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
+    LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
     LEVEL_UP_MOVE( 1, MOVE_RAZOR_SHELL),
     LEVEL_UP_MOVE( 1, MOVE_CRUNCH),
     LEVEL_UP_MOVE( 1, MOVE_ROCK_POLISH),
@@ -19051,7 +19058,7 @@ static const struct LevelUpMove sDrednawLevelUpLearnset[] = {
     LEVEL_UP_MOVE(48, MOVE_LIQUIDATION),
     LEVEL_UP_MOVE(57, MOVE_BODY_SLAM),
     LEVEL_UP_MOVE(66, MOVE_HEAD_SMASH),
-    LEVEL_UP_MOVE(75, MOVE_DEATHROLL),
+    LEVEL_UP_MOVE(73, MOVE_DEATHROLL),
     LEVEL_UP_END
 };
 

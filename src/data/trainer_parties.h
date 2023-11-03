@@ -2441,6 +2441,17 @@ static const struct TrainerMonItemCustomMoves sParty_Archie1Insane[] = { // Slat
 static const struct TrainerMonItemCustomMoves sParty_Calvin1[] = {
     {
     .lvl = 0,
+    .species = SPECIES_CHEWTLE, // Calvin, Sash
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_LOOTER, ABILITY_SOLID_ROCK, ABILITY_SWIFT_SWIM},
+    // .innates = {ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_GROWING_TOOTH},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 0, 0, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_SHELL_SMASH, MOVE_AQUA_FANG, MOVE_JAGGED_FANGS, MOVE_ICE_FANG
+    },
+    {
+    .lvl = 0,
     .species = SPECIES_POOCHYENA,
     .heldItem = ITEM_EVIOLITE,
     .ability = 2, // ABILITY_RUN_AWAY, ABILITY_NONE, ABILITY_RATTLED},
