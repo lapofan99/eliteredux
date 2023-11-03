@@ -14192,7 +14192,7 @@ bool32 DoesBattlerHasNoDamageHits(u8 battlerAtk, u8 battlerDef, u32 move)
 
 bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
 {
-    if(GetBattlerAbility(battlerDef) != ABILITY_DISGUISE || BattlerHasInnate(battlerDef, ABILITY_DISGUISE)){
+    if(BATTLER_HAS_ABILITY(battlerDef, ABILITY_DISGUISE)){
         if(gBattleMons[battlerDef].species == SPECIES_MIMIKYU       &&
            !(gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED) &&
            !IS_MOVE_STATUS(move) &&

@@ -10311,25 +10311,40 @@ bool32 IsNeutralizingGasOnField(void)
 
 u32 GetBattlerAbility(u8 battlerId)
 {
-    if (gStatuses3[battlerId] & STATUS3_GASTRO_ACID)
+    if(BattlerAbilityWasRemoved(battlerId, gBattleMons[battlerId].ability))
         return ABILITY_NONE;
     
-    if (IsNeutralizingGasOnField() && !IsNeutralizingGasBannedAbility(gBattleMons[battlerId].ability))
-        return ABILITY_NONE;
-    
-    if ((((gBattleMons[gBattlerAttacker].ability == ABILITY_MOLD_BREAKER
-	        || BattlerHasInnate(gBattlerAttacker, ABILITY_MOLD_BREAKER)
-            || gBattleMons[gBattlerAttacker].ability == ABILITY_TERAVOLT
-            || gBattleMons[gBattlerAttacker].ability == ABILITY_TURBOBLAZE)
-            && !(gStatuses3[gBattlerAttacker] & STATUS3_GASTRO_ACID))
-            || gBattleMoves[gCurrentMove].flags & FLAG_TARGET_ABILITY_IGNORED)
-            && sAbilitiesAffectedByMoldBreaker[gBattleMons[battlerId].ability]
-            && gBattlerByTurnOrder[gCurrentTurnActionNumber] == gBattlerAttacker
-            && gActionsByTurnOrder[gBattlerByTurnOrder[gBattlerAttacker]] == B_ACTION_USE_MOVE
-            && gCurrentTurnActionNumber < gBattlersCount)
+    if (BattlerIgnoresAbility(gBattlerAttacker, battlerId))
         return ABILITY_NONE;
     
     return gBattleMons[battlerId].ability;
+}
+
+bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget)
+{
+    if ((((BATTLER_HAS_ABILITY(sBattlerAttacker, ABILITY_MOLD_BREAKER) ||
+           BATTLER_HAS_ABILITY(sBattlerAttacker, ABILITY_TERAVOLT)     ||
+           BATTLER_HAS_ABILITY(sBattlerAttacker, ABILITY_TURBOBLAZE))
+            && !(gStatuses3[sBattlerAttacker] & STATUS3_GASTRO_ACID))
+            || gBattleMoves[gCurrentMove].flags & FLAG_TARGET_ABILITY_IGNORED)
+            && sAbilitiesAffectedByMoldBreaker[gBattleMons[sBattlerTarget].ability]
+            && gBattlerByTurnOrder[gCurrentTurnActionNumber] == sBattlerAttacker
+            && gActionsByTurnOrder[gBattlerByTurnOrder[sBattlerAttacker]] == B_ACTION_USE_MOVE
+            && gCurrentTurnActionNumber < gBattlersCount
+            && sBattlerAttacker != sBattlerTarget
+            && GetBattlerSide(sBattlerAttacker) != GetBattlerSide(sBattlerTarget))
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 BattlerAbilityWasRemoved(u8 battlerId, u32 ability)
+{
+    if ((gStatuses3[battlerId] & STATUS3_GASTRO_ACID) ||
+       (IsNeutralizingGasOnField() && !IsNeutralizingGasBannedAbility(ability)))
+        return TRUE;
+    else
+        return FALSE;
 }
 
 u32 IsAbilityOnSide(u32 battlerId, u32 ability)
