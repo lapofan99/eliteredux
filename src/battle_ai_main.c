@@ -5602,9 +5602,9 @@ static s16 AI_FirstBattle(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
 bool8 BattlerHasInnate(u8 battlerId, u16 ability){
     bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
 
-    if(BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability))
+    if(BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability) && B_MOLD_BREAKER_WORKS_ON_INNATES == TRUE)
         return FALSE;
-    else if BattlerAbilityWasRemoved(battlerId, ability)
+    else if(BattlerAbilityWasRemoved(battlerId, ability) && B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE)
         return FALSE;
     else
         return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].level, gBattleMons[battlerId].personality, isEnemyMon, isEnemyMon);
