@@ -10314,25 +10314,41 @@ u32 GetBattlerAbility(u8 battlerId)
     if(BattlerAbilityWasRemoved(battlerId, gBattleMons[battlerId].ability))
         return ABILITY_NONE;
     
-    if (BattlerIgnoresAbility(gBattlerAttacker, battlerId))
+    if (BattlerIgnoresAbility(gBattlerAttacker, battlerId, gBattleMons[battlerId].ability))
         return ABILITY_NONE;
     
     return gBattleMons[battlerId].ability;
 }
 
-bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget)
+bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability)
 {
-    if ((((BATTLER_HAS_ABILITY(sBattlerAttacker, ABILITY_MOLD_BREAKER) ||
-           BATTLER_HAS_ABILITY(sBattlerAttacker, ABILITY_TERAVOLT)     ||
-           BATTLER_HAS_ABILITY(sBattlerAttacker, ABILITY_TURBOBLAZE))
-            && !(gStatuses3[sBattlerAttacker] & STATUS3_GASTRO_ACID))
-            || gBattleMoves[gCurrentMove].flags & FLAG_TARGET_ABILITY_IGNORED)
-            && sAbilitiesAffectedByMoldBreaker[gBattleMons[sBattlerTarget].ability]
-            && gBattlerByTurnOrder[gCurrentTurnActionNumber] == sBattlerAttacker
-            && gActionsByTurnOrder[gBattlerByTurnOrder[sBattlerAttacker]] == B_ACTION_USE_MOVE
-            && gCurrentTurnActionNumber < gBattlersCount
-            && sBattlerAttacker != sBattlerTarget
-            && GetBattlerSide(sBattlerAttacker) != GetBattlerSide(sBattlerTarget))
+    u16 abilityAtk = gBattleMons[sBattlerAttacker].ability;
+    bool8 hasMoldBreaker = (abilityAtk == ABILITY_MOLD_BREAKER ||
+                            abilityAtk == ABILITY_TERAVOLT     ||
+                            abilityAtk == ABILITY_TURBOBLAZE);
+
+    if(sAbilitiesAffectedByMoldBreaker[ability] == 0)
+        return FALSE;
+
+    if(gBattleMoves[gCurrentMove].flags & FLAG_TARGET_ABILITY_IGNORED &&
+       GetBattlerSide(sBattlerAttacker) != GetBattlerSide(sBattlerTarget))
+        return TRUE;
+    
+    if((gStatuses3[sBattlerAttacker] & STATUS3_GASTRO_ACID) ||
+        GetBattlerSide(sBattlerAttacker) == GetBattlerSide(sBattlerTarget))
+        return FALSE;
+
+    if(!hasMoldBreaker){
+        if(BattlerHasInnate(sBattlerAttacker, ABILITY_MOLD_BREAKER) ||
+           BattlerHasInnate(sBattlerAttacker, ABILITY_TERAVOLT)     ||
+           BattlerHasInnate(sBattlerAttacker, ABILITY_TURBOBLAZE))
+            hasMoldBreaker = TRUE;
+    }
+        
+    if (hasMoldBreaker &&
+        gBattlerByTurnOrder[gCurrentTurnActionNumber] == sBattlerAttacker &&
+        gActionsByTurnOrder[gBattlerByTurnOrder[sBattlerAttacker]] == B_ACTION_USE_MOVE &&
+        gCurrentTurnActionNumber < gBattlersCount)
         return TRUE;
     else
         return FALSE;
