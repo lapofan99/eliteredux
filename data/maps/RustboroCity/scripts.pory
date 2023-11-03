@@ -1367,7 +1367,8 @@ RustboroCity_Text_AddedMatchCallPleaseCallMrStone: @ 81E2331
 	.string "been registered in your PokéNav.\p"
 
 RustboroCity_Text_PleaseSelectPokenav: @ 81E2449
-	.string "You should tell Roxanne about your new gadget!$"
+	.string "You should tell Roxanne\n"
+	.string "about your new gadget!$"
 
 RustboroCity_Text_IdBetterGetBackToWork: @ 81E2464
 	.string "I added Mr. Stone's number,\n"
