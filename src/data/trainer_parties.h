@@ -42333,12 +42333,12 @@ static const struct TrainerMonItemCustomMoves sParty_YdaMtPyre[] = {
     {
     .lvl = 0,
     .species = SPECIES_WISHIWASHI, // Yda, 
-    .heldItem = ITEM_LEFTOVERS,
+    .heldItem = ITEM_SITRUS_BERRY,
     .ability = 0, // Schooling
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .nature = NATURE_RELAXED,
-    .moves = MOVE_AQUA_TAIL, MOVE_ICE_BEAM, MOVE_U_TURN, MOVE_FLIP_TURN
+    .moves = MOVE_AQUA_TAIL, MOVE_ICE_BEAM, MOVE_EARTHQUAKE, MOVE_FLIP_TURN
     },
     {
     .lvl = 0,
@@ -42362,13 +42362,13 @@ static const struct TrainerMonItemCustomMoves sParty_YdaMtPyre[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_UMBREON, // Yda, 
-    .heldItem = ITEM_LEFTOVERS,
-    .ability = 2, // Soul Linker
+    .species = SPECIES_TOXAPEX, // Yda, 
+    .heldItem = ITEM_BLACK_SLUDGE,
+    .ability = 0, // Battle Armor
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .nature = NATURE_CALM,
-    .moves = MOVE_FOUL_PLAY, MOVE_SWAGGER, MOVE_STRENGTH_SAP, MOVE_LEECH_SEED
+    .moves = MOVE_SCALD, MOVE_TOXIC, MOVE_RECOVER, MOVE_HAZE
     },
     {
     .lvl = 0,
@@ -42378,16 +42378,16 @@ static const struct TrainerMonItemCustomMoves sParty_YdaMtPyre[] = {
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {4, 0, 0, 252, 4, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
     .nature = NATURE_TIMID,
-    .moves = MOVE_DARK_VOID, MOVE_DREAM_EATER, MOVE_HEX, MOVE_NASTY_PLOT
+    .moves = MOVE_DARK_VOID, MOVE_DREAM_EATER, MOVE_HEX, MOVE_DARK_PULSE
     },
     {
     .lvl = 0,
-    .species = SPECIES_CHANDELURE, // Yda, 
-    .heldItem = ITEM_CHOICE_SCARF,
-    .ability = 2, // Soul Eater
+    .species = SPECIES_RUNERIGUS, // Yda, 
+    .heldItem = ITEM_ASSAULT_VEST,
+    .ability = 2, // Ancient Idol
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {4, 0, 0, 252, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
-    .nature = NATURE_TIMID,
-    .moves = MOVE_FIRE_BLAST, MOVE_SHADOW_BALL, MOVE_ENERGY_BALL, MOVE_TRICK
+    .evs = {252, 0, 180, 0, 76, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_BOLD,
+    .moves = MOVE_EARTHQUAKE, MOVE_SHADOW_CLAW, MOVE_SUCKER_PUNCH, MOVE_BODY_PRESS
     }
 };
