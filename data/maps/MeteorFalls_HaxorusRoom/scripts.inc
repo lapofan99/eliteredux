@@ -440,7 +440,7 @@ MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_262:
 	compare VAR_RESULT, 0
 	goto_if_eq MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_266
 MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_265:
-	checkitem ITEM_MAGNEZONENITE, 1
+	checkitem ITEM_MAGNEZONITE, 1
 	compare VAR_RESULT, 0
 	goto_if_eq MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_269
 MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_268:
@@ -814,7 +814,7 @@ MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_266:
 	goto MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_265
 
 MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_269:
-	giveitem ITEM_MAGNEZONENITE, 1
+	giveitem ITEM_MAGNEZONITE, 1
 	goto MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_268
 
 MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest_272:

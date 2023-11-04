@@ -783,7 +783,7 @@ u16 getHallofFameSpecies(u8 num){
                 return SPECIES_KROOKODILE_MEGA;
         break;
         case SPECIES_MAGNEZONE:
-            if(item == ITEM_MAGNEZONENITE)
+            if(item == ITEM_MAGNEZONITE)
                 return SPECIES_MAGNEZONE_MEGA;
         break;
         case SPECIES_SHEDINJA:

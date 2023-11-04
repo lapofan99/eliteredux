@@ -7692,7 +7692,7 @@ const struct Item gItems[] =
 
     [ITEM_INFERNAPENITE] =
     {
-        .name = _("Infernapenite"),
+        .name = _("Infernapite"),
         .itemId = ITEM_INFERNAPENITE,
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
@@ -7954,10 +7954,10 @@ const struct Item gItems[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
 
-    [ITEM_MAGNEZONENITE] =
+    [ITEM_MAGNEZONITE] =
     {
         .name = _("Magnezonite"),
-        .itemId = ITEM_MAGNEZONENITE,
+        .itemId = ITEM_MAGNEZONITE,
         .price = 0,
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sMagnezoniteDesc,

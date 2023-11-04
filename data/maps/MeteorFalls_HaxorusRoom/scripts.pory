@@ -509,9 +509,9 @@ script MeteorFalls_HaxorusRoom_EventScript_MegaStoneTest{
 			giveitem(ITEM_KROOKODILENITE, 1)
 		}
 
-		checkitem(ITEM_MAGNEZONENITE, 1)
+		checkitem(ITEM_MAGNEZONITE, 1)
 		if(var(VAR_RESULT) == 0){
-			giveitem(ITEM_MAGNEZONENITE, 1)
+			giveitem(ITEM_MAGNEZONITE, 1)
 		}
 
 		checkitem(ITEM_SHEDINJITE, 1)
