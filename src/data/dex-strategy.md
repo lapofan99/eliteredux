@@ -27,11 +27,11 @@ venusaur
     }
 SPECIES_CHARIZARD
 {
-    .name = Offensive, White Herb, Burnate
+    .name = Offensive, White Herb, Immolate
     .lvl = 3,
-    .species = SPECIES_CHARIZARD, // Flannery, White Herb, Burnate
+    .species = SPECIES_CHARIZARD, // Flannery, White Herb, Immolate
     .heldItem = ITEM_WHITE_HERB,
-    .ability = 0, // ABILITY_BURNATE, ABILITY_AERILATE, ABILITY_TOUGH_CLAWS},
+    .ability = 0, // ABILITY_IMMOLATE, ABILITY_AERILATE, ABILITY_TOUGH_CLAWS},
     // .innates = {ABILITY_BLAZE, ABILITY_LEVITATE, ABILITY_SUN_WORSHIP},
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {0, 0, 4, 252, 0, 252},     
@@ -407,14 +407,14 @@ Ledian
     .lvl = 0,
     .species = SPECIES_LEDIAN,
     .heldItem = ITEM_LIFE_ORB,
-    .ability = 1, // ABILITY_AERILATE, ABILITY_BUGINIZE, ABILITY_AERODYNAMICS},
+    .ability = 1, // ABILITY_AERILATE, ABILITY_POLLINATE, ABILITY_AERODYNAMICS},
     // .innates = {ABILITY_RAGING_BOXER, ABILITY_IRON_FIST, ABILITY_LEVITATE},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 0, 0, 4, 252},     
 	.nature = NATURE_JOLLY,
     .moves = MOVE_MEGA_PUNCH, MOVE_DUAL_WINGBEAT, MOVE_CLOSE_COMBAT, MOVE_ICE_PUNCH
     .tags = Singles, Offensive
-    .comment = Mega Punch turns into Bug-type thanks to Buginize -> also gets STAB + an additional 20% boost, which is further boosted 30% by Iron Fist. Raging Boxer makes sure it hits twice (2nd hit does 0.5x damage), which is useful to break Focus Sashes. Dual Wingbeat gets 25% boost from Levitate. Close Combat abuses Iron Fist + Raging Boxer. Ice Punch for coverage.
+    .comment = Mega Punch turns into Bug-type thanks to Pollinate -> also gets STAB + an additional 20% boost, which is further boosted 30% by Iron Fist. Raging Boxer makes sure it hits twice (2nd hit does 0.5x damage), which is useful to break Focus Sashes. Dual Wingbeat gets 25% boost from Levitate. Close Combat abuses Iron Fist + Raging Boxer. Ice Punch for coverage.
     }
 Granbull
 {
@@ -476,11 +476,11 @@ Nidoking
 {
 name = Giga Sweeper
 item = Focus Sash
-ability = Poisonate
+ability = Intoxicate
 evs = 6, 252, 0, 0, 0, 252  // HP, Atk, Def, Sp.Atk, Sp. Def, Speed
 nature = Jolly
 moves = Giga Impact, High Horsepower, Dragon Dance, Wicked Blow
-comment = With Giga Impact boosted by Poisonate & Rampage preventing a recharge if you get a KO.
+comment = With Giga Impact boosted by Intoxicate & Rampage preventing a recharge if you get a KO.
 }
 SPECIES_SIRFETCHD
 {
@@ -962,7 +962,7 @@ Steelix
     evs = 252, 252, 4, 0, 0, 0
     nature = Adamant
     moves = Double Edge / Body Press, Dragon Tail, Stealth Rock, Shore Up
-    comment = Nigh unbreakable physically, sets rocks and annoys things by phasing them onto said rocks. Groundate recoil-free double edge hits like a truck and punishes things that want to stay in and defog on him. Alternatively, Fort Knox and Body Press can achieve similar results, though it takes a turn of defog to set up. Replace attack EVs with defense EVs if you choose this option. Shore up keeps him healthy, allowing him to reset Stealth Rock if the opponent removes it.
+    comment = Nigh unbreakable physically, sets rocks and annoys things by phasing them onto said rocks. Tectonize recoil-free double edge hits like a truck and punishes things that want to stay in and defog on him. Alternatively, Fort Knox and Body Press can achieve similar results, though it takes a turn of defog to set up. Replace attack EVs with defense EVs if you choose this option. Shore up keeps him healthy, allowing him to reset Stealth Rock if the opponent removes it.
 }
 Zapdos
 {

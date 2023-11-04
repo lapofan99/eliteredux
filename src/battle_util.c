@@ -13011,8 +13011,8 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PIXILATE) && moveType == TYPE_FAIRY && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
 
-    // Buginize
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BUGINIZE) && moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
+    // Pollinate
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POLLINATE) && moveType == TYPE_BUG && gBattleStruct->ateBoost[battlerAtk])
         MulModifier(&modifier, UQ_4_12(1.1));
 
     // Draconize
@@ -13075,8 +13075,8 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AVENGER) && gSideTimers[atkSide].retaliateTimer == 1)
         MulModifier(&modifier, UQ_4_12(1.5));
 
-	// Burnate
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_BURNATE) && moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
+	// Immolate
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_IMMOLATE) && moveType == TYPE_FIRE && gBattleStruct->ateBoost[battlerAtk])
 		MulModifier(&modifier, UQ_4_12(1.1));
 
     // Mineralize
@@ -13103,16 +13103,16 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_FIGHT_SPIRIT) && moveType == TYPE_FIGHTING && gBattleStruct->ateBoost[battlerAtk])
 		MulModifier(&modifier, UQ_4_12(1.1));
 	
-	// Groundate
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_GROUNDATE) && moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
+	// Tectonize
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_TECTONIZE) && moveType == TYPE_GROUND && gBattleStruct->ateBoost[battlerAtk])
 		MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Hydrate
 	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HYDRATE) && moveType == TYPE_WATER && gBattleStruct->ateBoost[battlerAtk])
 		MulModifier(&modifier, UQ_4_12(1.1));
 	
-	// Poisonate
-	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_POISONATE) && moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
+	// Intoxicate
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_INTOXICATE) && moveType == TYPE_POISON && gBattleStruct->ateBoost[battlerAtk])
 		MulModifier(&modifier, UQ_4_12(1.1));
 	
 	// Long Reach
