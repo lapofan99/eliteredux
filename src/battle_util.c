@@ -15634,8 +15634,8 @@ void UndoMegaEvolution(u32 monId)
         case SPECIES_LATIOS_MEGA:
         case SPECIES_LOPUNNY_MEGA:
         case SPECIES_LUCARIO_MEGA:
-        case SPECIES_MANECTRIC:
-        case SPECIES_MAWILE:
+        case SPECIES_MANECTRIC_MEGA:
+        case SPECIES_MAWILE_MEGA:
         case SPECIES_MEDICHAM_MEGA:
         case SPECIES_METAGROSS_MEGA:
         case SPECIES_MEWTWO_MEGA_X:
