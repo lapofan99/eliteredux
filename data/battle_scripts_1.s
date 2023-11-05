@@ -7336,6 +7336,10 @@ BattleScript_SelectingNotAllowedStuffCheeks::
 	printselectionstring STRINGID_STUFFCHEEKSCANTSELECT
 	endselectionscript
 
+BattleScript_SelectingSleepClauseNotAllowed::
+	printselectionstring STRINGID_SLEEPCLAUSEDISABLESMOVE
+	endselectionscript
+
 BattleScript_SelectingNotAllowedBelch::
 	printselectionstring STRINGID_BELCHCANTSELECT
 	endselectionscript

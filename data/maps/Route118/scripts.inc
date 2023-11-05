@@ -623,7 +623,7 @@ Route118East_EventScript_Gen8_NPC_Text_2:
 Route118_EventScript_StevenTrigger_Text_0:
 	.string "Steven: Hi, {PLAYER}{KUN} I hope you're\n"
 	.string "ready. I upgraded my team after you\l"
-	.string "defeat me last time...$"
+	.string "defeated me last time...$"
 
 Route118_EventScript_StevenTrigger_Text_1:
 	.string "You still have great potential.$"

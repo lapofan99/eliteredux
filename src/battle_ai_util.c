@@ -2958,7 +2958,6 @@ bool32 AI_CanSleep(u8 battler, u16 ability)
       || BattlerHasInnate(battler, ABILITY_VITAL_SPIRIT)
       || ability == ABILITY_COMATOSE
       || BattlerHasInnate(battler, ABILITY_COMATOSE)
-      || IsSleepDisabled(battler, 1)
       || gBattleMons[battler].status1 & STATUS1_ANY
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || GetCurrentTerrain() == STATUS_FIELD_MISTY_TERRAIN

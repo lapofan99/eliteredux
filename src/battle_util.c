@@ -1904,6 +1904,20 @@ u8 TrySetCantSelectMoveBattleScript(void)
         }
     }
 
+    //Sleep Clause
+    if(IsSleepClauseDisablingMove(gActiveBattler, move)){
+        gCurrentMove = move;
+        if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
+        {
+            gProtectStructs[gActiveBattler].palaceUnableToUseMove = 1;
+        }
+        else
+        {
+            gSelectionBattleScripts[gActiveBattler] = BattleScript_SelectingSleepClauseNotAllowed;
+            limitations++;
+        }
+    }
+
     gPotentialItemEffectBattler = gActiveBattler;
     if (HOLD_EFFECT_CHOICE(holdEffect) && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != move)
     {
@@ -2009,6 +2023,9 @@ u8 CheckMoveLimitations(u8 battlerId, u8 unusableMoves, u8 check)
             unusableMoves |= gBitTable[i];
         else if (BATTLER_HAS_ABILITY(battlerId, ABILITY_DISCIPLINE) && *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
             unusableMoves |= gBitTable[i];
+        else if (IsSleepClauseDisablingMove(battlerId, gBattleMons[battlerId].moves[i])){
+            unusableMoves |= gBitTable[i];
+        }
         else if ((BATTLER_HAS_ABILITY(battlerId, ABILITY_GORILLA_TACTICS) ||
                   BATTLER_HAS_ABILITY(battlerId, ABILITY_SAGE_POWER))
 			&& *choicedMove != 0 && *choicedMove != 0xFFFF && *choicedMove != gBattleMons[battlerId].moves[i])
@@ -3125,11 +3142,8 @@ u8 DoBattlerEndTurnEffects(void)
                 gStatuses3[gActiveBattler] -= STATUS3_YAWN_TURN(1);
                 if (!(gStatuses3[gActiveBattler] & STATUS3_YAWN) 
                  && !(gBattleMons[gActiveBattler].status1 & STATUS1_ANY)
-                 && GetBattlerAbility(gActiveBattler) != ABILITY_VITAL_SPIRIT
-			     && !BattlerHasInnate(gActiveBattler, ABILITY_VITAL_SPIRIT)
-                 && GetBattlerAbility(gActiveBattler) != ABILITY_INSOMNIA 
-				 && !BattlerHasInnate(gActiveBattler, ABILITY_INSOMNIA)
-                 && !IsSleepDisabled(gActiveBattler, 0)
+                 && !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_VITAL_SPIRIT)
+                 && !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_INSOMNIA)
 				 && !UproarWakeUpCheck(gActiveBattler)
                  && !IsLeafGuardProtected(gActiveBattler))
                 {
@@ -3556,13 +3570,12 @@ u8 AtkCanceller_UnableToUseMove(void)
                 else
                 {
                     u8 toSub;
-                    if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_EARLY_BIRD || BattlerHasInnate(gBattlerAttacker, ABILITY_EARLY_BIRD)))
+                    if (BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_EARLY_BIRD))
                         toSub = 2;
                     else
                         toSub = 1;
 
-                    if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP) < toSub || 
-                        IsSleepDisabled(gBattlerAttacker, 0))//Sleep Clause
+                    if ((gBattleMons[gBattlerAttacker].status1 & STATUS1_SLEEP) < toSub)
                         gBattleMons[gBattlerAttacker].status1 &= ~(STATUS1_SLEEP);
                     else
                         gBattleMons[gBattlerAttacker].status1 -= toSub;
@@ -8860,13 +8873,13 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
         for(i = 0; i < MAX_BATTLERS_COUNT; i++){
             // Retribution Blow
-            if(GetBattlerAbility(i) == ABILITY_RETRIBUTION_BLOW || BattlerHasInnate(i, ABILITY_RETRIBUTION_BLOW)){
+            if(BATTLER_HAS_ABILITY(i, ABILITY_RETRIBUTION_BLOW)){
                 if (IsBattlerAlive(i)
                 && DoesMoveBoostStats(gCurrentMove)
                 && !gProtectStructs[i].extraMoveUsed
                 && !(gBattleMons[i].status1 & STATUS1_SLEEP)
                 && gBattlerAttacker != i
-                && (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST) || GetBattlerAbility(i) == ABILITY_SCRAPPY || BattlerHasInnate(i, ABILITY_SCRAPPY))
+                && (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_GHOST) || BATTLER_HAS_ABILITY(i, ABILITY_SCRAPPY))
                 && GET_BATTLER_SIDE(gBattlerAttacker) != GET_BATTLER_SIDE(i))
                 {
                     u16 extraMove = MOVE_HYPER_BEAM;  //The Extra Move to be used
@@ -10512,12 +10525,11 @@ bool32 IsBattlerTerrainAffected(u8 battlerId, u32 terrainFlag)
     return IsBattlerGrounded(battlerId);
 }
 
-bool8 IsSleepDisabled(u8 battlerId, u8 sleepmons){
+bool8 IsSleepDisabled(u8 battlerId){
     //Sleep Clause
     struct Pokemon *party;
-    u8 difficultySetting = gSaveBlock2Ptr->gameDifficulty;
+    u8 asleepmons = 0;
     u8 i;
-    u8 asleepmons = sleepmons;
 
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         party = gPlayerParty;
@@ -10526,17 +10538,61 @@ bool8 IsSleepDisabled(u8 battlerId, u8 sleepmons){
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if ((GetMonData(&party[i], MON_DATA_STATUS) & (STATUS1_SLEEP)) &&
-            (difficultySetting == DIFFICULTY_ELITE || difficultySetting == DIFFICULTY_ACE) &&
-            GetMonData(&party[i], MON_DATA_SPECIES2) != SPECIES_EGG)
+        if ((GetMonData(&party[i], MON_DATA_STATUS) & (STATUS1_SLEEP)) &&   
+            GetMonData(&party[i], MON_DATA_SPECIES2) != SPECIES_EGG  &&
+            GetMonData(&party[i], MON_DATA_SPECIES2) != SPECIES_NONE)
             asleepmons++;
     }
 
-    if(asleepmons > 1){
+    if(asleepmons != 0)
         return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 IsSleepClauseDisablingMove(u8 battlerId, u16 move)
+{
+    u32 target = BATTLE_OPPOSITE(battlerId);
+    u16 moveEffect = gBattleMoves[move].effect;
+    bool8 isSleepingMove = FALSE;
+    u16 partnerchosenmove = gChosenMoveByBattler[BATTLE_PARTNER(battlerId)];
+    bool8 IsDoubleBattle = FALSE;
+    bool8 partnerChoseSleepMove = FALSE;
+
+    if(gSaveBlock2Ptr->gameDifficulty == DIFFICULTY_EASY) //Sleep Clause is disabled in easy mode
+        return FALSE;
+
+    if((gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+        IsDoubleBattle = TRUE;
+
+    if(!IsBattlerAlive(BATTLE_PARTNER(battlerId)) || !IsDoubleBattle)
+        partnerchosenmove = MOVE_NONE;
+
+    switch(moveEffect){
+        case EFFECT_SLEEP:
+        case EFFECT_YAWN:
+            isSleepingMove = TRUE;
+        break;
+        default:
+            return FALSE;
+        break;
     }
 
-    return FALSE;
+    if(IsDoubleBattle){
+        switch(gBattleMoves[partnerchosenmove].effect){
+            case EFFECT_SLEEP:
+            case EFFECT_YAWN:
+                partnerChoseSleepMove = TRUE;
+            break;
+        }
+    }
+
+    if(partnerChoseSleepMove && isSleepingMove && IsDoubleBattle) //To speed up things
+        return TRUE;
+    else if(IsSleepDisabled(target) && isSleepingMove)
+        return TRUE;
+    else
+        return FALSE;
 }
 
 bool32 CanSleep(u8 battlerId)

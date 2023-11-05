@@ -689,8 +689,9 @@
 #define STRINGID_ANGELS_WRATH_BUG_BITE_EFFECT         718
 #define STRINGID_ANGELS_WRATH_PROTECT_EFFECT          719
 #define STRINGID_DISCIPLINE_LOCK_ENDS                 720
+#define STRINGID_SLEEPCLAUSEDISABLESMOVE              721
 
-#define BATTLESTRINGS_COUNT                           (STRINGID_DISCIPLINE_LOCK_ENDS + 1)
+#define BATTLESTRINGS_COUNT                           (STRINGID_SLEEPCLAUSEDISABLESMOVE + 1)
 
 // The below IDs are all indexes into battle message tables,
 // used to determine which of a set of messages to print.
