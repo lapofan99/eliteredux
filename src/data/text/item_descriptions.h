@@ -3189,38 +3189,32 @@ static const u8 sLuxrayniteDesc[] = _(
 static const u8 sKrookodileniteDesc[] = _(
     "This stone enables\n"
     "Krookodile to Mega\n"
-    "Evolve in battle."
-);
+    "Evolve in battle.");
 
 static const u8 sMagnezoniteDesc[] = _(
     "This stone enables\n"
     "Magnezone to Mega\n"
-    "Evolve in battle."
-);
+    "Evolve in battle.");
 
 static const u8 sShedinjiteDesc[] = _(
     "This stone enables\n"
     "Shedinja to Mega\n"
-    "Evolve in battle."
-);
+    "Evolve in battle.");
 
 static const u8 sSwalotiteDesc[] = _(
     "This stone enables\n"
     "Swalot to Mega\n"
-    "Evolve in battle."
-);
+    "Evolve in battle.");
 
 static const u8 sLanturniteDesc[] = _(
     "This stone enables\n"
     "Lanturn to Mega\n"
-    "Evolve in battle."
-);
+    "Evolve in battle.");
 
 static const u8 sSlowkingiteDesc[] = _(
     "This stone enables\n"
     "Slowking to Mega\n"
-    "Evolve in battle."
-);
+    "Evolve in battle.");
 
 static const u8 sFlygoniteDesc[] = _(
     "This stone enables\n"
@@ -3245,6 +3239,46 @@ static const u8 sSalamenciteDesc[] = _(
 static const u8 sBeedrilliteDesc[] = _(
     "This stone enables\n"
     "Beedrill to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sFeraligatriteDesc[] = _(
+    "This stone enables\n"
+    "Feraligatr to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sHaxorusiteDesc[] = _(
+    "This stone enables\n"
+    "Haxorus to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sMeganiumiteDesc[] = _(
+    "This stone enables\n"
+    "Meganium to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sGranbulliteDesc[] = _(
+    "This stone enables\n"
+    "Granbull to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sTyphlosioniteDesc[] = _(
+    "This stone enables\n"
+    "Typhlosion to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sNidoqueeniteDesc[] = _(
+    "This stone enables\n"
+    "Nidoqueen to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sNidokingiteDesc[] = _(
+    "This stone enables\n"
+    "Nidoking to Mega\n"
+    "Evolve in battle.");
+
+static const u8 sSandslashiteDesc[] = _(
+    "This stone enables\n"
+    "Sandslash to Mega\n"
     "Evolve in battle.");
 
 static const u8 sMegaBraceletDesc[] = _(
