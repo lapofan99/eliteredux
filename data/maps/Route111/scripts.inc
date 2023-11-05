@@ -1118,6 +1118,7 @@ Route111_EventScript_Sandslash_7:
 
 Route111_EventScript_Sandslash_PreNorman::
 	message Route111_EventScript_Sandslash_PreNorman_Text_0
+	waitmessage
 	release
 	end
 

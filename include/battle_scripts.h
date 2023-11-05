@@ -453,6 +453,7 @@ extern const u8 BattleScript_HauntedSpiritActivated[];
 extern const u8 BattleScript_UserGetsReckoilDamaged[];
 extern const u8 BattleScript_SpiderLairActivated[];
 extern const u8 BattleScript_TwistedDimensionActivated[];
+extern const u8 BattleScript_TwistedDimensionRemoved[];
 extern const u8 BattleScript_NorthWindActivated[];
 extern const u8 BattleScript_GripPincerActivated[];
 extern const u8 BattleScript_PrintDamageDoneString[];

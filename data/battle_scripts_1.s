@@ -10709,6 +10709,13 @@ BattleScript_TwistedDimensionActivated::
 	printstring STRINGID_TWISTEDDIMENSIONACTIVATED
 	waitmessage B_WAIT_TIME_LONG
 	end3
+	
+BattleScript_TwistedDimensionRemoved::
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_TRICKROOMENDS
+	waitmessage B_WAIT_TIME_LONG
+	end3
 
 BattleScript_GripPincerActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_GRIP_PINCER

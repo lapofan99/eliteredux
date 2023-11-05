@@ -5295,18 +5295,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
-		case ABILITY_TWISTED_DIMENSION:
-            if (!gSpecialStatuses[battler].switchInAbilityDone &&
-			    !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM))
-            {
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-				gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TWISTED_DIMENSION;
-				gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
-				gFieldTimers.trickRoomTimer = 3;
-				BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionActivated);
-				effect++;
-			}
-			break;
 		case ABILITY_NORTH_WIND:
             if (!gSpecialStatuses[battler].switchInAbilityDone && 
                 !(gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_AURORA_VEIL))
@@ -6407,21 +6395,47 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
 		}
-		
+
 		//Twisted Dimension
-        if(BattlerHasInnate(battler, ABILITY_TWISTED_DIMENSION)){
-            if (!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_TWISTED_DIMENSION)] &&
-			    !(gFieldStatuses & STATUS_FIELD_TRICK_ROOM))
-            {
-                gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, ABILITY_TWISTED_DIMENSION)] = TRUE;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_TWISTED_DIMENSION;
-				gLastUsedAbility = ABILITY_TWISTED_DIMENSION;
-				gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
-				gFieldTimers.trickRoomTimer = 3;
-				BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionActivated);
-				effect++;
-			}
-		}
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_TWISTED_DIMENSION)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_TWISTED_DIMENSION; //For easier copypaste
+
+            switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                case BATTLER_INNATE:
+                    if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                        gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+                case BATTLER_ABILITY:
+                    if(!gSpecialStatuses[battler].switchInAbilityDone){
+				        gBattlerAttacker = battler;
+                        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                if(!(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)){
+                    //Enable Trick Room
+                    gFieldStatuses |= STATUS_FIELD_TRICK_ROOM;
+                    gFieldTimers.trickRoomTimer = 3;
+                    BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionActivated);
+                    effect++;
+                }
+                else{
+                    //Removes Trick Room
+                    gFieldTimers.trickRoomTimer = 0;
+                    gFieldStatuses &= ~(STATUS_FIELD_TRICK_ROOM);
+                    BattleScriptPushCursorAndCallback(BattleScript_TwistedDimensionRemoved);
+                    effect++;
+                }
+            }
+        }
 		
 		//Mold Breaker
         if(BattlerHasInnate(battler, ABILITY_MOLD_BREAKER)){
@@ -9198,6 +9212,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					effect++;
 				}
 		}
+
         //Spinning Top
         if(BATTLER_HAS_ABILITY(battler, ABILITY_SPINNING_TOP)){
             bool8 activateAbilty = FALSE;
