@@ -6,7 +6,7 @@ Seaspray_Cave_B1F_EventScript_Dewgong::
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG, Seaspray_Cave_B1F_EventScript_Dewgong_Join
-	goto_if_unset FLAG_BADGE07_GET, Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza
+	goto_if_set FLAG_BADGE07_GET, Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza
 	playmoncry SPECIES_DEWGONG, 2
 	msgbox Seaspray_Cave_B1F_EventScript_Dewgong_Text_0, MSGBOX_YESNO
 	compare VAR_RESULT, 1
@@ -59,6 +59,7 @@ Seaspray_Cave_B1F_EventScript_Dewgong_7:
 
 Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza::
 	message Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza_Text_0
+	waitmessage
 	release
 	end
 

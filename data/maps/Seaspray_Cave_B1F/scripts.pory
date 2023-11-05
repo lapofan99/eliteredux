@@ -53,6 +53,7 @@ script Seaspray_Cave_B1F_EventScript_Dewgong{
 
 script Seaspray_Cave_B1F_EventScript_Dewgong_PreTateLiza{
     message(format("The Dewgong finds you pitiful. Perhaps return after growing stronger?{PAUSE_UNTIL_PRESS}"))
+	waitmessage
     release
     end	
 }
