@@ -524,11 +524,10 @@ static u32 CalculateHazardDamage(void)
         return totalHazardDmg;
 
     if ((gSideTimers[GetBattlerSide(gActiveBattler)].spikesAmount > 0) 
-       && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE
-       && !BattlerHasInnate(gActiveBattler, ABILITY_LEVITATE)
+       && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_LEVITATE)
+       && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_DRAGONFLY)
        && holdEffect != HOLD_EFFECT_AIR_BALLOON
-       && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING)
-       )
+       && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING))
     {
         spikesDmg = (5 - gSideTimers[GetBattlerSide(gActiveBattler)].spikesAmount) * 2;
         spikesDmg = gBattleMons[gActiveBattler].maxHP / (spikesDmg);

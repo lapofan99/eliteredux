@@ -2114,8 +2114,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 6;
             break;
         case EFFECT_RECOIL_25:
-            if (AI_DATA->abilities[battlerAtk] != ABILITY_MAGIC_GUARD && !BattlerHasInnate(battlerAtk, ABILITY_MAGIC_GUARD) && 
-                AI_DATA->abilities[battlerAtk] != ABILITY_ROCK_HEAD   && !BattlerHasInnate(battlerAtk, ABILITY_ROCK_HEAD) && 
+            if (AI_DATA->abilities[battlerAtk] != ABILITY_MAGIC_GUARD    && !BattlerHasInnate(battlerAtk, ABILITY_MAGIC_GUARD) && 
+                AI_DATA->abilities[battlerAtk] != ABILITY_ROCK_HEAD      && !BattlerHasInnate(battlerAtk, ABILITY_ROCK_HEAD)   && 
                 AI_DATA->abilities[battlerAtk] != ABILITY_STEEL_BARREL   && !BattlerHasInnate(battlerAtk, ABILITY_STEEL_BARREL))
             {
                 u32 recoilDmg = max(1, AI_DATA->simulatedDmg[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex] / 4);
