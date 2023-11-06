@@ -15,11 +15,13 @@
 #define AI_TYPE_MOVE 4
 
 // type effectiveness
-#define AI_EFFECTIVENESS_x4     160
-#define AI_EFFECTIVENESS_x2     80
-#define AI_EFFECTIVENESS_x1     40
-#define AI_EFFECTIVENESS_x0_5   20
-#define AI_EFFECTIVENESS_x0_25  10
+#define AI_EFFECTIVENESS_x8     7
+#define AI_EFFECTIVENESS_x4     6
+#define AI_EFFECTIVENESS_x2     5
+#define AI_EFFECTIVENESS_x1     4
+#define AI_EFFECTIVENESS_x0_5   3
+#define AI_EFFECTIVENESS_x0_25  2
+#define AI_EFFECTIVENESS_x0_125 1
 #define AI_EFFECTIVENESS_x0     0
 
 // ai weather
@@ -62,5 +64,9 @@
 #define AI_FLAG_ROAMING                 (1 << 29)
 #define AI_FLAG_SAFARI                  (1 << 30)
 #define AI_FLAG_FIRST_BATTLE            (1 << 31)
+
+// for AI_WhoStrikesFirst
+#define AI_IS_FASTER   0
+#define AI_IS_SLOWER   1
 
 #endif // GUARD_CONSTANTS_BATTLE_AI_H
