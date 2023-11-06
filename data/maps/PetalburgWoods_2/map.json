@@ -10,14 +10,20 @@
   "allow_cycling": false,
   "allow_escaping": false,
   "allow_running": true,
-  "show_map_name": true,
+  "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "up",
+      "offset": 20,
+      "map": "MAP_PETALBURG_WOODS_BRELOOM_ROOM"
+    }
+  ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
-      "x": 4,
-      "y": 12,
+      "x": 27,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -30,7 +36,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
       "x": 25,
-      "y": 6,
+      "y": 7,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -68,8 +74,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
-      "x": 31,
-      "y": 7,
+      "x": 32,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -81,8 +87,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
-      "x": 32,
-      "y": 6,
+      "x": 33,
+      "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -94,8 +100,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
-      "x": 30,
-      "y": 8,
+      "x": 31,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -133,20 +139,6 @@
       "y": 34,
       "elevation": 0,
       "dest_map": "MAP_PETALBURG_WOODS_3",
-      "dest_warp_id": 1
-    },
-    {
-      "x": 30,
-      "y": 5,
-      "elevation": 0,
-      "dest_map": "MAP_PETALBURG_WOODS_BRELOOM_ROOM",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 31,
-      "y": 5,
-      "elevation": 0,
-      "dest_map": "MAP_PETALBURG_WOODS_BRELOOM_ROOM",
       "dest_warp_id": 1
     }
   ],

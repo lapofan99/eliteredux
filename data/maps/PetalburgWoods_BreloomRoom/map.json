@@ -2,7 +2,7 @@
   "id": "MAP_PETALBURG_WOODS_BRELOOM_ROOM",
   "name": "PetalburgWoods_BreloomRoom",
   "layout": "LAYOUT_PETALBURG_WOODS_BRELOOM_ROOM",
-  "music": "MUS_ABANDONED_SHIP",
+  "music": "MUS_PETALBURG_WOODS",
   "region_map_section": "MAPSEC_PETALBURG_WOODS",
   "requires_flash": false,
   "weather": "WEATHER_SHADE",
@@ -12,12 +12,18 @@
   "allow_running": true,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": 0,
+  "connections": [
+    {
+      "direction": "down",
+      "offset": -20,
+      "map": "MAP_PETALBURG_WOODS_2"
+    }
+  ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_BRELOOM",
       "x": 10,
-      "y": 6,
+      "y": 9,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -29,20 +35,7 @@
     }
   ],
   "warp_events": [
-    {
-      "x": 10,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_PETALBURG_WOODS_2",
-      "dest_warp_id": 4
-    },
-    {
-      "x": 11,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_PETALBURG_WOODS_2",
-      "dest_warp_id": 5
-    }
+
   ],
   "coord_events": [
 
