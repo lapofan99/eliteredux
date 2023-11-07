@@ -240,13 +240,13 @@ u8 ComputeBattleAiScores(u8 battler)
 
 static void SetBattlerAiData(u8 battlerId)
 {
-    AI_DATA->abilities[battlerId] = AI_GetAbility(battlerId);
-    AI_DATA->items[battlerId] = gBattleMons[battlerId].item;
-    AI_DATA->holdEffects[battlerId] = ItemId_GetHoldEffectParam(gBattleMons[battlerId].item);
+    AI_DATA->abilities[battlerId]        = AI_GetAbility(battlerId);
+    AI_DATA->items[battlerId]            = gBattleMons[battlerId].item;
+    AI_DATA->holdEffects[battlerId]      = ItemId_GetHoldEffectParam(gBattleMons[battlerId].item);
     AI_DATA->holdEffectParams[battlerId] = GetBattlerHoldEffectParam(battlerId);
-    AI_DATA->predictedMoves[battlerId] = gLastMoves[battlerId];
-    AI_DATA->hpPercents[battlerId] = GetHealthPercentage(battlerId);
-    AI_DATA->moveLimitations[battlerId] = CheckMoveLimitations(battlerId, 0, 0xFF);
+    AI_DATA->predictedMoves[battlerId]   = gLastMoves[battlerId];
+    AI_DATA->hpPercents[battlerId]       = ((100 * gBattleMons[battlerId].hp) / gBattleMons[battlerId].maxHP);
+    AI_DATA->moveLimitations[battlerId]  = CheckMoveLimitations(battlerId, 0, 0xFF);
 }
 
 void GetAiLogicData(void)
@@ -854,19 +854,6 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (TestMoveFlags(move, FLAG_BALLISTIC))
                     RETURN_SCORE_MINUS(20);
                 break;
-            case ABILITY_DAZZLING:
-            case ABILITY_QUEENLY_MAJESTY:
-                if (atkPriority > 0)
-                    RETURN_SCORE_MINUS(20);
-                break;
-            case ABILITY_AROMA_VEIL:
-                if (IsAromaVeilProtectedMove(move))
-                    RETURN_SCORE_MINUS(20);
-                break;
-            case ABILITY_SWEET_VEIL:
-                if (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN)
-                    RETURN_SCORE_MINUS(10);
-                break;
             case ABILITY_FLOWER_VEIL:
                 if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringMoveEffect(moveEffect)))
                     RETURN_SCORE_MINUS(10);
@@ -930,6 +917,17 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             // target partner ability checks & not attacking partner
             if (isDoubleBattle)
             {
+                //Magic Bounce for the partner
+                if(BATTLER_HAS_ABILITY_FAST_AI(BATTLE_PARTNER(battlerDef), ABILITY_MAGIC_BOUNCE)){
+                    if(TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED) && moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY | MOVE_TARGET_OPPONENTS_FIELD)){
+                        RETURN_SCORE_MINUS(20);
+                    }
+                }
+
+                //Sweet Veil for the partner
+                if(BATTLER_HAS_ABILITY_FAST_AI(BATTLE_PARTNER(battlerDef), ABILITY_SWEET_VEIL) && (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN))
+                    RETURN_SCORE_MINUS(10);
+
                 switch (AI_DATA->abilities[BATTLE_PARTNER(battlerDef)])
                 {
                 case ABILITY_LIGHTNING_ROD:
@@ -940,25 +938,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                     if (moveType == TYPE_WATER && !IsMoveRedirectionPrevented(move, AI_DATA->abilities[battlerAtk]))
                         RETURN_SCORE_MINUS(20);
                     break;
-                case ABILITY_MAGIC_BOUNCE:
-                    if (TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED) && moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY | MOVE_TARGET_OPPONENTS_FIELD))
-                        RETURN_SCORE_MINUS(20);
-                    break;
-                case ABILITY_SWEET_VEIL:
-                    if (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN)
-                        RETURN_SCORE_MINUS(20);
-                    break;
                 case ABILITY_FLOWER_VEIL:
                     if ((IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringMoveEffect(moveEffect)))
-                        RETURN_SCORE_MINUS(10);
-                    break;
-                case ABILITY_AROMA_VEIL:
-                    if (IsAromaVeilProtectedMove(move))
-                        RETURN_SCORE_MINUS(10);
-                    break;
-                case ABILITY_DAZZLING:
-                case ABILITY_QUEENLY_MAJESTY:
-                    if (atkPriority > 0)
                         RETURN_SCORE_MINUS(10);
                     break;
                 }
@@ -1050,22 +1031,25 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             RETURN_SCORE_MINUS(20);
 
         //Dazzling and Queenly Majesty
-        if((BattlerHasInnate(battlerDef, ABILITY_DAZZLING) || BattlerHasInnate(battlerDef, ABILITY_QUEENLY_MAJESTY)) &&
+        if((BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_DAZZLING)                 ||
+            BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_QUEENLY_MAJESTY)          ||
+            BATTLER_HAS_ABILITY_FAST_AI(BATTLE_PARTNER(battlerDef), ABILITY_DAZZLING) ||
+            BATTLER_HAS_ABILITY_FAST_AI(BATTLE_PARTNER(battlerDef), ABILITY_QUEENLY_MAJESTY)) &&
            atkPriority > 0)
             RETURN_SCORE_MINUS(20);
 
-        //Aroma Veil - Unused
-        if(BattlerHasInnate(battlerDef, ABILITY_AROMA_VEIL) &&
+        //Aroma Veil
+        if(BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_AROMA_VEIL) &&
            IsAromaVeilProtectedMove(move))
             RETURN_SCORE_MINUS(20);
 
-        //Sweet Veil - Unused
-        if(BattlerHasInnate(battlerDef, ABILITY_SWEET_VEIL) &&
+        //Sweet Veil
+        if(BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_SWEET_VEIL) &&
            (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN))
             RETURN_SCORE_MINUS(10);
 
         //Magic Bounce
-        if(BattlerHasInnate(battlerDef, ABILITY_MAGIC_BOUNCE) &&
+        if(BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_MAGIC_BOUNCE) &&
            TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED))
             RETURN_SCORE_MINUS(20);
 
@@ -1143,20 +1127,6 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             }
         }
 
-        //Magic Bounce for the partner
-        if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_MAGIC_BOUNCE)){
-            if(moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN){
-                RETURN_SCORE_MINUS(20);
-            }
-        }
-
-        //Sweet Veil
-        if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_SWEET_VEIL)){
-            if(TestMoveFlags(move, FLAG_MAGIC_COAT_AFFECTED) && moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY | MOVE_TARGET_OPPONENTS_FIELD)){
-                RETURN_SCORE_MINUS(20);
-            }
-        }
-
         //Desert Cloak
         if(IsDesertCloakProtected(battlerDef) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringMoveEffect(moveEffect))){
             RETURN_SCORE_MINUS(20);
@@ -1165,14 +1135,6 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         //Flower Veil
         if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_FLOWER_VEIL)){
             if((IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringMoveEffect(moveEffect))){
-                RETURN_SCORE_MINUS(20);
-            }
-        }
-            
-        //Dazzling and Queenly Majesty for the partner
-        if(BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_DAZZLING) ||
-           BattlerHasInnate(BATTLE_PARTNER(battlerDef), ABILITY_QUEENLY_MAJESTY)){
-            if(atkPriority > 0){
                 RETURN_SCORE_MINUS(20);
             }
         }
@@ -1868,7 +1830,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 10;
             break;
         case EFFECT_MAGNITUDE:
-            if (AI_DATA->abilities[battlerDef] == ABILITY_LEVITATE || BattlerHasInnate(battlerDef, ABILITY_LEVITATE))
+            if (BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_LEVITATE) || BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_DRAGONFLY))
                 score -= 10;
             break;
         case EFFECT_PARTING_SHOT:
@@ -1958,7 +1920,11 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 6;
             break;
         case EFFECT_WILL_O_WISP:
-            if (!AI_CanBurn(battlerAtk, battlerDef, AI_DATA->partnerMove) || BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_FLASH_FIRE))
+            if (!AI_CanBurn(battlerAtk, battlerDef, AI_DATA->partnerMove)    || 
+                BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_FLASH_FIRE)  ||
+                BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_MAGIC_GUARD) ||
+                BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_FLARE_BOOST) ||
+                BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_GUTS))
                 score -= 10;
             break;
         case EFFECT_MEMENTO:
@@ -1978,7 +1944,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
             break;
         case EFFECT_TRICK:
         case EFFECT_KNOCK_OFF:
-            if (AI_DATA->abilities[battlerDef] == ABILITY_STICKY_HOLD || BattlerHasInnate(battlerDef, ABILITY_STICKY_HOLD))
+            if (BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_STICKY_HOLD))
                 score -= 10;
             break;
         case EFFECT_POLTERGEIST:
