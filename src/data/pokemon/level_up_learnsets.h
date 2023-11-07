@@ -3359,6 +3359,7 @@ static const struct LevelUpMove sMoltresLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_EMBER),
     LEVEL_UP_MOVE( 1, MOVE_SCORCHING_SANDS), // new
     LEVEL_UP_MOVE( 1, MOVE_SCORCHED_EARTH), // new
+    LEVEL_UP_MOVE( 1, MOVE_FLAME_BURST), // new
     LEVEL_UP_MOVE( 8, MOVE_FIRE_SPIN),
     LEVEL_UP_MOVE(15, MOVE_AGILITY),
     LEVEL_UP_MOVE(22, MOVE_ENDURE),
@@ -18895,6 +18896,7 @@ static const struct LevelUpMove sCorviknightLevelUpLearnset[] = {
 
 static const struct LevelUpMove sBlipbugLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_STRUGGLE_BUG),
+    LEVEL_UP_MOVE( 1, MOVE_QUIVER_DANCE), // new
     LEVEL_UP_END
 };
 
@@ -18902,11 +18904,14 @@ static const struct LevelUpMove sDottlerLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_REFLECT),
     LEVEL_UP_MOVE( 0, MOVE_LIGHT_SCREEN),
     LEVEL_UP_MOVE( 0, MOVE_CONFUSION),
+    LEVEL_UP_MOVE( 0, MOVE_QUIVER_DANCE), // new
     LEVEL_UP_MOVE( 1, MOVE_STRUGGLE_BUG),
+    LEVEL_UP_MOVE(16, MOVE_BUG_BUZZ), // new
     LEVEL_UP_END
 };
 
 static const struct LevelUpMove sOrbeetleLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 0, MOVE_DREAM_EATER), // new
     LEVEL_UP_MOVE( 1, MOVE_REFLECT),
     LEVEL_UP_MOVE( 1, MOVE_LIGHT_SCREEN),
     LEVEL_UP_MOVE( 1, MOVE_CONFUSION),
@@ -20009,6 +20014,7 @@ static const struct LevelUpMove sDrakloakLevelUpLearnset[] = {
 
 static const struct LevelUpMove sDragapultLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_DRAGON_DARTS),
+    LEVEL_UP_MOVE( 1, MOVE_FAKE_OUT), // new
     LEVEL_UP_MOVE( 1, MOVE_LAST_RESORT),
     LEVEL_UP_MOVE( 1, MOVE_DRAGON_BREATH),
     LEVEL_UP_MOVE( 1, MOVE_SUCKER_PUNCH),

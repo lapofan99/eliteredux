@@ -8375,8 +8375,16 @@ BattleScript_BattlerHasNoDamageHits::
 	waitmessage B_WAIT_TIME_LONG
 	end3
 
-BattleScript_GravityStarts::
+BattleScript_AtlasStarts::
 	sethword sABILITY_OVERWRITE, ABILITY_ATLAS
+	copybyte gBattlerAbility, gBattlerAttacker
+	call BattleScript_AbilityPopUp
+	printstring STRINGID_GRAVITYINTENSIFIED
+	waitmessage B_WAIT_TIME_LONG
+	end3
+
+	BattleScript_GravityStarts::
+	sethword sABILITY_OVERWRITE, ABILITY_GRAVITY_WELL
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_GRAVITYINTENSIFIED

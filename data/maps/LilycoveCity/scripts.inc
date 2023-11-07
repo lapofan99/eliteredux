@@ -436,7 +436,7 @@ LilycoveCity_EventScript_GiveAltarianite::
 
 LilycoveCity_EventScript_YesAltaria::
 	msgbox LilycoveCity_Text_YesAltaria, MSGBOX_DEFAULT
-	givecustommon SPECIES_ALTARIA, 60, ITEM_LEFTOVERS, ITEM_POKE_BALL, NATURE_TIMID, 1, 76, 0, 0, 180, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_BOOMBURST, MOVE_FIERY_DANCE, MOVE_QUIVER_DANCE, MOVE_ROOST, TRUE
+	givecustommon SPECIES_ALTARIA, 55, ITEM_LEFTOVERS, ITEM_POKE_BALL, NATURE_TIMID, 1, 76, 0, 0, 180, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_BOOMBURST, MOVE_FIERY_DANCE, MOVE_QUIVER_DANCE, MOVE_ROOST, TRUE
 	playfanfare MUS_OBTAIN_ITEM 
 	message LilycoveCity_Text_Got_Altaria
 	waitfanfare

@@ -503,6 +503,7 @@ extern const u8 BattleScript_TotemBoosted_SpecialAttack2[];
 extern const u8 BattleScript_TotemBoosted_Speed2[];
 extern const u8 BattleScript_TotemBoosted_Accuracy2[];
 extern const u8 BattleScript_TotemBoosted_Evasion2[];
+extern const u8 BattleScript_AtlasStarts[];
 extern const u8 BattleScript_GravityStarts[];
 extern const u8 BattleScript_RadianceProtected[];
 extern const u8 BattleScript_DesertCloakProtectsRet[];

@@ -5902,6 +5902,36 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             if(!(gFieldStatuses & STATUS_FIELD_GRAVITY) && activateAbilty){
                 gFieldTimers.gravityTimer = 8;
                 gFieldStatuses |= STATUS_FIELD_GRAVITY;
+                BattleScriptPushCursorAndCallback(BattleScript_AtlasStarts);
+                effect++;
+            }
+        }
+
+        // Gravity Well
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_GRAVITY_WELL)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_GRAVITY_WELL; //For easier copypaste
+
+            switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
+                case BATTLER_INNATE:
+                    if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                        gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+                case BATTLER_ABILITY:
+                    if(!gSpecialStatuses[battler].switchInAbilityDone){
+                        gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+                        activateAbilty = TRUE;
+                    }
+                break;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(!(gFieldStatuses & STATUS_FIELD_GRAVITY) && activateAbilty){
+                gFieldTimers.gravityTimer = 8;
+                gFieldStatuses |= STATUS_FIELD_GRAVITY;
                 BattleScriptPushCursorAndCallback(BattleScript_GravityStarts);
                 effect++;
             }

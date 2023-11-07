@@ -62,8 +62,8 @@ static const u8 sSwordsDanceDescription[] = _(
     "sharply raises Attack.");
 
 static const u8 sCutDescription[] = _(
-    "Cuts the foe with sharp\n"
-    "scythes, claws, etc.");
+    "Cuts the foe.\n"
+    "Always crits.");
 
 static const u8 sGustDescription[] = _(
     "A sudden gust of wind.\n"
@@ -4274,7 +4274,7 @@ static const u8 sMoveFourLineDescription_GuardSwap[] = _("The user and foe\nswap
 static const u8 sMoveFourLineDescription_Punishment[] = _("The more the foe\nhas powered up with\nstat changes, the\nharder this hits.");
 static const u8 sMoveFourLineDescription_LastResort[] = _("This fails unless\nthe user has used\nits other moves in\nthe battle already.");
 static const u8 sMoveFourLineDescription_WorrySeed[] = _("A seed that causes\nworry is planted on\nthe foe, giving it\nInsomnia.");
-static const u8 sMoveFourLineDescription_SuckerPunch[] = _("User strikes first.\nIt fails if the foe\nis not attacking.\nIron Fist boost."); // new
+static const u8 sMoveFourLineDescription_SuckerPunch[] = _("User strikes first.\nIt fails if the foe\nis not attacking."); // new
 static const u8 sMoveFourLineDescription_ToxicSpikes[] = _("Poison spikes are\nlaid at the foe's\nfeet. They poison\nfoes that switch in.");
 static const u8 sMoveFourLineDescription_HeartSwap[] = _("The user employs\nits psychic powers\nto swap stat changes\nwith the target.");
 static const u8 sMoveFourLineDescription_AquaRing[] = _("The user envelops\nitself in a veil of\nwater. It regains\n1/8 HP every turn."); // new

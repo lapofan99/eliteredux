@@ -38312,14 +38312,90 @@ static const struct TrainerMonItemCustomMoves sParty_Wallace[] = {
 static const struct TrainerMonItemCustomMoves sParty_WallaceInsane[] = {
     {
     .lvl = 0,
+    .species = SPECIES_DEWGONG, // Wallace-E, Mega, Bulky Physical + Sheer Cold
+    .heldItem = ITEM_DEWGONGITE,
+    .ability = 0, // ABILITY_HARDENED_SHEATH, ABILITY_LIGHTNING_ROD, ABILITY_ARCTIC_FUR},
+    // .innates = {ABILITY_COLD_REBOUND, ABILITY_WATER_VEIL, ABILITY_HYDRATE},
+    // Pre-Mega
+    // ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_ARCTIC_FUR},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {248, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_TRIPLE_AXEL, MOVE_HORN_DRILL, MOVE_SLACK_OFF, MOVE_DRILL_RUN
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_HAXORUS, // Wallace-E, Mega, DD
+    .heldItem = ITEM_HAXORUSITE,
+    .ability = 1, // ABILITY_INTIMIDATE, ABILITY_KEEN_EDGE, ABILITY_SHEER_FORCE},
+    // .innates = {ABILITY_BEAST_BOOST, ABILITY_PREDATOR, ABILITY_HYPER_CUTTER},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_JOLLY,
+    .moves = MOVE_DUAL_CHOP, MOVE_EARTHQUAKE, MOVE_EXCALIBUR, MOVE_DRAGON_DANCE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DRAGAPULT, // Wallace-E, Sash, Speed Boost, Physical
+    .heldItem = ITEM_FOCUS_SASH,
+    .ability = 1, // ABILITY_ARTILLERY, ABILITY_SPEED_BOOST, ABILITY_PARENTAL_BOND},
+    // .innates = {ABILITY_LEVITATE, ABILITY_CLEAR_BODY, ABILITY_HAUNTED_SPIRIT},
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_POLTERGEIST, MOVE_DRAGON_DARTS, MOVE_SUCKER_PUNCH, MOVE_FAKE_OUT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_DRAGONITE, // Mega, Wallace-E
+    .heldItem = ITEM_DRAGONITENITE,
+    .ability = 2, // Prism Scales > Multiscale
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 252, 4, 0, 0, 252}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
+    .nature = NATURE_JOLLY,
+    .moves = MOVE_EXTREME_SPEED, MOVE_OUTRAGE, MOVE_THRASH, MOVE_DRAGON_DANCE
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_KYOGRE, // Wallace-E, Primal, Bulky Special
+    .heldItem = ITEM_BLUE_ORB,
+    .ability = 0, // ABILITY_ARTILLERY, ABILITY_ARTILLERY, ABILITY_ARTILLERY},
+    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_PRIMAL_ARMOR, ABILITY_PRIMORDIAL_SEA},
+    // Pre-Primal
+    // ABILITY_SWIFT_SWIM, ABILITY_AURORA_BOREALIS, ABILITY_PREDATOR},
+    // .innates = {ABILITY_DRIZZLE, ABILITY_SELF_SUFFICIENT, ABILITY_SEA_GUARDIAN},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_MODEST,
+    .moves = MOVE_ORIGIN_PULSE, MOVE_SHEER_COLD, MOVE_THUNDER, MOVE_WATER_SPOUT
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_AGGRON, // Mega, Wallace-E, Bulky Attacker
+    .heldItem = ITEM_AGGRONITE,
+    .ability = 0, // ABILITY_JUGGERNAUT, ABILITY_HEATPROOF, ABILITY_IRON_BARBS},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_IMPENETRABLE},
+    // Pre-Mega
+    // ABILITY_JUGGERNAUT, ABILITY_HEATPROOF, ABILITY_IRON_BARBS},
+    // .innates = {ABILITY_LEAD_COAT, ABILITY_FILTER, ABILITY_IMPENETRABLE},
+    .ivs = {31, 31, 31, 31, 31, 0},
+    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
+    .zeroSpeedIvs = TRUE,
+	.nature = NATURE_BRAVE,
+    .moves = MOVE_HEAVY_SLAM, MOVE_THUNDER_PUNCH, MOVE_BODY_PRESS, MOVE_SLACK_OFF
+    }
+    /*
+    {
+    .lvl = 0,
     .species = SPECIES_MOLTRES, // Wallace-E, Air Blower
     .heldItem = ITEM_FOCUS_SASH,
     .ability = 0, // ABILITY_AIR_BLOWER, ABILITY_FLAMING_SOUL, ABILITY_DROUGHT},
     // .innates = {ABILITY_FLASH_FIRE, ABILITY_MOLTEN_DOWN, ABILITY_PYROMANCY},
     .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_TIMID,
-    .moves = MOVE_FIRE_BLAST, MOVE_AEROBLAST, MOVE_SCORCHING_SANDS, MOVE_U_TURN
+    .evs = {180, 0, 0, 252, 0, 76},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_MODEST,
+    .moves = MOVE_FLAME_BURST, MOVE_AEROBLAST, MOVE_SCORCHED_EARTH, MOVE_U_TURN
     },
     {
     .lvl = 0,
@@ -38355,35 +38431,6 @@ static const struct TrainerMonItemCustomMoves sParty_WallaceInsane[] = {
     .moves = MOVE_HYPER_BEAM, MOVE_MORNING_SUN, MOVE_STEEL_BEAM, MOVE_PRISMATIC_LASER
     },
     {
-    .lvl = 0,
-    .species = SPECIES_KYOGRE, // Wallace-E, Primal, Bulky Special
-    .heldItem = ITEM_BLUE_ORB,
-    .ability = 0, // ABILITY_ARTILLERY, ABILITY_ARTILLERY, ABILITY_ARTILLERY},
-    // .innates = {ABILITY_SWIFT_SWIM, ABILITY_PRIMAL_ARMOR, ABILITY_PRIMORDIAL_SEA},
-    // Pre-Primal
-    // ABILITY_SWIFT_SWIM, ABILITY_AURORA_BOREALIS, ABILITY_PREDATOR},
-    // .innates = {ABILITY_DRIZZLE, ABILITY_SELF_SUFFICIENT, ABILITY_SEA_GUARDIAN},
-    .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_MODEST,
-    .moves = MOVE_ORIGIN_PULSE, MOVE_SHEER_COLD, MOVE_THUNDER, MOVE_WATER_SPOUT
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_AGGRON, // Mega, Wallace-E, Bulky Attacker
-    .heldItem = ITEM_AGGRONITE,
-    .ability = 0, // ABILITY_JUGGERNAUT, ABILITY_HEATPROOF, ABILITY_IRON_BARBS},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_PRIMAL_ARMOR, ABILITY_IMPENETRABLE},
-    // Pre-Mega
-    // ABILITY_JUGGERNAUT, ABILITY_HEATPROOF, ABILITY_IRON_BARBS},
-    // .innates = {ABILITY_LEAD_COAT, ABILITY_FILTER, ABILITY_IMPENETRABLE},
-    .ivs = {31, 31, 31, 31, 31, 0},
-    .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
-    .zeroSpeedIvs = TRUE,
-	.nature = NATURE_BRAVE,
-    .moves = MOVE_HEAVY_SLAM, MOVE_THUNDER_PUNCH, MOVE_BODY_PRESS, MOVE_SLACK_OFF
-    }
-    /*{
     .lvl = 0,
     .species = SPECIES_RAIKOU, // Wallace-E, Sash, Rain Setter
     .heldItem = ITEM_FOCUS_SASH,
@@ -42333,7 +42380,7 @@ static const struct TrainerMonItemCustomMoves sParty_YdaMtPyre[] = {
     {
     .lvl = 0,
     .species = SPECIES_WISHIWASHI, // Yda, 
-    .heldItem = ITEM_SITRUS_BERRY,
+    .heldItem = ITEM_RED_CARD,
     .ability = 0, // Schooling
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0}, // HP, Atk, Def, Sp.Atk, Sp.Def, Speed
