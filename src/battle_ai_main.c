@@ -286,8 +286,9 @@ void GetAiLogicData(void)
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
                 dmg = 0;
-                effectiveness = AI_EFFECTIVENESS_x0;
                 move = gBattleMons[battlerAtk].moves[i];
+                effectiveness = AI_EFFECTIVENESS_x0;;
+                //
 
                 if (move != 0
                  && move != 0xFFFF
@@ -584,7 +585,8 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     s32 moveType;
     u16 moveTarget = gBattleMoves[move].target;
     u16 accuracy = AI_GetMoveAccuracy(battlerAtk, battlerDef, move);
-    u32 effectiveness = AI_DATA->effectiveness[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
+    u8 effectiveness = AI_GetMoveEffectiveness(move, battlerAtk, battlerDef);
+    //u32 effectiveness = AI_DATA->effectiveness[battlerAtk][battlerDef][AI_THINKING_STRUCT->movesetIndex];
     bool32 isDoubleBattle = IsValidDoubleBattle(battlerAtk);
     u32 i;
     u16 predictedMove = AI_DATA->predictedMoves[battlerDef];
@@ -829,10 +831,6 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 if (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG)
                     RETURN_SCORE_MINUS(20);
                 break;
-            case ABILITY_WONDER_GUARD:
-                if (effectiveness != AI_EFFECTIVENESS_x2 && effectiveness != AI_EFFECTIVENESS_x4)
-                    return 0;
-                break;
             case ABILITY_SAP_SIPPER:
                 if (moveType == TYPE_GRASS)
                     RETURN_SCORE_MINUS(20);
@@ -1006,10 +1004,11 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 RETURN_SCORE_MINUS(20);
         
         //Wonder Guard
-        if(BattlerHasInnate(battlerDef, ABILITY_WONDER_GUARD) && 
-           effectiveness != AI_EFFECTIVENESS_x2 && effectiveness != AI_EFFECTIVENESS_x4)
-            RETURN_SCORE_MINUS(20);
-
+        if(BATTLER_HAS_ABILITY_FAST_AI(battlerDef, ABILITY_WONDER_GUARD)){
+            if(effectiveness > AI_EFFECTIVENESS_x2 && gBattleMoves[move].power > 0)
+                RETURN_SCORE_MINUS(20);
+        }
+        
         //Sap Sipper
         if(BattlerHasInnate(battlerDef, ABILITY_SAP_SIPPER) && 
             moveType == TYPE_GRASS)
@@ -1568,7 +1567,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
         //case EFFECT_ENDEAVOR:
         case EFFECT_LOW_KICK:
             // AI_CBM_HighRiskForDamage
-            if (AI_DATA->abilities[battlerDef] == ABILITY_WONDER_GUARD && effectiveness < AI_EFFECTIVENESS_x2)
+            if (AI_DATA->abilities[battlerDef] == ABILITY_WONDER_GUARD && effectiveness > AI_EFFECTIVENESS_x2)
                 score -= 10;            
             break;
         case EFFECT_FOCUS_PUNCH:
@@ -2139,7 +2138,7 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
                 score -= 6;
             break;
         case EFFECT_RECHARGE:
-            if (AI_DATA->abilities[battlerDef] == ABILITY_WONDER_GUARD && effectiveness < AI_EFFECTIVENESS_x2)
+            if (AI_DATA->abilities[battlerDef] == ABILITY_WONDER_GUARD && effectiveness > AI_EFFECTIVENESS_x2)
                 score -= 10;
             else if (AI_DATA->abilities[battlerAtk] != ABILITY_TRUANT
               && !CanIndexMoveFaintTarget(battlerAtk, battlerDef, AI_THINKING_STRUCT->movesetIndex, 0))
