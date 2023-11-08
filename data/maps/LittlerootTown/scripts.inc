@@ -2,7 +2,6 @@
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
 .set LOCALID_BIRCH, 8
-	
 
 LittlerootTown_MapScripts:: @ 81E7DCB
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
@@ -41,8 +40,7 @@ LittlerootTown_MapScripts:: @ 81E7DCB
 
 
 LittlerootTown_OnTransition: @ 81E7DDB
-	call_if_unset FLAG_SYS_GAME_CLEAR, LittlerootTown_EventScript_RemoveLegendaryNPC
-	call_if_set FLAG_SYS_GAME_CLEAR, LittlerootTown_EventScript_EnableLegendaryNPC
+	call LittlerootTown_EventScript_EnableLegendaryNPC
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	call Common_EventScript_SetupRivalGfxId
 	compare VAR_LITTLEROOT_INTRO_STATE, 2
@@ -63,14 +61,6 @@ LittlerootTown_OnTransition: @ 81E7DDB
 	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
 	call_if_eq LittlerootTown_EventScript_LeftLabAfterDexUpgrade
 	end
-	
-LittlerootTown_EventScript_RemoveLegendaryNPC:: @ 81E7E45
-	setflag FLAG_REMOVE_LEGENDARY_NPC
-	return
-	
-LittlerootTown_EventScript_EnableLegendaryNPC:: @ 81E7E45
-	clearflag FLAG_REMOVE_LEGENDARY_NPC
-	return
 
 LittlerootTown_EventScript_LeftLabAfterDexUpgrade:: @ 81E7E45
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
@@ -1921,19 +1911,24 @@ LittlerootTown_EventScript_LegendaryNPC::
 	lock
 	faceplayer
 	goto_if_unset FLAG_GOT_LEGENDARY_NPC_ITEMS, LittlerootTown_EventScript_LegendaryNPC_2
-	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_3, MSGBOX_DEFAULT
+	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_4, MSGBOX_DEFAULT
 	multichoice2 1, 1, LittlerootTown_EventScript_LegendaryNPC_Options
 	switch VAR_RESULT
-	case 0, LittlerootTown_EventScript_LegendaryNPC_6
-	case MULTI_B_PRESSED, LittlerootTown_EventScript_LegendaryNPC_7
-LittlerootTown_EventScript_LegendaryNPC_7:
-	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_4
+	case 0, LittlerootTown_EventScript_LegendaryNPC_12
+	case MULTI_B_PRESSED, LittlerootTown_EventScript_LegendaryNPC_13
+LittlerootTown_EventScript_LegendaryNPC_13:
+	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_5
 LittlerootTown_EventScript_LegendaryNPC_1:
 	release
 	end
 
 LittlerootTown_EventScript_LegendaryNPC_2:
-	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_0
+	checkSaveblockValue SAVEBLOCK_ENABLE_LEGENDARY
+	compare VAR_RESULT, TRUE
+	goto_if_eq LittlerootTown_EventScript_LegendaryNPC_8
+LittlerootTown_EventScript_LegendaryNPC_7:
+	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_1
+LittlerootTown_EventScript_LegendaryNPC_5:
 	additem ITEM_GRACIDEA
 	additem ITEM_REVEAL_GLASS
 	additem ITEM_DNA_SPLICERS
@@ -1979,15 +1974,23 @@ LittlerootTown_EventScript_LegendaryNPC_2:
 	additem ITEM_CHILL_DRIVE
 	additem ITEM_DOUSE_DRIVE
 	playfanfare MUS_OBTAIN_ITEM
-	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_1
+	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_2
 	waitmessage
 	waitfanfare
 	setflag FLAG_GOT_LEGENDARY_NPC_ITEMS
-	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_2
+	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_3
 	goto LittlerootTown_EventScript_LegendaryNPC_1
 
 LittlerootTown_EventScript_LegendaryNPC_6:
-	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_2
+	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_0
+	goto LittlerootTown_EventScript_LegendaryNPC_5
+
+LittlerootTown_EventScript_LegendaryNPC_8:
+	goto_if_unset FLAG_SYS_GAME_CLEAR, LittlerootTown_EventScript_LegendaryNPC_6
+	goto LittlerootTown_EventScript_LegendaryNPC_7
+
+LittlerootTown_EventScript_LegendaryNPC_12:
+	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_3
 	goto LittlerootTown_EventScript_LegendaryNPC_1
 
 
@@ -2023,7 +2026,7 @@ LittlerootTown_EventScript_TutorialNPC2::
 	case 16, LittlerootTown_EventScript_TutorialNPC2_19
 	case MULTI_B_PRESSED, LittlerootTown_EventScript_TutorialNPC2_19
 LittlerootTown_EventScript_TutorialNPC2_19:
-	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_4
+	msgbox LittlerootTown_EventScript_LegendaryNPC_Text_5
 LittlerootTown_EventScript_TutorialNPC2_1:
 	release
 	end
@@ -2255,18 +2258,36 @@ PKMN_Center_EventScript_Lower_Difficulty_9:
 	goto PKMN_Center_EventScript_Lower_Difficulty_8
 
 
+LittlerootTown_EventScript_EnableLegendaryNPC::
+	setflag FLAG_REMOVE_LEGENDARY_NPC
+	checkSaveblockValue SAVEBLOCK_ENABLE_LEGENDARY
+	compare VAR_RESULT, TRUE
+	goto_if_eq LittlerootTown_EventScript_EnableLegendaryNPC_2
+	goto_if_set FLAG_SYS_GAME_CLEAR, LittlerootTown_EventScript_EnableLegendaryNPC_2
+LittlerootTown_EventScript_EnableLegendaryNPC_1:
+	return
+
+LittlerootTown_EventScript_EnableLegendaryNPC_2:
+	clearflag FLAG_REMOVE_LEGENDARY_NPC
+	goto LittlerootTown_EventScript_EnableLegendaryNPC_1
+
+
 LittlerootTown_EventScript_LegendaryNPC_Text_0:
+	.string "Since you're playing a Randomizer mode,\n"
+	.string "have all the Legendary Pokémon Items!$"
+
+LittlerootTown_EventScript_LegendaryNPC_Text_1:
 	.string "Congratulations on becoming champion!\n"
 	.string "Your efforts haven't gone unnoticed.\l"
 	.string "I've been waiting this day for ages,\l"
 	.string "but I can finally put these items in\l"
 	.string "hands I can trust.$"
 
-LittlerootTown_EventScript_LegendaryNPC_Text_1:
+LittlerootTown_EventScript_LegendaryNPC_Text_2:
 	.string "{PLAYER} received legendary\n"
 	.string "artifacts from the Sage!$"
 
-LittlerootTown_EventScript_LegendaryNPC_Text_2:
+LittlerootTown_EventScript_LegendaryNPC_Text_3:
 	.string "The legendary Pokémon that once\n"
 	.string "roamed these lands have returned,\l"
 	.string "thanks to you.\p"
@@ -2279,10 +2300,10 @@ LittlerootTown_EventScript_LegendaryNPC_Text_2:
 	.string "Good luck, champion, we look forward to\n"
 	.string "your success!$"
 
-LittlerootTown_EventScript_LegendaryNPC_Text_3:
+LittlerootTown_EventScript_LegendaryNPC_Text_4:
 	.string "Do you need anything?$"
 
-LittlerootTown_EventScript_LegendaryNPC_Text_4:
+LittlerootTown_EventScript_LegendaryNPC_Text_5:
 	.string "See you later.$"
 
 LittlerootTown_EventScript_TutorialNPC_Text_0:

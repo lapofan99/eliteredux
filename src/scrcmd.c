@@ -2731,6 +2731,9 @@ bool8 ScrCmd_toggleSaveblock(struct ScriptContext *ctx)
         case SAVEBLOCK_DIFFICULTY:
             gSaveBlock2Ptr->gameDifficulty = value;
         break;
+        case SAVEBLOCK_ENABLE_LEGENDARY:
+            gSaveBlock2Ptr->encounterRandomizedLegendaryMode = value;
+        break;
     }
     return TRUE;
 }
@@ -2747,6 +2750,9 @@ bool8 ScrCmd_checkSaveblockValue(struct ScriptContext *ctx)
         break;
         case SAVEBLOCK_DIFFICULTY:
             gSpecialVar_Result = gSaveBlock2Ptr->gameDifficulty;
+        break;
+        case SAVEBLOCK_ENABLE_LEGENDARY:
+            gSpecialVar_Result = gSaveBlock2Ptr->encounterRandomizedLegendaryMode;
         break;
     }
     return FALSE;
