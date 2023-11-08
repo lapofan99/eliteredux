@@ -403,9 +403,9 @@ static void BuildNormalStartMenu(void)
     else
         AddStartMenuAction(MENU_ACTION_EXIT);
 
-    /*#ifdef DEBUG_BUILD
+    #ifdef DEBUG_BUILD
         AddStartMenuAction(MENU_ACTION_UI_TEST);
-    #endif*/
+    #endif
 }
 
 static void BuildDebugStartMenu(void)
