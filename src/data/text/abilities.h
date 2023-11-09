@@ -52,7 +52,7 @@ static const u8 sFlameBodyDescription[] = _("30% chance to burn on contact.\nAls
 static const u8 sRunAwayDescription[] = _("Makes escaping easier.\nLowering stats ups Speed.");
 static const u8 sKeenEyeDescription[] = _("Prevents loss of accuracy.\n1.2x accuracy boost.");
 static const u8 sHyperCutterDescription[] = _("Prevents Attack reduction.\nUps crit level by +1.");
-static const u8 sPickupDescription[] = _("Removes all hazards on entry.");
+static const u8 sPickupDescription[] = _("Removes all hazards on entry.\nNot immune to hazards.");
 static const u8 sTruantDescription[] = _("Moves only every two turns.");
 static const u8 sHustleDescription[] = _("-10% accuracy, but\n+40% Atk & SpAtk.");
 static const u8 sCuteCharmDescription[] = _("Infatuates on contact,\nwhich halves foe's power.");
@@ -434,7 +434,7 @@ static const u8 sAngelsWrathDescription[] = _("Drastically alters all\nof the us
 static const u8 sPrismaticFurDescription[] = _("Color Change + Protean,\nFur Coat + Ice Scales");
 static const u8 sShockingJawsDescription[] = _("Biting moves have 50% chance\nto paralyze the target.");
 static const u8 sFaeHunterDescription[] = _("Does 50% more damage to\nFairy-types.");
-static const u8 sGravityWellDescription[] = _("Sets Gravity on entry for\n8 turns.");
+static const u8 sGravityWellDescription[] = _("Sets Gravity on entry for\n5 turns.");
 
 static const u8 sAbilityTestDescription[] = _("The Pokémon does stuff\nand then things happen.");
 

@@ -14025,7 +14025,7 @@ static const struct TrainerMonItemCustomMoves sParty_Dusty3[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_HEAVY_SLAM, MOVE_EARTHQUAKE, MOVE_FIRE_FANG, MOVE_THUNDER_FANG
+    .moves = MOVE_HEAVY_SLAM, MOVE_EARTHQUAKE, MOVE_FIRE_FANG, MOVE_JAGGED_FANGS
     }
 };
 
@@ -16454,7 +16454,7 @@ static const struct TrainerMonItemCustomMoves sParty_Lenny[] = {
     .evs = {252, 0, 208, 0, 48, 0},      // HP, Atk, Def, SpA, SpD, Spe
     .zeroSpeedIvs = TRUE,
 	.nature = NATURE_BRAVE,
-    .moves = MOVE_GYRO_BALL, MOVE_FISSURE, MOVE_SHORE_UP, MOVE_COIL
+    .moves = MOVE_IRON_FANGS, MOVE_FISSURE, MOVE_SHORE_UP, MOVE_COIL
     },
     {
     .lvl = 0,
@@ -17558,14 +17558,14 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMtChimney[] = {
     },
     {
     .lvl = 0,
-    .species = SPECIES_STEELIX, // SpDef Wall, Orb, Coil
+    .species = SPECIES_STEELIX, // Tabitha, SpDef Wall, Orb, Coil
     .heldItem = ITEM_LIFE_ORB,
     .ability = 1, // ABILITY_FORT_KNOX, ABILITY_IMPENETRABLE, ABILITY_COIL_UP},
     // .innates = {ABILITY_LEAD_COAT, ABILITY_TECTONIZE, ABILITY_STRONG_JAW},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_CAREFUL,
-    .moves = MOVE_IRON_TAIL, MOVE_DOUBLE_EDGE, MOVE_SHORE_UP, MOVE_COIL
+    .moves = MOVE_IRON_FANGS, MOVE_DOUBLE_EDGE, MOVE_SHORE_UP, MOVE_COIL
     },
     {
     .lvl = 0,
@@ -17634,7 +17634,7 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMtChimneyInsane[] = 
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 4, 0, 252, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_CAREFUL,
-    .moves = MOVE_IRON_TAIL, MOVE_DOUBLE_EDGE, MOVE_SHORE_UP, MOVE_COIL
+    .moves = MOVE_IRON_FANGS, MOVE_DOUBLE_EDGE, MOVE_SHORE_UP, MOVE_COIL
     },
     {
     .lvl = 0,
@@ -22273,7 +22273,7 @@ static const struct TrainerMonItemCustomMoves sParty_Garrison[] = { // potential
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_FISSURE, MOVE_IRON_TAIL, MOVE_FIRE_FANG, MOVE_SHORE_UP
+    .moves = MOVE_FISSURE, MOVE_IRON_FANGS, MOVE_FIRE_FANG, MOVE_SHORE_UP
     },
     {
     .lvl = 0,
@@ -26495,7 +26495,7 @@ static const struct TrainerMonItemCustomMoves sParty_DezAndLuke[] = { // Double
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_HEAVY_SLAM, MOVE_FIRE_FANG, MOVE_PROTECT, MOVE_SCREECH
+    .moves = MOVE_IRON_FANGS, MOVE_FIRE_FANG, MOVE_PROTECT, MOVE_SCREECH
     }
 };
 
@@ -28926,7 +28926,7 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMagmaHideout[] = { /
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_IMPISH,
-    .moves = MOVE_BODY_PRESS, MOVE_IRON_TAIL, MOVE_PROTECT, MOVE_FIRE_FANG
+    .moves = MOVE_BODY_PRESS, MOVE_IRON_FANGS, MOVE_PROTECT, MOVE_FIRE_FANG
     }
 };
 
@@ -28965,7 +28965,7 @@ static const struct TrainerMonItemCustomMoves sParty_TabithaMagmaHideoutInsane[]
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {252, 0, 252, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_IMPISH,
-    .moves = MOVE_BODY_PRESS, MOVE_IRON_TAIL, MOVE_PROTECT, MOVE_FIRE_FANG
+    .moves = MOVE_BODY_PRESS, MOVE_IRON_FANGS, MOVE_PROTECT, MOVE_FIRE_FANG
     }
 };
 
@@ -29057,7 +29057,7 @@ static const struct TrainerMonItemCustomMoves sParty_MaxieMagmaHideout[] = {
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {156, 252, 0, 0, 100, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_PRECIPICE_BLADES, MOVE_V_CREATE, MOVE_STONE_EDGE, MOVE_STEALTH_ROCK
+    .moves = MOVE_PRECIPICE_BLADES, MOVE_V_CREATE, MOVE_JAGGED_FANGS, MOVE_STEALTH_ROCK
     },
     {
     .lvl = 0,
@@ -29115,7 +29115,7 @@ static const struct TrainerMonItemCustomMoves sParty_MaxieMagmaHideout[] = {
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_MODEST,
-    .moves = MOVE_SCORCHING_SANDS, MOVE_ERUPTION, MOVE_SOLAR_BEAM, MOVE_SLACK_OFF
+    .moves = MOVE_SCORCHED_EARTH, MOVE_ERUPTION, MOVE_SOLAR_BEAM, MOVE_SLACK_OFF
     }
 };
 
@@ -29165,7 +29165,7 @@ static const struct TrainerMonItemCustomMoves sParty_MaxieMagmaHideoutInsane[] =
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {156, 252, 0, 0, 100, 0},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_ADAMANT,
-    .moves = MOVE_PRECIPICE_BLADES, MOVE_V_CREATE, MOVE_STONE_EDGE, MOVE_SHORE_UP
+    .moves = MOVE_PRECIPICE_BLADES, MOVE_V_CREATE, MOVE_JAGGED_FANGS, MOVE_SHORE_UP
     },
     {
     .lvl = 0,
@@ -29190,7 +29190,7 @@ static const struct TrainerMonItemCustomMoves sParty_MaxieMagmaHideoutInsane[] =
     .ivs = {31, 0, 31, 31, 31, 31},
     .evs = {252, 0, 0, 252, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_MODEST,
-    .moves = MOVE_SCORCHING_SANDS, MOVE_ERUPTION, MOVE_SOLAR_BEAM, MOVE_SLACK_OFF
+    .moves = MOVE_SCORCHED_EARTH, MOVE_ERUPTION, MOVE_SOLAR_BEAM, MOVE_SLACK_OFF
     }
 };
 
@@ -34781,7 +34781,7 @@ static const struct TrainerMonItemCustomMoves sParty_Archie[] = { // Seafloor
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_PSYCHIC_FANGS, MOVE_CLOSE_COMBAT
+    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_IRON_FANGS, MOVE_CLOSE_COMBAT
     }
 };
 
@@ -34831,7 +34831,7 @@ static const struct TrainerMonItemCustomMoves sParty_ArchieInsane[] = { // Seafl
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_FISHIOUS_REND, MOVE_PSYCHIC_FANGS, MOVE_ICE_FANG, MOVE_DRAGON_RUSH
+    .moves = MOVE_FISHIOUS_REND, MOVE_IRON_FANGS, MOVE_ICE_FANG, MOVE_DRAGON_RUSH
     },
     {
     .lvl = 0,
@@ -34856,7 +34856,7 @@ static const struct TrainerMonItemCustomMoves sParty_ArchieInsane[] = { // Seafl
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {4, 252, 0, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
 	.nature = NATURE_JOLLY,
-    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_PSYCHIC_FANGS, MOVE_CLOSE_COMBAT
+    .moves = MOVE_AQUA_FANG, MOVE_CRUNCH, MOVE_IRON_FANGS, MOVE_JAGGED_FANGS
     }
 };
 
@@ -38312,17 +38312,17 @@ static const struct TrainerMonItemCustomMoves sParty_Wallace[] = {
 static const struct TrainerMonItemCustomMoves sParty_WallaceInsane[] = {
     {
     .lvl = 0,
-    .species = SPECIES_DEWGONG, // Wallace-E, Mega, Bulky Physical + Sheer Cold
-    .heldItem = ITEM_DEWGONGITE,
-    .ability = 0, // ABILITY_HARDENED_SHEATH, ABILITY_LIGHTNING_ROD, ABILITY_ARCTIC_FUR},
-    // .innates = {ABILITY_COLD_REBOUND, ABILITY_WATER_VEIL, ABILITY_HYDRATE},
+    .species = SPECIES_MEWTWO, // Wallace-E, Mega, Surge Pre-Mega, Nasty Plot
+    .heldItem = ITEM_MEWTWONITE_Y,
+    .ability = 1, // {ABILITY_MYSTIC_POWER, ABILITY_MYSTIC_POWER, ABILITY_MYSTIC_POWER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_LEVITATE, ABILITY_FATAL_PRECISION},
     // Pre-Mega
-    // ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_ARCTIC_FUR},
-    // .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
+    // ABILITY_MYSTIC_POWER, ABILITY_PSYCHIC_SURGE, ABILITY_SOUL_EATER},
+    // .innates = {ABILITY_PSYCHIC_MIND, ABILITY_PRESSURE, ABILITY_FATAL_PRECISION},
     .ivs = {31, 0, 31, 31, 31, 31},
-    .evs = {248, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_TRIPLE_AXEL, MOVE_HORN_DRILL, MOVE_SLACK_OFF, MOVE_DRILL_RUN
+    .evs = {0, 0, 0, 252, 4, 252},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_TIMID,
+    .moves = MOVE_PSYSTRIKE, MOVE_ICE_BEAM, MOVE_FLAMETHROWER, MOVE_AURA_SPHERE
     },
     {
     .lvl = 0,
@@ -38383,9 +38383,23 @@ static const struct TrainerMonItemCustomMoves sParty_WallaceInsane[] = {
     .evs = {252, 252, 0, 0, 4, 0},      // HP, Atk, Def, SpA, SpD, Spe
     .zeroSpeedIvs = TRUE,
 	.nature = NATURE_BRAVE,
-    .moves = MOVE_HEAVY_SLAM, MOVE_THUNDER_PUNCH, MOVE_BODY_PRESS, MOVE_SLACK_OFF
+    .moves = MOVE_HEAVY_SLAM, MOVE_FIRE_PUNCH, MOVE_BODY_PRESS, MOVE_SLACK_OFF
     }
     /*
+    {
+    .lvl = 0,
+    .species = SPECIES_DEWGONG, // Wallace-E, Mega, Bulky Physical + Sheer Cold
+    .heldItem = ITEM_DEWGONGITE,
+    .ability = 0, // ABILITY_HARDENED_SHEATH, ABILITY_LIGHTNING_ROD, ABILITY_ARCTIC_FUR},
+    // .innates = {ABILITY_COLD_REBOUND, ABILITY_WATER_VEIL, ABILITY_HYDRATE},
+    // Pre-Mega
+    // ABILITY_FUR_COAT, ABILITY_ICE_SCALES, ABILITY_ARCTIC_FUR},
+    // .innates = {ABILITY_THICK_FAT, ABILITY_WATER_VEIL, ABILITY_NORTH_WIND},
+    .ivs = {31, 0, 31, 31, 31, 31},
+    .evs = {248, 252, 0, 0, 0, 4},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_ADAMANT,
+    .moves = MOVE_TRIPLE_AXEL, MOVE_HORN_DRILL, MOVE_SLACK_OFF, MOVE_DRILL_RUN
+    },
     {
     .lvl = 0,
     .species = SPECIES_MOLTRES, // Wallace-E, Air Blower
