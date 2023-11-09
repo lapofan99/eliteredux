@@ -6685,28 +6685,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             gBattlerAttacker = battler;
             switch (gLastUsedAbility)
             {
-            case ABILITY_HARVEST:
-                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
-                 && gBattleMons[battler].item == ITEM_NONE
-                 && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
-                 && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
-                {
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HARVEST;
-                    BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
-                    effect++;
-                }
-                break;
-            case ABILITY_BIG_LEAVES:
-                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
-                 && gBattleMons[battler].item == ITEM_NONE
-                 && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
-                 && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
-                {
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BIG_LEAVES;
-                    BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
-                    effect++;
-                }
-                break;
             case ABILITY_DRY_SKIN:
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
                 {
@@ -6912,65 +6890,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     effect++;
                 }
                 break;
-			case ABILITY_SELF_SUFFICIENT:
-				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
-				{
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_SUFFICIENT;
-			        gLastUsedAbility = ABILITY_SELF_SUFFICIENT;
-                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
-                    if (gBattleMoveDamage == 0)
-                        gBattleMoveDamage = 1;
-                    gBattleMoveDamage *= -1;
-                    BattleScriptExecute(BattleScript_SelfSufficientActivates);
-                    effect++;
-                }
-                break;
-            case ABILITY_SELF_REPAIR:
-				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
-				{
-                    gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_REPAIR;
-			        gLastUsedAbility = ABILITY_SELF_REPAIR;
-                    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
-                    if (gBattleMoveDamage == 0)
-                        gBattleMoveDamage = 1;
-                    gBattleMoveDamage *= -1;
-                    BattleScriptExecute(BattleScript_SelfSufficientActivates);
-                    effect++;
-                }
-                break;
             }
 			
 			
 			// End Turn Innates
 			
 			/***********************************/
-			
-			// Harvest
-			if(BattlerHasInnate(gActiveBattler, ABILITY_HARVEST)){
-                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
-                 && gBattleMons[battler].item == ITEM_NONE
-                 && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
-                 && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
-                {
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HARVEST;
-                    BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
-                    effect++;
-                }
-            }
-			
-            // Big Leaves
-			if(BattlerHasInnate(gActiveBattler, ABILITY_BIG_LEAVES)){
-                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
-                 && gBattleMons[battler].item == ITEM_NONE
-                 && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
-                 && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
-                {
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BIG_LEAVES;
-                    BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
-                    effect++;
-                }
-            }
-			
 			// Dry Skin
             if(BattlerHasInnate(gActiveBattler, ABILITY_DRY_SKIN)){
                 if (IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY))
@@ -7119,7 +7044,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     if (gBattleMoveDamage == 0)
                         gBattleMoveDamage = 1;
                     gBattleMoveDamage *= -1;
-                    BattleScriptExecute(BattleScript_SweetDreamsActivates);
+                    BattleScriptPushCursorAndCallback(BattleScript_SweetDreamsActivates);
                     effect++;
                 }
 			}
@@ -7149,36 +7074,98 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 if ((effect = ShouldChangeFormHpBased(battler)))
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
 			}
-			
-			// Self Sufficient
-			if(BattlerHasInnate(gActiveBattler, ABILITY_SELF_SUFFICIENT)){
-				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
-				{
-					gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_SUFFICIENT;
-					gLastUsedAbility = ABILITY_SELF_SUFFICIENT;
+
+            // Harvest
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_HARVEST)){
+                bool8 activateAbilty = FALSE;
+                bool8 alwaysActivate = TRUE; //For Testing
+                u16 abilityToCheck = ABILITY_HARVEST; //For easier copypaste
+
+                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0 || alwaysActivate)
+                 && gBattleMons[battler].item == ITEM_NONE
+                 && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
+                 && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
+                    activateAbilty = TRUE;
+
+                //This is the stuff that has to be changed for each ability
+                if(activateAbilty){
+                    if(BattlerHasInnateOrAbility(battler, abilityToCheck) == BATTLER_INNATE)
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+
+                    gBattlerAttacker = battler;
+                    BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
+                    effect++;
+                }
+            }
+
+            // Big Leaves
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_BIG_LEAVES)){
+                bool8 activateAbilty = FALSE;
+                u16 abilityToCheck = ABILITY_BIG_LEAVES; //For easier copypaste
+
+                if ((IsBattlerWeatherAffected(battler, WEATHER_SUN_ANY) || Random() % 2 == 0)
+                 && gBattleMons[battler].item == ITEM_NONE
+                 && gBattleStruct->changedItems[battler] == ITEM_NONE   // Will not inherit an item
+                 && ItemId_GetPocket(GetUsedHeldItem(battler)) == POCKET_BERRIES)
+                    activateAbilty = TRUE;
+
+                //This is the stuff that has to be changed for each ability
+                if(activateAbilty && !BATTLER_HAS_ABILITY(battler, ABILITY_HARVEST)){
+                    if(BattlerHasInnateOrAbility(battler, abilityToCheck) == BATTLER_INNATE)
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                    gBattlerAttacker = battler;
+                    BattleScriptPushCursorAndCallback(BattleScript_HarvestActivates);
+                    effect++;
+                }
+            }
+
+            // Self Sufficient
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_SELF_SUFFICIENT)){
+                bool8 activateAbilty = FALSE;
+                u16 abilityToCheck = ABILITY_SELF_SUFFICIENT; //For easier copypaste
+
+                if(BattlerHasInnateOrAbility(battler, abilityToCheck) == BATTLER_INNATE)
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                
+                if(!BATTLER_MAX_HP(battler) && 
+                   !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && 
+                   gDisableStructs[battler].isFirstTurn != 2)
+                    activateAbilty = TRUE;
+
+                //This is the stuff that has to be changed for each ability
+                if(activateAbilty){
 				    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
 					if (gBattleMoveDamage == 0)
 						gBattleMoveDamage = 1;
 					gBattleMoveDamage *= -1;
-					BattleScriptExecute(BattleScript_SelfSufficientActivates);
+					BattleScriptPushCursorAndCallback(BattleScript_SelfSufficientActivates);
 					effect++;
-				}
-			}
+                }
+            }
 
             // Self Repair
-			if(BattlerHasInnate(gActiveBattler, ABILITY_SELF_REPAIR)){
-				if (!BATTLER_MAX_HP(battler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && gDisableStructs[battler].isFirstTurn != 2)
-				{
-					gBattleScripting.abilityPopupOverwrite = ABILITY_SELF_REPAIR;
-					gLastUsedAbility = ABILITY_SELF_REPAIR;
+            if(BATTLER_HAS_ABILITY(battler, ABILITY_SELF_REPAIR)){
+                bool8 activateAbilty = FALSE;
+                u16 abilityToCheck = ABILITY_SELF_REPAIR; //For easier copypaste
+
+                if(BattlerHasInnateOrAbility(battler, abilityToCheck) == BATTLER_INNATE)
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
+                
+                if(!BATTLER_MAX_HP(battler) && 
+                   !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && 
+                   gDisableStructs[battler].isFirstTurn != 2)
+                    activateAbilty = TRUE;
+
+                //This is the stuff that has to be changed for each ability
+                if(activateAbilty){
 				    gBattleMoveDamage = gBattleMons[gActiveBattler].maxHP / 16;
 					if (gBattleMoveDamage == 0)
 						gBattleMoveDamage = 1;
 					gBattleMoveDamage *= -1;
-					BattleScriptExecute(BattleScript_SelfSufficientActivates);
+					BattleScriptPushCursorAndCallback(BattleScript_SelfSufficientActivates);
 					effect++;
-				}
-			}
+                }
+            }
 			
 			// Rain Dish
 			if(BattlerHasInnate(gActiveBattler, ABILITY_RAIN_DISH)){

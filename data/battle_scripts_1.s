@@ -3718,7 +3718,6 @@ BattleScript_EffectOHKO::
 	accuracycheck BattleScript_ButItFailed, NO_ACC_CALC_CHECK_LOCK_ON
 	typecalc
 	jumpifmovehadnoeffect BattleScript_HitFromAtkAnimation
-	tryKO BattleScript_KOFail
 	trysetdestinybondtohappen
 	goto BattleScript_HitFromAtkAnimation
 BattleScript_KOFail::
@@ -8215,7 +8214,7 @@ BattleScript_SelfSufficientActivates::
 	orword gHitMarker, HITMARKER_SKIP_DMG_TRACK | HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE | HITMARKER_PASSIVE_DAMAGE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
-	end2
+	end3
 	
 BattleScript_BattlerEnvelopedItselfInAVeil::
 	copybyte gBattlerAbility, gBattlerAttacker
@@ -8599,7 +8598,6 @@ BattleScript_CheekPouchActivates::
 	return
 
 BattleScript_HarvestActivates::
-	pause 5
 	tryrecycleitem BattleScript_HarvestActivatesEnd
 	call BattleScript_AbilityPopUp
 	printstring STRINGID_HARVESTBERRY
@@ -10685,7 +10683,7 @@ BattleScript_SweetDreamsActivates::
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
-	end2
+	end3
 	
 BattleScript_HauntedSpiritActivated::
 	sethword sABILITY_OVERWRITE, ABILITY_HAUNTED_SPIRIT

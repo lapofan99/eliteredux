@@ -795,9 +795,9 @@
 	.byte 0x92
 	.endm
 
-	.macro tryKO param0:req
+	.macro debugStuff type:req
 	.byte 0x93
-	.4byte \param0
+	.2byte \type
 	.endm
 
 	.macro jumpifabilityonside param0:req, ability:req, ptr:req

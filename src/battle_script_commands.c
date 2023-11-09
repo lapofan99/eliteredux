@@ -456,7 +456,7 @@ static void Cmd_forcerandomswitch(void);
 static void Cmd_tryconversiontypechange(void);
 static void Cmd_givepaydaymoney(void);
 static void Cmd_setlightscreen(void);
-static void Cmd_tryKO(void);
+static void Cmd_debugStuff(void);
 static void Cmd_jumpifabilityonside(void);
 static void Cmd_setsandstorm(void);
 static void Cmd_weatherdamage(void);
@@ -723,7 +723,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_tryconversiontypechange,                 //0x90
     Cmd_givepaydaymoney,                         //0x91
     Cmd_setlightscreen,                          //0x92
-    Cmd_tryKO,                                   //0x93
+    Cmd_debugStuff,                              //0x93
     Cmd_jumpifabilityonside,                     //0x94
     Cmd_setsandstorm,                            //0x95
     Cmd_weatherdamage,                           //0x96
@@ -11506,82 +11506,23 @@ static void Cmd_setlightscreen(void)
     gBattlescriptCurrInstr++;
 }
 
-static void Cmd_tryKO(void)
+static void Cmd_debugStuff(void)
 {
-    bool32 lands = FALSE;
-    u32 holdEffect = GetBattlerHoldEffect(gBattlerTarget, TRUE);
+    u16 type = T1_READ_16(gBattlescriptCurrInstr + 1);
 
-    gPotentialItemEffectBattler = gBattlerTarget;
-    if (holdEffect == HOLD_EFFECT_FOCUS_BAND
-        && (Random() % 100) < GetBattlerHoldEffectParam(gBattlerTarget))
-    {
-        gSpecialStatuses[gBattlerTarget].focusBanded = TRUE;
-        RecordItemEffectBattle(gBattlerTarget, holdEffect);
-    }
-    else if (holdEffect == HOLD_EFFECT_FOCUS_SASH && BATTLER_MAX_HP(gBattlerTarget))
-    {
-        gSpecialStatuses[gBattlerTarget].focusSashed = TRUE;
-        RecordItemEffectBattle(gBattlerTarget, holdEffect);
+    switch(type){
+        case INBATTLE_DEBUG_MGBA_PRINT:
+            #ifdef DEBUG_BUILD
+                if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                    MgbaOpen();
+                    MgbaPrintf(MGBA_LOG_WARN, "Debug Stuff");
+                    MgbaClose();
+                }
+            #endif
+        break;
     }
 
-    if (GetBattlerAbility(gBattlerTarget) == ABILITY_STURDY || 
-        BattlerHasInnate(gBattlerTarget, ABILITY_STURDY))
-    {
-        gMoveResultFlags |= MOVE_RESULT_MISSED;
-        gBattleScripting.abilityPopupOverwrite = ABILITY_STURDY;
-		gLastUsedAbility = ABILITY_STURDY;
-        gBattlescriptCurrInstr = BattleScript_SturdyPreventsOHKO;
-        gBattlerAbility = gBattlerTarget;
-    }
-    else
-    {
-        if ((((gStatuses3[gBattlerTarget] & STATUS3_ALWAYS_HITS)
-                && gDisableStructs[gBattlerTarget].battlerWithSureHit == gBattlerAttacker)
-            || GetBattlerAbility(gBattlerAttacker) == ABILITY_NO_GUARD 
-			|| BattlerHasInnate(gBattlerAttacker, ABILITY_NO_GUARD)
-            || GetBattlerAbility(gBattlerTarget) == ABILITY_NO_GUARD 
-			|| BattlerHasInnate(gBattlerAttacker, ABILITY_NO_GUARD))
-            && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
-        {
-            lands = TRUE;
-        }
-        else
-        {
-            u16 odds = gBattleMoves[gCurrentMove].accuracy + (gBattleMons[gBattlerAttacker].level - gBattleMons[gBattlerTarget].level);
-            if (Random() % 100 + 1 < odds && gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
-                lands = TRUE;
-        }
-
-        if (lands)
-        {
-            if (gProtectStructs[gBattlerTarget].endured)
-            {
-                gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
-                gMoveResultFlags |= MOVE_RESULT_FOE_ENDURED;
-            }
-            else if (gSpecialStatuses[gBattlerTarget].focusBanded || gSpecialStatuses[gBattlerTarget].focusSashed)
-            {
-                gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
-                gMoveResultFlags |= MOVE_RESULT_FOE_HUNG_ON;
-                gLastUsedItem = gBattleMons[gBattlerTarget].item;
-            }
-            else
-            {
-                gBattleMoveDamage = gBattleMons[gBattlerTarget].hp;
-                gMoveResultFlags |= MOVE_RESULT_ONE_HIT_KO;
-            }
-            gBattlescriptCurrInstr += 5;
-        }
-        else
-        {
-            gMoveResultFlags |= MOVE_RESULT_MISSED;
-            if (gBattleMons[gBattlerAttacker].level >= gBattleMons[gBattlerTarget].level)
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_KO_MISS;
-            else
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_KO_UNAFFECTED;
-            gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
-        }
-    }
+    gBattlescriptCurrInstr++;
 }
 
 static void Cmd_jumpifabilityonside(void) // King's wrath + intimidate
@@ -14195,6 +14136,15 @@ static void Cmd_tryrecycleitem(void)
 
     gActiveBattler = gBattlerAttacker;
     usedHeldItem = &gBattleStruct->usedHeldItems[gBattlerPartyIndexes[gActiveBattler]][GetBattlerSide(gActiveBattler)];
+
+    #ifdef DEBUG_BUILD
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "Cmd_tryrecycleitem gActiveBattler: %d, usedHeldItem: %d", gActiveBattler, usedHeldItem);
+            MgbaClose();
+        }
+    #endif
+
     if (*usedHeldItem != 0 && gBattleMons[gActiveBattler].item == 0)
     {
         gLastUsedItem = *usedHeldItem;
@@ -14203,6 +14153,13 @@ static void Cmd_tryrecycleitem(void)
 
         BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
         MarkBattlerForControllerExec(gActiveBattler);
+
+        
+        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+            MgbaOpen();
+            MgbaPrintf(MGBA_LOG_WARN, "Cmd_tryrecycleitem Fully Activated");
+            MgbaClose();
+        }
 
         gBattlescriptCurrInstr += 5;
     }
