@@ -5977,7 +5977,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
                 //This is the stuff that has to be changed for each ability
                 if(!(gFieldStatuses & STATUS_FIELD_GRAVITY) && activateAbilty){
-                    gFieldTimers.gravityTimer = 8;
+                    gFieldTimers.gravityTimer = 5;
                     gFieldStatuses |= STATUS_FIELD_GRAVITY;
                     BattleScriptPushCursorAndCallback(BattleScript_GravityStarts);
                     effect++;

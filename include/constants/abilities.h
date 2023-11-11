@@ -470,7 +470,7 @@
 #define ABILITY_PRISMATIC_FUR    (ABILITIES_COUNT_LATEST_GEN + 172) // Color Change + Protean + Fur Coat + Ice Scales
 #define ABILITY_SHOCKING_JAWS    (ABILITIES_COUNT_LATEST_GEN + 173)  // Biting moves are 5x more likely to inflict paralysis
 #define ABILITY_FAE_HUNTER       (ABILITIES_COUNT_LATEST_GEN + 174) // Increases the damage dealt against Fairy-type Pokémon by 50%.
-#define ABILITY_GRAVITY_WELL     (ABILITIES_COUNT_LATEST_GEN + 175) // Sets Gravity on entry for 8 turns.
+#define ABILITY_GRAVITY_WELL     (ABILITIES_COUNT_LATEST_GEN + 175) // Sets Gravity on entry for 5 turns.
 
 #define ABILITIES_COUNT_CUSTOM (ABILITY_GRAVITY_WELL + 1)
 

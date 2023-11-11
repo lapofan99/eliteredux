@@ -7029,6 +7029,8 @@ static const struct LevelUpMove sCarvanhaLevelUpLearnset[] = {
 static const struct LevelUpMove sSharpedoLevelUpLearnset[] = {
 	LEVEL_UP_MOVE( 0, MOVE_FLIP_TURN), // new
 	LEVEL_UP_MOVE( 0, MOVE_AQUA_FANG), // new
+	LEVEL_UP_MOVE( 1, MOVE_JAGGED_FANGS), // new
+	LEVEL_UP_MOVE( 1, MOVE_IRON_FANGS), // new
     LEVEL_UP_MOVE( 1, MOVE_SLASH),
     LEVEL_UP_MOVE( 1, MOVE_NIGHT_SLASH),
     LEVEL_UP_MOVE( 1, MOVE_FEINT),
