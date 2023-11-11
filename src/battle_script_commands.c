@@ -3197,7 +3197,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             }
             if (!CanParalyzeType(gBattleScripting.battler, gEffectBattler))
                 break;
-            if (!CanBeParalyzed(gEffectBattler, gBattleScripting.battler))
+            if (!CanBeParalyzed(gBattleScripting.battler, gEffectBattler))
                 break;
 
             statusChanged = TRUE;
