@@ -8263,6 +8263,7 @@ BattleScript_ExtraHitFromAccCheck::
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 BattleScript_ExtraHitFromAtkString::
 BattleScript_ExtraHitFromCritCalc::
+	battlemacros MACROS_RESET_MULTIHIT_HITS
 	critcalc
 	damagecalc
 	adjustdamage
@@ -8296,6 +8297,8 @@ BattleScript_ExtraHitFromAccCheckOnSwitchIn::
 BattleScript_ExtraHitFromAtkStringOnSwitchIn::
 BattleScript_ExtraHitFromCritCalcOnSwitchIn::
 	critcalc
+	battlemacros MACROS_FORCE_FALSE_SWIPE_EFFECT
+	battlemacros MACROS_RESET_MULTIHIT_HITS
 	damagecalc
 	adjustdamage
 BattleScript_ExtraHitFromAtkAnimationOnSwitchIn::

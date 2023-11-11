@@ -795,7 +795,7 @@
 	.byte 0x92
 	.endm
 
-	.macro debugStuff type:req
+	.macro battlemacros type:req
 	.byte 0x93
 	.2byte \type
 	.endm

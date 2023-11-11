@@ -345,7 +345,7 @@ static void Cmd_jumpifstat(void);
 static void Cmd_jumpifstatus3condition(void);
 static void Cmd_jumpbasedontype(void);
 static void Cmd_getexp(void);
-static void Cmd_unknown_24(void);
+static void Cmd_checkteamslost(void);
 static void Cmd_movevaluescleanup(void);
 static void Cmd_setmultihit(void);
 static void Cmd_decrementmultihit(void);
@@ -456,7 +456,7 @@ static void Cmd_forcerandomswitch(void);
 static void Cmd_tryconversiontypechange(void);
 static void Cmd_givepaydaymoney(void);
 static void Cmd_setlightscreen(void);
-static void Cmd_debugStuff(void);
+static void Cmd_battlemacros(void);
 static void Cmd_jumpifabilityonside(void);
 static void Cmd_setsandstorm(void);
 static void Cmd_weatherdamage(void);
@@ -612,7 +612,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_jumpifstatus3condition,                  //0x21
     Cmd_jumpbasedontype,                         //0x22
     Cmd_getexp,                                  //0x23
-    Cmd_unknown_24,                              //0x24
+    Cmd_checkteamslost,                              //0x24
     Cmd_movevaluescleanup,                       //0x25
     Cmd_setmultihit,                             //0x26
     Cmd_decrementmultihit,                       //0x27
@@ -723,7 +723,7 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_tryconversiontypechange,                 //0x90
     Cmd_givepaydaymoney,                         //0x91
     Cmd_setlightscreen,                          //0x92
-    Cmd_debugStuff,                              //0x93
+    Cmd_battlemacros,                              //0x93
     Cmd_jumpifabilityonside,                     //0x94
     Cmd_setsandstorm,                            //0x95
     Cmd_weatherdamage,                           //0x96
@@ -1485,8 +1485,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-        gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
-        gMultiHitCounter = 2;
+		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -1497,8 +1496,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-        gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
-        gMultiHitCounter = 2;
+		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -1509,8 +1507,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-        gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
-        gMultiHitCounter = 2;
+		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -1521,8 +1518,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-        gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
-        gMultiHitCounter = 2;
+		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -1533,14 +1529,10 @@ static void Cmd_attackcanceler(void)
 	&& ((gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED) || (gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED))
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-		if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED){
-			gMultiHitCounter = 2;
-			gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
-		}
-		else{
-			gMultiHitCounter = 3;
-			gSpecialStatuses[gBattlerAttacker].parentalBondOn = 3;
-		}
+		if(gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED)
+			gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
+		else
+			gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 3;
 		
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
@@ -1551,8 +1543,7 @@ static void Cmd_attackcanceler(void)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
     {
-        gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
-        gMultiHitCounter = 2;
+		gMultiHitCounter = gSpecialStatuses[gBattlerAttacker].parentalBondOn = 2;
         PREPARE_BYTE_NUMBER_BUFFER(gBattleScripting.multihitString, 1, 0)
         return;
     }
@@ -2235,16 +2226,23 @@ static void Cmd_critcalc(void)
 static void Cmd_damagecalc(void)
 {
     u8 moveType;
-    u8 extraMovePower = VarGet(VAR_EXTRA_MOVE_DAMAGE);
+    u8 movePower = 0;
+    bool8 isExtraMove = gProtectStructs[gBattlerAttacker].extraMoveUsed;
 
-    GET_MOVE_TYPE(gCurrentMove, moveType);
-    if(extraMovePower != 0){
-        gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, extraMovePower, gIsCriticalHit, TRUE, TRUE);
+    if(isExtraMove){
+        movePower = VarGet(VAR_EXTRA_MOVE_DAMAGE);
         VarSet(VAR_EXTRA_MOVE_DAMAGE, 0);
     }
-    else{
-        gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, 0, gIsCriticalHit, TRUE, TRUE);
+
+    GET_MOVE_TYPE(gCurrentMove, moveType);
+    gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, movePower, gIsCriticalHit, TRUE, TRUE);
+
+    if(gBattleScripting.forceFalseSwipeEffect){ //To avoid KOing from abilities like Cheap Tactics
+        if(gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage){
+            gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
+        }
     }
+
     gBattlescriptCurrInstr++;
 }
 
@@ -3941,6 +3939,7 @@ static void Cmd_tryfaintmon(void)
 
     if (gBattlescriptCurrInstr[2] != 0)
     {
+
         gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
         if (gHitMarker & HITMARKER_FAINTED(gActiveBattler))
         {
@@ -4550,7 +4549,10 @@ bool32 NoAliveMonsForEitherParty(void)
     return (NoAliveMonsForPlayer() || NoAliveMonsForOpponent());
 }
 
-static void Cmd_unknown_24(void)
+// For battles that aren't BATTLE_TYPE_LINK or BATTLE_TYPE_RECORDED_LINK, the only thing this
+// command does is check whether the player has won/lost by totaling each team's HP. It then
+// sets gBattleOutcome accordingly, if necessary.
+static void Cmd_checkteamslost(void)
 {
     if (gBattleControllerExecFlags)
         return;
@@ -11506,12 +11508,12 @@ static void Cmd_setlightscreen(void)
     gBattlescriptCurrInstr++;
 }
 
-static void Cmd_debugStuff(void)
+static void Cmd_battlemacros(void)
 {
     u16 type = T1_READ_16(gBattlescriptCurrInstr + 1);
 
     switch(type){
-        case INBATTLE_DEBUG_MGBA_PRINT:
+        case MACROS_PRINT_MGBA_MESSAGE:
             #ifdef DEBUG_BUILD
                 if(FlagGet(FLAG_SYS_MGBA_PRINT)){
                     MgbaOpen();
@@ -11520,9 +11522,14 @@ static void Cmd_debugStuff(void)
                 }
             #endif
         break;
+        case MACROS_FORCE_FALSE_SWIPE_EFFECT:
+            gBattleScripting.forceFalseSwipeEffect = TRUE;
+        break;
+        case MACROS_RESET_MULTIHIT_HITS:
+            gMultiHitCounter = 0;
+        break;
     }
-
-    gBattlescriptCurrInstr++;
+    gBattlescriptCurrInstr += 3;
 }
 
 static void Cmd_jumpifabilityonside(void) // King's wrath + intimidate

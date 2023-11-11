@@ -715,6 +715,7 @@ struct BattleScripting
     u8 switchCase;  // Special switching conditions, eg. red card
     u8 overrideBerryRequirements;
     u8 battlerPopupOverwrite;       //sBATTLER_OVERRIDE
+    bool8 forceFalseSwipeEffect;
 };
 
 // rom_80A5C6C

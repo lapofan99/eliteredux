@@ -6104,7 +6104,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 //Checks Target
                 for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
                 {
-                    if (IsBattlerAlive(opposingBattler))
+                    if (IsBattlerAlive(opposingBattler) && gBattleMons[opposingBattler].hp != 1)
                     {
                         gBattlerTarget = opposingBattler;
                         hasTarget = TRUE;
@@ -6126,6 +6126,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     u8 extraMoveSecondaryEffect = 0;   //Leave at 0 to remove it's secondary effect
                     gTempMove = gCurrentMove;
                     gCurrentMove = extraMove;
+                    gMultiHitCounter = 0;
                     gProtectStructs[battler].extraMoveUsed = TRUE;
 
                     //Move Effect
@@ -6167,7 +6168,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 //Checks Target
                 for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
                 {
-                    if (IsBattlerAlive(opposingBattler))
+                    if (IsBattlerAlive(opposingBattler) && gBattleMons[opposingBattler].hp != 1)
                     {
                         gBattlerTarget = opposingBattler;
                         hasTarget = TRUE;
@@ -6189,6 +6190,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                     u8 extraMoveSecondaryEffect = 0;  //Leave at 0 to remove it's secondary effect
                     gTempMove = gCurrentMove;
                     gCurrentMove = extraMove;
+                    gMultiHitCounter = 0;
                     gProtectStructs[battler].extraMoveUsed = TRUE;
 
                     //Move Effect
