@@ -7704,7 +7704,7 @@ static const struct TrainerMonItemCustomMoves sParty_Joseph[] = { // potential d
     .lvl = 0,
     .species = SPECIES_LUXRAY,
     .heldItem = ITEM_FLAME_ORB,
-    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_ELECTRIC_BURST, ABILITY_GUTS},
+    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_ELECTRIC_BURST, ABILITY_GUTS},
     // .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_BAD_LUCK, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
@@ -18679,7 +18679,7 @@ static const struct TrainerMonItemCustomMoves sParty_Julio[] = {
     .lvl = 0,
     .species = SPECIES_LUXRAY,
     .heldItem = ITEM_FLAME_ORB,
-    .ability = 1, // ABILITY_INTIMIDATE, ABILITY_ELECTRIC_BURST, ABILITY_GUTS},
+    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_ELECTRIC_BURST, ABILITY_GUTS},
     // .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_BAD_LUCK, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
@@ -21993,7 +21993,7 @@ static const struct TrainerMonItemCustomMoves sParty_Demetrius[] = { // potentia
     .lvl = 0,
     .species = SPECIES_LUXRAY, // Doubles
     .heldItem = ITEM_FLAME_ORB,
-    .ability = 0, // ABILITY_INTIMIDATE, ABILITY_ELECTRIC_BURST, ABILITY_GUTS},
+    .ability = 2, // ABILITY_INTIMIDATE, ABILITY_ELECTRIC_BURST, ABILITY_GUTS},
     // .innates = {ABILITY_SHORT_CIRCUIT, ABILITY_BAD_LUCK, ABILITY_PREDATOR},
     .ivs = {31, 31, 31, 31, 31, 31},
     .evs = {0, 252, 4, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
@@ -41235,28 +41235,7 @@ static const struct TrainerMonItemCustomMoves sParty_Cindy6[] = { // Unused
 static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Trainer, do not move or use
     {
     .lvl = 0,
-    .species = SPECIES_LILLIPUP,
-    .heldItem = ITEM_EVIOLITE,
-    .ability = 0, // ABILITY_VITAL_SPIRIT, ABILITY_PICKUP, ABILITY_RUN_AWAY},
-    // .innates = {ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_NONE},
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 180, 76, 0, 0, 252},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
-    .moves = MOVE_RETURN, MOVE_PLAY_ROUGH, MOVE_FIRE_FANG, MOVE_THUNDER_WAVE
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_MAGIKARP,
-    .heldItem = ITEM_NUGGET,
-    .ability = 1, // 
-    .ivs = {31, 31, 31, 31, 31, 31},
-    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
-	.nature = NATURE_ADAMANT,
-	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
-    },
-    {
-    .lvl = 0,
-    .species = SPECIES_KECLEON,
+    .species = SPECIES_PERSIAN_ALOLAN,
     .heldItem = ITEM_NUGGET,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
@@ -41266,7 +41245,17 @@ static const struct TrainerMonItemCustomMoves sParty_Kaylee[] = { // Debug Train
     },
     {
     .lvl = 0,
-    .species = SPECIES_MAGIKARP,
+    .species = SPECIES_MASQUERAIN,
+    .heldItem = ITEM_NUGGET,
+    .ability = 0, // 
+    .ivs = {31, 31, 31, 31, 31, 31},
+    .evs = {0, 0, 0, 0, 0, 0},      // HP, Atk, Def, SpA, SpD, Spe
+	.nature = NATURE_ADAMANT,
+	.moves = MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH, MOVE_SPLASH
+    },
+    {
+    .lvl = 0,
+    .species = SPECIES_KECLEON,
     .heldItem = ITEM_NUGGET,
     .ability = 0, // 
     .ivs = {31, 31, 31, 31, 31, 31},
