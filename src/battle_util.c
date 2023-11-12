@@ -7017,9 +7017,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			// Bad Dreams
             if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_BAD_DREAMS)){
                 if (gBattleMons[battler].status1 & STATUS1_SLEEP
-                    || gBattleMons[BATTLE_OPPOSITE(battler)].status1 & STATUS1_SLEEP
+                    || gBattleMons[BATTLE_PARTNER(battler)].status1 & STATUS1_SLEEP
                     || GetBattlerAbility(battler) == ABILITY_COMATOSE
-                    || GetBattlerAbility(BATTLE_OPPOSITE(battler)) == ABILITY_COMATOSE)
+                    || GetBattlerAbility(BATTLE_PARTNER(battler)) == ABILITY_COMATOSE)
                 {
                     if(BattlerHasInnate(gActiveBattler, ABILITY_BAD_DREAMS))
                         gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BAD_DREAMS;
