@@ -2239,9 +2239,9 @@ static void Cmd_damagecalc(void)
     gBattleMoveDamage = CalculateMoveDamage(gCurrentMove, gBattlerAttacker, gBattlerTarget, moveType, movePower, gIsCriticalHit, TRUE, TRUE);
 
     if(gBattleScripting.forceFalseSwipeEffect){ //To avoid KOing from abilities like Cheap Tactics
-        if(gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage){
+        if(gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
             gBattleMoveDamage = gBattleMons[gBattlerTarget].hp - 1;
-        }
+        gBattleScripting.forceFalseSwipeEffect = FALSE;
     }
 
     gBattlescriptCurrInstr++;
