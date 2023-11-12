@@ -3273,7 +3273,11 @@ u8 DoBattlerEndTurnEffects(void)
                 }
             }
             
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_DISCIPLINE) && gDisableStructs[gActiveBattler].disciplineCounter)
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_DISCIPLINE)       &&
+                !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_GORILLA_TACTICS) &&
+                !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SAGE_POWER)      &&
+                !HOLD_EFFECT_CHOICE(GetBattlerHoldEffect(gActiveBattler))     &&
+                gDisableStructs[gActiveBattler].disciplineCounter)
             {
                 gDisableStructs[gActiveBattler].disciplineCounter--;
                 if (gDisableStructs[gActiveBattler].disciplineCounter == 0)
