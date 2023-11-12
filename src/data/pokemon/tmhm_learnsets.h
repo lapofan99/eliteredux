@@ -25289,7 +25289,6 @@ const u32 gTMHMLearnsets[][4] =
                                         | TMHM2(TM71_STONE_EDGE)
                                         | TMHM2(TM76_STEALTH_ROCK)
                                         | TMHM2(TM90_SUBSTITUTE)
-                                        | TMHM2(TM94_SUCKER_PUNCH)
                                         | TMHM2(TM95_SNARL)
                                         | TMHM2(TM100_CURSE)
                                         | TMHM2(HM06_ROCK_SMASH)),
