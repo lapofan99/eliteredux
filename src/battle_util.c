@@ -9192,36 +9192,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        case ABILITY_ELECTRIC_BURST:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && TARGET_TURN_DAMAGED // Need to actually hit the target
-			 && gBattleMoves[move].type == TYPE_ELECTRIC) //Electric Type Moves
-            {
-                gBattleMoveDamage = gSpecialStatuses[gBattlerTarget].dmg / 10;
-                if (gBattleMoveDamage == 0)
-                    gBattleMoveDamage = 1;
-                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_UserGetsReckoilDamaged;
-                effect++;
-            }
-            break;
-        case ABILITY_INFERNAL_RAGE:
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && TARGET_TURN_DAMAGED // Need to actually hit the target
-			 && gBattleMoves[move].type == TYPE_FIRE)
-            {
-                gBattleMoveDamage = gSpecialStatuses[gBattlerTarget].dmg / 20;
-                if (gBattleMoveDamage == 0)
-                    gBattleMoveDamage = 1;
-                PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_UserGetsReckoilDamaged;
-                effect++;
-            }
-            break;
         case ABILITY_GULP_MISSILE:
             if (((gCurrentMove == MOVE_SURF && TARGET_TURN_DAMAGED) || gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER)
              && (effect = ShouldChangeFormHpBased(gBattlerAttacker)))
@@ -9538,41 +9508,49 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
         }
 		
 		//Electric Burst
-		if (BattlerHasInnate(battler, ABILITY_ELECTRIC_BURST)){
+		if (BATTLER_HAS_ABILITY(battler, ABILITY_ELECTRIC_BURST)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED // Need to actually hit the target
-			 && gBattleMoves[move].type == TYPE_ELECTRIC) //Electric Type Moves
+			 && gBattleMoves[move].type == TYPE_ELECTRIC //Electric Type Moves
+             && gBattleMons[gBattlerAttacker].hp > 1)
             {
-				gBattleScripting.abilityPopupOverwrite = ABILITY_ELECTRIC_BURST;
-				gLastUsedAbility = ABILITY_ELECTRIC_BURST;
+                if(BattlerHasInnate(battler, ABILITY_ELECTRIC_BURST))
+                    gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_ELECTRIC_BURST;
                 gBattleMoveDamage = gSpecialStatuses[gBattlerTarget].dmg / 10;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
+                else if(gBattleMoveDamage >= gBattleMons[gBattlerAttacker].hp) //Make it unable to faint the user to avoid crashes
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp - 1;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_UserGetsReckoilDamaged;
                 effect++;
             }
 		}
+
         // Infernal Rage
-		if (BattlerHasInnate(battler, ABILITY_INFERNAL_RAGE)){
+		if (BATTLER_HAS_ABILITY(battler, ABILITY_INFERNAL_RAGE)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED // Need to actually hit the target
-			 && gBattleMoves[move].type == TYPE_FIRE)
+			 && gBattleMoves[move].type == TYPE_FIRE //Fire Type Moves
+             && gBattleMons[gBattlerAttacker].hp > 1)
             {
-				gBattleScripting.abilityPopupOverwrite = ABILITY_INFERNAL_RAGE;
-				gLastUsedAbility = ABILITY_INFERNAL_RAGE;
-                gBattleMoveDamage = gSpecialStatuses[gBattlerTarget].dmg / 20;
+                if(BattlerHasInnate(battler, ABILITY_INFERNAL_RAGE))
+                    gLastUsedAbility = gBattleScripting.abilityPopupOverwrite = ABILITY_INFERNAL_RAGE;
+                gBattleMoveDamage = gSpecialStatuses[gBattlerTarget].dmg / 10;
                 if (gBattleMoveDamage == 0)
                     gBattleMoveDamage = 1;
+                else if(gBattleMoveDamage >= gBattleMons[gBattlerAttacker].hp) //Make it unable to faint the user to avoid crashes
+                    gBattleMoveDamage = gBattleMons[gBattlerAttacker].hp - 1;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_UserGetsReckoilDamaged;
                 effect++;
             }
 		}
+
 		//Solenoglyphs
 		if (BattlerHasInnate(battler, ABILITY_SOLENOGLYPHS)){
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
@@ -12990,12 +12968,11 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
             MulModifier(&basePower, UQ_4_12(1.5));
         break;
     case EFFECT_TERRAIN_PULSE:
-        if ((gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
-            && IsBattlerGrounded(gBattlerAttacker))
+        if ((gFieldStatuses & STATUS_FIELD_TERRAIN_ANY) && IsBattlerGrounded(gBattlerAttacker))
             basePower *= 2;
         break;
     case EFFECT_RISING_VOLTAGE:
-        if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN && !IsBattlerGrounded(battlerDef))
+        if (GetCurrentTerrain() == STATUS_FIELD_ELECTRIC_TERRAIN && IsBattlerGrounded(battlerDef))
             basePower *= 2;
         break;
     case EFFECT_EXPANDING_FORCE:
@@ -14105,18 +14082,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         if (gBattleMons[battlerAtk].status1 & STATUS1_ANY && IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
-	case ABILITY_ELECTRIC_BURST:
-        if (moveType == TYPE_ELECTRIC)
-        {
-            MulModifier(&modifier, UQ_4_12(1.35));
-        }
-        break;
-    case ABILITY_INFERNAL_RAGE:
-        if (moveType == TYPE_FIRE)
-        {
-            MulModifier(&modifier, UQ_4_12(1.35));
-        }
-        break;
 	case ABILITY_SEAWEED:
 		if (moveType == TYPE_GRASS && IS_BATTLER_OF_TYPE(battlerDef, TYPE_FIRE))
         {
@@ -14572,15 +14537,15 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		}
 	}
 	// Electric Burst
-	if(BattlerHasInnate(battlerAtk, ABILITY_ELECTRIC_BURST)){
-		if (moveType == TYPE_ELECTRIC)
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_ELECTRIC_BURST)){
+        if (moveType == TYPE_ELECTRIC && gBattleMons[battlerAtk].hp > 1)
         {
             MulModifier(&modifier, UQ_4_12(1.35));
         }
 	}
     // Infernal Rage
-	if(BattlerHasInnate(battlerAtk, ABILITY_INFERNAL_RAGE)){
-		if (moveType == TYPE_FIRE)
+	if(BATTLER_HAS_ABILITY(battlerAtk, ABILITY_INFERNAL_RAGE)){
+		if (moveType == TYPE_FIRE && gBattleMons[battlerAtk].hp > 1)
         {
             MulModifier(&modifier, UQ_4_12(1.35));
         }
