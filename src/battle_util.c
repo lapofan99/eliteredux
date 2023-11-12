@@ -6836,7 +6836,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_SCHOOLING:
                 if (gBattleMons[battler].level < 20)
                     break;
-            case ABILITY_SHIELDS_DOWN:
             case ABILITY_FORECAST:
             case ABILITY_FLOWER_GIFT:
                 if ((effect = ShouldChangeFormHpBased(battler)))
@@ -7063,9 +7062,12 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 		
 			// Shields Down
-            if(BattlerHasInnate(gActiveBattler, ABILITY_SHIELDS_DOWN)){
-                if ((effect = ShouldChangeFormHpBased(battler)))
+            if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SHIELDS_DOWN)){
+				if ((effect = ShouldChangeFormHpBased(battler))){
+                    if(BattlerHasInnate(gActiveBattler, ABILITY_SHIELDS_DOWN))
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SHIELDS_DOWN;
                     BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
+                }
 			}
 
             // Harvest

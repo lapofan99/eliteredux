@@ -1686,11 +1686,12 @@ static void Cmd_attackcanceler(void)
         }
         return;
     }
-    else if ((GetBattlerAbility(gBattlerTarget) == ABILITY_MAGIC_BOUNCE || BattlerHasInnate(gBattlerTarget, ABILITY_MAGIC_BOUNCE))
+    else if (BATTLER_HAS_ABILITY(gBattlerTarget, ABILITY_MAGIC_BOUNCE)
              && gBattleMoves[gCurrentMove].flags & FLAG_MAGIC_COAT_AFFECTED
              && !gProtectStructs[gBattlerAttacker].usesBouncedMove)
     {
-        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAGIC_BOUNCE;
+        if(BattlerHasInnate(gBattlerTarget, ABILITY_MAGIC_BOUNCE))
+            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MAGIC_BOUNCE;
         RecordAbilityBattle(gBattlerTarget, ABILITY_MAGIC_BOUNCE);
         gProtectStructs[gBattlerTarget].usesBouncedMove = TRUE;
         gBattleCommunication[MULTISTRING_CHOOSER] = 1;
@@ -8126,8 +8127,18 @@ u32 IsDesertCloakProtected(u32 battler)
 
 bool32 IsShieldsDownProtected(u32 battler)
 {
-    return (GetBattlerAbility(battler) == ABILITY_SHIELDS_DOWN
-            && GetFormIdFromFormSpeciesId(gBattleMons[battler].species) < GetFormIdFromFormSpeciesId(SPECIES_MINIOR_CORE_RED)); // Minior is not in core form
+    switch(gBattleMons[battler].species){
+        case SPECIES_MINIOR_METEOR_ORANGE:
+        case SPECIES_MINIOR_METEOR_YELLOW:
+        case SPECIES_MINIOR_METEOR_GREEN:
+        case SPECIES_MINIOR_METEOR_BLUE:
+        case SPECIES_MINIOR_METEOR_INDIGO:
+        case SPECIES_MINIOR_METEOR_VIOLET:
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_SHIELDS_DOWN)) // Minior is not in core form
+            return TRUE;
+        break;
+    }
+    return FALSE;
 }
 
 u32 IsAbilityStatusProtected(u32 battler)
