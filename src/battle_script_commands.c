@@ -2171,7 +2171,6 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
              (  gBattleMons[battlerDef].status1 & STATUS1_PARALYSIS)                 || 
              (  gBattleMons[battlerDef].item == ITEM_IRON_BALL)))
              || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_AMBUSH)     && gDisableStructs[battlerAtk].isFirstTurn)
-             || (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PERFECTIONIST) && gBattleMoves[move].power <= 50 && gBattleMoves[move].power > 0)
              || ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) && BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)))
     {
         critChance = -2;
@@ -2184,6 +2183,7 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
                     + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
                     + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
                     + 2 * BENEFITS_FROM_LEEK(battlerAtk, holdEffectAtk)
+                    + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PERFECTIONIST) && gBattleMoves[move].power <= 50 && gBattleMoves[move].power > 0)
                     + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_HYPER_CUTTER)  && (gBattleMoves[move].flags & FLAG_MAKES_CONTACT))
                     + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_PRECISE_FIST)  && (gBattleMoves[move].flags & FLAG_IRON_FIST_BOOST))
                     + (BATTLER_HAS_ABILITY(battlerAtk, ABILITY_SUPER_LUCK));
