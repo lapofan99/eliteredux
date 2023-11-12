@@ -6812,16 +6812,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             case ABILITY_TRUANT:
                 gDisableStructs[gBattlerAttacker].truantCounter ^= 1;
                 break;
-            case ABILITY_BAD_DREAMS:
-                if (gBattleMons[battler].status1 & STATUS1_SLEEP
-                    || gBattleMons[BATTLE_OPPOSITE(battler)].status1 & STATUS1_SLEEP
-                    || GetBattlerAbility(battler) == ABILITY_COMATOSE
-                    || GetBattlerAbility(BATTLE_OPPOSITE(battler)) == ABILITY_COMATOSE)
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_BadDreamsActivates);
-                    effect++;
-                }
-                break;
             case ABILITY_SWEET_DREAMS:
                 if (!BATTLER_MAX_HP(gActiveBattler) && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK) && ((gBattleMons[battler].status1 & STATUS1_SLEEP) || BattlerHasInnate(battler, ABILITY_COMATOSE)  || GetBattlerAbility(battler) == ABILITY_COMATOSE))
                 {
@@ -7026,13 +7016,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             }
 			
 			// Bad Dreams
-            if(BattlerHasInnate(gActiveBattler, ABILITY_BAD_DREAMS)){
+            if(BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_BAD_DREAMS)){
                 if (gBattleMons[battler].status1 & STATUS1_SLEEP
                     || gBattleMons[BATTLE_OPPOSITE(battler)].status1 & STATUS1_SLEEP
                     || GetBattlerAbility(battler) == ABILITY_COMATOSE
                     || GetBattlerAbility(BATTLE_OPPOSITE(battler)) == ABILITY_COMATOSE)
                 {
-                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BAD_DREAMS;
+                    if(BattlerHasInnate(gActiveBattler, ABILITY_BAD_DREAMS))
+                        gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BAD_DREAMS;
                     BattleScriptPushCursorAndCallback(BattleScript_BadDreamsActivates);
                     effect++;
                 }

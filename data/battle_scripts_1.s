@@ -9189,6 +9189,7 @@ BattleScript_PsychicSurgeActivates::
 	end3
 
 BattleScript_BadDreamsActivates::
+	sethword sABILITY_OVERWRITE, ABILITY_BAD_DREAMS
 	setbyte gBattlerTarget, 0
 	call BattleScript_AbilityPopUp
 BattleScript_BadDreamsLoop:
