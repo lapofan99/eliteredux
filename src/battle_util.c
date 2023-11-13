@@ -3273,10 +3273,10 @@ u8 DoBattlerEndTurnEffects(void)
                 }
             }
             
-            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_DISCIPLINE)       &&
-                !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_GORILLA_TACTICS) &&
-                !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SAGE_POWER)      &&
-                !HOLD_EFFECT_CHOICE(GetBattlerHoldEffect(gActiveBattler))     &&
+            if (BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_DISCIPLINE)          &&
+                !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_GORILLA_TACTICS)    &&
+                !BATTLER_HAS_ABILITY(gActiveBattler, ABILITY_SAGE_POWER)         &&
+                !HOLD_EFFECT_CHOICE(GetBattlerHoldEffect(gActiveBattler, FALSE)) &&
                 gDisableStructs[gActiveBattler].disciplineCounter)
             {
                 gDisableStructs[gActiveBattler].disciplineCounter--;
@@ -5436,97 +5436,49 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 
             // Desolate Land
             if(BATTLER_HAS_ABILITY(battler, ABILITY_DESOLATE_LAND)){
-                bool8 activateAbilty = FALSE;
+                bool8 activateAbilty = TRUE;
                 u16 abilityToCheck = ABILITY_DESOLATE_LAND; //For easier copypaste
 
-                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
-                    case BATTLER_INNATE:
-                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
-                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
-                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
-                            activateAbilty = TRUE;
-                        }
-                    break;
-                    case BATTLER_ABILITY:
-                        if(!gSpecialStatuses[battler].switchInAbilityDone){
-                            gBattlerAttacker = battler;
-                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                            activateAbilty = TRUE;
-                        }
-                    break;
-                }
+                if(BattlerHasInnateOrAbility(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
 
                 //This is the stuff that has to be changed for each ability
-                if(activateAbilty){
-                    if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
-                    {
-                        BattleScriptPushCursorAndCallback(BattleScript_DesolateLandActivates);
-                        effect++;
-                    }
+                if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_DesolateLandActivates);
+                    effect++;
                 }
             }
             
             // Primordial Sea
             if(BATTLER_HAS_ABILITY(battler, ABILITY_PRIMORDIAL_SEA)){
-                bool8 activateAbilty = FALSE;
+                bool8 activateAbilty = TRUE;
                 u16 abilityToCheck = ABILITY_PRIMORDIAL_SEA; //For easier copypaste
 
-                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
-                    case BATTLER_INNATE:
-                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
-                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
-                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
-                            activateAbilty = TRUE;
-                        }
-                    break;
-                    case BATTLER_ABILITY:
-                        if(!gSpecialStatuses[battler].switchInAbilityDone){
-                            gBattlerAttacker = battler;
-                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                            activateAbilty = TRUE;
-                        }
-                    break;
-                }
+                if(BattlerHasInnateOrAbility(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
 
                 //This is the stuff that has to be changed for each ability
-                if(activateAbilty){
-                    if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
-                    {
-                        BattleScriptPushCursorAndCallback(BattleScript_PrimordialSeaActivates);
-                        effect++;
-                    }
+                if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_PrimordialSeaActivates);
+                    effect++;
                 }
             }
             
             // Delta Stream
             if(BATTLER_HAS_ABILITY(battler, ABILITY_DELTA_STREAM)){
-                bool8 activateAbilty = FALSE;
+                bool8 activateAbilty = TRUE;
                 u16 abilityToCheck = ABILITY_DELTA_STREAM; //For easier copypaste
 
-                switch(BattlerHasInnateOrAbility(battler, abilityToCheck)){
-                    case BATTLER_INNATE:
-                        if(!gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)]){
-                            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
-                            gSpecialStatuses[battler].switchInInnateDone[GetBattlerInnateNum(battler, abilityToCheck)] = TRUE;
-                            activateAbilty = TRUE;
-                        }
-                    break;
-                    case BATTLER_ABILITY:
-                        if(!gSpecialStatuses[battler].switchInAbilityDone){
-                            gBattlerAttacker = battler;
-                            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                            activateAbilty = TRUE;
-                        }
-                    break;
-                }
+                if(BattlerHasInnateOrAbility(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = abilityToCheck;
 
                 //This is the stuff that has to be changed for each ability
-                if(activateAbilty){
-                    if (TryChangeBattleWeather(battler, ENUM_WEATHER_STRONG_WINDS, TRUE))
-                    {
-                        BattleScriptPushCursorAndCallback(BattleScript_DeltaStreamActivates);
-                        effect++;
-                    }
+                if (TryChangeBattleWeather(battler, ENUM_WEATHER_STRONG_WINDS, TRUE))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_DeltaStreamActivates);
+                    effect++;
                 }
             }
             // Terrain Abilities --------------------------------------------------------------------------------------------------
