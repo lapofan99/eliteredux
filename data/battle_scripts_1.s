@@ -10569,7 +10569,8 @@ BattleScript_HandleSoulEaterEffect_NothingToHeal:
 BattleScript_HandleJawsOfCarnageEffect::
 	copybyte gBattlerAbility, gBattlerAttacker
 	call BattleScript_AbilityPopUp
-	tryhealhalfhealth BattleScript_HandleJawsOfCarnageEffect_NothingToHeal, BS_ATTACKER
+	battlemacros MACROS_GET_DOUBLE_HEALTH
+	tryhealquarterhealth BS_ATTACKER, BattleScript_HandleJawsOfCarnageEffect_NothingToHeal
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
 	printstring STRINGID_ATTACKERREGAINEDHEALTH

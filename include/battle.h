@@ -716,6 +716,7 @@ struct BattleScripting
     u8 overrideBerryRequirements;
     u8 battlerPopupOverwrite;       //sBATTLER_OVERRIDE
     bool8 forceFalseSwipeEffect;
+    bool8 doublehealthRestore;
 };
 
 // rom_80A5C6C

@@ -1524,7 +1524,7 @@ static void Cmd_attackcanceler(void)
     }
 	// Multi Headed
 	if (!gSpecialStatuses[gBattlerAttacker].parentalBondOn
-    && (GetBattlerAbility(gBattlerAttacker) == ABILITY_MULTI_HEADED || BattlerHasInnate(gBattlerAttacker, ABILITY_MULTI_HEADED)) // Includes Innate
+    && BATTLER_HAS_ABILITY(gBattlerAttacker, ABILITY_MULTI_HEADED)
     && IsMoveAffectedByParentalBond(gCurrentMove, gBattlerAttacker)
 	&& ((gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_TWO_HEADED) || (gBaseStats[gBattleMons[gBattlerAttacker].species].flags & F_THREE_HEADED))
     && !(gAbsentBattlerFlags & gBitTable[gBattlerTarget]))
@@ -9737,6 +9737,11 @@ static void Cmd_various(void)
             gBattleMoveDamage = 1;
         gBattleMoveDamage *= -1;
 
+        if(gBattleScripting.doublehealthRestore)
+            gBattleMoveDamage *= 2;
+
+        gBattleScripting.doublehealthRestore = FALSE;
+
         if (gBattleMons[gActiveBattler].hp == gBattleMons[gActiveBattler].maxHP)
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);    // fail
         else
@@ -11538,6 +11543,9 @@ static void Cmd_battlemacros(void)
         break;
         case MACROS_RESET_MULTIHIT_HITS:
             gMultiHitCounter = 0;
+        break;
+        case MACROS_GET_DOUBLE_HEALTH:
+            gBattleScripting.doublehealthRestore = TRUE;
         break;
     }
     gBattlescriptCurrInstr += 3;
