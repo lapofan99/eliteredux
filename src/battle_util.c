@@ -4556,26 +4556,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
             break;
-        /* Disabled battle message, not needed
-		case ABILITY_TERAVOLT:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
-            {
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TERAVOLT;
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
-            }
-            break;
-        case ABILITY_TURBOBLAZE:
-            if (!gSpecialStatuses[battler].switchInAbilityDone)
-            {
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TURBOBLAZE;
-                gSpecialStatuses[battler].switchInAbilityDone = TRUE;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
-            }
-            break;
-		*/
         case ABILITY_SLOW_START:
             if (!gSpecialStatuses[battler].switchInAbilityDone)
             {
@@ -5255,20 +5235,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
-		/*case ABILITY_NOCTURNAL: // Nocturnal old effect
-            if (!gSpecialStatuses[battler].switchInAbilityDone &&
-				!IsCurrentlyDay() && 
-                !IS_BATTLER_OF_TYPE(battler, TYPE_DARK))
-            {
-                gBattlerAttacker = battler;
-				gBattleScripting.abilityPopupOverwrite = ABILITY_NOCTURNAL;
-				gLastUsedAbility = ABILITY_NOCTURNAL;
-				gBattleMons[battler].type3 = TYPE_DARK;
-				PREPARE_TYPE_BUFFER(gBattleTextBuff2, gBattleMons[battler].type3);
-				BattleScriptPushCursorAndCallback(BattleScript_BattlerAddedTheType);
-				effect++;
-            }
-            break;*/
 		case ABILITY_WATER_VEIL:
             if (!gSpecialStatuses[battler].switchInAbilityDone &&
 				!(gStatuses3[battler] & STATUS3_AQUA_RING))
@@ -5284,7 +5250,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             break;
         }
 		
-        if(abilityEffect){
+        if(abilityEffect && caseID == ABILITYEFFECT_ON_SWITCHIN){
             // Weather Abilities --------------------------------------------------------------------------------------------------
             // Drizzle
             if(BATTLER_HAS_ABILITY(battler, ABILITY_DRIZZLE)){
