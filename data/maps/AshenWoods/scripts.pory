@@ -201,3 +201,33 @@ AshenWoods_Text_BlobCaught:
 	.string "Blob was caught!\p"
 	.string "Blob was sent to the nurse's PC.$"
 `
+
+script AshenWoods_EventScript_Typhlosionite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE05_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_TYPHLOSIONITE_ASHEN_WOODS) // Only For testing
+		if (!defeated(TRAINER_TYPHLOSIONITE_ASHEN_WOODS)) { // asking for battle
+			msgbox(format("You seem strong, kid! How about this, we have a little match, and if you beat me, I'll give you a little something!"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("Let's play with fire!"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_TYPHLOSIONITE_ASHEN_WOODS, format("That was a great fight, kid!")) // when the player wins
+				msgbox(format("Sheesh! This young, and you're already giving someone like me a beating like this! You got potential, kid. Take this Typhlosionite, and make sure to burn all who challenge you to ash!"), MSGBOX_NPC)
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_TYPHLOSIONITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("Then you better come back here when you're ready! Don't disappoint me!"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("I got nothin' left for you, kid. Now scram!"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("Hmmm... You ain't strong enough, kid! Don't come back here until you can beat that guy in Petalburg!"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

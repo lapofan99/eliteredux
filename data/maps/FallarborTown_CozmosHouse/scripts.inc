@@ -224,7 +224,7 @@ FallarborTown_CozmosHouse_Text_MayIHaveMeteorite: @ 8201249
 	.string "Prof. Cozmo: Please, may I have that\n"
 	.string "Meteorite?\p"
 	.string "I'm not asking for it for free.\n"
-	.string "How about in exchange for this TM?$"
+	.string "How about a special Pikachu?$"
 
 FallarborTown_CozmosHouse_Text_CozmoWentToMeteorFalls: @ 82012BC
 	.string "Prof. Cozmo went off to Meteor Falls\n"

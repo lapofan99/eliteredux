@@ -558,3 +558,35 @@ script Route116_EventScript_Gen8_NPC{
 text Route116_EventScript_Text_Got_Aggron{
 	format("{PLAYER} got an {COLOR BLUE}Aggron{COLOR DARK_GRAY} as a gift!")
 }
+
+script Route116_EventScript_MegaNidos_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE06_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF) // Only For testing
+		if (!defeated(TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF)) { // asking for battle
+			msgbox(format("Hah! Look at you. Hey, pleb. I'm bored, so have a battle with me. I'll even give you a reward if you do!"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("Then let us begin."), MSGBOX_NPC) // When the player accepts the battle
+				// trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
+				trainerbattle_no_intro(TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF, format("What? How?")) // in-battle, player wins
+				msgbox(format("Unbelievable. Me, losing to the likes of you? Well, a promise is a promise. Take these stones and get out of my sight."), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_NIDOKINGITE, 1) // Item given to the player
+				giveitem(ITEM_NIDOQUEENITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("No? Tsk. I should've expected as much from someone like you."), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("Didn't I tell you to get out of my sight?"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("You aren't worthy enough to talk to me. A peasant like you who hasn't even beat Winona has no business here."), MSGBOX_NPC)
+	}
+	release
+	end	
+}

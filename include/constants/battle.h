@@ -81,6 +81,7 @@
 
 #define WILD_DOUBLE_BATTLE ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_TRAINER))))
 #define BATTLE_TWO_VS_ONE_OPPONENT ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && gTrainerBattleOpponent_B == 0xFFFF))
+#define BATTLE_TYPE_HAS_AI (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER)
 
 // Battle Outcome defines
 #define B_OUTCOME_WON                  1
@@ -364,7 +365,9 @@
 #define MOVE_EFFECT_RELIC_SONG             69
 #define MOVE_EFFECT_TRAP_BOTH              70
 #define MOVE_EFFECT_SPD_PLUS_1_DEF_MINUS_1 71
-#define NUM_MOVE_EFFECTS                   72
+#define MOVE_EFFECT_ATTRACT                72
+#define MOVE_EFFECT_CURSE                  73
+#define NUM_MOVE_EFFECTS                   74
 
 #define MOVE_EFFECT_AFFECTS_USER        0x4000
 #define MOVE_EFFECT_CERTAIN             0x8000
@@ -450,5 +453,10 @@
 #define ARENA_WIN_BODY             20
 #define ARENA_WIN_JUDGMENT_TITLE   21
 #define ARENA_WIN_JUDGMENT_TEXT    22
+
+// Ability Conditions
+#define CONDITION_SPIKES       0
+#define CONDITION_TOXIC_SPIKES 1
+#define CONDITION_STEALTH_ROCK 2
 
 #endif // GUARD_CONSTANTS_BATTLE_H

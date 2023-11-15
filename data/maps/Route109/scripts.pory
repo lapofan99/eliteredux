@@ -642,8 +642,7 @@ script Route109_EventScript_LegendaryNPC{
 			    defeated(TRAINER_LOLA_1) &&
 			    defeated(TRAINER_CHANDLER) &&
 			    defeated(TRAINER_HAILEY) &&
-			    defeated(TRAINER_EDMOND) &&
-			    defeated(TRAINER_TIANA)){
+			    defeated(TRAINER_EDMOND)){
 					msgbox(format("I hope you can excuse the strict conditions I imposed upon you, but one must not underestimate Hoopa, as their true form is one of immense power and destructive capabilities. You are definitely worthy of managing such powers. I updated your DexNav to include Hoopa's location: may an unbreakable bond be forged between you two!"))
 			}
 			else{

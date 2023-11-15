@@ -103,3 +103,33 @@ Route104_Text_RegisteredDadInPokenav: @ 81EE463
 	.string "Registered Dad Norman\n"
 	.string "in the PokéNav.$"
 `
+
+script Route105_EventScript_FeraligatriteX_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE05_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_FERALIGATRITEX_ROUTE105) // Only For testing
+		if (!defeated(TRAINER_FERALIGATRITEX_ROUTE105)) {
+			msgbox(format("Ahoy there, ye seem like a sturdy one, aye? Fancy a little tussle with me? If ye be willin', I'll part with this here fine stone as a reward for our bout."), MSGBOX_YESNO) // asking for battle
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("Aye, that be a fine choice, indeed!"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_FERALIGATRITEX_ROUTE105, format("Aye, ye had me figured out, ye did!")) // when the player wins
+				msgbox(format("Ye've proven yer mettle, and true to me word, here's that stone I promised ye!"), MSGBOX_NPC)
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_FERALIGATRITE_X, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("What are ye, scared?"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("Aye, I reckon ye'll find some joy in the gift I've handed over to ye, me hearty!"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("Ye be lackin' the strength, me hearty!"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

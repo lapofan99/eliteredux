@@ -11,6 +11,7 @@
 #include "battle_tv.h"
 #include "bg.h"
 #include "data.h"
+#include "event_data.h"
 #include "frontier_util.h"
 #include "item.h"
 #include "link.h"
@@ -27,12 +28,15 @@
 #include "text.h"
 #include "util.h"
 #include "window.h"
+#include "constants/hold_effects.h"
 #include "constants/battle_anim.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "trainer_hill.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
@@ -1575,10 +1579,10 @@ static void OpponentHandleChooseMove(void)
         u8 chosenMoveId;
         struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct*)(&gBattleResources->bufferA[gActiveBattler][4]);
 
-        if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER))
+        if ((gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER)) || FlagGet(FLAG_TOTEM_BATTLE) || IsWildMonSmart())
         {
-            BattleAI_SetupAIData(0xF);
-            chosenMoveId = BattleAI_ChooseMoveOrAction();
+            chosenMoveId = gBattleStruct->aiMoveOrAction[gActiveBattler];
+            gBattlerTarget = gBattleStruct->aiChosenTarget[gActiveBattler];
 
             switch (chosenMoveId)
             {
@@ -1603,7 +1607,7 @@ static void OpponentHandleChooseMove(void)
                     if (gAbsentBattlerFlags & gBitTable[gBattlerTarget])
                         gBattlerTarget = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
                 }
-                if (CanMegaEvolve(gActiveBattler)) // If opponent can mega evolve, do it.
+                if (CanMegaEvolve(gActiveBattler) && ItemId_GetHoldEffect(gBattleMons[gActiveBattler].item) != HOLD_EFFECT_PRIMAL_ORB) // If opponent can mega evolve, do it.
                     BtlController_EmitTwoReturnValues(1, 10, (chosenMoveId) | (RET_MEGA_EVOLUTION) | (gBattlerTarget << 8));
                 else
                     BtlController_EmitTwoReturnValues(1, 10, (chosenMoveId) | (gBattlerTarget << 8));

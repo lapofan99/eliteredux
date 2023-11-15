@@ -1064,3 +1064,46 @@ MauvilleCity_GameCorner_Text_HeresSomeSlotsInfo: @ 8210B04
 MauvilleCity_GameCorner_Text_CantPlayWithNoCoinCase: @ 8210C2E
 	.string "You can't play if you don't have\n"
 	.string "a Coin Case.$"
+
+MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE05_GET, MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_2
+	msgbox MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_1, MSGBOX_NPC
+MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_1:
+	release
+	end
+
+MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_2:
+	checktrainerflag TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER
+	goto_if 0, MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_5
+	msgbox MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_1, MSGBOX_NPC
+	goto MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_1
+
+MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_5:
+	msgbox MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_8
+	msgbox MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_1, MSGBOX_NPC
+	goto MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_1
+
+MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_8:
+	msgbox MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_1, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER, MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_2
+	msgbox MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_1, MSGBOX_NPC
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_INFERNAPENITE, 1
+	giveitem ITEM_TORTERRANITE, 1
+	giveitem ITEM_EMPOLEONITE, 1
+	waitmessage
+	goto MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_1
+
+
+MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_0:
+	.string "FUCK YOU???$"
+
+MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_1:
+	.string "FUCK YOU!!!$"
+
+MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle_Text_2:
+	.string "FUCK ME???$"

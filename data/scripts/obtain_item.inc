@@ -1,6 +1,8 @@
 Std_ObtainItem:: @ 8271AD3
 	additem VAR_0x8000, VAR_0x8001
 	copyvar VAR_0x8007, VAR_RESULT
+	compare VAR_RESULT, 2
+	call_if_eq EventScript_ObtainedItem_PC
 	call EventScript_ObtainItemMessage
 	return
 

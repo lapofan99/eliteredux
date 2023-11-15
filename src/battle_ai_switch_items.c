@@ -6,10 +6,12 @@
 #include "battle_controllers.h"
 #include "battle_setup.h"
 #include "battle_util.h"
+#include "event_data.h"
 #include "pokemon.h"
 #include "random.h"
 #include "util.h"
 #include "constants/abilities.h"
+#include "constants/battle_ai.h"
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/hold_effects.h"
@@ -22,6 +24,8 @@ static bool8 ShouldUseItem(void);
 static bool8 IsMonHealthyEnoughToSwitch(void);
 static u32 CalculateHazardDamage(void);
 static u8 PredictFoesMoveType(u32 opposingBattler);
+static bool32 AI_ShouldHeal(u32 healAmount);
+static bool32 AI_OpponentCanFaintAiWithMod(u32 healAmount);
 
 void GetAIPartyIndexes(u32 battlerId, s32 *firstId, s32 *lastId)
 {
@@ -257,7 +261,7 @@ static bool8 ShouldSwitchIfNaturalCure(void)
 {
     if (!(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP))
         return FALSE;
-    if (AI_GetAbility(gActiveBattler) != ABILITY_NATURAL_CURE)
+    if (!BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_NATURAL_CURE) && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_SELF_REPAIR))
         return FALSE;
 
     if ((gLastLandedMoves[gActiveBattler] == 0 || gLastLandedMoves[gActiveBattler] == 0xFFFF) && Random() & 1)
@@ -515,17 +519,15 @@ static u32 CalculateHazardDamage(void)
     u32 spikesDmg = 0;
     u32 holdEffect = GetBattlerHoldEffect(gActiveBattler, TRUE);
 
-    if (gBattleMons[gActiveBattler].ability == ABILITY_MAGIC_GUARD || 
-        BattlerHasInnate(gActiveBattler, ABILITY_MAGIC_GUARD) || 
+    if (BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_MAGIC_GUARD) ||
         holdEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS)
         return totalHazardDmg;
 
     if ((gSideTimers[GetBattlerSide(gActiveBattler)].spikesAmount > 0) 
-       && gBattleMons[gActiveBattler].ability != ABILITY_LEVITATE
-       && !BattlerHasInnate(gActiveBattler, ABILITY_LEVITATE)
+       && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_LEVITATE)
+       && !BATTLER_HAS_ABILITY_FAST_AI(gActiveBattler, ABILITY_DRAGONFLY)
        && holdEffect != HOLD_EFFECT_AIR_BALLOON
-       && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING)
-       )
+       && !IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_FLYING))
     {
         spikesDmg = (5 - gSideTimers[GetBattlerSide(gActiveBattler)].spikesAmount) * 2;
         spikesDmg = gBattleMons[gActiveBattler].maxHP / (spikesDmg);
@@ -605,6 +607,8 @@ bool32 ShouldSwitch(void)
     s32 i;
     s32 availableToSwitch;
 
+    if (gBattleTypeFlags & (AI_FLAG_DISABLE_SWITCHING))
+        return FALSE;
     if (gBattleMons[gActiveBattler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
         return FALSE;
     if (gStatuses3[gActiveBattler] & STATUS3_ROOTED)
@@ -1051,6 +1055,25 @@ static u8 GetAI_ItemType(u16 itemId, const u8 *itemEffect)
         return AI_ITEM_NOT_RECOGNIZABLE;
 }
 
+static bool32 AiExpectsToFaintPlayer(void)
+{
+    bool32 canFaintPlayer;
+    u32 i;
+    u8 target = gBattleStruct->aiChosenTarget[gActiveBattler];
+
+    if (gBattleStruct->aiMoveOrAction[gActiveBattler] > 3)
+        return FALSE; // AI not planning to use move
+
+    if (GetBattlerSide(target) != GetBattlerSide(gActiveBattler)
+      && CanIndexMoveFaintTarget(gActiveBattler, target, gBattleStruct->aiMoveOrAction[gActiveBattler], 0)
+      && GetWhoStrikesFirst(gActiveBattler, target, FALSE) == AI_IS_FASTER) {
+        // We expect to faint the target and move first -> dont use an item
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 static bool8 ShouldUseItem(void)
 {
     struct Pokemon *party;
@@ -1062,6 +1085,9 @@ static bool8 ShouldUseItem(void)
         return FALSE;
     
     if (gStatuses3[gActiveBattler] & STATUS3_EMBARGO)
+        return FALSE;
+
+    if (AiExpectsToFaintPlayer())
         return FALSE;
 
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
@@ -1104,20 +1130,10 @@ static bool8 ShouldUseItem(void)
         switch (*(gBattleStruct->AI_itemType + gActiveBattler / 2))
         {
         case AI_ITEM_FULL_RESTORE:
-            if (gBattleMons[gActiveBattler].hp >= gBattleMons[gActiveBattler].maxHP / 4)
-                break;
-            if (gBattleMons[gActiveBattler].hp == 0)
-                break;
-            shouldUse = TRUE;
+            shouldUse = AI_ShouldHeal(0);
             break;
         case AI_ITEM_HEAL_HP:
-            paramOffset = GetItemEffectParamOffset(item, 4, 4);
-            if (paramOffset == 0)
-                break;
-            if (gBattleMons[gActiveBattler].hp == 0)
-                break;
-            if (gBattleMons[gActiveBattler].hp < gBattleMons[gActiveBattler].maxHP / 4 || gBattleMons[gActiveBattler].maxHP - gBattleMons[gActiveBattler].hp > itemEffects[paramOffset])
-                shouldUse = TRUE;
+            shouldUse = AI_ShouldHeal(itemEffects[GetItemEffectParamOffset(item, 4, 4)]);
             break;
         case AI_ITEM_CURE_CONDITION:
             *(gBattleStruct->AI_itemFlags + gActiveBattler / 2) = 0;
@@ -1206,5 +1222,34 @@ static bool8 ShouldUseItem(void)
         }
     }
 
+    return FALSE;
+}
+
+static bool32 AI_ShouldHeal(u32 healAmount)
+{
+    bool32 shouldHeal = FALSE;
+
+    if (gBattleMons[gActiveBattler].hp < gBattleMons[gActiveBattler].maxHP / 4
+     || gBattleMons[gActiveBattler].hp == 0
+     || (healAmount != 0 && gBattleMons[gActiveBattler].maxHP - gBattleMons[gActiveBattler].hp > healAmount)) {
+        // We have low enough HP to consider healing
+        shouldHeal = !AI_OpponentCanFaintAiWithMod(healAmount); // if target can kill us even after we heal, why bother
+    }
+
+    return shouldHeal;
+}
+
+static bool32 AI_OpponentCanFaintAiWithMod(u32 healAmount)
+{
+    u32 i;
+    // Check special cases to NOT heal
+    for (i = 0; i < gBattlersCount; i++) {
+        if (GetBattlerSide(i) == B_SIDE_PLAYER) {
+            if (CanTargetFaintAiWithMod(i, gActiveBattler, healAmount, 0)) {
+                // Target is expected to faint us
+                return TRUE;
+            }
+        }
+    }
     return FALSE;
 }

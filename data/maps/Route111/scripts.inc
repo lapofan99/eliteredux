@@ -1060,6 +1060,99 @@ Route111Desert_EventScript_LegendaryNPC_22:
 	goto Route111Desert_EventScript_LegendaryNPC_9
 
 
+Route111_EventScript_Sandslash::
+	lock
+	faceplayer
+	goto_if_set FLAG_DEFEATED_ROUTE111_SANDSLASH, Route111_EventScript_Sandslash_Join
+	goto_if_unset FLAG_BADGE05_GET, Route111_EventScript_Sandslash_PreNorman
+	playmoncry SPECIES_SANDSLASH, 2
+	msgbox Route111_EventScript_Sandslash_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route111_EventScript_Sandslash_2
+	playmoncry SPECIES_SANDSLASH, 2
+	msgbox Route111_EventScript_Sandslash_Text_3, MSGBOX_DEFAULT
+Route111_EventScript_Sandslash_1:
+	release
+	end
+
+Route111_EventScript_Sandslash_2:
+	playmoncry SPECIES_SANDSLASH, 2
+	msgbox Route111_EventScript_Sandslash_Text_1, MSGBOX_DEFAULT
+	delay 40
+	waitmoncry
+	setflag FLAG_TOTEM_BATTLE
+	setvar VAR_TOTEM_POKEMON_ATK_BOOST, 1
+	setvar VAR_TOTEM_POKEMON_DEF_BOOST, 3
+	setvar VAR_TOTEM_POKEMON_SP_ATK_BOOST, 0
+	setvar VAR_TOTEM_POKEMON_SP_DEF_BOOST, 3
+	setvar VAR_TOTEM_POKEMON_SPEED_BOOST, 1
+	setvar VAR_TOTEM_POKEMON_ACCURACY_BOOST, 2
+	setvar VAR_TOTEM_POKEMON_EVASION_BOOST, 0
+	setvar VAR_TOTEM_MESSAGE, TOTEM_FIGHT_SANDSLASH
+	setflag FLAG_SHINY_CREATION
+	setwildbattlewithcustommoves SPECIES_SANDSLASH, 0, ITEM_SANDSLASHITE, MOVE_FISSURE, MOVE_STONE_EDGE, MOVE_POISON_JAB, MOVE_KNOCK_OFF, 2, NATURE_JOLLY, 252, 252, 252, 252, 252, 252
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	dowildbattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	switch VAR_RESULT
+	case B_OUTCOME_CAUGHT, Route111_EventScript_Sandslash_6
+	case B_OUTCOME_WON, Route111_EventScript_Sandslash_6
+	case B_OUTCOME_RAN, Route111_EventScript_Sandslash_7
+	case B_OUTCOME_PLAYER_TELEPORTED, Route111_EventScript_Sandslash_7
+	goto Route111_EventScript_Sandslash_1
+
+Route111_EventScript_Sandslash_6:
+	goto Route111_EventScript_Sandslash_Join
+	goto Route111_EventScript_Sandslash_1
+
+Route111_EventScript_Sandslash_7:
+	setvar VAR_0x8004, SPECIES_SANDSLASH
+	fadescreenswapbuffers FADE_TO_BLACK
+	removeobject VAR_LAST_TALKED
+	fadescreenswapbuffers FADE_FROM_BLACK
+	bufferspeciesname 0, VAR_0x8004
+	msgbox Route111_EventScript_Sandslash_Text_2, MSGBOX_DEFAULT
+	goto Route111_EventScript_Sandslash_1
+
+
+Route111_EventScript_Sandslash_PreNorman::
+	message Route111_EventScript_Sandslash_PreNorman_Text_0
+	waitmessage
+	release
+	end
+
+
+Route111_EventScript_Sandslash_Join::
+	msgbox Route111_EventScript_Sandslash_Join_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route111_EventScript_Sandslash_Join_2
+Route111_EventScript_Sandslash_Join_1:
+	goto_if_unset FLAG_DEFEATED_ROUTE111_SANDSLASH, Route111_EventScript_Sandslash_Join_5
+Route111_EventScript_Sandslash_Join_4:
+	release
+	end
+
+Route111_EventScript_Sandslash_Join_2:
+	setflag FLAG_OBTAINED_ROUTE111_SANDSLASH
+	givecustommon SPECIES_SANDSLASH, 50, ITEM_NONE, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 252, 252, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_FISSURE, MOVE_STONE_EDGE, MOVE_POISON_JAB, MOVE_KNOCK_OFF, TRUE
+	playfanfare MUS_OBTAIN_ITEM
+	message Route111_EventScript_Sandslash_Join_Text_1
+	waitfanfare
+	fadescreenswapbuffers FADE_TO_BLACK
+	removeobject VAR_LAST_TALKED
+	fadescreenswapbuffers FADE_FROM_BLACK
+	goto Route111_EventScript_Sandslash_Join_1
+
+Route111_EventScript_Sandslash_Join_5:
+	setflag FLAG_DEFEATED_ROUTE111_SANDSLASH
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_SANDSLASHITE, 1
+	message Route111_EventScript_Sandslash_Join_Text_2
+	waitfanfare
+	goto Route111_EventScript_Sandslash_Join_4
+
+
 Route111South_EventScript_Gen8_NPC_Text_0:
 	.string "Well done indeed! Let us commence the\n"
 	.string "celebrations for your victory!$"
@@ -1149,6 +1242,37 @@ Route111Desert_EventScript_LegendaryNPC_Text_3:
 
 Route111Desert_EventScript_LegendaryNPC_Text_4:
 	.string "Shame...$"
+
+Route111_EventScript_Sandslash_Text_0:
+	.string "Sandslash regards you as an equal and\n"
+	.string "appears eager to challenge you in\l"
+	.string "battle. Are you ready?$"
+
+Route111_EventScript_Sandslash_Text_1:
+	.string "Sandslash: Slash!$"
+
+Route111_EventScript_Sandslash_Text_2:
+	.string "The {STR_VAR_1} ran away!$"
+
+Route111_EventScript_Sandslash_Text_3:
+	.string "Sandslash: Slash...$"
+
+Route111_EventScript_Sandslash_PreNorman_Text_0:
+	.string "Sandslash appears to regard you with a\n"
+	.string "sense of superiority. It might be\l"
+	.string "advisable to return once you've\l"
+	.string "bolstered your strength.{PAUSE_UNTIL_PRESS}$"
+
+Route111_EventScript_Sandslash_Join_Text_0:
+	.string "Sandslash seems to want to join your\n"
+	.string "team, will you let this Sandslash join\l"
+	.string "you?$"
+
+Route111_EventScript_Sandslash_Join_Text_1:
+	.string "{PLAYER} received a Sandslash!$"
+
+Route111_EventScript_Sandslash_Join_Text_2:
+	.string "{PLAYER} received a Sandslashite!$"
 
 Route111North_Text_ObtainedChansey::
 	.string "{PLAYER} got a {COLOR BLUE}Chansey{COLOR DARK_GRAY}$"

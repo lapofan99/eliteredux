@@ -266,3 +266,9 @@ BattleScript_TrainerSlideMsgRet::
 BattleScript_TrainerSlideMsgEnd2::
 	call BattleScript_TrainerSlideMsgRet
 	end2
+
+BattleScript_LegendaryPokemonBallBlock::
+	waitmessage B_WAIT_TIME_LONG
+	printstring STRINGID_THEPOKEMONBLOCKEDTHEBALL
+	waitmessage B_WAIT_TIME_LONG
+	finishaction

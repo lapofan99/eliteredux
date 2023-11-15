@@ -2700,7 +2700,10 @@ static void Task_OnSelectedMon(u8 taskId)
             }
             else if (sStorage->displayMonIsEgg)
             {
-                sStorage->state = 5; // Cannot release an Egg.
+                PlaySE(SE_SELECT);
+                SetPokeStorageTask(Task_ReleaseMon);
+                
+                //sStorage->state = 5; // Cannot release an Egg.
             }
             else if (ItemIsMail(sStorage->displayMonItemId))
             {
@@ -4011,7 +4014,7 @@ static void LoadDisplayMonGfx(u16 species, u32 pid)
     {
         LoadSpecialPokePic(&gMonFrontPicTable[species], sStorage->tileBuffer, species, pid, TRUE);
         LZ77UnCompWram(sStorage->displayMonPalette, sStorage->displayMonPalBuffer);
-        if (gSaveBlock2Ptr->individualColors)
+        if (gSaveBlock2Ptr->individualColors == TRUE)
             HueShiftMonPalette((u16*) sStorage->displayMonPalBuffer, sStorage->displayMonPersonality);
         CpuCopy32(sStorage->tileBuffer, sStorage->displayMonTilePtr, MON_PIC_SIZE);
         LoadPalette(sStorage->displayMonPalBuffer, sStorage->displayMonPalOffset, 0x20);
@@ -6920,13 +6923,13 @@ void SetArceusFormPSS(struct BoxPokemon *boxMon)
     u16 ability = GetAbilityBySpecies(species, abilityNum);
     u8 level = GetMonData(boxMon, MON_DATA_LEVEL);
 
-    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS && (ability == ABILITY_MULTITYPE  || BoxMonHasInnate(boxMon, ABILITY_MULTITYPE)))
+    if (GET_BASE_SPECIES_ID(species) == SPECIES_ARCEUS && (ability == ABILITY_MULTITYPE  || BoxMonHasInnate(boxMon, ABILITY_MULTITYPE, FALSE)))
     {
         forme = GetArceusFormPSS(boxMon);
         SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);
         UpdateSpeciesSpritePSS(boxMon);
     }
-    else if(GET_BASE_SPECIES_ID(species) == SPECIES_SILVALLY && (ability == ABILITY_RKS_SYSTEM || BoxMonHasInnate(boxMon, ABILITY_RKS_SYSTEM)))
+    else if(GET_BASE_SPECIES_ID(species) == SPECIES_SILVALLY && (ability == ABILITY_RKS_SYSTEM || BoxMonHasInnate(boxMon, ABILITY_RKS_SYSTEM, FALSE)))
     {
         forme = GetSilvallyFormPSS(boxMon);
         SetBoxMonData(boxMon, MON_DATA_SPECIES, &forme);

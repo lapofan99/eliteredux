@@ -199,3 +199,66 @@ AshenWoods_Text_CatchBlob:
 AshenWoods_Text_BlobCaught:
 	.string "Blob was caught!\p"
 	.string "Blob was sent to the nurse's PC.$"
+
+AshenWoods_EventScript_Typhlosionite_Battle::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE05_GET, AshenWoods_EventScript_Typhlosionite_Battle_2
+	msgbox AshenWoods_EventScript_Typhlosionite_Battle_Text_6, MSGBOX_NPC
+AshenWoods_EventScript_Typhlosionite_Battle_1:
+	release
+	end
+
+AshenWoods_EventScript_Typhlosionite_Battle_2:
+	checktrainerflag TRAINER_TYPHLOSIONITE_ASHEN_WOODS
+	goto_if 0, AshenWoods_EventScript_Typhlosionite_Battle_5
+	msgbox AshenWoods_EventScript_Typhlosionite_Battle_Text_5, MSGBOX_NPC
+	goto AshenWoods_EventScript_Typhlosionite_Battle_1
+
+AshenWoods_EventScript_Typhlosionite_Battle_5:
+	msgbox AshenWoods_EventScript_Typhlosionite_Battle_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq AshenWoods_EventScript_Typhlosionite_Battle_8
+	msgbox AshenWoods_EventScript_Typhlosionite_Battle_Text_4, MSGBOX_NPC
+	goto AshenWoods_EventScript_Typhlosionite_Battle_1
+
+AshenWoods_EventScript_Typhlosionite_Battle_8:
+	msgbox AshenWoods_EventScript_Typhlosionite_Battle_Text_1, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_TYPHLOSIONITE_ASHEN_WOODS, AshenWoods_EventScript_Typhlosionite_Battle_Text_2
+	msgbox AshenWoods_EventScript_Typhlosionite_Battle_Text_3, MSGBOX_NPC
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_TYPHLOSIONITE, 1
+	waitmessage
+	goto AshenWoods_EventScript_Typhlosionite_Battle_1
+
+
+AshenWoods_EventScript_Typhlosionite_Battle_Text_0:
+	.string "You seem strong, kid! How about this, we\n"
+	.string "have a little match, and if you beat me,\l"
+	.string "I'll give you a little something!$"
+
+AshenWoods_EventScript_Typhlosionite_Battle_Text_1:
+	.string "Let's play with fire!$"
+
+AshenWoods_EventScript_Typhlosionite_Battle_Text_2:
+	.string "That was a great fight, kid!$"
+
+AshenWoods_EventScript_Typhlosionite_Battle_Text_3:
+	.string "Sheesh! This young, and you're already\n"
+	.string "giving someone like me a beating like\l"
+	.string "this! You got potential, kid. Take this\l"
+	.string "Typhlosionite, and make sure to burn\l"
+	.string "all who challenge you to ash!$"
+
+AshenWoods_EventScript_Typhlosionite_Battle_Text_4:
+	.string "Then you better come back here when\n"
+	.string "you're ready! Don't disappoint me!$"
+
+AshenWoods_EventScript_Typhlosionite_Battle_Text_5:
+	.string "I got nothin' left for you, kid. Now\n"
+	.string "scram!$"
+
+AshenWoods_EventScript_Typhlosionite_Battle_Text_6:
+	.string "Hmmm... You ain't strong enough, kid!\n"
+	.string "Don't come back here until you can beat\l"
+	.string "that guy in Petalburg!$"

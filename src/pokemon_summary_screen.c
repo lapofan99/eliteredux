@@ -1913,29 +1913,26 @@ static void Task_HandleInput(u8 taskId)
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY && ModifyMode){ 
                 //Ability Modifier
-				if(abilityNum != 0 && 
-				   GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) &&
-				   GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) != ABILITY_NONE)
-					abilityNum--;
-				else
-					abilityNum = 2;
+                do{
+                    if(abilityNum != 0)
+                        abilityNum--;
+                    else
+                        abilityNum = NUM_ABILITY_SLOTS - 1;
+                }
+                while(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] == ABILITY_NONE);
 
                 if (!sMonSummaryScreen->isBoxMon){
-                    if(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != ABILITY_NONE){
-                        SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-                        CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-				        CalculateMonStats(&sMonSummaryScreen->currentMon);
-                    }
+                    SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+                    SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+                    CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				    CalculateMonStats(&sMonSummaryScreen->currentMon);
                 }
                 else{
-                    if(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != ABILITY_NONE){
-                        struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
-                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-                        SetBoxMonData(&boxMon[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-                        CalculateMonStats(&sMonSummaryScreen->currentMon);
-                        ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
-                    }
+                    struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
+                    SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+                    SetBoxMonData(&boxMon[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+                    CalculateMonStats(&sMonSummaryScreen->currentMon);
+                    ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
                 }	
 				PlaySE(SE_SELECT);
 				RefreshPageAfterChange(1);
@@ -2067,32 +2064,25 @@ static void Task_HandleInput(u8 taskId)
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY && ModifyMode){ 
                 //Ability Modifier
-				if(abilityNum != 2 && 
-                    gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum + 1] &&
-                    gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum + 1] != ABILITY_NONE)
-					abilityNum++;
-                else if(abilityNum == 0 && 
-                   gBaseStats[sMonSummaryScreen->summary.species].abilities[1] == ABILITY_NONE && 
-                   gBaseStats[sMonSummaryScreen->summary.species].abilities[2] != ABILITY_NONE)
-                    abilityNum = 2;
-				else
-                    abilityNum = 0;
+                do{
+                    if(abilityNum < NUM_ABILITY_SLOTS - 1)
+                        abilityNum++;
+                    else
+                        abilityNum = 0;
+                }
+                while(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] == ABILITY_NONE);
 
                 if (!sMonSummaryScreen->isBoxMon){
-                    if(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != ABILITY_NONE){
-                        SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-                        CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-				        CalculateMonStats(&sMonSummaryScreen->currentMon);
-                    }
+                    SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+                    SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+                    CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				    CalculateMonStats(&sMonSummaryScreen->currentMon);
                 }
                 else{
-                    if(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != ABILITY_NONE){
-                        struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
-                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-                        SetBoxMonData(&boxMon[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-                        ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
-                    }
+                    struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
+                    SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+                    SetBoxMonData(&boxMon[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+                    ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
                 }
 				PlaySE(SE_SELECT);
 				RefreshPageAfterChange(1);
@@ -4412,7 +4402,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
             case 0:
                 if(innate1 != ABILITY_NONE){
                     y += 32;
-                    if(level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE){
+                    if(level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
@@ -4434,7 +4424,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
             case 1:
                 if(innate2 != ABILITY_NONE){
                     y += 32;
-                    if(level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE){
+                    if(level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
@@ -4456,7 +4446,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
             case 2:
                 if(innate3 != ABILITY_NONE){
                     y += 32;
-                    if(level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE){
+                    if(level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
@@ -4533,7 +4523,12 @@ static void SaveSpeciesWithSurname(u16 species){
         StringCopy(gStringVar2, gSpeciesNames[species]);
         StringExpandPlaceholders(gStringVar4, gText_Subname);
     }
-    else if(species >= SPECIES_MILOTIC_MEGA && species <= SPECIES_KINGDRA_MEGA){ //Custom Mega
+    else if(species >= SPECIES_MILOTIC_MEGA && species <= SPECIES_MEGANIUM_MEGA){ //Custom Mega
+        StringCopy(gStringVar1, gText_Mega);
+        StringCopy(gStringVar2, gSpeciesNames[species]);
+        StringExpandPlaceholders(gStringVar4, gText_Subname);
+    }
+    else if(species >= SPECIES_LUXRAY_MEGA && species <= SPECIES_TEMP_MEGA10){ //Custom Mega 2
         StringCopy(gStringVar1, gText_Mega);
         StringCopy(gStringVar2, gSpeciesNames[species]);
         StringExpandPlaceholders(gStringVar4, gText_Subname);
@@ -5495,12 +5490,13 @@ static void SetMoveTypeIcons(void)
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    bool8 isEnemyMon = VarGet(VAR_BATTLE_CONTROLLER_PLAYER_F) == 2; //checks if you are looking into the summary screen for the enemy
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         if (summary->moves[i] != MOVE_NONE)
         {
-            u8 movetype = GetMonMoveType(summary->moves[i], mon);
+            u8 movetype = GetMonMoveType(summary->moves[i], mon, isEnemyMon);
             SetTypeSpritePosAndPal(movetype, 116, i * 29 + 20, SPRITE_ARR_ID_TYPE + 2 + i);
         }
         else
@@ -5527,6 +5523,7 @@ static void SetNewMoveTypeIcon(void)
 {
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    bool8 isEnemyMon = VarGet(VAR_BATTLE_CONTROLLER_PLAYER_F) == 2; //checks if you are looking into the summary screen for the enemy
 
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
@@ -5536,7 +5533,7 @@ static void SetNewMoveTypeIcon(void)
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
-            u8 movetype = GetMonMoveType(sMonSummaryScreen->newMove, mon);
+            u8 movetype = GetMonMoveType(sMonSummaryScreen->newMove, mon, isEnemyMon);
             SetTypeSpritePosAndPal(movetype, 116, 136, SPRITE_ARR_ID_TYPE + 6);
         }
         else

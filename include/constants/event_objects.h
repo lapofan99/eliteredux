@@ -257,8 +257,18 @@
 #define OBJ_EVENT_GFX_DIANCIE                    253
 #define OBJ_EVENT_GFX_CHANSEY                    254
 #define OBJ_EVENT_GFX_CYNTHIA                    255
+#define OBJ_EVENT_GFX_HAXORUS                    256
+#define OBJ_EVENT_GFX_HAXORUS_SHINY              257
+#define OBJ_EVENT_GFX_BRELOOM                    258
+#define OBJ_EVENT_GFX_SANDSLASH                  259
+#define OBJ_EVENT_GFX_GYARADOS                   260
+#define OBJ_EVENT_GFX_GYARADOS_SHINY             261
+#define OBJ_EVENT_GFX_SALAMENCE                  262
+#define OBJ_EVENT_GFX_DEWGONG                    263
+#define OBJ_EVENT_GFX_FERALIGATR                 264
+#define OBJ_EVENT_GFX_BANEFUL                    265
 
-#define NUM_OBJ_EVENT_GFX                        256
+#define NUM_OBJ_EVENT_GFX                        266
 
 
 // These are dynamic object gfx ids.

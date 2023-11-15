@@ -1278,6 +1278,47 @@ const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to 
     [SPECIES_LAPRAS_MEGA - 1] = NATIONAL_DEX_LAPRAS,
     [SPECIES_FLYGON_MEGA - 1] = NATIONAL_DEX_FLYGON,
     [SPECIES_KINGDRA_MEGA - 1] = NATIONAL_DEX_KINGDRA,
+    [SPECIES_DEWGONG_MEGA - 1] = NATIONAL_DEX_DEWGONG,
+    [SPECIES_HITMONCHAN_MEGA - 1] = NATIONAL_DEX_HITMONCHAN,
+    [SPECIES_HITMONLEE_MEGA - 1] = NATIONAL_DEX_HITMONLEE,
+    [SPECIES_HITMONTOP_MEGA - 1] = NATIONAL_DEX_HITMONTOP,
+    [SPECIES_CROBAT_MEGA - 1] = NATIONAL_DEX_CROBAT,
+    [SPECIES_SKARMORY_MEGA - 1] = NATIONAL_DEX_SKARMORY,
+    [SPECIES_BRUXISH_MEGA - 1] = NATIONAL_DEX_BRUXISH,
+    [SPECIES_TORTERRA_MEGA - 1] = NATIONAL_DEX_TORTERRA,
+    [SPECIES_INFERNAPE_MEGA - 1] = NATIONAL_DEX_INFERNAPE,
+    [SPECIES_EMPOLEON_MEGA - 1] = NATIONAL_DEX_EMPOLEON,
+    [SPECIES_SHUCKLE_MEGA - 1] = NATIONAL_DEX_SHUCKLE,
+    [SPECIES_RELICANTH_MEGA - 1] = NATIONAL_DEX_RELICANTH,
+    [SPECIES_QUAGSIRE_MEGA - 1] = NATIONAL_DEX_QUAGSIRE,
+    [SPECIES_JELLICENT_MEGA - 1] = NATIONAL_DEX_JELLICENT,
+    [SPECIES_TOUCANNON_MEGA - 1] = NATIONAL_DEX_TOUCANNON,
+    [SPECIES_DRAGONITE_MEGA - 1] = NATIONAL_DEX_DRAGONITE,
+    [SPECIES_BRELOOM_MEGA - 1] = NATIONAL_DEX_BRELOOM,
+    [SPECIES_SLAKING_MEGA - 1] = NATIONAL_DEX_SLAKING,
+    [SPECIES_CASCOON_PRIMAL - 1] = NATIONAL_DEX_CASCOON,
+    [SPECIES_FERALIGATR_MEGA_X - 1] = NATIONAL_DEX_FERALIGATR,
+    [SPECIES_FERALIGATR_MEGA_Y - 1] = NATIONAL_DEX_FERALIGATR,
+    [SPECIES_GRANBULL_MEGA - 1] = NATIONAL_DEX_GRANBULL,
+    [SPECIES_GYARADOS_MEGA_Y - 1] = NATIONAL_DEX_GYARADOS,
+    [SPECIES_HAXORUS_MEGA - 1] = NATIONAL_DEX_HAXORUS,
+    [SPECIES_KINGDRA_MEGA_Y - 1] = NATIONAL_DEX_KINGDRA,
+    [SPECIES_LUXRAY_MEGA - 1] = NATIONAL_DEX_LUXRAY,
+    [SPECIES_NIDOKING_MEGA - 1] = NATIONAL_DEX_NIDOKING,
+    [SPECIES_NIDOQUEEN_MEGA - 1] = NATIONAL_DEX_NIDOQUEEN,
+    [SPECIES_SANDSLASH_MEGA - 1] = NATIONAL_DEX_SANDSLASH,
+    [SPECIES_TYPHLOSION_MEGA - 1] = NATIONAL_DEX_TYPHLOSION,
+    [SPECIES_MEGANIUM_MEGA - 1] = NATIONAL_DEX_MEGANIUM,
+    [SPECIES_SLOWKING_MEGA - 1] = NATIONAL_DEX_SLOWKING,
+    [SPECIES_KROOKODILE_MEGA - 1] = NATIONAL_DEX_KROOKODILE,
+    [SPECIES_MAGNEZONE_MEGA - 1] = NATIONAL_DEX_MAGNEZONE,
+    [SPECIES_SHEDINJA_MEGA - 1] = NATIONAL_DEX_SHEDINJA,
+    [SPECIES_SWALOT_MEGA - 1] = NATIONAL_DEX_SWALOT,
+    [SPECIES_LANTURN_MEGA - 1] = NATIONAL_DEX_LANTURN,
+    [SPECIES_LAPRAS_MEGA_X - 1] = NATIONAL_DEX_LAPRAS,
+    [SPECIES_DEWLEON - 1] = NATIONAL_DEX_DEWGONG,
+    [SPECIES_CLAWITZER_REDUX - 1] = NATIONAL_DEX_CLAWITZER,
+
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA - 1] = NATIONAL_DEX_RAYQUAZA,
     [SPECIES_KYOGRE_PRIMAL - 1] = NATIONAL_DEX_KYOGRE,
@@ -1602,6 +1643,11 @@ const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to 
     // Calyrex
     [SPECIES_CALYREX_ICE_RIDER - 1] = NATIONAL_DEX_CALYREX,
     [SPECIES_CALYREX_SHADOW_RIDER - 1] = NATIONAL_DEX_CALYREX,
+
+    [SPECIES_INFERNAPE_REDUX - 1] = NATIONAL_DEX_INFERNAPE,
+    [SPECIES_NOIBAT_REDUX - 1] = NATIONAL_DEX_NOIBAT,
+    [SPECIES_NOIVERN_REDUX - 1] = NATIONAL_DEX_NOIVERN,
+    [SPECIES_LUXRAY_REDUX - 1] = NATIONAL_DEX_LUXRAY,
 };
 
 const u16 gHoennToNationalOrder[HOENN_DEX_COUNT] = // Assigns Hoenn Dex Pokémon (Using National Dex Index)
@@ -3928,7 +3974,7 @@ void CalculateMonStats(struct Pokemon *mon)
 		speedEV 	= 0;
     }
 
-    if (species == SPECIES_SHEDINJA)
+    if (species == SPECIES_SHEDINJA || species == SPECIES_SHEDINJA_MEGA)
     {
         newMaxHP = 1;
     }
@@ -4516,6 +4562,21 @@ u32 GetMonData(struct Pokemon *mon, s32 field, u8* data)
         break;
     }
     return ret;
+}
+
+bool8 CheckBoxMonForBadChecksum(u8 box, u8 slot){
+    struct BoxPokemon *boxMon = GetBoxedMonPtr(box, slot);
+
+    DecryptBoxMon(boxMon);
+
+    if (CalculateBoxMonChecksum(boxMon) != boxMon->checksum){
+        EncryptBoxMon(boxMon);
+        return TRUE;
+    }
+    else{
+        EncryptBoxMon(boxMon);
+        return FALSE;
+    }
 }
 
 u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
@@ -5603,7 +5664,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     }
 
     // Skip using the item if it won't do anything
-    if (!ITEM_HAS_EFFECT(item))
+    if (!ITEM_HAS_EFFECT(item) && ItemId_GetFieldFunc(item) != ItemId_GetFieldFunc(ITEM_FIRE_STONE))
         return TRUE;
     if (gItemEffectTable[item - ITEM_POTION] == NULL && item != ITEM_ENIGMA_BERRY)
         return TRUE;
@@ -7953,7 +8014,7 @@ void SetWildMonHeldItem(void)
 {
     u16 rnd, species, var1, var2, i, count;
 
-    if (gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_TRAINER | BATTLE_TYPE_PYRAMID | BATTLE_TYPE_PIKE) || gDexnavBattle)
+    if (gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_TRAINER | BATTLE_TYPE_PYRAMID | BATTLE_TYPE_PIKE) || gDexnavBattle || FlagGet(FLAG_TOTEM_BATTLE))
         return;
 
     count = (WILD_DOUBLE_BATTLE) ? 2 : 1;
@@ -8926,7 +8987,7 @@ u16 getRandomSpecies(void)
 	return species;
 }
 
-bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality, bool8 disablerandomizer){
+bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality, bool8 disablerandomizer, bool8 isEnemyMon){
 	u8 i;
     u16 innate1 = gBaseStats[species].innates[0];
     u16 innate2 = gBaseStats[species].innates[1];
@@ -8938,11 +8999,11 @@ bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality, bool
         innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
     }
 	
-    if(innate1 == ability      && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    if(innate1 == ability      && (level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon))
         return TRUE;
-    else if(innate2 == ability && (level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    else if(innate2 == ability && (level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon))
         return TRUE;
-    else if(innate3 == ability && (level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE))
+    else if(innate3 == ability && (level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon))
         return TRUE;
 	else
 	    return FALSE;
@@ -8957,9 +9018,13 @@ u16 RandomizeMoves(u16 moves, u16 species, u32 personality){
                 randomizedMove = randomizedMove % MOVES_COUNT;
             }
             while(gBattleMoves[randomizedMove].effect == EFFECT_PLACEHOLDER || 
+                  randomizedMove >= MOVES_COUNT    ||
                   randomizedMove == MOVE_DARK_VOID ||
                   randomizedMove == MOVE_NONE);
-            
+                  
+            if(randomizedMove >= (MOVES_COUNT - 1))
+                randomizedMove = MOVE_SPLASH;
+
             return randomizedMove;
     }
     else
@@ -8983,6 +9048,9 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
        innate != ABILITY_GULP_MISSILE      &&
        innate != ABILITY_DISGUISE          &&
        innate != ABILITY_FLOWER_GIFT       &&
+       #ifdef BALANCE_RANDOMIZER_ABILITIES
+       innate != ABILITY_ANGELS_WRATH      &&
+       #endif
        innate != ABILITY_HUNGER_SWITCH){ 
         //Only Randomize if you have the Innate Randomized Mode Enabled
         //Exclude form change abilities from being randomized and other mons can't get them either
@@ -8992,32 +9060,36 @@ u16 RandomizeInnate(u16 innate, u16 species, u32 personality){
             randomizedInnate = randomizedInnate % ABILITIES_COUNT;
         }
         while(randomizedInnate == ABILITY_NONE            ||
-              randomizedInnate == ABILITY_HUGE_POWER      ||
-              randomizedInnate == ABILITY_PURE_POWER      ||
-              randomizedInnate == ABILITY_FELINE_PROWESS  ||
               randomizedInnate == ABILITY_HUNGER_SWITCH   ||
               randomizedInnate == ABILITY_ZEN_MODE        ||
               randomizedInnate == ABILITY_WONDER_GUARD    ||
               randomizedInnate == ABILITY_POWER_CONSTRUCT ||
               randomizedInnate == ABILITY_SCHOOLING       ||
               randomizedInnate == ABILITY_TRACE           ||
-              randomizedInnate == ABILITY_TRUANT          ||
               randomizedInnate == ABILITY_MULTITYPE       ||
               randomizedInnate == ABILITY_FORECAST        ||
               randomizedInnate == ABILITY_DISGUISE        ||
               randomizedInnate == ABILITY_STANCE_CHANGE   ||
-              randomizedInnate == ABILITY_COMATOSE        ||
               randomizedInnate == ABILITY_RKS_SYSTEM      ||
               randomizedInnate == ABILITY_BATTLE_BOND     ||
-              randomizedInnate == ABILITY_POWER_CONSTRUCT ||
               randomizedInnate == ABILITY_FLOWER_GIFT     ||
               randomizedInnate == ABILITY_ICE_FACE        ||
+              #ifdef BALANCE_RANDOMIZER_ABILITIES
+              randomizedInnate == ABILITY_COMATOSE        ||
+              randomizedInnate == ABILITY_TRUANT          ||
+              randomizedInnate == ABILITY_ANGELS_WRATH    ||
+              randomizedInnate == ABILITY_HUGE_POWER      ||
+              randomizedInnate == ABILITY_PURE_POWER      ||
+              randomizedInnate == ABILITY_FELINE_PROWESS  ||
+              #endif
               randomizedInnate == ABILITY_GULP_MISSILE);
         return randomizedInnate;
     }
     else
         return innate;
 }
+
+//#define BALANCE_RANDOMIZER_ABILITIES
 
 u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
     if(gSaveBlock2Ptr->abilityRandomizedMode == 1 && 
@@ -9036,6 +9108,9 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
        ability != ABILITY_GULP_MISSILE      &&
        ability != ABILITY_DISGUISE          &&
        ability != ABILITY_FLOWER_GIFT       &&
+       #ifdef BALANCE_RANDOMIZER_ABILITIES
+       ability != ABILITY_ANGELS_WRATH      &&
+       #endif
        ability != ABILITY_HUNGER_SWITCH){ 
         //Only Randomize if you have the Ability Randomized Mode Enabled
         //Exclude form change abilities from being randomized and other mons can't get them either
@@ -9045,26 +9120,28 @@ u16 RandomizeAbility(u16 ability, u16 species, u32 personality){
             randomizedAbility = randomizedAbility % ABILITIES_COUNT;
         }
         while(randomizedAbility == ABILITY_NONE            ||
-              randomizedAbility == ABILITY_HUGE_POWER      ||
-              randomizedAbility == ABILITY_PURE_POWER      ||
-              randomizedAbility == ABILITY_FELINE_PROWESS  ||
               randomizedAbility == ABILITY_HUNGER_SWITCH   ||
               randomizedAbility == ABILITY_ZEN_MODE        ||
-              randomizedAbility == ABILITY_WONDER_GUARD    ||
               randomizedAbility == ABILITY_POWER_CONSTRUCT ||
               randomizedAbility == ABILITY_SCHOOLING       ||
               randomizedAbility == ABILITY_TRACE           ||
-              randomizedAbility == ABILITY_TRUANT          ||
               randomizedAbility == ABILITY_MULTITYPE       ||
               randomizedAbility == ABILITY_FORECAST        ||
               randomizedAbility == ABILITY_DISGUISE        ||
               randomizedAbility == ABILITY_STANCE_CHANGE   ||
-              randomizedAbility == ABILITY_COMATOSE        ||
               randomizedAbility == ABILITY_RKS_SYSTEM      ||
               randomizedAbility == ABILITY_BATTLE_BOND     ||
-              randomizedAbility == ABILITY_POWER_CONSTRUCT ||
               randomizedAbility == ABILITY_FLOWER_GIFT     ||
               randomizedAbility == ABILITY_ICE_FACE        ||
+              #ifdef BALANCE_RANDOMIZER_ABILITIES
+              randomizedAbility == ABILITY_COMATOSE        ||
+              randomizedAbility == ABILITY_WONDER_GUARD    ||
+              randomizedAbility == ABILITY_TRUANT          ||
+              randomizedAbility == ABILITY_ANGELS_WRATH    ||
+              randomizedAbility == ABILITY_HUGE_POWER      ||
+              randomizedAbility == ABILITY_PURE_POWER      ||
+              randomizedAbility == ABILITY_FELINE_PROWESS  ||
+              #endif
               randomizedAbility == ABILITY_GULP_MISSILE);
         return randomizedAbility;
     }
@@ -9093,20 +9170,20 @@ u8 RandomizeType(u8 type, u16 species, u32 personality, bool8 isFirstType){
         return type;
 }
 
-bool8 MonHasInnate(struct Pokemon *mon, u16 ability){
+bool8 MonHasInnate(struct Pokemon *mon, u16 ability, bool8 disableRandomizer){
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
 
-    return SpeciesHasInnate(species, ability, level, personality, FALSE);
+    return SpeciesHasInnate(species, ability, level, personality, disableRandomizer, disableRandomizer);
 }
 
-bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability){
+bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability, bool8 disableRandomizer){
     u16 species = GetBoxMonData(boxmon, MON_DATA_SPECIES, NULL);
     u32 personality = GetBoxMonData(boxmon, MON_DATA_PERSONALITY, NULL);
     u8 level = GetBoxMonData(boxmon, MON_DATA_LEVEL, NULL);
 
-    return SpeciesHasInnate(species, ability, level, personality, FALSE);
+    return SpeciesHasInnate(species, ability, level, personality, disableRandomizer, disableRandomizer);
 }
 
 u8 GetSpeciesInnateNum(u16 species, u16 ability, u8 level, u32 personality, bool8 disablerandomizer){
@@ -9138,7 +9215,6 @@ void CreateShinyMonWithNature(struct Pokemon *mon, u16 species, u8 level, u8 nat
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-
     do
     {
         personality = Random32();
@@ -9153,10 +9229,16 @@ u16 getNumberOfUniqueDefeatedTrainers(void){
     u16 i;
 
     for(i = 0; i < TRAINERS_COUNT; i++){
-        if(FlagGet(TRAINER_FLAGS_START + i)){
-            defeatedTrainers++;
+        if(i <= MAX_OLD_TRAINERS_COUNT || i == TRAINER_OLDPLAYER){
+            if(FlagGet(TRAINER_FLAGS_START + i))
+                defeatedTrainers++;
+        }
+        else{
+            if(FlagGet(gTrainers[i].trainerFlag))
+                defeatedTrainers++;
         }
     }
+
     return defeatedTrainers;
 }
 
@@ -9278,6 +9360,7 @@ u16 GetRandomPokemonFromSpecies(u16 basespecies){
                 species == SPECIES_RAIKOU                     || 
                 species == SPECIES_ENTEI                      || 
                 species == SPECIES_SUICUNE                    || 
+                species == SPECIES_REGICE                     || 
                 species == SPECIES_REGIROCK                   || 
                 species == SPECIES_REGISTEEL                  || 
                 species == SPECIES_LATIAS                     || 

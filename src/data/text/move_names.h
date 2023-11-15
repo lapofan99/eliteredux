@@ -758,10 +758,20 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] =
     [MOVE_EERIE_SPELL] = _("Eerie Spell"),
 
     // Custom Moves
-    [MOVE_DEATHROLL] = _("Deathroll"),
-    [MOVE_EXCALIBUR] = _("Excalibur"),
-    [MOVE_AQUA_FANG] = _("Aqua Fang"),
-    [MOVE_WAVE_CRASH] = _("Wave Crash"),
+    [MOVE_DEATHROLL]      = _("Deathroll"),
+    [MOVE_EXCALIBUR]      = _("Excalibur"),
+    [MOVE_AQUA_FANG]      = _("Aqua Fang"),
+    [MOVE_WAVE_CRASH]     = _("Wave Crash"),
+    [MOVE_SMITE]          = _("Smite"),
+    [MOVE_OUTBURST]       = _("Outburst"),
+    [MOVE_SEISMIC_FIST]   = _("Seismic Fist"),
+    [MOVE_IRON_FANGS]     = _("Iron Fangs"),
+    [MOVE_SHADOW_FANGS]   = _("Shadow Fangs"),
+    [MOVE_LOVELY_BITE]    = _("Lovely Bite"),
+    [MOVE_JAGGED_FANGS]   = _("Jagged Fangs"),
+    [MOVE_SCORCHED_EARTH] = _("Scor. Earth"),
+    [MOVE_RAGING_FURY]    = _("Raging Fury"),
+    [MOVE_PLASMA_PULSE]   = _("Plasma Pulse"),
 };
 
 // Second table with longer move names for places where they fit.
@@ -1524,9 +1534,21 @@ const u8 gMoveNamesLong[MOVES_COUNT][LONG_MOVE_NAME_LENGTH + 1] =
     [MOVE_ASTRAL_BARRAGE] = _("Astral Barrage"),
     [MOVE_EERIE_SPELL] = _("Eerie Spell"),
 
+    
+
     // Custom Moves
-    [MOVE_DEATHROLL] = _("Deathroll"),
-    [MOVE_EXCALIBUR] = _("Excalibur"),
-    [MOVE_AQUA_FANG] = _("Aqua Fang"),
-    [MOVE_WAVE_CRASH] = _("Wave Crash"),
+    [MOVE_DEATHROLL]       = _("Deathroll"),
+    [MOVE_EXCALIBUR]       = _("Excalibur"),
+    [MOVE_AQUA_FANG]       = _("Aqua Fang"),
+    [MOVE_WAVE_CRASH]      = _("Wave Crash"),
+    [MOVE_SMITE]           = _("Smite"),
+    [MOVE_SEISMIC_FIST]    = _("Seismic Fist"),
+    [MOVE_OUTBURST]        = _("Outburst"),
+    [MOVE_IRON_FANGS]      = _("Iron Fangs"),
+    [MOVE_SHADOW_FANGS]    = _("Shadow Fangs"),
+    [MOVE_LOVELY_BITE]     = _("Lovely Bite"),
+    [MOVE_JAGGED_FANGS]    = _("Jagged Fangs"),
+    [MOVE_SCORCHED_EARTH]  = _("Scorched Earth"),
+    [MOVE_RAGING_FURY]     = _("Raging Fury"),
+    [MOVE_PLASMA_PULSE]    = _("Plasma Pulse"),
 };

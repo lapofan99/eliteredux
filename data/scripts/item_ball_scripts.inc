@@ -267,7 +267,7 @@ Route127_EventScript_ItemZinc:: @ 8291032
 	end
 
 Route127_EventScript_ItemLaprasite:: @ 829103F
-	finditem ITEM_LAPRASITE
+	finditem ITEM_LAPRASITE_Y
 	end
 
 Route127_EventScript_ItemRareCandy:: @ 829104C
@@ -448,6 +448,18 @@ AbandonedShip_HiddenFloorRooms_EventScript_ItemLuxuryBall:: @ 829127B
 
 AbandonedShip_HiddenFloorRooms_EventScript_ItemScanner:: @ 8291288
 	finditem ITEM_SCANNER
+	end
+
+AbandonedShip_HiddenFloorRooms_EventScript_Shedinjite:: @ 8291288
+	finditem ITEM_SHEDINJITE
+	end
+
+Route110_EventScript_Shucklenite:: @ 8291288
+	finditem ITEM_SHUCKLENITE
+	end
+
+SlateportCity_OceanicMuseum_2F_EventScript_LaprasiteX:: @ 8291288
+	finditem ITEM_LAPRASITE_X
 	end
 
 AbandonedShip_HiddenFloorRooms_EventScript_ItemLucarionite:: @ 8291295

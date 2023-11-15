@@ -857,14 +857,38 @@
 #define TRAINER_BRENDAN_PLACEHOLDER         853
 #define TRAINER_MAY_PLACEHOLDER             854
 #define TRAINER_STEVEN_GRANITE_CAVE         855
+#define TRAINER_MEGANIUMITE_VERDANTURF_MEADOW 856
+#define TRAINER_FERALIGATRITEX_ROUTE105     857
+#define TRAINER_TYPHLOSIONITE_ASHEN_WOODS   858
+#define TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR 859
+#define TRAINER_SHEDINJITE_ABANDONED_SHIP   860
+#define TRAINER_CROBATITE_DEWFORD_MANOR     861
+#define TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER 862
+#define TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF 863
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
-//       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
+//       MAX_OLD_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT                      856
-#define MAX_TRAINERS_COUNT                  864
+#define TRAINERS_COUNT                      860
+#define MAX_OLD_TRAINERS_COUNT              864
+
+// Trainers after this have to use the flag in the trainer structure
+
+#define TRAINER_NEW_TEST                    MAX_OLD_TRAINERS_COUNT + 1
+#define TRAINER_DRAGONITENITE_SAGE_1        MAX_OLD_TRAINERS_COUNT + 2
+#define TRAINER_DRAGONITENITE_SAGE_2        MAX_OLD_TRAINERS_COUNT + 3
+#define TRAINER_DRAGONITENITE_SAGE_3        MAX_OLD_TRAINERS_COUNT + 4
+#define TRAINER_HITMONSTONE_BLACKBELT_1     MAX_OLD_TRAINERS_COUNT + 5
+#define TRAINER_HITMONSTONE_BLACKBELT_2     MAX_OLD_TRAINERS_COUNT + 6
+#define TRAINER_HITMONSTONE_BLACKBELT_3     MAX_OLD_TRAINERS_COUNT + 7
+#define TRAINER_GRANBULLITE_ROUTE123        MAX_OLD_TRAINERS_COUNT + 8
+#define TRAINER_CALVIN_E4                   MAX_OLD_TRAINERS_COUNT + 9
+#define TRAINER_BANEFUL_PETALBURG_WOODS     MAX_OLD_TRAINERS_COUNT + 10
+#define TRAINER_STEVEN_ROUTE118             MAX_OLD_TRAINERS_COUNT + 11
+#define TRAINER_YDA_MTPYRE                  MAX_OLD_TRAINERS_COUNT + 12
 
 #define TRAINER_OLDPLAYER             2000
+
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

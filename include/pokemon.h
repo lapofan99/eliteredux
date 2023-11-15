@@ -174,6 +174,7 @@ struct BattlePokemon
     /*0x50*/ u32 status2;
     /*0x54*/ u32 otId;
     /*0x58*/ u8 nature;
+    /*0x5A*/ bool8 wasalreadytotemboosted;
 };
 
 struct BaseStats
@@ -216,6 +217,7 @@ struct BattleMove
     u16 effect;
     u8 power;
     u8 type;
+    u8 type2;
     u8 accuracy;
     u8 pp;
     u8 secondaryEffectChance;
@@ -473,9 +475,9 @@ u16 GetFormChangeTargetSpecies(struct Pokemon *mon, u16 method, u32 arg);
 u8 GetLevelCap(void);
 u16 getShinyOdds(void);
 u16 getRandomSpecies(void);
-bool8 MonHasInnate(struct Pokemon *mon, u16 ability);
-bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability);
-bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality, bool8 disablerandomizer);
+bool8 MonHasInnate(struct Pokemon *mon, u16 ability, bool8 disableRandomizer);
+bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability, bool8 disableRandomizer);
+bool8 SpeciesHasInnate(u16 species, u16 ability, u8 level, u32 personality, bool8 disablerandomizer, bool8 isEnemyMon);
 u16 RandomizeInnate(u16 innate, u16 species, u32 personality);
 u16 RandomizeAbility(u16 ability, u16 species, u32 personality);
 u8 RandomizeType(u8 type, u16 species, u32 personality, bool8 isFirstType);
@@ -486,5 +488,6 @@ bool8 enablePokemonChanges(void);
 u16 GetRandomPokemonFromSpecies(u16 basespecies);
 bool8 isMonNicknamed(struct Pokemon *mon);
 bool8 isBoxMonNicknamed(struct BoxPokemon *boxMon);
+bool8 CheckBoxMonForBadChecksum(u8 box, u8 slot);
 
 #endif // GUARD_POKEMON_H

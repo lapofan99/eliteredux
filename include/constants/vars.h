@@ -125,22 +125,22 @@
 #define VAR_SAVE_VERSION                     0x406A // New Var
 #define VAR_UPDATED_TIMES                    0x406B // New Var
 #define VAR_EXTRA_MOVE_DAMAGE                0x406C // Extra Move
-#define VAR_ROUTE114_STATE                   0x406D // Unused Var
-#define VAR_ROUTE115_STATE                   0x406E // Unused Var
+#define VAR_TEMP_MOVEEFFECT                  0x406D // Extra Move
+#define VAR_TEMP_MOVEEFECT_CHANCE            0x406E // Extra Move
 #define VAR_ROUTE116_STATE                   0x406F
-#define VAR_ROUTE117_STATE                   0x4070 // Unused Var
+#define VAR_FORCE_END2                       0x4070 // Unused Var
 #define VAR_ROUTE118_STATE                   0x4071
 #define VAR_ROUTE119_STATE                   0x4072
-#define VAR_ROUTE120_STATE                   0x4073 // Unused Var
+#define VAR_TOTEM_MESSAGE                    0x4073
 #define VAR_ROUTE121_STATE                   0x4074
-#define VAR_ROUTE122_STATE                   0x4075 // Unused Var
-#define VAR_ROUTE123_STATE                   0x4076 // Unused Var
-#define VAR_ROUTE124_STATE                   0x4077 // Unused Var
-#define VAR_ROUTE125_STATE                   0x4078 // Unused Var
-#define VAR_ROUTE126_STATE                   0x4079 // Unused Var
-#define VAR_ROUTE127_STATE                   0x407A // Unused Var
+#define VAR_TOTEM_POKEMON_ATK_BOOST          0x4075 // Attack Boost
+#define VAR_TOTEM_POKEMON_DEF_BOOST          0x4076 // Defense Boost
+#define VAR_TOTEM_POKEMON_SP_ATK_BOOST       0x4077 // Special Attack Boost
+#define VAR_TOTEM_POKEMON_SP_DEF_BOOST       0x4078 // Special Defense Boost
+#define VAR_TOTEM_POKEMON_SPEED_BOOST        0x4079 // Speed Boost
+#define VAR_TOTEM_POKEMON_ACCURACY_BOOST     0x407A // Accuracy Boost
 #define VAR_ROUTE128_STATE                   0x407B
-#define VAR_ROUTE129_STATE                   0x407C // Unused Var
+#define VAR_TOTEM_POKEMON_EVASION_BOOST      0x407C // Evasion Boost
 #define VAR_ROUTE130_STATE                   0x407D // Unused Var
 #define VAR_ROUTE131_STATE                   0x407E // Unused Var
 #define VAR_ROUTE132_STATE                   0x407F // Unused Var

@@ -1,5 +1,8 @@
 raw `
 .set LOCALID_WALLACE, 1
+.set LOCALID_GAUNTLET_TRAINER_1, 2 // Expert M middle
+.set LOCALID_GAUNTLET_TRAINER_2, 3 // Expert F right
+.set LOCALID_GAUNTLET_TRAINER_3, 4 // Expert F left
 
 SkyPillar_Outside_MapScripts:: @ 82392A8
 	map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_Outside_OnTransition
@@ -23,6 +26,7 @@ SkyPillar_Outside_EventScript_CheckSetAbnormalWeather:: @ 82392D3
 	return
 
 SkyPillar_Outside_OnLoad: @ 82392DD
+	call SkyPillar_Outside_EventScript_HideGauntletTrainers
 	call_if_set FLAG_WALLACE_GOES_TO_SKY_PILLAR, SkyPillar_Outside_EventScript_OpenDoor
 	end
 
@@ -174,3 +178,96 @@ SkyPillar_Outside_Text_GotToGoBackForSootopolis: @ 823953A
 	.string "Everything is in your hands now.\n"
 	.string "Don't fail us!$"
 `
+
+script SkyPillar_Outside_Text_Gauntlet{
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_DRAGONITENITE_SAGE_2) // Only For testing
+		if (!flag(FLAG_OBTAINED_DRAGONITENITE)) { // asking for battle
+			msgbox(format("Does thou seek might, young seeker? Display thine prowess unto us, and thee shall be endowed with strength unparalleled."), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) { // When the player accepts the battle
+				msgbox(format("Overcome our united strength, and the ancient dragon's power shall awaken for you. Prove your worth and harness the legacy."), MSGBOX_NPC) // 1st sage, Man
+				setflag(FLAG_SYS_DISABLE_AUTOHEAL)
+				//Add the other sages
+				fadescreenswapbuffers(FADE_TO_BLACK)
+				//Move first sage
+				setobjectxy(LOCALID_GAUNTLET_TRAINER_1, 14, 17) // Expert M middle
+				//Add and move second sage
+				clearflag(FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_2)
+				addobject(LOCALID_GAUNTLET_TRAINER_2) // Expert F right
+				setobjectxy(LOCALID_GAUNTLET_TRAINER_2, 15, 17) //This one is on the center this time, Expert F right
+				//Add and move third sage
+				clearflag(FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_3)
+				addobject(LOCALID_GAUNTLET_TRAINER_3) // Expert F left
+				setobjectxy(LOCALID_GAUNTLET_TRAINER_3, 16, 17) // Expert F left
+				fadescreenswapbuffers(FADE_FROM_BLACK)
+
+				//Second sage battle and text
+				msgbox(format("Thus, we commence."), MSGBOX_NPC)
+				trainerbattle_no_intro(TRAINER_DRAGONITENITE_SAGE_2, format("Superb. Onward we shall proceed.")) // in-battle, player wins
+
+				//Move them around
+				fadescreenswapbuffers(FADE_TO_BLACK)
+				//setobjectxy(LOCALID_GAUNTLET_TRAINER_1, 14, 17) //This is not moved
+				setobjectxy(LOCALID_GAUNTLET_TRAINER_2, 16, 17) // Expert F right
+				setobjectxy(LOCALID_GAUNTLET_TRAINER_3, 15, 17) //This one is on the center this time, Expert F left
+				fadescreenswapbuffers(FADE_FROM_BLACK)
+
+				//Third sage battle and text
+				msgbox(format("Exquisite! Now, contend with me and demonstrate your deserving spirit!"), MSGBOX_NPC)
+				trainerbattle_no_intro(TRAINER_DRAGONITENITE_SAGE_3, format("Thou art steadfast; luck grace thy final duel.")) // in-battle, player wins
+
+				//Move them around
+				fadescreenswapbuffers(FADE_TO_BLACK)
+				setobjectxy(LOCALID_GAUNTLET_TRAINER_1, 15, 17) // Expert M middle
+				//setobjectxy(LOCALID_GAUNTLET_TRAINER_2, 16, 17) //This is not moved
+				setobjectxy(LOCALID_GAUNTLET_TRAINER_3, 14, 17) // Expert F left
+				fadescreenswapbuffers(FADE_FROM_BLACK)
+
+				//First sage battle and text
+				msgbox(format("Thou standest before the eldest sage. Thy final trial commences now, seeker. Reveal thy true mettle!"), MSGBOX_NPC)
+				trainerbattle_no_intro(TRAINER_DRAGONITENITE_SAGE_1, format("Verily, thou hast demonstrated thy worth.")) // in-battle, player wins
+
+				// fade the screen here, remove the Bug Catcher and show the Mega Stone
+				msgbox(format("Receive this, and brandish the veritable power of Dragonite in its purest essence."), MSGBOX_NPC)
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_DRAGONITENITE, 1)
+				setflag(FLAG_OBTAINED_DRAGONITENITE)
+				clearflag(FLAG_SYS_DISABLE_AUTOHEAL)
+				waitfanfare
+				msgbox(format("Fare thee well, noble seeker."), MSGBOX_NPC)
+				waitmessage
+
+				//Remove all the trainers
+				fadescreenswapbuffers(FADE_TO_BLACK)
+				setflag(FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_1)
+				setflag(FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_2)
+				setflag(FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_3)
+				removeobject(LOCALID_GAUNTLET_TRAINER_1) // Expert M middle
+				removeobject(LOCALID_GAUNTLET_TRAINER_2) // Expert F right
+				removeobject(LOCALID_GAUNTLET_TRAINER_3) // Expert F left
+				fadescreenswapbuffers(FADE_FROM_BLACK)
+			}
+			else { // when refusing the battle
+				msgbox(format("Regrettable. Return unto this place when thee art prepared to confront our triad."), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated << not needed here as the trainer is gone?
+			msgbox(format("I have naught more to utter."), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("Thy worth is not proven. Vanquish the Twins of Mossdeep, and then, seeker, return to this sacred place."), MSGBOX_NPC)
+	}
+	release
+	end	
+}
+
+script SkyPillar_Outside_EventScript_HideGauntletTrainers{
+	if(!flag(FLAG_OBTAINED_DRAGONITENITE)){
+		setflag(FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_2)
+		setflag(FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_3)
+	}
+	return
+}

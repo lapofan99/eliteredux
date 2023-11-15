@@ -462,7 +462,7 @@
 #define FLAG_PETALBURG_GYM_CHILAN_BERRIES    0x1B1
 #define FLAG_ITEM_MT_PYRE_SUMMIT_TM61_WILLOWISP 0x1B2
 #define FLAG_MOVE_FORTREE_GYM_ENERGY_ROOT    0x1B3
-#define FLAG_MOVE_TUTOR_TAUGHT_MIMIC         0x1B4 // Unused
+#define FLAG_TRAINER_STEVEN_ROUTE118         0x1B4
 #define FLAG_LILYCOVE_MET_BALL_SWAPPER       0x1B5
 #define FLAG_HIDE_MOSSDEEP_CYNTHIA           0x1B6
 #define FLAG_RECEIVED_LATI_STONES            0x1B7
@@ -703,40 +703,40 @@
 #define FLAG_SYS_NO_CATCHING         0x298 //DEBUG
 #define FLAG_SYS_PC_FROM_DEBUG_MENU  0x299 //DEBUG
 
-#define FLAG_SYS_MOVE_INFO              0x29A // Battle Interface
-#define FLAG_IS_DAYNIGHT_INVERTED       0x29B // Ported from ROWE
-#define FLAG_SYS_AUTOWIN                0x29C //DEBUG
-#define FLAG_SYS_MGBA_PRINT             0x29D //DEBUG
-#define FLAG_SYS_DISABLE_AUTOHEAL       0x29E // Used in some battles
-#define FLAG_SYS_DISABLE_DAMAGE_DONE    0x29F
-#define FLAG_SYS_LOCKED_MODE            0x2A0 // Elite Four only
-#define FLAG_UNUSED_0x2A1  0x2A1 // Unused Flag
-#define FLAG_UNUSED_0x2A2  0x2A2 // Unused Flag
-#define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag
-#define FLAG_UNUSED_0x2A4  0x2A4 // Unused Flag
-#define FLAG_UNUSED_0x2A5  0x2A5 // Unused Flag
-#define FLAG_UNUSED_0x2A6  0x2A6 // Unused Flag
-#define FLAG_UNUSED_0x2A7  0x2A7 // Unused Flag
-#define FLAG_UNUSED_0x2A8  0x2A8 // Unused Flag
-#define FLAG_UNUSED_0x2A9  0x2A9 // Unused Flag
-#define FLAG_UNUSED_0x2AA  0x2AA // Unused Flag
-#define FLAG_UNUSED_0x2AB  0x2AB // Unused Flag
-#define FLAG_UNUSED_0x2AC  0x2AC // Unused Flag
-#define FLAG_UNUSED_0x2AD  0x2AD // Unused Flag
-#define FLAG_UNUSED_0x2AE  0x2AE // Unused Flag
-#define FLAG_UNUSED_0x2AF  0x2AF // Unused Flag
-#define FLAG_UNUSED_0x2B0  0x2B0 // Unused Flag
-#define FLAG_UNUSED_0x2B1  0x2B1 // Unused Flag
-#define FLAG_UNUSED_0x2B2  0x2B2 // Unused Flag
-#define FLAG_UNUSED_0x2B3  0x2B3 // Unused Flag
-#define FLAG_UNUSED_0x2B4  0x2B4 // Unused Flag
-#define FLAG_UNUSED_0x2B5  0x2B5 // Unused Flag
-#define FLAG_UNUSED_0x2B6  0x2B6 // Unused Flag
-#define FLAG_UNUSED_0x2B7  0x2B7 // Unused Flag
-#define FLAG_UNUSED_0x2B8  0x2B8 // Unused Flag
-#define FLAG_UNUSED_0x2B9  0x2B9 // Unused Flag
-#define FLAG_UNUSED_0x2BA  0x2BA // Unused Flag
-#define FLAG_UNUSED_0x2BB  0x2BB // Unused Flag
+#define FLAG_SYS_MOVE_INFO                    0x29A // Battle Interface
+#define FLAG_IS_DAYNIGHT_INVERTED             0x29B // Ported from ROWE
+#define FLAG_SYS_AUTOWIN                      0x29C // DEBUG
+#define FLAG_SYS_MGBA_PRINT                   0x29D // DEBUG
+#define FLAG_SYS_DISABLE_AUTOHEAL             0x29E // Used in some battles
+#define FLAG_SYS_DISABLE_DAMAGE_DONE          0x29F
+#define FLAG_SYS_LOCKED_MODE                  0x2A0 // Elite Four only
+#define FLAG_TOTEM_BATTLE                     0x2A1 // For Totem boost
+#define FLAG_SMART_AI                         0x2A2 //
+#define FLAG_DEFEATED_METEOR_FALLS_HAXORUS    0x2A3 //
+#define FLAG_DEFEATED_SEASPRAY_CAVE_DEWGONG   0x2A4 //
+#define FLAG_DEFEATED_PETALBURG_WOODS_BRELOOM 0x2A5 //
+#define FLAG_OBTAINED_METEOR_FALLS_HAXORUS    0x2A6 // Hide Totem Mega Haxorus after defeat
+#define FLAG_OBTAINED_SEASPRAY_CAVE_DEWGONG   0x2A7 //
+#define FLAG_OBTAINED_PETALBURG_WOODS_BRELOOM 0x2A8 //
+#define FLAG_DEFEATED_ROUTE114_FERALIGATR     0x2A9 //
+#define FLAG_OBTAINED_ROUTE114_FERALIGATR     0x2AA //
+#define FLAG_DEFEATED_ROUTE132_GYARADOS       0x2AB //
+#define FLAG_OBTAINED_ROUTE132_GYARADOS       0x2AC //
+#define FLAG_DEFEATED_ROUTE111_SANDSLASH      0x2AD //
+#define FLAG_OBTAINED_ROUTE111_SANDSLASH      0x2AE //
+#define FLAG_HIDE_ABANDONED_SHIP_SHEDINJITE      0x2AF // Hide Shedinjite until Bug Catcher is defeated
+#define FLAG_DEFEATED_ABANDONDED_SHIP_BUGCATCHER 0x2B0 // Hide Shedinjite Bug Catcher when defeated
+#define FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_1  0x2B1 // 
+#define FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_2  0x2B2 //
+#define FLAG_SKY_PILLAR_GAUNTLET_HIDE_TRAINER_3  0x2B3 //
+#define FLAG_OBTAINED_DRAGONITENITE              0x2B4 //
+#define FLAG_TRAINER_DRAGONITENITE_SAGE_1        0x2B5 // Trainer Flag
+#define FLAG_TRAINER_DRAGONITENITE_SAGE_2        0x2B6 // Trainer Flag
+#define FLAG_TRAINER_DRAGONITENITE_SAGE_3        0x2B7 // Trainer Flag
+#define FLAG_OBTAINED_HITMON_MEGA_STONE          0x2B8 // Trainer Flag
+#define FLAG_TRAINER_HITMONSTONE_BLACKBELT       0x2B9 // Trainer Flag
+#define FLAG_TRAINER_GRANBULLITE_ROUTE123        0x2BA // Trainer Flag
+#define FLAG_OBTAINED_SLAKINGITE                 0x2BB //
 
 // Event Flags
 #define FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG                      0x2BC
@@ -1304,7 +1304,7 @@
 #define FLAG_LENT_NURSE_SURF                                        0x4EC
 #define FLAG_RAN_FROM_TRAINER                                       0x4ED // Unused Flag
 #define FLAG_HANDED_OVER_METEORITE                                  0x4EE
-#define FLAG_UNUSED_0x4EF                                           0x4EF // Unused Flag
+#define FLAG_OBTAINED_SHUCKLENITE                                   0x4EF
 
 #define FLAG_DEFEATED_RUSTBORO_GYM                                  0x4F0
 #define FLAG_DEFEATED_DEWFORD_GYM                                   0x4F1
@@ -1316,7 +1316,7 @@
 #define FLAG_DEFEATED_SOOTOPOLIS_GYM                                0x4F7
 #define FLAG_DEFEATED_METEOR_FALLS_STEVEN                           0x4F8 // Unused Flag
 
-#define FLAG_USED_0x4F9                                             0x4F9 // Unused Flag
+#define FLAG_TRAINER_CALVIN_E4                                      0x4F9 // Trainer Flag
 #define FLAG_GOT_LEGENDARY_NPC_ITEMS                                0x4FA
 
 #define FLAG_DEFEATED_ELITE_4_SIDNEY                                0x4FB
@@ -1324,14 +1324,14 @@
 #define FLAG_DEFEATED_ELITE_4_GLACIA                                0x4FD
 #define FLAG_DEFEATED_ELITE_4_DRAKE                                 0x4FE
 
-#define FLAG_USED_0x4FF                                             0x4FF // unused Flag
+#define FLAG_OBTAINED_LAPRASITE_X                                   0x4FF //
 
 // Trainer Flags
 // Trainer flags occupy 0x500 - 0x85F, the last 9 of which are unused
 // See constants/opponents.h. The values there + FLAG_TRAINER_FLAG_START are the flag IDs
 
 #define TRAINER_FLAGS_START                                         0x500
-#define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_TRAINERS_COUNT - 1) // 0x85F
+#define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_OLD_TRAINERS_COUNT - 1) // 0x85F
 
 // System Flags
 
@@ -1382,8 +1382,8 @@
 #define FLAG_SYS_DETECTOR_MODE                      (SYSTEM_FLAGS + 0x23) // allow player to find hidden mons
 #define FLAG_SYS_DEXNAV_GET                         (SYSTEM_FLAGS + 0x24) // dexnav shows in start menu
 #define FLAG_USED_CANDY_BOX                         (SYSTEM_FLAGS + 0x25)
-#define FLAG_UNUSED_0x886                           (SYSTEM_FLAGS + 0x26) // Unused Flag
-#define FLAG_UNUSED_0x887                           (SYSTEM_FLAGS + 0x27) // Unused Flag
+#define FLAG_TRAINER_NEW_TEST                       (SYSTEM_FLAGS + 0x26) // New trainer example
+#define FLAG_UPDATED_MEGA_STONE_POCKET              (SYSTEM_FLAGS + 0x27)
 
 #define FLAG_SYS_USE_FLASH                          (SYSTEM_FLAGS + 0x28)
 #define FLAG_SYS_USE_STRENGTH                       (SYSTEM_FLAGS + 0x29)
@@ -1492,7 +1492,7 @@
 #define FLAG_ARRIVED_AT_NAVEL_ROCK                  (SYSTEM_FLAGS + 0x81)
 #define FLAG_LANDMARK_TRAINER_HILL                  (SYSTEM_FLAGS + 0x82)
 
-#define FLAG_UNUSED_0x8E3                           (SYSTEM_FLAGS + 0x83) // Unused Flag
+#define FLAG_DEBUG_GODMODE                          (SYSTEM_FLAGS + 0x83) // Debug
 
 #define FLAG_RECEIVED_POKEDEX_FROM_BIRCH            (SYSTEM_FLAGS + 0x84)
 
@@ -1502,9 +1502,9 @@
 #define FLAG_LANDMARK_EMBER_PATH                    (SYSTEM_FLAGS + 0x88)
 #define FLAG_LANDMARK_ASHEN_WOODS                   (SYSTEM_FLAGS + 0x89)
 #define FLAG_LANDMARK_SANDSTREWN_RUINS              (SYSTEM_FLAGS + 0x8A)
-#define FLAG_UNUSED_0x8EB                           (SYSTEM_FLAGS + 0x8B) // Unused Flag
-#define FLAG_UNUSED_0x8EC                           (SYSTEM_FLAGS + 0x8C) // Unused Flag
-#define FLAG_UNUSED_0x8ED                           (SYSTEM_FLAGS + 0x8D) // Unused Flag
+#define FLAG_TRAINER_BANEFUL_PETALBURG_WOODS        (SYSTEM_FLAGS + 0x8B) // Primal Cascoon battle
+#define FLAG_LAST_MOVE_SECONDARY_EFFECT_ACTIVATED   (SYSTEM_FLAGS + 0x8C)
+#define FLAG_TRAINER_YDA_MTPYRE                     (SYSTEM_FLAGS + 0x8D) //
 #define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag
 #define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag
 #define FLAG_UNUSED_0x8F0                           (SYSTEM_FLAGS + 0x90) // Unused Flag

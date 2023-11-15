@@ -49,7 +49,7 @@
 }
 
 #define DEBUG_BUILD
-#define CURRENT_GAME_VERSION 1011
+#define CURRENT_GAME_VERSION 1028
 
 // useful math macros
 
@@ -188,6 +188,12 @@ struct UCoords32
 struct RegisteredItemSlot
 {
     u16 itemId;
+};
+
+struct ItemSlot
+{
+    u16 itemId;
+    u16 quantity;
 };
 
 struct Time
@@ -506,7 +512,7 @@ struct SaveBlock2
              u16 regionMapZoom:1; // whether the map is zoomed in
              u16 gameDifficulty:4; // Which difficulty the player chose (Normal/Hard/Challenge/Insanity, with Normal being 0)
     /*0x18*/ struct Pokedex pokedex;
-    /*0x90*/ u8 filler_90[0x6]; //To Delete
+    /*0x90*/ u8 filler_90[6]; //To Delete
              u8 levelCaps; // Various options for level caps
              u16 autoRun:1;
              u16 permanentRepel:1;
@@ -581,12 +587,6 @@ struct WarpData
     s8 mapNum;
     s8 warpId;
     s16 x, y;
-};
-
-struct ItemSlot
-{
-    u16 itemId;
-    u16 quantity;
 };
 
 struct Pokeblock
@@ -1026,7 +1026,7 @@ struct SaveBlock1
     /*0x790*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
     /*0x650*/ struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
     /*0x690*/ struct ItemSlot bagPocket_Battle[BAG_BATTLE_COUNT];
-    /*0x790*/ struct ItemSlot bagPocket_MegaStones[BAG_MEGASTONES_COUNT];
+    /*0x790*/ struct ItemSlot bagPocket_MegaStones[BAG_MEGASTONES_COUNT];//Unused
     /*0x848*/ struct Pokeblock pokeblocks[POKEBLOCKS_COUNT];
     /*0x9BC*/ u16 berryBlenderRecords[3];
     /*0x9C2*/ u8 field_9C2[6];

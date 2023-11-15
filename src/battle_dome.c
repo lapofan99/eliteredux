@@ -2475,7 +2475,7 @@ static void CalcDomeMonStats(u16 species, int level, int ivs, u8 evBits, u8 natu
             evs[i] = resultingEvs;
     }
 
-    if (species == SPECIES_SHEDINJA)
+    if (species == SPECIES_SHEDINJA || species == SPECIES_SHEDINJA_MEGA)
     {
         stats[STAT_HP] = 1;
     }

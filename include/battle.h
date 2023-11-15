@@ -119,6 +119,10 @@ struct DisableStruct
     u8 octolock:1;
     u8 hasBeenOnBattle:1;
     u8 substituteDestroyedThisTurn:1;
+    u8 noDamageHits;
+    bool8 protectedThisTurn;
+    u8 disciplineCounter:4;
+    u8 filler:4;
 };
 
 struct ProtectStruct
@@ -165,6 +169,7 @@ struct ProtectStruct
     u8 specialBattlerId;
     u32 beakBlastCharge:1;
     u32 extraMoveUsed:1;
+    u32 angelsWrathProtected:1;
 };
 
 struct SpecialStatus
@@ -267,33 +272,20 @@ struct AI_SavedBattleMon
 
 struct AiLogicData
 {
-    //attacker data
-    u16 atkAbility;
-    u16 atkItem;
-    u16 atkHoldEffect;
-    u8 atkParam;
-    u16 atkSpecies;
-    // target data
-    u16 defAbility;
-    u16 defItem;
-    u16 defHoldEffect;
-    u8 defParam;
-    u16 defSpecies;
-    // attacker partner data
-    u8 battlerAtkPartner;
+    u16 abilities[MAX_BATTLERS_COUNT];
+    u16 items[MAX_BATTLERS_COUNT];
+    u16 holdEffects[MAX_BATTLERS_COUNT];
+    u8 holdEffectParams[MAX_BATTLERS_COUNT];
+    u16 predictedMoves[MAX_BATTLERS_COUNT];
+    u8 hpPercents[MAX_BATTLERS_COUNT];
     u16 partnerMove;
-    u16 atkPartnerAbility;
-    u16 atkPartnerHoldEffect;
-    bool32 targetSameSide;
-    // target partner data
-    u8 battlerDefPartner;
-    u16 defPartnerAbility;
-    u16 defPartnerHoldEffect;
+    s32 simulatedDmg[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
+    u8 effectiveness[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, moveIndex
+    u8 moveLimitations[MAX_BATTLERS_COUNT];
 };
 
 struct AI_ThinkingStruct
 {
-    struct AiLogicData data;
     u8 aiState;
     u8 movesetIndex;
     u16 moveConsidered;
@@ -302,7 +294,6 @@ struct AI_ThinkingStruct
     u32 aiFlags;
     u8 aiAction;
     u8 aiLogicId;
-    s32 simulatedDmg[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, move
     struct AI_SavedBattleMon saved[4];
     bool8 switchMon; // Because all available moves have no/little effect.
 };
@@ -345,13 +336,14 @@ struct BattleResources
     struct BattleCallbacksStack* battleCallbackStack;
     struct StatsArray* beforeLvlUp;
     struct AI_ThinkingStruct *ai;
+    struct AiLogicData *aiData;
     struct BattleHistory *battleHistory;
     u8 bufferA[MAX_BATTLERS_COUNT][0x200];
     u8 bufferB[MAX_BATTLERS_COUNT][0x200];
 };
 
 #define AI_THINKING_STRUCT ((struct AI_ThinkingStruct *)(gBattleResources->ai))
-#define AI_DATA ((struct AiLogicData *)(&gBattleResources->ai->data))
+#define AI_DATA ((struct AiLogicData *)(gBattleResources->aiData))
 #define BATTLE_HISTORY ((struct BattleHistory *)(gBattleResources->battleHistory))
 
 struct BattleResults
@@ -617,7 +609,8 @@ struct BattleStruct
     bool8 spriteIgnore0Hp;
     struct Illusion illusion[MAX_BATTLERS_COUNT];
     s8 aiFinalScore[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // AI, target, moves to make debugging easier
-    s32 aiSimulatedDamage[MAX_BATTLERS_COUNT][MAX_BATTLERS_COUNT][MAX_MON_MOVES]; // attacker, target, move to make debugging easier
+    u8 aiMoveOrAction[MAX_BATTLERS_COUNT];
+    u8 aiChosenTarget[MAX_BATTLERS_COUNT];
     u8 soulheartBattlerId;
     u8 friskedBattler; // Frisk needs to identify 2 battlers in double battles.
     bool8 friskedAbility; // If identifies two mons, show the ability pop-up only once.
@@ -632,6 +625,7 @@ struct BattleStruct
     u8 enemyInfoSpriteId;    // window gfx
     u8 stickyWebUser;
     u8 appearedInBattle; // Bitfield to track which Pokemon appeared in battle. Used for Burmy's form change
+    bool8 singleuseability[PARTY_SIZE][NUM_INNATE_PER_SPECIES + 1][2]; // For the sake of Instruct
 };
 
 #define GET_MOVE_TYPE(move, typeArg)                        \
@@ -659,10 +653,12 @@ struct BattleStruct
 }
 
 #define IS_BATTLER_PROTECTED(battlerId)(gProtectStructs[battlerId].protected                                           \
+                                        || gDisableStructs[gActiveBattler].protectedThisTurn                           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_WIDE_GUARD           \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_QUICK_GUARD          \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_CRAFTY_SHIELD        \
                                         || gSideStatuses[GetBattlerSide(battlerId)] & SIDE_STATUS_MAT_BLOCK            \
+                                        || gProtectStructs[battlerId].angelsWrathProtected                             \
                                         || gProtectStructs[battlerId].spikyShielded                                    \
                                         || gProtectStructs[battlerId].kingsShielded                                    \
                                         || gProtectStructs[battlerId].banefulBunkered                                  \
@@ -719,6 +715,8 @@ struct BattleScripting
     u8 switchCase;  // Special switching conditions, eg. red card
     u8 overrideBerryRequirements;
     u8 battlerPopupOverwrite;       //sBATTLER_OVERRIDE
+    bool8 forceFalseSwipeEffect;
+    bool8 doublehealthRestore;
 };
 
 // rom_80A5C6C
@@ -793,6 +791,7 @@ struct BattleBarInfo
     s32 oldValue;
     s32 receivedValue;
     s32 currValue;
+    u8 oddFrame; // For more speed control in moving hp bar down.
 };
 
 struct BattleSpriteData
@@ -864,6 +863,7 @@ extern u8 gBattlerSpriteIds[MAX_BATTLERS_COUNT];
 extern u8 gCurrMovePos;
 extern u8 gChosenMovePos;
 extern u16 gCurrentMove;
+extern u16 gTempMove;
 extern u16 gChosenMove;
 extern u16 gCalledMove;
 extern s32 gBattleMoveDamage;

@@ -50,7 +50,7 @@ MossdeepCity_Gym_EventScript_SetSwitch4Metatiles:: @ 8220885
 	end
 
 MossdeepCity_Gym_EventScript_TateAndLiza:: @ 8220898
-	call MossdeepCity_Gym_EventScript_CheckTrainers
+	//call MossdeepCity_Gym_EventScript_CheckTrainers
 	setflag FLAG_SYS_INVERSE_BATTLE
 	//goto_if_set FLAG_DAILY_REMATCH_TATE_AND_LIZA, MossdeepCity_Gym_EventScript_AlreadyRematched
 	goto_if_set FLAG_SYS_GAME_CLEAR, MossdeepCity_Gym_EventScript_TateAndLizaRematch
@@ -690,10 +690,14 @@ MossdeepCity_Gym_Text_TateAndLizaAllowLegends:
 	.string "Liza: Our Legendary Pokémon?$"
 `
 script MossdeepCity_Gym_EventScript_GiveCalmMind{
-	msgbox(format("Take this special Pokémon as a gift from us!"))
+	msgbox(format("Tate: Take this special Pokémon as a gift from me!"))
 	givecustommon(SPECIES_REUNICLUS, 60, ITEM_LIFE_ORB, ITEM_CHERISH_BALL, NATURE_QUIET, 2, 252, 0, 4, 0, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_PSYSHOCK, MOVE_AURA_SPHERE, MOVE_FIRE_BLAST, MOVE_PROTECT, TRUE)
 	playfanfare(MUS_OBTAIN_ITEM)
-	msgbox(format("{PLAYER} got Tate & Liza's {COLOR BLUE}Reuniclus{COLOR DARK_GRAY} as a gift!"))
+	waitfanfare
+	msgbox(format("{PLAYER} got Tate's {COLOR BLUE}Reuniclus{COLOR DARK_GRAY} as a gift!"))
+	msgbox(format("Liza: And take this gift from me!"))
+	giveitem(ITEM_SLOWKINGITE, 1)
+	playfanfare(MUS_OBTAIN_ITEM)
 	waitfanfare
 	setflag(FLAG_RECEIVED_TM04)
 	msgbox(MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT)
@@ -714,7 +718,7 @@ script MossdeepCity_Gym_EventScript_CheckTrainers{
 		!defeated(TRAINER_CLIFFORD) || 
 		!defeated(TRAINER_KATHLEEN) || 
 		!defeated(TRAINER_NATE)     || 
-		!defeated(TRAINER_SYLVIA))  &&
+		!defeated(TRAINER_MAURA))  &&
 		!flag(FLAG_BADGE07_GET)){
 		msgbox(format("Tate: Sorry, but you need to defeat every"), MSGBOX_NPC)
 		msgbox(format("Liza: trainer on this Gym before battling us"), MSGBOX_NPC)

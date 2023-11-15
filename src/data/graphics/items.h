@@ -1280,6 +1280,9 @@ const u32 gItemIconPalette_CleverFeather[] = INCBIN_U32("graphics/items/icon_pal
 const u32 gItemIcon_SwiftFeather[] = INCBIN_U32("graphics/items/icons/swift_feather.4bpp.lz");
 const u32 gItemIconPalette_SwiftFeather[] = INCBIN_U32("graphics/items/icon_palettes/swift_feather.gbapal.lz");
 
+const u32 gItemIcon_PurprleOrb[] = INCBIN_U32("graphics/items/icons/purple_orb.4bpp.lz");
+const u32 gItemIconPalette_PurprleOrb[] = INCBIN_U32("graphics/items/icon_palettes/purple_orb.gbapal.lz");
+
 const u32 gItemIcon_PrettyFeather[] = INCBIN_U32("graphics/items/icons/pretty_feather.4bpp.lz");
 const u32 gItemIconPalette_PrettyFeather[] = INCBIN_U32("graphics/items/icon_palettes/pretty_feather.gbapal.lz");
 
@@ -1446,6 +1449,12 @@ const u32 gItemIconPalette_Laprasite[] = INCBIN_U32("graphics/items/icon_palette
 
 const u32 gItemIcon_Kingdranite[] = INCBIN_U32("graphics/items/icons/kingdranite.4bpp.lz");
 const u32 gItemIconPalette_Kingdranite[] = INCBIN_U32("graphics/items/icon_palettes/kingdranite.gbapal.lz");
+
+const u32 gItemIcon_Dewgongite[] = INCBIN_U32("graphics/items/icons/dewgongite.4bpp.lz");
+const u32 gItemIconPalette_Dewgongite[] = INCBIN_U32("graphics/items/icon_palettes/dewgongite.gbapal.lz");
+
+const u32 gItemIcon_Crobatite[] = INCBIN_U32("graphics/items/icons/crobatite.4bpp.lz");
+const u32 gItemIconPalette_Crobatite[] = INCBIN_U32("graphics/items/icon_palettes/crobatite.gbapal.lz");
 
 const u32 gItemIcon_Flygonite[] = INCBIN_U32("graphics/items/icons/flygonite.4bpp.lz");
 const u32 gItemIconPalette_Flygonite[] = INCBIN_U32("graphics/items/icon_palettes/flygonite.gbapal.lz");

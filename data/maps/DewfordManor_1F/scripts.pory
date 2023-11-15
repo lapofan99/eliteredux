@@ -7,3 +7,33 @@ DewfordManor_1F_OnTransition:
 	setflag FLAG_LANDMARK_DEWFORD_MANOR
 	end
 `
+
+script DewfordManor_1F_EventScript_Crobatite_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_CROBATITE_DEWFORD_MANOR) // Only For testing
+		if (!defeated(TRAINER_CROBATITE_DEWFORD_MANOR)) { // asking for battle
+			msgbox(format("Child, dare you battle an old soul?"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("Ohoho, dear! Even in age, I shan't shy from a duel. Beware, for once, this old soul was a formidable trainer!"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_CROBATITE_DEWFORD_MANOR, format("My, my! Your strength is remarkable, young one!")) // in-battle, player wins
+				msgbox(format("You're quite mighty, especially for one so young. Please, accept this from an elderly maiden, grateful for a moment of excitement."), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_CROBATITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("I see."), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("I'm sorry, dear. This old soul has no more to give you."), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("A traveler, eh? You look quite young to be in a place like this. If you're looking for Pokémon, there are quite a few here, looking for new trainers. Have you heard of those psychic twins in Mossdeep? Once you defeat them, come back here."), MSGBOX_NPC)
+	}
+	release
+	end	
+}

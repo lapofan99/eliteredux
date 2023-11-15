@@ -399,7 +399,7 @@ static void BuildNormalStartMenu(void)
     //AddStartMenuAction(MENU_ACTION_SAVE);
     AddStartMenuAction(MENU_ACTION_OPTION);
 
-    if(!disablePC)
+    if(!disablePC && FlagGet(FLAG_SYS_POKEMON_GET))
 	    AddStartMenuAction(MENU_ACTION_ACCESS_PC);
     else
         AddStartMenuAction(MENU_ACTION_EXIT);

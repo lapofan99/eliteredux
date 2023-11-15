@@ -68,8 +68,8 @@ u8 IsRunningFromBattleImpossible(void);
 void SwitchPartyOrder(u8 battlerId);
 void SwapTurnOrder(u8 id1, u8 id2);
 u32 GetBattlerTotalSpeedStat(u8 battlerId);
-s8 GetChosenMovePriority(u32 battlerId);
-s8 GetMovePriority(u32 battlerId, u16 move);
+s8 GetChosenMovePriority(u32 battlerId, u32 target);
+s8 GetMovePriority(u32 battlerId, u16 move, u32 target);
 u8 GetWhoStrikesFirst(u8 battlerId1, u8 battlerId2, bool8 ignoreChosenMoves);
 void RunBattleScriptCommands_PopCallbacksStack(void);
 void RunBattleScriptCommands(void);
@@ -79,7 +79,8 @@ void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk);
 u8 GetTypeBeforeUsingMove(u16 move, u8 battlerAtk);
 s32 GetHighestLevelInPlayerParty(void);
 u16 selectMoves (u16 species, u8 i, u16 atk, u16 spAtk);
-u8 GetMonMoveType(u16 move, struct Pokemon *mon);
+u8 GetMonMoveType(u16 move, struct Pokemon *mon, bool8 disableRandomizer);
+bool32 IsWildMonSmart(void);
 
 extern struct UnknownPokemonStruct4 gMultiPartnerParty[MULTI_PARTY_SIZE];
 

@@ -8860,7 +8860,7 @@ const struct Trainer gTrainers[] = {
         .trainerName = _("Trent"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_HP_AWARE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_HP_AWARE | AI_FLAG_DISABLE_SWITCHING | AI_FLAG_WILL_SUICIDE,
         .partySize = ARRAY_COUNT(sParty_Trent1),
         .party = {.ItemCustomMoves = sParty_Trent1},
     },
@@ -12067,5 +12067,307 @@ const struct Trainer gTrainers[] = {
         .party = {.ItemCustomMoves = sParty_StevenGraniteCave},
         .partySizeInsane = ARRAY_COUNT(sParty_StevenGraniteCaveInsane),
         .partyInsane = {.ItemCustomMoves = sParty_StevenGraniteCaveInsane},
+    },
+
+    // Mega Stone Trainers starting here
+
+    [TRAINER_MEGANIUMITE_VERDANTURF_MEADOW] = // Meganiumite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_AROMA_LADY,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_AROMA_LADY,
+        .trainerName = _("Lily"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_MeganiumiteVerdanturfMeadow),
+        .party = {.ItemCustomMoves = sParty_MeganiumiteVerdanturfMeadow},
+        //.partySizeInsane = ARRAY_COUNT(sParty_MeganiumiteVerdanturfMeadowInsane),
+        //.partyInsane = {.ItemCustomMoves = sParty_MeganiumiteVerdanturfMeadowInsane},
+    },
+
+    [TRAINER_NEW_TEST] = // to change
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_AROMA_LADY,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_AROMA_LADY,
+        .trainerName = _("Flower Lady"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_MeganiumiteVerdanturfMeadow),
+        .party = {.ItemCustomMoves = sParty_MeganiumiteVerdanturfMeadow},
+        //.partySizeInsane = ARRAY_COUNT(sParty_MegaMeganiumVerdanturfMeadowInsane),
+        //.partyInsane = {.ItemCustomMoves = sParty_MegaMeganiumVerdanturfMeadowInsane},
+        .trainerFlag = FLAG_TRAINER_NEW_TEST,
+    },
+
+    [TRAINER_FERALIGATRITEX_ROUTE105] = // Feraligatrite X
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_SAILOR,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_SAILOR,
+        .trainerName = _("Caleb"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_FeraligatriteXRoute105),
+        .party = {.ItemCustomMoves = sParty_FeraligatriteXRoute105},
+    },
+
+    [TRAINER_TYPHLOSIONITE_ASHEN_WOODS] = // Typhlosionite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_KINDLER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
+        .trainerPic = TRAINER_PIC_KINDLER,
+        .trainerName = _("Ignatius"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_TyphlosioniteAshenWoods),
+        .party = {.ItemCustomMoves = sParty_TyphlosioniteAshenWoods},
+    },
+
+    [TRAINER_KROOKODILENITE_ROUTE111_RUINS_EXTERIOR] = // KROOKODILENITE
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_RUIN_MANIAC,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
+        .trainerPic = TRAINER_PIC_RUIN_MANIAC,
+        .trainerName = _("Jones"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_KrookodileniteRoute111RuinsExterior),
+        .party = {.ItemCustomMoves = sParty_KrookodileniteRoute111RuinsExterior},
+    },
+
+    [TRAINER_SHEDINJITE_ABANDONED_SHIP] = // Shedinjite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BUG_CATCHER,
+        .trainerName = _("???"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE | AI_FLAG_SETUP_FIRST_TURN,
+        .partySize = ARRAY_COUNT(sParty_Shedinjite_AbandonedShip_HiddenFloorRooms),
+        .party = {.ItemCustomMoves = sParty_Shedinjite_AbandonedShip_HiddenFloorRooms},
+    },
+
+    [TRAINER_CROBATITE_DEWFORD_MANOR] = // Crobatite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_EXPERT,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_EXPERT_F,
+        .trainerName = _("Morticia"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Crobatite_DewfordManor),
+        .party = {.ItemCustomMoves = sParty_Crobatite_DewfordManor},
+    },
+
+    [TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER] = // Sinnoh Megas
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
+        .trainerPic = TRAINER_PIC_YOUNGSTER,
+        .trainerName = _("Kaixer"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_SinnohMegas_MauvilleGameCorner),
+        .party = {.ItemCustomMoves = sParty_SinnohMegas_MauvilleGameCorner},
+    },
+
+    [TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF] = // Nido Megas
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
+        .trainerPic = TRAINER_PIC_COOLTRAINER_M,
+        .trainerName = _("Prince"), // or Jaxon
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_NidoMegas_Route116Rusturf),
+        .party = {.ItemCustomMoves = sParty_NidoMegas_Route116Rusturf},
+    },
+
+    [TRAINER_DRAGONITENITE_SAGE_1] = // Dragonitenite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_EXPERT,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_EXPERT_M,
+        .trainerName = _("Alaric"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Dragonitenite_Sage_1_SkyPillar_Outside),
+        .party = {.ItemCustomMoves = sParty_Dragonitenite_Sage_1_SkyPillar_Outside},
+        .trainerFlag = FLAG_TRAINER_DRAGONITENITE_SAGE_1,
+    },
+
+    [TRAINER_DRAGONITENITE_SAGE_2] = // Dragonitenite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_EXPERT,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_EXPERT_F,
+        .trainerName = _("Althea"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Dragonitenite_Sage_2_SkyPillar_Outside),
+        .party = {.ItemCustomMoves = sParty_Dragonitenite_Sage_2_SkyPillar_Outside},
+        .trainerFlag = FLAG_TRAINER_DRAGONITENITE_SAGE_2,
+    },
+
+    [TRAINER_DRAGONITENITE_SAGE_3] = // Dragonitenite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_EXPERT,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_EXPERT_F,
+        .trainerName = _("Aurelia"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Dragonitenite_Sage_3_SkyPillar_Outside),
+        .party = {.ItemCustomMoves = sParty_Dragonitenite_Sage_3_SkyPillar_Outside},
+        .trainerFlag = FLAG_TRAINER_DRAGONITENITE_SAGE_3,
+    },
+
+    [TRAINER_HITMONSTONE_BLACKBELT_1] = // Mega Hitmonlee
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_BLACK_BELT,
+        .trainerName = _("John"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonlee),
+        .party = {.ItemCustomMoves = sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonlee},
+        .trainerFlag = FLAG_TRAINER_HITMONSTONE_BLACKBELT,
+    },
+
+    [TRAINER_HITMONSTONE_BLACKBELT_2] = // Mega Hitmonchan
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_BLACK_BELT,
+        .trainerName = _("John"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonchan),
+        .party = {.ItemCustomMoves = sParty_BlackBelt_Hitmon_Mega_Stone_Hitmonchan},
+        .trainerFlag = FLAG_TRAINER_HITMONSTONE_BLACKBELT,
+    },
+
+    [TRAINER_HITMONSTONE_BLACKBELT_3] = // Mega Hitmontop
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_BLACK_BELT,
+        .trainerName = _("John"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_BlackBelt_Hitmon_Mega_Stone_Hitmontop),
+        .party = {.ItemCustomMoves = sParty_BlackBelt_Hitmon_Mega_Stone_Hitmontop},
+        .trainerFlag = FLAG_TRAINER_HITMONSTONE_BLACKBELT,
+    },
+
+    [TRAINER_GRANBULLITE_ROUTE123] = // Granbullite
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_LADY,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_LADY,
+        .trainerName = _("Amelia"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_Granbullite_Route123),
+        .party = {.ItemCustomMoves = sParty_Granbullite_Route123},
+        .trainerFlag = FLAG_TRAINER_GRANBULLITE_ROUTE123,
+    },
+
+    [TRAINER_CALVIN_E4] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_YOUNGSTER,
+        .trainerName = _("Calvin"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_CalvinE4),
+        .party = {.ItemCustomMoves = sParty_CalvinE4},
+        .trainerFlag = FLAG_TRAINER_CALVIN_E4,
+    },
+
+    [TRAINER_BANEFUL_PETALBURG_WOODS]
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BANEFUL,
+        .trainerName = _("Baneful"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE | AI_FLAG_SETUP_FIRST_TURN,
+        .partySize = ARRAY_COUNT(sParty_Baneful_PetalburgWoods),
+        .party = {.ItemCustomMoves = sParty_Baneful_PetalburgWoods},
+        .trainerFlag = FLAG_TRAINER_BANEFUL_PETALBURG_WOODS,
+    },
+
+    [TRAINER_STEVEN_ROUTE118] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_STEVEN,
+        .trainerName = _("Steven"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE | AI_FLAG_SETUP_FIRST_TURN,
+        .partySize = ARRAY_COUNT(sParty_StevenRoute118),
+        .party = {.ItemCustomMoves = sParty_StevenRoute118},
+        .partySizeInsane = ARRAY_COUNT(sParty_StevenRoute118Insane),
+        .partyInsane = {.ItemCustomMoves = sParty_StevenRoute118Insane},
+        .trainerFlag = FLAG_TRAINER_STEVEN_ROUTE118,
+    },
+
+    [TRAINER_YDA_MTPYRE] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_COOLTRAINER_M,
+        .trainerName = _("Ydarissep"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_CHECK_FOE | AI_FLAG_SMART_SWITCHING | AI_FLAG_HP_AWARE,
+        .partySize = ARRAY_COUNT(sParty_YdaMtPyre),
+        .party = {.ItemCustomMoves = sParty_YdaMtPyre},
+        //.partySizeInsane = ARRAY_COUNT(sParty_YdaMtPyre),
+        //.partyInsane = {.ItemCustomMoves = sParty_YdaMtPyre},
+        .trainerFlag = FLAG_TRAINER_YDA_MTPYRE,
     },
 };

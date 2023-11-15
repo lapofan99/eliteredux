@@ -1104,3 +1104,7 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 
 	.include "data/maps/AlteringCave_B1F/scripts.inc"
 	.include "data/scripts/dexnav.inc"
+
+	.include "data/maps/MeteorFalls_HaxorusRoom/scripts.inc"
+
+	.include "data/maps/PetalburgWoods_BreloomRoom/scripts.inc"

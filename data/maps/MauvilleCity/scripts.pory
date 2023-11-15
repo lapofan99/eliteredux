@@ -459,7 +459,7 @@ MauvilleCity_EventScript_BegunNewMauville:: @ 81DF77A
 
 MauvilleCity_EventScript_CompletedNewMauville:: @ 81DF784
 	msgbox MauvilleCity_Text_WattsonThanksTakeTM, MSGBOX_DEFAULT
-	givecustommon SPECIES_LANTURN, 55, ITEM_AIR_BALLOON, ITEM_POKE_BALL, NATURE_MODEST, 1, 252, 0, 0, 4, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_VOLT_SWITCH, MOVE_HYDRO_PUMP, MOVE_BLIZZARD, MOVE_DAZZLING_GLEAM, FALSE
+	givecustommon SPECIES_LANTURN, 55, ITEM_LANTURNITE, ITEM_POKE_BALL, NATURE_MODEST, 1, 252, 0, 0, 4, 252, 0, 0, 0, 0, 0, 0, 0, MOVE_VOLT_SWITCH, MOVE_SPARKLING_ARIA, MOVE_BLIZZARD, MOVE_DAZZLING_GLEAM, FALSE
 	playfanfare MUS_OBTAIN_ITEM
 	message MauvilleCity_Text_Got_Lanturn
 	waitfanfare

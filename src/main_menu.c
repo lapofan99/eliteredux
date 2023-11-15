@@ -11,6 +11,7 @@
 #include "gpu_regs.h"
 #include "graphics.h"
 #include "international_string_util.h"
+#include "item.h"
 #include "link.h"
 #include "main.h"
 #include "main_menu.h"
@@ -701,8 +702,30 @@ static u32 InitMainMenu(bool8 returningFromOptionsMenu)
 const u8 gText_FutureSave[] = _("The save file cannot be loaded since\nits from a future version of this game.");
 static void Task_MainMenuCheckSaveFile(u8 taskId)
 {
+    u8 i, j, itemcount;
     s16* data = gTasks[taskId].data;
 	u16 timesUpdated = 0 + VarGet(VAR_UPDATED_TIMES);
+
+    if(VarGet(VAR_SAVE_VERSION) < 1017){
+        //updating version
+        FlagClear(FLAG_GOT_TM24_FROM_WATTSON);
+        if(FlagGet(FLAG_BADGE05_GET) == TRUE){
+            FlagSet(FLAG_GOT_TM24_FROM_WATTSON);
+            FlagClear(FLAG_HIDE_MAUVILLE_CITY_WATTSON);
+            FlagClear(FLAG_WATTSON_REMATCH_AVAILABLE);
+        }
+    }
+
+    if(!FlagGet(FLAG_UPDATED_MEGA_STONE_POCKET)){
+        for (i = 0; i < BAG_MEGASTONES_COUNT; i++)
+        {
+            if(gSaveBlock1Ptr->bagPocket_MegaStones[i].itemId != ITEM_NONE){
+                itemcount = gSaveBlock1Ptr->bagPocket_MegaStones[i].quantity;
+                AddBagItem(gSaveBlock1Ptr->bagPocket_MegaStones[i].itemId, itemcount);
+            }
+        }
+        FlagSet(FLAG_UPDATED_MEGA_STONE_POCKET);
+    }
 
     if (!gPaletteFade.active)
     {
@@ -1468,7 +1491,7 @@ static void Task_NewGameBirchSpeechSub_InitPokeBall(u8 taskId)
     gSprites[spriteId].invisible = FALSE;
     gSprites[spriteId].data[0] = 0;
 
-    CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 112, 58, 0, 0, 32, 0x0000FFFF, SPECIES_ARON);
+    CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 112, 58, 0, 0, 32, 0x0000FFFF, SPECIES_DEWGONG);
     gTasks[taskId].func = Task_NewGameBirchSpeechSub_WaitForLotad;
     gTasks[sBirchSpeechMainTaskId].tTimer = 0;
 }
@@ -2225,7 +2248,7 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *sprite)
 
 static u8 NewGameBirchSpeech_CreateLotadSprite(u8 a, u8 b)
 {
-    return CreatePicSprite2(SPECIES_ARON, SHINY_ODDS, 0, 1, a, b, 14, -1);
+    return CreatePicSprite2(SPECIES_DEWGONG, SHINY_ODDS, 0, 1, a, b, 14, -1);
 }
 
 static void AddBirchSpeechObjects(u8 taskId)

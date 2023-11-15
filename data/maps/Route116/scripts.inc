@@ -631,6 +631,39 @@ Route116_EventScript_Gen8_NPC_20:
 	goto Route116_EventScript_Gen8_NPC_3
 
 
+Route116_EventScript_MegaNidos_Battle::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE06_GET, Route116_EventScript_MegaNidos_Battle_2
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_6, MSGBOX_NPC
+Route116_EventScript_MegaNidos_Battle_1:
+	release
+	end
+
+Route116_EventScript_MegaNidos_Battle_2:
+	checktrainerflag TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF
+	goto_if 0, Route116_EventScript_MegaNidos_Battle_5
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_5, MSGBOX_NPC
+	goto Route116_EventScript_MegaNidos_Battle_1
+
+Route116_EventScript_MegaNidos_Battle_5:
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_0, MSGBOX_YESNO
+	compare VAR_RESULT, 1
+	goto_if_eq Route116_EventScript_MegaNidos_Battle_8
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_4, MSGBOX_NPC
+	goto Route116_EventScript_MegaNidos_Battle_1
+
+Route116_EventScript_MegaNidos_Battle_8:
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_1, MSGBOX_NPC
+	trainerbattle_no_intro TRAINER_NIDO_MEGAS_ROUTE116_RUSTURF, Route116_EventScript_MegaNidos_Battle_Text_2
+	msgbox Route116_EventScript_MegaNidos_Battle_Text_3, MSGBOX_NPC
+	playfanfare MUS_OBTAIN_ITEM
+	giveitem ITEM_NIDOKINGITE, 1
+	giveitem ITEM_NIDOQUEENITE, 1
+	waitmessage
+	goto Route116_EventScript_MegaNidos_Battle_1
+
+
 Route116_EventScript_LegendaryNPC_Text_0:
 	.string "Sage: Despite your young age, you\n"
 	.string "appear to be someone who seeks a\l"
@@ -679,6 +712,34 @@ Route116_EventScript_Gen8_NPC_Text_2:
 	.string "give you an exotic Pokémon from the\l"
 	.string "Galar region: a valiant wielder of\l"
 	.string "longswords!$"
+
+Route116_EventScript_MegaNidos_Battle_Text_0:
+	.string "Hah! Look at you. Hey, pleb. I'm bored, so\n"
+	.string "have a battle with me. I'll even give\l"
+	.string "you a reward if you do!$"
+
+Route116_EventScript_MegaNidos_Battle_Text_1:
+	.string "Then let us begin.$"
+
+Route116_EventScript_MegaNidos_Battle_Text_2:
+	.string "What? How?$"
+
+Route116_EventScript_MegaNidos_Battle_Text_3:
+	.string "Unbelievable. Me, losing to the likes of\n"
+	.string "you? Well, a promise is a promise. Take\l"
+	.string "these stones and get out of my sight.$"
+
+Route116_EventScript_MegaNidos_Battle_Text_4:
+	.string "No? Tsk. I should've expected as much\n"
+	.string "from someone like you.$"
+
+Route116_EventScript_MegaNidos_Battle_Text_5:
+	.string "Didn't I tell you to get out of my sight?$"
+
+Route116_EventScript_MegaNidos_Battle_Text_6:
+	.string "You aren't worthy enough to talk to me.\n"
+	.string "A peasant like you who hasn't even\l"
+	.string "beat Winona has no business here.$"
 
 Route116_EventScript_Text_Got_Aggron::
 	.string "{PLAYER} got an {COLOR BLUE}Aggron{COLOR DARK_GRAY} as a gift!$"

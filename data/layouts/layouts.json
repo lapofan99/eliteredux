@@ -4630,6 +4630,26 @@
       "secondary_tileset": "gTileset_RusturfTunnel",
       "border_filepath": "data/layouts/AlteringCave_B1F/border.bin",
       "blockdata_filepath": "data/layouts/AlteringCave_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_METEOR_FALLS_HAXORUS_ROOM",
+      "name": "MeteorFalls_HaxorusRoom_Layout",
+      "width": 15,
+      "height": 13,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MeteorFalls",
+      "border_filepath": "data/layouts/MeteorFalls_HaxorusRoom/border.bin",
+      "blockdata_filepath": "data/layouts/MeteorFalls_HaxorusRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_PETALBURG_WOODS_BRELOOM_ROOM",
+      "name": "PetalburgWoods_BreloomRoom_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/PetalburgWoods_BreloomRoom/border.bin",
+      "blockdata_filepath": "data/layouts/PetalburgWoods_BreloomRoom/map.bin"
     }
   ]
 }

@@ -1,4 +1,4 @@
-.set LOCALID_ODD_KEYSTONE, 19
+.set LOCALID_ODD_KEYSTONE, 18
 
 SandstrewnRuins_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, SandstrewnRuins_OnLoad

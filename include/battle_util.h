@@ -36,9 +36,17 @@
 #define ITEMEFFECT_LIFEORB_SHELLBELL            0x7
 #define ITEMEFFECT_BATTLER_MOVE_END             0x8 // move end effects for just the battler, not whole field
 
-#define WEATHER_HAS_EFFECT ((!IsAbilityOnField(ABILITY_CLOUD_NINE) && !IsAbilityOnField(ABILITY_AIR_LOCK)))
+#define WEATHER_HAS_EFFECT ((!IsAbilityOnField(ABILITY_CLOUD_NINE) && !IsAbilityOnField(ABILITY_AIR_LOCK) && !IsAbilityOnField(ABILITY_CLUELESS)))
+#define TERRAIN_HAS_EFFECT (!IsAbilityOnField(ABILITY_CLUELESS))
+#define ROOM_HAS_EFFECT    (!IsAbilityOnField(ABILITY_CLUELESS))
+
+#define BATTLER_NONE       0
+#define BATTLER_ABILITY    1
+#define BATTLER_INNATE     2
 
 #define IS_WHOLE_SIDE_ALIVE(battler)((IsBattlerAlive(battler) && IsBattlerAlive(BATTLE_PARTNER(battler))))
+#define BATTLER_HAS_ABILITY(battlerId, ability) ((GetBattlerAbility(battlerId) == ability || BattlerHasInnate(battlerId, ability)) && IsBattlerAlive(battlerId))
+#define BATTLER_HAS_ABILITY_FAST(battlerId, abilityToCheck, battlerAbility) ((battlerAbility == abilityToCheck || BattlerHasInnate(battlerId, abilityToCheck))) //Useful to make calculations faster
 
 // for Natural Gift and Fling
 struct TypePower
@@ -67,7 +75,8 @@ void HandleAction_TryFinish(void);
 void HandleAction_NothingIsFainted(void);
 void HandleAction_ActionFinished(void);
 u8 GetBattlerForBattleScript(u8 caseId);
-bool8 IsSleepDisabled(u8 battlerId, u8 sleepmons);
+bool8 IsSleepDisabled(u8 battlerId);
+bool8 IsSleepClauseDisablingMove(u8 battlerId, u16 move);
 void PressurePPLose(u8 target, u8 attacker, u16 move);
 void PressurePPLoseOnUsingPerishSong(u8 attacker);
 void PressurePPLoseOnUsingImprison(u8 attacker);
@@ -100,6 +109,8 @@ bool8 HasNoMonsToSwitch(u8 battlerId, u8 r1, u8 r2);
 bool32 TryChangeBattleWeather(u8 battler, u32 weatherEnumId, bool32 viaAbility);
 u8 AbilityBattleEffects(u8 caseID, u8 battlerId, u16 ability, u8 special, u16 moveArg);
 u32 GetBattlerAbility(u8 battlerId);
+bool8 BattlerIgnoresAbility(u8 sBattlerAttacker, u8 sBattlerTarget, u16 ability);
+bool8 BattlerAbilityWasRemoved(u8 battlerId, u32 ability);
 u32 IsAbilityOnSide(u32 battlerId, u32 ability);
 u32 IsAbilityOnOpposingSide(u32 battlerId, u32 ability);
 u32 IsAbilityOnField(u32 ability);
@@ -123,11 +134,13 @@ bool32 IsBattlerAlive(u8 battlerId);
 u8 GetBattleMonMoveSlot(struct BattlePokemon *battleMon, u16 move);
 u32 GetBattlerWeight(u8 battlerId);
 s32 CalculateMoveDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, s32 fixedBasePower, bool32 isCrit, bool32 randomFactor, bool32 updateFlags);
+s32 CalculateMoveDamageAndEffectiveness(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u16 *typeEffectivenessModifier);
 u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 battlerDef, bool32 recordAbilities);
 u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef, u8 leveldef);
 u16 GetTypeModifier(u8 atkType, u8 defType);
 s32 GetStealthHazardDamage(u8 hazardType, u8 battlerId);
 u16 GetMegaEvolutionSpecies(u16 preEvoSpecies, u16 heldItemId);
+u16 GetPrimalReversionSpecies(u16 preEvoSpecies, u16 heldItemId);
 u16 GetWishMegaEvolutionSpecies(u16 preEvoSpecies, u16 moveId1, u16 moveId2, u16 moveId3, u16 moveId4);
 bool32 CanMegaEvolve(u8 battlerId);
 void UndoMegaEvolution(u32 monId);
@@ -169,6 +182,13 @@ u8 GetBattlerBattleMoveTargetFlags(u16 moveId, u8 battler);
 bool32 ShouldChangeFormHpBased(u32 battler);
 u32 CountBattlerStatIncreases(u8 battlerId, bool32 countEvasionAcc);
 bool32 DoesBattlerIgnoreAbilityorInnateChecks(u8 battler);
+s32 GetCurrentTerrain(void);
+u8 BattlerHasInnateOrAbility(u8 battler, u16 ability);
+bool8 IsTrickRoomActive(void);
+bool8 IsGravityActive(void);
+bool8 isMagicRoomActive(void);
+bool8 isWonderRoomActive(void);
+bool32 TryPrimalReversion(u8 battlerId);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);
@@ -182,7 +202,7 @@ bool32 IsEntrainmentTargetOrSimpleBeamBannedAbility(u16 ability);
 bool32 CanSleep(u8 battlerId);
 bool32 CanBePoisoned(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanBeBurned(u8 battlerId);
-bool32 CanBeParalyzed(u8 battlerTarget, u8 battlerAttacker);
+bool32 CanBeParalyzed(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanBeFrozen(u8 battlerId);
 bool32 CanGetFrostbite(u8 battlerId);
 bool32 CanBeConfused(u8 battlerId);

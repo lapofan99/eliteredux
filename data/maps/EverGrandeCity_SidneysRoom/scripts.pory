@@ -47,6 +47,7 @@ EverGrandeCity_SidneysRoom_EventScript_WalkInCloseDoor:: @ 8227F57
 EverGrandeCity_SidneysRoom_EventScript_Sidney:: @ 8227F64
 	lock
 	faceplayer
+	cleartrainerflag(TRAINER_CALVIN_E4)
 	goto_if_set FLAG_SYS_GAME_CLEAR, EverGrandeCity_SidneysRoom_EventScript_SidneyRematch
 	goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE

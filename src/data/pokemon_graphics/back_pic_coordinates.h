@@ -4764,7 +4764,202 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_KINGDRA_MEGA] =
     {
         .size = 0x88,
+        .y_offset = 2,
+    },
+    [SPECIES_DEWGONG_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_HITMONCHAN_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 6,
+    },
+    [SPECIES_HITMONTOP_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_CROBAT_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 5,
+    },
+    [SPECIES_SKARMORY_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_BRUXISH_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_TORTERRA_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 4,
+    },
+    [SPECIES_INFERNAPE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_EMPOLEON_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_SHUCKLE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_RELICANTH_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_QUAGSIRE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_JELLICENT_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_TOUCANNON_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_DRAGONITE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 2,
+    },
+    [SPECIES_BRELOOM_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 10,
+    },
+    [SPECIES_SLAKING_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_HITMONLEE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 4,
+    },
+    [SPECIES_FERALIGATR_MEGA_X] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_FERALIGATR_MEGA_Y] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_GRANBULL_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_GYARADOS_MEGA_Y] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_HAXORUS_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_KINGDRA_MEGA_Y] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_LUXRAY_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 3,
+    },
+    [SPECIES_NIDOKING_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_NIDOQUEEN_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_SANDSLASH_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_TYPHLOSION_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_KROOKODILE_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 1,
+    },
+    [SPECIES_MAGNEZONE_MEGA] =
+    {
+        .size = 0x87,
         .y_offset = 7,
+    },
+    [SPECIES_SHEDINJA_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 1,
+    },
+    [SPECIES_SWALOT_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_LANTURN_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 4,
+    },
+    [SPECIES_CLAWITZER_REDUX] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_LAPRAS_MEGA_X] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_DEWLEON] =
+    {
+        .size = 0x87,
+        .y_offset = 5,
+    },
+    [SPECIES_MEGANIUM_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_SLOWKING_MEGA] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
     },
     // Special Mega + Primals
     [SPECIES_RAYQUAZA_MEGA] =
@@ -6134,6 +6329,33 @@ const struct MonCoords gMonBackPicCoords[] =
     {
         .size = 0x87,
         .y_offset = 7,
+    },
+
+    
+    [SPECIES_INFERNAPE_REDUX] =
+    {
+        .size = 0x87,
+        .y_offset = 0,
+    },
+    [SPECIES_NOIBAT_REDUX] =
+    {
+        .size = 0x87,
+        .y_offset = 7,
+    },
+    [SPECIES_NOIVERN_REDUX] =
+    {
+        .size = 0x87,
+        .y_offset = 4,
+    },
+    [SPECIES_LUXRAY_REDUX] =
+    {
+        .size = 0x87,
+        .y_offset = 3,
+    },
+    [SPECIES_CASCOON_PRIMAL] =
+    {
+        .size = 0x87,
+        .y_offset = 4,
     },
     // Egg
     [SPECIES_EGG] =

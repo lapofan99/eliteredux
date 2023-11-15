@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_script_commands.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "field_weather.h"
@@ -331,6 +332,9 @@ void UpdateFarawayIslandStepCounter(void)
         else
             VarSet(VAR_FARAWAY_ISLAND_STEP_COUNTER, steps);
     }
+    #ifdef DEBUG_BUILD
+        CheckForBadEggs();
+    #endif
 }
 
 bool8 ObjectEventIsFarawayIslandMew(struct ObjectEvent *objectEvent)

@@ -717,7 +717,7 @@ void CB2_BattleDebugMenu(void)
 
 static void PutMovesPointsText(struct BattleDebugMenu *data)
 {
-    u32 i, j, count;
+    u32 i, j, count, battlerDef;
     u8 *text = malloc(0x50);
 
     FillWindowPixelBuffer(data->aiMovesWindowId, 0x11);
@@ -730,13 +730,14 @@ static void PutMovesPointsText(struct BattleDebugMenu *data)
         {
             if (data->aiIconSpriteIds[j] == 0xFF)
                 continue;
+            battlerDef = gSprites[data->aiIconSpriteIds[j]].data[0];
             ConvertIntToDecimalStringN(text,
-                                       gBattleStruct->aiFinalScore[data->aiBattlerId][gSprites[data->aiIconSpriteIds[j]].data[0]][i],
+                                       gBattleStruct->aiFinalScore[data->aiBattlerId][battlerDef][i],
                                        STR_CONV_MODE_RIGHT_ALIGN, 3);
             AddTextPrinterParameterized(data->aiMovesWindowId, 1, text, 83 + count * 54, i * 15, 0, NULL);
 
-            ConvertIntToDecimalStringN(text,
-                                       gBattleStruct->aiSimulatedDamage[data->aiBattlerId][gSprites[data->aiIconSpriteIds[j]].data[0]][i],
+           ConvertIntToDecimalStringN(text,
+                                       AI_DATA->simulatedDmg[data->aiBattlerId][battlerDef][i],
                                        STR_CONV_MODE_RIGHT_ALIGN, 3);
             AddTextPrinterParameterized(data->aiMovesWindowId, 1, text, 110 + count * 54, i * 15, 0, NULL);
 
@@ -1639,7 +1640,7 @@ static void SetUpModifyArrows(struct BattleDebugMenu *data)
         break;
     case LIST_ITEM_MOVES:
         data->modifyArrows.minValue = 0;
-        data->modifyArrows.maxValue = MOVES_COUNT_GEN8 - 1;
+        data->modifyArrows.maxValue = MOVES_COUNT - 1;
         data->modifyArrows.maxDigits = 3;
         if (data->currentSecondaryListItemId == 4)
         {

@@ -1078,12 +1078,18 @@ static u8 TrainerBattleLoadArg8(const u8 *ptr)
 
 static u16 GetTrainerAFlag(void)
 {
-    return TRAINER_FLAGS_START + gTrainerBattleOpponent_A;
+    if(gTrainerBattleOpponent_A <= MAX_OLD_TRAINERS_COUNT || gTrainerBattleOpponent_A == TRAINER_OLDPLAYER)
+        return TRAINER_FLAGS_START + gTrainerBattleOpponent_A;
+    else
+        return gTrainers[gTrainerBattleOpponent_A].trainerFlag;
 }
 
 static u16 GetTrainerBFlag(void)
 {
-    return TRAINER_FLAGS_START + gTrainerBattleOpponent_B;
+    if(gTrainerBattleOpponent_B <= MAX_OLD_TRAINERS_COUNT || gTrainerBattleOpponent_B == TRAINER_OLDPLAYER)
+        return TRAINER_FLAGS_START + gTrainerBattleOpponent_B;
+    else
+        return gTrainers[gTrainerBattleOpponent_B].trainerFlag;
 }
 
 static bool32 IsPlayerDefeated(u32 battleOutcome)
@@ -1315,7 +1321,11 @@ bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
         sPrevTrainerSeeing = flag;
         FlagClear(FLAG_RAN_FROM_TRAINER);
     }
-    return (FlagGet(TRAINER_FLAGS_START + flag) || FlagGet(FLAG_RAN_FROM_TRAINER));
+
+    if(flag <= MAX_OLD_TRAINERS_COUNT || flag == TRAINER_OLDPLAYER)
+        return (FlagGet(TRAINER_FLAGS_START + flag)  || FlagGet(FLAG_RAN_FROM_TRAINER));
+    else
+        return (FlagGet(gTrainers[flag].trainerFlag) || FlagGet(FLAG_RAN_FROM_TRAINER));
 }
 
 // Set trainer's movement type so they stop and remain facing that direction
@@ -1356,17 +1366,26 @@ static void SetBattledTrainerFlag(void)
 
 bool8 HasTrainerBeenFought(u16 trainerId)
 {
-    return FlagGet(TRAINER_FLAGS_START + trainerId);
+    if(trainerId <= MAX_OLD_TRAINERS_COUNT || trainerId == TRAINER_OLDPLAYER)
+        return FlagGet(TRAINER_FLAGS_START + trainerId);
+    else
+        return FlagGet(gTrainers[trainerId].trainerFlag);
 }
 
 void SetTrainerFlag(u16 trainerId)
 {
-    FlagSet(TRAINER_FLAGS_START + trainerId);
+    if(trainerId <= MAX_OLD_TRAINERS_COUNT || trainerId == TRAINER_OLDPLAYER)
+        FlagSet(TRAINER_FLAGS_START + trainerId);
+    else
+        FlagSet(gTrainers[trainerId].trainerFlag);
 }
 
 void ClearTrainerFlag(u16 trainerId)
 {
-    FlagClear(TRAINER_FLAGS_START + trainerId);
+    if(trainerId <= MAX_OLD_TRAINERS_COUNT || trainerId == TRAINER_OLDPLAYER)
+        FlagClear(TRAINER_FLAGS_START + trainerId);
+    else
+        FlagClear(gTrainers[trainerId].trainerFlag);
 }
 
 void BattleSetup_StartTrainerBattle(void)

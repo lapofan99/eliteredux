@@ -1,6 +1,7 @@
 #include "global.h"
 #include "frontier_util.h"
 #include "battle_setup.h"
+#include "battle_tower.h"
 #include "berry.h"
 #include "clock.h"
 #include "coins.h"
@@ -494,7 +495,16 @@ bool8 ScrCmd_additem(struct ScriptContext *ctx)
     u16 itemId = VarGet(ScriptReadHalfword(ctx));
     u32 quantity = VarGet(ScriptReadHalfword(ctx));
 
-    gSpecialVar_Result = AddBagItem(itemId, (u16)quantity);
+    if(AddBagItem(itemId, (u16)quantity)){
+        gSpecialVar_Result = 1; //Bag
+    }
+    else if(AddPCItem(itemId, (u16)quantity)){
+        gSpecialVar_Result = 2; //PC
+    }
+    else{
+        gSpecialVar_Result = 0; //Failed
+    }
+
     return FALSE;
 }
 
@@ -2416,7 +2426,7 @@ bool8 ScrCmd_multichoice2(struct ScriptContext *ctx){
 }
 
 //Items given to you by Nurse Joy
-#define NURSE_BATTLE_ITEM_COUNT 217
+#define NURSE_BATTLE_ITEM_COUNT 217//+ 16
 
 static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
 {
@@ -2451,6 +2461,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_LIGHT_BALL,       50},
     {ITEM_SHELL_BELL,       50},
     {ITEM_SHED_SHELL,       50},
+    {ITEM_LAGGING_TAIL,     50},
     {ITEM_TERRAIN_EXTENDER, 50},
     {ITEM_THROAT_SPRAY,     50},
     {ITEM_THICK_CLUB,       50},
@@ -2469,6 +2480,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_WHITE_HERB,       50},
     {ITEM_ELECTRIC_SEED,    50},
     {ITEM_PSYCHIC_SEED,     50},
+    {ITEM_MISTY_SEED,       50},
     {ITEM_GRASSY_SEED,      50},
     {ITEM_BERRY_JUICE,      50},
     {ITEM_BRIGHT_POWDER,    50},
@@ -2496,6 +2508,7 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_IRON_PILL,        50},
     {ITEM_QUICK_CLAW,       50},
     {ITEM_MUSCLE_BAND,      50},
+    {ITEM_WISE_GLASSES,     50},
     //Pokeballs
     {ITEM_POKE_BALL,         1},
     {ITEM_MASTER_BALL,       1},
@@ -2594,10 +2607,16 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_MILOTICITE,        1},
     {ITEM_FLYGONITE,         1},
     {ITEM_BUTTERFRENITE,     1},
-    {ITEM_LAPRASITE,         1},
+    {ITEM_LAPRASITE_Y,         1},
     {ITEM_MACHAMPITE,        1},
     {ITEM_KINGLERITE,        1},
     {ITEM_KINGDRANITE,       1},
+    {ITEM_SKARMORITE,      1},
+    {ITEM_RELICANTHITE,      1},
+    {ITEM_QUAGSIRENITE,      1},
+    {ITEM_SWALOTITE,         1},
+    {ITEM_LUXRAYNITE,        1},
+    {ITEM_MAGNEZONITE,       1},
     //Berries
     {ITEM_AGUAV_BERRY,      50},
     {ITEM_APICOT_BERRY,     50},
@@ -2607,7 +2626,6 @@ static const u16 sBattleItemList[NURSE_BATTLE_ITEM_COUNT][2] =
     {ITEM_LIECHI_BERRY,     50},
     {ITEM_PETAYA_BERRY,     50},
     {ITEM_SALAC_BERRY,      50},
-    {ITEM_KEE_BERRY,        50},
     {ITEM_WIKI_BERRY,       50},
     {ITEM_CHERI_BERRY,      50},
     {ITEM_CHESTO_BERRY,     50},
@@ -2692,6 +2710,9 @@ bool8 ScrCmd_givecustommon(struct ScriptContext *ctx)
     u8 ivs[NUM_STATS] = {hpIv, atkIv, defIv, speedIv, spAtkIv, spDefIv};
     u16 moves[4] = {move1, move2, move3, move4};
 
+    if(level == 0)
+        level = GetHighestLevelInPlayerParty();
+
     gSpecialVar_Result = ScriptGiveCustomMon(species, level, item, ball, nature, abilityNum, evs, ivs, moves, isShiny);
     return FALSE;
 }
@@ -2710,6 +2731,9 @@ bool8 ScrCmd_toggleSaveblock(struct ScriptContext *ctx)
         case SAVEBLOCK_DIFFICULTY:
             gSaveBlock2Ptr->gameDifficulty = value;
         break;
+        case SAVEBLOCK_ENABLE_LEGENDARY:
+            gSaveBlock2Ptr->encounterRandomizedLegendaryMode = value;
+        break;
     }
     return TRUE;
 }
@@ -2727,6 +2751,92 @@ bool8 ScrCmd_checkSaveblockValue(struct ScriptContext *ctx)
         case SAVEBLOCK_DIFFICULTY:
             gSpecialVar_Result = gSaveBlock2Ptr->gameDifficulty;
         break;
+        case SAVEBLOCK_ENABLE_LEGENDARY:
+            gSpecialVar_Result = gSaveBlock2Ptr->encounterRandomizedLegendaryMode;
+        break;
     }
+    return FALSE;
+}
+
+bool8 ScrCmd_checkpartyfortypeornumber(struct ScriptContext *ctx)
+{
+    u16 type  = ScriptReadHalfword(ctx);
+    u16 number  = ScriptReadHalfword(ctx);
+    u8 partySize = CalculatePlayerPartyCount();
+    u8 i, type1, type2;
+    u16 species;
+
+    if(partySize != number && number != 0){
+        gSpecialVar_Result = FALSE;
+        return FALSE;
+    }
+
+    if(type != NUMBER_OF_MON_TYPES){
+        for(i = 0; i < partySize; i++){
+            species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+            type1 = gBaseStats[species].type1;
+            type2 = gBaseStats[species].type2;
+            if(type1 != type && type2 != type){
+                gSpecialVar_Result = FALSE;
+                return FALSE;
+            }
+        }
+    }
+
+    gSpecialVar_Result = TRUE;
+    return TRUE;
+}
+
+bool8 ScrCmd_setwildbattlewithcustommoves(struct ScriptContext *ctx)
+{
+    u16 species    = ScriptReadHalfword(ctx);
+    u8  level      = ScriptReadByte(ctx);
+    u16 item       = ScriptReadHalfword(ctx);
+    u16 move1      = ScriptReadHalfword(ctx);
+    u16 move2      = ScriptReadHalfword(ctx);
+    u16 move3      = ScriptReadHalfword(ctx);
+    u16 move4      = ScriptReadHalfword(ctx);
+    u16 abilitynum = ScriptReadHalfword(ctx);
+    u16 nature     = ScriptReadHalfword(ctx);
+    u16 hp_evs     = ScriptReadHalfword(ctx);
+    u16 atk_evs    = ScriptReadHalfword(ctx);
+    u16 def_evs    = ScriptReadHalfword(ctx);
+    u16 spa_evs    = ScriptReadHalfword(ctx);
+    u16 spd_evs    = ScriptReadHalfword(ctx);
+    u16 speed_evs  = ScriptReadHalfword(ctx);
+    struct Pokemon *pkmn = &gEnemyParty[0];
+    
+    if(level == 0)
+        level = GetHighestLevelInPlayerParty();
+
+    CreateScriptedWildMon(species, level, item);
+
+    if (move1 != MOVE_NONE) {
+        SetMonMoveSlot(pkmn, move1, 0);
+    }    
+    if (move2 != MOVE_NONE) {
+        SetMonMoveSlot(pkmn, move2, 1);
+    }    
+    if (move3 != MOVE_NONE) {
+        SetMonMoveSlot(pkmn, move3, 2);
+    }    
+    if (move4 != MOVE_NONE) {
+        SetMonMoveSlot(pkmn, move4, 3);
+    }   
+	if (abilitynum != 3) {
+		SetMonData(pkmn, MON_DATA_ABILITY_NUM, &abilitynum);
+    }      
+	if (nature != 0) {
+		SetMonData(pkmn, MON_DATA_NATURE, &nature);
+    }
+	
+	SetMonData(pkmn, MON_DATA_HELD_ITEM, &item);
+	SetMonData(pkmn, MON_DATA_HP_EV,     &hp_evs);
+	SetMonData(pkmn, MON_DATA_ATK_EV,    &atk_evs);
+	SetMonData(pkmn, MON_DATA_DEF_EV,    &def_evs);
+	SetMonData(pkmn, MON_DATA_SPATK_EV,  &spa_evs);
+	SetMonData(pkmn, MON_DATA_SPDEF_EV,  &spd_evs);
+	SetMonData(pkmn, MON_DATA_SPEED_EV,  &speed_evs);
+	
     return FALSE;
 }

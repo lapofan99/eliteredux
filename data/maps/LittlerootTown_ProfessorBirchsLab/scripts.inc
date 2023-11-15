@@ -185,6 +185,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex::
 	setvar VAR_TEMP_1, SPECIES_COSMOG
 	special GetStaticEncounterLevel
 	givemon SPECIES_COSMOG, VAR_0x800A, ITEM_LUCKY_EGG
+	givemon SPECIES_COSMOG, VAR_0x800A, ITEM_LUCKY_EGG
 	compare VAR_RESULT, 0
 	goto_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_ReceiveCosmogParty
 	compare VAR_RESULT, 1
@@ -988,7 +989,7 @@ LittlerootTown_ProfessorBirchsLab_Text_TakeYourTimeAllInvaluable: @ 81FB959
 	.string "They're all invaluable Pokémon.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedCosmog:
-	.string "{PLAYER} received the Cosmog\n"
+	.string "{PLAYER} received two Cosmogs\n"
 	.string "from Prof. Birch!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedJohtoStarter: @ 81FB9D7

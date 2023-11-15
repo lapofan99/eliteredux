@@ -11,7 +11,7 @@ struct StatFractions
     u8 dividend;
     u8 divisor;
 };
-
+void CheckForBadEggs(void);
 s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility);
 s8 GetInverseCritChance(u8 battlerAtk, u8 battlerDef, u32 move);
 u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move);
@@ -26,6 +26,7 @@ void HandleBattleWindow(u8 xStart, u8 yStart, u8 xEnd, u8 yEnd, u8 flags);
 bool8 UproarWakeUpCheck(u8 battlerId);
 bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move);
 bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move);
+bool32 DoesBattlerHasNoDamageHits(u8 battlerAtk, u8 battlerDef, u32 move);
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanUseLastResort(u8 battlerId);
@@ -39,6 +40,7 @@ u16 GetNaturePowerMove(void);
 u16 GetSecretPowerMoveEffect(void);
 void StealTargetItem(u8 battlerStealer, u8 battlerItem);
 u8 GetCatchingBattler(void);
+u32 IsDesertCloakProtected(u32 battler);
 
 extern void (* const gBattleScriptingCommandsTable[])(void);
 extern const u8 gBattlePalaceNatureToMoveGroupLikelihood[NUM_NATURES][4];

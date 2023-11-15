@@ -372,6 +372,10 @@ script FortreeCity_Gym_EventScript_GiveRoost{
 	playfanfare(MUS_OBTAIN_ITEM)
 	message(format("{PLAYER} got Winona's {COLOR BLUE}Dragonite{COLOR DARK_GRAY} as a gift!"))
 	waitfanfare
+	msgbox(format("Also take this rare Mega stone!"))
+	giveitem(ITEM_TOUCANNONITE, 1)
+	playfanfare(MUS_OBTAIN_ITEM)
+	waitfanfare
 	setflag(FLAG_RECEIVED_TM51)
 	msgbox(FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT)
 	release

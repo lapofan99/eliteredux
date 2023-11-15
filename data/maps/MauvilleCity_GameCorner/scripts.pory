@@ -1066,3 +1066,35 @@ MauvilleCity_GameCorner_Text_CantPlayWithNoCoinCase: @ 8210C2E
 	.string "You can't play if you don't have\n"
 	.string "a Coin Case.$"
 `
+
+script MauvilleCity_GameCorner_EventScript_SinnohMegas_Battle {
+	lock
+	faceplayer
+	if (flag(FLAG_BADGE05_GET)) { // Checking if the player has the badge
+		//cleartrainerflag(TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER) // Only For testing
+		if (!defeated(TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER)) { // asking for battle
+			msgbox(format("FUCK YOU???"), MSGBOX_YESNO)
+			if (var(VAR_RESULT) == 1) {
+				msgbox(format("FUCK YOU!!!"), MSGBOX_NPC) // When the player accepts the battle
+				trainerbattle_no_intro(TRAINER_SINNOH_MEGAS_MAUVILLE_GAME_CORNER, format("FUCK ME???")) // in-battle, player wins
+				msgbox(format("FUCK YOU!!!"), MSGBOX_NPC) // after player won
+				playfanfare(MUS_OBTAIN_ITEM)
+				giveitem(ITEM_INFERNAPENITE, 1) // Item given to the player
+				giveitem(ITEM_TORTERRANITE, 1) // Item given to the player
+				giveitem(ITEM_EMPOLEONITE, 1) // Item given to the player
+				waitmessage
+			}
+			else { // when refusing the battle
+				msgbox(format("FUCK YOU!!!"), MSGBOX_NPC)
+			}
+		}
+		else { // When the trainer is already defeated
+			msgbox(format("FUCK YOU!!!"), MSGBOX_NPC)
+		}
+	}
+	else { // When the player doesn't have the badge yet
+		msgbox(format("FUCK YOU!!!"), MSGBOX_NPC)
+	}
+	release
+	end	
+}

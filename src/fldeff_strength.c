@@ -1,5 +1,6 @@
 #include "global.h"
 #include "event_data.h"
+#include "battle_script_commands.h"
 #include "event_scripts.h"
 #include "field_effect.h"
 #include "fldeff.h"
@@ -9,6 +10,8 @@
 #include "task.h"
 #include "constants/event_objects.h"
 #include "constants/field_effects.h"
+#include "mgba_printf/mgba.h"
+#include "mgba_printf/mini_printf.h"
 
 // static functions
 static void FieldCallback_Strength(void);
@@ -36,9 +39,19 @@ static void FieldCallback_Strength(void)
 bool8 FldEff_UseStrength(void)
 {
     u8 taskId = CreateFieldMoveTask();
+    bool8 checkForNickname = FALSE;
     gTasks[taskId].data[8] = (u32)StartStrengthFieldEffect >> 16;
     gTasks[taskId].data[9] = (u32)StartStrengthFieldEffect;
-    GetMonNickname(&gPlayerParty[gFieldEffectArguments[0]], gStringVar1);
+
+    //There was a bad egg bug here in the original code, but it's fixed now
+    if(gFieldEffectArguments[0] >= PARTY_SIZE)
+        gFieldEffectArguments[0] = 0;
+    else
+        checkForNickname = TRUE;
+    
+    if(checkForNickname && gFieldEffectArguments[0] < PARTY_SIZE)
+        GetMonNickname(&gPlayerParty[gFieldEffectArguments[0]], gStringVar1);
+    
     return FALSE;
 }
 

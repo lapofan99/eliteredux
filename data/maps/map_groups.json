@@ -455,7 +455,9 @@
   "gMapGroup_Dungeons2": [
     "VerdanturfMeadow",
     "DewfordMeadow",
-    "DewfordManor_1F"
+    "DewfordManor_1F",
+    "MeteorFalls_HaxorusRoom",
+    "PetalburgWoods_BreloomRoom"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

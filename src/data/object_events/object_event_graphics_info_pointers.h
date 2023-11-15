@@ -261,6 +261,16 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Carbink;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Diancie;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chansey;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cynthia;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Haxorus;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Haxorus_Shiny;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Breloom;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sandslash;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gyarados;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gyarados_Shiny;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Salamence;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dewgong;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Feraligatr;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Baneful;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -519,6 +529,16 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_DIANCIE] =                  &gObjectEventGraphicsInfo_Diancie,
     [OBJ_EVENT_GFX_CHANSEY] =                  &gObjectEventGraphicsInfo_Chansey,
     [OBJ_EVENT_GFX_CYNTHIA] =                  &gObjectEventGraphicsInfo_Cynthia,
+    [OBJ_EVENT_GFX_HAXORUS] =                  &gObjectEventGraphicsInfo_Haxorus,
+    [OBJ_EVENT_GFX_HAXORUS_SHINY] =            &gObjectEventGraphicsInfo_Haxorus_Shiny,
+    [OBJ_EVENT_GFX_BRELOOM] =                  &gObjectEventGraphicsInfo_Breloom,
+    [OBJ_EVENT_GFX_SANDSLASH] =                &gObjectEventGraphicsInfo_Sandslash,
+    [OBJ_EVENT_GFX_GYARADOS] =                 &gObjectEventGraphicsInfo_Gyarados,
+    [OBJ_EVENT_GFX_GYARADOS_SHINY] =           &gObjectEventGraphicsInfo_Gyarados_Shiny,
+    [OBJ_EVENT_GFX_SALAMENCE] =                &gObjectEventGraphicsInfo_Salamence,
+    [OBJ_EVENT_GFX_DEWGONG] =                  &gObjectEventGraphicsInfo_Dewgong,
+    [OBJ_EVENT_GFX_FERALIGATR] =               &gObjectEventGraphicsInfo_Feraligatr,
+    [OBJ_EVENT_GFX_BANEFUL] =                  &gObjectEventGraphicsInfo_Baneful,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

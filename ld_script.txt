@@ -446,6 +446,7 @@ SECTIONS {
     ALIGN(4)
     {
         src/main.o(.rodata);
+        src/fldeff_strength.o(.rodata);
         gflib/bg.o(.rodata);
         gflib/window.o(.rodata);
         gflib/text.o(.rodata);

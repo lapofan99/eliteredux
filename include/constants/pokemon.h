@@ -314,6 +314,8 @@
 
 // Battle move Flags 2
 #define FLAG_AIR_BASED                            (1 << 0) // For Giant Wings
+#define FLAG_HORN_BASED                           (1 << 1) // For Mighty Horn
+#define FLAG_ALWAYS_CRIT                          (1 << 2) // For the move Frost Breath
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0
@@ -415,5 +417,19 @@
 #define MOVE_TUTOR_EGG_MOVES      1
 #define MOVE_TUTOR_TM_MOVES       2
 #define MOVE_TUTOR_MOVES          3
+
+//Drain Effect
+#define DRAIN_EFFECT_MOVE         0
+#define DRAIN_EFFECT_ABILITY      1
+#define DRAIN_EFFECT_OTHER        2
+
+//Totem Fights
+#define TOTEM_FIGHT_NORMAL        0
+#define TOTEM_FIGHT_HAXORUS       1
+#define TOTEM_FIGHT_DEWGONG       2
+#define TOTEM_FIGHT_BRELOOM       3
+#define TOTEM_FIGHT_SANDSLASH     4
+#define TOTEM_FIGHT_FERALIGATR    5
+#define TOTEM_FIGHT_GYARADOS      6
 
 #endif // GUARD_CONSTANTS_POKEMON_H

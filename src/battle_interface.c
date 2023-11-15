@@ -894,12 +894,12 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
     healthBarSpritePtr->invisible = TRUE;
 
     // Create mega indicator sprite if is a mega evolved or a primal reverted mon.
-    if (gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]]
+    /*if (gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]]
      || gBattleStruct->mega.primalRevertedPartyIds[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]])
     {
         megaIndicatorSpriteId = CreateMegaIndicatorSprite(battlerId, 0);
         gSprites[megaIndicatorSpriteId].invisible = TRUE;
-    }
+    }*/
 
     gBattleStruct->ballSpriteIds[0] = MAX_SPRITES;
     gBattleStruct->ballSpriteIds[1] = MAX_SPRITES;
@@ -1030,7 +1030,8 @@ void SetHealthboxSpriteVisible(u8 healthboxSpriteId)
     gSprites[healthboxSpriteId].invisible = FALSE;
     gSprites[gSprites[healthboxSpriteId].hMain_HealthBarSpriteId].invisible = FALSE;
     gSprites[gSprites[healthboxSpriteId].oam.affineParam].invisible = FALSE;
-    if (gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]]
+
+    /*if (gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]]
      || gBattleStruct->mega.primalRevertedPartyIds[GetBattlerSide(battlerId)] & gBitTable[gBattlerPartyIndexes[battlerId]])
     {
         u8 spriteId = GetMegaIndicatorSpriteId(healthboxSpriteId);
@@ -1038,7 +1039,7 @@ void SetHealthboxSpriteVisible(u8 healthboxSpriteId)
             gSprites[spriteId].invisible = FALSE;
         else
             CreateMegaIndicatorSprite(battlerId, 0);
-    }
+    }*/
 }
 
 static void UpdateSpritePos(u8 spriteId, s16 x, s16 y)
@@ -1154,7 +1155,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     u8 *objVram;
     u8 battler = gSprites[healthboxSpriteId].hMain_Battler;
 
-    // Don't print Lv char if mon is mega evolved or primal reverted.
+    /*// Don't print Lv char if mon is mega evolved or primal reverted.
     if (gBattleStruct->mega.evolvedPartyIds[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]
      || gBattleStruct->mega.primalRevertedPartyIds[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]])
     {
@@ -1168,7 +1169,13 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
 
         objVram = ConvertIntToDecimalStringN(text + 2, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
         xPos = 5 * (3 - (objVram - (text + 2)));
-    }
+    }*/
+
+    text[0] = CHAR_EXTRA_SYMBOL;
+    text[1] = CHAR_LV_2;
+
+    objVram = ConvertIntToDecimalStringN(text + 2, lvl, STR_CONV_MODE_LEFT_ALIGN, 3);
+    xPos = 5 * (3 - (objVram - (text + 2)));
 
     if (GetBattlerSide(battler) == B_SIDE_PLAYER)
     {
@@ -1509,13 +1516,13 @@ void ChangeMegaTriggerSprite(u8 spriteId, u8 animId)
     StartSpriteAnim(&gSprites[spriteId], animId);
 }
 
-#define SINGLES_MEGA_TRIGGER_POS_X_OPTIMAL (30)
-#define SINGLES_MEGA_TRIGGER_POS_X_PRIORITY (31)
+#define SINGLES_MEGA_TRIGGER_POS_X_OPTIMAL (30 + 6)
+#define SINGLES_MEGA_TRIGGER_POS_X_PRIORITY (31 + 6)
 #define SINGLES_MEGA_TRIGGER_POS_X_SLIDE (15)
-#define SINGLES_MEGA_TRIGGER_POS_Y_DIFF (-11)
+#define SINGLES_MEGA_TRIGGER_POS_Y_DIFF (-11 + 2)
 
-#define DOUBLES_MEGA_TRIGGER_POS_X_OPTIMAL (30)
-#define DOUBLES_MEGA_TRIGGER_POS_X_PRIORITY (31)
+#define DOUBLES_MEGA_TRIGGER_POS_X_OPTIMAL (30 + 6)
+#define DOUBLES_MEGA_TRIGGER_POS_X_PRIORITY (31 + 6)
 #define DOUBLES_MEGA_TRIGGER_POS_X_SLIDE (15)
 #define DOUBLES_MEGA_TRIGGER_POS_Y_DIFF (-4)
 
@@ -2169,6 +2176,16 @@ static void SpriteCB_StatusSummaryBallsOnSwitchout(struct Sprite *sprite)
 static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
 {
     //const u8 gText_ShinySymbol[] = _("{HIGHLIGHT DARK_GRAY}{SUM_SHINY}");
+    const u8 gText_MegaSymbol[]    = _(" {COLOR WHITE}{SHADOW LIGHT_GRAY}{SUM_FATEFUL}");
+    const u8 gText_OmegaSymbol[]   = _(" {COLOR WHITE}{SHADOW LIGHT_GRAY}{SUM_DOWN}");
+    const u8 gText_AlphaSymbol[]   = _(" {COLOR WHITE}{SHADOW LIGHT_GRAY}{SUM_UP}");
+    const u8 gText_CascoonSymbol[] = _(" {COLOR WHITE}{SHADOW LIGHT_GRAY}{CASCOON_EYE}");
+    //
+    const u8 gText_MegaSymbolBefore[]    = _("{HIGHLIGHT DARK_GRAY}{SUM_FATEFUL} ");
+    const u8 gText_OmegaSymbolBefore[]   = _("{HIGHLIGHT DARK_GRAY}{SUM_DOWN} ");
+    const u8 gText_AlphaSymbolBefore[]   = _("{HIGHLIGHT DARK_GRAY}{SUM_UP} ");
+    const u8 gText_CascoonSymbolBefore[] = _("{HIGHLIGHT DARK_GRAY}{CASCOON_EYE} ");
+    bool8 DrawMegaSymbolBeforeName = FALSE;
     u8 nickname[POKEMON_SPECIES_NAME_LENGTH + 1];
     void *ptr;
     u32 windowId, spriteTileNum;
@@ -2177,13 +2194,133 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     struct Pokemon *illusionMon = GetIllusionMonPtr(gSprites[healthboxSpriteId].hMain_Battler);
     bool8 nicknamed = TRUE;
+    bool8 isMega = FALSE;
+    bool8 isPrimal = FALSE;
     if (illusionMon != NULL)
         mon = illusionMon;
 
+    gender = GetMonGender(mon);
+    species = GetMonData(mon, MON_DATA_SPECIES);
+
     nicknamed = isMonNicknamed(mon);
-    /*if(IsMonShiny(mon))
-		StringCopy(gDisplayedStringBattle, gText_ShinySymbol);
-	else*/
+    
+    switch(species){
+        case SPECIES_ABOMASNOW_MEGA:
+        case SPECIES_ABSOL_MEGA:
+        case SPECIES_AERODACTYL_MEGA:
+        case SPECIES_AGGRON_MEGA:
+        case SPECIES_ALAKAZAM_MEGA:
+        case SPECIES_ALTARIA_MEGA:
+        case SPECIES_AMPHAROS_MEGA:
+        case SPECIES_AUDINO_MEGA:
+        case SPECIES_BANETTE_MEGA:
+        case SPECIES_BEEDRILL_MEGA:
+        case SPECIES_BLASTOISE_MEGA:
+        case SPECIES_BLAZIKEN_MEGA:
+        case SPECIES_CAMERUPT_MEGA:
+        case SPECIES_CHARIZARD_MEGA_X:
+        case SPECIES_CHARIZARD_MEGA_Y:
+        case SPECIES_DIANCIE_MEGA:
+        case SPECIES_GALLADE_MEGA:
+        case SPECIES_GARCHOMP_MEGA:
+        case SPECIES_GARDEVOIR_MEGA:
+        case SPECIES_GENGAR_MEGA:
+        case SPECIES_GLALIE_MEGA:
+        case SPECIES_GYARADOS_MEGA:
+        case SPECIES_HERACROSS_MEGA:
+        case SPECIES_HOUNDOOM_MEGA:
+        case SPECIES_KANGASKHAN_MEGA:
+        case SPECIES_LATIAS_MEGA:
+        case SPECIES_LATIOS_MEGA:
+        case SPECIES_LOPUNNY_MEGA:
+        case SPECIES_LUCARIO_MEGA:
+        case SPECIES_MANECTRIC_MEGA:
+        case SPECIES_MAWILE_MEGA:
+        case SPECIES_MEDICHAM_MEGA:
+        case SPECIES_METAGROSS_MEGA:
+        case SPECIES_MEWTWO_MEGA_X:
+        case SPECIES_MEWTWO_MEGA_Y:
+        case SPECIES_PIDGEOT_MEGA:
+        case SPECIES_PINSIR_MEGA:
+        case SPECIES_SABLEYE_MEGA:
+        case SPECIES_SALAMENCE_MEGA:
+        case SPECIES_SCEPTILE_MEGA:
+        case SPECIES_SCIZOR_MEGA:
+        case SPECIES_SHARPEDO_MEGA:
+        case SPECIES_SLOWBRO_MEGA:
+        case SPECIES_STEELIX_MEGA:
+        case SPECIES_SWAMPERT_MEGA:
+        case SPECIES_TYRANITAR_MEGA:
+        case SPECIES_VENUSAUR_MEGA:
+        case SPECIES_MILOTIC_MEGA:
+        case SPECIES_FLYGON_MEGA:
+        case SPECIES_BUTTERFREE_MEGA:
+        case SPECIES_LAPRAS_MEGA:
+        case SPECIES_MACHAMP_MEGA:
+        case SPECIES_KINGLER_MEGA:
+        case SPECIES_KINGDRA_MEGA:
+        case SPECIES_DEWGONG_MEGA:
+        case SPECIES_HITMONCHAN_MEGA:
+        case SPECIES_HITMONLEE_MEGA:
+        case SPECIES_HITMONTOP_MEGA:
+        case SPECIES_CROBAT_MEGA:
+        case SPECIES_SKARMORY_MEGA:
+        case SPECIES_BRUXISH_MEGA:
+        case SPECIES_TORTERRA_MEGA:
+        case SPECIES_INFERNAPE_MEGA:
+        case SPECIES_EMPOLEON_MEGA:
+        case SPECIES_SHUCKLE_MEGA:
+        case SPECIES_RELICANTH_MEGA:
+        case SPECIES_QUAGSIRE_MEGA:
+        case SPECIES_JELLICENT_MEGA:
+        case SPECIES_TOUCANNON_MEGA:
+        case SPECIES_DRAGONITE_MEGA:
+        case SPECIES_BRELOOM_MEGA:
+        case SPECIES_SLAKING_MEGA:
+        case SPECIES_RAYQUAZA_MEGA:
+        case SPECIES_FERALIGATR_MEGA_X:
+        case SPECIES_FERALIGATR_MEGA_Y:
+        case SPECIES_GRANBULL_MEGA:
+        case SPECIES_GYARADOS_MEGA_Y:
+        case SPECIES_HAXORUS_MEGA:
+        case SPECIES_KINGDRA_MEGA_Y:
+        case SPECIES_LUXRAY_MEGA:
+        case SPECIES_NIDOKING_MEGA:
+        case SPECIES_NIDOQUEEN_MEGA:
+        case SPECIES_SANDSLASH_MEGA:
+        case SPECIES_TYPHLOSION_MEGA:
+        case SPECIES_MEGANIUM_MEGA:
+        case SPECIES_KROOKODILE_MEGA:
+        case SPECIES_MAGNEZONE_MEGA:
+        case SPECIES_SHEDINJA_MEGA:
+        case SPECIES_SWALOT_MEGA:
+        case SPECIES_LANTURN_MEGA:
+        case SPECIES_LAPRAS_MEGA_X:
+        case SPECIES_SLOWKING_MEGA:
+            isMega = TRUE;
+            if(DrawMegaSymbolBeforeName)
+                StringCopy(gDisplayedStringBattle, gText_MegaSymbolBefore);
+        break;
+        case SPECIES_GROUDON_PRIMAL:
+            isPrimal = TRUE;
+            if(DrawMegaSymbolBeforeName)
+                StringCopy(gDisplayedStringBattle, gText_OmegaSymbolBefore);
+        case SPECIES_KYOGRE_PRIMAL:
+            isPrimal = TRUE;
+            if(DrawMegaSymbolBeforeName)
+                StringCopy(gDisplayedStringBattle, gText_AlphaSymbolBefore);
+        case SPECIES_CASCOON_PRIMAL:
+            isPrimal = TRUE;
+            if(DrawMegaSymbolBeforeName)
+                StringCopy(gDisplayedStringBattle, gText_CascoonSymbolBefore);
+        break;
+        default:
+            if(DrawMegaSymbolBeforeName)
+            StringCopy(gDisplayedStringBattle, gText_HighlightDarkGray);
+        break;
+    }
+
+    if(!DrawMegaSymbolBeforeName)
         StringCopy(gDisplayedStringBattle, gText_HighlightDarkGray);
     
     if(nicknamed){
@@ -2196,9 +2333,6 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
         StringGetEnd12(nickname);
         ptr = StringAppend(gDisplayedStringBattle, nickname);
     }
-
-    gender = GetMonGender(mon);
-    species = GetMonData(mon, MON_DATA_SPECIES);
 
     if ((species == SPECIES_NIDORAN_F || species == SPECIES_NIDORAN_M) && StringCompare(nickname, gSpeciesNames[species]) == 0)
         gender = 100;
@@ -2216,6 +2350,23 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
         case MON_FEMALE:
             StringCopy(ptr, gText_DynColor1Female);
             break;
+    }
+
+    if(isMega && !DrawMegaSymbolBeforeName){
+        ptr = StringAppend(ptr, gText_MegaSymbol);
+    }
+    else if(isPrimal && !DrawMegaSymbolBeforeName){
+        switch(species){
+            case SPECIES_GROUDON_PRIMAL:
+                ptr = StringAppend(ptr, gText_OmegaSymbol);
+            break;
+            case SPECIES_KYOGRE_PRIMAL:
+                ptr = StringAppend(ptr, gText_AlphaSymbol);
+            break;
+            case SPECIES_CASCOON_PRIMAL:
+                ptr = StringAppend(ptr, gText_CascoonSymbol);
+            break;
+        }
     }
         
     windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(gDisplayedStringBattle, 0, 3, 2, &windowId); // Creates Text + Temporary Window
@@ -2530,39 +2681,95 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
 #define B_EXPBAR_PIXELS 64
 #define B_HEALTHBAR_PIXELS 48
 
+#define B_HEALTH_BAR_SPEED 9
+
+// On odd frames, it'll be slower
+static const u8 sMoveBarTable[][2] =
+{
+    {1, 1}, // regular GF speed 0
+    {2, 1}, // 1
+    {2, 2}, // 2
+    {3, 2}, // 3
+    {3, 3}, // 4
+    {4, 3}, // 5
+    {4, 4}, // 6
+    {5, 5}, // 7
+    {6, 6}, // 8
+    {7, 7}, // 9
+    {1, 1}, // Instant
+};
+
+static s32 SetInstantBarMove(struct BattleBarInfo *bar)
+{
+    bar->oldValue -= bar->receivedValue;
+    if (bar->oldValue > bar->maxValue)
+        bar->oldValue = bar->maxValue;
+    if (bar->oldValue < 0)
+        bar->oldValue = 0;
+
+    bar->receivedValue = 0;
+    return bar->oldValue;
+}
+
 s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
 {
-    s32 currentBarValue;
+    s32 i, currentBarValue, previousVal = 0, toLoop;
+    bool32 instant;
 
-    if (whichBar == HEALTH_BAR) // health bar
+    if (whichBar == HEALTH_BAR)
     {
-        currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
-                    gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
-                    gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
-                    &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
-                    B_HEALTHBAR_PIXELS / 8, 1);
+        instant = (B_HEALTH_BAR_SPEED >= 10);
+        toLoop = sMoveBarTable[B_HEALTH_BAR_SPEED][gBattleSpritesDataPtr->battleBars[battlerId].oddFrame];
     }
-    else // exp bar
+    else
     {
-        u16 expFraction = GetScaledExpFraction(gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
-                    gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
-                    gBattleSpritesDataPtr->battleBars[battlerId].maxValue, 8);
-        if (expFraction == 0)
-            expFraction = 1;
-        expFraction = abs(gBattleSpritesDataPtr->battleBars[battlerId].receivedValue / expFraction);
-
-        currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
-                    gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
-                    gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
-                    &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
-                    B_EXPBAR_PIXELS / 8, expFraction);
+        instant = (B_HEALTH_BAR_SPEED >= 10);
+        toLoop = sMoveBarTable[B_HEALTH_BAR_SPEED][gBattleSpritesDataPtr->battleBars[battlerId].oddFrame];
     }
+    gBattleSpritesDataPtr->battleBars[battlerId].oddFrame ^= 1;
 
-    if (whichBar == EXP_BAR || (whichBar == HEALTH_BAR && !gBattleSpritesDataPtr->battlerData[battlerId].hpNumbersNoBars))
-        MoveBattleBarGraphically(battlerId, whichBar);
+    if (instant)
+        previousVal = SetInstantBarMove(&gBattleSpritesDataPtr->battleBars[battlerId]);
 
-    if (currentBarValue == -1)
-        gBattleSpritesDataPtr->battleBars[battlerId].currValue = 0;
+    for (i = 0; i < toLoop; i++)
+    {
+        if (i != 0)
+            previousVal = currentBarValue;
+        if (whichBar == HEALTH_BAR) // health bar
+        {
+            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+                        gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+                        gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                        &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
+                        B_HEALTHBAR_PIXELS / 8, 1);
+        }
+        else // exp bar
+        {
+            u16 expFraction = GetScaledExpFraction(gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+                        gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                        gBattleSpritesDataPtr->battleBars[battlerId].maxValue, 8);
+            if (expFraction == 0)
+                expFraction = 1;
+            expFraction = abs(gBattleSpritesDataPtr->battleBars[battlerId].receivedValue / expFraction);
+
+            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+                        gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+                        gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                        &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
+                        B_EXPBAR_PIXELS / 8, expFraction);
+        }
+
+        if (whichBar == EXP_BAR || (whichBar == HEALTH_BAR && !gBattleSpritesDataPtr->battlerData[battlerId].hpNumbersNoBars))
+            MoveBattleBarGraphically(battlerId, whichBar);
+
+        if (currentBarValue == -1)
+        {
+            gBattleSpritesDataPtr->battleBars[battlerId].currValue = 0;
+            if ((i != 0 || instant) && whichBar == HEALTH_BAR)
+                UpdateHpTextInHealthbox(gHealthboxSpriteIds[battlerId], previousVal, HP_CURRENT);
+            break;
+        }
+    }
 
     return currentBarValue;
 }

@@ -25,7 +25,7 @@
 #define sSAVED_BATTLER               gBattleScripting + 0x20
 #define sRESHOW_MAIN_STATE           gBattleScripting + 0x21
 #define sRESHOW_HELPER_STATE         gBattleScripting + 0x22
-#define sFIELD_23                    gBattleScripting + 0x23
+#define sFIELD_23                    gBattleScripting + 0x23 //unused? - levelUpHP?
 #define sWINDOWS_TYPE                gBattleScripting + 0x24
 #define sMULTIPLAYER_ID              gBattleScripting + 0x25
 #define sSPECIAL_TRAINER_BATTLE_TYPE gBattleScripting + 0x26
@@ -51,8 +51,8 @@
 #define BS_EFFECT_BATTLER           2
 #define BS_FAINTED                  3
 #define BS_ATTACKER_WITH_PARTNER    4 // for Cmd_updatestatusicon
-#define BS_UNK_5                    5
-#define BS_UNK_6                    6
+#define BS_FAINTED_LINK_MULTIPLE_1  5 // for openpartyscreen
+#define BS_FAINTED_LINK_MULTIPLE_2  6 // for openpartyscreen
 #define BS_BATTLER_0                7
 #define BS_ATTACKER_SIDE            8 // for Cmd_jumpifability
 #define BS_TARGET_SIDE              9 // for Cmd_jumpifability
@@ -215,6 +215,8 @@
 #define VARIOUS_SET_BEAK_BLAST                  140
 #define VARIOUS_CAN_TELEPORT                    141
 #define VARIOUS_GET_BATTLER_SIDE                142
+#define VARIOUS_SET_WEATHER_GRAPHICS            143
+#define VARIOUS_TRY_ACTIVATE_JAWS_OF_CARNAGE    144
 
 // Cmd_manipulatedamage
 #define DMG_CHANGE_SIGN            0
@@ -225,8 +227,10 @@
 #define DMG_CURR_ATTACKER_HP       5
 #define DMG_BIG_ROOT               6
 #define DMG_1_2_ATTACKER_HP        7
-#define DMG_RECOIL_FROM_IMMUNE     8 // Used to calculate recoil for the Gen 4 version of Jump Kick
+#define DMG_RECOIL_FROM_IMMUNE     8  // Used to calculate recoil for the Gen 4 version of Jump Kick
 #define DMG_1_4_TARGET_HP          9
+#define DMG_TO_HP_FROM_ABILITY     10
+#define DMG_TO_HP_FROM_MOVE        11
 
 // Cmd_jumpifcantswitch
 #define SWITCH_IGNORE_ESCAPE_PREVENTION   (1 << 7)

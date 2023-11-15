@@ -15,8 +15,8 @@
 .set LOCALID_GRUNT_6, 28
 .set LOCALID_GRUNT_7, 29
 .set LOCALID_GRUNT_8, 30
-.set LOCALID_GRUNT_9, 31
-.set LOCALID_GRUNT_11, 33
+.set LOCALID_GRUNT_9, 30
+.set LOCALID_GRUNT_11, 32
 .set LOCALID_SCOTT, 34
 .set LOCALID_BRAWLY, 38
 
@@ -1234,8 +1234,8 @@ SlateportCity_Text_SaysSomethingLikeSeaIsEndless: @ 81DDEB8
 
 SlateportCity_Text_ShouldveBroughtMyGameBoy: @ 81DDF32
 	.string "Grumble…\p"
-	.string "I should've brought my Game Boy\n"
-	.string "Advance so I wouldn't get bored in line…\p"
+	.string "I should've brought Elite Redux\n"
+	.string "so I wouldn't get bored in line…\p"
 	.string "Grumble…$"
 
 SlateportCity_Text_HotSpringsAfterOperation: @ 81DDF8D

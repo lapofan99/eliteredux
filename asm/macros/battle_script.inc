@@ -744,8 +744,10 @@
 	.4byte \param0
 	.endm
 
-	.macro setdrainedhp
+	.macro checkcondition condition:req, ptr:req
 	.byte 0x88
+	.2byte \condition
+	.4byte \ptr
 	.endm
 
 	.macro statbuffchange flags:req, jumpptr:req
@@ -793,13 +795,16 @@
 	.byte 0x92
 	.endm
 
-	.macro tryKO param0:req
+	.macro battlemacros type:req
 	.byte 0x93
-	.4byte \param0
+	.2byte \type
 	.endm
 
-	.macro damagetohalftargethp
+	.macro jumpifabilityonside param0:req, ability:req, ptr:req
 	.byte 0x94
+	.byte \param0
+	.2byte \ability
+	.4byte \ptr
 	.endm
 
 	.macro setsandstorm
@@ -845,12 +850,13 @@
 	.byte 0x9e
 	.endm
 
-	.macro dmgtolevel
+	.macro calculatesetdamage
 	.byte 0x9f
 	.endm
 
-	.macro psywavedamageeffect
+	.macro trytoapplymoveeffect ptr:req
 	.byte 0xa0
+	.4byte \ptr
 	.endm
 
 	.macro counterdamagecalculator param0:req
@@ -1946,6 +1952,10 @@
 	various \battler, VARIOUS_GET_BATTLER_SIDE
 	.endm
 
+	.macro setgraphicalweathervalues
+	various BS_ATTACKER, VARIOUS_SET_WEATHER_GRAPHICS
+	.endm
+
 @ helpful macros
 	.macro setstatchanger stat:req, stages:req, down:req
 	setbyte sSTATCHANGER \stat | \stages << 3 | \down << 7
@@ -2076,6 +2086,7 @@
 
 	.macro jumpifsafeguard jumpptr:req
 	jumpifability BS_ATTACKER, ABILITY_INFILTRATOR, 1f
+	jumpifability BS_ATTACKER, ABILITY_MARINE_APEX, 1f
 	jumpifsideaffecting BS_TARGET, SIDE_STATUS_SAFEGUARD, \jumpptr
 	1:
 	.endm

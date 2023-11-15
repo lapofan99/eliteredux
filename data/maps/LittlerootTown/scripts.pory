@@ -3,7 +3,6 @@ raw `
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
 .set LOCALID_BIRCH, 8
-	
 
 LittlerootTown_MapScripts:: @ 81E7DCB
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
@@ -42,8 +41,7 @@ LittlerootTown_MapScripts:: @ 81E7DCB
 
 
 LittlerootTown_OnTransition: @ 81E7DDB
-	call_if_unset FLAG_SYS_GAME_CLEAR, LittlerootTown_EventScript_RemoveLegendaryNPC
-	call_if_set FLAG_SYS_GAME_CLEAR, LittlerootTown_EventScript_EnableLegendaryNPC
+	call LittlerootTown_EventScript_EnableLegendaryNPC
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	call Common_EventScript_SetupRivalGfxId
 	compare VAR_LITTLEROOT_INTRO_STATE, 2
@@ -64,14 +62,6 @@ LittlerootTown_OnTransition: @ 81E7DDB
 	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
 	call_if_eq LittlerootTown_EventScript_LeftLabAfterDexUpgrade
 	end
-	
-LittlerootTown_EventScript_RemoveLegendaryNPC:: @ 81E7E45
-	setflag FLAG_REMOVE_LEGENDARY_NPC
-	return
-	
-LittlerootTown_EventScript_EnableLegendaryNPC:: @ 81E7E45
-	clearflag FLAG_REMOVE_LEGENDARY_NPC
-	return
 
 LittlerootTown_EventScript_LeftLabAfterDexUpgrade:: @ 81E7E45
 	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
@@ -1923,7 +1913,13 @@ script LittlerootTown_EventScript_LegendaryNPC {
     lock
     faceplayer
 	if (!flag(FLAG_GOT_LEGENDARY_NPC_ITEMS)){
-		msgbox(format("Congratulations on becoming champion! Your efforts haven't gone unnoticed. I've been waiting this day for ages, but I can finally put these items in hands I can trust."))
+		checkSaveblockValue(SAVEBLOCK_ENABLE_LEGENDARY)
+		if(var(VAR_RESULT) == TRUE && !flag(FLAG_SYS_GAME_CLEAR)){
+			msgbox(format("Since you're playing a Randomizer mode, have all the Legendary Pokémon Items!"))
+		}
+		else{
+			msgbox(format("Congratulations on becoming champion! Your efforts haven't gone unnoticed. I've been waiting this day for ages, but I can finally put these items in hands I can trust."))
+		}
 		additem(ITEM_GRACIDEA)
 		additem(ITEM_REVEAL_GLASS)
 		additem(ITEM_DNA_SPLICERS)
@@ -2140,7 +2136,7 @@ script PKMN_Center_Move_Tutor{
 
 script PKMN_Center_EventScript_DayNightToggle{
 	msgbox("Do you want to invert day/night?\n"
-           "Useful for wild encounters.$", MSGBOX_YESNO)
+           "Only used for the Shoal Cave.$", MSGBOX_YESNO)
 	switch(var(VAR_RESULT)){
 		case YES:
 			if(flag(FLAG_IS_DAYNIGHT_INVERTED)){
@@ -2242,4 +2238,13 @@ text MultiChoice_Move_Tutor_NPC{
 
 text Text_Pokemart_Script_No_Badges{
     format("Sorry but I can't sell you any item yet, you need atleast one badge.")
+}
+
+script LittlerootTown_EventScript_EnableLegendaryNPC{
+	setflag(FLAG_REMOVE_LEGENDARY_NPC)
+	checkSaveblockValue(SAVEBLOCK_ENABLE_LEGENDARY)
+	if(var(VAR_RESULT) == TRUE || flag(FLAG_SYS_GAME_CLEAR)){
+		clearflag(FLAG_REMOVE_LEGENDARY_NPC) //Adds the NPC
+	}
+	return
 }

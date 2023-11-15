@@ -91,6 +91,7 @@ struct Trainer
     /*0x24*/ union TrainerMonPtr partyDouble;
     /*0x20*/ u8 partySizeInsaneDouble;
     /*0x28*/ union TrainerMonPtr partyInsaneDouble;
+    /*0x2F*/ u16 trainerFlag;
 };
 
 #define TRAINER_ENCOUNTER_MUSIC(trainer)((gTrainers[trainer].encounterMusic_gender & 0x7F))
