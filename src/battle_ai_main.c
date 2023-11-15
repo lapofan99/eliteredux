@@ -600,6 +600,9 @@ static s16 AI_CheckBadMove(u8 battlerAtk, u8 battlerDef, u16 move, s16 score)
     if (IsTargetingPartner(battlerAtk, battlerDef))
         return score;
 
+    if(gDisableStructs[battlerAtk].disabledMove == move && gDisableStructs[battlerAtk].disableTimer != 0)
+        RETURN_SCORE_MINUS(20);
+
     GET_MOVE_TYPE(move, moveType);
     
     // check non-user target
