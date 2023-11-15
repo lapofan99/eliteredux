@@ -1913,29 +1913,26 @@ static void Task_HandleInput(u8 taskId)
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY && ModifyMode){ 
                 //Ability Modifier
-				if(abilityNum != 0 && 
-				   GetAbilityBySpecies(sMonSummaryScreen->summary.species, abilityNum) != GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) &&
-				   GetAbilityBySpecies(sMonSummaryScreen->summary.species, (abilityNum - 1)) != ABILITY_NONE)
-					abilityNum--;
-				else
-					abilityNum = 2;
+                do{
+                    if(abilityNum != 0)
+                        abilityNum--;
+                    else
+                        abilityNum = NUM_ABILITY_SLOTS - 1;
+                }
+                while(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] == ABILITY_NONE);
 
                 if (!sMonSummaryScreen->isBoxMon){
-                    if(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != ABILITY_NONE){
-                        SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-                        CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-				        CalculateMonStats(&sMonSummaryScreen->currentMon);
-                    }
+                    SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+                    SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+                    CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				    CalculateMonStats(&sMonSummaryScreen->currentMon);
                 }
                 else{
-                    if(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != ABILITY_NONE){
-                        struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
-                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-                        SetBoxMonData(&boxMon[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-                        CalculateMonStats(&sMonSummaryScreen->currentMon);
-                        ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
-                    }
+                    struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
+                    SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+                    SetBoxMonData(&boxMon[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+                    CalculateMonStats(&sMonSummaryScreen->currentMon);
+                    ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
                 }	
 				PlaySE(SE_SELECT);
 				RefreshPageAfterChange(1);
@@ -2067,32 +2064,25 @@ static void Task_HandleInput(u8 taskId)
 			}
 			else if(sMonSummaryScreen->currPageIndex == PSS_PAGE_ABILITY && ModifyMode){ 
                 //Ability Modifier
-				if(abilityNum != 2 && 
-                    gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum + 1] &&
-                    gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum + 1] != ABILITY_NONE)
-					abilityNum++;
-                else if(abilityNum == 0 && 
-                   gBaseStats[sMonSummaryScreen->summary.species].abilities[1] == ABILITY_NONE && 
-                   gBaseStats[sMonSummaryScreen->summary.species].abilities[2] != ABILITY_NONE)
-                    abilityNum = 2;
-				else
-                    abilityNum = 0;
+                do{
+                    if(abilityNum < NUM_ABILITY_SLOTS - 1)
+                        abilityNum++;
+                    else
+                        abilityNum = 0;
+                }
+                while(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] == ABILITY_NONE);
 
                 if (!sMonSummaryScreen->isBoxMon){
-                    if(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != ABILITY_NONE){
-                        SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-                        CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
-				        CalculateMonStats(&sMonSummaryScreen->currentMon);
-                    }
+                    SetMonData(&gPlayerParty[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+                    SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+                    CalculateMonStats(&gPlayerParty[sMonSummaryScreen->curMonIndex]);
+				    CalculateMonStats(&sMonSummaryScreen->currentMon);
                 }
                 else{
-                    if(gBaseStats[sMonSummaryScreen->summary.species].abilities[abilityNum] != ABILITY_NONE){
-                        struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
-                        SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
-                        SetBoxMonData(&boxMon[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
-                        ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
-                    }
+                    struct BoxPokemon *boxMon = sMonSummaryScreen->monList.boxMons;
+                    SetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM, &abilityNum);
+                    SetBoxMonData(&boxMon[sMonSummaryScreen->curMonIndex], MON_DATA_ABILITY_NUM, &abilityNum);
+                    ExtractMonDataToSummaryStruct(&sMonSummaryScreen->currentMon);
                 }
 				PlaySE(SE_SELECT);
 				RefreshPageAfterChange(1);
