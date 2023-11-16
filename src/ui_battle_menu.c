@@ -118,8 +118,11 @@ static bool8 Menu_LoadGraphics(void);
 static void Menu_InitWindows(void);
 static void PrintToWindow(u8 windowId, u8 colorIdx);
 static void PrintFieldTab(void);
-static void PrintStatusTab(void);
+static void PrintStatsTab(void);
 static void PrintAbilityTab(void);
+static void PrintStatusTab(void);
+static void PrintDamageCalulatorTab(void);
+static void PrintDamageCalculation(u8 battler, u8 target, u16 move);
 static void Task_MenuWaitFadeIn(u8 taskId);
 static void Task_MenuMain(u8 taskId);
 
@@ -323,7 +326,7 @@ static bool8 Menu_DoGfxSetup(void)
         ShowSpeciesIcon(2);
         ShowSpeciesIcon(3);
         //SetMonTypeIcons();
-        PrintStatusTab();
+        PrintStatsTab();
         //PrintToWindow(WINDOW_1, FONT_BLACK);
         taskId = CreateTask(Task_MenuWaitFadeIn, 0);
         BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
@@ -385,6 +388,7 @@ void LoadTilemapFromMode(void)
             break;
             case TAB_ABILITIES:
             case TAB_MOVES:
+            case TAB_DAMAGE_CALCULATOR:
                 if(IsDoubleBattle())
                     LZDecompressWram(sMenu_Tilemap_Doubles_Battler_Abilities, sBg1TilemapBuffer);
                 else
@@ -525,7 +529,8 @@ static u8 statorder[NUM_BATTLE_STATS] = {
 const u8 sText_Title_Battler_Stats[]    = _("Pokémon Stats");
 const u8 sText_Title_Battler_Ability[]  = _("Abilities Info");
 const u8 sText_Title_Battler_Moves[]    = _("Moves Info");
-const u8 sText_Title_Battler_Status[]    = _("Pokémon Status");
+const u8 sText_Title_Battler_Status[]   = _("Pokémon Status");
+const u8 sText_Title_Battler_Damage[]   = _("Damage Calculator");
 const u8 sText_Title_Field_Stats[]      = _("Field Info");
 const u8 sText_Title_Controllers[]      = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
 
@@ -533,7 +538,7 @@ const u8 sText_Title_Controllers[]      = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT
 const u8 sText_Title_Type[]     = _("Type(s):");
 const u8 gText_NewLevelSymbol[] = _("{LV}{STR_VAR_1}");
 #define SPACE_BETWEEN_TYPES (5 * 8)
-static void PrintStatusTab(){
+static void PrintStatsTab(){
     u8 i, j;
     u8 x, y, x2, y2;
     u8 windowId = WINDOW_1;
@@ -721,7 +726,6 @@ static void PrintAbilityTab(){
     bool8 statStageUp = FALSE;
     bool8 isEnemyMon = GetBattlerSide(sMenuDataPtr->battlerId) == B_SIDE_OPPONENT;
 
-    
     if(!isEnemyMon){ //Enemy Mons have disabled randomized innates/abilies 
         innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
         innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
@@ -1196,6 +1200,216 @@ static void PrintMoveTab(void){
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
 
+}
+
+static void PrintStatusTab(void){
+    u8 i, j;
+    u8 x, y, x2, y2;
+    u8 windowId = WINDOW_1;
+    u8 colorIdx = FONT_BLACK;
+    u16 species = gBattleMons[sMenuDataPtr->battlerId].species;
+    u16 move1   = gBattleMons[sMenuDataPtr->battlerId].moves[0];
+    u16 move2   = gBattleMons[sMenuDataPtr->battlerId].moves[1];
+    u16 move3   = gBattleMons[sMenuDataPtr->battlerId].moves[2];
+    u16 move4   = gBattleMons[sMenuDataPtr->battlerId].moves[3];
+    u16 ability = gBattleMons[sMenuDataPtr->battlerId].ability;
+    u16 gBattleMoveDamage;
+    u8 target = 1;
+    u32 personality = gBattleMons[sMenuDataPtr->battlerId].personality;
+    u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[sMenuDataPtr->battlerId].species, gBattleMons[sMenuDataPtr->battlerId].personality);
+    u8 statStage;
+    bool8 statStageUp = FALSE;
+    bool8 isEnemyMon = GetBattlerSide(sMenuDataPtr->battlerId) == B_SIDE_OPPONENT;
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+
+    //Title
+    x  = 9;
+    y  = 0;
+    x2 = 0;
+    y2 = 0;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Battler_Status);
+    x  = 19;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
+
+    //Selector
+    x = 0;
+    y = 0;
+    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
+
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, 3);
+}
+
+
+static void PrintDamageCalulatorTab(void){
+    u8 i, j;
+    u8 x, y, x2, y2;
+    u8 windowId = WINDOW_1;
+    u8 colorIdx = FONT_BLACK;
+    u16 species = gBattleMons[sMenuDataPtr->battlerId].species;
+    u16 moves[MAX_MON_MOVES] = {gBattleMons[sMenuDataPtr->battlerId].moves[0], 
+                                gBattleMons[sMenuDataPtr->battlerId].moves[1],
+                                gBattleMons[sMenuDataPtr->battlerId].moves[2], 
+                                gBattleMons[sMenuDataPtr->battlerId].moves[3]};
+    u16 ability = gBattleMons[sMenuDataPtr->battlerId].ability;
+    u16 gBattleMoveDamage;
+    u32 personality = gBattleMons[sMenuDataPtr->battlerId].personality;
+    u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[sMenuDataPtr->battlerId].species, gBattleMons[sMenuDataPtr->battlerId].personality);
+    u8 statStage;
+    bool8 statStageUp = FALSE;
+    bool8 isEnemyMon = GetBattlerSide(sMenuDataPtr->battlerId) == B_SIDE_OPPONENT;
+    u16 move;
+    u8 target = BATTLE_OPPOSITE(sMenuDataPtr->battlerId);
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+
+    //Title
+    x  = 9;
+    y  = 0;
+    x2 = 0;
+    y2 = 0;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Battler_Damage);
+    x  = 20;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
+
+    // First Move
+    x  = 9;
+    y  = 3;
+    x2 = 0;
+    y2 = -4;
+    for(i = 0; i < MAX_MON_MOVES; i++){
+        //Move Name
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gMoveNamesLong[moves[i]]);
+
+        // Move Damage ---------------------------------------------------------------------------------------------------
+        y++;
+        if(gBattleMoves[moves[i]].split == SPLIT_STATUS || gBattleMoves[moves[i]].power == 0){
+            StringCopy(gStringVar4, gText_Target_Nothing);
+        }
+        else{
+            PrintDamageCalculation(sMenuDataPtr->battlerId, target, moves[i]);
+        }
+        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+        y = y + 3;
+    }
+
+    //Selector
+    x = 0;
+    y = 0;
+    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
+
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, 3);
+}
+
+#define HP_EV_INDEX    0
+#define ATK_EV_INDEX   1
+#define DEF_EV_INDEX   2
+#define SPEED_EV_INDEX 3
+#define SPATK_EV_INDEX 4
+#define SPDEF_EV_INDEX 5
+
+const u8 gText_SmogonDamageCalculator_FirstPartText_SpecialDefense[]              = _("{STR_VAR_1} SpA {STR_VAR_2} {STR_VAR_3} vs.");
+const u8 gText_SmogonDamageCalculator_FirstPartText_SpecialDefense_NatureUp[]     = _("{STR_VAR_1} SpA+ {STR_VAR_2} {STR_VAR_3} vs.");
+const u8 gText_SmogonDamageCalculator_FirstPartText_SpecialDefense_NatureDown[]   = _("{STR_VAR_1} SpA- {STR_VAR_2} {STR_VAR_3} vs.");
+const u8 gText_SmogonDamageCalculator_FirstPartText_PhysicalDefense[]             = _("{STR_VAR_1} Atk {STR_VAR_2} {STR_VAR_3} vs.");
+const u8 gText_SmogonDamageCalculator_FirstPartText_PhysicalDefens_NatureUp[]     = _("{STR_VAR_1} Atk+ {STR_VAR_2} {STR_VAR_3} vs.");
+const u8 gText_SmogonDamageCalculator_FirstPartText_PhysicalDefens_NatureDown[]   = _("{STR_VAR_1} Atk- {STR_VAR_2} {STR_VAR_3} vs.");
+//{STR_VAR_1}+ = Special Attack EV, {STR_VAR_2} = Pokemon Name, {STR_VAR_3} = Move Name
+const u8 gText_SmogonDamageCalculator_SecondPartText_SpecialDefense[]             = _("{STR_VAR_1}\n{STR_VAR_2} HP/ {STR_VAR_3} SpD");
+const u8 gText_SmogonDamageCalculator_SecondPartText_SpecialDefense_NatureUp[]    = _("{STR_VAR_1}\n{STR_VAR_2} HP/ {STR_VAR_3} SpD+");
+const u8 gText_SmogonDamageCalculator_SecondPartText_SpecialDefense_NatureDown[]  = _("{STR_VAR_1}\n{STR_VAR_2} HP/ {STR_VAR_3} SpD-");
+const u8 gText_SmogonDamageCalculator_SecondPartText_PhysicalDefense[]            = _("{STR_VAR_1}\n{STR_VAR_2} HP/ {STR_VAR_3} Def");
+const u8 gText_SmogonDamageCalculator_SecondPartText_PhysicalDefense_NatureUp[]   = _("{STR_VAR_1}\n{STR_VAR_2} HP/ {STR_VAR_3} Def+");
+const u8 gText_SmogonDamageCalculator_SecondPartText_PhysicalDefense_NatureDown[] = _("{STR_VAR_1}\n{STR_VAR_2} HP/ {STR_VAR_3} Def-");
+//{STR_VAR_1} = First Part {STR_VAR_2} = HP EV, {STR_VAR_3} = Special Defense EV
+const u8 gText_SmogonDamageCalculator_ThirdPart[] = _("{STR_VAR_1} {STR_VAR_2}: {STR_VAR_3}");
+//{STR_VAR_1} = Second Part {STR_VAR_2} = Target Name, {STR_VAR_3} = Min Damage
+const u8 gText_SmogonDamageCalculator_FourthPart[] = _("{STR_VAR_1}-{STR_VAR_2}\n({STR_VAR_3} - ");
+//{STR_VAR_1} = Third Part {STR_VAR_2} = Max Damage, {STR_VAR_3} = Min Percent
+const u8 gText_SmogonDamageCalculator_FifthPart[] = _("{STR_VAR_1} {STR_VAR_2}%) -- {STR_VAR_3}% chance to ");
+//{STR_VAR_1} = Foruth Part {STR_VAR_2} = Max Percent, {STR_VAR_3} = Chance
+const u8 gText_SmogonDamageCalculator_SixthPart[] = _("{STR_VAR_1} {STR_VAR_2}HKO");
+//{STR_VAR_1} = Fifth Part {STR_VAR_2} = 2HKO or 3HKO
+
+static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
+    s32 dmg, moveType, critDmg, normalDmg, critChance;
+    u8 percentage, chance, i, j;
+    struct Pokemon *party, *targetParty;
+    u8 TargetEvs[NUM_STATS];
+    u8 BattlerEvs[NUM_STATS];
+
+    //252+ SpA Abomasnow Blizzard vs. 168 HP / 0 SpD Abomasnow: 178-211 (49 - 58.1%) -- 97.7% chance to 2HKO
+
+    //To Calculate EVs
+    if (GetBattlerSide(battler) == B_SIDE_PLAYER)
+        party = gPlayerParty;
+    else
+        party = gEnemyParty;
+
+    if (GetBattlerSide(target) == B_SIDE_PLAYER)
+        targetParty = gPlayerParty;
+    else
+        targetParty = gEnemyParty;
+
+    for(i = 0 ; i < NUM_STATS; i++){
+        BattlerEvs[i] = GetMonData(&party[gBattlerPartyIndexes[battler]],      MON_DATA_HP_EV + i, NULL);
+        TargetEvs[i]  = GetMonData(&targetParty[gBattlerPartyIndexes[target]], MON_DATA_HP_EV + i, NULL);
+    }
+
+    //First Part
+    StringCopy(gStringVar2, gSpeciesNames[gBattleMons[sMenuDataPtr->battlerId].species]);
+    StringCopy(gStringVar3, gMoveNames[move]);
+    if(gBattleMoves[move].split == SPLIT_SPECIAL){
+        ConvertIntToDecimalStringN(gStringVar1, BattlerEvs[SPATK_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_SpecialDefense);
+    }
+    else{
+        ConvertIntToDecimalStringN(gStringVar1, BattlerEvs[ATK_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_PhysicalDefense);
+    }
+
+    //Second Part
+    StringCopy(gStringVar1, gStringVar4);
+    ConvertIntToDecimalStringN(gStringVar2, TargetEvs[HP_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+    if(gBattleMoves[move].split == SPLIT_SPECIAL){
+        ConvertIntToDecimalStringN(gStringVar3, TargetEvs[SPDEF_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_SpecialDefense);
+    }
+    else{
+        ConvertIntToDecimalStringN(gStringVar3, TargetEvs[DEF_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_PhysicalDefense);
+    }
+        
+    //Third Part
+    StringCopy(gStringVar1, gStringVar4);
+    StringCopy(gStringVar2, gSpeciesNames[gBattleMons[target].species]);
+    normalDmg = CalculateMoveDamage(move, sMenuDataPtr->battlerId, target, moveType, 0, FALSE, FALSE, FALSE);
+    ConvertIntToDecimalStringN(gStringVar3, normalDmg, STR_CONV_MODE_LEFT_ALIGN, 4);
+    StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_ThirdPart);
+
+    //Fourth Part gText_SmogonDamageCalculator_FourthPart
+    StringCopy(gStringVar1, gStringVar4);
+    normalDmg = CalculateMoveDamage(move, sMenuDataPtr->battlerId, target, moveType, 0, TRUE, FALSE, FALSE);
+    ConvertIntToDecimalStringN(gStringVar2, normalDmg, STR_CONV_MODE_LEFT_ALIGN, 4);
+    percentage = 50;//Todo: Calculate Percentage
+    ConvertIntToDecimalStringN(gStringVar3, percentage, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FourthPart);
+
+    //Fifth Part 
+    StringCopy(gStringVar1, gStringVar4);
+    percentage = 100;//Todo: Calculate Percentage
+    ConvertIntToDecimalStringN(gStringVar2, percentage, STR_CONV_MODE_LEFT_ALIGN, 3);
+    chance = 50;//Todo: Calculate Chance
+    ConvertIntToDecimalStringN(gStringVar3, chance, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FifthPart);
+
+    //Sixth Part
+    StringCopy(gStringVar1, gStringVar4);
+    chance = 2;//Todo: Calculate Chance
+    ConvertIntToDecimalStringN(gStringVar2, chance, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SixthPart);
 }
 
 const u8 sText_Title_Field_Turns_Left[]                   = _("Turns Left:");
@@ -1898,7 +2112,7 @@ static void PrintPage(void){
     if(sMenuDataPtr->modeId != MODE_FIELD)
         switch(sMenuDataPtr->tabId){
             case TAB_STATS:
-                PrintStatusTab();
+                PrintStatsTab();
             break;
             case TAB_ABILITIES:
                 PrintAbilityTab();
@@ -1906,8 +2120,14 @@ static void PrintPage(void){
             case TAB_MOVES:
                 PrintMoveTab();
             break;
-            default:
+            case TAB_STATUS:
                 PrintStatusTab();
+            break;
+            case TAB_DAMAGE_CALCULATOR:
+                PrintDamageCalulatorTab();
+            break;
+            default:
+                PrintStatsTab();
             break;
         }
     else{
