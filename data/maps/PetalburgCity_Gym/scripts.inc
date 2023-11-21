@@ -106,26 +106,6 @@ PetalburgCity_Gym_Movement_WallyExitGym: @ 82049EC
 	delay_16
 	step_end
 
-PetalburgCity_Gym_EventScript_Norman:: @ 82049F1
-	lock
-	faceplayer
-	switch VAR_PETALBURG_GYM_STATE
-	case 2, PetalburgCity_Gym_EventScript_NormanNoBadges
-	case 3, PetalburgCity_Gym_EventScript_NormanOneBadge
-	case 4, PetalburgCity_Gym_EventScript_NormanTwoBadges
-	case 5, PetalburgCity_Gym_EventScript_NormanThreeBadges
-	case 6, PetalburgCity_Gym_EventScript_NormanGiveKeystone
-	case 7, PetalburgCity_Gym_EventScript_NormanPostBattle
-	case 8, PetalburgCity_Gym_EventScript_NormanRematch
-	msgbox PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon, MSGBOX_DEFAULT
-	closemessage
-	switch VAR_FACING
-	case DIR_SOUTH, PetalburgCity_Gym_EventScript_BeginWallyTutorialSouth
-	case DIR_NORTH, PetalburgCity_Gym_EventScript_BeginWallyTutorialNorth
-	case DIR_WEST, PetalburgCity_Gym_EventScript_BeginWallyTutorialWest
-	case DIR_EAST, PetalburgCity_Gym_EventScript_BeginWallyTutorialEast
-	end
-
 PetalburgCity_Gym_EventScript_BeginWallyTutorialSouth:: @ 8204A80
 	setvar VAR_0x8008, 0
 	goto PetalburgCity_Gym_EventScript_BeginWallyTutorial
@@ -321,26 +301,6 @@ PetalburgCity_Gym_EventScript_WallyFaceDown:: @ 8204D3F
 	waitmovement 0
 	return
 
-PetalburgCity_Gym_EventScript_NormanNoBadges:: @ 8204D4A
-	msgbox PetalburgCity_Gym_Text_NormanGoToRustboro, MSGBOX_DEFAULT
-	release
-	end
-
-PetalburgCity_Gym_EventScript_NormanOneBadge:: @ 8204D54
-	msgbox PetalburgCity_Gym_Text_NormanGoToDewford, MSGBOX_DEFAULT
-	release
-	end
-
-PetalburgCity_Gym_EventScript_NormanTwoBadges:: @ 8204D5E
-	msgbox PetalburgCity_Gym_Text_YouHaveGottenStronger, MSGBOX_DEFAULT
-	release
-	end
-
-PetalburgCity_Gym_EventScript_NormanThreeBadges:: @ 8204D68
-	msgbox PetalburgCity_Gym_Text_YouHaveGottenStronger, MSGBOX_DEFAULT
-	release
-	end
-
 PetalburgCity_Gym_EventScript_NormanFaceDoorSouth:: @ 8204D72
 	return
 
@@ -356,32 +316,9 @@ PetalburgCity_Gym_EventScript_NormanFaceDoorWest:: @ 8204D7E
 PetalburgCity_Gym_EventScript_NormanFaceDoorEast:: @ 8204D7F
 	return
 
-PetalburgCity_Gym_EventScript_NormanPostBattle:: @ 8204D80
-	call_if_set FLAG_BADGE06_GET, PetalburgCity_Gym_EventScript_Give_Slakingite
-	call PetalburgCity_Gym_EventScript_ShouldGiveEnigmaBerry
-	compare VAR_RESULT, TRUE
-	goto_if_eq PetalburgCity_Gym_EventScript_GiveEnigmaBerry
-	goto_if_unset FLAG_RECEIVED_TM42, PetalburgCity_Gym_EventScript_GiveFacade2
-	goto_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_NoAmountOfTrainingIsEnough
-	msgbox PetalburgCity_Gym_Text_DadGoingToKeepTraining, MSGBOX_DEFAULT
-	release
-	end
-
 PetalburgCity_Gym_EventScript_GiveFacade2:: @ 8204DAC
-	call PetalburgCity_Gym_EventScript_GiveFacade
+	call PetalburgCity_Gym_EventScript_Kangaskhan
 	release
-	end
-
-PetalburgCity_Gym_EventScript_NormanRematch::
-	message PetalburgCity_Gym_Text_NormanChooseFormat
-	waitmessage
-	multichoice 17, 6, MULTI_REMATCH_BATTLE_MODE, 0
-	switch VAR_RESULT
-	case 0, PetalburgCity_Gym_EventScript_SetSingles
-	case 1, PetalburgCity_Gym_EventScript_SetDoubles
-	case 2, PetalburgCity_Gym_EventScript_Exit
-	case 127, PetalburgCity_Gym_EventScript_Exit
-	releaseall
 	end
 
 PetalburgCity_Gym_EventScript_SetSingles::
@@ -450,22 +387,6 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry:: @ 8204E1D
 	setvar VAR_ENIGMA_BERRY_AVAILABLE, 0
 	release
 	end
-
-PetalburgCity_Gym_EventScript_NormanGiveKeystone::
-	goto_if_set FLAG_SYS_RECEIVED_KEYSTONE, PetalburgCity_Gym_EventScript_NormanBattle
-	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
-	giveitem ITEM_MEGA_BRACELET
-	setflag FLAG_SYS_RECEIVED_KEYSTONE
-	msgbox PetalburgCity_Gym_Text_NormanMegaBracelet, MSGBOX_DEFAULT
-	giveBattleItems
-	playfanfare MUS_OBTAIN_ITEM
-	message PetalburgCity_Gym_Text_PlayerGotMegaStones
-	waitfanfare
-	closemessage
-	delay 30
-	msgbox PetalburgCity_Gym_Text_NormanWheneverReady, MSGBOX_DEFAULT
-	closemessage
-	end
 	
 PetalburgCity_Gym_EventScript_NormanBattle::
 	msgbox PetalburgCity_Gym_Text_NormanBattleIntro, MSGBOX_DEFAULT
@@ -493,7 +414,7 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
 	call PetalburgCity_Gym_EventScript_UnlockAllDoors
 	special DrawWholeMapView
-	call PetalburgCity_Gym_EventScript_GiveFacade
+	call PetalburgCity_Gym_EventScript_Kangaskhan
 	delay 30
 	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
 	closemessage
@@ -833,11 +754,6 @@ PetalburgCity_Gym_Movement_PlayerExitWithWallyEast: @ 8205123
 	walk_down
 	delay_8
 	step_end
-
-PetalburgCity_Gym_EventScript_NoAmountOfTrainingIsEnough:: @ 820512D
-	msgbox PetalburgCity_Gym_Text_DadNoAmountOfTrainingIsEnough, MSGBOX_DEFAULT
-	release
-	end
 
 PetalburgCity_Gym_EventScript_SpeedRoomDoor:: @ 8205137
 	lockall
@@ -1431,10 +1347,6 @@ PetalburgCity_Gym_Text_NormanMegaBracelet:
 	.string "battle!\p"
 	.string "Here, take these Mega Stones too.$"
 
-PetalburgCity_Gym_Text_NormanWheneverReady:
-	.string "Now then, {PLAYER}!\n"
-	.string "I'm ready when you are!$"
-
 PetalburgCity_Gym_Text_NormanBattleIntro:
 	.string "{PLAYER}…\p"
 	.string "I'm so happy that I can have\n"
@@ -1781,11 +1693,11 @@ PetalburgCity_Gym_Text_NormanAllowLegends:
 	.string "Dad: Do you want to try battling my\n"
 	.string "Legendary Pokémon?$"
 
-PetalburgCity_Gym_EventScript_GiveFacade::
-	msgbox PetalburgCity_Gym_EventScript_GiveFacade_Text_0
+PetalburgCity_Gym_EventScript_Kangaskhan::
+	msgbox PetalburgCity_Gym_EventScript_Kangaskhan_Text_0
 	givecustommon SPECIES_KANGASKHAN, 45, ITEM_FLAME_ORB, ITEM_CHERISH_BALL, NATURE_JOLLY, 2, 0, 252, 4, 252, 0, 0, 0, 0, 0, 0, 0, 0, MOVE_FAKE_OUT, MOVE_DRAIN_PUNCH, MOVE_FACADE, MOVE_COMET_PUNCH, FALSE
 	playfanfare MUS_OBTAIN_ITEM
-	msgbox PetalburgCity_Gym_EventScript_GiveFacade_Text_1
+	msgbox PetalburgCity_Gym_EventScript_Kangaskhan_Text_1
 	waitfanfare
 	setflag FLAG_RECEIVED_TM42
 	return
@@ -1819,12 +1731,89 @@ PetalburgCity_Gym_EventScript_CheckTrainers_3:
 	goto PetalburgCity_Gym_EventScript_CheckTrainers_2
 
 
-PetalburgCity_Gym_EventScript_Give_Slakingite::
-	goto_if_unset FLAG_OBTAINED_SLAKINGITE, PetalburgCity_Gym_EventScript_Give_Slakingite_1
+PetalburgCity_Gym_EventScript_Norman::
+	lock
+	faceplayer
+	switch VAR_PETALBURG_GYM_STATE
+	case 0, PetalburgCity_Gym_EventScript_Norman_2
+	case 1, PetalburgCity_Gym_EventScript_Norman_3
+	case 2, PetalburgCity_Gym_EventScript_Norman_4
+	case 3, PetalburgCity_Gym_EventScript_Norman_5
+	case 4, PetalburgCity_Gym_EventScript_Norman_6
+	case 5, PetalburgCity_Gym_EventScript_Norman_7
+	case 6, PetalburgCity_Gym_EventScript_Norman_8
+	case 7, PetalburgCity_Gym_EventScript_Norman_9
+	case 8, PetalburgCity_Gym_EventScript_Norman_9
 	return
 
-PetalburgCity_Gym_EventScript_Give_Slakingite_1:
-	msgbox PetalburgCity_Gym_EventScript_Give_Slakingite_Text_0
+PetalburgCity_Gym_EventScript_Norman_2:
+	goto PetalburgCity_Gym_EventScript_Norman_WallyTutorial
+	return
+
+PetalburgCity_Gym_EventScript_Norman_3:
+	return
+
+PetalburgCity_Gym_EventScript_Norman_4:
+	msgbox PetalburgCity_Gym_Text_NormanGoToRustboro, MSGBOX_DEFAULT
+	release
+	end
+	return
+
+PetalburgCity_Gym_EventScript_Norman_5:
+	msgbox PetalburgCity_Gym_Text_NormanGoToDewford, MSGBOX_DEFAULT
+	release
+	end
+	return
+
+PetalburgCity_Gym_EventScript_Norman_6:
+	msgbox PetalburgCity_Gym_Text_YouHaveGottenStronger, MSGBOX_DEFAULT
+	release
+	end
+	return
+
+PetalburgCity_Gym_EventScript_Norman_7:
+	msgbox PetalburgCity_Gym_Text_YouHaveGottenStronger, MSGBOX_DEFAULT
+	release
+	end
+	return
+
+PetalburgCity_Gym_EventScript_Norman_8:
+	goto_if_set FLAG_SYS_RECEIVED_KEYSTONE, PetalburgCity_Gym_EventScript_Norman_11
+	msgbox PetalburgCity_Gym_Text_NormanIntro, MSGBOX_DEFAULT
+	giveitem ITEM_MEGA_BRACELET
+	setflag FLAG_SYS_RECEIVED_KEYSTONE
+	msgbox PetalburgCity_Gym_Text_NormanMegaBracelet, MSGBOX_DEFAULT
+	giveBattleItems
+	playfanfare MUS_OBTAIN_ITEM
+	message PetalburgCity_Gym_EventScript_Norman_Text_0
+	waitfanfare
+	closemessage
+	delay 30
+	msgbox PetalburgCity_Gym_EventScript_Norman_Text_1, MSGBOX_DEFAULT
+	closemessage
+	end
+
+PetalburgCity_Gym_EventScript_Norman_9:
+	goto_if_unset FLAG_BADGE06_GET, PetalburgCity_Gym_EventScript_Norman_21
+PetalburgCity_Gym_EventScript_Norman_20:
+	goto_if_unset FLAG_RECEIVED_TM42, PetalburgCity_Gym_EventScript_Norman_16
+	goto_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_Norman_17
+	msgbox PetalburgCity_Gym_Text_DadGoingToKeepTraining, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_Gym_EventScript_Norman_10:
+	return
+
+PetalburgCity_Gym_EventScript_Norman_11:
+	goto PetalburgCity_Gym_EventScript_NormanBattle
+	goto PetalburgCity_Gym_EventScript_Norman_10
+
+PetalburgCity_Gym_EventScript_Norman_14:
+	return
+
+PetalburgCity_Gym_EventScript_Norman_15:
+	msgbox PetalburgCity_Gym_EventScript_Norman_Text_2
 	giveitem ITEM_SLAKINGITE
 	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare
@@ -1832,12 +1821,78 @@ PetalburgCity_Gym_EventScript_Give_Slakingite_1:
 	release
 	end
 
+PetalburgCity_Gym_EventScript_Norman_16:
+	goto PetalburgCity_Gym_EventScript_Kangaskhan
+	goto PetalburgCity_Gym_EventScript_Norman_14
 
-PetalburgCity_Gym_EventScript_GiveFacade_Text_0:
+PetalburgCity_Gym_EventScript_Norman_17:
+	goto PetalburgCity_Gym_EventScript_Norman_Rematch
+	goto PetalburgCity_Gym_EventScript_Norman_14
+
+PetalburgCity_Gym_EventScript_Norman_21:
+	goto_if_unset FLAG_OBTAINED_SLAKINGITE, PetalburgCity_Gym_EventScript_Norman_15
+	goto PetalburgCity_Gym_EventScript_Norman_20
+
+
+PetalburgCity_Gym_EventScript_Norman_WallyTutorial::
+	msgbox PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon, MSGBOX_DEFAULT
+	closemessage
+	switch VAR_FACING
+	case DIR_SOUTH, PetalburgCity_Gym_EventScript_Norman_WallyTutorial_3
+	case DIR_NORTH, PetalburgCity_Gym_EventScript_Norman_WallyTutorial_4
+	case DIR_WEST, PetalburgCity_Gym_EventScript_Norman_WallyTutorial_5
+	case DIR_EAST, PetalburgCity_Gym_EventScript_Norman_WallyTutorial_6
+PetalburgCity_Gym_EventScript_Norman_WallyTutorial_1:
+	end
+
+PetalburgCity_Gym_EventScript_Norman_WallyTutorial_3:
+	goto PetalburgCity_Gym_EventScript_BeginWallyTutorialSouth
+	goto PetalburgCity_Gym_EventScript_Norman_WallyTutorial_1
+
+PetalburgCity_Gym_EventScript_Norman_WallyTutorial_4:
+	goto PetalburgCity_Gym_EventScript_BeginWallyTutorialNorth
+	goto PetalburgCity_Gym_EventScript_Norman_WallyTutorial_1
+
+PetalburgCity_Gym_EventScript_Norman_WallyTutorial_5:
+	goto PetalburgCity_Gym_EventScript_BeginWallyTutorialWest
+	goto PetalburgCity_Gym_EventScript_Norman_WallyTutorial_1
+
+PetalburgCity_Gym_EventScript_Norman_WallyTutorial_6:
+	goto PetalburgCity_Gym_EventScript_BeginWallyTutorialEast
+	goto PetalburgCity_Gym_EventScript_Norman_WallyTutorial_1
+
+
+PetalburgCity_Gym_EventScript_Norman_Rematch::
+	message PetalburgCity_Gym_Text_NormanChooseFormat
+	waitmessage
+	multichoice 17, 6, MULTI_REMATCH_BATTLE_MODE, 0
+	switch VAR_RESULT
+	case 0, PetalburgCity_Gym_EventScript_Norman_Rematch_3
+	case 1, PetalburgCity_Gym_EventScript_Norman_Rematch_4
+	case 2, PetalburgCity_Gym_EventScript_Norman_Rematch_5
+	case 127, PetalburgCity_Gym_EventScript_Norman_Rematch_5
+PetalburgCity_Gym_EventScript_Norman_Rematch_1:
+	releaseall
+	end
+
+PetalburgCity_Gym_EventScript_Norman_Rematch_3:
+	goto PetalburgCity_Gym_EventScript_SetSingles
+	goto PetalburgCity_Gym_EventScript_Norman_Rematch_1
+
+PetalburgCity_Gym_EventScript_Norman_Rematch_4:
+	goto PetalburgCity_Gym_EventScript_SetDoubles
+	goto PetalburgCity_Gym_EventScript_Norman_Rematch_1
+
+PetalburgCity_Gym_EventScript_Norman_Rematch_5:
+	goto PetalburgCity_Gym_EventScript_Exit
+	goto PetalburgCity_Gym_EventScript_Norman_Rematch_1
+
+
+PetalburgCity_Gym_EventScript_Kangaskhan_Text_0:
 	.string "Take this special Pokémon as a gift\n"
 	.string "from me!$"
 
-PetalburgCity_Gym_EventScript_GiveFacade_Text_1:
+PetalburgCity_Gym_EventScript_Kangaskhan_Text_1:
 	.string "{PLAYER} got Norman's {COLOR BLUE}Kangaskhan{COLOR DARK_GRAY} as\n"
 	.string "a gift!$"
 
@@ -1846,9 +1901,13 @@ PetalburgCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "defeat every trainer on this Gym\l"
 	.string "before battling your dad.$"
 
-PetalburgCity_Gym_EventScript_Give_Slakingite_Text_0:
+PetalburgCity_Gym_EventScript_Norman_Text_0:
+	.string "{PLAYER} got all the {COLOR LIGHT_GREEN}Mega Stones{COLOR DARK_GRAY}!$"
+
+PetalburgCity_Gym_EventScript_Norman_Text_1:
+	.string "Now then, {PLAYER}! I'm ready when\n"
+	.string "you are!$"
+
+PetalburgCity_Gym_EventScript_Norman_Text_2:
 	.string "Take this special Item as a gift from\n"
 	.string "me!$"
-
-PetalburgCity_Gym_Text_PlayerGotMegaStones::
-	.string "{PLAYER} got all the {COLOR LIGHT_GREEN}Mega Stones{COLOR DARK_GRAY}!$"
