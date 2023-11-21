@@ -1751,6 +1751,9 @@ PetalburgCity_Gym_EventScript_Norman_2:
 	return
 
 PetalburgCity_Gym_EventScript_Norman_3:
+	msgbox PetalburgCity_Gym_EventScript_Norman_Text_0, MSGBOX_DEFAULT
+	release
+	end
 	return
 
 PetalburgCity_Gym_EventScript_Norman_4:
@@ -1785,11 +1788,11 @@ PetalburgCity_Gym_EventScript_Norman_8:
 	msgbox PetalburgCity_Gym_Text_NormanMegaBracelet, MSGBOX_DEFAULT
 	giveBattleItems
 	playfanfare MUS_OBTAIN_ITEM
-	message PetalburgCity_Gym_EventScript_Norman_Text_0
+	message PetalburgCity_Gym_EventScript_Norman_Text_1
 	waitfanfare
 	closemessage
 	delay 30
-	msgbox PetalburgCity_Gym_EventScript_Norman_Text_1, MSGBOX_DEFAULT
+	msgbox PetalburgCity_Gym_EventScript_Norman_Text_2, MSGBOX_DEFAULT
 	closemessage
 	end
 
@@ -1813,7 +1816,7 @@ PetalburgCity_Gym_EventScript_Norman_14:
 	return
 
 PetalburgCity_Gym_EventScript_Norman_15:
-	msgbox PetalburgCity_Gym_EventScript_Norman_Text_2
+	msgbox PetalburgCity_Gym_EventScript_Norman_Text_3
 	giveitem ITEM_SLAKINGITE
 	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare
@@ -1902,12 +1905,16 @@ PetalburgCity_Gym_EventScript_CheckTrainers_Text_0:
 	.string "before battling your dad.$"
 
 PetalburgCity_Gym_EventScript_Norman_Text_0:
-	.string "{PLAYER} got all the {COLOR LIGHT_GREEN}Mega Stones{COLOR DARK_GRAY}!$"
+	.string "This is a failsafe, if you find this file\n"
+	.string "a bug report please$"
 
 PetalburgCity_Gym_EventScript_Norman_Text_1:
+	.string "{PLAYER} got all the {COLOR LIGHT_GREEN}Mega Stones{COLOR DARK_GRAY}!$"
+
+PetalburgCity_Gym_EventScript_Norman_Text_2:
 	.string "Now then, {PLAYER}! I'm ready when\n"
 	.string "you are!$"
 
-PetalburgCity_Gym_EventScript_Norman_Text_2:
+PetalburgCity_Gym_EventScript_Norman_Text_3:
 	.string "Take this special Item as a gift from\n"
 	.string "me!$"
