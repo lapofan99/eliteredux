@@ -2282,7 +2282,7 @@ Breloom
    comment = Breloom is an strong Swords Dance abuser that uses Toxic Boost Technician Bullet Seed to deal large amounts of damage and passively recovers because of Poison Heal. If you know that your opponent outspeeds you or that they are resistant to grass, you can use Mach Punch to hit them hard. With the exception of flying-types with priority such as Braviary or Dragonite, most flying Pokemon that threaten an OHKO on Breloom can be checked with Rock Tomb. If your opponent doesn't have any flying-type Pokémon, you can use Spore instead of Rock Tomb to make setting up easier.
     .tags = Singles, Offensive
 }
-Tapu Lele
+Tapu-Lele
 {
     name = Calm Mind Sweeper
     item = Leftovers
