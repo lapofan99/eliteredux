@@ -542,7 +542,7 @@ struct SaveBlock2
               u8 moveRandomizedMode:1;
               u8 typeRandomizedMode:1;
               u8 encounterRandomizedLegendaryMode:1;
-              u8 filler:2;
+              u8 optionsHpBarSpeed:2;
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
