@@ -2162,3 +2162,247 @@ Victreebel
    comment = Substitutes to Activate Liechi Berry (preferably in Sun), waits a couple turns (click Substitute if Destiny Bond scares you), gets many attack boosts, breaks walls. 3rd slot depends on what you want whether it's support or priority. Don't recommend Jolly to get kills it wouldn't without +attack nature. You can pick whether you want the power or accuracy. (Note: for 1.6 and up)
    .tags = Singles, Offensive
 }
+Wigglytuff
+{
+    name = Defensive Powerhouse
+    item = Assault Vest
+    ability = Magic Guard
+    evs = 252, 0, 110, 64, 84, 0
+    nature = Bold
+    moves = Boomburst, Moonblast, Fire Blast/Flamethrower, Misty Explosion
+    comment = With access to Fur Coat and solid offenses, HP, and Special Defense, Wigglytuff can be an effective slow defensive Pokémon that's capable of dealing solid damage thanks to STAB Boomburst. Fur Coat allows it to have more longevity alongside Assault Vest and Magic Guard. Use Fire Blast or Flamethrower to deal with Steel-type Pokémon, and Misty Explosion when your HP is low.
+    .tags = Defensive, Offensive
+}
+Machamp
+{ 
+    name = Sleep with Pikachu; Cute. Sleep with Machamp; Weird. 
+    item = Machampite
+    ability = Raging Boxer
+    evs = 252, 252, 4, 0, 0, 0
+    nature = Adamant / Impish
+    moves = Dynamic Punch, Stone Edge, Mach Punch / Bullet Punch, Drain Punch / Knock Off
+   comment = Thanks to No Guard and Iron Fist, Dynamic Punch becomes the best STAB move for Machamp, with the bonus of confusing your opponent. Stone Edge to ensure you hit every types neutrally. Prio-Punches to deal with faster threats. Drain Punch combined with MMachamp's natural bulk allows it to get multiple KOs before going down(while also making it easier to get multiple Anger Point boosts). Knock Off is to punish any defensive walls that wants to get in your way. 
+    .tags = Singles, Offensive
+}
+Mega Swalot
+{ 
+    name = Stockpile Wall
+    item = Swalotite
+    ability = Regenerator
+    evs = 252, 0, 4, 0, 252, 0
+    nature = Careful / Calm
+    moves = Sludge Bomb / Gunk Shot, Recover, Stockpile, Protect
+   comment = Use Regenerator for pre-mega utility, however Poison Absorb is also a good choice depending on the rest of your team. Sludge Bomb for consistency, or Gunk Shot for more damage, too bad it doesn't get any poison stab that makes use of poison touch. Recover is for healing, Stockpile is to increase its longevity even more, and Protect is to rack up that passive damage from Toxic Spill and any poison you might get with your poison stab. Max Special Defense because Liquified already defends it against most physical attacks. 
+    .tags = Singles, Defensive
+}
+Plusle
+{
+    name = Glass Cannon
+    item = Shell Bell
+    ability Transistor
+    evs = 0, 0, 0, 252, 6, 252
+    nature = Modest
+    moves = Protect, Thunderbolt, Volt Switch, Swift / Uproar
+    comment = You get Plusle as early as Brawly, and thanks to Speed Boost, you're gonna have the ability to outspeed pretty much everything in the early, mid, and late game. Pixilate Uproar hits super hard, as do Transistor Thunderbolts. If your opponent is using a ground or poison move, just Volt Switch out of there into something that can tank it. In doubles, you can swap Uproar out with Swift if you want double target damage, and pairing Plusle up with a fellow Minun or other Plus/Minus pokemon like Raichu, Rotom, or Emolga can lead get some nasty sweeps. 
+}
+Ninjask
+{
+    name = Speed Runner
+    item = Weakness Policy
+    ability = Aerilate / Speed Force
+    evs = 6, 252, 0, 0, 0, 252 
+    nature = Jolly / Adamant
+    moves = Endure, Acrobatics, Night Slash, Extreme Speed
+    comment = This set pretty much is a High Risk High Reward set as Endure is the main strategy, pairing it with weakness policy an Item that boosts your ATK and SpATK significantly. Although you shouldn't expect this set to work on every occasion or situation, do know that if you do get this set-up, which is very easy to do against specific Pokemon of course, this Pokemon will be dishing out massive damage. This Pokemon has quite the potential to deal massive damage to walls as well, so setting up hazards to chip away at the enemy HP may most likely KO due to Acrobatics + Weakness Policy. But of course if you decide to run Speed Force, I'd highly recommend running the Jolly Nature, and for Aerilate I'd suggest Adamant. Extreme Speed isn't just here for the Aerilate Bonus, it's pretty handy as a priority move to be able to allow Ninjask to move first against some Pokemon that like to rely on Priority, main weakness to this set of course is status and multi-hit moves as Ninjask will crumble.
+    .tags = Singles, Offensive 
+}
+Kartana
+{
+    name = Scarftana
+    item = Choice Scarf
+    ability = Keen Edge
+    evs = 0, 252, 0, 0, 6, 252
+    nature = Jolly
+    moves = Excalibur, Leaf Blade / Solar Blade, Guillotine, Sacred Sword, 
+   comment = Simple scarf set, use Solar Blade in sun, Leaf Blade out of sun. Every move is boosted by Keen Edge, Violent Rush is an option but not preferred because you want the consistent boost of Keen Edge, Scarf and Jolly nature allow Kartana to outspeed and grab a beast boost of a lot of things to get going.
+}
+Serperior
+{ 
+    name = Majestic Serpent
+    item = Focus Sash / Big Root / Assault Vest
+    ability = Contrary
+    evs = 0, 168, 0,  90, 0, 252
+    nature = Jolly/Naive
+    moves = Protect/Iron Head/Iron Tail, Giga Drain/Leaf Storm, Draco Meteor, Protect
+    comment = With Contrary as your ability to invert stat losses, this majestic serpent can be used in a versatile manner. Don't be deceived by Jolly nature and low EVs in SpAtk: Contrary Draco Meteor makes up for it as it increases the stat now twice per use. If your opponent is slower than you, Focus Sash allows you to use Draco Meteor at least once to raise ur SpAtk. Then you can finish your opponent with a more powerful Draco Meteor or another special move.
+    With Big Root and increased SpAtk, you can now heal yourself at a Giga rate with Giga Drain! Use of Strength now increases your Defense and Special Defense which makes it more useful in covering your weakness for Bug/Flying/Ice type mons.
+    If you are not comfortable with Jolly Nature, you can use Naive and Assault Vest to keep things balanced but you will have to replace Protect with an attacking move like Iron Head/Tail for Ice/Fairy types.
+    Overall, if your team is slow and doesn't carry priority moves, this majestic serpent with mixed movesets can elegantly sweep your team and may even be at Full HP at the end of a battle.
+    .tags = Singles, Mixed, Offensive
+}
+Whimsicott
+{
+    name = Stallcott
+    item = Leftovers
+    ability = Prankster
+    evs = 252, 0, 252, 0, 4, 0
+    nature = Bold
+    moves = Strength Sap, Protect, Leech Seed / Toxic, Worry Seed / Giga Drain / Draining Kiss
+   comment = With an increased HP stat and the Fluffy innate, Whimsicott can serve as a surprisingly effective physical wall. Strength Sap is a must, as it both decreases your opponent's damage output and heals you more than Recover. Worry Seed can get rid of annoying abilities like Impenetrable or Tough Claws, while Giga Drain and Draining Kiss provide additional damage and a little extra healing.
+    .tags = Singles, Doubles, Defensive
+}
+Tsareena
+{
+    name = Spin Sweeper
+    item = Wide Lens / Life Orb 
+    ability = Hyper Aggressive
+    evs = 252, 252, 4, 0, 0, 0
+    nature = Adamant
+    moves = Power Whip, Hi Jump Kick, Triple Axel, Rapid Spin
+   comment = Rapid Spin not only provides hazard support, but also gives Tsareena +2 speed due to hitting twice. This allows her to outspeed almost everything in the game (even with no Speed EVs!) and be nigh impossible to revenge kill thanks to Queenly Majesty. Wide Lens is the safer item choice, while Life Orb trades accuracy for power and synergizes well with Looter. Overall, if you're tired of using Grass-types that rely on Chlorophyll/sun, Tsareena might just be the Pokemon for you.
+    .tags = Singles, Offensive
+}
+{ 
+    name = Vaporeon
+    item = Leftovers
+    ability = Drizzle / Rain Dish
+    evs = 252, 0, 0, 4, 252, 0
+    nature = Calm
+    moves = Stored Power, Draining Kiss, Calm Mind, Acid Armor
+   comment = Water absorb is your answer to water type leads who you can set up on and use stored power to sweep after enough boosts. Drizzle pairs with hydration to prevent statuses while setting up, but Rain Dish is more optimal when the opponent’s lead already has Drizzle. When adding Draining Kiss for Dark type coverage and recovery, Vaporeon can sweep entire teams of water trainers and certain Team Aqua fights.
+}
+Breloom
+{
+    name = Poison Heal Sweeper
+    item = Toxic Orb
+    ability = Poison Heal
+    evs = 0, 252, 0, 0, 4, 252
+    nature = Jolly
+    moves = Swords Dance, Mach Punch, Bullet Seed, Rock Tomb / Spore
+   comment = Breloom is an strong Swords Dance abuser that uses Toxic Boost Technician Bullet Seed to deal large amounts of damage and passively recovers because of Poison Heal. If you know that your opponent outspeeds you or that they are resistant to grass, you can use Mach Punch to hit them hard. With the exception of flying-types with priority such as Braviary or Dragonite, most flying Pokemon that threaten an OHKO on Breloom can be checked with Rock Tomb. If your opponent doesn't have any flying-type Pokémon, you can use Spore instead of Rock Tomb to make setting up easier.
+    .tags = Singles, Offensive
+}
+Tapu Lele
+{
+    name = Calm Mind Sweeper
+    item = Leftovers
+    ability = Majestic Moth / Unaware
+    evs = 0, 0, 0, 252, 252, 4
+    nature = Timid
+    moves = Calm Mind, Psyshock / Stored Power, Focus Blast / Aura Sphere, Moonblast
+   comment = Switch in on a Pokemon that can’t do much damage to Tapu Lele, such as a Pokemon that relies on priority like Braviary or a setup sweeper if you’re running Unaware. Aura Sphere can be used instead of Focus Blast if you don’t want to deal with Focus Blasts bad accuracy. Use Stored Power over Psyshock if your opponent has an Unaware or Calm Mind user.
+    .tags = Singles, Offensive
+}
+Landorus-Therian
+{
+    name = Physically Defensive
+    item = Leftovers
+    ability = Moxie
+    evs = 252, 0, 164, 0, 0, 92
+    nature = Impish
+    moves = Stealth Rock, Earthquake, U–turn, Toxic / Knock Off
+   comment = Anybody who’s played Gen 8 OU knows what this set does. U-turn helps out Landorus even better in this rom hack due to Landorus getting Regenerator as one of its innates. Both Toxic and Knock Off can cripple a foe, but it depends on what Pokemon your opponent has. Use Knock Off for Heavy-Duty Boots users like Volcarona, Fearow, and Zapdos. Use Toxic to cripple walls that otherwise check Landorus like Slowbro, Dewgong, and Vaporeon.
+    .tags = Singles, Defensive
+}
+Landorus-Therian
+{
+    name = Swords Dance
+    item = Custap Berry
+    ability = Aerilate
+    evs = 0, 252, 4, 0, 0, 252
+    nature = Adamant
+    moves = Swords Dance, Fissure, Double-Edge, Stone Edge
+   comment = Landorus-Therian hits like a truck after 1 Swords Dance, and is even able to break through monstrous walls like M-Aggron, Slowbro, Steelix, and Ferrothorn.
+    .tags = Singles, Offensive
+}
+Landorus-Therian
+{
+    name = Suicide Lead
+    item = Focus Sash
+    ability = Aerilate
+    evs = 0, 252, 0, 0, 4, 252
+    nature = Jolly
+    moves = Stealth Rock, Explosion, Fissure, Knock Off
+   comment = Set up rocks, then cripple something with Knock Off or an Aerilate-boosted Explosion before dying.
+    .tags = Singles, Offensive
+}
+Rayquaza-Mega
+{
+    name = THE PAIN PLANE
+    item = Life Orb
+    ability = Air Blower (Pre-Mega)
+    evs = 0, 252, 0, 4, 252, 0
+    nature = Jolly
+    moves = Dragon Dance, Dragon Ascent, Core Enforcer, V-Create / Earthquake
+   comment = "As the two primordial titans clashed, it seemed like it would cause the end of all life. When a third primordial beast approached, many thought it would be their ends, until the third beast finally stopped the two clashing terrors" - Book of Rayquaza, Chapter 0
+    .tags = Singles, Offensive
+}
+Hitmonchan
+{
+    name = Perfectionist Abuser
+    item = Liechi Berry
+    ability = Raging Boxer
+    evs = 0, 252, 0, 0, 4, 252
+    nature = Adamant
+    moves = Endure, Reversal, Bullet Punch, Feint
+   comment = Endure an enemies attack then proceed to sweep with a base 200 power priority STAB move. Just be aware of ghosts and priority abusers.
+    .tags = Singles, Offensive, Troll
+}
+Feraligatr-mega-Y
+{ 
+    name = ehehehhe hyper beam go BRRRRRRRRRRR
+    item = feralagite y 
+    pre mega ability = intimidate
+    evs = 4, 0, 0, 252, 0, 25
+    nature = timid
+    moves = Hydro Cannon, Hyper Beam, Ice Beam, Agility 
+   comment = Feragatr gets 2 new megas (guess darky realy likes florida) But we,ll be using the y mega. With this mega feralagatr becomes a bulky special attacker and also changes from water/dark to electrick/type.The goal for this strat is to hopefully live through one hit activate riptide (better torrent) use agility to offset its horrible speed and then spam galvanize hyper beam and hydro cannon with no stinking rechange due to  rampage. Also has ice beam for bolt beam coverage and to kill grass types that may thwart your crocodile rampage. But the main appeal of this set is to spam 150 bp moves with almost no drawbacks like your a gen 1 tauros.
+}
+Hitmonchan-Mega
+{ 
+    name = Blitz Boxer Sweeper / Cleaner
+    item = Hitmonchanite
+    ability = Blitz Boxer (Pre-Mega)
+    evs = 0, 252, 0, 0, 48, 208
+    nature = Jolly
+    moves = Close Combat / Drain Punch, Seismic Fist, Ice Punch / Frustration, Meteor Mash / Power-Up Punch / Frustration
+   comment = With the combination of Blitz Boxer, Power Fists, and Raging Boxer, Mega-Hotmonchan finds itself with the ability to both be a special sweeper and cleaner. 
+   Drain Punch serves as a reliable STAB with the extra benefit of healing to stay healthy for Blitz Boxer's Priority. This pairs well with Power-Up Punch to boost it's attack to heal back it's lost health next turn.
+   Close Combat is a more aggressive fighting STAB with immediate firepower that can clean unprepared teams in the late-game or sweep unboosted altogether.
+   Seismic Fist works as it's ground STAB and pairs with Ice Punch for near perfect coverage. Frustration is sometimes prefered over over Ice Punch due the commodity of levitating ghost types (Aegislash, Rotoms, Chandelure, etc) immune to both of Hitmonchan-Mega's STABs.
+   Power-Up Punch works with Raging Boxer to  raise its already high attack stat to absurd levels, while Meteor Mash or other coverage serve to hit resists that wall it otherwise.
+   252 attack is to let Himonchan hit as hard as it can and 208 speed with a Jolly nature allows for it to outspeed Timid base 100s. 48 goes into its SpDef for extra bulk - it does not go into HP because it makes it harder to heal back to full with Drain Punch. With that being said, 44 of the SpDef evs can be re-invested into speed for easier cleaning with Close Combat
+    .tags = Singles, Offensive
+} 
+slowking 
+{
+    name = Trick room sweeper
+    item = slowkingnite 
+    pre mega ability = twist dimention 
+    evs = 252, 0, 0, 252, 0, 0
+    nature = quiet 
+    moves = Expanding Force, Focus Blast, Surf, / Flamethrower, Nasty Plot
+   comment = slowbro pre mega has twist dimention  and pychic surge when mega,d in trick room nothing is faster than you and you are bulky enough to take a hit then set  up nasty plot and decimate everything with expanding force,and focus blast to kill dark types. It has a cool ablity that nulfiys your weakneses making you tanky as hell. It also makes status moves always hit but it only has thunder wave to take advantage of this. (it also loses its water type upon evolving so no stab surf.
+}
+Hitmonlee-Mega
+{
+    name = 4 attacks
+    item = Hitmonleenite
+    ability = Violent Rush
+    evs = 0, 252, 0, 0, 4, 252
+    nature = Jolly
+    moves = Fake Out / Accelrock, Mega Kick, High Jump Kick, Triple Axel/ Blaze Kick
+   comment = imo fake out works better than accelrock and triple axel is the best coverage move it gets but if you prefer other options you can use them
+    .tags = Singles, Offensive
+}
+Breloom Mega
+{
+    name = Perfectionist Reversal
+    item = Breloomite
+    ability = Fungal Infection
+    evs = 6, 252, 0, 0, 0, 252
+    nature = Adamant
+    moves = Bullet Seed, Reversal, Spore / Swords Dance, Encore
+    comment = Since Reversal's BP is considered to be only 1 by the game, it receives a Perfectionist boost even when its power is scaled to the max. Have fun unleashing insanely powerful attacks to your heart's content! This monster can only be stopped by resists, sashes, and opposing priority.
+    tags = Offensive, Troll
+}
