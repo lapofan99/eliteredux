@@ -4,7 +4,7 @@ PetalburgWoods_3_MapScripts::
 PetalburgWoods3_EventScript_PrimalCascoon_Battle::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE07_GET, PetalburgWoods3_EventScript_PrimalCascoon_Battle_2
+	goto_if_set FLAG_SYS_GAME_CLEAR, PetalburgWoods3_EventScript_PrimalCascoon_Battle_2
 	msgbox PetalburgWoods3_EventScript_PrimalCascoon_Battle_Text_7, MSGBOX_NPC
 PetalburgWoods3_EventScript_PrimalCascoon_Battle_1:
 	release
