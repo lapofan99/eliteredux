@@ -3708,6 +3708,12 @@ static void BufferNatureString(void)
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNatureNamePointers[GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NATURE)]);
 }
 
+
+void CopyNatureName(u8 nature)
+{
+    StringCopy(gStringVar1, gNatureNamePointers[nature]);
+}
+
 static void BufferCharacteristicString(void)
 {
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
