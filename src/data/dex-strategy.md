@@ -2348,9 +2348,9 @@ Hitmonchan
    comment = Endure an enemies attack then proceed to sweep with a base 200 power priority STAB move. Just be aware of ghosts and priority abusers.
     .tags = Singles, Offensive, Troll
 }
-Feraligatr-mega-Y
+Feraligatr-Mega-Y
 { 
-    name = ehehehhe hyper beam go BRRRRRRRRRRR
+    name = Ehehehhe hyper beam go BRRRRR
     item = feralagite y 
     pre mega ability = intimidate
     evs = 4, 0, 0, 252, 0, 25
@@ -2374,7 +2374,7 @@ Hitmonchan-Mega
    252 attack is to let Himonchan hit as hard as it can and 208 speed with a Jolly nature allows for it to outspeed Timid base 100s. 48 goes into its SpDef for extra bulk - it does not go into HP because it makes it harder to heal back to full with Drain Punch. With that being said, 44 of the SpDef evs can be re-invested into speed for easier cleaning with Close Combat
     .tags = Singles, Offensive
 } 
-slowking 
+Slowking 
 {
     name = Trick room sweeper
     item = slowkingnite 
@@ -2382,7 +2382,7 @@ slowking
     evs = 252, 0, 0, 252, 0, 0
     nature = quiet 
     moves = Expanding Force, Focus Blast, Surf, / Flamethrower, Nasty Plot
-   comment = slowbro pre mega has twist dimention  and pychic surge when mega,d in trick room nothing is faster than you and you are bulky enough to take a hit then set  up nasty plot and decimate everything with expanding force,and focus blast to kill dark types. It has a cool ablity that nulfiys your weakneses making you tanky as hell. It also makes status moves always hit but it only has thunder wave to take advantage of this. (it also loses its water type upon evolving so no stab surf.
+   comment = slowbro pre mega has twist dimention  and pychic surge when mega,d in trick room nothing is faster than you and you are bulky enough to take a hit then set  up nasty plot and decimate everything with expanding force,and focus blast to kill dark types. It has a cool ablity that nulfiys your weakneses making you tanky as hell. It also makes status moves always hit but it only has thunder wave to take advantage of this. (it also loses its water type upon evolving so no stab surf).
 }
 Hitmonlee-Mega
 {
@@ -2395,7 +2395,7 @@ Hitmonlee-Mega
    comment = imo fake out works better than accelrock and triple axel is the best coverage move it gets but if you prefer other options you can use them
     .tags = Singles, Offensive
 }
-Breloom Mega
+Breloom-Mega
 {
     name = Perfectionist Reversal
     item = Breloomite
