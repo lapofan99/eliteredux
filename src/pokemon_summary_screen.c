@@ -1098,7 +1098,7 @@ const u8 sText_MainAbility[] = _("Ability");
 const u8 sText_Innate1[] = _("Innate");
 const u8 sText_Innate2[] = _("Innate 2");
 const u8 sText_Innate3[] = _("Innate 3");
-const u8 sText_InnateUnlock[] = _("Unlocks at level {STR_VAR_1}");
+const u8 sText_InnateUnlock[] = _("Locked until level {STR_VAR_1}");
 
 #if CONFIG_PHYSICAL_SPECIAL_SPLIT || CONFIG_SHOW_ICONS_FOR_OLD_SPLIT
 static const u16 sSplitIcons_Pal[] = INCBIN_U16("graphics/summary_screen/split_icons.gbapal");
@@ -4367,6 +4367,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
     u16 innate2 = gBaseStats[species].innates[1];
     u16 innate3 = gBaseStats[species].innates[2];
     u16 ability = GetAbilityBySpecies(sMonSummaryScreen->summary.species, GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM));
+    bool8 testInnateLock = FALSE;
 
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sMemoNatureTextColor);
@@ -4402,7 +4403,7 @@ static void BufferMonPokemonAbilityAndInnates(void)
             case 0:
                 if(innate1 != ABILITY_NONE){
                     y += 32;
-                    if(level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon){
+                    if((level >= INNATE_1_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon) && !testInnateLock){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
@@ -4415,16 +4416,22 @@ static void BufferMonPokemonAbilityAndInnates(void)
                     }
                     else{
                         //Title
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Name ---------------------------------------------------------------------------------------------------
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[innate1]);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Unlock Level ---------------------------------------------------------------------------------------------------
                         ConvertIntToDecimalStringN(gStringVar1, INNATE_1_LEVEL, STR_CONV_MODE_LEFT_ALIGN, 3);
                         StringExpandPlaceholders(gStringVar4, sText_InnateUnlock);
-                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
                     }
                 }
             break;
             case 1:
                 if(innate2 != ABILITY_NONE){
                     y += 32;
-                    if(level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon){
+                    if((level >= INNATE_2_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon) && !testInnateLock){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
@@ -4437,16 +4444,22 @@ static void BufferMonPokemonAbilityAndInnates(void)
                     }
                     else{
                         //Title
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Name ---------------------------------------------------------------------------------------------------
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[innate2]);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Unlock Level ---------------------------------------------------------------------------------------------------
                         ConvertIntToDecimalStringN(gStringVar1, INNATE_2_LEVEL, STR_CONV_MODE_LEFT_ALIGN, 3);
                         StringExpandPlaceholders(gStringVar4, sText_InnateUnlock);
-                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
                     }
                 }
             break;
             case 2:
                 if(innate3 != ABILITY_NONE){
                     y += 32;
-                    if(level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon){
+                    if((level >= INNATE_3_LEVEL || gSaveBlock2Ptr->gameDifficulty != DIFFICULTY_ELITE || isEnemyMon) && !testInnateLock){
                         //Title
                         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
                         PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
@@ -4459,9 +4472,15 @@ static void BufferMonPokemonAbilityAndInnates(void)
                     }
                     else{
                         //Title
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, sText_Innate1);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Name ---------------------------------------------------------------------------------------------------
+                        DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gAbilityNames[innate3]);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, x, y, 0, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        // Unlock Level ---------------------------------------------------------------------------------------------------
                         ConvertIntToDecimalStringN(gStringVar1, INNATE_3_LEVEL, STR_CONV_MODE_LEFT_ALIGN, 3);
                         StringExpandPlaceholders(gStringVar4, sText_InnateUnlock);
-                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0, y, 4, PSS_COLOR_WHITE_BLACK_SHADOW);
+                        PrintSmallTextOnWindow(PSS_LABEL_PANE_RIGHT, gStringVar4, 0,  (y + 12), 0, PSS_COLOR_BLACK_GRAY_SHADOW);
                     }
                 }
             break;
