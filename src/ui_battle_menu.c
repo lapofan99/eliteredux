@@ -4,6 +4,7 @@
 #include "bg.h"
 #include "battle.h"
 #include "battle_main.h"
+#include "battle_util.h"
 #include "battle_anim.h"
 #include "data.h"
 #include "decompress.h"
@@ -114,6 +115,7 @@ enum modes
 enum move_moves
 {
     MOVE_MODE_NORMAL,
+    MOVE_MODE_DESCRIPTION,
     MOVE_MODE_DAMAGE_CALCULATOR,
     MOVE_MODE_AFFECTED_1,
     MOVE_MODE_AFFECTED_2,
@@ -1062,14 +1064,36 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y){
     u8 x2 = 0;
     u8 y2 = -4;
     u8 target = BATTLE_OPPOSITE(sMenuDataPtr->battlerId);
+    u32 movePower = gBattleMoves[move].power;
+    u32 moveAccuracy = GetTotalAccuracy(sMenuDataPtr->battlerId, target, move);
+    u8 moveType  = gBattleMoves[move].type;
+    u8 moveType2 = TYPE_MYSTERY;
+    bool32 updateFlags = FALSE;
+    bool8 isStatusMove = gBattleMoves[move].split == SPLIT_STATUS;
+    bool8 isStab = FALSE;
+
+    //Sets move type depending on the mon ability/stats
+    SetTypeBeforeUsingMove(move, sMenuDataPtr->battlerId);
+    GET_MOVE_TYPE(move, moveType);
+
+    //Sets move power depending on the mon ability/stats
+    movePower = CalcMoveBasePowerAfterModifiers(move, sMenuDataPtr->battlerId, target, moveType, updateFlags);
+
+    //MoveType2
+    if(gBattleMoves[move].type2 != TYPE_MYSTERY && gBattleMoves[move].type2 != TYPE_NORMAL)
+        moveType2 = gBattleMoves[move].type2;
+
+    //Check Stab
+    if((IS_BATTLER_OF_TYPE(sMenuDataPtr->battlerId, moveType) || (IS_BATTLER_OF_TYPE(sMenuDataPtr->battlerId, moveType2) && moveType2 != TYPE_MYSTERY)) && !isStatusMove)
+        isStab = TRUE;
     
     //Move Name
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gMoveNamesLong[move]);
     //Type
     if(gBattleMoves[move].type2 == TYPE_MYSTERY || gBattleMoves[move].type2 == TYPE_NORMAL)
-        StringCopy(gStringVar4, gTypeNames[gBattleMoves[move].type]);
+        StringCopy(gStringVar4, gTypeNames[moveType]);
     else{
-        StringCopy(gStringVar1, gTypeNames[gBattleMoves[move].type]);
+        StringCopy(gStringVar1, gTypeNames[moveType]);
         StringCopy(gStringVar2, gTypeNames[gBattleMoves[move].type2]);
         StringExpandPlaceholders(gStringVar4, gText_Move_Type_TwoTypedMoves);
     }
@@ -1079,15 +1103,15 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y){
     switch(mode){
         case MOVE_MODE_NORMAL:
             // Move Power ---------------------------------------------------------------------------------------------------
-            if(gBattleMoves[move].power != 0)
-                ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].power, STR_CONV_MODE_LEFT_ALIGN, 3);
+            if(!isStatusMove)
+                ConvertIntToDecimalStringN(gStringVar1, movePower, STR_CONV_MODE_LEFT_ALIGN, 3);
             else
                 StringCopy(gStringVar1, gText_Target_Nothing);
             StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Power);
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
             // Move Accuracy
-            if(gBattleMoves[move].accuracy != 0)
-                ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].accuracy, STR_CONV_MODE_LEFT_ALIGN, 3);
+            if(moveAccuracy != 0)
+                ConvertIntToDecimalStringN(gStringVar1, moveAccuracy, STR_CONV_MODE_LEFT_ALIGN, 3);
             else
                 StringCopy(gStringVar1, gText_Target_Nothing);
             StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Accuracy);
@@ -1119,8 +1143,8 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y){
             StringExpandPlaceholders(gStringVar4, gText_CurrentPP);
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
             //Stab
-            if(gBattleMoves[move].split != SPLIT_STATUS && gBattleMoves[move].power != 0){//No stab boost for status moves
-                if(IS_BATTLER_OF_TYPE(sMenuDataPtr->battlerId, gBattleMoves[move].type))
+            if(!isStatusMove){ //No stab boost for status moves
+                if(isStab)
                     StringCopy(gStringVar1, gText_Boost_True);
                 else
                     StringCopy(gStringVar1, gText_Boost_False);
@@ -1128,8 +1152,13 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y){
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
             }
         break;
+        case MOVE_MODE_DESCRIPTION:
+            y2 = y2 + 4;
+            StringCopy(gStringVar4, gMoveDescriptionPointers[move - 1]);
+            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+        break;
         case MOVE_MODE_DAMAGE_CALCULATOR:
-            if(gBattleMoves[move].split == SPLIT_STATUS || gBattleMoves[move].power == 0){
+            if(gBattleMoves[move].split == SPLIT_STATUS || movePower == 0){
                 StringCopy(gStringVar4, gText_Target_Nothing);
             }
             else{
@@ -1184,40 +1213,6 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y){
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
         break;
     }
-	
-    /*
-    if(ENABLE_DAMAGE_CALCULATION == TRUE){
-        //Damage Text
-        x2 = 0;
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gText_MoveInfo_Damage);
-        x2 = SPACE_BETWEEN_DAMAGE;
-        //Damage Calculation Target 1
-        if(isEnemyMon)
-            target = B_POSITION_PLAYER_LEFT;
-        else
-            target = B_POSITION_OPPONENT_LEFT;
-        gBattleMoveDamage = CalculateMoveDamage(move, sMenuDataPtr->battlerId, target, gBattleMoves[move].type, FALSE, FALSE, FALSE, FALSE);
-        if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
-            StringCopy(gStringVar1, gText_Target_Nothing);
-        else
-            ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
-        StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target1);
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
-        //Damage Calculation Target 2
-        if(IsDoubleBattle()){
-            if(isEnemyMon)
-                target = B_POSITION_PLAYER_RIGHT;
-            else
-                target = B_POSITION_OPPONENT_RIGHT;
-            gBattleMoveDamage = CalculateMoveDamage(move, sMenuDataPtr->battlerId, target, gBattleMoves[move].type, FALSE, FALSE, FALSE, FALSE);
-            if(gBattleMoveDamage < MIN_MOVE_DAMAGE)
-                StringCopy(gStringVar1, gText_Target_Nothing);
-            else
-                ConvertIntToDecimalStringN(gStringVar1, gBattleMoveDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
-            StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Target2);
-            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
-        }
-    }*/
 }
 
 static void PrintStatusTab(void){
