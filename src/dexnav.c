@@ -627,6 +627,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
     u8 currMapType = GetCurrentMapType();
     u8 tileBehaviour;
     u8 tileBuffer = 2;
+    bool8 correctTile = FALSE;
     
     // loop through every tile in area and evaluate
     while (topY < botY)
@@ -634,6 +635,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
         while (topX < botX)
         {
             tileBehaviour = MapGridGetMetatileBehaviorAt(topX, topY);
+            correctTile = FALSE;
             
             //gSpecialVar_0x8005 = tileBehaviour;
             
@@ -679,11 +681,19 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
                         
                         scale = 440 - (smallScan * 200) - (GetPlayerDistance(topX, topY) / 2)  - (2 * (topX + topY));
                         weight = ((Random() % scale) < 1) && !MapGridIsImpassableAt(topX, topY);
+                        //Check if it's possible to find a mon there
+                        if(!MapGridIsImpassableAt(topX, topY)){
+                            correctTile = TRUE;
+                        }
                     }
                     else
                     { // outdoors: grass
                         scale = 100 - (GetPlayerDistance(topX, topY) * 2);
                         weight = (Random() % scale <= 5) && !MapGridIsImpassableAt(topX, topY);
+                        //Check if it's possible to find a mon there
+                        if(!MapGridIsImpassableAt(topX, topY)){
+                            correctTile = TRUE;
+                        }
                     }
                 }
                 break;
@@ -695,13 +705,19 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
                         break;
 
                     weight = (Random() % scale <= 1) && !MapGridIsImpassableAt(topX, topY);
+                    //Check if it's possible to find a mon there
+                    if(!MapGridIsImpassableAt(topX, topY)){
+                        correctTile = TRUE;
+                    }
                 }
                 break;
             default:
                 break;
             }
+
             
-            if (weight > 0)
+            
+            if (correctTile)
             {
                 sDexNavSearchDataPtr->tileX = topX;
                 sDexNavSearchDataPtr->tileY = topY;
