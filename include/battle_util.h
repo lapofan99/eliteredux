@@ -190,6 +190,7 @@ bool8 IsGravityActive(void);
 bool8 isMagicRoomActive(void);
 bool8 isWonderRoomActive(void);
 bool32 TryPrimalReversion(u8 battlerId);
+bool8 HasAnyLoweredStat(u8 battler);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);

@@ -61,7 +61,6 @@ functions instead of at the top of the file with the other declarations.
 static bool32 TryRemoveScreens(u8 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId);
 static bool8 DoesMoveBoostStats(u16 move);
-static bool8 HasAnyLoweredStat(u8 battler);
 bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
@@ -16522,7 +16521,7 @@ static bool8 DoesMoveBoostStats(u16 move){
     return FALSE;
 }
 
-static bool8 HasAnyLoweredStat(u8 battler){
+bool8 HasAnyLoweredStat(u8 battler){
     u8 i;
     for(i = STAT_ATK; i < NUM_BATTLE_STATS; i++){
         if(CompareStat(battler, i, DEFAULT_STAT_STAGE, CMP_LESS_THAN))
