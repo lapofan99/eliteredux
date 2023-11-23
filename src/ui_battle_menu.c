@@ -45,10 +45,6 @@
 #include "mgba_printf/mgba.h"
 #include "mgba_printf/mini_printf.h"
 
-/*
- * 
- */
-
 //==========DEFINES==========//
 enum
 {
@@ -73,6 +69,7 @@ struct MenuResources
     u8 battlerId;
     u8 modeId;
     u8 tabId;
+    u8 fieldTabId;
     u8 tabModeId;
     u8 moveModeId;
     u8 spriteIds[NUM_SPRITES];
@@ -91,6 +88,13 @@ enum battler_TabIds
     TAB_STATUS,
     NUM_TABS,
     TAB_DAMAGE_CALCULATOR, //Disabled for now
+};
+
+enum field_TabsIds
+{
+    TAB_FIELD,
+    TAB_SPEED,
+    NUM_FIELD_TABS,
 };
 
 enum menu_colors
@@ -135,6 +139,7 @@ static bool8 Menu_LoadGraphics(void);
 static void Menu_InitWindows(void);
 static void PrintToWindow(u8 windowId, u8 colorIdx);
 static void PrintFieldTab(void);
+static void PrintSpeedTab(void);
 static void PrintStatsTab(void);
 static void PrintAbilityTab(void);
 static void PrintStatusTab(void);
@@ -254,6 +259,9 @@ void UI_Battle_Menu_Init(MainCallback callback)
     // initialize stuff
     sMenuDataPtr->gfxLoadState = 0;
     sMenuDataPtr->moveModeId   = 0;
+    sMenuDataPtr->tabModeId    = 0;
+    sMenuDataPtr->tabId        = 0;
+    sMenuDataPtr->fieldTabId   = 0;
     if(IsDoubleBattle())
         sMenuDataPtr->modeId = MODE_BATTLER2;
     else
@@ -422,11 +430,19 @@ void LoadTilemapFromMode(void)
         }
     }
     else{
-        if(IsDoubleBattle()){
-            LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
-        }
-        else{
-            LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
+        switch(sMenuDataPtr->fieldTabId){
+            case TAB_FIELD:
+                if(IsDoubleBattle())
+                    LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
+                else
+                    LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
+            break;
+            case TAB_SPEED:
+                if(IsDoubleBattle())
+                    LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
+                else
+                    LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
+            break;
         }
     }
 }
@@ -589,6 +605,7 @@ const u8 sText_Title_Battler_Status[]   = _("Pokémon Status");
 const u8 sText_Title_Battler_Damage[]   = _("Damage Calculator");
 const u8 sText_Title_Field_Stats[]      = _("Field Info");
 const u8 sText_Title_Controllers[]      = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
+const u8 sText_Title_Speed_Order[]      = _("Speed Order");
 
 const u8 sText_Title_Type_One[]     = _("Type:\n{STR_VAR_1}");
 const u8 sText_Title_Type_Two[]     = _("Types:\n{STR_VAR_1}/ {STR_VAR_2}");
@@ -1677,6 +1694,33 @@ static void PrintFieldTab(void)
     CopyWindowToVram(windowId, 3);
 }
 
+static void PrintSpeedTab(void)
+{
+    u8 i, j;
+    u8 x, y, x2, y2;
+    u8 windowId = WINDOW_1;
+    u8 colorIdx = FONT_BLACK;
+    u8 turnsLeft = 5;
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+
+    //Title
+    x  = 9;
+    y  = 0;
+    x2 = 0;
+    y2 = -4;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Speed_Order);
+    x  = 19;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
+
+    //Selector
+    x = 0;
+    y = 0;
+    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, 3);
+}
+
 static void PrintToWindow(u8 windowId, u8 colorIdx)
 {
     const u8 *str = sText_MyMenu;
@@ -2145,7 +2189,14 @@ static void PrintPage(void){
             break;
         }
     else{
-        PrintFieldTab();
+        switch(sMenuDataPtr->fieldTabId){
+            case TAB_FIELD:
+                PrintFieldTab();
+            break;
+            case TAB_SPEED:
+                PrintSpeedTab();
+            break;
+        }
     }
 }
 
@@ -2228,20 +2279,42 @@ static void Task_MenuMain(u8 taskId)
     }
 
     if (JOY_NEW(DPAD_LEFT)){
-        if(sMenuDataPtr->tabId != 0)
-            sMenuDataPtr->tabId--;
-        else
-            sMenuDataPtr->tabId = NUM_TABS - 1;
-        setBattler();
-        PrintPage();
+        switch(sMenuDataPtr->modeId){
+            case MODE_FIELD:
+                if(sMenuDataPtr->fieldTabId != 0)
+                    sMenuDataPtr->fieldTabId--;
+                else
+                    sMenuDataPtr->fieldTabId = NUM_FIELD_TABS - 1;
+                PrintPage();
+            break;
+            default: //Battlers
+                if(sMenuDataPtr->tabId != 0)
+                    sMenuDataPtr->tabId--;
+                else
+                    sMenuDataPtr->tabId = NUM_TABS - 1;
+                setBattler();
+                PrintPage();
+            break;
+        }
     }
 
     if (JOY_NEW(DPAD_RIGHT)){
-        if(sMenuDataPtr->tabId != NUM_TABS - 1)
-            sMenuDataPtr->tabId++;
-        else
-            sMenuDataPtr->tabId = 0;
-        setBattler();
-        PrintPage();
+        switch(sMenuDataPtr->modeId){
+            case MODE_FIELD:
+                if(sMenuDataPtr->fieldTabId != NUM_FIELD_TABS - 1)
+                    sMenuDataPtr->fieldTabId++;
+                else
+                    sMenuDataPtr->fieldTabId = 0;
+                PrintPage();
+            break;
+            default: //Battlers
+                if(sMenuDataPtr->tabId != NUM_TABS - 1)
+                    sMenuDataPtr->tabId++;
+                else
+                    sMenuDataPtr->tabId = 0;
+                setBattler();
+                PrintPage();
+            break;
+        }
     }
 }
