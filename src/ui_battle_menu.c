@@ -2115,7 +2115,7 @@ static void PrintFieldTab(void)
 //gText_MoveInfo_Priority
 const u8 gText_SpeedInfo_CanKOThisTurn[] = _("Can KO {STR_VAR_1} this turn:\n{STR_VAR_2}");
 #define SPEED_POKEMON_ICON_X (9 * 8) + 4
-#define SPEED_POKEMON_ICON_Y (7 * 8) + 1
+#define SPEED_POKEMON_ICON_Y (6 * 8) + 1
 #define SPEED_POKEMON_SPACE  (8 * 8)
 
 const u8 gText_BattlerLevelString[] = _("{LV}{STR_VAR_1}");
@@ -2174,7 +2174,7 @@ static void PrintSpeedTab(void)
     for(i = 0; i < gBattlersCount; i++){
         if(IsBattlerAlive(sBattlerByTurnOrder[i])){
             u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[sBattlerByTurnOrder[i]].species, gBattleMons[sBattlerByTurnOrder[i]].personality);
-            u16 speed =GetBattlerTotalSpeedStat(sBattlerByTurnOrder[i]);
+            u16 speed = GetBattlerTotalSpeedStat(sBattlerByTurnOrder[i]);
             species = gBattleMons[sBattlerByTurnOrder[i]].species;
             target = BATTLE_OPPOSITE(sBattlerByTurnOrder[i]);
             targetCurrentHp = gBattleMons[target].hp;
@@ -2200,10 +2200,10 @@ static void PrintSpeedTab(void)
             }
             x = 13;
             y++;
-            //Total Stats
+            //Total Stats 9 x 8
             ConvertIntToDecimalStringN(gStringVar1, speed, STR_CONV_MODE_LEFT_ALIGN, 3);
-            StringExpandPlaceholders(gStringVar4, gText_PrintSpeedTabStats);
-            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+            //StringExpandPlaceholders(gStringVar4, gText_PrintSpeedTabStats);
+            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (8 * 8) + 4, (9 * 8) - 4 + (SPEED_POKEMON_SPACE * i), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
             y = y + 2;
 
             //Move Names
