@@ -60,6 +60,10 @@ enum
     SPRITE_ARR_ID_TYPE_2,
     SPRITE_ARR_ID_TYPE_3,
     SPRITE_ARR_HELD_ITEM,
+    SPRITE_ARR_ID_MON_ICON_1_SPEED,
+    SPRITE_ARR_ID_MON_ICON_2_SPEED,
+    SPRITE_ARR_ID_MON_ICON_3_SPEED,
+    SPRITE_ARR_ID_MON_ICON_4_SPEED,
     NUM_SPRITES,
 };
 
@@ -152,6 +156,9 @@ static void Task_MenuMain(u8 taskId);
 static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx);
 
 static u8 ShowSpeciesIcon(u8 num);
+static u8 ShowSpeciesIconSpeed(u8 battler, u8 x, u8 y);
+static void FreeEveryMonIconSprite(void);
+static void FreeSpeciesIconSprite(u8 battler);
 static void SetSpriteInvisibility(u8 spriteArrayId, bool8 invisible);
 static void SetMonTypeIcons(void);
 static void SetTypeIconSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId);
@@ -202,6 +209,7 @@ static const u32 sMenuTiles[]    = INCBIN_U32("graphics/ui_menus/battle_menu/til
 static const u8 sStatDownArrow[] = INCBIN_U8("graphics/ui_menus/battle_menu/stat_down_arrow.4bpp");
 static const u8 sStatUpArrow[]   = INCBIN_U8("graphics/ui_menus/battle_menu/stat_up_arrow.4bpp");
 static const u8 sSelector[]      = INCBIN_U8("graphics/ui_menus/battle_menu/selector.4bpp");
+static const u8 sCheck[]         = INCBIN_U8("graphics/ui_menus/battle_menu/check.4bpp");
 
 //Palettes
 static const u16 sMenuPalette[]        = INCBIN_U16("graphics/ui_menus/battle_menu/palette.gbapal");
@@ -219,6 +227,9 @@ static const u32 sMenu_Tilemap_Doubles_Battler_Abilities[]  = INCBIN_U32("graphi
 //Field Tabs
 static const u32 sMenu_Tilemap_Singles_Field[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_singles_field.bin.lz");
 static const u32 sMenu_Tilemap_Doubles_Field[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_doubles_field.bin.lz");
+//
+static const u32 sMenu_Tilemap_Singles_Speed[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_singles_field_speed.bin.lz");
+static const u32 sMenu_Tilemap_Doubles_Speed[]              = INCBIN_U32("graphics/ui_menus/battle_menu/titlemap_doubles_field_speed.bin.lz");
 
 enum Colors
 {
@@ -441,9 +452,9 @@ void LoadTilemapFromMode(void)
             break;
             case TAB_SPEED:
                 if(IsDoubleBattle())
-                    LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
+                    LZDecompressWram(sMenu_Tilemap_Doubles_Speed, sBg1TilemapBuffer);
                 else
-                    LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
+                    LZDecompressWram(sMenu_Tilemap_Singles_Speed, sBg1TilemapBuffer);
             break;
         }
     }
@@ -564,6 +575,7 @@ static u8 statorder[NUM_BATTLE_STATS] = {
 };
 
 #define TAG_ITEM_ICON         4133
+#define TAG_BATTLER_SPEED     4134
 
 static void ShowItemIcon(u16 itemId, u8 x, u8 y)
 {
@@ -1678,7 +1690,6 @@ static void PrintStatusTab(void){
     CopyWindowToVram(windowId, 3);
 }
 
-
 static void PrintDamageCalulatorTab(void){
     u8 i, j;
     u8 x, y, x2, y2;
@@ -2101,15 +2112,49 @@ static void PrintFieldTab(void)
     CopyWindowToVram(windowId, 3);
 }
 
+//gText_MoveInfo_Priority
+const u8 gText_SpeedInfo_CanKOThisTurn[] = _("Can KO {STR_VAR_1} this turn:\n{STR_VAR_2}");
+#define SPEED_POKEMON_ICON_X (9 * 8) + 4
+#define SPEED_POKEMON_ICON_Y (7 * 8) + 1
+#define SPEED_POKEMON_SPACE  (8 * 8)
+
+const u8 gText_BattlerLevelString[] = _("{LV}{STR_VAR_1}");
+const u8 gText_PrintSpeedTabStats[] = _("Total Speed: {STR_VAR_1}");
+
 static void PrintSpeedTab(void)
 {
-    u8 i, j;
-    u8 x, y, x2, y2;
+    //Single Battle Only
+    u16 targetCurrentHp, move, moveDamage, species, targetSpecies;
+    u8 i, j, target, x, y, x2, y2;
     u8 windowId = WINDOW_1;
     u8 colorIdx = FONT_BLACK;
-    u8 turnsLeft = 5;
+    u8 sBattlerByTurnOrder[gBattlersCount];
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+
+    //Calculate Order
+    for (i = 0; i < gBattlersCount; i++)
+        sBattlerByTurnOrder[i] = i;
+
+    for (i = 0; i < gBattlersCount - 1; i++)
+    {
+        for (j = i + 1; j < gBattlersCount; j++)
+        {
+            if (GetWhoStrikesFirst(sBattlerByTurnOrder[i], sBattlerByTurnOrder[j], TRUE) != 0)
+            {
+                u8 temp = sBattlerByTurnOrder[i];
+                sBattlerByTurnOrder[i] = sBattlerByTurnOrder[j];
+                sBattlerByTurnOrder[j] = temp;
+            }
+        }
+    }
+
+    //Mon Icon
+    for(i = 0; i < gBattlersCount; i++){
+        if(IsBattlerAlive(sBattlerByTurnOrder[i])){
+            ShowSpeciesIconSpeed(sBattlerByTurnOrder[i], SPEED_POKEMON_ICON_X, SPEED_POKEMON_ICON_Y + (i * SPEED_POKEMON_SPACE));
+        }
+    }
 
     //Title
     x  = 9;
@@ -2119,6 +2164,78 @@ static void PrintSpeedTab(void)
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Speed_Order);
     x  = 19;
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
+
+    //Speed Order
+    x  = 13;
+    y  = 4;
+    x2 = 0;
+    y2 = -4;
+
+    for(i = 0; i < gBattlersCount; i++){
+        if(IsBattlerAlive(sBattlerByTurnOrder[i])){
+            u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[sBattlerByTurnOrder[i]].species, gBattleMons[sBattlerByTurnOrder[i]].personality);
+            u16 speed =GetBattlerTotalSpeedStat(sBattlerByTurnOrder[i]);
+            species = gBattleMons[sBattlerByTurnOrder[i]].species;
+            target = BATTLE_OPPOSITE(sBattlerByTurnOrder[i]);
+            targetCurrentHp = gBattleMons[target].hp;
+            
+            //Species Name
+            StringCopy(gStringVar1, gSpeciesNames[species]);
+            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
+            x = x + 8;
+
+            //Level
+            ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sBattlerByTurnOrder[i]].level, STR_CONV_MODE_LEFT_ALIGN, 3);
+            StringExpandPlaceholders(gStringVar4, gText_BattlerLevelString);
+            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+            x = x + 4;
+
+            switch(gender){
+                case MON_MALE:
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLUE], 0xFF, gText_MaleSymbol);
+                    break;
+                case MON_FEMALE:
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_RED], 0xFF, gText_FemaleSymbol);
+                    break;
+            }
+            x = 13;
+            y++;
+            //Total Stats
+            ConvertIntToDecimalStringN(gStringVar1, speed, STR_CONV_MODE_LEFT_ALIGN, 3);
+            StringExpandPlaceholders(gStringVar4, gText_PrintSpeedTabStats);
+            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
+            y = y + 2;
+
+            //Move Names
+            for(j = 0; j < MAX_MON_MOVES; j++){
+                move = gBattleMons[sBattlerByTurnOrder[i]].moves[j];
+                if(move != MOVE_NONE){
+                    StringCopy(gStringVar1, gMoveNames[move]);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
+                    x = x + 9;
+                    //Priority
+                    ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
+                    x = x + 3;
+                    x2 = 4;
+                    //Can KO - Todo: Check calculation
+                    if(gBattleMoves[move].split != SPLIT_STATUS && gBattleMoves[move].power > 0){
+                        u8 moveType = gBattleMoves[move].type;
+                        SetTypeBeforeUsingMove(move, sBattlerByTurnOrder[i]);
+                        GET_MOVE_TYPE(move, moveType);
+                        moveDamage = CalculateMoveDamage(move, sBattlerByTurnOrder[i], target, moveType, 0, FALSE, FALSE, FALSE);
+                        if(targetCurrentHp <= moveDamage)
+                            BlitBitmapToWindow(windowId, sCheck, (x * 8) + x2, (y * 8), 8, 8);
+                    }
+                    x = x - 12;
+                    x2 = 0;
+                    //
+                    y++;
+                }
+            }
+            y++;
+        }
+    }
 
     //Selector
     x = 0;
@@ -2457,6 +2574,65 @@ static u8 ShowSpeciesIcon(u8 num)
         break;
     }
 }
+
+static void FreeEveryMonIconSprite(void)
+{
+    u8 i;
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        FreeSpeciesIconSprite(i);
+}
+
+static void FreeSpeciesIconSprite(u8 battler)
+{
+    u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_SPEED + battler];
+    if (*spriteId != SPRITE_NONE)
+    {
+        FreeSpriteTilesByTag(TAG_BATTLER_SPEED + battler - 1);
+        FreeSpritePaletteByTag(TAG_BATTLER_SPEED + battler - 1);
+        FreeSpriteOamMatrix(&gSprites[*spriteId]);
+        DestroySprite(&gSprites[*spriteId]);
+        *spriteId = SPRITE_NONE;
+        sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_SPEED + battler] = SPRITE_NONE;
+    }
+}
+
+static u8 ShowSpeciesIconSpeed(u8 battler, u8 x, u8 y)
+{
+	u16 species     = gBattleMons[battler].species;
+    u16 personality = gBattleMons[battler].personality;
+	LoadMonIconPalette(species);
+
+    switch(battler){
+        case 0:
+            sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_SPEED] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
+                    
+            gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_SPEED]].invisible = FALSE;
+            return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_SPEED];
+        break;
+        case 1:
+            sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_2_SPEED] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
+                    
+            gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_2_SPEED]].invisible = FALSE;
+            return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_2_SPEED];
+        break;
+        case 2:
+            if(IsDoubleBattle()){
+                sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_3_SPEED] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
+                        
+                gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_3_SPEED]].invisible = FALSE;
+            }
+            return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_3_SPEED];
+        break;
+        case 3:
+            if(IsDoubleBattle()){
+                sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_4_SPEED] = CreateMonIcon(species, SpriteCallbackDummy, x, y, 0, personality);
+                        
+                gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_4_SPEED]].invisible = FALSE;
+            }
+            return sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_4_SPEED];
+        break;
+    }
+}
 // different from pokemon_summary_screen
 #define TYPE_ICON_PAL_NUM_0     13
 #define TYPE_ICON_PAL_NUM_1     14
@@ -2530,6 +2706,11 @@ static u8 tabColors[NUM_TABS + 2] = {
     [TAB_DAMAGE_CALCULATOR] = MENU_COLOR_RED,
 };
 
+static u8 tabColorsField[NUM_FIELD_TABS + 2] = {
+    [TAB_FIELD]             = MENU_COLOR_GREEN,
+    [TAB_SPEED]             = MENU_COLOR_BLUE,
+};
+
 static void setBattler(void){
     switch(sMenuDataPtr->modeId){
         case MODE_BATTLER0:
@@ -2551,22 +2732,43 @@ static void setBattler(void){
 }
 
 static void LoadTabPalette(void){
-    switch(tabColors[sMenuDataPtr->tabId]){
-        case MENU_COLOR_BLUE:
-            LoadPalette(sMenuPalette_Blue, 0, 32);
-        break;
-        case MENU_COLOR_YELLOW:
-            LoadPalette(sMenuPalette_Yellow, 0, 32);
-        break;
-        case MENU_COLOR_RED:
-            LoadPalette(sMenuPalette_Red, 0, 32);
-        break;
-        case MENU_COLOR_GREEN:
-            LoadPalette(sMenuPalette_Green, 0, 32);
-        break;
-        default:
-            LoadPalette(sMenuPalette, 0, 32);
-        break;
+    if(sMenuDataPtr->modeId == MODE_FIELD){
+        switch(tabColorsField[sMenuDataPtr->fieldTabId]){
+            case MENU_COLOR_BLUE:
+                LoadPalette(sMenuPalette_Blue, 0, 32);
+            break;
+            case MENU_COLOR_YELLOW:
+                LoadPalette(sMenuPalette_Yellow, 0, 32);
+            break;
+            case MENU_COLOR_RED:
+                LoadPalette(sMenuPalette_Red, 0, 32);
+            break;
+            case MENU_COLOR_GREEN:
+                LoadPalette(sMenuPalette_Green, 0, 32);
+            break;
+            default:
+                LoadPalette(sMenuPalette, 0, 32);
+            break;
+        }
+    }
+    else{
+        switch(tabColors[sMenuDataPtr->tabId]){
+            case MENU_COLOR_BLUE:
+                LoadPalette(sMenuPalette_Blue, 0, 32);
+            break;
+            case MENU_COLOR_YELLOW:
+                LoadPalette(sMenuPalette_Yellow, 0, 32);
+            break;
+            case MENU_COLOR_RED:
+                LoadPalette(sMenuPalette_Red, 0, 32);
+            break;
+            case MENU_COLOR_GREEN:
+                LoadPalette(sMenuPalette_Green, 0, 32);
+            break;
+            default:
+                LoadPalette(sMenuPalette, 0, 32);
+            break;
+        }
     }
 }
 
@@ -2574,6 +2776,7 @@ static void PrintPage(void){
     LoadTilemapFromMode();
     LoadTabPalette();
     FreeItemIconSprite();
+    FreeEveryMonIconSprite();
     if(sMenuDataPtr->modeId != MODE_FIELD)
         switch(sMenuDataPtr->tabId){
             case TAB_STATS:
