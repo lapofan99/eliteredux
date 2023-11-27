@@ -6090,7 +6090,10 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 //Checks Target
                 for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
                 {
-                    if (IsBattlerAlive(opposingBattler) && gBattleMons[opposingBattler].hp != 1)
+                    if (IsBattlerAlive(opposingBattler) &&
+                        gBattleMons[opposingBattler].hp != 1 &&
+                        !BATTLER_HAS_ABILITY(opposingBattler, ABILITY_IMPENETRABLE) &&
+                        !BATTLER_HAS_ABILITY(opposingBattler, ABILITY_MAGIC_GUARD))
                     {
                         gBattlerTarget = opposingBattler;
                         hasTarget = TRUE;
@@ -16593,12 +16596,14 @@ bool8 isWonderRoomActive(void){
 }
 
 bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
-    if(IsBattlerAlive(sBattlerAttacker)                         &&
-       IsBattlerAlive(sBattlerTarget)                           &&
-       sBattlerAttacker != sBattlerTarget                       &&
-       !gProtectStructs[sBattlerAttacker].confusionSelfDmg      &&
-       !gProtectStructs[sBattlerAttacker].extraMoveUsed         &&
-       !(gBattleMons[sBattlerAttacker].status1 & STATUS1_SLEEP) &&
+    if(IsBattlerAlive(sBattlerAttacker)                          &&
+       IsBattlerAlive(sBattlerTarget)                            &&
+      !BATTLER_HAS_ABILITY(sBattlerTarget, ABILITY_IMPENETRABLE) &&
+      !BATTLER_HAS_ABILITY(sBattlerTarget, ABILITY_MAGIC_GUARD)  &&
+       sBattlerAttacker != sBattlerTarget                        &&
+       !gProtectStructs[sBattlerAttacker].confusionSelfDmg       &&
+       !gProtectStructs[sBattlerAttacker].extraMoveUsed          &&
+       !(gBattleMons[sBattlerAttacker].status1 & STATUS1_SLEEP)  &&
        !(gBattleMons[sBattlerAttacker].status1 & STATUS1_FREEZE))
         return TRUE;
     else
