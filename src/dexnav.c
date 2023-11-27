@@ -1305,8 +1305,10 @@ static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityN
         SetMonData(mon, MON_DATA_HELD_ITEM, &item);
 
     //Set moves
-    for (i = 0; i < MAX_MON_MOVES; i++)
-        SetMonMoveSlot(mon, moves[i], i);
+    for (i = 0; i < MAX_MON_MOVES; i++){
+        if(moves[i] != MOVE_NONE)
+            SetMonMoveSlot(mon, moves[i], i);
+    }
 
     CalculateMonStats(mon);
     FlagClear(FLAG_SHINY_CREATION);
