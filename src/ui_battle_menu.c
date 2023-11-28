@@ -46,10 +46,13 @@
 #include "constants/rgb.h"
 #include "mgba_printf/mgba.h"
 #include "mgba_printf/mini_printf.h"
+#include "trig.h"
 
 //==========DEFINES==========//
 enum
 {
+    SPRITE_ARR_ID_FIELD_ICON,
+    SPRITE_ARR_ID_SELECTOR,
     SPRITE_ARR_ID_MON_ICON_1,
     SPRITE_ARR_ID_MON_ICON_2,
     SPRITE_ARR_ID_MON_ICON_3,
@@ -168,6 +171,10 @@ static void setBattler(void);
 static void LoadTilemapFromMode(void);
 static void PrintPage(void);
 
+static void ShowFieldIcon(void);
+static void CreateSelectorSprite(void);
+static void FreeItemIconSprite(void);
+
 //==========CONST=DATA==========//
 static const struct BgTemplate sMenuBgTemplates[] =
 {
@@ -201,15 +208,14 @@ static const struct WindowTemplate sMenuWindowTemplates[] =
         .width = 30,        // width (per 8 pixels)
         .height = 20,       // height (per 8 pixels)
         .paletteNum = 0,    // palette index to use for text
-        .baseBlock = 1,     // tile start in VRAM
+        .baseBlock = 20,     // tile start in VRAM
     },
 };
 
-static const u32 sMenuTiles[]    = INCBIN_U32("graphics/ui_menus/battle_menu/tiles.4bpp.lz");
-static const u8 sStatDownArrow[] = INCBIN_U8("graphics/ui_menus/battle_menu/stat_down_arrow.4bpp");
-static const u8 sStatUpArrow[]   = INCBIN_U8("graphics/ui_menus/battle_menu/stat_up_arrow.4bpp");
-static const u8 sSelector[]      = INCBIN_U8("graphics/ui_menus/battle_menu/selector.4bpp");
-static const u8 sCheck[]         = INCBIN_U8("graphics/ui_menus/battle_menu/check.4bpp");
+static const u32 sMenuTiles[]      = INCBIN_U32("graphics/ui_menus/battle_menu/tiles.4bpp.lz");
+static const u8 sStatDownArrow[]   = INCBIN_U8("graphics/ui_menus/battle_menu/stat_down_arrow.4bpp");
+static const u8 sStatUpArrow[]     = INCBIN_U8("graphics/ui_menus/battle_menu/stat_up_arrow.4bpp");
+static const u8 sCheck[]           = INCBIN_U8("graphics/ui_menus/battle_menu/check.4bpp");
 
 //Palettes
 static const u16 sMenuPalette[]        = INCBIN_U16("graphics/ui_menus/battle_menu/palette.gbapal");
@@ -240,7 +246,7 @@ enum Colors
 };
 static const u8 sMenuWindowFontColors[][3] = 
 {
-    [FONT_BLACK]  = {TEXT_COLOR_TRANSPARENT,  4,  2},
+    [FONT_BLACK]  = {TEXT_COLOR_TRANSPARENT,  3,  2},
     [FONT_WHITE]  = {TEXT_COLOR_TRANSPARENT,  1,  3},
     [FONT_RED]    = {TEXT_COLOR_TRANSPARENT,  14, 2},
     [FONT_BLUE]   = {TEXT_COLOR_TRANSPARENT,  13, 2},
@@ -373,6 +379,8 @@ static bool8 Menu_DoGfxSetup(void)
         gMain.state++;
         break;
     case 6:
+        CreateSelectorSprite();
+        ShowFieldIcon();
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         gMain.state++;
         break;
@@ -534,6 +542,7 @@ static void Menu_InitWindows(void)
     DeactivateAllTextPrinters();
     ScheduleBgCopyTilemapToVram(0);
 
+    //First Window
     FillWindowPixelBuffer(WINDOW_1, 0);
     LoadUserWindowBorderGfx(WINDOW_1, 720, 14 * 16);
     PutWindowTilemap(WINDOW_1);
@@ -574,18 +583,80 @@ static u8 statorder[NUM_BATTLE_STATS] = {
     STAT_EVASION,
 };
 
-#define TAG_ITEM_ICON         4133
-#define TAG_BATTLER_SPEED     4134
+#define PAL_UI_SPRITES        14
+#define PAL_FIELD_ICON        15
+
+static const u32 gBattleFieldIconForest_Gfx[] = INCBIN_U32("graphics/ui_menus/battle_menu/fields/forest.4bpp.lz");
+static const u16 gBattleFieldIconForest_Pal[] = INCBIN_U16("graphics/ui_menus/battle_menu/fields/forest.gbapal");
+
+static const struct SpritePalette sBattleMenuFieldIconSpritePalette_Forest[] = {gBattleFieldIconForest_Pal, PAL_FIELD_ICON};
+
+//Field Icon
+static void ShowFieldIcon(void)
+{
+    u8 spriteId;
+    u8 SpriteTag = SPRITE_ARR_ID_FIELD_ICON;
+    struct CompressedSpriteSheet sSpriteSheet_FieldIcon = {gBattleFieldIconForest_Gfx, 0x0800, SpriteTag};
+    struct SpriteTemplate TempSpriteTemplate = gDummySpriteTemplate;
+
+    TempSpriteTemplate.tileTag = SpriteTag;
+    TempSpriteTemplate.callback = SpriteCallbackDummy;
+
+    LoadCompressedSpriteSheet(&sSpriteSheet_FieldIcon);
+    LoadSpritePalette(sBattleMenuFieldIconSpritePalette_Forest);
+    TempSpriteTemplate.paletteTag = PAL_FIELD_ICON;
+    spriteId = CreateSprite(&TempSpriteTemplate, 4, 68, 0);
+    sMenuDataPtr->spriteIds[SPRITE_ARR_ID_FIELD_ICON] = spriteId;
+
+    gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_FIELD_ICON]].oam.shape = SPRITE_SHAPE(64x32);
+    gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_FIELD_ICON]].oam.size = SPRITE_SIZE(64x32);
+    gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_FIELD_ICON]].oam.priority = 1;
+}
+
+static void SpriteCB_Selector(struct Sprite *sprite)
+{
+    u8 val = sprite->data[0];
+    sprite->y2 = (gSineTable[val] / 128) + ((sMenuDataPtr->modeId * 4) * 8);
+    sprite->data[0] += 8;
+}
+
+static const u32 gBattleSelector_Gfx[] = INCBIN_U32("graphics/ui_menus/battle_menu/fields/selector.4bpp.lz");
+static const u16 gBattleSelector_Pal[] = INCBIN_U16("graphics/ui_menus/battle_menu/fields/selector.gbapal");
+
+static const struct SpritePalette sBattleMenuSelectorSpritePalette[] = {gBattleSelector_Pal, PAL_UI_SPRITES};
+//Selector
+static void CreateSelectorSprite(void)
+{
+    u8 spriteId;
+    u8 SpriteTag = SPRITE_ARR_ID_SELECTOR;
+    struct CompressedSpriteSheet sSpriteSheet_Selector = {gBattleSelector_Gfx, 0x0801, SpriteTag};
+    struct SpriteTemplate TempSpriteTemplate = gDummySpriteTemplate;
+
+    TempSpriteTemplate.tileTag = SpriteTag;
+    TempSpriteTemplate.callback = SpriteCB_Selector;
+
+    LoadCompressedSpriteSheet(&sSpriteSheet_Selector);
+    LoadSpritePalette(sBattleMenuSelectorSpritePalette);
+    TempSpriteTemplate.paletteTag = PAL_UI_SPRITES;
+    spriteId = CreateSprite(&TempSpriteTemplate, 4, 4, 0);
+    sMenuDataPtr->spriteIds[SPRITE_ARR_ID_SELECTOR] = spriteId;
+
+    gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_SELECTOR]].oam.shape = SPRITE_SHAPE(64x32);
+    gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_SELECTOR]].oam.size = SPRITE_SIZE(64x32);
+    gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_SELECTOR]].oam.priority = 0;
+}
+
 
 static void ShowItemIcon(u16 itemId, u8 x, u8 y)
 {
     u8 itemSpriteId;
     u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM];
+
     if (*spriteId == SPRITE_NONE && itemId != ITEM_NONE)
     {
-        FreeSpriteTilesByTag(TAG_ITEM_ICON);
-        FreeSpritePaletteByTag(TAG_ITEM_ICON);
-        itemSpriteId = AddItemIconSprite(TAG_ITEM_ICON, TAG_ITEM_ICON, itemId);
+        FreeSpriteTilesByTag(SPRITE_ARR_HELD_ITEM);
+        FreeSpritePaletteByTag(SPRITE_ARR_HELD_ITEM);
+        itemSpriteId = AddItemIconSprite(SPRITE_ARR_HELD_ITEM, SPRITE_ARR_HELD_ITEM, itemId);
         sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM] = itemSpriteId;
         
         if (itemSpriteId != MAX_SPRITES)
@@ -602,8 +673,8 @@ static void FreeItemIconSprite(void)
     u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM];
     if (*spriteId != SPRITE_NONE)
     {
-        FreeSpriteTilesByTag(TAG_ITEM_ICON - 1);
-        FreeSpritePaletteByTag(TAG_ITEM_ICON - 1);
+        FreeSpriteTilesByTag(SPRITE_ARR_HELD_ITEM);
+        FreeSpritePaletteByTag(SPRITE_ARR_HELD_ITEM);
         FreeSpriteOamMatrix(&gSprites[*spriteId]);
         DestroySprite(&gSprites[*spriteId]);
         *spriteId = SPRITE_NONE;
@@ -825,10 +896,6 @@ static void PrintStatsTab(){
 	ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sMenuDataPtr->battlerId].speed, STR_CONV_MODE_LEFT_ALIGN, 3);
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, ((x + 3) * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
 
-    x = 0;
-    y = 0;
-    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
-
     //Nature
     x = 20;
     y = 16;
@@ -977,11 +1044,6 @@ static void PrintAbilityTab(){
     // Description ---------------------------------------------------------------------------------------------------
     y++;
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2 + 4, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gAbilityDescriptionPointers[innate3]);
-    
-    //Selector
-    x = 0;
-    y = 0;
-    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
 
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
@@ -1057,13 +1119,6 @@ static void PrintMoveTab(void){
     // Fourth Move
     y = y + SPACE_BETWEEN_MOVES;
 	PrintMoveInfo(move4, x, y, 3);
-
-    //Selector
-    x  = 0;
-    y  = 0;
-    x2 = 0;
-    y2 = 0;
-    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
 
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
@@ -1681,11 +1736,6 @@ static void PrintStatusTab(void){
     x  = 19;
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
 
-    //Selector
-    x = 0;
-    y = 0;
-    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
-
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
 }
@@ -1741,11 +1791,6 @@ static void PrintDamageCalulatorTab(void){
         AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
         y = y + 3;
     }
-
-    //Selector
-    x = 0;
-    y = 0;
-    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
 
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
@@ -2104,10 +2149,6 @@ static void PrintFieldTab(void)
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3) + 3, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
     y++;*/
 
-    //Selector
-    x = 0;
-    y = 0;
-    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
 }
@@ -2203,7 +2244,7 @@ static void PrintSpeedTab(void)
             //Total Stats 9 x 8
             ConvertIntToDecimalStringN(gStringVar1, speed, STR_CONV_MODE_LEFT_ALIGN, 3);
             //StringExpandPlaceholders(gStringVar4, gText_PrintSpeedTabStats);
-            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (8 * 8) + 4, (9 * 8) - 4 + (SPEED_POKEMON_SPACE * i), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
+            AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (8 * 8) + 4, (10 * 8) - 4 + (SPEED_POKEMON_SPACE * i), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
             y = y + 2;
 
             //Move Names
@@ -2237,10 +2278,6 @@ static void PrintSpeedTab(void)
         }
     }
 
-    //Selector
-    x = 0;
-    y = 0;
-    BlitBitmapToWindow(windowId, sSelector, (x * 8) + x2, ((y + (sMenuDataPtr->modeId * 4)) * 8), 48, 32);
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
 }
@@ -2578,7 +2615,7 @@ static u8 ShowSpeciesIcon(u8 num)
 static void FreeEveryMonIconSprite(void)
 {
     u8 i;
-    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+    for (i = 0; i < gBattlersCount; i++)
         FreeSpeciesIconSprite(i);
 }
 
@@ -2587,8 +2624,8 @@ static void FreeSpeciesIconSprite(u8 battler)
     u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_SPEED + battler];
     if (*spriteId != SPRITE_NONE)
     {
-        FreeSpriteTilesByTag(TAG_BATTLER_SPEED + battler - 1);
-        FreeSpritePaletteByTag(TAG_BATTLER_SPEED + battler - 1);
+        FreeSpriteTilesByTag(SPRITE_ARR_ID_MON_ICON_1_SPEED + battler - 1);
+        FreeSpritePaletteByTag(SPRITE_ARR_ID_MON_ICON_1_SPEED + battler - 1);
         FreeSpriteOamMatrix(&gSprites[*spriteId]);
         DestroySprite(&gSprites[*spriteId]);
         *spriteId = SPRITE_NONE;
@@ -2775,8 +2812,8 @@ static void LoadTabPalette(void){
 static void PrintPage(void){
     LoadTilemapFromMode();
     LoadTabPalette();
-    FreeItemIconSprite();
     FreeEveryMonIconSprite();
+    FreeItemIconSprite();
     if(sMenuDataPtr->modeId != MODE_FIELD)
         switch(sMenuDataPtr->tabId){
             case TAB_STATS:
