@@ -223,5 +223,5 @@ bool32 IsEntrainmentBannedAbilityAttacker(u16 ability);
 bool32 IsEntrainmentTargetOrSimpleBeamBannedAbility(u16 ability);
 
 u32 GetIllusionMonSpecies(u32 battlerId);
-
+s32 DoMoveDamageCalcBattleMenu(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, u8 randomFactor);
 #endif // GUARD_BATTLE_UTIL_H

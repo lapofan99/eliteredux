@@ -58,10 +58,9 @@ enum
     SPRITE_ARR_ID_MON_ICON_3,
     SPRITE_ARR_ID_MON_ICON_4,
     SPRITE_ARR_ID_STATUS,
-    SPRITE_ARR_ID_ITEM,
-    SPRITE_ARR_ID_TYPE_1,
-    SPRITE_ARR_ID_TYPE_2,
-    SPRITE_ARR_ID_TYPE_3,
+    //SPRITE_ARR_ID_TYPE_1,
+    //SPRITE_ARR_ID_TYPE_2,
+    //SPRITE_ARR_ID_TYPE_3,
     SPRITE_ARR_HELD_ITEM,
     SPRITE_ARR_ID_MON_ICON_1_SPEED,
     SPRITE_ARR_ID_MON_ICON_2_SPEED,
@@ -94,9 +93,9 @@ enum battler_TabIds
     TAB_STATS,
     TAB_ABILITIES,
     TAB_MOVES,
+    TAB_DAMAGE_CALCULATOR,
     TAB_STATUS,
     NUM_TABS,
-    TAB_DAMAGE_CALCULATOR, //Disabled for now
 };
 
 enum field_TabsIds
@@ -129,7 +128,7 @@ enum move_moves
 {
     MOVE_MODE_NORMAL,
     MOVE_MODE_DESCRIPTION,
-    MOVE_MODE_DAMAGE_CALCULATOR,
+    //MOVE_MODE_DAMAGE_CALCULATOR,
     MOVE_MODE_AFFECTED_1,
     MOVE_MODE_AFFECTED_2,
     NUM_MOVE_MODES
@@ -174,6 +173,8 @@ static void PrintPage(void);
 static void ShowFieldIcon(void);
 static void CreateSelectorSprite(void);
 static void FreeItemIconSprite(void);
+void FreeFieldSprite(void);
+void FreeSelectorSprite(void);
 
 //==========CONST=DATA==========//
 static const struct BgTemplate sMenuBgTemplates[] =
@@ -208,7 +209,7 @@ static const struct WindowTemplate sMenuWindowTemplates[] =
         .width = 30,        // width (per 8 pixels)
         .height = 20,       // height (per 8 pixels)
         .paletteNum = 0,    // palette index to use for text
-        .baseBlock = 20,     // tile start in VRAM
+        .baseBlock = 1,     // tile start in VRAM
     },
 };
 
@@ -366,14 +367,13 @@ static bool8 Menu_DoGfxSetup(void)
         gMain.state++;
         break;
     case 5:
-        //CreateSetStatusSprite();
         ShowSpeciesIcon(0);
         ShowSpeciesIcon(1);
-        ShowSpeciesIcon(2);
-        ShowSpeciesIcon(3);
-        //SetMonTypeIcons();
+        if(IsDoubleBattle()){
+            ShowSpeciesIcon(2);
+            ShowSpeciesIcon(3);
+        }
         PrintStatsTab();
-        //PrintToWindow(WINDOW_1, FONT_BLACK);
         taskId = CreateTask(Task_MenuWaitFadeIn, 0);
         BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
         gMain.state++;
@@ -472,6 +472,9 @@ static void Task_MenuWaitFadeAndBail(u8 taskId)
 {
     if (!gPaletteFade.active)
     {
+        FreeFieldSprite();
+        FreeSelectorSprite();
+        FreeItemIconSprite();
         SetMainCallback2(sMenuDataPtr->savedCallback);
         Menu_FreeResources();
         DestroyTask(taskId);
@@ -586,12 +589,29 @@ static u8 statorder[NUM_BATTLE_STATS] = {
 #define PAL_UI_SPRITES        14
 #define PAL_FIELD_ICON        15
 
+#define TAG_ITEM_ICON         4133
+#define TAG_BATTLER_SPEED     4134
+
 static const u32 gBattleFieldIconForest_Gfx[] = INCBIN_U32("graphics/ui_menus/battle_menu/fields/forest.4bpp.lz");
 static const u16 gBattleFieldIconForest_Pal[] = INCBIN_U16("graphics/ui_menus/battle_menu/fields/forest.gbapal");
 
 static const struct SpritePalette sBattleMenuFieldIconSpritePalette_Forest[] = {gBattleFieldIconForest_Pal, PAL_FIELD_ICON};
 
 //Field Icon
+void FreeFieldSprite(void)
+{
+    u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_ID_FIELD_ICON];
+    if (*spriteId != SPRITE_NONE)
+    {
+        FreeSpriteTilesByTag(SPRITE_ARR_ID_FIELD_ICON);
+        FreeSpritePaletteByTag(SPRITE_ARR_ID_FIELD_ICON);
+        FreeSpriteOamMatrix(&gSprites[*spriteId]);
+        DestroySprite(&gSprites[*spriteId]);
+        *spriteId = SPRITE_NONE;
+        sMenuDataPtr->spriteIds[SPRITE_ARR_ID_FIELD_ICON] = SPRITE_NONE;
+    }
+}
+
 static void ShowFieldIcon(void)
 {
     u8 spriteId;
@@ -625,6 +645,20 @@ static const u16 gBattleSelector_Pal[] = INCBIN_U16("graphics/ui_menus/battle_me
 
 static const struct SpritePalette sBattleMenuSelectorSpritePalette[] = {gBattleSelector_Pal, PAL_UI_SPRITES};
 //Selector
+void FreeSelectorSprite(void)
+{
+    u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_ID_SELECTOR];
+    if (*spriteId != SPRITE_NONE)
+    {
+        FreeSpriteTilesByTag(SPRITE_ARR_ID_SELECTOR);
+        FreeSpritePaletteByTag(SPRITE_ARR_ID_SELECTOR);
+        FreeSpriteOamMatrix(&gSprites[*spriteId]);
+        DestroySprite(&gSprites[*spriteId]);
+        *spriteId = SPRITE_NONE;
+        sMenuDataPtr->spriteIds[SPRITE_ARR_ID_SELECTOR] = SPRITE_NONE;
+    }
+}
+
 static void CreateSelectorSprite(void)
 {
     u8 spriteId;
@@ -646,7 +680,6 @@ static void CreateSelectorSprite(void)
     gSprites[sMenuDataPtr->spriteIds[SPRITE_ARR_ID_SELECTOR]].oam.priority = 0;
 }
 
-
 static void ShowItemIcon(u16 itemId, u8 x, u8 y)
 {
     u8 itemSpriteId;
@@ -654,9 +687,9 @@ static void ShowItemIcon(u16 itemId, u8 x, u8 y)
 
     if (*spriteId == SPRITE_NONE && itemId != ITEM_NONE)
     {
-        FreeSpriteTilesByTag(SPRITE_ARR_HELD_ITEM);
-        FreeSpritePaletteByTag(SPRITE_ARR_HELD_ITEM);
-        itemSpriteId = AddItemIconSprite(SPRITE_ARR_HELD_ITEM, SPRITE_ARR_HELD_ITEM, itemId);
+        FreeSpriteTilesByTag(TAG_ITEM_ICON - 1);
+        FreeSpritePaletteByTag(TAG_ITEM_ICON - 1);
+        itemSpriteId = AddItemIconSprite(TAG_ITEM_ICON, TAG_ITEM_ICON, itemId);
         sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM] = itemSpriteId;
         
         if (itemSpriteId != MAX_SPRITES)
@@ -673,8 +706,8 @@ static void FreeItemIconSprite(void)
     u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_HELD_ITEM];
     if (*spriteId != SPRITE_NONE)
     {
-        FreeSpriteTilesByTag(SPRITE_ARR_HELD_ITEM);
-        FreeSpritePaletteByTag(SPRITE_ARR_HELD_ITEM);
+        FreeSpriteTilesByTag(TAG_ITEM_ICON);
+        FreeSpritePaletteByTag(TAG_ITEM_ICON);
         FreeSpriteOamMatrix(&gSprites[*spriteId]);
         DestroySprite(&gSprites[*spriteId]);
         *spriteId = SPRITE_NONE;
@@ -1609,7 +1642,10 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + SPACE_BETWEEN_ABILITY_AND_NAME, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
             y++;
             // Move Priority ---------------------------------------------------------------------------------------------------
-            ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
+            if(gBattleMoves[move].priority >= 0)
+                ConvertIntToDecimalStringN(gStringVar1, gBattleMoves[move].priority, STR_CONV_MODE_LEFT_ALIGN, 3);
+            else
+                ConvertIntToDecimalStringN(gStringVar1, 0, STR_CONV_MODE_LEFT_ALIGN, 3);
             StringExpandPlaceholders(gStringVar4, gText_MoveInfo_Priority);
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
             // Move Split
@@ -1648,7 +1684,7 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
             StringCopy(gStringVar4, gMoveDescriptionPointers[move - 1]);
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
         break;
-        case MOVE_MODE_DAMAGE_CALCULATOR:
+        /*case MOVE_MODE_DAMAGE_CALCULATOR:
             if(gBattleMoves[move].split == SPLIT_STATUS || movePower == 0){
                 StringCopy(gStringVar4, gText_Target_Nothing);
             }
@@ -1656,7 +1692,7 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
                 PrintDamageCalculation(sMenuDataPtr->battlerId, target, move);
             }
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
-        break;
+        break;*/
         case MOVE_MODE_AFFECTED_1:
             //Makes Contact
             if(gBattleMoves[move].flags & FLAG_MAKES_CONTACT)
@@ -1782,7 +1818,7 @@ static void PrintDamageCalulatorTab(void){
 
         // Move Damage ---------------------------------------------------------------------------------------------------
         y++;
-        if(gBattleMoves[moves[i]].split == SPLIT_STATUS || gBattleMoves[moves[i]].power == 0){
+        if(gBattleMoves[moves[i]].split == SPLIT_STATUS || gBattleMoves[moves[i]].power <= 2){
             StringCopy(gStringVar4, gText_Target_Nothing);
         }
         else{
@@ -1826,12 +1862,16 @@ const u8 gText_SmogonDamageCalculator_FifthPart[] = _("{STR_VAR_1} {STR_VAR_2}%)
 const u8 gText_SmogonDamageCalculator_SixthPart[] = _("{STR_VAR_1} {STR_VAR_2}HKO");
 //{STR_VAR_1} = Fifth Part {STR_VAR_2} = 2HKO or 3HKO
 
+#define MAX_DAMAGE_FACTOR 0
+#define MIN_DAMAGE_FACTOR 16
+
 static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
-    s32 dmg, moveType, critDmg, normalDmg, critChance;
+    s32 dmg, moveType, critDmg, minDamage, maxDamage, critChance;
     u8 percentage, chance, i, j;
     struct Pokemon *party, *targetParty;
     u8 TargetEvs[NUM_STATS];
     u8 BattlerEvs[NUM_STATS];
+    u16 targetCurrentHp = gBattleMons[target].hp;
 
     //252+ SpA Abomasnow Blizzard vs. 168 HP / 0 SpD Abomasnow: 178-211 (49 - 58.1%) -- 97.7% chance to 2HKO
 
@@ -1850,6 +1890,10 @@ static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
         BattlerEvs[i] = GetMonData(&party[gBattlerPartyIndexes[battler]],      MON_DATA_HP_EV + i, NULL);
         TargetEvs[i]  = GetMonData(&targetParty[gBattlerPartyIndexes[target]], MON_DATA_HP_EV + i, NULL);
     }
+
+    //Damage Calculation
+    minDamage = DoMoveDamageCalcBattleMenu(move, sMenuDataPtr->battlerId, target, moveType, FALSE, MIN_DAMAGE_FACTOR);
+    maxDamage = DoMoveDamageCalcBattleMenu(move, sMenuDataPtr->battlerId, target, moveType, FALSE, MAX_DAMAGE_FACTOR);
 
     //First Part
     StringCopy(gStringVar2, gSpeciesNames[gBattleMons[sMenuDataPtr->battlerId].species]);
@@ -1878,29 +1922,27 @@ static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
     //Third Part
     StringCopy(gStringVar1, gStringVar4);
     StringCopy(gStringVar2, gSpeciesNames[gBattleMons[target].species]);
-    normalDmg = CalculateMoveDamage(move, sMenuDataPtr->battlerId, target, moveType, 0, FALSE, FALSE, FALSE);
-    ConvertIntToDecimalStringN(gStringVar3, normalDmg, STR_CONV_MODE_LEFT_ALIGN, 4);
+    ConvertIntToDecimalStringN(gStringVar3, minDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
     StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_ThirdPart);
 
     //Fourth Part gText_SmogonDamageCalculator_FourthPart
     StringCopy(gStringVar1, gStringVar4);
-    normalDmg = CalculateMoveDamage(move, sMenuDataPtr->battlerId, target, moveType, 0, TRUE, FALSE, FALSE);
-    ConvertIntToDecimalStringN(gStringVar2, normalDmg, STR_CONV_MODE_LEFT_ALIGN, 4);
-    percentage = 50;//Todo: Calculate Percentage
+    ConvertIntToDecimalStringN(gStringVar2, maxDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
+    percentage = (minDamage * 100)/ targetCurrentHp; // Min Damage Percentage
     ConvertIntToDecimalStringN(gStringVar3, percentage, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FourthPart);
 
     //Fifth Part 
     StringCopy(gStringVar1, gStringVar4);
-    percentage = 100;//Todo: Calculate Percentage
+    percentage = (maxDamage * 100)/ targetCurrentHp; // Max Damage Percentage
     ConvertIntToDecimalStringN(gStringVar2, percentage, STR_CONV_MODE_LEFT_ALIGN, 3);
-    chance = 50;//Todo: Calculate Chance
+    chance = 100; //Todo: Calculate Chance
     ConvertIntToDecimalStringN(gStringVar3, chance, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FifthPart);
 
     //Sixth Part
     StringCopy(gStringVar1, gStringVar4);
-    chance = 2;//Todo: Calculate Chance
+    chance = targetCurrentHp / maxDamage;
     ConvertIntToDecimalStringN(gStringVar2, chance, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SixthPart);
 }
@@ -2624,8 +2666,8 @@ static void FreeSpeciesIconSprite(u8 battler)
     u8 *spriteId = &sMenuDataPtr->spriteIds[SPRITE_ARR_ID_MON_ICON_1_SPEED + battler];
     if (*spriteId != SPRITE_NONE)
     {
-        FreeSpriteTilesByTag(SPRITE_ARR_ID_MON_ICON_1_SPEED + battler - 1);
-        FreeSpritePaletteByTag(SPRITE_ARR_ID_MON_ICON_1_SPEED + battler - 1);
+        FreeSpriteTilesByTag(TAG_BATTLER_SPEED      + battler - 1);
+        FreeSpritePaletteByTag(TAG_BATTLER_SPEED      + battler - 1);
         FreeSpriteOamMatrix(&gSprites[*spriteId]);
         DestroySprite(&gSprites[*spriteId]);
         *spriteId = SPRITE_NONE;
@@ -2711,7 +2753,7 @@ static void SetTypeIconSpritePosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
     sprite->y = y + 8;
     SetSpriteInvisibility(spriteArrayId, FALSE);
 }
-
+/*
 #define TYPE_ICON_Y (5 * 8)
 #define TYPE_ICON_1_X (7 * 8)
 #define TYPE_ICON_2_X TYPE_ICON_1_X + (4 * 8)
@@ -2733,9 +2775,9 @@ static void SetMonTypeIcons(void)
         SetTypeIconSpritePosAndPal(type1, TYPE_ICON_1_X, TYPE_ICON_Y, SPRITE_ARR_ID_TYPE_1);
         SetSpriteInvisibility(SPRITE_ARR_ID_TYPE_2, TRUE);
     }
-}
+}*/
 
-static u8 tabColors[NUM_TABS + 2] = {
+static u8 tabColors[NUM_TABS] = {
     [TAB_STATS]             = MENU_COLOR_BLUE,
     [TAB_ABILITIES]         = MENU_COLOR_RED,
     [TAB_MOVES]             = MENU_COLOR_GREEN,
@@ -2812,8 +2854,8 @@ static void LoadTabPalette(void){
 static void PrintPage(void){
     LoadTilemapFromMode();
     LoadTabPalette();
-    FreeEveryMonIconSprite();
     FreeItemIconSprite();
+    FreeEveryMonIconSprite();
     if(sMenuDataPtr->modeId != MODE_FIELD)
         switch(sMenuDataPtr->tabId){
             case TAB_STATS:
