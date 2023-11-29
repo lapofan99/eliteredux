@@ -69,6 +69,16 @@ enum
     NUM_SPRITES,
 };
 
+enum
+{
+    FIELD_INFO_WEATHER,
+    FIELD_INFO_TERRAIN,
+    FIELD_INFO_TRICK_ROOM,
+    FIELD_INFO_GRAVITY,
+    FIELD_INFO_WONDER_ROOM,
+    FIELD_INFO_MAGIC_ROOM,
+    NUM_FIELD_INFO,
+};
 
 struct MenuResources
 {
@@ -81,6 +91,9 @@ struct MenuResources
     u8 tabModeId;
     u8 moveModeId;
     u8 spriteIds[NUM_SPRITES];
+    u8 fieldInfo[NUM_FIELD_INFO];
+    u8 currentFieldInfo;
+    u8 numFields;
 };
 
 enum WindowIds
@@ -269,7 +282,9 @@ void Task_OpenBattleMenuFromStartMenu(u8 taskId)
 // This is our main initialization function if you want to call the menu from elsewhere
 void UI_Battle_Menu_Init(MainCallback callback)
 {
-    u8 i;
+    u8 i, j;
+    bool8 isExtraInfoShown;
+
     if ((sMenuDataPtr = AllocZeroed(sizeof(struct MenuResources))) == NULL)
     {
         SetMainCallback2(callback);
@@ -277,11 +292,13 @@ void UI_Battle_Menu_Init(MainCallback callback)
     }
 
     // initialize stuff
-    sMenuDataPtr->gfxLoadState = 0;
-    sMenuDataPtr->moveModeId   = 0;
-    sMenuDataPtr->tabModeId    = 0;
-    sMenuDataPtr->tabId        = 0;
-    sMenuDataPtr->fieldTabId   = 0;
+    sMenuDataPtr->gfxLoadState     = 0;
+    sMenuDataPtr->moveModeId       = 0;
+    sMenuDataPtr->tabModeId        = 0;
+    sMenuDataPtr->tabId            = 0;
+    sMenuDataPtr->fieldTabId       = 0;
+    sMenuDataPtr->currentFieldInfo = 0;
+    sMenuDataPtr->numFields        = 0;
     if(IsDoubleBattle())
         sMenuDataPtr->modeId = MODE_BATTLER2;
     else
@@ -290,6 +307,53 @@ void UI_Battle_Menu_Init(MainCallback callback)
     for(i = 0; i < NUM_SPRITES; i++)
         sMenuDataPtr->spriteIds[i] = SPRITE_NONE;
     sMenuDataPtr->savedCallback = callback;
+
+    for(i = 0; i < NUM_FIELD_INFO; i++)
+        sMenuDataPtr->fieldInfo[i] = NUM_FIELD_INFO;
+
+    //
+    for(i = 0; i < NUM_FIELD_INFO; i++){
+        isExtraInfoShown = FALSE;
+        switch(i){
+            case FIELD_INFO_WEATHER:
+                if((gBattleWeather & WEATHER_ANY))
+                    isExtraInfoShown = TRUE;
+            break;
+            case FIELD_INFO_TERRAIN:
+                if(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
+                    isExtraInfoShown = TRUE;
+            break;
+            case FIELD_INFO_TRICK_ROOM:
+                if(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)
+                    isExtraInfoShown = TRUE;
+            break;
+            case FIELD_INFO_GRAVITY:
+                if((gFieldStatuses & STATUS_FIELD_GRAVITY))
+                    isExtraInfoShown = TRUE;
+            break;
+            case FIELD_INFO_WONDER_ROOM:
+                if(gFieldStatuses & STATUS_FIELD_WONDER_ROOM)
+                    isExtraInfoShown = TRUE;
+            break;
+            case FIELD_INFO_MAGIC_ROOM:
+                if(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM)
+                    isExtraInfoShown = TRUE;
+            break;
+        }
+
+        if(isExtraInfoShown){
+            //mgba
+            #ifdef DEBUG_BUILD
+            if(FlagGet(FLAG_SYS_MGBA_PRINT)){
+                MgbaOpen();
+                MgbaPrintf(MGBA_LOG_WARN, "sMenuDataPtr->fieldInfo[%d] = %d", sMenuDataPtr->numFields, i);
+                MgbaClose();
+            }
+            #endif
+            sMenuDataPtr->fieldInfo[sMenuDataPtr->numFields] = i;
+            sMenuDataPtr->numFields++;
+        }
+    }
 
     SetMainCallback2(Battle_Menu_RunSetup);
 }
@@ -1977,8 +2041,8 @@ const u8 sText_Title_Field_Weather_Description_Primal_Rain[]  = _("Boosts the po
                                                                   "and protects Pokémon from Fire-type\n"
                                                                   "moves.");
 const u8 sText_Title_Field_Weather_Description_Primal_Sun[]  = _("Boosts the power of Fire-type moves\n"
-                                                                  "and protects Pokémon from Water-type\n"
-                                                                  "moves.");
+                                                                 "and protects Pokémon from Water\n"
+                                                                 "-type moves.");
 
 const u8 sText_Title_Field_Terrain[]                      = _("Terrain: {STR_VAR_1}");
 const u8 sText_Title_Field_Terrain_Electric[]             = _("Electric");
@@ -2005,7 +2069,17 @@ const u8 sText_Title_Field_Room_Description_Trick[]       = _("The move order is
                                                               "Pokémon will attack before faster\n"
                                                               "Pokémon.");
 const u8 sText_Title_Field_Wonder_Room[]                  = _("Wonder Room:");
+const u8 sText_Title_Field_Room_Description_Wonder[]       = _("The move order is reversed, slower\n"
+                                                              "Pokémon will attack before faster\n"
+                                                              "Pokémon.");
 const u8 sText_Title_Field_Magic_Room[]                   = _("Magic Room:");
+const u8 sText_Title_Field_Room_Description_Magic[]       = _("The move order is reversed, slower\n"
+                                                              "Pokémon will attack before faster\n"
+                                                              "Pokémon.");
+const u8 sText_Title_Field_Gravity[]                      = _("Gravity");
+const u8 sText_Title_Field_Gravity_Description   []       = _("The move order is reversed, slower\n"
+                                                              "Pokémon will attack before faster\n"
+                                                              "Pokémon.");
 
 const u8 sText_Title_Field_Nature_Power[]                 = _("Nature Power:");
 const u8 sText_Title_Field_Secret_Power[]                 = _("Secret Power:");
@@ -2025,6 +2099,8 @@ static void PrintFieldTab(void)
     u8 windowId = WINDOW_1;
     u8 colorIdx = FONT_BLACK;
     u8 turnsLeft = 5;
+    bool8 printedInfo = FALSE;
+    u8 maxLines = 3;
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
@@ -2042,88 +2118,171 @@ static void PrintFieldTab(void)
     y  = 3;
     x2 = 0;
     y2 = -4;
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Weather);
-    if((gBattleWeather & WEATHER_RAIN_ANY) && !(gBattleWeather & WEATHER_RAIN_PRIMAL))
-        StringCopy(gStringVar1, sText_Title_Field_Weather_Rain);
-    else if((gBattleWeather & WEATHER_SUN_ANY) && !(gBattleWeather & WEATHER_SUN_PRIMAL))
-        StringCopy(gStringVar1, sText_Title_Field_Weather_Sun);
-    else if((gBattleWeather & WEATHER_SANDSTORM_ANY))
-        StringCopy(gStringVar1, sText_Title_Field_Weather_Sandstorm);
-    else if((gBattleWeather & WEATHER_HAIL_ANY))
-        StringCopy(gStringVar1, sText_Title_Field_Weather_Hail);
-    else if((gBattleWeather & WEATHER_STRONG_WINDS))
-        StringCopy(gStringVar1, sText_Title_Field_Weather_Strong_Winds);
-    else if((gBattleWeather & WEATHER_RAIN_PRIMAL))
-        StringCopy(gStringVar1, sText_Title_Field_Weather_Rain_Primal);
-    else if((gBattleWeather & WEATHER_SUN_PRIMAL))
-        StringCopy(gStringVar1, sText_Title_Field_Weather_Sun_Primal);
-    else
-        StringCopy(gStringVar1, sText_Title_Field_None);
 
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + SPACE_BETWEEN_LINES_FIELD, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+    if(sMenuDataPtr->numFields < maxLines)
+        maxLines = sMenuDataPtr->numFields;
     
-    //Turns Left
-    if((gBattleWeather & WEATHER_ANY)){
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Turns_Left);
-        ConvertIntToDecimalStringN(gStringVar1, gWishFutureKnock.weatherDuration, STR_CONV_MODE_LEFT_ALIGN, 4);
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-        y++;
-        //Weather Description
-        if((gBattleWeather & WEATHER_RAIN_ANY))
-            StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Rain);
-        else if((gBattleWeather & WEATHER_SUN_ANY))
-            StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Sun);
-        else if((gBattleWeather & WEATHER_SANDSTORM_ANY))
-            StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Sandstorm);
-        else if((gBattleWeather & WEATHER_HAIL_ANY))
-            StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Hail);
-        else if((gBattleWeather & WEATHER_STRONG_WINDS))
-            StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Strong_Winds);
-        else if((gBattleWeather & WEATHER_RAIN_PRIMAL))
-            StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Primal_Rain);
-        else if((gBattleWeather & WEATHER_SUN_PRIMAL))
-            StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Primal_Sun);
-        
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
-    }
-    else{
-        y++;
-    }
-    //Terrain
-    y = y + MAX_DESCRIPTION_LINES + LINES_BETWEEN_STUFF;
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Terrain);
-    if(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
-        StringCopy(gStringVar1, sText_Title_Field_Terrain_Electric);
-    else if(gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
-        StringCopy(gStringVar1, sText_Title_Field_Terrain_Grassy);
-    else if(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
-        StringCopy(gStringVar1, sText_Title_Field_Terrain_Misty);
-    else if(gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
-        StringCopy(gStringVar1, sText_Title_Field_Terrain_Psychic);
-    else
-        StringCopy(gStringVar1, sText_Title_Field_None);
+    for(i = 0; i < maxLines; i++){
+        printedInfo = FALSE;
+        //switch(sMenuDataPtr->fieldInfo[(i ) % NUM_FIELD_INFO]){
+        switch(sMenuDataPtr->fieldInfo[(i + sMenuDataPtr->currentFieldInfo) % sMenuDataPtr->numFields]){
+            case FIELD_INFO_WEATHER:
+                //Title
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Weather);
+                if((gBattleWeather & WEATHER_RAIN_ANY) && !(gBattleWeather & WEATHER_RAIN_PRIMAL))
+                    StringCopy(gStringVar1, sText_Title_Field_Weather_Rain);
+                else if((gBattleWeather & WEATHER_SUN_ANY) && !(gBattleWeather & WEATHER_SUN_PRIMAL))
+                    StringCopy(gStringVar1, sText_Title_Field_Weather_Sun);
+                else if((gBattleWeather & WEATHER_SANDSTORM_ANY))
+                    StringCopy(gStringVar1, sText_Title_Field_Weather_Sandstorm);
+                else if((gBattleWeather & WEATHER_HAIL_ANY))
+                    StringCopy(gStringVar1, sText_Title_Field_Weather_Hail);
+                else if((gBattleWeather & WEATHER_STRONG_WINDS))
+                    StringCopy(gStringVar1, sText_Title_Field_Weather_Strong_Winds);
+                else if((gBattleWeather & WEATHER_RAIN_PRIMAL))
+                    StringCopy(gStringVar1, sText_Title_Field_Weather_Rain_Primal);
+                else if((gBattleWeather & WEATHER_SUN_PRIMAL))
+                    StringCopy(gStringVar1, sText_Title_Field_Weather_Sun_Primal);
+                else
+                    StringCopy(gStringVar1, sText_Title_Field_None);
 
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + SPACE_BETWEEN_LINES_FIELD, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    //Turns Left
-    if(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY){
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Turns_Left);
-        ConvertIntToDecimalStringN(gStringVar1, gFieldTimers.terrainTimer, STR_CONV_MODE_LEFT_ALIGN, 4);
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-        y++;
-        //Terrain Description
-        if((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
-            StringCopy(gStringVar1, sText_Title_Field_Terrain_Description_Electric);
-        else if((gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN))
-            StringCopy(gStringVar1, sText_Title_Field_Terrain_Description_Grassy);
-        else if((gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
-            StringCopy(gStringVar1, sText_Title_Field_Terrain_Description_Misty);
-        else if((gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
-            StringCopy(gStringVar1, sText_Title_Field_Terrain_Description_Psychic);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + SPACE_BETWEEN_LINES_FIELD, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+            
+                if((gBattleWeather & WEATHER_ANY)){
+                    //Turns Left
+                    if(!(gBattleWeather & WEATHER_RAIN_PRIMAL) && !(gBattleWeather & WEATHER_SUN_PRIMAL)){
+                        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Turns_Left);
+                        ConvertIntToDecimalStringN(gStringVar1, gWishFutureKnock.weatherDuration, STR_CONV_MODE_LEFT_ALIGN, 4);
+                        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                    }
 
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
-    }
-    else{
-        y++;
+                    //Weather Description
+                    if((gBattleWeather & WEATHER_STRONG_WINDS))
+                        StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Strong_Winds);
+                    else if((gBattleWeather & WEATHER_RAIN_PRIMAL))
+                        StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Primal_Rain);
+                    else if((gBattleWeather & WEATHER_SUN_PRIMAL))
+                        StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Primal_Sun);
+                    else if((gBattleWeather & WEATHER_RAIN_ANY))
+                        StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Rain);
+                    else if((gBattleWeather & WEATHER_SUN_ANY))
+                        StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Sun);
+                    else if((gBattleWeather & WEATHER_SANDSTORM_ANY))
+                        StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Sandstorm);
+                    else if((gBattleWeather & WEATHER_HAIL_ANY))
+                        StringCopy(gStringVar1, sText_Title_Field_Weather_Description_Hail);
+                    
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                }
+
+                printedInfo = TRUE;
+            break;
+            case FIELD_INFO_TERRAIN:
+                //Terrain
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Terrain);
+                if(gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN)
+                    StringCopy(gStringVar1, sText_Title_Field_Terrain_Electric);
+                else if(gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN)
+                    StringCopy(gStringVar1, sText_Title_Field_Terrain_Grassy);
+                else if(gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN)
+                    StringCopy(gStringVar1, sText_Title_Field_Terrain_Misty);
+                else if(gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN)
+                    StringCopy(gStringVar1, sText_Title_Field_Terrain_Psychic);
+                else
+                    StringCopy(gStringVar1, sText_Title_Field_None);
+
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + SPACE_BETWEEN_LINES_FIELD, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                //Turns Left
+                if(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY){
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Turns_Left);
+                    ConvertIntToDecimalStringN(gStringVar1, gFieldTimers.terrainTimer, STR_CONV_MODE_LEFT_ALIGN, 4);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                    //Terrain Description
+                    if((gFieldStatuses & STATUS_FIELD_ELECTRIC_TERRAIN))
+                        StringCopy(gStringVar1, sText_Title_Field_Terrain_Description_Electric);
+                    else if((gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN))
+                        StringCopy(gStringVar1, sText_Title_Field_Terrain_Description_Grassy);
+                    else if((gFieldStatuses & STATUS_FIELD_MISTY_TERRAIN))
+                        StringCopy(gStringVar1, sText_Title_Field_Terrain_Description_Misty);
+                    else if((gFieldStatuses & STATUS_FIELD_PSYCHIC_TERRAIN))
+                        StringCopy(gStringVar1, sText_Title_Field_Terrain_Description_Psychic);
+
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                }
+
+                printedInfo = TRUE;
+            break;
+            case FIELD_INFO_GRAVITY:
+                StringCopy(gStringVar1, sText_Title_Field_Gravity);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gFieldTimers.gravityTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Field_Gravity_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case FIELD_INFO_TRICK_ROOM:
+                StringCopy(gStringVar1, sText_Title_Field_Trick_Room);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gFieldTimers.trickRoomTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Field_Room_Description_Trick);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case FIELD_INFO_WONDER_ROOM:
+                StringCopy(gStringVar1, sText_Title_Field_Wonder_Room);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gFieldTimers.wonderRoomTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Field_Room_Description_Wonder);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case FIELD_INFO_MAGIC_ROOM:
+                StringCopy(gStringVar1, sText_Title_Field_Magic_Room);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gFieldTimers.magicRoomTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Field_Room_Description_Magic);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+        }
+        if(printedInfo)
+            y = y + MAX_DESCRIPTION_LINES + 2;
     }
 
     /*//Nature Power
@@ -2138,58 +2297,6 @@ static void PrintFieldTab(void)
     StringCopy(gStringVar1, sText_Title_Field_Paralysis);
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 1.5), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
     */
-
-    //Rooms
-    y = y + MAX_DESCRIPTION_LINES + LINES_BETWEEN_STUFF;
-    StringCopy(gStringVar1, sText_Title_Field_Room);
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    //Active
-    if(gFieldStatuses & STATUS_FIELD_TRICK_ROOM)
-        StringCopy(gStringVar1, sText_Title_Field_Trick_Room);
-    else
-        StringCopy(gStringVar1, sText_Title_Field_None);
-    
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    //Turns Left
-    if(gFieldStatuses & STATUS_FIELD_TRICK_ROOM){
-        StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-        ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-        y++;
-        //Trick Room Description
-        StringCopy(gStringVar1, sText_Title_Field_Room_Description_Trick);
-        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
-    }
-    else{
-        y++;
-    }
-
-    /*//Wonder Room
-    StringCopy(gStringVar1, sText_Title_Field_Wonder_Room);
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    //Active
-    StringCopy(gStringVar1, sText_Title_Field_Not_Active);
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD + 6), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    //Turns Left
-    StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2) + 3, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3) + 3, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    y++;
-
-    //Magic Room
-    StringCopy(gStringVar1, sText_Title_Field_Magic_Room);
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    //Active
-    StringCopy(gStringVar1, sText_Title_Field_Not_Active);
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD + 6), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    //Turns Left
-    StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2) + 3, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
-    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3) + 3, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
-    y++;*/
 
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
@@ -2927,9 +3034,17 @@ static void Task_MenuMain(u8 taskId)
 
         }
         else{
-            PlaySE(SE_PC_OFF);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-            gTasks[taskId].func = Task_MenuTurnOff;
+            switch(sMenuDataPtr->fieldTabId){
+                case TAB_FIELD:
+                    sMenuDataPtr->currentFieldInfo = (sMenuDataPtr->currentFieldInfo + 1) % sMenuDataPtr->numFields;
+                    PrintFieldTab();
+                break;
+                default:
+                    PlaySE(SE_PC_OFF);
+                    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+                    gTasks[taskId].func = Task_MenuTurnOff;
+                break;
+            }
         }
     }
 
