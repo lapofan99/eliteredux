@@ -73,11 +73,31 @@ enum
 {
     FIELD_INFO_WEATHER,
     FIELD_INFO_TERRAIN,
+    FIELD_INFO_INVERSE_ROOM,
     FIELD_INFO_TRICK_ROOM,
     FIELD_INFO_GRAVITY,
     FIELD_INFO_WONDER_ROOM,
     FIELD_INFO_MAGIC_ROOM,
+    FIELD_INFO_FAIRY_LOCK,
+    FIELD_INFO_MUD_SPORT,
+    FIELD_INFO_WATER_SPORT,
+    FIELD_INFO_ION_DELUGE,
     NUM_FIELD_INFO,
+};
+
+enum
+{
+    SIDE_INFO_AURORA_VEIL,
+    SIDE_INFO_REFLECT,
+    SIDE_INFO_LIGHT_SCREEN,
+    SIDE_INFO_TAILWIND,
+    SIDE_INFO_SPIKES,
+    SIDE_INFO_TOXIC_SPIKES,
+    SIDE_INFO_STEALTH_ROCK,
+    SIDE_INFO_STICKY_WEB,
+    SIDE_INFO_SAFEGUARD,
+    SIDE_INFO_MIST,
+    NUM_SIDE_INFO,
 };
 
 struct MenuResources
@@ -94,6 +114,12 @@ struct MenuResources
     u8 fieldInfo[NUM_FIELD_INFO];
     u8 currentFieldInfo;
     u8 numFields;
+    u8 SideInfoPlayer[NUM_SIDE_INFO];
+    u8 currentSideInfoPlayer;
+    u8 numSideInfoPlayer;
+    u8 SideInfoEnemy[NUM_SIDE_INFO];
+    u8 currentSideInfoEnemy;
+    u8 numSideInfoEnemy;
 };
 
 enum WindowIds
@@ -115,6 +141,8 @@ enum field_TabsIds
 {
     TAB_FIELD,
     TAB_SPEED,
+    TAB_PLAYER_SIDE,
+    TAB_ENEMY_SIDE,
     NUM_FIELD_TABS,
 };
 
@@ -161,6 +189,7 @@ static void Menu_InitWindows(void);
 static void PrintToWindow(u8 windowId, u8 colorIdx);
 static void PrintFieldTab(void);
 static void PrintSpeedTab(void);
+static void PrintSideTab(u8 side);
 static void PrintStatsTab(void);
 static void PrintAbilityTab(void);
 static void PrintStatusTab(void);
@@ -292,13 +321,21 @@ void UI_Battle_Menu_Init(MainCallback callback)
     }
 
     // initialize stuff
-    sMenuDataPtr->gfxLoadState     = 0;
-    sMenuDataPtr->moveModeId       = 0;
-    sMenuDataPtr->tabModeId        = 0;
-    sMenuDataPtr->tabId            = 0;
-    sMenuDataPtr->fieldTabId       = 0;
-    sMenuDataPtr->currentFieldInfo = 0;
-    sMenuDataPtr->numFields        = 0;
+    sMenuDataPtr->gfxLoadState          = 0;
+    sMenuDataPtr->moveModeId            = 0;
+    sMenuDataPtr->tabModeId             = 0;
+    sMenuDataPtr->tabId                 = 0;
+    sMenuDataPtr->fieldTabId            = 0;
+
+    sMenuDataPtr->currentFieldInfo      = 0;
+    sMenuDataPtr->numFields             = 0;
+
+    sMenuDataPtr->currentSideInfoPlayer = 0;
+    sMenuDataPtr->numSideInfoPlayer     = 0;
+
+    sMenuDataPtr->currentSideInfoEnemy  = 0;
+    sMenuDataPtr->numSideInfoEnemy      = 0;
+
     if(IsDoubleBattle())
         sMenuDataPtr->modeId = MODE_BATTLER2;
     else
@@ -311,7 +348,7 @@ void UI_Battle_Menu_Init(MainCallback callback)
     for(i = 0; i < NUM_FIELD_INFO; i++)
         sMenuDataPtr->fieldInfo[i] = NUM_FIELD_INFO;
 
-    //
+    //Field Info
     for(i = 0; i < NUM_FIELD_INFO; i++){
         isExtraInfoShown = FALSE;
         switch(i){
@@ -321,6 +358,10 @@ void UI_Battle_Menu_Init(MainCallback callback)
             break;
             case FIELD_INFO_TERRAIN:
                 if(gFieldStatuses & STATUS_FIELD_TERRAIN_ANY)
+                    isExtraInfoShown = TRUE;
+            break;
+            case FIELD_INFO_INVERSE_ROOM:
+                if(FlagGet(FLAG_SYS_INVERSE_BATTLE))
                     isExtraInfoShown = TRUE;
             break;
             case FIELD_INFO_TRICK_ROOM:
@@ -339,19 +380,131 @@ void UI_Battle_Menu_Init(MainCallback callback)
                 if(gFieldStatuses & STATUS_FIELD_MAGIC_ROOM)
                     isExtraInfoShown = TRUE;
             break;
+            case FIELD_INFO_FAIRY_LOCK:
+                if(gFieldStatuses & STATUS_FIELD_FAIRY_LOCK)
+                    isExtraInfoShown = TRUE;
+            break;
+            case FIELD_INFO_MUD_SPORT:
+                if(gFieldStatuses & STATUS_FIELD_MUDSPORT)
+                    isExtraInfoShown = TRUE;
+            break;
+            case FIELD_INFO_WATER_SPORT:
+                if(gFieldStatuses & STATUS_FIELD_WATERSPORT)
+                    isExtraInfoShown = TRUE;
+            break;
+            case FIELD_INFO_ION_DELUGE:
+                if(gFieldStatuses & STATUS_FIELD_ION_DELUGE)
+                    isExtraInfoShown = TRUE;
+            break;
         }
 
         if(isExtraInfoShown){
-            //mgba
-            #ifdef DEBUG_BUILD
-            if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                MgbaOpen();
-                MgbaPrintf(MGBA_LOG_WARN, "sMenuDataPtr->fieldInfo[%d] = %d", sMenuDataPtr->numFields, i);
-                MgbaClose();
-            }
-            #endif
             sMenuDataPtr->fieldInfo[sMenuDataPtr->numFields] = i;
             sMenuDataPtr->numFields++;
+        }
+    }
+
+    //Player Side Info
+    for(i = 0; i < NUM_SIDE_INFO; i++){
+        isExtraInfoShown = FALSE;
+        switch(i){
+            case SIDE_INFO_AURORA_VEIL:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_AURORA_VEIL)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_REFLECT:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_REFLECT)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_LIGHT_SCREEN:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_LIGHTSCREEN)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_TAILWIND:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_TAILWIND)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_SPIKES:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_SPIKES)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_TOXIC_SPIKES:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_TOXIC_SPIKES)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_STEALTH_ROCK:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_STEALTH_ROCK)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_STICKY_WEB:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_STICKY_WEB)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_SAFEGUARD:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_SAFEGUARD)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_MIST:
+                if(gSideStatuses[B_SIDE_PLAYER] & SIDE_STATUS_MIST)
+                    isExtraInfoShown = TRUE;
+            break;
+        }
+
+        if(isExtraInfoShown){
+            sMenuDataPtr->SideInfoPlayer[sMenuDataPtr->numSideInfoPlayer] = i;
+            sMenuDataPtr->numSideInfoPlayer++;
+        }
+    }
+
+    //Enemy Side Info
+    for(i = 0; i < NUM_SIDE_INFO; i++){
+        isExtraInfoShown = FALSE;
+        switch(i){
+            case SIDE_INFO_AURORA_VEIL:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_AURORA_VEIL)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_REFLECT:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_REFLECT)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_LIGHT_SCREEN:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_LIGHTSCREEN)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_TAILWIND:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_TAILWIND)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_SPIKES:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_SPIKES)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_TOXIC_SPIKES:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_TOXIC_SPIKES)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_STEALTH_ROCK:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_STEALTH_ROCK)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_STICKY_WEB:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_STICKY_WEB)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_SAFEGUARD:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_SAFEGUARD)
+                    isExtraInfoShown = TRUE;
+            break;
+            case SIDE_INFO_MIST:
+                if(gSideStatuses[B_SIDE_OPPONENT] & SIDE_STATUS_MIST)
+                    isExtraInfoShown = TRUE;
+            break;
+        }
+
+        if(isExtraInfoShown){
+            sMenuDataPtr->SideInfoEnemy[sMenuDataPtr->numSideInfoPlayer] = i;
+            sMenuDataPtr->numSideInfoEnemy++;
         }
     }
 
@@ -517,6 +670,8 @@ void LoadTilemapFromMode(void)
     else{
         switch(sMenuDataPtr->fieldTabId){
             case TAB_FIELD:
+            case TAB_PLAYER_SIDE:
+            case TAB_ENEMY_SIDE:
                 if(IsDoubleBattle())
                     LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
                 else
@@ -780,14 +935,18 @@ static void FreeItemIconSprite(void)
 }
 const u8 sText_Title_Nothing[]    = _("");
 
-const u8 sText_Title_Battler_Stats[]    = _("Pokémon Stats");
-const u8 sText_Title_Battler_Ability[]  = _("Abilities Info");
-const u8 sText_Title_Battler_Moves[]    = _("Moves Info");
-const u8 sText_Title_Battler_Status[]   = _("Pokémon Status");
-const u8 sText_Title_Battler_Damage[]   = _("Damage Calculator");
-const u8 sText_Title_Field_Stats[]      = _("Field Info");
-const u8 sText_Title_Controllers[]      = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
-const u8 sText_Title_Speed_Order[]      = _("Speed Order");
+const u8 sText_Title_Battler_Stats[]     = _("Pokémon Stats");
+const u8 sText_Title_Battler_Ability[]   = _("Abilities Info");
+const u8 sText_Title_Battler_Moves[]     = _("Moves Info");
+const u8 sText_Title_Battler_Status[]    = _("Pokémon Status");
+const u8 sText_Title_Battler_Damage[]    = _("Damage Calculator");
+const u8 sText_Title_Field_Stats[]       = _("Field Info");
+const u8 sText_Title_Enemy_Side[]        = _("Enemy Side Info");
+const u8 sText_Title_Player_Side[]       = _("Player Side Info");
+const u8 sText_Title_Speed_Order[]       = _("Speed Order");
+const u8 sText_Title_FieldControllers[]  = _("{A_BUTTON}Scroll {DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
+const u8 sText_Title_FieldControllers2[] = _("{A_BUTTON}Scroll {DPAD_UPDOWN}Switch");
+const u8 sText_Title_Controllers[]       = _("{DPAD_UPDOWN}Switch {DPAD_LEFTRIGHT}Page");
 
 const u8 sText_Title_Type_One[]     = _("Type:\n{STR_VAR_1}");
 const u8 sText_Title_Type_Two[]     = _("Types:\n{STR_VAR_1}/ {STR_VAR_2}");
@@ -2011,7 +2170,16 @@ static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
     StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SixthPart);
 }
 
+//Misc
 const u8 sText_Title_Field_Turns_Left[]                   = _("Turns Left:");
+const u8 sText_Title_Field_Nature_Power[]                 = _("Nature Power:");
+const u8 sText_Title_Field_Secret_Power[]                 = _("Secret Power:");
+const u8 sText_Title_Field_Paralysis[]                    = _("Causes Paralysis");
+const u8 sText_Title_Field_Active[]                       = _("Active");
+const u8 sText_Title_Field_Not_Active[]                   = _("Not Active");
+const u8 sText_Title_Field_None[]                         = _("None");
+
+//Weathers
 const u8 sText_Title_Field_Weather[]                      = _("Weather: {STR_VAR_1}");
 const u8 sText_Title_Field_Weather_Rain[]                 = _("Rain");
 const u8 sText_Title_Field_Weather_Sun[]                  = _("Sun");
@@ -2037,58 +2205,68 @@ const u8 sText_Title_Field_Weather_Description_Hail[]         = _("Any Pokémon 
 const u8 sText_Title_Field_Weather_Description_Strong_Winds[] = _("Causes Electric, Ice, and Rock-type\n"
                                                                   "moves to deal neutral damage to \n"
                                                                   "Flying-type Pokémon.");
-const u8 sText_Title_Field_Weather_Description_Primal_Rain[]  = _("Boosts the power of Water-type moves\n"
-                                                                  "and protects Pokémon from Fire-type\n"
-                                                                  "moves.");
-const u8 sText_Title_Field_Weather_Description_Primal_Sun[]  = _("Boosts the power of Fire-type moves\n"
-                                                                 "and protects Pokémon from Water\n"
-                                                                 "-type moves.");
-
-const u8 sText_Title_Field_Terrain[]                      = _("Terrain: {STR_VAR_1}");
+const u8 sText_Title_Field_Weather_Description_Primal_Rain[]  = _("Boosts the power of Water-type\n"
+                                                                  "moves and protects Pokémon from\n"
+                                                                  "Fire-type moves.");
+const u8 sText_Title_Field_Weather_Description_Primal_Sun[]  = _("Boosts the power of Fire-type\n"
+                                                                 "moves and protects Pokémon from\n"
+                                                                 "Water-type moves.");
+//Terrains
+const u8 sText_Title_Field_Terrain[]                      = _("{STR_VAR_1} Terrain");
 const u8 sText_Title_Field_Terrain_Electric[]             = _("Electric");
 const u8 sText_Title_Field_Terrain_Psychic[]              = _("Psychic");
 const u8 sText_Title_Field_Terrain_Misty[]                = _("Misty");
 const u8 sText_Title_Field_Terrain_Grassy[]               = _("Grassy");
 
-const u8 sText_Title_Field_Terrain_Description_Electric[] = _("Pokémon on the ground won't fall\n"
-                                                              "asleep. The power of Electric-type\n"
-                                                              "moves is boosted.");
-const u8 sText_Title_Field_Terrain_Description_Psychic[]  = _("Pokémon on the ground won't be hit\n"
-                                                              "by priority moves. The power of\n"
-                                                              "Psychic-type moves is boosted.");
-const u8 sText_Title_Field_Terrain_Description_Misty[]    = _("Pokémon on the ground won't get any\n"
-                                                              "status conditions, Damage from Dragon\n"
-                                                              "type moves is halved.");
-const u8 sText_Title_Field_Terrain_Description_Grassy[]   = _("Increases the power of Grass-type\n"
-                                                              "moves, Restores 1/16 HP to all\n"
-                                                              "Pokémon on the ground each turn.");
-
-const u8 sText_Title_Field_Room[]                         = _("Room Type:");
-const u8 sText_Title_Field_Trick_Room[]                   = _("Trick Room");
-const u8 sText_Title_Field_Room_Description_Trick[]       = _("The move order is reversed, slower\n"
-                                                              "Pokémon will attack before faster\n"
-                                                              "Pokémon.");
-const u8 sText_Title_Field_Wonder_Room[]                  = _("Wonder Room:");
-const u8 sText_Title_Field_Room_Description_Wonder[]       = _("The move order is reversed, slower\n"
-                                                              "Pokémon will attack before faster\n"
-                                                              "Pokémon.");
-const u8 sText_Title_Field_Magic_Room[]                   = _("Magic Room:");
-const u8 sText_Title_Field_Room_Description_Magic[]       = _("The move order is reversed, slower\n"
-                                                              "Pokémon will attack before faster\n"
-                                                              "Pokémon.");
-const u8 sText_Title_Field_Gravity[]                      = _("Gravity");
-const u8 sText_Title_Field_Gravity_Description   []       = _("The move order is reversed, slower\n"
-                                                              "Pokémon will attack before faster\n"
-                                                              "Pokémon.");
-
-const u8 sText_Title_Field_Nature_Power[]                 = _("Nature Power:");
-const u8 sText_Title_Field_Secret_Power[]                 = _("Secret Power:");
-const u8 sText_Title_Field_Paralysis[]                    = _("Causes Paralysis");
-
-const u8 sText_Title_Field_Active[]                       = _("Active");
-const u8 sText_Title_Field_Not_Active[]                   = _("Not Active");
-const u8 sText_Title_Field_None[]                         = _("None");
-
+const u8 sText_Title_Field_Terrain_Description_Electric[]    = _("Pokémon on the ground won't fall\n"
+                                                                 "asleep. The power of Electric-type\n"
+                                                                 "moves is boosted.");
+const u8 sText_Title_Field_Terrain_Description_Psychic[]     = _("Pokémon on the ground won't be hit\n"
+                                                                "by priority moves. The power of\n"
+                                                                "Psychic-type moves is boosted.");
+const u8 sText_Title_Field_Terrain_Description_Misty[]       = _("Pokémon on the ground won't get any\n"
+                                                                 "status conditions, Damage from Dragon\n"
+                                                                 "type moves is halved.");
+const u8 sText_Title_Field_Terrain_Description_Grassy[]      = _("Increases the power of Grass-type\n"
+                                                                 "moves, Restores 1/16 HP to all\n"
+                                                                 "Pokémon on the ground each turn.");
+//Rooms
+const u8 sText_Title_Field_Trick_Room[]                      = _("Trick Room");
+const u8 sText_Title_Field_Room_Description_Trick[]          = _("The move order is reversed, slower\n"
+                                                                 "Pokémon will attack before faster\n"
+                                                                 "Pokémon.");
+const u8 sText_Title_Field_Wonder_Room[]                     = _("Wonder Room:");
+const u8 sText_Title_Field_Room_Description_Wonder[]          = _("Swaps the Defense and Sp.Defense\n"
+                                                                  "of all Pokémon, but stat changes\n"
+                                                                  "remain on their respective stat.");
+const u8 sText_Title_Field_Magic_Room[]                      = _("Magic Room:");
+const u8 sText_Title_Field_Room_Description_Magic[]          = _("Suppresses the effect of all items\n"
+                                                                 "held by the Pokémon on the field.");
+const u8 sText_Title_Field_Gravity[]                         = _("Gravity");
+const u8 sText_Title_Field_Gravity_Description   []         = _("The accuracy of all moves is\n"
+                                                                "multiplied by 1.67, all Pokémon on\n"
+                                                                "the field to become grounded.");
+const u8 sText_Title_Field_Inverse_Room[]                   = _("Inverse Room:");
+const u8 sText_Title_Field_Inverse_Description[]            = _("The type effectiveness are inversed.\n"
+                                                                "Any type that would be resistant or\n"
+                                                                "immune to another type is now weak.");
+//Other
+const u8 sText_Title_Field_Fairy_Lock[]                      = _("Fairy Lock");
+const u8 sText_Title_Field_Fairy_Lock_Description[]          = _("Prevents all Pokémon(except Ghost\n"
+                                                                 "types) from switching out or\n"
+                                                                 "fleeing during their next turn.");
+const u8 sText_Title_Field_Mud_Sport[]                       = _("Mud Sport");
+const u8 sText_Title_Field_Mud_Sport_Description[]           = _("Reduces the base power of\n"
+                                                                 "Electric-type moves by 67%\n"
+                                                                 "on both sides.");
+const u8 sText_Title_Field_Water_Sport[]                     = _("Water Sport");
+const u8 sText_Title_Field_Water_Sport_Description[]         = _("Reduces the base power of\n"
+                                                                 "Fire-type moves by 67%\n"
+                                                                 "on both sides.");
+const u8 sText_Title_Field_Ion_Deluge[]                     = _("Ion Deluge");
+const u8 sText_Title_Field_Ion_Deluge_Description[]         = _("Causes all the Normal-type moves to\n"
+                                                                "become Electric-type instad,\n"
+                                                                "including status moves.");
 #define SPACE_BETWEEN_LINES_FIELD ((6 * 8) + 4)
 #define MAX_DESCRIPTION_LINES 3
 #define LINES_BETWEEN_STUFF 1
@@ -2110,8 +2288,8 @@ static void PrintFieldTab(void)
     x2 = 0;
     y2 = -4;
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Field_Stats);
-    x  = 19;
-    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
+    x  = 15;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_FieldControllers);
 
     // Weather
     x  = 9;
@@ -2212,6 +2390,23 @@ static void PrintFieldTab(void)
 
                 printedInfo = TRUE;
             break;
+            case FIELD_INFO_INVERSE_ROOM:
+                StringCopy(gStringVar1, sText_Title_Field_Inverse_Room);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                /*StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gFieldTimers.gravityTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);*/
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Field_Inverse_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
             case FIELD_INFO_GRAVITY:
                 StringCopy(gStringVar1, sText_Title_Field_Gravity);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
@@ -2280,6 +2475,74 @@ static void PrintFieldTab(void)
 
                 printedInfo = TRUE;
             break;
+            case FIELD_INFO_FAIRY_LOCK:
+                StringCopy(gStringVar1, sText_Title_Field_Fairy_Lock);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gFieldTimers.fairyLockTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Field_Fairy_Lock_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case FIELD_INFO_MUD_SPORT:
+                StringCopy(gStringVar1, sText_Title_Field_Mud_Sport);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gFieldTimers.mudSportTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Field_Mud_Sport_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case FIELD_INFO_WATER_SPORT:
+                StringCopy(gStringVar1, sText_Title_Field_Water_Sport);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gFieldTimers.waterSportTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Field_Water_Sport_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case FIELD_INFO_ION_DELUGE:
+                StringCopy(gStringVar1, sText_Title_Field_Ion_Deluge);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                /*StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gFieldTimers.magicRoomTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);*/
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Field_Ion_Deluge_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
         }
         if(printedInfo)
             y = y + MAX_DESCRIPTION_LINES + 2;
@@ -2297,6 +2560,158 @@ static void PrintFieldTab(void)
     StringCopy(gStringVar1, sText_Title_Field_Paralysis);
     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 1.5), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
     */
+
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, 3);
+}
+
+const u8 sText_Title_Side_Aurora_Veil[]                    = _("Auora Veil");
+const u8 sText_Title_Side_Aurora_Veil_Description[]        = _("Reduces the damage done to the user\n"
+                                                               "by physical and special moves by\n"
+                                                               "50%.");
+const u8 sText_Title_Side_Reflect[]                        = _("Reflect");
+const u8 sText_Title_Side_Reflect_Description[]            = _("Reduces the damage done to the user\n"
+                                                               "by physical moves by 50% can be\n"
+                                                               "be lifted by moves like Haze.");
+const u8 sText_Title_Side_Light_Screen[]                   = _("Light Screen");
+const u8 sText_Title_Side_Light_Screen_Description[]       = _("Reduces the damage done to the user\n"
+                                                               "by special moves by 50% can be\n"
+                                                               "be lifted by moves like Defog.");
+
+static void PrintSideTab(u8 side){
+    u8 i, j;
+    u8 x, y, x2, y2;
+    u8 windowId = WINDOW_1;
+    u8 colorIdx = FONT_BLACK;
+    u8 turnsLeft = 5;
+    bool8 printedInfo = FALSE;
+    u8 maxLines = 3;
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+
+    //Title
+    x  = 9;
+    y  = 0;
+    x2 = 0;
+    y2 = -4;
+    switch(side){
+        case B_SIDE_PLAYER:
+            AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Player_Side);
+        break;
+        case B_SIDE_OPPONENT:
+            AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Enemy_Side);
+        break;
+    }
+    x  = 19;
+    AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_FieldControllers2);
+
+    // Weather
+    x  = 9;
+    y  = 3;
+    x2 = 0;
+    y2 = -4;
+
+    switch(side){
+        case B_SIDE_PLAYER:
+            if(sMenuDataPtr->numSideInfoPlayer < maxLines)
+                maxLines = sMenuDataPtr->numSideInfoPlayer;
+            //sMenuDataPtr->currentSideInfoPlayer
+        break;
+        case B_SIDE_OPPONENT:
+            if(sMenuDataPtr->numSideInfoEnemy < maxLines)
+                maxLines = sMenuDataPtr->numSideInfoEnemy;
+            //sMenuDataPtr->currentSideInfoEnemy
+        break;
+    }
+
+    for(i = 0; i < maxLines; i++){
+        printedInfo = FALSE;
+
+        if(side == B_SIDE_PLAYER){
+            j = sMenuDataPtr->SideInfoPlayer[(i + sMenuDataPtr->currentSideInfoPlayer) % sMenuDataPtr->numSideInfoPlayer];
+        }
+        else{
+            j = sMenuDataPtr->SideInfoEnemy[(i + sMenuDataPtr->currentSideInfoEnemy) % sMenuDataPtr->numSideInfoEnemy];
+        }
+
+        switch(j){
+            case SIDE_INFO_AURORA_VEIL:
+                StringCopy(gStringVar1, sText_Title_Side_Aurora_Veil);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].auroraVeilTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Aurora_Veil_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case SIDE_INFO_REFLECT:
+                StringCopy(gStringVar1, sText_Title_Side_Reflect);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].reflectTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Reflect_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case SIDE_INFO_LIGHT_SCREEN:
+                StringCopy(gStringVar1, sText_Title_Side_Light_Screen);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].lightscreenTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Light_Screen_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
+            break;
+            case SIDE_INFO_TAILWIND:
+
+            break;
+            case SIDE_INFO_SPIKES:
+
+            break;
+            case SIDE_INFO_TOXIC_SPIKES:
+
+            break;
+            case SIDE_INFO_STEALTH_ROCK:
+
+            break;
+            case SIDE_INFO_STICKY_WEB:
+
+            break;
+            case SIDE_INFO_SAFEGUARD:
+
+            break;
+            case SIDE_INFO_MIST:
+
+            break;
+        }
+
+        if(printedInfo)
+            y = y + MAX_DESCRIPTION_LINES + 2;
+    }
 
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
@@ -2895,6 +3310,8 @@ static u8 tabColors[NUM_TABS] = {
 static u8 tabColorsField[NUM_FIELD_TABS + 2] = {
     [TAB_FIELD]             = MENU_COLOR_GREEN,
     [TAB_SPEED]             = MENU_COLOR_BLUE,
+    [TAB_PLAYER_SIDE]       = MENU_COLOR_RED,
+    [TAB_ENEMY_SIDE]        = MENU_COLOR_YELLOW,
 };
 
 static void setBattler(void){
@@ -2991,6 +3408,12 @@ static void PrintPage(void){
             break;
             case TAB_SPEED:
                 PrintSpeedTab();
+            break;
+            case TAB_PLAYER_SIDE:
+                PrintSideTab(B_SIDE_PLAYER);
+            break;
+            case TAB_ENEMY_SIDE:
+                PrintSideTab(B_SIDE_OPPONENT);
             break;
         }
     }
