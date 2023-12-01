@@ -100,6 +100,50 @@ enum
     NUM_SIDE_INFO,
 };
 
+enum
+{
+    //Status 1
+    STATUS_INFO_PRIMARY,
+    //Status 2
+    STATUS_INFO_CONFUSION,
+    //STATUS_INFO_FLINCHED,
+    STATUS_INFO_UPROAR,
+    STATUS_INFO_BIDE,
+    STATUS_INFO_INFUATION,
+    STATUS_INFO_FOCUS_ENERGY,
+    STATUS_INFO_TRANSFORMED,
+    STATUS_INFO_ESCAPE_PREVENTION,
+    STATUS_INFO_CURSED,
+    STATUS_INFO_FORESIGHT,
+    STATUS_INFO_DEFENSE_CURL,
+    STATUS_INFO_TORMENT,
+    //Status 3
+    STATUS_INFO_LEECHSEED,
+    STATUS_INFO_PERISH_SONG,
+    STATUS_INFO_MINIMIZED,
+    STATUS_INFO_CHARGED_UP,
+    STATUS_INFO_ROOTED,
+    STATUS_INFO_YAWN,
+    STATUS_INFO_GRUDGE,
+    STATUS_INFO_CANT_CRIT,
+    STATUS_INFO_GASTRO_ACID,
+    STATUS_INFO_EMBARGO,
+    STATUS_INFO_SMACKED_DOWN,
+    STATUS_INFO_MIRACLE_EYED,
+    STATUS_INFO_HEAL_BLOCKED,
+    STATUS_INFO_AQUA_RING,
+    STATUS_INFO_MAGNET_RISE,
+    STATUS_INFO_SEMI_INVULNERABLE,
+    //STATUS_INFO_UNDERGROUND,
+    //STATUS_INFO_UNDERWATER,
+    //STATUS_INFO_PHANTOM,FORCE,
+    //STATUS_INFO_ON_AIR,
+    STATUS_INFO_ELECTRIFIED,
+    STATUS_INFO_PLASMA_FIST,
+    STATUS_INFO_COILED,
+    NUM_STATUS_INFO,
+};
+
 struct MenuResources
 {
     MainCallback savedCallback;     // determines callback to run when we exit. e.g. where do we want to go after closing the menu
@@ -120,6 +164,9 @@ struct MenuResources
     u8 SideInfoEnemy[NUM_SIDE_INFO];
     u8 currentSideInfoEnemy;
     u8 numSideInfoEnemy;
+    u8 BattlerStatus[NUM_STATUS_INFO][MAX_BATTLERS_COUNT];
+    u8 CurrentStatusInfo[MAX_BATTLERS_COUNT];
+    u8 numStatusInfo[MAX_BATTLERS_COUNT];
 };
 
 enum WindowIds
@@ -165,7 +212,7 @@ enum modes
     NUM_MODES
 };
 
-enum move_moves
+enum move_modes
 {
     MOVE_MODE_NORMAL,
     MOVE_MODE_DESCRIPTION,
@@ -503,8 +550,74 @@ void UI_Battle_Menu_Init(MainCallback callback)
         }
 
         if(isExtraInfoShown){
-            sMenuDataPtr->SideInfoEnemy[sMenuDataPtr->numSideInfoPlayer] = i;
+            sMenuDataPtr->SideInfoEnemy[sMenuDataPtr->numSideInfoEnemy] = i;
             sMenuDataPtr->numSideInfoEnemy++;
+        }
+    }
+
+    //Battler Status Info
+    for(i = 0; i < NUM_STATUS_INFO; i++){
+        for(j = 0; i < MAX_BATTLERS_COUNT; i++){
+            isExtraInfoShown = FALSE;
+            if(IsBattlerAlive(j)){
+                switch(i){
+                    case STATUS_INFO_PRIMARY:
+                        if(gBattleMons[j].status1)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_CONFUSION:
+                        if(gBattleMons[j].status2 & STATUS2_CONFUSION)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_UPROAR:
+                        if(gBattleMons[j].status2 & STATUS2_UPROAR)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_BIDE:
+                        if(gBattleMons[j].status2 & STATUS2_BIDE)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_INFUATION:
+                        if(gBattleMons[j].status2 & STATUS2_INFATUATION)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_FOCUS_ENERGY:
+                        if(gBattleMons[j].status2 & STATUS2_FOCUS_ENERGY)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_TRANSFORMED:
+                        if(gBattleMons[j].status2 & STATUS2_TRANSFORMED)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_ESCAPE_PREVENTION:
+                        if(gBattleMons[j].status2 & STATUS2_ESCAPE_PREVENTION)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_CURSED:
+                        if(gBattleMons[j].status2 & STATUS2_CURSED)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_FORESIGHT:
+                        if(gBattleMons[j].status2 & STATUS2_FORESIGHT)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_DEFENSE_CURL:
+                        if(gBattleMons[j].status2 & STATUS2_DEFENSE_CURL)
+                            isExtraInfoShown = TRUE;
+                    break;
+                    case STATUS_INFO_TORMENT:
+                        if(gBattleMons[j].status2 & STATUS2_TORMENT)
+                            isExtraInfoShown = TRUE;
+                    break;
+                }
+
+                if(isExtraInfoShown){
+                    sMenuDataPtr->BattlerStatus[sMenuDataPtr->numStatusInfo[j]][j] = i;
+                    sMenuDataPtr->numStatusInfo[j]++;
+                    //CurrentStatusInfo
+                }
+
+            }
         }
     }
 
@@ -1995,6 +2108,10 @@ static void PrintStatusTab(void){
     x  = 19;
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
 
+    /*u8 BattlerStatus[NUM_BATTLE_STATS][MAX_BATTLERS_COUNT];
+    u8 CurrentStatusInfo[MAX_BATTLERS_COUNT];
+    u8 numStatusInfo[MAX_BATTLERS_COUNT];*/
+
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
 }
@@ -2598,7 +2715,7 @@ const u8 sText_Title_Side_Toxic_Spikes_1_Description[]     = _("Pokémon who swi
 const u8 sText_Title_Side_Toxic_Spikes_2_Description[]     = _("Pokémon who switch into the field\n"
                                                                "become badly poisoned");
 const u8 sText_Title_Side_Stealth_Rock[]                   = _("Stealth Rock");
-const u8 sText_Title_Side_Stealth_Rock_Description[]       = _("Pokémon who switch in receive damage,\n"
+const u8 sText_Title_Side_Stealth_Rock_Description[]       = _("Pokémon who switch in receive dmg,\n"
                                                                "the amount varies depending by the\n"
                                                                "effectiveness of Rock against it.");
 const u8 sText_Title_Side_Sticky_Web[]                     = _("Sticky Web");
@@ -3589,6 +3706,14 @@ static void Task_MenuMain(u8 taskId)
                 case TAB_FIELD:
                     sMenuDataPtr->currentFieldInfo = (sMenuDataPtr->currentFieldInfo + 1) % sMenuDataPtr->numFields;
                     PrintFieldTab();
+                break;
+                case TAB_PLAYER_SIDE:
+                    sMenuDataPtr->currentSideInfoPlayer = (sMenuDataPtr->currentSideInfoPlayer + 1) % sMenuDataPtr->numSideInfoPlayer;
+                    PrintSideTab(B_SIDE_PLAYER);
+                break;
+                case TAB_ENEMY_SIDE:
+                    sMenuDataPtr->currentSideInfoEnemy = (sMenuDataPtr->currentSideInfoEnemy + 1) % sMenuDataPtr->numSideInfoEnemy;
+                    PrintSideTab(B_SIDE_OPPONENT);
                 break;
                 default:
                     PlaySE(SE_PC_OFF);
