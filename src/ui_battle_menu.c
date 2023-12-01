@@ -383,6 +383,11 @@ void UI_Battle_Menu_Init(MainCallback callback)
     sMenuDataPtr->currentSideInfoEnemy  = 0;
     sMenuDataPtr->numSideInfoEnemy      = 0;
 
+    sMenuDataPtr->numStatusInfo[B_POSITION_PLAYER_LEFT]    = 0;
+    sMenuDataPtr->numStatusInfo[B_POSITION_OPPONENT_LEFT]  = 0;
+    sMenuDataPtr->numStatusInfo[B_POSITION_PLAYER_RIGHT]   = 0;
+    sMenuDataPtr->numStatusInfo[B_POSITION_OPPONENT_RIGHT] = 0;
+
     if(IsDoubleBattle())
         sMenuDataPtr->modeId = MODE_BATTLER2;
     else
@@ -557,66 +562,139 @@ void UI_Battle_Menu_Init(MainCallback callback)
 
     //Battler Status Info
     for(i = 0; i < NUM_STATUS_INFO; i++){
-        for(j = 0; i < MAX_BATTLERS_COUNT; i++){
+        for(j = 0; j < MAX_BATTLERS_COUNT; j++){
             isExtraInfoShown = FALSE;
-            if(IsBattlerAlive(j)){
-                switch(i){
-                    case STATUS_INFO_PRIMARY:
-                        if(gBattleMons[j].status1)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_CONFUSION:
-                        if(gBattleMons[j].status2 & STATUS2_CONFUSION)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_UPROAR:
-                        if(gBattleMons[j].status2 & STATUS2_UPROAR)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_BIDE:
-                        if(gBattleMons[j].status2 & STATUS2_BIDE)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_INFUATION:
-                        if(gBattleMons[j].status2 & STATUS2_INFATUATION)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_FOCUS_ENERGY:
-                        if(gBattleMons[j].status2 & STATUS2_FOCUS_ENERGY)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_TRANSFORMED:
-                        if(gBattleMons[j].status2 & STATUS2_TRANSFORMED)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_ESCAPE_PREVENTION:
-                        if(gBattleMons[j].status2 & STATUS2_ESCAPE_PREVENTION)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_CURSED:
-                        if(gBattleMons[j].status2 & STATUS2_CURSED)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_FORESIGHT:
-                        if(gBattleMons[j].status2 & STATUS2_FORESIGHT)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_DEFENSE_CURL:
-                        if(gBattleMons[j].status2 & STATUS2_DEFENSE_CURL)
-                            isExtraInfoShown = TRUE;
-                    break;
-                    case STATUS_INFO_TORMENT:
-                        if(gBattleMons[j].status2 & STATUS2_TORMENT)
-                            isExtraInfoShown = TRUE;
-                    break;
-                }
+            switch(i){
+                case STATUS_INFO_PRIMARY:
+                    if(gBattleMons[j].status1 & STATUS1_ANY)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_CONFUSION:
+                    if(gBattleMons[j].status2 & STATUS2_CONFUSION)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_UPROAR:
+                    if(gBattleMons[j].status2 & STATUS2_UPROAR)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_BIDE:
+                    if(gBattleMons[j].status2 & STATUS2_BIDE)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_INFUATION:
+                    if(gBattleMons[j].status2 & STATUS2_INFATUATION)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_FOCUS_ENERGY:
+                    if(gBattleMons[j].status2 & STATUS2_FOCUS_ENERGY)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_TRANSFORMED:
+                    if(gBattleMons[j].status2 & STATUS2_TRANSFORMED)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_ESCAPE_PREVENTION:
+                    if(gBattleMons[j].status2 & STATUS2_ESCAPE_PREVENTION)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_CURSED:
+                    if(gBattleMons[j].status2 & STATUS2_CURSED)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_FORESIGHT:
+                    if(gBattleMons[j].status2 & STATUS2_FORESIGHT)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_DEFENSE_CURL:
+                    if(gBattleMons[j].status2 & STATUS2_DEFENSE_CURL)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_TORMENT:
+                    if(gBattleMons[j].status2 & STATUS2_TORMENT)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_LEECHSEED:
+                    if(gStatuses3[j] & STATUS3_LEECHSEED)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_PERISH_SONG:
+                    if(gStatuses3[j] & STATUS3_PERISH_SONG)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_MINIMIZED:
+                    if(gStatuses3[i] & STATUS3_MINIMIZED)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_CHARGED_UP:
+                    if(gStatuses3[i] & STATUS3_CHARGED_UP)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_ROOTED:
+                    if(gStatuses3[i] & STATUS3_ROOTED)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_YAWN:
+                    if(gStatuses3[i] & STATUS3_YAWN)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_GRUDGE:
+                    if(gStatuses3[i] & STATUS3_GRUDGE)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_CANT_CRIT:
+                    if(gStatuses3[i] & STATUS3_CANT_SCORE_A_CRIT)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_GASTRO_ACID:
+                    if(gStatuses3[i] & STATUS3_GASTRO_ACID)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_EMBARGO:
+                    if(gStatuses3[i] & STATUS3_EMBARGO)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_SMACKED_DOWN:
+                    if(gStatuses3[i] & STATUS3_SMACKED_DOWN)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_MIRACLE_EYED:
+                    if(gStatuses3[i] & STATUS3_MIRACLE_EYED)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_HEAL_BLOCKED:
+                    if(gStatuses3[i] & STATUS3_HEAL_BLOCK)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_AQUA_RING:
+                    if(gStatuses3[i] & STATUS3_AQUA_RING)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_MAGNET_RISE:
+                    if(gStatuses3[i] & STATUS3_MAGNET_RISE)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_SEMI_INVULNERABLE:
+                    if(gStatuses3[i] & STATUS3_SEMI_INVULNERABLE)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_ELECTRIFIED:
+                    if(gStatuses4[j] & STATUS4_ELECTRIFIED)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_PLASMA_FIST:
+                    if(gStatuses4[j] & STATUS4_PLASMA_FISTS)
+                        isExtraInfoShown = TRUE;
+                break;
+                case STATUS_INFO_COILED:
+                    if(gStatuses4[j] & STATUS4_COILED)
+                        isExtraInfoShown = TRUE;
+                break;
+            }
 
-                if(isExtraInfoShown){
-                    sMenuDataPtr->BattlerStatus[sMenuDataPtr->numStatusInfo[j]][j] = i;
-                    sMenuDataPtr->numStatusInfo[j]++;
-                    //CurrentStatusInfo
-                }
-
+            if(isExtraInfoShown && IsBattlerAlive(j)){
+                sMenuDataPtr->BattlerStatus[sMenuDataPtr->numStatusInfo[j]][j] = i;
+                sMenuDataPtr->numStatusInfo[j]++;
+                //CurrentStatusInfo
             }
         }
     }
@@ -2078,6 +2156,179 @@ static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx){
     }
 }
 
+//Misc
+const u8 sText_Title_Field_Turns_Left[]                   = _("Turns Left:");
+const u8 sText_Title_Field_Turns[]                        = _("Turns:");
+const u8 sText_Title_Field_Layers[]                       = _("Layers:");
+const u8 sText_Title_Field_Nature_Power[]                 = _("Nature Power:");
+const u8 sText_Title_Field_Secret_Power[]                 = _("Secret Power:");
+const u8 sText_Title_Field_Paralysis[]                    = _("Causes Paralysis");
+const u8 sText_Title_Field_Active[]                       = _("Active");
+const u8 sText_Title_Field_Not_Active[]                   = _("Not Active");
+const u8 sText_Title_Field_None[]                         = _("None");
+//Primary Status
+const u8 sText_Title_Status_Paralysis[]                    = _("Paralyzed");
+const u8 sText_Title_Status_Paralysis_Description[]        = _("Reduces the speed of this Pokémon\n"
+                                                               "by 50% and has a 25% risk of losing\n"
+                                                               "their turn due to full paralysis.");
+const u8 sText_Title_Status_Burn[]                         = _("Burned");
+const u8 sText_Title_Status_Burn_Description[]             = _("Reduces the Physical Attack of this\n"
+                                                               "Pokémon by 50% and will take 1/16 of\n"
+                                                               "it's max HP at the end of each turn.");
+const u8 sText_Title_Status_Sleep[]                        = _("Asleep");
+const u8 sText_Title_Status_Sleep_Description[]            = _("Prevents this Pokémon from making\n"
+                                                               "a move, it is vulnerable to Dream\n"
+                                                               "Eater, Nightmare, and Bad Dreams.");
+const u8 sText_Title_Status_Frostbite[]                    = _("Frostbiten");
+const u8 sText_Title_Status_Frostbite_Description[]        = _("Reduces the Special Attack of this\n"
+                                                               "Pokémon by 50% and will take 1/16 of\n"
+                                                               "it's max HP at the end of each turn.");
+const u8 sText_Title_Status_Freeze[]                       = _("Frozen");
+const u8 sText_Title_Status_Freeze_Description[]           = _("Causes this pokemon to be unable to\n"
+                                                               "move for some turns, can be thwated\n"
+                                                               "if hit by some Fire-type moves.");
+const u8 sText_Title_Status_Poison[]                       = _("Poisoned");
+const u8 sText_Title_Status_Poison_Description[]           = _("Takes 1/8 of it's max HP every turn,\n"
+                                                               "takes double damage from Hex and\n"
+                                                               "Venoshock.");
+const u8 sText_Title_Status_Bad_Poison[]                   = _("Badly Poisoned");
+const u8 sText_Title_Status_Bad_Poison_Description[]       = _("Takes 1/16 of it's max HP on the first,\n"
+                                                               "turn, after which damage increases by\n"
+                                                               "1/16 each time it takes poison damage.");
+
+//Secondary Status
+const u8 sText_Title_Status_Confusion[]                    = _("Confused");
+const u8 sText_Title_Status_Confusion_Description[]        = _("Has a 33% chance to damage itself,\n"
+                                                               "damage is calculated as if it were a\n"
+                                                               "physical typeless move with a 40 BP.");
+const u8 sText_Title_Status_Uproar[]                       = _("Causing an Uproar");
+const u8 sText_Title_Status_Uproar_Description[]           = _("Will use Uproar for some turns, Pokémon\n"
+                                                               "can not fall asleep while this is\n"
+                                                               "happening with some exceptions.");
+const u8 sText_Title_Status_Bide[]                         = _("Bide");
+const u8 sText_Title_Status_Bide_Description[]             = _("Will be unable to attack for some turns,\n"
+                                                               "will do double the damage equal to\n"
+                                                               "twice the damage it receives.");
+const u8 sText_Title_Status_Infuation[]                    = _("Infuated");
+const u8 sText_Title_Status_Infuation_Description[]        = _("Reduces the damage done to the target\n"
+                                                               "of it's infuation, it will end as soon\n"
+                                                               "as when any of the two gets switched.");
+const u8 sText_Title_Status_Focus_Energy[]                 = _("Focus Energy");
+const u8 sText_Title_Status_Focus_Energy_Description[]     = _("Increases the user critical hit rate\n"
+                                                               "by two stages, this effect can be\n"
+                                                               "transferred by Baton Pass.");
+const u8 sText_Title_Status_Transformed[]                  = _("Transformed");
+const u8 sText_Title_Status_Transformed_Description[]      = _("Became an exact copy of a targeted\n"
+                                                               "Pokémon, has less PP and some specific\n"
+                                                               "abilities may not work.");
+const u8 sText_Title_Status_Escape_Prevention[]             = _("Can't Escape");
+const u8 sText_Title_Status_Escape_Prevention_Description[] = _("This Pokémon can't escape or switch,\n"
+                                                                "it can be only removed from battle\n"
+                                                                "if the battle ends or it faints.");
+const u8 sText_Title_Status_Cursed[]                       = _("Cursed");
+const u8 sText_Title_Status_Cursed_Description[]           = _("Loses 1/4 of it's maximum HP at the\n"
+                                                               "end of each turn, the curse will\n"
+                                                               "remain until the Pokémon leaves.");
+const u8 sText_Title_Status_Foresight[]                    = _("Foresighted");
+const u8 sText_Title_Status_Foresight_Description[]        = _("Enables to be hit by Normal or\n"
+                                                               "Fighting-type moves if it's a\n"
+                                                               "Ghost-type, ignores evasiveness.");
+const u8 sText_Title_Status_Defense_Curl[]                 = _("Defense Curl");
+const u8 sText_Title_Status_Defense_Curl_Description[]     = _("Doubles the power of the user's\n"
+                                                               "Rollout and Ice Ball as long as\n"
+                                                               "the user remains in battle.");
+const u8 sText_Title_Status_Torment[]                      = _("Tormented");
+const u8 sText_Title_Status_Torment_Description[]          = _("Is prevented from using the same\n"
+                                                               "move twice in a row, the effect\n"
+                                                               "lasts until the Pokémon leaves.");
+const u8 sText_Title_Status_Leech_Seed_Target[]             = _("Seeded by {STR_VAR_1}");
+const u8 sText_Title_Status_Leech_Seed_Target_Description[] = _("Some of it's HP get's stolen\n"
+                                                                "every turn, the effect lasts\n"
+                                                                "until the Pokémon leaves.");
+const u8 sText_Title_Status_Leech_Seed_User[]              = _("Seeded {STR_VAR_1}");
+const u8 sText_Title_Status_Leech_Seed_User_Description[]  = _("Receives some HP from a target\n"
+                                                               "every turn, the effect lasts\n"
+                                                               "until the Pokémon leaves.");
+const u8 sText_Title_Status_Perish_Song[]                  = _("Perishing");
+const u8 sText_Title_Status_Perish_Song_Description[]      = _("The perish count decreases by 1\n"
+                                                               "at the end of each turn, when\n"
+                                                               "it reaches 0, it will faint.");
+const u8 sText_Title_Status_Minimize[]                     = _("Minimized");
+const u8 sText_Title_Status_Minimize_Description[]         = _("Specific moves will have their\n"
+                                                               "damage doubled and will bypass\n"
+                                                               "accuracy and evassion checks.");
+const u8 sText_Title_Status_Charge[]                       = _("Charged Up");
+const u8 sText_Title_Status_Charge_Description[]           = _("The user's next Electric-type\n"
+                                                               "move will deal twice the usual\n"
+                                                               "amount of damage.");
+const u8 sText_Title_Status_Rooted[]                       = _("Rooted");
+const u8 sText_Title_Status_Rooted_Description[]           = _("It will restore 1/16 of it's max\n"
+                                                               "HP at the end of every turn, it is\n"
+                                                               "unable to escape or switch out.");
+const u8 sText_Title_Status_Yawn[]                         = _("Drowsy");
+const u8 sText_Title_Status_Yawn_Description[]             = _("This Pokémon will fall asleep at\n"
+                                                               "the end of the next turn if there\n"
+                                                               "isn't anything preventing it.");
+const u8 sText_Title_Status_Grudge[]                       = _("Grudge");
+const u8 sText_Title_Status_Grudge_Description[]           = _("If the user faints as the direct\n"
+                                                               "result of an attack, the move\n"
+                                                               "that caused it lose all its PP.");
+const u8 sText_Title_Status_Cant_Crit[]                    = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Cant_Crit_Description[]        = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+
+const u8 sText_Title_Status_Gastro_Acid[]                  = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Gastro_Acid_Description[]      = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Embargo[]                      = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Embargo_Description[]          = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Smack_Down[]                   = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Smack_Down_Description[]       = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Miracle_Eye[]                  = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Miracle_Eye_Description[]      = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Heal_Block[]                   = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Heal_Block_Description[]       = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Aqua_Ring[]                    = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Aqua_Ring_Description[]        = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Magnet_Rise[]                  = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Magnet_Rise_Description[]      = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Semi_Invulnerable[]             = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Semi_Invulnerable_Description[] = _("This Pokémon will be unable to\n"
+                                                                "land any critical hit, it will\n"
+                                                                "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Electrified[]                   = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Electrified_Description[]       = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Plasma_Fist[]                   = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Plasma_Fist_Description[]       = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+const u8 sText_Title_Status_Coiled_Up[]                     = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Coiled_Up_Description[]         = _("This Pokémon will be unable to\n"
+                                                               "land any critical hit, it will\n"
+                                                               "last until the Pokémon leaves.");
+
+#define SPACE_BETWEEN_LINES_FIELD ((6 * 8) + 4)
+#define MAX_DESCRIPTION_LINES 3
+#define LINES_BETWEEN_STUFF 1
+
+#define SHOW_SLEEPING_TURNS FALSE
+
 static void PrintStatusTab(void){
     u8 i, j;
     u8 x, y, x2, y2;
@@ -2096,6 +2347,9 @@ static void PrintStatusTab(void){
     u8 statStage;
     bool8 statStageUp = FALSE;
     bool8 isEnemyMon = GetBattlerSide(sMenuDataPtr->battlerId) == B_SIDE_OPPONENT;
+    u8 maxLines = 3;
+    bool8 printedInfo = FALSE;
+    u8 turnsLeft = 0;
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
@@ -2108,9 +2362,211 @@ static void PrintStatusTab(void){
     x  = 19;
     AddTextPrinterParameterized4(windowId, FONT_SMALL, (x * 8), (y * 8), 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, sText_Title_Controllers);
 
-    /*u8 BattlerStatus[NUM_BATTLE_STATS][MAX_BATTLERS_COUNT];
-    u8 CurrentStatusInfo[MAX_BATTLERS_COUNT];
-    u8 numStatusInfo[MAX_BATTLERS_COUNT];*/
+    // Weather
+    x  = 9;
+    y  = 3;
+    x2 = 0;
+    y2 = -4;
+
+    if(sMenuDataPtr->numStatusInfo[sMenuDataPtr->battlerId] < maxLines)
+        maxLines = sMenuDataPtr->numStatusInfo[sMenuDataPtr->battlerId];
+
+    for(i = 0; i < maxLines; i++){
+        printedInfo = FALSE;
+
+        switch(sMenuDataPtr->BattlerStatus[(i + sMenuDataPtr->CurrentStatusInfo[sMenuDataPtr->battlerId]) % sMenuDataPtr->numStatusInfo[sMenuDataPtr->battlerId]][sMenuDataPtr->battlerId]){
+            case STATUS_INFO_PRIMARY:
+                printedInfo = TRUE;
+                if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_SLEEP){
+                    //Sleep
+                    StringCopy(gStringVar1, sText_Title_Status_Sleep);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                    //Turns Left
+                    if(SHOW_SLEEPING_TURNS){
+                        StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                        turnsLeft = gBattleMons[sMenuDataPtr->battlerId].status1;
+                        ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                        AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                    }
+                    //Description
+                    StringCopy(gStringVar1, sText_Title_Status_Sleep_Description);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                }
+                else if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_POISON){
+                    //Poison
+                    StringCopy(gStringVar1, sText_Title_Status_Poison);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                    
+                    //Description
+                    StringCopy(gStringVar1, sText_Title_Status_Poison_Description);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                }
+                else if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_BURN){
+                    //Burn
+                    StringCopy(gStringVar1, sText_Title_Status_Burn);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                    
+                    //Description
+                    StringCopy(gStringVar1, sText_Title_Status_Burn_Description);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                }
+                else if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_FREEZE){
+                    //Freeze - Unused rn
+                    StringCopy(gStringVar1, sText_Title_Status_Freeze);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                    //Description
+                    StringCopy(gStringVar1, sText_Title_Status_Freeze_Description);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                }
+                else if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_PARALYSIS){
+                    //Paralysis
+                    StringCopy(gStringVar1, sText_Title_Status_Paralysis);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                    //Description
+                    StringCopy(gStringVar1, sText_Title_Status_Paralysis_Description);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                }
+                else if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_TOXIC_POISON){
+                    //Toxic Poison
+                    StringCopy(gStringVar1, sText_Title_Status_Bad_Poison);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                    //Turns
+                    StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                    turnsLeft = gBattleMons[sMenuDataPtr->battlerId].status1 - STATUS1_TOXIC_COUNTER;
+                    ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                    //Description
+                    StringCopy(gStringVar1, sText_Title_Status_Bad_Poison_Description);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                    //STATUS1_TOXIC_COUNTER
+                }
+                else if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_FROSTBITE){
+                    //Paralysis
+                    StringCopy(gStringVar1, sText_Title_Status_Frostbite);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                    //Description
+                    StringCopy(gStringVar1, sText_Title_Status_Frostbite_Description);
+                    AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                }
+                else{
+                    printedInfo = FALSE;
+                }
+            break;
+            case STATUS_INFO_CONFUSION:
+                StringCopy(gStringVar1, sText_Title_Status_Confusion);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gBattleMons[sMenuDataPtr->battlerId].status2 - STATUS2_CONFUSION;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Confusion_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            break;
+            case STATUS_INFO_UPROAR:
+
+            break;
+            case STATUS_INFO_BIDE:
+
+            break;
+            case STATUS_INFO_INFUATION:
+
+            break;
+            case STATUS_INFO_FOCUS_ENERGY:
+
+            break;
+            case STATUS_INFO_TRANSFORMED:
+
+            break;
+            case STATUS_INFO_ESCAPE_PREVENTION:
+
+            break;
+            case STATUS_INFO_CURSED:
+
+            break;
+            case STATUS_INFO_FORESIGHT:
+
+            break;
+            case STATUS_INFO_DEFENSE_CURL:
+
+            break;
+            case STATUS_INFO_TORMENT:
+
+            break;
+            case STATUS_INFO_LEECHSEED:
+
+            break;
+            case STATUS_INFO_PERISH_SONG:
+
+            break;
+            case STATUS_INFO_MINIMIZED:
+
+            break;
+            case STATUS_INFO_CHARGED_UP:
+
+            break;
+            case STATUS_INFO_ROOTED:
+
+            break;
+            case STATUS_INFO_YAWN:
+
+            break;
+            case STATUS_INFO_GRUDGE:
+
+            break;
+            case STATUS_INFO_CANT_CRIT:
+
+            break;
+            case STATUS_INFO_GASTRO_ACID:
+
+            break;
+            case STATUS_INFO_EMBARGO:
+
+            break;
+            case STATUS_INFO_SMACKED_DOWN:
+
+            break;
+            case STATUS_INFO_MIRACLE_EYED:
+
+            break;
+            case STATUS_INFO_HEAL_BLOCKED:
+
+            break;
+            case STATUS_INFO_AQUA_RING:
+
+            break;
+            case STATUS_INFO_MAGNET_RISE:
+
+            break;
+            case STATUS_INFO_SEMI_INVULNERABLE:
+
+            break;
+            case STATUS_INFO_ELECTRIFIED:
+
+            break;
+            case STATUS_INFO_PLASMA_FIST:
+
+            break;
+            case STATUS_INFO_COILED:
+
+            break;
+        }
+        if(printedInfo)
+            y = y + MAX_DESCRIPTION_LINES + 2;
+    }
 
     PutWindowTilemap(windowId);
     CopyWindowToVram(windowId, 3);
@@ -2287,16 +2743,6 @@ static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
     StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SixthPart);
 }
 
-//Misc
-const u8 sText_Title_Field_Turns_Left[]                   = _("Turns Left:");
-const u8 sText_Title_Field_Layers[]                       = _("Layers:");
-const u8 sText_Title_Field_Nature_Power[]                 = _("Nature Power:");
-const u8 sText_Title_Field_Secret_Power[]                 = _("Secret Power:");
-const u8 sText_Title_Field_Paralysis[]                    = _("Causes Paralysis");
-const u8 sText_Title_Field_Active[]                       = _("Active");
-const u8 sText_Title_Field_Not_Active[]                   = _("Not Active");
-const u8 sText_Title_Field_None[]                         = _("None");
-
 //Weathers
 const u8 sText_Title_Field_Weather[]                      = _("Weather: {STR_VAR_1}");
 const u8 sText_Title_Field_Weather_Rain[]                 = _("Rain");
@@ -2385,9 +2831,6 @@ const u8 sText_Title_Field_Ion_Deluge[]                     = _("Ion Deluge");
 const u8 sText_Title_Field_Ion_Deluge_Description[]         = _("Causes all the Normal-type moves to\n"
                                                                 "become Electric-type instad,\n"
                                                                 "including status moves.");
-#define SPACE_BETWEEN_LINES_FIELD ((6 * 8) + 4)
-#define MAX_DESCRIPTION_LINES 3
-#define LINES_BETWEEN_STUFF 1
 static void PrintFieldTab(void)
 {
     u8 i, j;
