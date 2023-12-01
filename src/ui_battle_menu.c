@@ -2172,6 +2172,7 @@ static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
 
 //Misc
 const u8 sText_Title_Field_Turns_Left[]                   = _("Turns Left:");
+const u8 sText_Title_Field_Layers[]                       = _("Layers:");
 const u8 sText_Title_Field_Nature_Power[]                 = _("Nature Power:");
 const u8 sText_Title_Field_Secret_Power[]                 = _("Secret Power:");
 const u8 sText_Title_Field_Paralysis[]                    = _("Causes Paralysis");
@@ -2577,6 +2578,41 @@ const u8 sText_Title_Side_Light_Screen[]                   = _("Light Screen");
 const u8 sText_Title_Side_Light_Screen_Description[]       = _("Reduces the damage done to the user\n"
                                                                "by special moves by 50% can be\n"
                                                                "be lifted by moves like Defog.");
+const u8 sText_Title_Side_Tailwind[]                       = _("Tailwind");
+const u8 sText_Title_Side_Tailwind_Description[]           = _("Doubles the Speed stat of the user\n"
+                                                               "and all the other Pokémon in the\n"
+                                                               "user side.");
+const u8 sText_Title_Side_Spikes[]                         = _("Spikes");
+const u8 sText_Title_Side_Spikes_1_Description[]           = _("Pokémon who switch into the field\n"
+                                                               "take a 12.5% of their maximum\n"
+                                                               "HP in damage.");
+const u8 sText_Title_Side_Spikes_2_Description[]           = _("Pokémon who switch into the field\n"
+                                                               "take a 16.67% of their maximum\n"
+                                                               "HP in damage.");
+const u8 sText_Title_Side_Spikes_3_Description[]           = _("Pokémon who switch into the field\n"
+                                                               "take a 25% of their maximum HP in\n"
+                                                               "damage.");
+const u8 sText_Title_Side_Toxic_Spikes[]                   = _("Toxic Spikes");
+const u8 sText_Title_Side_Toxic_Spikes_1_Description[]     = _("Pokémon who switch into the field\n"
+                                                               "acquire the poison status ailment");
+const u8 sText_Title_Side_Toxic_Spikes_2_Description[]     = _("Pokémon who switch into the field\n"
+                                                               "become badly poisoned");
+const u8 sText_Title_Side_Stealth_Rock[]                   = _("Stealth Rock");
+const u8 sText_Title_Side_Stealth_Rock_Description[]       = _("Pokémon who switch in receive damage,\n"
+                                                               "the amount varies depending by the\n"
+                                                               "effectiveness of Rock against it.");
+const u8 sText_Title_Side_Sticky_Web[]                     = _("Sticky Web");
+const u8 sText_Title_Side_Sticky_Web_Description[]         = _("Pokémon who switch into the field\n"
+                                                               "get their Speed stat lowered by\n"
+                                                               "one.");
+const u8 sText_Title_Side_Safeguard[]                      = _("Safeguard");
+const u8 sText_Title_Side_Safeguard_Description[]          = _("A protective field that prevents\n"
+                                                               "status problems like poison,\n"
+                                                               "paralysis, burn and sleep.");
+const u8 sText_Title_Side_Mist[]                           = _("Safeguard");
+const u8 sText_Title_Side_Mist_Description[]               = _("A white mist that prevents any\n"
+                                                               "Pokémon on this side from having\n"
+                                                               "any of it's stat lowered.");
 
 static void PrintSideTab(u8 side){
     u8 i, j;
@@ -2687,25 +2723,117 @@ static void PrintSideTab(u8 side){
                 printedInfo = TRUE;
             break;
             case SIDE_INFO_TAILWIND:
+                StringCopy(gStringVar1, sText_Title_Side_Tailwind);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].tailwindTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Tailwind_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
             break;
             case SIDE_INFO_SPIKES:
+                StringCopy(gStringVar1, sText_Title_Side_Spikes);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Layers
+                StringCopy(gStringVar1, sText_Title_Field_Layers);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].spikesAmount;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                if(turnsLeft == 1)
+                    StringCopy(gStringVar1, sText_Title_Side_Spikes_1_Description);
+                else if(turnsLeft == 2)
+                    StringCopy(gStringVar1, sText_Title_Side_Spikes_2_Description);
+                else
+                    StringCopy(gStringVar1, sText_Title_Side_Spikes_3_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
             break;
             case SIDE_INFO_TOXIC_SPIKES:
+                StringCopy(gStringVar1, sText_Title_Side_Toxic_Spikes);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Layers
+                StringCopy(gStringVar1, sText_Title_Field_Layers);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].toxicSpikesAmount;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                if(turnsLeft == 1)
+                    StringCopy(gStringVar1, sText_Title_Side_Toxic_Spikes_1_Description);
+                else
+                    StringCopy(gStringVar1, sText_Title_Side_Toxic_Spikes_2_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
             break;
             case SIDE_INFO_STEALTH_ROCK:
+                StringCopy(gStringVar1, sText_Title_Side_Stealth_Rock);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Stealth_Rock_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
             break;
             case SIDE_INFO_STICKY_WEB:
+                StringCopy(gStringVar1, sText_Title_Side_Sticky_Web);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Sticky_Web_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
             break;
             case SIDE_INFO_SAFEGUARD:
+                StringCopy(gStringVar1, sText_Title_Side_Safeguard);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].safeguardTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Safeguard_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
             break;
             case SIDE_INFO_MIST:
+                StringCopy(gStringVar1, sText_Title_Side_Mist);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gSideTimers[GetBattlerSide(side)].mistTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Side_Mist_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+
+                printedInfo = TRUE;
             break;
         }
 
