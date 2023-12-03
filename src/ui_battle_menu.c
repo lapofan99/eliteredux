@@ -37,6 +37,7 @@
 #include "task.h"
 #include "text_window.h"
 #include "overworld.h"
+#include "util.h"
 #include "event_data.h"
 #include "constants/abilities.h"
 #include "constants/species.h"
@@ -622,59 +623,59 @@ void UI_Battle_Menu_Init(MainCallback callback)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_MINIMIZED:
-                    if(gStatuses3[i] & STATUS3_MINIMIZED)
+                    if(gStatuses3[j] & STATUS3_MINIMIZED)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_CHARGED_UP:
-                    if(gStatuses3[i] & STATUS3_CHARGED_UP)
+                    if(gStatuses3[j] & STATUS3_CHARGED_UP)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_ROOTED:
-                    if(gStatuses3[i] & STATUS3_ROOTED)
+                    if(gStatuses3[j] & STATUS3_ROOTED)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_YAWN:
-                    if(gStatuses3[i] & STATUS3_YAWN)
+                    if(gStatuses3[j] & STATUS3_YAWN)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_GRUDGE:
-                    if(gStatuses3[i] & STATUS3_GRUDGE)
+                    if(gStatuses3[j] & STATUS3_GRUDGE)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_CANT_CRIT:
-                    if(gStatuses3[i] & STATUS3_CANT_SCORE_A_CRIT)
+                    if(gStatuses3[j] & STATUS3_CANT_SCORE_A_CRIT)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_GASTRO_ACID:
-                    if(gStatuses3[i] & STATUS3_GASTRO_ACID)
+                    if(gStatuses3[j] & STATUS3_GASTRO_ACID)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_EMBARGO:
-                    if(gStatuses3[i] & STATUS3_EMBARGO)
+                    if(gStatuses3[j] & STATUS3_EMBARGO)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_SMACKED_DOWN:
-                    if(gStatuses3[i] & STATUS3_SMACKED_DOWN)
+                    if(gStatuses3[j] & STATUS3_SMACKED_DOWN)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_MIRACLE_EYED:
-                    if(gStatuses3[i] & STATUS3_MIRACLE_EYED)
+                    if(gStatuses3[j] & STATUS3_MIRACLE_EYED)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_HEAL_BLOCKED:
-                    if(gStatuses3[i] & STATUS3_HEAL_BLOCK)
+                    if(gStatuses3[j] & STATUS3_HEAL_BLOCK)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_AQUA_RING:
-                    if(gStatuses3[i] & STATUS3_AQUA_RING)
+                    if(gStatuses3[j] & STATUS3_AQUA_RING)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_MAGNET_RISE:
-                    if(gStatuses3[i] & STATUS3_MAGNET_RISE)
+                    if(gStatuses3[j] & STATUS3_MAGNET_RISE)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_SEMI_INVULNERABLE:
-                    if(gStatuses3[i] & STATUS3_SEMI_INVULNERABLE)
+                    if(gStatuses3[j] & STATUS3_SEMI_INVULNERABLE)
                         isExtraInfoShown = TRUE;
                 break;
                 case STATUS_INFO_ELECTRIFIED:
@@ -2209,7 +2210,7 @@ const u8 sText_Title_Status_Bide[]                         = _("Bide");
 const u8 sText_Title_Status_Bide_Description[]             = _("Will be unable to attack for some turns,\n"
                                                                "will do double the damage equal to\n"
                                                                "twice the damage it receives.");
-const u8 sText_Title_Status_Infuation[]                    = _("Infuated");
+const u8 sText_Title_Status_Infuation[]                    = _("Infuated with {STR_VAR_1}");
 const u8 sText_Title_Status_Infuation_Description[]        = _("Reduces the damage done to the target\n"
                                                                "of it's infuation, it will end as soon\n"
                                                                "as when any of the two gets switched.");
@@ -2217,10 +2218,10 @@ const u8 sText_Title_Status_Focus_Energy[]                 = _("Focus Energy");
 const u8 sText_Title_Status_Focus_Energy_Description[]     = _("Increases the user critical hit rate\n"
                                                                "by two stages, this effect can be\n"
                                                                "transferred by Baton Pass.");
-const u8 sText_Title_Status_Transformed[]                  = _("Transformed");
+const u8 sText_Title_Status_Transformed[]                  = _("Transformed into {STR_VAR_1}");
 const u8 sText_Title_Status_Transformed_Description[]      = _("Became an exact copy of a targeted\n"
-                                                               "Pokémon, has less PP and some specific\n"
-                                                               "abilities may not work.");
+                                                               "Pokémon, has less PP and some\n"
+                                                               "specific abilities may not work.");
 const u8 sText_Title_Status_Escape_Prevention[]             = _("Can't Escape");
 const u8 sText_Title_Status_Escape_Prevention_Description[] = _("This Pokémon can't escape or switch,\n"
                                                                 "it can be only removed from battle\n"
@@ -2277,51 +2278,49 @@ const u8 sText_Title_Status_Cant_Crit[]                    = _("Can't land a Cri
 const u8 sText_Title_Status_Cant_Crit_Description[]        = _("This Pokémon will be unable to\n"
                                                                "land any critical hit, it will\n"
                                                                "last until the Pokémon leaves.");
-
-const u8 sText_Title_Status_Gastro_Acid[]                  = _("Can't land a Critical Hit");
-const u8 sText_Title_Status_Gastro_Acid_Description[]      = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Embargo[]                      = _("Can't land a Critical Hit");
+const u8 sText_Title_Status_Gastro_Acid[]                  = _("Ability Suppressed");
+const u8 sText_Title_Status_Gastro_Acid_Description[]      = _("The Ability and Innates for\n"
+                                                               "this Pokémon are Disabled, it\n"
+                                                               "lasts until the Pokémon leaves.");
+const u8 sText_Title_Status_Embargo[]                      = _("Held Effect Negated");
 const u8 sText_Title_Status_Embargo_Description[]          = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Smack_Down[]                   = _("Can't land a Critical Hit");
-const u8 sText_Title_Status_Smack_Down_Description[]       = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Miracle_Eye[]                  = _("Can't land a Critical Hit");
-const u8 sText_Title_Status_Miracle_Eye_Description[]      = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Heal_Block[]                   = _("Can't land a Critical Hit");
+                                                               "use it's held item for some\n"
+                                                               "turns.");
+const u8 sText_Title_Status_Smack_Down[]                   = _("Grounded");
+const u8 sText_Title_Status_Smack_Down_Description[]       = _("Ground moves will hit this\n"
+                                                               "Pokémon regardless of type,\n"
+                                                               "ability, status or item.");
+const u8 sText_Title_Status_Miracle_Eye[]                  = _("Miracle Eyed");
+const u8 sText_Title_Status_Miracle_Eye_Description[]      = _("It will be hit ignoring evasion\n"
+                                                               "changes, If it has the Dark-type\n"
+                                                               "it can be hit by Psychic moves.");
+const u8 sText_Title_Status_Heal_Block[]                   = _("Can't be Healed");
 const u8 sText_Title_Status_Heal_Block_Description[]       = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Aqua_Ring[]                    = _("Can't land a Critical Hit");
-const u8 sText_Title_Status_Aqua_Ring_Description[]        = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Magnet_Rise[]                  = _("Can't land a Critical Hit");
-const u8 sText_Title_Status_Magnet_Rise_Description[]      = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Semi_Invulnerable[]             = _("Can't land a Critical Hit");
-const u8 sText_Title_Status_Semi_Invulnerable_Description[] = _("This Pokémon will be unable to\n"
-                                                                "land any critical hit, it will\n"
-                                                                "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Electrified[]                   = _("Can't land a Critical Hit");
-const u8 sText_Title_Status_Electrified_Description[]       = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Plasma_Fist[]                   = _("Can't land a Critical Hit");
-const u8 sText_Title_Status_Plasma_Fist_Description[]       = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
-const u8 sText_Title_Status_Coiled_Up[]                     = _("Can't land a Critical Hit");
-const u8 sText_Title_Status_Coiled_Up_Description[]         = _("This Pokémon will be unable to\n"
-                                                               "land any critical hit, it will\n"
-                                                               "last until the Pokémon leaves.");
+                                                               "be healed by any means, it will\n"
+                                                               "last some turns.");
+const u8 sText_Title_Status_Aqua_Ring[]                    = _("Aqua Ring");
+const u8 sText_Title_Status_Aqua_Ring_Description[]        = _("This Pokémon will be healed\n"
+                                                               "by 1/16 of its maximum HP\n"
+                                                               "at the end of every turn.");
+const u8 sText_Title_Status_Magnet_Rise[]                  = _("Magnet Rise");
+const u8 sText_Title_Status_Magnet_Rise_Description[]      = _("This Pokémon can't be hit by\n"
+                                                               "Ground-type moves, it will\n"
+                                                               "last some turns.");
+const u8 sText_Title_Status_Semi_Invulnerable[]             = _("Semi Invlunerable");
+const u8 sText_Title_Status_Semi_Invulnerable_Description[] = _("This Pokémon will avoid the\n"
+                                                                "majory of attacks for one turn,\n"
+                                                                "it can be hit by specific moves.");
+const u8 sText_Title_Status_Electrified[]                   = _("Electrified");
+const u8 sText_Title_Status_Electrified_Description[]       = _("This Pokémon moves will become\n"
+                                                                "Electric-type for this turn.");
+const u8 sText_Title_Status_Plasma_Fist[]                   = _("Plasma Fisted");
+const u8 sText_Title_Status_Plasma_Fist_Description[]       = _("This Pokémon Normal-type moves\n"
+                                                                "will become Electric-type for\n"
+                                                                "this turn.");
+const u8 sText_Title_Status_Coiled_Up[]                     = _("Coiled Up");
+const u8 sText_Title_Status_Coiled_Up_Description[]         = _("The next biting move used by\n"
+                                                                "this Pokémon will have an\n"
+                                                                "increased priority.");
 
 #define SPACE_BETWEEN_LINES_FIELD ((6 * 8) + 4)
 #define MAX_DESCRIPTION_LINES 3
@@ -2477,91 +2476,322 @@ static void PrintStatusTab(void){
                 printedInfo = TRUE;
             break;
             case STATUS_INFO_UPROAR:
+                StringCopy(gStringVar1, sText_Title_Status_Uproar);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gBattleMons[sMenuDataPtr->battlerId].status2 - STATUS2_UPROAR;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Uproar_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_BIDE:
+                StringCopy(gStringVar1, sText_Title_Status_Bide);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gBattleMons[sMenuDataPtr->battlerId].status2 - STATUS2_BIDE;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Bide_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
-            case STATUS_INFO_INFUATION:
+            case STATUS_INFO_INFUATION:{
+                u8 infuatedWith = 0;
+                u8 species = SPECIES_NONE;
 
+                for(i = 0; i < gBattlersCount; i++){
+                    if ((gBattleMons[sMenuDataPtr->battlerId].status2 & STATUS2_INFATUATION) && 
+                        (gBattleMons[sMenuDataPtr->battlerId].status2 & STATUS2_INFATUATED_WITH(i)) &&
+                        i != sMenuDataPtr->battlerId){
+                            infuatedWith = i;
+                            species = gBattleMons[infuatedWith].species;
+                            break;
+                        }
+                }
+
+                StringCopy(gStringVar1, gSpeciesNames[species]);
+                StringExpandPlaceholders(gStringVar4, sText_Title_Status_Infuation);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Infuation_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            }
             break;
             case STATUS_INFO_FOCUS_ENERGY:
+                StringCopy(gStringVar1, sText_Title_Status_Focus_Energy);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Focus_Energy_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_TRANSFORMED:
-
+            {
+                u16 species = gBattleMons[sMenuDataPtr->battlerId].species;
+                
+                StringCopy(gStringVar1, gSpeciesNames[species]);
+                StringExpandPlaceholders(gStringVar4, sText_Title_Status_Transformed);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Transformed_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            }
             break;
             case STATUS_INFO_ESCAPE_PREVENTION:
+                StringCopy(gStringVar1, sText_Title_Status_Escape_Prevention);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Escape_Prevention_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_CURSED:
-
+                StringCopy(gStringVar1, sText_Title_Status_Cursed);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Cursed_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_FORESIGHT:
-
+                StringCopy(gStringVar1, sText_Title_Status_Foresight);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Foresight_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_DEFENSE_CURL:
-
+                StringCopy(gStringVar1, sText_Title_Status_Defense_Curl);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Defense_Curl_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_TORMENT:
-
+                StringCopy(gStringVar1, sText_Title_Status_Torment);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Torment_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
-            case STATUS_INFO_LEECHSEED:
+            case STATUS_INFO_LEECHSEED:{
+                u8 seedUser = gStatuses3[sMenuDataPtr->battlerId] & STATUS3_LEECHSEED_BATTLER;
+                u16 species  = gBattleMons[seedUser].species;
 
+                StringCopy(gStringVar1, gSpeciesNames[species]);
+                StringExpandPlaceholders(gStringVar4, sText_Title_Status_Leech_Seed_Target);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar4);
+
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Leech_Seed_Target_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
+            }
             break;
             case STATUS_INFO_PERISH_SONG:
+                StringCopy(gStringVar1, sText_Title_Status_Perish_Song);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gDisableStructs[sMenuDataPtr->battlerId].perishSongTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Perish_Song_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_MINIMIZED:
+                StringCopy(gStringVar1, sText_Title_Status_Minimize);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Minimize_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_CHARGED_UP:
+                StringCopy(gStringVar1, sText_Title_Status_Charge);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gDisableStructs[sMenuDataPtr->battlerId].perishSongTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Charge_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_ROOTED:
+                StringCopy(gStringVar1, sText_Title_Status_Rooted);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Rooted_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_YAWN:
+                StringCopy(gStringVar1, sText_Title_Status_Yawn);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = 1 + (gStatuses3[sMenuDataPtr->battlerId] & STATUS3_YAWN_TURN(0));
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Yawn_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_GRUDGE:
+                StringCopy(gStringVar1, sText_Title_Status_Grudge);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Grudge_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_CANT_CRIT:
+                StringCopy(gStringVar1, sText_Title_Status_Cant_Crit);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Cant_Crit_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_GASTRO_ACID:
+                StringCopy(gStringVar1, sText_Title_Status_Gastro_Acid);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Gastro_Acid_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_EMBARGO:
+                StringCopy(gStringVar1, sText_Title_Status_Embargo);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gDisableStructs[sMenuDataPtr->battlerId].embargoTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Embargo_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_SMACKED_DOWN:
+                StringCopy(gStringVar1, sText_Title_Status_Smack_Down);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Smack_Down_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_MIRACLE_EYED:
+                StringCopy(gStringVar1, sText_Title_Status_Miracle_Eye);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Miracle_Eye_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_HEAL_BLOCKED:
+                StringCopy(gStringVar1, sText_Title_Status_Heal_Block);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Heal_Block_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_AQUA_RING:
+                StringCopy(gStringVar1, sText_Title_Status_Aqua_Ring);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Aqua_Ring_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_MAGNET_RISE:
+                StringCopy(gStringVar1, sText_Title_Status_Magnet_Rise);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Turns Left
+                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                turnsLeft = gDisableStructs[sMenuDataPtr->battlerId].magnetRiseTimer;
+                ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Magnet_Rise_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_SEMI_INVULNERABLE:
+                StringCopy(gStringVar1, sText_Title_Status_Semi_Invulnerable);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Semi_Invulnerable_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_ELECTRIFIED:
+                StringCopy(gStringVar1, sText_Title_Status_Electrified);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Electrified_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_PLASMA_FIST:
-
+                StringCopy(gStringVar1, sText_Title_Status_Plasma_Fist);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Plasma_Fist_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
             case STATUS_INFO_COILED:
-
+                StringCopy(gStringVar1, sText_Title_Status_Coiled_Up);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                
+                //Description
+                StringCopy(gStringVar1, sText_Title_Status_Coiled_Up_Description);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
             break;
         }
         if(printedInfo)
