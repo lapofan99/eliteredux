@@ -344,7 +344,7 @@
 #define ABILITY_MOUNTAINEER      (ABILITIES_COUNT_LATEST_GEN + 46) // Immune to Rock attacks and Stealth Rocks.
 #define ABILITY_HYDRATE          (ABILITIES_COUNT_LATEST_GEN + 47) // All Normal-type moves used by the Pokémon become Water-type and receive a 10% power boost.
 #define ABILITY_METALLIC         (ABILITIES_COUNT_LATEST_GEN + 48) // Adds the Steel-type to the Pokémon, in addition to the Pokémon's original type(s).
-#define ABILITY_PERMAFROST       (ABILITIES_COUNT_LATEST_GEN + 49) // Reduces damage taken from super-effective attacks by 35%
+#define ABILITY_PERMAFROST       (ABILITIES_COUNT_LATEST_GEN + 49) // Reduces damage taken from super-effective attacks by 25%
 #define ABILITY_PRIMAL_ARMOR     (ABILITIES_COUNT_LATEST_GEN + 50) // Reduces damage taken from super-effective attacks by 50%
 #define ABILITY_RAGING_BOXER     (ABILITIES_COUNT_LATEST_GEN + 51) // Punch moves hit twice, second hit deals 0.5x.
 #define ABILITY_AIR_BLOWER       (ABILITIES_COUNT_LATEST_GEN + 52) // Sets Tailwind for 5 turns when entering battle.
@@ -408,7 +408,7 @@
 #define ABILITY_AMPLIFIER        (ABILITIES_COUNT_LATEST_GEN + 110) // Sound-based moves now target all foes [Affected moves: Hyper Voice, Boomburst, Bug Buzz, Chatter, Confide, Disarming Voice, Echoed Voice, Eerie Spell, Grass Whistle, Metal Sound, Noble Roar, Parting Shot, Roar, Round, Screech, Sing, Snore, Supersonic, Uproar etc.]. Also boosts power by 30%.
 #define ABILITY_ICE_DEW          (ABILITIES_COUNT_LATEST_GEN + 111) // Immune to Ice-type moves. Instead of being hit by Ice-type moves, it boosts its Attack or Sp. Attack stat (which is higher).
 #define ABILITY_SUN_WORSHIP      (ABILITIES_COUNT_LATEST_GEN + 112) // Ups highest stat on entry when it's sunny.
-#define ABILITY_POLLINATE         (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon become Bug-type and receive a 10% power boost.
+#define ABILITY_POLLINATE        (ABILITIES_COUNT_LATEST_GEN + 113) // All Normal-type moves used by the Pokémon become Bug-type and receive a 10% power boost.
 #define ABILITY_VOLCANO_RAGE     (ABILITIES_COUNT_LATEST_GEN + 114) // Triggers 50 BP Eruption after using a Fire-type move.
 #define ABILITY_COLD_REBOUND     (ABILITIES_COUNT_LATEST_GEN + 115) // Everytime when hit by a contact move, counter-attacks with Icy Wind.
 #define ABILITY_LOW_BLOW         (ABILITIES_COUNT_LATEST_GEN + 116) // Attacks with Feint Attack on switch-in.
@@ -468,11 +468,14 @@
 #define ABILITY_JAWS_OF_CARNAGE  (ABILITIES_COUNT_LATEST_GEN + 170) // Heals 50% HP when defeating an enemy.
 #define ABILITY_ANGELS_WRATH     (ABILITIES_COUNT_LATEST_GEN + 171) // Radically changes the user's moves.
 #define ABILITY_PRISMATIC_FUR    (ABILITIES_COUNT_LATEST_GEN + 172) // Color Change + Protean + Fur Coat + Ice Scales
-#define ABILITY_SHOCKING_JAWS    (ABILITIES_COUNT_LATEST_GEN + 173)  // Biting moves are 5x more likely to inflict paralysis
+#define ABILITY_SHOCKING_JAWS    (ABILITIES_COUNT_LATEST_GEN + 173) // Biting moves are 5x more likely to inflict paralysis
 #define ABILITY_FAE_HUNTER       (ABILITIES_COUNT_LATEST_GEN + 174) // Increases the damage dealt against Fairy-type Pokémon by 50%.
 #define ABILITY_GRAVITY_WELL     (ABILITIES_COUNT_LATEST_GEN + 175) // Sets Gravity on entry for 5 turns.
-
-#define ABILITIES_COUNT_CUSTOM (ABILITY_GRAVITY_WELL + 1)
+#define ABILITY_EVAPORATE        (ABILITIES_COUNT_LATEST_GEN + 176) // Takes no damage and sets Mist if hit by water
+#define ABILITY_LUMBERJACK       (ABILITIES_COUNT_LATEST_GEN + 177) // 1.5x damage against GRASS types.
+#define ABILITY_WELL_BAKED_BODY    (ABILITIES_COUNT_LATEST_GEN + 178) // Halves damage and +2 defense\n when hit by a FIRE type move.
+#define ABILITY_FURNACE          (ABILITIES_COUNT_LATEST_GEN + 179) // Upon getting hit by a rock move or switching on stealth rocks user gains +2 speed 
+#define ABILITIES_COUNT_CUSTOM   (ABILITY_FURNACE + 1)
 
 #define ABILITIES_COUNT ABILITIES_COUNT_CUSTOM
 

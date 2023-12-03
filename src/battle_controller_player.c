@@ -2030,6 +2030,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                         MulModifier(&mod, tempMod);
                     }
                 }
+                
             break;
             case TYPE_POISON:
                 if(gBattleMons[userId].ability == ABILITY_CORROSION || BattlerHasInnate(userId, ABILITY_CORROSION)){
@@ -2076,6 +2077,11 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     abilityNullifiesDamage = TRUE;
             break;
             case TYPE_FIRE:
+                if(gBattleMons[targetId].ability == ABILITY_WELL_BAKED_BODY || BattlerHasInnate(targetId, ABILITY_WELL_BAKED_BODY)){
+                    tempMod = UQ_4_12(0.5);
+                    MulModifier(&mod, tempMod);
+                }
+                    
                 if(gBattleMons[targetId].ability == ABILITY_FLASH_FIRE || BattlerHasInnate(targetId, ABILITY_FLASH_FIRE))
                     abilityNullifiesDamage = TRUE;
 
@@ -2127,6 +2133,8 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     tempMod = UQ_4_12(2.0);
                     MulModifier(&mod, tempMod);
                 }*/
+                if((gBattleMons[targetId].ability == ABILITY_EVAPORATE || BattlerHasInnate(targetId, ABILITY_EVAPORATE)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum))
+                    abilityNullifiesDamage = TRUE;
 
                 if(gBattleMons[targetId].ability == ABILITY_WATER_COMPACTION || BattlerHasInnate(targetId, ABILITY_WATER_COMPACTION)){
                     tempMod = UQ_4_12(0.5);
@@ -2215,7 +2223,12 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                     abilityNullifiesDamage = TRUE;
             break;
         }
-
+        if(gBattleMons[userId].ability == ABILITY_LUMBERJACK || BattlerHasInnate(userId, ABILITY_LUMBERJACK)){
+            if(gBattleMons[targetId].type1 == TYPE_GRASS  || gBattleMons[targetId].type2 == TYPE_GRASS || gBattleMons[targetId].type3 == TYPE_GRASS){
+                tempMod = UQ_4_12(1.5);
+                MulModifier(&mod, tempMod);
+            }
+        }
         if(gBattleMons[targetId].ability == ABILITY_GIFTED_MIND || BattlerHasInnate(targetId, ABILITY_GIFTED_MIND)){
             if(moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG){
                 abilityNullifiesDamage = TRUE;
