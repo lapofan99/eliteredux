@@ -145,6 +145,31 @@ enum
     NUM_STATUS_INFO,
 };
 
+#define MAX_TARGETS 2
+
+//252+ SpA Abomasnow Blizzard vs. 168 HP / 0 SpD Abomasnow: 178-211 (49 - 58.1%) -- 97.7% chance to 2HKO
+struct DamageCalculation
+{
+    bool8 calculated;
+    //Damage
+    s32 minDamage;
+    u8  minDamagePercentage;
+    s32 maxDamage;
+    u8  maxDamagePercentage;
+    //KO
+    u8  hits2KO;
+    s32 chance2KO;
+    //NatureStuff
+    u8  attackerNatureUp;
+    u8  attackerNatureDown;
+    u8  targetNatureUp;
+    u8  targetNatureDown;
+    //u8 *DamageCalculationText;
+    u8 targetEvs[NUM_STATS];
+    u8 battlerEvs[NUM_STATS];
+    bool8 noDamage;
+};
+
 struct MenuResources
 {
     MainCallback savedCallback;     // determines callback to run when we exit. e.g. where do we want to go after closing the menu
@@ -155,6 +180,7 @@ struct MenuResources
     u8 fieldTabId;
     u8 tabModeId;
     u8 moveModeId;
+    u8 dmgCalculatorTarget;
     u8 spriteIds[NUM_SPRITES];
     u8 fieldInfo[NUM_FIELD_INFO];
     u8 currentFieldInfo;
@@ -168,6 +194,7 @@ struct MenuResources
     u8 BattlerStatus[NUM_STATUS_INFO][MAX_BATTLERS_COUNT];
     u8 CurrentStatusInfo[MAX_BATTLERS_COUNT];
     u8 numStatusInfo[MAX_BATTLERS_COUNT];
+    struct DamageCalculation damageCalculation[MAX_BATTLERS_COUNT][MAX_TARGETS * 2][MAX_MON_MOVES];
 };
 
 enum WindowIds
@@ -242,7 +269,7 @@ static void PrintStatsTab(void);
 static void PrintAbilityTab(void);
 static void PrintStatusTab(void);
 static void PrintDamageCalulatorTab(void);
-static void PrintDamageCalculation(u8 battler, u8 target, u16 move);
+static void PrintDamageCalculation(u8 battler, u8 target, u8 moveidx);
 static void Task_MenuWaitFadeIn(u8 taskId);
 static void Task_MenuMain(u8 taskId);
 static void PrintMoveInfo(u16 move, u8 x, u8 y, u8 moveIdx);
@@ -265,6 +292,7 @@ static void CreateSelectorSprite(void);
 static void FreeItemIconSprite(void);
 void FreeFieldSprite(void);
 void FreeSelectorSprite(void);
+static void CalculateDamage(u8 battler, u8 target, u8 moveIndex);
 
 //==========CONST=DATA==========//
 static const struct BgTemplate sMenuBgTemplates[] =
@@ -356,6 +384,27 @@ void Task_OpenBattleMenuFromStartMenu(u8 taskId)
     }
 }
 
+static void Task_CalculateDamage(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    u8 i, j , k;
+
+    for(i = 0; i < MAX_BATTLERS_COUNT; i++){
+        for(j = 0; j < MAX_TARGETS * 2; j++){
+            for(k = 0; k < MAX_MON_MOVES; k++){
+                if(IsBattlerAlive(i) && 
+                   IsBattlerAlive(j) && 
+                   GetBattlerSide(i) != GetBattlerSide(j) &&
+                   gBattleMons[i].moves[k] != MOVE_NONE   &&
+                   gBattleMoves[gBattleMons[i].moves[k]].split != SPLIT_STATUS){
+                    CalculateDamage(i, j, k);
+                }
+            }
+        }
+    }
+    DestroyTask(taskId);
+}
+
 // This is our main initialization function if you want to call the menu from elsewhere
 void UI_Battle_Menu_Init(MainCallback callback)
 {
@@ -374,6 +423,7 @@ void UI_Battle_Menu_Init(MainCallback callback)
     sMenuDataPtr->tabModeId             = 0;
     sMenuDataPtr->tabId                 = 0;
     sMenuDataPtr->fieldTabId            = 0;
+    sMenuDataPtr->dmgCalculatorTarget   = 0;
 
     sMenuDataPtr->currentFieldInfo      = 0;
     sMenuDataPtr->numFields             = 0;
@@ -783,6 +833,7 @@ static bool8 Menu_DoGfxSetup(void)
             ShowSpeciesIcon(3);
         }
         PrintStatsTab();
+        //CreateTask(Task_CalculateDamage, 1);
         taskId = CreateTask(Task_MenuWaitFadeIn, 0);
         BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
         gMain.state++;
@@ -2821,6 +2872,9 @@ static void PrintDamageCalulatorTab(void){
     bool8 isEnemyMon = GetBattlerSide(sMenuDataPtr->battlerId) == B_SIDE_OPPONENT;
     u16 move;
     u8 target = BATTLE_OPPOSITE(sMenuDataPtr->battlerId);
+    
+    if(sMenuDataPtr->dmgCalculatorTarget != 0 && IsDoubleBattle())
+        target = BATTLE_OPPOSITE(BATTLE_PARTNER(sMenuDataPtr->battlerId));
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
@@ -2848,7 +2902,7 @@ static void PrintDamageCalulatorTab(void){
             StringCopy(gStringVar4, gText_Target_Nothing);
         }
         else{
-            PrintDamageCalculation(sMenuDataPtr->battlerId, target, moves[i]);
+            PrintDamageCalculation(sMenuDataPtr->battlerId, target, i);
         }
         AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
         y = y + 3;
@@ -2869,8 +2923,8 @@ const u8 gText_SmogonDamageCalculator_FirstPartText_SpecialDefense[]            
 const u8 gText_SmogonDamageCalculator_FirstPartText_SpecialDefense_NatureUp[]     = _("{STR_VAR_1} SpA+ {STR_VAR_2} {STR_VAR_3} vs.");
 const u8 gText_SmogonDamageCalculator_FirstPartText_SpecialDefense_NatureDown[]   = _("{STR_VAR_1} SpA- {STR_VAR_2} {STR_VAR_3} vs.");
 const u8 gText_SmogonDamageCalculator_FirstPartText_PhysicalDefense[]             = _("{STR_VAR_1} Atk {STR_VAR_2} {STR_VAR_3} vs.");
-const u8 gText_SmogonDamageCalculator_FirstPartText_PhysicalDefens_NatureUp[]     = _("{STR_VAR_1} Atk+ {STR_VAR_2} {STR_VAR_3} vs.");
-const u8 gText_SmogonDamageCalculator_FirstPartText_PhysicalDefens_NatureDown[]   = _("{STR_VAR_1} Atk- {STR_VAR_2} {STR_VAR_3} vs.");
+const u8 gText_SmogonDamageCalculator_FirstPartText_PhysicalDefense_NatureUp[]    = _("{STR_VAR_1} Atk+ {STR_VAR_2} {STR_VAR_3} vs.");
+const u8 gText_SmogonDamageCalculator_FirstPartText_PhysicalDefense_NatureDown[]  = _("{STR_VAR_1} Atk- {STR_VAR_2} {STR_VAR_3} vs.");
 //{STR_VAR_1}+ = Special Attack EV, {STR_VAR_2} = Pokemon Name, {STR_VAR_3} = Move Name
 const u8 gText_SmogonDamageCalculator_SecondPartText_SpecialDefense[]             = _("{STR_VAR_1}\n{STR_VAR_2} HP/ {STR_VAR_3} SpD");
 const u8 gText_SmogonDamageCalculator_SecondPartText_SpecialDefense_NatureUp[]    = _("{STR_VAR_1}\n{STR_VAR_2} HP/ {STR_VAR_3} SpD+");
@@ -2883,25 +2937,133 @@ const u8 gText_SmogonDamageCalculator_ThirdPart[] = _("{STR_VAR_1} {STR_VAR_2}: 
 //{STR_VAR_1} = Second Part {STR_VAR_2} = Target Name, {STR_VAR_3} = Min Damage
 const u8 gText_SmogonDamageCalculator_FourthPart[] = _("{STR_VAR_1}-{STR_VAR_2}\n({STR_VAR_3} - ");
 //{STR_VAR_1} = Third Part {STR_VAR_2} = Max Damage, {STR_VAR_3} = Min Percent
-const u8 gText_SmogonDamageCalculator_FifthPart[] = _("{STR_VAR_1} {STR_VAR_2}%) -- {STR_VAR_3}% chance to ");
+const u8 gText_SmogonDamageCalculator_FifthPart[] = _("{STR_VAR_1} {STR_VAR_2}%) -- {STR_VAR_3}% chance to");
+const u8 gText_SmogonDamageCalculator_FifthPart_Guaranteed[] = _("{STR_VAR_1} {STR_VAR_2}%) -- Guaranteed");
 //{STR_VAR_1} = Foruth Part {STR_VAR_2} = Max Percent, {STR_VAR_3} = Chance
 const u8 gText_SmogonDamageCalculator_SixthPart[] = _("{STR_VAR_1} {STR_VAR_2}HKO");
+const u8 gText_SmogonDamageCalculator_SixthPart_OHKO[] = _("{STR_VAR_1} OHKO");
 //{STR_VAR_1} = Fifth Part {STR_VAR_2} = 2HKO or 3HKO
 
 #define MAX_DAMAGE_FACTOR 0
 #define MIN_DAMAGE_FACTOR 16
+#define MAX_PERCENT 100
+#define MAX_PERCENT_2 10000
 
-static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
-    s32 dmg, moveType, critDmg, minDamage, maxDamage, critChance;
-    u8 percentage, chance, i, j;
+static void CalculateDamage(u8 battler, u8 target, u8 moveIndex){
+    u32 minDamage, maxDamage, midDamage, tempdamage;
+    s32 dmg, critDmg, critChance, tempchance, minHits2KOChance;
+    u32 hits2KO, hits2KOmin, percentage;
+    u8 chance, moveType;
+    u8 natureAtk, natureDef;
+    u8 statUpAtk, statUpDef;
+    u8 statDownAtk, statDownDef;
+    u8 i, j;
     struct Pokemon *party, *targetParty;
-    u8 TargetEvs[NUM_STATS];
-    u8 BattlerEvs[NUM_STATS];
     u16 targetCurrentHp = gBattleMons[target].hp;
+    bool8 isCrit = FALSE;
+    u16 typeEffectivenessModifier;
+    u16 move = gBattleMons[battler].moves[moveIndex];
+    const s8 *natureMod;
+    
+    if(sMenuDataPtr->damageCalculation[battler][target][moveIndex].calculated)
+        return;
 
-    //252+ SpA Abomasnow Blizzard vs. 168 HP / 0 SpD Abomasnow: 178-211 (49 - 58.1%) -- 97.7% chance to 2HKO
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].calculated = TRUE;
 
-    //To Calculate EVs
+    //Sets move type depending on the mon ability/stats
+    SetTypeBeforeUsingMove(move, battler);
+    GET_MOVE_TYPE(move, moveType);
+    
+    typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(move, moveType, battler, target, FALSE);
+
+    if(!IsBattlerAlive(battler) || 
+       !IsBattlerAlive(target)  || 
+       gBattleMoves[move].split == SPLIT_STATUS || 
+       gBattleMoves[move].power <= 2            || 
+       typeEffectivenessModifier == UQ_4_12(0)){
+        sMenuDataPtr->damageCalculation[battler][target][moveIndex].noDamage = TRUE;
+        return;
+    }
+
+    //Max and Min Damage
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].minDamage = minDamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MIN_DAMAGE_FACTOR);
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage = maxDamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MAX_DAMAGE_FACTOR);
+
+    // Min Damage Percentage
+    percentage = (minDamage * MAX_PERCENT_2) / targetCurrentHp; 
+    percentage = (percentage / MAX_PERCENT);
+    if(percentage >= MAX_PERCENT)
+        percentage = MAX_PERCENT;
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].minDamagePercentage = percentage;
+
+    // Max Damage Percentage
+    percentage = (maxDamage * MAX_PERCENT_2)/ targetCurrentHp; 
+    percentage = (percentage / MAX_PERCENT);
+    if(percentage > MAX_PERCENT)
+        percentage = MAX_PERCENT;
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamagePercentage = percentage;
+    
+    //Chances To KO
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].hits2KO = (targetCurrentHp / sMenuDataPtr->damageCalculation[battler][target][moveIndex].maxDamage);
+
+    for(i = 0; i < MIN_DAMAGE_FACTOR; i++){
+        tempdamage = DoMoveDamageCalcBattleMenu(move, battler, target, moveType, FALSE, MIN_DAMAGE_FACTOR - i);
+        tempchance = (targetCurrentHp / tempdamage);
+
+        if(tempchance == hits2KO){
+            percentage = (MIN_DAMAGE_FACTOR - i);
+            break;
+        }
+    }
+
+    minHits2KOChance = (percentage * (MAX_PERCENT_2 / MIN_DAMAGE_FACTOR));
+    sMenuDataPtr->damageCalculation[battler][target][moveIndex].chance2KO = minHits2KOChance / MAX_PERCENT;
+
+    //Nature Stuff
+    if (GetBattlerSide(battler) == B_SIDE_PLAYER)
+        party = gPlayerParty;
+    else
+        party = gEnemyParty;
+
+    if (GetBattlerSide(target) == B_SIDE_PLAYER)
+        targetParty = gPlayerParty;
+    else
+        targetParty = gEnemyParty;
+
+    natureAtk = GetMonData(&party[gBattlerPartyIndexes[battler]], MON_DATA_NATURE, NULL);
+    natureDef = GetMonData(&targetParty[gBattlerPartyIndexes[target]], MON_DATA_NATURE, NULL);
+
+    //Attacker
+    if(natureAtk == NATURE_HARDY || natureAtk == NATURE_DOCILE || natureAtk == NATURE_SERIOUS || natureAtk == NATURE_BASHFUL || natureAtk == NATURE_QUIRKY){
+        sMenuDataPtr->damageCalculation[battler][target][moveIndex].attackerNatureUp   = NUM_NATURE_STATS;
+        sMenuDataPtr->damageCalculation[battler][target][moveIndex].attackerNatureDown = NUM_NATURE_STATS;
+    }
+    else{
+        natureMod = gNatureStatTable[natureAtk];
+        for(i = 0; i < NUM_NATURE_STATS; i++){
+            if (natureMod[i] > 0)
+                sMenuDataPtr->damageCalculation[battler][target][moveIndex].attackerNatureUp   = i + 1; //Nature Up
+            else if (natureMod[i] < 0)
+                sMenuDataPtr->damageCalculation[battler][target][moveIndex].attackerNatureDown = i + 1; //Nature Down
+        }
+    }
+
+    //Target
+    if(natureDef == NATURE_HARDY || natureDef == NATURE_DOCILE || natureDef == NATURE_SERIOUS || natureDef == NATURE_BASHFUL || natureDef == NATURE_QUIRKY){
+        sMenuDataPtr->damageCalculation[battler][target][moveIndex].targetNatureUp   = NUM_NATURE_STATS;
+        sMenuDataPtr->damageCalculation[battler][target][moveIndex].targetNatureDown = NUM_NATURE_STATS;
+    }
+    else{
+        natureMod = gNatureStatTable[natureDef];
+        for(i = 0; i < NUM_NATURE_STATS; i++){
+            if (natureMod[i] > 0)
+                sMenuDataPtr->damageCalculation[battler][target][moveIndex].targetNatureUp = i + 1; //Nature Up
+            else if (natureMod[i] < 0)
+                sMenuDataPtr->damageCalculation[battler][target][moveIndex].targetNatureDown = i + 1; //Nature Down
+        }
+    }
+
+    //Evs
     if (GetBattlerSide(battler) == B_SIDE_PLAYER)
         party = gPlayerParty;
     else
@@ -2913,36 +3075,91 @@ static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
         targetParty = gEnemyParty;
 
     for(i = 0 ; i < NUM_STATS; i++){
-        BattlerEvs[i] = GetMonData(&party[gBattlerPartyIndexes[battler]],      MON_DATA_HP_EV + i, NULL);
-        TargetEvs[i]  = GetMonData(&targetParty[gBattlerPartyIndexes[target]], MON_DATA_HP_EV + i, NULL);
+        sMenuDataPtr->damageCalculation[battler][target][moveIndex].battlerEvs[i] = GetMonData(&party[gBattlerPartyIndexes[battler]],      MON_DATA_HP_EV + i, NULL);
+        sMenuDataPtr->damageCalculation[battler][target][moveIndex].targetEvs[i]  = GetMonData(&targetParty[gBattlerPartyIndexes[target]], MON_DATA_HP_EV + i, NULL);
     }
+}
+
+static void PrintDamageCalculation(u8 battler, u8 target, u8 moveIdx){
+    u32 minDamage, maxDamage, midDamage, tempdamage;
+    s32 dmg, critDmg, critChance, tempchance;
+    double minHits2KOChance;
+    u16 hits2KO, hits2KOmin, percentage;
+    u8 chance, moveType;
+    u8 natureAtk, natureDef;
+    u8 statUpAtk, statUpDef;
+    u8 statDownAtk, statDownDef;
+    u8 i, j;
+    u16 targetCurrentHp = gBattleMons[target].hp;
+    bool8 isCrit = FALSE;
+    u16 typeEffectivenessModifier;
+    const s8 *natureMod;
+    u16 move = gBattleMons[battler].moves[moveIdx];
+    struct DamageCalculation *damageCalculation;
+    u8 *DamageCalculationText;
+
+    //Sets move type depending on the mon ability/stats
+    SetTypeBeforeUsingMove(move, battler);
+    GET_MOVE_TYPE(move, moveType);
+    
+    typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(move, moveType, battler, target, FALSE);
+
+    if (sMenuDataPtr->damageCalculation[battler][target][moveIdx].noDamage){
+        StringCopy(gStringVar4, gText_Target_Nothing);
+        return;
+    }
+
+    CalculateDamage(battler, target, moveIdx);
+    damageCalculation = &sMenuDataPtr->damageCalculation[battler][target][moveIdx];
+
+    //252+ SpA Abomasnow Blizzard vs. 168 HP / 0 SpD Abomasnow: 178-211 (49 - 58.1%) -- 97.7% chance to 2HKO
 
     //Damage Calculation
-    minDamage = DoMoveDamageCalcBattleMenu(move, sMenuDataPtr->battlerId, target, moveType, FALSE, MIN_DAMAGE_FACTOR);
-    maxDamage = DoMoveDamageCalcBattleMenu(move, sMenuDataPtr->battlerId, target, moveType, FALSE, MAX_DAMAGE_FACTOR);
+    minDamage = damageCalculation->minDamage;
+    maxDamage = damageCalculation->maxDamage;
 
     //First Part
-    StringCopy(gStringVar2, gSpeciesNames[gBattleMons[sMenuDataPtr->battlerId].species]);
+    StringCopy(gStringVar2, gSpeciesNames[gBattleMons[battler].species]);
     StringCopy(gStringVar3, gMoveNames[move]);
     if(gBattleMoves[move].split == SPLIT_SPECIAL){
-        ConvertIntToDecimalStringN(gStringVar1, BattlerEvs[SPATK_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
-        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_SpecialDefense);
+        ConvertIntToDecimalStringN(gStringVar1, damageCalculation->battlerEvs[SPATK_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+        if(damageCalculation->attackerNatureDown == STAT_SPATK)
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_SpecialDefense_NatureDown);
+        else if(damageCalculation->attackerNatureUp == STAT_SPATK)
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_SpecialDefense_NatureUp);
+        else
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_SpecialDefense);
     }
     else{
-        ConvertIntToDecimalStringN(gStringVar1, BattlerEvs[ATK_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
-        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_PhysicalDefense);
+        ConvertIntToDecimalStringN(gStringVar1, damageCalculation->battlerEvs[ATK_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+        if(damageCalculation->attackerNatureDown == STAT_ATK)
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_PhysicalDefense_NatureDown);
+        else if(damageCalculation->attackerNatureUp == STAT_ATK)
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_PhysicalDefense_NatureUp);
+        else
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FirstPartText_PhysicalDefense);
     }
 
     //Second Part
     StringCopy(gStringVar1, gStringVar4);
-    ConvertIntToDecimalStringN(gStringVar2, TargetEvs[HP_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar2, damageCalculation->targetEvs[HP_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
     if(gBattleMoves[move].split == SPLIT_SPECIAL){
-        ConvertIntToDecimalStringN(gStringVar3, TargetEvs[SPDEF_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
-        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_SpecialDefense);
+        ConvertIntToDecimalStringN(gStringVar3, damageCalculation->targetEvs[SPDEF_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+        if(damageCalculation->targetNatureDown == STAT_SPDEF)
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_SpecialDefense_NatureDown);
+        else if(damageCalculation->targetNatureUp == STAT_SPDEF)
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_SpecialDefense_NatureUp);
+        else
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_SpecialDefense);
     }
     else{
-        ConvertIntToDecimalStringN(gStringVar3, TargetEvs[DEF_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
-        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_PhysicalDefense);
+        ConvertIntToDecimalStringN(gStringVar3, damageCalculation->targetEvs[DEF_EV_INDEX], STR_CONV_MODE_LEFT_ALIGN, 3);
+        if(damageCalculation->targetNatureDown == STAT_DEF)
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_PhysicalDefense_NatureDown);
+        else if(damageCalculation->targetNatureUp == STAT_DEF)
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_PhysicalDefense_NatureUp);
+        else
+            StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SecondPartText_PhysicalDefense);
     }
         
     //Third Part
@@ -2954,23 +3171,26 @@ static void PrintDamageCalculation(u8 battler, u8 target, u16 move){
     //Fourth Part gText_SmogonDamageCalculator_FourthPart
     StringCopy(gStringVar1, gStringVar4);
     ConvertIntToDecimalStringN(gStringVar2, maxDamage, STR_CONV_MODE_LEFT_ALIGN, 4);
-    percentage = (minDamage * 100)/ targetCurrentHp; // Min Damage Percentage
-    ConvertIntToDecimalStringN(gStringVar3, percentage, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar3, damageCalculation->minDamagePercentage, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FourthPart);
 
     //Fifth Part 
     StringCopy(gStringVar1, gStringVar4);
-    percentage = (maxDamage * 100)/ targetCurrentHp; // Max Damage Percentage
-    ConvertIntToDecimalStringN(gStringVar2, percentage, STR_CONV_MODE_LEFT_ALIGN, 3);
-    chance = 100; //Todo: Calculate Chance
-    ConvertIntToDecimalStringN(gStringVar3, chance, STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FifthPart);
+    ConvertIntToDecimalStringN(gStringVar2, damageCalculation->maxDamagePercentage, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar3, damageCalculation->chance2KO, STR_CONV_MODE_LEFT_ALIGN, 3);
+    if(damageCalculation->chance2KO >= 100)
+        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FifthPart_Guaranteed);
+    else
+        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_FifthPart);
 
     //Sixth Part
     StringCopy(gStringVar1, gStringVar4);
-    chance = targetCurrentHp / maxDamage;
-    ConvertIntToDecimalStringN(gStringVar2, chance, STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SixthPart);
+    if(damageCalculation->hits2KO > 0){
+        ConvertIntToDecimalStringN(gStringVar2, (damageCalculation->hits2KO + 1), STR_CONV_MODE_LEFT_ALIGN, 3);
+        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SixthPart);
+    }
+    else
+        StringExpandPlaceholders(gStringVar4, gText_SmogonDamageCalculator_SixthPart_OHKO);
 }
 
 //Weathers
@@ -4352,19 +4572,20 @@ static void Task_MenuMain(u8 taskId)
         if(sMenuDataPtr->modeId != MODE_FIELD){
             switch(sMenuDataPtr->tabId){
                 case TAB_MOVES:
-                    #ifdef DEBUG_BUILD
-                    if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-                        MgbaOpen();
-                        MgbaPrintf(MGBA_LOG_WARN, "sMenuDataPtr->moveModeId Detected %d", sMenuDataPtr->moveModeId);
-                        MgbaClose();
-                    }
-                    #endif
-
                     if(sMenuDataPtr->moveModeId != NUM_MOVE_MODES - 1)
                         sMenuDataPtr->moveModeId++;
                     else
                         sMenuDataPtr->moveModeId = 0;
                     PrintMoveTab();
+                break;
+                case TAB_DAMAGE_CALCULATOR:
+                    if(IsDoubleBattle()){
+                        if(sMenuDataPtr->dmgCalculatorTarget != MAX_TARGETS - 1)
+                            sMenuDataPtr->dmgCalculatorTarget++;
+                        else
+                            sMenuDataPtr->dmgCalculatorTarget = 0;
+                        PrintDamageCalulatorTab();
+                    }
                 break;
                 default:
                     PlaySE(SE_PC_OFF);
