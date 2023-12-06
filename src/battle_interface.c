@@ -2715,16 +2715,18 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
 {
     s32 i, currentBarValue, previousVal = 0, toLoop;
     bool32 instant;
+    u8 healthbarspeed = 4 + (gSaveBlock2Ptr->optionsHpBarSpeed * 2);
+    u8 expbarspeed = B_HEALTH_BAR_SPEED;
 
     if (whichBar == HEALTH_BAR)
     {
-        instant = (B_HEALTH_BAR_SPEED >= 10);
-        toLoop = sMoveBarTable[B_HEALTH_BAR_SPEED][gBattleSpritesDataPtr->battleBars[battlerId].oddFrame];
+        instant = (healthbarspeed >= 10);
+        toLoop = sMoveBarTable[healthbarspeed][gBattleSpritesDataPtr->battleBars[battlerId].oddFrame];
     }
     else
     {
-        instant = (B_HEALTH_BAR_SPEED >= 10);
-        toLoop = sMoveBarTable[B_HEALTH_BAR_SPEED][gBattleSpritesDataPtr->battleBars[battlerId].oddFrame];
+        instant = (expbarspeed >= 10);
+        toLoop = sMoveBarTable[expbarspeed][gBattleSpritesDataPtr->battleBars[battlerId].oddFrame];
     }
     gBattleSpritesDataPtr->battleBars[battlerId].oddFrame ^= 1;
 

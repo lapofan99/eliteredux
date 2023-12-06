@@ -6,7 +6,7 @@ PetalburgWoods_3_MapScripts::
 script PetalburgWoods3_EventScript_PrimalCascoon_Battle {
 	lock
 	faceplayer
-	if (flag(FLAG_BADGE07_GET)) { // Checking if the player has the badge
+	if (flag(FLAG_SYS_GAME_CLEAR)) { // Checking if the player has the badge
 		//cleartrainerflag(FLAG_TRAINER_BANEFUL_PETALBURG_WOODS) // Only For testing
 		if (!defeated(FLAG_TRAINER_BANEFUL_PETALBURG_WOODS)) { // asking for battle
 			msgbox(format("All Pokémon have their limits, right? Wrong.\p{PLAYER}, you must be dead strong to have found me here.\pI've raised my Pokémon beyond their normal limits and I've been waiting here just dying for a challenge.\pYou wanna have a crack at it?"), MSGBOX_YESNO)

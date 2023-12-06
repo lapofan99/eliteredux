@@ -153,6 +153,7 @@ static u8 GetEncounterLevelFromMapData(u16 species, u8 environment);
 static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityNum, u16 item, u16* moves);
 static u8 GetPlayerDistance(s16 x, s16 y);
 static u8 DexNavPickTile(u8 environment, u8 xSize, u8 ySize, bool8 smallScan);
+static bool8 DexnavIsTileUsable(u8 environment);
 static void DexNavProximityUpdate(void);
 static void DexNavDrawIcons(void);
 static void DexNavUpdateSearchWindow(u8 proximity, u8 searchLevel);
@@ -612,6 +613,28 @@ static void DexNavProximityUpdate(void)
     sDexNavSearchDataPtr->proximity = GetPlayerDistance(sDexNavSearchDataPtr->tileX, sDexNavSearchDataPtr->tileY);
 }
 
+static bool8 DexnavIsTileUsable(u8 environment){
+    s16 posX;
+    s16 posY;
+    u8 tileBehaviour;
+
+    PlayerGetDestCoords(&posX, &posY);
+    tileBehaviour = MapGridGetMetatileBehaviorAt(posX, posY);
+
+    switch (environment)
+    {
+        case ENCOUNTER_TYPE_LAND:
+            if (MetatileBehavior_IsLandWildEncounter(tileBehaviour))
+                return TRUE;
+        break;
+        case ENCOUNTER_TYPE_WATER:
+            if (MetatileBehavior_IsSurfableWaterOrUnderwater(tileBehaviour))
+                return TRUE;
+        break;
+    }
+    return FALSE;
+}
+
 //Pick a specific tile based on environment
 static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
 {
@@ -627,6 +650,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
     u8 currMapType = GetCurrentMapType();
     u8 tileBehaviour;
     u8 tileBuffer = 2;
+    bool8 correctTile = FALSE;
     
     // loop through every tile in area and evaluate
     while (topY < botY)
@@ -634,6 +658,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
         while (topX < botX)
         {
             tileBehaviour = MapGridGetMetatileBehaviorAt(topX, topY);
+            correctTile = FALSE;
             
             //gSpecialVar_0x8005 = tileBehaviour;
             
@@ -679,11 +704,19 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
                         
                         scale = 440 - (smallScan * 200) - (GetPlayerDistance(topX, topY) / 2)  - (2 * (topX + topY));
                         weight = ((Random() % scale) < 1) && !MapGridIsImpassableAt(topX, topY);
+                        //Check if it's possible to find a mon there
+                        if(!MapGridIsImpassableAt(topX, topY)){
+                            correctTile = TRUE;
+                        }
                     }
                     else
                     { // outdoors: grass
                         scale = 100 - (GetPlayerDistance(topX, topY) * 2);
                         weight = (Random() % scale <= 5) && !MapGridIsImpassableAt(topX, topY);
+                        //Check if it's possible to find a mon there
+                        if(!MapGridIsImpassableAt(topX, topY)){
+                            correctTile = TRUE;
+                        }
                     }
                 }
                 break;
@@ -695,13 +728,17 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
                         break;
 
                     weight = (Random() % scale <= 1) && !MapGridIsImpassableAt(topX, topY);
+                    //Check if it's possible to find a mon there
+                    if(!MapGridIsImpassableAt(topX, topY)){
+                        correctTile = TRUE;
+                    }
                 }
                 break;
             default:
                 break;
             }
-            
-            if (weight > 0)
+
+            if (correctTile)
             {
                 sDexNavSearchDataPtr->tileX = topX;
                 sDexNavSearchDataPtr->tileY = topY;
@@ -878,8 +915,7 @@ static void Task_InitDexNavSearch(u8 taskId)
         DestroyTask(taskId);
         return;
     }
-    
-    if (sDexNavSearchDataPtr->monLevel == MON_LEVEL_NONEXISTENT || !TryStartHiddenMonFieldEffect(sDexNavSearchDataPtr->environment, 12, 12, FALSE))
+    else if (sDexNavSearchDataPtr->monLevel == MON_LEVEL_NONEXISTENT || !DexnavIsTileUsable(sDexNavSearchDataPtr->environment))// || !TryStartHiddenMonFieldEffect(sDexNavSearchDataPtr->environment, 12, 12, FALSE)
     {
         Free(sDexNavSearchDataPtr);
         FreeMonIconPalettes();
@@ -887,10 +923,22 @@ static void Task_InitDexNavSearch(u8 taskId)
         DestroyTask(taskId);
         return;
     }
+    else{
+        //Start Encounter
+        CreateDexNavWildMon(sDexNavSearchDataPtr->species, sDexNavSearchDataPtr->potential, sDexNavSearchDataPtr->monLevel, 
+          sDexNavSearchDataPtr->abilityNum, sDexNavSearchDataPtr->heldItem, sDexNavSearchDataPtr->moves);
+        
+        FlagClear(FLAG_SYS_DEXNAV_SEARCH);
+        gDexnavBattle = TRUE;        
+        ScriptContext1_SetupScript(EventScript_StartDexNavBattle);
+        Free(sDexNavSearchDataPtr);
+        DestroyTask(taskId);
+        return;
+    }
     
-    sDexNavSearchDataPtr->hiddenSearch = FALSE;
+    /*sDexNavSearchDataPtr->hiddenSearch = FALSE;
     task->tRevealed = TRUE; //search window revealed
-    task->func = Task_SetUpDexNavSearch;
+    task->func = Task_SetUpDexNavSearch;*/
 }
 
 static void DexNavDrawPotentialStars(u8 potential, u8* dst)
@@ -1257,8 +1305,10 @@ static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityN
         SetMonData(mon, MON_DATA_HELD_ITEM, &item);
 
     //Set moves
-    for (i = 0; i < MAX_MON_MOVES; i++)
-        SetMonMoveSlot(mon, moves[i], i);
+    for (i = 0; i < MAX_MON_MOVES; i++){
+        if(moves[i] != MOVE_NONE)
+            SetMonMoveSlot(mon, moves[i], i);
+    }
 
     CalculateMonStats(mon);
     FlagClear(FLAG_SHINY_CREATION);

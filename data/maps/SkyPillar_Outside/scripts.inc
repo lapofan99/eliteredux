@@ -200,6 +200,7 @@ SkyPillar_Outside_Text_Gauntlet_5:
 
 SkyPillar_Outside_Text_Gauntlet_8:
 	msgbox SkyPillar_Outside_Text_Gauntlet_Text_1, MSGBOX_NPC
+	special HealPlayerParty
 	setflag FLAG_SYS_DISABLE_AUTOHEAL
 	fadescreenswapbuffers FADE_TO_BLACK
 	setobjectxy LOCALID_GAUNTLET_TRAINER_1, 14, 17

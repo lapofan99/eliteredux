@@ -188,6 +188,7 @@ script SkyPillar_Outside_Text_Gauntlet{
 			msgbox(format("Does thou seek might, young seeker? Display thine prowess unto us, and thee shall be endowed with strength unparalleled."), MSGBOX_YESNO)
 			if (var(VAR_RESULT) == 1) { // When the player accepts the battle
 				msgbox(format("Overcome our united strength, and the ancient dragon's power shall awaken for you. Prove your worth and harness the legacy."), MSGBOX_NPC) // 1st sage, Man
+				special(HealPlayerParty)
 				setflag(FLAG_SYS_DISABLE_AUTOHEAL)
 				//Add the other sages
 				fadescreenswapbuffers(FADE_TO_BLACK)

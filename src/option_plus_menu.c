@@ -30,6 +30,7 @@ enum
 enum
 {
     MENUITEM_MAIN_TEXTSPEED,
+    MENUITEM_MAIN_HPBARSPEED,
     MENUITEM_MAIN_BATTLESCENE,
     MENUITEM_MAIN_SOUND,
     MENUITEM_MAIN_BUTTONMODE,
@@ -166,13 +167,13 @@ static void DrawOptionMenuChoice(const u8 *text, u8 x, u8 y, u8 style, bool8 act
 static void DrawChoices_Options_Four(const u8 *const *const strings, int selection, int y, bool8 active);
 static void ReDrawAll(void);
 static void DrawChoices_TextSpeed(int selection, int y);
+static void DrawChoices_BarSpeed(int selection, int y);
 static void DrawChoices_BattleScene(int selection, int y);
 static void DrawChoices_PermanentRepel(int selection, int y);
 static void DrawChoices_DamageDone(int selection, int y);
 static void DrawChoices_AskForNickname(int selection, int y);
 static void DrawChoices_Sound(int selection, int y);
 static void DrawChoices_ButtonMode(int selection, int y);
-static void DrawChoices_BarSpeed(int selection, int y); //HP and EXP
 static void DrawChoices_AutoRun(int selection, int y);
 static void DrawChoices_ShinyRate(int selection, int y);
 static void DrawChoices_DoubleBattleMode(int selection, int y);
@@ -212,6 +213,7 @@ struct // MENU_MAIN
 } static const sItemFunctionsMain[MENUITEM_MAIN_COUNT] =
 {
     [MENUITEM_MAIN_TEXTSPEED]    = {DrawChoices_TextSpeed,   ProcessInput_Options_Four},
+    [MENUITEM_MAIN_HPBARSPEED]   = {DrawChoices_BarSpeed,    ProcessInput_Options_Four},
     [MENUITEM_MAIN_BATTLESCENE]  = {DrawChoices_BattleScene, ProcessInput_Options_Two},
     [MENUITEM_MAIN_SOUND]        = {DrawChoices_Sound,       ProcessInput_Options_Two},
     [MENUITEM_MAIN_BUTTONMODE]   = {DrawChoices_ButtonMode,  ProcessInput_Options_Three},
@@ -263,6 +265,7 @@ const u8 gText_OptionMenuSave[] = _("SAVE");
 static const u8 *const sOptionMenuItemsNamesMain[MENUITEM_MAIN_COUNT] =
 {
     [MENUITEM_MAIN_TEXTSPEED]   = gText_TextSpeed,
+    [MENUITEM_MAIN_HPBARSPEED]  = sText_HpBar,
     [MENUITEM_MAIN_BATTLESCENE] = gText_BattleScene,
     [MENUITEM_MAIN_SOUND]       = gText_Sound,
     [MENUITEM_MAIN_BUTTONMODE]  = gText_ButtonMode,
@@ -307,6 +310,7 @@ static bool8 CheckConditions(int selection)
         switch(selection)
         {
         case MENUITEM_MAIN_TEXTSPEED:       return TRUE;
+        case MENUITEM_MAIN_HPBARSPEED:      return TRUE;
         case MENUITEM_MAIN_BATTLESCENE:     return TRUE;
         case MENUITEM_MAIN_SOUND:           return TRUE;
         case MENUITEM_MAIN_BUTTONMODE:      return TRUE;
@@ -341,6 +345,7 @@ static bool8 CheckConditions(int selection)
 static const u8 sText_Empty[]                   = _("");
 static const u8 sText_Desc_Save[]               = _("Save your settings.");
 static const u8 sText_Desc_TextSpeed[]          = _("Choose one of the four text-display\nspeeds.");
+static const u8 sText_Desc_HPBarSpeed[]         = _("Choose one of the four HP Bar\nspeeds.");
 static const u8 sText_Desc_BattleScene_On[]     = _("Show the POKéMON battle animations.");
 static const u8 sText_Desc_BattleScene_Off[]    = _("Skip the POKéMON battle animations.");
 static const u8 sText_Desc_BattleStyle_Shift[]  = _("Get the option to switch your\nPOKéMON after the enemies faints.");
@@ -356,6 +361,7 @@ static const u8 sText_Desc_FrameType[]          = _("Choose the frame surroundin
 static const u8 *const sOptionMenuItemDescriptionsMain[MENUITEM_MAIN_COUNT][3] =
 {
     [MENUITEM_MAIN_TEXTSPEED]   = {sText_Desc_TextSpeed,            sText_Empty,                sText_Empty},
+    [MENUITEM_MAIN_HPBARSPEED]  = {sText_Desc_HPBarSpeed,           sText_Empty,                sText_Empty},
     [MENUITEM_MAIN_BATTLESCENE] = {sText_Desc_BattleScene_On,       sText_Desc_BattleScene_Off, sText_Empty},
     [MENUITEM_MAIN_SOUND]       = {sText_Desc_SoundMono,            sText_Desc_SoundStereo,     sText_Empty},
     [MENUITEM_MAIN_BUTTONMODE]  = {sText_Desc_ButtonMode,           sText_Desc_ButtonMode_LR,   sText_Desc_ButtonMode_LA},
@@ -426,6 +432,7 @@ static const u8 sText_Desc_Disabled_Textspeed[]     = _("Only active if xyz.");
 static const u8 *const sOptionMenuItemDescriptionsDisabledMain[MENUITEM_MAIN_COUNT] =
 {
     [MENUITEM_MAIN_TEXTSPEED]         = sText_Desc_Disabled_Textspeed,
+    [MENUITEM_MAIN_HPBARSPEED]        = sText_Empty,
     [MENUITEM_MAIN_BATTLESCENE]       = sText_Empty,
     [MENUITEM_MAIN_SOUND]             = sText_Empty,
     [MENUITEM_MAIN_BUTTONMODE]        = sText_Empty,
@@ -465,7 +472,7 @@ static const u8 *const OptionTextDescription(void)
         if (!CheckConditions(menuItem))
             return sOptionMenuItemDescriptionsDisabledMain[menuItem];
         selection = sOptions->sel[menuItem];
-        if (menuItem == MENUITEM_MAIN_TEXTSPEED || menuItem == MENUITEM_MAIN_FRAMETYPE)
+        if (menuItem == MENUITEM_MAIN_TEXTSPEED || menuItem == MENUITEM_MAIN_FRAMETYPE || menuItem == MENUITEM_MAIN_HPBARSPEED)
             selection = 0;
         return sOptionMenuItemDescriptionsMain[menuItem][selection];
     case MENU_CUSTOM:
@@ -685,6 +692,7 @@ void CB2_InitOptionPlusMenu(void)
     case 6:
         sOptions = AllocZeroed(sizeof(*sOptions));
         sOptions->sel[MENUITEM_MAIN_TEXTSPEED]   = gSaveBlock2Ptr->optionsTextSpeed;
+        sOptions->sel[MENUITEM_MAIN_HPBARSPEED]  = gSaveBlock2Ptr->optionsHpBarSpeed;
         sOptions->sel[MENUITEM_MAIN_BATTLESCENE] = gSaveBlock2Ptr->optionsBattleSceneOff;
         sOptions->sel[MENUITEM_MAIN_SOUND]       = gSaveBlock2Ptr->optionsSound;
         sOptions->sel[MENUITEM_MAIN_BUTTONMODE]  = gSaveBlock2Ptr->optionsButtonMode;
@@ -883,6 +891,7 @@ static void Task_OptionMenuProcessInput(u8 taskId)
 static void Task_OptionMenuSave(u8 taskId)
 {
     gSaveBlock2Ptr->optionsTextSpeed        = sOptions->sel[MENUITEM_MAIN_TEXTSPEED];
+    gSaveBlock2Ptr->optionsHpBarSpeed       = sOptions->sel[MENUITEM_MAIN_HPBARSPEED];
     gSaveBlock2Ptr->optionsBattleSceneOff   = sOptions->sel[MENUITEM_MAIN_BATTLESCENE];
     gSaveBlock2Ptr->optionsSound            = sOptions->sel[MENUITEM_MAIN_SOUND];
     gSaveBlock2Ptr->optionsButtonMode       = sOptions->sel[MENUITEM_MAIN_BUTTONMODE];
@@ -1136,6 +1145,12 @@ static void DrawChoices_TextSpeed(int selection, int y)
     DrawChoices_Options_Four(sTextSpeedStrings, selection, y, active);
 }
 
+static void DrawChoices_BarSpeed(int selection, int y)
+{
+    bool8 active = CheckConditions(MENUITEM_MAIN_HPBARSPEED);
+    DrawChoices_Options_Four(sTextSpeedStrings, selection, y, active);
+}
+
 static void DrawChoices_BattleScene(int selection, int y)
 {
     bool8 active = CheckConditions(MENUITEM_MAIN_BATTLESCENE);
@@ -1270,6 +1285,7 @@ static void DrawChoices_ButtonMode(int selection, int y)
 }
 
 static const u8 sText_Normal[] = _("NORMAL");
+/*
 static void DrawChoices_BarSpeed(int selection, int y) //HP and EXP
 {
     //bool8 active = CheckConditions(MENUITEM_CUSTOM_EXP_BAR);
@@ -1285,7 +1301,7 @@ static void DrawChoices_BarSpeed(int selection, int y) //HP and EXP
     }
     else
         DrawOptionMenuChoice(sText_Instant, 104, y, 1, active);
-}
+}*/
 
 const u8 gText_UnitSystemMetric[]   = _("METRIC");     //tx_optionsPlus
 const u8 gText_UnitSystemImperial[] = _("IMPERIAL");   //tx_optionsPlus
