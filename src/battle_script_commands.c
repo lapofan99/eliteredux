@@ -14180,13 +14180,6 @@ static void Cmd_tryrecycleitem(void)
         BtlController_EmitSetMonData(0, REQUEST_HELDITEM_BATTLE, 0, 2, &gBattleMons[gActiveBattler].item);
         MarkBattlerForControllerExec(gActiveBattler);
 
-        
-        if(FlagGet(FLAG_SYS_MGBA_PRINT)){
-            MgbaOpen();
-            MgbaPrintf(MGBA_LOG_WARN, "Cmd_tryrecycleitem Fully Activated");
-            MgbaClose();
-        }
-
         gBattlescriptCurrInstr += 5;
     }
     else

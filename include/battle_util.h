@@ -135,6 +135,7 @@ u8 GetBattleMonMoveSlot(struct BattlePokemon *battleMon, u16 move);
 u32 GetBattlerWeight(u8 battlerId);
 s32 CalculateMoveDamage(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, s32 fixedBasePower, bool32 isCrit, bool32 randomFactor, bool32 updateFlags);
 s32 CalculateMoveDamageAndEffectiveness(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u16 *typeEffectivenessModifier);
+u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 updateFlags);
 u16 CalcTypeEffectivenessMultiplier(u16 move, u8 moveType, u8 battlerAtk, u8 battlerDef, bool32 recordAbilities);
 u16 CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef, u8 leveldef);
 u16 GetTypeModifier(u8 atkType, u8 defType);
@@ -189,6 +190,7 @@ bool8 IsGravityActive(void);
 bool8 isMagicRoomActive(void);
 bool8 isWonderRoomActive(void);
 bool32 TryPrimalReversion(u8 battlerId);
+bool8 HasAnyLoweredStat(u8 battler);
 
 // Ability checks
 bool32 IsRolePlayBannedAbilityAtk(u16 ability);
@@ -219,7 +221,8 @@ bool32 IsWorrySeedBannedAbility(u16 ability);
 bool32 IsGastroAcidBannedAbility(u16 ability);
 bool32 IsEntrainmentBannedAbilityAttacker(u16 ability);
 bool32 IsEntrainmentTargetOrSimpleBeamBannedAbility(u16 ability);
+u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u16 typeEffectivenessModifier, bool32 isCrit, bool32 updateFlags);
 
 u32 GetIllusionMonSpecies(u32 battlerId);
-
+s32 DoMoveDamageCalcBattleMenu(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, u8 randomFactor);
 #endif // GUARD_BATTLE_UTIL_H

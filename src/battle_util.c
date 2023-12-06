@@ -61,7 +61,6 @@ functions instead of at the top of the file with the other declarations.
 static bool32 TryRemoveScreens(u8 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u8 battlerId);
 static bool8 DoesMoveBoostStats(u16 move);
-static bool8 HasAnyLoweredStat(u8 battler);
 bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget);
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
@@ -12976,7 +12975,7 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
     return basePower;
 }
 
-static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 updateFlags)
+u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 updateFlags)
 {
     u32 i, ability;
     u32 holdEffectAtk, holdEffectParamAtk;
@@ -14763,7 +14762,7 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     return ApplyModifier(modifier, defStat);
 }
 
-static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u16 typeEffectivenessModifier, bool32 isCrit, bool32 updateFlags)
+u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, u16 typeEffectivenessModifier, bool32 isCrit, bool32 updateFlags)
 {
     u32 percentBoost;
     u32 abilityAtk = GetBattlerAbility(battlerAtk);
@@ -15108,6 +15107,38 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
         MulModifier(&finalModifier, UQ_4_12(2.0));
 
     dmg = ApplyModifier(finalModifier, dmg);
+    if (dmg == 0)
+        dmg = 1;
+
+    return dmg;
+}
+
+s32 DoMoveDamageCalcBattleMenu(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, u8 randomFactor)
+{
+    s32 dmg;
+    u16 typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(move, moveType, battlerAtk, battlerDef, FALSE);
+    bool8 updateFlags = FALSE;
+
+    // Don't calculate damage if the move has no effect on target.
+    if (typeEffectivenessModifier == UQ_4_12(0))
+        return 0;
+    
+    gBattleMovePower = CalcMoveBasePowerAfterModifiers(move, battlerAtk, battlerDef, moveType, updateFlags);
+
+    // long dmg basic formula
+    dmg = ((gBattleMons[battlerAtk].level * 2) / 5) + 2;
+    dmg *= gBattleMovePower;
+    dmg *= CalcAttackStat(move, battlerAtk, battlerDef, moveType, isCrit, updateFlags);
+    dmg /= CalcDefenseStat(move, battlerAtk, battlerDef, moveType, isCrit, updateFlags);
+    dmg = (dmg / 50) + 2;
+
+    // Calculate final modifiers.
+    dmg = CalcFinalDmg(dmg, move, battlerAtk, battlerDef, moveType, typeEffectivenessModifier, isCrit, updateFlags);
+
+    // Add a random factor.
+    dmg *= 100 - randomFactor;
+    dmg /= 100;
+
     if (dmg == 0)
         dmg = 1;
 
@@ -16609,7 +16640,7 @@ static bool8 DoesMoveBoostStats(u16 move){
     return FALSE;
 }
 
-static bool8 HasAnyLoweredStat(u8 battler){
+bool8 HasAnyLoweredStat(u8 battler){
     u8 i;
     for(i = STAT_ATK; i < NUM_BATTLE_STATS; i++){
         if(CompareStat(battler, i, DEFAULT_STAT_STAGE, CMP_LESS_THAN))
