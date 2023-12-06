@@ -827,6 +827,13 @@ static bool8 Menu_DoGfxSetup(void)
         gMain.state++;
         break;
     case 5:
+        taskId = CreateTask(Task_MenuWaitFadeIn, 0);
+        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
+        gMain.state++;
+        break;
+    case 6:
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        //Start 
         ShowSpeciesIcon(0);
         ShowSpeciesIcon(1);
         if(IsDoubleBattle()){
@@ -835,14 +842,8 @@ static bool8 Menu_DoGfxSetup(void)
         }
         PrintStatsTab();
         //CreateTask(Task_CalculateDamage, 1);
-        taskId = CreateTask(Task_MenuWaitFadeIn, 0);
-        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
-        gMain.state++;
-        break;
-    case 6:
         CreateSelectorSprite();
         ShowFieldIcon();
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         gMain.state++;
         break;
     default:
