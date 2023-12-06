@@ -916,7 +916,7 @@ void LoadTilemapFromMode(void)
             case TAB_PLAYER_SIDE:
             case TAB_ENEMY_SIDE:
                 if(IsDoubleBattle())
-                    LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
+                    LZDecompressWram(sMenu_Tilemap_Singles_Battler_Abilities, sBg1TilemapBuffer);
                 else
                     LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
             break;
