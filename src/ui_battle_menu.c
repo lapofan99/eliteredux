@@ -746,7 +746,6 @@ void UI_Battle_Menu_Init(MainCallback callback)
             if(isExtraInfoShown && IsBattlerAlive(j)){
                 sMenuDataPtr->BattlerStatus[sMenuDataPtr->numStatusInfo[j]][j] = i;
                 sMenuDataPtr->numStatusInfo[j]++;
-                //CurrentStatusInfo
             }
         }
     }
@@ -917,7 +916,7 @@ void LoadTilemapFromMode(void)
             case TAB_PLAYER_SIDE:
             case TAB_ENEMY_SIDE:
                 if(IsDoubleBattle())
-                    LZDecompressWram(sMenu_Tilemap_Singles_Battler_Abilities, sBg1TilemapBuffer);
+                    LZDecompressWram(sMenu_Tilemap_Doubles_Field, sBg1TilemapBuffer);
                 else
                     LZDecompressWram(sMenu_Tilemap_Singles_Field, sBg1TilemapBuffer);
             break;
@@ -2255,17 +2254,17 @@ const u8 sText_Title_Status_Confusion_Description[]        = _("Has a 33% chance
                                                                "damage is calculated as if it were a\n"
                                                                "physical typeless move with a 40 BP.");
 const u8 sText_Title_Status_Uproar[]                       = _("Causing an Uproar");
-const u8 sText_Title_Status_Uproar_Description[]           = _("Will use Uproar for some turns, Pokémon\n"
-                                                               "can not fall asleep while this is\n"
-                                                               "happening with some exceptions.");
+const u8 sText_Title_Status_Uproar_Description[]           = _("Will use Uproar for some turns,\n"
+                                                               "nobody can fall asleep while this\n"
+                                                               "is happening with some exceptions.");
 const u8 sText_Title_Status_Bide[]                         = _("Bide");
-const u8 sText_Title_Status_Bide_Description[]             = _("Will be unable to attack for some turns,\n"
+const u8 sText_Title_Status_Bide_Description[]             = _("Will be unable to attack,\n"
                                                                "will do double the damage equal to\n"
                                                                "twice the damage it receives.");
 const u8 sText_Title_Status_Infuation[]                    = _("Infuated with {STR_VAR_1}");
-const u8 sText_Title_Status_Infuation_Description[]        = _("Reduces the damage done to the target\n"
-                                                               "of it's infuation, it will end as soon\n"
-                                                               "as when any of the two gets switched.");
+const u8 sText_Title_Status_Infuation_Description[]        = _("Reduces the dmg done to the target\n"
+                                                               "of it's infuation, it will end\n"
+                                                               "when any of the two gets switched.");
 const u8 sText_Title_Status_Focus_Energy[]                 = _("Focus Energy");
 const u8 sText_Title_Status_Focus_Energy_Description[]     = _("Increases the user critical hit rate\n"
                                                                "by two stages, this effect can be\n"
@@ -2401,6 +2400,7 @@ static void PrintStatusTab(void){
     u8 maxLines = 3;
     bool8 printedInfo = FALSE;
     u8 turnsLeft = 0;
+    u8 currentStatus = 0;
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
@@ -2424,8 +2424,10 @@ static void PrintStatusTab(void){
 
     for(i = 0; i < maxLines; i++){
         printedInfo = FALSE;
+        currentStatus = (i + sMenuDataPtr->CurrentStatusInfo[sMenuDataPtr->battlerId]) % sMenuDataPtr->numStatusInfo[sMenuDataPtr->battlerId];
+        j = sMenuDataPtr->BattlerStatus[currentStatus][sMenuDataPtr->battlerId];
 
-        switch(sMenuDataPtr->BattlerStatus[(i + sMenuDataPtr->CurrentStatusInfo[sMenuDataPtr->battlerId]) % sMenuDataPtr->numStatusInfo[sMenuDataPtr->battlerId]][sMenuDataPtr->battlerId]){
+        switch(j){
             case STATUS_INFO_PRIMARY:
                 printedInfo = TRUE;
                 if(gBattleMons[sMenuDataPtr->battlerId].status1 & STATUS1_SLEEP){
@@ -2516,11 +2518,11 @@ static void PrintStatusTab(void){
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
                 //Turns Left
-                StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
+                /*StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
                 turnsLeft = gBattleMons[sMenuDataPtr->battlerId].status2 - STATUS2_CONFUSION;
                 ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
-                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);*/
                 
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Confusion_Description);
@@ -2531,12 +2533,12 @@ static void PrintStatusTab(void){
                 StringCopy(gStringVar1, sText_Title_Status_Uproar);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
 
-                //Turns Left
+                /*//Turns Left
                 StringCopy(gStringVar1, sText_Title_Field_Turns_Left);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 2), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
                 turnsLeft = gBattleMons[sMenuDataPtr->battlerId].status2 - STATUS2_UPROAR;
                 ConvertIntToDecimalStringN(gStringVar1, turnsLeft, STR_CONV_MODE_LEFT_ALIGN, 4);
-                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);
+                AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2 + (SPACE_BETWEEN_LINES_FIELD * 3), (y * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_WHITE], 0xFF, gStringVar1);*/
                 
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Uproar_Description);
@@ -2561,7 +2563,7 @@ static void PrintStatusTab(void){
             break;
             case STATUS_INFO_INFUATION:{
                 u8 infuatedWith = 0;
-                u8 species = SPECIES_NONE;
+                u16 species = SPECIES_NONE;
 
                 for(i = 0; i < gBattlersCount; i++){
                     if ((gBattleMons[sMenuDataPtr->battlerId].status2 & STATUS2_INFATUATION) && 
@@ -2703,6 +2705,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Charge_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_ROOTED:
                 StringCopy(gStringVar1, sText_Title_Status_Rooted);
@@ -2711,6 +2714,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Rooted_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_YAWN:
                 StringCopy(gStringVar1, sText_Title_Status_Yawn);
@@ -2726,6 +2730,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Yawn_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_GRUDGE:
                 StringCopy(gStringVar1, sText_Title_Status_Grudge);
@@ -2734,6 +2739,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Grudge_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_CANT_CRIT:
                 StringCopy(gStringVar1, sText_Title_Status_Cant_Crit);
@@ -2742,6 +2748,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Cant_Crit_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_GASTRO_ACID:
                 StringCopy(gStringVar1, sText_Title_Status_Gastro_Acid);
@@ -2750,6 +2757,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Gastro_Acid_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_EMBARGO:
                 StringCopy(gStringVar1, sText_Title_Status_Embargo);
@@ -2765,6 +2773,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Embargo_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_SMACKED_DOWN:
                 StringCopy(gStringVar1, sText_Title_Status_Smack_Down);
@@ -2773,6 +2782,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Smack_Down_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_MIRACLE_EYED:
                 StringCopy(gStringVar1, sText_Title_Status_Miracle_Eye);
@@ -2781,6 +2791,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Miracle_Eye_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_HEAL_BLOCKED:
                 StringCopy(gStringVar1, sText_Title_Status_Heal_Block);
@@ -2789,6 +2800,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Heal_Block_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_AQUA_RING:
                 StringCopy(gStringVar1, sText_Title_Status_Aqua_Ring);
@@ -2797,6 +2809,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Aqua_Ring_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_MAGNET_RISE:
                 StringCopy(gStringVar1, sText_Title_Status_Magnet_Rise);
@@ -2812,6 +2825,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Magnet_Rise_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_SEMI_INVULNERABLE:
                 StringCopy(gStringVar1, sText_Title_Status_Semi_Invulnerable);
@@ -2820,6 +2834,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Semi_Invulnerable_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_ELECTRIFIED:
                 StringCopy(gStringVar1, sText_Title_Status_Electrified);
@@ -2828,6 +2843,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Electrified_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_PLASMA_FIST:
                 StringCopy(gStringVar1, sText_Title_Status_Plasma_Fist);
@@ -2836,6 +2852,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Plasma_Fist_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
             case STATUS_INFO_COILED:
                 StringCopy(gStringVar1, sText_Title_Status_Coiled_Up);
@@ -2844,6 +2861,7 @@ static void PrintStatusTab(void){
                 //Description
                 StringCopy(gStringVar1, sText_Title_Status_Coiled_Up_Description);
                 AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, ((y + 1) * 8) + y2, 0, 0, sMenuWindowFontColors[FONT_BLACK], 0xFF, gStringVar1);
+                printedInfo = TRUE;
             break;
         }
         if(printedInfo)
@@ -4592,6 +4610,10 @@ static void Task_MenuMain(u8 taskId)
                             sMenuDataPtr->dmgCalculatorTarget = 0;
                         PrintDamageCalulatorTab();
                     }
+                break;
+                case TAB_STATUS:
+                    sMenuDataPtr->CurrentStatusInfo[sMenuDataPtr->battlerId] = (sMenuDataPtr->CurrentStatusInfo[sMenuDataPtr->battlerId] + 1) % sMenuDataPtr->numStatusInfo[sMenuDataPtr->battlerId];
+                    PrintStatusTab();
                 break;
                 default:
                     PlaySE(SE_PC_OFF);
