@@ -922,7 +922,7 @@ void LoadTilemapFromMode(void)
             break;
             case TAB_SPEED:
                 if(IsDoubleBattle())
-                    LZDecompressWram(sMenu_Tilemap_Singles_Speed, sBg1TilemapBuffer); // sMenu_Tilemap_Doubles_Speed
+                    LZDecompressWram(sMenu_Tilemap_Doubles_Speed, sBg1TilemapBuffer);
                 else
                     LZDecompressWram(sMenu_Tilemap_Singles_Speed, sBg1TilemapBuffer);
             break;
