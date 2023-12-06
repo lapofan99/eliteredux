@@ -190,6 +190,7 @@ struct MenuResources
     u8 numSideInfoPlayer;
     u8 SideInfoEnemy[NUM_SIDE_INFO];
     u8 currentSideInfoEnemy;
+    u8 speedModeId;
     u8 numSideInfoEnemy;
     u8 BattlerStatus[NUM_STATUS_INFO][MAX_BATTLERS_COUNT];
     u8 CurrentStatusInfo[MAX_BATTLERS_COUNT];
@@ -870,7 +871,6 @@ void LoadTilemapFromMode(void)
     try_free(sBg1TilemapBuffer);
     sBg1TilemapBuffer == NULL;
 
-    ResetAllBgsCoordinates();
     sBg1TilemapBuffer = Alloc(0x800);
 
     memset(sBg1TilemapBuffer, 0, 0x800);
@@ -883,8 +883,8 @@ void LoadTilemapFromMode(void)
     ShowBg(2);
 
     //ResetTempTileDataBuffers();
-    DecompressAndCopyTileDataToVram(1, sMenuTiles, 0, 0, 0);
-    FreeTempTileDataBuffersIfPossible();
+    //DecompressAndCopyTileDataToVram(1, sMenuTiles, 0, 0, 0);
+    //FreeTempTileDataBuffersIfPossible();
 
     if(sMenuDataPtr->modeId != MODE_FIELD){
         switch(sMenuDataPtr->tabId){
@@ -922,7 +922,7 @@ void LoadTilemapFromMode(void)
             break;
             case TAB_SPEED:
                 if(IsDoubleBattle())
-                    LZDecompressWram(sMenu_Tilemap_Doubles_Speed, sBg1TilemapBuffer);
+                    LZDecompressWram(sMenu_Tilemap_Singles_Speed, sBg1TilemapBuffer); // sMenu_Tilemap_Doubles_Speed
                 else
                     LZDecompressWram(sMenu_Tilemap_Singles_Speed, sBg1TilemapBuffer);
             break;
@@ -3864,6 +3864,8 @@ const u8 gText_SpeedInfo_CanKOThisTurn[] = _("Can KO {STR_VAR_1} this turn:\n{ST
 const u8 gText_BattlerLevelString[] = _("{LV}{STR_VAR_1}");
 const u8 gText_PrintSpeedTabStats[] = _("Total Speed: {STR_VAR_1}");
 
+#define MAX_SPEED_MONS_SHOWN 2
+
 static void PrintSpeedTab(void)
 {
     //Single Battle Only
@@ -3872,6 +3874,8 @@ static void PrintSpeedTab(void)
     u8 windowId = WINDOW_1;
     u8 colorIdx = FONT_BLACK;
     u8 sBattlerByTurnOrder[gBattlersCount];
+    u8 firstMon = sMenuDataPtr->speedModeId;
+    u8 battlertoCheck = 0;
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
@@ -3893,9 +3897,10 @@ static void PrintSpeedTab(void)
     }
 
     //Mon Icon
-    for(i = 0; i < gBattlersCount; i++){
-        if(IsBattlerAlive(sBattlerByTurnOrder[i])){
-            ShowSpeciesIconSpeed(sBattlerByTurnOrder[i], SPEED_POKEMON_ICON_X, SPEED_POKEMON_ICON_Y + (i * SPEED_POKEMON_SPACE));
+    for(i = 0; i < MAX_SPEED_MONS_SHOWN; i++){
+        battlertoCheck = sBattlerByTurnOrder[firstMon + i];
+        if(IsBattlerAlive(battlertoCheck)){
+            ShowSpeciesIconSpeed(battlertoCheck, SPEED_POKEMON_ICON_X, SPEED_POKEMON_ICON_Y + (i * SPEED_POKEMON_SPACE));
         }
     }
 
@@ -3914,12 +3919,13 @@ static void PrintSpeedTab(void)
     x2 = 0;
     y2 = -4;
 
-    for(i = 0; i < gBattlersCount; i++){
-        if(IsBattlerAlive(sBattlerByTurnOrder[i])){
-            u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[sBattlerByTurnOrder[i]].species, gBattleMons[sBattlerByTurnOrder[i]].personality);
-            u16 speed = GetBattlerTotalSpeedStat(sBattlerByTurnOrder[i]);
-            species = gBattleMons[sBattlerByTurnOrder[i]].species;
-            target = BATTLE_OPPOSITE(sBattlerByTurnOrder[i]);
+    for(i = 0; i < MAX_SPEED_MONS_SHOWN; i++){
+        battlertoCheck = sBattlerByTurnOrder[firstMon + i];
+        if(IsBattlerAlive(battlertoCheck)){
+            u8 gender = GetGenderFromSpeciesAndPersonality(gBattleMons[battlertoCheck].species, gBattleMons[battlertoCheck].personality);
+            u16 speed = GetBattlerTotalSpeedStat(battlertoCheck);
+            species = gBattleMons[battlertoCheck].species;
+            target = BATTLE_OPPOSITE(battlertoCheck);
             targetCurrentHp = gBattleMons[target].hp;
             
             //Species Name
@@ -3928,7 +3934,7 @@ static void PrintSpeedTab(void)
             x = x + 8;
 
             //Level
-            ConvertIntToDecimalStringN(gStringVar1, gBattleMons[sBattlerByTurnOrder[i]].level, STR_CONV_MODE_LEFT_ALIGN, 3);
+            ConvertIntToDecimalStringN(gStringVar1, gBattleMons[battlertoCheck].level, STR_CONV_MODE_LEFT_ALIGN, 3);
             StringExpandPlaceholders(gStringVar4, gText_BattlerLevelString);
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar4);
             x = x + 4;
@@ -3945,13 +3951,12 @@ static void PrintSpeedTab(void)
             y++;
             //Total Stats 9 x 8
             ConvertIntToDecimalStringN(gStringVar1, speed, STR_CONV_MODE_LEFT_ALIGN, 3);
-            //StringExpandPlaceholders(gStringVar4, gText_PrintSpeedTabStats);
             AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (8 * 8) + 4, (10 * 8) - 4 + (SPEED_POKEMON_SPACE * i), 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
             y = y + 2;
 
             //Move Names
             for(j = 0; j < MAX_MON_MOVES; j++){
-                move = gBattleMons[sBattlerByTurnOrder[i]].moves[j];
+                move = gBattleMons[battlertoCheck].moves[j];
                 if(move != MOVE_NONE){
                     StringCopy(gStringVar1, gMoveNames[move]);
                     AddTextPrinterParameterized4(windowId, FONT_SMALL_NARROW, (x * 8) + x2, (y * 8) + y2, 0, 0, sMenuWindowFontColors[colorIdx], 0xFF, gStringVar1);
@@ -3964,15 +3969,14 @@ static void PrintSpeedTab(void)
                     //Can KO - Todo: Check calculation
                     if(gBattleMoves[move].split != SPLIT_STATUS && gBattleMoves[move].power > 0){
                         u8 moveType = gBattleMoves[move].type;
-                        SetTypeBeforeUsingMove(move, sBattlerByTurnOrder[i]);
+                        SetTypeBeforeUsingMove(move, battlertoCheck);
                         GET_MOVE_TYPE(move, moveType);
-                        moveDamage = CalculateMoveDamage(move, sBattlerByTurnOrder[i], target, moveType, 0, FALSE, FALSE, FALSE);
+                        moveDamage = CalculateMoveDamage(move, battlertoCheck, target, moveType, 0, FALSE, FALSE, FALSE);
                         if(targetCurrentHp <= moveDamage)
                             BlitBitmapToWindow(windowId, sCheck, (x * 8) + x2, (y * 8), 8, 8);
                     }
                     x = x - 12;
                     x2 = 0;
-                    //
                     y++;
                 }
             }
@@ -4372,6 +4376,7 @@ static u8 ShowSpeciesIconSpeed(u8 battler, u8 x, u8 y)
         break;
     }
 }
+
 // different from pokemon_summary_screen
 #define TYPE_ICON_PAL_NUM_0     13
 #define TYPE_ICON_PAL_NUM_1     14
@@ -4608,6 +4613,22 @@ static void Task_MenuMain(u8 taskId)
                 case TAB_ENEMY_SIDE:
                     sMenuDataPtr->currentSideInfoEnemy = (sMenuDataPtr->currentSideInfoEnemy + 1) % sMenuDataPtr->numSideInfoEnemy;
                     PrintSideTab(B_SIDE_OPPONENT);
+                break;
+                case TAB_SPEED:
+                    //Scrolling since we only have 2 spaces, will be changed in the future, lacks ability to change targets
+                    if(IsDoubleBattle()){
+                        if(sMenuDataPtr->speedModeId != gBattlersCount - 2)
+                            sMenuDataPtr->speedModeId++;
+                        else
+                            sMenuDataPtr->speedModeId = 0;
+                        FreeEveryMonIconSprite();
+                        PrintSpeedTab();
+                    }
+                    else{
+                        PlaySE(SE_PC_OFF);
+                        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+                        gTasks[taskId].func = Task_MenuTurnOff;
+                    }
                 break;
                 default:
                     PlaySE(SE_PC_OFF);
