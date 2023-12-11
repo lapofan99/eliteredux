@@ -1339,7 +1339,7 @@ void PutNewBattleTowerRecord(struct EmeraldBattleTowerRecord *newRecordEm)
                 if (gSaveBlock2Ptr->frontier.towerRecords[i].name[j] != newRecord->name[j])
                     break;
                 if (newRecord->name[j] == EOS)
-                #endif  
+                #endif
                 {
                     k = PLAYER_NAME_LENGTH;
                     break;
@@ -1742,7 +1742,8 @@ static void FillTrainerParty(u16 trainerId, u8 firstMonId, u8 monCount)
                                              gFacilityTrainerMons[monId].nature,
                                              fixedIV,
                                              gFacilityTrainerMons[monId].evSpread,
-                                             otID);
+                                             otID,
+                                             gFacilityTrainerMons[monId].abilityNum);
 
         friendship = MAX_FRIENDSHIP;
         // Give the chosen pokemon its specified moves.
@@ -1872,7 +1873,8 @@ static void FillFactoryFrontierTrainerParty(u16 trainerId, u8 firstMonId)
                                              gFacilityTrainerMons[monId].nature,
                                              fixedIV,
                                              gFacilityTrainerMons[monId].evSpread,
-                                             otID);
+                                             otID,
+                                             gFacilityTrainerMons[monId].abilityNum);
 
         friendship = 0;
         for (j = 0; j < MAX_MON_MOVES; j++)
@@ -1900,7 +1902,8 @@ static void FillFactoryTentTrainerParty(u16 trainerId, u8 firstMonId)
                                              gFacilityTrainerMons[monId].nature,
                                              fixedIV,
                                              gFacilityTrainerMons[monId].evSpread,
-                                             otID);
+                                             otID,
+                                             gFacilityTrainerMons[monId].abilityNum);
 
         friendship = 0;
         for (j = 0; j < MAX_MON_MOVES; j++)
@@ -3012,7 +3015,7 @@ static void FillPartnerParty(u16 trainerId)
                       sStevenMons[i].species,
                       sStevenMons[i].level,
                       sStevenMons[i].fixedIV,
-                      TRUE, 
+                      TRUE,
                       #ifdef BUGFIX
                       j,
                       #else
@@ -3234,7 +3237,8 @@ static void FillPartnerParty(u16 trainerId)
                                                  gFacilityTrainerMons[monId].nature,
                                                  ivs,
                                                  gFacilityTrainerMons[monId].evSpread,
-                                                 otID);
+                                                 otID,
+                                                 gFacilityTrainerMons[monId].abilityNum);
             friendship = MAX_FRIENDSHIP;
             for (j = 0; j < MAX_MON_MOVES; j++)
             {
@@ -3667,7 +3671,8 @@ static void FillTentTrainerParty_(u16 trainerId, u8 firstMonId, u8 monCount)
                                              gFacilityTrainerMons[monId].nature,
                                              fixedIV,
                                              gFacilityTrainerMons[monId].evSpread,
-                                             otID);
+                                             otID,
+                                             gFacilityTrainerMons[monId].abilityNum);
 
         friendship = MAX_FRIENDSHIP;
         // Give the chosen pokemon its specified moves.

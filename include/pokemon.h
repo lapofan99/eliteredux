@@ -60,14 +60,14 @@ struct PokemonSubstruct3
  /* 0x05 */ u32 spAttackIV:5;
  /* 0x06 */ u32 spDefenseIV:5;
  /* 0x07 */ u32 isEgg:1;
- /* 0x07 */ u32 UnusedBit:1; 
+ /* 0x07 */ u32 UnusedBit:1;
 
  /* 0x08 */	u32 pokeball:5;
  /* 0x08 */	u32 abilityNum:2;
  /* 0x09 */	u32 coolRibbon:3;
- /* 0x09 */	u32 beautyRibbon:3; 
- /* 0x09 */	u32 cuteRibbon:3; 
- /* 0x0A */	u32 smartRibbon:3; 
+ /* 0x09 */	u32 beautyRibbon:3;
+ /* 0x09 */	u32 cuteRibbon:3;
+ /* 0x0A */	u32 smartRibbon:3;
  /* 0x0A */	u32 toughRibbon:3;
  /* 0x0A */	u32 championRibbon:1;
  /* 0x0A */	u32 winningRibbon:1;
@@ -245,7 +245,7 @@ struct TrainerMonSpread
 {
     u8 EVs[6];
     u8 IVs[6];
-    u8 nature; 
+    u8 nature;
 };
 
 struct Evolution
@@ -310,7 +310,7 @@ void CreateMonWithEVSpread(struct Pokemon *mon, u16 species, u8 level, u8 fixedI
 void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src);
 void CreateBattleTowerMon2(struct Pokemon *mon, struct BattleTowerPokemon *src, bool8 lvl50);
 void CreateApprenticeMon(struct Pokemon *mon, const struct Apprentice *src, u8 monId);
-void CreateMonWithEVSpreadNatureOTID(struct Pokemon *mon, u16 species, u8 level, u8 nature, u8 fixedIV, u8 evSpread, u32 otId);
+void CreateMonWithEVSpreadNatureOTID(struct Pokemon *mon, u16 species, u8 level, u8 nature, u8 fixedIV, u8 evSpread, u32 otId, u16 abilityNum);
 void ConvertPokemonToBattleTowerPokemon(struct Pokemon *mon, struct BattleTowerPokemon *dest);
 void CreateEventLegalMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId);
 bool8 ShouldIgnoreDeoxysForm(u8 caseId, u8 battlerId);
