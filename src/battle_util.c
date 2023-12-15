@@ -1091,6 +1091,33 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_ICE_SCALES] = 1,
     [ABILITY_ICE_FACE] = 1,
     [ABILITY_PASTEL_VEIL] = 1,
+
+    // New abilities
+    [ABILITY_DUNE_TERROR] = 1,
+    [ABILITY_GIFTED_MIND] = 1,
+    [ABILITY_HYDRO_CIRCUIT] = 1,
+    [ABILITY_DESERT_CLOAK] = 1,
+    [ABILITY_ARCTIC_FUR] = 1,
+    [ABILITY_BIG_LEAVES] = 1,
+    [ABILITY_POISON_ABSORB] = 1,
+    [ABILITY_SEAWEED] = 1,
+    [ABILITY_RAW_WOOD] = 1,
+    [ABILITY_BAD_LUCK] = 1,
+    [ABILITY_JUGGERNAUT] = 1,
+    [ABILITY_MOUNTAINEER] = 1,
+    [ABILITY_DRAGONFLY] = 1,
+    [ABILITY_LIQUIFIED] = 1,
+    [ABILITY_FOSSILIZED] = 1,
+    [ABILITY_LEAD_COAT] = 1,
+    [ABILITY_CHRISTMAS_SPIRIT] = 1,
+    [ABILITY_AERODYNAMICS] = 1,
+    [ABILITY_WATER_COMPACTION] = 1,
+    [ABILITY_GRASS_PELT] = 1,
+    [ABILITY_PRIMAL_ARMOR] = 1,
+    // Intentionally not included: 
+    //   Color Change
+    //   Prismatic Fur
+    //   Cheating Death
 };
 
 static const u8 sAbilitiesNotTraced[ABILITIES_COUNT] =
