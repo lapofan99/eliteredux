@@ -9234,34 +9234,6 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
                 effect++;
             }
         }
-
-        //Nosferatu
-        if(BATTLER_HAS_ABILITY(battler, ABILITY_NOSFERATU)){
-            bool8 activateAbilty = FALSE;
-            u16 abilityToCheck = ABILITY_NOSFERATU; //For easier copypaste
-
-            //Checks if the ability is triggered
-            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
-             && IsBattlerAlive(gBattlerAttacker)
-             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-             && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
-             && IsMoveMakingContact(move, gBattlerAttacker)
-             && !BATTLER_MAX_HP(gBattlerAttacker) 
-             && IsBattlerAlive(gBattlerAttacker)
-             && TARGET_TURN_DAMAGED){
-                activateAbilty = TRUE;
-            }
-
-            //This is the stuff that has to be changed for each ability
-            if(activateAbilty){
-                if(BattlerHasInnate(battler, abilityToCheck))
-                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
-
-                BattleScriptPushCursor();
-                gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
-                effect++;
-            }
-        }
 		
 		// Growing Tooth
 		if (BattlerHasInnate(battler, ABILITY_GROWING_TOOTH)){
@@ -10356,6 +10328,35 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
             
             if (effect)
                 break;
+        }
+        break;
+    case ABILITYEFFECT_AFTER_RECOIL:
+        //Nosferatu
+        if(BATTLER_HAS_ABILITY(battler, ABILITY_NOSFERATU)){
+            bool8 activateAbilty = FALSE;
+            u16 abilityToCheck = ABILITY_NOSFERATU; //For easier copypaste
+
+            //Checks if the ability is triggered
+            if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+             && IsBattlerAlive(gBattlerAttacker)
+             && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+             && !(gStatuses3[gBattlerAttacker] & STATUS3_HEAL_BLOCK)
+             && IsMoveMakingContact(move, gBattlerAttacker)
+             && !BATTLER_MAX_HP(gBattlerAttacker) 
+             && IsBattlerAlive(gBattlerAttacker)
+             && TARGET_TURN_DAMAGED){
+                activateAbilty = TRUE;
+            }
+
+            //This is the stuff that has to be changed for each ability
+            if(activateAbilty){
+                if(BattlerHasInnate(battler, abilityToCheck))
+                    gBattleScripting.abilityPopupOverwrite = abilityToCheck;
+
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_NosferatuActivated;
+                effect++;
+            }
         }
         break;
     }
