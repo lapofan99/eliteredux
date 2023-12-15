@@ -1884,6 +1884,10 @@ enum{
     MOVE_EFFECTIVENESS_STATUS,
 };
 
+bool8 DoesTargetHaveAbilityOrInnate(u8 targetId, u8 userId, u16 ability, u16 moveNum) {
+    return (gBattleMons[targetId].ability == ability || BattlerHasInnate(targetId, ability)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum);
+}
+
 u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 {
     bool8 abilityNullifiesDamage = FALSE;
@@ -2004,7 +2008,7 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
                 if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_VOLT_ABSORB, moveNum))
                     abilityNullifiesDamage = TRUE;
 
-                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_LIGHTNING_ROD, moveNum)) ||
+                if(DoesTargetHaveAbilityOrInnate(targetId, userId, ABILITY_LIGHTNING_ROD, moveNum) ||
                   (DoesTargetHaveAbilityOrInnate(BATTLE_PARTNER(targetId), userId, ABILITY_LIGHTNING_ROD, moveNum) && IsBattlerAlive(BATTLE_PARTNER(targetId))))
                   abilityNullifiesDamage = TRUE;
 
@@ -2350,10 +2354,6 @@ u8 GetMoveTypeEffectiveness(u16 moveNum, u8 targetId, u8 userId)
 		else
 			return MOVE_EFFECTIVENESS_NORMAL;
 	}
-}
-
-static bool8 DoesTargetHaveAbilityOrInnate(u8 targetId, u8 userId, u16 ability, u16 moveNum) {
-    return (gBattleMons[targetId].ability == ability || BattlerHasInnate(targetId, ability)) && !DoesBattlerIgnoreAbilityChecks(userId, moveNum);
 }
 
 static u8 GetMoveTypeEffectivenessStatus(u16 moveNum, u8 targetId, u8 userId)
