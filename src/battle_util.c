@@ -13816,12 +13816,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		atkStat = gBattleMons[battlerAtk].attack + (speedStat * 0.2);
         atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
     }
-	// Juggernaut
-	else if ((BattlerHasInnate(battlerAtk, ABILITY_JUGGERNAUT)|| GetBattlerAbility(battlerAtk) == ABILITY_JUGGERNAUT) && 
-			 (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)){
-		atkStat = gBattleMons[battlerAtk].attack + (gBattleMons[battlerAtk].defense * 0.2);
-        atkStage = gBattleMons[battlerAtk].statStages[STAT_ATK];
-    }
     // Power Core
 	else if (BattlerHasInnate(battlerAtk, ABILITY_POWER_CORE)|| GetBattlerAbility(battlerAtk) == ABILITY_POWER_CORE){
 		if (IS_MOVE_PHYSICAL(move))
@@ -13846,6 +13840,12 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
         {
             atkStat = gBattleMons[battlerAtk].spAttack;
             atkStage = gBattleMons[battlerAtk].statStages[STAT_SPATK];
+        }
+
+        // Juggernaut
+        if ((BattlerHasInnate(battlerAtk, ABILITY_JUGGERNAUT)|| GetBattlerAbility(battlerAtk) == ABILITY_JUGGERNAUT) && 
+                (gBattleMoves[move].flags & FLAG_MAKES_CONTACT)) {
+            atkStat += gBattleMons[battlerAtk].defense * 0.2;
         }
     }
 	
