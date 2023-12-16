@@ -281,7 +281,7 @@
 #define MOVEEND_MULTIHIT_MOVE                     19
 #define MOVEEND_MOVE_EFFECTS2                     20
 #define MOVEEND_RECOIL                            21
-#define MOVEEND_ABILITY_AFTER_RECOIL              22
+#define MOVEEND_ABILITIES_AFTER_RECOIL            22
 #define MOVEEND_EJECT_BUTTON                      23
 #define MOVEEND_RED_CARD                          24
 #define MOVEEND_EJECT_PACK                        25
