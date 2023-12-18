@@ -1118,6 +1118,7 @@ static const u8 sAbilitiesAffectedByMoldBreaker[] =
     [ABILITY_ICE_DEW] = 1,
     [ABILITY_WELL_BAKED_BODY] = 1,
     [ABILITY_EVAPORATE] = 1,
+    [ABILITY_RADIANCE] = 1,
     // Intentionally not included: 
     //   Color Change
     //   Prismatic Fur
