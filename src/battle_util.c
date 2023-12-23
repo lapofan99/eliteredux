@@ -16744,6 +16744,7 @@ bool8 canUseExtraMove(u8 sBattlerAttacker, u8 sBattlerTarget){
        sBattlerAttacker != sBattlerTarget                       &&
        !gProtectStructs[sBattlerAttacker].confusionSelfDmg      &&
        !gProtectStructs[sBattlerAttacker].extraMoveUsed         &&
+       !gProtectStructs[sBattlerAttacker].flinchImmobility      &&
        !(gBattleMons[sBattlerAttacker].status1 & STATUS1_SLEEP) &&
        !(gBattleMons[sBattlerAttacker].status1 & STATUS1_FREEZE))
         return TRUE;
