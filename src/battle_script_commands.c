@@ -1830,14 +1830,6 @@ static bool32 AccuracyCalcHelper(u16 move)
             RecordAbilityBattle(gBattlerAttacker, ABILITY_GRIP_PINCER);
         return TRUE;
     }
-	
-	if ((GetBattlerAbility(gBattlerAttacker) == ABILITY_FATAL_PRECISION || BattlerHasInnate(gBattlerAttacker, ABILITY_FATAL_PRECISION)) &&
-	     CalcTypeEffectivenessMultiplier(move, gBattleMoves[move].type, gBattlerAttacker, gBattlerTarget, TRUE) >= UQ_4_12(2.0))
-    {
-        if (!JumpIfMoveFailed(7, move))
-            RecordAbilityBattle(gBattlerTarget, ABILITY_FATAL_PRECISION);
-        return TRUE;
-    }
 
     if ((gStatuses3[gBattlerTarget] & STATUS3_PHANTOM_FORCE)
         || (!(gBattleMoves[move].flags & FLAG_DMG_IN_AIR) && gStatuses3[gBattlerTarget] & STATUS3_ON_AIR)
@@ -1922,29 +1914,31 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
         moveAcc = 50;
 
     if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SIGHTING_SYSTEM, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if ((gBattleMoves[move].flags & FLAG_STRIKER_BOOST) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ROUNDHOUSE, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_IRON_BARRAGE, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if ((gBattleMoves[move].flags & FLAG_MEGA_LAUNCHER_BOOST) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ARTILLERY, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if ((gBattleMoves[move].flags & FLAG_KEEN_EDGE_BOOST) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_SWEEPING_EDGE, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_DEADEYE, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if (IS_MOVE_STATUS(move) && BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_GIFTED_MIND, atkAbility))
-        moveAcc = 100;
+        return 100;
     else if(BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_ANGELS_WRATH, atkAbility)){
         switch(move){
             case MOVE_TACKLE:
             case MOVE_POISON_STING:
             case MOVE_ELECTROWEB:
             case MOVE_BUG_BITE:
-                moveAcc = 100;
+                return 100;
             break;
         }
     }
+	else if (BATTLER_HAS_ABILITY_FAST(battlerAtk, ABILITY_FATAL_PRECISION, atkAbility) && CalcTypeEffectivenessMultiplier(move, gBattleMoves[move].type, battlerAtk, battlerDef, TRUE) >= UQ_4_12(2.0))
+        return 100;
 
     // Check Wonder Skin.
     if (BATTLER_HAS_ABILITY_FAST(battlerDef, ABILITY_WONDER_SKIN, defAbility) && IS_MOVE_STATUS(move))
