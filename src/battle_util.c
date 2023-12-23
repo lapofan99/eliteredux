@@ -9171,7 +9171,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
              && CanBeConfused(gBattlerTarget)
              && TARGET_TURN_DAMAGED // Need to actually hit the target
 			 && (gBattleMoves[move].flags & FLAG_SOUND)//Sound Based Move
-             && (Random() % 50) == 0)
+             && (Random() % 100) < 50)
             {
                 gBattleScripting.moveEffect = MOVE_EFFECT_CONFUSION;
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
@@ -9320,7 +9320,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				 && CanBeConfused(gBattlerTarget)
 				 && TARGET_TURN_DAMAGED // Need to actually hit the target
 				 && (gBattleMoves[move].flags & FLAG_SOUND)//Sound Based Move
-				 && (Random() % 50) == 0)
+				 && (Random() % 100) < 50)
 				{
 					gBattleScripting.abilityPopupOverwrite = ABILITY_LOUD_BANG;
 					gLastUsedAbility = ABILITY_LOUD_BANG;
