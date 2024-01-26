@@ -38,18 +38,11 @@ jobs:
         # Clones pokeemerald repo
 
       - name: Install agbcc to vanilla emerald
-        run: |
-          ./build.sh
-          ./install.sh ../
-        working-directory: agbcc
-        # installs agbcc to pokeemerald repo
+        run: cd .. && cp -r agbcc pokeemerald/tools/ && cd pokeemerald
 
       - name: Build pokeemerald repo
         run: make -j${nproc} all
         # builds agbcc to pokeemerald repo
-
-      # - name: Check if you uploaded a the correct emerald gba file
-      #   run: sha1sum -c pokemon_emerald.sha1
 
       - name: Check the vanilla pokeemerald folder and go back to the main repo
         run: ls && cd .. && cd ..
@@ -63,6 +56,15 @@ jobs:
 
       - name: Agbcc
         run: make -j${nproc} all
+
+      - name: Build the patch
+        run: ./flips-linux --create ./tools/pokeemerald/pokeemerald.gba ./pokeemerald.gba EliteRedux.bps
+
+      - name: Upload bps file
+        uses: actions/upload-artifact@v2
+        with:
+          name: pokeemerald_patch
+          path: EliteRedux.bps
 
       # - name: Upload gba
       #   uses: actions/upload-artifact@v2
