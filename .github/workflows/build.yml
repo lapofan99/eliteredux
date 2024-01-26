@@ -34,7 +34,7 @@ jobs:
         # Downloads poryscript and unzips it
 
       - name: Download pokeemerald repo
-        run: cd tools && mkdir pokeemerald && git clone https://github.com/pret/pokeemerald
+        run: cd tools && mkdir pokeemerald && cd pokeemerald && git clone https://github.com/pret/pokeemerald
         # Clones pokeemerald repo
 
       - name: Install agbcc to vanilla emerald
