@@ -35,7 +35,7 @@ jobs:
         # Downloads poryscript and unzips it
 
       - name: Install poryscript
-        run: rm poryscript-linux.zip && mv ./poryscript-linux ./poryscript && ls && cd ..
+        run: mv ./poryscript-linux ./poryscript && ls && cd ..
         # Change the poryscript folder name, removes the leftovers files and goes back to the project root to build it
 
       - name: Install agbcc
