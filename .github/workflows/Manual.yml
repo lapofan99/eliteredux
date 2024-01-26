@@ -30,10 +30,6 @@ jobs:
         run: cd tools && wget https://github.com/huderlem/poryscript/releases/download/3.3.0/poryscript-linux.zip && unzip poryscript-linux.zip -d ./ && rm ./poryscript-linux.zip && mv ./poryscript-linux ./poryscript && ls && cd ..
         # Downloads poryscript and unzips it
 
-      - name: Download pokeemerald repo
-        run: cd tools && mkdir pokeemerald && cd pokeemerald && git clone https://github.com/pret/pokeemerald
-        # Clones pokeemerald repo
-
       - name: Install agbcc
         run: |
           ./build.sh
@@ -42,6 +38,10 @@ jobs:
 
       - name: Agbcc
         run: make -j${nproc} all
+
+      - name: Download pokeemerald repo
+        run: cd tools && mkdir pokeemerald && cd pokeemerald && git clone https://github.com/pret/pokeemerald
+        # Clones pokeemerald repo
 
       - name: Install agbcc to vanilla emerald
         run: cd tools && ls && cp -r agbcc pokeemerald/tools/ && cd pokeemerald
