@@ -31,12 +31,8 @@ jobs:
         # as an alternative to dkP
 
       - name: Download poryscript
-        run: cd tools && wget https://github.com/huderlem/poryscript/releases/download/3.3.0/poryscript-linux.zip && unzip poryscript-linux.zip -d ./ && ls
+        run: cd tools && wget https://github.com/huderlem/poryscript/releases/download/3.3.0/poryscript-linux.zip && unzip poryscript-linux.zip -d ./ && rm ./poryscript-linux.zip && mv ./poryscript-linux ./poryscript && ls && cd ..
         # Downloads poryscript and unzips it
-
-      - name: Install poryscript
-        run: mv ./poryscript-linux ./poryscript && ls && cd ..
-        # Change the poryscript folder name, removes the leftovers files and goes back to the project root to build it
 
       - name: Install agbcc
         run: |
