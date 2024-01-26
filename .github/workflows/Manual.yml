@@ -40,14 +40,14 @@ jobs:
         run: make -j${nproc} all
 
       - name: Download pokeemerald repo
-        run: pwd cd tools && mkdir pokeemerald && cd pokeemerald && git clone https://github.com/pret/pokeemerald
+        run: pwd && cd tools && mkdir pokeemerald && cd pokeemerald && git clone https://github.com/pret/pokeemerald
         # Clones pokeemerald repo
 
       - name: Install agbcc to vanilla emerald
-        run: pwd cd tools && ls && cp -r agbcc pokeemerald/tools/ && cd pokeemerald && pwd
+        run: pwd && cd tools && ls && cp -r agbcc pokeemerald/tools/ && cd pokeemerald && pwd
 
       - name: Build pokeemerald repo
-        run: pwd cd tools && cd pokeemerald && pwd && make -j${nproc}
+        run: pwd && cd tools && cd pokeemerald && pwd && make -j${nproc}
         # builds agbcc to pokeemerald repo
 
       - name: Build the patch
