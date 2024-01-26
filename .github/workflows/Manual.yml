@@ -35,7 +35,7 @@ jobs:
         # Clones pokeemerald repo
 
       - name: Install agbcc to vanilla emerald
-        run: cd tools && cp -r agbcc pokeemerald/tools/ && cd pokeemerald
+        run: cd tools && ls && cp -r agbcc pokeemerald/tools/ && cd pokeemerald
 
       - name: Build pokeemerald repo
         run: make -j${nproc} all
