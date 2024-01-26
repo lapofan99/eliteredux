@@ -47,14 +47,14 @@ jobs:
         # Clones pokeemerald repo
 
       - name: Install agbcc to vanilla emerald
-        run: cd tools && ls && cp -r agbcc pokeemerald/tools/ && cd pokeemerald
+        run: cd tools && ls && cp -r agbcc pokeemerald/tools/
 
       - name: Build pokeemerald repo
-        run: make -j${nproc} all
+        run: cd tools && cd pokeemerald && make -j${nproc} all
         # builds agbcc to pokeemerald repo
 
       - name: Build the patch
-        run: chmod -R 755 ./flips-linux && ./flips-linux --create tools/pokeemerald/pokeemerald.gba pokeemerald.gba EliteRedux.bps
+        run: chmod -R 755 ./flips-linux && ls && ./flips-linux --create tools/pokeemerald/pokeemerald.gba pokeemerald.gba EliteRedux.bps
 
       - name: Upload bps file
         uses: actions/upload-artifact@v2
