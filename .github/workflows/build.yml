@@ -50,7 +50,7 @@ jobs:
         run: cd tools && ls && cp -r agbcc pokeemerald/tools/
 
       - name: Build pokeemerald repo
-        run: cd tools && cd pokeemerald && make -j${nproc}
+        run: cd tools && cd pokeemerald && ls && make -j${nproc}
         # builds agbcc to pokeemerald repo
 
       - name: Build the patch
