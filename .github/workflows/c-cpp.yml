@@ -13,5 +13,5 @@ jobs:
         with:
           token: ${{ github.token }}
           repository: Elite-Redux/eliteredux
-          retain_days: 1
-          keep_minimum_runs: 20000
+          retain_days: 3
+          keep_minimum_runs: 6
